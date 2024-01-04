@@ -41,7 +41,6 @@
         public uint border_width;
         public bool done;
         public Project.Gtk project;
-        public bool autohide;
 
         // ctor
         public ValaProjectSettingsPopover()
@@ -56,7 +55,6 @@
             this.border_width = 0;
             this.done = false;
             this.project = null;
-            this.autohide = false;
 
             // set gobject values
             this.el.modal = true;
@@ -82,7 +80,7 @@
         }
 
         // user defined functions
-        public void show (Gtk.Window pwin, Project.Gtk project, Project.Callback doneObj) {
+        public void show (Gtk.Window pwin, Project.Gtk project, Project.Callback? doneObj) {
              
             //print("ValaProjectSettings show\n");
             this.doneObj = doneObj;
@@ -2028,8 +2026,6 @@
                 if (_this.doneObj != null) {
                 	_this.doneObj.call(_this.project);
                 }
-                // hopefull this will work with bjs files..
-                	
                  
                    
                 });

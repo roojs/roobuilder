@@ -8,7 +8,6 @@
    "Project.Gtk project" : "null",
    "Project.GtkValaSettings? selected_target" : "null",
    "Xcls_MainWindow window" : "null",
-   "bool autohide" : false,
    "bool done" : false,
    "bool modal" : true,
    "items" : [
@@ -891,8 +890,6 @@
            "if (_this.doneObj != null) {",
            "\t_this.doneObj.call(_this.project);",
            "}",
-           "// hopefull this will work with bjs files..",
-           "\t",
            " ",
            "   ",
            "}"
@@ -935,7 +932,7 @@
     "}"
    ],
    "| void show" : [
-    "(Gtk.Window pwin, Project.Gtk project, Project.Callback doneObj) {",
+    "(Gtk.Window pwin, Project.Gtk project, Project.Callback? doneObj) {",
     "     ",
     "    //print(\"ValaProjectSettings show\\n\");",
     "    this.doneObj = doneObj;",
