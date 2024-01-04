@@ -409,8 +409,8 @@
                     _this.dir_dropdown_lbl.el.show();
             	    _this.dir_dropdown.el.show();
             	    
-                    _this.name_lbl.el.hide();
-                	_this.name.el.hide();
+                    _this.name_lbl.el.show();
+                	_this.name.el.show();
             
             	    
             	    
