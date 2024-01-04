@@ -395,9 +395,7 @@
             	_this.gen_lbl.el.hide();
             	_this.gen.el.hide();
             	
-             	_this.gen_lbl.el.hide();
-            	_this.gen.el.hide();
-            	
+              
             	var sel = this.getValue();
             
             	GLib.debug("showhide is new ? %s / sel = '%s'" , _this.is_new ? "YES" :"NO", sel); 
@@ -452,8 +450,7 @@
             	 		_this.build_module_lbl.el.show();
             			_this.build_module.el.show();
             	
-            			_this.gen_lbl.el.show();
-            			_this.gen.el.show();
+            			 
             			
             			if (sel == "bjs" || sel == "vala") {
             				 _this.project.loadDirsToStringList(_this.dir_model.el, "/src");
