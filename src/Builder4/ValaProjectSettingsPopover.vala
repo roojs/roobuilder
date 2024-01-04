@@ -37,7 +37,6 @@
             // my vars (def)
         public Project.Callback doneObj;
         public Xcls_MainWindow window;
-        public Gtk.PositionType position;
         public Project.GtkValaSettings? selected_target;
         public uint border_width;
         public bool done;
@@ -53,7 +52,6 @@
             // my vars (dec)
             this.doneObj = null;
             this.window = null;
-            this.position = Gtk.PositionType.RIGHT;
             this.selected_target = null;
             this.border_width = 0;
             this.done = false;
@@ -109,7 +107,9 @@
         //	Gtk.Allocation rect;
         	//btn.get_allocation(out rect);
          //   this.el.set_pointing_to(rect);
-        	this.el.set_transient_for(pwin);
+         this.el.application = pwin.application; // ??? make it modal?
+        	 this.el.set_transient_for(pwin);
+        	 
         	// window + header?
         	// print("SHOWALL - POPIP\n");
         	this.el.set_size_request(800,800);

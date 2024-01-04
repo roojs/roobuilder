@@ -5,7 +5,6 @@
   {
    "$ Project.Callback doneObj" : "null",
    "$ xns" : "Gtk",
-   "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Project.Gtk project" : "null",
    "Project.GtkValaSettings? selected_target" : "null",
    "Xcls_MainWindow window" : "null",
@@ -961,7 +960,9 @@
     "//\tGtk.Allocation rect;",
     "\t//btn.get_allocation(out rect);",
     " //   this.el.set_pointing_to(rect);",
-    "\tthis.el.set_transient_for(pwin);",
+    " this.el.application = pwin.application; // ??? make it modal?",
+    "\t this.el.set_transient_for(pwin);",
+    "\t ",
     "\t// window + header?",
     "\t// print(\"SHOWALL - POPIP\\n\");",
     "\tthis.el.set_size_request(800,800);",
