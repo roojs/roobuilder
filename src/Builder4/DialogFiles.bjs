@@ -906,21 +906,22 @@
          "   pe.el.application = _this.win.el.application;",
          "    pe.el.set_transient_for( _this.el );",
          " ",
-         "  ",
-         "    pe.selected.connect((pr) => {",
-         "     \t ",
-         "\t     _this.show(  pr, _this.new_window);",
-         "",
-         "    });",
          "    ",
          "      ",
-         "    pe.show();",
+         "    pe.show( (GLib.VoidFunc) this.onCreated);",
          "   ",
          "",
          "}"
         ]
        },
-       "xtype" : "Button"
+       "xtype" : "Button",
+       "| void onCreated" : [
+        "() {",
+        "\tvar pe =      EditProject.singleton();",
+        "",
+        "\t_this.show(  pe.result , _this.new_window);",
+        "}"
+       ]
       },
       {
        "$ xns" : "Gtk",
@@ -955,7 +956,7 @@
          "   if (_this.selectedProject == null) {",
          "\t   return;",
          "   }",
-         "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject);",
+         "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);",
          " }"
         ]
        },

@@ -4,10 +4,11 @@
  "items" : [
   {
    "# WindowState? windowstate" : "null",
+   "$ GLib.VoidFunc? donefunc" : "null",
    "$ deletable" : true,
    "$ xns" : "Gtk",
    "@ void canceled" : "()",
-   "@ void selected" : "(Project.Project? proj)",
+   "Project.Project result" : "null",
    "bool modal" : true,
    "default_width" : 600,
    "items" : [
@@ -113,9 +114,11 @@
          "\t\t",
          "\t\tproject.save();",
          "\t\t Project.Project.saveProjectList();",
-         "\t\t_this.selected(project); // this should trigger a load()",
+         " \t\t_this.result = project;",
          "\t\tif (is_new_folder || is_existing) {",
-         "\t    \t _this.windowstate.projectPopoverShow(_this.el, project);",
+         "\t    \t _this.windowstate.projectPopoverShow(_this.el, project, _this.donefunc);",
+         "    \t } else {",
+         "\t    \t _this.donefunc();",
          "    \t }",
          "\t\t",
          "\t\treturn;",
@@ -544,7 +547,7 @@
     }
    ],
    "name" : "EditProject",
-   "title" : "New Project",
+   "string title" : "New Project",
    "xtype" : "Window",
    "| void hideAll" : [
     "() {",
@@ -562,8 +565,8 @@
     "}"
    ],
    "| void show" : [
-    "() {",
-    "     ",
+    "(GLib.VoidFunc donefunc) {",
+    "     this.donefunc = donefunc;",
     "    _this.hideAll(); ",
     "     // hide stuff..",
     "     _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;",

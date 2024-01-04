@@ -914,7 +914,7 @@
                 //listeners
                 this.el.clicked.connect( ( ) => {
                      
-                     _this.windowstate.projectPopoverShow(_this.el, null);
+                     _this.windowstate.projectPopoverShow(_this.el, null, null);
                    
                   
                 });

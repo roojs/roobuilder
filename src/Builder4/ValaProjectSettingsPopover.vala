@@ -38,6 +38,7 @@
         public Xcls_MainWindow window;
         public Gtk.PositionType position;
         public Project.GtkValaSettings? selected_target;
+        public GLib.VoidFunc? donefunc;
         public uint border_width;
         public bool done;
         public Project.Gtk project;
@@ -53,6 +54,7 @@
             this.window = null;
             this.position = Gtk.PositionType.RIGHT;
             this.selected_target = null;
+            this.donefunc = null;
             this.border_width = 0;
             this.done = false;
             this.project = null;
@@ -82,10 +84,10 @@
         }
 
         // user defined functions
-        public void show (Gtk.Window pwin, Project.Gtk project) {
+        public void show (Gtk.Window pwin, Project.Gtk project, GLib.VoidFunc? donefunc) {
              
             //print("ValaProjectSettings show\n");
-            
+            this.donefunc = donefunc;
             this.project=  project;
         	 
             this.compile_flags.el.buffer.set_text(
@@ -2023,7 +2025,9 @@
                 	// what about .js ?
                    _this.done = true;
                 	_this.el.hide();
-                
+                if (_this.donefunc != null) {
+                	_this.donefunc();
+                }
                 // hopefull this will work with bjs files..
                 	
                  

@@ -26,8 +26,9 @@
 
             // my vars (def)
         public WindowState? windowstate;
+        public GLib.VoidFunc? donefunc;
         public signal void canceled ();
-        public signal void selected (Project.Project? proj);
+        public Project.Project result;
 
         // ctor
         public EditProject()
@@ -37,6 +38,8 @@
 
             // my vars (dec)
             this.windowstate = null;
+            this.donefunc = null;
+            this.result = null;
 
             // set gobject values
             this.el.title = "New Project";
@@ -51,8 +54,8 @@
         }
 
         // user defined functions
-        public void show () {
-             
+        public void show (GLib.VoidFunc donefunc) {
+             this.donefunc = donefunc;
             _this.hideAll(); 
              // hide stuff..
              _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;
@@ -231,9 +234,11 @@
                 		
                 		project.save();
                 		 Project.Project.saveProjectList();
-                		_this.selected(project); // this should trigger a load()
+                 		_this.result = project;
                 		if (is_new_folder || is_existing) {
-                	    	 _this.windowstate.projectPopoverShow(_this.el, project);
+                	    	 _this.windowstate.projectPopoverShow(_this.el, project, _this.donefunc);
+                    	 } else {
+                	    	 _this.donefunc();
                     	 }
                 		
                 		return;
