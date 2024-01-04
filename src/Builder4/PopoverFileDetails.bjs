@@ -503,17 +503,6 @@
        ],
        "uint row_spacing" : 2,
        "xtype" : "Grid",
-       "| void hideRow" : [
-        "(int row) ",
-        "{",
-        "\tvar el = _this.grid.el.get_child_at(0,row);",
-        "",
-        "\tel.hide();",
-        "\tel = _this.grid.el.get_child_at(1,row);",
-        "\tel.hide();",
-        "",
-        "}"
-       ],
        "| void showAllRows" : [
         "() {",
         "\tfor (var i = 2; i < 10;i++) {",
@@ -522,6 +511,17 @@
         "\t\tel = _this.grid.el.get_child_at(1,i);",
         "\t\tel.show();",
         "    }",
+        "}"
+       ],
+       "| void xhideRow" : [
+        "(int row) ",
+        "{",
+        "\tvar el = _this.grid.el.get_child_at(0,row);",
+        "",
+        "\tel.hide();",
+        "\tel = _this.grid.el.get_child_at(1,row);",
+        "\tel.hide();",
+        "",
         "}"
        ]
       }
