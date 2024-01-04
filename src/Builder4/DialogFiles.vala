@@ -1794,7 +1794,10 @@
                  
                     
                       
-                    pe.show( (GLib.VoidFunc) this.onCreated);
+                    pe.show( (Project.ProjectFunc) (Project.Project pr) =>  {
+                    
+                    
+                    });
                    
                 
                 });
