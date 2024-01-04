@@ -236,8 +236,10 @@
                 		 Project.Project.saveProjectList();
                  		_this.result = project;
                 		if (is_new_folder || is_existing) {
+                			  _this.el.transient_for.hide();
+                		
                 	    	 _this.windowstate.projectPopoverShow(
-                	    	 	_this.el, project,  _this.doneObj 
+                	    	 	_this.el.transient_for, project,  _this.doneObj 
                     	 	);
                     	 } else {
                     	 	if (_this.doneObj != null) {
