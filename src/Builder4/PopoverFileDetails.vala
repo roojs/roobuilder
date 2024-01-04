@@ -81,6 +81,95 @@
         }
 
         // user defined functions
+        public void onDirChanged () {
+        if (this.dir_dropdown.el.selected == Gtk.INVALID_LIST_POSITION) {
+        		this.build_module_lbl.el.hide();
+        		this.build_module.el.hide();
+        		this.name_lbl.el.hide();
+        		this.name.el.hide();
+        		 
+            	this.gen_lbl.el.hide();
+        		this.gen.el.hide();
+            
+        		return;
+        		
+        	
+        	}
+        	// directory selected
+        	var sel = this.filetype.getValue();
+        	
+        	if (this.file.project.xtype=="Gtk" && (sel == "bjs" || sel == "vala")) {
+        		this.build_module_lbl.el.show();
+        		this.build_module.el.show();
+        	}
+        	this.name_lbl.el.show();
+        	this.name.el.show();
+        	
+        	if (sel == "bjs") {
+                _this.gen_lbl.el.show();
+                _this.gen.el.show();
+            }
+            
+            if (this.file.project.xtype == "Roo" && sel == "bjs") {
+            	this.title_lbl.el.show();
+        		this.title.el.show();
+        		
+        		this.region_lbl.el.show();
+        		this.region.el.show();
+        		
+        		this.parent_lbl.el.show();
+        		this.parent.el.show();
+        		
+        		this.permname_lbl.el.show();
+        		this.permname.el.show();
+        		
+        		this.modOrder_lbl.el.show();
+        		this.modOrder.el.show();
+        	}
+            
+                
+        }
+        public void showEditFile () {
+         	this.save_btn.el.set_label("Save");
+        	this.filetype_lbl.el.hide();
+        	this.filetype.el.hide();
+        		 
+        	var sel = this.filetype.getValue();
+        	switch(_this.project.xtype) {
+        		case "Roo":	 
+        			 if (sel == "bjs") {
+        				_this.title_lbl.el.show();
+        				_this.title.el.show();
+        				
+        				_this.region_lbl.el.show();
+        				_this.region.el.show();
+        				
+        				_this.parent_lbl.el.show();
+        				_this.parent.el.show();
+        				
+        				_this.permname_lbl.el.show();
+        				_this.permname.el.show();
+        				
+        				_this.modOrder_lbl.el.show();
+        				_this.modOrder.el.show();
+        			
+        			}
+        			break;
+        		default:
+        			_this.build_module_lbl.el.show();
+        			_this.build_module.el.show();	
+        			
+        			if (sel == "bjs") {
+        			
+        				 _this.gen_lbl.el.show();
+        				_this.gen.el.show();
+        			}
+        			break;
+        	}
+        	this.path.el.show();
+        	this.path_lbl.el.show();
+        	this.path.el.set_text(_this.file.relpath);
+        }
         public void show (JsRender.JsRender  c, Gtk.Window pwin, bool new_window) 
         {
             
@@ -123,27 +212,17 @@
             this.el.set_transient_for(pwin);
             
             // window + header?
-             
+             this.hideAll();
             this.el.show();
            // this.name.el.grab_focus();
             
             
             if (!this.is_new) {
-        	    this.save_btn.el.set_label("Save");
-        		this.filetype_lbl.el.hide();
-        		this.filetype.el.hide();
-        		this.filetype.showhide(); // as we only work on bjs files currently
+        	   this.showEditFile();
             } else {
-            
-        		//_this.project.loadDirsToStringList(this.dir_model.el, "");
-        		//_this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
-            
-                this.save_btn.el.set_label("Create");
-        	    this.filetype.el.show();
-        	    this.filetype_lbl.el.show();
-        	    this.filetype_model.load();
-        		this.filetype.el.selected = Gtk.INVALID_LIST_POSITION;
-        	    this.filetype.showhide();
+            	this.showNewFile();
+        		 
+              
         	    
             }
             
@@ -168,11 +247,124 @@
                 }
                 
                 _this.file.build_module = _this.build_module.getValue();
-                
+        		
                 
                 
         
                                                             
+        }
+        public void onFileTypeChange () {
+        	if (this.filetype.el.selected == Gtk.INVALID_LIST_POSITION) {
+        		this.dir_dropdown.el.hide();
+        		this.dir_dropdown_lbl.el.hide();
+        		this.build_module_lbl.el.hide();
+        		this.build_module.el.hide();
+        		this.name_lbl.el.hide();
+        		this.name.el.hide();
+        	 
+            	this.gen_lbl.el.hide();
+        		this.gen.el.hide();
+            
+            
+            	this.title_lbl.el.hide();
+        		this.title.el.hide();
+        		
+        		this.region_lbl.el.hide();
+        		this.region.el.hide();
+        		
+        		this.parent_lbl.el.hide();
+        		this.parent.el.hide();
+        		
+        		this.permname_lbl.el.hide();
+        		this.permname.el.hide();
+        		
+        		this.modOrder_lbl.el.hide();
+        		this.modOrder.el.hide();
+         
+        		return;
+        		 
+        	}
+        	
+        	this.dir_dropdown.el.show();
+        	this.dir_dropdown_lbl.el.show();
+        	var sel = this.filetype.getValue();
+        	
+        	var old_sel = _this.dir_dropdown.el.selected != Gtk.INVALID_LIST_POSITION;
+        	var olddir = this.dir_dropdown.getValue();
+        	GLib.debug("old dir = %s", olddir);
+        	if (this.file.project.xtype=="Gtk" && (sel == "bjs" || sel == "vala")) {
+        		_this.project.loadDirsToStringList(_this.dir_model.el, "/src");
+        		if (old_sel && olddir.has_prefix("/src")) {
+        		 	this.dir_dropdown.setValue(olddir);
+         		} else {
+        	 	     _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
+         	    }
+                 
+        	} else {
+        
+                _this.project.loadDirsToStringList(_this.dir_model.el, "");
+        		if (old_sel) {
+        			this.dir_dropdown.setValue(olddir);
+        		} else {
+        		     _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
+        	     }
+               
+            }
+        
+         
+            // is this confusing?  - should we just strip out / add if necessary..
+            if (sel == "bjs" || sel == "vala" || sel == "js" || sel == "css" || sel == "php") {
+                _this.name_lbl.el.label = "Component Name (Filename with-out extension)";				 
+            } else {
+        	    _this.name_lbl.el.label = "File Name (with extension)";
+            }
+         
+        }
+        public void showNewFile () {
+         	this.save_btn.el.set_label("Create");
+         	this.hideAll();
+         	this.filetype.el.show();
+            this.filetype_lbl.el.show();
+            this.filetype_model.load();
+        	this.filetype.el.selected = Gtk.INVALID_LIST_POSITION;
+         
+        	    
+        }
+        public void hideAll () {
+        
+        	// exiting only
+        	this.path_lbl.el.hide();
+            this.path.el.hide();
+             
+            // new 
+            this.name_lbl.el.hide();
+            this.name.el.hide();
+            //new 
+            this.dir_dropdown_lbl.el.hide();
+            this.dir_dropdown.el.hide();
+        	// roo
+        	this.title_lbl.el.hide();
+        	this.title.el.hide();
+        	
+        	this.region_lbl.el.hide();
+        	this.region.el.hide();
+        	
+        	this.parent_lbl.el.hide();
+        	this.parent.el.hide();
+        	
+        	this.permname_lbl.el.hide();
+        	this.permname.el.hide();
+        	
+        	this.modOrder_lbl.el.hide();
+        	this.modOrder.el.hide();
+        	
+        	this.build_module_lbl.el.hide();
+        	this.build_module.el.hide();
+        	
+        	this.gen_lbl.el.hide();
+        	this.gen.el.hide();
+        		this.filetype_lbl.el.hide();
+        		this.filetype.el.hide();
         }
         public class Xcls_Box2 : Object
         {
@@ -323,6 +515,7 @@
 
 
                 // my vars (def)
+            public bool in_showhide;
 
             // ctor
             public Xcls_filetype(Xcls_PopoverFileDetails _owner )
@@ -333,6 +526,7 @@
                 this.el = new Gtk.DropDown( _this.filetype_model.el, null );
 
                 // my vars (dec)
+                this.in_showhide = false;
 
                 // set gobject values
                 this.el.hexpand = true;
@@ -340,10 +534,7 @@
                 //listeners
                 this.el.notify["selected"].connect( () => {
                 
-                 
-                  
-                    // directory is only available for non-bjs 
-                    this.showhide( );
+                 	_this.onFileTypeChange();
                 
                  });
             }
@@ -360,128 +551,6 @@
             	}
             	
             	return _this.filetype_model.el.get_string(this.el.selected).split(" ")[0];
-            }
-            public void showhide ()   {
-            	 
-            
-            	_this.path_lbl.el.hide();
-                _this.path.el.hide();
-                
-                
-                _this.name_lbl.el.hide();
-                _this.name.el.hide();
-                
-                _this.dir_dropdown_lbl.el.hide();
-                _this.dir_dropdown.el.hide();
-            	
-            	_this.title_lbl.el.hide();
-            	_this.title.el.hide();
-            	
-            	_this.region_lbl.el.hide();
-            	_this.region.el.hide();
-            	
-            	_this.parent_lbl.el.hide();
-            	_this.parent.el.hide();
-            	
-            	_this.permname_lbl.el.hide();
-            	_this.permname.el.hide();
-            	
-            	_this.modOrder_lbl.el.hide();
-            	_this.modOrder.el.hide();
-            	
-            	_this.build_module_lbl.el.hide();
-            	_this.build_module.el.hide();
-            	
-            	_this.gen_lbl.el.hide();
-            	_this.gen.el.hide();
-            	
-              
-            	var sel = this.getValue();
-            
-            	GLib.debug("showhide is new ? %s / sel = '%s'" , _this.is_new ? "YES" :"NO", sel); 
-            	
-                if (_this.is_new) {
-            		if (sel == "" &&  _this.project.xtype == "Gtk") {
-            			return;
-            		}
-            		 
-            	  
-                    _this.dir_dropdown_lbl.el.show();
-            	    _this.dir_dropdown.el.show();
-            	    
-                    _this.name_lbl.el.show();
-                	_this.name.el.show();
-            
-            	    
-            	    
-                }   else {
-                    _this.path.el.set_text(_this.file.relpath);
-                }
-                
-            	
-            	
-            	
-            	switch(_this.project.xtype) {
-            		case "Roo":
-            		 	
-            			if (sel == "bjs") {
-            				_this.title_lbl.el.show();
-            				_this.title.el.show();
-            				
-            				_this.region_lbl.el.show();
-            				_this.region.el.show();
-            				
-            				_this.parent_lbl.el.show();
-            				_this.parent.el.show();
-            				
-            				_this.permname_lbl.el.show();
-            				_this.permname.el.show();
-            				
-            				_this.modOrder_lbl.el.show();
-            				_this.modOrder.el.show();
-            			
-            			}
-            			_this.build_module_model.load(null);
-            		 
-            			
-            			break;
-            		default: // vala..
-            		
-            	 		_this.build_module_lbl.el.show();
-            			_this.build_module.el.show();
-            	
-            			 
-            			
-            			if (sel == "bjs" || sel == "vala") {
-            				 _this.project.loadDirsToStringList(_this.dir_model.el, "/src");
-            				 _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
-            		        _this.name_lbl.el.label = "Component Name (Filename with-out extension)";				 
-            		        
-            		        if (sel == "bjs") {
-            			        _this.gen_lbl.el.show();
-            			        _this.gen.el.show();
-            		        }
-            		        
-            		        
-            		        
-            			} else {
-            		        _this.project.loadDirsToStringList(_this.dir_model.el, "");
-            		        _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
-            		        _this.name_lbl.el.label = "File Name (with extension)";
-            	        }
-            			break;
-            	}
-             
-                // load up the directories
-                //??? why can we not create bjs files in other directories??
-            	//if (!is_bjs && _this.file.path.length < 1) {
-            	
-             
-            		
-            		
-            	//}
-               
-                
             }
             public void setValue (string cur) {
             	var el  = _this.filetype_model.el;
@@ -595,11 +664,29 @@
                 this.colspan = 1;
 
                 // set gobject values
+
+                //listeners
+                this.el.notify["selected"].connect( () => {
+                
+                	 _this.onDirChanged();
+                	
+                	
+                	
+                 });
             }
 
             // user defined functions
             public string getValue () {
             	return _this.dir_model.el.get_string(this.el.selected);
+            }
+            public void setValue (string cur) {
+            	var el  = _this.dir_model.el;
+            	for(var i= 0; i < el.get_n_items();i++)  {
+            		if (el.get_string(i) == cur) {
+            			this.el.selected = i;
+            			break;
+            		}
+            	}
             }
         }
         public class Xcls_dir_model : Object
@@ -1258,7 +1345,7 @@
                 	}
                 	// what does this do?
                 	
-                	var isNew = _this.file.name.length  > 0 ? false : true;
+                 
                 	/*
                 	if (!isNew && this.file.name != _this.name.el.get_text()) {
                 	    Xcls_StandardErrorDialog.singleton().show(
@@ -1276,7 +1363,7 @@
                 	//    this.file[i] =  this.get(i).el.get_text();
                 	//}
                 
-                	if (!isNew) {
+                	if (!_this.is_new) {
                 	  //  try {
                 	  
                 	  	var old_target = _this.file.build_module;
@@ -1290,7 +1377,7 @@
                 	    _this.file.save();
                 	    _this.el.hide();
                 	    return;
-                	}
+                	}  
                 	
                 	// ---------------- NEW FILES...
                 	var ftype = _this.filetype.getValue();
@@ -1363,7 +1450,20 @@
                 	_this.file.loaded = true;
                 	_this.file.save();
                      _this.file.project.addFile(_this.file);
-                		 
+                     var sel = _this.filetype.getValue();
+                	 if (_this.file.project.xtype == "Gtk" && 
+                	 	_this.file.build_module.length > 0 &&
+                	 	( sel == "bjs" || sel == "vala")) {
+                	 
+                		var pr = (Project.Gtk) _this.file.project;
+                		if (pr.compilegroups.has_key(_this.file.build_module)) {
+                			var cg = pr.compilegroups.get(_this.file.build_module);
+                			if (!cg.sources.contains(_this.file.relpath)) {
+                				cg.sources.add(_this.file.relpath);
+                			}
+                		}
+                	
+                	}
                 	 
                  
                 	// what about .js ?
