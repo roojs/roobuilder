@@ -239,7 +239,9 @@
                 	    	 _this.windowstate.projectPopoverShow(
                 	    	 	_this.el, project,  this.doneObj.call );
                     	 } else {
-                	    	 _this.doneObj.call(this.project);
+                    	 	if (_this.doneObj != null) {
+                		    	 _this.doneObj.call(this.project);
+                	    	 }
                     	 }
                 		
                 		return;
