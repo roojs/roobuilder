@@ -138,7 +138,7 @@
             this.el.show();
             this.name.el.grab_focus();
             
-            _this.project.loadDirsToStringList(this.dir_model.el);
+            _this.project.loadDirsToStringList(this.dir_model.el, "");
             
             if (c.path.length > 0) {
         	    this.save_btn.el.set_label("Save");
