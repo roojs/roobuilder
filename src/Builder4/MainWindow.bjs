@@ -831,6 +831,13 @@
     "\t\treq.totalErrors(\"DEPR\"),",
     "\t\treq.totalErrors(\"DEPR\", this.windowstate.file)",
     "\t);",
+    "",
+    "\t_this.statusbar_run.el.hide();",
+    "",
+    "\tif (req.totalErrors(\"ERR\") < 1) {",
+    "\t\t_this.statusbar_run.el.show();",
+    "\t}",
+    "\t",
     "}"
    ]
   }
