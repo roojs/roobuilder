@@ -761,7 +761,7 @@
     "        this.save_btn.el.set_label(\"Create\");",
     "\t    _this.filetype.el.show();",
     "\t    _this.filetype_lbl.el.show();",
-    "\t\t_this.filetype_model.el.selected = Gtk.INVALID_LIST_POSITION;",
+    "\t\t_this.filetype.el.selected = Gtk.INVALID_LIST_POSITION;",
     "\t    _this.filetype.showhide();",
     "\t    ",
     "    }",
