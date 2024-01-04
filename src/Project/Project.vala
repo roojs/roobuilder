@@ -49,7 +49,9 @@ namespace Project {
 	
 	public bool  projects_loaded = false;
 
-	
+	class Callback : Object {
+		signal void call(Project project);
+	}
 	
 	public abstract class Project : Object {
 		
