@@ -1792,14 +1792,12 @@
                    pe.el.application = _this.win.el.application;
                     pe.el.set_transient_for( _this.el );
                  
-                    
+                    var cb = new Project.Callback();
+                    cb.call.connect((pr) => {
+                    	_this.show(  pr , _this.new_window);
+                	});
                       
-                    pe.show( (Project.ProjectFunc) (Project.Project pr) =>  {
-                	 
-                		_this.show(  pr , _this.new_window);
-                	 
-                    
-                    });
+                    pe.show( cb);
                    
                 
                 });
