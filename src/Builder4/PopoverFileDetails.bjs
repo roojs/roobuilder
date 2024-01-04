@@ -105,6 +105,11 @@
          "xtype" : "DropDown",
          "| string getValue" : [
           "() {",
+          "\t",
+          "\tif (_this.file != null) {",
+          "\t\treturn this.filetype;",
+          "\t}",
+          "\t",
           "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
           "\t\treturn \"\";",
           "\t}",

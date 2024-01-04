@@ -361,6 +361,11 @@
 
             // user defined functions
             public string getValue () {
+            	
+            	if (_this.file != null) {
+            		return this.filetype;
+            	}
+            	
             	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
             		return "";
             	}
