@@ -134,7 +134,7 @@
             this.el.set_transient_for(pwin);
             
             // window + header?
-             print("SHOWALL - POPIP\n");
+             
             this.el.show();
            // this.name.el.grab_focus();
             
