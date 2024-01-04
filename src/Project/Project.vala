@@ -48,7 +48,9 @@ namespace Project {
 	
 	
 	public bool  projects_loaded = false;
-
+	
+	
+	// used to pass around callbacks with project as a return
 	class Callback : Object {
 		signal void call(Project project);
 	}
