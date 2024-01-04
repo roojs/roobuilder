@@ -139,7 +139,7 @@
             this.name.el.grab_focus();
             
             _this.project.loadDirsToStringList(this.dir_model.el, "");
-            
+            _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
             if (c.path.length > 0) {
         	    this.save_btn.el.set_label("Save");
         		_this.filetype_lbl.el.hide();
@@ -424,8 +424,10 @@
             			
             			if (sel == "bjs" || sel == "vala") {
             				 _this.project.loadDirsToStringList(_this.dir_model.el, "/src");
+            				 _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
             			} else {
             		        _this.project.loadDirsToStringList(_this.dir_model.el, "");
+            		        _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
             	        }
             			break;
             	}
