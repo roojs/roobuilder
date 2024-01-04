@@ -15,4 +15,6 @@ This means that we can pass around a delegate, rather than fixing it to a object
 
 */
 
-class GenericDelegate
+class GenericDelegate : Object 
+{
+	signal callback void ()

@@ -421,7 +421,7 @@ public class WindowState : Object
 
 	}
 	
-	public void projectPopoverShow(Gtk.Window pwin, Project.Project? pr, GLib.VoidFunc? donefunc) 
+	public void projectPopoverShow(Gtk.Window pwin, Project.Project? pr, Project.Callback? doneObj) 
 	{ 
 		if (pr == null) {
 		    pr = this.project;
@@ -438,7 +438,7 @@ public class WindowState : Object
 
 		// gtk..
 		
-		this.vala_projectsettings_pop.show(pwin,(Project.Gtk)pr,  donefunc);
+		this.vala_projectsettings_pop.show(pwin,(Project.Gtk)pr,  doneObj);
 	
 	}
 	
