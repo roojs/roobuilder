@@ -139,10 +139,11 @@
         		//_this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
             
                 this.save_btn.el.set_label("Create");
-        	    _this.filetype.el.show();
-        	    _this.filetype_lbl.el.show();
-        		_this.filetype.el.selected = Gtk.INVALID_LIST_POSITION;
-        	    _this.filetype.showhide();
+        	    this.filetype.el.show();
+        	    this.filetype_lbl.el.show();
+        	    this.filetype_model.load();
+        		this.filetype.el.selected = Gtk.INVALID_LIST_POSITION;
+        	    this.filetype.showhide();
         	    
             }
             
