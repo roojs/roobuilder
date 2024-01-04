@@ -741,7 +741,7 @@
     "\t    this.build_module_model.load(p.compilegroups);",
     "\t    // it will select first if available...",
     "\t    // only for new files.",
-    "\t    if (c.name != \"\") {",
+    "\t    if (!this.is_new) {",
     "\t\t    this.build_module.setValue(c.build_module);",
     "\t    }",
     "    }",

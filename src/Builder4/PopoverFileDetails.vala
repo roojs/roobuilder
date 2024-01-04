@@ -110,7 +110,7 @@
         	    this.build_module_model.load(p.compilegroups);
         	    // it will select first if available...
         	    // only for new files.
-        	    if (c.name != "") {
+        	    if (!this.is_new) {
         		    this.build_module.setValue(c.build_module);
         	    }
             }
