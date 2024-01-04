@@ -131,7 +131,9 @@
          ],
          "| void showhide" : [
           "()   {",
-          "",
+          "\tif (_this.file == null) {",
+          "\t\treturn;",
+          "\t}",
           "",
           "\t_this.path_lbl.el.hide();",
           "    _this.path.el.hide();",
