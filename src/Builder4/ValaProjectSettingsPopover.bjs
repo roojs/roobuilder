@@ -3,7 +3,7 @@
  "gen_extended" : false,
  "items" : [
   {
-   "$ GLib.VoidFunc? donefunc" : "null",
+   "$ Project.Callback doneObj" : "null",
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Project.Gtk project" : "null",
@@ -936,10 +936,10 @@
     "}"
    ],
    "| void show" : [
-    "(Gtk.Window pwin, Project.Gtk project, GLib.VoidFunc? donefunc) {",
+    "(Gtk.Window pwin, Project.Gtk project, Project.Callback doneObj) {",
     "     ",
     "    //print(\"ValaProjectSettings show\\n\");",
-    "    this.donefunc = donefunc;",
+    "    this.doneObj = doneObj;",
     "    this.project=  project;",
     "\t ",
     "    this.compile_flags.el.buffer.set_text(",

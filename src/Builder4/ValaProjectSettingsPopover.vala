@@ -35,10 +35,10 @@
         public Xcls_save_btn save_btn;
 
             // my vars (def)
+        public Project.Callback doneObj;
         public Xcls_MainWindow window;
         public Gtk.PositionType position;
         public Project.GtkValaSettings? selected_target;
-        public GLib.VoidFunc? donefunc;
         public uint border_width;
         public bool done;
         public Project.Gtk project;
@@ -51,10 +51,10 @@
             this.el = new Gtk.Window();
 
             // my vars (dec)
+            this.doneObj = null;
             this.window = null;
             this.position = Gtk.PositionType.RIGHT;
             this.selected_target = null;
-            this.donefunc = null;
             this.border_width = 0;
             this.done = false;
             this.project = null;
@@ -84,10 +84,10 @@
         }
 
         // user defined functions
-        public void show (Gtk.Window pwin, Project.Gtk project, GLib.VoidFunc? donefunc) {
+        public void show (Gtk.Window pwin, Project.Gtk project, Project.Callback doneObj) {
              
             //print("ValaProjectSettings show\n");
-            this.donefunc = donefunc;
+            this.doneObj = doneObj;
             this.project=  project;
         	 
             this.compile_flags.el.buffer.set_text(
