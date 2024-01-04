@@ -401,14 +401,13 @@
             		if (sel == "" &&  _this.project.xtype =="Gtk") {
             			return;
             		}
-            		
-            
+            		 
             	  
                     _this.dir_dropdown_lbl.el.show();
             	    _this.dir_dropdown.el.show();
             	    
                 }   else {
-                    _this.path.el.set_text(c.relpath);
+                    _this.path.el.set_text(_this.file.relpath);
                 }
                 
             	
