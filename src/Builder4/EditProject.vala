@@ -916,7 +916,11 @@
             public Xcls_StringList20(EditProject _owner )
             {
                 _this = _owner;
-                this.el = new Gtk.StringList( { "Roo", "Gtk" /*, "WrappedGtk", "Flutter" */ } );
+                this.el = new Gtk.StringList( {  
+	"Gtk - A Gtk / Vala Desktop project", 
+	"Roo - A Web  Javascript Project using the Roo Library"
+	/*,  "Flutter" */ 
+} );
 
                 // my vars (dec)
 

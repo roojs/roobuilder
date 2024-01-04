@@ -499,7 +499,13 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{ \"Roo\", \"Gtk\" /*, \"WrappedGtk\", \"Flutter\" */ }",
+           "strings" : [
+            "{  ",
+            "\t\"Gtk - A Gtk / Vala Desktop project\", ",
+            "\t\"Roo - A Web  Javascript Project using the Roo Library\"",
+            "\t/*,  \"Flutter\" */ ",
+            "}"
+           ],
            "xtype" : "StringList"
           }
          ],
