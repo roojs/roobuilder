@@ -363,7 +363,7 @@
             public string getValue () {
             	
             	if (_this.file != null) {
-            		return _this.file.xtype != "Plainfile" ? "bjs" :  _this.file_file_ext;
+            		return _this.file.xtype != "Plainfile" ? "bjs" :  _this.file.file_ext;
             	}
             	
             	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {

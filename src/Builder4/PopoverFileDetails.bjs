@@ -107,7 +107,7 @@
           "() {",
           "\t",
           "\tif (_this.file != null) {",
-          "\t\treturn _this.file.xtype != \"Plainfile\" ? \"bjs\" :  _this.file_file_ext;",
+          "\t\treturn _this.file.xtype != \"Plainfile\" ? \"bjs\" :  _this.file.file_ext;",
           "\t}",
           "\t",
           "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
