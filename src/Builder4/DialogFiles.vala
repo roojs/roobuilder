@@ -1795,7 +1795,9 @@
                     
                       
                     pe.show( (Project.ProjectFunc) (Project.Project pr) =>  {
-                    
+                	 
+                		_this.show(  pr , _this.new_window);
+                	 
                     
                     });
                    
