@@ -128,15 +128,15 @@
            // this.name.el.grab_focus();
             
             
-            if (c.path.length > 0) {
+            if (!this.is_new) {
         	    this.save_btn.el.set_label("Save");
         		_this.filetype_lbl.el.hide();
         		_this.filetype.el.hide();
         		_this.filetype.showhide(); // as we only work on bjs files currently
             } else {
             
-        		_this.project.loadDirsToStringList(this.dir_model.el, "");
-        		_this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
+        		//_this.project.loadDirsToStringList(this.dir_model.el, "");
+        		//_this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
             
                 this.save_btn.el.set_label("Create");
         	    _this.filetype.el.show();
