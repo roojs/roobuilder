@@ -1343,25 +1343,7 @@
                 	     
                 	    return;
                 	}
-                	// what does this do?
-                	
-                 
-                	/*
-                	if (!isNew && this.file.name != _this.name.el.get_text()) {
-                	    Xcls_StandardErrorDialog.singleton().show(
-                	        this.el,
-                	        "Sorry changing names does not work yet. "
-                	    );
-                	     
-                	    return;
-                	}
-                	*/
-                	  
-                  
-                	// FIXME - this may be more complicated...
-                	//for (var i in this.def) {
-                	//    this.file[i] =  this.get(i).el.get_text();
-                	//}
+                	 
                 
                 	if (!_this.is_new) {
                 	  //  try {
