@@ -834,7 +834,7 @@ namespace Project {
 			}
 			var sp = this.findDir(pfile.dir);
 			sp.childfiles.append(pfile);	
-			this.file.set(pfile.path, pfile);
+			this.files.set(pfile.path, pfile);
 			
 			this.on_changed();
 		}
