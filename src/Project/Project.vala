@@ -410,14 +410,7 @@ namespace Project {
 
 		public void save()
 		{
-				// fixme..
-			
-		 
-
-			
-
-			//var dirname = GLib.Environment.get_home_dir() + "/.Builder";
-			
+			  
 			var  s =  this.toJSON();
 			GLib.debug("Save Project %s\n%s", this.name, s);
 			try {
@@ -426,6 +419,7 @@ namespace Project {
 			} catch (GLib.Error e) {
 				GLib.error("failed  to save file %s", e.message);
 			}
+			this.onSave();
 			
 		}
 
@@ -523,8 +517,6 @@ namespace Project {
 			
 		}
 		
-		public abstract void loadJson(Json.Object obj); 
-		public abstract void saveJson(Json.Object obj);
 		
 		/*
 		
@@ -815,7 +807,7 @@ namespace Project {
 		}
 		
 		// calle dfrom new file dialog
-		// add files to dires 
+		// add files to dires (and main file list)
 		// update 
 			
 		 
@@ -995,9 +987,11 @@ namespace Project {
 			return ret;
 		}
 		
-		 
-		 public abstract void initDatabase();
-		 public abstract void initialize(); // for new projects (make dirs?);
+ 		public abstract void onSave(); // write meson?
+		public abstract void initDatabase();
+		public abstract void initialize(); // for new projects (make dirs?);
+		public abstract void loadJson(Json.Object obj); 
+		public abstract void saveJson(Json.Object obj);
 		  
 	}
 }

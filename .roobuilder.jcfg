@@ -151,7 +151,8 @@
                 "src/Palete/ValalCompileQueue.vala",
                 "src/Palete/ValaCompileRequest.vala",
                 "src/Palete/ValaCompileQueue.vala",
-                "src/Palete/Javascript.vala"
+                "src/Palete/Javascript.vala",
+                "src/Project/Meson.vala"
             ]
         }
     ],
