@@ -78,10 +78,13 @@ conf = configuration_data()
 conf.set('PROJECT_NAME', meson.project_name())
 
 $addvapidir
-add_project_arguments(['--enable-gobject-tracing', '--fatal-warnings'], language: 'vala')
+
 
 $targets
 ";		
+
+
+// removed.. add_project_arguments(['--enable-gobject-tracing', '--fatal-warnings'], language: 'vala')
 
 			try {
 				FileUtils.set_contents(this.project.path + "/meson.build", data, data.length);
