@@ -27,7 +27,7 @@ deps = [
    valac.find_library('libadwaita-1'),
    valac.find_library('libxml-2.0'),
    valac.find_library('posix'),
-   dependancy('roojspacker-1.4'),
+   dependency('roojspacker-1.4'),
    valac.find_library('gtksourceview-5'),
 
 ]
