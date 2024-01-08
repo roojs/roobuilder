@@ -79,6 +79,7 @@ add_project_arguments(['--enable-gobject-tracing', '--fatal-warnings'], language
 
 $targets
 ";		
+
 			try {
 				FileUtils.set_contents(this.project.path + "/meson.build", data, data.length);
 			} catch (GLib.Error e) {
@@ -92,7 +93,7 @@ $targets
 			
 			var str = cg.name + "_src = files([\n";
 			foreach(var s in cg.sources) {
-				var f= this.project.findByPath(s);
+				var f= this.project.getByPath(this.project.path + "/" +  s);
 				str += "   '" + f.targetName() + "',\n";
 			}
 			str += "])\n\n";
