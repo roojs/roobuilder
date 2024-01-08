@@ -1,5 +1,5 @@
 project('roobuilder', 'vala', 'c',
-  version: '1.0,
+  version: '1.0',
   license: 'LGPL',
   default_options: [
     'default_library=static',
@@ -18,7 +18,7 @@ deps = [
    valac.find_library('gtk4'),
    valac.find_library('gee-0.8'),
    valac.find_library('gio-2.0'),
-   valac.find_library('webkitgtk-6.0'),
+   valac.find_library('webkitgtk-6.0'), 
    valac.find_library('glib-2.0'),
    valac.find_library('gobject-2.0'),
    valac.find_library('json-glib-1.0'),
