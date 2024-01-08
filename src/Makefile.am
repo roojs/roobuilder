@@ -200,10 +200,11 @@ BUIDERPROJECT = Project/Gtk.vala \
 		Project/Project.vala \
 		Project/Roo.vala \
 		Project/VapiSelection.vala \
+		Project/Meson.vala \
 		Project/GtkValaSettings.vala
 
 
-BUIDERUI =  	Builder4/About.vala \
+BUIDERUI =  Builder4/About.vala \
 		Builder4/DialogConfirm.vala \
 		Builder4/StandardErrorDialog.vala \
 		Builder4/DialogSaveTemplate.vala \
