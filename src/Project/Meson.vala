@@ -97,6 +97,9 @@ $targets
 			var str = cg.name + "_src = files([\n";
 			foreach(var s in cg.sources) {
 				var f= this.project.getByPath(this.project.path + "/" +  s);
+				if (f == null) {
+					continue;
+				}
 				var add =  f.relTargetName();
 				if (add.length  > 0) {
 					str += "   '" + add + "',\n";
