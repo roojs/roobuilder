@@ -1,0 +1,211 @@
+project('roobuilder', 'vala', 'c',
+  version: '1.0,
+  license: 'LGPL',
+  default_options: [
+    'default_library=static',
+    'c_std=gnu11'       # for C subprojects
+  ]
+)
+
+valac = meson.get_compiler('vala')
+libvala_version = run_command(valac, '--api-version').stdout().strip()
+if not libvala_version.version_compare('>=0.48' )
+  error('libvala needs to be 0.48 or above')
+endif
+
+extra_vala_sources = []
+
+vapi_dir = meson.current_source_dir() / 'vapi'
+add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
+
+   
+deps = [
+   valac.find_library('gtk4'),
+valac.find_library('gee-0.8'),
+valac.find_library('gio-2.0'),
+valac.find_library('webkitgtk-6.0'),
+valac.find_library('libgda-5.0'),
+valac.find_library('glib-2.0'),
+valac.find_library('gobject-2.0'),
+valac.find_library('json-glib-1.0'),
+valac.find_library('gobject-introspection-1.0'),
+valac.find_library('libvala-0.56'),
+valac.find_library('libadwaita-1'),
+valac.find_library('libxml-2.0'),
+valac.find_library('posix'),
+valac.find_library('roojspacker-1.4'),
+valac.find_library('gtksourceview-5'),
+
+]
+ 
+# let Vala add the appropriate defines for GLIB_X_X
+add_project_arguments(['--target-glib=auto'], language: 'vala')
+
+ 
+
+conf = configuration_data()
+conf.set('LIBVALA_VERSION', libvala.version())
+conf.set('PROJECT_NAME', meson.project_name())
+
+add_project_arguments(['--vapidir',  meson.current_source_dir() / 'src/vapi'], language: 'vala')
+
+add_project_arguments(['--enable-gobject-tracing', '--fatal-warnings'], language: 'vala')
+
+roobuilder+src = files([
+   'src/Builder4/About.bjs',
+   'src/Builder4/DialogConfirm.bjs',
+   'src/Builder4/DialogFiles.bjs',
+   'src/Builder4/DialogSaveModule.bjs',
+   'src/Builder4/DialogSaveTemplate.bjs',
+   'src/Builder4/DialogTemplateSelect.bjs',
+   'src/Builder4/Editor.bjs',
+   'src/Builder4/EditProject.bjs',
+   'src/Builder4/FakeServer.vala',
+   'src/Builder4/GtkView.bjs',
+   'src/Builder4/MainWindow.bjs',
+   'src/Builder4/PopoverAddObject.bjs',
+   'src/Builder4/PopoverProperty.bjs',
+   'src/Builder4/StandardErrorDialog.bjs',
+   'src/Builder4/RooProjectSettings.bjs',
+   'src/Builder4/ValaCompileErrors.bjs',
+   'src/Builder4/ValaCompileResults.bjs',
+   'src/Builder4/ValaProjectSettingsPopover.bjs',
+   'src/Builder4/WindowLeftProps.bjs',
+   'src/Builder4/WindowRooView.bjs',
+   'src/Builder4/WindowState.vala',
+   'src/Palete/GirObject.vala',
+   'src/Palete/Gir.vala',
+   'src/codegen/valaccodearraymodule.vala',
+   'src/codegen/valaccodeassignmentmodule.vala',
+   'src/codegen/valaccodeattribute.vala',
+   'src/codegen/valaccodebasemodule.vala',
+   'src/codegen/valaccodecompiler.vala',
+   'src/codegen/valaccodecontrolflowmodule.vala',
+   'src/codegen/valaccodedelegatemodule.vala',
+   'src/codegen/valaccodememberaccessmodule.vala',
+   'src/codegen/valaccodemethodcallmodule.vala',
+   'src/codegen/valaccodemethodmodule.vala',
+   'src/codegen/valaccodestructmodule.vala',
+   'src/codegen/valaccode.vala',
+   'src/codegen/valaclassregisterfunction.vala',
+   'src/codegen/valactype.vala',
+   'src/codegen/valaenumregisterfunction.vala',
+   'src/codegen/valagasyncmodule.vala',
+   'src/codegen/valagdbusclientmodule.vala',
+   'src/codegen/valagdbusservermodule.vala',
+   'src/codegen/valagdbusmodule.vala',
+   'src/codegen/valagerrormodule.vala',
+   'src/codegen/valagirwriter.vala',
+   'src/codegen/valaglibvalue.vala',
+   'src/codegen/valagobjectmodule.vala',
+   'src/codegen/valagsignalmodule.vala',
+   'src/codegen/valagtkmodule.vala',
+   'src/codegen/valagtypemodule.vala',
+   'src/codegen/valagvaluemodule.vala',
+   'src/codegen/valagvariantmodule.vala',
+   'src/codegen/valainterfaceregisterfunction.vala',
+   'src/codegen/valastructregisterfunction.vala',
+   'src/codegen/valatyperegisterfunction.vala',
+   'src/JsRender/Dir.vala',
+   'src/JsRender/Gtk.vala',
+   'src/JsRender/JsonGen.vala',
+   'src/JsRender/JsRender.vala',
+   'src/JsRender/Lang.vala',
+   'src/JsRender/NodeProp.vala',
+   'src/JsRender/NodeToGlade.vala',
+   'src/JsRender/Roo.vala',
+   'src/JsRender/Node.vala',
+   'src/JsRender/PlainFile.vala',
+   'src/JsRender/NodeToVala.vala',
+   'src/JsRender/NodeToJs.vala',
+   'src/Palete/CompileError.vala',
+   'src/Palete/CompletionProvider.vala',
+   'src/Palete/Gtk.vala',
+   'src/Palete/Palete.vala',
+   'src/Palete/RooDatabase.vala',
+   'src/Palete/Roo.vala',
+   'src/Palete/ValaSourceCompiler.vala',
+   'src/Palete/ValaSource.vala',
+   'src/Palete/VapiParser.vala',
+   'src/Builder4/WindowLeftTree.bjs',
+   'src/Builder4/PopoverAddProp.bjs',
+   'src/Builder4/PopoverFileDetails.bjs',
+   'src/ccode/valaccode.vala',
+   'src/ccode/valaccodeassignment.vala',
+   'src/ccode/valaccodebinaryexpression.vala',
+   'src/ccode/valaccodeblock.vala',
+   'src/ccode/valaccodebreakstatement.vala',
+   'src/ccode/valaccodecasestatement.vala',
+   'src/ccode/valaccodecastexpression.vala',
+   'src/ccode/valaccodecommaexpression.vala',
+   'src/ccode/valaccodecomment.vala',
+   'src/ccode/valaccodeconditionalexpression.vala',
+   'src/ccode/valaccodeconstant.vala',
+   'src/ccode/valaccodeconstantidentifier.vala',
+   'src/ccode/valaccodecontinuestatement.vala',
+   'src/ccode/valaccodedeclaration.vala',
+   'src/ccode/valaccodedeclarator.vala',
+   'src/ccode/valaccodedefine.vala',
+   'src/ccode/valaccodedostatement.vala',
+   'src/ccode/valaccodeelementaccess.vala',
+   'src/ccode/valaccodeemptystatement.vala',
+   'src/ccode/valaccodeenum.vala',
+   'src/ccode/valaccodeenumvalue.vala',
+   'src/ccode/valaccodeexpression.vala',
+   'src/ccode/valaccodeexpressionstatement.vala',
+   'src/ccode/valaccodefile.vala',
+   'src/ccode/valaccodeforstatement.vala',
+   'src/ccode/valaccodefragment.vala',
+   'src/ccode/valaccodefunction.vala',
+   'src/ccode/valaccodefunctioncall.vala',
+   'src/ccode/valaccodefunctiondeclarator.vala',
+   'src/ccode/valaccodeggnucsection.vala',
+   'src/ccode/valaccodegotostatement.vala',
+   'src/ccode/valaccodeidentifier.vala',
+   'src/ccode/valaccodeifsection.vala',
+   'src/ccode/valaccodeifstatement.vala',
+   'src/ccode/valaccodeincludedirective.vala',
+   'src/ccode/valaccodeinitializerlist.vala',
+   'src/ccode/valaccodeinvalidexpression.vala',
+   'src/ccode/valaccodelabel.vala',
+   'src/ccode/valaccodelinedirective.vala',
+   'src/ccode/valaccodemacroreplacement.vala',
+   'src/ccode/valaccodememberaccess.vala',
+   'src/ccode/valaccodemodifiers.vala',
+   'src/ccode/valaccodenewline.vala',
+   'src/ccode/valaccodenode.vala',
+   'src/ccode/valaccodeoncesection.vala',
+   'src/ccode/valaccodeparameter.vala',
+   'src/ccode/valaccodeparenthesizedexpression.vala',
+   'src/ccode/valaccodereturnstatement.vala',
+   'src/ccode/valaccodestatement.vala',
+   'src/ccode/valaccodestruct.vala',
+   'src/ccode/valaccodeswitchstatement.vala',
+   'src/ccode/valaccodetypedefinition.vala',
+   'src/ccode/valaccodeunaryexpression.vala',
+   'src/ccode/valaccodevariabledeclarator.vala',
+   'src/ccode/valaccodewhilestatement.vala',
+   'src/ccode/valaccodewriter.vala',
+   'src/Project/GtkValaSettings.vala',
+   'src/Project/Project.vala',
+   'src/Project/Gtk.vala',
+   'src/Project/Roo.vala',
+   'src/Project/VapiSelection.vala',
+   'src/Main.vala',
+   'src/Resources.vala',
+   'src/Spawn.vala',
+   'src/Application.vala',
+   'src/Palete/ValalCompileQueue.vala',
+   'src/Palete/ValaCompileRequest.vala',
+   'src/Palete/ValaCompileQueue.vala',
+   'src/Palete/Javascript.vala',
+   'src/Project/Meson.vala',
+])
+
+roobuilder = executable('roobuilder',
+dependencies: deps,
+sources: [roobuilder_src ],
+install: true
+)
+
+
