@@ -85,30 +85,30 @@ add_project_arguments(['--enable-gobject-tracing', '--fatal-warnings'], language
 
 $targets
 ";		
-		try {
-			FileUtils.set_contents(this.project.path + "/meson.build", data, data.length);
-		} catch (GLib.Error e) {
-			GLib.error("failed  to save file %s", e.message);
+			try {
+				FileUtils.set_contents(this.project.path + "/meson.build", data, data.length);
+			} catch (GLib.Error e) {
+				GLib.error("failed  to save file %s", e.message);
+			}
+				
 		}
-    		
-	}
-	
-	string addTarget(GtkValaSettings cg)
-	{
 		
-		var str = cg.name + "+src = files([\n";
-		foreach(var s in cg.sources) {
-			str += "   '" + s + "',\n";
-		}
-		str += "])\n\n";
-		
-		str += cg.name +" = executable('" + cg.name + "',\n"+
-		  "dependencies: deps,\n"+
-		  "sources: [" + cg.name + "_src ],\n"+
-		  "install: true\n" +
-		  ")\n\n";
+		string addTarget(GtkValaSettings cg)
+		{
+			
+			var str = cg.name + "+src = files([\n";
+			foreach(var s in cg.sources) {
+				str += "   '" + s + "',\n";
+			}
+			str += "])\n\n";
+			
+			str += cg.name +" = executable('" + cg.name + "',\n"+
+			  "dependencies: deps,\n"+
+			  "sources: [" + cg.name + "_src ],\n"+
+			  "install: true\n" +
+			  ")\n\n";
 
-		return str;
+			return str;
+		}
 	}
-	
 }
