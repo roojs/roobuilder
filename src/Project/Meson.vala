@@ -22,7 +22,7 @@ namespace Project {
 			var deps = "";
 			foreach(var p in this.project.packages) {
 				deps += "valac.find_library('" + p  + "'),\n";
-			)
+			}
 			/*
 			  dependency('glib-2.0'),
 				dependency('gobject-2.0'), << for others.. ut will this wrok using find_lib for all?
@@ -36,7 +36,7 @@ namespace Project {
 			var addvapidir = "";
 			foreach(var p in this.project.vapidirs()) {
 				addvapidir += "add_project_arguments(['--vapidir',  meson.current_source_dir() / '" + p + "'], language: 'vala')\n";
-			)
+			}
 			//vapi_dir = meson.current_source_dir() / 'vapi'
 			//add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
 
