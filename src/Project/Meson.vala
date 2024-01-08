@@ -42,7 +42,7 @@ namespace Project {
 
 			var targets = "";
 			foreach(var cg in this.project.compilegroups) {
-				targets += this.addTargets(cg);
+				targets += this.addTarget(cg);
 			}
 			var data = 
 
