@@ -41,7 +41,7 @@ namespace Project {
 			//add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
 
 			var targets = "";
-			foreach(var cg in this.project.compilegroups) {
+			foreach(var cg in this.project.compilegroups.values) {
 				targets += this.addTarget(cg);
 			}
 			var data = 
