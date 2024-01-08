@@ -38,7 +38,7 @@ add_project_arguments(['--target-glib=auto'], language: 'vala')
  
 
 conf = configuration_data()
-conf.set('LIBVALA_VERSION', libvala.version())
+ 
 conf.set('PROJECT_NAME', meson.project_name())
 
 add_project_arguments(['--vapidir',  meson.current_source_dir() / 'src/vapi'], language: 'vala')
