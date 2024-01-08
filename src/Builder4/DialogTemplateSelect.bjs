@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# JsRender.Node node" : "",
@@ -299,13 +300,13 @@
     "\t_this.model.loadData(opts);",
     "\t_this.combo.el.set_active(-1);",
     "",
-    "",
+    "/*",
     "\tvar db =  new Palete.RooDatabase.from_project((Project.Roo) project);",
     "\t_this.dbmodel.loadData(db.readTablesGee());",
     "",
     "",
     "\t_this.dbcombo.el.set_active(-1);",
-    "",
+    "*/",
     "\tthis.window = mwindow;",
     "\tthis.palete = pal;",
     "\tthis.node = node;",
@@ -316,10 +317,5 @@
    ]
   }
  ],
- "modOrder" : "",
- "name" : "DialogTemplateSelect",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogTemplateSelect.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "DialogTemplateSelect"
 }

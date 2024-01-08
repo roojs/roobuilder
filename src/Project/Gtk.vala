@@ -46,6 +46,7 @@ namespace Project
 		
 		public GtkValaSettings? active_cg = null;
 		public Gee.HashMap<string,GtkValaSettings> compilegroups;
+		public Meson meson;
 		
 		
 		public Palete.Gtk gpalete {
@@ -72,6 +73,7 @@ namespace Project
 	  		this.packages = new Gee.ArrayList<string>();
 	  		//this.hidden = new Gee.ArrayList<string>();
   		 	this.compilegroups = new  Gee.HashMap<string,GtkValaSettings>();
+  		 	this.meson = new Meson(this);
 		
 		}
 		
@@ -145,6 +147,10 @@ namespace Project
 			this.gir_cache = null;
 		}
 		
+		public override void onSave()
+		{
+			this.meson.save();
+		}
 	 
 		/**
 		 *  perhaps we should select the default in the window somewhere...

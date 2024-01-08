@@ -2,7 +2,7 @@
     "xtype" : "Gtk",
     "compilegroups" : [
         {
-            "name" : "builder",
+            "name" : "roobuilder",
             "execute_args" : "",
             "sources" : [
                 "src/Builder4/About.bjs",
@@ -75,7 +75,6 @@
                 "src/Palete/CompletionProvider.vala",
                 "src/Palete/Gtk.vala",
                 "src/Palete/Palete.vala",
-                "src/Palete/RooDatabase.vala",
                 "src/Palete/Roo.vala",
                 "src/Palete/ValaSourceCompiler.vala",
                 "src/Palete/ValaSource.vala",
@@ -151,7 +150,8 @@
                 "src/Palete/ValalCompileQueue.vala",
                 "src/Palete/ValaCompileRequest.vala",
                 "src/Palete/ValaCompileQueue.vala",
-                "src/Palete/Javascript.vala"
+                "src/Palete/Javascript.vala",
+                "src/Project/Meson.vala"
             ]
         }
     ],
@@ -161,7 +161,6 @@
         "gee-0.8",
         "gio-2.0",
         "webkitgtk-6.0",
-        "libgda-5.0",
         "glib-2.0",
         "gobject-2.0",
         "json-glib-1.0",
