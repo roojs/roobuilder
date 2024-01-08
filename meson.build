@@ -15,20 +15,20 @@ add_project_arguments(['--vapidir',  meson.current_source_dir() / 'src/vapi'], l
 
 
 deps = [
-   valac.find_library('gtk4'),
-   valac.find_library('gee-0.8'),
-   valac.find_library('gio-2.0'),
-   valac.find_library('webkitgtk-6.0'), 
-   valac.find_library('glib-2.0'),
-   valac.find_library('gobject-2.0'),
-   valac.find_library('json-glib-1.0'),
-   valac.find_library('gobject-introspection-1.0'),
-   valac.find_library('libvala-0.56'),
-   valac.find_library('libadwaita-1'),
-   valac.find_library('libxml-2.0'),
+   dependency('gtk4'),
+   dependency('gee-0.8'),
+   dependency('gio-2.0'),
+   dependency('webkitgtk-6.0'),
+   dependency('glib-2.0'),
+   dependency('gobject-2.0'),
+   dependency('json-glib-1.0'),
+   dependency('gobject-introspection-1.0'),
+   dependency('libvala-0.56'),
+   dependency('libadwaita-1'),
+   dependency('libxml-2.0'),
    valac.find_library('posix'),
    dependency('roojspacker-1.4'),
-   valac.find_library('gtksourceview-5'),
+   dependency('gtksourceview-5'),
 
 ]
  
@@ -38,7 +38,6 @@ add_project_arguments(['--target-glib=auto'], language: 'vala')
  
 
 conf = configuration_data()
- 
 conf.set('PROJECT_NAME', meson.project_name())
 
 add_project_arguments(['--vapidir',  meson.current_source_dir() / 'src/vapi'], language: 'vala')
@@ -116,7 +115,6 @@ roobuilder_src = files([
    'src/Palete/CompletionProvider.vala',
    'src/Palete/Gtk.vala',
    'src/Palete/Palete.vala',
-   'src/Palete/RooDatabase.vala',
    'src/Palete/Roo.vala',
    'src/Palete/ValaSourceCompiler.vala',
    'src/Palete/ValaSource.vala',
