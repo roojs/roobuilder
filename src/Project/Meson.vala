@@ -94,7 +94,7 @@ $targets
 			var str = cg.name + "_src = files([\n";
 			foreach(var s in cg.sources) {
 				var f= this.project.getByPath(this.project.path + "/" +  s);
-				str += "   '" + f.targetName() + "',\n";
+				str += "   '" + f.relTargetName() + "',\n";
 			}
 			str += "])\n\n";
 			
