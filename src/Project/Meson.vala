@@ -47,7 +47,7 @@ namespace Project {
 			var data = 
 
 @"project('$project_name', 'vala', 'c',
-  version: '$project_version,
+  version: '$project_version',
   license: '$project_licence',
   default_options: [
     'default_library=static',
