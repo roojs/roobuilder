@@ -46,7 +46,7 @@ namespace Project
 		
 		public GtkValaSettings? active_cg = null;
 		public Gee.HashMap<string,GtkValaSettings> compilegroups;
-		public Meson eason;
+		public Meson meson;
 		
 		
 		public Palete.Gtk gpalete {
@@ -73,7 +73,7 @@ namespace Project
 	  		this.packages = new Gee.ArrayList<string>();
 	  		//this.hidden = new Gee.ArrayList<string>();
   		 	this.compilegroups = new  Gee.HashMap<string,GtkValaSettings>();
-  		 	this.mason = new Meson(this);
+  		 	this.meson = new Meson(this);
 		
 		}
 		
