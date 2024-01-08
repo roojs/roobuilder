@@ -21,7 +21,11 @@ namespace Project {
 
 			var deps = "";
 			foreach(var p in this.project.packages) {
-				deps += "   valac.find_library('" + p  + "'),\n";
+				if (p == "posix" ) {
+					deps += "   valac.find_library('" + p  + "'),\n";
+				} else {
+					deps += "   dependency('" + p  + "'),\n";				
+				}
 			}
 			/*
 			  dependency('glib-2.0'),
