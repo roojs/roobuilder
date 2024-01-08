@@ -685,7 +685,11 @@ namespace JsRender {
 		  	}
 
 		}
+		public string relTargetName()
+		{
+			this.targetName().substring(this.project.path +1);
 		
+		}
 		
 		public abstract void save();
 		public abstract void saveHTML(string html);
