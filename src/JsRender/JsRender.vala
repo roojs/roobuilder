@@ -687,7 +687,7 @@ namespace JsRender {
 		}
 		public string relTargetName()
 		{
-			this.targetName().substring(this.project.path +1);
+			return this.targetName().substring(this.project.path.length +1);
 		
 		}
 		
