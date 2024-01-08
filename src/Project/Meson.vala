@@ -12,7 +12,7 @@ namespace Project {
 			this.project = project;
 		}
 		
-		public save()
+		public void save()
 		{
 		
 			var project_name = this.project.name;
@@ -109,6 +109,6 @@ $targets
 		  ")\n\n";
 
 		return str;
-	
+	}
 	
 }
