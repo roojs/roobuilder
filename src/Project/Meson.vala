@@ -42,12 +42,12 @@ namespace Project {
 
 			var targets = "";
 			foreach(var cg in this.project.compilegroups) {
-				target += this.addTargets(cg);
+				targets += this.addTargets(cg);
 			}
 			var data = 
 
 @"project('$project_name', 'vala', 'c',
-  version: '$project_Version,
+  version: '$project_version,
   license: '$project_licence',
   default_options: [
     'default_library=static',
