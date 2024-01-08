@@ -21,7 +21,7 @@ namespace Project {
 
 			var deps = "";
 			foreach(var p in this.project.packages) {
-				deps += "valac.find_library('" + p  + "'),\n";
+				deps += "   valac.find_library('" + p  + "'),\n";
 			}
 			/*
 			  dependency('glib-2.0'),
@@ -56,19 +56,13 @@ namespace Project {
 )
 
 valac = meson.get_compiler('vala')
-libvala_version = run_command(valac, '--api-version').stdout().strip()
-if not libvala_version.version_compare('>=0.48' )
-  error('libvala needs to be 0.48 or above')
-endif
 
 extra_vala_sources = []
 
-vapi_dir = meson.current_source_dir() / 'vapi'
-add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
+$addvapidir
 
-   
 deps = [
-   $deps
+$deps
 ]
  
 # let Vala add the appropriate defines for GLIB_X_X
@@ -96,16 +90,17 @@ $targets
 		string addTarget(GtkValaSettings cg)
 		{
 			
-			var str = cg.name + "+src = files([\n";
+			var str = cg.name + "_src = files([\n";
 			foreach(var s in cg.sources) {
-				str += "   '" + s + "',\n";
+				var f= this.project.findByPath(s);
+				str += "   '" + f.targetName() + "',\n";
 			}
 			str += "])\n\n";
 			
 			str += cg.name +" = executable('" + cg.name + "',\n"+
-			  "dependencies: deps,\n"+
-			  "sources: [" + cg.name + "_src ],\n"+
-			  "install: true\n" +
+			  "   dependencies: deps,\n"+
+			  "   sources: [ " + cg.name + "_src ],\n"+
+			  "   install: true\n" +
 			  ")\n\n";
 
 			return str;
