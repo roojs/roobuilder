@@ -4,7 +4,7 @@
 
 public class Project.Roo : Project {
 
-	//public Palete.RooDatabase roo_database;
+	public Palete.RooDatabase roo_database;
 
 	public string runhtml = "";
 	public string base_template = "";
