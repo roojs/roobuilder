@@ -1227,7 +1227,7 @@
                 
                 
                   _this.database_ERROR.el.label    = "";
-                  /*
+                 
                     Gda.Connection cnc;
                     try {
                         // assumes localhost...
@@ -1246,7 +1246,7 @@
                    }  
                   _this.database_ERROR.el.label = "Connection Succeeded";
                    cnc.close();
-                   */
+                  
                 });
             }
 

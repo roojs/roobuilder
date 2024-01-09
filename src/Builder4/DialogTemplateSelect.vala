@@ -165,13 +165,13 @@
         	_this.model.loadData(opts);
         	_this.combo.el.set_active(-1);
         
-        /*
+         
         	var db =  new Palete.RooDatabase.from_project((Project.Roo) project);
         	_this.dbmodel.loadData(db.readTablesGee());
         
         
         	_this.dbcombo.el.set_active(-1);
-        */
+         
         	this.window = mwindow;
         	this.palete = pal;
         	this.node = node;
