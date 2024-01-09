@@ -25,10 +25,10 @@ public class Project.Roo : Project {
 		this.initDatabase();
         
     }
-     public override void   initDatabase()
-    {
-          this.roo_database = new Palete.RooDatabase.from_project(this);   
-    }
+	public override void   initDatabase()
+	{
+		this.roo_database = new Palete.RooDatabase.from_project(this);   
+	}
 	public override void loadJson(Json.Object obj) 
 	{
 		// might not exist?
