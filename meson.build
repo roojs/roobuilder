@@ -30,6 +30,8 @@ deps = [
    dependency('roojspacker-1.4'),
    dependency('gtksourceview-5'),
    dependency('libgda-5.0'),
+   dependency('jsonrpc-glib-1.0'),
+   dependency('gio-unix-2.0'),
 
 ]
  
@@ -193,6 +195,8 @@ roobuilder_src = files([
    'src/Palete/Javascript.vala',
    'src/Project/Meson.vala',
    'src/Palete/RooDatabase.vala',
+   'src/Palete/LanguageClient.vala',
+   'src/Palete/LanguageClientVala.vala',
 ])
 
 roobuilder = executable('roobuilder',

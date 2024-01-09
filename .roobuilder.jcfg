@@ -152,7 +152,9 @@
                 "src/Palete/ValaCompileQueue.vala",
                 "src/Palete/Javascript.vala",
                 "src/Project/Meson.vala",
-                "src/Palete/RooDatabase.vala"
+                "src/Palete/RooDatabase.vala",
+                "src/Palete/LanguageClient.vala",
+                "src/Palete/LanguageClientVala.vala"
             ]
         }
     ],
@@ -172,6 +174,8 @@
         "posix",
         "roojspacker-1.4",
         "gtksourceview-5",
-        "libgda-5.0"
+        "libgda-5.0",
+        "jsonrpc-glib-1.0",
+        "gio-unix-2.0"
     ]
 }
