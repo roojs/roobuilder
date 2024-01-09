@@ -21,13 +21,6 @@
        "* prop" : "title_widget",
        "string label" : "Change Vala  Compile settings",
        "xtype" : "Label"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "pack_end",
-       "string icon_name" : "",
-       "string label" : "Create / Recreate Build files (configure.ac / makefile.am etc)",
-       "xtype" : "Button"
       }
      ],
      "xtype" : "HeaderBar"

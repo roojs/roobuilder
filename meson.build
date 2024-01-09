@@ -29,6 +29,7 @@ deps = [
    valac.find_library('posix'),
    dependency('roojspacker-1.4'),
    dependency('gtksourceview-5'),
+   dependency('libgda-5.0'),
 
 ]
  
@@ -42,7 +43,7 @@ conf.set('PROJECT_NAME', meson.project_name())
 
 add_project_arguments(['--vapidir',  meson.current_source_dir() / 'src/vapi'], language: 'vala')
 
- 
+add_project_arguments(['--enable-gobject-tracing', '--fatal-warnings'], language: 'vala')
 
 roobuilder_src = files([
    'src/Builder4/About.vala',
