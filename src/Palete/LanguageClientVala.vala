@@ -24,7 +24,8 @@ namespace Palete {
 		        null,
 		        out return_value
 		    );
-		    debug ("VLS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
+		    GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
+		    this.initialized = true;
 		}
 	
 	}

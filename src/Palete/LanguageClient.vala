@@ -1,6 +1,9 @@
 /**
   generic interface to language server
   ?? first of will be for vala... but later?
+  based on gvls-client-jsonrpc (loosly)
+  and vala-language-server
+ 
 
 */
 
@@ -82,6 +85,37 @@ namespace Palete {
 		}
 		
 		public abstract void initialize_server() throws GLib.Error;
+		
+		protected bool initialized = false;
+		bool sent_shutdown = false;
+		
+		internal async void document_open (JsRender.JsRender file, string? contents) throws GLib.Error 
+		{
+			if (!this.initialized) {
+				GLib.debug("Server has not been initialized");
+				return;
+			}
+			if (this.sent_shutdown) {
+			  	GLib.debug("Server has been started its shutting down process");
+			  	return;
+			}
+			 
+			 
+			yield this.jsonrpc_client.call_async (
+				"textDocument/didOpen",
+				this.buildDict (
+					file: new Variant.string (file.to_url()),
+					version :  new Variant.int32 ((int32) file.version()),
+					language_id :  new Variant.string (file.language_id()),
+					text : new Variant.string (file.toSource())
+
+				),
+				null,
+				out return_value
+			);
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
+ 		}
+		 
 		
 		
 	}

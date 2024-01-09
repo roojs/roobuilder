@@ -691,6 +691,11 @@ namespace JsRender {
 		
 		}
 		
+		public string to_url()
+		{
+			return File.new_for_path (this.targetName()).get_uri ();
+		}
+		public abstract string language_id();
 		public abstract void save();
 		public abstract void saveHTML(string html);
 		public abstract string toSource() ;

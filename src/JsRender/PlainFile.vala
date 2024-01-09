@@ -158,6 +158,18 @@ namespace JsRender {
 	    	return this.path;
     	}
 
+
+		public   override string language_id() 
+		{
+			switch(this.file_ext) {
+				case "js": return "javascript";
+				case "vala": return "vala";
+				case "php": return "php";
+				case "css": return "css";
+				case "sql": return "sql";
+				default: return "???";
+			}
+		}
 		
 
 	}

@@ -269,7 +269,10 @@ namespace JsRender {
 		{
 			return  NodeToGlade.mungeFile(this);
 		}
-	  
+	  	public   override string language_id() 
+		{
+			return "vala";
+		}
 
 	
 

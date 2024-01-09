@@ -799,6 +799,10 @@ namespace JsRender {
 		{
 			return "Roo files do not convert to glade";
 		}
+		public   override string language_id() 
+		{
+			return "javascript";
+		}
      
     }
 }
