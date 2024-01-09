@@ -192,6 +192,7 @@ roobuilder_src = files([
    'src/Palete/ValaCompileQueue.vala',
    'src/Palete/Javascript.vala',
    'src/Project/Meson.vala',
+   'src/Palete/RooDatabase.vala',
 ])
 
 roobuilder = executable('roobuilder',
