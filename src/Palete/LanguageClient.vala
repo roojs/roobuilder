@@ -134,11 +134,13 @@ namespace Palete {
 			yield this.jsonrpc_client.call_async (
 				"textDocument/did",
 				this.buildDict (
-					file: new Variant.string (file.to_url()),
-					version :  new Variant.int32 ((int32) file.version ),
-					language_id :  new Variant.string (file.language_id()),
-					text : new Variant.string (file.toSource())
-
+					textDocument : this.buildDict (
+						uri: new Variant.string (file.to_url()),
+						languageId :  new Variant.string (file.language_id()),
+						version :  new Variant.uint32 ( (uint32) file.version),
+						text : new Variant.string (file.toSource())
+					),
+					contentChanges
 				),
 				null,
 				out return_value
