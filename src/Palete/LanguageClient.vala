@@ -83,26 +83,56 @@ namespace Palete {
 				}
 			}
 		}
+		public bool isReady()
+		{
+			if (!this.initialized) {
+				GLib.debug("Server has not been initialized");
+				return false;
+			}
+			if (this.sent_shutdown) {
+			  	GLib.debug("Server has been started its shutting down process");
+			  	return false;
+			}
+			return true;
+		}
+		
+		
 		
 		public abstract void initialize_server() throws GLib.Error;
 		
 		protected bool initialized = false;
 		bool sent_shutdown = false;
 		
-		async void document_open (JsRender.JsRender file, string? contents) throws GLib.Error 
+		public async void document_open (JsRender.JsRender file, string? contents) throws GLib.Error 
 		{
-			if (!this.initialized) {
-				GLib.debug("Server has not been initialized");
+			if (!this.isReady()) {
 				return;
-			}
-			if (this.sent_shutdown) {
-			  	GLib.debug("Server has been started its shutting down process");
-			  	return;
 			}
 			 
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
 				"textDocument/didOpen",
+				this.buildDict (
+					textDocument : this.buildDict (
+						uri: new Variant.string (file.to_url()),
+						languageId :  new Variant.string (file.language_id()),
+						text : new Variant.string (file.toSource())
+					)
+				),
+				null,
+				out return_value
+			);
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
+ 		}
+ 		
+ 		public async void document_change (JsRender.JsRender file,int events) throws GLib.Error
+    	{
+   			if (!this.isReady()) {
+				return;
+			}
+			Variant? return_value;
+			yield this.jsonrpc_client.call_async (
+				"textDocument/did",
 				this.buildDict (
 					file: new Variant.string (file.to_url()),
 					version :  new Variant.int32 ((int32) file.version ),
@@ -113,10 +143,20 @@ namespace Palete {
 				null,
 				out return_value
 			);
-			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
- 		}
-		 
-		
+
+
+        var @params = new DidChangeTextDocumentParamsInfo (events);
+        @params.text_document.uri = doc_uri;
+
+        yield rpc_client.send_notification_async ("textDocument/didChange", @params.to_variant (), cancellable);
+    }
+
+ 		
+ 		
+		//public async  ??/symbol (string symbol) throws GLib.Error {
+		 //public async GLib.Object completion (string uri, int position, /* partial_result_token ,  work_done_token   context = null) throws GLib.Error
+   
+
 		
 	}
 }
