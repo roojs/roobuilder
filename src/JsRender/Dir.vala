@@ -40,6 +40,7 @@ namespace JsRender {
 		public override string toGlade()  {return "";}
 		public override string targetName()  {return "";}
 		public override void loadItems() throws GLib.Error {}
+		public override string language_id() { return ""; }
     }
     
     
