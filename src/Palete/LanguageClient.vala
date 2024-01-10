@@ -276,11 +276,15 @@ namespace Palete {
 			var ar = json.get_array();
 			var cl = new Lsp.CompletionList();
 			if (ar == null) {
-				cl = Json.gobject_deserialize (typeof (Lsp.CompletionList), json); 
+				cl = Json.gobject_deserialize (typeof (Lsp.CompletionList), json) as Lsp.CompletionList; 
 			} else {
 				
 				for(var i = 0; i < ar.get_length(); i++ ) {
-					cl.items.add( Json.gobject_deserialize (typeof (Lsp.CompletionItem), ar.get_object_element(i))); 
+					cl.items.add( 
+						Json.gobject_deserialize (
+							typeof (Lsp.CompletionItem), 
+							ar.get_object_element(i)) as Lsp.CompletionItem
+					); 
 		 		}
 				 
 			}
