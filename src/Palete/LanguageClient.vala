@@ -105,7 +105,7 @@ namespace Palete {
 				"textDocument/didOpen",
 				this.buildDict (
 					file: new Variant.string (file.to_url()),
-					version :  new Variant.int32 ((int32) file.version()),
+					version :  new Variant.int32 ((int32) file.version ),
 					language_id :  new Variant.string (file.language_id()),
 					text : new Variant.string (file.toSource())
 

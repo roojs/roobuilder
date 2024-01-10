@@ -76,7 +76,7 @@ namespace JsRender {
         
 		public string title = "";  // a title.. ?? nickname.. ??? -
 
-		private int _version = 1;
+		private int _version = 1;   // should we increment this based on the node..?
 		public int version {
 			get {
 				return this._version;
