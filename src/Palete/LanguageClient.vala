@@ -266,6 +266,7 @@ namespace Palete {
 				null,
 				out return_value
 			);
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var ret = Json.gvariant_serialize (return_value);
 			var obj = ret.get_object();
 			if (obj == null) {
@@ -274,9 +275,9 @@ namespace Palete {
 			return this.completionParseObject();
 			
 			
- 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
+ 		
 
-
+		}
 
 
 		
