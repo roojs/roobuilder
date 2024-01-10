@@ -273,11 +273,11 @@ namespace Palete {
 				// ignore 'isIcomplete?? from object?
 				ar = ret.get_object().get_array_member("items");
 			}
-			for(var i = 9; i < ar.get_length(); i++ ) {
+			for(var i = 0; i < ar.get_length(); i++ ) {
 				var res = ar.get_object_element(i);
 				
 			
-			
+			}
 			
 			
  		
