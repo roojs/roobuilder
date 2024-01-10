@@ -215,7 +215,7 @@ namespace Palete {
 				null,
 				out return_value
 			);
-			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
+			this.sent_shutdown  = true;
  		}
  		
  		
