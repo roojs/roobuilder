@@ -210,15 +210,8 @@ namespace Palete {
 			 
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
-				"textDocument/didOpen",
-				this.buildDict (
-					textDocument : this.buildDict (
-						uri: new Variant.string (file.to_url()),
-						languageId :  new Variant.string (file.language_id()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version),
-						text : new Variant.string (file.toSource())
-					)
-				),
+				"exit",
+				null,
 				null,
 				out return_value
 			);
