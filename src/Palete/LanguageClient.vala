@@ -126,7 +126,7 @@ namespace Palete {
 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
  		}
  		
- 		public async void document_save (JsRender.JsRender file,int events) throws GLib.Error
+ 		public async void document_save (JsRender.JsRender file) throws GLib.Error
     	{
    			if (!this.isReady()) {
 				return;
@@ -147,7 +147,27 @@ namespace Palete {
 
          
     	}
- 		
+ 		public async void document_close (JsRender.JsRender file) throws GLib.Error
+    	{
+   			if (!this.isReady()) {
+				return;
+			}
+			Variant? return_value;
+			yield this.jsonrpc_client.call_async (
+				"textDocument/didChange",
+				this.buildDict (  
+					textDocument : this.buildDict (    ///TextDocumentItem;
+						uri: new GLib.Variant.string (file.to_url())
+						
+					)
+				),
+				null,
+				out return_value
+			);
+ 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
+
+         
+    	}
  		public async void document_change (JsRender.JsRender file) throws GLib.Error
     	{
    			if (!this.isReady()) {
@@ -159,9 +179,7 @@ namespace Palete {
 				this.buildDict (  
 					textDocument : this.buildDict (    ///TextDocumentItem;
 						uri: new GLib.Variant.string (file.to_url()),
-						languageId :  new GLib.Variant.string (file.language_id()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version),
-						text : new GLib.Variant.string (file.toSource())
+						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
 					),
 					contentChanges : new GLib.Variant.array (GLib.VariantType.DICTIONARY, 
 						{  
