@@ -126,7 +126,29 @@ namespace Palete {
 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
  		}
  		
- 		public async void document_change (JsRender.JsRender file,int events) throws GLib.Error
+ 		public async void document_save (JsRender.JsRender file,int events) throws GLib.Error
+    	{
+   			if (!this.isReady()) {
+				return;
+			}
+			Variant? return_value;
+			yield this.jsonrpc_client.call_async (
+				"textDocument/didChange",
+				this.buildDict (  
+					textDocument : this.buildDict (    ///TextDocumentItem;
+						uri: new GLib.Variant.string (file.to_url())
+						
+					)
+				),
+				null,
+				out return_value
+			);
+ 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
+
+         
+    	}
+ 		
+ 		public async void document_change (JsRender.JsRender file) throws GLib.Error
     	{
    			if (!this.isReady()) {
 				return;
