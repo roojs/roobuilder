@@ -302,6 +302,7 @@ namespace Lsp {
          * @param type the data type containing this symbol, if there was one (not available for Namespaces, for example)
          * @param sym the symbol
          */
+         /*
         public DocumentSymbol.from_vala_symbol (Vala.DataType? type, Vala.Symbol sym, SymbolKind kind) {
             this.parent_name = sym.parent_symbol != null ? sym.parent_symbol.name : null;
             this._initial_range = new Range.from_sourceref (sym.source_reference);
@@ -321,7 +322,7 @@ namespace Lsp {
             this.selectionRange = new Range.from_sourceref (sym.source_reference);
             this.deprecated = sym.version.deprecated;
         }
-
+	*/
         public new void Json.Serializable.set_property (ParamSpec pspec, Value value) {
             base.set_property (pspec.get_name (), value);
         }
@@ -995,6 +996,7 @@ namespace Lsp {
         public CodeActionContext context { get; set; }
     }
 
+/*
     class CodeActionContext : Object, Json.Serializable {
         public Gee.List<Diagnostic> diagnostics { get; set; default = new Gee.ArrayList<Diagnostic> (); }
         public string[]? only { get; set; }
@@ -1014,7 +1016,7 @@ namespace Lsp {
             return true;
         }
     }
-
+*/
     class CodeAction : Object, Json.Serializable {
         public string title { get; set; }
         public string? kind { get; set; }
@@ -1084,7 +1086,7 @@ namespace Lsp {
                 array.add_int_element (SymbolTags.DEPRECATED);
             return new Json.Node.alloc ().init_array (array);
         }
-
+/*
         public CallHierarchyItem.from_symbol (Vala.Symbol symbol) {
             this.name = symbol.get_full_name ();
             if (symbol is Vala.Method) {
@@ -1112,6 +1114,7 @@ namespace Lsp {
                 this.range = new Range.from_sourceref (((Vala.Subroutine)symbol).body.source_reference).union (this.range);
             this.selectionRange = new Range.from_sourceref (symbol.source_reference);
         }
+        */
     }
 
     class CallHierarchyIncomingCall : Json.Serializable, Object {
@@ -1216,7 +1219,7 @@ namespace Lsp {
         public Range selectionRange { get; set; }
 
         private TypeHierarchyItem () {}
-
+/*
         public TypeHierarchyItem.from_symbol (Vala.TypeSymbol symbol) {
             this.name = symbol.get_full_name ();
             if (symbol is Vala.Class)
@@ -1284,5 +1287,6 @@ namespace Lsp {
                 }
             }
         }
+        */
     }
 }
