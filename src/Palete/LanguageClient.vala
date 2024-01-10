@@ -217,8 +217,21 @@ namespace Palete {
 			);
 			
  		}
- 		
- 		
+ 		public async void shutdown () throws GLib.Error 
+ 		{
+ 		if (!this.isReady()) {
+				return;
+			}
+		 	this.sent_shutdown  = true;
+			Variant? return_value;
+			yield this.jsonrpc_client.call_async (
+				"shutdown",
+				null,
+				null,
+				out return_value
+			);
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
+		}
 		//public async  ??/symbol (string symbol) throws GLib.Error {
 		 //public async GLib.Object completion (string uri, int position, /* partial_result_token ,  work_done_token   context = null) throws GLib.Error
    
