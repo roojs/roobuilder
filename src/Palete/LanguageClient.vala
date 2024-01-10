@@ -283,7 +283,7 @@ namespace Palete {
 					cl.items.add( 
 						Json.gobject_deserialize (
 							typeof (Lsp.CompletionItem), 
-							ar.get_object_element(i)) as Lsp.CompletionItem
+							ar.get_element(i)) as Lsp.CompletionItem
 					); 
 		 		}
 				 
