@@ -207,7 +207,7 @@ namespace Palete {
 			if (!this.isReady()) {
 				return;
 			}
-			 
+		 	this.sent_shutdown  = true;
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
 				"exit",
@@ -215,7 +215,7 @@ namespace Palete {
 				null,
 				out return_value
 			);
-			this.sent_shutdown  = true;
+			
  		}
  		
  		
