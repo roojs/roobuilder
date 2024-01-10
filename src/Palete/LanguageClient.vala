@@ -109,7 +109,7 @@ namespace Palete {
 		*/
 		
 		
-		public async void document_open (JsRender.JsRender file, string? contents) throws GLib.Error 
+		public async void document_open (JsRender.JsRender file) throws GLib.Error 
 		{
 			if (!this.isReady()) {
 				return;
@@ -202,7 +202,28 @@ namespace Palete {
 
          
     	}
-
+		public async void exit () throws GLib.Error 
+		{
+			if (!this.isReady()) {
+				return;
+			}
+			 
+			Variant? return_value;
+			yield this.jsonrpc_client.call_async (
+				"textDocument/didOpen",
+				this.buildDict (
+					textDocument : this.buildDict (
+						uri: new Variant.string (file.to_url()),
+						languageId :  new Variant.string (file.language_id()),
+						version :  new GLib.Variant.uint64 ( (uint64) file.version),
+						text : new Variant.string (file.toSource())
+					)
+				),
+				null,
+				out return_value
+			);
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
+ 		}
  		
  		
 		//public async  ??/symbol (string symbol) throws GLib.Error {
