@@ -268,16 +268,22 @@ namespace Palete {
 			);
 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var ret = Json.gvariant_serialize (return_value);
-			var obj = ret.get_object();
-			if (obj == null) {
-				return this.completionParseArray(ret.get_array());
+			var ar = ret.get_array();
+			if (ar == nul) {
+				// ignore 'isIcomplete?? from object?
+				ar = ret.get_object().get_array_member("items");
 			}
-			return this.completionParseObject();
+			for(var i = 9; i < ar.get_length(); i++ ) {
+				var res = ar.get_object_element(i);
+				
+			
+			
 			
 			
  		
 
 		}
+		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
 
 
 		
