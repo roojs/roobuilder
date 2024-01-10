@@ -240,7 +240,7 @@ namespace Palete {
 		
 		@triggerType 1 = typing or ctl-spac, 2 = tiggercharactres?  3= inside completion?
 		*/
-		 public async GLib.Object completion (JsRender.JsRender file, int position, int triggerType = 1) throws GLib.Error 
+		 public async GLib.Object completion (JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		    if (!this.isReady()) {
@@ -254,12 +254,13 @@ namespace Palete {
 						triggerKind: new GLib.Variant.int32 (triggerType) 
 					//	triggerCharacter :  new GLib.Variant.string ("")
 					),
-					contentChanges : new GLib.Variant.array (GLib.VariantType.DICTIONARY, 
-						{  
-							 this.buildDict (
-								text : new GLib.Variant.string (file.toSource())
-						 	)
-						}
+					textDocument : this.buildDict (    ///TextDocumentItem;
+						uri: new GLib.Variant.string (file.to_url()),
+						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+					), 
+					position :  this.buildDict ( 
+						line :  new GLib.Variant.uint64 ( (uint64) line) ,
+						character :  new GLib.Variant.uint64 ( (uint64) offset) 
 					)
 				),
 				null,
