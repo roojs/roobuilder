@@ -140,7 +140,9 @@ namespace Palete {
 						version :  new Variant.uint64 ( (uint64) file.version),
 						text : new Variant.string (file.toSource())
 					),
-					contentChanges
+					contentChanges : new Variant.array (VariantType? child_type, {  
+					
+					})
 				),
 				null,
 				out return_value
