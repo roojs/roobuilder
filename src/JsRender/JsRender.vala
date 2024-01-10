@@ -76,7 +76,16 @@ namespace JsRender {
         
 		public string title = "";  // a title.. ?? nickname.. ??? -
 
-		
+		private int _version = 1;
+		public int version {
+			get {
+				return this._version;
+			}
+			private set {
+				this._version = value;
+			}
+			
+		}
 
 		public string permname;
 		public string language;
