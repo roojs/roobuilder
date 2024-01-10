@@ -266,6 +266,14 @@ namespace Palete {
 				null,
 				out return_value
 			);
+			var ret = Json.gvariant_serialize (return_value);
+			var obj = ret.get_object();
+			if (obj == null) {
+				return this.completionParseArray(ret.get_array());
+			}
+			return this.completionParseObject();
+			
+			
  			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
 
 
