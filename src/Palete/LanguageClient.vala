@@ -89,7 +89,7 @@ namespace Palete {
 		protected bool initialized = false;
 		bool sent_shutdown = false;
 		
-		internal async void document_open (JsRender.JsRender file, string? contents) throws GLib.Error 
+		async void document_open (JsRender.JsRender file, string? contents) throws GLib.Error 
 		{
 			if (!this.initialized) {
 				GLib.debug("Server has not been initialized");
@@ -100,7 +100,7 @@ namespace Palete {
 			  	return;
 			}
 			 
-			 Variant? return_value;
+			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
 				"textDocument/didOpen",
 				this.buildDict (
