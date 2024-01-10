@@ -520,8 +520,10 @@ namespace Lsp {
          * @param documentation the documentation to display
          * @param label_override if non-null, override the displayed symbol name with this
          */
+         /*
         public CompletionItem.from_symbol (Vala.DataType? instance_type, Vala.Symbol sym, Vala.Scope? scope,
-            CompletionItemKind kind, Vls.DocComment? documentation, string? label_override = null) {
+            CompletionItemKind kind,
+            Vls.DocComment? documentation, string? label_override = null) {
             this.label = label_override ?? sym.name;
             this.kind = kind;
             this.detail = Vls.CodeHelp.get_symbol_representation (instance_type, sym, scope, true, null, label_override, false);
@@ -536,7 +538,7 @@ namespace Lsp {
                 this.deprecated = true;
             }
         }
-
+		*/
         /**
          * A completion suggestion from a data type and a synthetic symbol name.
          *
