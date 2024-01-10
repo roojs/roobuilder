@@ -56,7 +56,7 @@ namespace Palete {
 		utility method to build variant based queries
 		*/
 		public Variant buildDict (...) {
-			var builder = new VariantBuilder (new VariantType ("a{sv}"));
+			var builder = new GLib.VariantBuilder (new GLib.VariantType ("a{sv}"));
 			var l = va_list ();
 			while (true) {
 				string? key = l.arg ();
@@ -137,7 +137,7 @@ namespace Palete {
 					textDocument : this.buildDict (
 						uri: new Variant.string (file.to_url()),
 						languageId :  new Variant.string (file.language_id()),
-						version :  new Variant.uint32 ( (uint32) file.version),
+						version :  new Variant.uint64 ( (uint64) file.version),
 						text : new Variant.string (file.toSource())
 					),
 					contentChanges
