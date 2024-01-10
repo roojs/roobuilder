@@ -140,20 +140,21 @@ namespace Palete {
 						version :  new GLib.Variant.uint64 ( (uint64) file.version),
 						text : new GLib.Variant.string (file.toSource())
 					),
-					contentChanges : new GLib.Variant.array (GLib.VariantType.DICTIONARY, {  
-						this.buildDict (
-							text : new GLib.Variant.string (file.toSource())
-						 
+					contentChanges : new GLib.Variant.array (GLib.VariantType.DICTIONARY, 
+						{  
+							 this.buildDict (
+								text : new GLib.Variant.string (file.toSource())
+						 	)
 						}
-					})
+					)
 				),
 				null,
 				out return_value
 			);
- 
+ 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
 
-        yield rpc_client.send_notification_async ("textDocument/didChange", @params.to_variant (), cancellable);
-    }
+         
+    	}
 
  		
  		
