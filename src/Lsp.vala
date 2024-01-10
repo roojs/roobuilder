@@ -996,11 +996,11 @@ namespace Lsp {
         public CodeActionContext context { get; set; }
     }
 
-/*
+
     class CodeActionContext : Object, Json.Serializable {
         public Gee.List<Diagnostic> diagnostics { get; set; default = new Gee.ArrayList<Diagnostic> (); }
         public string[]? only { get; set; }
-
+/*
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) {
             if (property_name != "diagnostics")
                 return default_deserialize_property (property_name, out value, pspec, property_node);
@@ -1015,8 +1015,9 @@ namespace Lsp {
             value = diags;
             return true;
         }
+        */
     }
-*/
+
     class CodeAction : Object, Json.Serializable {
         public string title { get; set; }
         public string? kind { get; set; }
