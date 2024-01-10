@@ -548,6 +548,7 @@ namespace Lsp {
          * @param kind              the type of completion to display
          * @param documentation     the documentation for this symbol, or null
          */
+         /*
         public CompletionItem.from_synthetic_symbol (Vala.DataType symbol_type, string symbol_name, Vala.Scope? scope,
                                                      CompletionItemKind kind, Vls.DocComment? documentation) {
             this.label = symbol_name;
@@ -558,7 +559,8 @@ namespace Lsp {
             if (documentation != null)
                 this.documentation = new MarkupContent.from_markdown (documentation.body);
         }
-
+        */
+		/*
         public CompletionItem.from_unimplemented_symbol (Vala.Symbol sym, 
                                                          string label, CompletionItemKind kind,
                                                          string insert_text,
@@ -572,6 +574,7 @@ namespace Lsp {
             if (documentation != null)
                 this.documentation = new MarkupContent.from_markdown (documentation.body);
         }
+        */
 
         public uint hash () {
             return this._hash;
