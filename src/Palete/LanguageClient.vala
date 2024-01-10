@@ -219,7 +219,7 @@ namespace Palete {
  		}
  		public async void shutdown () throws GLib.Error 
  		{
- 		if (!this.isReady()) {
+	 		if (!this.isReady()) {
 				return;
 			}
 		 	this.sent_shutdown  = true;
@@ -233,8 +233,42 @@ namespace Palete {
 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
 		}
 		//public async  ??/symbol (string symbol) throws GLib.Error {
-		 //public async GLib.Object completion (string uri, int position, /* partial_result_token ,  work_done_token   context = null) throws GLib.Error
-   
+		
+		// and now for the important styff..
+		
+		/*
+		
+		@triggerType 1 = typing or ctl-spac, 2 = tiggercharactres?  3= inside completion?
+		*/
+		 public async GLib.Object completion (JsRender.JsRender file, int position, int triggerType = 1) throws GLib.Error 
+		 {
+		 	/* partial_result_token ,  work_done_token   context = null) */
+		    if (!this.isReady()) {
+				return;
+			}
+			Variant? return_value;
+			yield this.jsonrpc_client.call_async (
+				"textDocument/completion",
+				this.buildDict (  
+					context : this.buildDict (    ///CompletionContext;
+						triggerKind: new GLib.Variant.int32 (triggerType) 
+					//	triggerCharacter :  new GLib.Variant.string ("")
+					),
+					contentChanges : new GLib.Variant.array (GLib.VariantType.DICTIONARY, 
+						{  
+							 this.buildDict (
+								text : new GLib.Variant.string (file.toSource())
+						 	)
+						}
+					)
+				),
+				null,
+				out return_value
+			);
+ 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
+
+
+
 
 		
 	}
