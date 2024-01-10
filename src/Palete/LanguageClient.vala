@@ -243,11 +243,11 @@ namespace Palete {
 		
 		@triggerType 1 = typing or ctl-spac, 2 = tiggercharactres?  3= inside completion?
 		*/
-		 public async GLib.Object completion (JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
+		 public async GLib.Object? completion (JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		    if (!this.isReady()) {
-				return;
+				return null;
 			}
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
@@ -269,15 +269,19 @@ namespace Palete {
 				null,
 				out return_value
 			);
+			
+			
 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
-			var ret = Json.gvariant_serialize (return_value);
-			var ar = ret.get_array();
-			if (ar == nul) {
-				// ignore 'isIcomplete?? from object?
-				ar = ret.get_object().get_array_member("items");
-			}
-			for(var i = 0; i < ar.get_length(); i++ ) {
-				var res = ar.get_object_element(i);
+			var json = Json.gvariant_serialize (return_value);
+			var ar = json.get_array();
+			var cl = new Lsp.CompletionList();
+			if (ar == null) {
+				cl = Json.gobject_deserialize (typeof (Lsp.CompletionList), json); 
+			} else {
+				
+				for(var i = 0; i < ar.get_length(); i++ ) {
+					cl.items.add( Json.gobject_deserialize (typeof (Lsp.CompletionItem), ar.get_object_element(i)); 
+		 		}
 				
 			
 			}
