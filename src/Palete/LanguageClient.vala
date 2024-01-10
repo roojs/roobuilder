@@ -103,6 +103,12 @@ namespace Palete {
 		protected bool initialized = false;
 		bool sent_shutdown = false;
 		
+		
+		/***
+		
+		*/
+		
+		
 		public async void document_open (JsRender.JsRender file, string? contents) throws GLib.Error 
 		{
 			if (!this.isReady()) {
