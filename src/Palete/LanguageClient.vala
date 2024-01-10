@@ -280,7 +280,7 @@ namespace Palete {
 			} else {
 				
 				for(var i = 0; i < ar.get_length(); i++ ) {
-					cl.items.add( Json.gobject_deserialize (typeof (Lsp.CompletionItem), ar.get_object_element(i)); 
+					cl.items.add( Json.gobject_deserialize (typeof (Lsp.CompletionItem), ar.get_object_element(i))); 
 		 		}
 				
 			
