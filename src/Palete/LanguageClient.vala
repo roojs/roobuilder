@@ -100,7 +100,7 @@ namespace Palete {
 			  	return;
 			}
 			 
-			 
+			 Variant? return_value;
 			yield this.jsonrpc_client.call_async (
 				"textDocument/didOpen",
 				this.buildDict (
