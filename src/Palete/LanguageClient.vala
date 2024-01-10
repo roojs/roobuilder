@@ -135,22 +135,22 @@ namespace Palete {
 				"textDocument/did",
 				this.buildDict (
 					textDocument : this.buildDict (
-						uri: new Variant.string (file.to_url()),
-						languageId :  new Variant.string (file.language_id()),
-						version :  new Variant.uint64 ( (uint64) file.version),
-						text : new Variant.string (file.toSource())
+						uri: new GLib.Variant.string (file.to_url()),
+						languageId :  new GLib.Variant.string (file.language_id()),
+						version :  new GLib.Variant.uint64 ( (uint64) file.version),
+						text : new GLib.Variant.string (file.toSource())
 					),
-					contentChanges : new Variant.array (VariantType? child_type, {  
-					
+					contentChanges : new GLib.Variant.array (GLib.VariantType.DICTIONARY, {  
+						this.buildDict (
+							text : new GLib.Variant.string (file.toSource())
+						 
+						}
 					})
 				),
 				null,
 				out return_value
 			);
-
-
-        var @params = new DidChangeTextDocumentParamsInfo (events);
-        @params.text_document.uri = doc_uri;
+ 
 
         yield rpc_client.send_notification_async ("textDocument/didChange", @params.to_variant (), cancellable);
     }
