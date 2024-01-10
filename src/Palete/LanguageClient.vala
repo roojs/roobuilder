@@ -8,6 +8,12 @@
 */
 
 namespace Palete {
+
+	public class LanguageClientCompletion {
+	
+	
+	}
+
 	public abstract class LanguageClient :   Jsonrpc.Server {
 	
 		public Project.Project project;
