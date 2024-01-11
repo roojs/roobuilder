@@ -501,8 +501,8 @@
 			    	} catch (GLib.Error e) {
 						GLib.debug("got error %s", e.message);
 					}
-					GLib.debug("got response");				    
-				    loop.quit();
+					GLib.debug("got response - leaving loop open - use ctrl-c to kil");
+				   // loop.quit();
 				});
 				return false;
 				
