@@ -645,16 +645,11 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 				if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
 					continue;
 				}
-				if (ww.windowstate.project.last_request == null) {
-					ww.updateErrors(null);					
-					return;
-				}
-				var req = ww.windowstate.project.last_request;
-				GLib.debug("checking errors editor for %s", ww.windowstate.file.targetName());
+				var f = ww.windowstate.file;
 				
-				if (req.errorByFile.has_key(ww.windowstate.file.targetName())) {
+				if (f.errorsByType.values.size > 0) {
 					GLib.debug("calling update Error margs for  %s", ww.windowstate.file.targetName());		
-					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.targetName()));
+					ww.windowstate.code_editor_tab.updateErrorMarks();
 				} else {
 					ww.windowstate.code_editor_tab.updateErrorMarks(null);
 				 
