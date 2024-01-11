@@ -78,22 +78,24 @@
         	this.el.present();
             this.el.popup();
            
-         
-        	var tm = new Gtk.TreeListModel(
-        		ls, //..... << that's our store..
-        		false, // passthru
-        		false, // autexpand
-        		(item) => {
-        		
-        			 return ((Palete.CompileError)item).lines;
-        		
-        		}
-        	);
-         
-            _this.model.el = tm;
-            _this.sortmodel.el.set_model(tm);
-         
-                 this.tree.el.show();   
+         	if (!this.loaded) {
+        		var tm = new Gtk.TreeListModel(
+        			ls, //..... << that's our store..
+        			false, // passthru
+        			false, // autexpand
+        			(item) => {
+        			
+        				 return ((Palete.CompileError)item).lines;
+        			
+        			}
+        		);
+        	 
+        		_this.model.el = tm;
+        		_this.sortmodel.el.set_model(tm);
+        		this.loaded = true;
+        	 }
+        	 
+             this.tree.el.show();   
            
            	//if (expand != null) {
             //	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
