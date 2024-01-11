@@ -441,9 +441,9 @@
                 	}
                 	 
                 	 
-                    var fname  = ce.parent.file;
+                    var fname  = ce.file;
                   	var line = ce.line;  
-                    GLib.debug("open %s @ %d\n", ce.parent.file.path, ce.line);
+                    GLib.debug("open %s @ %d\n", ce.file.path, ce.line);
                     
                     
                    var  bjsf = "";
