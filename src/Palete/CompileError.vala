@@ -87,7 +87,7 @@ namespace Palete {
             });
               
 		}
-		
+		*/
 		public string file_line { // sorting?
 			set {}
 			owned get { 
