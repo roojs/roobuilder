@@ -1045,7 +1045,7 @@ namespace Lsp {
         public Gee.ArrayList<Diagnostic>? diagnostics { get; set; }
 	  	 
 		public string filename { 
-			unowned get {
+			owned get {
 				return File.new_for_uri (this.uri).get_path();
 			}
 			private set {}
