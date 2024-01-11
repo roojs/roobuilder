@@ -87,9 +87,10 @@ namespace Palete {
 			//GLib.debug("Check syntax %s", code);
 			
 			ctx.check_syntax(code, code.length, JSC.CheckSyntaxMode.SCRIPT, "", 1 ,out ex);
-		 
+		    var ar = file.getErrors("ERR");
+			ar.remove_all();
 			if (ex == null) {
-				return new Json.Object(); // this.compressionErrors(code, fn); << to slow on large files?
+				return ; // this.compressionErrors(code, fn); << to slow on large files?
 				 
 			}
  
@@ -97,8 +98,7 @@ namespace Palete {
 			
 
 			var ret = new CompilerError.new_jserror(file, "ERR", ex.get_line_number(), ex.get_message());
-			var ar = file.getErrors("ERR");
-			ar.remove_all();
+			 
 			ar.append(ret);
 			
 			 
