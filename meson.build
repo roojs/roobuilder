@@ -190,8 +190,6 @@ roobuilder_src = files([
    'src/Resources.vala',
    'src/Spawn.vala',
    'src/Application.vala',
-   'src/Palete/ValaCompileRequest.vala',
-   'src/Palete/ValaCompileQueue.vala',
    'src/Palete/Javascript.vala',
    'src/Project/Meson.vala',
    'src/Palete/RooDatabase.vala',
