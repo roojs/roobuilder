@@ -1001,6 +1001,8 @@ namespace Project {
 		public void updateErrorsByType(JsRender.JsRender f, string n) 
 		{
 			var ls = this.errorsByType.get(n);
+			// this is a list store 
+			
 			if (ls == null) {
 				ls = new GLib.ListStore(typeof(Palete.CompileError));
 				this.errorsByType.set(n, ls );
@@ -1010,21 +1012,16 @@ namespace Project {
 					var ce = ls.get_item(i) as Palete.CompileError;
 					if (ce.file.path == f.path) {
 						ls.remove(i);
-						i--;
+						break;
 					}
 				}
 			}
-			var add = f.errorsByType.get(n);
-			if (add == null) {
-				return;
-			}
-			foreach(var ce in add) {
-				ls.append(ce);
-			}
+			ls.append(new CompileError.from_file(f));
+			
 		
 			
 		}
-		
+
 		
 		
 		public abstract Palete.LanguageClient? getLanguageServer(string lang);
