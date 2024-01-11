@@ -118,7 +118,7 @@ namespace Palete {
 				return;
 			}
 			 
-			Variant? return_value;
+ 
 			yield this.jsonrpc_client.send_notification_async (
 				"textDocument/didOpen",
 				this.buildDict (
@@ -139,8 +139,8 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
-			Variant? return_value;
-			yield this.jsonrpc_client.call_async (
+ 
+			yield this.jsonrpc_client.send_notification_async (
 				"textDocument/didChange",
 				this.buildDict (  
 					textDocument : this.buildDict (    ///TextDocumentItem;
@@ -148,10 +148,9 @@ namespace Palete {
 						
 					)
 				),
-				null,
-				out return_value
+				null 
 			);
- 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
+ 
 
          
     	}
@@ -160,7 +159,7 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
-			Variant? return_value;
+ 
 			yield this.jsonrpc_client.send_notification_async (
 				"textDocument/didChange",
 				this.buildDict (  
