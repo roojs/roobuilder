@@ -98,10 +98,10 @@ namespace Palete {
 
 			var ret = new CompilerError.new_jserror(file, "ERR", ex.get_line_number(), ex.get_message());
 			var ar = file.getErrors("ERR");
+			ar.remove_all();
 			ar.append(ret);
 			
-			
-			return ret;
+			 
 			
 		}
 		
