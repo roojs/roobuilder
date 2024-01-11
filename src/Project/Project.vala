@@ -1012,8 +1012,8 @@ namespace Project {
 				}
 			}
 			var add = new Palete.CompileError.new_from_file(f, n);
-			if add.hasErrors()) {
-				ls.append(new Palete.CompileError.new_from_file(f, n));
+			if (add.hasErrors()) {
+				ls.append(add);
 			}
 			
 		}
