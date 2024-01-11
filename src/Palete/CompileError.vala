@@ -20,17 +20,7 @@ namespace Palete {
 		public string msg;
 		public  int line { get; set; default = -1; }
 
-		public CompileError.new_line(CompileError? parent, int line, string msg) 
-		{
-			this.lines = new GLib.ListStore(typeof(CompileError));
-			this.parent = parent;
-			this.line = line;
-			this.msg = msg;
-			this.file = parent.file;
-			this.category = parent.category;
-			 
 		
-		}
 		public CompileError.new_jserror(JsRender.JsRender file, string category, int line, string msg) 
 		{
 			this.lines = new GLib.ListStore(typeof(CompileError));
@@ -61,7 +51,18 @@ namespace Palete {
 			this.title =  file.relpath + " (" + lines.get_n_items().to_string() + ")";
 		}
 
-
+/*
+		public CompileError.new_line(CompileError? parent, int line, string msg) 
+		{
+			this.lines = new GLib.ListStore(typeof(CompileError));
+			this.parent = parent;
+			this.line = line;
+			this.msg = msg;
+			this.file = parent.file;
+			this.category = parent.category;
+			 
+		
+		}
 		public CompileError.new_file(JsRender.JsRender file, Json.Object jlines, string category) 
 		{
 			this.file = file;
