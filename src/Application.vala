@@ -482,8 +482,22 @@
 			}
 			
 			var ls = file.getLanguageServer();
-			ls.initialize.begin(
+			var loop = new MainLoop();
+			GLib.Timeout.add_seconds(1, () => {
+				if (!ls.isReady()) {
+					GLib.debug("waiting for server to be ready");
+					return true;
+				}
+				// it's ready..
+				ls.document_open.begin(file, (obj, res) => {
+				    ls.document_open.end(res);
+				    loop.quit();
+				});
+				
+			});
 			
+			 
+			loop.run();
 		
 		}
 			
