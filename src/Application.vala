@@ -475,7 +475,17 @@
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
+			var file = cur_project.getByRelPath(BuilderApplication.opt_language_server);
+			if (file == null) {
+				// then compile them all, and compare them...
+				
 			
+			
+			
+			
+			
+				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
+			}
 			
 			
 			
