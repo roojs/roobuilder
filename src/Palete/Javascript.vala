@@ -78,7 +78,7 @@ namespace Palete {
 			
 
 		}
-		public Json.Object validate(string code, string fn)
+		public void validate(string code, JsRender.JsRender file)
 		{
  
 			JSC.Exception? ex;
@@ -90,36 +90,16 @@ namespace Palete {
 		 
 			if (ex == null) {
 				return new Json.Object(); // this.compressionErrors(code, fn); << to slow on large files?
-			
 				 
 			}
  
-			//GLib.debug("got error %d %s", (int)ex.get_line_number() , ex.get_message() );
- 
-			var ar  = new Json.Array();
-			ar.add_string_element(ex.get_message());
+			//GLib.debug("go	t error %d %s", (int)ex.get_line_number() , ex.get_message() );
+			
+			var ret = new new CompilerError.new_line(null, ex.get_line_number(), ex.get_message());
+			var ar = file.getErrors("ERR");
+			ar.append(ret);
 			
 			
-
-			var line_to_err =  new Json.Object();
-
-			line_to_err.set_array_member(ex.get_line_number().to_string(), ar);
-			var file_to_line =   new Json.Object();
-			file_to_line.set_object_member(fn, line_to_err);
-			var ret =  new Json.Object();
-			ret.set_object_member("ERR", file_to_line);
-			
-			/*
-			var g = new Json.Generator ();
-
-			g.pretty = true;
-			g.indent = 2;
-			var n = new Json.Node(Json.NodeType.OBJECT);
-			n.set_object(ret);
-			g.set_root (n);
-
-			GLib.debug("got %s", g.to_data (null));
-			*/
 			return ret;
 			
 		}
