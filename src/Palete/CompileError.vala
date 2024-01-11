@@ -43,6 +43,7 @@ namespace Palete {
 			}
 			file.errorsByType.get(this.category).append(this);
 		}
+		
 		public CompileError.new_from_file(JsRender.JsRender file, string category) 
 		{
 			this.file = file;
@@ -91,14 +92,14 @@ namespace Palete {
 		public string file_line { // sorting?
 			set {}
 			owned get { 
-				return this.parent == null ? this.file.relpath : 
+				return this.line == -1 ? this.file.relpath : 
  					(this.file.relpath + ":" + this.line.to_string("%09d")); 
 			}
 		}
 		public string line_msg {
 			set {}
 			owned  get {
-				return this.parent == null ? 
+				return this.line == -1 ? 
 					 GLib.Markup.escape_text( this.file.relpath + "(" +  this.lines.n_items.to_string() + ")") : 			
 					 GLib.Markup.escape_text(this.line.to_string() + ": " + this.msg);
 		 	}
