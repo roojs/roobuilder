@@ -101,7 +101,7 @@ namespace Palete {
 		}
 		
 		
-		public abstract    void initialize_server()  ;
+		public abstract  void initialize_server()  ;
 		
 		//public abstract   void  initialize_server()  ;
 		
