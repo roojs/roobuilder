@@ -494,18 +494,8 @@
 				}
 				GLib.debug("Sending document_open");
 				// it's ready..
-				/*
-				ls.document_open.begin(file, (obj, res) => {
-
-				    try { 
-				    	ls.document_open.end(res);
-			    	} catch (GLib.Error e) {
-						GLib.debug("got error %s", e.message);
-					}
-					GLib.debug("got response - leaving loop open - use ctrl-c to kil");
-				   // loop.quit();
-				});
-				*/
+				 
+				ls.document_open(file);
 				return false;
 				
 			});
