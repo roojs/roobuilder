@@ -40,7 +40,7 @@ namespace Lsp {
         Incremental = 2
     }
 
-    enum DiagnosticSeverity {
+    public  enum DiagnosticSeverity {
         Unset = 0,
         /**
          * Reports an error.
