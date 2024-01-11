@@ -1035,7 +1035,7 @@ namespace Lsp {
 		
 		public bool deserialize_property (string property_name, out GLib.Value val, GLib.ParamSpec pspec, Json.Node property_node) {
 			if (property_name == "diagnostics") {
-				value = Value (typeof (Array));
+				val = Value (typeof (Array));
 				if (property_node.get_node_type () != Json.NodeType.ARRAY) {
 					warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 					return false;
