@@ -27,7 +27,7 @@ namespace Palete {
 	 	public Gee.HashMap<string,GLib.ListStore>? errorByFile  = null;
 	 		
 	
-		public ValaCompileRequest(
+		public ValaCompileRequestX(
 			ValaCompileRequestType requestType,
 			JsRender.JsRender file ,
 			JsRender.Node? node,
