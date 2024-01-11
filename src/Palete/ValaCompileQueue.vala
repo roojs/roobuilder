@@ -4,7 +4,7 @@
 */
 namespace Palete {
 	
-	public class ValaCompileQueue : Object 
+	public class ValaCompileQueueX : Object 
 	{
 	
 		ValaCompileRequest? next_request = null;
