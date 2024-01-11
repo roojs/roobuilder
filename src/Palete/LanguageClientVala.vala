@@ -15,7 +15,7 @@ namespace Palete {
 		 public override   void  initialize_server()   {
 			try {
 				Variant? return_value;
-				  yield this.jsonrpc_client.async_call (
+				    this.jsonrpc_client.call (
 				    "initialize",
 				    this.buildDict (
 				        processId: new Variant.int32 ((int32) Posix.getpid ()),
