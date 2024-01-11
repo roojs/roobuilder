@@ -86,7 +86,7 @@ namespace Project {
 		public Palete.ValaCompileRequest last_request = null;
 		
 		
-		protected Gee.ArrayList<string,Palate.LanguageServer> language_servers;
+		protected Gee.ArrayList<string,Palete.LanguageServer> language_servers;
 		
 		protected Project (string path) {
 			
@@ -99,7 +99,7 @@ namespace Project {
 			//XObject.extend(this, cfg);
 			//this.files = { }; 
 			this.path = path;
-	 		this.language_servers = new Gee.ArrayList<string,Palate.LanguageServer>();
+	 		this.language_servers = new Gee.ArrayList<string,Palete.LanguageServer>();
 			
 			
 		}
