@@ -9,7 +9,7 @@ namespace Palete {
 		RUN
 	}
 		
-	public class ValaCompileRequest : Object
+	public class ValaCompileRequestX : Object
 	{
  		ValaCompileRequestType requestType;
  		
