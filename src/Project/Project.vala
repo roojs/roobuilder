@@ -1018,8 +1018,8 @@ namespace Project {
 			if (add == null) {
 				return;
 			}
-			for(var i =0; i < add.get_n_items(); i++) {
-				ls.append(add.get_item(i) as Palete.CompileError);
+			foreach(var ce in add) {
+				ls.append(ce);
 			}
 		
 			
