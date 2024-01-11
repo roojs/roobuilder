@@ -10,7 +10,7 @@ namespace JsRender {
 		
 		public Dir(Project.Project project, string path) {
 	    
-	        aconstruct( project, path);
+	        base( project, path);
 	        this.xtype = "Dir";
 	        this.language = "";
 	        
