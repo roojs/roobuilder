@@ -1035,22 +1035,22 @@ namespace Lsp {
 		
 		public bool deserialize_property (string property_name, out GLib.Value val, GLib.ParamSpec pspec, Json.Node property_node) {
 			if (property_name == "diagnostics") {
-				val = Value (typeof (Array));
+ 
 				if (property_node.get_node_type () != Json.NodeType.ARRAY) {
 					warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 					return false;
 				}
 
-				val =  new Gee.ArrayList<Diagnostic> ();
+				var diags =  new Gee.ArrayList<Diagnostic> ();
 
 				property_node.get_array ().foreach_element ((array, index, element) => {
 					try {
-						val.add (Json.gobject_deserialize (typeof (Lsp.Diagnostic), element) as Diagnostic );
+						diags.add (Json.gobject_deserialize (typeof (Lsp.Diagnostic), element) as Diagnostic );
 					} catch (Error e) {
 						warning ("argument %u to command could not be deserialized: %s", index, e.message);
 					}
 				});
-
+				val = diags;
 				 
 				return true;
 			}   
