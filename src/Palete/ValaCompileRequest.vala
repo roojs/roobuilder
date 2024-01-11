@@ -107,7 +107,7 @@ namespace Palete {
 			return true;
 		}
 		
-		public bool run(ValaCompileQueue? queue)
+		public bool run()
 		{
 			this.queue = queue;
 			if ( this.target() == "") {
