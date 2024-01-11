@@ -406,7 +406,7 @@ namespace JsRender {
 			if (xinc.size > 0 ) {
 				for(var i = 0; i < xinc.size; i++) {
 					print("check xinclude:  %s\n", xinc.get(i));
-					var sf = this.project.getByName(xinc.get(i));
+					var sf = this.project.getByRelPath(xinc.get(i));
 					if (sf == null) {
 						print("Failed to find file by name?\n");
 						continue;
