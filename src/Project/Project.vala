@@ -1000,13 +1000,15 @@ namespace Project {
 		}
 		public void updateErrorsByType(JsRender.JsRender f, string n) 
 		{
+			var ls = this.errorsByType.get(n);
 			if (!this.errorsByType.has_key(n)) {
-				this.errorsByType.set(n, new GLib.ListStore(typeof(Palete.CompileError)));
+				ls = new GLib.ListStore(typeof(Palete.CompileError));
+				f.errorsByType.set(n, ls );
 			} else {
-				var ls = this.errorsByType.get(n);
+				
 				for(var i =0; i < ls.get_n_items(); i++) {
 					var ce = ls.get_item(i) as Palete.CompileError;
-					if (ce.file.path = f.path) {
+					if (ce.file.path == f.path) {
 						ls.remove(i);
 						i--;
 					}
@@ -1016,6 +1018,7 @@ namespace Project {
 			if (add == null) {
 				return;
 			}
+			for(var i =0; i < add.get_n_items(); i++) {
 			
 		
 			
