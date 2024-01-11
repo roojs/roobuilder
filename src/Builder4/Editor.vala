@@ -227,11 +227,6 @@
         
         	 // we should highlight other types of errors..
         
-        	if (ar == null || ar.get_n_items() < 1) {
-        		GLib.debug("Return has no errors\n");
-        		return;
-        	}
-        
         	if (_this.window.windowstate.state != WindowState.State.CODEONLY 
         		&&
         		_this.window.windowstate.state != WindowState.State.CODE
@@ -246,6 +241,11 @@
         		GLib.debug("file is null?");
         		return;
         
+        	}
+        	var ar = this.file.getErorors(category);
+        	if (ar == null || ar.get_n_items() < 1) {
+        		GLib.debug("Return has no errors\n");
+        		return;
         	}
          
         
