@@ -113,7 +113,7 @@ namespace JsRender {
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
 		public	Gee.HashMap<string,string> namedStrings;
-		public	Gee.HashMap<string,Gee.ArrayList<Palete.CompileError>> errorByType;
+		public	Gee.HashMap<string,Gee.ArrayList<Palete.CompileError>> errorsByType;
 		
 		
 
@@ -169,7 +169,7 @@ namespace JsRender {
 
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
-			this.errorByType  = new Gee.HashMap<string,Gee.ArrayList<Palete.CompileError>>();
+			this.errorsByType  = new Gee.HashMap<string,Gee.ArrayList<Palete.CompileError>>();
 		}
 		
 		public void renameTo(string name) throws  Error
