@@ -1037,14 +1037,14 @@ namespace Lsp {
     }
 
 
-	class Diagnostics : Object, Json.Serializable 
+	public class Diagnostics : Object, Json.Serializable 
 	{
-		string uri { get; set; }
+		public string uri { get; set; }
 
-		int version  { get; set; default = 0; }
+		public int version  { get; set; default = 0; }
         public Gee.ArrayList<Diagnostic>? diagnostics { get; set; }
 	  	 
-		string filename { 
+		public string filename { 
 			get {
 				File.new_for_uri (this.uri).get_path();
 			}
