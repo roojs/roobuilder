@@ -25,7 +25,7 @@ namespace JsRender {
         
         public Roo(Project.Roo project, string path) 
         {
-            aconstruct( project, path);
+            base( project, path);
  
             this.xtype = "Roo";
              this.language = "js";
