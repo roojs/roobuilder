@@ -122,7 +122,7 @@ namespace Project {
 				try {
 					dir.make_directory();
 				} catch(GLib.Error e) {
-					GLLanguageClientDummyib.error("could not make builder directory");
+					GLib.error("could not make builder directory %s", e.message);
 				}
 				return;
 			}
