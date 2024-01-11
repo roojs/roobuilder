@@ -83,16 +83,14 @@ namespace Palete {
 				this.jsonrpc_client.notification.connect((method, paramz) => {
 					this.onNotification(method, paramz);
 				});
-				this.jsonrpc_client.notification.connect((method, paramz) => {
-					this.onNotification(method, paramz);
-				});
+				 
 				this.jsonrpc_client.failed.connect(() => {
 					GLib.debug("language server server has failed");
 				});
 				this.initialize_server ();
 			} 
 					 
-			}
+			 
 		}
 		public bool isReady()
 		{
