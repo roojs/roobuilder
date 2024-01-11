@@ -111,11 +111,11 @@ namespace Palete {
 		bool sent_shutdown = false;
 		
 		
-		public void onNotification(string method, Variant? paramz)
+		public void onNotification(string method, Variant? return_value)
 		{
 		
 			switch (method) {
-				case "":
+				case "some tmoethod":
 					break;
 				default: 
 					break;
