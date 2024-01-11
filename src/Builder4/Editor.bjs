@@ -1024,7 +1024,7 @@
     "\t\treturn;",
     "",
     "\t}",
-    "\tvar ar = this.file.getErorors(category);",
+    "\tvar ar = this.file.getErrors(category);",
     "\tif (ar == null || ar.get_n_items() < 1) {",
     "\t\tGLib.debug(\"Return has no errors\\n\");",
     "\t\treturn;",

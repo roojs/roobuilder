@@ -242,7 +242,7 @@
         		return;
         
         	}
-        	var ar = this.file.getErorors(category);
+        	var ar = this.file.getErrors(category);
         	if (ar == null || ar.get_n_items() < 1) {
         		GLib.debug("Return has no errors\n");
         		return;
