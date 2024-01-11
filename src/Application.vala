@@ -481,7 +481,8 @@
 				 GLib.error("missing file %s in project %s", BuilderApplication.opt_language_server, cur_project.name);
 			}
 			
-			
+		
+		}
 			
 			
 		void compileVala()
