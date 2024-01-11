@@ -714,7 +714,7 @@
      "\t Resources.singleton().disconnect(_this.statusbar.handler_id);",
      "\t ",
      "\t ",
-     "\t this.windowstate.file.getLanguageServer().close_document();",
+     "\t this.windowstate.file.getLanguageServer().document_close();",
      "\t ",
      "\t BuilderApplication.removeWindow(this);",
      "\t ",
