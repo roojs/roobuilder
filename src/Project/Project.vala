@@ -992,6 +992,16 @@ namespace Project {
 			return ret;
 		}
 		
+		public void updateErrorsforFile(JsRender f) 
+		{
+			this.updateErrorsByType(f, "WARN");
+			this.updateErrorsByType(f, "ERR");
+			this.updateErrorsByType(f, "DEPR");
+		}
+		
+		
+		
+		
 		public abstract Palete.LanguageClient? getLanguageServer(string lang);
 		
 		
