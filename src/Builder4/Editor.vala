@@ -812,12 +812,9 @@
                 if (_this.file.xtype == "PlainFile" && _this.file.project.xtype == "Gtk") {
                 
                     // assume it's gtk...
-                       
-            		BuilderApplication.valacompilequeue.addFile( 
-            			Palete.ValaCompileRequestType.FILE_CHANGE, 
-            			_this.file , str, false) ;
-              
-            
+                    _this.file.getLanugageServer() document_change(_this.file);
+                    
+            		 
                     return true;
                 
                 }
@@ -831,7 +828,7 @@
                  
                 GLib.debug("calling validate");    
                 // clear the buttons.
-             
+             	
                 BuilderApplication.valacompilequeue.addProp( 
                 		Palete.ValaCompileRequestType.PROP_CHANGE,
             			_this.file,
