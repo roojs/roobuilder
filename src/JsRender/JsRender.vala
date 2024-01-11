@@ -704,7 +704,7 @@ namespace JsRender {
 		{
 			return File.new_for_path (this.targetName()).get_uri ();
 		}
-		public getLanguageServer()
+		public Palete.LanguageServer getLanguageServer()
 		{
 			return this.project.getLanguageServer(this.language_id());
 		
