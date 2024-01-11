@@ -996,8 +996,8 @@ namespace Project {
 		public void updateErrorsforFile(JsRender.JsRender f) 
 		{
 			var n = this.updateErrorsByType(f, "WARN");
-			n+ = this.updateErrorsByType(f, "ERR");
-			n+- this.updateErrorsByType(f, "DEPR");
+			n += this.updateErrorsByType(f, "ERR");
+			n += this.updateErrorsByType(f, "DEPR");
 			
 			if (n > 0) {
 				BuilderApplication.updateCompileResults();
