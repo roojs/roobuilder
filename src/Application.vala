@@ -122,7 +122,7 @@
 
 
 
-		public static Palete.ValaCompileQueue valacompilequeue;
+		//public static Palete.ValaCompileQueue valacompilequeue;
 
 	
 		public BuilderApplication (  string[] args)
