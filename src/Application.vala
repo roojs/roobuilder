@@ -483,6 +483,9 @@
 			}
 			
 			var ls = file.getLanguageServer();
+			if (ls == null) {
+				GLib.error("No langauge server returned for file:%s", file.relpath);
+			}
 			var loop = new MainLoop();
 			GLib.Timeout.add_seconds(1, () => {
 				if (!ls.isReady()) {
