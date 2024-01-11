@@ -213,30 +213,32 @@ namespace Palete {
 
          
     	}
- 		public    void document_change (JsRender.JsRender file) throws GLib.Error
+ 		public    void document_change (JsRender.JsRender file)  
     	{
    			if (!this.isReady()) {
 				return;
 			}
-			 
-		  	this.jsonrpc_client.send_notification (
-				"textDocument/didChange",
-				this.buildDict (  
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+			 try {
+			  	this.jsonrpc_client.send_notification (
+					"textDocument/didChange",
+					this.buildDict (  
+						textDocument : this.buildDict (    ///TextDocumentItem;
+							uri: new GLib.Variant.string (file.to_url()),
+							version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+						),
+						contentChanges : new GLib.Variant.array (GLib.VariantType.DICTIONARY, 
+							{  
+								 this.buildDict (
+									text : new GLib.Variant.string (file.toSource())
+							 	)
+							}
+						)
 					),
-					contentChanges : new GLib.Variant.array (GLib.VariantType.DICTIONARY, 
-						{  
-							 this.buildDict (
-								text : new GLib.Variant.string (file.toSource())
-						 	)
-						}
-					)
-				),
-				null 
-			);
- 
+					null 
+				);
+ 			} catch( GLib.Error  e) {
+				GLib.debug ("LS sent close err %s", e.message);
+			}
 
          
     	}
