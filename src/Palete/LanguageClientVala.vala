@@ -12,9 +12,9 @@ namespace Palete {
 			
 		
 		}
-		public override async void  initialize_server() throws GLib.Error {
+		public override   void  initialize_server() throws GLib.Error {
 			Variant? return_value;
-		    yield this.jsonrpc_client.call_async (
+		      this.jsonrpc_client.call  (
 		        "initialize",
 		        this.buildDict (
 		            processId: new Variant.int32 ((int32) Posix.getpid ()),
