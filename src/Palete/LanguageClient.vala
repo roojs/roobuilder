@@ -104,7 +104,7 @@ namespace Palete {
 		public abstract  void initialize_server()  ;
 		
 		//public abstract   void  initialize_server()  ;
-		
+		 
 		protected bool initialized = false;
 		bool sent_shutdown = false;
 		
