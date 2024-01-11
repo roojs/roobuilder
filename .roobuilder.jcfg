@@ -148,8 +148,6 @@
                 "src/Spawn.vala",
                 "src/Application.vala",
                 "src/Palete/ValalCompileQueue.vala",
-                "src/Palete/ValaCompileRequest.vala",
-                "src/Palete/ValaCompileQueue.vala",
                 "src/Palete/Javascript.vala",
                 "src/Project/Meson.vala",
                 "src/Palete/RooDatabase.vala",
