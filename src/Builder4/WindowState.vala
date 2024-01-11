@@ -669,7 +669,7 @@ public class WindowState : Object
 			 
 		}
 		*/
-		file.getLanguageServer().open_document(this);
+		file.getLanguageServer().document_open(file);
 		this.gotoLine(line);
 	
 		var ctr= this.win.rooviewbox.el;
