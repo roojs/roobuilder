@@ -704,6 +704,14 @@ namespace JsRender {
 		{
 			return File.new_for_path (this.targetName()).get_uri ();
 		}
+		public getLanguageServer()
+		{
+			return this.project.getLanguageServer(this.language_id());
+		
+		}
+		
+		
+		
 		public abstract string language_id();
 		public abstract void save();
 		public abstract void saveHTML(string html);
