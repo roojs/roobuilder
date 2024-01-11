@@ -1011,8 +1011,10 @@ namespace Project {
 					break;
 				}
 			}
-			
-			ls.append(new Palete.CompileError.new_from_file(f, n));
+			var add = new Palete.CompileError.new_from_file(f, n);
+			if add.hasErrors()) {
+				ls.append(new Palete.CompileError.new_from_file(f, n));
+			}
 			
 		}
 		public GLib.ListStore getErrors(string n)
