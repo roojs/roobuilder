@@ -111,6 +111,12 @@ namespace Palete {
 		bool sent_shutdown = false;
 		
 		
+		public void onNotification(string method, Variant? paramz)
+		{
+		
+		
+		}
+		
 		/***
 		
 		*/
