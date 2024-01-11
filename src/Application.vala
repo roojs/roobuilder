@@ -657,6 +657,17 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 			}
 		
 		}
+		public void showSpinner(bool state)
+		{
+			foreach (var win in BuilderApplication.windows) {
+				if (state) {
+					win.statusbar_compile_spinner.start();
+				}  else {
+					win.statusbar_compile_spinner.stop();
+				}
+			}
+		}
+		
 		
 		
 	 
