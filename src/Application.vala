@@ -646,9 +646,9 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 					continue;
 				}
 
-				w.windowstate.code_editor_tab.updateErrorMarks("ERR");
-				w.windowstate.code_editor_tab.updateErrorMarks("WARN");
-				w.windowstate.code_editor_tab.updateErrorMarks("DEPR");
+				ww.windowstate.code_editor_tab.updateErrorMarks("ERR");
+				ww.windowstate.code_editor_tab.updateErrorMarks("WARN");
+				ww.windowstate.code_editor_tab.updateErrorMarks("DEPR");
 				
 				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
 				ww.updateErrors();
