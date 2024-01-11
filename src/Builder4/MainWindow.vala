@@ -96,7 +96,10 @@
         }
 
         // user defined functions
-        public void updateErrors (Palete.ValaCompileRequest? req) {
+        public void updateErrors () {
+        
+        
+        	/*
         
         	if (req == null) {
          
@@ -105,24 +108,23 @@
         		_this.statusbar_depricated.el.hide();
         		return;
         	}
+        	*/
+        	
         	
         	
         	this.statusbar_errors.setNotices(
-        		req.errorByType.get("ERR"),
-        		req.totalErrors("ERR"),
-        		req.totalErrors("ERR", this.windowstate.file)
+        		this.windowstate.project.getErrors("ERR"),
+        		this.windowstate.file.getErrors("ERR")
         	);
         	this.statusbar_warnings.setNotices(
-        		req.errorByType.get("WARN"),
-        		req.totalErrors("WARN"),
-        		req.totalErrors("WARN", this.windowstate.file)
+        		this.windowstate.project.getErrors("WARN"),
+        		this.windowstate.file.getErrors("WARN")
         	);
         	this.statusbar_depricated.setNotices(
-        		req.errorByType.get("DEPR"),
-        		req.totalErrors("DEPR"),
-        		req.totalErrors("DEPR", this.windowstate.file)
+        		this.windowstate.project.getErrors("DEPR"),
+        		this.windowstate.file.getErrors("DEPR")
         	);
-        
+         
         	_this.statusbar_run.el.hide();
         
         	if (req.totalErrors("ERR") < 1) {
