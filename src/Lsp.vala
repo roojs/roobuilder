@@ -1024,7 +1024,7 @@ namespace Lsp {
 		string uri { get; set; }
 
 		int version  { get; set; default = 0; }
-        public Gee.Collection<Diagnostic>? diagnostics { get; set; }
+        public Gee.List<Diagnostic>? diagnostics { get; set; }
 	  	
 	  	protected void add_diagnostic (Diagnostic diag) {
             if (diagnostics == null)
