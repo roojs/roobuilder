@@ -119,9 +119,9 @@ namespace Palete {
 					break;
 				default: 
 					break;
-				}
+				 
 			}
-			GLib.debug("got notificaiton %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value)));
+			GLib.debug("got notification %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value)));
 			
 		}
 		
