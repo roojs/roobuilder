@@ -65,7 +65,9 @@
             	 Resources.singleton().disconnect(_this.statusbar.handler_id);
             	 
             	 
-            	 this.windowstate.file.getLanguageServer().document_close();
+            	 this.windowstate.file.getLanguageServer().document_close(
+            	 	this.windowstate.file
+             	);
             	 
             	 BuilderApplication.removeWindow(this);
             	 
