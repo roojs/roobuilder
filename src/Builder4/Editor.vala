@@ -828,14 +828,14 @@
                  
                 GLib.debug("calling validate");    
                 // clear the buttons.
-             	
-                BuilderApplication.valacompilequeue.addProp( 
-                		Palete.ValaCompileRequestType.PROP_CHANGE,
-            			_this.file,
-            			_this.node,
-            			_this.prop,
-            			str); 
-                 
+             	if (_this.prop.name == "xns" || _this.prop.name == "xtype") {
+            		return true ;
+            	}
+            	oldcode  = this.prop.val;
+            	
+            	_this.prop.val = str;
+                _this.file.getLanugageServer() document_change(_this.file);	
+                _this.prop.val = oldcode;
                 
                 
                 //print("done mark line\n");
