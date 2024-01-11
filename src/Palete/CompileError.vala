@@ -13,7 +13,7 @@ namespace Palete {
 		public JsRender.JsRender file = null;
 		public string title = "";
 		
-		public GLib.ListStore lines { get; set ; }; // so it triggers updates?
+		public GLib.ListStore lines { get; set ; }  // so it triggers updates?
 
 		public CompileError? parent = null;
  		public string category;
