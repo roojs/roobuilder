@@ -110,10 +110,10 @@
         	}
         	*/
         	
-        	
+        	var pr = this.windowstate.project.getErrors("ERR");
         	
         	this.statusbar_errors.setNotices(
-        		this.windowstate.project.getErrors("ERR"),
+        		pr,
         		this.windowstate.file.getErrors("ERR")
         	);
         	this.statusbar_warnings.setNotices(
@@ -127,7 +127,7 @@
          
         	_this.statusbar_run.el.hide();
         
-        	if (req.totalErrors("ERR") < 1) {
+        	if (pr.get_n_items() < 1) {
         		_this.statusbar_run.el.show();
         	}
         	
