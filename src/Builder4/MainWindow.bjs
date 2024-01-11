@@ -817,7 +817,7 @@
     "() {",
     "",
     "",
-    " ",
+    " \tGLib.debug(\"updateErrors\");",
     "\t",
     "\tvar pr = this.windowstate.project.getErrors(\"ERR\");",
     "\t",

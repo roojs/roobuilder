@@ -104,7 +104,7 @@
         public void updateErrors () {
         
         
-         
+         	GLib.debug("updateErrors");
         	
         	var pr = this.windowstate.project.getErrors("ERR");
         	
