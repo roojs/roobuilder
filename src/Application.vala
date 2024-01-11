@@ -180,6 +180,7 @@
 			this.languageServer(cur_project); // --language-server			
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
+			this.languageServer(cur_project);
 			this.compileBjs(cur_project);
 			this.compileVala();
 
