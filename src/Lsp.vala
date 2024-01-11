@@ -1062,11 +1062,11 @@ namespace Lsp {
 				var diags =  new Gee.ArrayList<Diagnostic> ();
 
 				property_node.get_array ().foreach_element ((array, index, element) => {
-					try {
+					 
 						diags.add (Json.gobject_deserialize (typeof (Lsp.Diagnostic), element) as Diagnostic );
-					} catch (Error e) {
-						warning ("argument %u to command could not be deserialized: %s", index, e.message);
-					}
+					 
+						//warning ("argument %u to command could not be deserialized: %s", index, e.message);
+					 
 				});
 				val = diags;
 				 
