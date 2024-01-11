@@ -49,7 +49,7 @@ namespace Palete {
 		{
 			this.file = file;
 			this.category = category;
-			this.lines = f.getErrors(category);
+			this.lines = file.getErrors(category);
 			this.title =  file.relpath + " (" + lines.get_n_items().to_string() + ")";
 		}
 
