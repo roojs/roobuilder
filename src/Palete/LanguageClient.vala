@@ -145,26 +145,29 @@ namespace Palete {
 			f.project.updateErrorsforFile(f);
 		}
 		
-		public void document_open (JsRender.JsRender file) throws GLib.Error 
+		public void document_open (JsRender.JsRender file)  
 		{
 			if (!this.isReady()) {
 				return;
 			}
-			 
- 
-			this.jsonrpc_client.send_notification (
-				"textDocument/didOpen",
-				this.buildDict (
-					textDocument : this.buildDict (
-						uri: new Variant.string (file.to_url()),
-						languageId :  new Variant.string (file.language_id()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version),
-						text : new Variant.string (file.toSource())
-					)
-				),
-				null
-			);
-			GLib.debug ("LS sent open");
+			GLib.debug ("LS sent open");			 
+ 			try {
+				this.jsonrpc_client.send_notification (
+					"textDocument/didOpen",
+					this.buildDict (
+						textDocument : this.buildDict (
+							uri: new Variant.string (file.to_url()),
+							languageId :  new Variant.string (file.language_id()),
+							version :  new GLib.Variant.uint64 ( (uint64) file.version),
+							text : new Variant.string (file.toSource())
+						)
+					),
+					null
+				);
+			} catch( GLib.Error  e) {
+				GLib.debug ("LS sent open err %s", e.message);
+			}
+
  		}
  		
  		public   void document_save (JsRender.JsRender file) throws GLib.Error
