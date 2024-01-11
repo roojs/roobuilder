@@ -481,6 +481,9 @@
 				 GLib.error("missing file %s in project %s", BuilderApplication.opt_language_server, cur_project.name);
 			}
 			
+			var ls = file.getLanguageServer();
+			ls.initialize.begin(
+			
 		
 		}
 			
