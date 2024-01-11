@@ -169,7 +169,7 @@ namespace JsRender {
 
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
-			this.errorsByType  = new Gee.HashMap<string,Gee.ArrayList<Palete.CompileError>>();
+			this.errorsByType  = new Gee.HashMap<string, Palete.CompileError>();
 		}
 		
 		public void renameTo(string name) throws  Error
