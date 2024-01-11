@@ -207,7 +207,31 @@ namespace Project
 		{
 			return this.pathsMatching("vapi", false);
 		}
+		
+		
 		 
+ 		public override Palete.LanguageServer getLanguageServer(string lang)
+ 		{
+			if (this.language_servers.has_key(lang)) {
+				return this.language_servers.get(lang);
+			}
+			switch( lang ) {
+				case "vala":
+					this.language_servers.set(lang, new Palete.LanguageClientVala(this));
+					break
+				default : 
+					return null;
+			}
+	 			return this.language_servers.get(lang);
+ 		
+ 		}
+		 
+		 
+		 
+		 
+		 
+		 
+		 // ------------------  new project stufff
 		public override void initialize()
 		{
 			string[] dirs = {
@@ -367,10 +391,10 @@ namespace Project
  
 			
 		
- public override void   initDatabase()
-    {
-         // nOOP
-    }
+		 public override void   initDatabase()
+		{
+		     // nOOP
+		}
 	}
 	 
    
