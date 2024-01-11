@@ -102,7 +102,7 @@ namespace Project {
 			//this.files = { }; 
 			this.path = path;
 	 		this.language_servers = new Gee.HashMap<string,Palete.LanguageClient>();
-			
+			this.errorByType = new  Gee.HashMap<string,GLib.ListStore>();
 			
 		}
 		 
@@ -998,7 +998,29 @@ namespace Project {
 			this.updateErrorsByType(f, "ERR");
 			this.updateErrorsByType(f, "DEPR");
 		}
+		public void updateErrorsByType(JsRender.JsRender f, string n) 
+		{
+			if (!this.errorsByType.has_key(n)) {
+				this.errorsByType.set(n, new GLib.ListStore(typeof(Palete.CompileError)));
+			} else {
+				var ls = this.errorsByType.get(n);
+				for(var i =0; i < ls.get_n_items(); i++) {
+					var ce = ls.get_item(i) as Palete.CompileError;
+					if (ce.file.path = f.path) {
+						ls.remove(i);
+						i--;
+					}
+				}
+			}
+			var add = f.errorsByType.get(n);
+			if (add == null) {
+				return;
+			}
+			
 		
+			
+			
+		}
 		
 		
 		
