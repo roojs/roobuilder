@@ -138,7 +138,7 @@ namespace Palete {
 				GLib.debug("no file %s", dg.uri);
 				return;
 			}
-			f.errorByType.clear();
+			f.errorsByType.clear();
 			foreach(var diag in dg.diagnostics) {
 				new CompileError.new_from_diagnostic(f, diag);
 			}

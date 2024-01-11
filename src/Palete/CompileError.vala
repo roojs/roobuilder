@@ -34,7 +34,7 @@ namespace Palete {
 		
 		
 
-		public CompileError.new_diagnostic(JsRender.JsRender file, Lsp.Diagnostic diag) 
+		public CompileError.new_from_diagnostic(JsRender.JsRender file, Lsp.Diagnostic diag) 
 		{
 			this.file = file;
 			this.category = diag.category;
