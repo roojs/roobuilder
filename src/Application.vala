@@ -494,6 +494,7 @@
 				}
 				GLib.debug("Sending document_open");
 				// it's ready..
+				/*
 				ls.document_open.begin(file, (obj, res) => {
 
 				    try { 
@@ -504,6 +505,7 @@
 					GLib.debug("got response - leaving loop open - use ctrl-c to kil");
 				   // loop.quit();
 				});
+				*/
 				return false;
 				
 			});
