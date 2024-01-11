@@ -140,7 +140,7 @@ namespace Palete {
 			}
 			f.errorByType.clear();
 			foreach(var diag in dg.diagnostics) {
-				new Palete.CompileError.new_from_diagnostic(f, diag);
+				new CompileError.new_from_diagnostic(f, diag);
 			}
 			file.project.updateErrorsforFile(f);
 		}
