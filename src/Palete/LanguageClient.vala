@@ -234,14 +234,14 @@ namespace Palete {
 
          
     	}
-		public async void exit () throws GLib.Error 
+		public   void exit () throws GLib.Error 
 		{
 			if (!this.isReady()) {
 				return;
 			}
 		 	this.sent_shutdown  = true;
-			Variant? return_value;
-			yield this.jsonrpc_client.send_notification_async (
+		 
+			  this.jsonrpc_client.send_notification_async (
 				"exit",
 				null,
 				null 
