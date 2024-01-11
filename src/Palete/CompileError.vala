@@ -95,7 +95,7 @@ namespace Palete {
 		 	}
 	 	}
 		
-		
+		/*
 		public static void parseCompileResults (ValaCompileRequest req, Json.Object tree)
 		{
 			req.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
@@ -111,6 +111,7 @@ namespace Palete {
 			
 			 
 		}
+		*/
 		
 		public static void jsonToListStoreProp(ValaCompileRequest req, string prop, Json.Object tree)
 		{
