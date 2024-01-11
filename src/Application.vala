@@ -503,7 +503,7 @@
 			
 			 
 			loop.run();
-		
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 			
 			
