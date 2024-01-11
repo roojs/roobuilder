@@ -992,7 +992,7 @@ namespace Project {
 			return ret;
 		}
 		
-		public void updateErrorsforFile(JsRender f) 
+		public void updateErrorsforFile(JsRender.JsRender f) 
 		{
 			this.updateErrorsByType(f, "WARN");
 			this.updateErrorsByType(f, "ERR");
