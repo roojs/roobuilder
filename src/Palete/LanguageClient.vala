@@ -116,7 +116,8 @@ namespace Palete {
 		
 			switch (method) {
 				case "textDocument/publishDiagnostics":
-					cl = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
+					this.onDiagnostic(return_value);
+					return;
 					break;
 				default: 
 					break;
@@ -129,7 +130,18 @@ namespace Palete {
 		/***
 		
 		*/
-		
+		public void onDiagnostic(Variant? return_value) 
+		{
+			var dg = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
+			var f = this.project.getByPath(dg.filename);
+			if (f == null) {
+				GLib.debug("no file %s", dg.uri);
+				return;
+			}
+			foreach(var diag in dg.diagnostics) {
+				new Palete.CompilerError.new_from_diagnostic(f, diag);
+			}
+		}
 		
 		public async void document_open (JsRender.JsRender file) throws GLib.Error 
 		{
