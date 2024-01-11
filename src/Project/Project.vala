@@ -1000,28 +1000,29 @@ namespace Project {
 		}
 		public void updateErrorsByType(JsRender.JsRender f, string n) 
 		{
-			var ls = this.errorsByType.get(n);
-			// this is a list store 
+			var ls = this.getErrors(n);
 			
+			// remove thie file from the list.	
+			for(var i =0; i < ls.get_n_items(); i++) {
+				var ce = ls.get_item(i) as Palete.CompileError;
+				if (ce.file.path == f.path) {
+					ls.remove(i);
+					break;
+				}
+			}
+			
+			ls.append(new CompileError.from_file(f));
+			
+		}
+		public GLib.ListStore getErrors(string n)
+		{
+			var ls = this.errorsByType.get(n);
 			if (ls == null) {
 				ls = new GLib.ListStore(typeof(Palete.CompileError));
 				this.errorsByType.set(n, ls );
-			} else {
-				
-				for(var i =0; i < ls.get_n_items(); i++) {
-					var ce = ls.get_item(i) as Palete.CompileError;
-					if (ce.file.path == f.path) {
-						ls.remove(i);
-						break;
-					}
-				}
 			}
-			ls.append(new CompileError.from_file(f));
-			
-		
-			
+			return ls;
 		}
-
 		
 		
 		public abstract Palete.LanguageClient? getLanguageServer(string lang);
