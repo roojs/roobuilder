@@ -1024,19 +1024,42 @@ namespace Lsp {
 		string uri { get; set; }
 
 		int version  { get; set; default = 0; }
-        public Gee.List<Diagnostic>? diagnostics { get; set; }
-	  	
-	  	protected void add_diagnostic (Diagnostic diag) {
-            if (diagnostics == null)
-                diagnostics = new Gee.ArrayList<Diagnostic> ();
-            diagnostics.add (diag);
-        }
+        public Gee.ArrayList<Diagnostic>? diagnostics { get; set; }
+	  	 
 		string filename { 
 			get {
 				File.new_for_uri (this.uri).get_path();
 			}
 			private set {}
 		}
+		
+		public bool deserialize_property (string property_name, out GLib.Value value, GLib.ParamSpec pspec, Json.Node property_node) {
+			if (property_name == "diagnostics") {
+				value = Value (typeof (Array));
+				if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+					warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+					return false;
+				}
+
+				value =  new Gee.ArrayList<Diagnostic> ();
+
+				property_node.get_array ().foreach_element ((array, index, element) => {
+					try {
+						value.add (Json.gobject_deserialize (typeof (Lsp.Diagnostic), element) as Diagnostic );
+					} catch (Error e) {
+						warning ("argument %u to command could not be deserialized: %s", index, e.message);
+					}
+				});
+
+				 
+				return true;
+			}   
+			} else {
+				return default_deserialize_property (property_name, out value, pspec, property_node);
+			}
+		}
+
+		
 	}
 
 
