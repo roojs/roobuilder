@@ -23,7 +23,7 @@ namespace Palete {
 		
 		
 		
-		public ValaCompileQueue()
+		public ValaCompileQueueX()
 		{
 			//start timeout for compiler.
 			
