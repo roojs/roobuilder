@@ -1279,9 +1279,9 @@
             }
 
             // user defined functions
-            public void setNotices (GLib.ListStore nots, int qty, int tf) {
+            public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
                 
-                 if (qty < 1 ) {
+                 if (nots.get_n_items() < 1 ) {
                 	this.el.hide();
                 	if (this.popup != null && this.popup.el.visible) {
                 		this.popup.el.hide();
@@ -1290,7 +1290,7 @@
                 }
                 
                 this.el.show();
-                this.el.label = "%d/%d Errors".printf(tf,qty);
+                this.el.label = "%d/%d Errors".printf(fe.get_n_items(),nots.get_n_items());
                 this.notices = nots;
             	if (this.popup != null && this.popup.el.visible) {
             		 this.popup.show(this.notices, this.el);
@@ -1341,23 +1341,22 @@
             }
 
             // user defined functions
-            public void setNotices (GLib.ListStore nots, int qty, int tf) {
+            public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
                 
-                if (qty < 1 ) {
+                 if (nots.get_n_items() < 1 ) {
                 	this.el.hide();
                 	if (this.popup != null && this.popup.el.visible) {
                 		this.popup.el.hide();
             		}
                 	return;
                 }
+                
                 this.el.show();
-                this.el.label = "%d/%d Warnings".printf(tf,qty);
-                 this.notices = nots;
-                if (this.popup != null && this.popup.el.visible) {
+                this.el.label = "%d/%d Errors".printf(fe.get_n_items(),nots.get_n_items());
+                this.notices = nots;
+            	if (this.popup != null && this.popup.el.visible) {
             		 this.popup.show(this.notices, this.el);
                 }
-                
-            
             }
         }
 
@@ -1405,19 +1404,18 @@
             }
 
             // user defined functions
-            public void setNotices (GLib.ListStore nots, int qty, int tf) {
-                if (qty < 1) {
+            public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
+                
+                 if (nots.get_n_items() < 1 ) {
                 	this.el.hide();
                 	if (this.popup != null && this.popup.el.visible) {
-            			 this.popup.el.hide();
+                		this.popup.el.hide();
             		}
-             
                 	return;
-            	}
+                }
                 
                 this.el.show();
-                
-                this.el.label = "%d/%d Depricated".printf(tf,qty);
+                this.el.label = "%d/%d Errors".printf(fe.get_n_items(),nots.get_n_items());
                 this.notices = nots;
             	if (this.popup != null && this.popup.el.visible) {
             		 this.popup.show(this.notices, this.el);
