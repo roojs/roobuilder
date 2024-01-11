@@ -104,7 +104,7 @@ namespace Lsp {
         }
     }
 
-    class Range : Object, Gee.Hashable<Range>, Gee.Comparable<Range> {
+    public class Range : Object, Gee.Hashable<Range>, Gee.Comparable<Range> {
         /**
          * The range's start position.
          */
