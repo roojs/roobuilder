@@ -37,7 +37,7 @@ namespace Palete {
 		public CompileError.new_diagnostic(JsRender.JsRender file, Lsp.Diagnostic diag) 
 		{
 			this.file = file;
-			this.category = diag.serverity.to_string();
+			this.category = diag.category;
 			this.line = (int) diag.range.start.line;
 			this.msg = diag.message;   
 			if (!file.errorByType.has_key(this.category)) {
