@@ -78,17 +78,13 @@ namespace Palete {
 				this.jsonrpc_client = client;
 				
 				GLib.debug("client accepted connection - calling init server");
-				try {
-					this.initialize_server ();
-					this.jsonrpc_client.notification.connect((method, paramz) => {
-						this.onNotification(method, paramz);
-					});
-				} catch (GLib.Error e) {
-					try {
-						GLib.debug("failed to initialize server: %s", e.message);
-						client.close ();
-					} catch (GLib.Error e) {}
-				}
+				 
+				this.initialize_server ();
+				this.jsonrpc_client.notification.connect((method, paramz) => {
+					this.onNotification(method, paramz);
+				});
+				 } 
+					 
 			}
 		}
 		public bool isReady()
