@@ -496,7 +496,11 @@
 				// it's ready..
 				ls.document_open.begin(file, (obj, res) => {
 
-				    ls.document_open.end(res);
+				    try { 
+				    	ls.document_open.end(res);
+			    	} catch (GLib.Error e) {
+						GLib.debug("got error %s", e.message);				    			    		
+					}
 					GLib.debug("got response");				    
 				    loop.quit();
 				});
