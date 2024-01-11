@@ -219,9 +219,10 @@ namespace Project
 				case "vala":
 					this.language_servers.set(lang, new Palete.LanguageClientVala(this));
 					break;
-				default : 
-					return null;
-			}
+				default :
+					 return this.language_servers.get("dummy");
+					 
+				}
 	 			return this.language_servers.get(lang);
  		
  		}
