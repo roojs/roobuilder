@@ -598,7 +598,7 @@ namespace Project {
 		public JsRender.JsRender? getByRelPath(string relpath)
 		{
 			foreach(var f in this.files.values) {
-				if (f.relpath == relpath) {
+				if (f.relpath == relpath || f.relTargetName() == relpath) {
 					return f;
 				}
 			};
