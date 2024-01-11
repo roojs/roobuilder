@@ -595,10 +595,10 @@ namespace Project {
 	 
 	 
 	 
-		public JsRender.JsRender? getByName(string name)
+		public JsRender.JsRender? getByRelPath(string relpath)
 		{
 			foreach(var f in this.files.values) {
-				if (f.name == name) {
+				if (f.relpath == relpath) {
 					return f;
 				}
 			};
