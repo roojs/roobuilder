@@ -995,11 +995,16 @@ namespace Project {
 		
 		public void updateErrorsforFile(JsRender.JsRender f) 
 		{
-			this.updateErrorsByType(f, "WARN");
-			this.updateErrorsByType(f, "ERR");
-			this.updateErrorsByType(f, "DEPR");
+			var n = this.updateErrorsByType(f, "WARN");
+			n+ = this.updateErrorsByType(f, "ERR");
+			n+- this.updateErrorsByType(f, "DEPR");
+			
+			if (n > 0) {
+				BuilderApplication.updateCompileResults();
+			}
+			
 		}
-		public void updateErrorsByType(JsRender.JsRender f, string n) 
+		public int  updateErrorsByType(JsRender.JsRender f, string n) 
 		{
 			var ls = this.getErrors(n);
 			
@@ -1014,8 +1019,9 @@ namespace Project {
 			var add = new Palete.CompileError.new_from_file(f, n);
 			if (add.hasErrors()) {
 				ls.append(add);
+				return 1;
 			}
-			
+			return 0;
 		}
 		public GLib.ListStore getErrors(string n)
 		{
