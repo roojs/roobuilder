@@ -467,7 +467,19 @@
 			
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
-		
+		void languageServer(Project.Project? cur_project)
+		{
+			if (BuilderApplication.opt_language_server == null) {
+				return;
+			}
+			if (cur_project == null) {
+				GLib.error("missing project, use --project to select which project");
+			}
+			
+			
+			
+			
+			
 		void compileVala()
 		{
 			if (BuilderApplication.opt_compile_target == null) {
@@ -524,9 +536,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 					*/
 					break;
 					
-				case "language-server":
-					Project.
-					
+				 
 					
 					
 				default:
