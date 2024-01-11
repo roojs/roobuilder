@@ -812,7 +812,7 @@
                 if (_this.file.xtype == "PlainFile" && _this.file.project.xtype == "Gtk") {
                 
                     // assume it's gtk...
-                    _this.file.getLanugageServer() document_change(_this.file);
+                    _this.file.getLanguageServer().document_change(_this.file);
                     
             		 
                     return true;
@@ -834,7 +834,7 @@
             	oldcode  = this.prop.val;
             	
             	_this.prop.val = str;
-                _this.file.getLanugageServer() document_change(_this.file);	
+                _this.file.getLanguageServer().document_change(_this.file);
                 _this.prop.val = oldcode;
                 
                 
