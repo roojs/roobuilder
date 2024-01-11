@@ -493,6 +493,7 @@
 				    ls.document_open.end(res);
 				    loop.quit();
 				});
+				return false;
 				
 			});
 			
