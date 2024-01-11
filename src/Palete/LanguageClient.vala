@@ -179,6 +179,7 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
+				GLib.debug ("LS send save");
 			 try {
 				  this.jsonrpc_client.send_notification  (
 					"textDocument/didChange",
@@ -201,6 +202,7 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
+							GLib.debug ("LS send close");
 	 		try {
 				  this.jsonrpc_client.send_notification  (
 					"textDocument/didChange",
@@ -223,6 +225,7 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
+							GLib.debug ("LS send change");
 			 try {
 			  	this.jsonrpc_client.send_notification (
 					"textDocument/didChange",
