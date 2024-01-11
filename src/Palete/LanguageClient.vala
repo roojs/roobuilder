@@ -129,9 +129,9 @@ namespace Palete {
 						text : new Variant.string (file.toSource())
 					)
 				),
-				null,
+				null
 			);
-			GLib.debug ("LS sent open"));
+			GLib.debug ("LS sent open");
  		}
  		
  		public async void document_save (JsRender.JsRender file) throws GLib.Error
@@ -209,11 +209,10 @@ namespace Palete {
 			}
 		 	this.sent_shutdown  = true;
 			Variant? return_value;
-			yield this.jsonrpc_client.call_async (
+			yield this.jsonrpc_client.send_notification_async (
 				"exit",
 				null,
-				null,
-				out return_value
+				null 
 			);
 			
  		}
