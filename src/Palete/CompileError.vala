@@ -108,6 +108,11 @@ namespace Palete {
 					 GLib.Markup.escape_text(this.line.to_string() + ": " + this.msg);
 		 	}
 	 	}
+	 	
+	 	public bool hasErrors() {
+	 		return this.lines.get_n_items() > 0;
+ 		}
+	 	
 		/*
 		 
 		public static void parseCompileResults (ValaCompileRequest req, Json.Object tree)
