@@ -87,6 +87,7 @@ namespace Palete {
 				this.jsonrpc_client.failed.connect(() => {
 					GLib.debug("language server server has failed");
 				});
+GLib.debug("sleep - try to connect on gdb?"); Posix.sleep(10);
 				this.initialize_server ();
 			} 
 					 
