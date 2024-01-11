@@ -207,13 +207,13 @@ namespace Palete {
 
          
     	}
- 		public async void document_change (JsRender.JsRender file) throws GLib.Error
+ 		public    void document_change (JsRender.JsRender file) throws GLib.Error
     	{
    			if (!this.isReady()) {
 				return;
 			}
-			Variant? return_value;
-			yield this.jsonrpc_client.send_notification_async (
+			 
+		  	this.jsonrpc_client.send_notification (
 				"textDocument/didChange",
 				this.buildDict (  
 					textDocument : this.buildDict (    ///TextDocumentItem;
