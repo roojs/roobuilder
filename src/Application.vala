@@ -505,7 +505,7 @@
 				case "help":
 					print("""
 help             - list available tests
-flutter-project  -  was try and read flutter data (but not worked on it..)
+flutter-project  -  was try and read flutter data (but desnt work.)
 """);		
 					break;
 				case "flutter-project":
