@@ -1413,13 +1413,14 @@
             public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
                 
                  if (nots.get_n_items() < 1 ) {
+                 	GLib.debug("no deprc - hide");
                 	this.el.hide();
                 	if (this.popup != null && this.popup.el.visible) {
                 		this.popup.el.hide();
             		}
                 	return;
                 }
-                
+             	GLib.debug("got deprc - hide");    
                 this.el.show();
                 this.el.label = "%d/%d Depricated".printf((int)fe.get_n_items(),(int)nots.get_n_items());
                 this.notices = nots;
