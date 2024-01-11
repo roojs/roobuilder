@@ -987,7 +987,7 @@ namespace Project {
 			return ret;
 		}
 		
-		public Palete.LanguageServer getLanguageServer(string lang);
+		public abstract Palete.LanguageServer getLanguageServer(string lang);
 		
 		
  		public abstract void onSave(); // write meson?
