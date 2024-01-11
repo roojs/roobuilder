@@ -8,7 +8,7 @@ namespace Palete {
 			// extend versions will proably call initialize to start and connect to server.
 			base(project);
 			
-			this.initProcess("/usr/bin/vala-langauge-server");
+			this.initProcess("/usr/bin/vala-language-server");
 			
 		
 		}
