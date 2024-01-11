@@ -95,7 +95,8 @@ namespace Palete {
  
 			//GLib.debug("go	t error %d %s", (int)ex.get_line_number() , ex.get_message() );
 			
-			var ret = new new CompilerError.new_line(null, ex.get_line_number(), ex.get_message());
+
+			var ret = new CompilerError.new_jserror(file, "ERR", ex.get_line_number(), ex.get_message());
 			var ar = file.getErrors("ERR");
 			ar.append(ret);
 			
