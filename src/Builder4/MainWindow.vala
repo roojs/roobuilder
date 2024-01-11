@@ -1462,7 +1462,7 @@
                     	return;
                 	}
                 	
-                	var req = new ValaCompileRequest(
+                	var req = new Palete.ValaCompileRequest(
                 		Palete.ValaCompileRequestType.RUN,
                 		file,
                 		null,

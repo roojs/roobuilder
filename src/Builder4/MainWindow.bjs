@@ -660,7 +660,7 @@
              "    \treturn;",
              "\t}",
              "\t",
-             "\tvar req = new ValaCompileRequest(",
+             "\tvar req = new Palete.ValaCompileRequest(",
              "\t\tPalete.ValaCompileRequestType.RUN,",
              "\t\tfile,",
              "\t\tnull,",
