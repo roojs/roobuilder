@@ -196,6 +196,7 @@ roobuilder_src = files([
    'src/Palete/LanguageClient.vala',
    'src/Palete/LanguageClientVala.vala',
    'src/Lsp.vala',
+   'src/Palete/LanguageClientDummy.vala',
 ])
 
 roobuilder = executable('roobuilder',
