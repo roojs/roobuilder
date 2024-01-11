@@ -76,6 +76,10 @@ namespace Palete {
 		{
 			if (this.jsonrpc_client == null) {
 				this.jsonrpc_client = client;
+				this.jsonrpc_client.notification.connect((method, paramz) => {
+					this.onNotification(method, paramz);
+				});
+				
 				try {
 					this.initialize_server ();
 				} catch (GLib.Error e) {
