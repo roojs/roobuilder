@@ -264,7 +264,7 @@ namespace Palete {
 		
 		public void runJavascript( )
 		{
-			this.queue = queue;
+			//this.queue = queue;
 		 
 			var contents = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
 			
