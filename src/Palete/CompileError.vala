@@ -111,7 +111,7 @@ namespace Palete {
 			
 			 
 		}
-		*/
+	
 		
 		public static void jsonToListStoreProp(ValaCompileRequest req, string prop, Json.Object tree)
 		{
@@ -155,7 +155,7 @@ namespace Palete {
 		    req.errorByType.set(prop,ls);
 		    
 		}
-		
+			*/
 	// only used by javascript /roo errors..
 		public static GLib.ListStore jsonToListStore(Project.Project project, Json.Object tree)
 		{
