@@ -21,7 +21,7 @@ namespace JsRender {
 
         public PlainFile(Project.Project project, string path) {
         
-            aconstruct( project, path);
+            base( project, path);
             this.xtype = "PlainFile";
             this.content_type = "text/plain";
             
