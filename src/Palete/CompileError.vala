@@ -31,7 +31,7 @@ namespace Palete {
 			 
 		
 		}
-		public CompileError.new_jserror((JsRender.JsRender file, string category, int line, string msg) 
+		public CompileError.new_jserror(JsRender.JsRender file, string category, int line, string msg) 
 		{
 			this.lines = new GLib.ListStore(typeof(CompileError));
 			this.line = line;
