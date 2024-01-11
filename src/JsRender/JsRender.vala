@@ -134,7 +134,7 @@ namespace JsRender {
 		
 		//abstract JsRender(Project.Project project, string path); 
 		
-		public void aconstruct(Project.Project project, string path)
+		protected void  construct(Project.Project project, string path)
 		{
 		    
 			//this.cn = new GLib.List<JsRender>();
