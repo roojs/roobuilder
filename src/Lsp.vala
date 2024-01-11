@@ -60,7 +60,7 @@ namespace Lsp {
         Hint = 4
     }
 
-    class Position : Object, Gee.Comparable<Position> {
+    public  class Position : Object, Gee.Comparable<Position> {
         /**
          * Line position in a document (zero-based).
          */
