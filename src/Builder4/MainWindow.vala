@@ -1461,6 +1461,16 @@
                 	    _this.windowstate.compile_results.el.show(); // show currently running.
                     	return;
                 	}
+                	
+                	var req = new ValaCompileRequest(
+                		Palete.ValaCompileRequestType.RUN,
+                		file,
+                		null,
+                		null,
+                		""
+                	);
+                	req.run(null);
+                	
                 	BuilderApplication.valacompilequeue.addFile( 
                 	 					Palete.ValaCompileRequestType.RUN, 
                 	 					_this.windowstate.file, "", true ) ;
