@@ -218,7 +218,7 @@ namespace Project
 			switch( lang ) {
 				case "vala":
 					this.language_servers.set(lang, new Palete.LanguageClientVala(this));
-					break
+					break;
 				default : 
 					return null;
 			}
