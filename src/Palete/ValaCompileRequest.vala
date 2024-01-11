@@ -272,8 +272,9 @@ namespace Palete {
 			
 		 	
 			CompileError.parseCompileResults(this,ret);
+			BuilderApplication.showSpinner(false);
 			BuilderApplication.updateCompileResults();
-			BuilderApplication.showSpinner();
+			
 			//this.queue.onCompileComplete(this);
 				
 			 
