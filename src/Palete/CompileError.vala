@@ -45,16 +45,12 @@ namespace Palete {
 			}
 			file.errorsByType.get(this.category).add(this);
 		}
-		public CompileError.new_from_file(JsRender.JsRender file, string cat) 
+		public CompileError.new_from_file(JsRender.JsRender file, string category) 
 		{
 			this.file = file;
-			this.category = diag.category;
-			this.line = (int) diag.range.start.line;
-			this.msg = diag.message;   
-			if (!file.errorsByType.has_key(this.category)) {
-				file.errorsByType.set(this.category, new  Gee.ArrayList<CompileError>());
-			}
-			file.errorsByType.get(this.category).add(this);
+			this.category = category;
+			this.lines = f.getErrors(category);
+			this.title =  file.relpath + " (" + lines.get_n_items().to_string() + ")";
 		}
 
 
