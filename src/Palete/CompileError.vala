@@ -38,10 +38,14 @@ namespace Palete {
 			this.category = diag.category;
 			this.line = (int) diag.range.start.line;
 			this.msg = diag.message;   
+			
+			GLib.debug("new error %s : %d  %s %s", file.path, this.line, this.category, this.msg);
 			if (!file.errorsByType.has_key(this.category)) {
 				file.errorsByType.set(this.category, new  GLib.ListStore(typeof(CompileError)));
 			}
 			file.errorsByType.get(this.category).append(this);
+			
+			
 		}
 		
 		public CompileError.new_from_file(JsRender.JsRender file, string category) 
