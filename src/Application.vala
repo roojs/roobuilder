@@ -149,7 +149,7 @@
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
-			BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
+			//BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
 			
 			
 			configDirectory();
