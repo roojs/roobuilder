@@ -109,7 +109,7 @@ namespace Palete {
 		
 		public bool run()
 		{
-			this.queue = queue;
+			//this.queue = queue;
 			if ( this.target() == "") {
 				GLib.debug("missing target");
 				this.onCompileFail();
