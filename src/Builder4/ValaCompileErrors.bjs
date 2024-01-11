@@ -296,7 +296,7 @@
     "    //this.el.set_pointing_to(rect);",
     "\tthis.el.present();",
     "    this.el.popup();",
-    "   ",
+    "    // only need to load once.",
     " \tif (!this.loaded) {",
     "\t\tvar tm = new Gtk.TreeListModel(",
     "\t\t\tls, //..... << that's our store..",

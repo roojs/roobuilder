@@ -79,7 +79,7 @@
             //this.el.set_pointing_to(rect);
         	this.el.present();
             this.el.popup();
-           
+            // only need to load once.
          	if (!this.loaded) {
         		var tm = new Gtk.TreeListModel(
         			ls, //..... << that's our store..
