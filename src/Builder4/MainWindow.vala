@@ -65,7 +65,7 @@
             	 Resources.singleton().disconnect(_this.statusbar.handler_id);
             	 
             	 
-            	 this.windowstate.close();
+            	 this.windowstate.file.close();
             	 BuilderApplication.removeWindow(this);
             	 
             	 if (BuilderApplication.windows.size  < 1) {
