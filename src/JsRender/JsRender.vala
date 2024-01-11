@@ -113,7 +113,7 @@ namespace JsRender {
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
 		public	Gee.HashMap<string,string> namedStrings;
-		public	Gee.HashMap<string,CompileError> errorByType;
+		public	Gee.HashMap<string,Gee.ArrayList<Palete.CompileError>> errorByType;
 		
 		
 
