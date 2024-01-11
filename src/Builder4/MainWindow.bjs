@@ -585,7 +585,7 @@
             "    }",
             "    ",
             "    this.el.show();",
-            "    this.el.label = \"%d/%d Errors\".printf(fe.get_n_items(),nots.get_n_items());",
+            "    this.el.label = \"%d/%d Errors\".printf((int)fe.get_n_items(),(int)nots.get_n_items());",
             "    this.notices = nots;",
             "\tif (this.popup != null && this.popup.el.visible) {",
             "\t\t this.popup.show(this.notices, this.el);",
