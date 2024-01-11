@@ -120,7 +120,7 @@
         
         	if (pr.get_n_items() < 1) {
         		_this.statusbar_run.el.show();
-        	}
+        	} 
         	
         }
         public void initChildren () {
@@ -1290,7 +1290,7 @@
                 }
                 
                 this.el.show();
-                this.el.label = "%d/%d Errors".printf(fe.get_n_items(),nots.get_n_items());
+                this.el.label = "%d/%d Errors".printf((int)fe.get_n_items(),(int)nots.get_n_items());
                 this.notices = nots;
             	if (this.popup != null && this.popup.el.visible) {
             		 this.popup.show(this.notices, this.el);
