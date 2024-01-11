@@ -101,7 +101,7 @@ namespace Palete {
 		
 		
 		
-		public abstract void async initialize_server() throws GLib.Error;
+		public abstract async void  initialize_server() throws GLib.Error;
 		
 		protected bool initialized = false;
 		bool sent_shutdown = false;
