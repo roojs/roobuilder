@@ -825,6 +825,7 @@
     "\t\tpr,",
     "\t\tthis.windowstate.file.getErrors(\"ERR\")",
     "\t);",
+    "\t",
     "\tthis.statusbar_warnings.setNotices(",
     "\t\tthis.windowstate.project.getErrors(\"WARN\"),",
     "\t\tthis.windowstate.file.getErrors(\"WARN\")",

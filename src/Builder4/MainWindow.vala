@@ -112,6 +112,7 @@
         		pr,
         		this.windowstate.file.getErrors("ERR")
         	);
+        	
         	this.statusbar_warnings.setNotices(
         		this.windowstate.project.getErrors("WARN"),
         		this.windowstate.file.getErrors("WARN")
