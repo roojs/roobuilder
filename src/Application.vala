@@ -492,6 +492,7 @@
 					GLib.debug("waiting for server to be ready");
 					return true;
 				}
+				GLib.debug("Sending document_open");
 				// it's ready..
 				ls.document_open.begin(file, (obj, res) => {
 
