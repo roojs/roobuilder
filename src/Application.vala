@@ -415,7 +415,7 @@
 			
 			
 			
-			var file = cur_project.getByName(BuilderApplication.opt_bjs_compile);
+			var file = cur_project.getByRelPath(BuilderApplication.opt_bjs_compile);
 			if (file == null) {
 				// then compile them all, and compare them...
 				
