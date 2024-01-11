@@ -35,7 +35,7 @@ namespace Palete {
 				this.subprocess = launcher.spawnv ({ process_path });
 				var input_stream = this.subprocess.get_stdout_pipe ();
 		   		var output_stream = this.subprocess.get_stdin_pipe ();
-		   		
+ 
 		 		if (input_stream is GLib.UnixInputStream && output_stream is GLib.UnixOutputStream) {
 					// set nonblocking
 					if (!GLib.Unix.set_fd_nonblocking(((GLib.UnixInputStream)input_stream).fd, true)
