@@ -1011,7 +1011,7 @@ namespace Project {
 				}
 			}
 			
-			ls.append(new CompileError.from_file(f, n));
+			ls.append(new Palete.CompileError.from_file(f, n));
 			
 		}
 		public GLib.ListStore getErrors(string n)
