@@ -193,9 +193,9 @@ namespace Lsp {
         	get { 
 	        	switch(this.severity) {
 
-		    		case Error : 
+		    		case DiagnosticSeverity.Error : 
 		    			return "ERR";
-		    		case Warning : 
+		    		case DiagnosticSeverity.Warning : 
 		    			return this.message.contains("deprecated") ? "DEPR" : "WARN";
 		    		default : 
 		    			return "WARN";
