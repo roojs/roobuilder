@@ -196,7 +196,7 @@ namespace Palete {
 			this.compiler.isZombie();
 			GLib.debug("compile got %s", output);
 			if (output == "") {
-			 	this.queue.onCompileFail();
+			 	BuilderApplication.showSpinner(false);
 			 	return;
 		 	}
 		 	
@@ -208,12 +208,12 @@ namespace Palete {
 				var node = pa.get_root();
 
 				if (node.get_node_type () != Json.NodeType.OBJECT) {
-					this.queue.onCompileFail();
+					BuilderApplication.showSpinner(false);
 					return;
 				}
 				var ret = node.get_object ();	
-				CompileError.parseCompileResults(this,ret);
-				this.queue.onCompileComplete(this);
+				//CompileError.parseCompileResults(this,ret);
+				BuilderApplication.showSpinner(false);
 				
 			
 				
@@ -221,7 +221,7 @@ namespace Palete {
 				
 			} catch (GLib.Error e) {
 				GLib.debug("parsing output got error %s", e.message);
-				this.queue.onCompileFail();
+				BuilderApplication.showSpinner(false);
 				return;
 				
 			}
@@ -280,6 +280,90 @@ namespace Palete {
 			 
 		  // see pack file (from palete/palete..palete_palete_javascriptHasCompressionErrors.)
 		  
+		}
+		public void killChildren(int pid)
+		{
+			if (pid < 1) {
+				return;
+			}
+			var cn = "/proc/%d/task/%d/children".printf(pid,pid);
+			if (!FileUtils.test(cn, GLib.FileTest.EXISTS)) {
+				GLib.debug("%s doesnt exist - killing %d", cn, pid);
+				Posix.kill(pid, 9);
+				return;
+			}
+			string cpids = "";
+			try {
+				FileUtils.get_contents(cn, out cpids);
+			
+
+				if (cpids.length > 0) {
+					this.killChildren(int.parse(cpids));
+				}
+
+			} catch (GLib.FileError e) {
+				// skip
+			}
+			GLib.debug("killing %d", pid);	
+			Posix.kill(pid, 9);
+		}
+		
+		int terminal_pid = 0;
+		public void execResult()
+		{
+			  	
+			this.killChildren(this.terminal_pid);
+  			this.terminal_pid = 0;
+			  
+			var exe = this.target();
+			var pr = (Project.Gtk) this.file.project;
+			var cg =  pr.compilegroups.get(exe);
+			
+			if (!GLib.FileUtils.test(exe, GLib.FileTest.EXISTS)) {
+				print("Missing output file: %s\n",exe);
+				return;
+			}
+			var gdb_cfg= pr.path + "/build/.gdb-script";
+			if (!GLib.FileUtils.test(gdb_cfg, GLib.FileTest.EXISTS)) {
+				pr.writeFile("build/.gdb-script", "set debuginfod enabled off\nr");
+			}
+			
+			
+			
+			string[] args = "/usr/bin/gnome-terminal --disable-factory --wait -- /usr/bin/gdb -x".split(" ");
+
+			args+= gdb_cfg;
+ 
+			args += exe;
+			if (cg.execute_args.length > 0) {
+   			 	args+= "--args";
+				var aa = cg.execute_args.split(" ");
+				for (var i =0; i < aa.length; i++) {
+					args += aa[i];
+				}
+			}
+
+		  
+		    
+		    // should be home directory...
+		    
+		    
+		    try {
+		    
+		        var exec = new Spawn(pr.path , args);
+		        exec.env = GLib.Environ.get();
+		         
+		        exec.detach = true;
+				exec.run(); 
+
+				this.terminal_pid = exec.pid;
+				GLib.debug("Child PID = %d", this.terminal_pid);
+				
+		    } catch(GLib.Error e) {
+				GLib.debug("Failed to spawn: %s", e.message);
+				return;
+			}
+			
 		}
 		
  	} 
