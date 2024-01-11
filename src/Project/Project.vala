@@ -122,7 +122,7 @@ namespace Project {
 				try {
 					dir.make_directory();
 				} catch(GLib.Error e) {
-					GLib.error("could not make builder directory");
+					GLLanguageClientDummyib.error("could not make builder directory");
 				}
 				return;
 			}
@@ -1026,7 +1026,7 @@ namespace Project {
 		}
 		
 		
-		public abstract Palete.LanguageClient? getLanguageServer(string lang);
+		public abstract Palete.LanguageClient  getLanguageServer(string lang);
 		
 		
  		public abstract void onSave(); // write meson?
