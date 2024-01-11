@@ -20,7 +20,7 @@ namespace Palete {
 		public string msg;
 		public  int line { get; set; default = -1; }
 
-		public CompileError.new_line(CompileError parent, int line, string msg) 
+		public CompileError.new_line(CompileError? parent, int line, string msg) 
 		{
 			this.lines = new GLib.ListStore(typeof(CompileError));
 			this.parent = parent;
@@ -31,8 +31,16 @@ namespace Palete {
 			 
 		
 		}
+		public CompileError.new_jserror((JsRender.JsRender file, string category, int line, string msg) 
+		{
+			this.lines = new GLib.ListStore(typeof(CompileError));
+			this.line = line;
+			this.msg = msg;
+			this.file = file;
+			this.category = category;
+			 
 		
-		
+		}
 
 		public CompileError.new_from_diagnostic(JsRender.JsRender file, Lsp.Diagnostic diag) 
 		{
@@ -95,11 +103,13 @@ namespace Palete {
 		 	}
 	 	}
 		
-		/*
+		 
 		public static void parseCompileResults (ValaCompileRequest req, Json.Object tree)
 		{
-			req.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
-			req.errorByType = new Gee.HashMap<string,GLib.ListStore>();
+			//req.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
+			//req.errorByType = new Gee.HashMap<string,GLib.ListStore>();
+			
+			
 
 			req.errorByType.set("ERR",  new GLib.ListStore(typeof(CompileError)));
 			req.errorByType.set("WARN",  new GLib.ListStore(typeof(CompileError)));
