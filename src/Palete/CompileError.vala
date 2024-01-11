@@ -167,7 +167,7 @@ namespace Palete {
 		    req.errorByType.set(prop,ls);
 		    
 		}
-			*/
+			
 	// only used by javascript /roo errors..
 		public static GLib.ListStore jsonToListStore(Project.Project project, Json.Object tree)
 		{
@@ -190,7 +190,7 @@ namespace Palete {
           
 		
 		}
-	 
+	 */
 		
 	}
 	
