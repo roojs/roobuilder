@@ -83,7 +83,7 @@ namespace Project {
 		 
 		private bool is_scanned = false; 
 		public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir ??? is this used by Roo?
-		public Palete.ValaCompileRequest last_request = null; // depricated?
+		//public Palete.ValaCompileRequest last_request = null; // depricated?
 		public Gee.HashMap<string,GLib.ListStore>? errorsByType = null;
  
 		
