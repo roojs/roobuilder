@@ -121,7 +121,7 @@ namespace Palete {
 					break;
 				 
 			}
-			GLib.debug("got notification %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value)));
+			GLib.debug("got notification %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value), true));
 			
 		}
 		
