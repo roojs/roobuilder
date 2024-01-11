@@ -831,7 +831,7 @@
              	if (_this.prop.name == "xns" || _this.prop.name == "xtype") {
             		return true ;
             	}
-            	var oldcode  = this.prop.val;
+            	var oldcode  = _this.prop.val;
             	
             	_this.prop.val = str;
                 _this.file.getLanguageServer().document_change(_this.file);

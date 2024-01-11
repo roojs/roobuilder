@@ -283,7 +283,7 @@
           " \tif (_this.prop.name == \"xns\" || _this.prop.name == \"xtype\") {",
           "\t\treturn true ;",
           "\t}",
-          "\tvar oldcode  = this.prop.val;",
+          "\tvar oldcode  = _this.prop.val;",
           "\t",
           "\t_this.prop.val = str;",
           "    _this.file.getLanguageServer().document_change(_this.file);",
