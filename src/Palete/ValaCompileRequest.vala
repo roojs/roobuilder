@@ -262,16 +262,19 @@ namespace Palete {
 			return ret;
 		}
 		
-		public void runJavascript(ValaCompileQueue queue)
+		public void runJavascript( )
 		{
 			this.queue = queue;
 		 
 			var contents = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
 			
 			var ret = Javascript.singleton().validate(contents, this.file.targetName());
-		 
+			
+		 	
 			CompileError.parseCompileResults(this,ret);
-			this.queue.onCompileComplete(this);
+			BuilderApplication.updateCompileResults();
+			BuilderApplication.showSpinner();
+			//this.queue.onCompileComplete(this);
 				
 			 
 		  // see pack file (from palete/palete..palete_palete_javascriptHasCompressionErrors.)
