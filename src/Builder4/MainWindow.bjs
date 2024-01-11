@@ -662,7 +662,7 @@
              "\t",
              "\tvar req = new Palete.ValaCompileRequest(",
              "\t\tPalete.ValaCompileRequestType.RUN,",
-             "\t\tfile,",
+             "\t\t_this.windowstate.file,",
              "\t\tnull,",
              "\t\tnull,",
              "\t\t\"\"",

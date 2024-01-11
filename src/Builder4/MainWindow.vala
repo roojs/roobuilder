@@ -1464,7 +1464,7 @@
                 	
                 	var req = new Palete.ValaCompileRequest(
                 		Palete.ValaCompileRequestType.RUN,
-                		file,
+                		_this.windowstate.file,
                 		null,
                 		null,
                 		""
