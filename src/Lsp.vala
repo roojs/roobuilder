@@ -1022,6 +1022,7 @@ namespace Lsp {
 	class Diagnostics : Object, Json.Serializable 
 	{
 		string uri { get; set; }
+
 		int version  { get; set; default = 0; }
         public Gee.Collection<Diagnostic>? diagnostics { get; set; }
 	  	
@@ -1030,6 +1031,12 @@ namespace Lsp {
                 diagnostics = new Gee.ArrayList<Diagnostic> ();
             diagnostics.add (diag);
         }
+		string filename { 
+			get {
+				File.new_for_uri (this.uri).get_path();
+			}
+			private set {}
+		}
 	}
 
 
