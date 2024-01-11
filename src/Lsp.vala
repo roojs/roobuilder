@@ -1055,7 +1055,7 @@ namespace Lsp {
 				return true;
 			}   
 			 
-			return default_deserialize_property (property_name, out value, pspec, property_node);
+			return default_deserialize_property (property_name, out val, pspec, property_node);
 			 
 		}
 
