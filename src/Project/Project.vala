@@ -85,7 +85,7 @@ namespace Project {
 		public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir ??? is this used by Roo?
 		public Palete.ValaCompileRequest last_request = null; // depricated?
 		public Gee.HashMap<string,GLib.ListStore>? errorsByType = null;
-	 	//public Gee.HashMap<string,GLib.ListStore>? errorByFile  = null; 
+ 
 		
 		
 		protected Gee.HashMap<string,Palete.LanguageClient> language_servers;
