@@ -40,6 +40,10 @@ namespace Palete {
 			this.category = diag.serverity.to_string();
 			this.line = diag.range.start.line;
 			this.msg = diag.message;   
+			if (!f.errorByType.has_key(this.category)) {
+				f.errorByType.set(this.category, new  Gee.ArrayList<CompileError>());
+			}
+			f.errorByType.get(this.category).add(this);
 		}
 
 
