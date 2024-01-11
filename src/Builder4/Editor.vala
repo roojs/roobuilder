@@ -212,18 +212,17 @@
            
         
         }
-        public void updateErrorMarks (GLib.ListStore?  ar) {
+        public void updateErrorMarks (string category) {
         	
          
-        	
-        	 var buf = _this.buffer.el;
+        
+        	var buf = _this.buffer.el;
         	Gtk.TextIter start;
         	Gtk.TextIter end;     
         	buf.get_bounds (out start, out end);
         
-        	buf.remove_source_marks (start, end, "ERR");
-        	buf.remove_source_marks (start, end, "WARN");
-        	buf.remove_source_marks (start, end, "DEPR");
+        	buf.remove_source_marks (start, end, category);
+         
         	GLib.debug("highlight errors");		 
         
         	 // we should highlight other types of errors..
