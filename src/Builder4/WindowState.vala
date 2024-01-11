@@ -660,6 +660,7 @@ public class WindowState : Object
 
 		}
 		BuilderApplication.updateCompileResults();
+		/*
 		if (file.project.xtype == "Gtk" && file.project.last_request == null ) {
 				
 			BuilderApplication.valacompilequeue.addFile( 
@@ -667,6 +668,8 @@ public class WindowState : Object
 				this.file, "" , true) ;
 			 
 		}
+		*/
+		file.getLanguageServer().open_document(this);
 		this.gotoLine(line);
 	
 		var ctr= this.win.rooviewbox.el;
