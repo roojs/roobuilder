@@ -987,6 +987,9 @@ namespace Project {
 			return ret;
 		}
 		
+		public Palete.LanguageServer getLanguageServer(string lang);
+		
+		
  		public abstract void onSave(); // write meson?
 		public abstract void initDatabase();
 		public abstract void initialize(); // for new projects (make dirs?);
