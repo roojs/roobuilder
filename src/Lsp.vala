@@ -159,7 +159,7 @@ namespace Lsp {
         }
     }
 
-    class Diagnostic : Object {
+    public class Diagnostic : Object {
         /**
          * The range at which the message applies.
          */
