@@ -70,7 +70,7 @@
             	 BuilderApplication.removeWindow(this);
             	 
             	 if (BuilderApplication.windows.size  < 1) {
-            
+            		 this.windowstate.file.getLanguageServer().exit();
             		BuilderApplication.singleton(  null ).quit();
             	 }
             	return true;

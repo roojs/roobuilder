@@ -719,7 +719,7 @@
      "\t BuilderApplication.removeWindow(this);",
      "\t ",
      "\t if (BuilderApplication.windows.size  < 1) {",
-     "",
+     "\t\t this.windowstate.file.getLanguageServer().exit();",
      "\t\tBuilderApplication.singleton(  null ).quit();",
      "\t }",
      "\treturn true;",
