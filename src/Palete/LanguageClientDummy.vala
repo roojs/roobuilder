@@ -10,7 +10,7 @@ namespace Palete {
 			
 		
 		}
-		public override   void  initialize_server()   {
+		 public override async void  initialize_server() throws GLib.Error {
 			GLib.debug("initialize dummy server");			
 		}
 	
