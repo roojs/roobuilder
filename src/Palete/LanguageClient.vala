@@ -87,7 +87,7 @@ namespace Palete {
 				this.jsonrpc_client.failed.connect(() => {
 					GLib.debug("language server server has failed");
 				});
-GLib.debug("sleep - try to connect on gdb?"); Posix.sleep(10);
+
 				this.initialize_server ();
 			} 
 					 
@@ -117,7 +117,6 @@ GLib.debug("sleep - try to connect on gdb?"); Posix.sleep(10);
 		
 		public void onNotification(string method, Variant? return_value)
 		{
-			GLib.debug("got notification %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value), true));
 			switch (method) {
 				case "textDocument/publishDiagnostics":
 					this.onDiagnostic(return_value);
@@ -127,7 +126,7 @@ GLib.debug("sleep - try to connect on gdb?"); Posix.sleep(10);
 					break;
 				 
 			}
-			
+			GLib.debug("got notification %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value), true));
 			
 		}
 		
@@ -142,9 +141,15 @@ GLib.debug("sleep - try to connect on gdb?"); Posix.sleep(10);
 				GLib.debug("no file %s", dg.uri);
 				return;
 			}
-			f.errorsByType.clear();
+			foreach(var v in f.errorsByType.values) {
+				v.remove_all();
+			}
 			foreach(var diag in dg.diagnostics) {
-				new CompileError.new_from_diagnostic(f, diag);
+				var ce = new CompileError.new_from_diagnostic(f, diag);
+				if (!f.errorsByType.has_key(ce.category)) {
+					f.errorsByType.set(ce.category, new  GLib.ListStore(typeof(CompileError)));
+				}
+				f.errorsByType.get(ce.category).append(ce);
 			}
 			f.project.updateErrorsforFile(f);
 			
@@ -226,7 +231,13 @@ GLib.debug("sleep - try to connect on gdb?"); Posix.sleep(10);
    			if (!this.isReady()) {
 				return;
 			}
-							GLib.debug ("LS send change");
+			GLib.debug ("LS send change");
+			var ar = new Json.Array();
+			var obj = new Json.Object();
+			obj.set_string_member("text", file.toSource());
+			ar.add_object_element(obj);
+			var node = new Json.Node(Json.NodeType.ARRAY);
+			node.set_array(ar);
 			 try {
 			  	this.jsonrpc_client.send_notification (
 					"textDocument/didChange",
@@ -235,13 +246,8 @@ GLib.debug("sleep - try to connect on gdb?"); Posix.sleep(10);
 							uri: new GLib.Variant.string (file.to_url()),
 							version :  new GLib.Variant.uint64 ( (uint64) file.version) 
 						),
-						contentChanges : new GLib.Variant.array (GLib.VariantType.DICTIONARY, 
-							{  
-								 this.buildDict (
-									text : new GLib.Variant.string (file.toSource())
-							 	)
-							}
-						)
+						contentChanges : Json.gvariant_deserialize (node, null)
+						
 					),
 					null 
 				);

@@ -21,7 +21,6 @@
             // my vars (def)
         public Xcls_MainWindow window;
         public bool loaded;
-        public GLib.ListStore notices;
 
         // ctor
         public Xcls_ValaCompileErrors()
@@ -42,18 +41,47 @@
         }
 
         // user defined functions
-        public void show ( GLib.ListStore ls , Gtk.Widget onbtn) {
-        
-            
+        public void updateNotices ( GLib.ListStore? ls) {
+        	GLib.debug("errors  : update");
+            if (ls == null || ls.get_n_items() < 1) {
+         	    GLib.debug("errors  : none available");
+            	return;
+        	}
+        	
+        	GLib.debug("Loading list into tree");
+        	this.tree.el.hide();
+        	var tm = new Gtk.TreeListModel(
+        		ls, //..... << that's our store..
+        		false, // passthru
+        		false, // autexpand
+        		(item) => {
+        		
+        			 return ((Palete.CompileError)item).lines;
+        		
+        		}
+        		
+        	);
+         
+        	_this.model.el = tm;
+        	_this.sortmodel.el.set_model(tm);
+        	 this.tree.el.show();
+        }
+        public void show (   ) {
+        	GLib.debug("errors  : show");
+        	
+        	if (_this.model.el.get_n_items()  < 1) {
+           
+         	    GLib.debug("errors  : none available");
+            	return;
+        	}
          	//this.el.present();
             //this.el.popup();
-            this.notices = ls;
-           
+            
              //print("looking for %s\n", id);
             // loop through parent childnre
               
             
-              this.tree.el.hide(); //<< very important!!!
+             ; //<< very important!!!
               
            // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
          
@@ -70,6 +98,7 @@
             if (new_w > (w-100)) {
                 new_w = w-100;
             }
+            GLib.debug("set size");
             this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
          
         
@@ -77,27 +106,17 @@
         	//Gtk.Allocation rect;
         	//onbtn.get_allocation(out rect);
             //this.el.set_pointing_to(rect);
-        	this.el.present();
+        	//this.el.present();
+        	
+        	GLib.debug("call popup");
             this.el.popup();
             // only need to load once.
-         	if (!this.loaded) {
-        		var tm = new Gtk.TreeListModel(
-        			ls, //..... << that's our store..
-        			false, // passthru
-        			false, // autexpand
-        			(item) => {
-        			
-        				 return ((Palete.CompileError)item).lines;
-        			
-        			}
-        		);
+         	//if (!this.loaded) {
+         		 
+        		//this.loaded = true;
+        	 //}
         	 
-        		_this.model.el = tm;
-        		_this.sortmodel.el.set_model(tm);
-        		this.loaded = true;
-        	 }
-        	 
-             this.tree.el.show();   
+               
            
            	//if (expand != null) {
             //	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
@@ -464,15 +483,16 @@
                         _this.window.windowstate.fileViewOpen(jsr, true, line);
                         
                         if (jsr.path == _this.window.windowstate.file.path) {
-                        	_this.el.hide();
-                    	}
                         
+                    	}
+                    	_this.el.hide();
                         
                         return;
                     
                     }
                     try {
                 		var pf = JsRender.JsRender.factory("PlainFile", p, fname.path);
+                		_this.el.hide();
                 		_this.window.windowstate.fileViewOpen(pf, true, line);
                     } catch (JsRender.Error e) {}
                     // try hiding the left nav..

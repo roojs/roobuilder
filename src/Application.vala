@@ -229,7 +229,7 @@
 		
 		void initDebug() 
 		{
-		
+			GLib.Log.set_always_fatal(GLib.LogLevelFlags.LEVEL_CRITICAL);
 			if (BuilderApplication.opt_debug  || BuilderApplication.opt_compile_project == null) {
 				GLib.Log.set_handler(null, 
 					GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING | GLib.LogLevelFlags.LEVEL_CRITICAL, 
@@ -636,10 +636,8 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 					continue;
 				}
 
-				ww.windowstate.code_editor_tab.updateErrorMarks("ERR");
-				ww.windowstate.code_editor_tab.updateErrorMarks("WARN");
-				ww.windowstate.code_editor_tab.updateErrorMarks("DEPR");
-				
+				ww.windowstate.updateErrorMarksAll();
+				 
 				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
 				ww.updateErrors();
 				

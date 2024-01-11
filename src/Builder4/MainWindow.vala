@@ -1247,7 +1247,6 @@
 
                 // my vars (def)
             public Xcls_ValaCompileErrors popup;
-            public GLib.ListStore notices;
 
             // ctor
             public Xcls_statusbar_errors(Xcls_MainWindow _owner )
@@ -1257,7 +1256,6 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
-                this.notices = null;
 
                 // set gobject values
                 this.el.icon_name = "dialog-error";
@@ -1265,22 +1263,13 @@
 
                 //listeners
                 this.el.clicked.connect( () => {
-                    
-                
-                    
-                    if (this.popup == null) {
-                        this.popup = new Xcls_ValaCompileErrors();
-                        this.popup.window = _this;
-                        //this.popup.el.application = _this.el.application;
-                	  //   this.popup.el.set_transient_for( _this.el );
-                       this.popup.el.set_parent(this.el);
-                    }
-                    if (_this.statusbar_compile_spinner.el.spinning) {
-                		this.popup.el.show();    	
-                    	return;
-                	}    
-                    this.popup.show(this.notices, this.el);
-                    return;
+                 
+                	if (this.popup == null) {
+                		return;
+                	}
+                   
+                    this.popup.show();
+                  
                 });
             }
 
@@ -1289,7 +1278,7 @@
                 
                  if (nots.get_n_items() < 1 ) {
                 	this.el.hide();
-                	if (this.popup != null && this.popup.el.visible) {
+                	if (this.popup != null) {
                 		this.popup.el.hide();
             		}
                 	return;
@@ -1297,10 +1286,17 @@
                 
                 this.el.show();
                 this.el.label = "%d/%d Errors".printf((int)fe.get_n_items(),(int)nots.get_n_items());
-                this.notices = nots;
-            	if (this.popup != null && this.popup.el.visible) {
-            		 this.popup.show(this.notices, this.el);
+            
+                
+             
+            	if (this.popup == null) {
+                    this.popup = new Xcls_ValaCompileErrors();
+                    this.popup.window = _this;
+                  //    this.popup.el.set_transient_for( _this.el );
+                    this.popup.el.set_parent(this.el);
                 }
+            	this.popup.updateNotices(nots);
+            	 
             }
         }
 
@@ -1312,7 +1308,6 @@
 
                 // my vars (def)
             public Xcls_ValaCompileErrors popup;
-            public GLib.ListStore notices;
 
             // ctor
             public Xcls_statusbar_warnings(Xcls_MainWindow _owner )
@@ -1322,7 +1317,6 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
-                this.notices = null;
 
                 // set gobject values
                 this.el.icon_name = "dialog-warning";
@@ -1332,16 +1326,10 @@
                 this.el.clicked.connect( () => {
                  
                 	if (this.popup == null) {
-                        this.popup = new Xcls_ValaCompileErrors();
-                        this.popup.window = _this;
-                      //    this.popup.el.set_transient_for( _this.el );
-                        this.popup.el.set_parent(this.el);
-                    }
-                        if (_this.statusbar_compile_spinner.el.spinning) {
-                		this.popup.el.show();    	
-                    	return;
-                	}    
-                    this.popup.show(this.notices, this.el);
+                		return;
+                	}
+                   
+                    this.popup.show();
                     return;
                 });
             }
@@ -1351,7 +1339,7 @@
                 
                  if (nots.get_n_items() < 1 ) {
                 	this.el.hide();
-                	if (this.popup != null && this.popup.el.visible) {
+                	if (this.popup != null) {
                 		this.popup.el.hide();
             		}
                 	return;
@@ -1359,10 +1347,17 @@
                 
                 this.el.show();
                 this.el.label = "%d/%d Warnings".printf((int)fe.get_n_items(),(int)nots.get_n_items());
-                this.notices = nots;
-            	if (this.popup != null && this.popup.el.visible) {
-            		 this.popup.show(this.notices, this.el);
+            
+                
+             
+            	if (this.popup == null) {
+                    this.popup = new Xcls_ValaCompileErrors();
+                    this.popup.window = _this;
+                  //    this.popup.el.set_transient_for( _this.el );
+                    this.popup.el.set_parent(this.el);
                 }
+            	this.popup.updateNotices(nots);
+            	 
             }
         }
 
@@ -1392,20 +1387,13 @@
 
                 //listeners
                 this.el.clicked.connect( () => {
-                    
+                 
                 	if (this.popup == null) {
-                        this.popup = new Xcls_ValaCompileErrors();
-                        this.popup.window = _this;
-                      //  this.popup.el.set_transient_for( _this.el );
-                        this.popup.el.set_parent(this.el);
-                    }
-                    if (_this.statusbar_compile_spinner.el.spinning) {
-                		this.popup.el.show();    	
-                    	return;
-                	}    
-                    
-                    this.popup.show(this.notices, this.el);
-                    return;
+                		return;
+                	}
+                   
+                    this.popup.show();
+                  
                 });
             }
 
@@ -1413,20 +1401,26 @@
             public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
                 
                  if (nots.get_n_items() < 1 ) {
-                 	GLib.debug("no deprc - hide");
                 	this.el.hide();
-                	if (this.popup != null && this.popup.el.visible) {
+                	if (this.popup != null) {
                 		this.popup.el.hide();
             		}
                 	return;
                 }
-             	GLib.debug("got deprc - hide");    
+                
                 this.el.show();
                 this.el.label = "%d/%d Depricated".printf((int)fe.get_n_items(),(int)nots.get_n_items());
-                this.notices = nots;
-            	if (this.popup != null && this.popup.el.visible) {
-            		 this.popup.show(this.notices, this.el);
+            
+                
+             
+            	if (this.popup == null) {
+                    this.popup = new Xcls_ValaCompileErrors();
+                    this.popup.window = _this;
+                  //    this.popup.el.set_transient_for( _this.el );
+                    this.popup.el.set_parent(this.el);
                 }
+            	this.popup.updateNotices(nots);
+            	 
             }
         }
 

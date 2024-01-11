@@ -244,14 +244,14 @@
         	}
         	var ar = this.file.getErrors(category);
         	if (ar == null || ar.get_n_items() < 1) {
-        		GLib.debug("Return has no errors\n");
+        		GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
         		return;
         	}
          
         
          
         	
-        	var offset = 1;
+        	var offset = 0;
         	 
         
         	var tlines = buf.get_line_count () +1;
@@ -283,8 +283,8 @@
         	   
         		var msg = "Line: %d %s : %s".printf(eline+1, err.category, err.msg);
         	    buf.create_source_mark( msg, err.category, iter);
-        	    GLib.debug("set line %d to %m", eline, msg);
-        	   // this.marks.set(eline, msg);
+        	    GLib.debug("set line %d to %s", eline, msg);
+        	    //this.marks.set(eline, msg);
         	}
         	return ;
         

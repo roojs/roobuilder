@@ -157,6 +157,30 @@ public class WindowState : Object
 		});
 		 
 	}
+	
+	public void updateErrorMarksAll() 
+	{
+		this.updateErrorMarks("ERR");
+		this.updateErrorMarks("WARN");
+		this.updateErrorMarks("DEPR");
+	
+	}
+	void updateErrorMarks(string cat) 
+	{
+		this.code_editor_tab.updateErrorMarks(cat);
+		switch(this.file.xtype) {
+			case  "Roo":
+				this.window_rooview.updateErrorMarks(cat);// foce scroll.
+				return;
+			case "Gtk":
+				this.window_gladeview.updateErrorMarks(cat);
+				return;
+			 default:
+			 	return;
+		}
+	}
+	
+	
 
 	public bool leftTreeBeforeChange()
 	{
@@ -649,16 +673,8 @@ public class WindowState : Object
 			 
 
 		}
-		BuilderApplication.updateCompileResults();
-		/*
-		if (file.project.xtype == "Gtk" && file.project.last_request == null ) {
-				
-			BuilderApplication.valacompilequeue.addFile( 
-				Palete.ValaCompileRequestType.PROJECT, 
-				this.file, "" , true) ;
-			 
-		}
-		*/
+
+		 
 
 		file.getLanguageServer().document_open(file);
 
@@ -704,7 +720,8 @@ public class WindowState : Object
 			//this.win.editpane.el.set_position(this.win.editpane.el.max_position);
 		}
 		this.win.setTitle();
-			 
+		
+		BuilderApplication.updateCompileResults();	 
 
 	}
  

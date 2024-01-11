@@ -79,7 +79,7 @@ namespace JsRender {
 		private int _version = 1;   // should we increment this based on the node..?
 		public int version {
 			get {
-				return this._version;
+				return ++this._version; // increased on every call? - bit of a kludge until we do real versioning
 			}
 			private set {
 				this._version = value;
@@ -138,6 +138,7 @@ namespace JsRender {
 		{
 		    
 			//this.cn = new GLib.List<JsRender>();
+			GLib.debug("new jsrender %s", path);
 			this.path = path;
 			this.project = project;
 			this.hasParent = false;

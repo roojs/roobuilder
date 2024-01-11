@@ -149,6 +149,8 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg gobject-introspection-1.0 \
 		--pkg libsoup-3.0 \
 		--pkg roojspacker-1.4 \
+		--pkg  jsonrpc-glib-1.0 \
+		--pkg gio-unix-2.0 \
 		$(roobuilder_LIBVALA) \
 		$(roobuilder_GDA) \
 		$(roobuilder_WEBKKIT) \
@@ -187,8 +189,10 @@ BUIDERPALETE =  Palete/Gir.vala \
 		Palete/CompletionProvider.vala \
 		Palete/CompileError.vala \	
 		Palete/ValaCompileRequest.vala \
-		Palete/ValaCompileQueue.vala \
 		Palete/Javascript.vala \
+		Palete/LanguageClient.vala \
+		Palete/LanguageClientVala.vala \
+		Palete/LanguageClientDummy.vala \
 		$(roobuilder_CODEGEN)
 		
 # 		c/jscore_object_call_as_function.c \
@@ -233,6 +237,7 @@ roobuilder_SOURCES =  Application.vala \
 		Main.vala \
 		Spawn.vala \
 		Resources.vala  \
+		Lsp.vala  \
 		$(BUIDERJSRENDER) \
 		$(BUIDERPALETE) \
 		$(BUIDERPROJECT) \

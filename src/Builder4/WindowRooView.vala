@@ -242,6 +242,75 @@
             
              
         }
+        public void updateErrorMarks (string category) {
+        	
+         
+        
+        	var buf = _this.buffer.el;
+        	Gtk.TextIter start;
+        	Gtk.TextIter end;     
+        	buf.get_bounds (out start, out end);
+        
+        	buf.remove_source_marks (start, end, category);
+         
+        	GLib.debug("highlight errors");		 
+        
+        	 // we should highlight other types of errors..
+        
+         
+        
+        	 
+        	if (_this.file == null) {
+        		GLib.debug("file is null?");
+        		return;
+        
+        	}
+        	var ar = this.file.getErrors(category);
+        	if (ar == null || ar.get_n_items() < 1) {
+        		GLib.debug("higjlight %s has no errors", category);
+        		return;
+        	}
+         
+        
+         
+        	
+        	var offset = 0;
+        	 
+        
+        	var tlines = buf.get_line_count () +1;
+        	
+         
+        	 
+        	for (var i = 0; i < ar.get_n_items();i++) {
+        		var err = (Palete.CompileError) ar.get_item(i);
+        		
+        	     Gtk.TextIter iter;
+        //        print("get inter\n");
+        	    var eline = err.line - offset;
+        	    GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
+        	    	err.line ,eline, offset);
+        	    
+        	    
+        	    if (eline > tlines || eline < 0) {
+        	        return;
+        	    }
+        	   
+        	    
+        	    buf.get_iter_at_line( out iter, eline);
+        	   
+        	   
+        		var msg = "Line: %d %s : %s".printf(eline+1, err.category, err.msg);
+        	    buf.create_source_mark( msg, err.category, iter);
+        	    GLib.debug("set line %d to %s", eline, msg);
+        	    //this.marks.set(eline, msg);
+        	}
+        	return ;
+        
+        
+        
+         
+        
+        }
         public void scroll_to_line (int line) {
            // code preview...
            
@@ -1161,12 +1230,9 @@
                 ((GtkSource.Buffer)(buf)) .set_language(lm.get_language(_this.file.language));
               
                 
-                Gtk.TextIter start;
-                Gtk.TextIter end;     
-                    
-                sbuf.get_bounds (out start, out end);
-                sbuf.remove_source_marks (start, end, null); // remove all marks..
+                _this.main_window.windowstate.updateErrorMarksAll();
                 
+                // what does this do?
                  GLib.Timeout.add(500, () => {
             
                     print("RESORTING cursor to = %d\n", cpos);
