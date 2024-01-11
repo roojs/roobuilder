@@ -1046,7 +1046,7 @@ namespace Lsp {
 	  	 
 		public string filename { 
 			get {
-				File.new_for_uri (this.uri).get_path();
+				return File.new_for_uri (this.uri).get_path();
 			}
 			private set {}
 		}
