@@ -102,7 +102,7 @@ namespace Project {
 			//this.files = { }; 
 			this.path = path;
 	 		this.language_servers = new Gee.HashMap<string,Palete.LanguageClient>();
-			this.errorByType = new  Gee.HashMap<string,GLib.ListStore>();
+			this.errorsByType = new  Gee.HashMap<string,GLib.ListStore>();
 			
 		}
 		 
