@@ -226,7 +226,7 @@ namespace Palete {
 				
 			}
 			if (this.requestType == ValaCompileRequestType.RUN) {
-				this.queue.execResult(this);
+				this.execResult();
 			}
 		}
 		 
