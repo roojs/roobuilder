@@ -87,7 +87,7 @@ public class Project.Roo : Project {
 	}
 	public override Palete.LanguageClient? getLanguageServer(string lang)
 	{
-		return null;
+		return new Palete.LanguageClientDummy(this);;
 	}
 
 }
