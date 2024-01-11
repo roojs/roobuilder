@@ -1003,7 +1003,7 @@ namespace Project {
 			var ls = this.errorsByType.get(n);
 			if (ls == null) {
 				ls = new GLib.ListStore(typeof(Palete.CompileError));
-				f.errorsByType.set(n, ls );
+				this.errorsByType.set(n, ls );
 			} else {
 				
 				for(var i =0; i < ls.get_n_items(); i++) {
@@ -1019,9 +1019,9 @@ namespace Project {
 				return;
 			}
 			for(var i =0; i < add.get_n_items(); i++) {
-			
+				ls.append(add.get_item(i) as Palete.CompileError);
+			}
 		
-			
 			
 		}
 		
