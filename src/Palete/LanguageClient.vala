@@ -79,7 +79,7 @@ namespace Palete {
 				
 				GLib.debug("client accepted connection - calling init server");
 				try {
-					this.initialize_server ();
+					yield this.initialize_server ();
 					this.jsonrpc_client.notification.connect((method, paramz) => {
 						this.onNotification(method, paramz);
 					});
