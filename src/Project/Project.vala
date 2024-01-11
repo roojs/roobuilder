@@ -83,7 +83,10 @@ namespace Project {
 		 
 		private bool is_scanned = false; 
 		public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir ??? is this used by Roo?
-		 public Palete.ValaCompileRequest last_request = null;
+		public Palete.ValaCompileRequest last_request = null;
+		
+		
+		protected Gee.ArrayList<string,Palate.LanguageServer> language_servers;
 		
 		protected Project (string path) {
 			
@@ -96,7 +99,7 @@ namespace Project {
 			//XObject.extend(this, cfg);
 			//this.files = { }; 
 			this.path = path;
-			 
+	 		this.language_servers = new Gee.ArrayList<string,Palate.LanguageServer>();
 			
 			
 		}
