@@ -38,7 +38,7 @@ namespace Palete {
 		{
 			this.file = file;
 			this.category = diag.serverity.to_string();
-			this.line = diag.range.start.line;
+			this.line = (int) diag.range.start.line;
 			this.msg = diag.message;   
 			if (!file.errorByType.has_key(this.category)) {
 				file.errorByType.set(this.category, new  Gee.ArrayList<CompileError>());
