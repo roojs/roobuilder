@@ -114,7 +114,15 @@ namespace Palete {
 		public void onNotification(string method, Variant? paramz)
 		{
 		
-		
+			switch (method) {
+				case "":
+					break;
+				default: 
+					break;
+				}
+			}
+			GLib.debug("got notificaiton %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value)));
+			
 		}
 		
 		/***
