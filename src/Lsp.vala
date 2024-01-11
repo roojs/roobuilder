@@ -1018,6 +1018,21 @@ namespace Lsp {
         */
     }
 
+
+	class Diagnostics : Object, Json.Serializable 
+	{
+		string uri { get; set; }
+		int version  { get; set; default = 0; }
+        public Gee.Collection<Diagnostic>? diagnostics { get; set; }
+	  	
+	  	protected void add_diagnostic (Diagnostic diag) {
+            if (diagnostics == null)
+                diagnostics = new Gee.ArrayList<Diagnostic> ();
+            diagnostics.add (diag);
+        }
+	}
+
+
     class CodeAction : Object, Json.Serializable {
         public string title { get; set; }
         public string? kind { get; set; }
