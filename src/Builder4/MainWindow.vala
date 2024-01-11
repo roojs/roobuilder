@@ -99,16 +99,7 @@
         public void updateErrors () {
         
         
-        	/*
-        
-        	if (req == null) {
          
-        	    _this.statusbar_errors.el.hide();
-        		_this.statusbar_warnings.el.hide();
-        		_this.statusbar_depricated.el.hide();
-        		return;
-        	}
-        	*/
         	
         	var pr = this.windowstate.project.getErrors("ERR");
         	
