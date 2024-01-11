@@ -115,7 +115,8 @@ namespace Palete {
 		{
 		
 			switch (method) {
-				case "some tmoethod":
+				case "textDocument/publishDiagnostics":
+					cl = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
 					break;
 				default: 
 					break;
