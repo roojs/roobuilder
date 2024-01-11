@@ -12,7 +12,7 @@ namespace Palete {
 			
 		
 		}
-		public override   void  initialize_server() throws {
+		public override   void  initialize_server()   {
 			try {
 				Variant? return_value;
 				  this.jsonrpc_client.call  (
