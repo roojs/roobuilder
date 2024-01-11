@@ -176,7 +176,8 @@
 	        Project.Project.loadAll();
 			this.listProjects();
 			var cur_project = this.compileProject();
-			this.dropList(cur_project);
+			this.dropList(cur_project); // --drop-list
+			this.languageServer(cur_project); // --language-server			
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
 			this.compileBjs(cur_project);
@@ -504,7 +505,7 @@
 				case "help":
 					print("""
 help             - list available tests
-flutter-project  - create a flutter project in /tmp/test-flutter
+language-server  - test the language server
 """);		
 					break;
 				case "flutter-project":
@@ -522,6 +523,11 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					);
 					*/
 					break;
+					
+				case "language-server":
+					Project.
+					
+					
 					
 				default:
 					print("Invalid test\n");
