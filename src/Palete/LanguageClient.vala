@@ -170,43 +170,47 @@ namespace Palete {
 
  		}
  		
- 		public   void document_save (JsRender.JsRender file) throws GLib.Error
+ 		public   void document_save (JsRender.JsRender file)  
     	{
    			if (!this.isReady()) {
 				return;
 			}
- 
-			  this.jsonrpc_client.send_notification  (
-				"textDocument/didChange",
-				this.buildDict (  
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url())
-						
-					)
-				),
-				null 
-			);
- 
+			 try {
+				  this.jsonrpc_client.send_notification  (
+					"textDocument/didChange",
+					this.buildDict (  
+						textDocument : this.buildDict (    ///TextDocumentItem;
+							uri: new GLib.Variant.string (file.to_url())
+							
+						)
+					),
+					null 
+				);
+			} catch( GLib.Error  e) {
+				GLib.debug ("LS sent save err %s", e.message);
+			}
 
          
     	}
- 		public   void document_close (JsRender.JsRender file) throws GLib.Error
+ 		public   void document_close (JsRender.JsRender file) 
     	{
    			if (!this.isReady()) {
 				return;
 			}
- 
-			  this.jsonrpc_client.send_notification  (
-				"textDocument/didChange",
-				this.buildDict (  
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url())
-						
-					)
-				),
-				null  
-			);
- 
+	 		try {
+				  this.jsonrpc_client.send_notification  (
+					"textDocument/didChange",
+					this.buildDict (  
+						textDocument : this.buildDict (    ///TextDocumentItem;
+							uri: new GLib.Variant.string (file.to_url())
+							
+						)
+					),
+					null  
+				);
+			} catch( GLib.Error  e) {
+				GLib.debug ("LS sent close err %s", e.message);
+			}
 
          
     	}
