@@ -146,7 +146,7 @@ namespace Palete {
 				new CompileError.new_from_diagnostic(f, diag);
 			}
 			f.project.updateErrorsforFile(f);
-			BuilderApplication.updateCompileResults();
+			
 		}
 		
 		public void document_open (JsRender.JsRender file)  
