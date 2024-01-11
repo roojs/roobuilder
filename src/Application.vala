@@ -494,7 +494,9 @@
 				}
 				// it's ready..
 				ls.document_open.begin(file, (obj, res) => {
+
 				    ls.document_open.end(res);
+					GLib.debug("got response");				    
 				    loop.quit();
 				});
 				return false;
