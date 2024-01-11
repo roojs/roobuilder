@@ -77,7 +77,7 @@
             { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
-            { "language-server", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "run language server on this file", null },
+            { "language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
             { "drop-list", 0, 0, OptionArg.STRING, ref opt_drop_list, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
             
@@ -88,11 +88,11 @@
 		public static string opt_compile_skip;
 		public static string opt_compile_add;
 		public static string opt_compile_output;
-        public static string opt_bjs_compile;
-        public static string opt_bjs_compile_target;
-        public static string opt_test;  
-        public static string opt_drop_list;
-        
+		public static string opt_bjs_compile;
+		public static string opt_bjs_compile_target;
+		public static string opt_test;  
+		public static string opt_drop_list;
+		public static string opt_language_server;
         
         public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
