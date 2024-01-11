@@ -142,7 +142,7 @@ namespace Palete {
 			foreach(var diag in dg.diagnostics) {
 				new CompileError.new_from_diagnostic(f, diag);
 			}
-			file.project.updateErrorsforFile(f);
+			f.project.updateErrorsforFile(f);
 		}
 		
 		public async void document_open (JsRender.JsRender file) throws GLib.Error 
