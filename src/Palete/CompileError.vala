@@ -41,9 +41,9 @@ namespace Palete {
 			this.line = (int) diag.range.start.line;
 			this.msg = diag.message;   
 			if (!file.errorsByType.has_key(this.category)) {
-				file.errorsByType.set(this.category, new  Gee.ArrayList<CompileError>());
+				file.errorsByType.set(this.category, new  GLib.ListStore(typeof(CompileError)));
 			}
-			file.errorsByType.get(this.category).add(this);
+			file.errorsByType.get(this.category).append(this);
 		}
 		public CompileError.new_from_file(JsRender.JsRender file, string category) 
 		{
