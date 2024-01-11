@@ -361,13 +361,7 @@ public class WindowState : Object
 			}
 			//this.left_tree.model.updateSelected();
 			this.file.save();
-			if (this.file.project.xtype=="Gtk") {
-					BuilderApplication.valacompilequeue.addFile( 
-	 					Palete.ValaCompileRequestType.PROJECT, 
-	 					this.file, "", true ) ;
-			
-				//BuilderApplication.valasource.checkFileSpawn(this.file);
-			}
+			 
 		});
 	 
 
