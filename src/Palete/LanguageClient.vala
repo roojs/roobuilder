@@ -141,8 +141,8 @@ namespace Palete {
 			f.errorByType.clear();
 			foreach(var diag in dg.diagnostics) {
 				new Palete.CompileError.new_from_diagnostic(f, diag);
-				
 			}
+			file.project.updateErrors();
 		}
 		
 		public async void document_open (JsRender.JsRender file) throws GLib.Error 
