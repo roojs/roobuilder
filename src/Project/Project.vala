@@ -1001,7 +1001,7 @@ namespace Project {
 		public void updateErrorsByType(JsRender.JsRender f, string n) 
 		{
 			var ls = this.errorsByType.get(n);
-			if (!this.errorsByType.has_key(n)) {
+			if (ls == null) {
 				ls = new GLib.ListStore(typeof(Palete.CompileError));
 				f.errorsByType.set(n, ls );
 			} else {
