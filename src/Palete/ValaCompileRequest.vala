@@ -9,7 +9,7 @@ namespace Palete {
 		RUN
 	}
 		
-	public class ValaCompileRequestX : Object
+	public class ValaCompileRequest  : Object
 	{
  		ValaCompileRequestType requestType;
  		
@@ -19,7 +19,7 @@ namespace Palete {
 		string alt_code = "";
 		string tmpfile = "";
 		Spawn? compiler  = null;
-		ValaCompileQueue? queue = null;
+	///	ValaCompileQueue? queue = null;
  
 		
 	
@@ -27,7 +27,7 @@ namespace Palete {
 	 	public Gee.HashMap<string,GLib.ListStore>? errorByFile  = null;
 	 		
 	
-		public ValaCompileRequestX(
+		public ValaCompileRequest (
 			ValaCompileRequestType requestType,
 			JsRender.JsRender file ,
 			JsRender.Node? node,
@@ -107,7 +107,7 @@ namespace Palete {
 			return true;
 		}
 		
-		public bool run(ValaCompileQueue queue)
+		public bool run(ValaCompileQueue? queue)
 		{
 			this.queue = queue;
 			if ( this.target() == "") {
