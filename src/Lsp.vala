@@ -58,6 +58,7 @@ namespace Lsp {
          * Reports a hint.
          */
         Hint = 4
+        
     }
 
     public  class Position : Object, Gee.Comparable<Position> {
@@ -186,6 +187,23 @@ namespace Lsp {
          * The diagnostic's message.
          */
         public string message { get; set; }
+        
+        
+        public string category {
+        	get { 
+	        	switch(this.severity) {
+
+		    		case Error : 
+		    			return "ERR";
+		    		case Warning : 
+		    			return this.message.contains("deprecated") ? "DEPR" : "WARN";
+		    		default : 
+		    			return "WARN";
+    			}
+	    	}
+	    	private set {}
+	    	
+        }
     }
 
     /**
