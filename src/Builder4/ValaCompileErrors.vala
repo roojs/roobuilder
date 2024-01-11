@@ -20,6 +20,7 @@
 
             // my vars (def)
         public Xcls_MainWindow window;
+        public bool loaded;
         public GLib.ListStore notices;
 
         // ctor
@@ -29,6 +30,7 @@
             this.el = new Gtk.Popover();
 
             // my vars (dec)
+            this.loaded = false;
 
             // set gobject values
             this.el.width_request = 900;
