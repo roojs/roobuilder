@@ -64,6 +64,8 @@
             this.el.close_request.connect( ( ) => {
             	 Resources.singleton().disconnect(_this.statusbar.handler_id);
             	 
+            	 
+            	 this.windowstate.close();
             	 BuilderApplication.removeWindow(this);
             	 
             	 if (BuilderApplication.windows.size  < 1) {

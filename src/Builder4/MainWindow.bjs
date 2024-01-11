@@ -713,6 +713,8 @@
      "( ) => {",
      "\t Resources.singleton().disconnect(_this.statusbar.handler_id);",
      "\t ",
+     "\t ",
+     "\t this.windowstate.close();",
      "\t BuilderApplication.removeWindow(this);",
      "\t ",
      "\t if (BuilderApplication.windows.size  < 1) {",
