@@ -51,7 +51,7 @@ namespace Palete {
 				GLib.debug("subprocess startup error %s", e.message);	        
 				return false;
 	      	}
-            Posix.sleep(5);
+            Posix.sleep(20);
             return true;
         }
 	 
