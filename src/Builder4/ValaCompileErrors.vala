@@ -408,10 +408,13 @@
                 	expand.set_list_row(lr);
                  
                  	// expand current file.
-                 	if (_this.window.windowstate.file.path == np.file.path &&
-                 		np.line < 0) {
-                 		lr.expanded = true;
-                	}
+                 	// this causes problems? - critical errors?
+                 	// maybe do it on show
+                 	//if (_this.window.windowstate.file.path == np.file.path &&
+                 	//	np.line < 0) {
+                 	//	lr.expanded = true;
+                 	
+                	//}
                  	 
                  	// bind image...
                  	
