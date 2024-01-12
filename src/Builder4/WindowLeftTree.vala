@@ -1432,7 +1432,7 @@
             		}
             	);
             	if (_this.selmodel.el == null) {
-            		return;
+            		return this.el;
             	}
             	_this.selmodel.el.set_model(this.el);
             	return this.el;
