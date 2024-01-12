@@ -494,15 +494,12 @@
                         return;
                     
                     }
-                    try {
-                		var pf = JsRender.JsRender.factory("PlainFile", p, fname.path);
-                		_this.el.hide();
-                		_this.window.windowstate.fileViewOpen(pf, true, line);
-                    } catch (JsRender.Error e) {}
-                    // try hiding the left nav..
-                 
-                    return;
+                  
+                	var pf = p.getByPath(fname.path);
+                	_this.el.hide();
+                	_this.window.windowstate.fileViewOpen(pf, true, line);
                 
+                    
                 });
             }
 
