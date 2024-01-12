@@ -6,6 +6,8 @@ namespace Palete {
 
     public class CompletionProvider : Object, GtkSource.CompletionProvider
     {
+
+		public JsRender.JsRender file;
 		public Editor editor; 
 		//public WindowState windowstate;
  		public CompletionModel model;
@@ -13,6 +15,8 @@ namespace Palete {
 		public CompletionProvider(Editor editor)
 		{
 		    this.editor  = editor;
+		    this.file = editor.file;
+
 		   // this.windowstate = null; // not ready until the UI is built.
 		    
  		}
@@ -101,10 +105,14 @@ namespace Palete {
 			}	
 		}
 
-		public  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancelleble)
+		public  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable)
 		{
+			var TextIter begin, end;
 			
-			this.model = new CompletionModel(this, context, cancelleble); 
+			if (get_bounds (out begin, out end) {
+				yield this.file.getLanguageServer().completion(this.file, end.get_line(), end.get_line_offset());
+			}
+			this.model = new CompletionModel(this, context, cancellable); 
 			return this.model;
 			
 		}
@@ -185,6 +193,11 @@ namespace Palete {
  		 	this.provider = provider;
 			this.cancellable = cancellable;
  		 	this.items = new Gee.ArrayList<CompletionProposal>();
+ 		 	
+ 		 	
+ 		 	
+ 		 	
+ 		 	
  			this.search = context.get_word();
 		    if (this.search.length < this.minimum_word_size) {
 			    return;
