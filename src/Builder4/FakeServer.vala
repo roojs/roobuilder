@@ -204,7 +204,7 @@ public class FakeServer : Object
 			return;
 		}
 		 
-		var cx = WebKit.WebContext.get_default();
+		 cx = WebKit.WebContext.get_default();
 		//var cx = this.view.get_context();
 		cx.register_uri_scheme("xhttp",  serve);
 		cx.register_uri_scheme("resources",  serve);
