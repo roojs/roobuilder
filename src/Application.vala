@@ -235,7 +235,11 @@
 				GLib.Log.set_default_handler( 
 				//	GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING | GLib.LogLevelFlags.LEVEL_CRITICAL, 
 					(dom, lvl, msg) => {
-					print("%s: %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), msg);
+
+					print("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
+					if (lvl ==  GLib.LogLevelFlags.LEVEL_CRITICAL) {
+						GLib.fatal(msg);
+					}
 				});
 			}
 			
