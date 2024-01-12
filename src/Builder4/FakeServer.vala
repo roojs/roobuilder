@@ -194,11 +194,11 @@ public class FakeServerCache : Object
 
 public class FakeServer : Object
 {
-	WebKit.WebView view;
+	//WebKit.WebView view;
 	
 	public FakeServer(WebKit.WebView wkview)
 	{
-		this.view = wkview;
+		//this.view = wkview;
 		
 		 
 		var cx = WebKit.WebContext.get_default();
