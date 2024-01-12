@@ -654,7 +654,7 @@ public class WindowState : Object
 		this.file = file;
 		BuilderApplication.updateWindows();
 		
-
+		file.getLanguageServer().document_open(file);
 			
 			
 		if (file.xtype == "PlainFile") {
@@ -676,7 +676,7 @@ public class WindowState : Object
 
 		 
 
-		file.getLanguageServer().document_open(file);
+
 
 		this.gotoLine(line);
 	
