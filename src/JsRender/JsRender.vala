@@ -171,6 +171,11 @@ namespace JsRender {
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
 			this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
+
+			if (this.relpath == "src/Lsp.vala") {
+				GLib.debug("got testing lsp");
+			}
+
 		}
 		
 		public void renameTo(string name) throws  Error
