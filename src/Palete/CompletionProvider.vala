@@ -107,7 +107,7 @@ namespace Palete {
 
 		public  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable)
 		{
-			var TextIter begin, end;
+			TextIter begin, end;
 			
 			if (get_bounds (out begin, out end) {
 				yield this.file.getLanguageServer().completion(this.file, end.get_line(), end.get_line_offset());
