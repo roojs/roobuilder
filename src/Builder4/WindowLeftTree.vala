@@ -1431,6 +1431,9 @@
             		
             		}
             	);
+            	if (_this.selmodel.el == null) {
+            		return;
+            	}
             	_this.selmodel.el.set_model(this.el);
             	return this.el;
             }

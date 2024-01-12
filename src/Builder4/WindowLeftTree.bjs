@@ -763,6 +763,9 @@
             "\t\t",
             "\t\t}",
             "\t);",
+            "\tif (_this.selmodel.el == null) {",
+            "\t\treturn;",
+            "\t}",
             "\t_this.selmodel.el.set_model(this.el);",
             "\treturn this.el;",
             "}"
