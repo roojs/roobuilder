@@ -196,10 +196,13 @@ public class FakeServer : Object
 {
 	//WebKit.WebView view;
 	
+	static WebKit.WebContext cx = null;
 	public FakeServer(WebKit.WebView wkview)
 	{
 		//this.view = wkview;
-		
+		if (cx != null) {
+			return;
+		}
 		 
 		var cx = WebKit.WebContext.get_default();
 		//var cx = this.view.get_context();
