@@ -141,7 +141,7 @@
                " ",
                " \t// expand current file.",
                " \tif (_this.window.windowstate.file.path == np.file.path &&",
-               " \t\tnp.lines.n_items > 0) {",
+               " \t\tnp.line < 0) {",
                " \t\tlr.expanded = true;",
                "\t}",
                " \t ",

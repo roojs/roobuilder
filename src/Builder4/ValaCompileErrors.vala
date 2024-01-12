@@ -409,7 +409,7 @@
                  
                  	// expand current file.
                  	if (_this.window.windowstate.file.path == np.file.path &&
-                 		np.lines.n_items > 0) {
+                 		np.line < 0) {
                  		lr.expanded = true;
                 	}
                  	 
