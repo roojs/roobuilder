@@ -66,7 +66,7 @@
 			{ "skip-file", 0, 0, OptionArg.STRING, ref opt_compile_skip ,"For test compiles do not add this (usually used in conjunction with add-file ", null },
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
 			{ "output", 0, 0, OptionArg.STRING, ref opt_compile_output, "output binary file path", null },
-			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages", null },
+			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages for non-ui, or crash on warnings for gdb ", null },
 			{ "pull-resources", 0, 0, OptionArg.NONE, ref opt_pull_resources, "Fetch the online resources", null },			
             
             // some testing code.
