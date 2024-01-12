@@ -16,8 +16,8 @@ namespace Palete {
 		public GLib.ListStore lines { get; set ; }  // so it triggers updates?
 
 		//public CompileError? parent = null;
- 		public string category;
-		public string msg;
+ 		public string category = "";
+		public string msg = "";
 		public  int line { get; set; default = -1; }
 
 		
