@@ -38,7 +38,7 @@ namespace Palete {
 			this.category = diag.category;
 			this.line = (int) diag.range.start.line;
 			this.msg = diag.message;   
-			
+			this.lines = new GLib.ListStore(typeof(CompileError));
 			GLib.debug("new error %s : %d  %s %s", file.path, this.line, this.category, this.msg);
 			
 			
