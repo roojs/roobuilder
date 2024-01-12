@@ -24,7 +24,6 @@ deps = [
    dependency('json-glib-1.0'),
    dependency('gobject-introspection-1.0'),
    dependency('libvala-0.56'),
-   dependency('libadwaita-1'),
    dependency('libxml-2.0'),
    valac.find_library('posix'),
    dependency('roojspacker-1.4'),
