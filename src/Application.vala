@@ -238,7 +238,7 @@
 
 					print("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
 					if (lvl ==  GLib.LogLevelFlags.LEVEL_CRITICAL) {
-						GLib.fatal(msg);
+						GLib.error(msg);
 					}
 				});
 			}
