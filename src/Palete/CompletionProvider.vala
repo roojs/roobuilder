@@ -109,7 +109,7 @@ namespace Palete {
 		{
 			TextIter begin, end;
 			
-			if (get_bounds (out begin, out end) {
+			if (context.get_bounds (out begin, out end)) {
 				yield this.file.getLanguageServer().completion(this.file, end.get_line(), end.get_line_offset());
 			}
 			this.model = new CompletionModel(this, context, cancellable); 
