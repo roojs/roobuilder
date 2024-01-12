@@ -579,10 +579,10 @@
                 
                        
                 this.el.completion.add_provider(new Palete.CompletionProvider(_this));
-                 
-                
+                  
                 this.el.completion.unblock_interactive();
                 this.el.completion.select_on_show = true; // select
+                //this.el.completion.auto_complete_delay = 500;
                 
                 this.el.completion.remember_info_visibility	 = true;
                 
@@ -809,10 +809,13 @@
                 }
                 
                 // bit presumptiona
-                if (_this.file.xtype == "PlainFile" && _this.file.project.xtype == "Gtk") {
+                if (_this.file.xtype == "PlainFile") {
                 
                     // assume it's gtk...
+                     var  oldcode =_this.file.toSource();
+                    _this.file.setSource(str);
                     _this.file.getLanguageServer().document_change(_this.file);
+                    _this.file.setSource(oldcode);
                     
             		 
                     return true;
@@ -1026,7 +1029,7 @@
                 		_this.search_entry.el.grab_focus();
                 	    return;
                 	}
-                    
+                    _this.view.el.show_completion();
                    // print(event.key.keyval)
                     
                     return;

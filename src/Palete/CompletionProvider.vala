@@ -7,7 +7,10 @@ namespace Palete {
     public class CompletionProvider : Object, GtkSource.CompletionProvider
     {
 
-		public JsRender.JsRender file;
+		public JsRender.JsRender file {
+			get { return this.editor.file; }
+			private set {}
+		}
 		public Editor editor; 
 		//public WindowState windowstate;
  		public CompletionModel model;
@@ -15,8 +18,7 @@ namespace Palete {
 		public CompletionProvider(Editor editor)
 		{
 		    this.editor  = editor;
-		    this.file = editor.file;
-
+		 
 		   // this.windowstate = null; // not ready until the UI is built.
 		    
  		}
@@ -33,6 +35,7 @@ namespace Palete {
 		
 		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
 		{
+			GLib.debug("compelte activate");
 			var  p = (CompletionProposal) proposal;
 			TextMark end_mark = null;
 			TextIter begin, end;
@@ -84,6 +87,7 @@ namespace Palete {
 
 		public  void display (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal, GtkSource.CompletionCell cell)
 		{
+			GLib.debug("compelte display");
 			var col = cell.get_column();
 			//var p = (CompletionProposal) proposal;
 			switch(col) {
@@ -105,8 +109,15 @@ namespace Palete {
 			}	
 		}
 
+		
+		public  void  populate (GtkSource.CompletionContext context)
+		{
+			GLib.debug("pupoulate normal");		
+		}
+
 		public  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable)
 		{
+			GLib.debug("pupoulate async");
 			TextIter begin, end;
 			
 			if (context.get_bounds (out begin, out end)) {
@@ -120,7 +131,7 @@ namespace Palete {
 		public  void refilter (GtkSource.CompletionContext context, GLib.ListModel in_model)
 		{
  
- 
+ 			GLib.debug("pupoulate refilter");
 			//GtkFilterListModel *filter_model = NULL;
 			//G//tkExpression *expression = NULL;
 			//GtkStringFilter *filter = NULL;
