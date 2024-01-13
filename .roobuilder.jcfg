@@ -148,11 +148,14 @@
                 "src/Spawn.vala",
                 "src/Application.vala",
                 "src/Palete/ValalCompileQueue.vala",
-                "src/Palete/ValaCompileRequest.vala",
-                "src/Palete/ValaCompileQueue.vala",
                 "src/Palete/Javascript.vala",
                 "src/Project/Meson.vala",
-                "src/Palete/RooDatabase.vala"
+                "src/Palete/RooDatabase.vala",
+                "src/Palete/LanguageClient.vala",
+                "src/Palete/LanguageClientVala.vala",
+                "src/Lsp.vala",
+                "src/Palete/LanguageClientDummy.vala",
+                "src/Palete/ValaCompileRequest.vala"
             ]
         }
     ],
@@ -167,11 +170,12 @@
         "json-glib-1.0",
         "gobject-introspection-1.0",
         "libvala-0.56",
-        "libadwaita-1",
         "libxml-2.0",
         "posix",
         "roojspacker-1.4",
         "gtksourceview-5",
-        "libgda-5.0"
+        "libgda-5.0",
+        "jsonrpc-glib-1.0",
+        "gio-unix-2.0"
     ]
 }

@@ -76,7 +76,16 @@ namespace JsRender {
         
 		public string title = "";  // a title.. ?? nickname.. ??? -
 
-		
+		private int _version = 1;   // should we increment this based on the node..?
+		public int version {
+			get {
+				return ++this._version; // increased on every call? - bit of a kludge until we do real versioning
+			}
+			private set {
+				this._version = value;
+			}
+			
+		}
 
 		public string permname;
 		public string language;
@@ -104,11 +113,17 @@ namespace JsRender {
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
 		public	Gee.HashMap<string,string> namedStrings;
+		public	Gee.HashMap<string, GLib.ListStore> errorsByType;
+		
+		
 
 		public signal void changed (Node? node, string source); 
 		
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
+		
+
+		
 		/**
 		 * UI componenets
 		 * 
@@ -119,10 +134,11 @@ namespace JsRender {
 		
 		//abstract JsRender(Project.Project project, string path); 
 		
-		public void aconstruct(Project.Project project, string path)
+		protected JsRender(Project.Project project, string path)
 		{
 		    
 			//this.cn = new GLib.List<JsRender>();
+			GLib.debug("new jsrender %s", path);
 			this.path = path;
 			this.project = project;
 			this.hasParent = false;
@@ -154,6 +170,11 @@ namespace JsRender {
 
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
+			this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
+
+			if (this.relpath == "src/Lsp.vala") {
+				GLib.debug("got testing lsp");
+			}
 
 		}
 		
@@ -691,6 +712,28 @@ namespace JsRender {
 		
 		}
 		
+		public string to_url()
+		{
+			return File.new_for_path (this.targetName()).get_uri ();
+		}
+		public Palete.LanguageClient? getLanguageServer()
+		{
+			
+			return this.project.getLanguageServer(this.language_id());
+		
+		}
+		public GLib.ListStore getErrors(string n)
+		{
+			var ls = this.errorsByType.get(n);
+			if (ls == null) {
+				ls = new GLib.ListStore(typeof(Palete.CompileError));
+				this.errorsByType.set(n, ls );
+			}
+			return ls;
+		}
+		
+		
+		public abstract string language_id();
 		public abstract void save();
 		public abstract void saveHTML(string html);
 		public abstract string toSource() ;

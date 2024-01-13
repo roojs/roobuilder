@@ -4,7 +4,7 @@
 */
 namespace Palete {
 	
-	public class ValaCompileQueue : Object 
+	public class ValaCompileQueueX : Object 
 	{
 	
 		ValaCompileRequest? next_request = null;
@@ -23,13 +23,13 @@ namespace Palete {
 		
 		
 		
-		public ValaCompileQueue()
+		public ValaCompileQueueX()
 		{
 			//start timeout for compiler.
 			
 		}
 		
-		public void addFile(  ValaCompileRequestType reqtype, JsRender.JsRender file , string alt_code, bool force) 
+		public void addFileX(  ValaCompileRequestType reqtype, JsRender.JsRender file , string alt_code, bool force) 
 		{
 			var add = new ValaCompileRequest(
 				reqtype,
@@ -53,7 +53,7 @@ namespace Palete {
 		}
 		
 		
-		public void addProp( ValaCompileRequestType requestType,
+		public void addPropX( ValaCompileRequestType requestType,
 			JsRender.JsRender file,
 			JsRender.Node node,
 			JsRender.NodeProp prop,
@@ -172,7 +172,7 @@ namespace Palete {
 		public void onCompileComplete(ValaCompileRequest req)
 		{
 			this.cur_request = null;
-			req.file.project.last_request = req; // technically it should update compile group.
+			//req.file.project.last_request = req; // technically it should update compile group.
 			this.last_request = req;
 			this.showSpinner(false);
 			// update errors

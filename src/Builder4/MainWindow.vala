@@ -64,10 +64,15 @@
             this.el.close_request.connect( ( ) => {
             	 Resources.singleton().disconnect(_this.statusbar.handler_id);
             	 
+            	 
+            	 this.windowstate.file.getLanguageServer().document_close(
+            	 	this.windowstate.file
+             	);
+            	 
             	 BuilderApplication.removeWindow(this);
             	 
             	 if (BuilderApplication.windows.size  < 1) {
-            
+            		this.windowstate.file.getLanguageServer().exit();
             		BuilderApplication.singleton(  null ).quit();
             	 }
             	return true;
@@ -96,38 +101,32 @@
         }
 
         // user defined functions
-        public void updateErrors (Palete.ValaCompileRequest? req) {
+        public void updateErrors () {
         
-        	if (req == null) {
-         
-        	    _this.statusbar_errors.el.hide();
-        		_this.statusbar_warnings.el.hide();
-        		_this.statusbar_depricated.el.hide();
-        		return;
-        	}
+        
+         	GLib.debug("updateErrors");
         	
+        	var pr = this.windowstate.project.getErrors("ERR");
         	
         	this.statusbar_errors.setNotices(
-        		req.errorByType.get("ERR"),
-        		req.totalErrors("ERR"),
-        		req.totalErrors("ERR", this.windowstate.file)
+        		pr,
+        		this.windowstate.file.getErrors("ERR")
         	);
+        	
         	this.statusbar_warnings.setNotices(
-        		req.errorByType.get("WARN"),
-        		req.totalErrors("WARN"),
-        		req.totalErrors("WARN", this.windowstate.file)
+        		this.windowstate.project.getErrors("WARN"),
+        		this.windowstate.file.getErrors("WARN")
         	);
         	this.statusbar_depricated.setNotices(
-        		req.errorByType.get("DEPR"),
-        		req.totalErrors("DEPR"),
-        		req.totalErrors("DEPR", this.windowstate.file)
+        		this.windowstate.project.getErrors("DEPR"),
+        		this.windowstate.file.getErrors("DEPR")
         	);
-        
+         
         	_this.statusbar_run.el.hide();
         
-        	if (req.totalErrors("ERR") < 1) {
+        	if (pr.get_n_items() < 1) {
         		_this.statusbar_run.el.show();
-        	}
+        	} 
         	
         }
         public void initChildren () {
@@ -1248,7 +1247,6 @@
 
                 // my vars (def)
             public Xcls_ValaCompileErrors popup;
-            public GLib.ListStore notices;
 
             // ctor
             public Xcls_statusbar_errors(Xcls_MainWindow _owner )
@@ -1258,7 +1256,6 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
-                this.notices = null;
 
                 // set gobject values
                 this.el.icon_name = "dialog-error";
@@ -1266,42 +1263,40 @@
 
                 //listeners
                 this.el.clicked.connect( () => {
-                    
-                
-                    
-                    if (this.popup == null) {
-                        this.popup = new Xcls_ValaCompileErrors();
-                        this.popup.window = _this;
-                        //this.popup.el.application = _this.el.application;
-                	  //   this.popup.el.set_transient_for( _this.el );
-                       this.popup.el.set_parent(this.el);
-                    }
-                    if (_this.statusbar_compile_spinner.el.spinning) {
-                		this.popup.el.show();    	
-                    	return;
-                	}    
-                    this.popup.show(this.notices, this.el);
-                    return;
+                 
+                	if (this.popup == null) {
+                		return;
+                	}
+                   
+                    this.popup.show();
+                  
                 });
             }
 
             // user defined functions
-            public void setNotices (GLib.ListStore nots, int qty, int tf) {
+            public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
                 
-                 if (qty < 1 ) {
+                 if (nots.get_n_items() < 1 ) {
                 	this.el.hide();
-                	if (this.popup != null && this.popup.el.visible) {
+                	if (this.popup != null) {
                 		this.popup.el.hide();
             		}
                 	return;
                 }
                 
                 this.el.show();
-                this.el.label = "%d/%d Errors".printf(tf,qty);
-                this.notices = nots;
-            	if (this.popup != null && this.popup.el.visible) {
-            		 this.popup.show(this.notices, this.el);
+                this.el.label = "%d/%d Errors".printf((int)fe.get_n_items(),(int)nots.get_n_items());
+            
+                
+             
+            	if (this.popup == null) {
+                    this.popup = new Xcls_ValaCompileErrors();
+                    this.popup.window = _this;
+                  //    this.popup.el.set_transient_for( _this.el );
+                    this.popup.el.set_parent(this.el);
                 }
+            	this.popup.updateNotices(nots);
+            	 
             }
         }
 
@@ -1313,7 +1308,6 @@
 
                 // my vars (def)
             public Xcls_ValaCompileErrors popup;
-            public GLib.ListStore notices;
 
             // ctor
             public Xcls_statusbar_warnings(Xcls_MainWindow _owner )
@@ -1323,7 +1317,6 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
-                this.notices = null;
 
                 // set gobject values
                 this.el.icon_name = "dialog-warning";
@@ -1333,38 +1326,38 @@
                 this.el.clicked.connect( () => {
                  
                 	if (this.popup == null) {
-                        this.popup = new Xcls_ValaCompileErrors();
-                        this.popup.window = _this;
-                      //    this.popup.el.set_transient_for( _this.el );
-                        this.popup.el.set_parent(this.el);
-                    }
-                        if (_this.statusbar_compile_spinner.el.spinning) {
-                		this.popup.el.show();    	
-                    	return;
-                	}    
-                    this.popup.show(this.notices, this.el);
+                		return;
+                	}
+                   
+                    this.popup.show();
                     return;
                 });
             }
 
             // user defined functions
-            public void setNotices (GLib.ListStore nots, int qty, int tf) {
+            public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
                 
-                if (qty < 1 ) {
+                 if (nots.get_n_items() < 1 ) {
                 	this.el.hide();
-                	if (this.popup != null && this.popup.el.visible) {
+                	if (this.popup != null) {
                 		this.popup.el.hide();
             		}
                 	return;
                 }
-                this.el.show();
-                this.el.label = "%d/%d Warnings".printf(tf,qty);
-                 this.notices = nots;
-                if (this.popup != null && this.popup.el.visible) {
-            		 this.popup.show(this.notices, this.el);
-                }
                 
+                this.el.show();
+                this.el.label = "%d/%d Warnings".printf((int)fe.get_n_items(),(int)nots.get_n_items());
             
+                
+             
+            	if (this.popup == null) {
+                    this.popup = new Xcls_ValaCompileErrors();
+                    this.popup.window = _this;
+                  //    this.popup.el.set_transient_for( _this.el );
+                    this.popup.el.set_parent(this.el);
+                }
+            	this.popup.updateNotices(nots);
+            	 
             }
         }
 
@@ -1394,41 +1387,40 @@
 
                 //listeners
                 this.el.clicked.connect( () => {
-                    
+                 
                 	if (this.popup == null) {
-                        this.popup = new Xcls_ValaCompileErrors();
-                        this.popup.window = _this;
-                      //  this.popup.el.set_transient_for( _this.el );
-                        this.popup.el.set_parent(this.el);
-                    }
-                    if (_this.statusbar_compile_spinner.el.spinning) {
-                		this.popup.el.show();    	
-                    	return;
-                	}    
-                    
-                    this.popup.show(this.notices, this.el);
-                    return;
+                		return;
+                	}
+                   
+                    this.popup.show();
+                  
                 });
             }
 
             // user defined functions
-            public void setNotices (GLib.ListStore nots, int qty, int tf) {
-                if (qty < 1) {
+            public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
+                
+                 if (nots.get_n_items() < 1 ) {
                 	this.el.hide();
-                	if (this.popup != null && this.popup.el.visible) {
-            			 this.popup.el.hide();
+                	if (this.popup != null) {
+                		this.popup.el.hide();
             		}
-             
                 	return;
-            	}
+                }
                 
                 this.el.show();
+                this.el.label = "%d/%d Depricated".printf((int)fe.get_n_items(),(int)nots.get_n_items());
+            
                 
-                this.el.label = "%d/%d Depricated".printf(tf,qty);
-                this.notices = nots;
-            	if (this.popup != null && this.popup.el.visible) {
-            		 this.popup.show(this.notices, this.el);
+             
+            	if (this.popup == null) {
+                    this.popup = new Xcls_ValaCompileErrors();
+                    this.popup.window = _this;
+                  //    this.popup.el.set_transient_for( _this.el );
+                    this.popup.el.set_parent(this.el);
                 }
+            	this.popup.updateNotices(nots);
+            	 
             }
         }
 
@@ -1465,10 +1457,16 @@
                 	    _this.windowstate.compile_results.el.show(); // show currently running.
                     	return;
                 	}
-                	BuilderApplication.valacompilequeue.addFile( 
-                	 					Palete.ValaCompileRequestType.RUN, 
-                	 					_this.windowstate.file, "", true ) ;
-                
+                	
+                	var req = new Palete.ValaCompileRequest(
+                		Palete.ValaCompileRequestType.RUN,
+                		_this.windowstate.file,
+                		null,
+                		null,
+                		""
+                	);
+                	req.run();
+                	 
                 	_this.windowstate.compile_results.el.set_parent(this.el);
                 	_this.windowstate.compile_results.show(this.el,true);
                 	         

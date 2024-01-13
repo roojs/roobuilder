@@ -13,14 +13,48 @@ namespace Palete {
 		public JsRender.JsRender file = null;
 		public string title = "";
 		
-		public GLib.ListStore lines;
+		public GLib.ListStore lines { get; set ; }  // so it triggers updates?
 
-		public CompileError? parent = null;
- 		public string category;
-		public string msg;
+		//public CompileError? parent = null;
+ 		public string category = "";
+		public string msg = "";
 		public  int line { get; set; default = -1; }
 
-		public CompileError.new_line(CompileError parent, int line, string msg) 
+		
+		public CompileError.new_jserror(JsRender.JsRender file, string category, int line, string msg) 
+		{
+			this.lines = new GLib.ListStore(typeof(CompileError));
+			this.line = line;
+			this.msg = msg;
+			this.file = file;
+			this.category = category;
+			 
+		
+		}
+
+		public CompileError.new_from_diagnostic(JsRender.JsRender file, Lsp.Diagnostic diag) 
+		{
+			this.file = file;
+			this.category = diag.category;
+			this.line = (int) diag.range.start.line;
+			this.msg = diag.message;   
+			this.lines = new GLib.ListStore(typeof(CompileError));
+			GLib.debug("new error %s : %d  %s %s", file.path, this.line, this.category, this.msg);
+			
+			
+			
+		}
+		
+		public CompileError.new_from_file(JsRender.JsRender file, string category) 
+		{
+			this.file = file;
+			this.category = category;
+			this.lines = file.getErrors(category);
+			this.title =  file.relpath + " (" + lines.get_n_items().to_string() + ")";
+		}
+
+/*
+		public CompileError.new_line(CompileError? parent, int line, string msg) 
 		{
 			this.lines = new GLib.ListStore(typeof(CompileError));
 			this.parent = parent;
@@ -31,10 +65,6 @@ namespace Palete {
 			 
 		
 		}
-		
-		
-
-
 		public CompileError.new_file(JsRender.JsRender file, Json.Object jlines, string category) 
 		{
 			this.file = file;
@@ -59,28 +89,35 @@ namespace Palete {
             });
               
 		}
-		
+		*/
 		public string file_line { // sorting?
 			set {}
 			owned get { 
-				return this.parent == null ? this.file.relpath : 
+				return this.line == -1 ? this.file.relpath : 
  					(this.file.relpath + ":" + this.line.to_string("%09d")); 
 			}
 		}
-		public string line_msg {
+		public string linemsg {
 			set {}
 			owned  get {
-				return this.parent == null ? 
+				return this.line == -1 ? 
 					 GLib.Markup.escape_text( this.file.relpath + "(" +  this.lines.n_items.to_string() + ")") : 			
 					 GLib.Markup.escape_text(this.line.to_string() + ": " + this.msg);
 		 	}
 	 	}
-		
-		
+	 	
+	 	public bool hasErrors() {
+	 		return this.lines.get_n_items() > 0;
+ 		}
+	 	
+		/*
+		 
 		public static void parseCompileResults (ValaCompileRequest req, Json.Object tree)
 		{
-			req.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
-			req.errorByType = new Gee.HashMap<string,GLib.ListStore>();
+			//req.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
+			//req.errorByType = new Gee.HashMap<string,GLib.ListStore>();
+			
+			
 
 			req.errorByType.set("ERR",  new GLib.ListStore(typeof(CompileError)));
 			req.errorByType.set("WARN",  new GLib.ListStore(typeof(CompileError)));
@@ -92,6 +129,7 @@ namespace Palete {
 			
 			 
 		}
+	
 		
 		public static void jsonToListStoreProp(ValaCompileRequest req, string prop, Json.Object tree)
 		{
@@ -135,7 +173,7 @@ namespace Palete {
 		    req.errorByType.set(prop,ls);
 		    
 		}
-		
+			
 	// only used by javascript /roo errors..
 		public static GLib.ListStore jsonToListStore(Project.Project project, Json.Object tree)
 		{
@@ -158,7 +196,7 @@ namespace Palete {
           
 		
 		}
-	 
+	 */
 		
 	}
 	

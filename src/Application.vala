@@ -66,7 +66,7 @@
 			{ "skip-file", 0, 0, OptionArg.STRING, ref opt_compile_skip ,"For test compiles do not add this (usually used in conjunction with add-file ", null },
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
 			{ "output", 0, 0, OptionArg.STRING, ref opt_compile_output, "output binary file path", null },
-			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages", null },
+			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages for non-ui, or crash on warnings for gdb ", null },
 			{ "pull-resources", 0, 0, OptionArg.NONE, ref opt_pull_resources, "Fetch the online resources", null },			
             
             // some testing code.
@@ -77,7 +77,7 @@
             { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
-            
+            { "language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
             { "drop-list", 0, 0, OptionArg.STRING, ref opt_drop_list, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
             
@@ -88,11 +88,11 @@
 		public static string opt_compile_skip;
 		public static string opt_compile_add;
 		public static string opt_compile_output;
-        public static string opt_bjs_compile;
-        public static string opt_bjs_compile_target;
-        public static string opt_test;  
-        public static string opt_drop_list;
-        
+		public static string opt_bjs_compile;
+		public static string opt_bjs_compile_target;
+		public static string opt_test;  
+		public static string opt_drop_list;
+		public static string opt_language_server;
         
         public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
@@ -122,7 +122,7 @@
 
 
 
-		public static Palete.ValaCompileQueue valacompilequeue;
+		//public static Palete.ValaCompileQueue valacompilequeue;
 
 	
 		public BuilderApplication (  string[] args)
@@ -149,7 +149,7 @@
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
-			BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
+			//BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
 			
 			
 			configDirectory();
@@ -176,9 +176,11 @@
 	        Project.Project.loadAll();
 			this.listProjects();
 			var cur_project = this.compileProject();
-			this.dropList(cur_project);
+			this.dropList(cur_project); // --drop-list
+			this.languageServer(cur_project); // --language-server			
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
+			this.languageServer(cur_project);
 			this.compileBjs(cur_project);
 			this.compileVala();
 
@@ -227,12 +229,24 @@
 		
 		void initDebug() 
 		{
-		
+			 
+			
 			if (BuilderApplication.opt_debug  || BuilderApplication.opt_compile_project == null) {
-				GLib.Log.set_handler(null, 
-					GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING | GLib.LogLevelFlags.LEVEL_CRITICAL, 
+				GLib.Log.set_default_handler( 
+				//	GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING | GLib.LogLevelFlags.LEVEL_CRITICAL, 
 					(dom, lvl, msg) => {
-					print("%s: %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), msg);
+
+					print("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
+					
+					if (dom== "GtkSourceView") { // seems to be some critical wanrings comming from gtksourceview related to insert?
+						return;
+					}
+					//if (msg.contains("gdk_popup_present")) { // seems to be problems with the popup present on gtksourceview competion.
+					//	return;
+					//}
+					if (BuilderApplication.opt_debug && lvl ==  GLib.LogLevelFlags.LEVEL_CRITICAL) {
+						GLib.error(msg);
+					}
 				});
 			}
 			
@@ -413,7 +427,7 @@
 			
 			
 			
-			var file = cur_project.getByName(BuilderApplication.opt_bjs_compile);
+			var file = cur_project.getByRelPath(BuilderApplication.opt_bjs_compile);
 			if (file == null) {
 				// then compile them all, and compare them...
 				
@@ -466,7 +480,44 @@
 			
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
-		
+		void languageServer(Project.Project? cur_project)
+		{
+			if (BuilderApplication.opt_language_server == null) {
+				return;
+			}
+			if (cur_project == null) {
+				GLib.error("missing project, use --project to select which project");
+			}
+			var file = cur_project.getByRelPath(BuilderApplication.opt_language_server);
+			if (file == null) {
+				// then compile them all, and compare them...
+				 GLib.error("missing file %s in project %s", BuilderApplication.opt_language_server, cur_project.name);
+			}
+			
+			var ls = file.getLanguageServer();
+			if (ls == null) {
+				GLib.error("No langauge server returned for file:%s", file.relpath);
+			}
+			var loop = new MainLoop();
+			GLib.Timeout.add_seconds(1, () => {
+				if (!ls.isReady()) {
+					GLib.debug("waiting for server to be ready");
+					return true;
+				}
+				GLib.debug("Sending document_open");
+				// it's ready..
+				 
+				ls.document_open(file);
+				return false;
+				
+			});
+			
+			 
+			loop.run();
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
+		}
+			
+			
 		void compileVala()
 		{
 			if (BuilderApplication.opt_compile_target == null) {
@@ -504,7 +555,7 @@
 				case "help":
 					print("""
 help             - list available tests
-flutter-project  - create a flutter project in /tmp/test-flutter
+flutter-project  -  was try and read flutter data (but desnt work.)
 """);		
 					break;
 				case "flutter-project":
@@ -522,6 +573,9 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					);
 					*/
 					break;
+					
+				 
+					
 					
 				default:
 					print("Invalid test\n");
@@ -593,29 +647,27 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 				if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
 					continue;
 				}
-				if (ww.windowstate.project.last_request == null) {
-					ww.updateErrors(null);					
-					return;
-				}
-				var req = ww.windowstate.project.last_request;
-				GLib.debug("checking errors editor for %s", ww.windowstate.file.targetName());
-				
-				if (req.errorByFile.has_key(ww.windowstate.file.targetName())) {
-					GLib.debug("calling update Error margs for  %s", ww.windowstate.file.targetName());		
-					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.targetName()));
-				} else {
-					ww.windowstate.code_editor_tab.updateErrorMarks(null);
+
+				ww.windowstate.updateErrorMarksAll();
 				 
-					GLib.debug("no errors in errrobyfile for  %s", ww.windowstate.file.targetName());		
-				}
-				
 				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
-				ww.updateErrors(req);
+				ww.updateErrors();
 				
 				
 			}
 		
 		}
+		public static  void showSpinner(bool state)
+		{
+			foreach (var win in BuilderApplication.windows) {
+				if (state) {
+					win.statusbar_compile_spinner.start();
+				}  else {
+					win.statusbar_compile_spinner.stop();
+				}
+			}
+		}
+		
 		
 		
 	 

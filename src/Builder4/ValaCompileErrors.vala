@@ -20,7 +20,7 @@
 
             // my vars (def)
         public Xcls_MainWindow window;
-        public GLib.ListStore notices;
+        public bool loaded;
 
         // ctor
         public Xcls_ValaCompileErrors()
@@ -29,6 +29,7 @@
             this.el = new Gtk.Popover();
 
             // my vars (dec)
+            this.loaded = false;
 
             // set gobject values
             this.el.width_request = 900;
@@ -40,45 +41,15 @@
         }
 
         // user defined functions
-        public void show ( GLib.ListStore ls , Gtk.Widget onbtn) {
-        
-            
-         	//this.el.present();
-            //this.el.popup();
-            this.notices = ls;
-           
-             //print("looking for %s\n", id);
-            // loop through parent childnre
-              
-            
-              this.tree.el.hide(); //<< very important!!!
-              
-           // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
-         
-            var win = this.window.el;
-            var  w = win.get_width();
-            var h = win.get_height();
-        
-          
-             
-            // left tree = 250, editor area = 500?
-            
-            // min 450?
-            var new_w = int.min(650, w-100);
-            if (new_w > (w-100)) {
-                new_w = w-100;
-            }
-            this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
-         
-        
-           // this.el.set_relative_to(onbtn);
-        	//Gtk.Allocation rect;
-        	//onbtn.get_allocation(out rect);
-            //this.el.set_pointing_to(rect);
-        	this.el.present();
-            this.el.popup();
-           
-         
+        public void updateNotices ( GLib.ListStore? ls) {
+        	GLib.debug("errors  : update");
+            if (ls == null || ls.get_n_items() < 1) {
+         	    GLib.debug("errors  : none available");
+            	return;
+        	}
+        	
+        	GLib.debug("Loading list into tree");
+        	this.tree.el.hide();
         	var tm = new Gtk.TreeListModel(
         		ls, //..... << that's our store..
         		false, // passthru
@@ -88,12 +59,63 @@
         			 return ((Palete.CompileError)item).lines;
         		
         		}
+        		
         	);
          
-            _this.model.el = tm;
-            _this.sortmodel.el.set_model(tm);
+        	_this.model.el = tm;
+        	_this.sortmodel.el.set_model(tm);
+        	 this.tree.el.show();
+        }
+        public void show (   ) {
+        	GLib.debug("errors  : show");
+        	
+        	if (_this.model.el.get_n_items()  < 1) {
+           
+         	    GLib.debug("errors  : none available");
+            	return;
+        	}
+         	//this.el.present();
+            //this.el.popup();
+            
+             //print("looking for %s\n", id);
+            // loop through parent childnre
+              
+            
+             ; //<< very important!!!
+              
+           // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
          
-                 this.tree.el.show();   
+            var win = this.window.el;
+            var  w = win.get_width();
+            var h = win.get_height();
+        
+           
+            // left tree = 250, editor area = 500?
+            
+            // min 450?
+            var new_w = int.min(650, w-100);
+            if (new_w > (w-100)) {
+                new_w = w-100;
+            }
+            GLib.debug("set size");
+            this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
+         
+        
+           // this.el.set_relative_to(onbtn);
+        	//Gtk.Allocation rect;
+        	//onbtn.get_allocation(out rect);
+            //this.el.set_pointing_to(rect);
+        	//this.el.present();
+        	
+        	GLib.debug("call popup");
+            this.el.popup();
+            // only need to load once.
+         	//if (!this.loaded) {
+         		 
+        		//this.loaded = true;
+        	 //}
+        	 
+               
            
            	//if (expand != null) {
             //	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
@@ -180,10 +202,10 @@
                 // set gobject values
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_2 = new Xcls_ColumnViewColumn8( _this );
+                var child_2 = new Xcls_ColumnViewColumn11( _this );
                 child_2.ref();
                 this.el.append_column ( child_2.el  );
-                var child_3 = new Xcls_GestureClick10( _this );
+                var child_3 = new Xcls_GestureClick13( _this );
                 child_3.ref();
                 this.el.add_controller(  child_3.el );
             }
@@ -237,7 +259,9 @@
                 _this = _owner;
                 _this.sortmodel = this;
                 new Xcls_model( _this );
-                this.el = new Gtk.SortListModel( _this.model.el, null );
+                var child_2 = new Xcls_TreeListRowSorter8( _this );
+                child_2.ref();
+                this.el = new Gtk.SortListModel( _this.model.el, child_2.el );
 
                 // my vars (dec)
 
@@ -292,9 +316,79 @@
             // user defined functions
         }
 
+        public class Xcls_TreeListRowSorter8 : Object
+        {
+            public Gtk.TreeListRowSorter el;
+            private Xcls_ValaCompileErrors  _this;
 
 
-        public class Xcls_ColumnViewColumn8 : Object
+                // my vars (def)
+
+            // ctor
+            public Xcls_TreeListRowSorter8(Xcls_ValaCompileErrors _owner )
+            {
+                _this = _owner;
+                var child_1 = new Xcls_StringSorter9( _this );
+                child_1.ref();
+                this.el = new Gtk.TreeListRowSorter( child_1.el );
+
+                // my vars (dec)
+
+                // set gobject values
+            }
+
+            // user defined functions
+        }
+        public class Xcls_StringSorter9 : Object
+        {
+            public Gtk.StringSorter el;
+            private Xcls_ValaCompileErrors  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_StringSorter9(Xcls_ValaCompileErrors _owner )
+            {
+                _this = _owner;
+                var child_1 = new Xcls_PropertyExpression10( _this );
+                child_1.ref();
+                this.el = new Gtk.StringSorter( child_1.el );
+
+                // my vars (dec)
+
+                // set gobject values
+            }
+
+            // user defined functions
+        }
+        public class Xcls_PropertyExpression10 : Object
+        {
+            public Gtk.PropertyExpression el;
+            private Xcls_ValaCompileErrors  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_PropertyExpression10(Xcls_ValaCompileErrors _owner )
+            {
+                _this = _owner;
+                this.el = new Gtk.PropertyExpression( typeof(Palete.CompileError), null, "linemsg" );
+
+                // my vars (dec)
+
+                // set gobject values
+            }
+
+            // user defined functions
+        }
+
+
+
+
+
+        public class Xcls_ColumnViewColumn11 : Object
         {
             public Gtk.ColumnViewColumn el;
             private Xcls_ValaCompileErrors  _this;
@@ -303,10 +397,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_ColumnViewColumn8(Xcls_ValaCompileErrors _owner )
+            public Xcls_ColumnViewColumn11(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
-                var child_1 = new Xcls_SignalListItemFactory9( _this );
+                var child_1 = new Xcls_SignalListItemFactory12( _this );
                 child_1.ref();
                 this.el = new Gtk.ColumnViewColumn( "Compile Result", child_1.el );
 
@@ -319,7 +413,7 @@
 
             // user defined functions
         }
-        public class Xcls_SignalListItemFactory9 : Object
+        public class Xcls_SignalListItemFactory12 : Object
         {
             public Gtk.SignalListItemFactory el;
             private Xcls_ValaCompileErrors  _this;
@@ -328,7 +422,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_SignalListItemFactory9(Xcls_ValaCompileErrors _owner )
+            public Xcls_SignalListItemFactory12(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.SignalListItemFactory();
@@ -378,16 +472,20 @@
                 	
                 	
                 	//GLib.debug("change  %s to %s", lbl.label, np.name);
-                	lbl.label = np.line_msg;
+                	lbl.label = np.linemsg;
                 	//lbl.tooltip_markup = np.to_property_option_tooltip();
                 	 
                     expand.set_hide_expander(  np.lines.n_items < 1);
                 	expand.set_list_row(lr);
                  
                  	// expand current file.
-                 	if (_this.window.windowstate.file.path == np.file.path) {
-                 		lr.expanded = true;
-                	}
+                 	// this causes problems? - critical errors?
+                 	// maybe do it on show
+                 	//if (_this.window.windowstate.file.path == np.file.path &&
+                 	//	np.line < 0) {
+                 	//	lr.expanded = true;
+                 	
+                	//}
                  	 
                  	// bind image...
                  	
@@ -398,7 +496,7 @@
         }
 
 
-        public class Xcls_GestureClick10 : Object
+        public class Xcls_GestureClick13 : Object
         {
             public Gtk.GestureClick el;
             private Xcls_ValaCompileErrors  _this;
@@ -407,7 +505,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_GestureClick10(Xcls_ValaCompileErrors _owner )
+            public Xcls_GestureClick13(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.GestureClick();
@@ -437,9 +535,9 @@
                 	}
                 	 
                 	 
-                    var fname  = ce.parent.file;
+                    var fname  = ce.file;
                   	var line = ce.line;  
-                    GLib.debug("open %s @ %d\n", ce.parent.file.path, ce.line);
+                    GLib.debug("open %s @ %d\n", ce.file.path, ce.line);
                     
                     
                    var  bjsf = "";
@@ -460,21 +558,19 @@
                         _this.window.windowstate.fileViewOpen(jsr, true, line);
                         
                         if (jsr.path == _this.window.windowstate.file.path) {
-                        	_this.el.hide();
-                    	}
                         
+                    	}
+                    	_this.el.hide();
                         
                         return;
                     
                     }
-                    try {
-                		var pf = JsRender.JsRender.factory("PlainFile", p, fname.path);
-                		_this.window.windowstate.fileViewOpen(pf, true, line);
-                    } catch (JsRender.Error e) {}
-                    // try hiding the left nav..
-                 
-                    return;
+                  
+                	var pf = p.getByPath(fname.path);
+                	_this.el.hide();
+                	_this.window.windowstate.fileViewOpen(pf, true, line);
                 
+                    
                 });
             }
 

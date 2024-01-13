@@ -14,6 +14,7 @@ int main (string[] args) {
 	var app =  BuilderApplication.singleton(  args);
 	  
     Gtk.init ();
+    GtkSource.init();
  
 	
 	// not sure why this was done?? - it caused crash bugs on gtk_Box_gadget so removed critical.

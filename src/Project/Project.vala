@@ -83,7 +83,12 @@ namespace Project {
 		 
 		private bool is_scanned = false; 
 		public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir ??? is this used by Roo?
-		 public Palete.ValaCompileRequest last_request = null;
+		//public Palete.ValaCompileRequest last_request = null; // depricated?
+		public Gee.HashMap<string,GLib.ListStore>? errorsByType = null;
+ 
+		
+		
+		protected Gee.HashMap<string,Palete.LanguageClient> language_servers;
 		
 		protected Project (string path) {
 			
@@ -96,8 +101,9 @@ namespace Project {
 			//XObject.extend(this, cfg);
 			//this.files = { }; 
 			this.path = path;
-			 
-			
+	 		this.language_servers = new Gee.HashMap<string,Palete.LanguageClient>();
+	 		this.language_servers.set("dummy", new Palete.LanguageClientDummy(this));
+			this.errorsByType = new  Gee.HashMap<string,GLib.ListStore>();
 			
 		}
 		 
@@ -116,7 +122,7 @@ namespace Project {
 				try {
 					dir.make_directory();
 				} catch(GLib.Error e) {
-					GLib.error("could not make builder directory");
+					GLib.error("could not make builder directory %s", e.message);
 				}
 				return;
 			}
@@ -595,10 +601,10 @@ namespace Project {
 	 
 	 
 	 
-		public JsRender.JsRender? getByName(string name)
+		public JsRender.JsRender? getByRelPath(string relpath)
 		{
 			foreach(var f in this.files.values) {
-				if (f.name == name) {
+				if (f.relpath == relpath || f.relTargetName() == relpath) {
 					return f;
 				}
 			};
@@ -611,7 +617,7 @@ namespace Project {
 		 
 			// keys are not paths...
 			foreach(var f in this.files.values) {
-				GLib.debug("check %s = %s ? %s", path, f.path, f.targetName());
+				//GLib.debug("check %s = %s ? %s", path, f.path, f.targetName());
 				if (f.path == path || f.targetName() == path) {
 					return f;
 				}
@@ -986,6 +992,50 @@ namespace Project {
 			}
 			return ret;
 		}
+		
+		public void updateErrorsforFile(JsRender.JsRender f) 
+		{
+			var n = this.updateErrorsByType(f, "WARN");
+			n += this.updateErrorsByType(f, "ERR");
+			n += this.updateErrorsByType(f, "DEPR");
+			
+			if (n > 0) {
+				BuilderApplication.updateCompileResults();
+			}
+			
+		}
+		public int  updateErrorsByType(JsRender.JsRender f, string n) 
+		{
+			var ls = this.getErrors(n);
+			
+			// remove thie file from the list.	
+			for(var i =0; i < ls.get_n_items(); i++) {
+				var ce = ls.get_item(i) as Palete.CompileError;
+				if (ce.file.path == f.path) {
+					ls.remove(i);
+					break;
+				}
+			}
+			var add = new Palete.CompileError.new_from_file(f, n);
+			if (add.hasErrors()) {
+				ls.append(add);
+				return 1;
+			}
+			return 0;
+		}
+		public GLib.ListStore getErrors(string n)
+		{
+			var ls = this.errorsByType.get(n);
+			if (ls == null) {
+				ls = new GLib.ListStore(typeof(Palete.CompileError));
+				this.errorsByType.set(n, ls );
+			}
+			return ls;
+		}
+		
+		
+		public abstract Palete.LanguageClient  getLanguageServer(string lang);
+		
 		
  		public abstract void onSave(); // write meson?
 		public abstract void initDatabase();

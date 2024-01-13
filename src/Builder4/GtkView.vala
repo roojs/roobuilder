@@ -328,6 +328,75 @@
             
              
         }
+        public void updateErrorMarks (string category) {
+        	
+         
+        
+        	var buf = _this.buffer.el;
+        	Gtk.TextIter start;
+        	Gtk.TextIter end;     
+        	buf.get_bounds (out start, out end);
+        
+        	buf.remove_source_marks (start, end, category);
+         
+        	GLib.debug("highlight errors");		 
+        
+        	 // we should highlight other types of errors..
+        
+         
+        
+        	 
+        	if (_this.file == null) {
+        		GLib.debug("file is null?");
+        		return;
+        
+        	}
+        	var ar = this.file.getErrors(category);
+        	if (ar == null || ar.get_n_items() < 1) {
+        		GLib.debug("higjlight %s has no errors", category);
+        		return;
+        	}
+         
+        
+         
+        	
+        	var offset = 0;
+        	 
+        
+        	var tlines = buf.get_line_count () +1;
+        	
+         
+        	 
+        	for (var i = 0; i < ar.get_n_items();i++) {
+        		var err = (Palete.CompileError) ar.get_item(i);
+        		
+        	     Gtk.TextIter iter;
+        //        print("get inter\n");
+        	    var eline = err.line - offset;
+        	    GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
+        	    	err.line ,eline, offset);
+        	    
+        	    
+        	    if (eline > tlines || eline < 0) {
+        	        return;
+        	    }
+        	   
+        	    
+        	    buf.get_iter_at_line( out iter, eline);
+        	   
+        	   
+        		var msg = "Line: %d %s : %s".printf(eline+1, err.category, err.msg);
+        	    buf.create_source_mark( msg, err.category, iter);
+        	    GLib.debug("set line %d to %s", eline, msg);
+        	    //this.marks.set(eline, msg);
+        	}
+        	return ;
+        
+        
+        
+         
+        
+        }
         public void scroll_to_line (int line) {
           // code preview...
            
@@ -745,23 +814,10 @@
                 
                 ((GtkSource.Buffer)(buf)) .set_language(lm.get_language(_this.file.language));
               
-                
-                Gtk.TextIter start;
-                Gtk.TextIter end;     
-                    
-                sbuf.get_bounds (out start, out end);
-                sbuf.remove_source_marks (start, end, null); // remove all marks..
-                
-                
-                if (_this.main_window.windowstate.last_compile_result != null) {
-                    var obj = _this.main_window.windowstate.last_compile_result;
-                    this.highlightErrorsJson("ERR", obj);
-                    this.highlightErrorsJson("WARN", obj);
-                    this.highlightErrorsJson("DEPR", obj);			
-                }
-                // while (Gtk.events_pending()) {
-                 //   Gtk.main_iteration();
-               // }
+                 
+               _this.main_window.windowstate.updateErrorMarksAll(); 
+               
+              
                 
                 this.loading = false; 
             }
@@ -823,80 +879,6 @@
                 
                 }
                 
-            
-            }
-            public void highlightErrorsJson (string type, Json.Object obj) {
-                  Gtk.TextIter start;
-                 Gtk.TextIter end;   
-                 
-                 var buf =  this.el.get_buffer();
-                   var sbuf = (GtkSource.Buffer)buf;
-                    buf.get_bounds (out start, out end);
-                    
-                    sbuf.remove_source_marks (start, end, type);
-                             
-                 
-                 // we should highlight other types of errors..
-                
-                if (!obj.has_member(type)) {
-                    GLib.debug("Return has no errors\n");
-                    return  ;
-                }
-                var err = obj.get_object_member(type);
-                
-                if (_this.file == null) { 
-            	
-                    return; // just in case the file has not loaded yet?
-                }
-             
-            
-                var valafn = "";
-                  try {             
-                       var  regex = new Regex("\\.bjs$");
-                    
-                     
-                        valafn = regex.replace(_this.file.path,_this.file.path.length , 0 , ".vala");
-                     } catch (GLib.RegexError e) {
-                        return;
-                    }   
-            
-               if (!err.has_member(valafn)) {
-                    GLib.debug("File path has no errors\n");
-                    return  ;
-                }
-                var lines = err.get_object_member(valafn);
-                
-               
-                
-                var tlines = buf.get_line_count () +1;
-                
-                lines.foreach_member((obj, line, node) => {
-                    
-                         Gtk.TextIter iter;
-                //        print("get inter\n");
-                        var eline = int.parse(line) -1  ;
-                        GLib.debug("GOT ERROR on line %s -- converted to %d\n", line,eline);
-                        
-                        
-                        if (eline > tlines || eline < 0) {
-                            return;
-                        }
-                        sbuf.get_iter_at_line( out iter, eline);
-                        //print("mark line\n");
-                        var msg  = type + " on line: %d - %s".printf(eline+1, valafn);
-                        var ar = lines.get_array_member(line);
-                        for (var i = 0 ; i < ar.get_length(); i++) {
-            		    msg += (msg.length > 0) ? "\n" : "";
-            		    msg += ar.get_string_element(i);
-            	    }
-                        
-                        
-                        sbuf.create_source_mark(msg, type, iter);
-                    } );
-                    return  ;
-                
-             
-            
             
             }
             public string toString () {

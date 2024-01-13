@@ -157,6 +157,30 @@ public class WindowState : Object
 		});
 		 
 	}
+	
+	public void updateErrorMarksAll() 
+	{
+		this.updateErrorMarks("ERR");
+		this.updateErrorMarks("WARN");
+		this.updateErrorMarks("DEPR");
+	
+	}
+	void updateErrorMarks(string cat) 
+	{
+		this.code_editor_tab.updateErrorMarks(cat);
+		switch(this.file.xtype) {
+			case  "Roo":
+				this.window_rooview.updateErrorMarks(cat);// foce scroll.
+				return;
+			case "Gtk":
+				this.window_gladeview.updateErrorMarks(cat);
+				return;
+			 default:
+			 	return;
+		}
+	}
+	
+	
 
 	public bool leftTreeBeforeChange()
 	{
@@ -361,13 +385,7 @@ public class WindowState : Object
 			}
 			//this.left_tree.model.updateSelected();
 			this.file.save();
-			if (this.file.project.xtype=="Gtk") {
-					BuilderApplication.valacompilequeue.addFile( 
-	 					Palete.ValaCompileRequestType.PROJECT, 
-	 					this.file, "", true ) ;
-			
-				//BuilderApplication.valasource.checkFileSpawn(this.file);
-			}
+			 
 		});
 	 
 
@@ -520,11 +538,7 @@ public class WindowState : Object
 			} else {
 				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
 			}
-			if (this.file.project.xtype=="Gtk") {
-				BuilderApplication.valacompilequeue.addFile( 
-	 					Palete.ValaCompileRequestType.PROJECT, 
-	 					this.file, "", false ) ;
-			}
+			 
 			
 			 // we do not need to call spawn... - as it's already called by the editor?
 			 
@@ -640,7 +654,7 @@ public class WindowState : Object
 		this.file = file;
 		BuilderApplication.updateWindows();
 		
-
+		file.getLanguageServer().document_open(file);
 			
 			
 		if (file.xtype == "PlainFile") {
@@ -659,14 +673,11 @@ public class WindowState : Object
 			 
 
 		}
-		BuilderApplication.updateCompileResults();
-		if (file.project.xtype == "Gtk" && file.project.last_request == null ) {
-				
-			BuilderApplication.valacompilequeue.addFile( 
-				Palete.ValaCompileRequestType.PROJECT, 
-				this.file, "" , true) ;
-			 
-		}
+
+		 
+
+
+
 		this.gotoLine(line);
 	
 		var ctr= this.win.rooviewbox.el;
@@ -709,7 +720,8 @@ public class WindowState : Object
 			//this.win.editpane.el.set_position(this.win.editpane.el.max_position);
 		}
 		this.win.setTitle();
-			 
+		
+		BuilderApplication.updateCompileResults();	 
 
 	}
  

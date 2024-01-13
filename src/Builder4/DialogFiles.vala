@@ -590,7 +590,7 @@
                  
                 	var lbl = (Gtk.Label)  ((Gtk.ListItem)listitem).get_child();
                 	   
-                	var item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();
+                	var item = (Project.Project)  ((Gtk.ListItem)listitem).get_item();
                 
                 	item.bind_property("name",
                                 lbl, "label",

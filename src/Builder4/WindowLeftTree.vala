@@ -1431,6 +1431,9 @@
             		
             		}
             	);
+            	if (_this.selmodel.el == null) {
+            		return this.el;
+            	}
             	_this.selmodel.el.set_model(this.el);
             	return this.el;
             }
@@ -1751,11 +1754,9 @@
 
                 //listeners
                 this.el.clicked.connect( ( ) => {
-                    
-                    print("ACTIVATE?");
-                    
-                  	_this.LeftTreeMenu.el.hide();
-                     _this.model.deleteSelected();
+                _this.LeftTreeMenu.el.hide();
+                 _this.model.deleteSelected();
+                _this.changed();
                 });
             }
 

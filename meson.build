@@ -24,12 +24,13 @@ deps = [
    dependency('json-glib-1.0'),
    dependency('gobject-introspection-1.0'),
    dependency('libvala-0.56'),
-   dependency('libadwaita-1'),
    dependency('libxml-2.0'),
    valac.find_library('posix'),
    dependency('roojspacker-1.4'),
    dependency('gtksourceview-5'),
    dependency('libgda-5.0'),
+   dependency('jsonrpc-glib-1.0'),
+   dependency('gio-unix-2.0'),
 
 ]
  
@@ -188,11 +189,14 @@ roobuilder_src = files([
    'src/Resources.vala',
    'src/Spawn.vala',
    'src/Application.vala',
-   'src/Palete/ValaCompileRequest.vala',
-   'src/Palete/ValaCompileQueue.vala',
    'src/Palete/Javascript.vala',
    'src/Project/Meson.vala',
    'src/Palete/RooDatabase.vala',
+   'src/Palete/LanguageClient.vala',
+   'src/Palete/LanguageClientVala.vala',
+   'src/Lsp.vala',
+   'src/Palete/LanguageClientDummy.vala',
+   'src/Palete/ValaCompileRequest.vala',
 ])
 
 roobuilder = executable('roobuilder',

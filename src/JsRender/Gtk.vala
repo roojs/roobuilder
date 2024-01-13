@@ -27,7 +27,7 @@ namespace JsRender {
 
 	    public Gtk(Project.Project project, string path) {
 	    
-	        aconstruct( project, path);
+	        base( project, path);
 	        this.xtype = "Gtk";
 	        this.language = "vala";
 	        
@@ -167,6 +167,7 @@ namespace JsRender {
 	        // this.saveJS(); - disabled at present.. project settings will probably enable this later..
 	
 	        this.saveVala();
+	        this.getLanguageServer().document_save(this);
 	    }
 		// ignore these calls.
 	    public override void saveHTML ( string html ) {}
@@ -269,7 +270,10 @@ namespace JsRender {
 		{
 			return  NodeToGlade.mungeFile(this);
 		}
-	  
+	  	public   override string language_id() 
+		{
+			return "vala";
+		}
 
 	
 

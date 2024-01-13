@@ -763,6 +763,9 @@
             "\t\t",
             "\t\t}",
             "\t);",
+            "\tif (_this.selmodel.el == null) {",
+            "\t\treturn this.el;",
+            "\t}",
             "\t_this.selmodel.el.set_model(this.el);",
             "\treturn this.el;",
             "}"
@@ -1426,12 +1429,10 @@
            "label" : "Delete Element",
            "listeners" : {
             "clicked" : [
-             "  ( ) => {",
-             "    ",
-             "    print(\"ACTIVATE?\");",
-             "    ",
-             "  \t_this.LeftTreeMenu.el.hide();",
-             "     _this.model.deleteSelected();",
+             " ( ) => {",
+             "_this.LeftTreeMenu.el.hide();",
+             " _this.model.deleteSelected();",
+             "_this.changed();",
              "}"
             ]
            },
