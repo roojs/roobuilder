@@ -381,6 +381,8 @@ namespace Palete {
 		) { 
 			
 			var ret =  new Gee.ArrayList<CompletionProposal>();
+			return ret;
+			/*
 			// completion rules??
 			
 			// Roo......
@@ -566,6 +568,7 @@ namespace Palete {
 			
 			
 			return ret;
+			*/
 		}
 		
 		

@@ -1,6 +1,5 @@
 {
  "build_module" : "builder",
- "gen_extended" : false,
  "items" : [
   {
    "# GtkSource.SearchContext searchcontext" : "null",
@@ -147,7 +146,7 @@
         "  ",
         "//this.el.completion.unblock_interactive();",
         "this.el.completion.select_on_show = true; // select",
-        "this.el.completion.remember_info_visibility\t = true;",
+        "//this.el.completion.remember_info_visibility\t = true;",
         "",
         "",
         "var attrs = new GtkSource.MarkAttributes();",
@@ -1085,5 +1084,10 @@
    ]
   }
  ],
- "name" : "Editor"
+ "modOrder" : "",
+ "name" : "Editor",
+ "parent" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/Editor.bjs",
+ "permname" : "",
+ "title" : ""
 }

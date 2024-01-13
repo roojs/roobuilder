@@ -23,7 +23,7 @@ namespace Lsp {
      * Defines how the host (editor) should sync document changes to the language server.
      */
     [CCode (default_value = "LSP_TEXT_DOCUMENT_SYNC_KIND_Unset")]
-    enum TextDocumentSyncKind {
+    public enum TextDocumentSyncKind {
         Unset = -1,
         /**
          * Documents should not be synced at all.
@@ -210,13 +210,13 @@ namespace Lsp {
      * An event describing a change to a text document. If range and rangeLength are omitted
      * the new text is considered to be the full content of the document.
      */
-    class TextDocumentContentChangeEvent : Object {
+    public class TextDocumentContentChangeEvent : Object {
         public Range? range    { get; set; }
         public int rangeLength { get; set; }
         public string text     { get; set; }
     }
 
-    enum MessageType {
+    public enum MessageType {
         /**
          * An error message.
          */
@@ -235,11 +235,11 @@ namespace Lsp {
         Log = 4
     }
 
-    class TextDocumentIdentifier : Object {
+    public class TextDocumentIdentifier : Object {
         public string uri { get; set; }
     }
 
-    class VersionedTextDocumentIdentifier : TextDocumentIdentifier {
+    public class VersionedTextDocumentIdentifier : TextDocumentIdentifier {
         /**
          * The version number of this document. If a versioned text document identifier
          * is sent from the server to the client and the file is not open in the editor
@@ -253,19 +253,19 @@ namespace Lsp {
         public int version { get; set; default = -1; }
     }
 
-    class TextDocumentPositionParams : Object {
+    public class TextDocumentPositionParams : Object {
         public TextDocumentIdentifier textDocument { get; set; }
         public Position position { get; set; }
     }
 
-    class ReferenceParams : TextDocumentPositionParams {
+    public class ReferenceParams : TextDocumentPositionParams {
         public class ReferenceContext : Object {
             public bool includeDeclaration { get; set; }
         }
         public ReferenceContext? context { get; set; }
     }
 
-    class Location : Object {
+    public class Location : Object {
         public string uri { get; set; }
         public Range range { get; set; }
 
@@ -280,22 +280,22 @@ namespace Lsp {
     }
 
     [CCode (default_value = "LSP_DOCUMENT_HIGHLIGHT_KIND_Text")]
-    enum DocumentHighlightKind {
+    public enum DocumentHighlightKind {
         Text = 1,
         Read = 2,
         Write = 3
     }
 
-    class DocumentHighlight : Object {
+    public class DocumentHighlight : Object {
         public Range range { get; set; }
         public DocumentHighlightKind kind { get; set; }
     }
 
-    class DocumentSymbolParams: Object {
+    public class DocumentSymbolParams: Object {
         public TextDocumentIdentifier textDocument { get; set; }
     }
 
-    class DocumentSymbol : Object, Json.Serializable {
+    public class DocumentSymbol : Object, Json.Serializable {
         private Vala.SourceReference? _source_reference;
         public string name { get; set; }
         public string? detail { get; set; }
@@ -371,7 +371,7 @@ namespace Lsp {
         }
     }
 
-    class SymbolInformation : Object {
+    public class SymbolInformation : Object {
         public string name { get; set; }
         public SymbolKind kind { get; set; }
         public Location location { get; set; }
@@ -386,7 +386,7 @@ namespace Lsp {
     }
 
     [CCode (default_value = "LSP_SYMBOL_KIND_Variable")]
-    enum SymbolKind {
+    public enum SymbolKind {
         File = 1,
         Module = 2,
         Namespace = 3,
@@ -415,7 +415,7 @@ namespace Lsp {
         TypeParameter = 26
     }
 
-    class CompletionList : Object, Json.Serializable {
+   	public class CompletionList : Object, Json.Serializable {
         public bool isIncomplete { get; set; }
         public Gee.List<CompletionItem> items { get; private set; default = new Gee.LinkedList<CompletionItem> (); }
 
@@ -450,7 +450,7 @@ namespace Lsp {
     }
 
     [CCode (default_value = "LSP_COMPLETION_TRIGGER_KIND_Invoked")]
-    enum CompletionTriggerKind {
+    public enum CompletionTriggerKind {
         /**
 	     * Completion was triggered by typing an identifier (24x7 code
 	     * complete), manual invocation (e.g Ctrl+Space) or via API.
@@ -469,12 +469,12 @@ namespace Lsp {
         TriggerForIncompleteCompletions = 3
     }
 
-    class CompletionContext : Object {
+    public class CompletionContext : Object {
         public CompletionTriggerKind triggerKind { get; set;}
         public string? triggerCharacter { get; set; }
     }
 
-    class CompletionParams : TextDocumentPositionParams {
+    public class CompletionParams : TextDocumentPositionParams {
         /**
          * The completion context. This is only available if the client specifies
          * to send this using `ClientCapabilities.textDocument.completion.contextSupport === true`
@@ -482,13 +482,13 @@ namespace Lsp {
         public CompletionContext? context { get; set; }
     }
 
-    enum CompletionItemTag {
+    public enum CompletionItemTag {
         // Render a completion as obsolete, usually using a strike-out.
         Deprecated = 1,
     }
 
     [CCode (default_value = "LSP_INSERT_TEXT_FORMAT_PlainText")]
-    enum InsertTextFormat {
+    public enum InsertTextFormat {
         /**
          * The primary text to be inserted is treated as a plain string.
          */
@@ -505,7 +505,7 @@ namespace Lsp {
         Snippet = 2,
     }
 
-    class CompletionItem : Object, Gee.Hashable<CompletionItem>, Json.Serializable {
+    public class CompletionItem : Object, Gee.Hashable<CompletionItem>, Json.Serializable {
         public string label { get; set; }
         public CompletionItemKind kind { get; set; }
         public string detail { get; set; }
@@ -555,7 +555,7 @@ namespace Lsp {
             if (version != null && (version.get_bool ("deprecated") || version.get_string ("deprecated_since") != null)) {
                 this.tags.add (CompletionItemTag.Deprecated);
                 this.deprecated = true;
-            }
+            }public
         }
 		*/
         /**
@@ -630,13 +630,32 @@ namespace Lsp {
 
             return node;
         }
+        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+        {
+        	if (property_name != "tags") {
+                return default_deserialize_property (property_name, out value, pspec, property_node);
+            }
+            if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+                warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+                return false;
+            }
 
-        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) {
-            error ("deserialization not supported");
-        }
+            var arguments = new Gee.ArrayList<CompletionItemTag>();
+
+            property_node.get_array ().foreach_element ((array, index, element) => {
+                try {
+                    arguments.add ((CompletionItemTag) Json.gvariant_deserialize (element, null).get_int32() );
+                } catch (Error e) {
+                    warning ("argument %u to command could not be deserialized: %s", index, e.message);
+                }
+            });
+
+            value.set_boxed (arguments);
+            return true;
+       }
     }
 
-    class MarkupContent : Object {
+    public class MarkupContent : Object {
         public string kind { get; set; }
         public string value { get; set; }
 
@@ -660,7 +679,7 @@ namespace Lsp {
     }
     
     [CCode (default_value = "LSP_COMPLETION_ITEM_KIND_Text")]
-    enum CompletionItemKind {
+    public enum CompletionItemKind {
         Text = 1,
         Method = 2,
         Function = 3,
@@ -691,21 +710,21 @@ namespace Lsp {
     /**
      * Capabilities of the client/editor for `textDocument/documentSymbol`
      */
-    class DocumentSymbolCapabilities : Object {
+    public class DocumentSymbolCapabilities : Object {
         public bool hierarchicalDocumentSymbolSupport { get; set; }
     }
 
     /**
      * Capabilities of the client/editor for `textDocument/rename`
      */
-    class RenameClientCapabilities : Object {
+    public class RenameClientCapabilities : Object {
         public bool prepareSupport { get; set; }
     }
 
     /**
      * Capabilities of the client/editor pertaining to language features.
      */
-    class TextDocumentClientCapabilities : Object {
+    public class TextDocumentClientCapabilities : Object {
         public DocumentSymbolCapabilities documentSymbol { get; set; default = new DocumentSymbolCapabilities ();}
         public RenameClientCapabilities rename { get; set; default = new RenameClientCapabilities (); }
     }
@@ -713,18 +732,18 @@ namespace Lsp {
     /**
      * Capabilities of the client/editor.
      */
-    class ClientCapabilities : Object {
+    public class ClientCapabilities : Object {
         public TextDocumentClientCapabilities textDocument { get; set; default = new TextDocumentClientCapabilities (); }
     }
 
-    class InitializeParams : Object {
+    public class InitializeParams : Object {
         public int processId { get; set; }
         public string? rootPath { get; set; }
         public string? rootUri { get; set; }
         public ClientCapabilities capabilities { get; set; default = new ClientCapabilities (); }
     }
 
-    class SignatureInformation : Object, Json.Serializable {
+    public class SignatureInformation : Object, Json.Serializable {
         public string label { get; set; }
         public MarkupContent documentation { get; set; }
 
@@ -760,7 +779,7 @@ namespace Lsp {
         }
     }
 
-    class SignatureHelp : Object, Json.Serializable {
+    public class SignatureHelp : Object, Json.Serializable {
         public Gee.Collection<SignatureInformation> signatures { get; set; default = new Gee.ArrayList<SignatureInformation> (); }
         public int activeSignature { get; set; }
         public int activeParameter { get; set; }
@@ -782,17 +801,17 @@ namespace Lsp {
         }
     }
 
-    class ParameterInformation : Object {
+    public class ParameterInformation : Object {
         public string label { get; set; }
         public MarkupContent documentation { get; set; }
     }
 
-    class MarkedString : Object {
+   public  class MarkedString : Object {
         public string language { get; set; }
         public string value { get; set; }
     }
 
-    class Hover : Object, Json.Serializable {
+    public class Hover : Object, Json.Serializable {
         public Gee.List<MarkedString> contents { get; set; default = new Gee.ArrayList<MarkedString> (); }
         public Range range { get; set; }
 
@@ -833,7 +852,7 @@ namespace Lsp {
     /**
      * A textual edit applicable to a text document.
      */
-    class TextEdit : Object {
+    public class TextEdit : Object {
         /**
          * The range of the text document to be manipulated. To insert
          * text into a document create a range where ``start === end``.
@@ -861,7 +880,7 @@ namespace Lsp {
      * {@link TextDocumentEdit} doesn’t need to sort the array of edits or do any kind
      * of ordering. However the edits must be non overlapping.
      */
-    class TextDocumentEdit : Object, Json.Serializable {
+    public class TextDocumentEdit : Object, Json.Serializable {
         /**
          * The text document to change.
          */
@@ -894,7 +913,7 @@ namespace Lsp {
         }
     }
 
-    abstract class CommandLike : Object, Json.Serializable {
+    public abstract class CommandLike : Object, Json.Serializable {
         /**
          * The identifier of the actual command handler.
          */
@@ -954,7 +973,7 @@ namespace Lsp {
         }
     }
 
-    class ExecuteCommandParams : CommandLike {
+    public class ExecuteCommandParams : CommandLike {
     }
 
     /**
@@ -966,7 +985,7 @@ namespace Lsp {
      * handle the command. The protocol currently doesn’t specify a set of
      * well-known commands.
      */
-    class Command : CommandLike {
+    public class Command : CommandLike {
         /**
          * The title of the command, like `save`.
          */
@@ -981,7 +1000,7 @@ namespace Lsp {
      * performance reasons the creation of a code lens and resolving should be done
      * in two stages.
      */
-    class CodeLens : Object {
+    public class CodeLens : Object {
         /**
          * The range in which this code lens is valid. Should only span a single
          * line.
@@ -994,13 +1013,13 @@ namespace Lsp {
         public Command? command { get; set; }
     }
     
-    class DocumentRangeFormattingParams : Object {
+    public class DocumentRangeFormattingParams : Object {
         public TextDocumentIdentifier textDocument { get; set; }
         public Range? range { get; set; }
         public FormattingOptions options { get; set; }
     }
 
-    class FormattingOptions : Object {
+    public class FormattingOptions : Object {
         public uint tabSize { get; set; }
         public bool insertSpaces { get; set; }
         public bool trimTrailingWhitespace { get; set; }
@@ -1008,14 +1027,14 @@ namespace Lsp {
         public bool trimFinalNewlines { get; set; }
     }
 
-    class CodeActionParams : Object {
+    public class CodeActionParams : Object {
         public TextDocumentIdentifier textDocument { get; set; }
         public Range range { get; set; }
         public CodeActionContext context { get; set; }
     }
 
 
-    class CodeActionContext : Object, Json.Serializable {
+    public class CodeActionContext : Object, Json.Serializable {
         public Gee.List<Diagnostic> diagnostics { get; set; default = new Gee.ArrayList<Diagnostic> (); }
         public string[]? only { get; set; }
 /*
@@ -1082,7 +1101,7 @@ namespace Lsp {
 	}
 
 
-    class CodeAction : Object, Json.Serializable {
+   public  class CodeAction : Object, Json.Serializable {
         public string title { get; set; }
         public string? kind { get; set; }
         public Gee.Collection<Diagnostic>? diagnostics { get; set; }
@@ -1109,7 +1128,7 @@ namespace Lsp {
         }
     }
 
-    class WorkspaceEdit : Object, Json.Serializable {
+    public class WorkspaceEdit : Object, Json.Serializable {
         public Gee.List<TextDocumentEdit>? documentChanges { get; set; }
 
         public Json.Node serialize_property (string property_name, GLib.Value value, GLib.ParamSpec pspec) {
@@ -1129,12 +1148,12 @@ namespace Lsp {
     }
 
     [Flags]
-    enum SymbolTags {
+    public enum SymbolTags {
         NONE,
         DEPRECATED
     }
 
-    class CallHierarchyItem : Object, Json.Serializable {
+    public class CallHierarchyItem : Object, Json.Serializable {
         public string name { get; set; }
         public SymbolKind kind { get; set; }
         public SymbolTags tags { get; set; }
@@ -1182,7 +1201,7 @@ namespace Lsp {
         */
     }
 
-    class CallHierarchyIncomingCall : Json.Serializable, Object {
+    public class CallHierarchyIncomingCall : Json.Serializable, Object {
         /**
          * The method that calls the query method.
          */
@@ -1203,7 +1222,7 @@ namespace Lsp {
         }
     }
 
-    class CallHierarchyOutgoingCall : Json.Serializable, Object {
+    public class CallHierarchyOutgoingCall : Json.Serializable, Object {
         /**
          * The method that the query method calls.
          */
@@ -1224,18 +1243,18 @@ namespace Lsp {
         }
     }
 
-    class InlayHintParams : Json.Serializable, Object {
+    public class InlayHintParams : Json.Serializable, Object {
         public TextDocumentIdentifier textDocument { get; set; }
         public Range range { get; set; }
     }
 
-    enum InlayHintKind {
+    public enum InlayHintKind {
         UNSET,
         TYPE,
         PARAMETER
     }
 
-    class InlayHint : Object {
+    public class InlayHint : Object {
         public Position position { get; set; }
         public string label { get; set; }
         public InlayHintKind kind { get; set; }
@@ -1244,7 +1263,7 @@ namespace Lsp {
         public bool paddingRight { get; set; }
     }
 
-    class TypeHierarchyItem : Object, Json.Serializable {
+   public  class TypeHierarchyItem : Object, Json.Serializable {
         /**
          * The name of this item
          */
