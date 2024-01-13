@@ -1754,11 +1754,9 @@
 
                 //listeners
                 this.el.clicked.connect( ( ) => {
-                    
-                    print("ACTIVATE?");
-                    
-                  	_this.LeftTreeMenu.el.hide();
-                     _this.model.deleteSelected();
+                _this.LeftTreeMenu.el.hide();
+                 _this.model.deleteSelected();
+                _this.changed();
                 });
             }
 

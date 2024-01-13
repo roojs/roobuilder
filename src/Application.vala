@@ -237,6 +237,13 @@
 					(dom, lvl, msg) => {
 
 					print("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
+					
+					if (dom== "GtkSourceView") { // seems to be some critical wanrings comming from gtksourceview related to insert?
+						return;
+					}
+					if (msg.contains("gdk_popup_present")) { // seems to be problems with the popup present on gtksourceview competion.
+						return;
+					}
 					if (BuilderApplication.opt_debug && lvl ==  GLib.LogLevelFlags.LEVEL_CRITICAL) {
 						GLib.error(msg);
 					}

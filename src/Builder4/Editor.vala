@@ -576,14 +576,21 @@
                 	
                  
                 	 
-                
-                       
+                /*
+                this is pretty flakey - triggers Gtk with  < 0 d
+                 var cp = new GtkSource.CompletionWords("test"); 
+                 cp.minimum_word_size  = 3;
+                 //cp.priority = 100; //?? does this do anything
+                 cp.proposals_batch_size  = 10;
+                 cp.scan_batch_size = 1000;
+                 
+                cp.register(_this.buffer.el);
+                this.el.completion.add_provider(cp);
+                */
                 this.el.completion.add_provider(new Palete.CompletionProvider(_this));
                   
-                this.el.completion.unblock_interactive();
+                //this.el.completion.unblock_interactive();
                 this.el.completion.select_on_show = true; // select
-                //this.el.completion.auto_complete_delay = 500;
-                
                 this.el.completion.remember_info_visibility	 = true;
                 
                 
@@ -1029,7 +1036,7 @@
                 		_this.search_entry.el.grab_focus();
                 	    return;
                 	}
-                    _this.view.el.show_completion();
+                    //_this.view.el.show_completion();
                    // print(event.key.keyval)
                     
                     return;

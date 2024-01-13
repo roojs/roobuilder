@@ -186,7 +186,7 @@
                  " ",
                  "\tvar lbl = (Gtk.Label)  ((Gtk.ListItem)listitem).get_child();",
                  "\t   ",
-                 "\tvar item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();",
+                 "\tvar item = (Project.Project)  ((Gtk.ListItem)listitem).get_item();",
                  "",
                  "\titem.bind_property(\"name\",",
                  "                lbl, \"label\",",

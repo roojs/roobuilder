@@ -97,7 +97,7 @@ namespace Palete {
  					(this.file.relpath + ":" + this.line.to_string("%09d")); 
 			}
 		}
-		public string line_msg {
+		public string linemsg {
 			set {}
 			owned  get {
 				return this.line == -1 ? 

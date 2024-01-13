@@ -89,8 +89,7 @@
             var  w = win.get_width();
             var h = win.get_height();
         
-          
-             
+           
             // left tree = 250, editor area = 500?
             
             // min 450?
@@ -203,10 +202,10 @@
                 // set gobject values
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_2 = new Xcls_ColumnViewColumn8( _this );
+                var child_2 = new Xcls_ColumnViewColumn11( _this );
                 child_2.ref();
                 this.el.append_column ( child_2.el  );
-                var child_3 = new Xcls_GestureClick10( _this );
+                var child_3 = new Xcls_GestureClick13( _this );
                 child_3.ref();
                 this.el.add_controller(  child_3.el );
             }
@@ -260,7 +259,9 @@
                 _this = _owner;
                 _this.sortmodel = this;
                 new Xcls_model( _this );
-                this.el = new Gtk.SortListModel( _this.model.el, null );
+                var child_2 = new Xcls_TreeListRowSorter8( _this );
+                child_2.ref();
+                this.el = new Gtk.SortListModel( _this.model.el, child_2.el );
 
                 // my vars (dec)
 
@@ -315,9 +316,79 @@
             // user defined functions
         }
 
+        public class Xcls_TreeListRowSorter8 : Object
+        {
+            public Gtk.TreeListRowSorter el;
+            private Xcls_ValaCompileErrors  _this;
 
 
-        public class Xcls_ColumnViewColumn8 : Object
+                // my vars (def)
+
+            // ctor
+            public Xcls_TreeListRowSorter8(Xcls_ValaCompileErrors _owner )
+            {
+                _this = _owner;
+                var child_1 = new Xcls_StringSorter9( _this );
+                child_1.ref();
+                this.el = new Gtk.TreeListRowSorter( child_1.el );
+
+                // my vars (dec)
+
+                // set gobject values
+            }
+
+            // user defined functions
+        }
+        public class Xcls_StringSorter9 : Object
+        {
+            public Gtk.StringSorter el;
+            private Xcls_ValaCompileErrors  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_StringSorter9(Xcls_ValaCompileErrors _owner )
+            {
+                _this = _owner;
+                var child_1 = new Xcls_PropertyExpression10( _this );
+                child_1.ref();
+                this.el = new Gtk.StringSorter( child_1.el );
+
+                // my vars (dec)
+
+                // set gobject values
+            }
+
+            // user defined functions
+        }
+        public class Xcls_PropertyExpression10 : Object
+        {
+            public Gtk.PropertyExpression el;
+            private Xcls_ValaCompileErrors  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_PropertyExpression10(Xcls_ValaCompileErrors _owner )
+            {
+                _this = _owner;
+                this.el = new Gtk.PropertyExpression( typeof(Palete.CompileError), null, "linemsg" );
+
+                // my vars (dec)
+
+                // set gobject values
+            }
+
+            // user defined functions
+        }
+
+
+
+
+
+        public class Xcls_ColumnViewColumn11 : Object
         {
             public Gtk.ColumnViewColumn el;
             private Xcls_ValaCompileErrors  _this;
@@ -326,10 +397,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_ColumnViewColumn8(Xcls_ValaCompileErrors _owner )
+            public Xcls_ColumnViewColumn11(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
-                var child_1 = new Xcls_SignalListItemFactory9( _this );
+                var child_1 = new Xcls_SignalListItemFactory12( _this );
                 child_1.ref();
                 this.el = new Gtk.ColumnViewColumn( "Compile Result", child_1.el );
 
@@ -342,7 +413,7 @@
 
             // user defined functions
         }
-        public class Xcls_SignalListItemFactory9 : Object
+        public class Xcls_SignalListItemFactory12 : Object
         {
             public Gtk.SignalListItemFactory el;
             private Xcls_ValaCompileErrors  _this;
@@ -351,7 +422,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_SignalListItemFactory9(Xcls_ValaCompileErrors _owner )
+            public Xcls_SignalListItemFactory12(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.SignalListItemFactory();
@@ -401,7 +472,7 @@
                 	
                 	
                 	//GLib.debug("change  %s to %s", lbl.label, np.name);
-                	lbl.label = np.line_msg;
+                	lbl.label = np.linemsg;
                 	//lbl.tooltip_markup = np.to_property_option_tooltip();
                 	 
                     expand.set_hide_expander(  np.lines.n_items < 1);
@@ -425,7 +496,7 @@
         }
 
 
-        public class Xcls_GestureClick10 : Object
+        public class Xcls_GestureClick13 : Object
         {
             public Gtk.GestureClick el;
             private Xcls_ValaCompileErrors  _this;
@@ -434,7 +505,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_GestureClick10(Xcls_ValaCompileErrors _owner )
+            public Xcls_GestureClick13(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.GestureClick();

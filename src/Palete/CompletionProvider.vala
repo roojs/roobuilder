@@ -1,5 +1,5 @@
  
-using Gtk;
+//using Gtk;
 
 // not sure why - but extending Gtk.SourceCompletionProvider seems to give an error..
 namespace Palete {
@@ -37,8 +37,8 @@ namespace Palete {
 		{
 			GLib.debug("compelte activate");
 			var  p = (CompletionProposal) proposal;
-			TextMark end_mark = null;
-			TextIter begin, end;
+			global::Gtk.TextMark end_mark = null;
+			global::Gtk.TextIter begin, end;
 
 			if (!context.get_bounds(out begin, out end)) {
 				return;
@@ -110,15 +110,11 @@ namespace Palete {
 		}
 
 		
-		public  void  populate (GtkSource.CompletionContext context)
-		{
-			GLib.debug("pupoulate normal");		
-		}
-
-		public  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable)
+	 
+		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable)
 		{
 			GLib.debug("pupoulate async");
-			TextIter begin, end;
+			global::Gtk.TextIter begin, end;
 			
 			if (context.get_bounds (out begin, out end)) {
 				yield this.file.getLanguageServer().completion(this.file, end.get_line(), end.get_line_offset());
@@ -141,7 +137,7 @@ namespace Palete {
 	 		var model = in_model;
 
 			var word = context.get_word();
-			if (model is FilterListModel) { 
+			if (model is global::Gtk.FilterListModel) { 
 				model = model.get_model ();
 			}
  
@@ -155,10 +151,10 @@ namespace Palete {
 				return;
 			}
 			 
-			var expression = new PropertyExpression(typeof(CompletionProposal), null, "word");
-			var filter = new StringFilter(expression);
+			var expression = new global::Gtk.PropertyExpression(typeof(CompletionProposal), null, "word");
+			var filter = new global::Gtk.StringFilter(expression);
 			filter.set_search( word);
-			var  filter_model = new FilterListModel(in_model, filter); 
+			var  filter_model = new global::Gtk.FilterListModel(in_model, filter); 
 			filter_model.set_incremental(true);
 			context.set_proposals_for_provider(this, filter_model); 
 		 

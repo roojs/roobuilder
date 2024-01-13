@@ -120,7 +120,6 @@ namespace Palete {
 				case "textDocument/publishDiagnostics":
 					this.onDiagnostic(return_value);
 					return;
-					break;
 				default: 
 					break;
 				 

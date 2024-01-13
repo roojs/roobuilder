@@ -69,6 +69,27 @@
                "* prop" : "model",
                "id" : "model",
                "xtype" : "TreeListModel"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "sorter",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "sorter",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "expression",
+                   "GLib.Type this_type" : "typeof(Palete.CompileError)",
+                   "string property_name" : "linemsg",
+                   "xtype" : "PropertyExpression"
+                  }
+                 ],
+                 "xtype" : "StringSorter"
+                }
+               ],
+               "xtype" : "TreeListRowSorter"
               }
              ],
              "xtype" : "SortListModel",
@@ -133,7 +154,7 @@
                "\t",
                "\t",
                "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
-               "\tlbl.label = np.line_msg;",
+               "\tlbl.label = np.linemsg;",
                "\t//lbl.tooltip_markup = np.to_property_option_tooltip();",
                "\t ",
                "    expand.set_hide_expander(  np.lines.n_items < 1);",
@@ -283,8 +304,7 @@
     "    var  w = win.get_width();",
     "    var h = win.get_height();",
     "",
-    "  ",
-    "     ",
+    "   ",
     "    // left tree = 250, editor area = 500?",
     "    ",
     "    // min 450?",
