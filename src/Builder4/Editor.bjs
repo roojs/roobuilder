@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# GtkSource.SearchContext searchcontext" : "null",
@@ -203,12 +204,7 @@
         "\tGtkSource.SpaceTypeFlags.ALL",
         ");",
         "this.el.get_space_drawer().set_enable_matrix(true);",
-        "/*",
-        "Gtk.SourceDrawSpacesFlags.LEADING + ",
-        "Gtk.SourceDrawSpacesFlags.TRAILING + ",
-        "Gtk.SourceDrawSpacesFlags.TAB + ",
-        "Gtk.SourceDrawSpacesFlags.SPACE",
-        "*/"
+        ""
        ],
        "* prop" : "child",
        "bool has_tooltip" : true,
@@ -225,9 +221,26 @@
          "$ Gee.HashMap<int,string>? xmarks" : "null",
          "$ xns" : "GtkSource",
          "$ xtype" : "Buffer",
+         "* init" : [
+          "{",
+          "\tvar buf = this.el;",
+          "\tbuf.create_tag (\"bold\", \"weight\", Pango.Weight.BOLD);",
+          "    buf.create_tag (\"type\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#204a87\");",
+          "    buf.create_tag (\"keyword\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#a40000\");",
+          "    buf.create_tag (\"text\", \"weight\", Pango.Weight.NORMAL, \"foreground\", \"#729fcf\");",
+          "    buf.create_tag (\"number\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#ad7fa8\");",
+          "    buf.create_tag (\"method\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#729fcf\");",
+          "    buf.create_tag (\"property\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#BC1F51\");",
+          "    buf.create_tag (\"variable\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#A518B5\");",
+          "",
+          "}",
+          ""
+         ],
          "* prop" : "buffer",
          "bool check_queued" : false,
          "bool enable_undo" : true,
+         "bool highlight_matching_brackets" : true,
+         "bool highlight_syntax" : true,
          "id" : "buffer",
          "int error_line" : "-1",
          "listeners" : {
@@ -1084,10 +1097,5 @@
    ]
   }
  ],
- "modOrder" : "",
- "name" : "Editor",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/Editor.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "Editor"
 }
