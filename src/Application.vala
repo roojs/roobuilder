@@ -413,15 +413,16 @@
 						//GLib.FileUtils.get_contents(oldfn, out oldstr);
 										
 						var outstr = file.toSourceCode();
-						
+						var bad = false;
 						// check line numbers:
 						var bits = outstr.split("\n");
 						var end = bits.length;
 						for(var i = 0;i < bits.length; i++) {
 							print("%i : %s\n", i+1 , bits[i]);
-							if (bits[i].has_prefix("/*") && !bits[i].has_prefix("/*%d*/".printf(i+1))) {
+							if (!bad && bits[i].has_prefix("/*") && !bits[i].has_prefix("/*%d*/".printf(i+1))) {
 								end = i + 5 > bits.length ? bits.length: i + 5;
-								print ("^^^^ mismatch");
+								print ("^^^^ mismatch\null");
+								bad = true;
 							}
 
 						
