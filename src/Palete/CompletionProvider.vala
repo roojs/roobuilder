@@ -123,7 +123,13 @@ namespace Palete {
 			global::Gtk.TextIter begin, end;
 			Lsp.CompletionList res;
 			if (context.get_bounds (out begin, out end)) {
-				yield this.file.getLanguageServer().completion(this.file, end.get_line(), end.get_line_offset(), 1, out res);
+				var line = end.get_line();
+				if (this.editor.prop != null) {
+					line += _this.prop.start_line;
+				}
+			
+			
+				yield this.file.getLanguageServer().completion(this.file, line, end.get_line_offset(), 1, out res);
 			} else {
 				res = null;
 			}
