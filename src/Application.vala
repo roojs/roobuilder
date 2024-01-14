@@ -429,6 +429,7 @@
 						}
 						if (bad) {
 							GLib.error("got bad file");
+						}
 						/*
 						if (outstr != oldstr) { 
 							
