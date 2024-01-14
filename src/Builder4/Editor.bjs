@@ -492,6 +492,7 @@
            "\tif (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
            "\t    GLib.debug(\"SAVE: ctrl-f  pressed\");",
            "\t\t_this.search_entry.el.grab_focus();",
+           "\t\t_this.search_entry.el.select_region(0,-1);",
            "\t    return;",
            "\t}",
            "    //_this.view.el.show_completion();",

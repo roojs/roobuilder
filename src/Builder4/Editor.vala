@@ -1045,6 +1045,7 @@
                 	if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
                 	    GLib.debug("SAVE: ctrl-f  pressed");
                 		_this.search_entry.el.grab_focus();
+                		_this.search_entry.el.select_region(0,-1);
                 	    return;
                 	}
                     //_this.view.el.show_completion();
