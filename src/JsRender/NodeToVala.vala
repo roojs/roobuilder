@@ -217,6 +217,11 @@ public class JsRender.NodeToVala : Object {
 	}
 	public void addLine(string str= "")
 	{
+		
+		if (str.contains("\n")) {
+			this.addMultiLine(str);
+			return;
+		}
 		this.cur_line++;
 		if (BuilderApplication.opt_bjs_compile != null) {
 			this.ret += "/*%d*/ ".printf(this.cur_line) + str + "\n";
