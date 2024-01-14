@@ -219,7 +219,7 @@ public class JsRender.NodeToVala : Object {
 	{
 		this.cur_line++;
 		if (BuilderApplication.opt_bjs_compile != null) {
-			this.ret += "/*%d*/ ".printf(this.cur_line-1) + str + "\n";
+			this.ret += "/*%d*/ ".printf(this.cur_line) + str + "\n";
 		} else {
 			this.ret += str + "\n";
 		}
