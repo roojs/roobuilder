@@ -404,16 +404,34 @@
 
 						file.loadItems();
 						var oldfn = file.targetName();
-						GLib.FileUtils.get_contents(oldfn, out oldstr);
+						
+						print("\n\n\n\nFile : %s\n", oldfn);
+						//GLib.FileUtils.get_contents(oldfn, out oldstr);
 										
 						var outstr = file.toSourceCode();
+						
+						// check line numbers:
+						var bits = outstr.split("\n");
+						var end = bits.length;
+						for(var i = 0;i < bits.length; i++) {
+							print("%i : %s\n", i+1 , bits[i]);
+							if (bits[i].has_prefix("/*") && !bits[i].has_prefix("/*%d*/".printf(i+1))) {
+								end = i + 5 > bits.length ? bits.length: i + 5;
+								print ("^^^^ mismatch");
+							}
+
+						
+						}
+						
+						/*
 						if (outstr != oldstr) { 
 							
 							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
 							print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
 							//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 						}
-						print("# Files match %s\n", file.name);
+*.*						*/
+						//print("# Files match %s\n", file.name);
 					}		
 				} catch (FileError e) {
 					GLib.debug("Got error %s", e.message);
@@ -431,10 +449,7 @@
 			if (file == null) {
 				// then compile them all, and compare them...
 				
-			
-			
-			
-			
+			 
 			
 				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
 			}
