@@ -532,7 +532,7 @@
 				ls.document_open(file);
 				
 				ls.syntax.begin(file, (obj,res) => {
-					ls.syntax.end(a);;
+					var ar  = ls.syntax.end(res);
 				
 				});
 				return false;
