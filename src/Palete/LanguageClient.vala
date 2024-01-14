@@ -346,7 +346,7 @@ namespace Palete {
  		public async Gee.ArrayList<Lsp.DocumentSymbol> syntax (JsRender.JsRender file) throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
-		 	GLib.debug("get syntax %s @ %d:%d", file.relpath);
+		 	GLib.debug("get syntax %s", file.relpath);
 			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
 		 	//ret = null;
 		    if (!this.isReady()) {
@@ -360,7 +360,7 @@ namespace Palete {
 					textDocument : this.buildDict (    ///TextDocumentItem;
 						uri: new GLib.Variant.string (file.to_url()),
 						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
-					), 
+					) 
 					 
 				),
 				null,
@@ -372,11 +372,11 @@ namespace Palete {
 			var json = Json.gvariant_serialize (return_value);
 			 
 			 
-			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
+
 						var ar = json.get_array();
 			for(var i = 0; i < ar.get_length(); i++ ) {
 				var add= Json.gobject_deserialize ( typeof (Lsp.DocumentSymbol),  ar.get_element(i)) as Lsp.DocumentSymbol;
-				ret.items.add( add);
+				ret.add( add);
 					 
 	 		}
 				retur retl ;
