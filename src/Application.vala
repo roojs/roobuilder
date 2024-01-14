@@ -531,7 +531,7 @@
 				 
 				ls.document_open(file);
 				
-				ls.syntax.begin(file, (a,b) => {
+				ls.syntax.begin(file, (obj,res) => {
 					ls.syntax.end(a);;
 				
 				});
