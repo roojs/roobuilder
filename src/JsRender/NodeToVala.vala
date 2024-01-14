@@ -218,8 +218,11 @@ public class JsRender.NodeToVala : Object {
 	public void addLine(string str= "")
 	{
 		this.cur_line++;
-		//this.ret += "/*%d*/ ".printf(this.cur_line-1) + str + "\n";
-		this.ret += str + "\n";
+		if (BuilderApplication.opt_bjs_compile != null) {
+			this.ret += "/*%d*/ ".printf(this.cur_line-1) + str + "\n";
+		} else {
+			this.ret += str + "\n";
+		}
 	}
 	public void addMultiLine(string str= "")
 	{
