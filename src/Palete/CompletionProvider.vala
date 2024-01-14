@@ -125,7 +125,7 @@ namespace Palete {
 			if (context.get_bounds (out begin, out end)) {
 				var line = end.get_line();
 				if (this.editor.prop != null) {
-					line += _this.prop.start_line;
+					line += _this.editor.prop.start_line;
 				}
 			
 			
