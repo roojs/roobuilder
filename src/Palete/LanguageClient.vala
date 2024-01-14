@@ -347,10 +347,10 @@ namespace Palete {
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get syntax %s @ %d:%d", file.relpath);
-		 	
+			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
 		 	//ret = null;
 		    if (!this.isReady()) {
-				return;
+				return ret;
 			}
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
