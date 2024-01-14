@@ -366,31 +366,31 @@ namespace Lsp {
             return node;
         }
 
-      public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
-        {
-        	if (property_name != "children") {
-                return default_deserialize_property (property_name, out value, pspec, property_node);
-            }
-            if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-                warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
-                return false;
-            }
+	  	public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+	    {
+	    	if (property_name != "children") {
+	            return default_deserialize_property (property_name, out value, pspec, property_node);
+	        }
+	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+	            return false;
+	        }
 
-            var arguments = new Gee.ArrayList<DocumentSymbol>();
+	        var arguments = new Gee.ArrayList<DocumentSymbol>();
 
-            property_node.get_array ().foreach_element ((array, index, element) => {
-                try {
-		            var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
+	        property_node.get_array ().foreach_element ((array, index, element) => {
+	            try {
+			        var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
 					arguments.add( add);
 
-                } catch (Error e) {
-                    warning ("argument %u to command could not be deserialized: %s", index, e.message);
-                }
-            });
+	            } catch (Error e) {
+	                warning ("argument %u to command could not be deserialized: %s", index, e.message);
+	            }
+	        });
 
-            value.set_boxed (arguments);
-            return true;
-       }
+	        value.set_boxed (arguments);
+	        return true;
+	   }
     }
 
     public class SymbolInformation : Object {
