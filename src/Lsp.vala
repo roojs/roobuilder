@@ -376,11 +376,13 @@ namespace Lsp {
                 return false;
             }
 
-            var arguments = new Gee.ArrayList<CompletionItemTag>();
+            var arguments = new Gee.ArrayList<DocumentSymbol>();
 
             property_node.get_array ().foreach_element ((array, index, element) => {
                 try {
-                    arguments.add ((CompletionItemTag) Json.gvariant_deserialize (element, null).get_int32() );
+		            var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
+					arguments.add( add);
+
                 } catch (Error e) {
                     warning ("argument %u to command could not be deserialized: %s", index, e.message);
                 }
