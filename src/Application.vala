@@ -400,6 +400,10 @@
 					var ar = cur_project.sortedFiles();
 					
 					foreach(var file in ar) {
+					
+						if (file is JsRender.PlainFile) {
+							continue;
+						}
 						string oldstr;
 
 						file.loadItems();
