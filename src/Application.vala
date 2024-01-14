@@ -420,7 +420,7 @@
 						for(var i = 0;i < bits.length; i++) {
 							print("%i : %s\n", i+1 , bits[i]);
 							if (!bad && bits[i].has_prefix("/*") && !bits[i].has_prefix("/*%d*/".printf(i+1))) {
-								end = i + 5 > bits.length ? bits.length: i + 5;
+								end = i + 5 > bits.length ? bits.length: (i + 5);
 								print ("^^^^ mismatch\null");
 								bad = true;
 							}
