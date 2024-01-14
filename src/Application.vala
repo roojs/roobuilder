@@ -530,6 +530,8 @@
 				// it's ready..
 				 
 				ls.document_open(file);
+				
+				ls.syntax(file);
 				return false;
 				
 			});
