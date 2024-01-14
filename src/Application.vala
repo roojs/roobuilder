@@ -531,7 +531,10 @@
 				 
 				ls.document_open(file);
 				
-				ls.syntax(file);
+				ls.syntax.begin(file, (a,b) => {
+				
+				
+				});
 				return false;
 				
 			});
