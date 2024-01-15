@@ -102,12 +102,16 @@ namespace Palete {
 			  	GLib.debug("Server has been started its shutting down process");
 			  	return false;
 			}
+			if (this.subprocess.get_if_exited()) {
+				this.initialized = false;
+				this.
+			
 			return true;
 		}
 		
 		
 		public abstract  void initialize_server();
-		
+		public abstract  void startServer();
 		//public abstract   void  initialize_server()  ;
 		 
 		protected bool initialized = false;
