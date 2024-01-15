@@ -165,7 +165,9 @@ namespace Palete {
 		}
 		
 		public void cancel() {
-			Posix.kill(this.compiler.pid, 9);
+			if (this.compiler != null && this.compiler.pid > 0) {
+				Posix.kill(this.compiler.pid, 9);
+			}
 			this.compiler = null;
 			this.deleteTemp();
 		}
@@ -289,7 +291,7 @@ namespace Palete {
 			var cn = "/proc/%d/task/%d/children".printf(pid,pid);
 			if (!FileUtils.test(cn, GLib.FileTest.EXISTS)) {
 				GLib.debug("%s doesnt exist - killing %d", cn, pid);
-				Posix.kill(pid, 9);
+				 Posix.kill(pid, 9);
 				return;
 			}
 			string cpids = "";
@@ -305,10 +307,10 @@ namespace Palete {
 				// skip
 			}
 			GLib.debug("killing %d", pid);	
-			Posix.kill(pid, 9);
+			//Posix.kill(pid, 9);
 		}
 		
-		int terminal_pid = 0;
+		public int terminal_pid = 0;
 		public void execResult()
 		{
 			  	
@@ -327,8 +329,7 @@ namespace Palete {
 			if (!GLib.FileUtils.test(gdb_cfg, GLib.FileTest.EXISTS)) {
 				pr.writeFile("build/.gdb-script", "set debuginfod enabled off\nr");
 			}
-			
-			
+			 
 			
 			string[] args = "/usr/bin/gnome-terminal --disable-factory --wait -- /usr/bin/gdb -x".split(" ");
 
