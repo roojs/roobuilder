@@ -107,7 +107,7 @@ namespace Palete {
 			  	return false;
 			}
 			// restart server..
-			if (this.subprocess != null && this.subprocess.pid > 0 && this.subprocess.get_if_exited()) {
+			if (this.subprocess != null  && this.subprocess.get_if_exited()) {
 				GLib.debug("server stopped = restarting");
 				this.initialized = false;
 				this.startServer();
