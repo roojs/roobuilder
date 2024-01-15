@@ -320,9 +320,9 @@ namespace Palete {
 			var pr = (Project.Gtk) this.file.project;
 			var cg =  pr.compilegroups.get(exe);
 			
-			var exec = pr.path + "/build/" + exe;
-			if (!GLib.FileUtils.test(exec, GLib.FileTest.EXISTS)) {
-				GLib.debug("Missing output file: %s\n",exec);
+			var exbin = pr.path + "/build/" + exe;
+			if (!GLib.FileUtils.test(exbin, GLib.FileTest.EXISTS)) {
+				GLib.debug("Missing output file: %s\n",exbin);
 				return;
 			}
 			var gdb_cfg = pr.path + "/build/.gdb-script";
@@ -335,7 +335,7 @@ namespace Palete {
 
 			args+= gdb_cfg;
  
-			args += exec;
+			args += exbin;
 			if (cg.execute_args.length > 0) {
    			 	args+= "--args";
 				var aa = cg.execute_args.split(" ");
