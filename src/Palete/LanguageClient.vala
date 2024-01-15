@@ -220,7 +220,10 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
-							GLib.debug ("LS send close");
+			if (this.open_files.contains(file)) {
+				this.open_files.remove(file);
+			}
+			GLib.debug ("LS send close");
 	 		try {
 				  this.jsonrpc_client.send_notification  (
 					"textDocument/didChange",
