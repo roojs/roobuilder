@@ -1433,6 +1433,7 @@
 
                 // my vars (def)
             public Xcls_ValaCompileErrors popup;
+            public Palete.ValaCompileRequest? last_request;
 
             // ctor
             public Xcls_statusbar_run(Xcls_MainWindow _owner )
@@ -1442,6 +1443,7 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
+                this.last_request = null;
 
                 // set gobject values
                 this.el.icon_name = "media-playback-start";
@@ -1460,14 +1462,21 @@
                     	return;
                 	}
                 	
-                	var req = new Palete.ValaCompileRequest(
+                	if (this.last_request != null) {
+                		this.last_request.cancel();
+                		if (this.last_request.terminal_pid > 0) {
+                			this.last_request.killChildren(this.last_request.terminal_pid);
+                		}
+                	}
+                	
+                	this.last_request= new Palete.ValaCompileRequest(
                 		Palete.ValaCompileRequestType.RUN,
                 		_this.windowstate.file,
                 		null,
                 		null,
                 		""
                 	);
-                	req.run();
+                	this.last_request.run();
                 	 
                 	_this.windowstate.compile_results.el.set_parent(this.el);
                 	_this.windowstate.compile_results.show(this.el,true);

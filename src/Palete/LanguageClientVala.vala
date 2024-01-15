@@ -35,6 +35,7 @@ namespace Palete {
 				this.initialized = true;
 			} catch (GLib.Error e) {
 				GLib.debug ("LS replied with error %s", e.message);
+				this.closed = true;
 			}
 			
 		}

@@ -37,6 +37,11 @@ namespace Palete {
 			this.launcher.set_environ(GLib.Environ.get());
 			try {
 				this.subprocess = launcher.spawnv ({ process_path });
+				
+				this.subprocess.wait_async.begin( null, ( obj,res ) => {
+					this.subprocess.wait_async.end(res);
+					this.closed = true;
+				});
 				var input_stream = this.subprocess.get_stdout_pipe ();
 		   		var output_stream = this.subprocess.get_stdin_pipe ();
  
@@ -88,6 +93,8 @@ namespace Palete {
 				});
 				 
 				this.jsonrpc_client.failed.connect(() => {
+					this.closed = true;
+					
 					GLib.debug("language server server has failed");
 				});
 
@@ -107,9 +114,11 @@ namespace Palete {
 			  	return false;
 			}
 			// restart server..
-			if (this.subprocess != null  && this.subprocess.get_if_exited()) {
+
+			if (this.closed) {
 				GLib.debug("server stopped = restarting");
 				this.initialized = false;
+				this.closed = false;
 				this.startServer();
 				foreach(var f in this.open_files) {
 					this.document_open(f);
@@ -127,6 +136,7 @@ namespace Palete {
 		 
 		protected bool initialized = false;
 		bool sent_shutdown = false;
+		protected bool closed =  false;
 		
 		
 		public void onNotification(string method, Variant? return_value)
@@ -152,6 +162,7 @@ namespace Palete {
 			var f = this.project.getByPath(dg.filename);
 			if (f == null) {
 				GLib.debug("no file %s", dg.uri);
+				this.project.updateErrorsforFile(null);
 				return;
 			}
 			foreach(var v in f.errorsByType.values) {

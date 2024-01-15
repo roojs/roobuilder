@@ -235,7 +235,7 @@ public class Spawn : Object
 				this.ctx = null;
 			}
 			this.tidyup();
-			//print("DONE TIDYUP");
+			GLib.debug("DONE TIDYUP - calling complete");
 			
 			this.complete(this.result, this.output, this.stderr);
 			

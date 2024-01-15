@@ -993,15 +993,16 @@ namespace Project {
 			return ret;
 		}
 		
-		public void updateErrorsforFile(JsRender.JsRender f) 
+		public void updateErrorsforFile(JsRender.JsRender? f) 
 		{
-			var n = this.updateErrorsByType(f, "WARN");
-			n += this.updateErrorsByType(f, "ERR");
-			n += this.updateErrorsByType(f, "DEPR");
-			
-			if (n > 0) {
-				BuilderApplication.updateCompileResults();
+			if (f != null)  {
+				var n = this.updateErrorsByType(f, "WARN");
+				n += this.updateErrorsByType(f, "ERR");
+				n += this.updateErrorsByType(f, "DEPR");
 			}
+
+			BuilderApplication.updateCompileResults();
+			
 			
 		}
 		public int  updateErrorsByType(JsRender.JsRender f, string n) 

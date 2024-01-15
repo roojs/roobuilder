@@ -94,7 +94,7 @@ public class Vala.CCodeCompiler {
 		}
 
 		if (context.verbose_mode) {
-			stdout.printf ("%s\n", cmdline);
+			//stdout.printf ("%s\n", cmdline);
 		}
 
 		int exit_status = 0;

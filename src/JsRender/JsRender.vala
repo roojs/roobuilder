@@ -341,11 +341,14 @@ namespace JsRender {
 				 GLib.debug("Width %d, Height %d", widget.get_width(), widget.get_height()); 
 				 p.snapshot(s, widget.get_width(), widget.get_height());
 				 var n = s.free_to_node();
+				 if (n == null) {
+				 	return;
+			 	}
 				 var r = new  Gsk.CairoRenderer();
 				 r.realize(null);
 				 var t = r.render_texture(n,null);
 				 GLib.debug("write to %s", filename);
-				t.save_to_png(filename);
+				 t.save_to_png(filename);
 				 r.unrealize();
 					 
 			
