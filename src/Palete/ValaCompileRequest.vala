@@ -271,8 +271,7 @@ namespace Palete {
 			var contents = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
 			
 		 	Javascript.singleton().validate(contents, this.file );
-			
-		 	
+			 
 			 
 			BuilderApplication.showSpinner(false);
 			BuilderApplication.updateCompileResults();
