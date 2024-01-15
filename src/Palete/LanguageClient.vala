@@ -106,9 +106,14 @@ namespace Palete {
 			  	GLib.debug("Server has been started its shutting down process");
 			  	return false;
 			}
+			// restart server..
 			if (this.subprocess.get_if_exited()) {
+				GLib.debug("server stopped = restarting");
 				this.initialized = false;
 				this.startServer();
+				for(var f in this.open_files) {
+					this.document_open(f);
+				}
 				 
 			}
 			
