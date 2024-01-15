@@ -655,7 +655,7 @@ public class WindowState : Object
 		BuilderApplication.updateWindows();
 		
 		file.getLanguageServer().document_open(file);
-			
+		BuilderApplication.showSpinner(true);	
 			
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();
@@ -673,10 +673,7 @@ public class WindowState : Object
 			 
 
 		}
-
-		 
-
-
+ 
 
 		this.gotoLine(line);
 	
