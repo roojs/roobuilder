@@ -168,6 +168,10 @@ namespace Palete {
 			if (!this.isReady()) {
 				return;
 			}
+			if (!this.open_files.contains(file)) {
+				this.open_files.add(file);
+			}
+			
 			GLib.debug ("LS sent open");			 
  			try {
 				this.jsonrpc_client.send_notification (
