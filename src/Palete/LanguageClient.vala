@@ -105,7 +105,7 @@ namespace Palete {
 			if (this.subprocess.get_if_exited()) {
 				this.initialized = false;
 				this.startServer();
-				return false;
+				 
 			}
 			
 			return true;
