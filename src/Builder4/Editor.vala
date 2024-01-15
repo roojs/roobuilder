@@ -1049,6 +1049,10 @@
                 		_this.search_entry.el.select_region(0,-1);
                 	    return;
                 	}
+                	if (keyval == Gdk.Key.Space && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+                		_this.view.el.show_completion();
+                	}
+                
                     //_this.view.el.show_completion();
                    // print(event.key.keyval)
                     
