@@ -320,7 +320,7 @@ namespace Palete {
 			var pr = (Project.Gtk) this.file.project;
 			var cg =  pr.compilegroups.get(exe);
 			
-			if (!GLib.FileUtils.test(this.project.path + "/build/" + exe, GLib.FileTest.EXISTS)) {
+			if (!GLib.FileUtils.test(pr.path + "/build/" + exe, GLib.FileTest.EXISTS)) {
 				print("Missing output file: %s\n",this.project.path + "/build/" + );
 				return;
 			}
