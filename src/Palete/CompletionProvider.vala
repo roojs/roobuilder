@@ -116,7 +116,7 @@ namespace Palete {
 
 		
 	 
-		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable)
+		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable) 
 		{
 			GLib.debug("pupoulate async");
 
