@@ -15,7 +15,7 @@ namespace Palete {
 	
 		public Project.Project project;
 		private GLib.SubprocessLauncher launcher;
-		private GLib.Subprocess subprocess;
+		private GLib.Subprocess? subprocess = null;
 		private IOStream subprocess_stream;
 	    public Jsonrpc.Client? jsonrpc_client = null;
 		
@@ -107,7 +107,7 @@ namespace Palete {
 			  	return false;
 			}
 			// restart server..
-			if (this.subprocess.get_if_exited()) {
+			if (this.subprocess != null && this.subprocess.get_if_exited()) {
 				GLib.debug("server stopped = restarting");
 				this.initialized = false;
 				this.startServer();
