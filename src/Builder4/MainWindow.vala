@@ -1295,6 +1295,7 @@
                   //    this.popup.el.set_transient_for( _this.el );
                     this.popup.el.set_parent(this.el);
                 }
+             
             	this.popup.updateNotices(nots);
             	 
             }
