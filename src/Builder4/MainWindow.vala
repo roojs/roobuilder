@@ -1275,7 +1275,7 @@
 
             // user defined functions
             public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
-                
+                BuilderApplication.showSpinner(false);
                  if (nots.get_n_items() < 1 ) {
                 	this.el.hide();
                 	if (this.popup != null) {
@@ -1445,6 +1445,7 @@
                 // set gobject values
                 this.el.icon_name = "media-playback-start";
                 this.el.label = "Run";
+                this.el.visible = false;
 
                 //listeners
                 this.el.clicked.connect( () => {

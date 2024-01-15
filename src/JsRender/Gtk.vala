@@ -167,6 +167,7 @@ namespace JsRender {
 	        // this.saveJS(); - disabled at present.. project settings will probably enable this later..
 	
 	        this.saveVala();
+	        BuilderApplication.showSpinner(true);
 	        this.getLanguageServer().document_save(this);
 	    }
 		// ignore these calls.

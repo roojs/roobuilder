@@ -517,7 +517,7 @@
            "xtype" : "Button",
            "| void setNotices" : [
             "(GLib.ListStore nots, GLib.ListStore fe ) {",
-            "    ",
+            "    BuilderApplication.showSpinner(false);",
             "     if (nots.get_n_items() < 1 ) {",
             "    \tthis.el.hide();",
             "    \tif (this.popup != null) {",
@@ -644,6 +644,7 @@
           {
            "$ xns" : "Gtk",
            "Xcls_ValaCompileErrors popup" : "",
+           "bool visible" : false,
            "id" : "statusbar_run",
            "listeners" : {
             "clicked" : [
