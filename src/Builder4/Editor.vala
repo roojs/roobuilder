@@ -833,6 +833,7 @@
                      var  oldcode =_this.file.toSource();
                     _this.file.setSource(str);
                     _this.file.getLanguageServer().document_change(_this.file);
+            	    BuilderApplication.showSpinner(true);
                     _this.file.setSource(oldcode);
                     
             		 
