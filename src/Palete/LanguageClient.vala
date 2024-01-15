@@ -111,7 +111,7 @@ namespace Palete {
 				GLib.debug("server stopped = restarting");
 				this.initialized = false;
 				this.startServer();
-				for(var f in this.open_files) {
+				foreach(var f in this.open_files) {
 					this.document_open(f);
 				}
 				 
