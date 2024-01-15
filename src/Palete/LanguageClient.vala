@@ -19,10 +19,14 @@ namespace Palete {
 		private IOStream subprocess_stream;
 	    public Jsonrpc.Client? jsonrpc_client = null;
 		
+		Gee.ArrayList<JsRender.JsRender> open_files;
+		
+		
 		protected LanguageClient(Project.Project project)
 		{
 			// extend versions will proably call initialize to start and connect to server.
 			this.project = project;
+			this.open_files = new 	Gee.ArrayList<JsRender.JsRender>();
 			
 		
 		}
