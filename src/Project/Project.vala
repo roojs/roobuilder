@@ -858,7 +858,7 @@ namespace Project {
 
 			
 			file.remove();
-			this.onSave();
+			this.save();
 			
 			// remove it from 
 			
