@@ -122,9 +122,9 @@ namespace JsRender {
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
 		
-		private  GLib.Icon? _icon = null
+		private  GLib.Icon? _icon = null;
 		public GLib.Icon? icon { 
-			private set; 
+			private set {}
 			get {
 				if (this._icon !== null) {
 					return this._icon;
@@ -133,7 +133,7 @@ namespace JsRender {
 				if (this.path == "") {
 					return null;
 				}
-				if (!GLib.FileUtils.test(this.path,GLib.FileTest.EXISTS) {
+				if (!GLib.FileUtils.test(this.path, GLib.FileTest.EXISTS)) {
 					return null;
 				}
 				this._icon = File.new_for_path(this.path).query_info("standard::icon",GLib.FileQueryInfoFlags.NONE).get_icon();
