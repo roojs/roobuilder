@@ -123,6 +123,7 @@ namespace JsRender {
 		public signal void compile_notice(string type, string file, int line, string message);
 		
 		private  GLib.Icon? _icon = null;
+		
 		public GLib.Icon? icon { 
 			private set {}
 			get {
@@ -137,7 +138,7 @@ namespace JsRender {
 					return null;
 				}
 				this._icon = File.new_for_path(this.path).query_info("standard::icon",GLib.FileQueryInfoFlags.NONE).get_icon();
-				return this._icon
+				return this._icon;
 			}
 		}
 		
