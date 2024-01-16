@@ -365,6 +365,13 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return;
 			}
+			
+			if (this.change_queue_file != null && this.change_queue_file.path != file.path) {
+ 				this.document_change_real(this.change_queue_file);
+ 				this.change_queue_file != null
+			}
+			
+			
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
 				"textDocument/completion",
