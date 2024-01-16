@@ -1213,7 +1213,12 @@
                  
                 	this.css = new Gtk.CssProvider();
                  
-                	this.css.load_from_string("#file-list { font-size: 12px;}");
+                	this.css.load_from_string("
+                #file-list { font-size: 12px;}
+                #file-list indent {
+                -gtk-icon-size : 2px;
+                }
+                ");
                 
                 	Gtk.StyleContext.add_provider_for_display(
                 		this.el.get_display(),
