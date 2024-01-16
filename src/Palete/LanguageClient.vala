@@ -20,8 +20,10 @@ namespace Palete {
 	    public Jsonrpc.Client? jsonrpc_client = null;
 		
 		Gee.ArrayList<JsRender.JsRender> open_files;
-		
-		
+		JsRender.JsRender? change_queue_file = null;
+		string change_queue_str = "";
+		uint change_queue_id = 0;
+		this.countdown = 0;
 		protected LanguageClient(Project.Project project)
 		{
 			// extend versions will proably call initialize to start and connect to server.
