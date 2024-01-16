@@ -30,7 +30,7 @@ namespace Palete {
 			// extend versions will proably call initialize to start and connect to server.
 			this.project = project;
 			this.open_files = new 	Gee.ArrayList<JsRender.JsRender>();
-		 	this change_queue_id = GLib.Timeout.add_seconds(1, () => {
+		 	this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
 		 		if (this.change_queue_file == null) {
 					return true;
 				}
