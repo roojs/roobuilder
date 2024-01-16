@@ -27,7 +27,18 @@ namespace Palete {
 			// extend versions will proably call initialize to start and connect to server.
 			this.project = project;
 			this.open_files = new 	Gee.ArrayList<JsRender.JsRender>();
-			
+		 	this change_queue_id = GLib.Timeout.add_seconds(1, () => {
+		 		if (this.change_queue_file == null) {
+					return true;
+				}
+				this.countdown--;
+				if (this.countdown < 0){
+					this.document_change_real(this.change_queue_file, this.change_queue_str);
+					this.change_queue_file = null;
+					this.change_queue_str = "";
+				}
+				return true;
+			});
 		
 		}
 		 
@@ -257,11 +268,14 @@ namespace Palete {
 
          
     	}
+
  		public    void document_change (JsRender.JsRender file)  
     	{
    			if (!this.isReady()) {
 				return;
 			}
+			     
+			
 			GLib.debug ("LS send change");
 			var ar = new Json.Array();
 			var obj = new Json.Object();
