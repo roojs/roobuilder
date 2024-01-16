@@ -126,7 +126,7 @@ namespace JsRender {
 		public GLib.Icon? icon { 
 			private set {}
 			get {
-				if (this._icon !== null) {
+				if (this._icon !=  null) {
 					return this._icon;
 				}
 				
