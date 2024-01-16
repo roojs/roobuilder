@@ -122,7 +122,7 @@ namespace JsRender {
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
 		
-		public GLib.Icon icon { set; get; default = null; }
+		public GLib.Icon? icon { set; get; default = null; }
 		
 		/**
 		 * UI componenets
