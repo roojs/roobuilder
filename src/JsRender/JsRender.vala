@@ -122,7 +122,7 @@ namespace JsRender {
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
 		
-
+		public GLib.Icon icon { set; get; default = null; }
 		
 		/**
 		 * UI componenets
@@ -171,10 +171,10 @@ namespace JsRender {
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
 			this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
+			
+			this.icon = File.new_for_path(this.path).query_info("standard::icon",0).get_icon();
+			
 
-			if (this.relpath == "src/Lsp.vala") {
-				GLib.debug("got testing lsp");
-			}
 
 		}
 		
