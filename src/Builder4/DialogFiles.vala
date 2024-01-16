@@ -1622,7 +1622,9 @@
                 	 
                 	expand.set_indent_for_depth(true);
                 	expand.set_indent_for_icon(true);
-                	 
+                	var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
+                	var icon = new Gtk.Image();
+                	icon.margin_end = 4;
                 	var lbl = new Gtk.Label("");
                 	lbl.use_markup = true;
                 	
@@ -1630,8 +1632,9 @@
                  	lbl.justify = Gtk.Justification.LEFT;
                  	lbl.xalign = 0;
                 
-                 
-                	expand.set_child(lbl);
+                 	hbox.append(icon);
+                	hbox.append(lbl);
+                	expand.set_child(hbox);
                 	((Gtk.ListItem)listitem).set_child(expand);
                 	((Gtk.ListItem)listitem).activatable = false;
                 });
