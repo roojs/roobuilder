@@ -1599,7 +1599,45 @@
         }
         public class Xcls_SignalListItemFactory43 : Object
         {
-            public Gtk.SignalListItemFactory el;
+            public (listitem) => {
+	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+	
+	
+	
+	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+	  
+ 
+	var lbl = (Gtk.Label) expand.child;
+	
+	 if (lbl.label != "") { // do not update
+	 	return;
+ 	}
+	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+	//GLib.debug("LR = %s", lr.get_type().name());
+
+	
+	var jr =(JsRender.JsRender) lr.get_item();
+	//GLib.debug("JR = %s", jr.get_type().name());		
+	
+	 if (jr == null) {
+		 GLib.debug("Problem getting item"); 
+		 return;
+	 }
+	//GLib.debug("change  %s to %s", lbl.label, np.name);
+	lbl.label = jr.name; // for dir's we could hsow the sub path..
+	lbl.tooltip_markup = jr.path;
+	 
+    expand.set_hide_expander(  jr.xtype != "Dir" );
+ 	 expand.set_list_row(lr);
+ 
+ 	 
+ 	// bind image...
+ 	
+}
+
+
+.SignalListItemFactory el;
             private DialogFiles  _this;
 
 
@@ -1609,11 +1647,47 @@
             public Xcls_SignalListItemFactory43(DialogFiles _owner )
             {
                 _this = _owner;
-                this.el = new Gtk.SignalListItemFactory();
+                this.el = new (listitem) => {
+	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+	
+	
+	
+	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+	  
+ 
+	var lbl = (Gtk.Label) expand.child;
+	
+	 if (lbl.label != "") { // do not update
+	 	return;
+ 	}
+	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+	//GLib.debug("LR = %s", lr.get_type().name());
+
+	
+	var jr =(JsRender.JsRender) lr.get_item();
+	//GLib.debug("JR = %s", jr.get_type().name());		
+	
+	 if (jr == null) {
+		 GLib.debug("Problem getting item"); 
+		 return;
+	 }
+	//GLib.debug("change  %s to %s", lbl.label, np.name);
+	lbl.label = jr.name; // for dir's we could hsow the sub path..
+	lbl.tooltip_markup = jr.path;
+	 
+    expand.set_hide_expander(  jr.xtype != "Dir" );
+ 	 expand.set_list_row(lr);
+ 
+ 	 
+ 	// bind image...
+ 	
+}
+
+
+.SignalListItemFactory();
 
                 // my vars (dec)
-
-                // set gobject values
 
                 //listeners
                 this.el.setup.connect( (listitem) => {
