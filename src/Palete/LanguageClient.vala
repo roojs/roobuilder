@@ -275,10 +275,14 @@ namespace Palete {
     	}
     	
     	 
-    	
+ 		public    void document_change_real (JsRender.JsRender file)    
+ 		{
+ 			this.change_queue_file = file;
+			this.countdown = 3;
+ 		}
     	
 
- 		public    void document_change (JsRender.JsRender file)  
+ 		public void document_change_real (JsRender.JsRender file)  
     	{
    			if (!this.isReady()) {
 				return;
