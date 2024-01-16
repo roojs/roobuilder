@@ -188,9 +188,7 @@ namespace JsRender {
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
 			this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
-			if (this.path != "") {
-				this.icon = File.new_for_path(this.path).query_info("standard::icon",GLib.FileQueryInfoFlags.NONE).get_icon();
-			}
+			 
 			
 
 
