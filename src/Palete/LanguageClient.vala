@@ -226,7 +226,8 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
-				GLib.debug ("LS send save");
+			this.change_queue_file = null;
+			GLib.debug ("LS send save");
 			 try {
 				  this.jsonrpc_client.send_notification  (
 					"textDocument/didChange",
@@ -249,6 +250,8 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
+			this.change_queue_file = null;
+			
 			if (this.open_files.contains(file)) {
 				this.open_files.remove(file);
 			}
