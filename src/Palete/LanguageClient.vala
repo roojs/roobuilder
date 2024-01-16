@@ -21,7 +21,7 @@ namespace Palete {
 		
 		Gee.ArrayList<JsRender.JsRender> open_files;
 		JsRender.JsRender? change_queue_file = null;
-		string change_queue_str = "";
+ 
 		uint change_queue_id = 0;
 		this.countdown = 0;
 		protected LanguageClient(Project.Project project)
@@ -35,9 +35,9 @@ namespace Palete {
 				}
 				this.countdown--;
 				if (this.countdown < 0){
-					this.document_change_real(this.change_queue_file, this.change_queue_str);
+					this.document_change_real(this.change_queue_file );
 					this.change_queue_file = null;
-					this.change_queue_str = "";
+					   
 				}
 				return true;
 			});
@@ -270,6 +270,10 @@ namespace Palete {
 
          
     	}
+    	
+    	 
+    	
+    	
 
  		public    void document_change (JsRender.JsRender file)  
     	{
