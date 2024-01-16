@@ -23,7 +23,8 @@ namespace Palete {
 		JsRender.JsRender? change_queue_file = null;
  
 		uint change_queue_id = 0;
-		this.countdown = 0;
+		int countdown = 0;
+		
 		protected LanguageClient(Project.Project project)
 		{
 			// extend versions will proably call initialize to start and connect to server.
