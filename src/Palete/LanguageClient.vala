@@ -275,7 +275,7 @@ namespace Palete {
     	}
     	
     	 
- 		public    void document_change_real (JsRender.JsRender file)    
+ 		public void document_change (JsRender.JsRender file)    
  		{
  			this.change_queue_file = file;
 			this.countdown = 3;
