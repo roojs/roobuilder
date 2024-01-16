@@ -82,7 +82,7 @@ namespace Project
 		
 		}
 		
-		public Gee.ArrayList<string> filterFiles(ar)
+		public Gee.ArrayList<string> filterFiles( Gee.ArrayList<string> ar)
 		{
 			var ret = new Gee.ArrayList<string>();
 			foreach(var f in ar) {
