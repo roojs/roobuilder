@@ -404,7 +404,7 @@
 						if (file is JsRender.PlainFile) {
 							continue;
 						}
- 
+    			
 
 						file.loadItems();
 						var oldfn = file.targetName();
