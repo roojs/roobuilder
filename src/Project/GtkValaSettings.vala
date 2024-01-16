@@ -86,7 +86,7 @@ namespace Project
 		{
 			var ret = new Gee.ArrayList<string>();
 			foreach(var f in ar) {
-				if (!this.project.getByRelPath(f)) {
+				if (null == this.project.getByRelPath(f)) {
 					continue;
 				}
 				ret.add(f);
