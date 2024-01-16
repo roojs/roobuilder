@@ -386,7 +386,7 @@ namespace Palete {
 					), 
 					position :  this.buildDict ( 
 						line :  new GLib.Variant.uint32 ( (uint) line) ,
-						character :  new GLib.Variant.uint32 ( (uint) (offset -1).min(0)) 
+						character :  new GLib.Variant.uint32 ( uint.max(0,  (offset -1))) 
 					)
 				),
 				null,
