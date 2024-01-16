@@ -858,6 +858,8 @@ namespace Project {
 
 			
 			file.remove();
+			this.onSave();
+			
 			// remove it from 
 			
 			
