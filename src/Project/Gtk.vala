@@ -272,7 +272,7 @@ namespace Project
 			this.makeMain();
 		 	this.makeApplication();
 		 	this.makeWindow();
-			
+			this.makeGitIgnore();
 
 			var cg =  new GtkValaSettings(this, this.name);
 			this.compilegroups.set(this.name, cg);
@@ -388,8 +388,12 @@ namespace Project
 }
 """);
 	}
- 	
- 
+ 	void makeGitIgnore()
+	{
+			this.writeFile(".gitignore", """
+build/
+""");
+	}
 			
 		
 		 public override void   initDatabase()
