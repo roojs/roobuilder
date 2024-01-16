@@ -779,7 +779,7 @@
                    "    \t\t return;",
                    "    \t }",
                    "",
-                   "\t\tnode.bind_property(\"icon\",",
+                   "\t\tjr.bind_property(\"icon\",",
                    "                img, \"gicon\",",
                    "               GLib.BindingFlags.SYNC_CREATE);",
                    "",

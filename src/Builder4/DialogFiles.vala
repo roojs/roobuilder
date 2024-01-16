@@ -1670,7 +1670,7 @@
                     		 return;
                     	 }
                 
-                		node.bind_property("icon",
+                		jr.bind_property("icon",
                                 img, "gicon",
                                GLib.BindingFlags.SYNC_CREATE);
                 
