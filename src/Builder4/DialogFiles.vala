@@ -1669,6 +1669,11 @@
                     		 GLib.debug("Problem getting item"); 
                     		 return;
                     	 }
+                
+                		node.bind_property("icon",
+                                img, "gicon",
+                               GLib.BindingFlags.SYNC_CREATE);
+                
                     	//GLib.debug("change  %s to %s", lbl.label, np.name);
                     	lbl.label = jr.name; // for dir's we could hsow the sub path..
                     	lbl.tooltip_markup = jr.path;
