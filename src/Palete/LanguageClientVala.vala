@@ -33,6 +33,7 @@ namespace Palete {
 				);
 				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
 				this.initialized = true;
+				return;
 			} catch (GLib.Error e) {
 				GLib.debug ("LS replied with error %s", e.message);
 				this.onClose();
