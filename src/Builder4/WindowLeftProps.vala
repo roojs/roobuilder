@@ -1664,7 +1664,9 @@ public class Xcls_LeftProps : Object
 				
 				GLib.debug("Prssed %d", (int)  this.el.get_current_button());
 				//_this.deletemenu.el.set_parent(_this.view.el);
-				_this.deletemenu.el.set_parent(_this.main_window.el);
+				if (_this.deletemenu.el.parent == null) {
+					_this.deletemenu.el.set_parent(_this.main_window.el);
+				}
 				
 				
 				 
