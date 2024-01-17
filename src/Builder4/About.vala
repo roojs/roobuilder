@@ -36,7 +36,7 @@ public class About : Object
 	// user defined functions
 	public void show (Gtk.Window parent) {
 		this.el.application = parent.application;
-	    this.el.set_transient_for(parent);
-	    this.el.show();
+		this.el.set_transient_for(parent);
+		this.el.show();
 	}
 }
