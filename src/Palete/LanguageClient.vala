@@ -35,6 +35,19 @@ namespace Palete {
  
 		uint change_queue_id = 0;
 		int countdown = 0;
+		protected bool initialized = false;
+		bool sent_shutdown = false;
+		private bool _closed = false;
+		private bool closed {
+			get { return this._closed ; } 
+			set {
+				GLib.debug("closed has been set? to %s" , value ? "TRUE" : "FALSE" );
+				this._closed = value;
+			}
+		}
+				
+		
+		
 		
 		protected LanguageClient(Project.Project project)
 		{
@@ -209,9 +222,7 @@ namespace Palete {
 		public abstract  void startServer();
 		//public abstract   void  initialize_server()  ;
 		 
-		protected bool initialized = false;
-		bool sent_shutdown = false;
-		protected bool closed =  false;
+		
 		
 		
 		public void onNotification(string method, Variant? return_value)
