@@ -160,16 +160,6 @@ namespace Palete {
 		}
 		public bool isReady()
 		{
-			if (!this.initialized) {
-				GLib.debug("Server has not been initialized");
-				return false;
-			}
-			if (this.sent_shutdown) {
-			  	GLib.debug("Server has been started its shutting down process");
-			  	return false;
-			}
-			// restart server..
-
 			if (this.closed) {
 				GLib.debug("server stopped = restarting");
 				this.initialized = false;
@@ -180,6 +170,18 @@ namespace Palete {
 				}
 				 
 			}
+			
+			if (!this.initialized) {
+				GLib.debug("Server has not been initialized");
+				return false;
+			}
+			if (this.sent_shutdown) {
+			  	GLib.debug("Server has been started its shutting down process");
+			  	return false;
+			}
+			// restart server..
+
+			
 			
 			return true;
 		}
