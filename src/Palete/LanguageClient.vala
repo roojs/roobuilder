@@ -106,6 +106,8 @@ namespace Palete {
  			if (this.subprocess != null) {
  				this.subprocess.force_exit();
 			}
+			if (this.launcher != null) {
+				this.launcher.close();
 
 			this.subprocess = null;
 			this.closed = true;	 	
