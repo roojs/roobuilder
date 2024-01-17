@@ -337,7 +337,7 @@ namespace Palete {
 			}
 		 	this.sent_shutdown  = true;
 		 
-			  this.jsonrpc_client.send_notification_async (
+			  this.jsonrpc_client.send_notification (
 				"exit",
 				null,
 				null 
