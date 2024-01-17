@@ -114,11 +114,15 @@ namespace Palete {
 			}	
 		}
 
-		
+		bool in_populate = false;
 	 
 		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable) 
 		{
 			GLib.debug("pupoulate async");
+			if (!this.in_populate) {
+				return null;
+			}
+			this.in_populate = true;
 
 			global::Gtk.TextIter begin, end;
 			Lsp.CompletionList res;
@@ -145,6 +149,7 @@ namespace Palete {
 			var  filter_model = new global::Gtk.FilterListModel(this.model, this.filter); 
 			filter.match_mode = global::Gtk.StringFilterMatchMode.PREFIX;
 			filter_model.set_incremental(true);
+			this.in_populate = false;
 			return filter_model; 
 			
 			 
