@@ -663,7 +663,7 @@ public class ValaProjectSettingsPopover : Object
 			});
 			this.el.bind.connect( (listitem) => {
 			 
-				var lbl = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();
+				var lbl = (Gtk.Label)  ((Gtk.ListItem)listitem).get_child();
 				   
 				var item = (Project.VapiSelection)  ((Gtk.ListItem)listitem).get_item();
 			
