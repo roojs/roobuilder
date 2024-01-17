@@ -175,6 +175,9 @@ public class Editor : Object
 		}
 	
 	}
+	public string tempFileContents () {
+	
+	}
 	public void reset () {
 		 this.file = null;    
 	     

@@ -912,6 +912,11 @@
     "}",
     ""
    ],
+   "| string tempFileContents" : [
+    "() {",
+    "",
+    "}"
+   ],
    "| void backSearch" : [
     "(bool change_focus) {",
     "",
