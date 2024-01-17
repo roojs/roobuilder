@@ -59,8 +59,8 @@ public class JsRender.NodeToVala : Object {
 		} else {
 			this.inpad = string.nfill(depth > 0 ? 1 : 0, '\t');
 		}
-		this.pad = this.inpad;
-		this.ipad = this.inpad + "\t";
+		this.pad = this.inpad + "\t";
+		this.ipad = this.inpad + "\t\t";
 		this.cls = node.xvala_cls;
 		this.xcls = node.xvala_xcls;
 		if (depth == 0 && this.xcls.contains(".")) {
