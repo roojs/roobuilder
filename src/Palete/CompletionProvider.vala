@@ -47,6 +47,20 @@ namespace Palete {
 			var buffer = begin.get_buffer();
 		
 			var  word = p.label;
+			if (p.ci.kind == Lsp.CompletionItemKind.Method || p.ci.kind == Lsp.CompletionItemKind.Function) {
+				var bits = p.text.split("(");
+				var abits = bits[1].split(")");
+				var args = abits[0].split(",");
+				
+				word += "(";
+				for(var i = 0 ; i < args.length; i++) {
+					word += i > 0 ? ", " : " ";
+					var wbit = args[i].split(" ");
+					word += wbit[1];
+				}
+				word += " )";
+			}
+			
 			var len = -1;
 			
 
