@@ -454,12 +454,13 @@ namespace Palete {
 			
 			//GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var json = Json.gvariant_serialize (return_value);
-			var ar = json.get_array();
 
-			if (ar == null) {
+
+			if (json.get_node_type() != Json.NodeType.ARRAY) {
 				ret = Json.gobject_deserialize (typeof (Lsp.CompletionList), json) as Lsp.CompletionList; 
 				return;
 			}  
+			var ar = json.get_array();			
 			ret = new Lsp.CompletionList();	
 			for(var i = 0; i < ar.get_length(); i++ ) {
 				var add= Json.gobject_deserialize ( typeof (Lsp.CompletionItem),  ar.get_element(i)) as Lsp.CompletionItem;
