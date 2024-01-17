@@ -119,6 +119,9 @@ namespace Palete {
 	 		if (this.in_close) {
 	 			return;
  			}
+ 			if (this.launcher == null) {
+ 				return;
+			}
  			this.in_close = true;
 	 		GLib.debug("onClose called");
 	 		
