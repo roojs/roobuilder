@@ -20,7 +20,19 @@ namespace Palete {
 	    public Jsonrpc.Client? jsonrpc_client = null;
 		
 		Gee.ArrayList<JsRender.JsRender> open_files;
-		JsRender.JsRender? change_queue_file = null;
+		private JsRender.JsRender? _change_queue_file = null;
+		private string change_queue_file_source = "";
+		
+		JsRender.JsRender? change_queue_file {
+			set {
+				this.change_queue_file_source = value == null ? "" : value.toSource();
+				this._change_queue_file = value;
+			} 
+			get {
+				return this._change_queue_file;
+			}
+			default = null;
+		}
  
 		uint change_queue_id = 0;
 		int countdown = 0;
