@@ -108,7 +108,11 @@ namespace Palete {
 				}		
 			}
 			if (this.subprocess_stream != null) {
-	 			this.subprocess_stream.close();
+				try {
+		 			this.subprocess_stream.close();
+	 			} catch (GLib.Error e) {
+	 				GLib.debug("stream Error close  %s", e.message);	
+				}		
  			}
  			if (this.subprocess != null) {
  				this.subprocess.force_exit();
