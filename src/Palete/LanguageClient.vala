@@ -14,7 +14,7 @@ namespace Palete {
 	public abstract class LanguageClient :   Jsonrpc.Server {
 	
 		public Project.Project project;
-		private GLib.SubprocessLauncher launcher;
+		private GLib.SubprocessLauncher launcher = null;
 		private GLib.Subprocess? subprocess = null;
 		private IOStream subprocess_stream;
 	    public Jsonrpc.Client? jsonrpc_client = null;
