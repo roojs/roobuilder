@@ -17,7 +17,7 @@
     "\tthis.el.application = parent.application;",
     "\tthis.el.set_transient_for(parent);",
     "\tthis.el.show();",
-    "\t",
+    " ",
     "\t ",
     "\t",
     "}"

@@ -38,7 +38,7 @@ public class About : Object
 		this.el.application = parent.application;
 		this.el.set_transient_for(parent);
 		this.el.show();
-		
+	 
 		 
 		
 	}
