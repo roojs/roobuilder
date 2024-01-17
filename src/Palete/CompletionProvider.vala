@@ -91,7 +91,7 @@ namespace Palete {
 
 		public  void display (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal, GtkSource.CompletionCell cell)
 		{
-			GLib.debug("compelte display");
+			//GLib.debug("compelte display");
 			var col = cell.get_column();
 			
 			var p = (CompletionProposal) proposal;
