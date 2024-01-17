@@ -100,8 +100,13 @@ namespace Palete {
 	      	}
             return true;
         }
+        bool in_close = false;
 	 	public void onClose()
 	 	{
+	 		if (this.in_close) {
+	 			return false;
+ 			}
+ 			this.in_close = true;
 	 		GLib.debug("onClose called");
 	 		
 	 		if (this.jsonrpc_client != null) {
@@ -129,6 +134,7 @@ namespace Palete {
 			this.subprocess = null;
 			this.jsonrpc_client = null;
 			this.closed = true;	 	
+			this.in_close = false;
 	 	}
 		/**
 		utility method to build variant based queries
