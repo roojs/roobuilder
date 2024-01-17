@@ -152,7 +152,7 @@ namespace Project
 			this.meson.save();
 			var vl = this.language_servers.get("vala");
 			if (vl != null) {
-				vl.exit();
+				vl.initialize_server(); // hopefully better than exit?
 			}
 		}
 	 
