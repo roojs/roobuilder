@@ -167,7 +167,7 @@ namespace Palete {
 		internal  void refilter (GtkSource.CompletionContext context, GLib.ListModel in_model)
 		{
  
- 			GLib.debug("pupoulate refilter");
+ 			//GLib.debug("pupoulate refilter");
 	 
 
 			var word = context.get_word();
