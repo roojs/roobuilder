@@ -404,7 +404,7 @@ namespace Palete {
 			
 			yield this.jsonrpc_client.call_async (
 				"textDocument/completion",
-				args
+				args,
 				null,
 				out return_value
 			);
