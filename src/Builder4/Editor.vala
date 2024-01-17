@@ -176,7 +176,32 @@ public class Editor : Object
 	
 	}
 	public string tempFileContents () {
+	   if (_this.file == null) {
+	       return "";
+	   }
 	
+		if (_this.file.xtype == "PlainFile") {
+	    
+	     	return this.buffer.toSource();
+	    
+	    }
+	 
+	    
+	
+	      
+	     
+	    GLib.debug("calling validate");    
+	    // clear the buttons.
+	 	if (_this.prop.name == "xns" || _this.prop.name == "xtype") {
+			return this.file.toSource(); ;
+		}
+		
+		var oldcode  = _this.prop.val;
+		_this.prop.val = str;
+	    var ret = _this.file.toSource();
+	    _this.prop.val = oldcode;
+	    return ret;
+	    
 	}
 	public void reset () {
 		 this.file = null;    
