@@ -100,7 +100,43 @@ namespace Palete {
 					cell.set_text(p.label);
 					break;
 				case GtkSource.CompletionColumn.ICON:
-					cell.set_icon_name("completion-snippet-symbolic");
+				
+				
+				
+					switch (ci.kind) {
+					
+					  	case Lsp.CompletionItemKind.Text:
+						case 	Lsp.CompletionItemKind.Method:
+						case 	Lsp.CompletionItemKind.Function:
+						case 	Lsp.CompletionItemKind.Constructor:
+						case 	Lsp.CompletionItemKind.Fieldv
+						case 	Lsp.CompletionItemKind.Variable:
+						case 	Lsp.CompletionItemKind.Class:
+						case 	Lsp.CompletionItemKind.Interface:
+						case 	Lsp.CompletionItemKind.Module:
+						case 	Lsp.CompletionItemKind.Property:
+						case 	Lsp.CompletionItemKind.Unit:
+						case 	Lsp.CompletionItemKind.Value:
+						case 	Lsp.CompletionItemKind.Enum:
+						case 	Lsp.CompletionItemKind.Keyword:
+						case 	Lsp.CompletionItemKind.Snippet:
+						case 	Lsp.CompletionItemKind.Color:
+						case 	Lsp.CompletionItemKind.File:
+						case 	Lsp.CompletionItemKind.Reference:,
+						case 	Lsp.CompletionItemKind.Folder:
+						case 	Lsp.CompletionItemKind.EnumMember:
+						case 	Lsp.CompletionItemKind.Constant:
+						case 	Lsp.CompletionItemKind.Struct:
+						case 	Lsp.CompletionItemKind.Event:
+						case 	Lsp.CompletionItemKind.Operator:
+						case 	Lsp.CompletionItemKind.TypeParameter:
+						default:
+					
+					
+							cell.set_icon_name("completion-snippet-symbolic");
+							return;
+						}
+						
 					break;
 				case  GtkSource.CompletionColumn.COMMENT:
 					cell.set_text(p.info);
