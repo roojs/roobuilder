@@ -357,8 +357,9 @@ namespace Palete {
  			if (this.change_queue_file != null && this.change_queue_file.path != file.path) {
  				this.document_change_real(this.change_queue_file, this.change_queue_file_source);
 			}
- 			this.change_queue_file = file;
 			this.countdown = 3;
+ 			this.change_queue_file = file;
+
  		}
     	
 
