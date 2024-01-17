@@ -439,8 +439,9 @@ namespace Palete {
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get completion %s @ %d:%d", file.relpath, line, offset);
 		 	
-		 	ret = null;
+			ret = null;	
 		    if (!this.isReady()) {
+		    	GLib.debug("completion - language server not ready");
 				return;
 			}
 			// make sure completion has the latest info..
