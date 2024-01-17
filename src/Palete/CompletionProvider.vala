@@ -233,7 +233,7 @@ namespace Palete {
 		    }
 		
 		    items.sort((a, b) => {
-			    return ((string)(a.text)).collate((string)(b.text));
+			    return ((string)(a.label)).collate((string)(b.label));
 		    });
  		
  		}
@@ -292,7 +292,7 @@ namespace Palete {
  			this.text = ci.detail == null ? "" : ci.detail ;
  			this.label = ci.label;
  			this.info = ci.documentation == null ? "": ci.documentation.value;
- 			GLib.debug("SET: text=%s, label = %s; info =%s", ci.detail, ci.label, "to long..");
+ 			GLib.debug("SET: detail =%s, label = %s; info =%s", ci.detail, ci.label, "to long..");
 		}
  		
  	}
