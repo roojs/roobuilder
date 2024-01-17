@@ -292,6 +292,7 @@
             ]
            },
            "string name" : "gtkview-view",
+           "uint tab_width" : 4,
            "xtype" : "View",
            "| string toString" : [
             "() {",
