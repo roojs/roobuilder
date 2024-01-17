@@ -1329,7 +1329,7 @@ public class Xcls_LeftProps : Object
 				var ll = (Gtk.Label)ca.get_first_child();
 				var cb = ca.get_next_sibling();
 				var b = cb.get_first_child();
-				var e = (Gtk.Entry) b.get_first_child();
+				var e = (Gtk.EditableLabel) b.get_first_child();
 				var l = (Gtk.Label) e.get_next_sibling();
 				var d = (Gtk.DropDown) l.get_next_sibling();
 				

@@ -1169,7 +1169,7 @@
         "\t\tvar ll = (Gtk.Label)ca.get_first_child();",
         "\t\tvar cb = ca.get_next_sibling();",
         "\t\tvar b = cb.get_first_child();",
-        "\t\tvar e = (Gtk.Entry) b.get_first_child();",
+        "\t\tvar e = (Gtk.EditableLabel) b.get_first_child();",
         "\t\tvar l = (Gtk.Label) e.get_next_sibling();",
         "\t\tvar d = (Gtk.DropDown) l.get_next_sibling();",
         "\t\t",
