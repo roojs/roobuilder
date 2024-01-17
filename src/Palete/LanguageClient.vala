@@ -104,7 +104,7 @@ namespace Palete {
 	 	public void onClose()
 	 	{
 	 		if (this.in_close) {
-	 			return false;
+	 			return;
  			}
  			this.in_close = true;
 	 		GLib.debug("onClose called");
