@@ -145,6 +145,8 @@ namespace Palete {
 			} else {
 				res = null;
 			}
+			
+			GLib.debug("pupoulate async  - got reply");
 			this.model = new CompletionModel(this, context, res, cancellable); 
 			var word = context.get_word();
 			
