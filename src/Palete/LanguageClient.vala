@@ -100,7 +100,10 @@ namespace Palete {
         }
 	 	public void onClose()
 	 	{
-	 		if (this.subprocess_stream != null) {
+	 		if (this.jsonrpc_client != null) {
+				this.jsonrpc_client.close();
+			}
+			if (this.subprocess_stream != null) {
 	 			this.subprocess_stream.close();
  			}
  			if (this.subprocess != null) {
@@ -109,9 +112,7 @@ namespace Palete {
 			if (this.launcher != null) {
 				this.launcher.close();
 			}
-			if (this.jsonrpc_client != null) {
-				this.jsonrpc_client.close();
-			}
+			
 			this.launcher = null;
 			this.subprocess = null;
 			this.jsonrpc_client = null;
