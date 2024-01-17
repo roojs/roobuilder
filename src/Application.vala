@@ -669,11 +669,21 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		}
 		
 		int queue_update_compile_countdown = -1;
+		int queue_update_compile_id = 0;
 		
 		public static void updateCompileResults( )
 		{
-			this.queue_update_compile_countdown = 3;
-			
+			queue_update_compile_countdown = 3;
+			if (queue_update_compile_id == 0) {
+				queue_update_compile_id = GLib.Timeout.add_seconds(1, () => {
+		 		if (queue_update_compile_countdown < 0) {
+					return true;
+				}
+				queue_update_compile_countdown--;
+				this.realUpdateCompileResults();
+				
+				return true;
+			});
 		}
 		
 		
