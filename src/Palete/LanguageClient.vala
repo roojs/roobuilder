@@ -58,8 +58,10 @@ namespace Palete {
 		 
 		public bool initProcess(string process_path)
 		{
-			this.launcher = new GLib.SubprocessLauncher (SubprocessFlags.STDIN_PIPE | SubprocessFlags.STDOUT_PIPE);
-			this.launcher.set_environ(GLib.Environ.get());
+			if (this.launcher == null) {
+				this.launcher = new GLib.SubprocessLauncher (SubprocessFlags.STDIN_PIPE | SubprocessFlags.STDOUT_PIPE);
+				this.launcher.set_environ(GLib.Environ.get());
+			}
 			try {
 				this.subprocess = launcher.spawnv ({ process_path });
 				
