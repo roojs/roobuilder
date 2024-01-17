@@ -120,6 +120,7 @@ namespace Palete {
 		{
 			GLib.debug("pupoulate async");
 			if (!this.in_populate) {
+				GLib.debug("pupoulate async  - skipped waiting for reply");
 				return null;
 			}
 			this.in_populate = true;
