@@ -63,10 +63,17 @@ namespace Palete {
 				this.launcher.set_environ(GLib.Environ.get());
 			}
 			try {
+				GLib.debug("Launching %s", process_path);
+				
 				this.subprocess = launcher.spawnv ({ process_path });
 				
 				this.subprocess.wait_async.begin( null, ( obj,res ) => {
-					this.subprocess.wait_async.end(res);
+					try {
+						this.subprocess.wait_async.end(res);
+					} catch (GLib.Error e) {
+					GLib.debug("subprocess startup error %s", e.message);	        
+					}
+					GLib.debug("Subprocess ended %s", process_path);
 					this.closed = true;
 				});
 				var input_stream = this.subprocess.get_stdout_pipe ();
