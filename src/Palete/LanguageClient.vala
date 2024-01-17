@@ -47,7 +47,7 @@ namespace Palete {
 				}
 				this.countdown--;
 				if (this.countdown < 0){
-					this.document_change_real(this.change_queue_file );
+					this.document_change_real(this.change_queue_file,  this.change_queue_file_source);
 					this.change_queue_file = null;
 					   
 				}
