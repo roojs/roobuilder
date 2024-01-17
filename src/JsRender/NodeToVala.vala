@@ -55,9 +55,9 @@ public class JsRender.NodeToVala : Object {
 		this.node = node;
 		this.depth = depth;
 		if (file.name.contains(".")) { // namespaced..
-			this.inpad = string.nfill(depth > 0 ? 8 : 4, ' ');
+			this.inpad = string.nfill(depth > 0 ? 2 : 1, '\t');
 		} else {
-			this.inpad = string.nfill(depth > 0 ? 4 : 0, ' ');
+			this.inpad = string.nfill(depth > 0 ? 1 : 0, '\t');
 		}
 		this.pad = this.inpad;
 		this.ipad = this.inpad + "\t";
