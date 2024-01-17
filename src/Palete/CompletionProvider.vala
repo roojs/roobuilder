@@ -131,7 +131,7 @@ namespace Palete {
 				}
 				
 			
-				yield this.file.getLanguageServer().completion(this.file, line, end.get_line_offset(), 1, out res);
+				yield this.file.getLanguageServer().completion(this.file, line, offset, 1, out res);
 			} else {
 				res = null;
 			}
