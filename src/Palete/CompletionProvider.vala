@@ -100,36 +100,42 @@ namespace Palete {
 					cell.set_text(p.label);
 					break;
 				case GtkSource.CompletionColumn.ICON:
-			 
+//cell.set_icon_name("lang-define-symbolic");return;
+//cell.set_icon_name("lang-include-symbolic");return;
+//cell.set_icon_name("lang-typedef-symbolic");return;
+//cell.set_icon_name("lang-union-symbolic");return;			 
 					switch (ci.kind) {
 					
-					  	case Lsp.CompletionItemKind.Text:
-						case 	Lsp.CompletionItemKind.Method:
-						case 	Lsp.CompletionItemKind.Function:
-						case 	Lsp.CompletionItemKind.Constructor:
-						case 	Lsp.CompletionItemKind.Fieldv
-						case 	Lsp.CompletionItemKind.Variable:
-						case 	Lsp.CompletionItemKind.Class:
-						case 	Lsp.CompletionItemKind.Interface:
-						case 	Lsp.CompletionItemKind.Module:
-						case 	Lsp.CompletionItemKind.Property:
-						case 	Lsp.CompletionItemKind.Unit:
-						case 	Lsp.CompletionItemKind.Value:
-						case 	Lsp.CompletionItemKind.Enum:
-						case 	Lsp.CompletionItemKind.Keyword:
-						case 	Lsp.CompletionItemKind.Snippet:
-						case 	Lsp.CompletionItemKind.Color:
-						case 	Lsp.CompletionItemKind.File:
-						case 	Lsp.CompletionItemKind.Reference:,
-						case 	Lsp.CompletionItemKind.Folder:
-						case 	Lsp.CompletionItemKind.EnumMember:
-						case 	Lsp.CompletionItemKind.Constant:
-						case 	Lsp.CompletionItemKind.Struct:
-						case 	Lsp.CompletionItemKind.Event:
-						case 	Lsp.CompletionItemKind.Operator:
-						case 	Lsp.CompletionItemKind.TypeParameter:
+					  	case 	Lsp.CompletionItemKind.Text: cell.set_icon_name("completion-snippet-symbolic");return;
+						case 	Lsp.CompletionItemKind.Method: cell.set_icon_name("lang-method-symbolic");return;
+						case 	Lsp.CompletionItemKind.Function: cell.set_icon_name("lang-function-symbolic");return;
+						case 	Lsp.CompletionItemKind.Constructor: cell.set_icon_name("lang-method-symbolic");return;
+						case 	Lsp.CompletionItemKind.Field: cell.set_icon_name("lang-struct-field-symbolic");return;
+						case 	Lsp.CompletionItemKind.Variable: cell.set_icon_name("lang-variable-symbolic");return;
+						case 	Lsp.CompletionItemKind.Class: cell.set_icon_name("lang-class-symbolic");return;
+						case 	Lsp.CompletionItemKind.Interface: cell.set_icon_name("lang-class-symbolic");return;
+						case 	Lsp.CompletionItemKind.Module: cell.set_icon_name("lang-namespace-symbolic");return;
+						case 	Lsp.CompletionItemKind.Property:cell.set_icon_name("lang-struct-field-symbolic");return;
+						case 	Lsp.CompletionItemKind.Unit: cell.set_icon_name("lang-variable-symbolic");return;
+						case 	Lsp.CompletionItemKind.Value: cell.set_icon_name("lang-variable-symbolic");return;
+						case 	Lsp.CompletionItemKind.Enum: cell.set_icon_name("lang-enum-symbolic");return;
+						case 	Lsp.CompletionItemKind.Keyword: cell.set_icon_name("completion-word-symbolic");return;
+						case 	Lsp.CompletionItemKind.Snippet: cell.set_icon_name("completion-snippet-symbolic");return;
+
+						case 	Lsp.CompletionItemKind.Color: cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.File:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Reference:,cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Folder:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.EnumMember: cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Constant:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Struct: cell.set_icon_name("lang-struct-symbolic");return;
+						case 	Lsp.CompletionItemKind.Event:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Operator:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.TypeParameter:cell.set_icon_name("lang-typedef-symbolic");return;
 						default:
-					
+
+
+
 					
 							cell.set_icon_name("completion-snippet-symbolic");
 							return;
