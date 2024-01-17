@@ -111,6 +111,7 @@ namespace Palete {
 			}
 			this.launcher = null;
 			this.subprocess = null;
+			this.jsonrpc_client = null;
 			this.closed = true;	 	
 	 	}
 		/**
