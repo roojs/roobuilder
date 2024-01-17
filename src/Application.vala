@@ -680,7 +680,9 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 						return true;
 					}
 					queue_update_compile_countdown--;
-					realUpdateCompileResults();
+			 		if (queue_update_compile_countdown < 0) {
+						realUpdateCompileResults();
+					}
 					
 					return true;
 				});
