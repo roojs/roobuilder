@@ -668,8 +668,8 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 		}
 		
-		public int queue_update_compile_countdown = -1;
-		public int queue_update_compile_id = 0;
+		static int queue_update_compile_countdown = -1;
+		static int queue_update_compile_id = 0;
 		
 		public static void updateCompileResults( )
 		{
