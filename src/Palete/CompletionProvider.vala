@@ -104,7 +104,7 @@ namespace Palete {
 //cell.set_icon_name("lang-include-symbolic");return;
 //cell.set_icon_name("lang-typedef-symbolic");return;
 //cell.set_icon_name("lang-union-symbolic");return;			 
-					switch (ci.kind) {
+					switch (p.ci.kind) {
 					
 					  	case 	Lsp.CompletionItemKind.Text: cell.set_icon_name("completion-snippet-symbolic");return;
 						case 	Lsp.CompletionItemKind.Method: cell.set_icon_name("lang-method-symbolic");return;
