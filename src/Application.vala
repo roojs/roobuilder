@@ -673,9 +673,9 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 		public static void updateCompileResults( )
 		{
-			queue_update_compile_countdown = 3;
+			queue_update_compile_countdown = 4;
 			if (queue_update_compile_id == 0) {
-				queue_update_compile_id = GLib.Timeout.add_seconds(1, () => {
+				queue_update_compile_id = GLib.Timeout.add(250, () => {
 			 		if (queue_update_compile_countdown < 0) {
 						return true;
 					}
