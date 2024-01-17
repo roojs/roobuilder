@@ -384,9 +384,8 @@ namespace Palete {
 			
 			
 			Variant? return_value;
-			yield this.jsonrpc_client.call_async (
-				"textDocument/completion",
-				this.buildDict (  
+			
+			var args = this.buildDict (  
 					context : this.buildDict (    ///CompletionContext;
 						triggerKind: new GLib.Variant.int32 (triggerType) 
 					//	triggerCharacter :  new GLib.Variant.string ("")
@@ -399,7 +398,13 @@ namespace Palete {
 						line :  new GLib.Variant.uint32 ( (uint) line) ,
 						character :  new GLib.Variant.uint32 ( uint.max(0,  (offset -1))) 
 					)
-				),
+				);
+			 
+			GLib.debug ("textDocument/completion send with %s", Json.to_string (Json.gvariant_serialize (args), true));					
+			
+			yield this.jsonrpc_client.call_async (
+				"textDocument/completion",
+				args
 				null,
 				out return_value
 			);
