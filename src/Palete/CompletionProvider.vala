@@ -124,7 +124,7 @@ namespace Palete {
 
 						case 	Lsp.CompletionItemKind.Color: cell.set_icon_name("lang-typedef-symbolic");return;
 						case 	Lsp.CompletionItemKind.File:cell.set_icon_name("lang-typedef-symbolic");return;
-						case 	Lsp.CompletionItemKind.Reference:,cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Reference: cell.set_icon_name("lang-typedef-symbolic");return;
 						case 	Lsp.CompletionItemKind.Folder:cell.set_icon_name("lang-typedef-symbolic");return;
 						case 	Lsp.CompletionItemKind.EnumMember: cell.set_icon_name("lang-typedef-symbolic");return;
 						case 	Lsp.CompletionItemKind.Constant:cell.set_icon_name("lang-typedef-symbolic");return;
