@@ -182,7 +182,7 @@ public class Editor : Object
 	
 		if (_this.file.xtype == "PlainFile") {
 	    
-	     	return this.buffer.toSource();
+	     	return this.buffer.toString();
 	    
 	    }
 	 

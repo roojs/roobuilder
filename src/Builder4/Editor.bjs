@@ -920,7 +920,7 @@
     "",
     "\tif (_this.file.xtype == \"PlainFile\") {",
     "    ",
-    "     \treturn this.buffer.toSource();",
+    "     \treturn this.buffer.toString();",
     "    ",
     "    }",
     " ",
