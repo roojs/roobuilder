@@ -134,7 +134,7 @@ namespace Palete {
 					line += this.editor.prop.start_line + 1; // i think..
 					offset += 12; // should probably be 8 without namespaced 
 				} else {
-					line +=1;
+					offset--;
 				}
 				
 				try {
