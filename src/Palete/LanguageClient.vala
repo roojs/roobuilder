@@ -310,8 +310,8 @@ namespace Palete {
 					"textDocument/didChange",
 					this.buildDict (  
 						textDocument : this.buildDict (    ///TextDocumentItem;
-							uri: new GLib.Variant.string (file.to_url())
-							
+							uri: new GLib.Variant.string (file.to_url()),
+							version :  new GLib.Variant.uint64 ( (uint64) file.version)
 						)
 					),
 					null 
