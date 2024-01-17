@@ -91,7 +91,8 @@ namespace Palete {
 			    this.subprocess_stream = new SimpleIOStream (input_stream, output_stream);
            		this.accept_io_stream ( this.subprocess_stream);
 			} catch (GLib.Error e) {
-				GLib.debug("subprocess startup error %s", e.message);	        
+				GLib.debug("subprocess startup error %s", e.message);	
+				this.closed = true;
 				return false;
 	      	}
             return true;
