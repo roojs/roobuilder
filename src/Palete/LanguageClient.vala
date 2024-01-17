@@ -16,7 +16,7 @@ namespace Palete {
 		public Project.Project project;
 		private GLib.SubprocessLauncher launcher = null;
 		private GLib.Subprocess? subprocess = null;
-		private IOStream subprocess_stream;
+		private IOStream? subprocess_stream = null;
 	    public Jsonrpc.Client? jsonrpc_client = null;
 		
 		Gee.ArrayList<JsRender.JsRender> open_files;
