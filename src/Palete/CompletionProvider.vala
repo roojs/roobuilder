@@ -293,7 +293,7 @@ namespace Palete {
  			this.text = ci.detail == null ? "" : ci.detail ;
  			this.label = ci.label;
  			this.info = ci.documentation == null ? "": ci.documentation.value;
- 			GLib.debug("SET: detail =%s, label = %s; info =%s", ci.detail, ci.label, "to long..");
+ 			//GLib.debug("SET: detail =%s, label = %s; info =%s", ci.detail, ci.label, "to long..");
 		}
  		
  	}
