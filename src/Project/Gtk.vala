@@ -150,6 +150,10 @@ namespace Project
 		public override void onSave()
 		{
 			this.meson.save();
+			var vl = this.language_servers.get("vala");
+			if (vl != null) {
+				vl.exit();
+			}
 		}
 	 
 		/**
