@@ -359,8 +359,6 @@ public class Xcls_GtkView : Object
 	 
 	
 	 
-		
-		var offset = 0;
 		 
 	
 		var tlines = buf.get_line_count () +1;
@@ -372,7 +370,7 @@ public class Xcls_GtkView : Object
 			
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
-		    var eline = err.line - offset;
+		    var eline = err.line + 1;
 		    GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
 		    	err.line ,eline, offset);
 		    
