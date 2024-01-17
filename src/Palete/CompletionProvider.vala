@@ -286,10 +286,13 @@ namespace Palete {
  		
  		public string text  { get; set; default = ""; }
  		public string info  { get; set; default = ""; }
+ 		
+ 		public Lsp.CompletionItem ci;
+ 		
  		public CompletionProposal(Lsp.CompletionItem ci) //string label, string text, string info)
  		{
  			
- 			
+ 			this.ci = ci;
  			this.text = ci.detail == null ? "" : ci.detail ;
  			this.label = ci.label;
  			this.info = ci.documentation == null ? "": ci.documentation.value;
