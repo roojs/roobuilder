@@ -213,6 +213,9 @@ public class Xcls_WindowLeftTree : Object
 			#left-tree-view indent {
 			-gtk-icon-size : 2px;
 			}
+			#left-tree-view indent:nth-last-child(2)  {
+			min-width: 24px;
+			}
 			");
 			
 				Gtk.StyleContext.add_provider_for_display(
