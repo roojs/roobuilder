@@ -101,7 +101,10 @@ namespace Palete {
 	 	public void onClose()
 	 	{
 	 		if (this.jsonrpc_client != null) {
-				this.jsonrpc_client.close();
+	 			try {
+					this.jsonrpc_client.close();
+				} catch (GLib.Error e) {
+					GLib.debug("rpc error close error %s", e.message);			
 			}
 			if (this.subprocess_stream != null) {
 	 			this.subprocess_stream.close();
