@@ -124,10 +124,12 @@ namespace Palete {
 			Lsp.CompletionList res;
 			if (context.get_bounds (out begin, out end)) {
 				var line = end.get_line();
+				var offset =  end.get_line_offset();
 				if (this.editor.prop != null) {
 					line += this.editor.prop.start_line + 1; // i think..
+					offset += 12; // should probably be 8 without namespaced 
 				}
-			
+				
 			
 				yield this.file.getLanguageServer().completion(this.file, line, end.get_line_offset(), 1, out res);
 			} else {
