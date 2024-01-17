@@ -439,7 +439,7 @@ namespace Palete {
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get completion %s @ %d:%d", file.relpath, line, offset);
 		 	
-			ret = null;	
+			ret = new Lsp.CompletionList();	
 		    if (!this.isReady()) {
 		    	GLib.debug("completion - language server not ready");
 				return;
@@ -487,7 +487,7 @@ namespace Palete {
 				GLib.debug ("LS replied with Object");
 				return;
 			}  
-			ret = new Lsp.CompletionList();	
+
 			if (json.get_node_type() != Json.NodeType.ARRAY) {
 				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 				return;
