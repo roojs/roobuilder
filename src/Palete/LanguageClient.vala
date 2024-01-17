@@ -352,7 +352,7 @@ namespace Palete {
     	}
     	
     	 
- 		public void document_change (JsRender.JsRender file, bool  force  )    
+ 		public void document_change (JsRender.JsRender file,    )    
  		{
  			if (this.change_queue_file != null && this.change_queue_file.path != file.path) {
  				this.document_change_real(this.change_queue_file, this.change_queue_file_source);
@@ -360,10 +360,7 @@ namespace Palete {
 			
 			this.countdown = 3;
  			this.change_queue_file = file;
- 			if (force) {
- 				this.countdown = -1;
- 				this.document_change_real(this.change_queue_file, this.change_queue_file_source);
-			}
+ 			 
 			
 
  		}
