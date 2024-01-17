@@ -1337,7 +1337,7 @@ public class Xcls_LeftProps : Object
 				if (e.get_visible()) {
 					_this.stop_editor();
 					e.start_editing();
-					var st = e.get_first_child();
+					var st = (Gtk.Stack) e.get_first_child();
 					var ed = (Gtk.Entry) st.get_visible_child();
 					ed.grab_focus_without_selecting();
 					return;
