@@ -199,6 +199,7 @@ namespace Palete {
 				foreach(var f in this.open_files) {
 					this.document_open(f);
 				}
+				return false; // can't do an operation yet?
 				 
 			}
 			
