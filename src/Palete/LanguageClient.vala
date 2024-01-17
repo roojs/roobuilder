@@ -461,7 +461,7 @@ namespace Palete {
 				return;
 			}  
 			ret = new Lsp.CompletionList();	
-			if (json.get_node_type() != Json.NodeType.Object) {
+			if (json.get_node_type() != Json.NodeType.OBJECT) {
 				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 				return;
 			
