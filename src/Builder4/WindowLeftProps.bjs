@@ -1178,7 +1178,7 @@
         "\t\t\t_this.stop_editor();",
         "\t\t\te.start_editing();",
         "\t\t\tvar st = e.get_first_child();",
-        "\t\t\tvar ed = st.get_visible_child();",
+        "\t\t\tvar ed = (Gtk.Entry) st.get_visible_child();",
         "\t\t\ted.grab_focus_without_selecting();",
         "\t\t\treturn;",
         "\t\t}",
