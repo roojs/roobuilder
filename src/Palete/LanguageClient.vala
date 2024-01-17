@@ -30,8 +30,7 @@ namespace Palete {
 			} 
 			get {
 				return this._change_queue_file;
-			}
-			default = null;
+			} 
 		}
  
 		uint change_queue_id = 0;
@@ -298,7 +297,7 @@ namespace Palete {
  		}
     	
 
- 		public void document_change_real (JsRender.JsRender file)  
+ 		public void document_change_real (JsRender.JsRender file, string contents)  
     	{
    			if (!this.isReady()) {
 				return;
@@ -308,7 +307,7 @@ namespace Palete {
 			GLib.debug ("LS send change");
 			var ar = new Json.Array();
 			var obj = new Json.Object();
-			obj.set_string_member("text", file.toSource());
+			obj.set_string_member("text", contents);
 			ar.add_object_element(obj);
 			var node = new Json.Node(Json.NodeType.ARRAY);
 			node.set_array(ar);
