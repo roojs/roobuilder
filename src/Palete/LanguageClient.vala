@@ -460,8 +460,14 @@ namespace Palete {
 				ret = Json.gobject_deserialize (typeof (Lsp.CompletionList), json) as Lsp.CompletionList; 
 				return;
 			}  
-			var ar = json.get_array();			
 			ret = new Lsp.CompletionList();	
+			if (json.get_node_type() != Json.NodeType.Object) {
+				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+				return;
+			
+			}
+			var ar = json.get_array();			
+			
 			for(var i = 0; i < ar.get_length(); i++ ) {
 				var add= Json.gobject_deserialize ( typeof (Lsp.CompletionItem),  ar.get_element(i)) as Lsp.CompletionItem;
 				ret.items.add( add);
