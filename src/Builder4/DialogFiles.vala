@@ -1220,6 +1220,9 @@ public class DialogFiles : Object
 			#file-list indent {
 			-gtk-icon-size : 2px;
 			}
+			#file-list indent:nth-last-child(2)  {
+			min-width: 24px;
+			}
 			");
 			
 				Gtk.StyleContext.add_provider_for_display(
