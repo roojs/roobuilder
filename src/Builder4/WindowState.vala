@@ -768,7 +768,9 @@ public class WindowState : Object
 				return;
 		}
 		this.rightpalete.hide(); 
-		this.add_props.el.set_parent(btn);
+		if (this.add_props.el.parent == null) {
+			this.add_props.el.set_parent(btn);
+		}
 		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
 	 
 		this.add_props.show(
