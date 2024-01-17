@@ -353,6 +353,7 @@ namespace Palete {
 				null 
 			);
 			this.subprocess.force_exit();
+			this.subprocess = null;
 			this.closed = true;
 		}
  		public async void shutdown () throws GLib.Error 
