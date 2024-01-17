@@ -71,10 +71,11 @@ namespace Palete {
 					try {
 						this.subprocess.wait_async.end(res);
 					} catch (GLib.Error e) {
-					GLib.debug("subprocess startup error %s", e.message);	        
+						GLib.debug("subprocess startup error %s", e.message);	        
 					}
 					GLib.debug("Subprocess ended %s", process_path);
-					this.closed = true;
+					this.onClose();
+
 				});
 				var input_stream = this.subprocess.get_stdout_pipe ();
 		   		var output_stream = this.subprocess.get_stdin_pipe ();
@@ -84,7 +85,8 @@ namespace Palete {
 					if (!GLib.Unix.set_fd_nonblocking(((GLib.UnixInputStream)input_stream).fd, true)
 					 || !GLib.Unix.set_fd_nonblocking (((GLib.UnixOutputStream)output_stream).fd, true)) 
 					 {
-						 GLib.debug("could not set pipes to nonblocking");
+					 	GLib.debug("could not set pipes to nonblocking");
+		 				this.onClose();
 					    return false;
 				    }
 			    }
@@ -92,7 +94,7 @@ namespace Palete {
            		this.accept_io_stream ( this.subprocess_stream);
 			} catch (GLib.Error e) {
 				GLib.debug("subprocess startup error %s", e.message);	
-				this.closed = true;
+				this.onClose();
 				return false;
 	      	}
             return true;
@@ -139,7 +141,7 @@ namespace Palete {
 				});
 				 
 				this.jsonrpc_client.failed.connect(() => {
-					this.closed = true;
+					this.onClose();
 					
 					GLib.debug("language server server has failed");
 				});
