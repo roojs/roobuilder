@@ -108,7 +108,8 @@ namespace Palete {
 			}
 			if (this.launcher != null) {
 				this.launcher.close();
-
+			}
+			this.launcher = null;
 			this.subprocess = null;
 			this.closed = true;	 	
 	 	}
