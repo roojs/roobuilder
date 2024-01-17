@@ -109,6 +109,9 @@ namespace Palete {
 			if (this.launcher != null) {
 				this.launcher.close();
 			}
+			if (this.jsonrpc_client != null) {
+				this.jsonrpc_client.close();
+			}
 			this.launcher = null;
 			this.subprocess = null;
 			this.jsonrpc_client = null;
