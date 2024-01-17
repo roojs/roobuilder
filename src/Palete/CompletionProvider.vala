@@ -134,8 +134,13 @@ namespace Palete {
 					offset += 12; // should probably be 8 without namespaced 
 				}
 				
-			
-				yield this.file.getLanguageServer().completion(this.file, line, offset, 1, out res);
+				try {
+					yield this.file.getLanguageServer().completion(this.file, line, offset, 1, out res);
+				} catch (GLib.Error e) {
+					GLib.debug("got error %s", e.message);
+					res = null;
+				}
+				
 			} else {
 				res = null;
 			}
