@@ -100,9 +100,7 @@ namespace Palete {
 					cell.set_text(p.label);
 					break;
 				case GtkSource.CompletionColumn.ICON:
-				
-				
-				
+			 
 					switch (ci.kind) {
 					
 					  	case Lsp.CompletionItemKind.Text:
