@@ -88,7 +88,7 @@ namespace Palete {
 					    return false;
 				    }
 			    }
-			    this.subprocess_stream = new SimpleIOStream (input_stream, output_stream);
+			    this.subprocess_stream = new GLib.SimpleIOStream (input_stream, output_stream);
            		this.accept_io_stream ( this.subprocess_stream);
 			} catch (GLib.Error e) {
 				GLib.debug("subprocess startup error %s", e.message);	
@@ -97,7 +97,18 @@ namespace Palete {
 	      	}
             return true;
         }
-	 
+	 	public void onClose()
+	 	{
+	 		if (this.subprocess_stream != null) {
+	 			this.subprocess_stream.close();
+ 			}
+ 			if (this.subprocess != null) {
+ 				this.subprocess.force_exit();
+			}
+
+			this.subprocess = null;
+			this.closed = true;	 	
+	 	}
 		/**
 		utility method to build variant based queries
 		*/
@@ -343,6 +354,7 @@ namespace Palete {
 		public   void exit () throws GLib.Error 
 		{
 			if (!this.isReady()) {
+			
 				return;
 			}
  
@@ -352,9 +364,8 @@ namespace Palete {
 				null,
 				null 
 			);
-			this.subprocess.force_exit();
-			this.subprocess = null;
-			this.closed = true;
+			this.onClose();
+
 		}
  		public async void shutdown () throws GLib.Error 
  		{
