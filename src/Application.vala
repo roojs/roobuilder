@@ -669,7 +669,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		}
 		
 		static int queue_update_compile_countdown = -1;
-		static int queue_update_compile_id = 0;
+		static uint queue_update_compile_id = 0;
 		
 		public static void updateCompileResults( )
 		{
@@ -680,7 +680,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 					return true;
 				}
 				queue_update_compile_countdown--;
-				this.realUpdateCompileResults();
+				realUpdateCompileResults();
 				
 				return true;
 			});
