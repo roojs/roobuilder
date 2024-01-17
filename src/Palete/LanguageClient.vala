@@ -345,7 +345,7 @@ namespace Palete {
 			if (!this.isReady()) {
 				return;
 			}
-		 	this.sent_shutdown  = true;
+ 
 		 
 			  this.jsonrpc_client.send_notification (
 				"exit",
