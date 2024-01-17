@@ -59,10 +59,12 @@ namespace Palete {
 		public bool initProcess(string process_path)
 		{
 			this.onClose();
+			
+			GLib.debug("Launching %s", process_path);
 			this.launcher = new GLib.SubprocessLauncher (SubprocessFlags.STDIN_PIPE | SubprocessFlags.STDOUT_PIPE);
 			this.launcher.set_environ(GLib.Environ.get());
 			try {
-				GLib.debug("Launching %s", process_path);
+
 				
 				this.subprocess = launcher.spawnv ({ process_path });
 				
@@ -100,6 +102,8 @@ namespace Palete {
         }
 	 	public void onClose()
 	 	{
+	 		GLib.debug("onClose called");
+	 		
 	 		if (this.jsonrpc_client != null) {
 	 			try {
 					this.jsonrpc_client.close();
