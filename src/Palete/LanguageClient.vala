@@ -483,6 +483,7 @@ namespace Palete {
 
 			if (json.get_node_type() == Json.NodeType.OBJECT) {
 				ret = Json.gobject_deserialize (typeof (Lsp.CompletionList), json) as Lsp.CompletionList; 
+				GLib.debug ("LS replied with Object");
 				return;
 			}  
 			ret = new Lsp.CompletionList();	
@@ -498,7 +499,7 @@ namespace Palete {
 				ret.items.add( add);
 					 
 	 		}
-				  
+  				GLib.debug ("LS replied with Array");
 			
  		
 
