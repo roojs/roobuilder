@@ -119,12 +119,12 @@ namespace Palete {
 		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable) 
 		{
 			GLib.debug("pupoulate async");
-			if (!this.in_populate) {
+			/*if (!this.in_populate) {
 				GLib.debug("pupoulate async  - skipped waiting for reply");
 				return null;
 			}
 			this.in_populate = true;
-
+*/
 			global::Gtk.TextIter begin, end;
 			Lsp.CompletionList res;
 			if (context.get_bounds (out begin, out end)) {
