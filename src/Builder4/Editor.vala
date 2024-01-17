@@ -176,18 +176,18 @@ public class Editor : Object
 	
 	}
 	public string tempFileContents () {
+	   
+	   
 	   if (_this.file == null) {
 	       return "";
 	   }
-	
+		var str= this.buffer.toString();
 		if (_this.file.xtype == "PlainFile") {
 	    
-	     	return this.buffer.toString();
+	     	return str;
 	    
 	    }
-	 
-	    
-	
+	  
 	      
 	     
 	    GLib.debug("calling validate");    
