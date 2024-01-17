@@ -668,8 +668,20 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 		}
 		
+		int queue_update_compile_countdown = -1;
+		
 		public static void updateCompileResults( )
 		{
+			this.queue_update_compile_countdown = 3;
+			
+		}
+		
+		
+		public static void realUpdateCompileResults( )
+		{
+			
+			
+			
 			foreach(var ww in BuilderApplication.windows) {
 				if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
 					continue;
