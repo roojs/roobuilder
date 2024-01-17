@@ -1005,7 +1005,7 @@
     "\t     Gtk.TextIter iter;",
     "//        print(\"get inter\\n\");",
     "\t    var eline = err.line + 1;",
-    "\t    GLib.debug(\"GOT ERROR on line %d -- converted to %d  (offset = %d)\",",
+    "\t    //GLib.debug(\"GOT ERROR on line %d -- converted to %d  (offset = %d)\",",
     "\t    \terr.line ,eline, offset);",
     "\t    ",
     "\t    ",
