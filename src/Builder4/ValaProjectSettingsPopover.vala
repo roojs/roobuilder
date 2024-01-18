@@ -1632,7 +1632,6 @@ public class ValaProjectSettingsPopover : Object
 		 
 		 
 			_this.build_execute_args.el.buffer.set_text(  cg.execute_args.data );
-		
 		 
 		}
 	}
