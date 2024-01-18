@@ -378,7 +378,7 @@ namespace Lsp {
 			value = Value (typeof (Array));
 	        var arguments = new Gee.ArrayList<DocumentSymbol>();
 
-	        property_node.get_array ().foreach_element ((array, i	ndex, element) => {
+	        property_node.get_array ().foreach_element ((array, index, element) => {
 	            
 		        var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
 				arguments.add( add);
