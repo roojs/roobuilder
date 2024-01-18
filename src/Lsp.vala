@@ -373,12 +373,12 @@ namespace Lsp {
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
 	        }
+	        value = Value (typeof (Array));
 	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-	        	value = Value (typeof (Array));
 	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
 	        }
-			value = Value (typeof (Array));
+			 
 	        var arguments = new Gee.ArrayList<DocumentSymbol>();
 
 	        property_node.get_array ().foreach_element ((array, index, element) => {
