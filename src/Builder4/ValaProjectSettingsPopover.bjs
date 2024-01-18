@@ -509,7 +509,7 @@
                      "\tvar jr = (JsRender.JsRender) lr.get_item();",
                      "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
                      "",
-                     "\tbth.active = jr.compile_group_selected;",
+                     "\tbtn.active = jr.compile_group_selected;",
                      "\t ",
                      "// \tjr.bind_property(\"compile_group_selected\",",
                      "  //                  btn, \"active\",",

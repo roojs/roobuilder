@@ -1332,7 +1332,7 @@ public class ValaProjectSettingsPopover : Object
 				var jr = (JsRender.JsRender) lr.get_item();
 				//GLib.debug("change  %s to %s", lbl.label, np.name);
 			
-				bth.active = jr.compile_group_selected;
+				btn.active = jr.compile_group_selected;
 				 
 			// 	jr.bind_property("compile_group_selected",
 			  //                  btn, "active",
