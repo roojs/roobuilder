@@ -375,17 +375,15 @@ namespace Lsp {
 	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
 	        }
-
+			value = Value (typeof (Array));
 	        var arguments = new Gee.ArrayList<DocumentSymbol>();
 
-	        property_node.get_array ().foreach_element ((array, index, element) => {
-	            try {
-			        var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
-					arguments.add( add);
+	        property_node.get_array ().foreach_element ((array, i	ndex, element) => {
+	            
+		        var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
+				arguments.add( add);
 
-	            } catch (GLib.Error e) {
-	                warning ("argument %u to command could not be deserialized: %s", index, e.message);
-	            }
+	           
 	        });
 
 	        value.set_boxed (arguments);
