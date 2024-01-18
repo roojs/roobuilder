@@ -186,7 +186,7 @@ namespace Palete {
 				var offset =  end.get_line_offset();
 				if (this.editor.prop != null) {
 					line += this.editor.prop.start_line - 1; // i think..
-					offset += 2; // should probably be 8 without namespaced 
+					offset += this.editor.file.file_namespace == "" ? 1 : 2; // 
 				} 
 				
  				this.file.getLanguageServer().document_change_real(this.file, this.editor.tempFileContents());				
