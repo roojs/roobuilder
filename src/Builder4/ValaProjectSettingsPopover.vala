@@ -36,6 +36,7 @@ public class ValaProjectSettingsPopover : Object
 
 		// my vars (def)
 	public Project.Callback doneObj;
+	public bool cg_loading;
 	public Xcls_MainWindow window;
 	public Project.GtkValaSettings? selected_target;
 	public uint border_width;
@@ -50,6 +51,7 @@ public class ValaProjectSettingsPopover : Object
 
 		// my vars (dec)
 		this.doneObj = null;
+		this.cg_loading = false;
 		this.window = null;
 		this.selected_target = null;
 		this.border_width = 0;

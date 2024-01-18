@@ -8,6 +8,7 @@
    "Project.Gtk project" : "null",
    "Project.GtkValaSettings? selected_target" : "null",
    "Xcls_MainWindow window" : "null",
+   "bool cg_loading" : false,
    "bool done" : false,
    "bool modal" : true,
    "items" : [
