@@ -1084,9 +1084,13 @@ public class Editor : Object
 				Gtk.TextIter iter;
 				_this.buffer.el.get_iter_at_offset( out iter, _this.buffer.el.cursor_position);  
 				var line  = iter.get_line();
-				var offs = iter.get_line_offset();
+				var offset = iter.get_line_offset();
 				GLib.debug("line  %d  off %d", line ,offset);
-				
+				if (this.editor.prop != null) {
+					line += this.editor.prop.start_line + 1; // i think..
+					offset += 12; // should probably be 8 without namespaced 
+					GLib.debug("guess line  %d  off %d", line ,offset);
+				} 
 			    //_this.view.el.show_completion();
 			   // print(event.key.keyval)
 			   
