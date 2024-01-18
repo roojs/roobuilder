@@ -986,7 +986,7 @@
     "\tif (this.searchcontext == null) {",
     "\t\treturn;",
     "\t} ",
-    "\t",
+    "",
     "\tGtk.TextIter beg, st,en;",
     "\t bool has_wrapped_around;",
     "\tthis.buffer.el.get_iter_at_offset(out beg, this.last_search_end);",

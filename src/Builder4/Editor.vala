@@ -111,7 +111,7 @@ public class Editor : Object
 		if (this.searchcontext == null) {
 			return;
 		} 
-		
+	
 		Gtk.TextIter beg, st,en;
 		 bool has_wrapped_around;
 		this.buffer.el.get_iter_at_offset(out beg, this.last_search_end);
