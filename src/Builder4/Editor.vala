@@ -288,6 +288,7 @@ public class Editor : Object
 		
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
+			
 		
 		}
 		 

@@ -1110,6 +1110,7 @@
     "\t",
     "\t\ttlines = _this.prop.end_line;",
     "\t\toffset = _this.prop.start_line;",
+    "\t\t",
     "\t",
     "\t}",
     "\t ",
