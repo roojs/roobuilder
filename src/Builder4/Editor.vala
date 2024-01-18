@@ -1087,7 +1087,7 @@ public class Editor : Object
 				var offset = iter.get_line_offset();
 				GLib.debug("line  %d  off %d", line ,offset);
 				if (_this.prop != null) {
-					line += this.prop.start_line + 1; // i think..
+					line += _this.prop.start_line + 1; // i think..
 					offset += 12; // should probably be 8 without namespaced 
 					GLib.debug("guess line  %d  off %d", line ,offset);
 				} 

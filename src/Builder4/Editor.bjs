@@ -506,7 +506,7 @@
            "\tvar offset = iter.get_line_offset();",
            "\tGLib.debug(\"line  %d  off %d\", line ,offset);",
            "\tif (_this.prop != null) {",
-           "\t\tline += this.prop.start_line + 1; // i think..",
+           "\t\tline += _this.prop.start_line + 1; // i think..",
            "\t\toffset += 12; // should probably be 8 without namespaced ",
            "\t\tGLib.debug(\"guess line  %d  off %d\", line ,offset);",
            "\t} ",
