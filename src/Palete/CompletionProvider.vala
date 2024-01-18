@@ -58,7 +58,7 @@ namespace Palete {
 					var wbit = args[i].split(" ");
 					word += wbit[1];
 				}
-				word += " )";
+				word += args.length > 0 ? " )" : ")";
 			}
 			
 			var len = -1;
