@@ -383,7 +383,7 @@ namespace Lsp {
 			        var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
 					arguments.add( add);
 
-	            } catch (Error e) {
+	            } catch (GLib.Error e) {
 	                warning ("argument %u to command could not be deserialized: %s", index, e.message);
 	            }
 	        });
