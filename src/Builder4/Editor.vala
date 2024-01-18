@@ -286,8 +286,8 @@ public class Editor : Object
 		
 		if (_this.prop != null) {
 		
-			tlines = _this.prop.end_line + 1;
-			offset = _this.prop.start_line + 1;
+			tlines = _this.prop.end_line;
+			offset = _this.prop.start_line;
 		
 		}
 		 
