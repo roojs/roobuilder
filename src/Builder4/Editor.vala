@@ -106,7 +106,7 @@ public class Editor : Object
 	    return true;
 	
 	}
-	public void forwardSearch (boo1l change_focus) {
+	public void forwardSearch (bool change_focus) {
 	
 		if (this.searchcontext == null) {
 			return;

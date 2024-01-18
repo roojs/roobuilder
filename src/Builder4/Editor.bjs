@@ -981,7 +981,7 @@
     ""
    ],
    "| void forwardSearch" : [
-    "(boo1l change_focus) {",
+    "(bool change_focus) {",
     "",
     "\tif (this.searchcontext == null) {",
     "\t\treturn;",
