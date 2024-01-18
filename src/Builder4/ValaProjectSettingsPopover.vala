@@ -1617,7 +1617,7 @@ public class ValaProjectSettingsPopover : Object
 			 
 			 GLib.debug("loading dirs into project list");
 			 cg.loading_ui = true;
-			 this.cg_loading = true;
+			 _this.cg_loading = true;
 		
 			  _this.treeview.el.set_model(new Gtk.SingleSelection(null));
 			  _this.project.loadDirsIntoStore(_this.treemodel.el);
@@ -1625,7 +1625,7 @@ public class ValaProjectSettingsPopover : Object
 			  
 			 cg.loading_ui = false;
 			 
-			 this.cg_loading = false;
+			 _this.cg_loading = false;
 			 GLib.debug("Set name to %s", cg.name);
 			 
 		 	_this.build_name.el.buffer.set_text(cg.name.data);
