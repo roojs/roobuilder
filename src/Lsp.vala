@@ -368,10 +368,13 @@ namespace Lsp {
 
 	  	public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
 	    {
+	    	
+	    	
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
 	        }
 	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+	        	value = Value (typeof (Array));
 	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
 	        }
