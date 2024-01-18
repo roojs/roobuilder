@@ -1080,9 +1080,18 @@ public class Editor : Object
 				if (keyval == Gdk.Key.space && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
 					_this.view.el.show_completion();
 				}
-			
+				
+				Gtk.TextIter iter;
+				_this.buffer.el.get_iter_at_offset( out iter, _this.buffer.el.cursor_position);  
+				var line  = iter.get_line();
+				var offs = iter.get_line_offset();
+				GLib.debug("line  %d  off %d", line ,offset);
+				
 			    //_this.view.el.show_completion();
 			   // print(event.key.keyval)
+			   
+			   
+			   
 			    
 			    return;
 			 
