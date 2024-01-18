@@ -366,9 +366,8 @@ namespace Lsp {
             return node;
         }
 
-	  	public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
 	    {
-	    	
 	    	
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
