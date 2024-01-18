@@ -185,7 +185,9 @@ namespace Palete {
 				var line = end.get_line();
 				var offset =  end.get_line_offset();
 				if (this.editor.prop != null) {
-					line += this.editor.prop.start_line - 1; // i think..
+				//	tried line -1 (does not work)
+				
+					line += this.editor.prop.start_line ; 
 					// this is based on Gtk using tabs (hence 1/2 chars);
 					offset += this.editor.file.file_namespace == "" ? 1 : 2; 
 				} 
