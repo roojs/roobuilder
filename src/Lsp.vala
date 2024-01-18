@@ -373,7 +373,7 @@ namespace Lsp {
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
 	        }
-	        value = Value (typeof (Array));
+	        value = GLib.Value (GLib.Type.BOXED);
 	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
 	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
@@ -658,7 +658,7 @@ namespace Lsp {
         	if (property_name != "tags") {
                 return default_deserialize_property (property_name, out value, pspec, property_node);
             }
-            value = Value (typeof (Array));
+            value = GLib.Value (GLib.Type.BOXED);
             if (property_node.get_node_type () != Json.NodeType.ARRAY) {
                 warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
                 return false;
