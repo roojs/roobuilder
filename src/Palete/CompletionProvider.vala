@@ -157,10 +157,10 @@ namespace Palete {
 						
 					break;
 				case  GtkSource.CompletionColumn.COMMENT:
-					cell.set_text(p.info);
+					cell.set_text(p.text);
 					break;
 				case GtkSource.CompletionColumn.DETAILS:
-					cell.set_text(p.text);
+					cell.set_text(p.info);
 					break;
 				default:
 					cell.set_text(null);
