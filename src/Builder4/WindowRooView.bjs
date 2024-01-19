@@ -779,39 +779,6 @@
               ]
              },
              "xtype" : "EventControllerKey"
-            },
-            {
-             "$ xns" : "Gtk",
-             "listeners" : {
-              "pressed" : [
-               "(n_press, x, y) => {",
-               "",
-               "",
-               "}",
-               ""
-              ],
-              "released" : [
-               "(keyval, keycode, state) => {",
-               "",
-               "\t",
-               "\t ",
-               "\t if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-               "\t    GLib.debzug(\"SAVE: ctrl-g  pressed\");",
-               "\t\t_this.forwardSearch(true);",
-               "\t    return true;",
-               "\t}",
-               "    if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-               "\t    GLib.debug(\"SAVE: ctrl-f  pressed\");",
-               "\t\t_this.search_entry.el.grab_focus();",
-               "\t    return true;",
-               "\t}",
-               "\t ",
-               "\treturn false;",
-               "}\t ",
-               "\t"
-              ]
-             },
-             "xtype" : "GestureClick"
             }
            ],
            "listeners" : {
