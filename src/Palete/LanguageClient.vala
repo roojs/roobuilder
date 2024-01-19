@@ -20,6 +20,8 @@ namespace Palete {
  		CLOSE,
  		CHANGE,
  		TERM,
+ 		COMPLETE,
+ 		COMPLETE_REPLY,
  		
  		RESTART,
  		ERROR,
@@ -491,7 +493,7 @@ namespace Palete {
  			//	this.document_change_real(this.change_queue_file, this.change_queue_file_source);
  			//	this.change_queue_file != null;
 			//}
-			this.log(LanguageClientAction.COMPLETE, "SEND complete");
+			this.log(LanguageClientAction.COMPLETE, "SEND complete  %s @ %d:%d".printf(file.relpath, line, offset) );
 			
 			Variant? return_value;
 			
@@ -526,6 +528,7 @@ namespace Palete {
 
 			if (json.get_node_type() == Json.NodeType.OBJECT) {
 				ret = Json.gobject_deserialize (typeof (Lsp.CompletionList), json) as Lsp.CompletionList; 
+				this.log(LanguageClientAction.COMPLETE_REPLY, "GOT complete  %d items".printf(ret.items.size) );
 				GLib.debug ("LS replied with Object");
 				return;
 			}  
