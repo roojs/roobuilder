@@ -37,7 +37,11 @@ namespace Palete {
 		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
 		{
 			GLib.debug("compelte activate");
+			
 			var  p = (CompletionProposal) proposal;
+			GLib.debug("lsp says use %s", p.ci.insertText);
+			
+			
 			global::Gtk.TextMark end_mark = null;
 			global::Gtk.TextIter begin, end;
 
