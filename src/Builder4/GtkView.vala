@@ -898,7 +898,7 @@ public class Xcls_GtkView : Object
 
 			// my vars (def)
 		public int error_line;
-		public bool in_cursor_chnage;
+		public bool in_cursor_change;
 		public bool dirty;
 
 		// ctor
@@ -910,7 +910,7 @@ public class Xcls_GtkView : Object
 
 			// my vars (dec)
 			this.error_line = -1;
-			this.in_cursor_chnage = false;
+			this.in_cursor_change = false;
 			this.dirty = false;
 
 			// set gobject values

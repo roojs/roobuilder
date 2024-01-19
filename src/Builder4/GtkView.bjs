@@ -178,7 +178,7 @@
              "$ xns" : "GtkSource",
              "* pack" : "set_buffer",
              "bool dirty" : false,
-             "bool in_cursor_chnage" : false,
+             "bool in_cursor_change" : false,
              "id" : "buffer",
              "int error_line" : "-1",
              "listeners" : {
