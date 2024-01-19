@@ -772,7 +772,7 @@ public class Xcls_GtkView : Object
 			var cpos = buf.cursor_position;
 		    
 		   	print("BEFORE LOAD cursor = %d\n", cpos);
-		    
+		        var vadj_pos = this.el.get_vadjustment().get_value();
 		
 		    if (_this.file == null || _this.file.xtype != "Gtk") {
 		        print("xtype != Gtk");
