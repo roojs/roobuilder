@@ -221,7 +221,9 @@ namespace Project
 			}
 			switch( lang ) {
 				case "vala":
-					this.language_servers.set(lang, new Palete.LanguageClientVala(this));
+					var ls = new Palete.LanguageClientVala(this);
+					ls.log.connect(BuilderApplication.showSpinnerCompleteLog);
+					this.language_servers.set(lang, ls);
 					break;
 				default :
 					 return this.language_servers.get("dummy");
