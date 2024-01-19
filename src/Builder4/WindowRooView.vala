@@ -1253,24 +1253,61 @@ public class Xcls_WindowRooView : Object
 		    this.loading = false; 
 		    _this.buffer.dirty = false;
 		}
-		public void nodeSelected (JsRender.Node? sel, bool scroll ) {
+		public void nodeSelected (JsRender.Node? sel, bool scroll) {
 		  
 		    
-			
+		    if (this.loading) {
+		    	return;
+			}
 		    // this is connected in widnowstate
+		    print("Roo-view - node selected\n");
+		    var buf = this.el.get_buffer();
+		 
+		    var sbuf = (GtkSource.Buffer) buf;
 		
+		    
+		    
+		   
+		    // clear all the marks..
+		     Gtk.TextIter start;
+		    Gtk.TextIter end;     
+		        
+		    sbuf.get_bounds (out start, out end);
+		    sbuf.remove_source_marks (start, end, "grey");
+		    
+		        this.node_selected = sel;
+		     if (sel == null) {
+		        // no highlighting..
+		        return;
+		    }
+		    Gtk.TextIter iter;   
+		    sbuf.get_iter_at_line(out iter,  sel.line_start);
+		    
+		    
+		    Gtk.TextIter cur_iter;
+		    sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);
+		    
+		    //var cur_line = cur_iter.get_line();
+		    //if (cur_line > sel.line_start && cur_line < sel.line_end) {
+		    
+		    //} else {
+		    if (this.allow_node_scroll && _this.buffer.in_cursor_change) {
+		    	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+			}
+		    
+		     
+		    
+		    for (var i = 0; i < buf.get_line_count();i++) {
+		        if (i < sel.line_start || i > sel.line_end) {
+		           
+		            sbuf.get_iter_at_line(out iter, i);
+		            sbuf.create_source_mark(null, "grey", iter);
+		            
+		        }
+		    
+		    }
+		    
 		
-			// not sure why....   
-		  //  while(Gtk.events_pending()) {
-		   //     Gtk.main_iteration();
-		 //   }
-		    
-		    this.node_selected = sel;
-		    
-		   // this.updateGreySelection(scroll);
-		    
-		    
-		    
 		}
 		public void updateGreySelection (bool scroll) { 
 			var sel = this.node_selected;
