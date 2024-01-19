@@ -709,11 +709,52 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 			}
 		
 		}
-		public static  void showSpinner(bool state)
+		
+		BuilderApplication.showSpinnerCompleteLog(Palete.LanguageClientAction action, string message) {
+			switch(action) {
+			
+					case Palete.LanguageClientAction.INIT:
+			 		case Palete.LanguageClientAction.LAUNCH:
+			 		case Palete.LanguageClientAction.ACCEPT:
+						BuilderApplication.showSpinner( "software-update-available", msg );
+						return;
+						
+			 		case Palete.LanguageClientAction.DIAG,
+			 		case Palete.LanguageClientAction.OPEN,
+			 		case Palete.LanguageClientAction.SAVE,
+			 		case Palete.LanguageClientAction.CLOSE,
+			 		case Palete.LanguageClientAction.CHANGE,
+			 		case Palete.LanguageClientAction.TERM,
+			 		case Palete.LanguageClientAction.COMPLETE,
+			 		case Palete.LanguageClientAction.COMPLETE_REPLY,
+			 			
+			 		case Palete.LanguageClientAction.RESTART:
+			 		case Palete.LanguageClientAction.ERROR:
+			 		case Palete.LanguageClientAction.ERROR_START:
+					case Palete.LanguageClientAction.ERROR_RPC:
+					case Palete.LanguageClientAction.ERROR_REPLY:
+						BuilderApplication.showSpinner( "software-update-urgent", msg );
+						return;
+
+					case Palete.LanguageClientAction.EXIT:
+					
+			
+			}
+		}
+		
+		public static  void showSpinner(string icon, string tooltip = "")
 		{
+
+			// events:
+			// doc change send: - spinner - 
+			
+			
+			// ?? restart = software-update-urgent - crash?
+			
+			
 			foreach (var win in BuilderApplication.windows) {
-				if (state) {
-					win.statusbar_compile_spinner.start();
+				if (icon == "") {
+					win.statusbar_compile_spinner.start(icon, tooltip);
 				}  else {
 					win.statusbar_compile_spinner.stop();
 				}
