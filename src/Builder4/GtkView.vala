@@ -873,10 +873,7 @@ public class Xcls_GtkView : Object
 		    Gtk.TextIter cur_iter;
 		    sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);
 		    
-		    //var cur_line = cur_iter.get_line();
-		    //if (cur_line > sel.line_start && cur_line < sel.line_end) {
 		    
-		    //} else {
 		    if (this.allow_node_scroll && _this.buffer.in_cursor_change) {
 		    	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
 			}
