@@ -786,8 +786,8 @@
               "released" : [
                "(n_press, x, y) => {",
                "",
-               "\tprint(\"BUTTON RELEASE EVENT\\n\");",
-               "\t_this.sourceview.onCursorChanged();",
+               "\t//print(\"BUTTON RELEASE EVENT\\n\");",
+               "\t//_this.sourceview.onCursorChanged();",
                "\t//this.button_is_pressed = false;",
                "\t ",
                "}",
