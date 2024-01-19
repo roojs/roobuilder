@@ -155,7 +155,7 @@ namespace Palete {
 							return;
 						}
 						
-					break;
+					
 				case  GtkSource.CompletionColumn.COMMENT:
 					cell.set_text(p.text);
 					break;
