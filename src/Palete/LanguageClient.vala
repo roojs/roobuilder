@@ -27,6 +27,7 @@ namespace Palete {
  		ERROR,
  		ERROR_START,
 		ERROR_RPC,
+		ERROR_REPLY,
 
 		EXIT,
  	}
