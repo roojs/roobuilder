@@ -959,8 +959,7 @@ public class Xcls_GtkView : Object
 			
 			 });
 			this.el.cursor_moved.connect( ( ) => {
-			
-			
+			GLib.debug("cursor moved called");
 			});
 		}
 

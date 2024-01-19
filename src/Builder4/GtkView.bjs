@@ -184,8 +184,7 @@
              "listeners" : {
               "cursor_moved" : [
                "( ) => {",
-               "",
-               "",
+               "GLib.debug(\"cursor moved called\");",
                "}",
                ""
               ],
