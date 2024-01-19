@@ -892,7 +892,7 @@
             "    ",
             "    _this.main_window.windowstate.updateErrorMarksAll();",
             "    ",
-            "    // what restore the cursor position?",
+            "    //  restore the cursor position?",
             "    // after reloading the contents.",
             "     GLib.Timeout.add(500, () => {",
             "\t\t_this.buffer.in_cursor_change = true;",

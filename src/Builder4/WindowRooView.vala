@@ -1229,7 +1229,7 @@ public class Xcls_WindowRooView : Object
 		    
 		    _this.main_window.windowstate.updateErrorMarksAll();
 		    
-		    // what restore the cursor position?
+		    //  restore the cursor position?
 		    // after reloading the contents.
 		     GLib.Timeout.add(500, () => {
 				_this.buffer.in_cursor_change = true;
