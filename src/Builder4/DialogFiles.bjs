@@ -1183,7 +1183,7 @@
    "xtype" : "Window",
    "| void load" : [
     "() {",
-    "     // clear list...",
+    "     // cl list...",
     "    ",
     "       ",
     "     _this.is_loading = true;",
@@ -1199,7 +1199,7 @@
     "    ",
     "    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; ",
     "\t_this.btn_delfile.el.hide();",
-    "\t",
+    " ",
     "  ",
     "}",
     ""

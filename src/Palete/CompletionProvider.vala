@@ -59,8 +59,10 @@ namespace Palete {
 				word += "(";
 				for(var i = 0 ; i < args.length; i++) {
 					word += i > 0 ? ", " : " ";
-					var wbit = args[i].split(" ");
-					word += wbit[1];
+					var wbit = args[i].strip().split(" ");
+					var ty = wbit[wbit.length - 2];
+					ty = ty.has_suffix("?") ? "?" : "";  
+					word += ty + wbit[wbit.length-1]; // property type..?
 				}
 				word += args.length > 0 ? " )" : ")";
 			}

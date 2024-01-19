@@ -176,7 +176,7 @@ public class DialogFiles : Object
 		 
 	}//
 	public void load () {
-	     // clear list...
+	     // cl list...
 	    
 	       
 	     _this.is_loading = true;
@@ -192,7 +192,7 @@ public class DialogFiles : Object
 	    
 	    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; 
 		_this.btn_delfile.el.hide();
-		
+	 
 	  
 	}
 	public class Xcls_Box2 : Object
