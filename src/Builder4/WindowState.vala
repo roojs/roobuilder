@@ -655,7 +655,7 @@ public class WindowState : Object
 		BuilderApplication.updateWindows();
 		
 		file.getLanguageServer().document_open(file);
-		BuilderApplication.showSpinner(true);	
+		BuilderApplication.showSpinner("spinner", "document open sent");	
 			
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();

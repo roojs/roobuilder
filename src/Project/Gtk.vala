@@ -222,7 +222,10 @@ namespace Project
 			switch( lang ) {
 				case "vala":
 					var ls = new Palete.LanguageClientVala(this);
-					ls.log.connect(BuilderApplication.showSpinnerLspLog);
+					ls.log.connect((act, msg) => {
+						//GLib.debug("log %s: %s", act.to_string(), msg);
+						BuilderApplication.showSpinnerLspLog(act,msg);
+					});
 					this.language_servers.set(lang, ls);
 					break;
 				default :

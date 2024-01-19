@@ -251,7 +251,7 @@ public class Editor : Object
 	
 		buf.remove_source_marks (start, end, category);
 	 
-		GLib.debug("highlight errors");		 
+		//GLib.debug("highlight errors");		 
 	
 		 // we should highlight other types of errors..
 	
@@ -259,7 +259,7 @@ public class Editor : Object
 			&&
 			_this.window.windowstate.state != WindowState.State.CODE
 			) {
-			GLib.debug("windowstate != CODEONLY?");
+			//GLib.debug("windowstate != CODEONLY?");
 			
 			return;
 		} 
@@ -272,7 +272,7 @@ public class Editor : Object
 		}
 		var ar = this.file.getErrors(category);
 		if (ar == null || ar.get_n_items() < 1) {
-			GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
+			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
 			return;
 		}
 	 
@@ -285,11 +285,11 @@ public class Editor : Object
 		var tlines = buf.get_line_count () +1;
 		
 		if (_this.prop != null) {
-		
+			// this still seems flaky...
+			
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
-			
-		
+			 
 		}
 		 
 		for (var i = 0; i < ar.get_n_items();i++) {
@@ -298,8 +298,8 @@ public class Editor : Object
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
 		    var eline = err.line - offset;
-		    GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
-		    	err.line ,eline, offset);
+		    //GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
+		    //	err.line ,eline, offset);
 		    
 		    
 		    if (eline > tlines || eline < 0) {
@@ -312,7 +312,7 @@ public class Editor : Object
 		   
 			var msg = "Line: %d %s : %s".printf(eline+1, err.category, err.msg);
 		    buf.create_source_mark( msg, err.category, iter);
-		    GLib.debug("set line %d to %s", eline, msg);
+		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
 		return ;
@@ -862,7 +862,7 @@ public class Editor : Object
 		         var  oldcode =_this.file.toSource();
 		        _this.file.setSource(str);
 		        _this.file.getLanguageServer().document_change(_this.file);
-			    BuilderApplication.showSpinner(true);
+			    BuilderApplication.showSpinner("appointment soon","document change pending");
 		        _this.file.setSource(oldcode);
 		        
 				 

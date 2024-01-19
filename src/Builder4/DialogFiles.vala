@@ -178,10 +178,10 @@ public class DialogFiles : Object
 	public void load () {
 	     // clear list...
 	    
-	      
+	       
 	     _this.is_loading = true;
 	         
-	     
+	
 	     Project.Project.loadAll();
 	     _this.project_list.el.set_model(new Gtk.SingleSelection(null));
 	     Project.Project.loadIntoStore(this.projectmodel.el);

@@ -1524,6 +1524,7 @@ public class Xcls_MainWindow : Object
 			  _this.statusbar_compile_icon.el.hide();
 		  } else {
 			  this.el.hide();
+			//  GLib.debug("set status icon %s, %s", icon, tooltip);
 			  _this.statusbar_compile_icon.el.tooltip_text = tooltip;
 			  _this.statusbar_compile_icon.el.icon_name = icon;
 			  _this.statusbar_compile_icon.el.show();	  

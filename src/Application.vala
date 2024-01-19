@@ -710,7 +710,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 		}
 		
-		public void showSpinnerLspLog(Palete.LanguageClientAction action, string message) {
+		public static void showSpinnerLspLog(Palete.LanguageClientAction action, string message) {
 			
 			var msg = action.to_string() + " " + message;
 			switch(action) {
@@ -772,10 +772,10 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 			
 			
 			// ?? restart = software-update-urgent - crash?
-			
+
 			
 			foreach (var win in BuilderApplication.windows) {
-				if (icon == "") {
+				if (icon != "") {
 					win.statusbar_compile_spinner.start(icon, tooltip);
 				}  else {
 					win.statusbar_compile_spinner.stop();

@@ -707,6 +707,7 @@
           "\t  _this.statusbar_compile_icon.el.hide();",
           "  } else {",
           "\t  this.el.hide();",
+          "\t//  GLib.debug(\"set status icon %s, %s\", icon, tooltip);",
           "\t  _this.statusbar_compile_icon.el.tooltip_text = tooltip;",
           "\t  _this.statusbar_compile_icon.el.icon_name = icon;",
           "\t  _this.statusbar_compile_icon.el.show();\t  ",

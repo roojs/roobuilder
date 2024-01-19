@@ -198,10 +198,16 @@ namespace Palete {
 			this.compiler.isZombie();
 			GLib.debug("compile got %s", output);
 			if (output == "") {
-			 	BuilderApplication.showSpinner(false);
+    	        BuilderApplication.showSpinner("face-sad", "compile failed - no error message?");
 			 	return;
 		 	}
-		 	
+		 	if (this.requestType == ValaCompileRequestType.RUN) {
+    	        BuilderApplication.showSpinner("");
+				this.execResult();
+				return;
+			}
+			
+			// below is not used anymore - as we dont use this
 			try { 
 				//GLib.debug("GOT output %s", output);
 				
@@ -210,12 +216,12 @@ namespace Palete {
 				var node = pa.get_root();
 
 				if (node.get_node_type () != Json.NodeType.OBJECT) {
-					BuilderApplication.showSpinner(false);
+					BuilderApplication.showSpinner("");
 					return;
 				}
 				var ret = node.get_object ();	
 				//CompileError.parseCompileResults(this,ret);
-				BuilderApplication.showSpinner(false);
+					BuilderApplication.showSpinner("");
 				
 			
 				
@@ -223,12 +229,9 @@ namespace Palete {
 				
 			} catch (GLib.Error e) {
 				GLib.debug("parsing output got error %s", e.message);
-				BuilderApplication.showSpinner(false);
+				BuilderApplication.showSpinner("");
 				return;
 				
-			}
-			if (this.requestType == ValaCompileRequestType.RUN) {
-				this.execResult();
 			}
 		}
 		 
@@ -273,7 +276,7 @@ namespace Palete {
 		 	Javascript.singleton().validate(contents, this.file );
 			 
 			 
-			BuilderApplication.showSpinner(false);
+			BuilderApplication.showSpinner("");
 			BuilderApplication.updateCompileResults();
 			
 			//this.queue.onCompileComplete(this);

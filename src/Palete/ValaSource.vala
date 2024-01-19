@@ -10,6 +10,8 @@
  *  x = new ValaSource();
  *  x.connect.compiled(... do something with results... );
  *  
+ 
+ THIS IS NOT USED ?? - replaced with valacompilerequest
  * 
  */
 
@@ -168,12 +170,12 @@ namespace Palete {
 				return false;
 			}
 			this.compiler.complete.connect(spawnResult);
-	        this.spinner(true);
+	        BuilderApplication.showSpinner("spinner", "compiling file");
 			try {
 				this.compiler.run(); 
 			} catch (GLib.Error e) {
 			        GLib.debug("Error %s",e.message);
-			        this.spinner(false);
+        	        BuilderApplication.showSpinner("face-sad", "compile failed %s".printf(e.message));
          			this.compiler = null;
          			this.deleteTemp();
 			        return false;
@@ -183,16 +185,7 @@ namespace Palete {
 			 
 		}
 		
-		public void spinner(bool state)
-		{
-			foreach (var win in BuilderApplication.windows) {
-				if (state) {
-					win.statusbar_compile_spinner.start();
-				}  else {
-					win.statusbar_compile_spinner.stop();
-				}
-			}
-		}
+		 
 		
 		
 		public bool checkFileSpawn(JsRender.JsRender file )
