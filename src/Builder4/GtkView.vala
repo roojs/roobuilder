@@ -769,7 +769,9 @@ public class Xcls_GtkView : Object
 		    var buf = this.el.get_buffer();
 		    buf.set_text("",0);
 		    var sbuf = (GtkSource.Buffer) buf;
-		
+			var cpos = buf.cursor_position;
+		    
+		   	print("BEFORE LOAD cursor = %d\n", cpos);
 		    
 		
 		    if (_this.file == null || _this.file.xtype != "Gtk") {
@@ -815,7 +817,23 @@ public class Xcls_GtkView : Object
 		  
 		     
 		   _this.main_window.windowstate.updateErrorMarksAll(); 
-		   
+		   //  restore the cursor position?
+		    // after reloading the contents.
+		     GLib.Timeout.add(500, () => {
+				_this.buffer.in_cursor_change = true;
+		        print("RESORTING cursor to = %d\n", cpos);
+				Gtk.TextIter cpos_iter;
+				buf.get_iter_at_offset(out cpos_iter, cpos);
+				buf.place_cursor(cpos_iter); 
+				
+				this.el.get_vadjustment().set_value(vadj_pos);;
+				_this.buffer.in_cursor_change = false;
+		 
+				
+				
+				//_this.buffer.checkSyntax();
+				return false;
+			});
 		  
 		    
 		    this.loading = false; 
