@@ -861,7 +861,7 @@ public class Xcls_GtkView : Object
 		    //if (cur_line > sel.line_start && cur_line < sel.line_end) {
 		    
 		    //} else {
-		    if (this.allow_node_scroll) {
+		    if (this.allow_node_scroll && _this.buffer.in_cursor_change) {
 				 
 		    	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
 			}
