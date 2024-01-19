@@ -1231,14 +1231,14 @@ public class Xcls_WindowRooView : Object
 		    
 		    // what does this do?
 		     GLib.Timeout.add(500, () => {
-		
+				_this.buffer.in_cursor_change = true;
 		        print("RESORTING cursor to = %d\n", cpos);
 				Gtk.TextIter cpos_iter;
 				buf.get_iter_at_offset(out cpos_iter, cpos);
 				buf.place_cursor(cpos_iter); 
 				
 				this.el.get_vadjustment().set_value(vadj_pos);;
-				
+				_this.buffer.in_cursor_change = false;
 		 
 				
 				
