@@ -181,18 +181,14 @@
              "bool in_cursor_change" : false,
              "id" : "buffer",
              "int error_line" : "-1",
+             "int last_line" : "-1",
              "listeners" : {
               "cursor_moved" : [
                "( ) => {",
                "GLib.debug(\"cursor moved called\");",
-               "}",
-               ""
-              ],
-              "notify[\"cursor_position\"]" : [
-               "() => {",
                "",
                "",
-               "    if (this.in_cursor_change ) {",
+               " \tif (this.in_cursor_change ) {",
                "        GLib.debug(\"cursor changed : %d [ignoring nested call)\", this.el.cursor_position);",
                "        return;",
                "    }",
@@ -213,24 +209,8 @@
                "    var ltree = _this.main_window.windowstate.left_tree;",
                "    ltree.model.selectNode(node);",
                "    this.in_cursor_change  = false;",
-               "    ",
-               "    //print(\"got tree path %s\\n\", tp);",
-               "    //if (tp != \"\") {",
-               "      // this.allow_node_scroll = false;        ",
-               "     //  print(\"changing cursor on tree..\\n\");",
-               "        //ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false);",
-               "        // scrolling is disabled... as node selection calls scroll 10ms after it changes.",
-               "        ///GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {",
-               "         //   this.allow_node_scroll = true;",
-               "         //   return false;",
-               "      //  });",
-               "   // }",
-               "    ",
-               "    // highlight the node..",
-               "    ",
-               "  ",
-               "",
-               " }"
+               "}",
+               ""
               ]
              },
              "xtype" : "Buffer"

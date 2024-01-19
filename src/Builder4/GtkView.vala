@@ -900,6 +900,7 @@ public class Xcls_GtkView : Object
 		public int error_line;
 		public bool in_cursor_change;
 		public bool dirty;
+		public int last_line;
 
 		// ctor
 		public Xcls_buffer(Xcls_GtkView _owner )
@@ -912,14 +913,16 @@ public class Xcls_GtkView : Object
 			this.error_line = -1;
 			this.in_cursor_change = false;
 			this.dirty = false;
+			this.last_line = -1;
 
 			// set gobject values
 
 			//listeners
-			this.el.notify["cursor_position"].connect( () => {
+			this.el.cursor_moved.connect( ( ) => {
+			GLib.debug("cursor moved called");
 			
 			
-			    if (this.in_cursor_change ) {
+			 	if (this.in_cursor_change ) {
 			        GLib.debug("cursor changed : %d [ignoring nested call)", this.el.cursor_position);
 			        return;
 			    }
@@ -940,26 +943,6 @@ public class Xcls_GtkView : Object
 			    var ltree = _this.main_window.windowstate.left_tree;
 			    ltree.model.selectNode(node);
 			    this.in_cursor_change  = false;
-			    
-			    //print("got tree path %s\n", tp);
-			    //if (tp != "") {
-			      // this.allow_node_scroll = false;        
-			     //  print("changing cursor on tree..\n");
-			        //ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false);
-			        // scrolling is disabled... as node selection calls scroll 10ms after it changes.
-			        ///GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
-			         //   this.allow_node_scroll = true;
-			         //   return false;
-			      //  });
-			   // }
-			    
-			    // highlight the node..
-			    
-			  
-			
-			 });
-			this.el.cursor_moved.connect( ( ) => {
-			GLib.debug("cursor moved called");
 			});
 		}
 
