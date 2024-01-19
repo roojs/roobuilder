@@ -1288,7 +1288,7 @@ public class Xcls_WindowRooView : Object
 		    //if (cur_line > sel.line_start && cur_line < sel.line_end) {
 		    
 		    //} else {
-		    if ( _this.buffer.in_cursor_change) {
+		    if (! _this.buffer.in_cursor_change) {
 		    	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
 			}
 		    
