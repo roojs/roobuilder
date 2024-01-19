@@ -14,11 +14,18 @@ namespace Palete {
  		LAUNCH,
  		ACCEPT,
  		
+ 		DIAG,
+ 		OPEN,
+ 		SAVE,
+ 		CLOSE,
+ 		CHANGE,
+ 		
+ 		RESTART,
  		ERROR,
  		ERROR_START,
 		ERROR_RPC,
 
-		CLOSE
+		EXIT,
  	}
 
 	public abstract class LanguageClient :   Jsonrpc.Server {
@@ -98,7 +105,7 @@ namespace Palete {
 						this.log(LanguageClientAction.ERROR_START, e.message);
 						GLib.debug("subprocess startup error %s", e.message);	        
 					}
-					this.log(LanguageClientAction.CLOSE, "process ended");
+					this.log(LanguageClientAction.EXIT, "process ended");
 					GLib.debug("Subprocess ended %s", process_path);
 					this.onClose();
 
@@ -309,7 +316,10 @@ namespace Palete {
 					),
 					null
 				);
+				this.log(LanguageClientAction.OPEN, file.path);
 			} catch( GLib.Error  e) {
+				this.log(LanguageClientAction.ERROR_RPC, e.message);
+				this.onClose();
 				GLib.debug ("LS sent open err %s", e.message);
 			}
 
@@ -333,8 +343,11 @@ namespace Palete {
 					),
 					null 
 				);
+				this.log(LanguageClientAction.SAVE, file.path);
 			} catch( GLib.Error  e) {
-				GLib.debug ("LS sent save err %s", e.message);
+				this.log(LanguageClientAction.ERROR_RPC, e.message);
+				GLib.debug ("LS   save err %s", e.message);
+				this.onClose();
 			}
 
          
@@ -349,6 +362,7 @@ namespace Palete {
 			if (this.open_files.contains(file)) {
 				this.open_files.remove(file);
 			}
+			this.log(LanguageClientAction.CLOSE, file.path);
 			GLib.debug ("LS send close");
 	 		try {
 				  this.jsonrpc_client.send_notification  (
@@ -362,7 +376,9 @@ namespace Palete {
 					null  
 				);
 			} catch( GLib.Error  e) {
-				GLib.debug ("LS sent close err %s", e.message);
+				this.log(LanguageClientAction.ERROR_RPC, e.message);
+				GLib.debug ("LS close err %s", e.message);
+				this.onClose();
 			}
 
          
@@ -397,6 +413,7 @@ namespace Palete {
 			ar.add_object_element(obj);
 			var node = new Json.Node(Json.NodeType.ARRAY);
 			node.set_array(ar);
+			this.log(LanguageClientAction.CHANGE, file.path);
 			 try {
 			  	this.jsonrpc_client.send_notification (
 					"textDocument/didChange",
@@ -411,7 +428,9 @@ namespace Palete {
 					null 
 				);
  			} catch( GLib.Error  e) {
-				GLib.debug ("LS sent close err %s", e.message);
+				this.log(LanguageClientAction.ERROR_RPC, e.message);
+				GLib.debug ("LS change err %s", e.message);
+				this.onClose();
 			}
 
          
