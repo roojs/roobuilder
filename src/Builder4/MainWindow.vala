@@ -1525,8 +1525,8 @@ public class Xcls_MainWindow : Object
 		  } else {
 			  this.el.hide();
 			  _this.statusbar_compile_icon.el.tooltip_text = tooltip;
-			  _this.statusbar_compile_icon.el.show();
 			  _this.statusbar_compile_icon.el.icon_name = icon;
+			  _this.statusbar_compile_icon.el.show();	  
 		  }
 		  
 			 
