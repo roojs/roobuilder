@@ -547,7 +547,7 @@ namespace Palete {
 					 
 	 		}
 			this.log(LanguageClientAction.ERROR_REPLY, "GOT array else".printf(ret.items.size) );
-  				GLib.debug ("LS replied with Array");
+			GLib.debug ("LS replied with Array");
 			
  		
 
