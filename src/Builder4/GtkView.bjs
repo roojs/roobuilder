@@ -168,6 +168,7 @@
            "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
            "bool allow_node_scroll" : true,
+           "bool loading" : false,
            "gboolean editable" : false,
            "gboolean show_line_marks" : true,
            "gboolean show_line_numbers" : true,

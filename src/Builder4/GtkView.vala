@@ -624,6 +624,7 @@ public class Xcls_GtkView : Object
 
 
 			// my vars (def)
+		public bool loading;
 		public string prop_selected;
 		public bool allow_node_scroll;
 		public Gtk.CssProvider css;
@@ -637,6 +638,7 @@ public class Xcls_GtkView : Object
 			this.el = new GtkSource.View();
 
 			// my vars (dec)
+			this.loading = false;
 			this.prop_selected = "";
 			this.allow_node_scroll = true;
 
