@@ -703,8 +703,8 @@ public class Xcls_GtkView : Object
 			this.el.notify["cursor_position"].connect( () => {
 			
 			
-			    if (_this.sourceview.loading) {
-			        GLib.debug("cursor changed : %d [ignoring  - ", this.el.cursor_position);
+			    if (this.in_cursor_change ) {
+			        GLib.debug("cursor changed : %d [ignoring nested call)", this.el.cursor_position);
 			        return;
 			    }
 			   
@@ -720,10 +720,10 @@ public class Xcls_GtkView : Object
 			        print("can not find node\n");
 			        return;
 			    }
-			    _this.sourceview.loading = true;
+			    this.in_cursor_change  = true;
 			    var ltree = _this.main_window.windowstate.left_tree;
 			    ltree.model.selectNode(node);
-			    _this.sourceview.loading = false;
+			    this.in_cursor_change  = false;
 			    
 			    //print("got tree path %s\n", tp);
 			    //if (tp != "") {
