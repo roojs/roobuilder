@@ -725,9 +725,16 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 			 		case Palete.LanguageClientAction.CLOSE,
 			 		case Palete.LanguageClientAction.CHANGE,
 			 		case Palete.LanguageClientAction.TERM,
-			 		case Palete.LanguageClientAction.COMPLETE,
-			 		case Palete.LanguageClientAction.COMPLETE_REPLY,
-			 			
+						BuilderApplication.showSpinner( "media-playback-stop", msg);
+						return;			 			
+			 		case Palete.LanguageClientAction.COMPLETE:
+						BuilderApplication.showSpinner( "mail-send-recieve", msg);
+						return;
+			 		
+			 		case Palete.LanguageClientAction.COMPLETE_REPLY:
+						BuilderApplication.showSpinner( "face-cool", msg);
+						return;
+						
 			 		case Palete.LanguageClientAction.RESTART:
 			 		case Palete.LanguageClientAction.ERROR:
 			 		case Palete.LanguageClientAction.ERROR_START:
