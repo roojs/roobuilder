@@ -263,7 +263,9 @@ namespace Palete {
 		*/
 		public void onDiagnostic(Variant? return_value) 
 		{
+
 			var dg = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
+			this.log(LanguageClientAction.DIAG, dg.filename);
 			var f = this.project.getByPath(dg.filename);
 			if (f == null) {
 				//GLib.debug("no file %s", dg.uri);
