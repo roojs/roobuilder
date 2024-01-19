@@ -33,6 +33,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_depricated statusbar_depricated;
 	public Xcls_statusbar_run statusbar_run;
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
+	public Xcls_statusbar_compile_icon statusbar_compile_icon;
 
 		// my vars (def)
 	public WindowState windowstate;
@@ -890,6 +891,8 @@ public class Xcls_MainWindow : Object
 			this.el.append( child_6.el );
 			new Xcls_statusbar_compile_spinner( _this );
 			this.el.append( _this.statusbar_compile_spinner.el );
+			new Xcls_statusbar_compile_icon( _this );
+			this.el.append( _this.statusbar_compile_icon.el );
 		}
 
 		// user defined functions
@@ -1275,7 +1278,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 		public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
-		    BuilderApplication.showSpinner(false);
+		    BuilderApplication.showSpinner("");
 		     if (nots.get_n_items() < 1 ) {
 		    	this.el.hide();
 		    	if (this.popup != null) {
@@ -1512,17 +1515,53 @@ public class Xcls_MainWindow : Object
 		}
 
 		// user defined functions
-		public void start () {
-		  this.el.show();
-		  this.el.start();  
+		public void start (string icon, string tooltip) {
+		
+			if (icon == "spinner") {
+			  this.el.show();
+			  this.el.start();  
+			  this.el.tooltip_text = tooltip;
+			  _this.statusbar_compile_icon.el.hide();
+		  } else {
+			  this.el.hide();
+			  _this.statusbar_compile_icon.el.tooltip_text = tooltip;
+			  _this.statusbar_compile_icon.el.show();
+			  _this.statusbar_compile_icon.el.icon_name = icon;
+		  }
 		  
 			 
 		}
 		public void stop () {
 		 this.el.stop();
 		  this.el.hide();
-		   
+		 _this.statusbar_compile_icon.el.hide();  
 		}
+	}
+
+	public class Xcls_statusbar_compile_icon : Object
+	{
+		public Gtk.Image el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_statusbar_compile_icon(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			_this.statusbar_compile_icon = this;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.margin_end = 4;
+			this.el.margin_start = 4;
+			this.el.icon_size = Gtk.IconSize.NORMAL;
+		}
+
+		// user defined functions
 	}
 
 

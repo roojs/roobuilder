@@ -517,7 +517,7 @@
            "xtype" : "Button",
            "| void setNotices" : [
             "(GLib.ListStore nots, GLib.ListStore fe ) {",
-            "    BuilderApplication.showSpinner(false);",
+            "    BuilderApplication.showSpinner(\"\");",
             "     if (nots.get_n_items() < 1 ) {",
             "    \tthis.el.hide();",
             "    \tif (this.popup != null) {",
@@ -698,9 +698,19 @@
          "string tooltip_text" : "Compiling",
          "xtype" : "Spinner",
          "| void start" : [
-          "() {",
-          "  this.el.show();",
-          "  this.el.start();  ",
+          "(string icon, string tooltip) {",
+          "",
+          "\tif (icon == \"spinner\") {",
+          "\t  this.el.show();",
+          "\t  this.el.start();  ",
+          "\t  this.el.tooltip_text = tooltip;",
+          "\t  _this.statusbar_compile_icon.el.hide();",
+          "  } else {",
+          "\t  this.el.hide();",
+          "\t  _this.statusbar_compile_icon.el.tooltip_text = tooltip;",
+          "\t  _this.statusbar_compile_icon.el.show();",
+          "\t  _this.statusbar_compile_icon.el.icon_name = icon;",
+          "  }",
           "  ",
           "\t ",
           "}",
@@ -710,10 +720,18 @@
           "() {",
           " this.el.stop();",
           "  this.el.hide();",
-          "   ",
+          " _this.statusbar_compile_icon.el.hide();  ",
           "}",
           ""
          ]
+        },
+        {
+         "$ xns" : "Gtk",
+         "Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
+         "id" : "statusbar_compile_icon",
+         "int margin_end" : 4,
+         "int margin_start" : 4,
+         "xtype" : "Image"
         }
        ],
        "xtype" : "Box"
