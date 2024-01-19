@@ -875,11 +875,9 @@ public class Xcls_GtkView : Object
 		    
 		    
 		    if (!_this.buffer.in_cursor_change) {
-		    	GLib.debug( "scoll to iter ");
+		
 		    	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-			} else { 
-				GLib.debug("skip scroll ( in cursor change");
-			}
+			}  
 		    
 		     
 		    
