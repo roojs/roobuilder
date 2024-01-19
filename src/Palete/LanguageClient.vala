@@ -550,7 +550,7 @@ namespace Palete {
 	 		}
 			this.log(LanguageClientAction.COMPLETE_REPLY, "GOT array %d items".printf(ret.items.size) );
 			GLib.debug ("LS replied with Array");
-			
+ 
  		
 
 		}
