@@ -535,6 +535,7 @@ namespace Palete {
 
 			if (json.get_node_type() != Json.NodeType.ARRAY) {
 				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+				this.log(LanguageClientAction.ERROR_REPLY, "GOT something else??");
 				return;
 			
 			}
@@ -545,6 +546,7 @@ namespace Palete {
 				ret.items.add( add);
 					 
 	 		}
+			this.log(LanguageClientAction.ERROR_REPLY, "GOT array else".printf(ret.items.size) );
   				GLib.debug ("LS replied with Array");
 			
  		
