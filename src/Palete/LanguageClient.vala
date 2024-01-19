@@ -9,7 +9,7 @@
 
 namespace Palete {
 
- 	public signal void action(string action, string message);
+ 	
 
 	public abstract class LanguageClient :   Jsonrpc.Server {
 	
@@ -46,7 +46,7 @@ namespace Palete {
 			}
 		}
 				
-		
+		public signal void action(string action, string message);
 		
 		
 		protected LanguageClient(Project.Project project)
