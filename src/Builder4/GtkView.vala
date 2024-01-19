@@ -958,6 +958,10 @@ public class Xcls_GtkView : Object
 			  
 			
 			 });
+			this.el.cursor_moved.connect( ( ) => {
+			
+			
+			});
 		}
 
 		// user defined functions

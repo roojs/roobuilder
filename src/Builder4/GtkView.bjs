@@ -182,6 +182,13 @@
              "id" : "buffer",
              "int error_line" : "-1",
              "listeners" : {
+              "cursor_moved" : [
+               "( ) => {",
+               "",
+               "",
+               "}",
+               ""
+              ],
               "notify[\"cursor_position\"]" : [
                "() => {",
                "",
