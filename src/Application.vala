@@ -737,6 +737,8 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 						return;
 
 					case Palete.LanguageClientAction.EXIT:
+						BuilderApplication.showSpinner( "face-sick", msg);
+						return;
 					
 			
 			}
