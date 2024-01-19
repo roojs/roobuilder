@@ -710,7 +710,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 		}
 		
-		public void showSpinnerCompleteLog(Palete.LanguageClientAction action, string message) {
+		public void showSpinnerLspLog(Palete.LanguageClientAction action, string message) {
 			
 			var msg = action.to_string() + " " + message;
 			switch(action) {
