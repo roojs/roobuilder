@@ -1532,6 +1532,7 @@ public class Xcls_WindowRooView : Object
 
 			// my vars (def)
 		public int error_line;
+		public bool in_cursor_change;
 		public bool dirty;
 
 		// ctor
@@ -1543,14 +1544,40 @@ public class Xcls_WindowRooView : Object
 
 			// my vars (dec)
 			this.error_line = -1;
+			this.in_cursor_change = false;
 			this.dirty = false;
 
 			// set gobject values
 
 			//listeners
 			this.el.cursor_moved.connect( ( ) => {
+			GLib.debug("cursor moved called");
 			
 			
+			 	if (this.in_cursor_change ) {
+			        GLib.debug("cursor changed : %d [ignoring nested call)", this.el.cursor_position);
+			        return;
+			    }
+			   
+			    GLib.debug("cursor changed : %d", this.el.cursor_position);
+			    Gtk.TextIter cpos;
+			    this.el.get_iter_at_offset(out cpos, this.el.cursor_position);
+			    
+			    var ln = cpos.get_line();
+			    if (this.last_line == ln ){
+			    	return;
+				}
+				this.last_line = ln;
+			    var node = _this.file.lineToNode(ln);
+			
+			    if (node == null) {
+			        print("can not find node\n");
+			        return;
+			    }
+			    this.in_cursor_change  = true;
+			    var ltree = _this.main_window.windowstate.left_tree;
+			    ltree.model.selectNode(node);
+			    this.in_cursor_change  = false;
 			});
 			this.el.changed.connect( () => {
 			  
