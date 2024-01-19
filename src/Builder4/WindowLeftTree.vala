@@ -1460,7 +1460,8 @@ public class Xcls_WindowLeftTree : Object
 			}
 			GLib.debug("Select %d", row);
 			s.set_selected(row);
-			_this.node_selected(node);			
+			_this.view.el.scroll_to(row, null, Gtk.ListScrollFlags.SELECT, null);
+			//_this.node_selected(node);			
 			
 		
 		}

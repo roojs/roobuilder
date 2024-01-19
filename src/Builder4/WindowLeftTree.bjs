@@ -919,7 +919,8 @@
             "\t}",
             "\tGLib.debug(\"Select %d\", row);",
             "\ts.set_selected(row);",
-            "\t_this.node_selected(node);\t\t\t",
+            "\t_this.view.el.scroll_to(row, null, Gtk.ListScrollFlags.SELECT, null);",
+            "\t//_this.node_selected(node);\t\t\t",
             "\t",
             "",
             "}"
