@@ -198,7 +198,7 @@
                "    this.el.get_iter_at_offset(out cpos, this.el.cursor_position);",
                "    ",
                "    var ln = cpos.get_line();",
-               "    if (this.last_line = ln ){",
+               "    if (this.last_line == ln ){",
                "    \treturn;",
                "\t}",
                "\tthis.last_line = ln;",

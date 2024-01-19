@@ -932,7 +932,7 @@ public class Xcls_GtkView : Object
 			    this.el.get_iter_at_offset(out cpos, this.el.cursor_position);
 			    
 			    var ln = cpos.get_line();
-			    if (this.last_line = ln ){
+			    if (this.last_line == ln ){
 			    	return;
 				}
 				this.last_line = ln;
