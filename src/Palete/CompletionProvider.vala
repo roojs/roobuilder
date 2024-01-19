@@ -165,7 +165,7 @@ namespace Palete {
 					break;
 				case GtkSource.CompletionColumn.DETAILS:
 					if (p.ci.documentation != null) {
-						cell.set_text(ci.documentation.value);
+						cell.set_text(p.ci.documentation.value);
 						return;
 					}
 				
