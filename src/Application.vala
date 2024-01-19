@@ -721,23 +721,23 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 						BuilderApplication.showSpinner( "software-update-available", msg );
 						return;
 						
-			 		case Palete.LanguageClientAction.DIAG,
+			 		case Palete.LanguageClientAction.DIAG:
 				 		BuilderApplication.showSpinner( "format-justify-fill", msg);			 		
 			 			return;
 
-			 		case Palete.LanguageClientAction.OPEN,
+			 		case Palete.LanguageClientAction.OPEN:
 				 		BuilderApplication.showSpinner( "document-open", msg);			 		
 			 			return;
-			 		case Palete.LanguageClientAction.SAVE,
+			 		case Palete.LanguageClientAction.SAVE:
 			 			BuilderApplication.showSpinner( "document-save", msg);			 		
 			 			return;
-			 		case Palete.LanguageClientAction.CLOSE,
+			 		case Palete.LanguageClientAction.CLOSE:
 			 			BuilderApplication.showSpinner( "window.close", msg);			 		
 			 			return;
-			 		case Palete.LanguageClientAction.CHANGE,
+			 		case Palete.LanguageClientAction.CHANGE:
 			 			BuilderApplication.showSpinner( "format-text-direction-ltr", msg);
 			 			return;			 			
-			 		case Palete.LanguageClientAction.TERM,
+			 		case Palete.LanguageClientAction.TERM:
 						BuilderApplication.showSpinner( "media-playback-stop", msg);
 						return;			 			
 			 		case Palete.LanguageClientAction.COMPLETE:
