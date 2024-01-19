@@ -1239,8 +1239,7 @@ public class Xcls_WindowRooView : Object
 				
 				this.el.get_vadjustment().set_value(vadj_pos);;
 				
-		
-				this.onCursorChanged();
+		 
 				
 				
 				//_this.buffer.checkSyntax();
