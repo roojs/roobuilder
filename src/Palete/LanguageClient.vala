@@ -96,6 +96,7 @@ namespace Palete {
 						this.log(LanguageClientAction.ERROR_START, e.message);
 						GLib.debug("subprocess startup error %s", e.message);	        
 					}
+					this.log(LanguageClientAction.CLOSE);
 					GLib.debug("Subprocess ended %s", process_path);
 					this.onClose();
 
