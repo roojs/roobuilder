@@ -1253,76 +1253,6 @@ public class Xcls_WindowRooView : Object
 		    this.loading = false; 
 		    _this.buffer.dirty = false;
 		}
-		public void onCursorChanged (/*ParamSpec ps*/) {
-		
-				if (!this.key_is_pressed && !this.button_is_pressed) {
-					return;
-				}
-		
-			   if (this.loading) {
-		            return;
-		        }
-		       // if (ps.name != "cursor-position") {
-		       //     return;
-		       // }
-		
-		        var buf = this.el.get_buffer();
-		        //print("cursor changed : %d\n", buf.cursor_position);
-		        Gtk.TextIter cpos;
-		        buf.get_iter_at_offset(out cpos, buf.cursor_position);
-		        
-		        var ln = cpos.get_line();
-		        
-		        
-		        // --- select node at line....
-		        
-		        var node = _this.file.lineToNode(ln+1);
-		 
-		        if (node == null) {
-		            print("can not find node\n");
-		            return;
-		        }
-		        var prop = node.lineToProp(ln+1);
-		        print("prop : %s", prop == null ? "???" : prop.name);
-		        
-		        
-		        // ---------- this selects the tree's node...
-		        
-		        var ltree = _this.main_window.windowstate.left_tree;
-		         ltree.model.selectNode(node);
-		        
-			       
-		        //print("changing cursor on tree..\n");
-		       
-		
-		        
-		        // let's try allowing editing on the methods.
-		        // a little klunky at present..
-		        this.prop_selected = "";
-		        /*
-		        if (prop != null) {
-		    		//see if we can find it..
-		    		var kv = prop.split(":");
-		    		if (kv[0] == "p") {
-		    		
-		        		//var k = prop.get_key(kv[1]);
-		        		// fixme -- need to determine if it's an editable property...
-		        		this.prop_selected = prop;
-		        		
-		    		} else if (kv[0] == "l") {
-		    			 this.prop_selected = prop;
-		    			
-		    		}
-		        }
-		       */
-		           // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); 
-		           //this.nodeSelected(node,false);
-		            
-		            // scrolling is disabled... as node selection calls scroll 10ms after it changes.
-		           
-		        
-		        // highlight the node..
-		}
 		public void nodeSelected (JsRender.Node? sel, bool scroll ) {
 		  
 		    
@@ -1522,6 +1452,76 @@ public class Xcls_WindowRooView : Object
 		    var ret = this.el.get_buffer().get_text(s,e,true);
 		    //print("TO STRING? " + ret);
 		    return ret;
+		}
+		public void DELonCursorChanged (/*ParamSpec ps*/) {
+		
+				if (!this.key_is_pressed && !this.button_is_pressed) {
+					return;
+				}
+		
+			   if (this.loading) {
+		            return;
+		        }
+		       // if (ps.name != "cursor-position") {
+		       //     return;
+		       // }
+		
+		        var buf = this.el.get_buffer();
+		        //print("cursor changed : %d\n", buf.cursor_position);
+		        Gtk.TextIter cpos;
+		        buf.get_iter_at_offset(out cpos, buf.cursor_position);
+		        
+		        var ln = cpos.get_line();
+		        
+		        
+		        // --- select node at line....
+		        
+		        var node = _this.file.lineToNode(ln+1);
+		 
+		        if (node == null) {
+		            print("can not find node\n");
+		            return;
+		        }
+		        var prop = node.lineToProp(ln+1);
+		        print("prop : %s", prop == null ? "???" : prop.name);
+		        
+		        
+		        // ---------- this selects the tree's node...
+		        
+		        var ltree = _this.main_window.windowstate.left_tree;
+		         ltree.model.selectNode(node);
+		        
+			       
+		        //print("changing cursor on tree..\n");
+		       
+		
+		        
+		        // let's try allowing editing on the methods.
+		        // a little klunky at present..
+		        this.prop_selected = "";
+		        /*
+		        if (prop != null) {
+		    		//see if we can find it..
+		    		var kv = prop.split(":");
+		    		if (kv[0] == "p") {
+		    		
+		        		//var k = prop.get_key(kv[1]);
+		        		// fixme -- need to determine if it's an editable property...
+		        		this.prop_selected = prop;
+		        		
+		    		} else if (kv[0] == "l") {
+		    			 this.prop_selected = prop;
+		    			
+		    		}
+		        }
+		       */
+		           // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); 
+		           //this.nodeSelected(node,false);
+		            
+		            // scrolling is disabled... as node selection calls scroll 10ms after it changes.
+		           
+		        
+		        // highlight the node..
 		}
 	}
 	public class Xcls_buffer : Object
