@@ -16,7 +16,7 @@ namespace Palete {
  		
  		ERROR,
  		ERROR_START,
-		ERROR_CLIENT_FAIL,
+		ERROR_RPC,
 
 		CLOSE
  	}
@@ -209,6 +209,7 @@ namespace Palete {
 		public bool isReady()
 		{
 			if (this.closed) {
+				this.log(LanguageClientAction.RESTART,"closed is set - restarting");
 				GLib.debug("server stopped = restarting");
 				this.initialized = false;
 				this.closed = false;
