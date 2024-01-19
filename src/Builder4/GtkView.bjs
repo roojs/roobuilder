@@ -93,6 +93,7 @@
              "$ xns" : "GtkSource",
              "* pack" : "set_buffer",
              "bool dirty" : false,
+             "bool in_cursor_chnage" : false,
              "id" : "buffer",
              "int error_line" : "-1",
              "listeners" : {
@@ -101,6 +102,7 @@
                "",
                "",
                "    if (_this.sourceview.loading) {",
+               "        GLib.debug(\"cursor changed : %d [ignoring  - \", this.el.cursor_position);",
                "        return;",
                "    }",
                "   ",
