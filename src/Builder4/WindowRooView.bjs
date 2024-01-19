@@ -595,6 +595,7 @@
              "bool in_cursor_change" : false,
              "id" : "buffer",
              "int error_line" : "-1",
+             "int last_line" : "-1",
              "listeners" : {
               "changed" : [
                " () => {",

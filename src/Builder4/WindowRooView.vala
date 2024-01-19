@@ -1571,6 +1571,7 @@ public class Xcls_WindowRooView : Object
 		public int error_line;
 		public bool in_cursor_change;
 		public bool dirty;
+		public int last_line;
 
 		// ctor
 		public Xcls_buffer(Xcls_WindowRooView _owner )
@@ -1583,6 +1584,7 @@ public class Xcls_WindowRooView : Object
 			this.error_line = -1;
 			this.in_cursor_change = false;
 			this.dirty = false;
+			this.last_line = -1;
 
 			// set gobject values
 
