@@ -122,7 +122,25 @@ namespace JsRender {
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
 		
-
+		private  GLib.Icon? _icon = null;
+		
+		public GLib.Icon? icon { 
+			private set {}
+			get {
+				if (this._icon !=  null) {
+					return this._icon;
+				}
+				
+				if (this.path == "") {
+					return null;
+				}
+				if (!GLib.FileUtils.test(this.path, GLib.FileTest.EXISTS)) {
+					return null;
+				}
+				this._icon = File.new_for_path(this.path).query_info("standard::icon",GLib.FileQueryInfoFlags.NONE).get_icon();
+				return this._icon;
+			}
+		}
 		
 		/**
 		 * UI componenets
@@ -171,10 +189,9 @@ namespace JsRender {
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
 			this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
+			 
+			
 
-			if (this.relpath == "src/Lsp.vala") {
-				GLib.debug("got testing lsp");
-			}
 
 		}
 		
@@ -341,11 +358,14 @@ namespace JsRender {
 				 GLib.debug("Width %d, Height %d", widget.get_width(), widget.get_height()); 
 				 p.snapshot(s, widget.get_width(), widget.get_height());
 				 var n = s.free_to_node();
+				 if (n == null) {
+				 	return;
+			 	}
 				 var r = new  Gsk.CairoRenderer();
 				 r.realize(null);
 				 var t = r.render_texture(n,null);
 				 GLib.debug("write to %s", filename);
-				t.save_to_png(filename);
+				 t.save_to_png(filename);
 				 r.unrealize();
 					 
 			

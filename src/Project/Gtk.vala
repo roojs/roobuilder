@@ -150,6 +150,10 @@ namespace Project
 		public override void onSave()
 		{
 			this.meson.save();
+			var vl = this.language_servers.get("vala");
+			if (vl != null) {
+				vl.initialize_server(); // hopefully better than exit?
+			}
 		}
 	 
 		/**
@@ -217,7 +221,12 @@ namespace Project
 			}
 			switch( lang ) {
 				case "vala":
-					this.language_servers.set(lang, new Palete.LanguageClientVala(this));
+					var ls = new Palete.LanguageClientVala(this);
+					ls.log.connect((act, msg) => {
+						//GLib.debug("log %s: %s", act.to_string(), msg);
+						BuilderApplication.showSpinnerLspLog(act,msg);
+					});
+					this.language_servers.set(lang, ls);
 					break;
 				default :
 					 return this.language_servers.get("dummy");
@@ -272,7 +281,7 @@ namespace Project
 			this.makeMain();
 		 	this.makeApplication();
 		 	this.makeWindow();
-			
+			this.makeGitIgnore();
 
 			var cg =  new GtkValaSettings(this, this.name);
 			this.compilegroups.set(this.name, cg);
@@ -388,8 +397,12 @@ namespace Project
 }
 """);
 	}
- 	
- 
+ 	void makeGitIgnore()
+	{
+			this.writeFile(".gitignore", """
+build/
+""");
+	}
 			
 		
 		 public override void   initDatabase()

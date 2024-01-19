@@ -1007,8 +1007,9 @@ public class JsRender.Node : GLib.Object {
 	
 	public void add_prop(NodeProp prop)
 	{
-		if (this.has_prop_key(prop)) {
-			GLib.error("duplicate key - can not add - call has_prop_key first");
+		if (this.has_prop_key(prop) && !prop.to_index_key().has_suffix("[]")) {
+			GLib.warning("duplicate key' %s'- can not add - call has_prop_key first", prop.to_index_key());
+			return;
 		}
 		prop.parent = this;
 		this.propstore.append(prop);

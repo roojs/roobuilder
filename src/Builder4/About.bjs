@@ -15,8 +15,11 @@
    "| void show" : [
     "(Gtk.Window parent) {",
     "\tthis.el.application = parent.application;",
-    "    this.el.set_transient_for(parent);",
-    "    this.el.show();",
+    "\tthis.el.set_transient_for(parent);",
+    "\tthis.el.show();",
+    " ",
+    "\t ",
+    "\t",
     "}"
    ]
   }

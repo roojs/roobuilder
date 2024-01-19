@@ -36,8 +36,8 @@ namespace Project
 				this.execute_args = "";
 		   }
 			// sources and packages.
-			this.sources = this.project.readArray(el.get_array_member("sources")) ;
-
+			this.sources = this.filterFiles(this.project.readArray(el.get_array_member("sources")));
+			
 
 		}
 		
@@ -51,7 +51,7 @@ namespace Project
 			ret.set_string_member("name", this.name);
 			ret.set_string_member("execute_args", this.execute_args);
  
-			ret.set_array_member("sources", this.writeArray(this.sources));
+			ret.set_array_member("sources", this.writeArray( this.filterFiles(this.sources)));
  
 
 			return ret;
@@ -80,6 +80,18 @@ namespace Project
 			GLib.debug("CANT FIND IT");
 			return false;
 		
+		}
+		
+		public Gee.ArrayList<string> filterFiles( Gee.ArrayList<string> ar)
+		{
+			var ret = new Gee.ArrayList<string>();
+			foreach(var f in ar) {
+				if (null == this.project.getByRelPath(f)) {
+					continue;
+				}
+				ret.add(f);
+			}
+			return ret;
 		}
 		
 	}

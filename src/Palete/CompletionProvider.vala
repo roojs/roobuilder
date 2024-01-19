@@ -37,7 +37,11 @@ namespace Palete {
 		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
 		{
 			GLib.debug("compelte activate");
+			
 			var  p = (CompletionProposal) proposal;
+			GLib.debug("lsp says use %s", p.ci.insertText);
+			
+			
 			global::Gtk.TextMark end_mark = null;
 			global::Gtk.TextIter begin, end;
 
@@ -47,6 +51,20 @@ namespace Palete {
 			var buffer = begin.get_buffer();
 		
 			var  word = p.label;
+			if (p.ci.kind == Lsp.CompletionItemKind.Method || p.ci.kind == Lsp.CompletionItemKind.Function) {
+				var bits = p.text.split("(");
+				var abits = bits[1].split(")");
+				var args = abits[0].split(",");
+				
+				word += "(";
+				for(var i = 0 ; i < args.length; i++) {
+					word += i > 0 ? ", " : " ";
+					var wbit = args[i].split(" ");
+					word += wbit[1];
+				}
+				word += args.length > 0 ? " )" : ")";
+			}
+			
 			var len = -1;
 			
 
@@ -91,7 +109,7 @@ namespace Palete {
 
 		public  void display (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal, GtkSource.CompletionCell cell)
 		{
-			GLib.debug("compelte display");
+			//GLib.debug("compelte display");
 			var col = cell.get_column();
 			
 			var p = (CompletionProposal) proposal;
@@ -100,12 +118,57 @@ namespace Palete {
 					cell.set_text(p.label);
 					break;
 				case GtkSource.CompletionColumn.ICON:
-					cell.set_icon_name("completion-snippet-symbolic");
-					break;
+//cell.set_icon_name("lang-define-symbolic");return;
+//cell.set_icon_name("lang-include-symbolic");return;
+//cell.set_icon_name("lang-typedef-symbolic");return;
+//cell.set_icon_name("lang-union-symbolic");return;			 
+					switch (p.ci.kind) {
+					
+					  	case 	Lsp.CompletionItemKind.Text: cell.set_icon_name("completion-snippet-symbolic");return;
+						case 	Lsp.CompletionItemKind.Method: cell.set_icon_name("lang-method-symbolic");return;
+						case 	Lsp.CompletionItemKind.Function: cell.set_icon_name("lang-function-symbolic");return;
+						case 	Lsp.CompletionItemKind.Constructor: cell.set_icon_name("lang-method-symbolic");return;
+						case 	Lsp.CompletionItemKind.Field: cell.set_icon_name("lang-struct-field-symbolic");return;
+						case 	Lsp.CompletionItemKind.Variable: cell.set_icon_name("lang-variable-symbolic");return;
+						case 	Lsp.CompletionItemKind.Class: cell.set_icon_name("lang-class-symbolic");return;
+						case 	Lsp.CompletionItemKind.Interface: cell.set_icon_name("lang-class-symbolic");return;
+						case 	Lsp.CompletionItemKind.Module: cell.set_icon_name("lang-namespace-symbolic");return;
+						case 	Lsp.CompletionItemKind.Property:cell.set_icon_name("lang-struct-field-symbolic");return;
+						case 	Lsp.CompletionItemKind.Unit: cell.set_icon_name("lang-variable-symbolic");return;
+						case 	Lsp.CompletionItemKind.Value: cell.set_icon_name("lang-variable-symbolic");return;
+						case 	Lsp.CompletionItemKind.Enum: cell.set_icon_name("lang-enum-symbolic");return;
+						case 	Lsp.CompletionItemKind.Keyword: cell.set_icon_name("completion-word-symbolic");return;
+						case 	Lsp.CompletionItemKind.Snippet: cell.set_icon_name("completion-snippet-symbolic");return;
+
+						case 	Lsp.CompletionItemKind.Color: cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.File:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Reference: cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Folder:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.EnumMember: cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Constant:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Struct: cell.set_icon_name("lang-struct-symbolic");return;
+						case 	Lsp.CompletionItemKind.Event:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.Operator:cell.set_icon_name("lang-typedef-symbolic");return;
+						case 	Lsp.CompletionItemKind.TypeParameter:cell.set_icon_name("lang-typedef-symbolic");return;
+						default:
+
+
+
+					
+							cell.set_icon_name("completion-snippet-symbolic");
+							return;
+						}
+						
+					
 				case  GtkSource.CompletionColumn.COMMENT:
-					cell.set_text(p.info);
+					cell.set_text(p.text);
 					break;
 				case GtkSource.CompletionColumn.DETAILS:
+					if (p.ci.documentation != null) {
+						cell.set_text(p.ci.documentation.value);
+						return;
+					}
+				
 					cell.set_text(p.text);
 					break;
 				default:
@@ -114,19 +177,43 @@ namespace Palete {
 			}	
 		}
 
-		
+		bool in_populate = false;
 	 
-		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable)
+		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable) 
 		{
 			GLib.debug("pupoulate async");
-
+			/*if (!this.in_populate) {
+				GLib.debug("pupoulate async  - skipped waiting for reply");
+				return null;
+			}
+			this.in_populate = true;
+*/
 			global::Gtk.TextIter begin, end;
 			Lsp.CompletionList res;
 			if (context.get_bounds (out begin, out end)) {
-				yield this.file.getLanguageServer().completion(this.file, end.get_line(), end.get_line_offset(), 1, out res);
+				var line = end.get_line();
+				var offset =  end.get_line_offset();
+				if (this.editor.prop != null) {
+				//	tried line -1 (does not work)
+				
+					line += this.editor.prop.start_line ; 
+					// this is based on Gtk using tabs (hence 1/2 chars);
+					offset += this.editor.file.file_namespace == "" ? 1 : 2; 
+				} 
+				
+ 				this.file.getLanguageServer().document_change_real(this.file, this.editor.tempFileContents());				
+				try {
+					yield this.file.getLanguageServer().completion(this.file, line, offset, 1, out res);
+				} catch (GLib.Error e) {
+					GLib.debug("got error %s", e.message);
+					res = null;
+				}
+				
 			} else {
 				res = null;
 			}
+			
+			GLib.debug("pupoulate async  - got reply");
 			this.model = new CompletionModel(this, context, res, cancellable); 
 			var word = context.get_word();
 			
@@ -137,6 +224,7 @@ namespace Palete {
 			var  filter_model = new global::Gtk.FilterListModel(this.model, this.filter); 
 			filter.match_mode = global::Gtk.StringFilterMatchMode.PREFIX;
 			filter_model.set_incremental(true);
+			this.in_populate = false;
 			return filter_model; 
 			
 			 
@@ -146,7 +234,7 @@ namespace Palete {
 		internal  void refilter (GtkSource.CompletionContext context, GLib.ListModel in_model)
 		{
  
- 			GLib.debug("pupoulate refilter");
+ 			//GLib.debug("pupoulate refilter");
 	 
 
 			var word = context.get_word();
@@ -212,7 +300,7 @@ namespace Palete {
 		    }
 		
 		    items.sort((a, b) => {
-			    return ((string)(a.text)).collate((string)(b.text));
+			    return ((string)(a.label)).collate((string)(b.label));
 		    });
  		
  		}
@@ -264,14 +352,17 @@ namespace Palete {
  		
  		public string text  { get; set; default = ""; }
  		public string info  { get; set; default = ""; }
+ 		
+ 		public Lsp.CompletionItem ci;
+ 		
  		public CompletionProposal(Lsp.CompletionItem ci) //string label, string text, string info)
  		{
  			
- 			
+ 			this.ci = ci;
  			this.text = ci.detail == null ? "" : ci.detail ;
  			this.label = ci.label;
  			this.info = ci.documentation == null ? "": ci.documentation.value;
- 			GLib.debug("SET: text=%s, label = %s; info =%s", ci.detail, ci.label, "to long..");
+ 			//GLib.debug("SET: detail =%s, label = %s; info =%s", ci.detail, ci.label, "to long..");
 		}
  		
  	}

@@ -119,7 +119,6 @@ roobuilder_src = files([
    'src/Palete/Palete.vala',
    'src/Palete/Roo.vala',
    'src/Palete/ValaSourceCompiler.vala',
-   'src/Palete/ValaSource.vala',
    'src/Palete/VapiParser.vala',
    'src/Builder4/WindowLeftTree.vala',
    'src/Builder4/PopoverAddProp.vala',

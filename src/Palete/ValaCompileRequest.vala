@@ -165,7 +165,9 @@ namespace Palete {
 		}
 		
 		public void cancel() {
-			Posix.kill(this.compiler.pid, 9);
+			if (this.compiler != null && this.compiler.pid > 0) {
+				Posix.kill(this.compiler.pid, 9);
+			}
 			this.compiler = null;
 			this.deleteTemp();
 		}
@@ -196,10 +198,16 @@ namespace Palete {
 			this.compiler.isZombie();
 			GLib.debug("compile got %s", output);
 			if (output == "") {
-			 	BuilderApplication.showSpinner(false);
+    	        BuilderApplication.showSpinner("face-sad", "compile failed - no error message?");
 			 	return;
 		 	}
-		 	
+		 	if (this.requestType == ValaCompileRequestType.RUN) {
+    	        BuilderApplication.showSpinner("");
+				this.execResult();
+				return;
+			}
+			
+			// below is not used anymore - as we dont use this
 			try { 
 				//GLib.debug("GOT output %s", output);
 				
@@ -208,12 +216,12 @@ namespace Palete {
 				var node = pa.get_root();
 
 				if (node.get_node_type () != Json.NodeType.OBJECT) {
-					BuilderApplication.showSpinner(false);
+					BuilderApplication.showSpinner("");
 					return;
 				}
 				var ret = node.get_object ();	
 				//CompileError.parseCompileResults(this,ret);
-				BuilderApplication.showSpinner(false);
+					BuilderApplication.showSpinner("");
 				
 			
 				
@@ -221,12 +229,9 @@ namespace Palete {
 				
 			} catch (GLib.Error e) {
 				GLib.debug("parsing output got error %s", e.message);
-				BuilderApplication.showSpinner(false);
+				BuilderApplication.showSpinner("");
 				return;
 				
-			}
-			if (this.requestType == ValaCompileRequestType.RUN) {
-				this.execResult();
 			}
 		}
 		 
@@ -269,10 +274,9 @@ namespace Palete {
 			var contents = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
 			
 		 	Javascript.singleton().validate(contents, this.file );
-			
-		 	
 			 
-			BuilderApplication.showSpinner(false);
+			 
+			BuilderApplication.showSpinner("");
 			BuilderApplication.updateCompileResults();
 			
 			//this.queue.onCompileComplete(this);
@@ -289,7 +293,7 @@ namespace Palete {
 			var cn = "/proc/%d/task/%d/children".printf(pid,pid);
 			if (!FileUtils.test(cn, GLib.FileTest.EXISTS)) {
 				GLib.debug("%s doesnt exist - killing %d", cn, pid);
-				Posix.kill(pid, 9);
+				 Posix.kill(pid, 9);
 				return;
 			}
 			string cpids = "";
@@ -305,10 +309,10 @@ namespace Palete {
 				// skip
 			}
 			GLib.debug("killing %d", pid);	
-			Posix.kill(pid, 9);
+			//Posix.kill(pid, 9);
 		}
 		
-		int terminal_pid = 0;
+		public int terminal_pid = 0;
 		public void execResult()
 		{
 			  	
@@ -319,22 +323,22 @@ namespace Palete {
 			var pr = (Project.Gtk) this.file.project;
 			var cg =  pr.compilegroups.get(exe);
 			
-			if (!GLib.FileUtils.test(exe, GLib.FileTest.EXISTS)) {
-				print("Missing output file: %s\n",exe);
+			var exbin = pr.path + "/build/" + exe;
+			if (!GLib.FileUtils.test(exbin, GLib.FileTest.EXISTS)) {
+				GLib.debug("Missing output file: %s\n",exbin);
 				return;
 			}
-			var gdb_cfg= pr.path + "/build/.gdb-script";
+			var gdb_cfg = pr.path + "/build/.gdb-script";
 			if (!GLib.FileUtils.test(gdb_cfg, GLib.FileTest.EXISTS)) {
 				pr.writeFile("build/.gdb-script", "set debuginfod enabled off\nr");
 			}
-			
-			
+			 
 			
 			string[] args = "/usr/bin/gnome-terminal --disable-factory --wait -- /usr/bin/gdb -x".split(" ");
 
 			args+= gdb_cfg;
  
-			args += exe;
+			args += exbin;
 			if (cg.execute_args.length > 0) {
    			 	args+= "--args";
 				var aa = cg.execute_args.split(" ");
