@@ -12,9 +12,11 @@ namespace Palete {
  	public enum  LanguageClientAction {
  		INIT,
  		LAUNCH,
+ 		ACCEPT,
+ 		
  		ERROR,
  		ERROR_START,
-
+		ERROR_CLIENT_FAIL,
 
 		CLOSE
  	}
@@ -96,7 +98,7 @@ namespace Palete {
 						this.log(LanguageClientAction.ERROR_START, e.message);
 						GLib.debug("subprocess startup error %s", e.message);	        
 					}
-					this.log(LanguageClientAction.CLOSE);
+					this.log(LanguageClientAction.CLOSE, "process ended");
 					GLib.debug("Subprocess ended %s", process_path);
 					this.onClose();
 
@@ -117,6 +119,7 @@ namespace Palete {
 			    this.subprocess_stream = new GLib.SimpleIOStream (input_stream, output_stream);
            		this.accept_io_stream ( this.subprocess_stream);
 			} catch (GLib.Error e) {
+				this.log(LanguageClientAction.ERROR_START, e.message);
 				GLib.debug("subprocess startup error %s", e.message);	
 				this.onClose();
 				return false;
@@ -185,13 +188,14 @@ namespace Palete {
 				this.jsonrpc_client = client;
 				
 				GLib.debug("client accepted connection - calling init server");
-				 
+				this.log(LanguageClientAction.ACCEPT, "client accepted");
 
 				this.jsonrpc_client.notification.connect((method, paramz) => {
 					this.onNotification(method, paramz);
 				});
 				 
 				this.jsonrpc_client.failed.connect(() => {
+					this.log(LanguageClientAction.ERROR_RPC, "client failed");
 					this.onClose();
 					
 					GLib.debug("language server server has failed");
