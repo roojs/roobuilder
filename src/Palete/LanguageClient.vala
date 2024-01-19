@@ -19,6 +19,7 @@ namespace Palete {
  		SAVE,
  		CLOSE,
  		CHANGE,
+ 		TERM,
  		
  		RESTART,
  		ERROR,
@@ -441,7 +442,7 @@ namespace Palete {
 			
 				return;
 			}
- 
+ 			this.log(LanguageClientAction.TERM, "SEND exit");
 		 
 			  this.jsonrpc_client.send_notification (
 				"exit",
@@ -456,6 +457,7 @@ namespace Palete {
 	 		if (!this.isReady()) {
 				return;
 			}
+ 			this.log(LanguageClientAction.TERM, "SEND shutodwn");
 		 	this.sent_shutdown  = true;
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
@@ -489,7 +491,7 @@ namespace Palete {
  			//	this.document_change_real(this.change_queue_file, this.change_queue_file_source);
  			//	this.change_queue_file != null;
 			//}
-			
+			this.log(LanguageClientAction.COMPLETE, "SEND complete");
 			
 			Variant? return_value;
 			
