@@ -484,6 +484,7 @@ namespace Palete {
 		 	GLib.debug("get completion %s @ %d:%d", file.relpath, line, offset);
 		 	
 			ret = new Lsp.CompletionList();	
+			
 		    if (!this.isReady()) {
 		    	GLib.debug("completion - language server not ready");
 				return;
