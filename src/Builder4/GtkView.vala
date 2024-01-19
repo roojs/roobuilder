@@ -18,6 +18,7 @@ public class Xcls_GtkView : Object
 	public Xcls_view_layout view_layout;
 	public Xcls_container container;
 	public Xcls_sourceviewscroll sourceviewscroll;
+	public Xcls_sourceview sourceview;
 	public Xcls_buffer buffer;
 	public Xcls_search_entry search_entry;
 	public Xcls_search_results search_results;
@@ -610,32 +611,120 @@ public class Xcls_GtkView : Object
 
 			// set gobject values
 			this.el.vexpand = true;
-			var child_1 = new Xcls_10( _this );
-			child_1.ref();
+			new Xcls_sourceview( _this );
+			this.el.set_child ( _this.sourceview.el  );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_10 : Object
+	public class Xcls_sourceview : Object
 	{
-		public . el;
+		public GtkSource.View el;
 		private Xcls_GtkView  _this;
 
 
 			// my vars (def)
+		public string prop_selected;
+		public bool allow_node_scroll;
+		public Gtk.CssProvider css;
+		public JsRender.Node? node_selected;
 
 		// ctor
-		public Xcls_10(Xcls_GtkView _owner )
+		public Xcls_sourceview(Xcls_GtkView _owner )
 		{
 			_this = _owner;
-			this.el = new ();
+			_this.sourceview = this;
+			this.el = new GtkSource.View();
 
 			// my vars (dec)
+			this.prop_selected = "";
+			this.allow_node_scroll = true;
+
+			// set gobject values
+			this.el.name = "gtkview-view";
+			this.el.editable = false;
+			this.el.show_line_marks = true;
+			this.el.show_line_numbers = true;
+			this.el.tab_width = 4;
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
 			var child_2 = new Xcls_EventControllerKey12( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
+
+			// init method
+
+			{
+			   
+			   
+			   	this.css = new Gtk.CssProvider();
+				 
+				this.css.load_from_string("#gtkview-view { font: 10px monospace ;}");
+				 
+				Gtk.StyleContext.add_provider_for_display(
+					this.el.get_display(),
+					this.css,
+					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+				);
+					
+					 
+			    this.loading = true;
+			    
+			  
+			  
+			    var attrs = new GtkSource.MarkAttributes();
+			    var  pink =   Gdk.RGBA();
+			    pink.parse ( "pink");
+			    attrs.set_background ( pink);
+			    attrs.set_icon_name ( "process-stop");    
+			    attrs.query_tooltip_text.connect(( mark) => {
+			        //print("tooltip query? %s\n", mark.name);
+			        return mark.name;
+			    });
+			    
+			    this.el.set_mark_attributes ("ERR", attrs, 1);
+			    
+			     var wattrs = new GtkSource.MarkAttributes();
+			    var  blue =   Gdk.RGBA();
+			    blue.parse ( "#ABF4EB");
+			    wattrs.set_background ( blue);
+			    wattrs.set_icon_name ( "process-stop");    
+			    wattrs.query_tooltip_text.connect(( mark) => {
+			        //print("tooltip query? %s\n", mark.name);
+			        return mark.name;
+			    });
+			    
+			    this.el.set_mark_attributes ("WARN", wattrs, 1);
+			    
+			 
+			    
+			     var dattrs = new GtkSource.MarkAttributes();
+			    var  purple =   Gdk.RGBA();
+			    purple.parse ( "#EEA9FF");
+			    dattrs.set_background ( purple);
+			    dattrs.set_icon_name ( "process-stop");    
+			    dattrs.query_tooltip_text.connect(( mark) => {
+			        //print("tooltip query? %s\n", mark.name);
+			        return mark.name;
+			    });
+			    
+			    this.el.set_mark_attributes ("DEPR", dattrs, 1);
+			    
+			    
+			    var gattrs = new GtkSource.MarkAttributes();
+			    var  grey =   Gdk.RGBA();
+			    grey.parse ( "#ccc");
+			    gattrs.set_background ( grey);
+			 
+			    
+			    this.el.set_mark_attributes ("grey", gattrs, 1);
+			    
+			    
+			    
+			    
+			    
+			    
+			}
 
 			//listeners
 			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
@@ -673,6 +762,131 @@ public class Xcls_GtkView : Object
 		}
 
 		// user defined functions
+		public void loadFile ( ) {
+		    this.loading = true;
+		    var buf = this.el.get_buffer();
+		    buf.set_text("",0);
+		    var sbuf = (GtkSource.Buffer) buf;
+		
+		    
+		
+		    if (_this.file == null || _this.file.xtype != "Gtk") {
+		        print("xtype != Gtk");
+		        this.loading = false;
+		        return;
+		    }
+		    
+		    var valafn = "";
+		      try {             
+		           var  regex = new Regex("\\.bjs$");
+		        
+		         
+		            valafn = regex.replace(_this.file.path,_this.file.path.length , 0 , ".vala");
+		         } catch (GLib.RegexError e) {
+		             this.loading = false;
+		            return;
+		        }   
+		    
+		
+		   if (!FileUtils.test(valafn,FileTest.IS_REGULAR) ) {
+		        print("File path has no errors\n");
+		        this.loading = false;
+		        return  ;
+		    }
+		    
+		    string str;
+		    try {
+		    
+		        GLib.FileUtils.get_contents (valafn, out str);
+		    } catch (Error e) {
+		        this.loading = false;
+		        return  ;
+		    }
+		
+		//    print("setting str %d\n", str.length);
+		    buf.set_text(str, str.length);
+		    var lm = GtkSource.LanguageManager.get_default();
+		     
+		    //?? is javascript going to work as js?
+		    
+		    ((GtkSource.Buffer)(buf)) .set_language(lm.get_language(_this.file.language));
+		  
+		     
+		   _this.main_window.windowstate.updateErrorMarksAll(); 
+		   
+		  
+		    
+		    this.loading = false; 
+		}
+		public void nodeSelected (JsRender.Node? sel, bool scroll) {
+		  
+		    
+		    if (this.loading) {
+		    	return;
+			}
+		    // this is connected in widnowstate
+		    print("Roo-view - node selected\n");
+		    var buf = this.el.get_buffer();
+		 
+		    var sbuf = (GtkSource.Buffer) buf;
+		
+		   
+		    // while(Gtk.events_pending()) {
+		     //    Gtk.main_iteration();
+		   //  }
+		    
+		   
+		    // clear all the marks..
+		     Gtk.TextIter start;
+		    Gtk.TextIter end;     
+		        
+		    sbuf.get_bounds (out start, out end);
+		    sbuf.remove_source_marks (start, end, "grey");
+		    
+		        this.node_selected = sel;
+		     if (sel == null) {
+		        // no highlighting..
+		        return;
+		    }
+		    Gtk.TextIter iter;   
+		    sbuf.get_iter_at_line(out iter,  sel.line_start);
+		    
+		    
+		    Gtk.TextIter cur_iter;
+		    sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);
+		    
+		    //var cur_line = cur_iter.get_line();
+		    //if (cur_line > sel.line_start && cur_line < sel.line_end) {
+		    
+		    //} else {
+		    if (this.allow_node_scroll) {
+				 
+		    	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+			}
+		    
+		     
+		    
+		    for (var i = 0; i < buf.get_line_count();i++) {
+		        if (i < sel.line_start || i > sel.line_end) {
+		           
+		            sbuf.get_iter_at_line(out iter, i);
+		            sbuf.create_source_mark(null, "grey", iter);
+		            
+		        }
+		    
+		    }
+		    
+		
+		}
+		public string toString () {
+		   Gtk.TextIter s;
+		    Gtk.TextIter e;
+		    this.el.get_buffer().get_start_iter(out s);
+		    this.el.get_buffer().get_end_iter(out e);
+		    var ret = this.el.get_buffer().get_text(s,e,true);
+		    //print("TO STRING? " + ret);
+		    return ret;
+		}
 	}
 	public class Xcls_buffer : Object
 	{
