@@ -1794,12 +1794,26 @@ public class Xcls_WindowRooView : Object
 			// set gobject values
 
 			//listeners
-			this.el.released.connect( (n_press, x, y) => {
+			this.el.released.connect( (keyval, keycode, state) => {
 			
-				//print("BUTTON RELEASE EVENT\n");
-				//_this.sourceview.onCursorChanged();
-				//this.button_is_pressed = false;
+				
 				 
+				 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+				    GLib.debzug("SAVE: ctrl-g  pressed");
+					_this.forwardSearch(true);
+				    return true;
+				}
+			    if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+				    GLib.debug("SAVE: ctrl-f  pressed");
+					_this.search_entry.el.grab_focus();
+				    return true;
+				}
+				 
+				return false;
+			});
+			this.el.pressed.connect( (n_press, x, y) => {
+			
+			
 			});
 		}
 
