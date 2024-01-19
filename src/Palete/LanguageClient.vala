@@ -9,7 +9,15 @@
 
 namespace Palete {
 
- 	
+ 	public enum  LanguageClientAction {
+ 		INIT,
+ 		LAUNCH,
+ 		ERROR,
+ 		ERROR_START,
+
+
+		CLOSE
+ 	}
 
 	public abstract class LanguageClient :   Jsonrpc.Server {
 	
@@ -45,8 +53,8 @@ namespace Palete {
 				this._closed = value;
 			}
 		}
-				
-		public signal void action(string action, string message);
+	
+		public signal void log(LanguageClientAction action, string message);
 		
 		
 		protected LanguageClient(Project.Project project)
@@ -72,7 +80,7 @@ namespace Palete {
 		public bool initProcess(string process_path)
 		{
 			this.onClose();
-			
+			this.log(LanguageClientAction.LAUNCH, process_path);
 			GLib.debug("Launching %s", process_path);
 			this.launcher = new GLib.SubprocessLauncher (SubprocessFlags.STDIN_PIPE | SubprocessFlags.STDOUT_PIPE);
 			this.launcher.set_environ(GLib.Environ.get());
@@ -85,6 +93,7 @@ namespace Palete {
 					try {
 						this.subprocess.wait_async.end(res);
 					} catch (GLib.Error e) {
+						this.log(LanguageClientAction.ERROR_START, e.message);
 						GLib.debug("subprocess startup error %s", e.message);	        
 					}
 					GLib.debug("Subprocess ended %s", process_path);
