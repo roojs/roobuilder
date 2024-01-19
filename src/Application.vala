@@ -711,6 +711,8 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		}
 		
 		BuilderApplication.showSpinnerCompleteLog(Palete.LanguageClientAction action, string message) {
+			
+			var msg = action.to_string() + " " + message;
 			switch(action) {
 			
 					case Palete.LanguageClientAction.INIT:
@@ -720,10 +722,21 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 						return;
 						
 			 		case Palete.LanguageClientAction.DIAG,
+				 		BuilderApplication.showSpinner( "format-justify-fill", msg);			 		
+			 			return;
+
 			 		case Palete.LanguageClientAction.OPEN,
+				 		BuilderApplication.showSpinner( "document-open", msg);			 		
+			 			return;
 			 		case Palete.LanguageClientAction.SAVE,
+			 			BuilderApplication.showSpinner( "document-save", msg);			 		
+			 			return;
 			 		case Palete.LanguageClientAction.CLOSE,
+			 			BuilderApplication.showSpinner( "window.close", msg);			 		
+			 			return;
 			 		case Palete.LanguageClientAction.CHANGE,
+			 			BuilderApplication.showSpinner( "format-text-direction-ltr", msg);
+			 			return;			 			
 			 		case Palete.LanguageClientAction.TERM,
 						BuilderApplication.showSpinner( "media-playback-stop", msg);
 						return;			 			
