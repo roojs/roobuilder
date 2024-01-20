@@ -885,7 +885,9 @@ public class Editor : Object
 			var oldcode  = _this.prop.val;
 			
 			_this.prop.val = str;
+			_this.node.updated_count++;
 		    _this.file.getLanguageServer().document_change(_this.file);
+		    _this.node.updated_count++;
 		    _this.prop.val = oldcode;
 		    
 		    
