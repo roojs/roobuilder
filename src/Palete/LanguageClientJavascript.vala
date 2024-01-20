@@ -3,7 +3,7 @@ namespace Palete {
 	public class LanguageClientJavascript : LanguageClient {
 	
 	
-		public LanguageClientDummy(Project.Project project)
+		public LanguageClientJavascript(Project.Project project)
 		{
 			// extend versions will proably call initialize to start and connect to server.
 			base(project);
@@ -16,7 +16,10 @@ namespace Palete {
 		public override void startServer()
 		{
 		}
-	 s
+		public new bool isReady() 
+		{
+			return false;
+		}
 	}
 	
 }
