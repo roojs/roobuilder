@@ -47,7 +47,17 @@ namespace Palete {
 				return;
 			}
 			yield res = this.runNinja();
-			
+			if (0 != res) {
+				GLib.debug("Failed to run ninja");
+				return;
+			}
+			return true;
+		}
+		
+		async int runMeson() {
+		
+		
+		}
 			
 			
 			
