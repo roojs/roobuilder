@@ -129,15 +129,15 @@ namespace Palete {
 		}
 		*/
 		
-		string generateTempContents() {
+		string generateTempContents(JsRender.JsRender file, JsRender.NodeProp? prop, str alt_code) {
 		
 			var oldcode  = "";
 			var contents = this.alt_code;
-			if (this.requestType == ValaCompileRequestType.PROP_CHANGE) {
-				oldcode  = this.prop.val;
-				this.prop.val = this.alt_code;
-				contents = this.file.toSourceCode();
-				this.prop.val = oldcode;
+			if (prop != null) {
+				oldcode  = .prop.val;
+				prop.val = alt_code;
+				contents = file.toSourceCode();
+				prop.val = oldcode;
 			}
 			return contents;
 		}
