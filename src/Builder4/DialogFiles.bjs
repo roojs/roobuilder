@@ -1184,11 +1184,9 @@
    "| void load" : [
     "() {",
     "     // cl list...",
-    "    ",
-    "       ",
+    "     ",
     "     _this.is_loading = true;",
     "         ",
-    "",
     "     Project.Project.loadAll();",
     "     _this.project_list.el.set_model(new Gtk.SingleSelection(null));",
     "     Project.Project.loadIntoStore(this.projectmodel.el);",
@@ -1199,8 +1197,6 @@
     "    ",
     "    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; ",
     "\t_this.btn_delfile.el.hide();",
-    " ",
-    "  ",
     "}",
     ""
    ],
