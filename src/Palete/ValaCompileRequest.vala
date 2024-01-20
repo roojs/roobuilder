@@ -39,8 +39,8 @@ namespace Palete {
 				return false;
 			}
 			BuilderApplication.showSpinner("spinner", "running meson");
-			var res = 0;
-			yield res = this.runMeson();
+
+			var res = yield  this.runMeson();
 	
 			if (0 != res) {
 				GLib.debug("Failed to run Meson");
@@ -48,7 +48,7 @@ namespace Palete {
 				return false;
 			}
 			BuilderApplication.showSpinner("spinner", "running ninja");
-			yield res = this.runNinja();
+			 res = yield this.runNinja();
 			if (0 != res) {
 				GLib.debug("Failed to run ninja");
 				return false;
