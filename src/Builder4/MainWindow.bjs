@@ -667,7 +667,7 @@
              "\t\t\tthis.last_request.killChildren(this.last_request.terminal_pid);",
              "\t\t}",
              "\t}",
-             "\tvar pr = this.windowstate.project as Project.Gtk;",
+             "\tvar pr = this.windowstate.file.project as Project.Gtk;",
              "\tif (pr == null) {",
              "\t\treturn;",
              "\t}",

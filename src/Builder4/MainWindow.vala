@@ -1471,7 +1471,7 @@ public class Xcls_MainWindow : Object
 						this.last_request.killChildren(this.last_request.terminal_pid);
 					}
 				}
-				var pr = this.windowstate.project as Project.Gtk;
+				var pr = this.windowstate.file.project as Project.Gtk;
 				if (pr == null) {
 					return;
 				}
