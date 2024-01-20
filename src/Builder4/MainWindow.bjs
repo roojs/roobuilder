@@ -675,7 +675,7 @@
              "\t",
              "\tthis.last_request= new Palete.ValaCompileRequest(",
              "\t\tpr,",
-             "\t\tpr.firstBuildModuleWith(this.windowstate.file)",
+             "\t\tpr.firstBuildModuleWith(_this.windowstate.file)",
              "\t);",
              "\tthis.last_request.onOutput.connect( ( str) => {",
              "\t\t_this.windowstate.compile_results.addLine(str);",

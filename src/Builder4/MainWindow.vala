@@ -1479,7 +1479,7 @@ public class Xcls_MainWindow : Object
 				
 				this.last_request= new Palete.ValaCompileRequest(
 					pr,
-					pr.firstBuildModuleWith(this.windowstate.file)
+					pr.firstBuildModuleWith(_this.windowstate.file)
 				);
 				this.last_request.onOutput.connect( ( str) => {
 					_this.windowstate.compile_results.addLine(str);
