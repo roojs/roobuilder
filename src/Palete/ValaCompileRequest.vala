@@ -10,7 +10,7 @@ namespace Palete {
  		string target;
 		Spawn? spawn = null;
 		
-		signal void onOutput(string str);
+		public signal void onOutput(string str);
 	
 		public Gee.HashMap<string,GLib.ListStore>? errorByType = null;
 	 	public Gee.HashMap<string,GLib.ListStore>? errorByFile  = null;
