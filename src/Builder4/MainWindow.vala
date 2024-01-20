@@ -1484,7 +1484,7 @@ public class Xcls_MainWindow : Object
 				this.last_request.onOutput.connect( ( str) => {
 					_this.windowstate.compile_results.addLine(str);
 				});
-				this.last_request.run_async.begin( ( a, r) => {
+				this.last_request.run.begin( ( a, r) => {
 					this.last_request.run_async.end(r);
 				});
 				 if (_this.windowstate.compile_results.el.parent == null) {
