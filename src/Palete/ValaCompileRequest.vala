@@ -171,7 +171,7 @@ namespace Palete {
 			this.killChildren(this.terminal_pid);
   			this.terminal_pid = 0;
 			  
-			var exe = this.target();
+			var exe = this.target;
 			var pr = (Project.Gtk) this.file.project;
 			var cg =  pr.compilegroups.get(exe);
 			
