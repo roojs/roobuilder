@@ -89,7 +89,7 @@ namespace Palete {
 			if (this.spawn != null && this.spawn.pid > 0) {
 				Posix.kill(this.compiler.pid, 9);
 			}
-			this.compiler = null;
+			this.spawn = null;
 		
 		}	
 			 
