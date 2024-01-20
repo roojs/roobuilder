@@ -65,7 +65,7 @@ namespace Palete {
 		  	}
 			string[] args = { "/usr/bin/meson" ,"setup","build", "--prefix=/" };	  	
 
-		  	var meson = new Spawn(pr.path , args);
+		  	var meson = new Spawn(this.project.path , args);
 		  	meson.output_line.connect(this.onOutput);
 		  	var res = yield meson.run_async();
 		  	return res;
@@ -80,7 +80,7 @@ namespace Palete {
 		  	}
 			string[] args = { "/usr/bin/ninja"};	  	
 
-		  	var ninja = new Spawn(pr.path + "/build" , args);
+		  	var ninja = new Spawn(this.project.path + "/build" , args);
 		  	ninja.output_line.connect(this.onOutput);
 		  	 var res = yield ninja.run_async();
 		  	return res;
