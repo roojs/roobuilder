@@ -79,8 +79,8 @@ namespace Palete {
 		  	}
 			string[] args = { "/usr/bin/ninja"};	  	
 
-		  	var ninja = new Spawn(this.project.path + "/build" , args);
-		  	ninja.output_line.connect(this.onOutput);
+		  	this.spawn = new Spawn(this.project.path + "/build" , args);
+		  	this.spawn.output_line.connect(this.onOutput);
 		  	 var res = yield ninja.run_async();
 		  	return res;
 		  	
