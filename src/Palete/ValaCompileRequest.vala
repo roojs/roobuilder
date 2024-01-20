@@ -171,7 +171,7 @@ namespace Palete {
   			this.terminal_pid = 0;
 			  
 			var exe = this.target;
-			var pr = (Project.Gtk) this.file.project;
+			var pr = (Project.Gtk) this.project;
 			var cg =  pr.compilegroups.get(exe);
 			
 			var exbin = pr.path + "/build/" + exe;
