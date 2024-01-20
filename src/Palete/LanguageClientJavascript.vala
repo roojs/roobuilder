@@ -16,18 +16,7 @@ namespace Palete {
 		public override void startServer()
 		{
 		}
-		string generateTempContents(JsRender.JsRender file, JsRender.NodeProp? prop, string alt_code) {
-		
-			var oldcode  = "";
-			var contents = alt_code;
-			if (prop != null) {
-				oldcode  = prop.val;
-				prop.val = alt_code;
-				contents = file.toSourceCode();
-				prop.val = oldcode;
-			}
-			return contents;
-		}
+		 
 		
 		
 		
