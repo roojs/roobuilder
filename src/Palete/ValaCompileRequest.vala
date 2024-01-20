@@ -69,7 +69,6 @@ namespace Palete {
 		  	meson.output_line.connect(this.onOutput);
 		  	var res = yield meson.run_async();
 		  	return res;
-		  	
 		}
 			
 		async int runNinja() 
