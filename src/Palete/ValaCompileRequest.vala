@@ -48,7 +48,7 @@ namespace Palete {
 				return false;
 			}
 			BuilderApplication.showSpinner("spinner", "running ninja");
-			 res = yield this.runNinja();
+			res = yield this.runNinja();
 			if (0 != res) {
 				GLib.debug("Failed to run ninja");
 				return false;
@@ -67,7 +67,7 @@ namespace Palete {
 
 		  	var meson = new Spawn(pr.path , args);
 		  	meson.output_line.connect(this.onOutput);
-		  	yield var res = meson.run_async();
+		  	var res = yield meson.run_async();
 		  	return res;
 		  	
 		}
@@ -81,7 +81,7 @@ namespace Palete {
 
 		  	var ninja = new Spawn(pr.path + "/build" , args);
 		  	ninja.output_line.connect(this.onOutput);
-		  	yield var res = ninja.run_async();
+		  	 var res = yield ninja.run_async();
 		  	return res;
 		  	
 		}	
