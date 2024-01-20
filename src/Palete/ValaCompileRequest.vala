@@ -8,7 +8,7 @@ namespace Palete {
 	{
  		Project.Gtk project;
  		string target;
-		  
+		Spawn? spawn = null;
 		
 	
 		public Gee.HashMap<string,GLib.ListStore>? errorByType = null;
@@ -86,7 +86,7 @@ namespace Palete {
 		  	
 		}	
 		public void cancel() {
-			if (this.compiler != null && this.compiler.pid > 0) {
+			if (this.spawn != null && this.spawn.pid > 0) {
 				Posix.kill(this.compiler.pid, 9);
 			}
 			this.compiler = null;
