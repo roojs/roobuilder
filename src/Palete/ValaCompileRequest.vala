@@ -2,22 +2,11 @@
 
 
 namespace Palete {
-	public enum ValaCompileRequestType {
-		PROP_CHANGE,
-		FILE_CHANGE,
-		PROJECT,
-		RUN
-	}
+	 
 		
 	public class ValaCompileRequest  : Object
 	{
- 		ValaCompileRequestType requestType;
- 		
-		public JsRender.JsRender? file = null;
-		JsRender.Node? node = null;
-		JsRender.NodeProp? prop = null;
-		string alt_code = "";
-		string tmpfile = "";
+ 		Project.Gtk project;
 		Spawn? compiler  = null;
 	///	ValaCompileQueue? queue = null;
  
@@ -28,48 +17,12 @@ namespace Palete {
 	 		
 	
 		public ValaCompileRequest (
-			ValaCompileRequestType requestType,
-			JsRender.JsRender file ,
-			JsRender.Node? node,
-			JsRender.NodeProp? prop,
-			string alt_code = ""
+			Project.project project
 			 
 		) {
-			this.requestType = requestType;
-			this.file = file;
-			this.node = node;
-			this.prop = prop;
-			this.alt_code = alt_code;
+			this.project = project;
 		}
-		public bool eq(ValaCompileRequest c) {
-			var neq = false;
-			if (this.node == null && c.node == null) {
-				neq = true;
-			} else if (this.node == null || c.node == null) {
-				neq = false;
-			} else {
-				neq = this.node.oid == c.node.oid ;
-			}
-			
-			var peq = false;			
-			if (this.prop == null && c.prop == null) {
-				peq = true;
-			} else if (this.prop == null || c.prop == null) {
-				peq = false;
-			} else {
-				peq = this.prop.name == c.prop.name ;
-			}
-
-			
-			return 
-				this.requestType == c.requestType &&
-				this.file.path == c.file.path &&
-				neq && peq &&
-				this.alt_code == c.alt_code;
-				
-				
-		
-		}
+		 
 		public string target()
 		{
 			var pr = (Project.Gtk) this.file.project;
