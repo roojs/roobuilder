@@ -479,7 +479,7 @@ namespace Palete {
 		
 		@triggerType 1 = typing or ctl-spac, 2 = tiggercharactres?  3= inside completion?
 		*/
-		 public  Lsp.CompletionList? ret async void completion (JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
+		 public  async Lsp.CompletionList? ret  completion (JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get completion %s @ %d:%d", file.relpath, line, offset);
