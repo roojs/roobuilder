@@ -8,10 +8,16 @@ namespace Palete {
 			// extend versions will proably call initialize to start and connect to server.
 			base(project);
 			
-			this.initProcess("/usr/bin/vala-language-server");
+			this.startServer();
 			
 		
 		}
+		public override void startServer()
+		{
+			this.initProcess("/usr/bin/vala-language-server");
+		
+		}
+		
 		 public override   void  initialize_server()   {
 			try {
 				Variant? return_value;
@@ -27,8 +33,10 @@ namespace Palete {
 				);
 				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
 				this.initialized = true;
+				return;
 			} catch (GLib.Error e) {
 				GLib.debug ("LS replied with error %s", e.message);
+				this.onClose();
 			}
 			
 		}

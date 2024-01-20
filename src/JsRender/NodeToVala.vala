@@ -55,12 +55,12 @@ public class JsRender.NodeToVala : Object {
 		this.node = node;
 		this.depth = depth;
 		if (file.name.contains(".")) { // namespaced..
-			this.inpad = string.nfill(depth > 0 ? 8 : 4, ' ');
+			this.inpad = string.nfill(depth > 0 ? 2 : 1, '\t');
 		} else {
-			this.inpad = string.nfill(depth > 0 ? 8 : 4, ' ');
+			this.inpad = string.nfill(depth > 0 ? 1 : 0, '\t');
 		}
-		this.pad = this.inpad + "    ";
-		this.ipad = this.inpad + "        ";
+		this.pad = this.inpad + "\t";
+		this.ipad = this.inpad + "\t\t";
 		this.cls = node.xvala_cls;
 		this.xcls = node.xvala_xcls;
 		if (depth == 0 && this.xcls.contains(".")) {
@@ -217,9 +217,17 @@ public class JsRender.NodeToVala : Object {
 	}
 	public void addLine(string str= "")
 	{
+		
+		if (str.contains("\n")) {
+			this.addMultiLine(str);
+			return;
+		}
 		this.cur_line++;
-		//this.ret += "/*%d*/ ".printf(this.cur_line-1) + str + "\n";
-		this.ret += str + "\n";
+		if (BuilderApplication.opt_bjs_compile != null) {
+			this.ret += "/*%d*/ ".printf(this.cur_line) + str + "\n";
+		} else {
+			this.ret += str + "\n";
+		}
 	}
 	public void addMultiLine(string str= "")
 	{

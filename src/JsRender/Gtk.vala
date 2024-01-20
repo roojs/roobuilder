@@ -148,16 +148,24 @@ namespace JsRender {
 		}
 	    public override void setSource(string str) {}
 	    
+	    int last_source_version = -2;
+	    string last_source;
 	    public override string toSourceCode() // no seed support currently.
 	    {
-		    return  NodeToVala.mungeFile(this);
+		    if (this.version == this.last_source_version) {
+		    	return this.last_source;
+	    	}
+		    this.last_source =   NodeToVala.mungeFile(this);
+		    this.last_source_version = this.version;
+		    return this.last_source;
+		    
 	    }
 	    
 	    // this is only used by dumping code...
 	    public override string toSource() // no seed support currently.
 	    {
 		 
-			 return  NodeToVala.mungeFile(this);
+			 return  this.toSourceCode();
 	        
 	        
 	    }
@@ -167,7 +175,9 @@ namespace JsRender {
 	        // this.saveJS(); - disabled at present.. project settings will probably enable this later..
 	
 	        this.saveVala();
+
 	        this.getLanguageServer().document_save(this);
+	        BuilderApplication.showSpinner("spinner", "document save send");	        
 	    }
 		// ignore these calls.
 	    public override void saveHTML ( string html ) {}

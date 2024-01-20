@@ -28,7 +28,7 @@ namespace Palete {
 			this.msg = msg;
 			this.file = file;
 			this.category = category;
-			 
+
 		
 		}
 
@@ -39,7 +39,7 @@ namespace Palete {
 			this.line = (int) diag.range.start.line;
 			this.msg = diag.message;   
 			this.lines = new GLib.ListStore(typeof(CompileError));
-			GLib.debug("new error %s : %d  %s %s", file.path, this.line, this.category, this.msg);
+			//GLib.debug("new error %s : %d  %s %s", file.path, this.line, this.category, this.msg);
 			
 			
 			

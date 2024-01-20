@@ -366,9 +366,31 @@ namespace Lsp {
             return node;
         }
 
-        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) {
-            error ("deserialization not supported");
-        }
+        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+	    {
+	    	
+	    	if (property_name != "children") {
+	            return default_deserialize_property (property_name, out value, pspec, property_node);
+	        }
+	        value = GLib.Value (GLib.Type.BOXED);
+	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+	            return false;
+	        }
+			 
+	        var arguments = new Gee.ArrayList<DocumentSymbol>();
+
+	        property_node.get_array ().foreach_element ((array, index, element) => {
+	            
+		        var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
+				arguments.add( add);
+
+	           
+	        });
+
+	        value.set_boxed (arguments);
+	        return true;
+	   }
     }
 
     public class SymbolInformation : Object {
@@ -635,6 +657,7 @@ namespace Lsp {
         	if (property_name != "tags") {
                 return default_deserialize_property (property_name, out value, pspec, property_node);
             }
+            value = GLib.Value (GLib.Type.BOXED);
             if (property_node.get_node_type () != Json.NodeType.ARRAY) {
                 warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
                 return false;
@@ -937,9 +960,10 @@ namespace Lsp {
             return node;
         }
 
-        public bool deserialize_property (string property_name, out GLib.Value value, GLib.ParamSpec pspec, Json.Node property_node) {
+        public bool deserialize_property (string property_name, out GLib.Value value, GLib.ParamSpec pspec, Json.Node property_node) 
+        {
             if (property_name == "arguments") {
-                value = Value (typeof (Array));
+                value = GLib.Value (GLib.Type.BOXED);
                 if (property_node.get_node_type () != Json.NodeType.ARRAY) {
                     warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
                     return false;
