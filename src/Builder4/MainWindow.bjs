@@ -681,7 +681,7 @@
              "\t\t_this.windowstate.compile_results.addLine(str);",
              "\t});",
              "\tthis.last_request.run.begin( ( a, r) => {",
-             "\t\tthis.last_request.run_async.end(r);",
+             "\t\tthis.last_request.run.end(r);",
              "\t});",
              "\t if (_this.windowstate.compile_results.el.parent == null) {",
              "\t\t_this.windowstate.compile_results.el.set_parent(this.el);",

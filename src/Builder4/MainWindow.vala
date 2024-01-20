@@ -1485,7 +1485,7 @@ public class Xcls_MainWindow : Object
 					_this.windowstate.compile_results.addLine(str);
 				});
 				this.last_request.run.begin( ( a, r) => {
-					this.last_request.run_async.end(r);
+					this.last_request.run.end(r);
 				});
 				 if (_this.windowstate.compile_results.el.parent == null) {
 					_this.windowstate.compile_results.el.set_parent(this.el);
