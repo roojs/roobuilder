@@ -1473,11 +1473,7 @@ public class Xcls_MainWindow : Object
 				}
 				
 				this.last_request= new Palete.ValaCompileRequest(
-					Palete.ValaCompileRequestType.RUN,
-					_this.windowstate.file,
-					null,
-					null,
-					""
+					_this.windowstate.project
 				);
 				this.last_request.run();
 				 
