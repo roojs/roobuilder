@@ -146,7 +146,7 @@ namespace Palete {
 		{
 			//this.queue = queue;
 		 
-			var contents = alt_code == "" ? file.toSourceCode() : this.generateTempContents();
+			var contents = alt_code == "" ? file.toSourceCode() : this.generateTempContents(file, prop, code);
 			
 		 	Javascript.singleton().validate(contents, file );
 			 
