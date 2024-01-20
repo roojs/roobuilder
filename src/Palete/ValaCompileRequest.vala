@@ -68,9 +68,21 @@ namespace Palete {
 		  	yield var res = meson.run_async();
 		  	return res;
 		  	
-		
 		}
 			
+		async int runMeson() {
+			if (GLib.FileUtils.test(this.project.path + "/build", GLib.FileTest.EXISTS)) {
+				GLib.debug("build is missing"
+			  	return -1; //assume it's been set up.
+		  	}
+			string[] args = { "/usr/bin/ninja"};	  	
+
+		  	var ninja = new Spawn(pr.path + "/build" , args);
+		  	ninja.output_line.connect(this.onOutput);
+		  	yield var res = ninja.run_async();
+		  	return res;
+		  	
+		}	
 			
 			
 			string[] args = {};
