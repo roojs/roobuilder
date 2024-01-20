@@ -89,7 +89,7 @@ namespace Palete {
 			
 			 
 		 
-		
+		/*
 		  
 		public int totalErrors(string type, JsRender.JsRender? file=null) 
 		{
@@ -117,6 +117,7 @@ namespace Palete {
 			}
 			return ret;
 		}
+		*/
 		
 		public void runJavascript( )
 		{
