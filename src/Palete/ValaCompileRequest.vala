@@ -72,7 +72,8 @@ namespace Palete {
 		  	
 		}
 			
-		async int runMeson() {
+		async int runNinja() 
+		{
 			if (GLib.FileUtils.test(this.project.path + "/build", GLib.FileTest.EXISTS)) {
 				GLib.debug("build is missing"
 			  	return -1; //assume it's been set up.
