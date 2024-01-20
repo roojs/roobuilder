@@ -182,7 +182,7 @@
 			this.testBjs(cur_project);
 			this.languageServer(cur_project);
 			this.compileBjs(cur_project);
-			this.compileVala();
+			//this.compileVala();
 
 		}
 
@@ -249,6 +249,7 @@
 					}
 				});
 			}
+			
 			
 		
 		}
@@ -544,7 +545,7 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 			
-			
+	/*	
 		void compileVala()
 		{
 			if (BuilderApplication.opt_compile_target == null) {
@@ -555,6 +556,7 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 	
 		}
+		*/
 		void pullResources()
 		{
 			if (!opt_pull_resources) {

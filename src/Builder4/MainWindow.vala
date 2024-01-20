@@ -1471,17 +1471,25 @@ public class Xcls_MainWindow : Object
 						this.last_request.killChildren(this.last_request.terminal_pid);
 					}
 				}
+				var pr = _this.windowstate.project as Project.Gtk;
+				if (pr == null) {
+					return;
+				}
+				
 				
 				this.last_request= new Palete.ValaCompileRequest(
-					Palete.ValaCompileRequestType.RUN,
-					_this.windowstate.file,
-					null,
-					null,
-					""
+					pr,
+					pr.firstBuildModuleWith(_this.windowstate.file)
 				);
-				this.last_request.run();
-				 
-				_this.windowstate.compile_results.el.set_parent(this.el);
+				this.last_request.onOutput.connect( ( str) => {
+					_this.windowstate.compile_results.addLine(str);
+				});
+				this.last_request.run.begin( ( a, r) => {
+					this.last_request.run.end(r);
+				});
+				 if (_this.windowstate.compile_results.el.parent == null) {
+					_this.windowstate.compile_results.el.set_parent(this.el);
+				}
 				_this.windowstate.compile_results.show(this.el,true);
 				         
 			});

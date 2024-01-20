@@ -323,6 +323,23 @@ public class Spawn : Object
     
     }
     
+    public async int run_async()
+    {
+		GLib.MainLoop loop = new GLib.MainLoop ();
+	  	this.complete.connect( (res, str,  stderr) => {
+	  		loop.quit ();
+	  	});
+	  	
+	  	this.run();
+	  	 
+	  	loop.run ();
+	  	return this.result;
+
+    
+    
+    }
+    
+    
     
 
     public void tidyup() // or kill

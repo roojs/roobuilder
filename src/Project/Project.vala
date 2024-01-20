@@ -492,6 +492,14 @@ namespace Project {
 			}
  			GLib.debug("load is_scanned = false");
  			
+			
+			// used to load paths..
+			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();
+			this.files = new Gee.HashMap<string,JsRender.JsRender>();
+			this.loadSubDirectories("", 0); // must happend before loadJson! (as compile groups checks if file exists.
+			 
+
+			
 			if (FileUtils.test(this.path + "/.roobuilder.jcfg", FileTest.EXISTS)) {
 				  
 				var pa = new Json.Parser();
@@ -512,12 +520,7 @@ namespace Project {
 				 
 				this.loadJson(obj);
 			} 
-			// used to load paths..
-			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();
-			this.files = new Gee.HashMap<string,JsRender.JsRender>();
-			this.loadSubDirectories("", 0);
-			 
-			this.initDatabase();
+			this.initDatabase();	
 			this.is_scanned = true; // loaded.. dont need to do it again..
 			 GLib.debug("load is_scanned = true");
 			

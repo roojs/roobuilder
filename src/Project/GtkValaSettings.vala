@@ -66,18 +66,18 @@ namespace Project
 		public bool has_file(JsRender.JsRender file)
 		{
 			
-			GLib.debug("Checking %s has file %s", this.name, file.path);
+			//GLib.debug("Checking %s has file %s", this.name, file.path);
 			var pr = (Gtk) file.project;
 			for(var i = 0; i < this.sources.size;i++) {
 				var path = pr.path + "/" +  this.sources.get(i);
-				GLib.debug("check %s", path);
+				//GLib.debug("check %s =%s or %s", path , file.path, file.targetName());
 				
-				if (path == file.path) {
-					GLib.debug("GOT IT");
+				if (path == file.path || path == file.targetName()) {
+					//GLib.debug("GOT IT");
 					return true;
 				}
 			}
-			GLib.debug("CANT FIND IT");
+			//GLib.debug("CANT FIND IT");
 			return false;
 		
 		}

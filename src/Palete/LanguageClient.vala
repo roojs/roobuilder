@@ -138,7 +138,7 @@ namespace Palete {
             return true;
         }
         bool in_close = false;
-	 	public void onClose()
+	 	protected void onClose()
 	 	{
 	 		if (this.in_close) {
 	 			return;
@@ -439,6 +439,7 @@ namespace Palete {
 
          
     	}
+    	// called by close window (on last window)...
 		public   void exit () throws GLib.Error 
 		{
 			if (!this.isReady()) {
@@ -455,6 +456,7 @@ namespace Palete {
 			this.onClose();
 
 		}
+		// not used currently..
  		public async void shutdown () throws GLib.Error 
  		{
 	 		if (!this.isReady()) {
@@ -479,16 +481,16 @@ namespace Palete {
 		
 		@triggerType 1 = typing or ctl-spac, 2 = tiggercharactres?  3= inside completion?
 		*/
-		 public async void completion (JsRender.JsRender file, int line, int offset , int triggerType = 1, out Lsp.CompletionList? ret) throws GLib.Error 
+		 public async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get completion %s @ %d:%d", file.relpath, line, offset);
 		 	
-			ret = new Lsp.CompletionList();	
+			var ret = new Lsp.CompletionList();	
 			
 		    if (!this.isReady()) {
 		    	GLib.debug("completion - language server not ready");
-				return;
+				return ret;
 			}
 			// make sure completion has the latest info..
 			//if (this.change_queue_file != null && this.change_queue_file.path != file.path) {
@@ -532,13 +534,13 @@ namespace Palete {
 				ret = Json.gobject_deserialize (typeof (Lsp.CompletionList), json) as Lsp.CompletionList; 
 				this.log(LanguageClientAction.COMPLETE_REPLY, "GOT complete  %d items".printf(ret.items.size) );
 				GLib.debug ("LS replied with Object");
-				return;
+				return ret;
 			}  
 
 			if (json.get_node_type() != Json.NodeType.ARRAY) {
 				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 				this.log(LanguageClientAction.ERROR_REPLY, "GOT something else??");
-				return;
+				return ret;
 			
 			}
 			var ar = json.get_array();			
@@ -550,7 +552,7 @@ namespace Palete {
 	 		}
 			this.log(LanguageClientAction.COMPLETE_REPLY, "GOT array %d items".printf(ret.items.size) );
 			GLib.debug ("LS replied with Array");
- 
+ 			return ret;
  		
 
 		}

@@ -16,7 +16,10 @@ namespace Palete {
 		public override void startServer()
 		{
 		}
-	
+		public new bool isReady() 
+		{
+			return false;
+		}
 	}
 	
 }
