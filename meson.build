@@ -193,6 +193,7 @@ roobuilder_src = files([
    'src/Palete/RooDatabase.vala',
    'src/Palete/LanguageClient.vala',
    'src/Palete/LanguageClientVala.vala',
+   'src/Palete/LanguageClientJavascript.vala',
    'src/Lsp.vala',
    'src/Palete/LanguageClientDummy.vala',
    'src/Palete/ValaCompileRequest.vala',
