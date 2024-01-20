@@ -77,7 +77,7 @@ namespace Palete {
 		async int runNinja() 
 		{
 			if (GLib.FileUtils.test(this.project.path + "/build", GLib.FileTest.EXISTS)) {
-				GLib.debug("build is missing"
+				GLib.debug("build is missing");
 			  	return -1; //assume it's been set up.
 		  	}
 			string[] args = { "/usr/bin/ninja"};	  	
@@ -92,7 +92,7 @@ namespace Palete {
 		}	
 		public void cancel() {
 			if (this.spawn != null && this.spawn.pid > 0) {
-				Posix.kill(this.compiler.pid, 9);
+				Posix.kill(this.spawn.pid, 9);
 			}
 			this.spawn = null;
 		
