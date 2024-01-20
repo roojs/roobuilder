@@ -10,6 +10,7 @@ namespace Palete {
  		string target;
 		Spawn? spawn = null;
 		
+		signal void onOutput(string str);
 	
 		public Gee.HashMap<string,GLib.ListStore>? errorByType = null;
 	 	public Gee.HashMap<string,GLib.ListStore>? errorByFile  = null;
@@ -65,9 +66,9 @@ namespace Palete {
 		  	}
 			string[] args = { "/usr/bin/meson" ,"setup","build", "--prefix=/" };	  	
 
-		  	var meson = new Spawn(this.project.path , args);
-		  	meson.output_line.connect(this.onOutput);
-		  	var res = yield meson.run_async();
+		  	this.spawn = new Spawn(this.project.path , args);
+		  	this.spawn.output_line.connect(this.onOutput);
+		  	var res = yield this.spawn.run_async();
 		  	return res;
 		}
 			
@@ -81,7 +82,7 @@ namespace Palete {
 
 		  	this.spawn = new Spawn(this.project.path + "/build" , args);
 		  	this.spawn.output_line.connect(this.onOutput);
-		  	 var res = yield ninja.run_async();
+		  	 var res = yield this.spawn.run_async();
 		  	return res;
 		  	
 		}	
@@ -124,11 +125,11 @@ namespace Palete {
 		}
 		*/
 		
-		public void runJavascript( )
+		public void runJavascript( string alt_code )
 		{
 			//this.queue = queue;
 		 
-			var contents = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
+			var contents = alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
 			
 		 	Javascript.singleton().validate(contents, this.file );
 			 
