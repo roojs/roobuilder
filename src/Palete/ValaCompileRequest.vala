@@ -7,6 +7,7 @@ namespace Palete {
 	public class ValaCompileRequest  : Object
 	{
  		Project.Gtk project;
+ 		string target;
 		Spawn? compiler  = null;
 	///	ValaCompileQueue? queue = null;
  
@@ -17,48 +18,17 @@ namespace Palete {
 	 		
 	
 		public ValaCompileRequest (
-			Project.project project
+			Project.Gtk project,
+			string target
 			 
 		) {
-			this.project = project;
+			this.project =   project;
+			this.target = target;
 		}
 		 
-		public string target()
-		{
-			var pr = (Project.Gtk) this.file.project;
-			return pr.firstBuildModuleWith(this.file);
-		
-		}
-		
-		string generateTempContents() {
-		
-			var oldcode  = "";
-			var contents = this.alt_code;
-			if (this.requestType == ValaCompileRequestType.PROP_CHANGE) {
-				oldcode  = this.prop.val;
-				this.prop.val = this.alt_code;
-				contents = this.file.toSourceCode();
-				this.prop.val = oldcode;
-			}
-			return contents;
-		}
-		
-		
-		bool generateTempFile() {
 		 
-			var contents = this.generateTempContents();
-			 
-			var pr = this.file.project;
-			
-		 	this.tmpfile = pr.path + "/build/tmp-%u.vala".printf( (uint) GLib.get_real_time()) ;
- 			try {
- 				GLib.FileUtils.set_contents(this.tmpfile,contents);
-			} catch (GLib.FileError e) {
-				GLib.debug("Error creating temp build file %s : %s", tmpfile, e.message);
-				return false;
-			}
-			return true;
-		}
+		
+		  
 		
 		public bool run()
 		{
