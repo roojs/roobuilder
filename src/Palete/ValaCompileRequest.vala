@@ -85,7 +85,13 @@ namespace Palete {
 		  	return res;
 		  	
 		}	
-			
+		public void cancel() {
+			if (this.compiler != null && this.compiler.pid > 0) {
+				Posix.kill(this.compiler.pid, 9);
+			}
+			this.compiler = null;
+		
+		}	
 			 
 		 
 		/*
