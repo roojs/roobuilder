@@ -129,7 +129,7 @@ namespace Palete {
 		}
 		*/
 		
-		string generateTempContents(JsRender.JsRender file, JsRender.NodeProp? prop, str alt_code) {
+		string generateTempContents(JsRender.JsRender file, JsRender.NodeProp? prop, string alt_code) {
 		
 			var oldcode  = "";
 			var contents = alt_code;
@@ -142,7 +142,7 @@ namespace Palete {
 			return contents;
 		}
 		
-		public void runJavascript( JsRender.JsRender file, JsRender.NodeProp? prop, str alt_code )
+		public void runJavascript( JsRender.JsRender file, JsRender.NodeProp? prop, string alt_code )
 		{
 			//this.queue = queue;
 		 
