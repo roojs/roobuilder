@@ -177,9 +177,11 @@ public class DialogFiles : Object
 	}//
 	public void load () {
 	     // cl list...
-	     
+	    
+	       
 	     _this.is_loading = true;
-
+	        
+	
 	     Project.Project.loadAll();
 	     _this.project_list.el.set_model(new Gtk.SingleSelection(null));
 	     Project.Project.loadIntoStore(this.projectmodel.el);
@@ -190,6 +192,8 @@ public class DialogFiles : Object
 	    
 	    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; 
 		_this.btn_delfile.el.hide();
+	 
+	  
 	}
 	public class Xcls_Box2 : Object
 	{
