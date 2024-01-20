@@ -119,7 +119,10 @@ public class JsRender.Node : GLib.Object {
 		set  {
 			this.nodeTitleProp = ""; // ?? should trigger set?
 			this.iconFilename = "";
-			this. _updated_count = value;
+			this._updated_count = value;
+			if (this.parent != null) {
+				this.parent.updated_count++;
+			}
 		}
  
 	} // changes to this trigger updates on the tree..

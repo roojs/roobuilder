@@ -76,7 +76,7 @@ namespace Palete {
 			
 		async int runNinja() 
 		{
-			if (GLib.FileUtils.test(this.project.path + "/build", GLib.FileTest.EXISTS)) {
+			if (!GLib.FileUtils.test(this.project.path + "/build", GLib.FileTest.EXISTS)) {
 				GLib.debug("build is missing");
 			  	return -1; //assume it's been set up.
 		  	}
@@ -129,37 +129,8 @@ namespace Palete {
 		}
 		*/
 		
-		string generateTempContents(JsRender.JsRender file, JsRender.NodeProp? prop, string alt_code) {
 		
-			var oldcode  = "";
-			var contents = alt_code;
-			if (prop != null) {
-				oldcode  = prop.val;
-				prop.val = alt_code;
-				contents = file.toSourceCode();
-				prop.val = oldcode;
-			}
-			return contents;
-		}
-		
-		public void runJavascript( JsRender.JsRender file, JsRender.NodeProp? prop, string alt_code )
-		{
-			//this.queue = queue;
-		 
-			var contents = alt_code == "" ? file.toSourceCode() : this.generateTempContents(file, prop, alt_code);
-			
-		 	Javascript.singleton().validate(contents, file );
-			 
-			 
-			BuilderApplication.showSpinner("");
-			BuilderApplication.updateCompileResults();
-			
-			//this.queue.onCompileComplete(this);
-				
-			 
-		  // see pack file (from palete/palete..palete_palete_javascriptHasCompressionErrors.)
 		  
-		}
 		public void killChildren(int pid)
 		{
 			if (pid < 1) {

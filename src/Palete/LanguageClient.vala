@@ -138,7 +138,7 @@ namespace Palete {
             return true;
         }
         bool in_close = false;
-	 	public void onClose()
+	 	protected void onClose()
 	 	{
 	 		if (this.in_close) {
 	 			return;
@@ -439,6 +439,7 @@ namespace Palete {
 
          
     	}
+    	// called by close window (on last window)...
 		public   void exit () throws GLib.Error 
 		{
 			if (!this.isReady()) {
@@ -455,6 +456,7 @@ namespace Palete {
 			this.onClose();
 
 		}
+		// not used currently..
  		public async void shutdown () throws GLib.Error 
  		{
 	 		if (!this.isReady()) {
@@ -479,7 +481,7 @@ namespace Palete {
 		
 		@triggerType 1 = typing or ctl-spac, 2 = tiggercharactres?  3= inside completion?
 		*/
-		 public async Lsp.CompletionList?  comletion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
+		 public async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get completion %s @ %d:%d", file.relpath, line, offset);

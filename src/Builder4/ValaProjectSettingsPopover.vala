@@ -72,11 +72,11 @@ public class ValaProjectSettingsPopover : Object
 				return true;
 			}
 			return false;
+			
 		});
 		this.el.hide.connect( () => {
 			  if (!this.done) {
 		    _this.el.show();
-		  
 		  }
 		});
 	}
@@ -1248,7 +1248,7 @@ public class ValaProjectSettingsPopover : Object
 			    expand.set_hide_expander(  jr.childfiles.n_items < 1);
 			 	expand.set_list_row(lr);
 			 
-			   expand.set_hide_expander(  jr.xtype != "Dir" );
+			  	expand.set_hide_expander(  jr.xtype != "Dir" );
 			 	 expand.set_list_row(lr);
 			 
 			 	// bind image...
@@ -1333,10 +1333,11 @@ public class ValaProjectSettingsPopover : Object
 				//GLib.debug("change  %s to %s", lbl.label, np.name);
 			
 				//btn.active = jr.compile_group_selected;
-				 
-			 	jr.bind_property("compile_group_selected",
-			                    btn, "active",
-			                   GLib.BindingFlags.BIDIRECTIONAL); 
+				btn.active = _this.selected_target.has_file(jr);
+				
+			 	//jr.bind_property("compile_group_selected",
+			    //                btn, "active",
+			    //               GLib.BindingFlags.BIDIRECTIONAL); 
 			 	// bind image...
 			 	
 			});

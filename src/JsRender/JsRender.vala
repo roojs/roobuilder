@@ -79,6 +79,9 @@ namespace JsRender {
 		private int _version = 1;   // should we increment this based on the node..?
 		public int version {
 			get {
+				if (this.tree != null) {
+					return this.tree.updated_count;
+				}
 				return ++this._version; // increased on every call? - bit of a kludge until we do real versioning
 			}
 			private set {
