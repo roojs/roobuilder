@@ -1471,9 +1471,15 @@ public class Xcls_MainWindow : Object
 						this.last_request.killChildren(this.last_request.terminal_pid);
 					}
 				}
+				var pr = this.windowstate.project as Project.Gtk;
+				if (pr == null) {
+					return;
+				}
+				
 				
 				this.last_request= new Palete.ValaCompileRequest(
-					_this.windowstate.project
+					pr,
+					pr.firstBuildModuleWith(this.windowstate.file)
 				);
 				this.last_request.run();
 				 
