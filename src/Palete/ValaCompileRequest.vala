@@ -129,13 +129,26 @@ namespace Palete {
 		}
 		*/
 		
-		public void runJavascript( string alt_code )
+		string generateTempContents() {
+		
+			var oldcode  = "";
+			var contents = this.alt_code;
+			if (this.requestType == ValaCompileRequestType.PROP_CHANGE) {
+				oldcode  = this.prop.val;
+				this.prop.val = this.alt_code;
+				contents = this.file.toSourceCode();
+				this.prop.val = oldcode;
+			}
+			return contents;
+		}
+		
+		public void runJavascript( JsRender.JsRender file , string alt_code )
 		{
 			//this.queue = queue;
 		 
-			var contents = alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
+			var contents = alt_code == "" ? file.toSourceCode() : this.generateTempContents();
 			
-		 	Javascript.singleton().validate(contents, this.file );
+		 	Javascript.singleton().validate(contents, file );
 			 
 			 
 			BuilderApplication.showSpinner("");
