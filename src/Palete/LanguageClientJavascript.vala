@@ -23,11 +23,11 @@ namespace Palete {
 		public new void document_open (JsRender.JsRender file)  
 		{
 		}
-		public void document_save (JsRender.JsRender file)  
+		public new void document_save (JsRender.JsRender file)  
 		{
 		
 		}
- 		public void document_change (JsRender.JsRender file   )    
+ 		public new void document_change (JsRender.JsRender file   )    
  		{
  		}
 	}
