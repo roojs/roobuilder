@@ -20,6 +20,16 @@ namespace Palete {
 		{
 			return false;
 		}
+		public new void document_open (JsRender.JsRender file)  
+		{
+		}
+		public void document_open (JsRender.JsRender file)  
+		{
+		
+		}
+ 		public void document_change (JsRender.JsRender file   )    
+ 		{
+ 		}
 	}
 	
 }
