@@ -16,7 +16,7 @@ namespace Palete {
 		public override void startServer()
 		{
 		}
-		public new 
+	 s
 	}
 	
 }
