@@ -8,9 +8,7 @@ namespace Palete {
 	{
  		Project.Gtk project;
  		string target;
-		Spawn? compiler  = null;
-	///	ValaCompileQueue? queue = null;
- 
+		  
 		
 	
 		public Gee.HashMap<string,GLib.ListStore>? errorByType = null;
@@ -33,28 +31,32 @@ namespace Palete {
 		public async bool run()
 		{
 			//this.queue = queue;
+
 			if ( this.target == "") {
 				GLib.debug("missing target");
-				this.onCompileFail();
+				
 
 				return false;
 			}
+			BuilderApplication.showSpinner("spinner", "running meson");
 			var res = 0;
 			yield res = this.runMeson();
 	
 			if (0 != res) {
 				GLib.debug("Failed to run Meson");
-				return;
+				BuilderApplication.showSpinner("");
+				return false;
 			}
+			BuilderApplication.showSpinner("spinner", "running ninja");
 			yield res = this.runNinja();
 			if (0 != res) {
 				GLib.debug("Failed to run ninja");
-				return;
+				return false;
 			}
-			return this.runApp();
 			
-			
-			return true;
+			BuilderApplication.showSpinner("");
+			return this.execResult();
+			  
 		}
 		
 		async int runMeson() {
@@ -84,131 +86,10 @@ namespace Palete {
 		  	
 		}	
 			
-			
-			string[] args = {};
-			args += BuilderApplication._self;
-			if (this.requestType != ValaCompileRequestType.RUN) {
-				args += "--skip-linking";
-			}
-			args += "--project";
-			args += this.file.project.path;
-			args += "--target";
-			args +=  this.target();
-			if  (this.requestType == ValaCompileRequestType.PROP_CHANGE || this.requestType == ValaCompileRequestType.FILE_CHANGE) {
-				
-				if (!this.generateTempFile()) {
-					GLib.debug("failed to make temp file");
-					this.onCompileFail();
-					return false;
-				}
-				args += "--add-file";
-				args +=  this.tmpfile;
-				args += "--skip-file";
-				args += this.file.targetName(); // ?? bjs???
-			}
-			var pr = (Project.Gtk)(file.project);
-			try {
-				pr.makeProjectSubdir("build");
-				this.compiler = new Spawn(pr.path + "/build", args);
-			} catch (GLib.Error e) {
-				GLib.debug("Spawn failed: %s", e.message);
-
-				this.onCompileFail();
-				return false;
-			}
-		    this.compiler.output_line.connect(this.onOutput);
-			this.compiler.complete.connect(this.onCompileComplete);
-			try {
-				this.compiler.run(); 
-			} catch (GLib.Error e) {
-				GLib.debug("Spawn error %s", e.message);
-				this.onCompileFail();
-				return false;
-			}
-			return true; // it's running..
-		}
-		void onCompileFail() // only called before we start (assumes spinner has nto started etc..
-		{
-			this.compiler = null;
-			this.deleteTemp();
-		}
-		
-		public void cancel() {
-			if (this.compiler != null && this.compiler.pid > 0) {
-				Posix.kill(this.compiler.pid, 9);
-			}
-			this.compiler = null;
-			this.deleteTemp();
-		}
-		
-		public void deleteTemp()
-		{
-			 if (this.tmpfile == "") {
-			  	return;
-		  	}
-			if (GLib.FileUtils.test(this.tmpfile, GLib.FileTest.EXISTS)) {
-			  	GLib.FileUtils.unlink(this.tmpfile);
-		  	}
-		  	var cf = this.tmpfile.substring(0, this.tmpfile.length-4) + "c";
-		  	GLib.debug("try remove %s",cf);
-			if (GLib.FileUtils.test(cf, GLib.FileTest.EXISTS)) {
-			  	GLib.FileUtils.unlink(cf);
-		  	}
-		  	var ccf = GLib.Path.get_dirname(cf) + "/build/" + GLib.Path.get_basename(cf);
-		  	GLib.debug("try remove %s",ccf);
-			if (GLib.FileUtils.test(ccf, GLib.FileTest.EXISTS)) {
-			  	GLib.FileUtils.unlink(ccf);
-		  	}
-		  	this.tmpfile = "";
-		}
-		public void onCompileComplete(int res, string output, string stderr) 
-		{
-			this.deleteTemp();
-			this.compiler.isZombie();
-			GLib.debug("compile got %s", output);
-			if (output == "") {
-    	        BuilderApplication.showSpinner("face-sad", "compile failed - no error message?");
-			 	return;
-		 	}
-		 	if (this.requestType == ValaCompileRequestType.RUN) {
-    	        BuilderApplication.showSpinner("");
-				this.execResult();
-				return;
-			}
-			
-			// below is not used anymore - as we dont use this
-			try { 
-				//GLib.debug("GOT output %s", output);
-				
-				var pa = new Json.Parser();
-				pa.load_from_data(output);
-				var node = pa.get_root();
-
-				if (node.get_node_type () != Json.NodeType.OBJECT) {
-					BuilderApplication.showSpinner("");
-					return;
-				}
-				var ret = node.get_object ();	
-				//CompileError.parseCompileResults(this,ret);
-					BuilderApplication.showSpinner("");
-				
-			
-				
-				
-				
-			} catch (GLib.Error e) {
-				GLib.debug("parsing output got error %s", e.message);
-				BuilderApplication.showSpinner("");
-				return;
-				
-			}
-		}
+			 
 		 
-		public void onOutput(string line)
-		{
-			// pass it to UI?
-			
-		}
+		
+		  
 		public int totalErrors(string type, JsRender.JsRender? file=null) 
 		{
 			var ar = this.errorByType.get(type);
@@ -282,7 +163,7 @@ namespace Palete {
 		}
 		
 		public int terminal_pid = 0;
-		public void execResult()
+		public bool execResult()
 		{
 			  	
 			this.killChildren(this.terminal_pid);
@@ -295,7 +176,7 @@ namespace Palete {
 			var exbin = pr.path + "/build/" + exe;
 			if (!GLib.FileUtils.test(exbin, GLib.FileTest.EXISTS)) {
 				GLib.debug("Missing output file: %s\n",exbin);
-				return;
+				return false;
 			}
 			var gdb_cfg = pr.path + "/build/.gdb-script";
 			if (!GLib.FileUtils.test(gdb_cfg, GLib.FileTest.EXISTS)) {
@@ -334,8 +215,9 @@ namespace Palete {
 				
 		    } catch(GLib.Error e) {
 				GLib.debug("Failed to spawn: %s", e.message);
-				return;
+				return false;
 			}
+			return true;
 			
 		}
 		
