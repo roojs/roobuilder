@@ -134,7 +134,7 @@ namespace Palete {
 			var oldcode  = "";
 			var contents = alt_code;
 			if (prop != null) {
-				oldcode  = .prop.val;
+				oldcode  = prop.val;
 				prop.val = alt_code;
 				contents = file.toSourceCode();
 				prop.val = oldcode;
