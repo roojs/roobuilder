@@ -67,7 +67,9 @@ namespace Palete {
 			string[] args = { "/usr/bin/meson" ,"setup","build", "--prefix=/" };	  	
 
 		  	this.spawn = new Spawn(this.project.path , args);
-		  	this.spawn.output_line.connect(this.onOutput);
+		  	this.spawn.output_line.connect(( str) => {
+		  		this.onOutput(str);
+	  		});
 		  	var res = yield this.spawn.run_async();
 		  	return res;
 		}
@@ -81,7 +83,9 @@ namespace Palete {
 			string[] args = { "/usr/bin/ninja"};	  	
 
 		  	this.spawn = new Spawn(this.project.path + "/build" , args);
-		  	this.spawn.output_line.connect(this.onOutput);
+		  	this.spawn.output_line.connect(( str) => {
+		  		this.onOutput(str);
+	  		});
 		  	 var res = yield this.spawn.run_async();
 		  	return res;
 		  	
