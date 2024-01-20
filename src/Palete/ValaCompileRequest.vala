@@ -132,7 +132,7 @@ namespace Palete {
 		string generateTempContents(JsRender.JsRender file, JsRender.NodeProp? prop, str alt_code) {
 		
 			var oldcode  = "";
-			var contents = this.alt_code;
+			var contents = alt_code;
 			if (prop != null) {
 				oldcode  = .prop.val;
 				prop.val = alt_code;
@@ -142,7 +142,7 @@ namespace Palete {
 			return contents;
 		}
 		
-		public void runJavascript( JsRender.JsRender file , string alt_code )
+		public void runJavascript( JsRender.JsRender file, JsRender.NodeProp? prop, str alt_code )
 		{
 			//this.queue = queue;
 		 
