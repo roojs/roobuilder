@@ -205,7 +205,7 @@ namespace Palete {
 				
  				this.file.getLanguageServer().document_change_real(this.file, this.editor.tempFileContents());				
 				try {
-					yield this.file.getLanguageServer().completion(this.file, line, offset, 1, out res);
+					res = yield this.file.getLanguageServer().completion(this.file, line, offset, 1);
 				} catch (GLib.Error e) {
 					GLib.debug("got error %s", e.message);
 					res = null;
