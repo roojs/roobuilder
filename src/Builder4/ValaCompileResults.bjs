@@ -75,11 +75,7 @@
    "xtype" : "Popover",
    "| void addLine" : [
     "(string str) {",
-    "\t/*",
-    "\tif (this.window.windowstate.project.path != BuilderApplication.valasource.file.project.path) {",
-    "\t\t// not our project.",
-    "\t\treturn;",
-    "\t}",
+    "\t ",
     "\t",
     "\t",
     "\tvar buf = (GtkSource.Buffer)this.sourceview.el.get_buffer();",
@@ -89,7 +85,7 @@
     "\t/// scroll..",
     "\tbuf.get_end_iter (out  iter);",
     "\tthis.sourceview.el.scroll_to_iter(iter, 0.0f, true, 0.0f, 1.0f);",
-    " */",
+    " ",
     "}",
     ""
    ],

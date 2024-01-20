@@ -71,11 +71,7 @@ public class Xcls_ValaCompileResults : Object
 	    
 	}
 	public void addLine (string str) {
-		/*
-		if (this.window.windowstate.project.path != BuilderApplication.valasource.file.project.path) {
-			// not our project.
-			return;
-		}
+		 
 		
 		
 		var buf = (GtkSource.Buffer)this.sourceview.el.get_buffer();
@@ -85,7 +81,7 @@ public class Xcls_ValaCompileResults : Object
 		/// scroll..
 		buf.get_end_iter (out  iter);
 		this.sourceview.el.scroll_to_iter(iter, 0.0f, true, 0.0f, 1.0f);
-	 */
+	 
 	}
 	public class Xcls_compile_view : Object
 	{
