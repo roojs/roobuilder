@@ -30,15 +30,27 @@ namespace Palete {
 		
 		  
 		
-		public bool run()
+		public async bool run()
 		{
 			//this.queue = queue;
-			if ( this.target() == "") {
+			if ( this.target == "") {
 				GLib.debug("missing target");
 				this.onCompileFail();
 
 				return false;
 			}
+			var res = 0;
+			yield res = this.runMeson();
+	
+			if (0 != res) {
+				GLib.debug("Failed to run Meson");
+				return;
+			}
+			yield res = this.runNinja();
+			
+			
+			
+			
 			string[] args = {};
 			args += BuilderApplication._self;
 			if (this.requestType != ValaCompileRequestType.RUN) {
