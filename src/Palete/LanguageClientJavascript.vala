@@ -10,8 +10,8 @@ namespace Palete {
 			
 		
 		}
-		 public override   void  initialize_server()   {
-			GLib.debug("initialize dummy server");			
+		public override   void  initialize_server()   {
+			GLib.debug("initialize javascript server");			
 		}
 		public override void startServer()
 		{
