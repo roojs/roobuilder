@@ -164,7 +164,7 @@ public class Spawn : Object
 			Process.spawn_async (	
 				this.cwd,
 				this.args,
-				this.env.length > 0 ? this.env : GLib.Environ.get (),
+				this.env.length > 0 ? this.env : null,
 				SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,
 				null,
 				out pid);
@@ -234,12 +234,8 @@ public class Spawn : Object
 				this.ctx.quit();
 				this.ctx = null;
 			}
-			// since it's closed - we might not need to remove the watches?
-			
-			this.err_src = -1;
-			this.out_src = -1;
 			this.tidyup();
-			GLib.debug("DONE TIDYUP - calling complete");
+			//print("DONE TIDYUP");
 			
 			this.complete(this.result, this.output, this.stderr);
 			
@@ -322,23 +318,6 @@ public class Spawn : Object
         return;
     
     }
-    
-    public async int run_async()
-    {
-		GLib.MainLoop loop = new GLib.MainLoop ();
-	  	this.complete.connect( (res, str,  stderr) => {
-	  		loop.quit ();
-	  	});
-	  	
-	  	this.run();
-	  	 
-	  	loop.run ();
-	  	return this.result;
-
-    
-    
-    }
-    
     
     
 

@@ -182,7 +182,7 @@
 			this.testBjs(cur_project);
 			this.languageServer(cur_project);
 			this.compileBjs(cur_project);
-			//this.compileVala();
+			this.compileVala();
 
 		}
 
@@ -249,7 +249,6 @@
 					}
 				});
 			}
-			
 			
 		
 		}
@@ -401,45 +400,20 @@
 					var ar = cur_project.sortedFiles();
 					
 					foreach(var file in ar) {
-					
-						if (file is JsRender.PlainFile) {
-							continue;
-						}
-    			
+						string oldstr;
 
 						file.loadItems();
 						var oldfn = file.targetName();
-						
-						print("\n\n\n\nFile : %s\n", oldfn);
-						//GLib.FileUtils.get_contents(oldfn, out oldstr);
+						GLib.FileUtils.get_contents(oldfn, out oldstr);
 										
 						var outstr = file.toSourceCode();
-						var bad = false;
-						// check line numbers:
-						var bits = outstr.split("\n");
-						var end = bits.length;
-						for(var i = 0;i < end; i++) {
-							print("%i : %s\n", i+1 , bits[i]);
-							if (!bad && bits[i].has_prefix("/*") && !bits[i].has_prefix("/*%d*/".printf(i+1))) {
-								end = i + 5 > bits.length ? bits.length: (i + 5);
-								print ("^^^^ mismatch\null");
-								bad = true;
-							}
-
-						
-						}
-						if (bad) {
-							GLib.error("got bad file");
-						}
-						/*
 						if (outstr != oldstr) { 
 							
 							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
 							print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
 							//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 						}
-*.*						*/
-						//print("# Files match %s\n", file.name);
+						print("# Files match %s\n", file.name);
 					}		
 				} catch (FileError e) {
 					GLib.debug("Got error %s", e.message);
@@ -457,7 +431,10 @@
 			if (file == null) {
 				// then compile them all, and compare them...
 				
-			 
+			
+			
+			
+			
 			
 				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
 			}
@@ -531,11 +508,6 @@
 				// it's ready..
 				 
 				ls.document_open(file);
-				
-				ls.syntax.begin(file, (obj,res) => {
-					ls.syntax.end(res);
-				
-				});
 				return false;
 				
 			});
@@ -545,7 +517,7 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 			
-	/*	
+			
 		void compileVala()
 		{
 			if (BuilderApplication.opt_compile_target == null) {
@@ -556,7 +528,6 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 	
 		}
-		*/
 		void pullResources()
 		{
 			if (!opt_pull_resources) {
@@ -670,33 +641,8 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 		}
 		
-		static int queue_update_compile_countdown = -1;
-		static uint queue_update_compile_id = 0;
-		
 		public static void updateCompileResults( )
 		{
-			queue_update_compile_countdown = 4; // 1 second after last call.
-			if (queue_update_compile_id == 0) {
-				queue_update_compile_id = GLib.Timeout.add(250, () => {
-			 		if (queue_update_compile_countdown < 0) {
-						return true;
-					}
-					queue_update_compile_countdown--;
-			 		if (queue_update_compile_countdown < 0) {
-						realUpdateCompileResults();
-					}
-					
-					return true;
-				});
-			}
-		}
-		
-		
-		public static void realUpdateCompileResults( )
-		{
-			
-			
-			
 			foreach(var ww in BuilderApplication.windows) {
 				if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
 					continue;
@@ -711,74 +657,11 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 			}
 		
 		}
-		
-		public static void showSpinnerLspLog(Palete.LanguageClientAction action, string message) {
-			
-			var msg = action.to_string() + " " + message;
-			switch(action) {
-			
-					case Palete.LanguageClientAction.INIT:
-			 		case Palete.LanguageClientAction.LAUNCH:
-			 		case Palete.LanguageClientAction.ACCEPT:
-						BuilderApplication.showSpinner( "software-update-available", msg );
-						return;
-						
-			 		case Palete.LanguageClientAction.DIAG:
-				 		BuilderApplication.showSpinner( "format-justify-fill", msg);			 		
-			 			return;
-
-			 		case Palete.LanguageClientAction.OPEN:
-				 		BuilderApplication.showSpinner( "document-open", msg);			 		
-			 			return;
-			 		case Palete.LanguageClientAction.SAVE:
-			 			BuilderApplication.showSpinner( "document-save", msg);			 		
-			 			return;
-			 		case Palete.LanguageClientAction.CLOSE:
-			 			BuilderApplication.showSpinner( "window.close", msg);			 		
-			 			return;
-			 		case Palete.LanguageClientAction.CHANGE:
-			 			BuilderApplication.showSpinner( "format-text-direction-ltr", msg);
-			 			return;			 			
-			 		case Palete.LanguageClientAction.TERM:
-						BuilderApplication.showSpinner( "media-playback-stop", msg);
-						return;			 			
-			 		case Palete.LanguageClientAction.COMPLETE:
-						BuilderApplication.showSpinner( "mail-send-recieve", msg);
-						return;
-			 		
-			 		case Palete.LanguageClientAction.COMPLETE_REPLY:
-						BuilderApplication.showSpinner( "face-cool", msg);
-						return;
-						
-			 		case Palete.LanguageClientAction.RESTART:
-			 		case Palete.LanguageClientAction.ERROR:
-			 		case Palete.LanguageClientAction.ERROR_START:
-					case Palete.LanguageClientAction.ERROR_RPC:
-					case Palete.LanguageClientAction.ERROR_REPLY:
-						BuilderApplication.showSpinner( "software-update-urgent", msg );
-						return;
-
-					case Palete.LanguageClientAction.EXIT:
-						BuilderApplication.showSpinner( "face-sick", msg);
-						return;
-					
-			
-			}
-		}
-		
-		public static  void showSpinner(string icon, string tooltip = "")
+		public static  void showSpinner(bool state)
 		{
-
-			// events:
-			// doc change send: - spinner - 
-			
-			
-			// ?? restart = software-update-urgent - crash?
-
-			
 			foreach (var win in BuilderApplication.windows) {
-				if (icon != "") {
-					win.statusbar_compile_spinner.start(icon, tooltip);
+				if (state) {
+					win.statusbar_compile_spinner.start();
 				}  else {
 					win.statusbar_compile_spinner.stop();
 				}

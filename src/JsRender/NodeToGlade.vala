@@ -127,7 +127,7 @@ public class JsRender.NodeToGlade : Object {
 		var pviter = props.map_iterator();
 		while (!skip_props && pviter.next()) {
 			
-			//GLib.debug ("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
+			GLib.debug ("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
 			
     		// skip items we have already handled..
     		if  (!this.node.has(pviter.get_key())) {

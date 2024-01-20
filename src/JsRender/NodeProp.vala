@@ -215,7 +215,6 @@ public class JsRender.NodeProp : Object {
 		this.rtype = rtype;
 		this.val = val;
 		this.childstore = new GLib.ListStore( typeof(NodeProp));
-		 
 	}
 	
 	

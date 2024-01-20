@@ -655,7 +655,7 @@ public class WindowState : Object
 		BuilderApplication.updateWindows();
 		
 		file.getLanguageServer().document_open(file);
-		BuilderApplication.showSpinner("spinner", "document open sent");	
+			
 			
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();
@@ -673,7 +673,10 @@ public class WindowState : Object
 			 
 
 		}
- 
+
+		 
+
+
 
 		this.gotoLine(line);
 	
@@ -768,9 +771,7 @@ public class WindowState : Object
 				return;
 		}
 		this.rightpalete.hide(); 
-		if (this.add_props.el.parent == null) {
-			this.add_props.el.set_parent(btn);
-		}
+		this.add_props.el.set_parent(btn);
 		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
 	 
 		this.add_props.show(

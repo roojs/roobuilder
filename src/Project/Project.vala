@@ -492,14 +492,6 @@ namespace Project {
 			}
  			GLib.debug("load is_scanned = false");
  			
-			
-			// used to load paths..
-			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();
-			this.files = new Gee.HashMap<string,JsRender.JsRender>();
-			this.loadSubDirectories("", 0); // must happend before loadJson! (as compile groups checks if file exists.
-			 
-
-			
 			if (FileUtils.test(this.path + "/.roobuilder.jcfg", FileTest.EXISTS)) {
 				  
 				var pa = new Json.Parser();
@@ -520,7 +512,12 @@ namespace Project {
 				 
 				this.loadJson(obj);
 			} 
-			this.initDatabase();	
+			// used to load paths..
+			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();
+			this.files = new Gee.HashMap<string,JsRender.JsRender>();
+			this.loadSubDirectories("", 0);
+			 
+			this.initDatabase();
 			this.is_scanned = true; // loaded.. dont need to do it again..
 			 GLib.debug("load is_scanned = true");
 			
@@ -861,8 +858,6 @@ namespace Project {
 
 			
 			file.remove();
-			this.save();
-			
 			// remove it from 
 			
 			
@@ -998,16 +993,15 @@ namespace Project {
 			return ret;
 		}
 		
-		public void updateErrorsforFile(JsRender.JsRender? f) 
+		public void updateErrorsforFile(JsRender.JsRender f) 
 		{
-			if (f != null)  {
-				var n = this.updateErrorsByType(f, "WARN");
-				n += this.updateErrorsByType(f, "ERR");
-				n += this.updateErrorsByType(f, "DEPR");
-			}
-
-			BuilderApplication.updateCompileResults();
+			var n = this.updateErrorsByType(f, "WARN");
+			n += this.updateErrorsByType(f, "ERR");
+			n += this.updateErrorsByType(f, "DEPR");
 			
+			if (n > 0) {
+				BuilderApplication.updateCompileResults();
+			}
 			
 		}
 		public int  updateErrorsByType(JsRender.JsRender f, string n) 

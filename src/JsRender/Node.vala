@@ -119,10 +119,7 @@ public class JsRender.Node : GLib.Object {
 		set  {
 			this.nodeTitleProp = ""; // ?? should trigger set?
 			this.iconFilename = "";
-			this._updated_count = value;
-			if (this.parent != null) {
-				this.parent.updated_count++;
-			}
+			this. _updated_count = value;
 		}
  
 	} // changes to this trigger updates on the tree..
@@ -731,36 +728,32 @@ public class JsRender.Node : GLib.Object {
 			switch(prop.ptype) {
 				case PROP: 
 				case RAW: // should they be the same?
-				 
+				
 					props += "\n\t" + GLib.Markup.escape_text(prop.rtype) +
 						" <b>" + GLib.Markup.escape_text(i) +"</b> : " + 
-						GLib.Markup.escape_text(val == "" ? "" : val.split("\n")[0]);
+						GLib.Markup.escape_text(val.split("\n")[0]);
 						
 					break;
 					
 			
 				
 				case METHOD :
-					 
 					funcs += "\n\t" + GLib.Markup.escape_text(prop.rtype) +
 						" <b>" + GLib.Markup.escape_text(i) +"</b> : "  +
-						GLib.Markup.escape_text(val == "" ? "" : val.split("\n")[0]);
+						GLib.Markup.escape_text(val.split("\n")[0]);
 					break;
 					
 				 
 				case USER : // user defined.
-					 
 					uprops += "\n\t<b>" + 
 						GLib.Markup.escape_text(i) +"</b> : " + 
-						GLib.Markup.escape_text(val == "" ? "" : val.split("\n")[0]);
+						GLib.Markup.escape_text(val.split("\n")[0]);
 					break;
 					
 				case SPECIAL : // * prop| args | ctor | init
-					 
-						
 					spec += "\n\t<b>" + 
 						GLib.Markup.escape_text(i) +"</b> : " + 
-						GLib.Markup.escape_text(val == "" ? "" : val.split("\n")[0]);
+						GLib.Markup.escape_text(val.split("\n")[0]);
 					break;
 					
 		 		case LISTENER : return  "";  // always raw...
@@ -1014,9 +1007,8 @@ public class JsRender.Node : GLib.Object {
 	
 	public void add_prop(NodeProp prop)
 	{
-		if (this.has_prop_key(prop) && !prop.to_index_key().has_suffix("[]")) {
-			GLib.warning("duplicate key' %s'- can not add - call has_prop_key first", prop.to_index_key());
-			return;
+		if (this.has_prop_key(prop)) {
+			GLib.error("duplicate key - can not add - call has_prop_key first");
 		}
 		prop.parent = this;
 		this.propstore.append(prop);

@@ -184,6 +184,7 @@ BUIDERPALETE =  Palete/Gir.vala \
 		Palete/RooDatabase.vala \
 		Palete/Palete.vala \
 		Palete/Roo.vala \
+		Palete/ValaSource.vala \
 		Palete/ValaSourceCompiler.vala \
 		Palete/CompletionProvider.vala \
 		Palete/CompileError.vala \	
