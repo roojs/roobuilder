@@ -73,6 +73,26 @@
     }
    ],
    "xtype" : "Popover",
+   "| void addLine" : [
+    "(string str) {",
+    "\t/*",
+    "\tif (this.window.windowstate.project.path != BuilderApplication.valasource.file.project.path) {",
+    "\t\t// not our project.",
+    "\t\treturn;",
+    "\t}",
+    "\t",
+    "\t",
+    "\tvar buf = (GtkSource.Buffer)this.sourceview.el.get_buffer();",
+    "\tGtk.TextIter iter;",
+    "\tbuf.get_end_iter (out  iter);",
+    "\tbuf.insert(ref iter, str, str.length);",
+    "\t/// scroll..",
+    "\tbuf.get_end_iter (out  iter);",
+    "\tthis.sourceview.el.scroll_to_iter(iter, 0.0f, true, 0.0f, 1.0f);",
+    " */",
+    "}",
+    ""
+   ],
    "| void show" : [
     "( Gtk.Widget onbtn, bool reset) {",
     "\tvar win = this.window.el;",
@@ -104,26 +124,6 @@
     "    ",
     "    ",
     "    ",
-    "}",
-    ""
-   ],
-   "| void xaddLine" : [
-    "(string str) {",
-    "\t/*",
-    "\tif (this.window.windowstate.project.path != BuilderApplication.valasource.file.project.path) {",
-    "\t\t// not our project.",
-    "\t\treturn;",
-    "\t}",
-    "\t",
-    "\t",
-    "\tvar buf = (GtkSource.Buffer)this.sourceview.el.get_buffer();",
-    "\tGtk.TextIter iter;",
-    "\tbuf.get_end_iter (out  iter);",
-    "\tbuf.insert(ref iter, str, str.length);",
-    "\t/// scroll..",
-    "\tbuf.get_end_iter (out  iter);",
-    "\tthis.sourceview.el.scroll_to_iter(iter, 0.0f, true, 0.0f, 1.0f);",
-    " */",
     "}",
     ""
    ]
