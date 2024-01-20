@@ -51,11 +51,23 @@ namespace Palete {
 				GLib.debug("Failed to run ninja");
 				return;
 			}
+			return this.runApp();
+			
+			
 			return true;
 		}
 		
 		async int runMeson() {
-		
+			if (GLib.FileUtils.test(this.project.path + "/build", GLib.FileTest.EXISTS)) {
+			  	return 0; //assume it's been set up.
+		  	}
+			string[] args = { "/usr/bin/meson" ,"setup","build", "--prefix=/" };	  	
+
+		  	var meson = new Spawn(pr.path , args);
+		  	meson.output_line.connect(this.onOutput);
+		  	yield var res = meson.run_async();
+		  	return res;
+		  	
 		
 		}
 			
