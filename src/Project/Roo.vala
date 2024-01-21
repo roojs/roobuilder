@@ -88,7 +88,20 @@ public class Project.Roo : Project {
 
 	public override Palete.LanguageClient getLanguageServer(string lang)
 	{
-		  return this.language_servers.get("dummy");
+		  switch(lang) {
+		  		case "javascript":
+		  			var ls = new Palete.LanguageClientJavascript(this);
+					ls.log.connect((act, msg) => {
+						//GLib.debug("log %s: %s", act.to_string(), msg);
+						BuilderApplication.showSpinnerLspLog(act,msg);
+					});
+					this.language_servers.set(lang, ls);
+					break;
+					
+		  		default:
+		  			return this.language_servers.get("dummy");
+		  }
+		  return this.language_servers.get(lang);
 	}
 
 }
