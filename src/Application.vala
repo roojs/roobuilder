@@ -523,10 +523,7 @@
 			}
 			var loop = new MainLoop();
 			GLib.Timeout.add_seconds(1, () => {
-				if (!ls.isReady()) {
-					GLib.debug("waiting for server to be ready");
-					return true;
-				}
+			 
 				GLib.debug("Sending document_open");
 				// it's ready..
 				 

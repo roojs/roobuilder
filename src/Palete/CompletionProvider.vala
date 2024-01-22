@@ -203,8 +203,10 @@ namespace Palete {
 					offset += this.editor.file.file_namespace == "" ? 1 : 2; 
 				} 
 				
- 				this.file.getLanguageServer().document_change_real(this.file, this.editor.tempFileContents());				
+ 				this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
 				try {
+					GLib.debug("sending request to language server %s", this.file.getLanguageServer().get_type().name());
+					
 					res = yield this.file.getLanguageServer().completion(this.file, line, offset, 1);
 				} catch (GLib.Error e) {
 					GLib.debug("got error %s", e.message);
