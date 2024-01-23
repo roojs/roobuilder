@@ -78,7 +78,7 @@ gnome.post_install(gtk_update_icon_cache : true)
 
 install_data(
 	'roobuilder.desktop',
-	install_dir : get_option('datadir') + '/applications/''
+	install_dir : get_option('datadir') + '/applications/'
 )
 
 
