@@ -56,20 +56,20 @@ namespace Palete {
 				GLib.debug("got file %s : MISSING ", file.path);		 		
 				return ret;
 			}
-			GLib.debug("got file %s : %s ", file.path, this.file_contents.get(file.path));
+			//GLib.debug("got file %s : %s ", file.path, this.file_contents.get(file.path));
 			
 			var ar = this.file_contents.get(file.path).split("\n");
 			var ln = line >= ar.length ? "" :  ar[line-1];
-			if (offset >= ln.length) {
-				GLib.debug("request for complete on line %d > file length %d", offset, (int) ln.length);
+			if (offset-1 >= ln.length) {
+				GLib.debug("request for complete on line %d  @ pos %d > line length %d", line, offset, (int) ln.length);
 				return ret;
 			} 
 			GLib.debug("got Line %d:%d '%s' ", line, offset,  ln);
 			
 			var start = -1;
-			for (var i = offset -1; i > 0; i--) {
-				GLib.debug("check char %d '%c'", i, ln[i]);
-				if (ln[i].isalpha() || ln[i] == '.') {
+			for (var i = offset - 1; i > 0; i--) {
+				GLib.debug("check char %d '%c'", i, ln[i]); 
+				if (ln[i].isalpha() || ln[i] == '.' || ln[i] == '_') { // any other allowed chars?
 					start = i;
 					continue;
 				}
@@ -124,15 +124,32 @@ namespace Palete {
 			var parts = complete_string.split(".");
 			var curtype = "";
 			var cur_instance = false;
+			if (parts[0] == "_this") {
+				if (file.tree == null) {
+
+					GLib.debug("file has no tree");
+					return ret; // no idea..
+				}
+				curtype = file.tree.fqn();
+				cur_instance = true;				
+				// work out from the node, what the type is...
+				// fetch node from element.
+
+				//curtype = node.fqn();
+				cur_instance = true;
+			}
+			
+			
 			if (parts[0] == "this") {
 				// work out from the node, what the type is...
 				// fetch node from element.
-				//if (node == null) {
-					GLib.debug("node is empty - no return\n");
+				var node = file.lineToNode(line -1); // hopefuly
+				if (node == null) {
+					GLib.debug("could nt find scope for 'this'");
 					return ret; // no idea..
-				//}
-				//curtype = node.fqn();
-				//cur_instance = true;
+				}
+				curtype = node.fqn();
+				cur_instance = true;
 			}
 			if (parts[0] == "Roo") {	
 				curtype = "Roo";
@@ -147,7 +164,7 @@ namespace Palete {
 				// look up all the properties of the type...
 				var cls = this.project.palete.getClass(curtype);
 				if (cls == null) {
-					GLib.debug("could not get class of curtype %s\n", curtype);
+					GLib.debug("could not get class of curtype '%s'\n", curtype);
 					return ret;
 				}
 
@@ -231,7 +248,7 @@ namespace Palete {
 					// got a matching property...
 					// return type?
 					
-					var sci =  new Lsp.CompletionItem.keyword( prevbits + prop.name + "(", prop.name + "(" , prop.doctxt );
+					var sci =  new Lsp.CompletionItem.keyword( prop.name + "(", prop.name + "(" , prop.doctxt );
 					ret.items.add(sci);
 
 				 
@@ -244,11 +261,11 @@ namespace Palete {
 				while (citer.next()) {
 					var prop = citer.get_value();
 					// does the name start with ...
-					if (parts[i].length > 0 && prop.name.index_of(parts[i],0) != 0) {
-						continue;
-					}
+					//if (parts[i].length > 0 && prop.name.index_of(parts[i],0) != 0) {
+					//	continue;
+					//}
 					
-					var sci =  new Lsp.CompletionItem.keyword( prevbits +  prop.name + "(", prop.name + "(" , prop.doctxt );
+					var sci =  new Lsp.CompletionItem.keyword( prop.name, prop.name , prop.doctxt );
 					ret.items.add(sci);
  
 				
