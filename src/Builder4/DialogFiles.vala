@@ -1533,25 +1533,34 @@ public class DialogFiles : Object
 	var str = _this.searchbox.el.text.down();	
 	if (j.xtype == "Dir") {
 	
-		if (str.length < 1) {
-			return true;
-		}
+		
 		for (var i =0 ; i < j.childfiles.n_items; i++) {
 			var f = (JsRender.JsRender) j.childfiles.get_item(i);
 			if (f.xtype != "PlainFile") {
 				continue;
 			}
+			if (f.content_type.contains("image")) {
+				continue;
+			}
+			if (str.length < 1) {
+				return true;
+			}
 			if (f.name.down().contains(str)) {
 				return true;
 			}
+			
 		}
+		 
 		return false;
 	}
 	if (j.xtype != "PlainFile") {
 		return false;
 	}
-
-	if (str.length < 1) {
+ 	if (j.content_type.contains("image")) {
+		return false;
+	}
+			 
+	if (str.length < 1) { // no search.
 		return true;
 	}
 	if (j.name.down().contains(str)) {

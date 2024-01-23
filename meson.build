@@ -46,6 +46,35 @@ add_project_arguments(['--vapidir',  meson.current_source_dir() / 'src/vapi'], l
 
 
 
+install_data(
+	'pixmaps/16x16/apps/roobuilder.png',
+	install_dir:  get_option('datadir') + '/icons/hicolor/16x16/apps/'
+)
+
+install_data(
+	'pixmaps/22x22/apps/roobuilder.png',
+	install_dir:  get_option('datadir') + '/icons/hicolor/22x22/apps/'
+)
+
+install_data(
+	'pixmaps/24x24/apps/roobuilder.png',
+	install_dir:  get_option('datadir') + '/icons/hicolor/24x24/apps/'
+)
+
+install_data(
+	'pixmaps/32x32/apps/roobuilder.png',
+	install_dir:  get_option('datadir') + '/icons/hicolor/32x32/apps/'
+)
+
+install_data(
+	'pixmaps/48x48/apps/roobuilder.png',
+	install_dir:  get_option('datadir') + '/icons/hicolor/48x48/apps/'
+)
+
+gnome = import('gnome')
+gnome.post_install(gtk_update_icon_cache : true)
+
+
 roobuilder_src = files([
    'src/Builder4/About.vala',
    'src/Builder4/DialogConfirm.vala',

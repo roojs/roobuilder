@@ -45,8 +45,12 @@ namespace Project {
 			//add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
 
 			var targets = "";
+			var icons = "";
+			var desktops = "";
 			foreach(var cg in this.project.compilegroups.values) {
 				targets += this.addTarget(cg);
+				icons += this.addIcons(cg);
+				desktops += this.addDesktop(cg);
 			}
 			var data = 
 
@@ -79,11 +83,14 @@ conf.set('PROJECT_NAME', meson.project_name())
 
 $addvapidir
 
+$icons
+
+$desktops
 
 $targets
 ";		
 
-
+GLib.debug("write meson : %s" , data);
 // removed.. add_project_arguments(['--enable-gobject-tracing', '--fatal-warnings'], language: 'vala')
 
 			try {
@@ -118,5 +125,50 @@ $targets
 
 			return str;
 		}
-	}
+		
+		string addIcons(GtkValaSettings cg)
+		{
+			 
+			var ret = "";
+			string[] sizes = { "16x16", "22x22","24x24","32x32", "48x48" } ;
+			foreach(var size in sizes) {
+				GLib.debug("looking for on : %s" ,  "pixmaps/" + size + "/apps/" + cg.name  + ".png");
+				var img = this.project.getByRelPath( "pixmaps/" + size + "/apps/" + cg.name  + ".png");
+				if (img == null) {
+					continue;
+				}
+				var path = img.relpath;
+				ret += @"
+install_data(
+	'$path',
+	install_dir:  get_option('datadir') + '/icons/hicolor/$size/apps/'
+)
+";
+			}
+			if (ret == "") {
+				return "";
+			}
+			ret += "
+gnome = import('gnome')
+gnome.post_install(gtk_update_icon_cache : true)
+";
+			return ret;
+		}
+		
+		string addDesktop(GtkValaSettings cg)
+		{
+			// we could actually generate this!?!
+			var d  = this.project.getByRelPath(   cg.name  + ".desktop");
+			if (d == null) {
+				return "";
+			}
+			var path = d.relpath;
+			return @"
+install_data(
+	'$path',
+	install_dir : get_option('datadir') + '/applications/''
+)
+";
+
+}
 }

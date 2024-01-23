@@ -5,9 +5,10 @@
 
 namespace JsRender {
  	int did = 1;
+ 	
 	public  class Dir : JsRender
 	{  
-		
+		//Gee.ArrayList<Dir> subdirs;
 		public Dir(Project.Project project, string path) {
 	    
 	        base( project, path);
