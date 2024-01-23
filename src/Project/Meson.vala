@@ -169,6 +169,6 @@ install_data(
 	install_dir : get_option('datadir') + '/applications/''
 )
 ";
-
-}
+		}
+	} 
 }
