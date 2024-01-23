@@ -75,6 +75,13 @@ gnome = import('gnome')
 gnome.post_install(gtk_update_icon_cache : true)
 
 
+
+install_data(
+	'roobuilder.desktop',
+	install_dir : get_option('datadir') + '/applications/''
+)
+
+
 roobuilder_src = files([
    'src/Builder4/About.vala',
    'src/Builder4/DialogConfirm.vala',

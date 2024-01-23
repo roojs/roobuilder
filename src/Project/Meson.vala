@@ -166,7 +166,7 @@ gnome.post_install(gtk_update_icon_cache : true)
 			return @"
 install_data(
 	'$path',
-	install_dir : get_option('datadir') + '/applications/''
+	install_dir : get_option('datadir') + '/applications/'
 )
 ";
 		}
