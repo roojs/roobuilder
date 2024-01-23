@@ -197,14 +197,21 @@ namespace Palete {
 				var offset =  end.get_line_offset();
 				if (this.editor.prop != null) {
 				//	tried line -1 (does not work)
-				
+					GLib.debug("node pad = '%s' %d", this.editor.node.node_pad, this.editor.node.node_pad.length);
+					
 					line += this.editor.prop.start_line ; 
 					// this is based on Gtk using tabs (hence 1/2 chars);
-					offset += this.editor.file.file_namespace == "" ? 1 : 2; 
+					offset += this.editor.node.node_pad.length;
+					// javascript listeners are indented 2 more spaces.
+					if (this.editor.prop.ptype == JsRender.NodePropType.LISTENER) {
+						offset += 2;
+					}
 				} 
 				
- 				this.file.getLanguageServer().document_change_real(this.file, this.editor.tempFileContents());				
+ 				this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
 				try {
+					GLib.debug("sending request to language server %s", this.file.getLanguageServer().get_type().name());
+					
 					res = yield this.file.getLanguageServer().completion(this.file, line, offset, 1);
 				} catch (GLib.Error e) {
 					GLib.debug("got error %s", e.message);

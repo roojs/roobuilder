@@ -2,66 +2,81 @@
 namespace Palete {
 	public class LanguageClientJavascript : LanguageClient {
 	
+		Gee.HashMap<string,string> file_contents;
 	
 		public LanguageClientJavascript(Project.Project project)
 		{
 			// extend versions will proably call initialize to start and connect to server.
 			base(project);
-			
+			this.file_contents =  new Gee.HashMap<string,string>();
+			GLib.debug(" START JAVASCRIPT LANG SERVER");
 		
 		}
 		public override   void  initialize_server()   {
 			GLib.debug("initialize javascript server");			
 		}
-		public override void startServer()
-		{
-		}
+		 
 		 
 		
 		
-		
-		public new bool isReady() 
+		 
+		public override void document_open (JsRender.JsRender file)  
 		{
-			return false;
-		}
-		public new void document_open (JsRender.JsRender file)  
-		{
-			
+			this.file_contents.set(file.path, file.toSourceCode());
 		 	Javascript.singleton().validate(file.toSourceCode(), file );
 			BuilderApplication.updateCompileResults();
 		
 		}
-		public new void document_save (JsRender.JsRender file)  
+		public override void document_save (JsRender.JsRender file)  
 		{
+			
+			this.file_contents.set(file.path, file.toSourceCode());
+			GLib.debug("set file %s : %d  chars", file.path, this.file_contents.get(file.path).length);
 			Javascript.singleton().validate(file.toSourceCode(), file );
 			BuilderApplication.updateCompileResults();
 		}
- 		public new void document_change (JsRender.JsRender file   )    
- 		{
- 			Javascript.singleton().validate(file.toSourceCode(), file );
+ 		public override void document_change_force (JsRender.JsRender file, string contents )   {
+			this.file_contents.set(file.path, contents);
+			GLib.debug("set file %s : %d chars", file.path, this.file_contents.get(file.path).length);
+			Javascript.singleton().validate(contents, file );
 			BuilderApplication.updateCompileResults();
  		}
- 		
- 		public async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
+ 		public override void document_change (JsRender.JsRender file )    
+ 		{
+ 			this.document_change_force( file, file.toSourceCode());
+ 		}
+		public override void document_close (JsRender.JsRender file) {}
+		public override void exit () throws GLib.Error { }
+ 		public override async void shutdown () throws GLib.Error { }
+ 		public override async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
  		{
  		
 			var ret = new Lsp.CompletionList();	
-		 
-			
-			var ar = file.toSource().split("\n");
-			var ln = line >= ar.length ? "" :  ar[line];
-			if (ln.length >= offset) {
+		 	if (this.file_contents.get(file.path) == null) {
+				GLib.debug("got file %s : MISSING ", file.path);		 		
 				return ret;
 			}
+			//GLib.debug("got file %s : %s ", file.path, this.file_contents.get(file.path));
+			
+			var ar = this.file_contents.get(file.path).split("\n");
+			var ln = line >= ar.length ? "" :  ar[line-1];
+			if (offset-1 >= ln.length) {
+				GLib.debug("request for complete on line %d  @ pos %d > line length %d", line, offset, (int) ln.length);
+				return ret;
+			} 
+			GLib.debug("got Line %d:%d '%s' ", line, offset,  ln);
+			
 			var start = -1;
-			for (var i = offset; i > 0; i--) {
-				GLib.debug("check char %c", ln[i]);
-				if (ln[i].isalpha() || ln[i] == '.') {
+			for (var i = offset - 1; i > 0; i--) {
+				GLib.debug("check char %d '%c'", i, ln[i]); 
+				if (ln[i].isalpha() || ln[i] == '.' || ln[i] == '_') { // any other allowed chars?
 					start = i;
 					continue;
 				}
 				break;
 			}
+			
+			
 			var complete_string = ln.substring(start, offset - start);
 			GLib.debug("complete string = %s", complete_string);
 			
@@ -109,15 +124,32 @@ namespace Palete {
 			var parts = complete_string.split(".");
 			var curtype = "";
 			var cur_instance = false;
+			if (parts[0] == "_this") {
+				if (file.tree == null) {
+
+					GLib.debug("file has no tree");
+					return ret; // no idea..
+				}
+				curtype = file.tree.fqn();
+				cur_instance = true;				
+				// work out from the node, what the type is...
+				// fetch node from element.
+
+				//curtype = node.fqn();
+				cur_instance = true;
+			}
+			
+			
 			if (parts[0] == "this") {
 				// work out from the node, what the type is...
 				// fetch node from element.
-				//if (node == null) {
-					GLib.debug("node is empty - no return\n");
+				var node = file.lineToNode(line -1); // hopefuly
+				if (node == null) {
+					GLib.debug("could nt find scope for 'this'");
 					return ret; // no idea..
-				//}
-				//curtype = node.fqn();
-				//cur_instance = true;
+				}
+				curtype = node.fqn();
+				cur_instance = true;
 			}
 			if (parts[0] == "Roo") {	
 				curtype = "Roo";
@@ -132,7 +164,7 @@ namespace Palete {
 				// look up all the properties of the type...
 				var cls = this.project.palete.getClass(curtype);
 				if (cls == null) {
-					GLib.debug("could not get class of curtype %s\n", curtype);
+					GLib.debug("could not get class of curtype '%s'\n", curtype);
 					return ret;
 				}
 
@@ -216,7 +248,7 @@ namespace Palete {
 					// got a matching property...
 					// return type?
 					
-					var sci =  new Lsp.CompletionItem.keyword( prevbits + prop.name + "(", prop.name + "(" , prop.doctxt );
+					var sci =  new Lsp.CompletionItem.keyword( prop.name + "(", prop.name + "(" , prop.doctxt );
 					ret.items.add(sci);
 
 				 
@@ -229,11 +261,11 @@ namespace Palete {
 				while (citer.next()) {
 					var prop = citer.get_value();
 					// does the name start with ...
-					if (parts[i].length > 0 && prop.name.index_of(parts[i],0) != 0) {
-						continue;
-					}
+					//if (parts[i].length > 0 && prop.name.index_of(parts[i],0) != 0) {
+					//	continue;
+					//}
 					
-					var sci =  new Lsp.CompletionItem.keyword( prevbits +  prop.name + "(", prop.name + "(" , prop.doctxt );
+					var sci =  new Lsp.CompletionItem.keyword( prop.name, prop.name , prop.doctxt );
 					ret.items.add(sci);
  
 				
@@ -255,6 +287,10 @@ namespace Palete {
 			
 			return ret;
 		
+		}
+		public override async Gee.ArrayList<Lsp.DocumentSymbol> syntax (JsRender.JsRender file) throws GLib.Error {
+			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
+			return ret;
 		}
  		
 	}

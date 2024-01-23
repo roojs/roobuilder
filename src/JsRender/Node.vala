@@ -111,6 +111,9 @@ public class JsRender.Node : GLib.Object {
 	public Gee.ArrayList<int> node_lines; 
 	public Gee.HashMap<int,Node> node_lines_map; // store of l:xxx or p:....
 	
+	
+	public string node_pad = "";
+	
 	private int _updated_count = 0;
 	public int updated_count { 
 		get {

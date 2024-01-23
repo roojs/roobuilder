@@ -46,6 +46,7 @@ public class JsRender.NodeToJs : Object {
 		this.node = node;
 		this.doubleStringProps = doubleStringProps;
 		this.pad = pad;
+		this.node.node_pad = pad;
 		
 		//this.els = new Gee.ArrayList<string>(); 
 		//this.ar_props = new Gee.HashMap<string,string>();

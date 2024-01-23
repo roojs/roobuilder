@@ -10,15 +10,24 @@ namespace Palete {
 			
 		
 		}
-		 public override   void  initialize_server()   {
+		public override   void  initialize_server()   {
 			GLib.debug("initialize dummy server");			
 		}
-		public override void startServer()
-		{
-		}
-		public new bool isReady() 
-		{
-			return false;
+		public override void document_open (JsRender.JsRender file)  {}
+		public override void document_save (JsRender.JsRender file)   {}
+ 		public override void document_change (JsRender.JsRender file    )     {}
+	 		public override void document_change_force (JsRender.JsRender file, string contents    )     {}
+		public override void document_close (JsRender.JsRender file) {}
+		public override void exit () throws GLib.Error { }
+ 		public override async void shutdown () throws GLib.Error { }
+ 		public override async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error {
+			var ret = new Lsp.CompletionList();	
+			return ret;
+ 		}
+ 		
+		public override async Gee.ArrayList<Lsp.DocumentSymbol> syntax (JsRender.JsRender file) throws GLib.Error {
+			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
+			return ret;
 		}
 	}
 	
