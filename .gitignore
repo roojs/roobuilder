@@ -45,7 +45,7 @@ stamp-h?
 *~
 compile
 fontconfig/*
-
+debian/roobuilder.substvars
 debian/roobuilder
 debian/auto*
 debian/debhelper*
