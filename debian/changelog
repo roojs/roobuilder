@@ -1,3 +1,14 @@
+roobuilder (5.0.1) UNRELEASED; urgency=medium
+
+  * switch to meson build
+  * remove internal compiler - switch to call meson/ninja
+  * language server support  (basic)
+  * autocompletion working on JS and vala
+  * errors from language server
+  * icons indicating status of language server
+
+ -- Alan <alan@roojs.com>  Wed, 24 Jan 2024 15:07:37 +0800
+
 roobuilder (5.0.0) unstable; urgency=medium
 
   * converted code to GTK4 
