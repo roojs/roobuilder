@@ -61,11 +61,11 @@ namespace Palete {
 		}
 		
 		async int runMeson() {
-			if (GLib.FileUtils.test(this.project.path + "/build", GLib.FileTest.EXISTS)) {
+			if (GLib.FileUtils.test(this.project.path + "/build/meson-info", GLib.FileTest.EXISTS)) {
 			  	return 0; //assume it's been set up.
 		  	}
-			string[] args = { "/usr/bin/meson" ,"setup","build", "--prefix=/" };	  	
-
+			string[] args = { "/usr/bin/meson" ,"setup", "build", "--prefix=/" };	  	
+			GLib.debug("running meson");
 		  	this.spawn = new Spawn(this.project.path , args);
 		  	this.spawn.output_line.connect(( str) => {
 		  		this.onOutput(str);
