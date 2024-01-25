@@ -224,7 +224,7 @@
            "\tif (data == null) {",
            "\t\treturn  ;",
            "\t}",
-           "\tthis.view.dragNode = tree;",
+           "\t_this.view.dragNode = tree;",
            "    var xname = data.fqn();",
            "    GLib.debug (\"XNAME  IS %s\", xname);",
            "",
@@ -236,6 +236,13 @@
            "            ",
            " ",
            "}"
+          ],
+          "drag_end" : [
+           "(drag, delete_data) => {",
+           "",
+           "",
+           "}",
+           ""
           ],
           "prepare" : [
            "(x, y) => {",
