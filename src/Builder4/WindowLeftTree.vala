@@ -152,7 +152,6 @@ public class Xcls_WindowLeftTree : Object
 		public string lastEventSource;
 		public bool button_is_pressed;
 		public Gtk.CssProvider css;
-		public JsRender.JsRender? dragNode;
 
 		// ctor
 		public Xcls_view(Xcls_WindowLeftTree _owner )
@@ -167,7 +166,6 @@ public class Xcls_WindowLeftTree : Object
 			this.headers_visible = false;
 			this.lastEventSource = "";
 			this.button_is_pressed = false;
-			this.dragNode = null;
 
 			// set gobject values
 			this.el.name = "left-tree-view";
@@ -398,6 +396,7 @@ public class Xcls_WindowLeftTree : Object
 		        return -1;
 		
 		 }
+		public JsRender.JsRender? dragNode null
 		public Gtk.Widget? getWidgetAt (double x,  double in_y) {
 		/*
 		    	

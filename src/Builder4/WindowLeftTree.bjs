@@ -78,7 +78,6 @@
        "* prop" : "child",
        "Boolean id" : "view",
        "Gtk.CssProvider css" : "",
-       "JsRender.JsRender? dragNode" : "null",
        "bool button_is_pressed" : false,
        "bool headers_visible" : false,
        "bool hexpand" : false,
@@ -1310,6 +1309,7 @@
         "",
         " }"
        ],
+       "| JsRender.JsRender? dragNode" : "null",
        "| int getColAt" : [
         "(double x,  double y) {",
         "/*",
