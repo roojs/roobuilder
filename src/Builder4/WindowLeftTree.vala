@@ -1750,7 +1750,7 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.key_pressed.connect( (keyval, keycode, state) => {
 			
-					GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
+				GLib.debug("key press %d, %d, %d" , keyval, keycode, state);
 			
 			
 				this.state = (int)this.el.get_current_event_state();
