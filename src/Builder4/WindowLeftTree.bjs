@@ -633,6 +633,8 @@
            "(  x, y) => {",
            " ",
            "\tvar is_shift = (_this.keystate.state &  Gdk.ModifierType.SHIFT_MASK) > 0;",
+           "\t",
+           "\tGLib.debug(\"shift is %s\", is_shift ? \"SHIFT\" : \"-\");",
            "\tstring pos; // over / before / after..",
            "",
            "    //GLib.debug(\"got drag motion\");",
