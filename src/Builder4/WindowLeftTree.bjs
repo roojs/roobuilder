@@ -1207,6 +1207,15 @@
         },
         {
          "$ xns" : "Gtk",
+         "listeners" : {
+          "key_pressed" : [
+           "(keyval, keycode, state) => {",
+           "",
+           "\treturn bool;",
+           "}",
+           ""
+          ]
+         },
          "xtype" : "EventControllerKey"
         }
        ],
