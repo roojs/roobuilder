@@ -1235,7 +1235,7 @@
           ],
           "key_released" : [
            "(keyval, keycode, state) => {",
-           "\tGLib.debug(\"key press %d, %d, %d\" , (int) keyval, (int)  keycode, state);",
+           "\tGLib.debug(\"key release %d, %d, %d\" , (int) keyval, (int)  keycode, state);",
            " ",
            "\t//GLib.debug(\"set state %d , shift = %d\", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);",
            "",
