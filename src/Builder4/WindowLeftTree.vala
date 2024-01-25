@@ -960,7 +960,7 @@ public class Xcls_WindowLeftTree : Object
 				
 				string pos; // over / before / after..
 			
-			    GLib.debug("got drag motion");
+			    //GLib.debug("got drag motion");
 			
 			    GLib.Value v = GLib.Value(typeof(string));
 			   	//var str = drop.read_text( [ "text/plain" ] 0);
@@ -973,7 +973,7 @@ public class Xcls_WindowLeftTree : Object
 				
 				}
 			 
-				GLib.debug("got %s", v.get_string());
+				//GLib.debug("got %s", v.get_string());
 				  
 				if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
 					// still dragging same node
