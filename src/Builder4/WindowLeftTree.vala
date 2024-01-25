@@ -1744,7 +1744,7 @@ public class Xcls_WindowLeftTree : Object
 				GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
 			
 			
-				this.state = (int)this.get_current_event_state();
+				this.state = (int)this.el.get_current_event_state();
 				return true;
 			});
 		}
