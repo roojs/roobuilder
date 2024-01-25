@@ -633,6 +633,11 @@
           "motion" : [
            "(  x, y) => {",
            " ",
+           "\t",
+           "\tif (Gdk.ModifierType.SHIFT_MASK & this.el.get_current_event_state()) {",
+           "\t\tGLib.debug(\"shift is pressed?\");",
+           "\t}",
+           "\t",
            "\tstring pos; // over / before / after..",
            "",
            "    GLib.debug(\"got drag motion\");",
