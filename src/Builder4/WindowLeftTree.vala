@@ -954,7 +954,7 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.motion.connect( (  x, y) => {
 			 
-				var is_shift = _this.keystate.is_shift;
+				var is_shift = _this.keystate.is_shift > 0;
 				
 				GLib.debug("shift is  %d, %s", _this.keystate.is_shift ? "SHIFT" : "-");
 				string pos; // over / before / after..

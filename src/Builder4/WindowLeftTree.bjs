@@ -632,7 +632,7 @@
           "motion" : [
            "(  x, y) => {",
            " ",
-           "\tvar is_shift = _this.keystate.is_shift;",
+           "\tvar is_shift = _this.keystate.is_shift > 0;",
            "\t",
            "\tGLib.debug(\"shift is  %d, %s\", _this.keystate.is_shift ? \"SHIFT\" : \"-\");",
            "\tstring pos; // over / before / after..",
