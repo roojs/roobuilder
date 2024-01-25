@@ -1168,20 +1168,38 @@ public class Xcls_WindowLeftTree : Object
 			 	switch(pos) {
 			 		case "over":
 				 		node.appendChild(dropNode);
+				 		if (is_shift && _this.view.dragNode != null) {
+					 		_this.model.selectNode(null); 
+					 		_this.view.dragNode.remove();
+				 		}
+				 			
+				 		
 			 			_this.model.selectNode(dropNode); 
+			 			
 			 			_this.changed();				 		
 				 		return true;
 				 		
 			 		case "above":
 			 			GLib.debug("Above - insertBefore");
 			 		
-			 			node.parent.insertBefore(dropNode, node);
+						node.parent.insertBefore(dropNode, node);
+				 		if (is_shift && _this.view.dragNode != null) {
+					 		_this.model.selectNode(null); 	 		
+					 		_this.view.dragNode.remove();
+				 		}
+				
 			 			_this.model.selectNode(dropNode); 			
 			 			_this.changed();
 			 			return true;
 			 			
 			 		case "below":
 			 			GLib.debug("Below - insertAfter"); 		
+				 		if (is_shift && _this.view.dragNode != null) {
+					 		_this.model.selectNode(null); 	 		
+					 		_this.view.dragNode.remove();
+				 		}
+				
+			 			
 			 			node.parent.insertAfter(dropNode, node);
 			 			_this.model.selectNode(dropNode);	
 			 			_this.changed();
