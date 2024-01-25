@@ -1218,7 +1218,7 @@
           ],
           "key_released" : [
            "(keyval, keycode, state) => {",
-           "",
+           "\tGLib.debug(\"key release\");",
            "",
            "}",
            ""

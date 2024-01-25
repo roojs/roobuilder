@@ -1726,7 +1726,7 @@ public class Xcls_WindowLeftTree : Object
 
 			//listeners
 			this.el.key_released.connect( (keyval, keycode, state) => {
-			
+				GLib.debug("key release");
 			
 			});
 			this.el.key_pressed.connect( (keyval, keycode, state) => {
