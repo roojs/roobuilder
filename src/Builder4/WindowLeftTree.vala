@@ -954,7 +954,7 @@ public class Xcls_WindowLeftTree : Object
 			this.el.motion.connect( (  x, y) => {
 			 
 				
-				if (Gdk.ModifierType.SHIFT_MASK & this.el.get_current_event_state()) {
+				if ((Gdk.ModifierType.SHIFT_MASK & this.el.get_current_event_state()) > 0) {
 					GLib.debug("shift is pressed?");
 				}
 				
