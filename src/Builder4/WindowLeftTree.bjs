@@ -1228,7 +1228,7 @@
            "",
            "",
            "\tthis.state = (int)this.el.get_current_event_state();",
-           "\treturn true;",
+           "\treturn false;",
            "}",
            ""
           ]

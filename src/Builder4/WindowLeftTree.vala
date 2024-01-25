@@ -1745,7 +1745,7 @@ public class Xcls_WindowLeftTree : Object
 			
 			
 				this.state = (int)this.el.get_current_event_state();
-				return true;
+				return false;
 			});
 		}
 
