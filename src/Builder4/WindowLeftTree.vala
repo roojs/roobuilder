@@ -1741,7 +1741,7 @@ public class Xcls_WindowLeftTree : Object
 
 			//listeners
 			this.el.modifiers.connect( (state) => {
-				GLIb.debug("set state %d" (int)state);
+				GLIb.debug("set state %d , shift = %d", (int)state, Gdk.ModifierType.SHIFT_MASK);
 			
 			
 				this.state = (int)state;
