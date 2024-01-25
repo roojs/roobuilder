@@ -682,7 +682,7 @@ public class Xcls_WindowLeftTree : Object
 				if (data == null) {
 					return  ;
 				}
-				_this.view.dragNode = tree;
+				_this.view.dragNode = data;
 			    var xname = data.fqn();
 			    GLib.debug ("XNAME  IS %s", xname);
 			
