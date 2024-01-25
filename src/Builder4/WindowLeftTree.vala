@@ -954,7 +954,7 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.motion.connect( (  x, y) => {
 			 
-				var is_shift = (_this.keystate.state && Gdk.ModifierType.SHIFT_MASK) > 0;
+				var is_shift = (_this.keystate.state &  Gdk.ModifierType.SHIFT_MASK) > 0;
 				string pos; // over / before / after..
 			
 			    //GLib.debug("got drag motion");
