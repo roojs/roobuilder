@@ -213,6 +213,7 @@
         {
          "$ Gdk.DragAction[] actions" : "Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ",
          "$ xns" : "Gtk",
+         "id" : "dragsource",
          "listeners" : {
           "drag_begin" : [
            "( drag )  => {",

@@ -14,6 +14,7 @@ public class Xcls_WindowLeftTree : Object
 	}
 	public Xcls_viewwin viewwin;
 	public Xcls_view view;
+	public Xcls_dragsource dragsource;
 	public Xcls_drop drop;
 	public Xcls_selmodel selmodel;
 	public Xcls_model model;
@@ -177,9 +178,8 @@ public class Xcls_WindowLeftTree : Object
 			var child_3 = new Xcls_GestureClick7( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
-			var child_4 = new Xcls_DragSource8( _this );
-			child_4.ref();
-			this.el.add_controller(  child_4.el );
+			new Xcls_dragsource( _this );
+			this.el.add_controller(  _this.dragsource.el );
 			var child_5 = new Xcls_EventControllerKey9( _this );
 			child_5.ref();
 			this.el.add_controller(  child_5.el );
@@ -611,7 +611,7 @@ public class Xcls_WindowLeftTree : Object
 		// user defined functions
 	}
 
-	public class Xcls_DragSource8 : Object
+	public class Xcls_dragsource : Object
 	{
 		public Gtk.DragSource el;
 		private Xcls_WindowLeftTree  _this;
@@ -620,9 +620,10 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_DragSource8(Xcls_WindowLeftTree _owner )
+		public Xcls_dragsource(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
+			_this.dragsource = this;
 			this.el = new Gtk.DragSource();
 
 			// my vars (dec)
