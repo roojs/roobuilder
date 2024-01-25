@@ -1204,6 +1204,10 @@
          ],
          "string title" : "Add",
          "xtype" : "ColumnViewColumn"
+        },
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "EventControllerKey"
         }
        ],
        "string name" : "left-tree-view",
