@@ -954,17 +954,7 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.motion.connect( (  x, y) => {
 			 
-				if (_this.view.dragNode != null) {
-					var ds = _this.dragsource.el;
-				 
-					GLib.debug("is shift pressed? %d", (int)  ds.get_current_event_state());
-				}
-			/*	if ((Gdk.ModifierType.SHIFT_MASK & this.el.get_current_event_state()) > 0) {
-					GLib.debug("shift is pressed?");
-				} else {
-					GLib.debug("shift is not pressed? %d", (int)  this.el.get_current_event_state());
-				}
-				*/
+				var is_shift = (_this.keystate.state && Gdk.ModifierType.SHIFT_MASK) > 0;
 				string pos; // over / before / after..
 			
 			    //GLib.debug("got drag motion");
