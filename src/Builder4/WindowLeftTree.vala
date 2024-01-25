@@ -126,7 +126,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.vscrollbar_policy = ;
+			this.el.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 			this.el.has_frame = true;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
