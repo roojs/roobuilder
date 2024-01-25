@@ -1225,10 +1225,9 @@
           "key_pressed" : [
            "(keyval, keycode, state) => {",
            "",
-           "\tGLib.debug(\"key press %d, %d, %d\" ,(int)  keyval, (int)  keycode, state);",
-           "",
-           "",
-           "\tthis.state = (int)this.el.get_current_event_state();",
+           " \tif (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {",
+           " \t\tthis.is_shift = 1;",
+           "\t}",
            "\treturn true;",
            "}",
            ""

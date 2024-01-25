@@ -1752,10 +1752,9 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.key_pressed.connect( (keyval, keycode, state) => {
 			
-				GLib.debug("key press %d, %d, %d" ,(int)  keyval, (int)  keycode, state);
-			
-			
-				this.state = (int)this.el.get_current_event_state();
+			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
+			 		this.is_shift = 1;
+				}
 				return true;
 			});
 		}
