@@ -671,11 +671,11 @@ public class Xcls_WindowLeftTree : Object
 				GLib.debug("SOURCE: drag-begin");
 				 
 			    // find what is selected in our tree...
-			   var data = _this.selmodel.getSelectedNode();
+			    var data = _this.selmodel.getSelectedNode();
 				if (data == null) {
 					return  ;
 				}
-				 
+				this.view.dragNode = tree;
 			    var xname = data.fqn();
 			    GLib.debug ("XNAME  IS %s", xname);
 			
