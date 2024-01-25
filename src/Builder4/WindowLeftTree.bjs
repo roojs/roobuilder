@@ -1207,11 +1207,12 @@
         },
         {
          "$ xns" : "Gtk",
+         "id" : "",
          "int state" : 0,
          "listeners" : {
           "modifiers" : [
            "(state) => {",
-           "\tGLib.debug(\"State changed %d\", (int)state);",
+           "\tthis.state = (int)state;",
            "\treturn true;",
            "}",
            ""

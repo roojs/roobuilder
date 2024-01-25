@@ -19,6 +19,7 @@ public class Xcls_WindowLeftTree : Object
 	public Xcls_selmodel selmodel;
 	public Xcls_model model;
 	public Xcls_maincol maincol;
+	public Xcls_EventControllerKey17 EventControllerKey17;
 	public Xcls_LeftTreeMenu LeftTreeMenu;
 
 		// my vars (def)
@@ -191,7 +192,6 @@ public class Xcls_WindowLeftTree : Object
 			child_8.ref();
 			this.el.append_column ( child_8.el  );
 			var child_9 = new Xcls_EventControllerKey17( _this );
-			child_9.ref();
 			this.el.add_controller(  child_9.el );
 
 			// init method
@@ -1719,6 +1719,7 @@ public class Xcls_WindowLeftTree : Object
 		public Xcls_EventControllerKey17(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
+			_this.EventControllerKey17 = this;
 			this.el = new Gtk.EventControllerKey();
 
 			// my vars (dec)
@@ -1728,7 +1729,7 @@ public class Xcls_WindowLeftTree : Object
 
 			//listeners
 			this.el.modifiers.connect( (state) => {
-				GLib.debug("State changed %d", (int)state);
+				this.state = (int)state;
 				return true;
 			});
 		}
