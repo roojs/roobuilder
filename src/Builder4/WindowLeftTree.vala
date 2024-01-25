@@ -1741,6 +1741,9 @@ public class Xcls_WindowLeftTree : Object
 
 			//listeners
 			this.el.modifiers.connect( (state) => {
+				GLIb.debug("set state %d" (int)state);
+			
+			
 				this.state = (int)state;
 				return true;
 			});

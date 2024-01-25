@@ -1224,6 +1224,9 @@
          "listeners" : {
           "modifiers" : [
            "(state) => {",
+           "\tGLIb.debug(\"set state %d\" (int)state);",
+           "",
+           "",
            "\tthis.state = (int)state;",
            "\treturn true;",
            "}",
