@@ -1050,7 +1050,7 @@ public class Xcls_WindowLeftTree : Object
 				 	if (!drop_on_to.contains(node.fqn())) {
 						GLib.debug("drop on does not contain %s - try center" , node.fqn());
 						this.addHighlight(null, ""); 
-						return Gdk.DragAction.COPY;		
+						return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 					}
 				}
 			 	
@@ -1058,7 +1058,7 @@ public class Xcls_WindowLeftTree : Object
 			 	    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
 				var w = _this.view.getWidgetAt(x,y);
 				this.addHighlight(w, pos); 
-			    return Gdk.DragAction.COPY;			
+				return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 			});
 			this.el.leave.connect( ( ) => {
 				this.addHighlight(null,"");
