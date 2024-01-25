@@ -151,6 +151,20 @@ public class JsRender.Node : GLib.Object {
 		
 	}
 	
+	public bool has_parent(Node n) 
+	{
+		if (this.parent == null) {
+			return false;
+		}
+		if (this.parent.oid == n.oid) {
+			return true;
+		}
+		
+
+		return this.parent.has_parent(n);
+	}
+	
+	
 	public  Gee.ArrayList<Node> readItems()
 	{
 		return this.items; // note should not modify add/remove from this directly..
@@ -209,6 +223,7 @@ public class JsRender.Node : GLib.Object {
 			
 		
 		}
+		
 		
 		
 		

@@ -18,6 +18,7 @@ public class Xcls_WindowLeftTree : Object
 	public Xcls_selmodel selmodel;
 	public Xcls_model model;
 	public Xcls_maincol maincol;
+	public Xcls_keystate keystate;
 	public Xcls_LeftTreeMenu LeftTreeMenu;
 
 		// my vars (def)
@@ -126,16 +127,14 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 			this.el.has_frame = true;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
+			this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 			new Xcls_view( _this );
 			this.el.child = _this.view.el;
 			new Xcls_LeftTreeMenu( _this );
-
-			// init method
-
-			this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
 		}
 
 		// user defined functions
@@ -152,6 +151,7 @@ public class Xcls_WindowLeftTree : Object
 		public string lastEventSource;
 		public bool button_is_pressed;
 		public Gtk.CssProvider css;
+		public JsRender.Node? dragNode;
 
 		// ctor
 		public Xcls_view(Xcls_WindowLeftTree _owner )
@@ -166,6 +166,7 @@ public class Xcls_WindowLeftTree : Object
 			this.headers_visible = false;
 			this.lastEventSource = "";
 			this.button_is_pressed = false;
+			this.dragNode = null;
 
 			// set gobject values
 			this.el.name = "left-tree-view";
@@ -190,6 +191,8 @@ public class Xcls_WindowLeftTree : Object
 			var child_8 = new Xcls_ColumnViewColumn15( _this );
 			child_8.ref();
 			this.el.append_column ( child_8.el  );
+			new Xcls_keystate( _this );
+			this.el.add_controller(  _this.keystate.el );
 
 			// init method
 
@@ -631,6 +634,11 @@ public class Xcls_WindowLeftTree : Object
 			this.el.actions = Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ;
 
 			//listeners
+			this.el.drag_cancel.connect( (drag, reason) => {
+			
+				_this.view.dragNode = null;
+				return true;
+			});
 			this.el.prepare.connect( (x, y) => {
 			
 				
@@ -671,11 +679,11 @@ public class Xcls_WindowLeftTree : Object
 				GLib.debug("SOURCE: drag-begin");
 				 
 			    // find what is selected in our tree...
-			   var data = _this.selmodel.getSelectedNode();
+			    var data = _this.selmodel.getSelectedNode();
 				if (data == null) {
 					return  ;
 				}
-				 
+				_this.view.dragNode = data;
 			    var xname = data.fqn();
 			    GLib.debug ("XNAME  IS %s", xname);
 			
@@ -686,6 +694,10 @@ public class Xcls_WindowLeftTree : Object
 			    this.el.set_icon(paintable, 0,0);
 			            
 			 
+			});
+			this.el.drag_end.connect( (drag, delete_data) => {
+			
+			_this.view.dragNode = null;
 			});
 		}
 
@@ -942,9 +954,12 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.motion.connect( (  x, y) => {
 			 
+				var is_shift = _this.keystate.is_shift > 0;
+				
+				GLib.debug("shift is    %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
 				string pos; // over / before / after..
 			
-			    GLib.debug("got drag motion");
+			    //GLib.debug("got drag motion");
 			
 			    GLib.Value v = GLib.Value(typeof(string));
 			   	//var str = drop.read_text( [ "text/plain" ] 0);
@@ -956,8 +971,8 @@ public class Xcls_WindowLeftTree : Object
 					return Gdk.DragAction.COPY;	 
 				
 				}
-			
-				GLib.debug("got %s", v.get_string());
+			 
+				//GLib.debug("got %s", v.get_string());
 				  
 				if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
 					// still dragging same node
@@ -1021,23 +1036,44 @@ public class Xcls_WindowLeftTree : Object
 				 			pos = "over";
 			 			} else {
 							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+							if (_this.view.dragNode  != null && is_shift) {
+					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
+						 			GLib.debug("shift drop not self not allowed");
+					 				this.addHighlight(null, "");
+					 				return Gdk.DragAction.COPY;	
+					 			}
+					 			
+					 		}
+							
 						}
+						
+						
+						
 			 		}
+			 		
 			 		
 			 	}
 			 	if (pos == "over") {
 				 	if (!drop_on_to.contains(node.fqn())) {
 						GLib.debug("drop on does not contain %s - try center" , node.fqn());
 						this.addHighlight(null, ""); 
-						return Gdk.DragAction.COPY;		
+						return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 					}
+					if (_this.view.dragNode  != null && is_shift) {
+			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
+				 			GLib.debug("shift drop not self not allowed");
+			 				this.addHighlight(null, "");
+			 				return Gdk.DragAction.COPY;	
+			 			}
+					}
+			 			
 				}
 			 	
 			 	
 			 	    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
 				var w = _this.view.getWidgetAt(x,y);
 				this.addHighlight(w, pos); 
-			    return Gdk.DragAction.COPY;			
+				return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 			});
 			this.el.leave.connect( ( ) => {
 				this.addHighlight(null,"");
@@ -1047,7 +1083,7 @@ public class Xcls_WindowLeftTree : Object
 				
 				this.addHighlight(null,"");
 			 
-			 
+			 	var is_shift = _this.keystate.is_shift > 0;
 			 
 			 	var pos = "";
 			 	// -- get position..
@@ -1104,6 +1140,15 @@ public class Xcls_WindowLeftTree : Object
 							pos = "over";
 			 			} else {
 							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+							if (_this.view.dragNode  != null && is_shift) {
+					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
+						 			GLib.debug("shift drop not self not allowed");
+			  						return false;	
+					 			}
+					 			
+					 		}
+							
+							
 						}
 			 		}
 			 		
@@ -1114,25 +1159,47 @@ public class Xcls_WindowLeftTree : Object
 						return false;
 			
 					}
+					if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
+			 			GLib.debug("shift drop not self not allowed");
+						return false;	
+					}
 				}
 			 	
 			 	switch(pos) {
 			 		case "over":
 				 		node.appendChild(dropNode);
+				 		if (is_shift && _this.view.dragNode != null) {
+					 		_this.model.selectNode(null); 
+					 		_this.view.dragNode.remove();
+				 		}
+				 			
+				 		
 			 			_this.model.selectNode(dropNode); 
+			 			
 			 			_this.changed();				 		
 				 		return true;
 				 		
 			 		case "above":
 			 			GLib.debug("Above - insertBefore");
 			 		
-			 			node.parent.insertBefore(dropNode, node);
+						node.parent.insertBefore(dropNode, node);
+				 		if (is_shift && _this.view.dragNode != null) {
+					 		_this.model.selectNode(null); 	 		
+					 		_this.view.dragNode.remove();
+				 		}
+				
 			 			_this.model.selectNode(dropNode); 			
 			 			_this.changed();
 			 			return true;
 			 			
 			 		case "below":
 			 			GLib.debug("Below - insertAfter"); 		
+				 		if (is_shift && _this.view.dragNode != null) {
+					 		_this.model.selectNode(null); 	 		
+					 		_this.view.dragNode.remove();
+				 		}
+				
+			 			
 			 			node.parent.insertAfter(dropNode, node);
 			 			_this.model.selectNode(dropNode);	
 			 			_this.changed();
@@ -1682,6 +1749,50 @@ public class Xcls_WindowLeftTree : Object
 	}
 
 
+	public class Xcls_keystate : Object
+	{
+		public Gtk.EventControllerKey el;
+		private Xcls_WindowLeftTree  _this;
+
+
+			// my vars (def)
+		public int is_shift;
+
+		// ctor
+		public Xcls_keystate(Xcls_WindowLeftTree _owner )
+		{
+			_this = _owner;
+			_this.keystate = this;
+			this.el = new Gtk.EventControllerKey();
+
+			// my vars (dec)
+			this.is_shift = 0;
+
+			// set gobject values
+
+			//listeners
+			this.el.key_released.connect( (keyval, keycode, state) => {
+				GLib.debug("key release %d, %d, %d" , (int) keyval, (int)  keycode, state);
+			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
+			 		this.is_shift = 0;
+				}
+				//GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
+			
+			
+			 
+			});
+			this.el.key_pressed.connect( (keyval, keycode, state) => {
+			
+			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
+			 		this.is_shift = 1;
+				}
+				return true;
+			});
+		}
+
+		// user defined functions
+	}
+
 
 	public class Xcls_LeftTreeMenu : Object
 	{
@@ -1701,13 +1812,13 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box18( _this );
+			var child_1 = new Xcls_Box19( _this );
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box18 : Object
+	public class Xcls_Box19 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowLeftTree  _this;
@@ -1716,7 +1827,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box18(Xcls_WindowLeftTree _owner )
+		public Xcls_Box19(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1724,20 +1835,20 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button19( _this );
+			var child_1 = new Xcls_Button20( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Button20( _this );
+			var child_2 = new Xcls_Button21( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
-			var child_3 = new Xcls_Button21( _this );
+			var child_3 = new Xcls_Button22( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button19 : Object
+	public class Xcls_Button20 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_WindowLeftTree  _this;
@@ -1746,7 +1857,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button19(Xcls_WindowLeftTree _owner )
+		public Xcls_Button20(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -1767,7 +1878,7 @@ public class Xcls_WindowLeftTree : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button20 : Object
+	public class Xcls_Button21 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_WindowLeftTree  _this;
@@ -1776,7 +1887,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button20(Xcls_WindowLeftTree _owner )
+		public Xcls_Button21(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -1802,7 +1913,7 @@ public class Xcls_WindowLeftTree : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button21 : Object
+	public class Xcls_Button22 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_WindowLeftTree  _this;
@@ -1811,7 +1922,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button21(Xcls_WindowLeftTree _owner )
+		public Xcls_Button22(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();

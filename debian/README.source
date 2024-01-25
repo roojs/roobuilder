@@ -1,10 +1,10 @@
 roobuilder for Debian
 --------------------
 
-<this file describes information about the source package, see Debian policy
-manual section 4.14. You WILL either need to modify or delete this file>
+<This file describes information about the source package, see Debian policy
+manual section 4.14. You WILL either need to modify or delete this file.>
 
 
 
- -- Alan <alan@roojs.com>  Thu, 16 May 2019 17:47:00 +0800
+ -- Alan <alan@office.roojs.com>  Wed, 24 Jan 2024 15:17:42 +0800
 
