@@ -153,8 +153,10 @@ namespace JsRender {
 	    public override string toSourceCode() // no seed support currently.
 	    {
 		    if (this.version == this.last_source_version) {
+		    	GLib.debug("toSource - using Cache");
 		    	return this.last_source;
 	    	}
+	    	GLib.debug("toSource - generating");
 		    this.last_source =   NodeToVala.mungeFile(this);
 		    this.last_source_version = this.version;
 		    return this.last_source;

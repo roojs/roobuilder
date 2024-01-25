@@ -196,6 +196,13 @@ namespace Palete {
 			this.in_close = false;
 	 	}
 	
+		public async void restartServer()
+		{
+			this.startServer();
+			foreach(var f in this.open_files) {
+				this.document_open(f);
+			}
+		}
 	
 		public bool isReady()
 		{
@@ -204,10 +211,11 @@ namespace Palete {
 				GLib.debug("server stopped = restarting");
 				this.initialized = false;
 				this.closed = false;
-				this.startServer();
-				foreach(var f in this.open_files) {
-					this.document_open(f);
-				}
+				GLib.MainLoop loop = new GLib.MainLoop ();
+			  	this.restartServer.begin ((obj, async_res) => {
+			  		this.restartServer.end(async_res);
+					loop.quit ();
+				});
 				return false; // can't do an operation yet?
 				 
 			}
@@ -221,7 +229,7 @@ namespace Palete {
 			  	return false;
 			}
 			// restart server..
-
+		
 			
 			
 			return true;
@@ -306,17 +314,28 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
+			// save only really flags the file on the server - to actually force a change update - we need to 
+			// flag it as changed.
+			this.document_change_force(file, file.toSource());
+			
 			this.change_queue_file = null;
 			GLib.debug ("LS send save");
 			 try {
+			 
+			 	var args = this.buildDict (  
+					textDocument : this.buildDict (    ///TextDocumentItem;
+						uri: new GLib.Variant.string (file.to_url()),
+						version :  new GLib.Variant.uint64 ( (uint64) file.version)
+					)
+				);
+			 
+				//GLib.debug ("textDocument/save send with %s", Json.to_string (Json.gvariant_serialize (args), true));					
+			
+			 
+			 
 				  this.jsonrpc_client.send_notification  (
-					"textDocument/didChange",
-					this.buildDict (  
-						textDocument : this.buildDict (    ///TextDocumentItem;
-							uri: new GLib.Variant.string (file.to_url()),
-							version :  new GLib.Variant.uint64 ( (uint64) file.version)
-						)
-					),
+					"textDocument/didSave",
+					args,
 					null 
 				);
 				this.log(LanguageClientAction.SAVE, file.path);

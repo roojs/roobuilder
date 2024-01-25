@@ -779,7 +779,7 @@ public class Xcls_GtkView : Object
 		        this.loading = false;
 		        return;
 		    }
-		    
+		    /*
 		    var valafn = "";
 		      try {             
 		           var  regex = new Regex("\\.bjs$");
@@ -806,6 +806,8 @@ public class Xcls_GtkView : Object
 		        this.loading = false;
 		        return  ;
 		    }
+		    */
+		    var str = _this.file.toSource();
 		
 		//    print("setting str %d\n", str.length);
 		    buf.set_text(str, str.length);

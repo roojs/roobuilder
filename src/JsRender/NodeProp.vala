@@ -104,7 +104,8 @@ public class JsRender.NodeProp : Object {
 				return;
 			}
 			this._name = value;
-
+		 
+			this.updated_count++;
 			if (this.parent != null) {
 				// causes props/ listeners array to get updated.
 				this.parent.updated_count++;
@@ -141,8 +142,7 @@ public class JsRender.NodeProp : Object {
 			if (this.parent != null) {
 				this.parent.updated_count++;
 			}
-			this.to_display_name_prop = "";
-			this.to_tooltip_name_prop = "";
+			 
 			this.updated_count++;
  		}
 	 } // return or type
@@ -161,10 +161,7 @@ public class JsRender.NodeProp : Object {
 			if (this.parent != null) {
 				this.parent.updated_count++;
 			}
-			this.val_short = "";
-			this.val_tooltip = "";			
 			this.updated_count++;
-			
 		}
 	}
 
@@ -177,9 +174,12 @@ public class JsRender.NodeProp : Object {
 		set  {
  
  			// set things that are used to display values.
- 			this.to_display_name_prop = "";
-			this.to_tooltip_name_prop = "";
-			this. _updated_count = value;
+ 			this.to_display_name_prop = value.to_string();
+			this.to_tooltip_name_prop = value.to_string();
+					
+			this.val_short =  value.to_string();
+			this.val_tooltip =  value.to_string();	
+			this._updated_count = value;
 		}
  
 	} // changes to this trigger updates on the tree..

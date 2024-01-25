@@ -521,6 +521,9 @@
 			if (ls == null) {
 				GLib.error("No langauge server returned for file:%s", file.relpath);
 			}
+			
+			//GLib.debug("started server - sleep 30 secs so you can gdb attach");
+			//Posix.sleep( 30 );
 			var loop = new MainLoop();
 			GLib.Timeout.add_seconds(1, () => {
 			 
@@ -528,11 +531,14 @@
 				// it's ready..
 				 
 				ls.document_open(file);
+				ls.document_save(file);
 				
-				ls.syntax.begin(file, (obj,res) => {
-					ls.syntax.end(res);
+				//ls.syntax.begin(file, (obj,res) => {
+				//	ls.syntax.end(res);
 				
-				});
+				//});
+				
+				
 				return false;
 				
 			});
