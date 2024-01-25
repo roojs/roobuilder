@@ -1735,7 +1735,7 @@ public class Xcls_WindowLeftTree : Object
 				return true;
 			});
 			this.el.modifiers.connect( (state) => {
-				GLib.debug("State changed %d". (int)state);
+				GLib.debug("State changed %d", (int)state);
 				return true;
 			});
 		}
