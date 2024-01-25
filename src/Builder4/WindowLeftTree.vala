@@ -956,7 +956,7 @@ public class Xcls_WindowLeftTree : Object
 			 
 				var is_shift = _this.keystate.is_shift > 0;
 				
-				GLib.debug("shift is  %d, %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
+				GLib.debug("shift is    %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
 				string pos; // over / before / after..
 			
 			    //GLib.debug("got drag motion");
