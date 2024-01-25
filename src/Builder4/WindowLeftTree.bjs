@@ -1224,7 +1224,7 @@
          "listeners" : {
           "modifiers" : [
            "(state) => {",
-           "\tGLIb.debug(\"set state %d , shift = %d\", (int)state, Gdk.ModifierType.SHIFT_MASK);",
+           "\tGLib.debug(\"set state %d , shift = %d\", (int)state, Gdk.ModifierType.SHIFT_MASK);",
            "",
            "",
            "\tthis.state = (int)state;",
