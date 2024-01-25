@@ -1732,7 +1732,7 @@ public class Xcls_WindowLeftTree : Object
 			this.el.key_pressed.connect( (keyval, keycode, state) => {
 				GLib.debug("key press");
 				
-				return bool;
+				return true;
 			});
 		}
 

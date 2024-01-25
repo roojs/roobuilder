@@ -1212,7 +1212,7 @@
            "(keyval, keycode, state) => {",
            "\tGLib.debug(\"key press\");",
            "\t",
-           "\treturn bool;",
+           "\treturn true;",
            "}",
            ""
           ],
