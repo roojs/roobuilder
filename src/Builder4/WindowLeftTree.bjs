@@ -37,6 +37,7 @@
      "items" : [
       {
        "# bool blockChanges" : false,
+       "$ JsRender.JsRender? dragNode" : "null",
        "$ string lastEventSource" : "\"\"",
        "$ xns" : "Gtk",
        "* init" : [
@@ -1314,7 +1315,6 @@
         "",
         " }"
        ],
-       "| JsRender.JsRender? dragNode" : "null",
        "| int getColAt" : [
         "(double x,  double y) {",
         "/*",
