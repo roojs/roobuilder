@@ -517,7 +517,7 @@
            "\t",
            "\tthis.addHighlight(null,\"\");",
            " ",
-           " ",
+           " \tvar is_shift = _this.keystate.is_shift > 0;",
            " ",
            " \tvar pos = \"\";",
            " \t// -- get position..",

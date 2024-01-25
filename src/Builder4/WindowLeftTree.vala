@@ -1083,7 +1083,7 @@ public class Xcls_WindowLeftTree : Object
 				
 				this.addHighlight(null,"");
 			 
-			 
+			 	var is_shift = _this.keystate.is_shift > 0;
 			 
 			 	var pos = "";
 			 	// -- get position..
