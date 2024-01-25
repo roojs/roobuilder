@@ -634,7 +634,7 @@
            " ",
            "\tvar is_shift = _this.keystate.is_shift > 0;",
            "\t",
-           "\tGLib.debug(\"shift is  %d, %s\", _this.keystate.is_shift ? \"SHIFT\" : \"-\");",
+           "\tGLib.debug(\"shift is  %d, %s\", _this.keystate.is_shift > 0 ? \"SHIFT\" : \"-\");",
            "\tstring pos; // over / before / after..",
            "",
            "    //GLib.debug(\"got drag motion\");",
