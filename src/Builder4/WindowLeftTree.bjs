@@ -1208,21 +1208,6 @@
         {
          "$ xns" : "Gtk",
          "listeners" : {
-          "key_pressed" : [
-           "(keyval, keycode, state) => {",
-           "\tGLib.debug(\"key press\");",
-           "\t",
-           "\treturn true;",
-           "}",
-           ""
-          ],
-          "key_released" : [
-           "(keyval, keycode, state) => {",
-           "\tGLib.debug(\"key release\");",
-           "",
-           "}",
-           ""
-          ],
           "modifiers" : [
            "(state) => {",
            "\tGLib.debug(\"State changed %d\", (int)state);",

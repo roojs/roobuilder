@@ -1725,15 +1725,6 @@ public class Xcls_WindowLeftTree : Object
 			// set gobject values
 
 			//listeners
-			this.el.key_released.connect( (keyval, keycode, state) => {
-				GLib.debug("key release");
-			
-			});
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-				GLib.debug("key press");
-				
-				return true;
-			});
 			this.el.modifiers.connect( (state) => {
 				GLib.debug("State changed %d", (int)state);
 				return true;
