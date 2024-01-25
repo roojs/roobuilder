@@ -1140,6 +1140,15 @@ public class Xcls_WindowLeftTree : Object
 							pos = "over";
 			 			} else {
 							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+							if (_this.view.dragNode  != null && is_shift) {
+					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
+						 			GLib.debug("shift drop not self not allowed");
+			  						return false;	
+					 			}
+					 			
+					 		}
+							
+							
 						}
 			 		}
 			 		
@@ -1149,6 +1158,10 @@ public class Xcls_WindowLeftTree : Object
 						GLib.debug("drop on does not contain %s - try center" , node.fqn());
 						return false;
 			
+					}
+					if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
+			 			GLib.debug("shift drop not self not allowed");
+						return false;	
 					}
 				}
 			 	
