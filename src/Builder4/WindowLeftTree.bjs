@@ -237,10 +237,17 @@
            " ",
            "}"
           ],
+          "drag_cancel" : [
+           "(drag, reason) => {",
+           "",
+           "\treturn bool;",
+           "}",
+           ""
+          ],
           "drag_end" : [
            "(drag, delete_data) => {",
            "",
-           "",
+           "_this.view.dragNode = null;",
            "}",
            ""
           ],

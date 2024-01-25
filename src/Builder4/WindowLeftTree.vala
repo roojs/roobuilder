@@ -631,6 +631,10 @@ public class Xcls_WindowLeftTree : Object
 			this.el.actions = Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ;
 
 			//listeners
+			this.el.drag_cancel.connect( (drag, reason) => {
+			
+				return bool;
+			});
 			this.el.prepare.connect( (x, y) => {
 			
 				
@@ -689,7 +693,7 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.drag_end.connect( (drag, delete_data) => {
 			
-			
+			_this.view.dragNode = null;
 			});
 		}
 
