@@ -1210,8 +1210,16 @@
          "listeners" : {
           "key_pressed" : [
            "(keyval, keycode, state) => {",
-           "",
+           "\tGLib.debug(\"key press\");",
+           "\t",
            "\treturn bool;",
+           "}",
+           ""
+          ],
+          "key_released" : [
+           "(keyval, keycode, state) => {",
+           "",
+           "",
            "}",
            ""
           ]
