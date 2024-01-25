@@ -1036,8 +1036,8 @@ public class Xcls_WindowLeftTree : Object
 							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
 						}
 			 		}
-			 		if (_this.view.dropNode  != null && is_shift) {
-			 			if (node.oid == _this.view.dropNode.oid || node.has_parent(_this.view.dropNode)) {
+			 		if (_this.view.dragNode  != null && is_shift) {
+			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
 				 			GLib.debug("shift drop not self not allowed");
 			 				this.addHighlight(null, "");
 			 				return Gdk.DragAction.COPY;	
