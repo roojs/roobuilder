@@ -134,10 +134,6 @@ public class Xcls_WindowLeftTree : Object
 			new Xcls_view( _this );
 			this.el.child = _this.view.el;
 			new Xcls_LeftTreeMenu( _this );
-
-			// init method
-
-			this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
 		}
 
 		// user defined functions
