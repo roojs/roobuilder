@@ -652,7 +652,7 @@
            "\t\treturn Gdk.DragAction.COPY;\t ",
            "\t",
            "\t}",
-           "",
+           " ",
            "\tGLib.debug(\"got %s\", v.get_string());",
            "\t  ",
            "\tif (this.lastDragString != v.get_string() || this.lastDragNode == null) {",

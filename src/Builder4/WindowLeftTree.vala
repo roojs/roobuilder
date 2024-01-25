@@ -971,7 +971,7 @@ public class Xcls_WindowLeftTree : Object
 					return Gdk.DragAction.COPY;	 
 				
 				}
-			
+			 
 				GLib.debug("got %s", v.get_string());
 				  
 				if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
