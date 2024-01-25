@@ -1222,6 +1222,13 @@
            "",
            "}",
            ""
+          ],
+          "modifiers" : [
+           "(state) => {",
+           "",
+           "\treturn bool;",
+           "}",
+           ""
           ]
          },
          "xtype" : "EventControllerKey"
