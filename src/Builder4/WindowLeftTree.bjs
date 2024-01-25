@@ -1236,9 +1236,12 @@
           "key_released" : [
            "(keyval, keycode, state) => {",
            "",
+           " ",
+           "\tGLib.debug(\"set state %d , shift = %d\", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);",
            "",
-           "}",
-           ""
+           "",
+           "\tthis.state = (int)this.el.get_current_event_state();",
+           "}"
           ],
           "modifiers" : [
            "(state) => {",
