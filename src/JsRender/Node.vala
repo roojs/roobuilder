@@ -151,7 +151,7 @@ public class JsRender.Node : GLib.Object {
 		
 	}
 	
-	public has_parent(Node n) 
+	public bool has_parent(Node n) 
 	{
 		if (this.parent.oid == n.oid) {
 			return true;
