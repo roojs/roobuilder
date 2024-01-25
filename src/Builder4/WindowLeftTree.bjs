@@ -37,7 +37,7 @@
      "items" : [
       {
        "# bool blockChanges" : false,
-       "$ JsRender.JsRender? dragNode" : "null",
+       "$ JsRender.Node? dragNode" : "null",
        "$ string lastEventSource" : "\"\"",
        "$ xns" : "Gtk",
        "* init" : [

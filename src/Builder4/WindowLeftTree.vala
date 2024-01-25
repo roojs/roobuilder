@@ -152,7 +152,7 @@ public class Xcls_WindowLeftTree : Object
 		public string lastEventSource;
 		public bool button_is_pressed;
 		public Gtk.CssProvider css;
-		public JsRender.JsRender? dragNode;
+		public JsRender.Node? dragNode;
 
 		// ctor
 		public Xcls_view(Xcls_WindowLeftTree _owner )
