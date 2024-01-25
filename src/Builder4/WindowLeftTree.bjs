@@ -636,7 +636,7 @@
            "\tif (_this.view.dragNode != null) {",
            "\t\tvar ds = _this.dragsource.el;",
            "\t ",
-           "\t\tGLib.debug(\"is shift pressed? %d\", (int)  ds.get_current_event_state);",
+           "\t\tGLib.debug(\"is shift pressed? %d\", (int)  ds.get_current_event_state());",
            "\t}",
            "/*\tif ((Gdk.ModifierType.SHIFT_MASK & this.el.get_current_event_state()) > 0) {",
            "\t\tGLib.debug(\"shift is pressed?\");",
