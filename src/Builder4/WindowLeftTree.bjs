@@ -78,6 +78,7 @@
        "* prop" : "child",
        "Boolean id" : "view",
        "Gtk.CssProvider css" : "",
+       "JsRender.JsRender dragNode?" : 0,
        "bool button_is_pressed" : false,
        "bool headers_visible" : false,
        "bool hexpand" : false,
