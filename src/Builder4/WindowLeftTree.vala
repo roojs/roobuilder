@@ -126,9 +126,11 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.vscrollbar_policy = ;
 			this.el.has_frame = true;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
+			this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 			new Xcls_view( _this );
 			this.el.child = _this.view.el;
 			new Xcls_LeftTreeMenu( _this );

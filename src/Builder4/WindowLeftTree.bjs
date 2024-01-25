@@ -30,6 +30,8 @@
       " this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
       " "
      ],
+     "Gtk.PolicyType hscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
+     "Gtk.PolicyType vscrollbar_policy" : "",
      "bool has_frame" : true,
      "bool hexpand" : true,
      "bool vexpand" : true,
