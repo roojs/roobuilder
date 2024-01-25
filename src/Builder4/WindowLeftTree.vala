@@ -953,8 +953,9 @@ public class Xcls_WindowLeftTree : Object
 			this.el.motion.connect( (  x, y) => {
 			 
 				if (_this.view.dragNode != null) {
-					var seq = _this.dragsource.el.get_current_sequence();
-					GLib.debug("is shift pressed? %d", (int)  seq.get_current_event_state());		
+					var ds = _this.dragsource.el;
+					var seq = ds.get_current_sequence();
+					GLib.debug("is shift pressed? %d", (int)  ds.get_current_event_state(seq));		
 				}
 			/*	if ((Gdk.ModifierType.SHIFT_MASK & this.el.get_current_event_state()) > 0) {
 					GLib.debug("shift is pressed?");
