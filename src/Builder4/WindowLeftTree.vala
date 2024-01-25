@@ -1713,6 +1713,7 @@ public class Xcls_WindowLeftTree : Object
 
 
 			// my vars (def)
+		public int state;
 
 		// ctor
 		public Xcls_EventControllerKey17(Xcls_WindowLeftTree _owner )
@@ -1721,6 +1722,7 @@ public class Xcls_WindowLeftTree : Object
 			this.el = new Gtk.EventControllerKey();
 
 			// my vars (dec)
+			this.state = 0;
 
 			// set gobject values
 

@@ -1207,6 +1207,7 @@
         },
         {
          "$ xns" : "Gtk",
+         "int state" : 0,
          "listeners" : {
           "modifiers" : [
            "(state) => {",
