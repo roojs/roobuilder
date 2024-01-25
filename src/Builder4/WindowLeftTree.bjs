@@ -1225,8 +1225,8 @@
           ],
           "modifiers" : [
            "(state) => {",
-           "",
-           "\treturn bool;",
+           "\tGLib.debug(\"State changed %d\". (int)state);",
+           "\treturn true;",
            "}",
            ""
           ]
