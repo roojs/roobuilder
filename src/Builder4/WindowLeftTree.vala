@@ -633,7 +633,8 @@ public class Xcls_WindowLeftTree : Object
 			//listeners
 			this.el.drag_cancel.connect( (drag, reason) => {
 			
-				return bool;
+				_this.view.dragNode = null;
+				return true;
 			});
 			this.el.prepare.connect( (x, y) => {
 			

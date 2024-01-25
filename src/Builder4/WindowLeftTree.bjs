@@ -240,7 +240,8 @@
           "drag_cancel" : [
            "(drag, reason) => {",
            "",
-           "\treturn bool;",
+           "\t_this.view.dragNode = null;",
+           "\treturn true;",
            "}",
            ""
           ],
