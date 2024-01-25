@@ -1220,7 +1220,7 @@
         {
          "$ xns" : "Gtk",
          "id" : "keystate",
-         "int state" : 0,
+         "int is_shift" : 0,
          "listeners" : {
           "key_pressed" : [
            "(keyval, keycode, state) => {",

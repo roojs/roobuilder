@@ -1725,7 +1725,7 @@ public class Xcls_WindowLeftTree : Object
 
 
 			// my vars (def)
-		public int state;
+		public int is_shift;
 
 		// ctor
 		public Xcls_keystate(Xcls_WindowLeftTree _owner )
@@ -1735,7 +1735,7 @@ public class Xcls_WindowLeftTree : Object
 			this.el = new Gtk.EventControllerKey();
 
 			// my vars (dec)
-			this.state = 0;
+			this.is_shift = 0;
 
 			// set gobject values
 
