@@ -1034,16 +1034,21 @@ public class Xcls_WindowLeftTree : Object
 				 			pos = "over";
 			 			} else {
 							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+							if (_this.view.dragNode  != null && is_shift) {
+					 			if (node.parent == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
+						 			GLib.debug("shift drop not self not allowed");
+					 				this.addHighlight(null, "");
+					 				return Gdk.DragAction.COPY;	
+					 			}
+					 			
+					 		}
+							
 						}
+						
+						
+						
 			 		}
-			 		if (_this.view.dragNode  != null && is_shift) {
-			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
-				 			GLib.debug("shift drop not self not allowed");
-			 				this.addHighlight(null, "");
-			 				return Gdk.DragAction.COPY;	
-			 			}
-			 			
-			 		}
+			 		
 			 		
 			 	}
 			 	if (pos == "over") {
@@ -1052,6 +1057,14 @@ public class Xcls_WindowLeftTree : Object
 						this.addHighlight(null, ""); 
 						return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 					}
+					if (_this.view.dragNode  != null && is_shift) {
+			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
+				 			GLib.debug("shift drop not self not allowed");
+			 				this.addHighlight(null, "");
+			 				return Gdk.DragAction.COPY;	
+			 			}
+					}
+			 			
 				}
 			 	
 			 	
