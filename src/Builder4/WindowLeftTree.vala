@@ -1743,12 +1743,12 @@ public class Xcls_WindowLeftTree : Object
 			this.el.key_released.connect( (keyval, keycode, state) => {
 				GLib.debug("key release %d, %d, %d" , (int) keyval, (int)  keycode, state);
 			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
-			 		this.state = 0;
+			 		this.is_shift = 0;
 				}
 				//GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
 			
 			
-				this.state = (int)this.el.get_current_event_state();
+			 
 			});
 			this.el.key_pressed.connect( (keyval, keycode, state) => {
 			
