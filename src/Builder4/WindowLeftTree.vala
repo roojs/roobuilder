@@ -955,7 +955,7 @@ public class Xcls_WindowLeftTree : Object
 				if ((Gdk.ModifierType.SHIFT_MASK & this.el.get_current_event_state()) > 0) {
 					GLib.debug("shift is pressed?");
 				} else {
-					GLib.debug("shift is not pressed?");
+					GLib.debug("shift is not pressed? %d", (int)  this.el.get_current_event_state());
 				}
 				
 				string pos; // over / before / after..
