@@ -1225,7 +1225,18 @@
           "key_pressed" : [
            "(keyval, keycode, state) => {",
            "",
-           "\treturn bool;",
+           "\t\tGLib.debug(\"set state %d , shift = %d\", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);",
+           "",
+           "",
+           "\tthis.state = (int)this.el.get_current_event_state();",
+           "\treturn true;",
+           "}",
+           ""
+          ],
+          "key_released" : [
+           "(keyval, keycode, state) => {",
+           "",
+           "",
            "}",
            ""
           ],
