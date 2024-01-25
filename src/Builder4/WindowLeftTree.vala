@@ -1741,10 +1741,10 @@ public class Xcls_WindowLeftTree : Object
 
 			//listeners
 			this.el.modifiers.connect( (state) => {
-				GLib.debug("set state %d , shift = %d", (int)state, Gdk.ModifierType.SHIFT_MASK);
+				GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
 			
 			
-				this.state = (int)state;
+				this.state = (int)this.get_current_event_state();
 				return true;
 			});
 		}
