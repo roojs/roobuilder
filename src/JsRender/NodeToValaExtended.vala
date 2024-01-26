@@ -221,7 +221,16 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				 
 				continue;
 			}
-		
+		}
+		if (obj_args.key.size < 1) {
+			return;
+		}
+		addLine(this.ipad + "object(");
+		// at this point we might have object...
+		foreach(var k in obj_args.key) {
+			var v = obj_args.get(k);
+			
+			
 
 	}
 	
