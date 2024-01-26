@@ -28,9 +28,6 @@ public class JsRender.NodeToVala : NodeWriter {
 	string cls;  // node fqn()
 	string xcls;
 	
-
- 
-
 	Gee.ArrayList<string> ignoreList;
 	Gee.ArrayList<string> ignoreWrappedList; 
 	Gee.ArrayList<string> myvars;
@@ -56,11 +53,7 @@ public class JsRender.NodeToVala : NodeWriter {
 			var ar = this.xcls.split(".");
 			this.xcls = ar[ar.length-1];
 		}
-		 
-
-
-		 
-
+		
 		this.ignoreList = new Gee.ArrayList<string>();
 		this.ignoreWrappedList  = new Gee.ArrayList<string>();
 		this.myvars = new Gee.ArrayList<string>();
