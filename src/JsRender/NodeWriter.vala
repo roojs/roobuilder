@@ -1,6 +1,6 @@
 
 namespace JsRender {
-	public class NodeWriter : Object {
+	public abstract class NodeWriter : Object {
 	
 	
 		protected JsRender file;
@@ -22,7 +22,7 @@ namespace JsRender {
 		 * ctor - just initializes things
 		 * - wraps a render node 
 		 */
-		public NodeWriter( JsRender file,  Node node,  int depth, NodeWriter? parent) 
+		protected NodeWriter( JsRender file,  Node node,  int depth, NodeWriter? parent) 
 		{
 			this.file = file;
 			this.node = node;
@@ -120,7 +120,12 @@ namespace JsRender {
 				this.toValaName(item.readItems().get(i), depth+1);
 			}
 						  
-	}
+		}
+		
+		// interface
+		public abstract string munge();
+		
+		
 		
 	}
 }
