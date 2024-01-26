@@ -28,7 +28,7 @@ public class JsRender.NodeToVala : NodeWriter {
 	string cls;  // node fqn()
 	string xcls;
 	
-	string ret;
+
  
 
 	Gee.ArrayList<string> ignoreList;
@@ -57,7 +57,7 @@ public class JsRender.NodeToVala : NodeWriter {
 			this.xcls = ar[ar.length-1];
 		}
 		 
-		this.ret = "";
+
 
 		 
 
@@ -114,7 +114,7 @@ public class JsRender.NodeToVala : NodeWriter {
 		this.addInitMyVars();
 		this.addWrappedProperties();
 		this.addChildren();
-		this.addAutoShow(); // autoshow menuitems
+		//this.addAutoShow(); // not needed gtk4 autoshow menuitems
 		
 		this.addInit();
 		this.addListeners();
@@ -132,27 +132,7 @@ public class JsRender.NodeToVala : NodeWriter {
 		var x = new  NodeToVala(this.file, cnode,  this.depth+1, this);
 		return x.munge();
 	}
-	public void addLine(string str= "")
-	{
-		
-		if (str.contains("\n")) {
-			this.addMultiLine(str);
-			return;
-		}
-		this.cur_line++;
-		if (BuilderApplication.opt_bjs_compile != null) {
-			this.ret += "/*%d*/ ".printf(this.cur_line) + str + "\n";
-		} else {
-			this.ret += str + "\n";
-		}
-	}
-	public void addMultiLine(string str= "")
-	{
-		 
-		this.cur_line += str.split("\n").length;
-		//this.ret +=  "/*%d*/ ".printf(l) + str + "\n";
-		this.ret +=   str + "\n";
-	}
+	
 	 
 	public void namespaceHeader()
 	{
@@ -595,6 +575,7 @@ public class JsRender.NodeToVala : NodeWriter {
 
 			
 	}
+	/*
 	public static Gee.ArrayList<string> menuitem_children = null;
 	
 	void addAutoShow()
@@ -615,6 +596,7 @@ public class JsRender.NodeToVala : NodeWriter {
 		
 		}
 	}
+	*/
 
 	void addInitMyVars()
 	{
