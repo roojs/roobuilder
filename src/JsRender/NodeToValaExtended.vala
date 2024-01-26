@@ -53,7 +53,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		
  		// skip '+' properties?? not sure where they are used.
 		this.addValaCtor();
-		this.addUnderThis();
+		//sthis.addUnderThis();
 		this.addWrappedCtor();  // var this.el = new XXXXX()
 
 		this.addInitMyVars();
