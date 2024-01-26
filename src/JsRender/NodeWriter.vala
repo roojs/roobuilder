@@ -15,7 +15,17 @@ namespace JsRender {
 		protected int cur_line;
 		protected NodeWriter top; 
 		
-	 	string ret;  // the result of outputing..
+		protected string ret {
+			get {
+				return this.output;
+			}
+			private set {
+				GLib.error("set called on nodewriter ret");
+			}
+		}
+	
+		
+	 	string output;  // the result of outputing..
 
 		 
 		/* 
