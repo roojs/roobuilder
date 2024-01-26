@@ -141,7 +141,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	/**
 	 * add the constructor definition..
 	 */
-	void addValaCtor()
+	protected override void addValaCtor()
 	{
 			
 		
