@@ -130,7 +130,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			
 			// singleton
 	}
-	void addSingleton() 
+	protected void addSingleton() 
 	{
 		if (depth > 0) {
 			return;
@@ -149,7 +149,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 * so that _this.ID always works..
 	 * 
 	 */
-	void addTopProperties()
+	protected void addTopProperties()
 	{
 		if (this.depth > 0) {
 			return;
@@ -182,7 +182,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 * 
 	 */
  
-	void addMyVars()
+	protected void addMyVars()
 	{
 		GLib.debug("callinged addMhyVars");
 		
@@ -253,7 +253,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	}
 	
 	// if id of child is '+' then it's a property of this..
-	void addPlusProperties()
+	protected void addPlusProperties()
 	{
 		if (this.node.readItems().size < 1) {
 			return;
@@ -275,7 +275,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	/**
 	 * add the constructor definition..
 	 */
-	void addValaCtor()
+	protected void addValaCtor()
 	{
 			
 		
@@ -316,7 +316,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	/**
 	 *  make sure _this is defined..
 	 */
-	void addUnderThis() 
+	protected void addUnderThis() 
 	{
 		// public static?
 		if (depth < 1) {
@@ -347,7 +347,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 * 
 	 */
 
-	void addWrappedCtor()
+	protected void addWrappedCtor()
 	{
 		// wrapped ctor..
 		// this may need to look up properties to fill in the arguments..
@@ -519,29 +519,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 			
 	}
-	/*
-	public static Gee.ArrayList<string> menuitem_children = null;
-	
-	void addAutoShow()
-	{
-		if (menuitem_children == null) {
-			menuitem_children = new Gee.ArrayList<string>();
-			menuitem_children.add("Gtk.MenuItem");
-			var gir = this.file.project.palete.getClass("Gtk.MenuItem");
-			if (gir != null) {
-			    foreach(var impl in gir.implementations) {
-				    menuitem_children.add(impl);
-			    }
-		    }
-		}
-
-		if (menuitem_children.contains(this.node.fqn())) {
-			this.addLine(this.ipad + "this.el.show();");
-		
-		}
-	}
-	*/
-
+	 
 	void addInitMyVars()
 	{
 			//var meths = this.palete.getPropertiesFor(item['|xns'] + '.' + item.xtype, 'methods');
