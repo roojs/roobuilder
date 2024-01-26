@@ -361,7 +361,7 @@ public class JsRender.NodeToVala : NodeWriter {
 				cargs_str = ", " + cargs_str;
 			}
 			// for sub classes = we passs the top level as _owner
-			this.addLine(this.pad + "public " + this.xcls + "(" +  this.top.xcls + " _owner " + cargs_str + ")");
+			this.addLine(this.pad + "public " + this.xcls + "(" +  (this.top as NodeToVala).xcls + " _owner " + cargs_str + ")");
 			this.addLine(this.pad + "{");
 		}
 		
