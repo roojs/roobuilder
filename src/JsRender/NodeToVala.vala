@@ -101,10 +101,7 @@ public class JsRender.NodeToVala : NodeWriter {
 		}
 
 		var n = new NodeToVala(file, file.tree, 0, null);
-		n.file = file;
-		n.vcnt = 0;
-		
-		n.toValaName(file.tree);
+		 n.toValaName(file.tree);
 		
 		
 		GLib.debug("top cls %s / xlcs %s\n ",file.tree.xvala_cls,file.tree.xvala_cls); 
