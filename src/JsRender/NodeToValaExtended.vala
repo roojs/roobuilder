@@ -231,7 +231,8 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			var k = obj_args.keys.get(i);
 			var v = obj_args.get(k);
 			this.addLine(this.ipad + "\t" + k + ": " + v + (i == (obj_args.keys.size-1) ? "" : ","));
-			
+		}
+		this.addLine(this.ipad + ");");
 
 	}
 	
