@@ -179,7 +179,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 	 	 
 		// .vala props.. 
  		var obj_args = new Gee.HashMap<string,string>();
-		 foreach(var param in default_ctor.paramset.params) {
+	 	foreach(var param in default_ctor.paramset.params) {
 		
 		 	if (this.node.has(n)) {  // node does not have a value
 				
