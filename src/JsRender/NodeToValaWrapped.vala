@@ -30,4 +30,37 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	{
 		base (file, node, depth, parent);
 	}
+	public override static string mungeFile(JsRender file) 
+	{
+		if (file.tree == null) {
+			return "";
+		}
+
+		var n = new NodeToValaWrapped(file, file.tree, 0, null);
+		 n.toValaName(file.tree);
+		
+		
+		GLib.debug("top cls %s / xlcs %s\n ",file.tree.xvala_cls,file.tree.xvala_cls); 
+		n.cls = file.tree.xvala_cls;
+		n.xcls = file.tree.xvala_xcls;
+		return n.munge();
+		
+
+	}
+	public override string munge ( )
+	{
+		//return this.mungeToString(this.node);
+		this.child_count = 1;
+	
+		
+		this.namespaceHeader();
+		this.globalVars();
+		this.classHeader();
+		this.addSingleton();
+		this.addTopProperties();
+		this.addMyVars();
+		this.addPlusProperties();
+		this.addValaCtor();
+		this
+	
 }
