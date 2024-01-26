@@ -21,9 +21,9 @@ namespace Palete {
 	    public Jsonrpc.Client? jsonrpc_client = null;
 		
 		Gee.ArrayList<JsRender.JsRender> open_files;
-		//private JsRender.JsRender? _change_queue_file = null;
-		//private string change_queue_file_source = "";
-		/*
+		private JsRender.JsRender? _change_queue_file = null;
+		private string change_queue_file_source = "";
+		
 		JsRender.JsRender? change_queue_file {
 			set {
 				this.change_queue_file_source = value == null ? "" : value.toSource();
@@ -33,7 +33,6 @@ namespace Palete {
 				return this._change_queue_file;
 			} 
 		}
-		*/
 		void startServer()
 		{
 			this.initProcess("/usr/bin/vala-language-server");
@@ -45,7 +44,7 @@ namespace Palete {
 			// extend versions will proably call initialize to start and connect to server.
 			base(project);
 			this.open_files = new 	Gee.ArrayList<JsRender.JsRender>();
-			/*this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
+			this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
 		 		if (this.change_queue_file == null) {
 					return true;
 				}
@@ -57,7 +56,6 @@ namespace Palete {
 				}
 				return true;
 			});
-			*/
 			this.startServer();
 
 		}
@@ -320,7 +318,7 @@ namespace Palete {
 			// flag it as changed.
 			this.document_change_force(file, file.toSource());
 			
-			//this.change_queue_file = null;
+			this.change_queue_file = null;
 			GLib.debug ("LS send save");
 			 try {
 			 
@@ -354,7 +352,7 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
-			//this.change_queue_file = null;
+			this.change_queue_file = null;
 			
 			if (this.open_files.contains(file)) {
 				this.open_files.remove(file);
@@ -384,15 +382,13 @@ namespace Palete {
     	 
  		public override void document_change (JsRender.JsRender file )    
  		{
-			this.document_change_force( file, file.toSource() );
-			/*
 			if (this.change_queue_file != null && this.change_queue_file.path != file.path) {
  				this.document_change_force(this.change_queue_file, this.change_queue_file_source);
 			}
 			
 			this.countdown = 3;
  			this.change_queue_file = file;
- 			 */
+ 			 
 			
 
  		}
