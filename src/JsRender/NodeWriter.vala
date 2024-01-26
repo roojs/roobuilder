@@ -164,7 +164,7 @@ namespace JsRender {
 			var ar = str.strip().split("\n");
 			return string.joinv("\n" + pad , ar);
 		}
-		static void ignoreGlobal(string i) {
+		static void globalIgnore(string i) {
 			globalIgnoreList.add(i);
 			
 		}
