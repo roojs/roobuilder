@@ -36,6 +36,15 @@ public class JsRender.NodeToVala : NodeWriter {
 	 
 	int pane_number = 0;// ?? used when generating Gtk.Pane tabs
 	
+	
+	static construct {
+		this.ignore("pack");
+		this.ignore("init");
+		this.ignore("xns");
+		this.ignore("xtype");
+		this.ignore("id");
+	
+	}
 	/* 
 	 * ctor - just initializes things
 	 * - wraps a render node 
@@ -87,11 +96,7 @@ public class JsRender.NodeToVala : NodeWriter {
 	{
 		//return this.mungeToString(this.node);
 		this.child_count = 1;
-		this.ignore("pack");
-		this.ignore("init");
-		this.ignore("xns");
-		this.ignore("xtype");
-		this.ignore("id");
+	
 		
 		this.namespaceHeader();
 		this.globalVars();
