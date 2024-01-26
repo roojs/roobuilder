@@ -113,9 +113,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		}
 		// properties - global..??
 		foreach(var n in this.top_level_items) { 
- 
 
-			 
 			if (!n.props.has_key("id") || n.xvala_id.length < 0) {
 				continue;
 				
@@ -154,11 +152,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	  
 		
 			// Key = TYPE:name
-		var iter = this.node.props.map_iterator();
-		while (iter.next()) {
-			 
-			var prop = iter.get_value();
-			
+		foreach(var prop in this.node.props.values) {
+
 			if (this.shouldIgnore(prop.name)) {
 				continue;
 			}
