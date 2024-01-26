@@ -88,4 +88,27 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		return x.munge();
 	}
 	
+	protected override void classHeader()
+	{
+			   
+		// class header..
+		// class xxx {   WrappedGtk  el; }
+		this.node.line_start = this.cur_line;
+		
+		this.top.node.setNodeLine(this.cur_line, this.node);
+		
+		this.addLine(this.inpad + "public class " + this.xcls + " : Object");
+		this.addLine(this.inpad + "{");
+		
+		 
+		this.addLine(this.pad + "public " + this.cls + " el;");
+ 
+		this.addLine(this.pad + "private " + (this.top as NodeToVala).xcls + "  _this;");
+		this.addLine();
+			
+			
+			
+			// singleton
+	}
+	
 }
