@@ -161,8 +161,23 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			if (n == "___") { // for some reason our varargs are converted to '___' ...
 				continue;
 			}
-			
-			if (this.node.has(n)) {  // node does not have a value
+			if (this.node.has(n)) {
+			 	continue;
+			}
+			var propnode = this.node.findProp(n);
+			if (propnode != null) {
+				continue;
+			}
+			// finally 	
+			args += param.type + " " + n;
+			  
+
+		}
+	 	 
+		// .vala props.. 
+		 
+		 
+		 if (this.node.has(n)) {  // node does not have a value
 				
 				this.ignoreWrapped(n);
 				this.ignore(n);
@@ -186,7 +201,6 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").val : "");
 				obj_args.set(n, pname);
 				 
-				args += (pname + ".el") ;
 				if (!propnode.has("id")) {
 					this.addLine(this.ipad + pname +".ref();"); 
 				}
@@ -197,14 +211,6 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				 
 				continue;
 			}
-			// finally 	
-			args += param.type + " " + n;
-			  
-
-		}
-	 
-		// .vala props.. 
-		 
 		
 
 	}
