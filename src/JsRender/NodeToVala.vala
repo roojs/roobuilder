@@ -919,7 +919,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		this.addMultiLine(ipad + this.padMultiline(ipad, init.val) );
 		init.end_line = this.cur_line;
 	 }
-	 void addListeners()
+	 protected void addListeners()
 	 {
 		if (this.node.listeners.size < 1) {
 			return;
@@ -943,7 +943,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			prop.end_line = this.cur_line;
 		}
 	}    
-	void addEndCtor()
+	protected void addEndCtor()
 	{
 			 
 			// end ctor..
@@ -993,7 +993,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
  * 
  */
 	 
-	void addUserMethods()
+	protected void addUserMethods()
 	{
 		this.addLine();
 		this.addLine(this.pad + "// user defined functions");
@@ -1023,7 +1023,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		}
 	}
 
-	void iterChildren()
+	protected void iterChildren()
 	{
 		this.node.line_end = this.cur_line;
 		this.node.sortLines();
@@ -1047,12 +1047,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
  
 
 	
-	void ignoreWrapped(string i) {
+	protected void ignoreWrapped(string i) {
 		this.ignoreWrappedList.add(i);
 		
 	}
 	
-	bool shouldIgnoreWrapped(string i)
+	protected  bool shouldIgnoreWrapped(string i)
 	{
 		return ignoreWrappedList.contains(i);
 	}
