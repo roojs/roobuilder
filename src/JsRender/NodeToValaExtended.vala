@@ -152,6 +152,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		
 		// now we can skip ctor arguments if we have actually set them?
 		string[] args  = {};
+		var obj_args = new Gee.HashMap<string,string>();
 		foreach(var param in default_ctor.paramset.params) {
 				 
 			var n = param.name;
