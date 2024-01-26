@@ -70,12 +70,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 		
 	}
-	public abstract static string mungeFile(JsRender file);
+
 	/**
 	 *  Main entry point to convert a file into a string..
 	 */
 	
-
+	public abstract static string mungeFile(JsRender file);
 	 
 	public abstract  string mungeChild(  Node cnode);
 	
