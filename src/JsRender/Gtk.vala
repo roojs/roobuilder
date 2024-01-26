@@ -216,7 +216,7 @@ namespace JsRender {
 			var fn = this.targetName();
 			GLib.debug("WRITE :%s\n " , fn);
 			try {
-				this.writeFile(fn,  NodeToValaWrapped.mungeFile(this));
+				this.writeFile(fn, this.toSourceCode(););
 	        } catch (GLib.Error e) {}
 	        
 	        
