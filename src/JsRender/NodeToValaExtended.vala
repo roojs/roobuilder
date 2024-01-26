@@ -48,8 +48,9 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 
 		this.classHeader();
 
-		this.addTopProperties();
-		this.addMyVars();
+		this.addTopProperties(); /// properties set with 'id'
+		this.addMyVars(); // user defined properties.
+
 		this.addPlusProperties();
 		this.addValaCtor();
 		this.addUnderThis();
