@@ -26,7 +26,8 @@
  
 public class JsRender.NodeToValaWrapped : NodeToVala {
 
-		public NodeToValaWrapped( JsRender file,  Node node,  int depth, NodeToVala? parent) 
-		{
-			base (file, node, depth, parent);
-		}
+	public NodeToValaWrapped( JsRender file,  Node node,  int depth, NodeToVala? parent) 
+	{
+		base (file, node, depth, parent);
+	}
+}
