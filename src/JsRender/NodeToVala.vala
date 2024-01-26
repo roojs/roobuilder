@@ -108,7 +108,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		   
 	}
 
-	void classHeader()
+	protected void classHeader()
 	{
 			   
 		// class header..
