@@ -82,7 +82,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	}
 	public override string mungeChild(  Node cnode)
 	{
-		var x = new  NodeToVala(this.file, cnode,  this.depth+1, this);
+		var x = new  NodeToValaWrapped(this.file, cnode,  this.depth+1, this);
 		return x.munge();
 	}
 	
