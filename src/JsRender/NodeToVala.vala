@@ -70,7 +70,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 		
 	}
-	public abtract static string mungeFile(JsRender file);
+	public abstract static string mungeFile(JsRender file);
 	/**
 	 *  Main entry point to convert a file into a string..
 	 */
@@ -84,7 +84,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	{
 		if (this.depth > 0 || this.file.file_namespace == "") {
 			return;
-		}
+		} 
 		this.addLine("namespace " + this.file.file_namespace);
 		this.addLine("{");
 	
