@@ -24,19 +24,6 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 	{
 	 	base (file, node, depth, parent);
 	 
-		this.initPadding('\t', 1);
-		
-		this.cls = node.xvala_cls;
-		this.xcls = node.xvala_xcls;
-		if (depth == 0 && this.xcls.contains(".")) {
-			var ar = this.xcls.split(".");
-			this.xcls = ar[ar.length-1];
-		}
-		
-		this.ignoreList = new Gee.ArrayList<string>();
-		this.ignoreWrappedList  = new Gee.ArrayList<string>();
-		this.myvars = new Gee.ArrayList<string>();
-
 	}
 	/**
 	 *  Main entry point to convert a file into a string..
