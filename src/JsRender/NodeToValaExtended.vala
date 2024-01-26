@@ -151,28 +151,80 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		}
 		
 		// now we can skip ctor arguments if we have actually set them?
-
-
-		 
-		// .vala props.. 
-		
- 
-		var cargs_str = "";
-		// ctor..
-		this.addLine();
-		this.addLine(this.pad + "// ctor");
-		
-		if (this.node.has("* args")) {
-			// not sure what this is supposed to be ding..
-		
-			cargs_str =  this.node.get("* args");
-			//var ar = this.node.get("* args");.split(",");
-			//for (var ari =0; ari < ar.length; ari++) {
-				//	cargs +=  (ar[ari].trim().split(" ").pop();
-				  // }
+		string[] args  = {};
+		foreach(var param in default_ctor.paramset.params) {
+				 
+			var n = param.name;
+		    GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
+		    // not sure if it's even worth warning on this...
+			if (n == "___") { // for some reason our varargs are converted to '___' ...
+				continue;
 			}
-	
-		
+			
+			if (this.node.has(n)) {  // node does not have a value
+				
+				this.ignoreWrapped(n);
+				this.ignore(n);
+				
+				var v = this.node.get(n);
+
+				if (param.type == "string") {
+					v = "\"" +  v.escape("") + "\"";
+				}
+				if (v == "TRUE" || v == "FALSE") {
+					v = v.down();
+				}
+
+				
+				args += v;
+				continue;
+			}
+			var propnode = this.node.findProp(n);
+			if (propnode != null) {
+				// assume it's ok..
+				
+				var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").val : "");
+				args += (pname + ".el") ;
+				if (!propnode.has("id")) {
+					this.addLine(this.ipad + pname +".ref();"); 
+				}
+				
+				
+				
+				this.ignoreWrapped(n);
+				
+				continue;
+			}
+				
+				 
+				
+				
+			 
+			if (param.type.contains("int")) {
+				args += "0";
+				continue;
+			}
+			if (param.type.contains("float")) {
+				args += "0f";
+				continue;
+			}
+			if (param.type.contains("bool")) {
+				args += "true"; // always default to true?
+				continue;
+			}
+			// any other types???
+			
+			
+			
+			
+			args += "null";
+			 
+			
+
+		}
+	 
+		// .vala props.. 
+		 
 		
 
 	}
