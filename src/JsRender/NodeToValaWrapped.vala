@@ -159,7 +159,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			return;
 		}
 		
-		}
+		
 		// .vala props.. 
 		
  
