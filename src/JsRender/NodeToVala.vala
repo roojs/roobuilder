@@ -34,7 +34,7 @@ public class JsRender.NodeToVala : NodeWriter {
 
 	NodeToVala top;
 	 
-	int pane_number = 0;// ??
+	int pane_number = 0;// ?? used when generating Gtk.Pane tabs
 	
 	/* 
 	 * ctor - just initializes things
