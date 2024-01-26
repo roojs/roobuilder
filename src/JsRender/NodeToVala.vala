@@ -902,7 +902,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 			
 
-	void addInit()
+	protected void addInit()
 	{
 
 		
