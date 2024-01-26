@@ -21,28 +21,23 @@
 */
 
  
-public class JsRender.NodeToVala : Object {
+public class JsRender.NodeToVala : NodeWriter {
 
-	Node node;
-
-	int depth;
-	string inpad;
-	string pad;
-	string ipad;
+	 
+	 
 	string cls;  // node fqn()
 	string xcls;
 	
 	string ret;
-	
-	int cur_line;
+ 
 
 	Gee.ArrayList<string> ignoreList;
 	Gee.ArrayList<string> ignoreWrappedList; 
 	Gee.ArrayList<string> myvars;
 	Gee.ArrayList<Node> vitems; // top level items
 	NodeToVala top;
-	JsRender file;
-	int pane_number = 0;
+	 
+	int pane_number = 0;// ??
 	
 	/* 
 	 * ctor - just initializes things
@@ -51,9 +46,8 @@ public class JsRender.NodeToVala : Object {
 	public NodeToVala( JsRender file,  Node node,  int depth, NodeToVala? parent) 
 	{
 
-		
-		this.node = node;
-		this.depth = depth;
+		base ( file, node, depth, parent);
+	 
 		if (file.name.contains(".")) { // namespaced..
 			this.inpad = string.nfill(depth > 0 ? 2 : 1, '\t');
 		} else {
@@ -62,6 +56,9 @@ public class JsRender.NodeToVala : Object {
 		this.pad = this.inpad + "\t";
 		
 		this.node.node_pad = this.inpad;
+		
+
+
 		this.ipad = this.inpad + "\t\t";
 		this.cls = node.xvala_cls;
 		this.xcls = node.xvala_xcls;
@@ -98,9 +95,7 @@ public class JsRender.NodeToVala : Object {
 	string toValaNS(Node item)
 	{
 		var ns = item.get("xns") ;
-		//if (ns == "GtkSource") {  technically on Gtk3?
-		//	return "Gtk.Source";
-		//}
+	 
 		return ns + ".";
 	}
 	public void  toValaName(Node item, int depth =0) 
