@@ -107,6 +107,9 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 	/**
 	 * add the constructor definition..
 	 * this probably has to match the parent constructor.. 
+	 **?? NO SUPPORT FOR * ARGS?
+	 
+	 
 	 */
 	protected override void addValaCtor()
 	{
@@ -120,15 +123,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		this.addLine();
 		this.addLine(this.pad + "// ctor");
 		
-		if (this.node.has("* args")) {
-			// not sure what this is supposed to be ding..
-		
-			cargs_str =  this.node.get("* args");
-			//var ar = this.node.get("* args");.split(",");
-			//for (var ari =0; ari < ar.length; ari++) {
-				//	cargs +=  (ar[ari].trim().split(" ").pop();
-				  // }
-			}
+		 
 	
 		if (this.depth < 1) {
 		 
