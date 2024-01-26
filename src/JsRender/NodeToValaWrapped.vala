@@ -61,7 +61,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.addSingleton();
 		this.addTopProperties();
 		this.addMyVars();
-		this.addPlusProperties();
+		this.addPlusProperties(); 
 		this.addValaCtor();
 		this.addUnderThis();
 		this.addWrappedCtor();  // var this.el = new XXXXX()
