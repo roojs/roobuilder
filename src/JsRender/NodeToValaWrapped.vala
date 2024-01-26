@@ -61,6 +61,24 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.addMyVars();
 		this.addPlusProperties();
 		this.addValaCtor();
-		this
+		this.addUnderThis();
+		this.addWrappedCtor();  // var this.el = new XXXXX()
+
+		this.addInitMyVars();
+		this.addWrappedProperties();
+		this.addChildren();
+		//this.addAutoShow(); // not needed gtk4 autoshow menuitems
+		
+		this.addInit();
+		this.addListeners();
+		this.addEndCtor();
+		this.addUserMethods();
+		this.iterChildren();
+		this.namespaceFooter();
+		
+		return this.ret;
+		 
+			 
+	}
 	
 }
