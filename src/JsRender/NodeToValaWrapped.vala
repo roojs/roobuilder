@@ -111,4 +111,18 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			// singleton
 	}
 	
+	protected void addSingleton() 
+	{
+		if (depth > 0) {
+			return;
+		}
+		this.addLine(pad + "public static " + xcls + " singleton()");
+		this.addLine(this.pad + "{");
+		this.addLine(this.ipad +    "if (_" + this.node.xvala_id  + " == null) {");
+		this.addLine(this.ipad +    "    _" + this.node.xvala_id + "= new "+ this.xcls + "();");  // what about args?
+		this.addLine(this.ipad +    "}");
+		this.addLine(this.ipad +    "return _" + this.node.xvala_id +";");
+		this.addLine(this.pad + "}");
+	}
+	
 }
