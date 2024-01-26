@@ -193,35 +193,13 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				
 				
 				
-				this.ignoreWrapped(n);
-				this.ignore(n); // ???/
-				continue;
-			}
-				
+				this.ignoreWrapped(n); //??? not sure why we dont ignore it as well. 
 				 
-				
-				
-			 
-			if (param.type.contains("int")) {
-				args += "0";
 				continue;
 			}
-			if (param.type.contains("float")) {
-				args += "0f";
-				continue;
-			}
-			if (param.type.contains("bool")) {
-				args += "true"; // always default to true?
-				continue;
-			}
-			// any other types???
-			
-			
-			
-			
-			args += "null";
-			 
-			
+			// finally 	
+			args += param.type + " " + n;
+			  
 
 		}
 	 
