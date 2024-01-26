@@ -135,7 +135,7 @@ namespace JsRender {
 				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
 
 			}
-			NodeToVala.mungeFile(this); // force line numbering..
+			NodeToValaWrapped.mungeFile(this); // force line numbering..
 			this.loaded = true;
 		
 		}
@@ -157,7 +157,7 @@ namespace JsRender {
 		    	return this.last_source;
 	    	}
 	    	GLib.debug("toSource - generating");
-		    this.last_source =   NodeToVala.mungeFile(this);
+		    this.last_source =   NodeToValaWrapped.mungeFile(this);
 		    this.last_source_version = this.version;
 		    return this.last_source;
 		    
@@ -216,7 +216,7 @@ namespace JsRender {
 			var fn = this.targetName();
 			GLib.debug("WRITE :%s\n " , fn);
 			try {
-				this.writeFile(fn,  NodeToVala.mungeFile(this));
+				this.writeFile(fn,  NodeToValaWrapped.mungeFile(this));
 	        } catch (GLib.Error e) {}
 	        
 	        
