@@ -122,6 +122,28 @@ namespace JsRender {
 						  
 		}
 		
+		public void addLine(string str= "")
+		{
+			
+			if (str.contains("\n")) {
+				this.addMultiLine(str);
+				return;
+			}
+			this.cur_line++;
+			if (BuilderApplication.opt_bjs_compile != null) {
+				this.ret += "/*%d*/ ".printf(this.cur_line) + str + "\n";
+			} else {
+				this.ret += str + "\n";
+			}
+		}
+		public void addMultiLine(string str= "")
+		{
+			 
+			this.cur_line += str.split("\n").length;
+			//this.ret +=  "/*%d*/ ".printf(l) + str + "\n";
+			this.ret +=   str + "\n";
+		}
+		
 		// interface
 		public abstract string munge();
 		
