@@ -25,8 +25,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 	 
  	int child_count = 1; // used to number the children.
-	public string cls;  // node fqn()
-	public string xcls;
+	protected string cls;  // node fqn()
+	protected string xcls;
 	
 
 	Gee.ArrayList<string> ignoreWrappedList; 
