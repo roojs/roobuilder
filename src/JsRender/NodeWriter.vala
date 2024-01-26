@@ -33,6 +33,17 @@ namespace JsRender {
 			this.top_level_items = new Gee.ArrayList<Node>();
 			this.cur_line = parent == null ? 0 : parent.cur_line;
 			this.top = parent == null ? this : parent.top;
+			 
+		// initialize line data..
+			node.line_start = this.cur_line;
+			node.line_end  = this.cur_line;
+			node.lines = new Gee.ArrayList<int>();
+			node.line_map = new Gee.HashMap<int,string>();
+			if (parent == null) {
+				node.node_lines = new Gee.ArrayList<int>();
+				node.node_lines_map = new Gee.HashMap<int,Node>();
+			 }
+			
 		}
 		
 		int var_name_count = 0; // was vcnt
