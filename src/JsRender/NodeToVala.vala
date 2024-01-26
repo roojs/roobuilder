@@ -177,7 +177,7 @@ public class JsRender.NodeToVala : NodeWriter {
 		 
 		this.addLine(this.pad + "public " + this.cls + " el;");
  
-		this.addLine(this.pad + "private " + this.top.xcls + "  _this;");
+		this.addLine(this.pad + "private " + (this.top as NodeToVala).xcls + "  _this;");
 		this.addLine();
 			
 			
