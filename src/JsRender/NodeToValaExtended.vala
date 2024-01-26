@@ -108,6 +108,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 	 * add the constructor definition..
 	 * this probably has to match the parent constructor.. 
 	 **?? NO SUPPORT FOR * ARGS?
+	 ** for child elements we have to add '_owner to the ctor arguments.
 	 
 	 
 	 */
