@@ -8,15 +8,12 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 
 	 
 	 
-	string cls;  // node fqn()
-	string xcls;
-	
+	 
 	Gee.ArrayList<string> ignoreList;
 	Gee.ArrayList<string> ignoreWrappedList; 
 	Gee.ArrayList<string> myvars;
 
-	NodeToValaExtended top;
-	 
+	  
 	int pane_number = 0;// ??
 	
 	/* 
