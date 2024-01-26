@@ -45,8 +45,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		
 		
 		GLib.debug("top cls %s / xlcs %s\n ",file.tree.xvala_cls,file.tree.xvala_cls); 
-		n.cls = file.tree.xvala_cls;
-		n.xcls = file.tree.xvala_xcls;
+		n.initCls();
 		return n.munge();
 		
 
