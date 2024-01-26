@@ -53,7 +53,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		
  		// skip '+' properties?? not sure where they are used.
 		this.addValaCtor();
-		//sthis.addUnderThis();
+		//this.addUnderThis();
 		this.addWrappedCtor();  // var this.el = new XXXXX()
 
 		this.addInitMyVars();
@@ -176,8 +176,9 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
 			 
 		}
-		this.addUnderThis();
+		this.addUnderThis(); // set up '_this = _owner or _this = this;
 		
+		// if there are no ctor args, then we do not need to call object // or create props.
 		
 	 	 
 		// .vala props.. 
