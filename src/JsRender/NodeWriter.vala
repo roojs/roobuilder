@@ -11,7 +11,7 @@ namespace JsRender {
 		protected string pad;
 		protected string ipad;
 		 
-	 
+	 	protected Gee.ArrayList<Node> top_level_items; // top level items (was vitems)
 		protected int cur_line;
 
 		  
