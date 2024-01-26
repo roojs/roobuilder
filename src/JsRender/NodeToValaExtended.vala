@@ -137,6 +137,41 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			if (this.depth < 1) {
 			 
 				// top level - does not pass the top level element..
-				this.addLine(this.pad + "public " + 
+				this.addLine(this.pad + "public " + this.xcls + "()");
+				this.addLine(this.pad + "{");
+				return;
+			
+			} 
+			var top = this.top as NodeToVala;
+			var tcls = top == null ? "???" : top.xcls;
+				// for sub classes = we passs the top level as _owner
+			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
+			this.addLine(this.pad + "{");
+			return;
+		}
+		
+		}
+		// .vala props.. 
+		
+ 
+		var cargs_str = "";
+		// ctor..
+		this.addLine();
+		this.addLine(this.pad + "// ctor");
+		
+		if (this.node.has("* args")) {
+			// not sure what this is supposed to be ding..
+		
+			cargs_str =  this.node.get("* args");
+			//var ar = this.node.get("* args");.split(",");
+			//for (var ari =0; ari < ar.length; ari++) {
+				//	cargs +=  (ar[ari].trim().split(" ").pop();
+				  // }
+			}
+	
+		
+		
+
+	}
 	
 }
