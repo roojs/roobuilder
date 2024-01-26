@@ -7,8 +7,8 @@ namespace JsRender {
 		protected Node node;
 
 		protected int depth;
-		protected string inpad;
-		protected string pad;
+		protected string inpad;  // the pad for the class outer
+		protected string pad;   // the padd for the methods / properties.
 		protected string ipad;
 		 
 	 	protected Gee.ArrayList<Node> top_level_items; // top level items (was vitems)
