@@ -150,7 +150,10 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			return;
 		}
 		
-		}
+		// now we can skip ctor arguments if we have actually set them?
+
+
+		 
 		// .vala props.. 
 		
  
