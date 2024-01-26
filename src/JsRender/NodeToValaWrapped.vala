@@ -158,8 +158,11 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			this.addLine(this.ipad + "** classname is invalid - can not find ctor "  + this.node.fqn() + ".new");
 			return;
 		}
+		// simple ctor...
+		if (default_ctor.paramset == null || default_ctor.paramset.params.size < 1)  {
 		
 		
+		}
 		// .vala props.. 
 		
  
