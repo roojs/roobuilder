@@ -161,21 +161,21 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		// create the ctor method
 		
  
-			if (this.depth < 1) {
-			 
-				// top level - does not pass the top level element..
-				this.addLine(this.pad + "public " + this.xcls + "()");
-				this.addLine(this.pad + "{");
-				   
-			} else {
-				var top = this.top as NodeToVala;
-				var tcls = top == null ? "???" : top.xcls;
-					// for sub classes = we passs the top level as _owner
-				this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
-				this.addLine(this.pad + "{");
-			}
+		if (this.depth < 1) {
 		 
+			// top level - does not pass the top level element..
+			this.addLine(this.pad + "public " + this.xcls + "()");
+			this.addLine(this.pad + "{");
+			   
+		} else {
+			var top = this.top as NodeToVala;
+			var tcls = top == null ? "???" : top.xcls;
+				// for sub classes = we passs the top level as _owner
+			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
+			this.addLine(this.pad + "{");
 		}
+		 
+		
 	 	 
 		// .vala props.. 
  		var obj_args = new Gee.HashMap<string,string>();
