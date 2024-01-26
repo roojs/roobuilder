@@ -15,7 +15,7 @@ public class  JsRender.NodeToValaExtended : NodeWriter {
 	Gee.ArrayList<string> ignoreWrappedList; 
 	Gee.ArrayList<string> myvars;
 
-	NodeToVala top;
+	NodeToValaExtended top;
 	 
 	int pane_number = 0;// ??
 	
@@ -23,5 +23,11 @@ public class  JsRender.NodeToValaExtended : NodeWriter {
 	 * ctor - just initializes things
 	 * - wraps a render node 
 	 */
-	public NodeToVala( JsRender file,  Node node,  int depth, NodeToVala? parent) 
+	public NodeToValaExtended( JsRender file,  Node node,  int depth, NodeToValaExtended? parent) 
 	{
+	
+	}
+	
+	
+	
+}
