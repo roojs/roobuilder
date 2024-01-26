@@ -160,7 +160,20 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		}
 		// simple ctor...(will not need ctor params..
 		if (default_ctor.paramset == null || default_ctor.paramset.params.size < 1)  {
-		
+			if (this.depth < 1) {
+			 
+				// top level - does not pass the top level element..
+				this.addLine(this.pad + "public " + this.xcls + "()");
+				this.addLine(this.pad + "{");
+				return;
+			
+			} 
+			 
+				// for sub classes = we passs the top level as _owner
+			this.addLine(this.pad + "public " + this.xcls + "(" +  (this.top as NodeToVala).xcls + " _owner )");
+			this.addLine(this.pad + "{");
+			return;
+		}
 		
 		}
 		// .vala props.. 
@@ -181,19 +194,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 				  // }
 			}
 	
-		if (this.depth < 1) {
-		 
-			// top level - does not pass the top level element..
-			this.addLine(this.pad + "public " + this.xcls + "()");
-			this.addLine(this.pad + "{");
-		} else {
-			if (cargs_str.length > 0) {
-				cargs_str = ", " + cargs_str;
-			}
-			// for sub classes = we passs the top level as _owner
-			this.addLine(this.pad + "public " + this.xcls + "(" +  (this.top as NodeToVala).xcls + " _owner " + cargs_str + ")");
-			this.addLine(this.pad + "{");
-		}
+		
 		
 
 	}
