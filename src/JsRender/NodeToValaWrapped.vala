@@ -138,5 +138,45 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.addLine(this.ipad +    "return _" + this.node.xvala_id +";");
 		this.addLine(this.pad + "}");
 	}
+	/**
+	 * add the constructor definition..
+	 */
+	protected override void addValaCtor()
+	{
+			
+		
+		// .vala props.. 
+		
+ 
+		var cargs_str = "";
+		// ctor..
+		this.addLine();
+		this.addLine(this.pad + "// ctor");
+		
+		if (this.node.has("* args")) {
+			// not sure what this is supposed to be ding..
+		
+			cargs_str =  this.node.get("* args");
+			//var ar = this.node.get("* args");.split(",");
+			//for (var ari =0; ari < ar.length; ari++) {
+				//	cargs +=  (ar[ari].trim().split(" ").pop();
+				  // }
+			}
 	
+		if (this.depth < 1) {
+		 
+			// top level - does not pass the top level element..
+			this.addLine(this.pad + "public " + this.xcls + "(" +  cargs_str +")");
+			this.addLine(this.pad + "{");
+		} else {
+			if (cargs_str.length > 0) {
+				cargs_str = ", " + cargs_str;
+			}
+			// for sub classes = we passs the top level as _owner
+			this.addLine(this.pad + "public " + this.xcls + "(" +  (this.top as NodeToVala).xcls + " _owner " + cargs_str + ")");
+			this.addLine(this.pad + "{");
+		}
+		
+
+	}
 }
