@@ -168,8 +168,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 				return;
 			
 			} 
-			var top = this.top as NodeToVala;
-			var tcls = top == null ? "???" : tp.xcls;
+			var top = this.top as NodeToVala;op.xcls;
 				// for sub classes = we passs the top level as _owner
 			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
 			this.addLine(this.pad + "{");
