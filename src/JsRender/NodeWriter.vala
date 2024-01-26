@@ -64,7 +64,7 @@ namespace JsRender {
 			
 			item.xvala_id =  id;
 			if (depth > 0) {                        
-				this.vitems.add(item);
+				this.top_level_items.add(item);
 				
 			// setting id on top level class changes it classname..			
 			// oddly enough we havent really thought about namespacing here.
