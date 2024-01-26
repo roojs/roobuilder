@@ -30,7 +30,7 @@ namespace JsRender {
 				this.var_name_count = 0;
 			}
 			this.top_level_items = new Gee.ArrayList<Node>();
-		
+			this.cur_line = parent == null ? 0 : parent.cur_line;
 		}
 		
 		int var_name_count = 0; // was vcnt
@@ -38,6 +38,28 @@ namespace JsRender {
 		string toValaNS(Node item)
 		{
 			return item.get("xns") + ".";
+		}
+		/**
+			fills in all the xvala_cls names into the nodes
+			
+		*/
+		
+		
+		public initPadding(char pad, int len) 
+		{
+		
+			var has_ns = this.file.xtype == "Gtk" &&  this.file.file_namespace.length > 0;
+			
+			if (has_ns) { // namespaced..
+				this.inpad = string.nfill((depth > 0 ? 2 : 1)* len, pad);
+			} else {
+				this.inpad = string.nfill((depth > 0 ? 1 : 0) * len , pad);
+			}
+			this.pad = this.inpad + string.nfill(len, pad);
+			this.node.node_pad = this.inpad;
+			this.ipad = this.inpad +  string.nfill(2* len, pad);;
+		
+		
 		}
 		
 		public void  toValaName(Node item, int depth =0) 
