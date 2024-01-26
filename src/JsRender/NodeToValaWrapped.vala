@@ -110,7 +110,18 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			
 			// singleton
 	}
-	
+	public void globalVars()
+	{
+		if (this.depth > 0) {
+			return;
+		}
+		// Global Vars..??? when did this get removed..?
+		//this.ret += this.inpad + "public static " + this.xcls + "  " + this.node.xvala_id+ ";\n\n";
+
+		this.addLine(this.inpad + "static " + this.xcls + "  _" + this.node.xvala_id+ ";");
+		this.addLine();
+		   
+	}
 	protected void addSingleton() 
 	{
 		if (depth > 0) {
