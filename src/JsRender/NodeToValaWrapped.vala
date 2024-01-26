@@ -40,10 +40,9 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			return "";
 		}
 
-		 var n = new NodeToValaWrapped(file, file.tree, 0, null);
-		 n.toValaName(file.tree);
-		
-		
+		var n = new NodeToValaWrapped(file, file.tree, 0, null);
+		n.toValaName(file.tree);
+		 
 		GLib.debug("top cls %s / xlcs %s\n ",file.tree.xvala_cls,file.tree.xvala_cls); 
 		n.initCls();
 		return n.munge();
