@@ -38,11 +38,11 @@ public class JsRender.NodeToVala : NodeWriter {
 	
 	
 	static construct {
-		this.ignore("pack");
-		this.ignore("init");
-		this.ignore("xns");
-		this.ignore("xtype");
-		this.ignore("id");
+		NodeWriter.globalIgnore("pack");
+		NodeWriter.globalIgnore("init");
+		NodeWriter.globalIgnore("xns");
+		NodeWriter.globalIgnore("xtype");
+		NodeWriter.globalIgnore("id");
 	
 	}
 	/* 
