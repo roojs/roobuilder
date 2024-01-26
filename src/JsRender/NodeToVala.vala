@@ -24,7 +24,7 @@
 public abstract class JsRender.NodeToVala : NodeWriter {
 
 	 
-	 
+	 	int child_count = 
 	string cls;  // node fqn()
 	string xcls;
 	
@@ -75,7 +75,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 *  Main entry point to convert a file into a string..
 	 */
 	
-	int child_count = 1; // used to number the children.
+
 	 
 	public abstract  string mungeChild(  Node cnode);
 	
