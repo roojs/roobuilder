@@ -96,4 +96,10 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			 
 	} 
 	
+	public override string mungeChild(  Node cnode)
+	{
+		var x = new  NodeToValaExtended(this.file, cnode,  this.depth+1, this);
+		return x.munge();
+	}
+	
 }
