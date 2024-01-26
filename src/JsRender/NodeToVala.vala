@@ -32,7 +32,7 @@ public class JsRender.NodeToVala : NodeWriter {
 	Gee.ArrayList<string> ignoreWrappedList; 
 	Gee.ArrayList<string> myvars;
 
-	NodeToVala top;
+
 	 
 	int pane_number = 0;// ?? used when generating Gtk.Pane tabs
 	
@@ -63,7 +63,7 @@ public class JsRender.NodeToVala : NodeWriter {
 			this.xcls = ar[ar.length-1];
 		}
 		
-		this.ignoreList = new Gee.ArrayList<string>();
+
 		this.ignoreWrappedList  = new Gee.ArrayList<string>();
 		this.myvars = new Gee.ArrayList<string>();
 
