@@ -77,6 +77,8 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		var x = new  NodeToValaExtended(this.file, cnode,  this.depth+1, this);
 		return x.munge();
 	}
+	
+	
 	protected override void classHeader()
 	{
 			   
@@ -93,7 +95,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		this.addLine(this.inpad + "public class " + this.xcls + " : " + this.cls);
 		this.addLine(this.inpad + "{");
 		
-		this.addLine(this.pad + "private " + top.xcls + "  _this;");
+		this.addLine(this.pad + "private " + top.xcls + "  _this;"); /// or protected??
 		this.addLine();
 			
 			
