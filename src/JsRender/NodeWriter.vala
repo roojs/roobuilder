@@ -23,8 +23,7 @@ namespace JsRender {
 				GLib.error("set called on nodewriter ret");
 			}
 		}
-	
-		
+	 
 	 	string output;  // the result of outputing..
 
 		 
@@ -141,9 +140,9 @@ namespace JsRender {
 			}
 			this.cur_line++;
 			if (BuilderApplication.opt_bjs_compile != null) {
-				this.ret += "/*%d*/ ".printf(this.cur_line) + str + "\n";
+				this.output += "/*%d*/ ".printf(this.cur_line) + str + "\n";
 			} else {
-				this.ret += str + "\n";
+				this.output += str + "\n";
 			}
 		}
 		protected void addMultiLine(string str= "")
@@ -151,9 +150,13 @@ namespace JsRender {
 			 
 			this.cur_line += str.split("\n").length;
 			//this.ret +=  "/*%d*/ ".printf(l) + str + "\n";
-			this.ret +=   str + "\n";
+			this.output +=   str + "\n";
 		}
-		
+		protected string padMultiline(string pad, string str)
+		{
+			var ar = str.strip().split("\n");
+			return string.joinv("\n" + pad , ar);
+		}
 		// interface
 		public abstract string munge();
 		
