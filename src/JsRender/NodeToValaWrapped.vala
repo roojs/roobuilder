@@ -151,6 +151,9 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			this.addLine(this.ipad + "** classname is invalid - can not make ctor "  + this.node.fqn());
 			return;
 		}
+		var ctor = ".new";
+		var default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);		
+		
 		// .vala props.. 
 		
  
