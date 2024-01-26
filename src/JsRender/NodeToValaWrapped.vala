@@ -141,41 +141,10 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	/**
 	 * add the constructor definition..
 	 */
-	protected override void addValaCtor()
+	void addValaCtor()
 	{
 			
 		
-		
-		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
-		if (ncls == null || ncls.nodetype != "Class") { 
-			this.addLine(this.ipad + "** classname is invalid - can not make ctor "  + this.node.fqn());
-			return;
-		}
-		var ctor = ".new";
-		var default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);		
-		
-		if (default_ctor == null) {
-			this.addLine(this.ipad + "** classname is invalid - can not find ctor "  + this.node.fqn() + ".new");
-			return;
-		}
-		// simple ctor...(will not need ctor params..
-		if (default_ctor.paramset == null || default_ctor.paramset.params.size < 1)  {
-			if (this.depth < 1) {
-			 
-				// top level - does not pass the top level element..
-				this.addLine(this.pad + "public " + this.xcls + "()");
-				this.addLine(this.pad + "{");
-				return;
-			
-			} 
-			var top = this.top as NodeToVala;op.xcls;
-				// for sub classes = we passs the top level as _owner
-			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
-			this.addLine(this.pad + "{");
-			return;
-		}
-		
-		}
 		// .vala props.. 
 		
  
@@ -194,8 +163,21 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 				  // }
 			}
 	
-		
+		if (this.depth < 1) {
+		 
+			// top level - does not pass the top level element..
+			this.addLine(this.pad + "public " + this.xcls + "(" +  cargs_str +")");
+			this.addLine(this.pad + "{");
+		} else {
+			if (cargs_str.length > 0) {
+				cargs_str = ", " + cargs_str;
+			}
+			// for sub classes = we passs the top level as _owner
+			this.addLine(this.pad + "public " + this.xcls + "(" +  this.top.xcls + " _owner " + cargs_str + ")");
+			this.addLine(this.pad + "{");
+		}
 		
 
 	}
+
 }
