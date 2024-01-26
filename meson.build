@@ -147,6 +147,7 @@ roobuilder_src = files([
    'src/Palete/ValaCompileRequest.vala',
    'src/JsRender/NodeWriter.vala',
    'src/JsRender/NodeToValaExtended.vala',
+   'src/JsRender/NodeToValaWrapped.vala',
 ])
 
 roobuilder = executable('roobuilder',
