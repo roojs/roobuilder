@@ -27,7 +27,7 @@ namespace JsRender {
 	 	string output;  // the result of outputing..
 		
 		Gee.ArrayList<string> ignoreList;
-		static 	Gee.ArrayList<string> globalIgnoreList; 
+		static 	Gee.ArrayList<string>? globalIgnoreList = null; 
 		static construct {
 			globalIgnoreList = new Gee.ArrayList<string>();
 		}
@@ -165,6 +165,8 @@ namespace JsRender {
 			return string.joinv("\n" + pad , ar);
 		}
 		protected static void globalIgnore(string i) {
+			if (globalIgnoreList == null) {
+			globalIgnoreList =  new Gee.ArrayList<string>();
 			globalIgnoreList.add(i);
 		}
 		
