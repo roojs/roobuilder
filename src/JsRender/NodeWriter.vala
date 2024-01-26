@@ -122,7 +122,7 @@ namespace JsRender {
 						  
 		}
 		
-		public void addLine(string str= "")
+		protected void addLine(string str= "")
 		{
 			
 			if (str.contains("\n")) {
@@ -136,7 +136,7 @@ namespace JsRender {
 				this.ret += str + "\n";
 			}
 		}
-		public void addMultiLine(string str= "")
+		protected void addMultiLine(string str= "")
 		{
 			 
 			this.cur_line += str.split("\n").length;
