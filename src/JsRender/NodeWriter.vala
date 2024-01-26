@@ -166,16 +166,17 @@ namespace JsRender {
 		}
 		protected static void globalIgnore(string i) {
 			if (globalIgnoreList == null) {
-			globalIgnoreList =  new Gee.ArrayList<string>();
+				globalIgnoreList =  new Gee.ArrayList<string>(); // should not happend.. but dont know about ctor process..
+			}
 			globalIgnoreList.add(i);
 		}
 		
-		void ignore(string i) {
+		protected void ignore(string i) {
 			this.ignoreList.add(i);
 			
 		}
 		
-		bool shouldIgnore(string i)
+		protected bool shouldIgnore(string i)
 		{
 			return globalIgnoreList.contains(i) || ignoreList.contains(i);
 		}
