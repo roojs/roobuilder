@@ -166,7 +166,6 @@ namespace JsRender {
 		}
 		static void globalIgnore(string i) {
 			globalIgnoreList.add(i);
-			
 		}
 		
 		void ignore(string i) {
