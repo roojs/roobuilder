@@ -145,6 +145,12 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	{
 			
 		
+		
+		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		if (ncls == null || ncls.nodetype != "Class") { 
+			this.addLine(this.ipad + "** classname is invalid "  + this.node.fqn());
+			return;
+		}
 		// .vala props.. 
 		
  
