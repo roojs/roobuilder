@@ -133,26 +133,11 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			return;
 		}
 		// simple ctor...(will not need ctor params..
-		if (default_ctor.paramset == null || default_ctor.paramset.params.size < 1)  {
-			if (this.depth < 1) {
-			 
-				// top level - does not pass the top level element..
-				this.addLine(this.pad + "public " + this.xcls + "()");
-				this.addLine(this.pad + "{");
-				return;
-			
-			} 
-			var top = this.top as NodeToVala;
-			var tcls = top == null ? "???" : top.xcls;
-				// for sub classes = we passs the top level as _owner
-			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
-			this.addLine(this.pad + "{");
-			return;
-		}
+		
 		
 		// now we can skip ctor arguments if we have actually set them?
 		string[] args  = {};
-		var obj_args = new Gee.HashMap<string,string>();
+		if (default_ctor.paramset != null &&  default_ctor.paramset.params.size > 0)  {
 		foreach(var param in default_ctor.paramset.params) {
 				 
 			var n = param.name;
@@ -173,11 +158,30 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			  
 
 		}
+		// create the ctor method
+		
+ 
+			if (this.depth < 1) {
+			 
+				// top level - does not pass the top level element..
+				this.addLine(this.pad + "public " + this.xcls + "()");
+				this.addLine(this.pad + "{");
+				   
+			} else {
+				var top = this.top as NodeToVala;
+				var tcls = top == null ? "???" : top.xcls;
+					// for sub classes = we passs the top level as _owner
+				this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
+				this.addLine(this.pad + "{");
+			}
+		 
+		}
 	 	 
 		// .vala props.. 
-		 
-		 
-		 if (this.node.has(n)) {  // node does not have a value
+ 		var obj_args = new Gee.HashMap<string,string>();
+		 foreach(var param in default_ctor.paramset.params) {
+		
+		 	if (this.node.has(n)) {  // node does not have a value
 				
 				this.ignoreWrapped(n);
 				this.ignore(n);
