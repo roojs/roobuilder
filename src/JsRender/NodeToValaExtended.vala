@@ -227,10 +227,11 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		}
 		this.addLine(this.ipad + "Object(");
 		// at this point we might have object...
-		for(var i = 0; i < obj_args.keys.size; i++ ) {
-			var k = obj_args.keys.get(i);
+		var ks = obj_args.keys.to_array();
+		for(var i = 0; i < ks.length; i++ ) {
+			var k = ks[i];
 			var v = obj_args.get(k);
-			this.addLine(this.ipad + "\t" + k + ": " + v + (i == (obj_args.keys.size-1) ? "" : ","));
+			this.addLine(this.ipad + "\t" + k + ": " + v + (i == (ks.length-1) ? "" : ","));
 		}
 		this.addLine(this.ipad + ");");
 
