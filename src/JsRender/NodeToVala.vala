@@ -28,7 +28,7 @@ public class JsRender.NodeToVala : NodeWriter {
 	string cls;  // node fqn()
 	string xcls;
 	
-	Gee.ArrayList<string> ignoreList;
+
 	Gee.ArrayList<string> ignoreWrappedList; 
 	Gee.ArrayList<string> myvars;
 
