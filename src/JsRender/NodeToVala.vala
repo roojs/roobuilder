@@ -120,12 +120,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				continue;
 				
 			}
-			if (n.xvala_id[0] == '*') {
+			if (n.xvala_id[0] == '*' || n.xvala_id[0] == '+') {
 				continue;
 			}
-			if (n.xvala_id[0] == '+') {
-				continue;
-			}
+			 
 			this.addLine(this.pad + "public " + n.xvala_xcls + " " + n.xvala_id + ";");
 			
 		}
