@@ -50,8 +50,8 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 
 		this.addTopProperties(); /// properties set with 'id'
 		this.addMyVars(); // user defined properties.
-
-		this.addPlusProperties();
+		
+ 		// skip '+' properties?? not sure where they are used.
 		this.addValaCtor();
 		this.addUnderThis();
 		this.addWrappedCtor();  // var this.el = new XXXXX()

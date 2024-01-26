@@ -61,7 +61,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.addSingleton();
 		this.addTopProperties();
 		this.addMyVars();
-		this.addPlusProperties(); 
+		this.addPlusProperties(); // (this is child properties whos 'id' starts with '+' ??? not sure..
 		this.addValaCtor();
 		this.addUnderThis();
 		this.addWrappedCtor();  // var this.el = new XXXXX()

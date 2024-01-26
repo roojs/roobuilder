@@ -153,7 +153,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 			// Key = TYPE:name
 		foreach(var prop in this.node.props.values) {
-
+		   
 			if (this.shouldIgnore(prop.name)) {
 				continue;
 			}
