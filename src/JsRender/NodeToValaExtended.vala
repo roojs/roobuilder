@@ -138,25 +138,26 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		// now we can skip ctor arguments if we have actually set them?
 		string[] args  = {};
 		if (default_ctor.paramset != null &&  default_ctor.paramset.params.size > 0)  {
-		foreach(var param in default_ctor.paramset.params) {
-				 
-			var n = param.name;
-		    GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
-		    // not sure if it's even worth warning on this...
-			if (n == "___") { // for some reason our varargs are converted to '___' ...
-				continue;
-			}
-			if (this.node.has(n)) {
-			 	continue;
-			}
-			var propnode = this.node.findProp(n);
-			if (propnode != null) {
-				continue;
-			}
-			// finally 	
-			args += (param.type + " " + n);
-			  
+			foreach(var param in default_ctor.paramset.params) {
+					 
+				var n = param.name;
+				GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
+				// not sure if it's even worth warning on this...
+				if (n == "___") { // for some reason our varargs are converted to '___' ...
+					continue;
+				}
+				if (this.node.has(n)) {
+				 	continue;
+				}
+				var propnode = this.node.findProp(n);
+				if (propnode != null) {
+					continue;
+				}
+				// finally 	
+				args += (param.type + " " + n);
+				  
 
+			}
 		}
 		// create the ctor method
 		
@@ -170,11 +171,13 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		} else {
 			var top = this.top as NodeToVala;
 			var tcls = top == null ? "???" : top.xcls;
+			args += (tcls + " _owner" );
 				// for sub classes = we passs the top level as _owner
 			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
-			this.addLine(this.pad + "{");
+			 
 		}
-		 
+		this.addUnderThis();
+		
 		
 	 	 
 		// .vala props.. 
