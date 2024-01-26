@@ -223,8 +223,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	/**
 	 * add the constructor definition..
 	 */
-	protected abstract void addValaCtor();
-	 
+ 	protected abstract void addValaCtor();
 	/**
 	 *  make sure _this is defined..
 	 */
