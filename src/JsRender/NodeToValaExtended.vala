@@ -9,12 +9,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 	 
 	 
 	 
-	Gee.ArrayList<string> ignoreList;
-	Gee.ArrayList<string> ignoreWrappedList; 
-	Gee.ArrayList<string> myvars;
-
-	  
-	int pane_number = 0;// ??
+  s
 	
 	/* 
 	 * ctor - just initializes things
