@@ -4,7 +4,7 @@ This coverts nodes to vala code (but unlike the original) does it by extending t
 
 */
 
-public class  JsRender.NodeToValaExtended : NodeWriter {
+public class  JsRender.NodeToValaExtended : NodeToVala {
 
 	 
 	 
