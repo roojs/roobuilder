@@ -48,46 +48,24 @@ public class JsRender.NodeToVala : NodeWriter {
 
 		base (file, node, depth, parent);
 	 
-		if (file.name.contains(".")) { // namespaced..
-			this.inpad = string.nfill(depth > 0 ? 2 : 1, '\t');
-		} else {
-			this.inpad = string.nfill(depth > 0 ? 1 : 0, '\t');
-		}
-		this.pad = this.inpad + "\t";
+		this.initPadding('\t', 1);
 		
-		this.node.node_pad = this.inpad;
-		
-
-
-		this.ipad = this.inpad + "\t\t";
 		this.cls = node.xvala_cls;
 		this.xcls = node.xvala_xcls;
 		if (depth == 0 && this.xcls.contains(".")) {
 			var ar = this.xcls.split(".");
 			this.xcls = ar[ar.length-1];
 		}
-		
-		
+		 
 		this.ret = "";
-		this.cur_line = parent == null ? 0 : parent.cur_line;
-		
-		
-		this.top = parent == null ? this : parent.top;
+
+		 
+
 		this.ignoreList = new Gee.ArrayList<string>();
 		this.ignoreWrappedList  = new Gee.ArrayList<string>();
 		this.myvars = new Gee.ArrayList<string>();
 
-		this.file = file;
 		
-		// initialize line data..
-		node.line_start = this.cur_line;
-		node.line_end  = this.cur_line;
-		node.lines = new Gee.ArrayList<int>();
-		node.line_map = new Gee.HashMap<int,string>();
-		if (parent == null) {
-			node.node_lines = new Gee.ArrayList<int>();
-			node.node_lines_map = new Gee.HashMap<int,Node>();
-		 }
 		
 	}
  
@@ -112,7 +90,7 @@ public class JsRender.NodeToVala : NodeWriter {
 
 	}
 	int child_count = 1; // used to number the children.
-	public string munge ( )
+	public override string munge ( )
 	{
 		//return this.mungeToString(this.node);
 		this.child_count = 1;
