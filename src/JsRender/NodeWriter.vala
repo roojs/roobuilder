@@ -27,13 +27,13 @@ namespace JsRender {
 			this.node = node;
 			this.depth = depth;
 			if (parent == null) {
-				this.vcnt = 0;
+				this.var_name_count = 0;
 			}
 			this.top_level_items = new Gee.ArrayList<Node>();
 		
 		}
 		
-		int vcnt = 0;
+		int var_name_count = 0; // was vcnt
 
 		string toValaNS(Node item)
 		{
@@ -42,7 +42,7 @@ namespace JsRender {
 		
 		public void  toValaName(Node item, int depth =0) 
 		{
-			this.vcnt++;
+			this.var_name_count++;
 
 			var ns =  this.toValaNS(item) ;
 			var cls = ns + item.get("xtype");
@@ -50,7 +50,7 @@ namespace JsRender {
 			item.xvala_cls = cls;
 			
 			string id = item.get("id").length > 0 ?
-				item.get("id") :  "%s%d".printf(item.get("xtype"), this.vcnt);
+				item.get("id") :  "%s%d".printf(item.get("xtype"), this.var_name_count);
 
 			
 			
