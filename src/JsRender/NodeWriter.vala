@@ -162,7 +162,7 @@ namespace JsRender {
 			return string.joinv("\n" + pad , ar);
 		}
 		static void ignoreGlobal(string i) {
-			this.globalIgnoreList.add(i);
+			globalIgnoreList.add(i);
 			
 		}
 		
@@ -173,7 +173,7 @@ namespace JsRender {
 		
 		bool shouldIgnore(string i)
 		{
-			return ignoreList.contains(i);
+			return globalIgnoreList.contains(i) || ignoreList.contains(i);
 		}
 		
 		
