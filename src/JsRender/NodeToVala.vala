@@ -520,7 +520,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			
 	}
 	 
-	void addInitMyVars()
+	protected void addInitMyVars()
 	{
 			//var meths = this.palete.getPropertiesFor(item['|xns'] + '.' + item.xtype, 'methods');
 			//print(JSON.stringify(meths,null,4));Seed.quit();
@@ -563,7 +563,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 
 	
-	void addWrappedProperties()
+	protected void addWrappedProperties()
 	{
 		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (cls == null) {
