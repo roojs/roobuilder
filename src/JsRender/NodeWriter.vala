@@ -57,6 +57,8 @@ namespace JsRender {
 				node.node_lines = new Gee.ArrayList<int>();
 				node.node_lines_map = new Gee.HashMap<int,Node>();
 			 }
+			 
+	 		this.ignoreList = new Gee.ArrayList<string>();
 			
 		}
 		
