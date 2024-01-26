@@ -169,7 +169,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				continue;
 			}
 			// finally 	
-			args += param.type + " " + n;
+			args += (param.type + " " + n);
 			  
 
 		}
