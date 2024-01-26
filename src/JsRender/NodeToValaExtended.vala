@@ -216,9 +216,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				if (!propnode.has("id")) {
 					this.addLine(this.ipad + pname +".ref();"); 
 				}
-				
-				
-				
+				 
 				this.ignoreWrapped(n); //??? not sure why we dont ignore it as well. 
 				 
 				continue;
