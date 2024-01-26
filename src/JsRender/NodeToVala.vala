@@ -67,15 +67,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		this.ignoreWrappedList  = new Gee.ArrayList<string>();
 		this.myvars = new Gee.ArrayList<string>();
 		this.child_count = 1;
-		
-		
+		 
 	}
-
-	/**
-	 *  Main entry point to convert a file into a string..
-	 */
-	
-	public abstract static string mungeFile(JsRender file);
+ 
 	 
 	public abstract  string mungeChild(  Node cnode);
 	
