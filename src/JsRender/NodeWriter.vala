@@ -25,7 +25,8 @@ namespace JsRender {
 		}
 	 
 	 	string output;  // the result of outputing..
-
+		
+		Gee.ArrayList<string> ignoreList;
 		static 	Gee.ArrayList<string> globalIgnoreList; 
 		static construct {
 			globalIgnoreList = new Gee.ArrayList<string>();
