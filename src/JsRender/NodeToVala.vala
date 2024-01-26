@@ -628,7 +628,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 * - this allows you to define children and add them manually..
 	 */
 
-	void addChildren()
+	protected  void addChildren()
 	{
 				//code
 		if (this.node.readItems().size < 1) {
@@ -697,7 +697,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		}
 	}
 	
-	string addPropSet(Node child, string child_name) 
+	protected string addPropSet(Node child, string child_name) 
 	{
 	 
 		
@@ -736,7 +736,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	
 
 	
-	void packChild(Node child, string childname, int cols, int colpos, string propname= "")
+	protected void packChild(Node child, string childname, int cols, int colpos, string propname= "")
 	{
 		
 		GLib.debug("packChild %s=>%s", this.node.fqn(), child.fqn());
