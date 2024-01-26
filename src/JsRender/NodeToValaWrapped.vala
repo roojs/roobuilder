@@ -30,13 +30,17 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	{
 		base (file, node, depth, parent);
 	}
-	public override static string mungeFile(JsRender file) 
+	
+	/**
+	 *  Main entry point to convert a file into a string..
+	 */
+	public static string mungeFile(JsRender file) 
 	{
 		if (file.tree == null) {
 			return "";
 		}
 
-		var n = new NodeToValaWrapped(file, file.tree, 0, null);
+		 var n = new NodeToValaWrapped(file, file.tree, 0, null);
 		 n.toValaName(file.tree);
 		
 		
@@ -50,7 +54,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	public override string munge ( )
 	{
 		//return this.mungeToString(this.node);
-		this.child_count = 1;
+		
 	
 		
 		this.namespaceHeader();
