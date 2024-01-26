@@ -8,9 +8,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 
 	 
 	 
-	 
-  s
-	
+ 
 	/* 
 	 * ctor - just initializes things
 	 * - wraps a render node 
