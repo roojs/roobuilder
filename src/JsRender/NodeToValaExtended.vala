@@ -109,37 +109,34 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 	 * this probably has to match the parent constructor.. 
 	 **?? NO SUPPORT FOR * ARGS?
 	 ** for child elements we have to add '_owner to the ctor arguments.
+	 for most elements we have to call object ( a: a, b: b)  if the parent requires properties..
+	 eg. like Gtk.Box
 	 
 	 
 	 */
+	 
 	protected override void addValaCtor()
 	{
 			
 		
-		// .vala props.. 
 		
- 
-		var cargs_str = "";
-		// ctor..
-		this.addLine();
-		this.addLine(this.pad + "// ctor");
-		
-		 
-	
-		if (this.depth < 1) {
-		 
-			// top level - does not pass the top level element..
-			this.addLine(this.pad + "public " + this.xcls + "(" +  cargs_str +")");
-			this.addLine(this.pad + "{");
-		} else {
-			if (cargs_str.length > 0) {
-				cargs_str = ", " + cargs_str;
-			}
-			// for sub classes = we passs the top level as _owner
-			this.addLine(this.pad + "public " + this.xcls + "(" +  (this.top as NodeToVala).xcls + " _owner " + cargs_str + ")");
-			this.addLine(this.pad + "{");
+		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		if (ncls == null || ncls.nodetype != "Class") { 
+			this.addLine(this.ipad + "** classname is invalid - can not make ctor "  + this.node.fqn());
+			return;
 		}
+		var ctor = ".new";
+		var default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);		
 		
-
-	}
+		if (default_ctor == null) {
+			this.addLine(this.ipad + "** classname is invalid - can not find ctor "  + this.node.fqn() + ".new");
+			return;
+		}
+		// simple ctor...(will not need ctor params..
+		if (default_ctor.paramset == null || default_ctor.paramset.params.size < 1)  {
+			if (this.depth < 1) {
+			 
+				// top level - does not pass the top level element..
+				this.addLine(this.pad + "public " + 
+	
 }
