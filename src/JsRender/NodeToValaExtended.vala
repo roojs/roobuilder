@@ -25,7 +25,7 @@ public class  JsRender.NodeToValaExtended : NodeWriter {
 	 */
 	public NodeToValaExtended( JsRender file,  Node node,  int depth, NodeToValaExtended? parent) 
 	{
-	
+	 
 	}
 	
 	
