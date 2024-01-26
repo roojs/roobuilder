@@ -25,8 +25,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 	 
  	int child_count = 1; // used to number the children.
-	protected string cls;  // node fqn()
-	protected string xcls;
+	public string cls;  // node fqn()
+	public string xcls;
 	
 
 	Gee.ArrayList<string> ignoreWrappedList; 
@@ -95,34 +95,11 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		this.addLine("}");
 	
 	}
-	public void globalVars()
-	{
-		if (this.depth > 0) {
-			return;
-		}
-		// Global Vars..??? when did this get removed..?
-		//this.ret += this.inpad + "public static " + this.xcls + "  " + this.node.xvala_id+ ";\n\n";
-
-		this.addLine(this.inpad + "static " + this.xcls + "  _" + this.node.xvala_id+ ";");
-		this.addLine();
-		   
-	}
+	
 
 	protected abstract void classHeader();
 	 
-	protected void addSingleton() 
-	{
-		if (depth > 0) {
-			return;
-		}
-		this.addLine(pad + "public static " + xcls + " singleton()");
-		this.addLine(this.pad + "{");
-		this.addLine(this.ipad +    "if (_" + this.node.xvala_id  + " == null) {");
-		this.addLine(this.ipad +    "    _" + this.node.xvala_id + "= new "+ this.xcls + "();");  // what about args?
-		this.addLine(this.ipad +    "}");
-		this.addLine(this.ipad +    "return _" + this.node.xvala_id +";");
-		this.addLine(this.pad + "}");
-	}
+
 			
 	/**
 	 * when ID is used... on an element, it registeres a property on the top level...
