@@ -1120,14 +1120,17 @@ public class JsRender.NodeToVala : NodeWriter {
 		this.ignoreList.add(i);
 		
 	}
-	void ignoreWrapped(string i) {
-		this.ignoreWrappedList.add(i);
-		
-	}
+	
 	bool shouldIgnore(string i)
 	{
 		return ignoreList.contains(i);
 	}
+	
+	void ignoreWrapped(string i) {
+		this.ignoreWrappedList.add(i);
+		
+	}
+	
 	bool shouldIgnoreWrapped(string i)
 	{
 		return ignoreWrappedList.contains(i);
