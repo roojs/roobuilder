@@ -21,7 +21,7 @@
 */
 
  
-public class JsRender.NodeToVala : NodeWriter {
+public abstract class JsRender.NodeToVala : NodeWriter {
 
 	 
 	 
@@ -49,7 +49,7 @@ public class JsRender.NodeToVala : NodeWriter {
 	 * ctor - just initializes things
 	 * - wraps a render node 
 	 */
-	public NodeToVala( JsRender file,  Node node,  int depth, NodeToVala? parent) 
+	protected NodeToVala( JsRender file,  Node node,  int depth, NodeToVala? parent) 
 	{
 
 		base (file, node, depth, parent);
