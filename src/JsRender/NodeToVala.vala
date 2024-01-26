@@ -34,7 +34,7 @@ public class JsRender.NodeToVala : NodeWriter {
 	Gee.ArrayList<string> ignoreList;
 	Gee.ArrayList<string> ignoreWrappedList; 
 	Gee.ArrayList<string> myvars;
-	Gee.ArrayList<Node> vitems; // top level items
+
 	NodeToVala top;
 	 
 	int pane_number = 0;// ??
@@ -76,7 +76,7 @@ public class JsRender.NodeToVala : NodeWriter {
 		this.ignoreList = new Gee.ArrayList<string>();
 		this.ignoreWrappedList  = new Gee.ArrayList<string>();
 		this.myvars = new Gee.ArrayList<string>();
-		this.vitems = new Gee.ArrayList<Node>();
+
 		this.file = file;
 		
 		// initialize line data..
@@ -257,7 +257,7 @@ public class JsRender.NodeToVala : NodeWriter {
 		}
 		// properties - global..??
 
-		var iter = this.vitems.list_iterator();
+		var iter = this.top_level_items.list_iterator();
 		while(iter.next()) {
 			var n = iter.get();
 

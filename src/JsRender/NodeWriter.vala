@@ -29,6 +29,7 @@ namespace JsRender {
 			if (parent == null) {
 				this.vcnt = 0;
 			}
+			this.top_level_items = new Gee.ArrayList<Node>();
 		
 		}
 		
