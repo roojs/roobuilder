@@ -70,7 +70,11 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		 
 	}
  
-	 
+	public void initCls()
+	{
+		this.cls = this.file.tree.xvala_cls;
+		this.xcls = this.file.tree.xvala_xcls;
+	}
 	public abstract  string mungeChild(  Node cnode);
 	
 	 
