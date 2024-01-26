@@ -77,11 +77,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	
 	int child_count = 1; // used to number the children.
 	 
-	public string mungeChild(  Node cnode)
-	{
-		var x = new  NodeToVala(this.file, cnode,  this.depth+1, this);
-		return x.munge();
-	}
+	public abstract  string mungeChild(  Node cnode);
 	
 	 
 	public void namespaceHeader()
