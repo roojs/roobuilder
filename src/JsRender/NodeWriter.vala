@@ -13,7 +13,8 @@ namespace JsRender {
 		 
 	 	protected Gee.ArrayList<Node> top_level_items; // top level items (was vitems)
 		protected int cur_line;
-
+		protected NodeWriter top; 
+		
 		  
 
 		 
