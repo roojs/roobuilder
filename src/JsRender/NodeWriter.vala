@@ -58,7 +58,7 @@ namespace JsRender {
 		*/
 		
 		
-		public initPadding(char pad, int len) 
+		public void initPadding(char pad, int len) 
 		{
 		
 			var has_ns = this.file.xtype == "Gtk" &&  this.file.file_namespace.length > 0;
