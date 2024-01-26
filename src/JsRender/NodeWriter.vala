@@ -32,6 +32,7 @@ namespace JsRender {
 			}
 			this.top_level_items = new Gee.ArrayList<Node>();
 			this.cur_line = parent == null ? 0 : parent.cur_line;
+			this.top = parent == null ? this : parent.top;
 		}
 		
 		int var_name_count = 0; // was vcnt
