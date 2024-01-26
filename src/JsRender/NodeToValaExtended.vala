@@ -179,12 +179,16 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		this.addUnderThis(); // set up '_this = _owner or _this = this;
 		
 		// if there are no ctor args, then we do not need to call object // or create props.
-		
-	 	 
+		if (default_ctor.paramset == null ||  default_ctor.paramset.params.size < 1)  {
+	 	 	return;
+ 	 	}
 		// .vala props.. 
  		var obj_args = new Gee.HashMap<string,string>();
 	 	foreach(var param in default_ctor.paramset.params) {
-		
+			var n = param.name;
+			if (n == "___") { // for some reason our varargs are converted to '___' ...
+					continue;
+			}
 		 	if (this.node.has(n)) {  // node does not have a value
 				
 				this.ignoreWrapped(n);
