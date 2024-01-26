@@ -175,9 +175,8 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				if (v == "TRUE" || v == "FALSE") {
 					v = v.down();
 				}
-
-				
-				args += v;
+				obj_args.set(n, v);
+				 
 				continue;
 			}
 			var propnode = this.node.findProp(n);
@@ -185,6 +184,8 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				// assume it's ok..
 				
 				var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").val : "");
+				obj_args.set(n, pname);
+				 
 				args += (pname + ".el") ;
 				if (!propnode.has("id")) {
 					this.addLine(this.ipad + pname +".ref();"); 
@@ -193,7 +194,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				
 				
 				this.ignoreWrapped(n);
-				
+				this.ignore(n); // ???/
 				continue;
 			}
 				
