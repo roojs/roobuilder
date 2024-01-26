@@ -36,7 +36,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 
 	int pane_number = 0;// ?? used when generating Gtk.Pane tabs
 	
-	`
+	
 	static construct {
 		NodeWriter.globalIgnore("pack");
 		NodeWriter.globalIgnore("init");
