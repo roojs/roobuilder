@@ -46,7 +46,7 @@ public class JsRender.NodeToVala : NodeWriter {
 	public NodeToVala( JsRender file,  Node node,  int depth, NodeToVala? parent) 
 	{
 
-		base (file, node, depth);
+		base (file, node, depth, parent);
 	 
 		if (file.name.contains(".")) { // namespaced..
 			this.inpad = string.nfill(depth > 0 ? 2 : 1, '\t');
