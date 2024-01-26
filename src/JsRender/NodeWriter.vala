@@ -26,6 +26,10 @@ namespace JsRender {
 	 
 	 	string output;  // the result of outputing..
 
+		static 	Gee.ArrayList<string> globalIgnoreList; 
+		static construct {
+			globalIgnoreList = new Gee.ArrayList<string>();
+		}
 		 
 		/* 
 		 * ctor - just initializes things
