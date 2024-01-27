@@ -23,6 +23,7 @@
  
 public abstract class JsRender.NodeToVala : NodeWriter {
 
+	protected sting this_el;
 	 
  	int child_count = 1; // used to number the children.
 	public string cls;  // node fqn()
@@ -411,8 +412,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				
 				continue;
 			} 
-			 if (!child.has("id")) {
-				this.addLine(this.ipad + childname +".ref();"); 
+			 if (!child.has("id") && this_el == "this.el.") {
+				this.addLine(this.ipad +  childname +".ref();"); 
 			 } 
 			this.packChild(child, childname, cols, colpos);
 			
