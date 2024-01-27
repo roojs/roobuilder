@@ -1,6 +1,11 @@
 roobuilder (5.0.2) UNRELEASED; urgency=medium
 
-  [ Alan ]
+  * 
+
+ -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
+
+roobuilder (5.0.1) unstable; urgency=medium
+
   * switch to meson build
   * remove internal compiler - switch to call meson/ninja
   * language server support  (basic)
@@ -8,10 +13,7 @@ roobuilder (5.0.2) UNRELEASED; urgency=medium
   * errors from language server
   * icons indicating status of language server
 
-  [ Alan Knowles ]
-  * 
-
- -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:36 +0800
+ -- Alan <alan@roojs.com>  Wed, 24 Jan 2024 15:07:37 +0800
 
 roobuilder (5.0.0) unstable; urgency=medium
 

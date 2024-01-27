@@ -1,4 +1,4 @@
-roobuilder (5.0.1) UNRELEASED; urgency=medium
+roobuilder (5.0.1) unstable; urgency=medium
 
   * switch to meson build
   * remove internal compiler - switch to call meson/ninja
