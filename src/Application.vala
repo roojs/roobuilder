@@ -414,6 +414,8 @@
 						//GLib.FileUtils.get_contents(oldfn, out oldstr);
 										
 						var outstr = file.toSourceCode();
+						
+						/* line number checking
 						var bad = false;
 						// check line numbers:
 						var bits = outstr.split("\n");
@@ -431,14 +433,15 @@
 						if (bad) {
 							GLib.error("got bad file");
 						}
-						/*
+						*/
+						// compare files. 
 						if (outstr != oldstr) { 
 							
 							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
 							print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
 							//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 						}
-*.*						*/
+*.*						
 						//print("# Files match %s\n", file.name);
 					}		
 				} catch (FileError e) {
@@ -799,3 +802,4 @@ flutter-project  -  was try and read flutter data (but desnt work.)
  
 
  
+f
