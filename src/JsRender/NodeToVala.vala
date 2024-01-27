@@ -554,16 +554,18 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				if (child.has("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
 					var val = child.get_prop("text_column").val;
 					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"text\", $(val) );");
-					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"text\", %s );".printf(childname, child.get_prop("text_column").val));
 				}
 				if (child.has("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"pixbuf\", %s );".printf(childname, child.get_prop("pixbuf_column").val));
+					var val = child.get_prop("pixbuf_column").val;
+					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"pixbuf\", $(val) );");
 				}
 				if (child.has("pixbuf_column") && int.parse(child.get_prop("active_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"active\", %s );".printf(childname, child.get_prop("active_column").val));
+					var val = child.get_prop("active_column").val;
+					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"active\", $(val) );");
 				}
 				if (child.has("background_column") && int.parse(child.get_prop("background_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"background-rgba\", %s );".printf(childname, child.get_prop("background_column").val));
+				var val = child.get_prop("background_column").val;
+					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"background-rgba\", $(val) );");
 				}
 				this.addLine(this.ipad + "this.el.add( " + childname + ".el );");
 				// any more!?
@@ -575,7 +577,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 					if (child.has("* response_id")) { 
 						resp_id = int.parse(child.get_prop("* response_id").val);
 					}
-					this.addLine(this.ipad + "this.el.add_action_widget( %s.el, %d);".printf(childname,resp_id) );
+					this.addLine(@"$(ipad)$(this_el).add_action_widget( $(childname)$(el_name), $(resp_id) );");
+
 					return;
 				}
 			
@@ -589,7 +592,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	
 	
 	// known working with GTK4 !
-			case "Gtk.HeaderBar": // it could be end... - not sure how to hanle that other than overriding the pack method?
+			case "Gtk.HeaderBar": // it could be end... - not sure how to hanle that other than overriding					this.addLine(this.ipad + "this.el.add_action_widget( %s.el, %d);".printf(childname,resp_id) ); the pack method?
 				this.addLine(this.ipad + "this.el.pack_start( "+ childname + ".el );");
 				return;
 			
