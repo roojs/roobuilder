@@ -481,6 +481,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			return; // force no packing
 		}
 		var el_name = this.this_el == "this.el." ? ".el" : "";
+		var this_el = this.this_el;
 		// BC really - don't want to support this anymore.
 		if (child.has("* pack")) {
 			
@@ -527,7 +528,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
 				var title = child.has("stack_title") ?  child.get_prop("stack_title").val.escape()  : "";
 				if (title.length > 0) {
-					this.addLine(this.ipad + "this.el.add_titled( %s.el, \"%s\", \"%s\" );".printf(childname,named,title));	
+					this.addLine(@"$ipad$this_el.add_titled( %s.el, \"%s\", \"%s\" );".printf(childname,named,title));	
 				} else {
 					this.addLine(this.ipad + "this.el.add_named( %s.el, \"%s\" );".printf(childname,named));
 				}
