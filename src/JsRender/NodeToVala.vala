@@ -298,7 +298,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 
 	
-	protected  void addWrappedProperties(string this_el)
+	protected  void addWrappedProperties()
 	{
 		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (cls == null) {
@@ -346,7 +346,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			}
 			
 			prop.start_line = this.cur_line;
-			this.addLine("%s%s%s = %s;".printf(ipad,this_el,p,v)); // // %s,  iter.get_value().type);
+			this.addLine("%s%s%s = %s;".printf(ipad,this.this_el,p,v)); // // %s,  iter.get_value().type);
 			prop.end_line = this.cur_line;		
 			   // got a property..
 			   
@@ -360,7 +360,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 * - this allows you to define children and add them manually..
 	 */
 
-	protected  void addChildren(string this_el)
+	protected  void addChildren()
 	{
 				//code
 		if (this.node.readItems().size < 1) {
@@ -407,12 +407,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	
 				
 			  	this.ignoreWrapped(child.get_prop("* prop").val);
-				var el_name = this_el == "this.el." ? ".el" : "";
-				this.addLine(ipad + this_el + child.get_prop("* prop").val + " = " + childname + el_name +";");
+				var el_name = this.this_el == "this.el." ? ".el" : "";
+				this.addLine(ipad + this.this_el  + child.get_prop("* prop").val + " = " + childname + el_name +";");
 				
 				continue;
 			} 
-			 if (!child.has("id") && this_el == "this.el.") {
+			 if (!child.has("id") && this.this_el == "this.el.") {
 				this.addLine(this.ipad +  childname +".ref();"); 
 			 } 
 			this.packChild(child, childname, cols, colpos);
