@@ -135,8 +135,9 @@ namespace JsRender {
 				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
 
 			}
-		 
-			NodeToValaWrapped.mungeFile(this); // force line numbering..?? should we call toSourceCode???
+		 	this.gen_extended ? 
+		 		NodeToValaExtended.mungeFile(this) :
+				NodeToValaWrapped.mungeFile(this); // force line numbering..?? should we call toSourceCode???
 			this.loaded = true;
 		
 		}
