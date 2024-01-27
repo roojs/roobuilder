@@ -435,6 +435,7 @@
 						}
 						*/
 						// compare files. 
+						string oldstr;
 						GLib.FileUtils.get_contents(oldfn, out oldstr);
 						if (outstr != oldstr) { 
 							
