@@ -621,7 +621,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
 				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
 				var h = "1";
-				this.addLine(@"$(ipad)$(this_el)append_column( $(childname)$(el_name), $x, $y, $w, $h );");
+				this.addLine(@"$(ipad)$(this_el)attach( $(childname)$(el_name), $x, $y, $w, $h );");
 				return;
 			
 			default:
