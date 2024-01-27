@@ -187,7 +187,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	 * 
 	 */
 
-	protected void addWrappedCtor()
+	void addWrappedCtor()
 	{
 		// wrapped ctor..
 		// this may need to look up properties to fill in the arguments..
