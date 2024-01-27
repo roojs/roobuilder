@@ -528,10 +528,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
 				var title = child.has("stack_title") ?  child.get_prop("stack_title").val.escape()  : "";
 				if (title.length > 0) {
-					this.addLine(@"$(ipad)$(this_el).add_titled( $(childname)$(el_name), \"$(named)\", \"$(title)\" );");	
-				} else {
-					this.addLine(@"$(ipad)$(this_el).add_named( $(childname)$(el_name), \"$(named)\");");
-				}
+					this.addLine(@"$(ipad)$(this_el).add_titled( $(childname)$(el_name), \"$(named)\", \"$(title)\" );");
+					return;
+				} 
+				this.addLine(@"$(ipad)$(this_el).add_named( $(childname)$(el_name), \"$(named)\");");
 				return;
 				
 			case "Gtk.Notebook": // use label
