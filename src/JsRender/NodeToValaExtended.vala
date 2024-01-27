@@ -247,10 +247,8 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		this.addLine();
 		this.addLine(this.ipad + "// set gobject values (not done in  Object()");
 		
-
-		var iter = cls.props.map_iterator();
-		while (iter.next()) {
-			var p = iter.get_key();
+		foreach(var p in cls.props.keys) { 
+		 
 			//print("Check Write %s\n", p);
 			if (!this.node.has(p)) {
 				continue;
@@ -286,7 +284,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			}
 			
 			prop.start_line = this.cur_line;
-			this.addLine("%sthis.el.%s = %s;".printf(ipad,p,v)); // // %s,  iter.get_value().type);
+			this.addLine("%sthis.%s = %s;".printf(ipad,p,v)); // // %s,  iter.get_value().type);
 			prop.end_line = this.cur_line;		
 			   // got a property..
 			   
