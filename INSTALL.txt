@@ -4,8 +4,8 @@ apt-cache search '^valac-[0-9.]+$' | sort -n -r | head -n 1 | awk ' { print "sud
 apt-cache search '^valac-[0-9.]+-vapi$' | sort -n -r | head -n 1 | awk ' { print "sudo apt-get install -y " $1  }' | sh
 apt-cache search '^libvala-[0-9.]+-dev$' | sort -n -r | head -n1 | awk ' { print "sudo apt-get install -y " $1  }' | sh
 
- 
-apt-cache search '^libvte-[0-9.]+-dev$' | sort -n -r | head -n1 | awk ' { print "sudo apt-get install -y " $1  }' | sh
+#not needed currently
+#apt-cache search '^libvte-[0-9.]+-dev$' | sort -n -r | head -n1 | awk ' { print "sudo apt-get install -y " $1  }' | sh
 
 
 sudo  apt-get install libgtk-3-dev  libgtksourceview-3.0-dev libxml2-dev libjson-glib-dev libgee-dev \
@@ -13,18 +13,12 @@ sudo  apt-get install libgtk-3-dev  libgtksourceview-3.0-dev libxml2-dev libjson
 
 # not sure why we are not using 4 yet?
 
-sudo apt-get install libwebkit2gtk-3.0-dev
-sudo apt-get install libwebkit2gtk-4.0-dev
-sudo apt-get install  libclutter-gtk-1.0-dev libgladeui-dev libsoup2.4-dev \
-	libjavascriptcoregtk-3.0-dev
- 
-// test
-
-# this is needed due to a bug in the 2.20 version of javascript core
-sudo apt-get install libwebkit2gtk-4.0-dev=2.20.1-1 libwebkit2gtk-4.0-37=2.20.1-1 gir1.2-webkit2-4.0=2.20.1-1 \
-    libjavascriptcoregtk-4.0-dev=2.20.1-1 gir1.2-javascriptcoregtk-4.0=2.20.1-1 libjavascriptcoregtk-4.0-18=2.20.1-1
+sudo apt-get install libwebkit2gtk-6.0-dev
+sudo apt-get install  libsoup2.0-dev libjavascriptcoregtk-6.0-dev
+  
 
 
  
-./autogen.sh --prefix=/usr
-sudo make install
+meson setup build --prefix=/usr
+cd build
+ninja install
