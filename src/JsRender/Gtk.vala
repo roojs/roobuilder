@@ -159,7 +159,9 @@ namespace JsRender {
 		    	return this.last_source;
 	    	}
 	    	GLib.debug("toSource - generating");
-		    this.last_source =   NodeToValaWrapped.mungeFile(this);
+		    this.last_source =   	this.gen_extended ? 
+		 		NodeToValaExtended.mungeFile(this) :
+				NodeToValaWrapped.mungeFile(this);
 		    this.last_source_version = this.version;
 		    return this.last_source;
 		    
