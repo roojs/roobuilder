@@ -411,7 +411,7 @@
 						var oldfn = file.targetName();
 						
 						print("\n\n\n\nFile : %s\n", oldfn);
-						//GLib.FileUtils.get_contents(oldfn, out oldstr);
+						GLib.FileUtils.get_contents(oldfn, out oldstr);
 										
 						var outstr = file.toSourceCode();
 						
@@ -422,7 +422,7 @@
 						var end = bits.length;
 						for(var i = 0;i < end; i++) {
 							print("%i : %s\n", i+1 , bits[i]);
-							if (!bad && bits[i].has_prefix("/*") && !bits[i].has_prefix(("/*%d"*" +"/").printf(i+1))) {
+							if (!bad && bits[i].has_prefix("/*") && !bits[i].has_prefix(("/*%d*" +"/").printf(i+1))) {
 								end = i + 5 > bits.length ? bits.length: (i + 5);
 								print ("^^^^ mismatch\null");
 								bad = true;
