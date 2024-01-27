@@ -58,7 +58,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		this.addInitMyVars();
 		this.addWrappedProperties();
 		this.addChildren(); // to constructor code
-		
+		this.addSealedChildren();
 		//this.addAutoShow(); // not needed gtk4 autoshow menuitems
 		
 		this.addInit();
