@@ -528,7 +528,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
 				var title = child.has("stack_title") ?  child.get_prop("stack_title").val.escape()  : "";
 				if (title.length > 0) {
-					this.addLine(@"$ipad$this_el.add_titled( %s.el, \"%s\", \"%s\" );".printf(childname,named,title));	
+					this.addLine(@"$(ipad)$(this_el).add_titled( $(childname)$(el_name), \"$(named)\", \"$(title)\" );");	
 				} else {
 					this.addLine(this.ipad + "this.el.add_named( %s.el, \"%s\" );".printf(childname,named));
 				}
