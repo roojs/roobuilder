@@ -494,9 +494,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			this.addLine(this.ipad + this.this_el + pack.strip() + " ( " + childname + el_name + " " +
 				   (packing.length > 1 ? 
 						(", " + string.joinv(",", packing).substring(pack.length+1))
-					:`
-							""
-						) + " );");
+					: "" ) + " );");
 			return;  
 		}
 		var childcls =  this.file.project.palete.getClass(child.fqn()); // very trusting..
