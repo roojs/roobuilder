@@ -452,7 +452,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 	var cls =  child.xvala_xcls;
 	 	 
 	 	
-		this.addLine(@"$(this.ipad)$(prefix)new $cls( _this $xargs);" );
+		this.addLine(this.ipad + @"$(prefix)new $cls( _this $xargs);" );
 		 
 		// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
 		// remove '+' support as I cant remember what it does!!!
