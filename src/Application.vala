@@ -442,8 +442,7 @@
 							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
 							print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
 							GLib.Process.exit(Posix.EXIT_SUCCESS);		
-						}
-*.*						
+						}						
 						//print("# Files match %s\n", file.name);
 					}		
 				} catch (FileError e) {
