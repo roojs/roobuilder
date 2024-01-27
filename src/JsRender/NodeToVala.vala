@@ -297,7 +297,60 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 
 	
-	protected abstract void addWrappedProperties();
+	protected  void addWrappedProperties(string this_el)
+	{
+		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		if (cls == null) {
+			GLib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
+			return;
+		}
+			// what are the properties of this class???
+		this.addLine();
+		this.addLine(this.ipad + "// set gobject values (not done in  Object()");
+		
+		foreach(var p in cls.props.keys) { 
+		 
+			//print("Check Write %s\n", p);
+			if (!this.node.has(p)) {
+				continue;
+			}
+			if (this.shouldIgnoreWrapped(p)) {
+				continue;
+			}
+			
+			this.ignore(p);
+
+
+			var prop = this.node.get_prop(p);
+			var v = prop.val;
+			
+			// user defined properties.
+			if (prop.ptype == NodePropType.USER) {
+				continue;
+			}
+				
+
+			
+			var is_raw = prop.ptype == NodePropType.RAW;
+			
+			// what's the type.. - if it's a string.. then we quote it..
+			if (iter.get_value().type == "string" && !is_raw) {
+				 v = "\"" +  v.escape("") + "\"";
+			}
+			if (v == "TRUE" || v == "FALSE") {
+				v = v.down();
+			}
+			if (iter.get_value().type == "float" && v[v.length-1] != 'f') {
+				v += "f";
+			}
+			
+			prop.start_line = this.cur_line;
+			this.addLine("%s%s = %s;".printf(ipad,this_el,p,v)); // // %s,  iter.get_value().type);
+			prop.end_line = this.cur_line;		
+			   // got a property..
+			   
+
+		}
 	 
 	/**
 	 *  pack the children into the parent.
