@@ -615,6 +615,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				return;
 			
 			case "Gtk.ColumnView":
+					this.addLine(@"$(ipad)$(this_el).pack_end( $(childname)$(el_name) );");
 				this.addLine(this.ipad + "this.el.append_column( "+ childname + ".el );");
 				return;
 			
