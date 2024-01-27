@@ -493,7 +493,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			this.addLine(this.ipad + this.this_el + pack.strip() + " ( " + childname + el_name + " " +
 				   (packing.length > 1 ? 
 						(", " + string.joinv(",", packing).substring(pack.length+1))
-					:
+					:`
 							""
 						) + " );");
 			return;  
@@ -518,7 +518,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			case "Gtk.Layout":
 				var x = child.has("x") ?  child.get_prop("x").val  : "0";
 				var y = child.has("y") ?  child.get_prop("y").val  : "0";
-				this.addLine(this.ipad + "this.el.put( %s%s %s, %s );".printf(childname, el_name, x,y) );
+				this.addLine(this.ipad + "%s.put( %s%s %s, %s );".printf(this.this_el, childname, el_name, x,y) );
 				return;
 				
 			
