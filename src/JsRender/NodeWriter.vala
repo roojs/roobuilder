@@ -15,7 +15,7 @@ namespace JsRender {
 		protected int cur_line;
 		protected NodeWriter top; 
 		
-		protected string ret {
+		public string ret {
 			get {
 				return this.output;
 			}
