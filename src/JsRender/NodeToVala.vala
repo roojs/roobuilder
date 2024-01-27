@@ -23,7 +23,7 @@
  
 public abstract class JsRender.NodeToVala : NodeWriter {
 
-	protected string this_el;
+	protected string this_el = "??";
 	 
  	int child_count = 1; // used to number the children.
 	public string cls;  // node fqn()
