@@ -57,14 +57,15 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		 
 		this.addInitMyVars();
 		this.addWrappedProperties();
-		this.addChildren();
+		this.addChildren(); // to constructor code
+		
 		//this.addAutoShow(); // not needed gtk4 autoshow menuitems
 		
 		this.addInit();
 		this.addListeners();
 		this.addEndCtor();
 		this.addUserMethods();
-		this.iterChildren();
+		this.iterChildren(); // add children class definitions.
 		this.namespaceFooter();
 		
 		return this.ret;
@@ -173,6 +174,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			args += (tcls + " _owner" );
 				// for sub classes = we passs the top level as _owner
 			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner )");
+			this.addLine(this.pad + "{");	
 			 
 		}
 		this.addUnderThis(); // set up '_this = _owner or _this = this;
