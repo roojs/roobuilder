@@ -517,7 +517,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			case "Gtk.Layout":
 				var x = child.has("x") ?  child.get_prop("x").val  : "0";
 				var y = child.has("y") ?  child.get_prop("y").val  : "0";
-				this.addLine(@"$(ipad)$(this_el).put( $(childname)$(el_name), $(x), $(y) );");
+				this.addLine(@"$(ipad)$(this_el)put( $(childname)$(el_name), $(x), $(y) );");
 				return;
 				
 			
@@ -526,15 +526,15 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
 				var title = child.has("stack_title") ?  child.get_prop("stack_title").val.escape()  : "";
 				if (title.length > 0) {
-					this.addLine(@"$(ipad)$(this_el).add_titled( $(childname)$(el_name), \"$(named)\", \"$(title)\" );");
+					this.addLine(@"$(ipad)$(this_el)add_titled( $(childname)$(el_name), \"$(named)\", \"$(title)\" );");
 					return;
 				} 
-				this.addLine(@"$(ipad)$(this_el).add_named( $(childname)$(el_name), \"$(named)\");");
+				this.addLine(@"$(ipad)$(this_el)add_named( $(childname)$(el_name), \"$(named)\");");
 				return;
 				
 			case "Gtk.Notebook": // use label
 				var label = child.has("notebook_label") ?  child.get_prop("notebook_label").val.escape() : "";
-				this.addLine(@"$(ipad)$(this_el).append_page( $(childname)$(el_name), new Gtk.Label(\"$(label)\");");
+				this.addLine(@"$(ipad)$(this_el)append_page( $(childname)$(el_name), new Gtk.Label(\"$(label)\");");
 				
 				return;
 				
@@ -546,12 +546,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			case "Gtk.TreeViewColumn": //adding Renderers - I think these are all proprerties of the renderer used...
 				if (child.has("markup_column") && int.parse(child.get_prop("markup_column").val) > -1) {
 					var val = child.get_prop("markup_column").val;
-					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"markup\", $(val) );");
+					this.addLine(@"$(ipad)$(this_el)add_attribute( $(childname)$(el_name), \"markup\", $(val) );");
  
 				}
 				if (child.has("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
 					var val = child.get_prop("text_column").val;
-					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"text\", $(val) );");
+					this.addLine(@"$(ipad)$(this_el)add_attribute( $(childname)$(el_name), \"text\", $(val) );");
 				}
 				if (child.has("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").val) > -1) {
 					var val = child.get_prop("pixbuf_column").val;
@@ -568,7 +568,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				this.addLine(this.ipad + "this.el.add( " + childname + ".el );");
 				// any more!?
 				return;
-			
+		
 			case "Gtk.Dialog":
 				if (propname == "buttons[]") {
 					var resp_id = int.parse(childname.replace("child_", ""));
@@ -580,7 +580,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 					return;
 				}
 			
-				this.addLine(@"$(ipad)$(this_el).get_content_area().add( $(childname)$(el_name) );");
+				this.addLine(@"$(ipad)$$(this_el)get_content_area().add( $(childname)$(el_name) );");
 				return;
 
 		
@@ -590,21 +590,21 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	
 	// known working with GTK4 !
 			case "Gtk.HeaderBar": // it could be end... - not sure how to hanle that other than overriding					this.addLine(this.ipad + "this.el.add_action_widget( %s.el, %d);".printf(childname,resp_id) ); the pack method?
-				this.addLine(@"$(ipad)$(this_el).pack_start( $(childname)$(el_name) );");
+				this.addLine(@"$(ipad)$(this_el)pack_start( $(childname)$(el_name) );");
 				return;
 			
 			case "GLib.Menu":
-				this.addLine(@"$(ipad)$(this_el).append_item( $(childname)$(el_name) );");
+				this.addLine(@"$(ipad)$(this_el)append_item( $(childname)$(el_name) );");
 				return;	
 			
 			case "Gtk.Paned":
 				this.pane_number++;
 				switch(this.pane_number) {
 					case 1:
-						this.addLine(@"$(ipad)$(this_el).pack_start( $(childname)$(el_name) );");
+						this.addLine(@"$(ipad)$(this_el)pack_start( $(childname)$(el_name) );");
 						return;
 					case 2:	
-						this.addLine(@"$(ipad)$(this_el).pack_end( $(childname)$(el_name) );");
+						this.addLine(@"$(ipad)$(this_el)pack_end( $(childname)$(el_name) );");
 						return;
 					default:
 						// do nothing
@@ -613,7 +613,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				return;
 			
 			case "Gtk.ColumnView":
-				this.addLine(@"$(ipad)$(this_el).append_column( $(childname)$(el_name) );");
+				this.addLine(@"$(ipad)$(this_el)append_column( $(childname)$(el_name) );");
 				return;
 			
 			case "Gtk.Grid":
@@ -621,11 +621,11 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
 				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
 				var h = "1";
-				this.addLine(@"$(ipad)$(this_el).append_column( $(childname)$(el_name), $x, $y, $w, $h );");
+				this.addLine(@"$(ipad)$(this_el)append_column( $(childname)$(el_name), $x, $y, $w, $h );");
 				return;
 			
 			default:
-				this.addLine(@"$(ipad)$(this_el).append( $(childname)$(el_name) );");
+				this.addLine(@"$(ipad)$(this_el)append( $(childname)$(el_name) );");
 			    // gtk4 uses append!!!! - gtk3 - uses add..
 				return;
 		
