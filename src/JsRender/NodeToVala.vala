@@ -359,7 +359,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 * - this allows you to define children and add them manually..
 	 */
 
-	protected  void addChildren()
+	protected  void addChildren(string this_el)
 	{
 				//code
 		if (this.node.readItems().size < 1) {
@@ -406,8 +406,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	
 				
 			  	this.ignoreWrapped(child.get_prop("* prop").val);
+				var el_name = this_el == "this.el." ? ".el" : "";
+				this.addLine(ipad + this_el + child.get_prop("* prop").val + " = " + childname + el_name +";");
 				
-				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = " + childname + ".el;");
 				continue;
 			} 
 			 if (!child.has("id")) {
