@@ -547,7 +547,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			
 			case "Gtk.TreeViewColumn": //adding Renderers - I think these are all proprerties of the renderer used...
 				if (child.has("markup_column") && int.parse(child.get_prop("markup_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute( %s.el, \"markup\", %s );".printf(childname, child.get_prop("markup_column").val));
+					var val = child.get_prop("markup_column").val;
+					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"markup\", $(val) );");
+ 
 				}
 				if (child.has("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
 					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"text\", %s );".printf(childname, child.get_prop("text_column").val));
