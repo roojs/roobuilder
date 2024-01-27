@@ -71,7 +71,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.addWrappedCtor();  // var this.el = new XXXXX()
 
 		this.addInitMyVars();
-		this.addWrappedProperties("this.el.");
+		this.addWrappedProperties();
 		this.addChildren();
 		//this.addAutoShow(); // not needed gtk4 autoshow menuitems
 		
