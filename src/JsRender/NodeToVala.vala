@@ -480,7 +480,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		if (child.has("* pack") && child.get("* pack").down() == "true") {
 			return; // force no packing
 		}
-		
+		var el_name = this.this_el == "this.el." ? ".el" : "";
 		// BC really - don't want to support this anymore.
 		if (child.has("* pack")) {
 			
@@ -490,7 +490,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			}
 			
 			var pack = packing[0];
-			this.addLine(this.ipad + "this.el." + pack.strip() + " ( " + childname + ".el " +
+			this.addLine(this.ipad + this.this_el + pack.strip() + " ( " + childname + el_name + " " +
 				   (packing.length > 1 ? 
 						(", " + string.joinv(",", packing).substring(pack.length+1))
 					:
@@ -505,7 +505,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		// GTK4
 		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
 		if (is_event) {
-		    this.addLine(this.ipad + "this.el.add_controller(  %s.el );".printf(childname) );
+		    this.addLine(this.ipad + this.this_el + "add_controller(  %s.el );".printf(childname) );
 		    return;
 		}
 		
@@ -518,7 +518,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			case "Gtk.Layout":
 				var x = child.has("x") ?  child.get_prop("x").val  : "0";
 				var y = child.has("y") ?  child.get_prop("y").val  : "0";
-				this.addLine(this.ipad + "this.el.put( %s.el, %s, %s );".printf(childname,x,y) );
+				this.addLine(this.ipad + "this.el.put( %s%s %s, %s );".printf(childname, el_name, x,y) );
 				return;
 				
 			
