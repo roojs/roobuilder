@@ -450,7 +450,13 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	 		prefix = "var " + childname + " = ";
  		}
 	 	var cls =  child.xvala_xcls;
-	 	 
+	 	if (this.this_el == "this.") {
+	 		var clsdata = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+	 		if (clsdata.is_sealed) {
+	 			cls = this.node.fqn();
+ 			}
+		}
+	 	
 	 	
 		this.addLine(this.ipad + @"$(prefix)new $cls( _this $xargs);" );
 		 
