@@ -615,8 +615,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				return;
 			
 			case "Gtk.ColumnView":
-					this.addLine(@"$(ipad)$(this_el).pack_end( $(childname)$(el_name) );");
-				this.addLine(this.ipad + "this.el.append_column( "+ childname + ".el );");
+				this.addLine(@"$(ipad)$(this_el).append_column( $(childname)$(el_name) );");
 				return;
 			
 			case "Gtk.Grid":
@@ -624,12 +623,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
 				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
 				var h = "1";
-				this.addLine(this.ipad + "this.el.attach( %s.el, %s, %s, %s, %s );".printf(childname ,x,y, w, h) );
+				this.addLine(@"$(ipad)$(this_el).append_column( $(childname)$(el_name), $x, $y, $w, $h );");
 				return;
 			
 			default:
+				this.addLine(@"$(ipad)$(this_el).append( $(childname)$(el_name) );");
 			    // gtk4 uses append!!!! - gtk3 - uses add..
-				this.addLine(this.ipad + "this.el.append( "+ childname + ".el );");
 				return;
 		
 		
