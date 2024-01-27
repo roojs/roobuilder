@@ -236,7 +236,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 
 	}
 	
-	protected overide void addWrappedProperties()
+	protected override void addWrappedProperties()
 	{
 		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (cls == null) {
