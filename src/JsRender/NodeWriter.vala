@@ -145,11 +145,13 @@ namespace JsRender {
 				this.addMultiLine(str);
 				return;
 			}
+				GLib.debug(str);
 			this.cur_line++;
 			if (BuilderApplication.opt_bjs_compile != null) {
 				this.output += "/*%d*/ ".printf(this.cur_line) + str + "\n";
 			} else {
 				this.output += str + "\n";
+		
 			}
 		}
 		protected void addMultiLine(string str= "")
@@ -157,6 +159,7 @@ namespace JsRender {
 			 
 			this.cur_line += str.split("\n").length;
 			//this.ret +=  "/*%d*/ ".printf(l) + str + "\n";
+			GLib.debug(str);
 			this.output +=   str + "\n";
 		}
 		protected string padMultiline(string pad, string str)
