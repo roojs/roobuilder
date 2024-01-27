@@ -530,7 +530,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				if (title.length > 0) {
 					this.addLine(@"$(ipad)$(this_el).add_titled( $(childname)$(el_name), \"$(named)\", \"$(title)\" );");	
 				} else {
-					this.addLine(this.ipad + "this.el.add_named( %s.el, \"%s\" );".printf(childname,named));
+					this.addLine(@"$(ipad)$(this_el).add_named( $(childname)$(el_name), \"$(named)\");");
 				}
 				return;
 				
