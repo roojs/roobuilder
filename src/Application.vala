@@ -411,7 +411,7 @@
 						var oldfn = file.targetName();
 						
 						print("\n\n\n\nFile : %s\n", oldfn);
-						GLib.FileUtils.get_contents(oldfn, out oldstr);
+						
 										
 						var outstr = file.toSourceCode();
 						
@@ -435,6 +435,7 @@
 						}
 						*/
 						// compare files. 
+						GLib.FileUtils.get_contents(oldfn, out oldstr);
 						if (outstr != oldstr) { 
 							
 							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
