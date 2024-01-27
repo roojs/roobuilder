@@ -9,7 +9,7 @@ Changlog
 ---
 Debian and Ubuntu packages
 
-  https://www.dropbox.com/sh/sgy9kvzkbaowa92/AAC_Yt3KWzFx8t451BiJLqQ7a?dl=0
+  https://github.com/roojs/roobuilder/releases
   
   * you will need libvala, roojspacker and a few other packages 
 
@@ -28,11 +28,12 @@ Building it
     
   c) configure it.
   
-    ./autogen.sh --prefix=/usr
+    meson setup build --prefix=/usr
     
   d) make make install
   
-    sudo make install
+    cd build
+    ninja install
     
   e) run it
 
@@ -44,6 +45,7 @@ Notes on updating packaging..
 
 Update Package details.
     Edit the about version (check debian/changelog)
+    dch -U -i (auto increases release..)
     dch -v {release version}
 
 Build it..
