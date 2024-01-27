@@ -592,21 +592,21 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	
 	// known working with GTK4 !
 			case "Gtk.HeaderBar": // it could be end... - not sure how to hanle that other than overriding					this.addLine(this.ipad + "this.el.add_action_widget( %s.el, %d);".printf(childname,resp_id) ); the pack method?
-				this.addLine(this.ipad + "this.el.pack_start( "+ childname + ".el );");
+				this.addLine(@"$(ipad)$(this_el).pack_start( $(childname)$(el_name) );");
 				return;
 			
 			case "GLib.Menu":
-				this.addLine(this.ipad + "this.el.append_item( "+ childname + ".el );");
+				this.addLine(@"$(ipad)$(this_el).append_item( $(childname)$(el_name) );");
 				return;	
 			
 			case "Gtk.Paned":
 				this.pane_number++;
 				switch(this.pane_number) {
 					case 1:
-						this.addLine(this.ipad + "this.el.pack_start( %s.el );".printf(childname));
+						this.addLine(@"$(ipad)$(this_el).pack_start( $(childname)$(el_name) );");
 						return;
-					case 2:					
-						this.addLine(this.ipad + "this.el.pack_end( %s.el );".printf(childname));
+					case 2:	
+						this.addLine(@"$(ipad)$(this_el).pack_end( $(childname)$(el_name) );");
 						return;
 					default:
 						// do nothing
