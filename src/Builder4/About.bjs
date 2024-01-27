@@ -1,6 +1,6 @@
 {
  "build_module" : "builder",
- "gen_extended" : true,
+ "gen_extended" : false,
  "items" : [
   {
    "$ authors" : "{ \"Alan Knowles\" }",

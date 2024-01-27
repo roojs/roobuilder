@@ -36,6 +36,7 @@ namespace Palete {
 		public bool is_writable = true;
 		public bool is_readable = true;
 		public bool is_abstract = false;
+		public bool is_sealed = false;
 		public  string parent;
 		public  string value;
 		// to be filled in...

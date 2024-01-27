@@ -411,16 +411,18 @@
 						var oldfn = file.targetName();
 						
 						print("\n\n\n\nFile : %s\n", oldfn);
-						//GLib.FileUtils.get_contents(oldfn, out oldstr);
+						
 										
 						var outstr = file.toSourceCode();
+						
+						/* line number checking
 						var bad = false;
 						// check line numbers:
 						var bits = outstr.split("\n");
 						var end = bits.length;
 						for(var i = 0;i < end; i++) {
 							print("%i : %s\n", i+1 , bits[i]);
-							if (!bad && bits[i].has_prefix("/*") && !bits[i].has_prefix("/*%d*/".printf(i+1))) {
+							if (!bad && bits[i].has_prefix("/*") && !bits[i].has_prefix(("/*%d*" +"/").printf(i+1))) {
 								end = i + 5 > bits.length ? bits.length: (i + 5);
 								print ("^^^^ mismatch\null");
 								bad = true;
@@ -431,14 +433,16 @@
 						if (bad) {
 							GLib.error("got bad file");
 						}
-						/*
+						*/
+						// compare files. 
+						string oldstr;
+						GLib.FileUtils.get_contents(oldfn, out oldstr);
 						if (outstr != oldstr) { 
 							
 							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
 							print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
 							//GLib.Process.exit(Posix.EXIT_SUCCESS);		
-						}
-*.*						*/
+						}						
 						//print("# Files match %s\n", file.name);
 					}		
 				} catch (FileError e) {
@@ -797,5 +801,4 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 
  
-
  

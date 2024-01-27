@@ -184,6 +184,7 @@ namespace Palete {
 			c.parent = cls.base_class == null ? "" : cls.base_class.get_full_name() ;  // extends...
 			c.gparent = parent;
 			c.is_abstract = cls.is_abstract;
+			c.is_sealed = cls.is_sealed;
 			foreach(var p in cls.get_properties()) {
 				this.add_property(c, p);
 			}

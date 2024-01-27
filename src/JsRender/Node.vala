@@ -99,9 +99,9 @@ public class JsRender.Node : GLib.Object {
 	private Gee.ArrayList<Node> items; // child items..
 	public GLib.ListStore  childstore; // must be kept in sync with items
 	public GLib.ListStore?  propstore; // must be kept in sync with items
-	public string  xvala_cls;
-	public string xvala_xcls; // 'Xcls_' + id;
-	public string xvala_id; // item id or ""
+	public string  xvala_cls; // set by node to vala
+	public string xvala_xcls; // 'Xcls_' + id; // set by nodetoVala
+	public string xvala_id; // item id or "" // set by nodetovala
 	
 	// line markers..
 	public int line_start;

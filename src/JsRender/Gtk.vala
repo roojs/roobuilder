@@ -135,7 +135,9 @@ namespace JsRender {
 				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
 
 			}
-			NodeToVala.mungeFile(this); // force line numbering..
+		 	this.gen_extended ? 
+		 		NodeToValaExtended.mungeFile(this) :
+				NodeToValaWrapped.mungeFile(this); // force line numbering..?? should we call toSourceCode???
 			this.loaded = true;
 		
 		}
@@ -156,8 +158,11 @@ namespace JsRender {
 		    	GLib.debug("toSource - using Cache");
 		    	return this.last_source;
 	    	}
-	    	GLib.debug("toSource - generating");
-		    this.last_source =   NodeToVala.mungeFile(this);
+	    	GLib.debug("toSource - generating %s", this.gen_extended  ? "Extended": "Wrapped");
+	    	
+		    this.last_source =   	this.gen_extended ? 
+		 		NodeToValaExtended.mungeFile(this) :
+				NodeToValaWrapped.mungeFile(this);
 		    this.last_source_version = this.version;
 		    return this.last_source;
 		    
@@ -216,7 +221,7 @@ namespace JsRender {
 			var fn = this.targetName();
 			GLib.debug("WRITE :%s\n " , fn);
 			try {
-				this.writeFile(fn,  NodeToVala.mungeFile(this));
+				this.writeFile(fn, this.toSourceCode());
 	        } catch (GLib.Error e) {}
 	        
 	        

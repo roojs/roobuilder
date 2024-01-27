@@ -1,4 +1,16 @@
-roobuilder (5.0.1) UNRELEASED; urgency=medium
+roobuilder (5.0.2) UNRELEASED; urgency=medium
+
+  * support for extended writing of vala applications
+    Note that sealed classes causes issues, so generally it's not usable yet
+  * Move Node (drag with shift pressed)
+  * Changing property key now triggers save/language server
+  * Fixed sending wrong 'save' to language-server (caused LS to crash)
+  * Fixed Gtkview - uses toSource(), rather than file.get_contents()
+ 
+
+ -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
+
+roobuilder (5.0.1) unstable; urgency=medium
 
   * switch to meson build
   * remove internal compiler - switch to call meson/ninja
