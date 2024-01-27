@@ -145,7 +145,7 @@ namespace JsRender {
 				this.addMultiLine(str);
 				return;
 			}
-				GLib.debug(str);
+			//GLib.debug(str);
 			this.cur_line++;
 			//if (BuilderApplication.opt_bjs_compile != null) {
 			//	this.output += "/*%d*/ ".printf(this.cur_line) + str + "\n";
