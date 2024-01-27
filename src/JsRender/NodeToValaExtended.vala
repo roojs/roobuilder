@@ -16,7 +16,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 	public NodeToValaExtended( JsRender file,  Node node,  int depth, NodeToValaExtended? parent) 
 	{
 	 	base (file, node, depth, parent);
-	 
+ 		this.this_el = "this.";
 	}
 	/**
 	 *  Main entry point to convert a file into a string..
@@ -56,7 +56,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
  
 		 
 		this.addInitMyVars();
-		this.addWrappedProperties("this.");
+		this.addWrappedProperties();
 		this.addChildren();
 		//this.addAutoShow(); // not needed gtk4 autoshow menuitems
 		
