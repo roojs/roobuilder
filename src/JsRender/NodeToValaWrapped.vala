@@ -96,6 +96,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	{
 		var top = this.top as NodeToVala;
 		if (top == null) {
+			 
 			return;
 		}
 		// class header..
