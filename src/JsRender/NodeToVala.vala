@@ -552,6 +552,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
  
 				}
 				if (child.has("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
+					var val = child.get_prop("text_column").val;
+					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"text\", $(val) );");
 					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"text\", %s );".printf(childname, child.get_prop("text_column").val));
 				}
 				if (child.has("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").val) > -1) {
