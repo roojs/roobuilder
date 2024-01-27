@@ -679,7 +679,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			
 			prop.start_line = this.cur_line;
 			this.node.setLine(this.cur_line, "l", k);
-			this.addMultiLine(this.ipad + "this.el." + k + ".connect( " + 
+			this.addMultiLine(this.ipad + this.this_el + k + ".connect( " + 
 					this.padMultiline(this.ipad,v) +");"); 
 			prop.end_line = this.cur_line;
 		}
