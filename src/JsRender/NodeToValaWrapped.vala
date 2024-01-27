@@ -357,7 +357,6 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			
 	}
 	 
-		
-	}
+		 
 
 }
