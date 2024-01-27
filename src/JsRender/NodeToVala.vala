@@ -307,7 +307,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		}
 			// what are the properties of this class???
 		this.addLine();
-		this.addLine(this.ipad + "// set gobject values (not done in  Object()");
+		this.addLine(this.ipad + "// set gobject values");
 		
 		foreach(var p in cls.props.keys) { 
 		 	var val = cls.props.get(p);
