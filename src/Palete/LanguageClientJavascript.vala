@@ -17,9 +17,6 @@ namespace Palete {
 		}
 		 
 		 
-		
-		
-		 
 		public override void document_open (JsRender.JsRender file)  
 		{
 			this.file_contents.set(file.path, file.toSourceCode());
@@ -27,7 +24,7 @@ namespace Palete {
 			BuilderApplication.updateCompileResults();
 		
 		}
-		public override void document_save (JsRender.JsRender file)  
+		public override async void document_save (JsRender.JsRender file)  
 		{
 			
 			this.file_contents.set(file.path, file.toSourceCode());
@@ -35,15 +32,17 @@ namespace Palete {
 			Javascript.singleton().validate(file.toSourceCode(), file );
 			BuilderApplication.updateCompileResults();
 		}
- 		public override void document_change_force (JsRender.JsRender file, string contents )   {
+ 		public override async void document_change_force (JsRender.JsRender file, string contents )   {
 			this.file_contents.set(file.path, contents);
 			GLib.debug("set file %s : %d chars", file.path, this.file_contents.get(file.path).length);
 			Javascript.singleton().validate(contents, file );
 			BuilderApplication.updateCompileResults();
  		}
- 		public override void document_change (JsRender.JsRender file )    
+ 		public override  void document_change (JsRender.JsRender file )    
  		{
- 			this.document_change_force( file, file.toSourceCode());
+ 			this.document_change_force.begin( file, file.toSourceCode(), (obj, res) => {
+ 				this.document_change_force.end(res);
+ 			});;
  		}
 		public override void document_close (JsRender.JsRender file) {}
 		public override void exit () throws GLib.Error { }

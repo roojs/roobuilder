@@ -183,7 +183,9 @@ namespace JsRender {
 	
 	        this.saveVala();
 
-	        this.getLanguageServer().document_save(this);
+	        this.getLanguageServer().document_save.begin(this, (obj, res) => {
+	        	this.getLanguageServer().document_save.end(res);
+	        });
 	        BuilderApplication.showSpinner("spinner", "document save send");	        
 	    }
 		// ignore these calls.

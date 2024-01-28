@@ -80,10 +80,10 @@ namespace Palete {
  
 		
 		public abstract void document_open (JsRender.JsRender file) ; 
- 		public abstract void document_save (JsRender.JsRender file); 
+ 		public abstract async void document_save (JsRender.JsRender file); 
 		public abstract void document_close (JsRender.JsRender file);
- 		public abstract void document_change (JsRender.JsRender file );
- 		public abstract void document_change_force (JsRender.JsRender file, string contents );
+ 		public abstract  void document_change (JsRender.JsRender file );
+ 		public abstract async void document_change_force (JsRender.JsRender file, string contents );
 		public abstract void exit () throws GLib.Error;
  		public abstract async void shutdown () throws GLib.Error;
 		public abstract async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error;

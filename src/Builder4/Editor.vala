@@ -861,8 +861,9 @@ public class Editor : Object
 		        // assume it's gtk...
 		         var  oldcode =_this.file.toSource();
 		        _this.file.setSource(str);
-		        _this.file.getLanguageServer().document_change(_this.file);
 			    BuilderApplication.showSpinner("appointment soon","document change pending");
+		    	_this.file.getLanguageServer().document_change(_this.file);
+		
 		        _this.file.setSource(oldcode);
 		        
 				 

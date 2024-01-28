@@ -50,7 +50,9 @@ namespace Palete {
 				}
 				this.countdown--;
 				if (this.countdown < 0){
-					this.document_change_force(this.change_queue_file,  this.change_queue_file_source);
+					this.document_change_force.begin(this.change_queue_file,  this.change_queue_file_source, (o, res) => {
+						this.document_change_force.end(res);
+					});
 					this.change_queue_file = null;
 					   
 				}
@@ -309,14 +311,14 @@ namespace Palete {
 
  		}
  		
- 		public override  void document_save (JsRender.JsRender file)  
+ 		public override  async void document_save (JsRender.JsRender file)  
     	{
    			if (!this.isReady()) {
 				return;
 			}
 			// save only really flags the file on the server - to actually force a change update - we need to 
 			// flag it as changed.
-			this.document_change_force(file, file.toSource());
+			yield this.document_change_force(file, file.toSource());
 			
 			this.change_queue_file = null;
 			GLib.debug ("LS send save");
@@ -383,7 +385,9 @@ namespace Palete {
  		public override void document_change (JsRender.JsRender file )    
  		{
 			if (this.change_queue_file != null && this.change_queue_file.path != file.path) {
- 				this.document_change_force(this.change_queue_file, this.change_queue_file_source);
+				this.document_change_force.begin(this.change_queue_file, this.change_queue_file_source, (o, res) => {
+					this.document_change_force.end(res);
+				});
 			}
 			
 			this.countdown = 3;
@@ -394,7 +398,7 @@ namespace Palete {
  		}
     	
 
- 		public override void document_change_force (JsRender.JsRender file, string contents)  
+ 		public override async void document_change_force (JsRender.JsRender file, string contents)  
     	{
    			if (!this.isReady()) {
 				return;
@@ -410,7 +414,7 @@ namespace Palete {
 			node.set_array(ar);
 			this.log(LanguageClientAction.CHANGE, file.path);
 			 try {
-			  	this.jsonrpc_client.send_notification (
+			  	yield this.jsonrpc_client.send_notification_async (
 					"textDocument/didChange",
 					this.buildDict (  
 						textDocument : this.buildDict (    ///TextDocumentItem;

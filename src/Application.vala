@@ -535,7 +535,9 @@
 				// it's ready..
 				 
 				ls.document_open(file);
-				ls.document_save(file);
+				ls.document_save.begin( file, (o,res) => {
+					ls.document_save.end(res);
+				 });
 				
 				//ls.syntax.begin(file, (obj,res) => {
 				//	ls.syntax.end(res);
