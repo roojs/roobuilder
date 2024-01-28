@@ -277,8 +277,11 @@ public class Editor : Object
 			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
 			return;
 		}
+		
+		if (this.file_errors_count
 	 // basicaly check if there is no change, then we do not do any update..
-	 
+	 // we can do this by just using an error counter?
+	 // if that's changed then we will do an update, otherwise dont bother.
 		  
 		
 		var offset = 0;
@@ -288,23 +291,27 @@ public class Editor : Object
 		
 		if (_this.prop != null) {
 			// this still seems flaky...
-			
+			buf.remove_source_marks (start, end, null);
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
 			 
+		} else {
+			// no update...
+			if (this.last_error_counter == file.error_counter) {
+				return;
+			}
+		
 		}
-		 
-		for (var i = 0; i < ar.get_n_items();i++) {
-			var err = (Palete.CompileError) ar.get_item(i);
-			
+		foreach(var diag in ar) { 
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
-		    var eline = err.line - offset;
+		    var sline = diag.range.start_line - offset;
+		    var eline =  diag.range.end_line - offset;
 		    //GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
 		    //	err.line ,eline, offset);
 		    
 		    
-		    if (eline > tlines || eline < 0) {
+		    if (sline > tlines || sline < 0) {
 		        return;
 		    }
 		   
