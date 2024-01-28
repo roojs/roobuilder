@@ -615,7 +615,7 @@
            "xtype" : "Button",
            "| void setNotices" : [
             "",
-            "(GLib.ListStore nots, GLib.ListStore fe ) {",
+            "(GLib.ListStore nots, int ferrs ) {",
             "    ",
             "     if (nots.get_n_items() < 1 ) {",
             "    \tthis.el.hide();",
@@ -626,7 +626,7 @@
             "    }",
             "    ",
             "    this.el.show();",
-            "    this.el.label = \"%d/%d Depricated\".printf((int)fe.get_n_items(),(int)nots.get_n_items());",
+            "    this.el.label = \"%d/%d Depricated\".printf(ferrs,(int)nots.get_n_items());",
             "",
             "    ",
             " ",
