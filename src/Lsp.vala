@@ -165,6 +165,16 @@ namespace Lsp {
     }
 
     public class Diagnostic : Object {
+        
+        public Diagnostic.simple ( int line, int character, string message)
+        {
+        	this.message = message;
+        	this.severity = DiagnosticSeverity.Error;
+        	this.range =  new Range.simple(line, character );
+        	
+        	
+        
+        }
         /**
          * The range at which the message applies.
          */
