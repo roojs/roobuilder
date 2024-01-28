@@ -10,6 +10,7 @@
    "# Xcls_MainWindow window" : "null",
    "# bool dirty" : false,
    "# bool pos" : false,
+   "# int last_error_counter" : 0,
    "# int pos_root_x" : "",
    "# int pos_root_y" : "",
    "# string activeEditor" : "\"\"",

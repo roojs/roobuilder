@@ -32,6 +32,7 @@ public class Editor : Object
 	public bool dirty;
 	public int pos_root_y;
 	public bool pos;
+	public int last_error_counter;
 	public GtkSource.SearchContext searchcontext;
 	public int last_search_end;
 	public signal void save ();
@@ -50,6 +51,7 @@ public class Editor : Object
 		this.window = null;
 		this.dirty = false;
 		this.pos = false;
+		this.last_error_counter = 0;
 		this.searchcontext = null;
 		this.last_search_end = 0;
 		this.file = null;
