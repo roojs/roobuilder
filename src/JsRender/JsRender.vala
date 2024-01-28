@@ -745,16 +745,7 @@ namespace JsRender {
 			return this.project.getLanguageServer(this.language_id());
 		
 		}
-		public GLib.ListStore getErrors(string n)
-		{
-			var ls = this.errorsByType.get(n);
-			if (ls == null) {
-				ls = new GLib.ListStore(typeof(Palete.CompileError));
-				this.errorsByType.set(n, ls );
-			}
-			return ls;
-		}
-		
+		 
 		public void updateErrors(Gee.ArrayList<Lsp.Diagnostic> new_errors) 
 		{
 			var skip = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
