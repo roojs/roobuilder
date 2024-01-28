@@ -1140,7 +1140,7 @@
     "\t    //\terr.line ,eline, offset);",
     "\t    ",
     "\t    ",
-    "\t    if (sline > tlines || sline < 0) {",
+    "\t    if (eline > tlines || eline < 0) {",
     "\t        return;",
     "\t    }",
     "\t   ",

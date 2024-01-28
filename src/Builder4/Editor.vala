@@ -316,7 +316,7 @@ public class Editor : Object
 		    //	err.line ,eline, offset);
 		    
 		    
-		    if (sline > tlines || sline < 0) {
+		    if (eline > tlines || eline < 0) {
 		        return;
 		    }
 		   
