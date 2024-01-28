@@ -230,8 +230,12 @@ namespace Lsp {
         }
         public bool equals(Lsp.Diagnostic o) {
         	return this.range.equals(o.range) && this.severity == o.severity && this.message == o.message;
- 
         }
+        public string to_string()
+        {
+        	return "%s %s : %d".printf(this.category, this.source, (int) this.range.start.line);
+        }
+        
     }
 
     /**
