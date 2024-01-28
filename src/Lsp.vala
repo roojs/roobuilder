@@ -106,6 +106,16 @@ namespace Lsp {
     }
 
     public class Range : Object, Gee.Hashable<Range>, Gee.Comparable<Range> {
+        
+        public Range.simple(uint line, unit pos) {
+        	var p =  new Position () {
+                line = line
+                character = pos
+            };
+        	this.start = p;
+        	this.end = p;
+        	
+        }
         /**
          * The range's start position.
          */
