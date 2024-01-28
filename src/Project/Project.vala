@@ -1015,41 +1015,10 @@ namespace Project {
 			// we did not have the file..
 			var add = new Palete.CompileError.new_from_file(f, diag.category);
 			ls.append(add);
-			add.lines.append(ce);
+			add.lines.append(new_ce);
 			  
 		}
-		
-		public void updateErrorsforFile(JsRender.JsRender? f) 
-		{
-			if (f != null)  {
-				var n = this.updateErrorsByType(f, "WARN");
-				n += this.updateErrorsByType(f, "ERR");
-				n += this.updateErrorsByType(f, "DEPR");
-			}
-
-			BuilderApplication.updateCompileResults();
-			
-			
-		}
-		public int  updateErrorsByType(JsRender.JsRender f, string n) 
-		{
-			var ls = this.getErrors(n);
-			
-			// remove thie file from the list.	
-			for(var i =0; i < ls.get_n_items(); i++) {
-				var ce = ls.get_item(i) as Palete.CompileError;
-				if (ce.file.path == f.path) {
-					ls.remove(i);
-					break;
-				}
-			}
-			var add = new Palete.CompileError.new_from_file(f, n);
-			if (add.hasErrors()) {
-				ls.append(add);
-				return 1;
-			}
-			return 0;
-		}
+		 
 		public GLib.ListStore getErrors(string n)
 		{
 			var ls = this.errorsByType.get(n);
