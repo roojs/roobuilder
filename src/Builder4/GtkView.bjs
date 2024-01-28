@@ -32,6 +32,7 @@
    "bool hexpand" : true,
    "bool vexpand" : true,
    "id" : "GtkView",
+   "int last_error_counter" : 0,
    "int last_search_end" : 0,
    "items" : [
     {
@@ -1010,8 +1011,9 @@
     "\t",
     " ",
     "\t ",
-    "\tfor (var i = 0; i < ar.get_n_items();i++) {",
-    "\t\tvar err = (Palete.CompileError) ar.get_item(i);",
+    "\tbuf.remove_source_marks (start, end, null);",
+    "\tforeach(var diag in ar) { ",
+    "\t",
     "\t\t",
     "\t     Gtk.TextIter iter;",
     "//        print(\"get inter\\n\");",

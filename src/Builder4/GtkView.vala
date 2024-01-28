@@ -34,6 +34,7 @@ public class Xcls_GtkView : Object
 	public Gtk.CssProvider css;
 	public Xcls_MainWindow main_window;
 	public GtkSource.SearchContext searchcontext;
+	public int last_error_counter;
 	public int last_search_end;
 	public JsRender.JsRender file;
 
@@ -45,6 +46,7 @@ public class Xcls_GtkView : Object
 
 		// my vars (dec)
 		this.lastObj = null;
+		this.last_error_counter = 0;
 		this.last_search_end = 0;
 		this.file = null;
 
@@ -370,8 +372,9 @@ public class Xcls_GtkView : Object
 		
 	 
 		 
-		for (var i = 0; i < ar.get_n_items();i++) {
-			var err = (Palete.CompileError) ar.get_item(i);
+		buf.remove_source_marks (start, end, null);
+		foreach(var diag in ar) { 
+		
 			
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
