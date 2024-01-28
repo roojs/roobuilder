@@ -276,6 +276,7 @@ public class Editor : Object
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
 			buf.remove_source_marks (start, end, null);
+			this.last_error_counter = file.error_counter ;
 			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
 			return;
 		}
@@ -302,7 +303,7 @@ public class Editor : Object
 		} else {
 			// no update...
 			if (this.last_error_counter == file.error_counter) {
-				this.last_error_counter = file.error_counter ;
+			
 				return;
 			}
 		
