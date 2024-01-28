@@ -137,6 +137,9 @@ namespace Lsp {
         }
 
         public bool equal_to (Range other) { return this.to_string () == other.to_string (); }
+		public bool equals (Range o) {
+			return this.filename == o.filename && this.start == o.start && this.end == o.end;
+		}
 
         public int compare_to (Range other) {
             return start.compare_to (other.start);
@@ -158,6 +161,7 @@ namespace Lsp {
         public bool contains (Position pos) {
             return start.compare_to (pos) <= 0 && pos.compare_to (end) <= 0;
         }
+       
     }
 
     public class Diagnostic : Object {
@@ -203,6 +207,10 @@ namespace Lsp {
 	    	}
 	    	private set {}
 	    	
+        }
+        public bool equals(Lsp.Diagnostic o) {
+        	return this.range.equals(o.range) && this.severity == o.severity && this.message == o.message;
+ 
         }
     }
 
