@@ -1033,8 +1033,7 @@ namespace Project {
 					}
 				}
 			}
-				
-		
+
 		}
 		public GLib.ListStore getErrors(string n)
 		{
