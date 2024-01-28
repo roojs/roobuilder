@@ -516,7 +516,7 @@
            "string label" : "0 Errors",
            "xtype" : "Button",
            "| void setNotices" : [
-            "(GLib.ListStore nots, GLib.ListStore fe ) {",
+            "(GLib.ListStore nots, int ferrors ) {",
             "    BuilderApplication.showSpinner(\"\");",
             "     if (nots.get_n_items() < 1 ) {",
             "    \tthis.el.hide();",
@@ -527,7 +527,7 @@
             "    }",
             "    ",
             "    this.el.show();",
-            "    this.el.label = \"%d/%d Errors\".printf((int)fe.get_n_items(),(int)nots.get_n_items());",
+            "    this.el.label = \"%d/%d Errors\".printf(ferrors,(int)nots.get_n_items());",
             "",
             "    ",
             " ",
