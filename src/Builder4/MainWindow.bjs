@@ -869,7 +869,7 @@
     "\t\tthis.windowstate.project.getErrors(\"DEPR\"),",
     "\t\tthis.windowstate.file.getErrorsTotal(\"DEPR\")",
     "\t);",
-    " ",
+    "",
     "\t_this.statusbar_run.el.hide();",
     "",
     "\tif (pr.get_n_items() < 1) {",

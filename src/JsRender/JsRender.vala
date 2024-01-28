@@ -786,13 +786,14 @@ namespace JsRender {
 			 
 		}
 		 
-		public void removeError(Lsp.Diagnostic diag) {
-		
+		public void removeError(Lsp.Diagnostic diag) 
+		{
 			this.errors.remove(diag);
 			this.project.removeError(this, diag);
 			this.error_counter++;
 		}
-		public int getErrorsTotal(string category) {
+		public int getErrorsTotal(string category) 
+		{
 			var  ret = 0;
 			foreach(var diag in this.errors) {
 				if (diag.category == category) {

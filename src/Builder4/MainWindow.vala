@@ -122,7 +122,7 @@ public class Xcls_MainWindow : Object
 			this.windowstate.project.getErrors("DEPR"),
 			this.windowstate.file.getErrorsTotal("DEPR")
 		);
-	 
+	
 		_this.statusbar_run.el.hide();
 	
 		if (pr.get_n_items() < 1) {
