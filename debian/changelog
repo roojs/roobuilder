@@ -6,7 +6,8 @@ roobuilder (5.0.2) UNRELEASED; urgency=medium
   * Changing property key now triggers save/language server
   * Fixed sending wrong 'save' to language-server (caused LS to crash)
   * Fixed Gtkview - uses toSource(), rather than file.get_contents()
- 
+  * Fixed updating of errors (should only update changed error mark or tree item))
+  
 
  -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
 
