@@ -792,7 +792,17 @@ namespace JsRender {
 			this.project.removeError(this, diag);
 			this.error_counter++;
 		}
+		public int getErrorsTotal(string category) {
+			var  ret = 0;
+			foreach(var diag in this.errors) {
+				if (diag.category == category) {
+					ret++;
+				}
+			}
+			return ret;
+			
 		
+		}
 		
 		
 		public abstract string language_id();
