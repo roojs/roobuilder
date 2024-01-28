@@ -84,6 +84,7 @@ public class Xcls_GtkView : Object
 	        if (file.tree == null) {
 	            return;
 	        }
+	        this.last_error_counter = -1;
 	        this.notebook.el.page = 0;// gtk preview 
 	   
 	  
