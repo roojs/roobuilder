@@ -107,7 +107,7 @@ namespace Lsp {
 
     public class Range : Object, Gee.Hashable<Range>, Gee.Comparable<Range> {
         
-        public Range.simple(uint line, unit pos) {
+        public Range.simple(uint line, uint pos) {
         	var p =  new Position () {
                 line = line
                 character = pos
