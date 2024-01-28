@@ -1001,7 +1001,7 @@ namespace Project {
 		// called from file..
 		public void addError(JsRender.JsRender f, Lsp.Diagnostic diag)
 		{
-			var new_ce = new Palete.CompileError.new_from_diagnostic(this, diag);
+			var new_ce = new Palete.CompileError.new_from_diagnostic(f, diag);
 			var ls = this.getErrors(ce.category); // will create if necessary..
 			// find the file in the list store.
 			GLib.ListStore? file_ce = 0;
@@ -1015,9 +1015,7 @@ namespace Project {
 			// we did not have the file..
 			var add = new Palete.CompileError.new_from_file(f, diag.category);
 			add.lines.append(ce);
-			
-			
-			
+			 
 		
 		}
 		
