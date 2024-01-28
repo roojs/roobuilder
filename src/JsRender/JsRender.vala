@@ -769,12 +769,14 @@ namespace JsRender {
 					continue;
 				}
 				this.addError(err);
-	
+			}
 			if (oc != this.error_counter) {
 				BuilderApplication.updateCompileResults();
 			}
 			
 		}
+		
+		
 		
 		public Gee.ArrayList<Lsp.Diagnostic> getErrors()
 		{
