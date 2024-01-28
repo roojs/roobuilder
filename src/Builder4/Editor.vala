@@ -793,6 +793,7 @@ public class Editor : Object
 		    _this.dirty = false;
 		    this.el.grab_focus();
 		    _this.save_button.el.sensitive = false;
+		    _this.last_error_counter = -1;
 		}
 	}
 	public class Xcls_buffer : Object

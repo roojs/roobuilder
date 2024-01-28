@@ -633,6 +633,7 @@
         "    _this.dirty = false;",
         "    this.el.grab_focus();",
         "    _this.save_button.el.sensitive = false;",
+        "    _this.last_error_counter = -1;",
         "}"
        ]
       }
