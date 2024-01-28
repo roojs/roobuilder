@@ -379,24 +379,22 @@ public class Xcls_GtkView : Object
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
 		    var eline = err.line + 1;
-		    GLib.debug("GOT ERROR on line %d -- converted to %d ",
-		    	err.line ,eline);
-		    
 		    
 		    if (eline > tlines || eline < 0) {
 		        return;
 		    }
 		   
 		    
-		    buf.get_iter_at_line( out iter, eline);
+		     buf.get_iter_at_line_offset( out iter, eline, (int)diag.range.start.character);
 		   
 		   
-			var msg = "Line: %d %s : %s".printf(eline+1, err.category, err.msg);
-		    buf.create_source_mark( msg, err.category, iter);
+		   
+			var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
+		    buf.create_source_mark( msg, diag.category, iter);
 		    GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
-		return ;
+		this.last_error_counter = file.error_counter ;
 	
 	
 	
