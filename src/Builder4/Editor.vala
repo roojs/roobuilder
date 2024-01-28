@@ -287,7 +287,7 @@ public class Editor : Object
 		  
 		
 		var offset = 0;
-		 
+		var hoffset = 0;
 	
 		var tlines = buf.get_line_count () +1;
 		
@@ -296,6 +296,8 @@ public class Editor : Object
 	
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
+			hoffset = _this.node.node_pad.length;
+			
 			 
 		} else {
 			// no update...
@@ -308,8 +310,8 @@ public class Editor : Object
 		foreach(var diag in ar) { 
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
-		    var sline = diag.range.start_line - offset;
-		    var eline =  diag.range.end_line - offset;
+		    var sline = diag.range.start.line - offset;
+		    //var eline =  diag.range.end_line - offset;
 		    //GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
 		    //	err.line ,eline, offset);
 		    
@@ -319,11 +321,11 @@ public class Editor : Object
 		    }
 		   
 		    
-		    buf.get_iter_at_line( out iter, eline);
+		    buf.get_iter_at_line_offset( out iter, eline, diag.range.start.offset - hoffset);
 		   
 		   
-			var msg = "Line: %d %s : %s".printf(eline+1, err.category, err.msg);
-		    buf.create_source_mark( msg, err.category, iter);
+			var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
+		    buf.create_source_mark( diag.message, diag.category, iter);
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
