@@ -998,6 +998,29 @@ namespace Project {
 			return ret;
 		}
 		
+		// called from file..
+		public void addError(JsRender.JsRender f, Lsp.Diagnostic diag)
+		{
+			var new_ce = new Palete.CompileError.new_from_diagnostic(this, diag);
+			var ls = this.getErrors(ce.category); // will create if necessary..
+			// find the file in the list store.
+			GLib.ListStore? file_ce = 0;
+			for(var i =0; i < ls.get_n_items(); i++) {
+				var ce = ls.get_item(i) as Palete.CompileError;
+				if (ce.file.path == f.path) {
+					ce.lines.append(new_ce);
+					return;
+				} 
+			}
+			// we did not have the file..
+			var add = new Palete.CompileError.new_from_file(f, diag.category);
+			add.lines.append(ce);
+			
+			
+			
+		
+		}
+		
 		public void updateErrorsforFile(JsRender.JsRender? f) 
 		{
 			if (f != null)  {
