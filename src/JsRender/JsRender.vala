@@ -750,6 +750,7 @@ namespace JsRender {
 		 
 		public void updateErrors(Gee.ArrayList<Lsp.Diagnostic> new_errors) 
 		{
+			var oc = this.error_counter;
 			var skip = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
 			var rem = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
 			foreach(var old in this.errors) {
@@ -768,6 +769,9 @@ namespace JsRender {
 					continue;
 				}
 				this.addError(err);
+	
+			if (oc == this.error_counter) {
+				BuilderApplication.realUpdateCompileResults();
 			}
 			
 		}
