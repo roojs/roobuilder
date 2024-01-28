@@ -79,50 +79,7 @@ namespace Palete {
 	 	public bool hasErrors() {
 	 		return this.lines.get_n_items() > 0;
  		}
-	 	
-	 	public void updateFileDiagnostics(JsRender.JsRender file, Gee.ArrayList<Lsp.Diagnostics> new_errors)
-	 	{
-	 		// get the file.
-	 		// remove all the diagnostics that are not in new set.
-	 		// add any new ones.
-	 		foreach(var cat in file.errorsByType.keys) {
-	 			foreach(var celist in file.errorsByType.get(cat)) {
-	 				this.removeFromList(old_celist, new_errors);
-	 			}
- 			} 
-	 	}
-	 	public void removeFromList(GLib.ListStore old_errors, Gee.ArrayList<Lsp.Diagnostics> new_errors) 
-	 	{
-	 		var existing_errors = new Gee.ArrayList<Lsp.Diagnostics> ();
-	 		var i = old_errors.get_n_items();
-	 		while(i > -1) {
-	 			i--;
-	 			var ce = old_errors.get_item(i) as CompileError;
-	 			var match_diag  = ce.isDiagIn(new_errors);
-	 			if (match_diag != null) {
-	 				// error has not gone.
-	 				// do not need to add it..
-	 				existing_errors.add(match_diag);
-	 				continue;
- 				}
- 				old_errors.remove(i);
-			}
-			
-			
-			
-	 	}
-	 	public Lsp.Diagnostics? isDiagIn( Gee.ArrayList<Lsp.Diagnostics> new_errors)
-	 	{
-	 		for(var new_diag in new_errors) {
-	 			if (this.diag.match(new_diag)) {
-	 				return new_diag;
- 				}
-			}
-			return null;
-	 		
-	 		
-	 	
-	 	}
+	 	 
 	 
 		
 	}
