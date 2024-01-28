@@ -1018,7 +1018,24 @@ namespace Project {
 			add.lines.append(new_ce);
 			  
 		}
-		 
+		public void removeError(JsRender.JsRender f, Lsp.Diagnostic diag)
+		{
+			var ls = this.getErrors(new_ce.category);
+			for(var i =0; i < ls.get_n_items(); i++) {
+				var ce = ls.get_item(i) as Palete.CompileError;
+				if (ce.file.path != f.path) {
+					continue;
+				}
+				for(var j =0; j < ce.lines.get_n_items(); j++) {
+					if (diag.equals( (cd.lines.get_item(j) as Palete.CompileError).diag)) {
+						ce.lines.remove(j);
+						return;
+					}
+				}
+			}
+				
+		
+		}
 		public GLib.ListStore getErrors(string n)
 		{
 			var ls = this.errorsByType.get(n);
