@@ -91,7 +91,7 @@ public class Xcls_GtkView : Object
 	       this.file = file;     
 	        this.sourceview.loadFile();
 	        this.searchcontext = null;
-	        
+	        this.last_error_counter = -1;
 	
 	        if (this.lastObj != null) {
 	            this.container.el.remove(this.lastObj);
