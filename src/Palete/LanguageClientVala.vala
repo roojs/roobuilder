@@ -335,7 +335,7 @@ namespace Palete {
 			
 			 
 			 
-				  this.jsonrpc_client.send_notification  (
+				  yield this.jsonrpc_client.send_notification_async  (
 					"textDocument/didSave",
 					args,
 					null 
