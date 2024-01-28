@@ -1090,6 +1090,13 @@ namespace Lsp {
 
 	public class Diagnostics : Object, Json.Serializable 
 	{
+		public Diagnostics()
+		{
+			this.diagnostics = new Gee.ArrayList<Diagnostic>((a,b) => {
+				return a.equals(b);
+			});
+		}
+		
 		public string uri { get; set; }
 
 		public int version  { get; set; default = 0; }
