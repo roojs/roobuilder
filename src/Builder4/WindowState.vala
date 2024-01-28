@@ -167,7 +167,7 @@ public class WindowState : Object
 	}
 	void updateErrorMarks(string cat) 
 	{
-		this.code_editor_tab.updateErrorMarks(cat);
+		this.code_editor_tab.updateErrorMarks();
 		switch(this.file.xtype) {
 			case  "Roo":
 				this.window_rooview.updateErrorMarks(cat);// foce scroll.
