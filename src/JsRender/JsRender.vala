@@ -780,6 +780,8 @@ namespace JsRender {
 		private void addError(Lsp.Diagnostic diag)
 		{
 			this.errors.add(diag);
+			this.project.addError(this, diag);
+			
 			this.error_counter++;
 			 
 		}
@@ -787,6 +789,7 @@ namespace JsRender {
 		public void removeError(Lsp.Diagnostic diag) {
 		
 			this.errors.remove(diag);
+			this.project.removeError(this, diag);
 			this.error_counter++;
 		}
 		
