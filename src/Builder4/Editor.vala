@@ -310,7 +310,7 @@ public class Editor : Object
 		foreach(var diag in ar) { 
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
-		    var sline = diag.range.start.line - offset;
+		    var eline = diag.range.start.line - offset;
 		    //var eline =  diag.range.end_line - offset;
 		    //GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
 		    //	err.line ,eline, offset);
