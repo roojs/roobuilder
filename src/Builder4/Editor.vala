@@ -321,7 +321,7 @@ public class Editor : Object
 		    }
 		   
 		    
-		    buf.get_iter_at_line_offset( out iter, eline, diag.range.start.offset - hoffset);
+		    buf.get_iter_at_line_offset( out iter, eline, diag.range.start.character - hoffset);
 		   
 		   
 			var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
