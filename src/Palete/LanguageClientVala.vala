@@ -262,7 +262,7 @@ namespace Palete {
 			var f = this.project.getByPath(dg.filename);
 			if (f == null) {
 				//GLib.debug("no file %s", dg.uri);
-				this.project.updateErrorsforFile(null);
+				//this.project.updateErrorsforFile(null);
 				return;
 			}
 			foreach(var v in f.errorsByType.values) {
