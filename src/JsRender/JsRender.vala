@@ -779,6 +779,8 @@ namespace JsRender {
 		
 		private void addError(Lsp.Diagnostic diag)
 		{
+			
+			GLib.debug("ADD Error %s", diag.to_string());
 			this.errors.add(diag);
 			this.project.addError(this, diag);
 			
@@ -788,6 +790,7 @@ namespace JsRender {
 		 
 		public void removeError(Lsp.Diagnostic diag) 
 		{
+			GLib.debug("REMOVE Error %s", diag.to_string());
 			this.errors.remove(diag);
 			this.project.removeError(this, diag);
 			this.error_counter++;
