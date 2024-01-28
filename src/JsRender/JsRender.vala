@@ -116,7 +116,7 @@ namespace JsRender {
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
 		public	Gee.HashMap<string,string> namedStrings;
-		public	Gee.HashMap<string, GLib.ListStore> errorsByType;
+		//public	Gee.HashMap<string, GLib.ListStore> errorsByType;
 		private Gee.ArrayList<Lsp.Diagnostic> errors;
 		
 
@@ -191,7 +191,7 @@ namespace JsRender {
 
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
-			this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
+			//this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
 			this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return (a.equals(b); }); 
 			
 
@@ -782,7 +782,8 @@ namespace JsRender {
 		private void addError(Lsp.Diagnostic diag)
 		{
 			this.errors.add(diag);
-			
+			var ce = new Palete.CompileError.new_from_diagnostic(this, diag);
+			 
 		}
 		 
 		public void removeError(Lsp.Diagnostic diag) {
