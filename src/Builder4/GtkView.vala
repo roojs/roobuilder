@@ -368,14 +368,14 @@ public class Xcls_GtkView : Object
 			
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
-		    var eline = (int)diag.range.start.line + 1;
+		    var eline = (int)diag.range.start.line ;
 		    
 		    if (eline > tlines || eline < 0) {
 		        return;
 		    }
 		   
 		    
-		     buf.get_iter_at_line_offset( out iter, eline, (int)diag.range.start.character);
+		    buf.get_iter_at_line( out iter, eline);
 		   
 		   
 		   
