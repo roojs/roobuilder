@@ -761,7 +761,7 @@ namespace JsRender {
 			var rem = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
 			foreach(var old in this.errors) {
 				if (new_errors.contains(old)) {
-					skip.add(err);
+					skip.add(old);
 					continue;
 				}
 				rem.add(old);
