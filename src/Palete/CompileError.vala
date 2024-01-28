@@ -52,11 +52,11 @@ namespace Palete {
 			
 		}
 		
-		public CompileError.new_from_file(JsRender.JsRender file, string category) 
+		public CompileError.new_from_file(JsRender.JsRender file, string category, GLib.ListStore lines) 
 		{
 			this.file = file;
 			this.category = category;
-			this.lines = file.getErrors(category);
+			this.lines = lines;
 			this.title =  file.relpath + " (" + lines.get_n_items().to_string() + ")";
 		}
  
