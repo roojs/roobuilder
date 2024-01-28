@@ -192,7 +192,7 @@ namespace JsRender {
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
 			//this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
-			this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return (a.equals(b); }); 
+			this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); }); 
 			
 
 
@@ -782,7 +782,7 @@ namespace JsRender {
 		private void addError(Lsp.Diagnostic diag)
 		{
 			this.errors.add(diag);
-			var ce = new Palete.CompileError.new_from_diagnostic(this, diag);
+
 			 
 		}
 		 
