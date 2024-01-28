@@ -242,7 +242,7 @@ public class Xcls_WindowRooView : Object
 	    
 	     
 	}
-	public void updateErrorMarks (string category) {
+	public void updateErrorMarks () {
 		
 	 
 	
@@ -251,7 +251,7 @@ public class Xcls_WindowRooView : Object
 		Gtk.TextIter end;     
 		buf.get_bounds (out start, out end);
 	
-		buf.remove_source_marks (start, end, category);
+	
 	 
 		GLib.debug("highlight errors");		 
 	
@@ -265,46 +265,48 @@ public class Xcls_WindowRooView : Object
 			return;
 	
 		}
-		var ar = this.file.getErrors(category);
-		if (ar == null || ar.get_n_items() < 1) {
-			GLib.debug("higjlight %s has no errors", category);
+		var ar = this.file.getErrors();
+		if (ar.size < 1) {
+			buf.remove_source_marks (start, end, null);
+			this.last_error_counter = file.error_counter ;
+			GLib.debug("higjlight has no errors");
 			return;
 		}
-	 
+	 	if (this.last_error_counter == file.error_counter) {
+			return;
+		}
+		
 	
 	 
-		
-		var offset = 0;
 		 
 	
 		var tlines = buf.get_line_count () +1;
 		
 	 
 		 
-		for (var i = 0; i < ar.get_n_items();i++) {
-			var err = (Palete.CompileError) ar.get_item(i);
+		buf.remove_source_marks (start, end, null);
+		foreach(var diag in ar) { 
+		
 			
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
-		    var eline = err.line - offset;
-		    GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
-		    	err.line ,eline, offset);
-		    
+		    var eline = (int)diag.range.start.line + 1;
 		    
 		    if (eline > tlines || eline < 0) {
 		        return;
 		    }
 		   
 		    
-		    buf.get_iter_at_line( out iter, eline);
+		     buf.get_iter_at_line_offset( out iter, eline, (int)diag.range.start.character);
 		   
 		   
-			var msg = "Line: %d %s : %s".printf(eline+1, err.category, err.msg);
-		    buf.create_source_mark( msg, err.category, iter);
+		   
+			var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
+		    buf.create_source_mark( msg, diag.category, iter);
 		    GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
-		return ;
+		this.last_error_counter = file.error_counter ;
 	
 	
 	
