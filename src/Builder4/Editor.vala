@@ -325,7 +325,7 @@ public class Editor : Object
 		   
 		   
 			var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
-		    buf.create_source_mark( diag.message, diag.category, iter);
+		    buf.create_source_mark( msg, diag.category, iter);
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}

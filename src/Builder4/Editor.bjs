@@ -1149,7 +1149,7 @@
     "\t   ",
     "\t   ",
     "\t\tvar msg = \"Line: %d %s : %s\".printf(eline+1, diag.category, diag.message);",
-    "\t    buf.create_source_mark( diag.message, diag.category, iter);",
+    "\t    buf.create_source_mark( msg, diag.category, iter);",
     "\t   // GLib.debug(\"set line %d to %s\", eline, msg);",
     "\t    //this.marks.set(eline, msg);",
     "\t}",
