@@ -240,7 +240,7 @@ public class Editor : Object
 	   
 	
 	}
-	public void updateErrorMarks (string category) {
+	public void updateErrorMarks () {
 		
 	 
 	
@@ -249,7 +249,8 @@ public class Editor : Object
 		Gtk.TextIter end;     
 		buf.get_bounds (out start, out end);
 	
-		buf.remove_source_marks (start, end, category);
+		
+	
 	 
 		//GLib.debug("highlight errors");		 
 	
@@ -270,14 +271,15 @@ public class Editor : Object
 			return;
 	
 		}
-		var ar = this.file.getErrors(category);
-		if (ar == null || ar.get_n_items() < 1) {
+		var ar = this.file.getErrors();
+		if (ar.size < 1) {
+			buf.remove_source_marks (start, end, null);
 			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
 			return;
 		}
+	 // basicaly check if there is no change, then we do not do any update..
 	 
-	
-	 
+		  
 		
 		var offset = 0;
 		 
