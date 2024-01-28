@@ -12,6 +12,7 @@
    "bool hexpand" : true,
    "bool vexpand" : true,
    "id" : "WindowRooView",
+   "int last_error_counter" : 0,
    "int last_search_end" : 0,
    "items" : [
     {

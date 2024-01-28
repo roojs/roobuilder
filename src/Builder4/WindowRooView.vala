@@ -35,6 +35,7 @@ public class Xcls_WindowRooView : Object
 		// my vars (def)
 	public Gtk.Widget lastObj;
 	public Xcls_MainWindow main_window;
+	public int last_error_counter;
 	public int last_search_end;
 	public GtkSource.SearchContext searchcontext;
 	public JsRender.JsRender file;
@@ -47,6 +48,7 @@ public class Xcls_WindowRooView : Object
 
 		// my vars (dec)
 		this.lastObj = null;
+		this.last_error_counter = 0;
 		this.last_search_end = 0;
 		this.file = null;
 
