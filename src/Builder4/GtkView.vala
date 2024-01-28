@@ -328,7 +328,7 @@ public class Xcls_GtkView : Object
 	    
 	     
 	}
-	public void updateErrorMarks (string category) {
+	public void updateErrorMarks () {
 		
 	 
 	
@@ -337,7 +337,7 @@ public class Xcls_GtkView : Object
 		Gtk.TextIter end;     
 		buf.get_bounds (out start, out end);
 	
-		buf.remove_source_marks (start, end, category);
+	
 	 
 		GLib.debug("highlight errors");		 
 	
@@ -351,9 +351,10 @@ public class Xcls_GtkView : Object
 			return;
 	
 		}
-		var ar = this.file.getErrors(category);
-		if (ar == null || ar.get_n_items() < 1) {
-			GLib.debug("higjlight %s has no errors", category);
+		var ar = this.file.getErrors();
+		if (ar.size < 1) {
+			buf.remove_source_marks (start, end, null);
+			GLib.debug("higjlight has no errors");
 			return;
 		}
 	 
