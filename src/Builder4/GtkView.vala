@@ -378,7 +378,7 @@ public class Xcls_GtkView : Object
 			
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
-		    var eline = err.line + 1;
+		    var eline = (int)diag.range.start.line + 1;
 		    
 		    if (eline > tlines || eline < 0) {
 		        return;
