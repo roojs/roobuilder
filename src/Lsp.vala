@@ -1131,11 +1131,12 @@ namespace Lsp {
 		
 		public bool deserialize_property (string property_name, out GLib.Value val, GLib.ParamSpec pspec, Json.Node property_node) {
 			if (property_name == "diagnostics") {
+                val = GLib.Value (GLib.Type.BOXED);
  				var diags =  new Gee.ArrayList<Diagnostic> ((a,b) => {
 					return a.equals(b);
 				});
 				if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-					val = diags;
+					val.set_boxed(diags);
 					warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 					return false;
 				}
@@ -1149,7 +1150,7 @@ namespace Lsp {
 						//warning ("argument %u to command could not be deserialized: %s", index, e.message);
 					 
 				});
-				val = diags;
+				val.set_boxed(diags);
 				 
 				return true;
 			}   
