@@ -770,7 +770,7 @@ namespace JsRender {
 				}
 				this.addError(err);
 	
-			if (oc == this.error_counter) {
+			if (oc != this.error_counter) {
 				BuilderApplication.realUpdateCompileResults();
 			}
 			
