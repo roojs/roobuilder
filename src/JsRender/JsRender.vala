@@ -755,19 +755,36 @@ namespace JsRender {
 			return ls;
 		}
 		
-		public updateErrors(Gee.ArrayList<Lsp.Diagnostic> new_errors) {
-		
-		
+		public updateErrors(Gee.ArrayList<Lsp.Diagnostic> new_errors) 
+		{
+			var skip = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+			var rem = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+			foreach(var old in this.errors) {
+				if (new_errors.contains(old)) {
+					skip.add(err);
+					continue;
+				}
+				rem.add(old);
+				 
+			}
+			foreach(var old in  rem) {
+				this.removeError(old);
+			}
+			foreach(var err in new_errors) {
+				if (skip.contains(err)) {
+					continue;
+				}
+				this.addError(err);
+			}
+			
 		}
 		
-		public addError(Lsp.Diagnostic diag)
+		private addError(Lsp.Diagnostic diag)
 		{
 			
 		
 		}
-		public removeErrorsNotIn(Gee.ArrayList<Lsp.Diagnostic>) {
-		
-		}
+		 
 		public removeError(Lsp.Diagnostic diag) {
 		
 		
