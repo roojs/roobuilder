@@ -109,7 +109,7 @@ namespace Lsp {
         
         public Range.simple(uint line, uint pos) {
         	var p =  new Position () {
-                line = line
+                line = line,
                 character = pos
             };
         	this.start = p;
