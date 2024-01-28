@@ -233,7 +233,7 @@ namespace Lsp {
         }
         public string to_string()
         {
-        	return "%s %s : %d - %s".printf(this.category, this.source, (int) this.range.start.line , this.message);
+        	return "%s : %d - %s".printf(this.category, (int) this.range.start.line , this.message);
         }
         
     }

@@ -1027,7 +1027,9 @@ namespace Project {
 					continue;
 				}
 				for(var j =0; j < ce.lines.get_n_items(); j++) {
-					if (diag.equals( (ce.lines.get_item(j) as Palete.CompileError).diag)) {
+					var  lce = ce.lines.get_item(j) as Palete.CompileError;
+					
+					if (diag.equals( lce.diag)) {
 						ce.lines.remove(j);
 						return;
 					}
