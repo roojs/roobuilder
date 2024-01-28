@@ -91,9 +91,10 @@ public class Xcls_GtkView : Object
 	        
 	       this.file = file;     
 	        this.sourceview.loadFile();
+	       
 	        this.searchcontext = null;
 	        this.last_error_counter = -1;
-	
+			this.updateErrorMarks();
 	        if (this.lastObj != null) {
 	            this.container.el.remove(this.lastObj);
 	        }
@@ -129,19 +130,7 @@ public class Xcls_GtkView : Object
 	        this.createThumb();
 	         
 	        	 
-	       return;/*
-		var x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);
-	    var obj = x.munge() as Gtk.Widget;
-	    this.lastObj = null;
-		if (obj == null) {
-	        	return;
-		}
-		this.lastObj = obj;
-	        
-	        this.container.el.append(obj);
-	        obj.show();
-	        
-	         */
+	       
 	        
 	}
 	public void highlightNodeAtLine (int ln) {
