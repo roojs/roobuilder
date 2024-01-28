@@ -265,17 +265,8 @@ namespace Palete {
 				//this.project.updateErrorsforFile(null);
 				return;
 			}
-			foreach(var v in f.errorsByType.values) {
-				v.remove_all();
-			}
-			foreach(var diag in dg.diagnostics) {
-				var ce = new CompileError.new_from_diagnostic(f, diag);
-				if (!f.errorsByType.has_key(ce.category)) {
-					f.errorsByType.set(ce.category, new  GLib.ListStore(typeof(CompileError)));
-				}
-				f.errorsByType.get(ce.category).append(ce);
-			}
-			f.project.updateErrorsforFile(f);
+			f.updateErrors( dg.diagnostics );
+			 
 			
 		}
 		
