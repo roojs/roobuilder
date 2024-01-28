@@ -302,6 +302,7 @@ public class Editor : Object
 		} else {
 			// no update...
 			if (this.last_error_counter == file.error_counter) {
+				this.last_error_counter = file.error_counter ;
 				return;
 			}
 		
@@ -317,7 +318,8 @@ public class Editor : Object
 		    
 		    
 		    if (eline > tlines || eline < 0) {
-		        return;
+	
+		        continue;
 		    }
 		   
 		    
@@ -329,7 +331,7 @@ public class Editor : Object
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
-		return ;
+		this.last_error_counter = file.error_counter ;
 	
 	
 	
