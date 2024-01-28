@@ -1020,7 +1020,7 @@ namespace Project {
 		}
 		public void removeError(JsRender.JsRender f, Lsp.Diagnostic diag)
 		{
-			var ls = this.getErrors(new_ce.category);
+			var ls = this.getErrors(diag.category);
 			for(var i =0; i < ls.get_n_items(); i++) {
 				var ce = ls.get_item(i) as Palete.CompileError;
 				if (ce.file.path != f.path) {
