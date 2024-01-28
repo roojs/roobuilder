@@ -779,15 +779,15 @@ namespace JsRender {
 			
 		}
 		
-		private addError(Lsp.Diagnostic diag)
+		private void addError(Lsp.Diagnostic diag)
 		{
+			this.errors.add(diag);
 			
-		
 		}
 		 
-		public removeError(Lsp.Diagnostic diag) {
+		public void removeError(Lsp.Diagnostic diag) {
 		
-		
+			this.errors.remove(diag);
 		}
 		
 		
