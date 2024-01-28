@@ -118,7 +118,9 @@ namespace JsRender {
 		public	Gee.HashMap<string,string> namedStrings;
 		//public	Gee.HashMap<string, GLib.ListStore> errorsByType;
 		private Gee.ArrayList<Lsp.Diagnostic> errors;
-		
+		public int {
+			get; private set; default = 0;
+		}
 
 		public signal void changed (Node? node, string source); 
 		
@@ -770,16 +772,22 @@ namespace JsRender {
 			
 		}
 		
+		public getErrors()
+		{
+			return this.errors;
+		}
+		
 		private void addError(Lsp.Diagnostic diag)
 		{
 			this.errors.add(diag);
-
+			this.error_counter++;
 			 
 		}
 		 
 		public void removeError(Lsp.Diagnostic diag) {
 		
 			this.errors.remove(diag);
+			this.error_counter++;
 		}
 		
 		
