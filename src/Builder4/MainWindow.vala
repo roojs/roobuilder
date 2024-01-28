@@ -1339,7 +1339,7 @@ public class Xcls_MainWindow : Object
 		}
 
 		// user defined functions
-		public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
+		public void setNotices (GLib.ListStore nots, int ferrs ) {
 		    
 		     if (nots.get_n_items() < 1 ) {
 		    	this.el.hide();
@@ -1350,7 +1350,7 @@ public class Xcls_MainWindow : Object
 		    }
 		    
 		    this.el.show();
-		    this.el.label = "%d/%d Warnings".printf((int)fe.get_n_items(),(int)nots.get_n_items());
+		    this.el.label = "%d/%d Warnings".printf(ferrs,(int)nots.get_n_items());
 		
 		    
 		 
