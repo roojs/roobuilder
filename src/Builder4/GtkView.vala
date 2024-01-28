@@ -354,10 +354,14 @@ public class Xcls_GtkView : Object
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
 			buf.remove_source_marks (start, end, null);
+			this.last_error_counter = file.error_counter ;
 			GLib.debug("higjlight has no errors");
 			return;
 		}
-	 
+	 	if (this.last_error_counter == file.error_counter) {
+			return;
+		}
+		
 	
 	 
 		 
