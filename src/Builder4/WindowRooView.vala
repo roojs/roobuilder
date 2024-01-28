@@ -66,6 +66,8 @@ public class Xcls_WindowRooView : Object
 	    this.view.renderJS(true);
 	    this.notebook.el.page = 0;// gtk preview 
 	    this.sourceview.loadFile();   
+	    this.last_error_counter = -1;
+	    
 	}
 	public void highlightNodeAtLine (int ln) {
 	

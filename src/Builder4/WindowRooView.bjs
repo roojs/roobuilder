@@ -1577,6 +1577,8 @@
     "    this.view.renderJS(true);",
     "    this.notebook.el.page = 0;// gtk preview ",
     "    this.sourceview.loadFile();   ",
+    "    this.last_error_counter = -1;",
+    "    ",
     "}",
     " ",
     " "
