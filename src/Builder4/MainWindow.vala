@@ -111,16 +111,16 @@ public class Xcls_MainWindow : Object
 		
 		this.statusbar_errors.setNotices(
 			pr,
-			this.windowstate.file.getErrors("ERR")
+			this.windowstate.file.getErrorsTotal("ERR")
 		);
 		
 		this.statusbar_warnings.setNotices(
 			this.windowstate.project.getErrors("WARN"),
-			this.windowstate.file.getErrors("WARN")
+			this.windowstate.file.getErrorsTotal("WARN")
 		);
 		this.statusbar_depricated.setNotices(
 			this.windowstate.project.getErrors("DEPR"),
-			this.windowstate.file.getErrors("DEPR")
+			this.windowstate.file.getErrorsTotal("DEPR")
 		);
 	 
 		_this.statusbar_run.el.hide();
