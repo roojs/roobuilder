@@ -755,7 +755,7 @@ namespace JsRender {
 			return ls;
 		}
 		
-		public updateErrors(Gee.ArrayList<Lsp.Diagnostic> new_errors) 
+		public void updateErrors(Gee.ArrayList<Lsp.Diagnostic> new_errors) 
 		{
 			var skip = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
 			var rem = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
