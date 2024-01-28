@@ -87,20 +87,19 @@ namespace Palete {
 			//GLib.debug("Check syntax %s", code);
 			
 			ctx.check_syntax(code, code.length, JSC.CheckSyntaxMode.SCRIPT, "", 1 ,out ex);
-		    var ar = file.getErrors("ERR");
-			ar.remove_all();
+			var ar = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+ 
 			if (ex == null) {
+				file.updateErrors( ar );
 				return ; // this.compressionErrors(code, fn); << to slow on large files?
 				 
 			}
- 
+ 			
 			//GLib.debug("go	t error %d %s", (int)ex.get_line_number() , ex.get_message() );
-			
+			var diag = new Lsp.Diagnostic.simple((int) ex.get_line_number() -1 , 1, ex.get_message());
 
-			var ret = new CompileError.new_jserror(file, "ERR", (int) ex.get_line_number() -1 , ex.get_message());
-			 
-			ar.append(ret);
-			
+			ar.add(diag);
+			file.updateErrors( ar );
 			 
 			
 		}

@@ -241,6 +241,7 @@ namespace Palete {
 		{
 			switch (method) {
 				case "textDocument/publishDiagnostics":
+					GLib.debug("got notification %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value), true));
 					this.onDiagnostic(return_value);
 					return;
 				default: 
@@ -256,26 +257,17 @@ namespace Palete {
 		*/
 		public void onDiagnostic(Variant? return_value) 
 		{
-
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var dg = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
 			this.log(LanguageClientAction.DIAG, dg.filename);
 			var f = this.project.getByPath(dg.filename);
 			if (f == null) {
 				//GLib.debug("no file %s", dg.uri);
-				this.project.updateErrorsforFile(null);
+				//this.project.updateErrorsforFile(null);
 				return;
 			}
-			foreach(var v in f.errorsByType.values) {
-				v.remove_all();
-			}
-			foreach(var diag in dg.diagnostics) {
-				var ce = new CompileError.new_from_diagnostic(f, diag);
-				if (!f.errorsByType.has_key(ce.category)) {
-					f.errorsByType.set(ce.category, new  GLib.ListStore(typeof(CompileError)));
-				}
-				f.errorsByType.get(ce.category).append(ce);
-			}
-			f.project.updateErrorsforFile(f);
+			f.updateErrors( dg.diagnostics );
+			 
 			
 		}
 		

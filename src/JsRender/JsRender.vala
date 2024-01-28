@@ -116,9 +116,11 @@ namespace JsRender {
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
 		public	Gee.HashMap<string,string> namedStrings;
-		public	Gee.HashMap<string, GLib.ListStore> errorsByType;
-		
-		
+		//public	Gee.HashMap<string, GLib.ListStore> errorsByType;
+		private Gee.ArrayList<Lsp.Diagnostic> errors;
+		public int error_counter {
+			get; private set; default = 0;
+		}
 
 		public signal void changed (Node? node, string source); 
 		
@@ -191,8 +193,8 @@ namespace JsRender {
 
 			this.doubleStringProps = new Gee.ArrayList<string>();
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
-			this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
-			 
+			//this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
+			this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); }); 
 			
 
 
@@ -745,14 +747,71 @@ namespace JsRender {
 			return this.project.getLanguageServer(this.language_id());
 		
 		}
-		public GLib.ListStore getErrors(string n)
+		 
+		public void updateErrors(Gee.ArrayList<Lsp.Diagnostic> new_errors) 
 		{
-			var ls = this.errorsByType.get(n);
-			if (ls == null) {
-				ls = new GLib.ListStore(typeof(Palete.CompileError));
-				this.errorsByType.set(n, ls );
+			var oc = this.error_counter;
+			var skip = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+			var rem = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+			foreach(var old in this.errors) {
+				if (new_errors.contains(old)) {
+					skip.add(old);
+					continue;
+				}
+				rem.add(old);
+				 
 			}
-			return ls;
+			foreach(var old in  rem) {
+				this.removeError(old);
+			}
+			foreach(var err in new_errors) {
+				if (skip.contains(err)) {
+					continue;
+				}
+				this.addError(err);
+			}
+			if (oc != this.error_counter) {
+				BuilderApplication.updateCompileResults();
+			}
+			
+		}
+		
+		
+		
+		public Gee.ArrayList<Lsp.Diagnostic> getErrors()
+		{
+			return this.errors;
+		}
+		
+		private void addError(Lsp.Diagnostic diag)
+		{
+			
+			GLib.debug("ADD Error %s", diag.to_string());
+			this.errors.add(diag);
+			this.project.addError(this, diag);
+			
+			this.error_counter++;
+			 
+		}
+		 
+		public void removeError(Lsp.Diagnostic diag) 
+		{
+			GLib.debug("REMOVE Error %s", diag.to_string());
+			this.errors.remove(diag);
+			this.project.removeError(this, diag);
+			this.error_counter++;
+		}
+		public int getErrorsTotal(string category) 
+		{
+			var  ret = 0;
+			foreach(var diag in this.errors) {
+				if (diag.category == category) {
+					ret++;
+				}
+			}
+			return ret;
+			
+		
 		}
 		
 		

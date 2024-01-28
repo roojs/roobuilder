@@ -106,6 +106,16 @@ namespace Lsp {
     }
 
     public class Range : Object, Gee.Hashable<Range>, Gee.Comparable<Range> {
+        
+        public Range.simple(uint line, uint pos) {
+        	var p =  new Position () {
+                line = line,
+                character = pos
+            };
+        	this.start = p;
+        	this.end = p;
+        	
+        }
         /**
          * The range's start position.
          */
@@ -165,6 +175,16 @@ namespace Lsp {
     }
 
     public class Diagnostic : Object {
+        
+        public Diagnostic.simple ( int line, int character, string message)
+        {
+        	this.message = message;
+        	this.severity = DiagnosticSeverity.Error;
+        	this.range =  new Range.simple(line, character );
+        	
+        	
+        
+        }
         /**
          * The range at which the message applies.
          */
@@ -210,8 +230,12 @@ namespace Lsp {
         }
         public bool equals(Lsp.Diagnostic o) {
         	return this.range.equals(o.range) && this.severity == o.severity && this.message == o.message;
- 
         }
+        public string to_string()
+        {
+        	return "%s : %d - %s".printf(this.category, (int) this.range.start.line , this.message);
+        }
+        
     }
 
     /**
@@ -338,7 +362,7 @@ namespace Lsp {
                 // debug ("subroutine %s found (body @ %s)", sym.get_full_name (),
                 //         body_sref != null ? body_sref.to_string () : null);
                 if (body_sref != null && (body_sref.begin.line < body_sref.end.line ||
-                                          body_sref.begin.line == body_sref.end.line && body_sref.begin.pos <= body_sref.end.pos)) {
+                                val = GLib.Value (typeof(Gee.ArrayList));                          body_sref.begin.line == body_sref.end.line && body_sref.begin.pos <= body_sref.end.pos)) {
                     this._initial_range = this._initial_range.union (new Range.from_sourceref (body_sref));
                 }
             }
@@ -380,7 +404,7 @@ namespace Lsp {
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
 	        }
-	        value = GLib.Value (GLib.Type.BOXED);
+            value = GLib.Value (typeof(Gee.ArrayList));
 	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
 	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
@@ -396,7 +420,7 @@ namespace Lsp {
 	           
 	        });
 
-	        value.set_boxed (arguments);
+	        value.set_object (arguments);
 	        return true;
 	   }
     }
@@ -665,7 +689,7 @@ namespace Lsp {
         	if (property_name != "tags") {
                 return default_deserialize_property (property_name, out value, pspec, property_node);
             }
-            value = GLib.Value (GLib.Type.BOXED);
+            value = GLib.Value (typeof(Gee.ArrayList));
             if (property_node.get_node_type () != Json.NodeType.ARRAY) {
                 warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
                 return false;
@@ -681,7 +705,7 @@ namespace Lsp {
                 }
             });
 
-            value.set_boxed (arguments);
+            value.set_object (arguments);
             return true;
        }
     }
@@ -971,7 +995,7 @@ namespace Lsp {
         public bool deserialize_property (string property_name, out GLib.Value value, GLib.ParamSpec pspec, Json.Node property_node) 
         {
             if (property_name == "arguments") {
-                value = GLib.Value (GLib.Type.BOXED);
+                value = GLib.Value (typeof(Array));
                 if (property_node.get_node_type () != Json.NodeType.ARRAY) {
                     warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
                     return false;
@@ -1090,6 +1114,13 @@ namespace Lsp {
 
 	public class Diagnostics : Object, Json.Serializable 
 	{
+		public Diagnostics()
+		{
+			this.diagnostics = new Gee.ArrayList<Diagnostic>((a,b) => {
+				return a.equals(b);
+			});
+		}
+		
 		public string uri { get; set; }
 
 		public int version  { get; set; default = 0; }
@@ -1104,9 +1135,12 @@ namespace Lsp {
 		
 		public bool deserialize_property (string property_name, out GLib.Value val, GLib.ParamSpec pspec, Json.Node property_node) {
 			if (property_name == "diagnostics") {
- 				var diags =  new Gee.ArrayList<Diagnostic> ();
+                val = GLib.Value (typeof(Gee.ArrayList));
+ 				var diags =  new Gee.ArrayList<Diagnostic> ((a,b) => {
+					return a.equals(b);
+				});
 				if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-					val = diags;
+					val.set_object(diags);
 					warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 					return false;
 				}
@@ -1120,7 +1154,7 @@ namespace Lsp {
 						//warning ("argument %u to command could not be deserialized: %s", index, e.message);
 					 
 				});
-				val = diags;
+				val.set_object(diags);
 				 
 				return true;
 			}   

@@ -998,36 +998,48 @@ namespace Project {
 			return ret;
 		}
 		
-		public void updateErrorsforFile(JsRender.JsRender? f) 
+		// called from file..
+		public void addError(JsRender.JsRender f, Lsp.Diagnostic diag)
 		{
-			if (f != null)  {
-				var n = this.updateErrorsByType(f, "WARN");
-				n += this.updateErrorsByType(f, "ERR");
-				n += this.updateErrorsByType(f, "DEPR");
-			}
+			var new_ce = new Palete.CompileError.new_from_diagnostic(f, diag);
+			var ls = this.getErrors(new_ce.category); // will create if necessary..
+			// find the file in the list store.
 
-			BuilderApplication.updateCompileResults();
-			
-			
-		}
-		public int  updateErrorsByType(JsRender.JsRender f, string n) 
-		{
-			var ls = this.getErrors(n);
-			
-			// remove thie file from the list.	
 			for(var i =0; i < ls.get_n_items(); i++) {
 				var ce = ls.get_item(i) as Palete.CompileError;
 				if (ce.file.path == f.path) {
-					ls.remove(i);
-					break;
+					ce.lines.append(new_ce);
+					return;
+				} 
+			}
+			// we did not have the file..
+			var add = new Palete.CompileError.new_from_file(f, diag.category);
+			ls.append(add);
+			add.lines.append(new_ce);
+			  
+		}
+		public void removeError(JsRender.JsRender f, Lsp.Diagnostic diag)
+		{
+			var ls = this.getErrors(diag.category);
+			for(var i =0; i < ls.get_n_items(); i++) {
+				var ce = ls.get_item(i) as Palete.CompileError;
+				if (ce.file.path != f.path) {
+					continue;
+				}
+				for(var j =0; j < ce.lines.get_n_items(); j++) {
+					var  lce = ce.lines.get_item(j) as Palete.CompileError;
+					
+					if (!diag.equals( lce.diag)) {
+						continue;
+					}
+					ce.lines.remove(j);
+					if (ce.lines.get_n_items() < 1) {
+						ls.remove(i);
+						return;
+					}
 				}
 			}
-			var add = new Palete.CompileError.new_from_file(f, n);
-			if (add.hasErrors()) {
-				ls.append(add);
-				return 1;
-			}
-			return 0;
+
 		}
 		public GLib.ListStore getErrors(string n)
 		{

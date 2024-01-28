@@ -32,6 +32,7 @@ public class Editor : Object
 	public bool dirty;
 	public int pos_root_y;
 	public bool pos;
+	public int last_error_counter;
 	public GtkSource.SearchContext searchcontext;
 	public int last_search_end;
 	public signal void save ();
@@ -50,6 +51,7 @@ public class Editor : Object
 		this.window = null;
 		this.dirty = false;
 		this.pos = false;
+		this.last_error_counter = 0;
 		this.searchcontext = null;
 		this.last_search_end = 0;
 		this.file = null;
@@ -240,7 +242,7 @@ public class Editor : Object
 	   
 	
 	}
-	public void updateErrorMarks (string category) {
+	public void updateErrorMarks () {
 		
 	 
 	
@@ -249,7 +251,8 @@ public class Editor : Object
 		Gtk.TextIter end;     
 		buf.get_bounds (out start, out end);
 	
-		buf.remove_source_marks (start, end, category);
+		
+	
 	 
 		//GLib.debug("highlight errors");		 
 	
@@ -270,52 +273,66 @@ public class Editor : Object
 			return;
 	
 		}
-		var ar = this.file.getErrors(category);
-		if (ar == null || ar.get_n_items() < 1) {
+		var ar = this.file.getErrors();
+		if (ar.size < 1) {
+			buf.remove_source_marks (start, end, null);
+			this.last_error_counter = file.error_counter ;
 			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
 			return;
 		}
-	 
+		
 	
-	 
+	 // basicaly check if there is no change, then we do not do any update..
+	 // we can do this by just using an error counter?
+	 // if that's changed then we will do an update, otherwise dont bother.
+		  
 		
 		var offset = 0;
-		 
+		var hoffset = 0;
 	
 		var tlines = buf.get_line_count () +1;
 		
 		if (_this.prop != null) {
 			// this still seems flaky...
-			
+	
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
-			 
-		}
-		 
-		for (var i = 0; i < ar.get_n_items();i++) {
-			var err = (Palete.CompileError) ar.get_item(i);
+			hoffset = _this.node.node_pad.length;
 			
+			 
+		} else {
+			// no update...
+			if (this.last_error_counter == file.error_counter) {
+			
+				return;
+			}
+		
+		}
+		buf.remove_source_marks (start, end, null);
+		foreach(var diag in ar) { 
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
-		    var eline = err.line - offset;
+		    var eline = (int)diag.range.start.line - offset;
+		    //var eline =  diag.range.end_line - offset;
 		    //GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
 		    //	err.line ,eline, offset);
 		    
 		    
 		    if (eline > tlines || eline < 0) {
-		        return;
+	
+		        continue;
 		    }
 		   
 		    
-		    buf.get_iter_at_line( out iter, eline);
+		    buf.get_iter_at_line_offset( out iter, eline, (int)diag.range.start.character - hoffset);
 		   
 		   
-			var msg = "Line: %d %s : %s".printf(eline+1, err.category, err.msg);
-		    buf.create_source_mark( msg, err.category, iter);
+			var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
+		    buf.create_source_mark( msg, diag.category, iter);
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
-		return ;
+		this.last_error_counter = file.error_counter ;
 	
 	
 	
@@ -776,6 +793,7 @@ public class Editor : Object
 		    _this.dirty = false;
 		    this.el.grab_focus();
 		    _this.save_button.el.sensitive = false;
+		    _this.last_error_counter = -1;
 		}
 	}
 	public class Xcls_buffer : Object

@@ -111,18 +111,18 @@ public class Xcls_MainWindow : Object
 		
 		this.statusbar_errors.setNotices(
 			pr,
-			this.windowstate.file.getErrors("ERR")
+			this.windowstate.file.getErrorsTotal("ERR")
 		);
 		
 		this.statusbar_warnings.setNotices(
 			this.windowstate.project.getErrors("WARN"),
-			this.windowstate.file.getErrors("WARN")
+			this.windowstate.file.getErrorsTotal("WARN")
 		);
 		this.statusbar_depricated.setNotices(
 			this.windowstate.project.getErrors("DEPR"),
-			this.windowstate.file.getErrors("DEPR")
+			this.windowstate.file.getErrorsTotal("DEPR")
 		);
-	 
+	
 		_this.statusbar_run.el.hide();
 	
 		if (pr.get_n_items() < 1) {
@@ -1277,7 +1277,7 @@ public class Xcls_MainWindow : Object
 		}
 
 		// user defined functions
-		public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
+		public void setNotices (GLib.ListStore nots, int ferrors ) {
 		    BuilderApplication.showSpinner("");
 		     if (nots.get_n_items() < 1 ) {
 		    	this.el.hide();
@@ -1288,7 +1288,7 @@ public class Xcls_MainWindow : Object
 		    }
 		    
 		    this.el.show();
-		    this.el.label = "%d/%d Errors".printf((int)fe.get_n_items(),(int)nots.get_n_items());
+		    this.el.label = "%d/%d Errors".printf(ferrors,(int)nots.get_n_items());
 		
 		    
 		 
@@ -1339,7 +1339,7 @@ public class Xcls_MainWindow : Object
 		}
 
 		// user defined functions
-		public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
+		public void setNotices (GLib.ListStore nots, int ferrs ) {
 		    
 		     if (nots.get_n_items() < 1 ) {
 		    	this.el.hide();
@@ -1350,7 +1350,7 @@ public class Xcls_MainWindow : Object
 		    }
 		    
 		    this.el.show();
-		    this.el.label = "%d/%d Warnings".printf((int)fe.get_n_items(),(int)nots.get_n_items());
+		    this.el.label = "%d/%d Warnings".printf(ferrs,(int)nots.get_n_items());
 		
 		    
 		 
@@ -1402,7 +1402,7 @@ public class Xcls_MainWindow : Object
 		}
 
 		// user defined functions
-		public void setNotices (GLib.ListStore nots, GLib.ListStore fe ) {
+		public void setNotices (GLib.ListStore nots, int ferrs ) {
 		    
 		     if (nots.get_n_items() < 1 ) {
 		    	this.el.hide();
@@ -1413,7 +1413,7 @@ public class Xcls_MainWindow : Object
 		    }
 		    
 		    this.el.show();
-		    this.el.label = "%d/%d Depricated".printf((int)fe.get_n_items(),(int)nots.get_n_items());
+		    this.el.label = "%d/%d Depricated".printf(ferrs,(int)nots.get_n_items());
 		
 		    
 		 

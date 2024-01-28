@@ -167,13 +167,13 @@ public class WindowState : Object
 	}
 	void updateErrorMarks(string cat) 
 	{
-		this.code_editor_tab.updateErrorMarks(cat);
+		this.code_editor_tab.updateErrorMarks();
 		switch(this.file.xtype) {
 			case  "Roo":
-				this.window_rooview.updateErrorMarks(cat);// foce scroll.
+				this.window_rooview.updateErrorMarks();// foce scroll.
 				return;
 			case "Gtk":
-				this.window_gladeview.updateErrorMarks(cat);
+				this.window_gladeview.updateErrorMarks();
 				return;
 			 default:
 			 	return;
