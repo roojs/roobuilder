@@ -278,7 +278,7 @@ public class Editor : Object
 			return;
 		}
 		
-		if (this.file_errors_count
+	
 	 // basicaly check if there is no change, then we do not do any update..
 	 // we can do this by just using an error counter?
 	 // if that's changed then we will do an update, otherwise dont bother.
@@ -291,7 +291,7 @@ public class Editor : Object
 		
 		if (_this.prop != null) {
 			// this still seems flaky...
-			buf.remove_source_marks (start, end, null);
+	
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
 			 
@@ -302,6 +302,7 @@ public class Editor : Object
 			}
 		
 		}
+		buf.remove_source_marks (start, end, null);
 		foreach(var diag in ar) { 
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
