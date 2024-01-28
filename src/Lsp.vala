@@ -416,7 +416,7 @@ namespace Lsp {
 	           
 	        });
 
-	        value.set_boxed (arguments);
+	        value.set_object (arguments);
 	        return true;
 	   }
     }
@@ -701,7 +701,7 @@ namespace Lsp {
                 }
             });
 
-            value.set_boxed (arguments);
+            value.set_object (arguments);
             return true;
        }
     }
@@ -1136,7 +1136,7 @@ namespace Lsp {
 					return a.equals(b);
 				});
 				if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-					val.set_boxed(diags);
+					val.set_object(diags);
 					warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 					return false;
 				}
@@ -1150,7 +1150,7 @@ namespace Lsp {
 						//warning ("argument %u to command could not be deserialized: %s", index, e.message);
 					 
 				});
-				val.set_boxed(diags);
+				val.set_object(diags);
 				 
 				return true;
 			}   
