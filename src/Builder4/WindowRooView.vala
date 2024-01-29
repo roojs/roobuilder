@@ -282,10 +282,6 @@ public class Xcls_WindowRooView : Object
 	 	if (this.last_error_counter == file.error_counter) {
 			return;
 		}
-		
-	
-	 
-		 
 	
 		var tlines = buf.get_line_count () +1;
 		
