@@ -231,7 +231,10 @@
           "    buf.create_tag (\"variable\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#A518B5\");",
           "    ",
           "    ",
-          "    buf.create_tag (\"variable\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#A518B5\");",
+          "    buf.create_tag (\"ERR\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#A518B5\");",
+          "\tbuf.create_tag (\"WARN\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#A518B5\");",
+          "\tbuf.create_tag (\"DEPR\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#A518B5\");",
+          "",
           "}",
           ""
          ],
