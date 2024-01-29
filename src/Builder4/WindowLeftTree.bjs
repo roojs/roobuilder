@@ -855,7 +855,21 @@
             "}"
            ],
            "| int nodeToRow" : [
-            "() {",
+            "(JsRender.Node node) ",
+            "{",
+            "\tvar row = -1;",
+            "\tvar s = (Gtk.SingleSelection)_this.view.el.model;",
+            "\tfor (var i = 0; i < s.n_items; i++) {",
+            "\t\t//GLib.debug(\"check node %s\", s.get_item(i).get_type().name());",
+            "\t\tvar lr = (Gtk.TreeListRow)s.get_item(i);",
+            "\t\tGLib.debug(\"check node %s\", lr.get_item().get_type().name());",
+            "\t\tif (((JsRender.Node)lr.get_item()).oid == node.oid) {",
+            "\t\t\treturn i;",
+            "\t\t\t",
+            "\t\t}",
+            "\t}",
+            "\treturn -1;\t\t\t",
+            "\t",
             "",
             "}"
            ],

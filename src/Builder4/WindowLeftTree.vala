@@ -1466,7 +1466,21 @@ public class Xcls_WindowLeftTree : Object
 		 
 		            
 		}
-		public int nodeToRow () {
+		public int nodeToRow (JsRender.Node node) 
+		{
+			var row = -1;
+			var s = (Gtk.SingleSelection)_this.view.el.model;
+			for (var i = 0; i < s.n_items; i++) {
+				//GLib.debug("check node %s", s.get_item(i).get_type().name());
+				var lr = (Gtk.TreeListRow)s.get_item(i);
+				GLib.debug("check node %s", lr.get_item().get_type().name());
+				if (((JsRender.Node)lr.get_item()).oid == node.oid) {
+					return i;
+					
+				}
+			}
+			return -1;			
+			
 		
 		}
 		public void deleteSelected () {
