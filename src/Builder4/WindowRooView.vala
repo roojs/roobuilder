@@ -306,9 +306,9 @@ public class Xcls_WindowRooView : Object
 		    buf.get_iter_at_line( out iter, eline);
 		   
 		  	 buf.get_iter_at_line_offset( out start, 
-	 	    	eline, (int)diag.range.start.character-1); 
+	 	    	eline, (int)diag.range.start.character); 
 	 	    buf.get_iter_at_line_offset( out end, 
-	 	    	eline_to, (int)diag.range.end.character-1); 
+	 	    	eline_to, (int)diag.range.end.character); 
 	 	    	
 		    buf.apply_tag_by_name(diag.category, start, end);
 		   
