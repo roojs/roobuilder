@@ -1150,8 +1150,7 @@ public class Xcls_WindowRooView : Object
 				this.el.set_mark_attributes ("grey", gattrs, 1);
 			
 			
-			
-			
+			 
 			
 			
 				}
@@ -1511,6 +1510,12 @@ public class Xcls_WindowRooView : Object
 			this.last_line = -1;
 
 			// set gobject values
+
+			// init method
+
+			{
+			
+			}
 
 			//listeners
 			this.el.cursor_moved.connect( ( ) => {
