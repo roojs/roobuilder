@@ -28,6 +28,7 @@ public class Xcls_LeftProps : Object
 	public signal void show_add_props (string type);
 	public signal bool stop_editor ();
 	public Xcls_MainWindow main_window;
+	public int last_error_counter;
 	public signal void changed ();
 	public JsRender.JsRender file;
 	public JsRender.Node node;
@@ -43,6 +44,7 @@ public class Xcls_LeftProps : Object
 		this.loading = false;
 		this.allow_edit = false;
 		this.main_window = null;
+		this.last_error_counter = -1;
 
 		// set gobject values
 		this.el.homogeneous = false   ;
@@ -85,7 +87,41 @@ public class Xcls_LeftProps : Object
 	
 	}
 	public void updateErrors () {
+		var file = this.getActiveFile();
+		var ar = file.getErrors();
+		if (ar.size < 1) {
+			this.removeErrors();
+			this.last_error_counter = file.error_counter ;
 	
+			return;
+		}
+	 	if (this.last_error_counter == file.error_counter) {
+			return;
+		}
+		this.removeErrors();
+		
+		foreach(var diag in ar) { 
+		
+			 
+	//        print("get inter\n");
+		    var node= file.lineToNode( (int)diag.range.start.line) ;
+		    if (node == null) {
+		    	continue;
+	    	}
+	    	var row = _this.model.nodeToRow(node);
+	    	if (row < 0) {
+	    		continue;
+			}
+	    	var w = this.view.getWidgetAtRow(row);
+	    	if (w == null) {
+	    		return;
+			}
+			if (!w.has_css_class("node-error")) {
+				w.add_css_class("node-error");
+			}
+			
+		}
+		
 	}
 	public string keyFormat (string val, string type) {
 	    
