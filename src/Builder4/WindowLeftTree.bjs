@@ -1671,7 +1671,8 @@
    ],
    "| void updateErrors" : [
     "() {",
-    "\tvar ar = this.getActiveFile().getErrors();",
+    "\tvar file = this.getActiveFile();",
+    "\tvar ar = file.getErrors();",
     "\tif (ar.size < 1) {",
     "\t\tthis.removeErrors();",
     "\t\tthis.last_error_counter = file.error_counter ;",
