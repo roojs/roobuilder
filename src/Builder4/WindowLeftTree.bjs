@@ -991,7 +991,7 @@
             "\t\tif ((lr.get_item() as JsRender.Node).oid != node.oid) {",
             "\t\t\tcontinue;",
             "\t\t}",
-            "\t\tlr.",
+            " ",
             "\t\t",
             "\t}",
             " ",

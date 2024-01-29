@@ -1583,7 +1583,7 @@ public class Xcls_WindowLeftTree : Object
 				if ((lr.get_item() as JsRender.Node).oid != node.oid) {
 					continue;
 				}
-				lr.
+		 
 				
 			}
 		 
