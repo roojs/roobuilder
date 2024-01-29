@@ -48,7 +48,16 @@ public class Xcls_WindowLeftTree : Object
 
 	// user defined functions
 	public void updateErrors () {
+		var ar = this.file.getErrors();
+		if (ar.size < 1) {
+			this.removeErrors();
+			this.last_error_counter = file.error_counter ;
 	
+			return;
+		}
+	 	if (this.last_error_counter == file.error_counter) {
+			return;
+		}
 	}
 	public void onresize () {
 	 
