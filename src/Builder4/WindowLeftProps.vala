@@ -1748,8 +1748,16 @@ public class Xcls_LeftProps : Object
 		}
 
 		// user defined functions
-		public int propToRow () {
-		
+		public int propToRow (JsRender.NodeProp prop) {
+			for (var i = 0 ; i < this.el.n_items; i++) {
+				var r = (JsRender.NodeProp)this.el.get_item(i);
+				if (r.equals(prop)) {
+					return i;
+					
+				}
+			}
+			return -1;
+			 
 		}
 		public void startEditing (JsRender.NodeProp prop) {
 			// should we call select?? - caller does int (from windowstate)
