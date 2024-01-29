@@ -858,7 +858,7 @@
             "(JsRender.Node node) ",
             "{",
             "\tvar row = -1;",
-            "\tvar s = (Gtk.SingleSelection)_this.view.el.model;",
+            "\tvar s = _this.view.el.model as Gtk.SingleSelection;",
             "\tfor (var i = 0; i < s.n_items; i++) {",
             "\t\t//GLib.debug(\"check node %s\", s.get_item(i).get_type().name());",
             "\t\tvar lr = (Gtk.TreeListRow)s.get_item(i);",
