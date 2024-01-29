@@ -1453,15 +1453,6 @@ public class Xcls_WindowRooView : Object
 		
 		
 		}
-		public void highlightErrorsJson (string type, Json.Object obj) {
-		       // this is a hook for the vala code - it has no value in javascript 
-		       // as we only have one error ususally....
-		        return  ;
-		    
-		 
-		
-		
-		}
 		public void clearGreySelection () {
 		 // clear all the marks..
 		    var sbuf = (GtkSource.Buffer)this.el.buffer;

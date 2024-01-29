@@ -826,17 +826,6 @@
             "}",
             ""
            ],
-           "| void highlightErrorsJson" : [
-            " (string type, Json.Object obj) {",
-            "       // this is a hook for the vala code - it has no value in javascript ",
-            "       // as we only have one error ususally....",
-            "        return  ;",
-            "    ",
-            " ",
-            "",
-            "",
-            "}"
-           ],
            "| void loadFile" : [
             "( ) {",
             "    this.loading = true;",
