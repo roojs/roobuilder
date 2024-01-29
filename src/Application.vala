@@ -710,11 +710,13 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 				if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
 					continue;
 				}
+				
 
 				ww.windowstate.updateErrorMarksAll();
 				 
 				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
 				ww.updateErrors();
+				ww.windowstate.left_tree.updateErrors();
 				
 				
 			}
