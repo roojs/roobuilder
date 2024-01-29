@@ -276,6 +276,9 @@ public class Editor : Object
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
 			buf.remove_source_marks (start, end, null);
+			bug.remove_tag_by_name ("ERR", start, end);
+			bug.remove_tag_by_name ("WARN", start, end);
+			bug.remove_tag_by_name ("DEPR", start, end);
 			this.last_error_counter = file.error_counter ;
 			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
 			return;
