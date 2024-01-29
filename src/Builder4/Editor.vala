@@ -671,10 +671,11 @@ public class Editor : Object
 			this.el.set_mark_attributes ("WARN", wattrs, 1);
 			wattrs.ref();
 			
-			
+			var  purple =   Gdk.RGBA();
+			purple.parse ( "#EEA9FF");
 			var dattrs = new GtkSource.MarkAttributes();
 			
-			dattrs.set_background (  Gdk.RGBA().parse ( "#EEA9FF") );
+			dattrs.set_background (purple) );
 			dattrs.set_icon_name ( "process-stop");    
 			dattrs.query_tooltip_text.connect(( mark) => {
 				GLib.debug("tooltip query? %s", mark.name);
