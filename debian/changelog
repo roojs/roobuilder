@@ -7,7 +7,8 @@ roobuilder (5.0.2) UNRELEASED; urgency=medium
   * Fixed sending wrong 'save' to language-server (caused LS to crash)
   * Fixed Gtkview - uses toSource(), rather than file.get_contents()
   * Fixed updating of errors (should only update changed error mark or tree item))
-  
+  * Errors now shown on widget tree / node properties / and node edit as selected
+  * Error highlighting now on character location of errors, along with marks
 
  -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
 
