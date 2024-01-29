@@ -105,9 +105,11 @@ public class Xcls_LeftProps : Object
 			 
 	//        print("get inter\n");
 		    var node= file.lineToNode( (int)diag.range.start.line) ;
-		    if (node == null) {
+		    if (node == null || node.oid != this.node.oid) {
 		    	continue;
 	    	}
+	    	var prop = node.lineToProp( (int)diag.range.start.line) ;
+	    	
 	    	var row = _this.model.nodeToRow(node);
 	    	if (row < 0) {
 	    		continue;
