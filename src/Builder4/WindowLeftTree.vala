@@ -80,8 +80,8 @@ public class Xcls_WindowLeftTree : Object
 	    	if (w == null) {
 	    		return;
 			}
-			if (!w.has_css_class("error-node")) {
-				w.add_css_class("error-node");
+			if (!w.has_css_class("node-error")) {
+				w.add_css_class("node-error");
 			}
 			
 		}
