@@ -832,7 +832,9 @@ public class Editor : Object
 			    buf.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
 			    buf.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
 			    buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
-			
+			    
+			    
+			    buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
 			}
 
 			//listeners
