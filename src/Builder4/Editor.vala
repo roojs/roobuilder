@@ -300,7 +300,7 @@ public class Editor : Object
 	
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
-			hoffset = _this.node.node_pad.length;
+			hoffset = _this.node.node_pad.length + 1;
 			
 			 
 		} else {
@@ -312,6 +312,10 @@ public class Editor : Object
 		
 		}
 		buf.remove_source_marks (start, end, null);
+		buf.remove_tag_by_name ("ERR", start, end);
+		buf.remove_tag_by_name ("WARN", start, end);
+		buf.remove_tag_by_name ("DEPR", start, end);
+		
 		foreach(var diag in ar) { 
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
@@ -330,6 +334,7 @@ public class Editor : Object
 		    buf.get_iter_at_line( out iter, eline);
 		   	var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
 		    buf.create_source_mark( msg, diag.category, iter);
+	 	    
 	 	    buf.get_iter_at_line_offset( out start, 
 	 	    	eline, (int)diag.range.start.character - hoffset); 
 	 	    buf.get_iter_at_line_offset( out end, 
