@@ -86,7 +86,6 @@
         "libvala-0.56",
         "libxml-2.0",
         "posix",
-        "roojspacker-1.4",
         "gtksourceview-5",
         "libgda-5.0",
         "jsonrpc-glib-1.0",

@@ -1398,6 +1398,7 @@ public class Xcls_WindowLeftTree : Object
 		        return;
 		    }
 		  	m.append(f.tree);
+		  	
 		  	// expand???
 		
 		/*
@@ -1420,7 +1421,7 @@ public class Xcls_WindowLeftTree : Object
 		    //_this.maincol.el.set_max_width(_this.viewwin.el.get_allocated_width() - 32);
 		 
 		    _this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
-		   
+		   _this.updateErrors();
 		    return;
 		 
 		            

@@ -145,8 +145,7 @@ public class Editor : Object
 	
 	        // find the text for the node..
 	        this.view.load( prop.val );
-	        
-	        
+	
 	        this.close_btn.el.show();       
 	    
 	    } else {
@@ -794,6 +793,8 @@ public class Editor : Object
 		    this.el.grab_focus();
 		    _this.save_button.el.sensitive = false;
 		    _this.last_error_counter = -1;
+			_this.updateErrorMarks();
+		    
 		}
 	}
 	public class Xcls_buffer : Object
