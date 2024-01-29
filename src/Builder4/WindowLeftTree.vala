@@ -47,6 +47,9 @@ public class Xcls_WindowLeftTree : Object
 	}
 
 	// user defined functions
+	public void updateErrors () {
+	
+	}
 	public void onresize () {
 	 
 		 
