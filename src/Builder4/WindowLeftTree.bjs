@@ -988,7 +988,7 @@
             "\t\t//GLib.debug(\"check node %s\", s.get_item(i).get_type().name());",
             "\t\tvar lr = s.get_item(i) as GtkTreeListRow;",
             "\t\tGLib.debug(\"check node %s\", lr.get_item().get_type().name());",
-            "\t\tif (((JsRender.Node)lr.get_item()).oid != node.oid) {",
+            "\t\tif ((lr.get_item() as JsRender.Node).oid != node.oid) {",
             "\t\t\tcontinue;",
             "\t\t}",
             "\t\tlr.",
