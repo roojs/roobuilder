@@ -94,7 +94,41 @@ public class Xcls_WindowLeftTree : Object
 	//	_this.maincol.el.set_max_width( _this.viewwin.el.get_width()  - 32 );
 	}
 	public void removeErrors () {
+		var  child = this.view.el.get_first_child(); 
+	 
+		var reading_header = true;
+	 
+		while (child != null) {
+			GLib.debug("Got %s", child.get_type().name());
+		   
+		   if (reading_header) {
+				
 	
+				if (child.get_type().name() != "GtkColumnListView") {
+				   
+					child = child.get_next_sibling();
+					continue;
+				}
+				// should be columnlistview
+				child = child.get_first_child(); 
+			 
+			 
+				
+				reading_header = false;
+				 
+		    }
+		    
+		  	child.
+		    
+		    line_no++;
+			if (line_no == row) {
+				//GLib.debug("Returning widget %s", child.get_type().name());
+			    return (Gtk.Widget)child;
+		    }
+	        child = child.get_next_sibling(); 
+		}
+		//GLib.debug("Rturning null");
+	    return null;
 	}
 	public JsRender.Node? getActiveElement () { // return path to actie node.
 	
