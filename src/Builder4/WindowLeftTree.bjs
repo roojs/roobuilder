@@ -854,6 +854,11 @@
             "\treturn this.el;",
             "}"
            ],
+           "| int nodeToRow" : [
+            "() {",
+            "",
+            "}"
+           ],
            "| void deleteSelected" : [
             "() {",
             "",

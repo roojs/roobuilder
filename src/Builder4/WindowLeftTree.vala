@@ -1466,6 +1466,9 @@ public class Xcls_WindowLeftTree : Object
 		 
 		            
 		}
+		public int nodeToRow () {
+		
+		}
 		public void deleteSelected () {
 		
 		
