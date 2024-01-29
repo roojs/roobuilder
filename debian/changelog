@@ -9,7 +9,8 @@ roobuilder (5.0.2) UNRELEASED; urgency=medium
   * Fixed updating of errors (should only update changed error mark or tree item))
   * Errors now shown on widget tree / node properties / and node edit as selected
   * Error highlighting now on character location of errors, along with marks
-
+  * roojspacker dependancy removed for now (too slow to work currently)
+  
  -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
 
 roobuilder (5.0.1) unstable; urgency=medium
