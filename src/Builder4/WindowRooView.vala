@@ -271,6 +271,9 @@ public class Xcls_WindowRooView : Object
 		}
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
+			buf.remove_tag_by_name ("ERR", start, end);
+			buf.remove_tag_by_name ("WARN", start, end);
+			buf.remove_tag_by_name ("DEPR", start, end);
 			buf.remove_source_marks (start, end, null);
 			this.last_error_counter = file.error_counter ;
 			GLib.debug("higjlight has no errors");
@@ -289,20 +292,29 @@ public class Xcls_WindowRooView : Object
 	 
 		 
 		buf.remove_source_marks (start, end, null);
+		buf.remove_tag_by_name ("ERR", start, end);
+		buf.remove_tag_by_name ("WARN", start, end);
+		buf.remove_tag_by_name ("DEPR", start, end);
 		foreach(var diag in ar) { 
 		
 			
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
-		    var eline = (int)diag.range.start.line + 1;
-		    
+		    var eline = (int)diag.range.start.line ;
+		    var eline_to = (int)diag.range.end.line;
 		    if (eline > tlines || eline < 0) {
 		        return;
 		    }
 		   
 		    
-		     buf.get_iter_at_line_offset( out iter, eline, (int)diag.range.start.character);
+		    buf.get_iter_at_line( out iter, eline);
 		   
+		  	 buf.get_iter_at_line_offset( out start, 
+	 	    	eline, (int)diag.range.start.character-1); 
+	 	    buf.get_iter_at_line_offset( out end, 
+	 	    	eline_to, (int)diag.range.end.character-1); 
+	 	    	
+		    buf.apply_tag_by_name(diag.category, start, end);
 		   
 		   
 			var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
