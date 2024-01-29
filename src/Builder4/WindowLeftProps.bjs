@@ -1472,7 +1472,7 @@
     "    \t}",
     "    \tvar prop = node.lineToProp( (int)diag.range.start.line) ;",
     "    \t",
-    "    \tvar row = _this.model.nodeToRow(node);",
+    "    \tvar row = _this.selmodel.propToRow(prop);",
     "    \tif (row < 0) {",
     "    \t\tcontinue;",
     "\t\t}",
