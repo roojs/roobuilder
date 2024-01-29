@@ -621,19 +621,10 @@ public class Editor : Object
 			);
 				
 			 
-				 
-			/*
-			this is pretty flakey - triggers Gtk with  < 0 d
-			 var cp = new GtkSource.CompletionWords("test"); 
-			 cp.minimum_word_size  = 3;
-			 //cp.priority = 100; //?? does this do anything
-			 cp.proposals_batch_size  = 10;
-			 cp.scan_batch_size = 1000;
 			 
-			cp.register(_this.buffer.el);
-			this.el.completion.add_provider(cp);
-			*/
-			this.el.completion.add_provider(new Palete.CompletionProvider(_this));
+			this.el.completion.add_provider(
+				new Palete.CompletionProvider(_this)
+			);
 			  
 			//this.el.completion.unblock_interactive();
 			this.el.completion.select_on_show = true; // select
@@ -655,7 +646,10 @@ public class Editor : Object
 			});
 			this.el.set_mark_attributes ("ERR", attrs, 1);
 			attrs.ref();
-			 var wattrs = new GtkSource.MarkAttributes();
+			
+			
+			
+			var wattrs = new GtkSource.MarkAttributes();
 			var  blue =   Gdk.RGBA();
 			blue.parse ( "#ABF4EB");
 			wattrs.set_background ( blue);
@@ -670,6 +664,7 @@ public class Editor : Object
 			});
 			this.el.set_mark_attributes ("WARN", wattrs, 1);
 			wattrs.ref();
+			
 			
 			var  purple =  Gdk.RGBA();
 			purple.parse ( "#EEA9FF");
