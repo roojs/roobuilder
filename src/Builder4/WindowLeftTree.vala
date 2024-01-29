@@ -76,11 +76,13 @@ public class Xcls_WindowLeftTree : Object
 	    	if (row < 0) {
 	    		continue;
 			}
-	    	var widget = this.view.getWidgetAtRow(row);
-	    	if (widget == null) {
+	    	var w = this.view.getWidgetAtRow(row);
+	    	if (w == null) {
 	    		return;
 			}
-			
+			if (!w.has_css_class("error-node")) {
+				w.add_css_class("error-node");
+			}
 			
 		}
 		
@@ -90,6 +92,9 @@ public class Xcls_WindowLeftTree : Object
 		 
 		//GLib.debug("Got allocation width of scrolled view %d", allocation.width );
 	//	_this.maincol.el.set_max_width( _this.viewwin.el.get_width()  - 32 );
+	}
+	public void removeErrors () {
+	
 	}
 	public JsRender.Node? getActiveElement () { // return path to actie node.
 	

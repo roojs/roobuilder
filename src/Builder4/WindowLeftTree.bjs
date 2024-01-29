@@ -1680,6 +1680,11 @@
     "",
     ""
    ],
+   "| void removeErrors" : [
+    "() {",
+    "",
+    "}"
+   ],
    "| void updateErrors" : [
     "() {",
     "\tvar file = this.getActiveFile();",
@@ -1708,11 +1713,13 @@
     "    \tif (row < 0) {",
     "    \t\tcontinue;",
     "\t\t}",
-    "    \tvar widget = this.view.getWidgetAtRow(row);",
-    "    \tif (widget == null) {",
+    "    \tvar w = this.view.getWidgetAtRow(row);",
+    "    \tif (w == null) {",
     "    \t\treturn;",
     "\t\t}",
-    "\t\t",
+    "\t\tif (!w.has_css_class(\"error-node\")) {",
+    "\t\t\tw.add_css_class(\"error-node\");",
+    "\t\t}",
     "\t\t",
     "\t}",
     "\t",
