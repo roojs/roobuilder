@@ -979,6 +979,11 @@
             "}",
             ""
            ],
+           "| void nodeToWidget" : [
+            "() {",
+            "",
+            "}"
+           ],
            "| void selectNode" : [
             "(JsRender.Node node) ",
             "{",
