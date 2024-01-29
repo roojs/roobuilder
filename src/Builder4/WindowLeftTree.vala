@@ -213,6 +213,17 @@ public class Xcls_WindowLeftTree : Object
 			 border-top-style: solid;
 			 border-top-color: #88a3bc;
 			}
+			.node-error  {
+			 border-top-width: 5px;
+			 border-top-style: solid;
+			 border-top-color: red;
+			 border-bottom-width: 5px; 
+			 border-bottom-style: solid;
+			 border-bottom-color: red;
+			}
+			
+			
+			
 			#left-tree-view indent {
 			-gtk-icon-size : 2px;
 			}
