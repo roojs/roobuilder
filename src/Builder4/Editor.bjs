@@ -231,7 +231,7 @@
           "    buf.create_tag (\"variable\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#A518B5\");",
           "    ",
           " ",
-          "    buf.create_tag (\"ERR\", \"weight\", Pango.Weight.BOLD, \"background\", \"ping\");",
+          "    buf.create_tag (\"ERR\", \"weight\", Pango.Weight.BOLD, \"background\", \"pink\");",
           "\tbuf.create_tag (\"WARN\", \"weight\", Pango.Weight.BOLD, \"background\", \"#ABF4EB\");",
           "\tbuf.create_tag (\"DEPR\", \"weight\", Pango.Weight.BOLD, \"background\", \"#A518B5\");",
           "",

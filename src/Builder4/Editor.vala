@@ -834,7 +834,7 @@ public class Editor : Object
 			    buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
 			    
 			 
-			    buf.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "ping");
+			    buf.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "pink");
 				buf.create_tag ("WARN", "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
 				buf.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#A518B5");
 			
