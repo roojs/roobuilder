@@ -84,6 +84,9 @@ public class Xcls_LeftProps : Object
 	
 	
 	}
+	public void updateErrors () {
+	
+	}
 	public string keyFormat (string val, string type) {
 	    
 	    // Glib.markup_escape_text(val);
