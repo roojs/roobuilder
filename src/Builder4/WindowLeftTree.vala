@@ -1568,7 +1568,7 @@ public class Xcls_WindowLeftTree : Object
 		public void selectNode (JsRender.Node node) 
 		{
 			var row = this.nodeToRow(node);
-			var s = (Gtk.SingleSelection)_this.view.el.model;
+			var s = _this.view.el.model as Gtk.SingleSelection;
 			 
 			if (row < 0) {
 				// select none?

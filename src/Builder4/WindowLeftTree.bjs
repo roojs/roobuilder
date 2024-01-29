@@ -1002,7 +1002,7 @@
             "(JsRender.Node node) ",
             "{",
             "\tvar row = this.nodeToRow(node);",
-            "\tvar s = (Gtk.SingleSelection)_this.view.el.model;",
+            "\tvar s = _this.view.el.model as Gtk.SingleSelection;",
             "\t ",
             "\tif (row < 0) {",
             "\t\t// select none?",
