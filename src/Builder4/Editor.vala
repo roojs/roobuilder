@@ -300,7 +300,7 @@ public class Editor : Object
 	
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
-			hoffset = _this.node.node_pad.length + 1;
+			hoffset = _this.node.node_pad.length + 1; //shift it left  by 1..
 			
 			 
 		} else {

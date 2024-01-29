@@ -1126,7 +1126,7 @@
     "",
     "\t\ttlines = _this.prop.end_line;",
     "\t\toffset = _this.prop.start_line;",
-    "\t\thoffset = _this.node.node_pad.length + 1;",
+    "\t\thoffset = _this.node.node_pad.length + 1; //shift it left  by 1..",
     "\t\t",
     "\t\t ",
     "\t} else {",
