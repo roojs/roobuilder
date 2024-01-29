@@ -1466,7 +1466,7 @@ public class Xcls_WindowLeftTree : Object
 		    _this.main_window.windowstate.leftTreeNodeSelected(null);
 		    // needed???
 		    _this.main_window.windowstate.file = f;
-		    
+		    _this.last_error_counter = -1;
 		   
 		    if (f.tree == null) {
 			    try {
