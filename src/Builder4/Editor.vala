@@ -861,66 +861,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public bool checkSyntax () {
-		 
-		    
-		    var str = this.toString();
-		    
-		    // needed???
-		    if (this.error_line > 0) {
-		         Gtk.TextIter start;
-		         Gtk.TextIter end;     
-		        this.el.get_bounds (out start, out end);
-		
-		        this.el.remove_source_marks (start, end, null);
-		    }
-		    if (str.length < 1) {
-		        print("checkSyntax - empty string?\n");
-		        return true;
-		    }
-		    
-		    // bit presumptiona
-		    if (_this.file.xtype == "PlainFile") {
-		    
-		        // assume it's gtk...
-		         var  oldcode =_this.file.toSource();
-		        _this.file.setSource(str);
-			    BuilderApplication.showSpinner("appointment soon","document change pending");
-		    	_this.file.getLanguageServer().document_change(_this.file);
-		
-		        _this.file.setSource(oldcode);
-		        
-				 
-		        return true;
-		    
-		    }
-		   if (_this.file == null) {
-		       return true;
-		   }
-		 
-		    
-		
-		      
-		     
-		    GLib.debug("calling validate");    
-		    // clear the buttons.
-		 	if (_this.prop.name == "xns" || _this.prop.name == "xtype") {
-				return true ;
-			}
-			var oldcode  = _this.prop.val;
-			
-			_this.prop.val = str;
-			_this.node.updated_count++;
-		    _this.file.getLanguageServer().document_change(_this.file);
-		    _this.node.updated_count++;
-		    _this.prop.val = oldcode;
-		    
-		    
-		    //print("done mark line\n");
-		     
-		    return true; // at present allow saving - even if it's invalid..
-		}
-		public bool highlightErrorsJson (string type, Json.Object obj) {
+		public bool OLDhighlightErrorsJson (string type, Json.Object obj) {
 			Gtk.TextIter start;
 			Gtk.TextIter end;     
 			this.el.get_bounds (out start, out end);
@@ -1031,6 +972,65 @@ public class Editor : Object
 		
 		
 			}
+		public bool checkSyntax () {
+		 
+		    
+		    var str = this.toString();
+		    
+		    // needed???
+		    if (this.error_line > 0) {
+		         Gtk.TextIter start;
+		         Gtk.TextIter end;     
+		        this.el.get_bounds (out start, out end);
+		
+		        this.el.remove_source_marks (start, end, null);
+		    }
+		    if (str.length < 1) {
+		        print("checkSyntax - empty string?\n");
+		        return true;
+		    }
+		    
+		    // bit presumptiona
+		    if (_this.file.xtype == "PlainFile") {
+		    
+		        // assume it's gtk...
+		         var  oldcode =_this.file.toSource();
+		        _this.file.setSource(str);
+			    BuilderApplication.showSpinner("appointment soon","document change pending");
+		    	_this.file.getLanguageServer().document_change(_this.file);
+		
+		        _this.file.setSource(oldcode);
+		        
+				 
+		        return true;
+		    
+		    }
+		   if (_this.file == null) {
+		       return true;
+		   }
+		 
+		    
+		
+		      
+		     
+		    GLib.debug("calling validate");    
+		    // clear the buttons.
+		 	if (_this.prop.name == "xns" || _this.prop.name == "xtype") {
+				return true ;
+			}
+			var oldcode  = _this.prop.val;
+			
+			_this.prop.val = str;
+			_this.node.updated_count++;
+		    _this.file.getLanguageServer().document_change(_this.file);
+		    _this.node.updated_count++;
+		    _this.prop.val = oldcode;
+		    
+		    
+		    //print("done mark line\n");
+		     
+		    return true; // at present allow saving - even if it's invalid..
+		}
 		public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
 		         
 			this.error_line = validate_res.size;
