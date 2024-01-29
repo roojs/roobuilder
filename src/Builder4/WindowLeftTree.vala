@@ -1573,13 +1573,6 @@ public class Xcls_WindowLeftTree : Object
 			
 		
 		}
-		public void nodeToWidget (JsRender.Node node) 
-		{
-			 
-		 
-			 
-		
-		}
 	}
 
 
