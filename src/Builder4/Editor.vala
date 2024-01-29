@@ -676,7 +676,8 @@ public class Editor : Object
 			var dattrs = new GtkSource.MarkAttributes();
 			
 			dattrs.set_background (purple) );
-			dattrs.set_icon_name ( "process-stop");    
+			dattrs.set_icon_name ( "process-stop"); 
+			
 			dattrs.query_tooltip_text.connect(( mark) => {
 				GLib.debug("tooltip query? %s", mark.name);
 			    return strdup(mark.name);
