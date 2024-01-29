@@ -177,6 +177,12 @@
            "items" : [
             {
              "$ xns" : "GtkSource",
+             "* init" : [
+              "{",
+              "",
+              "}",
+              ""
+             ],
              "* pack" : "set_buffer",
              "bool dirty" : false,
              "bool in_cursor_change" : false,

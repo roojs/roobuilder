@@ -928,6 +928,12 @@ public class Xcls_GtkView : Object
 
 			// set gobject values
 
+			// init method
+
+			{
+			
+			}
+
 			//listeners
 			this.el.cursor_moved.connect( ( ) => {
 			GLib.debug("cursor moved called");
