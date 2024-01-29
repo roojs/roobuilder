@@ -125,7 +125,7 @@ public class Xcls_WindowLeftTree : Object
 	        child = child.get_next_sibling(); 
 		}
 		//GLib.debug("Rturning null");
-	    return null;
+	     
 	}
 	public JsRender.Node? getActiveElement () { // return path to actie node.
 	

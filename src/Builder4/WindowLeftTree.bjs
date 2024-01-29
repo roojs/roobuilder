@@ -1713,7 +1713,7 @@
     "        child = child.get_next_sibling(); ",
     "\t}",
     "\t//GLib.debug(\"Rturning null\");",
-    "    return null;",
+    "     ",
     "}"
    ],
    "| void updateErrors" : [
