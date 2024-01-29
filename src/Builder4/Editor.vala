@@ -634,7 +634,7 @@ public class Editor : Object
 			var attrs = new GtkSource.MarkAttributes();
 			var  pink =   Gdk.RGBA();
 			pink.parse ( "pink");
-			attrs.set_background ( pink);
+			//attrs.set_background ( pink);
 			attrs.set_icon_name ( "process-stop");    
 			attrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
@@ -652,7 +652,7 @@ public class Editor : Object
 			var wattrs = new GtkSource.MarkAttributes();
 			var  blue =   Gdk.RGBA();
 			blue.parse ( "#ABF4EB");
-			wattrs.set_background ( blue);
+			//wattrs.set_background ( blue);
 			wattrs.set_icon_name ( "process-stop");    
 			wattrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
