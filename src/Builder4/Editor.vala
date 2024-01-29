@@ -670,7 +670,7 @@ public class Editor : Object
 			purple.parse ( "#EEA9FF");
 			var dattrs = new GtkSource.MarkAttributes();
 			
-			dattrs.set_background (purple );
+			//dattrs.set_background (purple );
 			dattrs.set_icon_name ( "process-stop"); 
 			
 			dattrs.query_tooltip_text.connect(( mark) => {
@@ -836,7 +836,7 @@ public class Editor : Object
 			 
 			    buf.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "pink");
 				buf.create_tag ("WARN", "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
-				buf.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#A518B5");
+				buf.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
 			
 			}
 
