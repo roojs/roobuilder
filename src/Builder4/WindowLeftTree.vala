@@ -118,13 +118,10 @@ public class Xcls_WindowLeftTree : Object
 				 
 		    }
 		    
-		  	child.
-		    
-		    line_no++;
-			if (line_no == row) {
-				//GLib.debug("Returning widget %s", child.get_type().name());
-			    return (Gtk.Widget)child;
-		    }
+		  	if (!child.has_css_class("error-node")) {
+				child.remove_css_class("error-node");
+			}
+			
 	        child = child.get_next_sibling(); 
 		}
 		//GLib.debug("Rturning null");
