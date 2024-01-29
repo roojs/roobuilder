@@ -74,6 +74,9 @@ public class Editor : Object
 	}
 
 	// user defined functions
+	public void updateErrors () {
+	
+	}
 	public bool saveContents ()  {
 	    
 	    
