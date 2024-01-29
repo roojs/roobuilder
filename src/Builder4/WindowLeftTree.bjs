@@ -1703,6 +1703,7 @@
     "\t    \tcontinue;",
     "    \t}",
     "    \t",
+    "    \tview.getWidgetAtRow",
     "\t}",
     "\t",
     "}"

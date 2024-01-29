@@ -73,6 +73,7 @@ public class Xcls_WindowLeftTree : Object
 		    	continue;
 	    	}
 	    	
+	    	view.getWidgetAtRow
 		}
 		
 	}
