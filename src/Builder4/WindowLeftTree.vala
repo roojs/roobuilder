@@ -72,8 +72,16 @@ public class Xcls_WindowLeftTree : Object
 		    if (node == null) {
 		    	continue;
 	    	}
-	    	
-	    	view.getWidgetAtRow
+	    	var row = _this.model.nodeToRow(node);
+	    	if (row < 0) {
+	    		continue;
+			}
+	    	var widget = this.view.getWidgetAtRow(row);
+	    	if (widget == null) {
+	    		return;
+			}
+			
+			
 		}
 		
 	}
