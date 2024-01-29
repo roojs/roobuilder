@@ -12,6 +12,7 @@
    "bool hexpand" : true,
    "bool vexpand" : true,
    "id" : "WindowLeftTree",
+   "int last_error_counter" : "-1",
    "items" : [
     {
      "$ xns" : "Gtk",
