@@ -665,9 +665,9 @@ public class Xcls_GtkView : Object
 			// init method
 
 			{
-			   
-			   
-			   	this.css = new Gtk.CssProvider();
+			
+			
+				this.css = new Gtk.CssProvider();
 				 
 				this.css.load_from_string("#gtkview-view { font: 10px monospace ;}");
 				 
@@ -678,63 +678,54 @@ public class Xcls_GtkView : Object
 				);
 					
 					 
-			    this.loading = true;
-			    
-			  
-			  
-			    var attrs = new GtkSource.MarkAttributes();
-			    //var  pink =   Gdk.RGBA();
-			    //pink.parse ( "pink");
-			    //attrs.set_background ( pink);
-			    attrs.set_icon_name ( "process-stop");    
-			    attrs.query_tooltip_text.connect(( mark) => {
-			        //print("tooltip query? %s\n", mark.name);
-			        return mark.name;
-			    });
-			    
-			    this.el.set_mark_attributes ("ERR", attrs, 1);
-			    
-			     var wattrs = new GtkSource.MarkAttributes();
-			    //var  blue =   Gdk.RGBA();
-			    //blue.parse ( "#ABF4EB");
-			   // wattrs.set_background ( blue);
-			    wattrs.set_icon_name ( "process-stop");    
-			    wattrs.query_tooltip_text.connect(( mark) => {
-			        //print("tooltip query? %s\n", mark.name);
-			        return mark.name;
-			    });
-			    
-			    this.el.set_mark_attributes ("WARN", wattrs, 1);
-			    
-			 
-			    
-			     var dattrs = new GtkSource.MarkAttributes();
-			    //var  purple =   Gdk.RGBA();
-			    //purple.parse ( "#EEA9FF");
-			    //dattrs.set_background ( purple);
-			    dattrs.set_icon_name ( "process-stop");    
-			    dattrs.query_tooltip_text.connect(( mark) => {
-			        //print("tooltip query? %s\n", mark.name);
-			        return mark.name;
-			    });
-			    
-			    this.el.set_mark_attributes ("DEPR", dattrs, 1);
-			    
-			    
-			    var gattrs = new GtkSource.MarkAttributes();
-			    var  grey =   Gdk.RGBA();
-			    grey.parse ( "#ccc");
-			    gattrs.set_background ( grey);
-			 
-			    
-			    this.el.set_mark_attributes ("grey", gattrs, 1);
-			    
-			    
-			    
-			    
-			    
-			    
-			}
+				this.loading = true;
+			
+			
+			
+				var attrs = new GtkSource.MarkAttributes();
+				 attrs.set_icon_name ( "process-stop");    
+				attrs.query_tooltip_text.connect(( mark) => {
+					//print("tooltip query? %s\n", mark.name);
+					return mark.name;
+				});
+			
+				this.el.set_mark_attributes ("ERR", attrs, 1);
+			
+				 var wattrs = new GtkSource.MarkAttributes();
+				  wattrs.set_icon_name ( "process-stop");    
+				wattrs.query_tooltip_text.connect(( mark) => {
+					//print("tooltip query? %s\n", mark.name);
+					return mark.name;
+				});
+			
+				this.el.set_mark_attributes ("WARN", wattrs, 1);
+			
+			
+			
+				 var dattrs = new GtkSource.MarkAttributes();
+				dattrs.set_icon_name ( "process-stop");    
+				dattrs.query_tooltip_text.connect(( mark) => {
+					//print("tooltip query? %s\n", mark.name);
+					return mark.name;
+				});
+			
+				this.el.set_mark_attributes ("DEPR", dattrs, 1);
+			
+			
+				var gattrs = new GtkSource.MarkAttributes();
+				var  grey =   Gdk.RGBA();
+				grey.parse ( "#ccc");
+				gattrs.set_background ( grey);
+			
+			
+				this.el.set_mark_attributes ("grey", gattrs, 1);
+			
+			
+			
+			
+			
+			
+				}
 
 			//listeners
 			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
