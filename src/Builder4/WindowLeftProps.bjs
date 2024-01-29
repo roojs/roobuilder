@@ -673,6 +673,11 @@
           "\t ",
           "}"
          ],
+         "| int propToRow" : [
+          "() {",
+          "",
+          "}"
+         ],
          "| void selectProp" : [
           "(JsRender.NodeProp prop) {",
           "\tfor (var i = 0 ; i < this.el.n_items; i++) {",
