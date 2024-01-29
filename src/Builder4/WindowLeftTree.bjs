@@ -1691,8 +1691,9 @@
     "//        print(\"get inter\\n\");",
     "\t    var node= file.lineToNode( (int)diag.range.start.line) ;",
     "\t    if (node == null) {",
-    "\t    \treturn;",
+    "\t    \tcontinue;",
     "    \t}",
+    "    \t",
     "\t}",
     "\t",
     "}"

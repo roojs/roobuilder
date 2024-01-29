@@ -70,8 +70,9 @@ public class Xcls_WindowLeftTree : Object
 	//        print("get inter\n");
 		    var node= file.lineToNode( (int)diag.range.start.line) ;
 		    if (node == null) {
-		    	return;
+		    	continue;
 	    	}
+	    	
 		}
 		
 	}
