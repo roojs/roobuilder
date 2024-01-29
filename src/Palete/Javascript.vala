@@ -103,7 +103,7 @@ namespace Palete {
 			 
 			
 		}
-		
+		/*
 		
 		public Json.Object   compressionErrors(string code , string fn)
 		{
@@ -124,21 +124,11 @@ namespace Palete {
 			 
 		  
 			p.packFile(code, fn,"");
-			//state.showCompileResult(p.result);
-			/*
-			var g = new Json.Generator ();
-
-			g.pretty = true;
-			g.indent = 2;
-			var n = new Json.Node(Json.NodeType.OBJECT);
-			n.set_object(p.result);
-			g.set_root (n);
-
-			GLib.debug("got %s", g.to_data (null));
-			*/
+			 
  			return p.result;
 			 
 		}
+		*/
 		
 		/**
 		 * extension API concept..
