@@ -1682,6 +1682,19 @@
     " \tif (this.last_error_counter == file.error_counter) {",
     "\t\treturn;",
     "\t}",
+    "\tthis.removeErrors();",
+    "\t",
+    "\tforeach(var diag in ar) { ",
+    "\t",
+    "\t\t",
+    "\t     Gtk.TextIter iter;",
+    "//        print(\"get inter\\n\");",
+    "\t    var node= file.lineToNode( (int)diag.range.start.line) ;",
+    "\t    if (node == null) {",
+    "\t    \treturn;",
+    "    \t}",
+    "\t}",
+    "\t",
     "}"
    ]
   }

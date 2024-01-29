@@ -61,6 +61,19 @@ public class Xcls_WindowLeftTree : Object
 	 	if (this.last_error_counter == file.error_counter) {
 			return;
 		}
+		this.removeErrors();
+		
+		foreach(var diag in ar) { 
+		
+			
+		     Gtk.TextIter iter;
+	//        print("get inter\n");
+		    var node= file.lineToNode( (int)diag.range.start.line) ;
+		    if (node == null) {
+		    	return;
+	    	}
+		}
+		
 	}
 	public void onresize () {
 	 
