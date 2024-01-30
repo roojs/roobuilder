@@ -79,8 +79,19 @@ public class Xcls_WindowLeftTree : Object
 	    	if (w == null) {
 	    		return;
 			}
-			if (!w.has_css_class("node-error")) {
-				w.add_css_class("node-error");
+			// always show errors.
+			var ed = diag.category.down();
+			if (ed != "err" && w.has_css_class("node-err")) {
+				continue;
+			}
+			if (ed == "err" && w.has_css_class("node-warn")) {
+				w.remove_css_class("node-warn");
+			}
+			if (ed == "err" && w.has_css_class("node-depr")) {
+				w.remove_css_class("node-depr");
+			}
+			if (!w.has_css_class("node-"+ ed)) {
+				w.add_css_class("node-" + ed);
 			}
 			
 		}
@@ -117,8 +128,15 @@ public class Xcls_WindowLeftTree : Object
 				 
 		    }
 		    
-		  	if (!child.has_css_class("error-node")) {
-				child.remove_css_class("error-node");
+		  	if (!child.has_css_class("node-err")) {
+				child.remove_css_class("node-err");
+			}
+			if (!child.has_css_class("node-warn")) {
+				child.remove_css_class("node-warn");
+			}
+			
+			if (!child.has_css_class("node-depr")) {
+				child.remove_css_class("node-depr");
 			}
 			
 	        child = child.get_next_sibling(); 
@@ -286,7 +304,7 @@ public class Xcls_WindowLeftTree : Object
 			 border-top-style: solid;
 			 border-top-color: #88a3bc;
 			}
-			.node-error  {
+			.node-err  {
 			 border-top-width: 5px;
 			 border-top-style: solid;
 			 border-top-color: red;
@@ -294,8 +312,22 @@ public class Xcls_WindowLeftTree : Object
 			 border-bottom-style: solid;
 			 border-bottom-color: red;
 			}
-			
-			
+			.node-warn  {
+			 border-top-width: 5px;
+			 border-top-style: solid;
+			 border-top-color: #ABF4EB;
+			 border-bottom-width: 5px; 
+			 border-bottom-style: solid;
+			 border-bottom-color: #ABF4EB;
+			}
+			.node-depr  {
+			 border-top-width: 5px;
+			 border-top-style: solid;
+			 border-top-color: #EEA9FF;
+			 border-bottom-width: 5px; 
+			 border-bottom-style: solid;
+			 border-bottom-color: #EEA9FF;
+			}
 			
 			#left-tree-view indent {
 			-gtk-icon-size : 2px;
@@ -1478,30 +1510,11 @@ public class Xcls_WindowLeftTree : Object
 		    // if it's still null?
 		    if (f.tree == null) {
 				_this.main_window.windowstate.showAddObject(_this.view.el, null);
-		    
+		    	_this.updateErrors();
 		        return;
 		    }
 		  	m.append(f.tree);
-		  	// expand???
-		
-		/*
-		    if (f.tree.readItems().size < 1) {
-		        // single item..
-		        
-		        //this.get('/Window.leftvpaned').el.set_position(80);
-		        // select first...
-		        _this.view.el.set_cursor( 
-		            new  Gtk.TreePath.from_string("0"), null, false);
-		        
-		        
-		    } else {
-		          //this.get('/Window.leftvpaned').el.set_position(200);
-		    }
-		  */  
-		    
-		    
-		
-		    //_this.maincol.el.set_max_width(_this.viewwin.el.get_allocated_width() - 32);
+			_this.updateErrors();
 		 
 		    _this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
 		   

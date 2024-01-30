@@ -87,7 +87,7 @@ public class Xcls_LeftProps : Object
 	
 	}
 	public void updateErrors () {
-		var file = this.getActiveFile();
+		var file = this.file;
 		var ar = file.getErrors();
 		if (ar.size < 1) {
 			this.removeErrors();
@@ -118,8 +118,18 @@ public class Xcls_LeftProps : Object
 	    	if (w == null) {
 	    		return;
 			}
-			if (!w.has_css_class("node-error")) {
-				w.add_css_class("node-error");
+		  		var ed = diag.category.down();
+			if (ed != "err" && w.has_css_class("node-err")) {
+				continue;
+			}
+			if (ed == "err" && w.has_css_class("node-warn")) {
+				w.remove_css_class("node-warn");
+			}
+			if (ed == "err" && w.has_css_class("node-depr")) {
+				w.remove_css_class("node-depr");
+			}
+			if (!w.has_css_class("node-"+ ed)) {
+				w.add_css_class("node-" + ed);
 			}
 			
 		}
@@ -226,6 +236,47 @@ public class Xcls_LeftProps : Object
 	        _this.changed();
 	        */
 	}
+	public void removeErrors () {
+		var  child = this.view.el.get_first_child(); 
+	 
+		var reading_header = true;
+	 
+		while (child != null) {
+			GLib.debug("Got %s", child.get_type().name());
+		   
+		   if (reading_header) {
+				
+	
+				if (child.get_type().name() != "GtkColumnListView") {
+				   
+					child = child.get_next_sibling();
+					continue;
+				}
+				// should be columnlistview
+				child = child.get_first_child(); 
+			 
+			 
+				
+				reading_header = false;
+				 
+		    }
+		    
+		  	if (!child.has_css_class("node-err")) {
+				child.remove_css_class("node-err");
+			}
+			if (!child.has_css_class("node-warn")) {
+				child.remove_css_class("node-warn");
+			}
+			
+			if (!child.has_css_class("node-depr")) {
+				child.remove_css_class("node-depr");
+			}
+			
+	        child = child.get_next_sibling(); 
+		}
+		//GLib.debug("Rturning null");
+	     
+	}
 	public void a_addProp (JsRender.NodeProp prop) {
 	      // info includes key, val, skel, etype..
 	      //console.dump(info);
@@ -294,6 +345,7 @@ public class Xcls_LeftProps : Object
 	   
 	   	this.loading = false;
 	    this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
+	    this.updateErrors();
 	   // clear selection?
 	  //this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..
 	   
@@ -1329,6 +1381,7 @@ public class Xcls_LeftProps : Object
 						}
 						child = child.get_first_child(); 
 						reading_header = false;
+						continue;
 			        }
 				    if (child.get_type().name() != "GtkColumnViewRowWidget") {
 		    		    child = child.get_next_sibling();

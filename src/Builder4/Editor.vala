@@ -145,13 +145,15 @@ public class Editor : Object
 	
 	        // find the text for the node..
 	        this.view.load( prop.val );
-	        
+	        this.updateErrorMarks();
 	        
 	        this.close_btn.el.show();       
 	    
 	    } else {
 	        this.view.load(        file.toSource() );
+	         this.updateErrorMarks();
 	        this.close_btn.el.hide();
+	        
 	    }
 	 
 	}
@@ -300,7 +302,7 @@ public class Editor : Object
 	
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
-			hoffset = _this.node.node_pad.length + 1; //shift it left  by 1..
+			hoffset = _this.node.node_pad.length + 2; //shift it left  by 2 ? ..
 			
 			 
 		} else {
@@ -645,9 +647,7 @@ public class Editor : Object
 			
 			
 			var attrs = new GtkSource.MarkAttributes();
-			var  pink =   Gdk.RGBA();
-			pink.parse ( "pink");
-			//attrs.set_background ( pink);
+			
 			attrs.set_icon_name ( "process-stop");    
 			attrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
@@ -661,11 +661,7 @@ public class Editor : Object
 			attrs.ref();
 			
 			
-			
 			var wattrs = new GtkSource.MarkAttributes();
-			var  blue =   Gdk.RGBA();
-			blue.parse ( "#ABF4EB");
-			//wattrs.set_background ( blue);
 			wattrs.set_icon_name ( "process-stop");    
 			wattrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
@@ -678,12 +674,9 @@ public class Editor : Object
 			this.el.set_mark_attributes ("WARN", wattrs, 1);
 			wattrs.ref();
 			
-			
-			var  purple =  Gdk.RGBA();
-			purple.parse ( "#EEA9FF");
+			 
 			var dattrs = new GtkSource.MarkAttributes();
-			
-			//dattrs.set_background (purple );
+			 
 			dattrs.set_icon_name ( "process-stop"); 
 			
 			dattrs.query_tooltip_text.connect(( mark) => {
