@@ -717,7 +717,8 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 				ww.updateErrors();
 				ww.windowstate.left_tree.updateErrors();
 				ww.windowstate.left_props.updateErrors();
-	
+
+				
 			}
 		
 		}
