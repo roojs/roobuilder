@@ -78,14 +78,11 @@
       },
       {
        "$ xns" : "Gtk",
-       "bool always_show_image" : true,
-       "bool hexpand" : true,
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : false,
-         "bool autohide" : true,
-         "id" : "AddPropertyPopup",
+         "* prop" : "popover",
+         "id" : "addpop",
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -95,11 +92,21 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "label" : "id: _this.{ID} (Vala)",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "id: _this.{ID} (Vala)",
+               "string tooltip_text" : "Using _this.{ID} will map to this element",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                " ()  => {",
-               " \t_this.AddPropertyPopup.el.hide();",
+               " \t_this.addpop.el.hide();",
                " \t// is this userdef or special??",
                " \tvar add = new JsRender.NodeProp.prop(\"id\");",
                " \tif (_this.node.has_prop_key(add)) {",
@@ -110,22 +117,30 @@
                " \t",
                " \t_this.view.editProp( add );",
                " \t",
-               "\t",
                "}"
               ]
              },
-             "tooltip_markup" : "Using _this.{ID} will map to this element",
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "pack: Pack method (Vala)",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "pack: Pack method (Vala)",
+               "string tooltip_text" : "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) => {",
                " ",
                "",
-               "\t_this.AddPropertyPopup.el.hide();",
+               "  \t_this.addpop.el.hide();",
                " \t// is this userdef or special??",
                " \tvar add = new JsRender.NodeProp.special(\"pack\", \"add\");",
                " \tif (_this.node.has_prop_key(add)) {",
@@ -140,17 +155,30 @@
                "}"
               ]
              },
-             "tooltip_markup" : "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element",
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "ctor: Alterative to default contructor (Vala)",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "ctor: Alterative to default contructor (Vala)",
+               "string tooltip_text" : [
+                "eg. ",
+                "",
+                "new Clutter.Image.from_file(.....)"
+               ],
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) => {",
                "   ",
-               " _this.AddPropertyPopup.el.hide();",
+               "  \t_this.addpop.el.hide();",
                " \t// is this userdef or special??",
                " \tvar add = new JsRender.NodeProp.special(\"ctor\");",
                " \tif (_this.node.has_prop_key(add)) {",
@@ -164,21 +192,26 @@
                "}"
               ]
              },
-             "tooltip_markup" : [
-              "eg. ",
-              "",
-              "new Clutter.Image.from_file(.....)"
-             ],
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "init: initialziation code (vala)",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "init: initialziation code (vala)",
+               "string tooltip_text" : "This code is called after the ctor",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) => {",
                "    ",
-               " _this.AddPropertyPopup.el.hide();",
+               "  \t_this.addpop.el.hide();",
                " \t// is this userdef or special??",
                " \tvar add =  new JsRender.NodeProp.special(\"init\",\"{\\n\\n}\\n\" ) ;",
                " \tif (_this.node.has_prop_key(add)) {",
@@ -191,17 +224,29 @@
                "}"
               ]
              },
-             "tooltip_markup" : "This code is called after the ctor",
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "cms-id: (Roo JS/Pman library)",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "cms-id: (Roo JS/Pman library)",
+               "string tooltip_text" : [
+                "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})",
+                ""
+               ],
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                " ()  => {",
-               "   ",
-               " _this.AddPropertyPopup.el.hide();",
+               "    \t_this.addpop.el.hide();",
+               " ",
                " \t// is this userdef or special??",
                " \tvar add =   new JsRender.NodeProp.prop(\"cms-id\",\"string\", \"\" ) ;",
                " \tif (_this.node.has_prop_key(add)) {",
@@ -215,10 +260,6 @@
                "}"
               ]
              },
-             "tooltip_markup" : [
-              "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})",
-              ""
-             ],
              "xtype" : "Button"
             },
             {
@@ -228,11 +269,21 @@
             },
             {
              "$ xns" : "Gtk",
-             "label" : "String",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "String",
+               "string tooltip_text" : "Add a user defined string property",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "(self) => {",
-               "     _this.AddPropertyPopup.el.hide();",
+               "  \t_this.addpop.el.hide();",
                "\t_this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -244,17 +295,26 @@
                "}"
               ]
              },
-             "tooltip_markup" : "Add a user defined string property",
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "Number",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "Number",
+               "string tooltip_text" : "Add a user defined number property",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
-               "      _this.AddPropertyPopup.el.hide();",
-               "      ",
+               " ",
+               "       \t_this.addpop.el.hide();",
                "       _this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -266,17 +326,26 @@
                "}"
               ]
              },
-             "tooltip_markup" : "Add a user defined number property",
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "Boolean",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "Boolean",
+               "string tooltip_text" : "Add a user defined boolean property",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
                "  ",
-               "  \t     _this.AddPropertyPopup.el.hide();",
+               "  \t_this.addpop.el.hide();",
                "   _this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -288,7 +357,6 @@
                "}"
               ]
              },
-             "tooltip_markup" : "Add a user defined boolean property",
              "xtype" : "Button"
             },
             {
@@ -298,11 +366,21 @@
             },
             {
              "$ xns" : "Gtk",
-             "label" : "Javascript Function",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "Javascript Function",
+               "string tooltip_text" : "Add a javascript  function",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
-               "  _this.AddPropertyPopup.el.hide(); ",
+               "  \t_this.addpop.el.hide();",
                "   _this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -315,16 +393,25 @@
                "}"
               ]
              },
-             "tooltip_markup" : "Add a user function boolean property",
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "Vala Method",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "Vala Method",
+               "string tooltip_text" : "Add a user defined method to a object",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
-               "_this.AddPropertyPopup.el.hide();",
+               "  \t_this.addpop.el.hide();",
                "    _this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -335,16 +422,25 @@
                "}"
               ]
              },
-             "tooltip_markup" : "Add a user function boolean property",
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "Vala Signal",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "Vala Signal",
+               "string tooltip_text" : "Add a user defined signal to a object",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
-               "  _this.AddPropertyPopup.el.hide();",
+               " \t_this.addpop.el.hide(); ",
                "  _this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -355,7 +451,6 @@
                "}"
               ]
              },
-             "tooltip_markup" : "Add a vala signal",
              "xtype" : "Button"
             },
             {
@@ -365,11 +460,21 @@
             },
             {
              "$ xns" : "Gtk",
-             "label" : "Flexy - If",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "Flexy - If",
+               "string tooltip_text" : "Add a flexy if (for HTML templates)",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
-               " \t_this.AddPropertyPopup.el.hide();",
+               "  \t_this.addpop.el.hide();",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -382,16 +487,25 @@
                "}"
               ]
              },
-             "tooltip_markup" : "Add a flexy if (for HTML templates)",
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "Flexy - Include",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "Flexy - Include",
+               "string tooltip_text" : "Add a flexy include (for HTML templates)",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
-               " \t_this.AddPropertyPopup.el.hide();",
+               "  \t_this.addpop.el.hide();",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -404,16 +518,25 @@
                "}"
               ]
              },
-             "tooltip_markup" : "Add a flexy include (for HTML templates)",
              "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "label" : "Flexy - Foreach",
+             "bool has_frame" : false,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Align halign" : "Gtk.Align.START",
+               "string label" : "Flexy - Foreach",
+               "string tooltip_text" : "Add a flexy foreach (for HTML templates)",
+               "xtype" : "Label"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
-               " \t_this.AddPropertyPopup.el.hide();",
+               "  \t_this.addpop.el.hide();",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -435,32 +558,8 @@
          "xtype" : "Popover"
         }
        ],
-       "listeners" : {
-        "clicked" : [
-         "( ) => {",
-         "  //_this.before_edit();",
-         "  ",
-         "        ",
-         "    var p = _this.AddPropertyPopup;",
-         "    ",
-         " //\tGtk.Allocation rect;",
-         "\t//this.el.get_allocation(out rect);",
-         "\tif (p.el.parent == null) {",
-         "\t\t p.el.set_parent(this.el);",
-         "\t }",
-         "    //p.el.set_pointing_to(rect);",
-         "\tp.el.show();",
-         "\tp.el.set_position(Gtk.PositionType.BOTTOM);",
-         "\tp.el.autohide = true;",
-         "     return;",
-         "",
-         "}",
-         ""
-        ]
-       },
-       "string icon_name" : "list-add",
        "string label" : "Other",
-       "xtype" : "Button"
+       "xtype" : "MenuButton"
       }
      ],
      "xtype" : "Box"

@@ -10,6 +10,7 @@ roobuilder (5.0.2) UNRELEASED; urgency=medium
   * Errors now shown on widget tree / node properties / and node edit as selected
   * Error highlighting now on character location of errors, along with marks
   * roojspacker dependancy removed for now (too slow to work currently)
+  * add other property - use menubutton and tidy up pulldown so it looks like a menu.
   
  -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
 

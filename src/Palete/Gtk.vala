@@ -693,6 +693,13 @@ namespace Palete {
 			// skip dupe // skip depricated
 			// skip not object // skip GLib.Object (base)
 			
+			
+			//if (cls.fqn() == "GLib.Menu" && method == "append_submenu") {
+			//	ty = m.paramset.params.get(1).type;
+			// 	GLib.debug("add  %s   method %s arg1 = %s", cls.fqn(), method, ty);
+			//	this.addRealClasses(ret, ty);
+			//}
+			 
 		}
 		
 		void addRealClasses(Gee.ArrayList<string>  ret, string cn, bool allow_root = false)
@@ -789,7 +796,8 @@ namespace Palete {
         	this.add_classes_from_method(cls, "add_tick_callback", ret); // wtf does this do.
         	this.add_classes_from_method(cls, "append", ret);
         	this.add_classes_from_method(cls, "append_column", ret); // columnview column
-        	this.add_classes_from_method(cls, "append_item", ret); // GLib.Menu
+        	this.add_classes_from_method(cls, "append_item", ret); // GLib.Menu 
+        	//this.add_classes_from_method(cls, "append_submenu", ret); // GLib.Menu - complicated to support
         	this.add_classes_from_method(cls, "attach", ret); // grid column        	
         	this.add_classes_from_method(cls, "pack_start", ret); // headerbar (also has pack end?)
         	

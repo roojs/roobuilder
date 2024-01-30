@@ -6,7 +6,6 @@ namespace Palete {
 
     public class CompletionProvider : Object, GtkSource.CompletionProvider
     {
-
 		public JsRender.JsRender file {
 			get { return this.editor.file; }
 			private set {}

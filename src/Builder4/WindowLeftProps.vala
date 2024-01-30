@@ -12,7 +12,7 @@ public class Xcls_LeftProps : Object
 		}
 		return _LeftProps;
 	}
-	public Xcls_AddPropertyPopup AddPropertyPopup;
+	public Xcls_addpop addpop;
 	public Xcls_EditProps EditProps;
 	public Xcls_view view;
 	public Xcls_deletemenu deletemenu;
@@ -382,7 +382,7 @@ public class Xcls_LeftProps : Object
 			var child_3 = new Xcls_Button5( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
-			var child_4 = new Xcls_Button6( _this );
+			var child_4 = new Xcls_MenuButton6( _this );
 			child_4.ref();
 			this.el.append( child_4.el );
 		}
@@ -491,54 +491,31 @@ public class Xcls_LeftProps : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button6 : Object
+	public class Xcls_MenuButton6 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.MenuButton el;
 		private Xcls_LeftProps  _this;
 
 
 			// my vars (def)
-		public bool always_show_image;
 
 		// ctor
-		public Xcls_Button6(Xcls_LeftProps _owner )
+		public Xcls_MenuButton6(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.MenuButton();
 
 			// my vars (dec)
-			this.always_show_image = true;
 
 			// set gobject values
-			this.el.icon_name = "list-add";
-			this.el.hexpand = true;
 			this.el.label = "Other";
-			new Xcls_AddPropertyPopup( _this );
-
-			//listeners
-			this.el.clicked.connect( ( ) => {
-			  //_this.before_edit();
-			  
-			        
-			    var p = _this.AddPropertyPopup;
-			    
-			 //	Gtk.Allocation rect;
-				//this.el.get_allocation(out rect);
-				if (p.el.parent == null) {
-					 p.el.set_parent(this.el);
-				 }
-			    //p.el.set_pointing_to(rect);
-				p.el.show();
-				p.el.set_position(Gtk.PositionType.BOTTOM);
-				p.el.autohide = true;
-			     return;
-			
-			});
+			new Xcls_addpop( _this );
+			this.el.popover = _this.addpop.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_AddPropertyPopup : Object
+	public class Xcls_addpop : Object
 	{
 		public Gtk.Popover el;
 		private Xcls_LeftProps  _this;
@@ -547,16 +524,15 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_AddPropertyPopup(Xcls_LeftProps _owner )
+		public Xcls_addpop(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			_this.AddPropertyPopup = this;
+			_this.addpop = this;
 			this.el = new Gtk.Popover();
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.autohide = true;
 			var child_1 = new Xcls_Box8( _this );
 			this.el.child = child_1.el;
 		}
@@ -583,52 +559,52 @@ public class Xcls_LeftProps : Object
 			var child_1 = new Xcls_Button9( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Button10( _this );
+			var child_2 = new Xcls_Button11( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
-			var child_3 = new Xcls_Button11( _this );
+			var child_3 = new Xcls_Button13( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
-			var child_4 = new Xcls_Button12( _this );
+			var child_4 = new Xcls_Button15( _this );
 			child_4.ref();
 			this.el.append( child_4.el );
-			var child_5 = new Xcls_Button13( _this );
+			var child_5 = new Xcls_Button17( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
-			var child_6 = new Xcls_Separator14( _this );
+			var child_6 = new Xcls_Separator19( _this );
 			child_6.ref();
 			this.el.append( child_6.el );
-			var child_7 = new Xcls_Button15( _this );
+			var child_7 = new Xcls_Button20( _this );
 			child_7.ref();
 			this.el.append( child_7.el );
-			var child_8 = new Xcls_Button16( _this );
+			var child_8 = new Xcls_Button22( _this );
 			child_8.ref();
 			this.el.append( child_8.el );
-			var child_9 = new Xcls_Button17( _this );
+			var child_9 = new Xcls_Button24( _this );
 			child_9.ref();
 			this.el.append( child_9.el );
-			var child_10 = new Xcls_Separator18( _this );
+			var child_10 = new Xcls_Separator26( _this );
 			child_10.ref();
 			this.el.append( child_10.el );
-			var child_11 = new Xcls_Button19( _this );
+			var child_11 = new Xcls_Button27( _this );
 			child_11.ref();
 			this.el.append( child_11.el );
-			var child_12 = new Xcls_Button20( _this );
+			var child_12 = new Xcls_Button29( _this );
 			child_12.ref();
 			this.el.append( child_12.el );
-			var child_13 = new Xcls_Button21( _this );
+			var child_13 = new Xcls_Button31( _this );
 			child_13.ref();
 			this.el.append( child_13.el );
-			var child_14 = new Xcls_Separator22( _this );
+			var child_14 = new Xcls_Separator33( _this );
 			child_14.ref();
 			this.el.append( child_14.el );
-			var child_15 = new Xcls_Button23( _this );
+			var child_15 = new Xcls_Button34( _this );
 			child_15.ref();
 			this.el.append( child_15.el );
-			var child_16 = new Xcls_Button24( _this );
+			var child_16 = new Xcls_Button36( _this );
 			child_16.ref();
 			this.el.append( child_16.el );
-			var child_17 = new Xcls_Button25( _this );
+			var child_17 = new Xcls_Button38( _this );
 			child_17.ref();
 			this.el.append( child_17.el );
 		}
@@ -652,12 +628,13 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "Using _this.{ID} will map to this element";
-			this.el.label = "id: _this.{ID} (Vala)";
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label10( _this );
+			this.el.child = child_1.el;
 
 			//listeners
 			this.el.clicked.connect( ()  => {
-			 	_this.AddPropertyPopup.el.hide();
+			 	_this.addpop.el.hide();
 			 	// is this userdef or special??
 			 	var add = new JsRender.NodeProp.prop("id");
 			 	if (_this.node.has_prop_key(add)) {
@@ -668,54 +645,35 @@ public class Xcls_LeftProps : Object
 			 	
 			 	_this.view.editProp( add );
 			 	
-				
 			});
 		}
 
 		// user defined functions
 	}
-
-	public class Xcls_Button10 : Object
+	public class Xcls_Label10 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.Label el;
 		private Xcls_LeftProps  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button10(Xcls_LeftProps _owner )
+		public Xcls_Label10(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.Label( "id: _this.{ID} (Vala)" );
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element";
-			this.el.label = "pack: Pack method (Vala)";
-
-			//listeners
-			this.el.clicked.connect( ( ) => {
-			 
-			
-				_this.AddPropertyPopup.el.hide();
-			 	// is this userdef or special??
-			 	var add = new JsRender.NodeProp.special("pack", "add");
-			 	if (_this.node.has_prop_key(add)) {
-				 	return;
-			 	}
-			 	
-			 	_this.node.add_prop( add );
-			 	
-			 	_this.view.editProp( add );
-			 	
-			
-			});
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Using _this.{ID} will map to this element";
 		}
 
 		// user defined functions
 	}
+
 
 	public class Xcls_Button11 : Object
 	{
@@ -734,15 +692,17 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "eg. \n\nnew Clutter.Image.from_file(.....)";
-			this.el.label = "ctor: Alterative to default contructor (Vala)";
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label12( _this );
+			this.el.child = child_1.el;
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
-			   
-			 _this.AddPropertyPopup.el.hide();
+			 
+			
+			  	_this.addpop.el.hide();
 			 	// is this userdef or special??
-			 	var add = new JsRender.NodeProp.special("ctor");
+			 	var add = new JsRender.NodeProp.special("pack", "add");
 			 	if (_this.node.has_prop_key(add)) {
 				 	return;
 			 	}
@@ -751,50 +711,36 @@ public class Xcls_LeftProps : Object
 			 	
 			 	_this.view.editProp( add );
 			 	
+			
 			});
 		}
 
 		// user defined functions
 	}
-
-	public class Xcls_Button12 : Object
+	public class Xcls_Label12 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.Label el;
 		private Xcls_LeftProps  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button12(Xcls_LeftProps _owner )
+		public Xcls_Label12(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.Label( "pack: Pack method (Vala)" );
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "This code is called after the ctor";
-			this.el.label = "init: initialziation code (vala)";
-
-			//listeners
-			this.el.clicked.connect( ( ) => {
-			    
-			 _this.AddPropertyPopup.el.hide();
-			 	// is this userdef or special??
-			 	var add =  new JsRender.NodeProp.special("init","{\n\n}\n" ) ;
-			 	if (_this.node.has_prop_key(add)) {
-				 	return;
-			 	}
-			 	
-			 	_this.node.add_prop( add );
-			 	
-			 	_this.view.editProp( add );
-			});
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element";
 		}
 
 		// user defined functions
 	}
+
 
 	public class Xcls_Button13 : Object
 	{
@@ -813,15 +759,16 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})\n";
-			this.el.label = "cms-id: (Roo JS/Pman library)";
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label14( _this );
+			this.el.child = child_1.el;
 
 			//listeners
-			this.el.clicked.connect( ()  => {
+			this.el.clicked.connect( ( ) => {
 			   
-			 _this.AddPropertyPopup.el.hide();
+			  	_this.addpop.el.hide();
 			 	// is this userdef or special??
-			 	var add =   new JsRender.NodeProp.prop("cms-id","string", "" ) ;
+			 	var add = new JsRender.NodeProp.special("ctor");
 			 	if (_this.node.has_prop_key(add)) {
 				 	return;
 			 	}
@@ -829,34 +776,36 @@ public class Xcls_LeftProps : Object
 			 	_this.node.add_prop( add );
 			 	
 			 	_this.view.editProp( add );
-			    
+			 	
 			});
 		}
 
 		// user defined functions
 	}
-
-	public class Xcls_Separator14 : Object
+	public class Xcls_Label14 : Object
 	{
-		public Gtk.Separator el;
+		public Gtk.Label el;
 		private Xcls_LeftProps  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_Separator14(Xcls_LeftProps _owner )
+		public Xcls_Label14(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Separator( Gtk.Orientation.HORIZONTAL );
+			this.el = new Gtk.Label( "ctor: Alterative to default contructor (Vala)" );
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "eg. \n\nnew Clutter.Image.from_file(.....)";
 		}
 
 		// user defined functions
 	}
+
 
 	public class Xcls_Button15 : Object
 	{
@@ -875,63 +824,52 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "Add a user defined string property";
-			this.el.label = "String";
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label16( _this );
+			this.el.child = child_1.el;
 
 			//listeners
-			this.el.clicked.connect( (self) => {
-			     _this.AddPropertyPopup.el.hide();
-				_this.view.popover.show(
-					_this.view.el, 
-					_this.node, 
-					 new JsRender.NodeProp.prop("", "string", "") ,
-					-1,  
-					true
-				);
-			 
+			this.el.clicked.connect( ( ) => {
+			    
+			  	_this.addpop.el.hide();
+			 	// is this userdef or special??
+			 	var add =  new JsRender.NodeProp.special("init","{\n\n}\n" ) ;
+			 	if (_this.node.has_prop_key(add)) {
+				 	return;
+			 	}
+			 	
+			 	_this.node.add_prop( add );
+			 	
+			 	_this.view.editProp( add );
 			});
 		}
 
 		// user defined functions
 	}
-
-	public class Xcls_Button16 : Object
+	public class Xcls_Label16 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.Label el;
 		private Xcls_LeftProps  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button16(Xcls_LeftProps _owner )
+		public Xcls_Label16(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.Label( "init: initialziation code (vala)" );
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "Add a user defined number property";
-			this.el.label = "Number";
-
-			//listeners
-			this.el.clicked.connect( ( ) =>{
-			      _this.AddPropertyPopup.el.hide();
-			      
-			       _this.view.popover.show(
-					_this.view.el, 
-					_this.node, 
-					 new JsRender.NodeProp.prop("", "int", "0") ,
-					-1,  
-					true
-				);
-			 
-			});
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "This code is called after the ctor";
 		}
 
 		// user defined functions
 	}
+
 
 	public class Xcls_Button17 : Object
 	{
@@ -950,28 +888,55 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "Add a user defined boolean property";
-			this.el.label = "Boolean";
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label18( _this );
+			this.el.child = child_1.el;
 
 			//listeners
-			this.el.clicked.connect( ( ) =>{
-			  
-			  	     _this.AddPropertyPopup.el.hide();
-			   _this.view.popover.show(
-					_this.view.el, 
-					_this.node, 
-					 new JsRender.NodeProp.prop("", "bool", "true") ,
-					-1,  
-					true
-				); 
+			this.el.clicked.connect( ()  => {
+			    	_this.addpop.el.hide();
 			 
+			 	// is this userdef or special??
+			 	var add =   new JsRender.NodeProp.prop("cms-id","string", "" ) ;
+			 	if (_this.node.has_prop_key(add)) {
+				 	return;
+			 	}
+			 	
+			 	_this.node.add_prop( add );
+			 	
+			 	_this.view.editProp( add );
+			    
 			});
 		}
 
 		// user defined functions
 	}
+	public class Xcls_Label18 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
 
-	public class Xcls_Separator18 : Object
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label18(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "cms-id: (Roo JS/Pman library)" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})\n";
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_Separator19 : Object
 	{
 		public Gtk.Separator el;
 		private Xcls_LeftProps  _this;
@@ -980,7 +945,7 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Separator18(Xcls_LeftProps _owner )
+		public Xcls_Separator19(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Separator( Gtk.Orientation.HORIZONTAL );
@@ -988,44 +953,6 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Button19 : Object
-	{
-		public Gtk.Button el;
-		private Xcls_LeftProps  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Button19(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.tooltip_markup = "Add a user function boolean property";
-			this.el.label = "Javascript Function";
-
-			//listeners
-			this.el.clicked.connect( ( ) =>{
-			  _this.AddPropertyPopup.el.hide(); 
-			   _this.view.popover.show(
-					_this.view.el, 
-					_this.node, 
-					 new JsRender.NodeProp.jsmethod("") ,
-					-1,  
-					true
-				);
-			
-			 
-			});
 		}
 
 		// user defined functions
@@ -1048,120 +975,113 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "Add a user function boolean property";
-			this.el.label = "Vala Method";
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label21( _this );
+			this.el.child = child_1.el;
 
 			//listeners
-			this.el.clicked.connect( ( ) =>{
-			_this.AddPropertyPopup.el.hide();
-			    _this.view.popover.show(
+			this.el.clicked.connect( (self) => {
+			  	_this.addpop.el.hide();
+				_this.view.popover.show(
 					_this.view.el, 
 					_this.node, 
-					 new JsRender.NodeProp.valamethod("") ,
-					-1,  
-					true
-				); 
-			});
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Button21 : Object
-	{
-		public Gtk.Button el;
-		private Xcls_LeftProps  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Button21(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.tooltip_markup = "Add a vala signal";
-			this.el.label = "Vala Signal";
-
-			//listeners
-			this.el.clicked.connect( ( ) =>{
-			  _this.AddPropertyPopup.el.hide();
-			  _this.view.popover.show(
-					_this.view.el, 
-					_this.node, 
-					 new JsRender.NodeProp.sig("" ) ,
-					-1,  
-					true
-				);    
-			});
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Separator22 : Object
-	{
-		public Gtk.Separator el;
-		private Xcls_LeftProps  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Separator22(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Separator( Gtk.Orientation.HORIZONTAL );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Button23 : Object
-	{
-		public Gtk.Button el;
-		private Xcls_LeftProps  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Button23(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.tooltip_markup = "Add a flexy if (for HTML templates)";
-			this.el.label = "Flexy - If";
-
-			//listeners
-			this.el.clicked.connect( ( ) =>{
-			 	_this.AddPropertyPopup.el.hide();
-			 	_this.view.popover.show(
-					_this.view.el, 
-					_this.node, 
-					 new JsRender.NodeProp.prop("flexy:if", "string", "value_or_condition") ,
+					 new JsRender.NodeProp.prop("", "string", "") ,
 					-1,  
 					true
 				);
-			
-			
+			 
 			});
 		}
 
 		// user defined functions
 	}
+	public class Xcls_Label21 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label21(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "String" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Add a user defined string property";
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_Button22 : Object
+	{
+		public Gtk.Button el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Button22(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label23( _this );
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( ( ) =>{
+			 
+			       	_this.addpop.el.hide();
+			       _this.view.popover.show(
+					_this.view.el, 
+					_this.node, 
+					 new JsRender.NodeProp.prop("", "int", "0") ,
+					-1,  
+					true
+				);
+			 
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Label23 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label23(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Number" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Add a user defined number property";
+		}
+
+		// user defined functions
+	}
+
 
 	public class Xcls_Button24 : Object
 	{
@@ -1180,12 +1100,368 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.tooltip_markup = "Add a flexy include (for HTML templates)";
-			this.el.label = "Flexy - Include";
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label25( _this );
+			this.el.child = child_1.el;
 
 			//listeners
 			this.el.clicked.connect( ( ) =>{
-			 	_this.AddPropertyPopup.el.hide();
+			  
+			  	_this.addpop.el.hide();
+			   _this.view.popover.show(
+					_this.view.el, 
+					_this.node, 
+					 new JsRender.NodeProp.prop("", "bool", "true") ,
+					-1,  
+					true
+				); 
+			 
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Label25 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label25(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Boolean" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Add a user defined boolean property";
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_Separator26 : Object
+	{
+		public Gtk.Separator el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Separator26(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Separator( Gtk.Orientation.HORIZONTAL );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Button27 : Object
+	{
+		public Gtk.Button el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Button27(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label28( _this );
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( ( ) =>{
+			  	_this.addpop.el.hide();
+			   _this.view.popover.show(
+					_this.view.el, 
+					_this.node, 
+					 new JsRender.NodeProp.jsmethod("") ,
+					-1,  
+					true
+				);
+			
+			 
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Label28 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label28(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Javascript Function" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Add a javascript  function";
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_Button29 : Object
+	{
+		public Gtk.Button el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Button29(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label30( _this );
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( ( ) =>{
+			  	_this.addpop.el.hide();
+			    _this.view.popover.show(
+					_this.view.el, 
+					_this.node, 
+					 new JsRender.NodeProp.valamethod("") ,
+					-1,  
+					true
+				); 
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Label30 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label30(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Vala Method" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Add a user defined method to a object";
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_Button31 : Object
+	{
+		public Gtk.Button el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Button31(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label32( _this );
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( ( ) =>{
+			 	_this.addpop.el.hide(); 
+			  _this.view.popover.show(
+					_this.view.el, 
+					_this.node, 
+					 new JsRender.NodeProp.sig("" ) ,
+					-1,  
+					true
+				);    
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Label32 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label32(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Vala Signal" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Add a user defined signal to a object";
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_Separator33 : Object
+	{
+		public Gtk.Separator el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Separator33(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Separator( Gtk.Orientation.HORIZONTAL );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Button34 : Object
+	{
+		public Gtk.Button el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Button34(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label35( _this );
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( ( ) =>{
+			  	_this.addpop.el.hide();
+			 	_this.view.popover.show(
+					_this.view.el, 
+					_this.node, 
+					 new JsRender.NodeProp.prop("flexy:if", "string", "value_or_condition") ,
+					-1,  
+					true
+				);
+			
+			
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Label35 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label35(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Flexy - If" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Add a flexy if (for HTML templates)";
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_Button36 : Object
+	{
+		public Gtk.Button el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Button36(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Label37( _this );
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( ( ) =>{
+			  	_this.addpop.el.hide();
 			 	_this.view.popover.show(
 					_this.view.el, 
 					_this.node, 
@@ -1200,8 +1476,32 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
+	public class Xcls_Label37 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
 
-	public class Xcls_Button25 : Object
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label37(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Flexy - Include" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Add a flexy include (for HTML templates)";
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_Button38 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_LeftProps  _this;
@@ -1210,7 +1510,7 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button25(Xcls_LeftProps _owner )
+		public Xcls_Button38(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -1218,12 +1518,14 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.has_frame = false;
 			this.el.tooltip_markup = "Add a flexy include (for HTML templates)";
-			this.el.label = "Flexy - Foreach";
+			var child_1 = new Xcls_Label39( _this );
+			this.el.child = child_1.el;
 
 			//listeners
 			this.el.clicked.connect( ( ) =>{
-			 	_this.AddPropertyPopup.el.hide();
+			  	_this.addpop.el.hide();
 			 	_this.view.popover.show(
 					_this.view.el, 
 					_this.node, 
@@ -1237,6 +1539,30 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
+	public class Xcls_Label39 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label39(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Flexy - Foreach" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.tooltip_text = "Add a flexy foreach (for HTML templates)";
+		}
+
+		// user defined functions
+	}
+
 
 
 
@@ -1305,10 +1631,10 @@ public class Xcls_LeftProps : Object
 			this.el.vexpand = true;
 			this.el.show_row_separators = true;
 			new Xcls_deletemenu( _this );
-			var child_3 = new Xcls_GestureClick31( _this );
+			var child_3 = new Xcls_GestureClick45( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
-			var child_4 = new Xcls_GestureClick32( _this );
+			var child_4 = new Xcls_GestureClick46( _this );
 			child_4.ref();
 			this.el.add_controller(  child_4.el );
 			new Xcls_keycol( _this );
@@ -1596,13 +1922,13 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box29( _this );
+			var child_1 = new Xcls_Box43( _this );
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box29 : Object
+	public class Xcls_Box43 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_LeftProps  _this;
@@ -1611,7 +1937,7 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box29(Xcls_LeftProps _owner )
+		public Xcls_Box43(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1619,14 +1945,14 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button30( _this );
+			var child_1 = new Xcls_Button44( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button30 : Object
+	public class Xcls_Button44 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_LeftProps  _this;
@@ -1635,7 +1961,7 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button30(Xcls_LeftProps _owner )
+		public Xcls_Button44(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -1661,7 +1987,7 @@ public class Xcls_LeftProps : Object
 
 
 
-	public class Xcls_GestureClick31 : Object
+	public class Xcls_GestureClick45 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_LeftProps  _this;
@@ -1670,7 +1996,7 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick31(Xcls_LeftProps _owner )
+		public Xcls_GestureClick45(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -1718,7 +2044,7 @@ public class Xcls_LeftProps : Object
 		// user defined functions
 	}
 
-	public class Xcls_GestureClick32 : Object
+	public class Xcls_GestureClick46 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_LeftProps  _this;
@@ -1727,7 +2053,7 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick32(Xcls_LeftProps _owner )
+		public Xcls_GestureClick46(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -1870,7 +2196,7 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			_this.keycol = this;
-			var child_1 = new Xcls_SignalListItemFactory36( _this );
+			var child_1 = new Xcls_SignalListItemFactory50( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
 
@@ -1884,7 +2210,7 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory36 : Object
+	public class Xcls_SignalListItemFactory50 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_LeftProps  _this;
@@ -1893,7 +2219,7 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory36(Xcls_LeftProps _owner )
+		public Xcls_SignalListItemFactory50(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -1955,7 +2281,7 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			_this.valcol = this;
-			var child_1 = new Xcls_SignalListItemFactory38( _this );
+			var child_1 = new Xcls_SignalListItemFactory52( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Value", child_1.el );
 
@@ -1969,7 +2295,7 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory38 : Object
+	public class Xcls_SignalListItemFactory52 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_LeftProps  _this;
@@ -1979,7 +2305,7 @@ public class Xcls_LeftProps : Object
 		public bool is_setting;
 
 		// ctor
-		public Xcls_SignalListItemFactory38(Xcls_LeftProps _owner )
+		public Xcls_SignalListItemFactory52(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -2187,13 +2513,13 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box40( _this );
+			var child_1 = new Xcls_Box54( _this );
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box40 : Object
+	public class Xcls_Box54 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_LeftProps  _this;
@@ -2202,7 +2528,7 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box40(Xcls_LeftProps _owner )
+		public Xcls_Box54(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -2210,14 +2536,14 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button41( _this );
+			var child_1 = new Xcls_Button55( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button41 : Object
+	public class Xcls_Button55 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_LeftProps  _this;
@@ -2226,7 +2552,7 @@ public class Xcls_LeftProps : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button41(Xcls_LeftProps _owner )
+		public Xcls_Button55(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
