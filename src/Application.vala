@@ -710,6 +710,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 				if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
 					continue;
 				}
+				
 
 				ww.windowstate.updateErrorMarksAll();
 				 
@@ -717,7 +718,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 				ww.updateErrors();
 				ww.windowstate.left_tree.updateErrors();
 				ww.windowstate.left_props.updateErrors();
-	
+				
 			}
 		
 		}

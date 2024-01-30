@@ -24,6 +24,7 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (def)
 	public signal bool before_node_change ();
 	public Xcls_MainWindow main_window;
+	public int last_error_counter;
 	public signal void changed ();
 	public signal void node_selected (JsRender.Node? node);
 
@@ -35,6 +36,7 @@ public class Xcls_WindowLeftTree : Object
 
 		// my vars (dec)
 		this.main_window = null;
+		this.last_error_counter = -1;
 
 		// set gobject values
 		this.el.hexpand = true;
@@ -47,11 +49,100 @@ public class Xcls_WindowLeftTree : Object
 	}
 
 	// user defined functions
+	public void updateErrors () {
+		var file = this.getActiveFile();
+		var ar = file.getErrors();
+		if (ar.size < 1) {
+			this.removeErrors();
+			this.last_error_counter = file.error_counter ;
+	
+			return;
+		}
+	 	if (this.last_error_counter == file.error_counter) {
+			return;
+		}
+		this.removeErrors();
+		
+		foreach(var diag in ar) { 
+		
+			 
+	//        print("get inter\n");
+		    var node= file.lineToNode( (int)diag.range.start.line) ;
+		    if (node == null) {
+		    	continue;
+	    	}
+	    	var row = _this.model.nodeToRow(node);
+	    	if (row < 0) {
+	    		continue;
+			}
+	    	var w = this.view.getWidgetAtRow(row);
+	    	if (w == null) {
+	    		return;
+			}
+			// always show errors.
+			var ed = diag.category.down();
+			if (ed != "err" && w.has_css_class("node-err")) {
+				continue;
+			}
+			if (ed == "err" && w.has_css_class("node-warn")) {
+				w.remove_css_class("node-warn");
+			}
+			if (ed == "err" && w.has_css_class("node-depr")) {
+				w.remove_css_class("node-depr");
+			}
+			if (!w.has_css_class("node-"+ ed)) {
+				w.add_css_class("node-" + ed);
+			}
+			
+		}
+		
+	}
 	public void onresize () {
 	 
 		 
 		//GLib.debug("Got allocation width of scrolled view %d", allocation.width );
 	//	_this.maincol.el.set_max_width( _this.viewwin.el.get_width()  - 32 );
+	}
+	public void removeErrors () {
+		var  child = this.view.el.get_first_child(); 
+	 
+		var reading_header = true;
+	 
+		while (child != null) {
+			GLib.debug("Got %s", child.get_type().name());
+		   
+		   if (reading_header) {
+				
+	
+				if (child.get_type().name() != "GtkColumnListView") {
+				   
+					child = child.get_next_sibling();
+					continue;
+				}
+				// should be columnlistview
+				child = child.get_first_child(); 
+			 
+			 
+				
+				reading_header = false;
+				 
+		    }
+		    
+		  	if (!child.has_css_class("node-err")) {
+				child.remove_css_class("node-err");
+			}
+			if (!child.has_css_class("node-warn")) {
+				child.remove_css_class("node-warn");
+			}
+			
+			if (!child.has_css_class("node-depr")) {
+				child.remove_css_class("node-depr");
+			}
+			
+	        child = child.get_next_sibling(); 
+		}
+		//GLib.debug("Rturning null");
+	     
 	}
 	public JsRender.Node? getActiveElement () { // return path to actie node.
 	
@@ -213,6 +304,31 @@ public class Xcls_WindowLeftTree : Object
 			 border-top-style: solid;
 			 border-top-color: #88a3bc;
 			}
+			.node-err  {
+			 border-top-width: 5px;
+			 border-top-style: solid;
+			 border-top-color: red;
+			 border-bottom-width: 5px; 
+			 border-bottom-style: solid;
+			 border-bottom-color: red;
+			}
+			.node-warn  {
+			 border-top-width: 5px;
+			 border-top-style: solid;
+			 border-top-color: #ABF4EB;
+			 border-bottom-width: 5px; 
+			 border-bottom-style: solid;
+			 border-bottom-color: #ABF4EB;
+			}
+			.node-depr  {
+			 border-top-width: 5px;
+			 border-top-style: solid;
+			 border-top-color: #EEA9FF;
+			 border-bottom-width: 5px; 
+			 border-bottom-style: solid;
+			 border-bottom-color: #EEA9FF;
+			}
+			
 			#left-tree-view indent {
 			-gtk-icon-size : 2px;
 			}
@@ -1382,7 +1498,7 @@ public class Xcls_WindowLeftTree : Object
 		    _this.main_window.windowstate.leftTreeNodeSelected(null);
 		    // needed???
 		    _this.main_window.windowstate.file = f;
-		    
+		    _this.last_error_counter = -1;
 		   
 		    if (f.tree == null) {
 			    try {
@@ -1394,37 +1510,34 @@ public class Xcls_WindowLeftTree : Object
 		    // if it's still null?
 		    if (f.tree == null) {
 				_this.main_window.windowstate.showAddObject(_this.view.el, null);
-		    
+		    	_this.updateErrors();
 		        return;
 		    }
 		  	m.append(f.tree);
-		  	
-		  	// expand???
-		
-		/*
-		    if (f.tree.readItems().size < 1) {
-		        // single item..
-		        
-		        //this.get('/Window.leftvpaned').el.set_position(80);
-		        // select first...
-		        _this.view.el.set_cursor( 
-		            new  Gtk.TreePath.from_string("0"), null, false);
-		        
-		        
-		    } else {
-		          //this.get('/Window.leftvpaned').el.set_position(200);
-		    }
-		  */  
-		    
-		    
-		
-		    //_this.maincol.el.set_max_width(_this.viewwin.el.get_allocated_width() - 32);
+			_this.updateErrors();
 		 
 		    _this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
-		   _this.updateErrors();
+		   
 		    return;
 		 
 		            
+		}
+		public int nodeToRow (JsRender.Node node) 
+		{
+			var row = -1;
+			var s = _this.view.el.model as Gtk.SingleSelection;
+			for (var i = 0; i < s.n_items; i++) {
+				//GLib.debug("check node %s", s.get_item(i).get_type().name());
+				var lr = s.get_item(i) as Gtk.TreeListRow;
+				GLib.debug("check node %s", lr.get_item().get_type().name());
+				if ((lr.get_item() as JsRender.Node).oid == node.oid) {
+					return i;
+					
+				}
+			}
+			return -1;			
+			
+		
 		}
 		public void deleteSelected () {
 		
@@ -1510,17 +1623,9 @@ public class Xcls_WindowLeftTree : Object
 		}
 		public void selectNode (JsRender.Node node) 
 		{
-			var row = -1;
-			var s = (Gtk.SingleSelection)_this.view.el.model;
-			for (var i = 0; i < s.n_items; i++) {
-				//GLib.debug("check node %s", s.get_item(i).get_type().name());
-				var lr = (Gtk.TreeListRow)s.get_item(i);
-				GLib.debug("check node %s", lr.get_item().get_type().name());
-				if (((JsRender.Node)lr.get_item()).oid == node.oid) {
-					row  = i;
-					break;
-				}
-			}
+			var row = this.nodeToRow(node);
+			var s = _this.view.el.model as Gtk.SingleSelection;
+			 
 			if (row < 0) {
 				// select none?
 				GLib.debug("Could not find node");

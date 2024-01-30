@@ -145,12 +145,15 @@ public class Editor : Object
 	
 	        // find the text for the node..
 	        this.view.load( prop.val );
-	
+	        this.updateErrorMarks();
+	        
 	        this.close_btn.el.show();       
 	    
 	    } else {
 	        this.view.load(        file.toSource() );
+	         this.updateErrorMarks();
 	        this.close_btn.el.hide();
+	        
 	    }
 	 
 	}
@@ -275,6 +278,9 @@ public class Editor : Object
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
 			buf.remove_source_marks (start, end, null);
+			buf.remove_tag_by_name ("ERR", start, end);
+			buf.remove_tag_by_name ("WARN", start, end);
+			buf.remove_tag_by_name ("DEPR", start, end);
 			this.last_error_counter = file.error_counter ;
 			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
 			return;
@@ -296,7 +302,7 @@ public class Editor : Object
 	
 			tlines = _this.prop.end_line;
 			offset = _this.prop.start_line;
-			hoffset = _this.node.node_pad.length;
+			hoffset = _this.node.node_pad.length + 2; //shift it left  by 2 ? ..
 			
 			 
 		} else {
@@ -308,26 +314,36 @@ public class Editor : Object
 		
 		}
 		buf.remove_source_marks (start, end, null);
+		buf.remove_tag_by_name ("ERR", start, end);
+		buf.remove_tag_by_name ("WARN", start, end);
+		buf.remove_tag_by_name ("DEPR", start, end);
+		
 		foreach(var diag in ar) { 
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
 		    var eline = (int)diag.range.start.line - offset;
+		    var eline_to = (int)diag.range.end.line - offset;
 		    //var eline =  diag.range.end_line - offset;
 		    //GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
 		    //	err.line ,eline, offset);
 		    
 		    
 		    if (eline > tlines || eline < 0) {
-	
 		        continue;
 		    }
 		   
 		    
-		    buf.get_iter_at_line_offset( out iter, eline, (int)diag.range.start.character - hoffset);
-		   
-		   
-			var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
+		    buf.get_iter_at_line( out iter, eline);
+		   	var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
 		    buf.create_source_mark( msg, diag.category, iter);
+	 	    
+	 	    buf.get_iter_at_line_offset( out start, 
+	 	    	eline, (int)diag.range.start.character - hoffset); 
+	 	    buf.get_iter_at_line_offset( out end, 
+	 	    	eline_to, (int)diag.range.end.character - hoffset); 
+	 	    	
+		    buf.apply_tag_by_name(diag.category, start, end);
+		    
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
@@ -620,19 +636,10 @@ public class Editor : Object
 			);
 				
 			 
-				 
-			/*
-			this is pretty flakey - triggers Gtk with  < 0 d
-			 var cp = new GtkSource.CompletionWords("test"); 
-			 cp.minimum_word_size  = 3;
-			 //cp.priority = 100; //?? does this do anything
-			 cp.proposals_batch_size  = 10;
-			 cp.scan_batch_size = 1000;
 			 
-			cp.register(_this.buffer.el);
-			this.el.completion.add_provider(cp);
-			*/
-			this.el.completion.add_provider(new Palete.CompletionProvider(_this));
+			this.el.completion.add_provider(
+				new Palete.CompletionProvider(_this)
+			);
 			  
 			//this.el.completion.unblock_interactive();
 			this.el.completion.select_on_show = true; // select
@@ -640,9 +647,7 @@ public class Editor : Object
 			
 			
 			var attrs = new GtkSource.MarkAttributes();
-			var  pink =   Gdk.RGBA();
-			pink.parse ( "pink");
-			attrs.set_background ( pink);
+			
 			attrs.set_icon_name ( "process-stop");    
 			attrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
@@ -654,10 +659,9 @@ public class Editor : Object
 			});
 			this.el.set_mark_attributes ("ERR", attrs, 1);
 			attrs.ref();
-			 var wattrs = new GtkSource.MarkAttributes();
-			var  blue =   Gdk.RGBA();
-			blue.parse ( "#ABF4EB");
-			wattrs.set_background ( blue);
+			
+			
+			var wattrs = new GtkSource.MarkAttributes();
 			wattrs.set_icon_name ( "process-stop");    
 			wattrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
@@ -670,20 +674,19 @@ public class Editor : Object
 			this.el.set_mark_attributes ("WARN", wattrs, 1);
 			wattrs.ref();
 			
+			 
+			var dattrs = new GtkSource.MarkAttributes();
+			 
+			dattrs.set_icon_name ( "process-stop"); 
 			
-			 var dattrs = new GtkSource.MarkAttributes();
-			var  purple =   Gdk.RGBA();
-			purple.parse ( "#EEA9FF");
-			dattrs.set_background ( purple);
-			dattrs.set_icon_name ( "process-stop");    
 			dattrs.query_tooltip_text.connect(( mark) => {
 				GLib.debug("tooltip query? %s", mark.name);
 			    return strdup(mark.name);
 			});
-			dattrs.query_tooltip_markup.connect(( mark) => {
-				GLib.debug("tooltip query? %s", mark.name);
-			    return strdup(mark.name);
-			});
+			//dattrs.query_tooltip_markup.connect(( mark) => {
+			//	GLib.debug("tooltip query? %s", mark.name);
+			 //   return strdup(mark.name);
+			//});
 			this.el.set_mark_attributes ("DEPR", dattrs, 1);
 			dattrs.ref();    
 			
@@ -793,8 +796,6 @@ public class Editor : Object
 		    this.el.grab_focus();
 		    _this.save_button.el.sensitive = false;
 		    _this.last_error_counter = -1;
-			_this.updateErrorMarks();
-		    
 		}
 	}
 	public class Xcls_buffer : Object
@@ -827,18 +828,20 @@ public class Editor : Object
 
 			// init method
 
-			{
-				var buf = this.el;
-				buf.create_tag ("bold", "weight", Pango.Weight.BOLD);
-			    buf.create_tag ("type", "weight", Pango.Weight.BOLD, "foreground", "#204a87");
-			    buf.create_tag ("keyword", "weight", Pango.Weight.BOLD, "foreground", "#a40000");
-			    buf.create_tag ("text", "weight", Pango.Weight.NORMAL, "foreground", "#729fcf");
-			    buf.create_tag ("number", "weight", Pango.Weight.BOLD, "foreground", "#ad7fa8");
-			    buf.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
-			    buf.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
-			    buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
+			var buf = this.el;
+			buf.create_tag ("bold", "weight", Pango.Weight.BOLD);
+			buf.create_tag ("type", "weight", Pango.Weight.BOLD, "foreground", "#204a87");
+			buf.create_tag ("keyword", "weight", Pango.Weight.BOLD, "foreground", "#a40000");
+			buf.create_tag ("text", "weight", Pango.Weight.NORMAL, "foreground", "#729fcf");
+			buf.create_tag ("number", "weight", Pango.Weight.BOLD, "foreground", "#ad7fa8");
+			buf.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
+			buf.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
+			buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
 			
-			}
+			
+			buf.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "pink");
+			buf.create_tag ("WARN", "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
+			buf.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
 
 			//listeners
 			this.el.changed.connect( () => {
@@ -856,66 +859,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public bool checkSyntax () {
-		 
-		    
-		    var str = this.toString();
-		    
-		    // needed???
-		    if (this.error_line > 0) {
-		         Gtk.TextIter start;
-		         Gtk.TextIter end;     
-		        this.el.get_bounds (out start, out end);
-		
-		        this.el.remove_source_marks (start, end, null);
-		    }
-		    if (str.length < 1) {
-		        print("checkSyntax - empty string?\n");
-		        return true;
-		    }
-		    
-		    // bit presumptiona
-		    if (_this.file.xtype == "PlainFile") {
-		    
-		        // assume it's gtk...
-		         var  oldcode =_this.file.toSource();
-		        _this.file.setSource(str);
-			    BuilderApplication.showSpinner("appointment soon","document change pending");
-		    	_this.file.getLanguageServer().document_change(_this.file);
-		
-		        _this.file.setSource(oldcode);
-		        
-				 
-		        return true;
-		    
-		    }
-		   if (_this.file == null) {
-		       return true;
-		   }
-		 
-		    
-		
-		      
-		     
-		    GLib.debug("calling validate");    
-		    // clear the buttons.
-		 	if (_this.prop.name == "xns" || _this.prop.name == "xtype") {
-				return true ;
-			}
-			var oldcode  = _this.prop.val;
-			
-			_this.prop.val = str;
-			_this.node.updated_count++;
-		    _this.file.getLanguageServer().document_change(_this.file);
-		    _this.node.updated_count++;
-		    _this.prop.val = oldcode;
-		    
-		    
-		    //print("done mark line\n");
-		     
-		    return true; // at present allow saving - even if it's invalid..
-		}
-		public bool highlightErrorsJson (string type, Json.Object obj) {
+		public bool OLDhighlightErrorsJson (string type, Json.Object obj) {
 			Gtk.TextIter start;
 			Gtk.TextIter end;     
 			this.el.get_bounds (out start, out end);
@@ -1026,6 +970,65 @@ public class Editor : Object
 		
 		
 			}
+		public bool checkSyntax () {
+		 
+		    
+		    var str = this.toString();
+		    
+		    // needed???
+		    if (this.error_line > 0) {
+		         Gtk.TextIter start;
+		         Gtk.TextIter end;     
+		        this.el.get_bounds (out start, out end);
+		
+		        this.el.remove_source_marks (start, end, null);
+		    }
+		    if (str.length < 1) {
+		        print("checkSyntax - empty string?\n");
+		        return true;
+		    }
+		    
+		    // bit presumptiona
+		    if (_this.file.xtype == "PlainFile") {
+		    
+		        // assume it's gtk...
+		         var  oldcode =_this.file.toSource();
+		        _this.file.setSource(str);
+			    BuilderApplication.showSpinner("appointment soon","document change pending");
+		    	_this.file.getLanguageServer().document_change(_this.file);
+		
+		        _this.file.setSource(oldcode);
+		        
+				 
+		        return true;
+		    
+		    }
+		   if (_this.file == null) {
+		       return true;
+		   }
+		 
+		    
+		
+		      
+		     
+		    GLib.debug("calling validate");    
+		    // clear the buttons.
+		 	if (_this.prop.name == "xns" || _this.prop.name == "xtype") {
+				return true ;
+			}
+			var oldcode  = _this.prop.val;
+			
+			_this.prop.val = str;
+			_this.node.updated_count++;
+		    _this.file.getLanguageServer().document_change(_this.file);
+		    _this.node.updated_count++;
+		    _this.prop.val = oldcode;
+		    
+		    
+		    //print("done mark line\n");
+		     
+		    return true; // at present allow saving - even if it's invalid..
+		}
 		public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
 		         
 			this.error_line = validate_res.size;

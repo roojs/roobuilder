@@ -127,12 +127,6 @@ namespace Palete
 		public abstract GirObject? getClass(string ename);
 	
 		public abstract bool typeOptions(string fqn, string key, string type, out string[] opts);
-		public abstract  Gee.ArrayList<CompletionProposal> suggestComplete(
-				JsRender.JsRender file,
-				JsRender.Node? node,
-				JsRender.NodeProp? prop,
-				string complete_string
-		);
 		public abstract Gee.ArrayList<string> getChildList(string in_rval, bool with_prop);
 		public abstract Gee.ArrayList<string> getDropList(string rval);		
 		public abstract JsRender.Node fqnToNode(string fqn);

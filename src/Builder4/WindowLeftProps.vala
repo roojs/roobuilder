@@ -28,6 +28,7 @@ public class Xcls_LeftProps : Object
 	public signal void show_add_props (string type);
 	public signal bool stop_editor ();
 	public Xcls_MainWindow main_window;
+	public int last_error_counter;
 	public signal void changed ();
 	public JsRender.JsRender file;
 	public JsRender.Node node;
@@ -43,6 +44,7 @@ public class Xcls_LeftProps : Object
 		this.loading = false;
 		this.allow_edit = false;
 		this.main_window = null;
+		this.last_error_counter = -1;
 
 		// set gobject values
 		this.el.homogeneous = false   ;
@@ -84,7 +86,6 @@ public class Xcls_LeftProps : Object
 	
 	
 	}
-
 	public void updateErrors () {
 		var file = this.file;
 		var ar = file.getErrors();
@@ -117,14 +118,23 @@ public class Xcls_LeftProps : Object
 	    	if (w == null) {
 	    		return;
 			}
-			if (!w.has_css_class("node-error")) {
-				w.add_css_class("node-error");
+		  		var ed = diag.category.down();
+			if (ed != "err" && w.has_css_class("node-err")) {
+				continue;
+			}
+			if (ed == "err" && w.has_css_class("node-warn")) {
+				w.remove_css_class("node-warn");
+			}
+			if (ed == "err" && w.has_css_class("node-depr")) {
+				w.remove_css_class("node-depr");
+			}
+			if (!w.has_css_class("node-"+ ed)) {
+				w.add_css_class("node-" + ed);
 			}
 			
 		}
 		
 	}
-
 	public string keyFormat (string val, string type) {
 	    
 	    // Glib.markup_escape_text(val);
@@ -251,8 +261,15 @@ public class Xcls_LeftProps : Object
 				 
 		    }
 		    
-		  	if (!child.has_css_class("error-node")) {
-				child.remove_css_class("error-node");
+		  	if (!child.has_css_class("node-err")) {
+				child.remove_css_class("node-err");
+			}
+			if (!child.has_css_class("node-warn")) {
+				child.remove_css_class("node-warn");
+			}
+			
+			if (!child.has_css_class("node-depr")) {
+				child.remove_css_class("node-depr");
 			}
 			
 	        child = child.get_next_sibling(); 
@@ -1518,7 +1535,7 @@ public class Xcls_LeftProps : Object
 						header_height =  h;
 						
 						reading_header = false;
-						continue;
+						
 			        }
 			        
 				    if (child.get_type().name() != "GtkColumnViewRowWidget") {
@@ -1784,6 +1801,17 @@ public class Xcls_LeftProps : Object
 		}
 
 		// user defined functions
+		public int propToRow (JsRender.NodeProp prop) {
+			for (var i = 0 ; i < this.el.n_items; i++) {
+				var r = (JsRender.NodeProp)this.el.get_item(i);
+				if (r.equals(prop)) {
+					return i;
+					
+				}
+			}
+			return -1;
+			 
+		}
 		public void startEditing (JsRender.NodeProp prop) {
 			// should we call select?? - caller does int (from windowstate)
 			

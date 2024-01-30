@@ -345,6 +345,9 @@ public class Xcls_GtkView : Object
 		}
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
+			buf.remove_tag_by_name ("ERR", start, end);
+			buf.remove_tag_by_name ("WARN", start, end);
+			buf.remove_tag_by_name ("DEPR", start, end);
 			buf.remove_source_marks (start, end, null);
 			this.last_error_counter = file.error_counter ;
 			GLib.debug("higjlight has no errors");
@@ -363,13 +366,16 @@ public class Xcls_GtkView : Object
 	 
 		 
 		buf.remove_source_marks (start, end, null);
+		buf.remove_tag_by_name ("ERR", start, end);
+		buf.remove_tag_by_name ("WARN", start, end);
+		buf.remove_tag_by_name ("DEPR", start, end);
 		foreach(var diag in ar) { 
 		
 			
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
 		    var eline = (int)diag.range.start.line ;
-		    
+		    var eline_to = (int)diag.range.end.line;
 		    if (eline > tlines || eline < 0) {
 		        return;
 		    }
@@ -377,6 +383,12 @@ public class Xcls_GtkView : Object
 		    
 		    buf.get_iter_at_line( out iter, eline);
 		   
+		  	 buf.get_iter_at_line_offset( out start, 
+	 	    	eline, (int)diag.range.start.character); 
+	 	    buf.get_iter_at_line_offset( out end, 
+	 	    	eline_to, (int)diag.range.end.character); 
+	 	    	
+		    buf.apply_tag_by_name(diag.category, start, end);
 		   
 		   
 			var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
@@ -653,9 +665,9 @@ public class Xcls_GtkView : Object
 			// init method
 
 			{
-			   
-			   
-			   	this.css = new Gtk.CssProvider();
+			
+			
+				this.css = new Gtk.CssProvider();
 				 
 				this.css.load_from_string("#gtkview-view { font: 10px monospace ;}");
 				 
@@ -666,63 +678,54 @@ public class Xcls_GtkView : Object
 				);
 					
 					 
-			    this.loading = true;
-			    
-			  
-			  
-			    var attrs = new GtkSource.MarkAttributes();
-			    var  pink =   Gdk.RGBA();
-			    pink.parse ( "pink");
-			    attrs.set_background ( pink);
-			    attrs.set_icon_name ( "process-stop");    
-			    attrs.query_tooltip_text.connect(( mark) => {
-			        //print("tooltip query? %s\n", mark.name);
-			        return mark.name;
-			    });
-			    
-			    this.el.set_mark_attributes ("ERR", attrs, 1);
-			    
-			     var wattrs = new GtkSource.MarkAttributes();
-			    var  blue =   Gdk.RGBA();
-			    blue.parse ( "#ABF4EB");
-			    wattrs.set_background ( blue);
-			    wattrs.set_icon_name ( "process-stop");    
-			    wattrs.query_tooltip_text.connect(( mark) => {
-			        //print("tooltip query? %s\n", mark.name);
-			        return mark.name;
-			    });
-			    
-			    this.el.set_mark_attributes ("WARN", wattrs, 1);
-			    
-			 
-			    
-			     var dattrs = new GtkSource.MarkAttributes();
-			    var  purple =   Gdk.RGBA();
-			    purple.parse ( "#EEA9FF");
-			    dattrs.set_background ( purple);
-			    dattrs.set_icon_name ( "process-stop");    
-			    dattrs.query_tooltip_text.connect(( mark) => {
-			        //print("tooltip query? %s\n", mark.name);
-			        return mark.name;
-			    });
-			    
-			    this.el.set_mark_attributes ("DEPR", dattrs, 1);
-			    
-			    
-			    var gattrs = new GtkSource.MarkAttributes();
-			    var  grey =   Gdk.RGBA();
-			    grey.parse ( "#ccc");
-			    gattrs.set_background ( grey);
-			 
-			    
-			    this.el.set_mark_attributes ("grey", gattrs, 1);
-			    
-			    
-			    
-			    
-			    
-			    
-			}
+				this.loading = true;
+			
+			
+			
+				var attrs = new GtkSource.MarkAttributes();
+				 attrs.set_icon_name ( "process-stop");    
+				attrs.query_tooltip_text.connect(( mark) => {
+					//print("tooltip query? %s\n", mark.name);
+					return mark.name;
+				});
+			
+				this.el.set_mark_attributes ("ERR", attrs, 1);
+			
+				 var wattrs = new GtkSource.MarkAttributes();
+				  wattrs.set_icon_name ( "process-stop");    
+				wattrs.query_tooltip_text.connect(( mark) => {
+					//print("tooltip query? %s\n", mark.name);
+					return mark.name;
+				});
+			
+				this.el.set_mark_attributes ("WARN", wattrs, 1);
+			
+			
+			
+				 var dattrs = new GtkSource.MarkAttributes();
+				dattrs.set_icon_name ( "process-stop");    
+				dattrs.query_tooltip_text.connect(( mark) => {
+					//print("tooltip query? %s\n", mark.name);
+					return mark.name;
+				});
+			
+				this.el.set_mark_attributes ("DEPR", dattrs, 1);
+			
+			
+				var gattrs = new GtkSource.MarkAttributes();
+				var  grey =   Gdk.RGBA();
+				grey.parse ( "#ccc");
+				gattrs.set_background ( grey);
+			
+			
+				this.el.set_mark_attributes ("grey", gattrs, 1);
+			
+			
+			
+			
+			
+			
+				}
 
 			//listeners
 			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
@@ -927,6 +930,23 @@ public class Xcls_GtkView : Object
 			this.last_line = -1;
 
 			// set gobject values
+
+			// init method
+
+			var buf = this.el;
+			buf.create_tag ("bold", "weight", Pango.Weight.BOLD);
+			buf.create_tag ("type", "weight", Pango.Weight.BOLD, "foreground", "#204a87");
+			buf.create_tag ("keyword", "weight", Pango.Weight.BOLD, "foreground", "#a40000");
+			buf.create_tag ("text", "weight", Pango.Weight.NORMAL, "foreground", "#729fcf");
+			buf.create_tag ("number", "weight", Pango.Weight.BOLD, "foreground", "#ad7fa8");
+			buf.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
+			buf.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
+			buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
+			
+			
+			buf.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "pink");
+			buf.create_tag ("WARN", "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
+			buf.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
 
 			//listeners
 			this.el.cursor_moved.connect( ( ) => {

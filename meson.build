@@ -26,7 +26,6 @@ deps = [
    dependency('libvala-0.56'),
    dependency('libxml-2.0'),
    valac.find_library('posix'),
-   dependency('roojspacker-1.4'),
    dependency('gtksourceview-5'),
    dependency('libgda-5.0'),
    dependency('jsonrpc-glib-1.0'),
