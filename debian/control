@@ -1,13 +1,13 @@
 Source: roobuilder
-Section: unknown
+Section: universe/editors
 Priority: optional
 Maintainer: Alan <alan@roojs.com>
 Rules-Requires-Root: no
 Build-Depends:
- debhelper-compat (= 13),
+ debhelper-compat (= 13), meson, ninja-build
 Standards-Version: 4.6.2
-Homepage: https://www.roojs.com
-#Vcs-Browser: https://salsa.debian.org/debian/roobuilder
+Homepage: https://github.com/roojs/roobuilder
+#Vcs-Browser: https://github.com/roojs/roobuilder
 #Vcs-Git: https://salsa.debian.org/debian/roobuilder.git
 
 Package: roobuilder
@@ -16,5 +16,7 @@ Multi-Arch: foreign
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
+ meson, 
+ ninja-build
 Description: Vala and Javascript IDE 
  for building Vala Desktop applications and Javascript UI's using the roojs libraries (for bootstrap and classic)
