@@ -28,6 +28,7 @@ public class Xcls_LeftProps : Object
 	public signal void show_add_props (string type);
 	public signal bool stop_editor ();
 	public Xcls_MainWindow main_window;
+	public int last_error_counter;
 	public signal void changed ();
 	public JsRender.JsRender file;
 	public JsRender.Node node;
@@ -43,6 +44,7 @@ public class Xcls_LeftProps : Object
 		this.loading = false;
 		this.allow_edit = false;
 		this.main_window = null;
+		this.last_error_counter = -1;
 
 		// set gobject values
 		this.el.homogeneous = false   ;
@@ -84,7 +86,6 @@ public class Xcls_LeftProps : Object
 	
 	
 	}
-
 	public void updateErrors () {
 		var file = this.file;
 		var ar = file.getErrors();
@@ -124,7 +125,6 @@ public class Xcls_LeftProps : Object
 		}
 		
 	}
-
 	public string keyFormat (string val, string type) {
 	    
 	    // Glib.markup_escape_text(val);
