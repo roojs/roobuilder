@@ -261,14 +261,14 @@ public class Xcls_LeftProps : Object
 				 
 		    }
 		    
-		  	if (!child.has_css_class("node-err")) {
+		  	if (child.has_css_class("node-err")) {
 				child.remove_css_class("node-err");
 			}
-			if (!child.has_css_class("node-warn")) {
+			if (child.has_css_class("node-warn")) {
 				child.remove_css_class("node-warn");
 			}
 			
-			if (!child.has_css_class("node-depr")) {
+			if (child.has_css_class("node-depr")) {
 				child.remove_css_class("node-depr");
 			}
 			
