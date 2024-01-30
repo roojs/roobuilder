@@ -1337,9 +1337,7 @@ public class Xcls_LeftProps : Object
 		}
 
 		// user defined functions
-		public int propToRow () {
-		
-		}
+		public int propToRow 
 		public Gtk.Widget? getWidgetAtRow (uint row) {
 		/*
 		    	

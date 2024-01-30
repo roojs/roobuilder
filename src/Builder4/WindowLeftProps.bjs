@@ -1147,11 +1147,7 @@
         "",
         " }"
        ],
-       "| int propToRow" : [
-        "() {",
-        "",
-        "}"
-       ],
+       "| int propToRow" : "",
        "| void editProp" : [
         "(JsRender.NodeProp prop) ",
         "{",
