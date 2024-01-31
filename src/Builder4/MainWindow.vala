@@ -2305,21 +2305,13 @@ public class Xcls_MainWindow : Object
 			//listeners
 			this.el.setup.connect( (listitem) => {
 				var lbl = new Gtk.Label("");
-			 	((Gtk.ListItem)listitem).set_child(lbl);
+			 	(listitem as Gtk.ListItem).set_child(lbl);
 			 	lbl.justify = Gtk.Justification.LEFT;
 			 	lbl.xalign = 1;
 			 	lbl.use_markup = true;
 				lbl.ellipsize = Pango.EllipsizeMode.START;
-			 	/*lbl.changed.connect(() => {
-					// notify and save the changed value...
-				 	//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
-			         
-			        //prop.val = lbl.text;
-			        //_this.updateIter(iter,prop);
-			        _this.changed();
-				});
-				*/
-				((Gtk.ListItem)listitem).activatable = true;
+			  
+				(listitem as Gtk.ListItem).activatable = true;
 			});
 			this.el.bind.connect( (listitem) => {
 			 var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();
