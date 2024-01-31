@@ -820,7 +820,7 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
-                 "GLib.Type item_type" : "",
+                 "GLib.Type item_type" : "typeof(MainWindow)",
                  "xtype" : "SortListModel"
                 }
                ],

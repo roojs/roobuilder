@@ -1849,7 +1849,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.item_type = ;
+			this.el.item_type = typeof(MainWindow);
 		}
 
 		// user defined functions
