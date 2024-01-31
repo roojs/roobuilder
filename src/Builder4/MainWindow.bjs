@@ -53,6 +53,15 @@
         },
         {
          "$ xns" : "Gtk",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
          "string icon_name" : "preferences-system-windows",
          "xtype" : "Button"
         }
