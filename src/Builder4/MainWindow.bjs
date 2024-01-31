@@ -909,7 +909,12 @@
                  " }"
                 ]
                },
-               "xtype" : "SingleSelection"
+               "xtype" : "SingleSelection",
+               "| void selectCurrent" : [
+                "() {",
+                "",
+                "}"
+               ]
               },
               {
                "$ xns" : "Gtk",
