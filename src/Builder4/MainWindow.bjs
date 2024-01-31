@@ -647,24 +647,6 @@
              "$ xns" : "Gtk",
              "* pack" : false,
              "id" : "windowspopup",
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "* pack" : "set_child",
-               "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-               "id" : "popover_menu",
-               "int spacing" : 0,
-               "items" : [
-                {
-                 "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-                 "$ xns" : "Gtk",
-                 "* pack" : "append",
-                 "xtype" : "Separator"
-                }
-               ],
-               "xtype" : "Box"
-              }
-             ],
              "xtype" : "Popover"
             }
            ],
