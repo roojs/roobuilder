@@ -36,7 +36,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_windowbtn windowbtn;
 	public Xcls_windowspopup windowspopup;
 	public Xcls_popover_menu popover_menu;
-	public Xcls_keycol keycol;
+	public Xcls_proj proj;
 
 		// my vars (def)
 	public WindowState windowstate;
@@ -2058,8 +2058,8 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			new Xcls_keycol( _this );
-			this.el.append_column ( _this.keycol.el  );
+			new Xcls_proj( _this );
+			this.el.append_column ( _this.proj.el  );
 		}
 
 		// user defined functions
@@ -2257,7 +2257,7 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_keycol : Object
+	public class Xcls_proj : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_MainWindow  _this;
@@ -2266,10 +2266,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_keycol(Xcls_MainWindow _owner )
+		public Xcls_proj(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.keycol = this;
+			_this.proj = this;
 			var child_1 = new Xcls_SignalListItemFactory69( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
@@ -2277,7 +2277,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.id = "keycol";
+			this.el.id = "proj";
 			this.el.expand = true;
 			this.el.resizable = true;
 		}
