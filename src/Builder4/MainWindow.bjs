@@ -622,6 +622,7 @@
           {
            "$ xns" : "Gtk",
            "bool hexpand" : true,
+           "id" : "open_projects_btn",
            "items" : [
             {
              "$ xns" : "Gtk",

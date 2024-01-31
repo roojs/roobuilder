@@ -32,6 +32,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 	public Xcls_statusbar_compile_icon statusbar_compile_icon;
 	public Xcls_filesearch filesearch;
+	public Xcls_open_projects_btn open_projects_btn;
 	public Xcls_winsel winsel;
 	public Xcls_winfilter winfilter;
 	public Xcls_windowsearch windowsearch;
@@ -1392,9 +1393,8 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.hexpand = true;
-			var child_1 = new Xcls_Button37( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
+			new Xcls_open_projects_btn( _this );
+			this.el.append( _this.open_projects_btn.el );
 			var child_2 = new Xcls_Button41( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
@@ -1402,7 +1402,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_Button37 : Object
+	public class Xcls_open_projects_btn : Object
 	{
 		public Gtk.Button el;
 		private Xcls_MainWindow  _this;
@@ -1411,9 +1411,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button37(Xcls_MainWindow _owner )
+		public Xcls_open_projects_btn(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.open_projects_btn = this;
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
