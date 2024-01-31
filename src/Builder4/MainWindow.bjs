@@ -805,6 +805,13 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "start_child",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "xtype" : "ColumnView"
+            }
+           ],
            "xtype" : "ScrolledWindow"
           }
          ],
