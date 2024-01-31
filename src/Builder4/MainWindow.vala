@@ -248,6 +248,9 @@ public class Xcls_MainWindow : Object
 			//listeners
 			this.el.clicked.connect( ( ) => {
 			  	_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;
+			  	if (_this.splitview.el.show_sidebar) {
+			  		_this.filesearch.el.focus();
+				}
 			});
 		}
 
