@@ -902,13 +902,11 @@
            "xtype" : "ScrolledWindow"
           },
           {
-           "$ xns" : "Gtk",
            "* prop" : "end_child",
            "items" : [
             {
              "$ xns" : "Gtk",
              "* prop" : "child",
-             "Gtk.ScrollablePolicy vscroll_policy" : "",
              "bool hexpand" : true,
              "bool vexpand" : true,
              "items" : [
@@ -1061,9 +1059,7 @@
              ],
              "xtype" : "ColumnView"
             }
-            
-           ],
-           "xtype" : "ScrolledWindow"
+           ]
           }
          ],
          "xtype" : "Paned"
