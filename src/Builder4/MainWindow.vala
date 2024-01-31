@@ -56,6 +56,8 @@ public class Xcls_MainWindow : Object
 		this.el.set_titlebar ( _this.headerbar.el  );
 		new Xcls_vbox( _this );
 		this.el.set_child ( _this.vbox.el  );
+		var child_3 = new Xcls_OverlaySplitView41( _this );
+		this.el.child = child_3.el;
 
 		// init method
 
@@ -1573,6 +1575,52 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
+
+
+	public class Xcls_OverlaySplitView41 : Object
+	{
+		public Adw.OverlaySplitView el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_OverlaySplitView41(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Adw.OverlaySplitView();
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Box42( _this );
+			this.el.content = child_1.el;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box42 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Box42(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 }

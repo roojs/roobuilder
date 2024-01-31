@@ -755,7 +755,7 @@
       {
        "$ xns" : "Gtk",
        "* prop" : "content",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "int spacing" : 0,
        "xtype" : "Box"
       }
