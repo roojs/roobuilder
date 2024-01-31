@@ -37,6 +37,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_windowspopup windowspopup;
 	public Xcls_popover_menu popover_menu;
 	public Xcls_projcol projcol;
+	public Xcls_filecol filecol;
 
 		// my vars (def)
 	public WindowState windowstate;
@@ -2060,6 +2061,8 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			new Xcls_projcol( _this );
 			this.el.append_column ( _this.projcol.el  );
+			new Xcls_filecol( _this );
+			this.el.append_column ( _this.filecol.el  );
 		}
 
 		// user defined functions
@@ -2318,6 +2321,78 @@ public class Xcls_MainWindow : Object
 			 var item =  (listitem as Gtk.ListItem).get_item() as WindowState;
 			 
 			 lb.label = item.project.name;
+			
+			
+			  
+			
+			});
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_filecol : Object
+	{
+		public Gtk.ColumnViewColumn el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_filecol(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			_this.filecol = this;
+			var child_1 = new Xcls_SignalListItemFactory71( _this );
+			child_1.ref();
+			this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.id = "filecol";
+			this.el.expand = true;
+			this.el.resizable = true;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_SignalListItemFactory71 : Object
+	{
+		public Gtk.SignalListItemFactory el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SignalListItemFactory71(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SignalListItemFactory();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.setup.connect( (listitem) => {
+				var lbl = new Gtk.Label("");
+			 	(listitem as Gtk.ListItem).set_child(lbl);
+			 	lbl.justify = Gtk.Justification.LEFT;
+			 	lbl.xalign = 1;
+			 	lbl.use_markup = true;
+				lbl.ellipsize = Pango.EllipsizeMode.START;
+			  
+				(listitem as Gtk.ListItem).activatable = true;
+			});
+			this.el.bind.connect( (listitem) => {
+			 var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();
+			 var item =  (listitem as Gtk.ListItem).get_item() as WindowState;
+			 
+			 lb.label = item.file.relpath;
 			
 			
 			  
