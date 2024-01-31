@@ -621,9 +621,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "bool always_show_image" : true,
            "bool hexpand" : true,
-           "id" : "open_projects_btn",
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -647,7 +645,6 @@
              "}"
             ]
            },
-           "string icon_name" : "system-file-manager",
            "string label" : "Open",
            "tooltop_text" : "\"Open File\"",
            "xtype" : "Button"

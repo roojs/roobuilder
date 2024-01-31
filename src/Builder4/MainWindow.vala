@@ -32,7 +32,6 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 	public Xcls_statusbar_compile_icon statusbar_compile_icon;
 	public Xcls_filesearch filesearch;
-	public Xcls_open_projects_btn open_projects_btn;
 	public Xcls_winsel winsel;
 	public Xcls_winfilter winfilter;
 	public Xcls_windowsearch windowsearch;
@@ -1393,8 +1392,9 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.hexpand = true;
-			new Xcls_open_projects_btn( _this );
-			this.el.append( _this.open_projects_btn.el );
+			var child_1 = new Xcls_Button37( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
 			var child_2 = new Xcls_Button40( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
@@ -1402,27 +1402,23 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_open_projects_btn : Object
+	public class Xcls_Button37 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_MainWindow  _this;
 
 
 			// my vars (def)
-		public bool always_show_image;
 
 		// ctor
-		public Xcls_open_projects_btn(Xcls_MainWindow _owner )
+		public Xcls_Button37(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.open_projects_btn = this;
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
-			this.always_show_image = true;
 
 			// set gobject values
-			this.el.icon_name = "system-file-manager";
 			this.el.hexpand = true;
 			this.el.label = "Open";
 			var child_1 = new Xcls_Box38( _this );
