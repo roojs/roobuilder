@@ -137,7 +137,10 @@ public class Xcls_MainWindow : Object
 	}
 	public void initChildren () {
 	    // this needs putting in a better place..
-	    this.windowstate = new WindowState(this);
+	    if (this.windowstate != null) {
+	    	this.windowstate = new WindowState(this);
+	    
+	    }
 	     
 	
 	 

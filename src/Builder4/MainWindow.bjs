@@ -1116,7 +1116,10 @@
    "| void initChildren" : [
     " () {",
     "    // this needs putting in a better place..",
-    "    this.windowstate = new WindowState(this);",
+    "    if (this.windowstate != null) {",
+    "    \tthis.windowstate = new WindowState(this);",
+    "    ",
+    "    }",
     "     ",
     "",
     " ",
