@@ -841,12 +841,6 @@
                  "items" : [
                   {
                    "$ xns" : "Gtk",
-                   "* init" : [
-                    "{",
-                    "\tthis.el.model = BuilderApplication.windowlist;",
-                    "}",
-                    ""
-                   ],
                    "* prop" : "model",
                    "id" : "winfilter",
                    "items" : [
@@ -863,6 +857,12 @@
                       }
                      ],
                      "xtype" : "StringFilter"
+                    },
+                    {
+                     "$ xns" : "GLib",
+                     "* prop" : "model",
+                     "GLib.Type item_type" : "typeof(WindowState)",
+                     "xtype" : "ListStore"
                     }
                    ],
                    "xtype" : "FilterListModel"
