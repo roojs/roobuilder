@@ -1902,7 +1902,7 @@ public class Xcls_MainWindow : Object
 			// init method
 
 			{
-				this.model = BuilderApplication.windowlist;
+				this.el.model = BuilderApplication.windowlist;
 			}
 		}
 
