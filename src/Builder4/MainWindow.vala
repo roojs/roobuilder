@@ -36,6 +36,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_windowbtn windowbtn;
 	public Xcls_windowspopup windowspopup;
 	public Xcls_popover_menu popover_menu;
+	public Xcls_winfilter winfilter;
 	public Xcls_windowsearch windowsearch;
 	public Xcls_projcol projcol;
 	public Xcls_filecol filecol;
@@ -1869,11 +1870,10 @@ public class Xcls_MainWindow : Object
 		public Xcls_SortListModel51(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_FilterListModel52( _this );
-			child_1.ref();
+			new Xcls_winfilter( _this );
 			var child_2 = new Xcls_StringSorter55( _this );
 			child_2.ref();
-			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
+			this.el = new Gtk.SortListModel( _this.winfilter.el, child_2.el );
 
 			// my vars (dec)
 
@@ -1882,7 +1882,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_FilterListModel52 : Object
+	public class Xcls_winfilter : Object
 	{
 		public Gtk.FilterListModel el;
 		private Xcls_MainWindow  _this;
@@ -1891,9 +1891,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel52(Xcls_MainWindow _owner )
+		public Xcls_winfilter(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.winfilter = this;
 			var child_1 = new Xcls_StringFilter53( _this );
 			child_1.ref();
 			this.el = new Gtk.FilterListModel( null, child_1.el );
