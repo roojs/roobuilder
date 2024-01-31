@@ -1424,7 +1424,7 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.icon_name = "system-file-manager";
 			this.el.hexpand = true;
-			this.el.label = "Files / Projects";
+			this.el.label = "Open";
 
 			//listeners
 			this.el.clicked.connect( ( ) => {

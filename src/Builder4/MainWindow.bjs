@@ -632,7 +632,7 @@
             ]
            },
            "string icon_name" : "system-file-manager",
-           "string label" : "Files / Projects",
+           "string label" : "Open",
            "tooltop_text" : "\"Open File\"",
            "xtype" : "Button"
           },
