@@ -839,6 +839,7 @@
                "* prop" : "model",
                "bool autoselect" : false,
                "bool can_unselect" : true,
+               "id" : "winsel",
                "items" : [
                 {
                  "$ xns" : "Gtk",
