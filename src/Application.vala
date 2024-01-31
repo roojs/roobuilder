@@ -149,6 +149,7 @@
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
+			BuilderApplication.windowlist = new GLib.ListStore(typeof(WindowState));
 			//BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
 			
 			
@@ -627,6 +628,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 		// move to 'window colletction?
 		public static Gee.ArrayList<Xcls_MainWindow> windows;
+		public static GLib.ListStore windowlist;
 		
 		public static void addWindow(Xcls_MainWindow w)
 		{
