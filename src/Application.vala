@@ -652,7 +652,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 				}
 			}
 			
-			BuilderApplication.updateWindows();
+
 			 	
 			w.el.hide();
 			w.el.close();
