@@ -1845,7 +1845,9 @@ public class Xcls_MainWindow : Object
 			_this = _owner;
 			var child_1 = new Xcls_FilterListModel52( _this );
 			child_1.ref();
-			this.el = new Gtk.SortListModel( child_1.el, null );
+			var child_2 = new Xcls_StringSorter56( _this );
+			child_2.ref();
+			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
 			// my vars (dec)
 
@@ -1946,6 +1948,53 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
+
+
+	public class Xcls_StringSorter56 : Object
+	{
+		public Gtk.StringSorter el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_StringSorter56(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_PropertyExpression57( _this );
+			child_1.ref();
+			this.el = new Gtk.StringSorter( child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.ignore_case = true;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_PropertyExpression57 : Object
+	{
+		public Gtk.PropertyExpression el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_PropertyExpression57(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.PropertyExpression( null, null, "file_name" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 

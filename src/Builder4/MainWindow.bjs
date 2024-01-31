@@ -846,6 +846,20 @@
                     }
                    ],
                    "xtype" : "FilterListModel"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "sorter",
+                   "bool ignore_case" : true,
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "expression",
+                     "string property_name" : "file_name",
+                     "xtype" : "PropertyExpression"
+                    }
+                   ],
+                   "xtype" : "StringSorter"
                   }
                  ],
                  "xtype" : "SortListModel"
