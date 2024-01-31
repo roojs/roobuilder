@@ -27,7 +27,7 @@ int main (string[] args) {
 		BuilderApplication.addWindow(w);
 		
 		// it looks like showall after children causes segfault on ubuntu 14.4
-		w.initChildren();
+		w.windowstate.init();
 	//	w.windowstate.showPopoverFiles(w.open_projects_btn.el, null, false);
 		w.show();
 	
