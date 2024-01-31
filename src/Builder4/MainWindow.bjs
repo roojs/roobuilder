@@ -74,6 +74,8 @@
     {
      "$ xns" : "Adw",
      "* prop" : "child",
+     "bool show_sidebar" : true,
+     "id" : "splitview",
      "items" : [
       {
        "$ xns" : "Gtk",

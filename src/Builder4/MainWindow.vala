@@ -14,6 +14,7 @@ public class Xcls_MainWindow : Object
 	}
 	public Xcls_headerbar headerbar;
 	public Xcls_open_projects_btn open_projects_btn;
+	public Xcls_splitview splitview;
 	public Xcls_vbox vbox;
 	public Xcls_mainpane mainpane;
 	public Xcls_leftpane leftpane;
@@ -55,8 +56,8 @@ public class Xcls_MainWindow : Object
 		this.el.default_width = 1200;
 		new Xcls_headerbar( _this );
 		this.el.set_titlebar ( _this.headerbar.el  );
-		var child_2 = new Xcls_OverlaySplitView6( _this );
-		this.el.child = child_2.el;
+		new Xcls_splitview( _this );
+		this.el.child = _this.splitview.el;
 
 		// init method
 
@@ -290,7 +291,7 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_OverlaySplitView6 : Object
+	public class Xcls_splitview : Object
 	{
 		public Adw.OverlaySplitView el;
 		private Xcls_MainWindow  _this;
@@ -299,14 +300,16 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_OverlaySplitView6(Xcls_MainWindow _owner )
+		public Xcls_splitview(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.splitview = this;
 			this.el = new Adw.OverlaySplitView();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.show_sidebar = true;
 			new Xcls_vbox( _this );
 			this.el.content = _this.vbox.el;
 			var child_2 = new Xcls_Box34( _this );
