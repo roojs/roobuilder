@@ -50,6 +50,10 @@
          "string label" : "Files / Projects",
          "tooltop_text" : "\"Open File\"",
          "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "Button"
         }
        ],
        "xtype" : "Box"
