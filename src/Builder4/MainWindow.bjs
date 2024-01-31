@@ -873,6 +873,78 @@
             }
            ],
            "xtype" : "ScrolledWindow"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "end_child",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "bool autoselect" : false,
+               "bool can_unselect" : true,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "model",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "model",
+                   "items" : [
+                    {
+                     "$ xns" : "GLib",
+                     "* prop" : "model",
+                     "GLib.Type item_type" : "typeof(WindowState)",
+                     "xtype" : "ListStore"
+                    },
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "filter",
+                     "items" : [
+                      {
+                       "$ xns" : "Gtk",
+                       "* prop" : "expression",
+                       "GLib.Type this_type" : "typeof(WindowState)",
+                       "string property_name" : "file_name",
+                       "xtype" : "PropertyExpression"
+                      }
+                     ],
+                     "xtype" : "StringFilter"
+                    }
+                   ],
+                   "xtype" : "FilterListModel"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "sorter",
+                   "bool ignore_case" : true,
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "expression",
+                     "GLib.Type this_type" : "typeof(WindowState)",
+                     "string property_name" : "proj_file_name",
+                     "xtype" : "PropertyExpression"
+                    }
+                   ],
+                   "xtype" : "StringSorter"
+                  }
+                 ],
+                 "xtype" : "SortListModel"
+                }
+               ],
+               "xtype" : "SingleSelection"
+              }
+             ],
+             "xtype" : "ColumnView"
+            }
+           ],
+           "xtype" : "ScrolledWindow"
           }
          ],
          "xtype" : "Paned"
