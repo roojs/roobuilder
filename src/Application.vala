@@ -644,10 +644,10 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		{
 			//GLib.debug("remove window before = %d", BuilderApplication.windows.size);
 			BuilderApplication.windows.remove(w);
-			for(var i = 0 ; i < this.windowlist.get_n_items(); i++) {
-				var ws = this.windowlist.get_item(i) as WindowState;
+			for(var i = 0 ; i < windowlist.get_n_items(); i++) {
+				var ws = windowlist.get_item(i) as WindowState;
 				if (ws.file.path == w.windowstate.file.path && ws.project.path == w.windowstate.project.path) {
-					this.windowlist.remove(i);
+					windowlist.remove(i);
 					break;
 				}
 			}
