@@ -37,6 +37,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "append",
+         "bool has_frame" : false,
          "listeners" : {
           "clicked" : [
            "  ( ) => {",

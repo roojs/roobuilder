@@ -243,6 +243,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.icon_name = "preferences-system-windows";
+			this.el.has_frame = false;
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
