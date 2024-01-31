@@ -1754,6 +1754,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.vexpand = true;
 			var child_1 = new Xcls_ScrolledWindow48( _this );
 			this.el.start_child = child_1.el;
 			var child_2 = new Xcls_ScrolledWindow58( _this );

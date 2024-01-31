@@ -801,6 +801,7 @@
         {
          "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "bool vexpand" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
