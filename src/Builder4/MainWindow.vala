@@ -37,6 +37,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_windowspopup windowspopup;
 	public Xcls_popover_menu popover_menu;
 	public Xcls_winfilter winfilter;
+	public Xcls_windowsearch windowsearch;
 	public Xcls_winmodel winmodel;
 	public Xcls_windowsearch windowsearch;
 	public Xcls_projcol projcol;
@@ -1925,9 +1926,8 @@ public class Xcls_MainWindow : Object
 			_this.winfilter = this;
 			var child_1 = new Xcls_ListStore56( _this );
 			child_1.ref();
-			var child_2 = new Xcls_StringFilter54( _this );
-			child_2.ref();
-			this.el = new Gtk.FilterListModel( child_1.el, child_2.el );
+			new Xcls_windowsearch( _this );
+			this.el = new Gtk.FilterListModel( child_1.el, _this.windowsearch.el );
 
 			// my vars (dec)
 
@@ -1936,7 +1936,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringFilter54 : Object
+	public class Xcls_windowsearch : Object
 	{
 		public Gtk.StringFilter el;
 		private Xcls_MainWindow  _this;
@@ -1945,9 +1945,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_StringFilter54(Xcls_MainWindow _owner )
+		public Xcls_windowsearch(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.windowsearch = this;
 			var child_1 = new Xcls_PropertyExpression55( _this );
 			child_1.ref();
 			this.el = new Gtk.StringFilter( child_1.el );
