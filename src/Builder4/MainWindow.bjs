@@ -764,6 +764,25 @@
          "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "append",
+           "bool always_show_image" : true,
+           "id" : "open_projects_btn",
+           "listeners" : {
+            "clicked" : [
+             "  ( ) => {",
+             "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
+             "}"
+            ]
+           },
+           "string icon_name" : "system-file-manager",
+           "string label" : "Files / Projects",
+           "tooltop_text" : "\"Open File\"",
+           "xtype" : "Button"
+          }
+         ],
          "xtype" : "Box"
         }
        ],
