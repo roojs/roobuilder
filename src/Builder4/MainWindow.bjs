@@ -239,15 +239,6 @@
      "xtype" : "HeaderBar"
     },
     {
-     "$ xns" : "Gtk",
-     "* pack" : "set_child",
-     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-     "bool homogeneous" : false,
-     "bool vexpand" : true,
-     "id" : "vbox",
-     "xtype" : "Box"
-    },
-    {
      "$ xns" : "Adw",
      "* prop" : "child",
      "items" : [
