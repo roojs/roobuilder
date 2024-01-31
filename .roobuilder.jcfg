@@ -15,7 +15,6 @@
                 "src/Builder4/EditProject.bjs",
                 "src/Builder4/FakeServer.vala",
                 "src/Builder4/GtkView.bjs",
-                "src/Builder4/MainWindow.bjs",
                 "src/Builder4/PopoverAddObject.bjs",
                 "src/Builder4/PopoverProperty.bjs",
                 "src/Builder4/StandardErrorDialog.bjs",
@@ -69,7 +68,8 @@
                 "src/Palete/ValaCompileRequest.vala",
                 "src/JsRender/NodeWriter.vala",
                 "src/JsRender/NodeToValaExtended.vala",
-                "src/JsRender/NodeToValaWrapped.vala"
+                "src/JsRender/NodeToValaWrapped.vala",
+                "src/Builder4/MainWindow.bjs"
             ]
         }
     ],

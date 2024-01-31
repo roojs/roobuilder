@@ -90,7 +90,10 @@ public class Xcls_LeftProps : Object
 		var file = this.file;
 		var ar = file.getErrors();
 		if (ar.size < 1) {
-			this.removeErrors();
+			if (this.last_error_counter != file.error_counter) {
+				this.removeErrors();
+			}
+	
 			this.last_error_counter = file.error_counter ;
 	
 			return;
@@ -276,39 +279,6 @@ public class Xcls_LeftProps : Object
 		}
 		//GLib.debug("Rturning null");
 	     
-	}
-	public void a_addProp (JsRender.NodeProp prop) {
-	      // info includes key, val, skel, etype..
-	      //console.dump(info);
-	        //type = info.type.toLowerCase();
-	        //var data = this.toJS();
-	          
-	              
-	    if (prop.ptype == JsRender.NodePropType.LISTENER) {
-	        if (this.node.listeners.has_key(prop.name)) {
-	            return;
-	        }
-	        this.node.listeners.set(prop.name,prop);
-	    } else  {
-	         assert(this.node != null);
-	         assert(this.node.props != null);
-	        if (this.node.props.has_key(prop.to_index_key())) {
-	            return;
-	        }
-	        this.node.props.set(prop.to_index_key(),prop);
-	    }
-	            
-	      
-	    // add a row???
-	    this.load(this.file, this.node);
-	    
-	    
-	     
-	    
-	    GLib.debug("trying to find new iter");
-	 
-	    
-	              
 	}
 	public void load (JsRender.JsRender file, JsRender.Node? node) 
 	{
@@ -1857,7 +1827,7 @@ public class Xcls_LeftProps : Object
 						}
 						// should be columnlistview
 						child = child.get_first_child(); 
-					    GLib.debug("header height=%d", h);
+					    //GLib.debug("header height=%d", h);
 						header_height =  h;
 						
 						reading_header = false;

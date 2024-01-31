@@ -52,8 +52,11 @@ public class Xcls_WindowLeftTree : Object
 	public void updateErrors () {
 		var file = this.getActiveFile();
 		var ar = file.getErrors();
-		if (ar.size < 1) {
-			this.removeErrors();
+			if (ar.size < 1) {
+			if (this.last_error_counter != file.error_counter) {
+				this.removeErrors();
+			}
+		
 			this.last_error_counter = file.error_counter ;
 	
 			return;
@@ -469,10 +472,11 @@ public class Xcls_WindowLeftTree : Object
 						}
 						// should be columnlistview
 						child = child.get_first_child(); 
-					    GLib.debug("header height=%d", h);
+					    //GLib.debug("header height=%d", h);
 						header_height =  h;
 						
 						reading_header = false;
+						continue;
 						
 			        }
 			        
