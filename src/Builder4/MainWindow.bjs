@@ -829,6 +829,11 @@
                      "* prop" : "model",
                      "GLib.Type item_type" : "typeof(WindowState)",
                      "xtype" : "ListStore"
+                    },
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "filter",
+                     "xtype" : "StringFilter"
                     }
                    ],
                    "xtype" : "FilterListModel"
