@@ -950,6 +950,63 @@
                 }
                ],
                "xtype" : "SingleSelection"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "append_column",
+               "bool expand" : true,
+               "bool resizable" : true,
+               "id" : "keycol",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "factory",
+                 "listeners" : {
+                  "bind" : [
+                   "(listitem) => {",
+                   " var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();",
+                   " var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();",
+                   "",
+                   "",
+                   "item.bind_property(\"to_display_name_prop\",",
+                   "                    lb, \"label\",",
+                   "                   GLib.BindingFlags.SYNC_CREATE);",
+                   "item.bind_property(\"to_tooltip_name_prop\",",
+                   "                    lb, \"tooltip_markup\",",
+                   "                   GLib.BindingFlags.SYNC_CREATE);",
+                   "// was item (1) in old layout",
+                   " ",
+                   "",
+                   "}",
+                   ""
+                  ],
+                  "setup" : [
+                   "(listitem) => {",
+                   "\tvar lbl = new Gtk.Label(\"\");",
+                   " \t((Gtk.ListItem)listitem).set_child(lbl);",
+                   " \tlbl.justify = Gtk.Justification.LEFT;",
+                   " \tlbl.xalign = 1;",
+                   " \tlbl.use_markup = true;",
+                   "\tlbl.ellipsize = Pango.EllipsizeMode.START;",
+                   " \t/*lbl.changed.connect(() => {",
+                   "\t\t// notify and save the changed value...",
+                   "\t \t//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());",
+                   "         ",
+                   "        //prop.val = lbl.text;",
+                   "        //_this.updateIter(iter,prop);",
+                   "        _this.changed();",
+                   "\t});",
+                   "\t*/",
+                   "\t((Gtk.ListItem)listitem).activatable = true;",
+                   "}",
+                   ""
+                  ]
+                 },
+                 "xtype" : "SignalListItemFactory"
+                }
+               ],
+               "title" : "Property",
+               "xtype" : "ColumnViewColumn"
               }
              ],
              "xtype" : "ColumnView"

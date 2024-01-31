@@ -36,6 +36,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_windowbtn windowbtn;
 	public Xcls_windowspopup windowspopup;
 	public Xcls_popover_menu popover_menu;
+	public Xcls_keycol keycol;
 
 		// my vars (def)
 	public WindowState windowstate;
@@ -2057,6 +2058,8 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
+			new Xcls_keycol( _this );
+			this.el.append_column ( _this.keycol.el  );
 		}
 
 		// user defined functions
@@ -2252,6 +2255,91 @@ public class Xcls_MainWindow : Object
 	}
 
 
+
+
+	public class Xcls_keycol : Object
+	{
+		public Gtk.ColumnViewColumn el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_keycol(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			_this.keycol = this;
+			var child_1 = new Xcls_SignalListItemFactory69( _this );
+			child_1.ref();
+			this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.id = "keycol";
+			this.el.expand = true;
+			this.el.resizable = true;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_SignalListItemFactory69 : Object
+	{
+		public Gtk.SignalListItemFactory el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SignalListItemFactory69(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SignalListItemFactory();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.setup.connect( (listitem) => {
+				var lbl = new Gtk.Label("");
+			 	((Gtk.ListItem)listitem).set_child(lbl);
+			 	lbl.justify = Gtk.Justification.LEFT;
+			 	lbl.xalign = 1;
+			 	lbl.use_markup = true;
+				lbl.ellipsize = Pango.EllipsizeMode.START;
+			 	/*lbl.changed.connect(() => {
+					// notify and save the changed value...
+				 	//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
+			         
+			        //prop.val = lbl.text;
+			        //_this.updateIter(iter,prop);
+			        _this.changed();
+				});
+				*/
+				((Gtk.ListItem)listitem).activatable = true;
+			});
+			this.el.bind.connect( (listitem) => {
+			 var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();
+			 var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
+			
+			
+			item.bind_property("to_display_name_prop",
+			                    lb, "label",
+			                   GLib.BindingFlags.SYNC_CREATE);
+			item.bind_property("to_tooltip_name_prop",
+			                    lb, "tooltip_markup",
+			                   GLib.BindingFlags.SYNC_CREATE);
+			// was item (1) in old layout
+			 
+			
+			});
+		}
+
+		// user defined functions
+	}
 
 
 
