@@ -261,7 +261,7 @@ public class Xcls_MainWindow : Object
 			  		_this.winfilter.el.set_model(new GLib.ListStore(typeof(WindowState)));
 			  		_this.winfilter.el.set_model(BuilderApplication.windowlist);
 			  		GLib.debug("show windfilter with %d items",
-			  			BuilderApplication.windowlist.get_n_items());
+			  			(int)BuilderApplication.windowlist.get_n_items());
 				}
 			});
 		}
