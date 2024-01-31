@@ -1060,7 +1060,8 @@
              "xtype" : "ColumnView"
             }
            ],
-           "string xns" : "Gtk"
+           "string xns" : "Gtk",
+           "string xtyle" : "ScrolledWindow"
           }
          ],
          "xtype" : "Paned"

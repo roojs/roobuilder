@@ -2061,6 +2061,7 @@ public class Xcls_MainWindow : Object
 
 
 			// my vars (def)
+		public string xtyle;
 
 		// ctor
 		public Xcls_59(Xcls_MainWindow _owner )
@@ -2069,6 +2070,7 @@ public class Xcls_MainWindow : Object
 			this.el = new ();
 
 			// my vars (dec)
+			this.xtyle = ScrolledWindow;
 			var child_1 = new Xcls_ColumnView60( _this );
 			this.el.child = child_1.el;
 		}
