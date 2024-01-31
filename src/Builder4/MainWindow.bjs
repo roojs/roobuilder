@@ -9,13 +9,9 @@
    "$ xns" : "Gtk",
    "* ctor" : "new Gtk.ApplicationWindow(BuilderApplication.singleton({}))",
    "* init" : [
-    " ",
-    " ",
-    "     this.el.set_icon_name(\"roobuilder\");",
-    "     ",
-    "   ",
-    "     ",
-    " "
+    "",
+    "this.el.set_icon_name(\"roobuilder\");",
+    ""
    ],
    "border_width" : 0,
    "default_height" : 850,
