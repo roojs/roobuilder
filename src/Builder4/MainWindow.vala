@@ -2312,7 +2312,7 @@ public class Xcls_MainWindow : Object
 			_this.projcol = this;
 			var child_1 = new Xcls_SignalListItemFactory70( _this );
 			child_1.ref();
-			this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
+			this.el = new Gtk.ColumnViewColumn( "Project", child_1.el );
 
 			// my vars (dec)
 

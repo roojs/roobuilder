@@ -1009,7 +1009,7 @@
                  "xtype" : "SignalListItemFactory"
                 }
                ],
-               "title" : "Property",
+               "title" : "Project",
                "xtype" : "ColumnViewColumn"
               },
               {
