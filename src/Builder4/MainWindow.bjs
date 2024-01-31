@@ -67,7 +67,7 @@
      "* prop" : "child",
      "bool collapsed" : true,
      "bool show_sidebar" : false,
-     "double sidebar_width_fraction" : 0.34999999999999998,
+     "double sidebar_width_fraction" : 0.40000000000000002,
      "id" : "splitview",
      "items" : [
       {
@@ -656,7 +656,6 @@
           {
            "$ xns" : "Gtk",
            "bool hexpand" : true,
-           "int margin_end" : 4,
            "items" : [
             {
              "$ xns" : "Gtk",

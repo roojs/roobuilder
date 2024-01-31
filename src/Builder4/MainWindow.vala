@@ -295,7 +295,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.collapsed = true;
-			this.el.sidebar_width_fraction = 0.350000;
+			this.el.sidebar_width_fraction = 0.40000;
 			this.el.show_sidebar = false;
 			new Xcls_vbox( _this );
 			this.el.content = _this.vbox.el;
@@ -1522,7 +1522,6 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.margin_end = 4;
 			this.el.hexpand = true;
 			var child_1 = new Xcls_Box42( _this );
 			this.el.child = child_1.el;
