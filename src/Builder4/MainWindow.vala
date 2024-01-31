@@ -2097,7 +2097,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			new Xcls_projcol( _this );
-			this.el.append_column ( _this.projcol.el  );
+			this.el.append_column( _this.projcol.el );
 			new Xcls_filecol( _this );
 			this.el.append_column ( _this.filecol.el  );
 		}
@@ -2384,7 +2384,7 @@ public class Xcls_MainWindow : Object
 			_this.filecol = this;
 			var child_1 = new Xcls_SignalListItemFactory72( _this );
 			child_1.ref();
-			this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
+			this.el = new Gtk.ColumnViewColumn( "F", child_1.el );
 
 			// my vars (dec)
 

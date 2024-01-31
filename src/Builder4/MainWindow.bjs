@@ -970,7 +970,6 @@
               },
               {
                "$ xns" : "Gtk",
-               "* pack" : "append_column",
                "bool expand" : true,
                "bool resizable" : true,
                "id" : "projcol",
@@ -1053,7 +1052,7 @@
                  "xtype" : "SignalListItemFactory"
                 }
                ],
-               "title" : "Property",
+               "title" : "F",
                "xtype" : "ColumnViewColumn"
               }
              ],
