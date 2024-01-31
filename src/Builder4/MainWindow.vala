@@ -2073,6 +2073,8 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			var child_1 = new Xcls_ColumnView60( _this );
 			this.el.child = child_1.el;
+			var child_2 = new Xcls_Adjustment73( _this );
+			this.el.hadjustment = child_2.el;
 		}
 
 		// user defined functions
@@ -2098,6 +2100,7 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
+			this.el.vscroll_policy = ;
 			new Xcls_projcol( _this );
 			this.el.append_column( _this.projcol.el );
 			new Xcls_filecol( _this );
@@ -2443,6 +2446,28 @@ public class Xcls_MainWindow : Object
 	}
 
 
+
+	public class Xcls_Adjustment73 : Object
+	{
+		public Gtk.Adjustment el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Adjustment73(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Adjustment( , , , , ,  );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 

@@ -908,6 +908,7 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "child",
+             "Gtk.ScrollablePolicy vscroll_policy" : "",
              "bool hexpand" : true,
              "bool vexpand" : true,
              "items" : [
