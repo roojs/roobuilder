@@ -813,7 +813,7 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
-               "GLib.Type item_type" : "typeof(MainWindow)",
+               "GLib.Type item_type" : "typeof(XMainWindow)",
                "bool autoselect" : false,
                "bool can_unselect" : true,
                "items" : [
