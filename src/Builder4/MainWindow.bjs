@@ -53,7 +53,7 @@
         },
         {
          "$ xns" : "Gtk",
-         "string icon_name" : "system-file-manager",
+         "string icon_name" : "preferences-system-windows",
          "xtype" : "Button"
         }
        ],
