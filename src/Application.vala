@@ -632,9 +632,10 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 		public static void addWindow(Xcls_MainWindow w)
 		{
-			if (w.windowstate != null) {
-			    windowlist.append(w.windowstate);
+			if (w.windowstate == null) {
+			    w.initChildren();
 			}
+		    windowlist.append(w.windowstate);
 			BuilderApplication.windows.add(w);
 			BuilderApplication.updateWindows();
   
