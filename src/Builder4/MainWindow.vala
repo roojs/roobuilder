@@ -37,6 +37,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_windowspopup windowspopup;
 	public Xcls_popover_menu popover_menu;
 	public Xcls_winfilter winfilter;
+	public Xcls_winmodel winmodel;
 	public Xcls_windowsearch windowsearch;
 	public Xcls_projcol projcol;
 	public Xcls_filecol filecol;
@@ -2171,10 +2172,9 @@ public class Xcls_MainWindow : Object
 		public Xcls_FilterListModel63(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_ListStore64( _this );
-			child_1.ref();
+			new Xcls_winmodel( _this );
 			new Xcls_windowsearch( _this );
-			this.el = new Gtk.FilterListModel( child_1.el, _this.windowsearch.el );
+			this.el = new Gtk.FilterListModel( _this.winmodel.el, _this.windowsearch.el );
 
 			// my vars (dec)
 
@@ -2183,7 +2183,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_ListStore64 : Object
+	public class Xcls_winmodel : Object
 	{
 		public GLib.ListStore el;
 		private Xcls_MainWindow  _this;
@@ -2192,9 +2192,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ListStore64(Xcls_MainWindow _owner )
+		public Xcls_winmodel(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.winmodel = this;
 			this.el = new GLib.ListStore( typeof(WindowState) );
 
 			// my vars (dec)
