@@ -917,7 +917,7 @@
                 "  \t\tfor(var i = 0;i < this.el.get_n_items(); i++) {",
                 "\t\t\tvar ws = this.el.get_item(i) as WindowState;",
                 "\t\t\tif (ws.file.path == _this.windowstate.file.path) {",
-                "\t\t\t  \tthis.winselected.el = i;",
+                "\t\t\t  \tthis.winsel.el.selected = i;",
                 "\t\t\t  \tbreak;",
                 "\t\t  \t}",
                 "\t\t}",
