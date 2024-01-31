@@ -1882,7 +1882,7 @@ public class Xcls_MainWindow : Object
 					return;
 				}
 				ws.fileViewOpen(ws.file, ws.file_details.new_window,  -1);
-			
+				this.selectCurrent();
 			 });
 		}
 
@@ -1897,6 +1897,7 @@ public class Xcls_MainWindow : Object
 					  	break;
 				  	}
 				}
+			_this.winloading = false;
 		
 		}
 	}

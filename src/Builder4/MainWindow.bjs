@@ -905,7 +905,7 @@
                  "\t\treturn;",
                  "\t}",
                  "\tws.fileViewOpen(ws.file, ws.file_details.new_window,  -1);",
-                 "",
+                 "\tthis.selectCurrent();",
                  " }"
                 ]
                },
@@ -921,6 +921,7 @@
                 "\t\t\t  \tbreak;",
                 "\t\t  \t}",
                 "\t\t}",
+                "\t_this.winloading = false;",
                 "",
                 "}"
                ]
