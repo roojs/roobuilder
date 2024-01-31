@@ -855,7 +855,7 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "expression",
-                     "string property_name" : "file_name",
+                     "string property_name" : "proj_file_name",
                      "xtype" : "PropertyExpression"
                     }
                    ],
