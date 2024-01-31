@@ -30,6 +30,7 @@ deps = [
    dependency('libgda-5.0'),
    dependency('jsonrpc-glib-1.0'),
    dependency('gio-unix-2.0'),
+   dependency('libadwaita-1'),
 
 ]
  

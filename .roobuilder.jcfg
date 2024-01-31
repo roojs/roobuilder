@@ -89,6 +89,7 @@
         "gtksourceview-5",
         "libgda-5.0",
         "jsonrpc-glib-1.0",
-        "gio-unix-2.0"
+        "gio-unix-2.0",
+        "libadwaita-1"
     ]
 }

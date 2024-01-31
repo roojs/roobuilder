@@ -42,8 +42,12 @@ public class WindowState : Object
  	public Xcls_PopoverFileDetails file_details;
 	public Xcls_ValaCompileResults compile_results;
 	
-	// dialogs??
 
+	// used by window list..
+	public string file_name {
+		owned get { return this.file.relpath; }
+		private set {}
+	}
 	
 	
 	//public Palete.ValaSource valasource; // the spawner that runs the vala compiler.
@@ -52,7 +56,12 @@ public class WindowState : Object
 	// ctor 
 	public WindowState(Xcls_MainWindow win)
 	{
-		this.win = win;
+    		this.win = win;
+	}
+	
+	public void init()
+	{
+	
 		// initialize
 
 		// left elements..
@@ -652,7 +661,7 @@ public class WindowState : Object
 		this.win.project = file.project;
 		this.project = file.project;
 		this.file = file;
-		BuilderApplication.updateWindows();
+
 		
 		file.getLanguageServer().document_open(file);
 		BuilderApplication.showSpinner("spinner", "document open sent");	

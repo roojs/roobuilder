@@ -23,11 +23,11 @@ int main (string[] args) {
 	 
 	app.activate.connect(() => {
 		var w = new Xcls_MainWindow();
-
+        w.initChildren();
 		BuilderApplication.addWindow(w);
 		
 		// it looks like showall after children causes segfault on ubuntu 14.4
-		w.initChildren();
+		w.windowstate.init();
 	//	w.windowstate.showPopoverFiles(w.open_projects_btn.el, null, false);
 		w.show();
 	

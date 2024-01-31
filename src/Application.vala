@@ -149,6 +149,7 @@
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
+			BuilderApplication.windowlist = new GLib.ListStore(typeof(WindowState));
 			//BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
 			
 			
@@ -627,12 +628,14 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		
 		// move to 'window colletction?
 		public static Gee.ArrayList<Xcls_MainWindow> windows;
+		public static GLib.ListStore windowlist;
 		
 		public static void addWindow(Xcls_MainWindow w)
 		{
 			 
+	        windowlist.append(w.windowstate);
 			BuilderApplication.windows.add(w);
-			BuilderApplication.updateWindows();
+
   
 			
 		}
@@ -641,7 +644,15 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		{
 			//GLib.debug("remove window before = %d", BuilderApplication.windows.size);
 			BuilderApplication.windows.remove(w);
-			BuilderApplication.updateWindows();
+			for(var i = 0 ; i < windowlist.get_n_items(); i++) {
+				var ws = windowlist.get_item(i) as WindowState;
+				if (ws.file.path == w.windowstate.file.path && ws.project.path == w.windowstate.project.path) {
+					windowlist.remove(i);
+					break;
+				}
+			}
+			
+
 			 	
 			w.el.hide();
 			w.el.close();
@@ -650,12 +661,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 			
 			
 		}
-		public static void updateWindows()
-		{
-			foreach(var ww in BuilderApplication.windows) {
-				ww.windowbtn.updateMenu();
-			}
-		}
+	 
 		public static Xcls_MainWindow? getWindow(JsRender.JsRender file)
 		{
 			foreach(var ww in BuilderApplication.windows) {
@@ -671,8 +677,9 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		{
 		    var w = new Xcls_MainWindow();
 			w.ref();
-			BuilderApplication.addWindow(w);
 			w.initChildren();
+			BuilderApplication.addWindow(w);
+			w.windowstate.init();
 			w.windowstate.fileViewOpen(file, false, line);
 			w.el.present();
 			 

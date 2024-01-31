@@ -331,16 +331,27 @@ public class Editor : Object
 		    if (eline > tlines || eline < 0) {
 		        continue;
 		    }
-		   
 		    
 		    buf.get_iter_at_line( out iter, eline);
 		   	var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
 		    buf.create_source_mark( msg, diag.category, iter);
+		    
+	 	    var spos = (int)diag.range.start.character - hoffset;
+	 	    if (spos < 0) { spos =0 ; }
+	 	    if (spos > iter.get_chars_in_line()) {
+	 	    	spos = iter.get_chars_in_line();
+	    	}
+			buf.get_iter_at_line( out iter, eline_to);
+			var epos = (int)diag.range.end.character - hoffset;
+	 	    if (epos < 0) { epos =0 ; }
+	 	    if (epos > iter.get_chars_in_line()) {
+	 	    	epos = iter.get_chars_in_line();
+	    	}
+	 	     
 	 	    
-	 	    buf.get_iter_at_line_offset( out start, 
-	 	    	eline, (int)diag.range.start.character - hoffset); 
-	 	    buf.get_iter_at_line_offset( out end, 
-	 	    	eline_to, (int)diag.range.end.character - hoffset); 
+	 	    buf.get_iter_at_line_offset( out start, eline, spos); 
+	 	   
+	 	    buf.get_iter_at_line_offset( out end, eline_to,epos); 
 	 	    	
 		    buf.apply_tag_by_name(diag.category, start, end);
 		    
