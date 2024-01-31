@@ -757,6 +757,7 @@
        "* prop" : "content",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "bool homogeneous" : false,
+       "bool vexpand" : false,
        "id" : "vbox",
        "int spacing" : 0,
        "xtype" : "Box"
