@@ -5,6 +5,7 @@
   {
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "",
+   "# bool winloading" : false,
    "$ type" : "Gtk.WindowType.TOPLEVEL",
    "$ xns" : "Gtk",
    "* ctor" : "new Gtk.ApplicationWindow(BuilderApplication.singleton({}))",

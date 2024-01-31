@@ -46,6 +46,7 @@ public class Xcls_MainWindow : Object
 
 		// my vars (def)
 	public WindowState windowstate;
+	public bool winloading;
 	public Project.Project project;
 
 	// ctor
@@ -55,6 +56,7 @@ public class Xcls_MainWindow : Object
 		this.el = new Gtk.ApplicationWindow(BuilderApplication.singleton({}));
 
 		// my vars (dec)
+		this.winloading = false;
 		this.project = null;
 
 		// set gobject values
