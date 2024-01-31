@@ -821,6 +821,13 @@
                  "$ xns" : "Gtk",
                  "* prop" : "model",
                  "GLib.Type item_type" : "typeof(Xcls_MainWindow)",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "model",
+                   "xtype" : "FilterListModel"
+                  }
+                 ],
                  "xtype" : "SortListModel"
                 }
                ],
