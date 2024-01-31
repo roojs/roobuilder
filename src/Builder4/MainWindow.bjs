@@ -896,7 +896,7 @@
                  "\tif (_this.winloading) {",
                  "\t\treturn;",
                  "\t}",
-                 "\tvar ws = this.el.selected;",
+                 "\tvar ws = this.el.selected as WindowState;",
                  "\tif (ws == null) {",
                  "\t\treturn;",
                  "\t}",

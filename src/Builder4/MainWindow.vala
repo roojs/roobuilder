@@ -1872,7 +1872,7 @@ public class Xcls_MainWindow : Object
 				if (_this.winloading) {
 					return;
 				}
-				var ws = this.el.selected;
+				var ws = this.el.selected as WindowState;
 				if (ws == null) {
 					return;
 				}
