@@ -633,7 +633,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "string label" : "Label",
+               "string label" : "Open File",
                "xtype" : "Label"
               }
              ],

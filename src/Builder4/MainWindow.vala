@@ -1472,7 +1472,7 @@ public class Xcls_MainWindow : Object
 		public Xcls_Label39(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "Label" );
+			this.el = new Gtk.Label( "Open File" );
 
 			// my vars (dec)
 
