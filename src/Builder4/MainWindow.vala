@@ -263,6 +263,7 @@ public class Xcls_MainWindow : Object
 			  		_this.filesearch.el.grab_focus();
 			  		_this.winloading = true;
 			  		_this.winmodel.el.remove_all();
+			  		_this.filesearch.el.set_text("");
 			  		for(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {
 						_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));
 					}

@@ -43,6 +43,7 @@
            "  \t\t_this.filesearch.el.grab_focus();",
            "  \t\t_this.winloading = true;",
            "  \t\t_this.winmodel.el.remove_all();",
+           "  \t\t_this.filesearch.el.set_text(\"\");",
            "  \t\tfor(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {",
            "\t\t\t_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));",
            "\t\t}",
