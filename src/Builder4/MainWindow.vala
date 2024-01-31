@@ -262,10 +262,10 @@ public class Xcls_MainWindow : Object
 			  	if (_this.splitview.el.show_sidebar) {
 			  		_this.filesearch.el.grab_focus();
 			  		
-			  		_this.winmodel.el.remove_all();
-			  		for(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {
-						_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));
-					}
+			  		//_this.winmodel.el.remove_all();
+			  		//for(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {
+					//	_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));
+					//}
 			 	}
 			});
 		}
