@@ -667,6 +667,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "int margin_end" : 4,
                "string icon_name" : "window-new",
                "xtype" : "Image"
               },
