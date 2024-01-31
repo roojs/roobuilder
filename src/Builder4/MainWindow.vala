@@ -265,15 +265,11 @@ public class Xcls_MainWindow : Object
 			  	if (_this.splitview.el.show_sidebar) {
 			  		_this.filesearch.el.grab_focus();
 			  		_this.winloading = true;
-					_this.winsel.el.selected = Gtk.INVALID_LIST_POSITION;
-			  		for(var i = 0;i < this.el.get_n_items(); i++) {
-						var ws = this.el.get_item(i) as WindowState;
-						if (ws.file.path == _this.windowstate.file.path) {
-						  	this.winselected.el = i;
-						  	break;
-					  	}
+			  		_this.winmodel.el.remove_all();
+			  		for(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {
+						_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));
 					}
-			
+					_this.winsel.el.selected = Gtk.INVALID_LIST_POSITION;
 					_this.winloading = false;
 			 	}
 			});
