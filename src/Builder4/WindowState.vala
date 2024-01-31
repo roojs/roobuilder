@@ -56,12 +56,12 @@ public class WindowState : Object
 	// ctor 
 	public WindowState(Xcls_MainWindow win)
 	{
-	    	
+    		this.win = win;
 	}
 	
 	public void init()
 	{
-		this.win = win;
+	
 		// initialize
 
 		// left elements..
