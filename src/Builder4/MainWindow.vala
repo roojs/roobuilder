@@ -1938,7 +1938,7 @@ public class Xcls_MainWindow : Object
 		public Xcls_PropertyExpression55(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(WindowState), null, "proj_file_name" );
+			this.el = new Gtk.PropertyExpression( typeof(WindowState), null, "file_name" );
 
 			// my vars (dec)
 
@@ -1986,7 +1986,7 @@ public class Xcls_MainWindow : Object
 		public Xcls_PropertyExpression57(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.PropertyExpression( null, null, "proj_file_name" );
+			this.el = new Gtk.PropertyExpression( t, null, "proj_file_name" );
 
 			// my vars (dec)
 
