@@ -1349,6 +1349,12 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.placeholder_text = "Search for file";
+
+			//listeners
+			this.el.search_changed.connect( ( ) => {
+			
+			
+			});
 		}
 
 		// user defined functions

@@ -594,6 +594,15 @@
            "* prop" : "child",
            "bool hexpand" : true,
            "id" : "filesearch",
+           "listeners" : {
+            "search_changed" : [
+             "( ) => {",
+             "",
+             "",
+             "}",
+             ""
+            ]
+           },
            "string placeholder_text" : "Search for file",
            "xtype" : "SearchEntry"
           }
