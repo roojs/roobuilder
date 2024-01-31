@@ -1883,7 +1883,9 @@ public class Xcls_MainWindow : Object
 				if (ws == null) {
 					return;
 				}
-				ws.fileViewOpen(ws.file, ws.file_details.new_window,  -1);
+				if (ws.file.path != this.windowstate.file.path) {
+					this.windowstate.fileViewOpen(ws.file, ws.file_details.new_window,  -1);
+				}
 				this.selectCurrent();
 			 });
 		}
