@@ -1625,6 +1625,7 @@ public class Xcls_MainWindow : Object
 			this.orientation = Gtk.Orientation.HORIZONTAL;
 
 			// set gobject values
+			this.el.has_frame = false;
 			var child_1 = new Xcls_Image43( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
