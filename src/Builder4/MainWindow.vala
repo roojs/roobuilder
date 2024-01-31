@@ -1353,7 +1353,7 @@ public class Xcls_MainWindow : Object
 			//listeners
 			this.el.search_changed.connect( ( ) => {
 			
-			
+				_this.windowsearch.el.set_search(this.el.get_text());
 			});
 		}
 

@@ -598,7 +598,7 @@
             "search_changed" : [
              "( ) => {",
              "",
-             "",
+             "\t_this.windowsearch.el.set_search(this.el.get_text());",
              "}",
              ""
             ]
