@@ -1795,7 +1795,7 @@ public class Xcls_MainWindow : Object
 		public Xcls_ColumnView49(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SingleSelection50( _this );
+			var child_1 = new Xcls_50( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnView( child_1.el );
 
@@ -1806,28 +1806,23 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_SingleSelection50 : Object
+	public class Xcls_50 : Object
 	{
-		public Gtk.SingleSelection el;
+		public . el;
 		private Xcls_MainWindow  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_SingleSelection50(Xcls_MainWindow _owner )
+		public Xcls_50(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SortListModel51( _this );
-			child_1.ref();
-			this.el = new Gtk.SingleSelection( child_1.el );
+			this.el = new ();
 
 			// my vars (dec)
-
-			// set gobject values
-			this.el.can_unselect = true;
-			this.el.item_type = typeof(WindowState);
-			this.el.autoselect = false;
+			var child_1 = new Xcls_SortListModel51( _this );
+			this.el.model = child_1.el;
 		}
 
 		// user defined functions
@@ -1851,7 +1846,6 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.item_type = typeof(WindowState);
 		}
 
 		// user defined functions
