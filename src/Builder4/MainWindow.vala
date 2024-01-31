@@ -2056,7 +2056,7 @@ public class Xcls_MainWindow : Object
 
 	public class Xcls_59 : Object
 	{
-		public . el;
+		public Gtk. el;
 		private Xcls_MainWindow  _this;
 
 

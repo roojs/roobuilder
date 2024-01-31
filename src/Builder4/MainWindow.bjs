@@ -1059,7 +1059,8 @@
              ],
              "xtype" : "ColumnView"
             }
-           ]
+           ],
+           "string xns" : "Gtk"
           }
          ],
          "xtype" : "Paned"
