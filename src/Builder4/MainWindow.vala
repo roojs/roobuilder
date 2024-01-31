@@ -2061,7 +2061,6 @@ public class Xcls_MainWindow : Object
 
 
 			// my vars (def)
-		public string xtyle;
 
 		// ctor
 		public Xcls_ScrolledWindow59(Xcls_MainWindow _owner )
@@ -2070,9 +2069,9 @@ public class Xcls_MainWindow : Object
 			this.el = new Gtk.ScrolledWindow();
 
 			// my vars (dec)
-			this.xtyle = ScrolledWindow;
 
 			// set gobject values
+			this.el.vexpand = true;
 			var child_1 = new Xcls_ColumnView60( _this );
 			this.el.child = child_1.el;
 		}

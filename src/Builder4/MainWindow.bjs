@@ -903,6 +903,7 @@
           },
           {
            "* prop" : "end_child",
+           "bool vexpand" : true,
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -1061,7 +1062,6 @@
             }
            ],
            "string xns" : "Gtk",
-           "string xtyle" : "ScrolledWindow",
            "string xtype" : "ScrolledWindow"
           }
          ],
