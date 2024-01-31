@@ -46,6 +46,7 @@
            "  \t\tfor(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {",
            "\t\t\t_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));",
            "\t\t}",
+           "\t\t_this.winsel.el.se",
            "\t\t_this.winloading = false;",
            " \t}",
            "}"
