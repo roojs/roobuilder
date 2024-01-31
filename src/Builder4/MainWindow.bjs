@@ -1059,6 +1059,17 @@
               }
              ],
              "xtype" : "ColumnView"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "hadjustment",
+             "double lower" : "",
+             "double page_increment" : "",
+             "double page_size" : "",
+             "double step_increment" : "",
+             "double upper" : "",
+             "double value" : "",
+             "xtype" : "Adjustment"
             }
            ],
            "xtype" : "ScrolledWindow"
