@@ -611,6 +611,7 @@
             "}",
             ""
            ],
+           "bool hexpand" : true,
            "id" : "windowbtn",
            "int margin_end" : 4,
            "items" : [
