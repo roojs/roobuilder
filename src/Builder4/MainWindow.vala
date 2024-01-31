@@ -1856,6 +1856,7 @@ public class Xcls_MainWindow : Object
 
 
 			// my vars (def)
+		public bool selecting;
 
 		// ctor
 		public Xcls_winsel(Xcls_MainWindow _owner )
@@ -1867,6 +1868,7 @@ public class Xcls_MainWindow : Object
 			this.el = new Gtk.SingleSelection( child_1.el );
 
 			// my vars (dec)
+			this.selecting = false;
 
 			// set gobject values
 			this.el.can_unselect = true;
@@ -1874,7 +1876,7 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.notify["selected"].connect( () => {
-				if (_this.winloading) {
+				if (_this.winloading || this.selecting) {
 					return;
 				}
 				var ws = this.el.selected_item as WindowState;

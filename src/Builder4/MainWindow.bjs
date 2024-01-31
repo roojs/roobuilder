@@ -839,6 +839,7 @@
                "* prop" : "model",
                "bool autoselect" : false,
                "bool can_unselect" : true,
+               "bool selecting" : false,
                "id" : "winsel",
                "items" : [
                 {
@@ -897,7 +898,7 @@
                "listeners" : {
                 "notify[\"selected\"]" : [
                  "() => {",
-                 "\tif (_this.winloading) {",
+                 "\tif (_this.winloading || this.selecting) {",
                  "\t\treturn;",
                  "\t}",
                  "\tvar ws = this.el.selected_item as WindowState;",
