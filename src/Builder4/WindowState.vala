@@ -42,8 +42,12 @@ public class WindowState : Object
  	public Xcls_PopoverFileDetails file_details;
 	public Xcls_ValaCompileResults compile_results;
 	
-	// dialogs??
 
+	// used by window list..
+	public file_name {
+		get { return this.file.relpath }
+		private set {}
+	}
 	
 	
 	//public Palete.ValaSource valasource; // the spawner that runs the vala compiler.
