@@ -276,7 +276,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "\"\"";
+			this.el.icon_name = "system-file-manager";
 		}
 
 		// user defined functions
