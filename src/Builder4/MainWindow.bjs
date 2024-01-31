@@ -908,6 +908,7 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "child",
+             "bool hexpand" : true,
              "items" : [
               {
                "$ xns" : "Gtk",
@@ -1052,7 +1053,7 @@
                  "xtype" : "SignalListItemFactory"
                 }
                ],
-               "title" : "F",
+               "title" : "File",
                "xtype" : "ColumnViewColumn"
               }
              ],
