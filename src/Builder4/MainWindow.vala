@@ -86,6 +86,7 @@ public class Xcls_MainWindow : Object
 				BuilderApplication.singleton(  null ).quit();
 			 }
 			return true;
+			
 		});
 		this.el.show.connect( ( ) => {
 		    // hide the file editing..
@@ -297,7 +298,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.collapsed = true;
-			this.el.sidebar_width_fraction = 0.40000;
+			this.el.sidebar_width_fraction = 0.400000;
 			this.el.show_sidebar = false;
 			new Xcls_vbox( _this );
 			this.el.content = _this.vbox.el;
