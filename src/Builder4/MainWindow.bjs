@@ -40,6 +40,7 @@
            "  \t_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;",
            "  \tif (_this.splitview.el.show_sidebar) {",
            "  \t\t_this.filesearch.el.grab_focus();",
+           "  \t\t",
            "  \t\t_this.winfilter.el.set_model(new GLib.ListStore(typeof(WindowState)));",
            "  \t\t_this.winfilter.el.set_model(BuilderApplication.windowlist);",
            "  \t\tGLib.debug(\"show windfilter with %d items\",",
