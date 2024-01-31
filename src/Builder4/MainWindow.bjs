@@ -908,6 +908,7 @@
                  "\tif (ws.file.path != this.windowstate.file.path) {",
                  "\t\tthis.windowstate.fileViewOpen(ws.file, ws.file_details.new_window,  -1);",
                  "\t}",
+                 "\t",
                  "\tthis.selectCurrent();",
                  " }"
                 ]
