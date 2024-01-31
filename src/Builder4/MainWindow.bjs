@@ -63,6 +63,7 @@
      "* prop" : "child",
      "bool collapsed" : true,
      "bool show_sidebar" : false,
+     "double sidebar_width_fraction" : "0.35f",
      "id" : "splitview",
      "items" : [
       {
