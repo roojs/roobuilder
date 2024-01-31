@@ -1900,6 +1900,12 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
+
+			// init method
+
+			{
+			
+			}
 		}
 
 		// user defined functions
