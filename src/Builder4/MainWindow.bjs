@@ -756,8 +756,8 @@
        "$ xns" : "Gtk",
        "* prop" : "content",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-       "bool homogeneous" : true,
-       "id" : "v",
+       "bool homogeneous" : false,
+       "id" : "vbox",
        "int spacing" : 0,
        "xtype" : "Box"
       }

@@ -34,7 +34,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_run statusbar_run;
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 	public Xcls_statusbar_compile_icon statusbar_compile_icon;
-	public Xcls_v v;
+	public Xcls_vbox vbox;
 
 		// my vars (def)
 	public WindowState windowstate;
@@ -1595,13 +1595,13 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			new Xcls_v( _this );
-			this.el.content = _this.v.el;
+			new Xcls_vbox( _this );
+			this.el.content = _this.vbox.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_v : Object
+	public class Xcls_vbox : Object
 	{
 		public Gtk.Box el;
 		private Xcls_MainWindow  _this;
@@ -1610,16 +1610,16 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_v(Xcls_MainWindow _owner )
+		public Xcls_vbox(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.v = this;
+			_this.vbox = this;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.homogeneous = true;
+			this.el.homogeneous = false;
 		}
 
 		// user defined functions
