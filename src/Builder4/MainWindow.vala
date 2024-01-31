@@ -250,7 +250,7 @@ public class Xcls_MainWindow : Object
 			this.el.clicked.connect( ( ) => {
 			  	_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;
 			  	if (_this.splitview.el.show_sidebar) {
-			  		_this.filesearch.el.focus();
+			  		_this.filesearch.el.grab_focus();
 				}
 			});
 		}

@@ -43,7 +43,7 @@
            "  ( ) => {",
            "  \t_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;",
            "  \tif (_this.splitview.el.show_sidebar) {",
-           "  \t\t_this.filesearch.el.focus();",
+           "  \t\t_this.filesearch.el.grab_focus();",
            "\t}",
            "}"
           ]
