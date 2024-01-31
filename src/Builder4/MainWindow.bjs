@@ -667,12 +667,12 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "string icon_name" : "document-open",
+               "string icon_name" : "window-new",
                "xtype" : "Image"
               },
               {
                "$ xns" : "Gtk",
-               "string label" : "Open File",
+               "string label" : "New Window",
                "xtype" : "Label"
               }
              ],
