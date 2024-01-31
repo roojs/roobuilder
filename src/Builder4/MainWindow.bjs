@@ -41,11 +41,11 @@
            "  \tif (_this.splitview.el.show_sidebar) {",
            "  \t\t_this.filesearch.el.grab_focus();",
            "  \t\t",
-           "  \t\t_this.winfilter.el.set_model(new GLib.ListStore(typeof(WindowState)));",
-           "  \t\t_this.winfilter.el.set_model(BuilderApplication.windowlist);",
-           "  \t\tGLib.debug(\"show windfilter with %d items\",",
-           "  \t\t\t(int)BuilderApplication.windowlist.get_n_items());",
-           "\t}",
+           "  \t\t_this.winmodel.el.remove_all();",
+           "  \t\tfor(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {",
+           "\t\t\t_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));",
+           "\t\t}",
+           " \t}",
            "}"
           ]
          },
