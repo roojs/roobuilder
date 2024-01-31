@@ -691,6 +691,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 			w.ref();
 			BuilderApplication.addWindow(w);
 			w.initChildren();
+			w.windowstate.init();
 			w.windowstate.fileViewOpen(file, false, line);
 			w.el.present();
 			 
