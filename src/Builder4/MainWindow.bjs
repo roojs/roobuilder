@@ -876,7 +876,7 @@
                      "$ xns" : "Gtk",
                      "* prop" : "expression",
                      "GLib.Type this_type" : "typeof(WindowState)",
-                     "string property_name" : "proj_file_name",
+                     "string property_name" : "file_name",
                      "xtype" : "PropertyExpression"
                     }
                    ],
