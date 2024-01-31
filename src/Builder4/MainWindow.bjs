@@ -646,7 +646,7 @@
              "( ) => {",
              "\t_this.splitview.el.show_sidebar = false;",
              "\t_this.windowstate.showPopoverFiles(_this.el, _this.project, true);",
-             ""
+             "}"
             ]
            },
            "string label" : "New Window",
