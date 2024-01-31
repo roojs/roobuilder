@@ -1070,17 +1070,6 @@
              "double upper" : "",
              "double value" : "",
              "xtype" : "Adjustment"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* prop" : "vadjustment",
-             "double lower" : "",
-             "double page_increment" : "",
-             "double page_size" : "",
-             "double step_increment" : "",
-             "double upper" : "",
-             "double value" : "",
-             "xtype" : "Adjustment"
             }
            ],
            "xtype" : "ScrolledWindow"
