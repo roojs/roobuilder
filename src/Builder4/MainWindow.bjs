@@ -813,14 +813,14 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
-               "GLib.Type item_type" : "typeof(XMainWindow)",
+               "GLib.Type item_type" : "typeof(Xcls_MainWindow)",
                "bool autoselect" : false,
                "bool can_unselect" : true,
                "items" : [
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
-                 "GLib.Type item_type" : "typeof(MainWindow)",
+                 "GLib.Type item_type" : "typeof(Xcls_MainWindow)",
                  "xtype" : "SortListModel"
                 }
                ],

@@ -1826,7 +1826,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
-			this.el.item_type = typeof(XMainWindow);
+			this.el.item_type = typeof(Xcls_MainWindow);
 			this.el.autoselect = false;
 		}
 
@@ -1849,7 +1849,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.item_type = typeof(MainWindow);
+			this.el.item_type = typeof(Xcls_MainWindow);
 		}
 
 		// user defined functions
