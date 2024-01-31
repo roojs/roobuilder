@@ -661,12 +661,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 			
 			
 		}
-		public static void updateWindows()
-		{
-			foreach(var ww in BuilderApplication.windows) {
-				ww.windowbtn.updateMenu();
-			}
-		}
+	 
 		public static Xcls_MainWindow? getWindow(JsRender.JsRender file)
 		{
 			foreach(var ww in BuilderApplication.windows) {
