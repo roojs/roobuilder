@@ -1697,7 +1697,7 @@
     "\tvar reading_header = true;",
     " ",
     "\twhile (child != null) {",
-    "\t\tGLib.debug(\"Got %s\", child.get_type().name());",
+    "\t\t//GLib.debug(\"Got %s\", child.get_type().name());",
     "\t   ",
     "\t   if (reading_header) {",
     "\t\t\t",
