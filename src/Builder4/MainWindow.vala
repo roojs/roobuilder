@@ -2071,6 +2071,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.hexpand = true;
 			this.el.vexpand = true;
 			var child_1 = new Xcls_ColumnView60( _this );
 			this.el.child = child_1.el;

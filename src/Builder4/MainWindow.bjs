@@ -903,6 +903,7 @@
           },
           {
            "* prop" : "end_child",
+           "bool hexpand" : true,
            "bool vexpand" : true,
            "items" : [
             {
