@@ -614,10 +614,7 @@
          "xtype" : "SearchBar"
         },
         {
-         "$ xns" : "Gtk",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "bool hexpand" : true,
-         "int spacing" : 0,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -640,8 +637,16 @@
            "$ Gtk.Align halign" : "Gtk.Align.START",
            "$ xns" : "Gtk",
            "bool hexpand" : true,
-           "id" : "windowbtn",
            "int margin_end" : 4,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "xtype" : "Box"
+            }
+           ],
            "listeners" : {
             "clicked" : [
              "( ) => {",
@@ -652,8 +657,7 @@
            },
            "xtype" : "Button"
           }
-         ],
-         "xtype" : "Box"
+         ]
         },
         {
          "$ xns" : "Gtk",
