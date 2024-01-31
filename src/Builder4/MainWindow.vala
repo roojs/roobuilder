@@ -1313,6 +1313,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.hexpand = true;
+			this.el.search_mode_enabled = true;
 			var child_1 = new Xcls_SearchEntry35( _this );
 			this.el.child = child_1.el;
 		}
