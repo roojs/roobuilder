@@ -1711,7 +1711,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.can_unselect = false;
-			this.el.autoselect = true;
+			this.el.autoselect = false;
 
 			//listeners
 			this.el.notify["selected"].connect( () => {

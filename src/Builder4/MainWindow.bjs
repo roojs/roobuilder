@@ -709,7 +709,7 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
-               "bool autoselect" : true,
+               "bool autoselect" : false,
                "bool can_unselect" : false,
                "bool selecting" : false,
                "id" : "winsel",
