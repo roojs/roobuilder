@@ -654,7 +654,6 @@
            "xtype" : "Button"
           },
           {
-           "$ Gtk.Align halign" : "Gtk.Align.START",
            "$ xns" : "Gtk",
            "bool hexpand" : true,
            "int margin_end" : 4,
@@ -687,7 +686,6 @@
              "}"
             ]
            },
-           "string label" : "New Window",
            "xtype" : "Button"
           }
          ],

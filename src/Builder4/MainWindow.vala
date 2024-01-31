@@ -1523,9 +1523,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.margin_end = 4;
-			this.el.halign = Gtk.Align.START;
 			this.el.hexpand = true;
-			this.el.label = "New Window";
 			var child_1 = new Xcls_Box42( _this );
 			this.el.child = child_1.el;
 
