@@ -634,8 +634,13 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		{
 			if (w.windowstate == null) {
 			    w.initChildren();
+			    if (w.windowstate != null) {
+    		     windowlist.append(w.windowstate);
+		     } else {
+		        GLib.debug("could not init windowstate");
+	        }
 			}
-		    windowlist.append(w.windowstate);
+
 			BuilderApplication.windows.add(w);
 			BuilderApplication.updateWindows();
   
