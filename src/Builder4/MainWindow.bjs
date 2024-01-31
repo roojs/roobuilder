@@ -956,7 +956,7 @@
                "* pack" : "append_column",
                "bool expand" : true,
                "bool resizable" : true,
-               "id" : "proj",
+               "id" : "projcol",
                "items" : [
                 {
                  "$ xns" : "Gtk",
