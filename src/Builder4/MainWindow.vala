@@ -242,7 +242,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "this.spitview.el.show_sidebar ";
+			this.el.icon_name = "preferences-system-windows";
 
 			//listeners
 			this.el.clicked.connect( ( ) => {

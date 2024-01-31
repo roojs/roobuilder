@@ -44,7 +44,7 @@
            "}"
           ]
          },
-         "string icon_name" : "this.spitview.el.show_sidebar ",
+         "string icon_name" : "preferences-system-windows",
          "tooltop_text" : "Manage Windows",
          "xtype" : "Button"
         }
