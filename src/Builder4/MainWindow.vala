@@ -1891,7 +1891,7 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 		public void selectCurrent () {
 			this.selecting = true;
-			this.el.selected = Gtk.INVALID_LIST_POSITION;
+			 
 			for(var i = 0;i < this.el.get_n_items(); i++) {
 				var ws = this.el.get_item(i) as WindowState;
 				if (ws.file.path == _this.windowstate.file.path) {

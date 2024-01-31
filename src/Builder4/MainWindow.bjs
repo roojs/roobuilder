@@ -914,7 +914,7 @@
                "| void selectCurrent" : [
                 "() {",
                 "\tthis.selecting = true;",
-                "\tthis.el.selected = Gtk.INVALID_LIST_POSITION;",
+                "\t ",
                 "\tfor(var i = 0;i < this.el.get_n_items(); i++) {",
                 "\t\tvar ws = this.el.get_item(i) as WindowState;",
                 "\t\tif (ws.file.path == _this.windowstate.file.path) {",
