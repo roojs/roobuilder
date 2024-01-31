@@ -642,14 +642,6 @@
            "bool hexpand" : true,
            "id" : "windowbtn",
            "int margin_end" : 4,
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* pack" : false,
-             "id" : "windowspopup",
-             "xtype" : "Popover"
-            }
-           ],
            "listeners" : {
             "clicked" : [
              "( ) => {",
