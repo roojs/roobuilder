@@ -38,7 +38,6 @@
          "$ xns" : "Gtk",
          "* pack" : "append",
          "bool always_show_image" : true,
-         "id" : "open_projects_btn",
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
@@ -49,20 +48,6 @@
          "string icon_name" : "system-file-manager",
          "string label" : "Files / Projects",
          "tooltop_text" : "\"Open File\"",
-         "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "listeners" : {
-          "clicked" : [
-           "( ) => {",
-           "\tthis.spitview.el.show_sidebar = !this.spitview.el.show_sidebar;",
-           "",
-           "}",
-           ""
-          ]
-         },
-         "string icon_name" : "preferences-system-windows",
          "xtype" : "Button"
         }
        ],
@@ -602,7 +587,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "append",
            "bool always_show_image" : true,
            "id" : "open_projects_btn",
            "listeners" : {
