@@ -844,7 +844,7 @@
                    "$ xns" : "Gtk",
                    "* init" : [
                     "{",
-                    "",
+                    "\tthis.model = BuilderApplication.windowlist;",
                     "}",
                     ""
                    ],
