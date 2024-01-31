@@ -280,7 +280,7 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
-			
+			this.spitview.el.hide();
 			
 			});
 		}

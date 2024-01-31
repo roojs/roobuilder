@@ -56,7 +56,7 @@
          "listeners" : {
           "clicked" : [
            "( ) => {",
-           "",
+           "this.spitview.el.hide();",
            "",
            "}",
            ""
