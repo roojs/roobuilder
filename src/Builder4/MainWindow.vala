@@ -613,6 +613,8 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			new Xcls_vbox( _this );
 			this.el.content = _this.vbox.el;
+			var child_2 = new Xcls_Box42( _this );
+			this.el.sidebar = child_2.el;
 		}
 
 		// user defined functions
@@ -1598,6 +1600,28 @@ public class Xcls_MainWindow : Object
 	}
 
 
+
+	public class Xcls_Box42 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Box42(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 }

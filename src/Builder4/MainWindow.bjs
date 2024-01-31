@@ -753,6 +753,13 @@
         }
        ],
        "xtype" : "Box"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "sidebar",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "int spacing" : 0,
+       "xtype" : "Box"
       }
      ],
      "xtype" : "OverlaySplitView"
