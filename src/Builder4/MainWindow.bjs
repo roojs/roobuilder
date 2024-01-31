@@ -741,6 +741,105 @@
          "int margin_end" : 4,
          "int margin_start" : 4,
          "xtype" : "Image"
+        },
+        {
+         "# int lastWidth" : 0,
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "bool hexpand" : true,
+         "bool vexpand" : true,
+         "id" : "mainpane",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "start_child",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "bool hexpand" : true,
+           "bool vexpand" : true,
+           "id" : "leftpane",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "id" : "editpane",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "start_child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+               "bool hexpand" : true,
+               "bool vexpand" : true,
+               "id" : "tree",
+               "xtype" : "Box"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "end_child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+               "bool hexpand" : true,
+               "bool vexpand" : true,
+               "id" : "props",
+               "xtype" : "Box"
+              }
+             ],
+             "listeners" : {
+              "accept_position" : [
+               "( ) => {",
+               "\t_this.windowstate.left_tree.onresize();",
+               "\treturn true;",
+               "}",
+               ""
+              ],
+              "move_handle" : [
+               "(scroll) => {",
+               "\tGLib.debug(\"Move handle\");",
+               "\treturn true;",
+               "}"
+              ]
+             },
+             "xtype" : "Paned"
+            }
+           ],
+           "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "end_child",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "bool hexpand" : true,
+           "bool vexpand" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "bool hexpand" : true,
+             "bool vexpand" : true,
+             "id" : "rooviewbox",
+             "xtype" : "Box"
+            },
+            {
+             "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "bool hexpand" : true,
+             "bool vexpand" : true,
+             "id" : "codeeditviewbox",
+             "xtype" : "Box"
+            }
+           ],
+           "xtype" : "Box"
+          }
+         ],
+         "listeners" : {
+          "accept_position" : [
+           "( ) => {",
+           "\t_this.windowstate.left_tree.onresize();",
+           "\treturn true;",
+           "}",
+           ""
+          ]
+         },
+         "position" : 400,
+         "xtype" : "Paned"
         }
        ],
        "xtype" : "Box"
