@@ -1308,8 +1308,9 @@ public class Xcls_MainWindow : Object
 			var child_1 = new Xcls_SearchBar34( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_36( _this );
+			var child_2 = new Xcls_Box36( _this );
 			child_2.ref();
+			this.el.append( child_2.el );
 			var child_3 = new Xcls_Paned40( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
@@ -1374,23 +1375,24 @@ public class Xcls_MainWindow : Object
 	}
 
 
-	public class Xcls_36 : Object
+	public class Xcls_Box36 : Object
 	{
-		public . el;
+		public Gtk.Box el;
 		private Xcls_MainWindow  _this;
 
 
 			// my vars (def)
-		public bool hexpand;
 
 		// ctor
-		public Xcls_36(Xcls_MainWindow _owner )
+		public Xcls_Box36(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new ();
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
 			// my vars (dec)
-			this.hexpand = true;
+
+			// set gobject values
+			this.el.hexpand = true;
 			new Xcls_open_projects_btn( _this );
 			this.el.append( _this.open_projects_btn.el );
 			var child_2 = new Xcls_Button38( _this );
