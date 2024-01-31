@@ -309,7 +309,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.show_sidebar = true;
+			this.el.show_sidebar = false;
 			new Xcls_vbox( _this );
 			this.el.content = _this.vbox.el;
 			var child_2 = new Xcls_Box34( _this );
