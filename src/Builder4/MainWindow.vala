@@ -1754,10 +1754,83 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_ScrolledWindow48( _this );
+			this.el.start_child = child_1.el;
 		}
 
 		// user defined functions
 	}
+	public class Xcls_ScrolledWindow48 : Object
+	{
+		public Gtk.ScrolledWindow el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ScrolledWindow48(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ScrolledWindow();
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_ColumnView49( _this );
+			this.el.child = child_1.el;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ColumnView49 : Object
+	{
+		public Gtk.ColumnView el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ColumnView49(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_SingleSelection50( _this );
+			child_1.ref();
+			this.el = new Gtk.ColumnView( child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_SingleSelection50 : Object
+	{
+		public Gtk.SingleSelection el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SingleSelection50(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SingleSelection( null );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.item_type = typeof(MainWindow);
+		}
+
+		// user defined functions
+	}
+
+
+
 
 
 

@@ -813,6 +813,7 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
+               "GLib.Type item_type" : "typeof(MainWindow)",
                "xtype" : "SingleSelection"
               }
              ],
