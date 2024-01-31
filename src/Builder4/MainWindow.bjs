@@ -42,7 +42,7 @@
            "  \t\t_this.filesearch.el.grab_focus();",
            "  \t\t_this.winfilter.el.set_model(new GLib.ListStore(typeof(WindowState)));",
            "  \t\t_this.winfilter.el.set_model(BuilderApplication.windowlist);",
-           "  \t\t",
+           "  \t\tGLib.debug(\"show windfilter with %d items\", BuilderApplication.windowlist.get_n_items());",
            "\t}",
            "}"
           ]
