@@ -644,6 +644,8 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		{
 			//GLib.debug("remove window before = %d", BuilderApplication.windows.size);
 			BuilderApplication.windows.remove(w);
+			for(var i = 0 ; 
+			
 			BuilderApplication.updateWindows();
 			 	
 			w.el.hide();
