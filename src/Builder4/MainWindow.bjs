@@ -344,406 +344,6 @@
        },
        "position" : 400,
        "xtype" : "Paned"
-      },
-      {
-       "$ xns" : "Gtk",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "bool homogeneous" : false,
-       "bool vexpand" : false,
-       "items" : [
-        {
-         "$ tooltip_text" : "\"Project Details\"",
-         "$ xns" : "Gtk",
-         "bool always_show_image" : true,
-         "listeners" : {
-          "clicked" : [
-           "  ( ) => {",
-           "     ",
-           "     _this.windowstate.projectPopoverShow(_this.el, null, null);",
-           "   ",
-           "  ",
-           "}"
-          ]
-         },
-         "string icon_name" : "emblem-system",
-         "string label" : "Edit Project Settings",
-         "xtype" : "Button"
-        },
-        {
-         "$ tooltip_text" : "\"File Details\"",
-         "$ xns" : "Gtk",
-         "bool always_show_image" : true,
-         "listeners" : {
-          "clicked" : [
-           "  ( ) => {",
-           "  ",
-           "    // create a new file in project..",
-           "    if (_this.project == null || _this.windowstate.file == null) {",
-           "        return  ;",
-           "    }",
-           "     _this.windowstate.file_details.show(",
-           "        _this.windowstate.file, _this.el, false",
-           "    );",
-           "     ",
-           "    return  ;    ",
-           "",
-           "",
-           "}"
-          ]
-         },
-         "string icon_name" : "document-properties",
-         "string label" : "Edit File Properties",
-         "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "bool always_show_image" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* ctor" : "new Gtk.PopoverMenu.from_model(null)",
-           "* init" : [
-            "{",
-            "   // this.el.show();",
-            "}",
-            ""
-           ],
-           "* prop" : "popover",
-           "id" : "topbarmenu",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "set_child",
-             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-             "int spacing" : 0,
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "listeners" : {
-                "activate" : [
-                 " ( ) => {",
-                 "         Resources.singleton().fetchStart();",
-                 "}"
-                ]
-               },
-               "string label" : "Download updated Resources",
-               "xtype" : "Button"
-              },
-              {
-               "$ xns" : "Gtk",
-               "listeners" : {
-                "clicked" : [
-                 "() => {",
-                 "    About.singleton().el.show();",
-                 "    }"
-                ]
-               },
-               "string label" : "About the Builder",
-               "xtype" : "Button"
-              }
-             ],
-             "xtype" : "Box"
-            }
-           ],
-           "xtype" : "PopoverMenu"
-          }
-         ],
-         "string icon_name" : "dialog-information",
-         "string label" : "About",
-         "xtype" : "MenuButton"
-        },
-        {
-         "$ xns" : "Gtk",
-         "bool hexpand" : true,
-         "string label" : "   ",
-         "xtype" : "Label"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* init" : [
-          "{",
-          "     this.handler_id = Resources.singleton().updateProgress.connect((pos,total) => {",
-          "        if (pos < 1) {",
-          "            this.el.hide();",
-          "            _this.mainpane.el.set_sensitive(true);",
-          "            ",
-          "            return;",
-          "        }",
-          "         _this.mainpane.el.set_sensitive(false);",
-          "         this.el.show();",
-          "         this.el.set_fraction ((1.0f * pos) / (1.0f * total));",
-          "         this.el.set_text(\"Fetching Resource : %s/%s\".printf(pos.to_string(), total.to_string()));",
-          "       ",
-          "     });",
-          "}",
-          ""
-         ],
-         "bool show_text" : true,
-         "id" : "statusbar",
-         "ulong handler_id" : "-1",
-         "xtype" : "ProgressBar"
-        },
-        {
-         "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "$ xns" : "Gtk",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "id" : "statusbar_compilestatus_label",
-           "int margin_end" : 4,
-           "int margin_start" : 4,
-           "string label" : "Compile Status:",
-           "xtype" : "Label"
-          },
-          {
-           "$ xns" : "Gtk",
-           "Xcls_ValaCompileErrors popup" : "",
-           "id" : "statusbar_errors",
-           "listeners" : {
-            "clicked" : [
-             "() => {",
-             " ",
-             "\tif (this.popup == null) {",
-             "\t\treturn;",
-             "\t}",
-             "   ",
-             "    this.popup.show();",
-             "  ",
-             "}"
-            ]
-           },
-           "string icon_name" : "dialog-error",
-           "string label" : "0 Errors",
-           "xtype" : "Button",
-           "| void setNotices" : [
-            "(GLib.ListStore nots, int ferrors ) {",
-            "    BuilderApplication.showSpinner(\"\");",
-            "     if (nots.get_n_items() < 1 ) {",
-            "    \tthis.el.hide();",
-            "    \tif (this.popup != null) {",
-            "    \t\tthis.popup.el.hide();",
-            "\t\t}",
-            "    \treturn;",
-            "    }",
-            "    ",
-            "    this.el.show();",
-            "    this.el.label = \"%d/%d Errors\".printf(ferrors,(int)nots.get_n_items());",
-            "",
-            "    ",
-            " ",
-            "\tif (this.popup == null) {",
-            "        this.popup = new Xcls_ValaCompileErrors();",
-            "        this.popup.window = _this;",
-            "      //    this.popup.el.set_transient_for( _this.el );",
-            "        this.popup.el.set_parent(this.el);",
-            "    }",
-            " ",
-            "\tthis.popup.updateNotices(nots);",
-            "\t ",
-            "}",
-            ""
-           ]
-          },
-          {
-           "$ xns" : "Gtk",
-           "Xcls_ValaCompileErrors popup" : "",
-           "id" : "statusbar_warnings",
-           "listeners" : {
-            "clicked" : [
-             "() => {",
-             " ",
-             "\tif (this.popup == null) {",
-             "\t\treturn;",
-             "\t}",
-             "   ",
-             "    this.popup.show();",
-             "    return;",
-             "}"
-            ]
-           },
-           "string icon_name" : "dialog-warning",
-           "string label" : "0 Warnings",
-           "xtype" : "Button",
-           "| void setNotices" : [
-            "(GLib.ListStore nots, int ferrs ) {",
-            "    ",
-            "     if (nots.get_n_items() < 1 ) {",
-            "    \tthis.el.hide();",
-            "    \tif (this.popup != null) {",
-            "    \t\tthis.popup.el.hide();",
-            "\t\t}",
-            "    \treturn;",
-            "    }",
-            "    ",
-            "    this.el.show();",
-            "    this.el.label = \"%d/%d Warnings\".printf(ferrs,(int)nots.get_n_items());",
-            "",
-            "    ",
-            " ",
-            "\tif (this.popup == null) {",
-            "        this.popup = new Xcls_ValaCompileErrors();",
-            "        this.popup.window = _this;",
-            "      //    this.popup.el.set_transient_for( _this.el );",
-            "        this.popup.el.set_parent(this.el);",
-            "    }",
-            "\tthis.popup.updateNotices(nots);",
-            "\t ",
-            "}",
-            ""
-           ]
-          },
-          {
-           "# GLib.ListStore notices" : "null",
-           "$ xns" : "Gtk",
-           "Xcls_ValaCompileErrors popup" : "",
-           "id" : "statusbar_depricated",
-           "listeners" : {
-            "clicked" : [
-             "() => {",
-             " ",
-             "\tif (this.popup == null) {",
-             "\t\treturn;",
-             "\t}",
-             "   ",
-             "    this.popup.show();",
-             "  ",
-             "}"
-            ]
-           },
-           "string icon_name" : "dialog-information",
-           "string label" : "0 Depricated",
-           "xtype" : "Button",
-           "| void setNotices" : [
-            "",
-            "(GLib.ListStore nots, int ferrs ) {",
-            "    ",
-            "     if (nots.get_n_items() < 1 ) {",
-            "    \tthis.el.hide();",
-            "    \tif (this.popup != null) {",
-            "    \t\tthis.popup.el.hide();",
-            "\t\t}",
-            "    \treturn;",
-            "    }",
-            "    ",
-            "    this.el.show();",
-            "    this.el.label = \"%d/%d Depricated\".printf(ferrs,(int)nots.get_n_items());",
-            "",
-            "    ",
-            " ",
-            "\tif (this.popup == null) {",
-            "        this.popup = new Xcls_ValaCompileErrors();",
-            "        this.popup.window = _this;",
-            "      //    this.popup.el.set_transient_for( _this.el );",
-            "        this.popup.el.set_parent(this.el);",
-            "    }",
-            "\tthis.popup.updateNotices(nots);",
-            "\t ",
-            "}",
-            ""
-           ]
-          },
-          {
-           "$ xns" : "Gtk",
-           "Palete.ValaCompileRequest? last_request" : "null",
-           "Xcls_ValaCompileErrors popup" : "",
-           "bool visible" : false,
-           "id" : "statusbar_run",
-           "listeners" : {
-            "clicked" : [
-             "() => {",
-             "   ",
-             "   if (_this.windowstate.file == null) {",
-             "\t\treturn;",
-             "\t}",
-             "   if (_this.statusbar_compile_spinner.el.spinning) {",
-             "    \t_this.windowstate.compile_results.el.set_parent(this.el);",
-             "\t    _this.windowstate.compile_results.el.show(); // show currently running.",
-             "    \treturn;",
-             "\t}",
-             "\t",
-             "\tif (this.last_request != null) {",
-             "\t\tthis.last_request.cancel();",
-             "\t\tif (this.last_request.terminal_pid > 0) {",
-             "\t\t\tthis.last_request.killChildren(this.last_request.terminal_pid);",
-             "\t\t}",
-             "\t}",
-             "\tvar pr = _this.windowstate.project as Project.Gtk;",
-             "\tif (pr == null) {",
-             "\t\treturn;",
-             "\t}",
-             "\t",
-             "\t",
-             "\tthis.last_request= new Palete.ValaCompileRequest(",
-             "\t\tpr,",
-             "\t\tpr.firstBuildModuleWith(_this.windowstate.file)",
-             "\t);",
-             "\tthis.last_request.onOutput.connect( ( str) => {",
-             "\t\t_this.windowstate.compile_results.addLine(str);",
-             "\t});",
-             "\tthis.last_request.run.begin( ( a, r) => {",
-             "\t\tthis.last_request.run.end(r);",
-             "\t});",
-             "\t if (_this.windowstate.compile_results.el.parent == null) {",
-             "\t\t_this.windowstate.compile_results.el.set_parent(this.el);",
-             "\t}",
-             "\t_this.windowstate.compile_results.show(this.el,true);",
-             "\t         ",
-             "}"
-            ]
-           },
-           "string icon_name" : "media-playback-start",
-           "string label" : "Run",
-           "xtype" : "Button"
-          }
-         ],
-         "xtype" : "Box"
-        },
-        {
-         "$ xns" : "Gtk",
-         "id" : "statusbar_compile_spinner",
-         "int margin_end" : 4,
-         "int margin_start" : 4,
-         "string tooltip_text" : "Compiling",
-         "xtype" : "Spinner",
-         "| void start" : [
-          "(string icon, string tooltip) {",
-          "",
-          "\tif (icon == \"spinner\") {",
-          "\t  this.el.show();",
-          "\t  this.el.start();  ",
-          "\t  this.el.tooltip_text = tooltip;",
-          "\t  _this.statusbar_compile_icon.el.hide();",
-          "  } else {",
-          "\t  this.el.hide();",
-          "\t//  GLib.debug(\"set status icon %s, %s\", icon, tooltip);",
-          "\t  _this.statusbar_compile_icon.el.tooltip_text = tooltip;",
-          "\t  _this.statusbar_compile_icon.el.icon_name = icon;",
-          "\t  _this.statusbar_compile_icon.el.show();\t  ",
-          "  }",
-          "  ",
-          "\t ",
-          "}",
-          ""
-         ],
-         "| void stop" : [
-          "() {",
-          " this.el.stop();",
-          "  this.el.hide();",
-          " _this.statusbar_compile_icon.el.hide();  ",
-          "}",
-          ""
-         ]
-        },
-        {
-         "$ xns" : "Gtk",
-         "Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
-         "id" : "statusbar_compile_icon",
-         "int margin_end" : 4,
-         "int margin_start" : 4,
-         "xtype" : "Image"
-        }
-       ],
-       "xtype" : "Box"
       }
      ],
      "xtype" : "Box"
@@ -761,6 +361,408 @@
        "bool vexpand" : false,
        "id" : "vbox",
        "int spacing" : 0,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "bool homogeneous" : false,
+         "bool vexpand" : false,
+         "items" : [
+          {
+           "$ tooltip_text" : "\"Project Details\"",
+           "$ xns" : "Gtk",
+           "bool always_show_image" : true,
+           "listeners" : {
+            "clicked" : [
+             "  ( ) => {",
+             "     ",
+             "     _this.windowstate.projectPopoverShow(_this.el, null, null);",
+             "   ",
+             "  ",
+             "}"
+            ]
+           },
+           "string icon_name" : "emblem-system",
+           "string label" : "Edit Project Settings",
+           "xtype" : "Button"
+          },
+          {
+           "$ tooltip_text" : "\"File Details\"",
+           "$ xns" : "Gtk",
+           "bool always_show_image" : true,
+           "listeners" : {
+            "clicked" : [
+             "  ( ) => {",
+             "  ",
+             "    // create a new file in project..",
+             "    if (_this.project == null || _this.windowstate.file == null) {",
+             "        return  ;",
+             "    }",
+             "     _this.windowstate.file_details.show(",
+             "        _this.windowstate.file, _this.el, false",
+             "    );",
+             "     ",
+             "    return  ;    ",
+             "",
+             "",
+             "}"
+            ]
+           },
+           "string icon_name" : "document-properties",
+           "string label" : "Edit File Properties",
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "bool always_show_image" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* ctor" : "new Gtk.PopoverMenu.from_model(null)",
+             "* init" : [
+              "{",
+              "   // this.el.show();",
+              "}",
+              ""
+             ],
+             "* prop" : "popover",
+             "id" : "topbarmenu",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "set_child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+               "int spacing" : 0,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "listeners" : {
+                  "activate" : [
+                   " ( ) => {",
+                   "         Resources.singleton().fetchStart();",
+                   "}"
+                  ]
+                 },
+                 "string label" : "Download updated Resources",
+                 "xtype" : "Button"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "listeners" : {
+                  "clicked" : [
+                   "() => {",
+                   "    About.singleton().el.show();",
+                   "    }"
+                  ]
+                 },
+                 "string label" : "About the Builder",
+                 "xtype" : "Button"
+                }
+               ],
+               "xtype" : "Box"
+              }
+             ],
+             "xtype" : "PopoverMenu"
+            }
+           ],
+           "string icon_name" : "dialog-information",
+           "string label" : "About",
+           "xtype" : "MenuButton"
+          },
+          {
+           "$ xns" : "Gtk",
+           "bool hexpand" : true,
+           "string label" : "   ",
+           "xtype" : "Label"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            "     this.handler_id = Resources.singleton().updateProgress.connect((pos,total) => {",
+            "        if (pos < 1) {",
+            "            this.el.hide();",
+            "            _this.mainpane.el.set_sensitive(true);",
+            "            ",
+            "            return;",
+            "        }",
+            "         _this.mainpane.el.set_sensitive(false);",
+            "         this.el.show();",
+            "         this.el.set_fraction ((1.0f * pos) / (1.0f * total));",
+            "         this.el.set_text(\"Fetching Resource : %s/%s\".printf(pos.to_string(), total.to_string()));",
+            "       ",
+            "     });",
+            "}",
+            ""
+           ],
+           "bool show_text" : true,
+           "id" : "statusbar",
+           "ulong handler_id" : "-1",
+           "xtype" : "ProgressBar"
+          },
+          {
+           "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "id" : "statusbar_compilestatus_label",
+             "int margin_end" : 4,
+             "int margin_start" : 4,
+             "string label" : "Compile Status:",
+             "xtype" : "Label"
+            },
+            {
+             "$ xns" : "Gtk",
+             "Xcls_ValaCompileErrors popup" : "",
+             "id" : "statusbar_errors",
+             "listeners" : {
+              "clicked" : [
+               "() => {",
+               " ",
+               "\tif (this.popup == null) {",
+               "\t\treturn;",
+               "\t}",
+               "   ",
+               "    this.popup.show();",
+               "  ",
+               "}"
+              ]
+             },
+             "string icon_name" : "dialog-error",
+             "string label" : "0 Errors",
+             "xtype" : "Button",
+             "| void setNotices" : [
+              "(GLib.ListStore nots, int ferrors ) {",
+              "    BuilderApplication.showSpinner(\"\");",
+              "     if (nots.get_n_items() < 1 ) {",
+              "    \tthis.el.hide();",
+              "    \tif (this.popup != null) {",
+              "    \t\tthis.popup.el.hide();",
+              "\t\t}",
+              "    \treturn;",
+              "    }",
+              "    ",
+              "    this.el.show();",
+              "    this.el.label = \"%d/%d Errors\".printf(ferrors,(int)nots.get_n_items());",
+              "",
+              "    ",
+              " ",
+              "\tif (this.popup == null) {",
+              "        this.popup = new Xcls_ValaCompileErrors();",
+              "        this.popup.window = _this;",
+              "      //    this.popup.el.set_transient_for( _this.el );",
+              "        this.popup.el.set_parent(this.el);",
+              "    }",
+              " ",
+              "\tthis.popup.updateNotices(nots);",
+              "\t ",
+              "}",
+              ""
+             ]
+            },
+            {
+             "$ xns" : "Gtk",
+             "Xcls_ValaCompileErrors popup" : "",
+             "id" : "statusbar_warnings",
+             "listeners" : {
+              "clicked" : [
+               "() => {",
+               " ",
+               "\tif (this.popup == null) {",
+               "\t\treturn;",
+               "\t}",
+               "   ",
+               "    this.popup.show();",
+               "    return;",
+               "}"
+              ]
+             },
+             "string icon_name" : "dialog-warning",
+             "string label" : "0 Warnings",
+             "xtype" : "Button",
+             "| void setNotices" : [
+              "(GLib.ListStore nots, int ferrs ) {",
+              "    ",
+              "     if (nots.get_n_items() < 1 ) {",
+              "    \tthis.el.hide();",
+              "    \tif (this.popup != null) {",
+              "    \t\tthis.popup.el.hide();",
+              "\t\t}",
+              "    \treturn;",
+              "    }",
+              "    ",
+              "    this.el.show();",
+              "    this.el.label = \"%d/%d Warnings\".printf(ferrs,(int)nots.get_n_items());",
+              "",
+              "    ",
+              " ",
+              "\tif (this.popup == null) {",
+              "        this.popup = new Xcls_ValaCompileErrors();",
+              "        this.popup.window = _this;",
+              "      //    this.popup.el.set_transient_for( _this.el );",
+              "        this.popup.el.set_parent(this.el);",
+              "    }",
+              "\tthis.popup.updateNotices(nots);",
+              "\t ",
+              "}",
+              ""
+             ]
+            },
+            {
+             "# GLib.ListStore notices" : "null",
+             "$ xns" : "Gtk",
+             "Xcls_ValaCompileErrors popup" : "",
+             "id" : "statusbar_depricated",
+             "listeners" : {
+              "clicked" : [
+               "() => {",
+               " ",
+               "\tif (this.popup == null) {",
+               "\t\treturn;",
+               "\t}",
+               "   ",
+               "    this.popup.show();",
+               "  ",
+               "}"
+              ]
+             },
+             "string icon_name" : "dialog-information",
+             "string label" : "0 Depricated",
+             "xtype" : "Button",
+             "| void setNotices" : [
+              "",
+              "(GLib.ListStore nots, int ferrs ) {",
+              "    ",
+              "     if (nots.get_n_items() < 1 ) {",
+              "    \tthis.el.hide();",
+              "    \tif (this.popup != null) {",
+              "    \t\tthis.popup.el.hide();",
+              "\t\t}",
+              "    \treturn;",
+              "    }",
+              "    ",
+              "    this.el.show();",
+              "    this.el.label = \"%d/%d Depricated\".printf(ferrs,(int)nots.get_n_items());",
+              "",
+              "    ",
+              " ",
+              "\tif (this.popup == null) {",
+              "        this.popup = new Xcls_ValaCompileErrors();",
+              "        this.popup.window = _this;",
+              "      //    this.popup.el.set_transient_for( _this.el );",
+              "        this.popup.el.set_parent(this.el);",
+              "    }",
+              "\tthis.popup.updateNotices(nots);",
+              "\t ",
+              "}",
+              ""
+             ]
+            },
+            {
+             "$ xns" : "Gtk",
+             "Palete.ValaCompileRequest? last_request" : "null",
+             "Xcls_ValaCompileErrors popup" : "",
+             "bool visible" : false,
+             "id" : "statusbar_run",
+             "listeners" : {
+              "clicked" : [
+               "() => {",
+               "   ",
+               "   if (_this.windowstate.file == null) {",
+               "\t\treturn;",
+               "\t}",
+               "   if (_this.statusbar_compile_spinner.el.spinning) {",
+               "    \t_this.windowstate.compile_results.el.set_parent(this.el);",
+               "\t    _this.windowstate.compile_results.el.show(); // show currently running.",
+               "    \treturn;",
+               "\t}",
+               "\t",
+               "\tif (this.last_request != null) {",
+               "\t\tthis.last_request.cancel();",
+               "\t\tif (this.last_request.terminal_pid > 0) {",
+               "\t\t\tthis.last_request.killChildren(this.last_request.terminal_pid);",
+               "\t\t}",
+               "\t}",
+               "\tvar pr = _this.windowstate.project as Project.Gtk;",
+               "\tif (pr == null) {",
+               "\t\treturn;",
+               "\t}",
+               "\t",
+               "\t",
+               "\tthis.last_request= new Palete.ValaCompileRequest(",
+               "\t\tpr,",
+               "\t\tpr.firstBuildModuleWith(_this.windowstate.file)",
+               "\t);",
+               "\tthis.last_request.onOutput.connect( ( str) => {",
+               "\t\t_this.windowstate.compile_results.addLine(str);",
+               "\t});",
+               "\tthis.last_request.run.begin( ( a, r) => {",
+               "\t\tthis.last_request.run.end(r);",
+               "\t});",
+               "\t if (_this.windowstate.compile_results.el.parent == null) {",
+               "\t\t_this.windowstate.compile_results.el.set_parent(this.el);",
+               "\t}",
+               "\t_this.windowstate.compile_results.show(this.el,true);",
+               "\t         ",
+               "}"
+              ]
+             },
+             "string icon_name" : "media-playback-start",
+             "string label" : "Run",
+             "xtype" : "Button"
+            }
+           ],
+           "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "id" : "statusbar_compile_spinner",
+           "int margin_end" : 4,
+           "int margin_start" : 4,
+           "string tooltip_text" : "Compiling",
+           "xtype" : "Spinner",
+           "| void start" : [
+            "(string icon, string tooltip) {",
+            "",
+            "\tif (icon == \"spinner\") {",
+            "\t  this.el.show();",
+            "\t  this.el.start();  ",
+            "\t  this.el.tooltip_text = tooltip;",
+            "\t  _this.statusbar_compile_icon.el.hide();",
+            "  } else {",
+            "\t  this.el.hide();",
+            "\t//  GLib.debug(\"set status icon %s, %s\", icon, tooltip);",
+            "\t  _this.statusbar_compile_icon.el.tooltip_text = tooltip;",
+            "\t  _this.statusbar_compile_icon.el.icon_name = icon;",
+            "\t  _this.statusbar_compile_icon.el.show();\t  ",
+            "  }",
+            "  ",
+            "\t ",
+            "}",
+            ""
+           ],
+           "| void stop" : [
+            "() {",
+            " this.el.stop();",
+            "  this.el.hide();",
+            " _this.statusbar_compile_icon.el.hide();  ",
+            "}",
+            ""
+           ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
+           "id" : "statusbar_compile_icon",
+           "int margin_end" : 4,
+           "int margin_start" : 4,
+           "xtype" : "Image"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
        "xtype" : "Box"
       }
      ],
