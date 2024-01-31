@@ -258,6 +258,9 @@ public class Xcls_MainWindow : Object
 			  	_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;
 			  	if (_this.splitview.el.show_sidebar) {
 			  		_this.filesearch.el.grab_focus();
+			  		_this.winfilter.el.set_model(new GLib.ListStore(typeof(WindowState));
+			  		_this.winfilter.el.set_model(BuilderApplication.windowlist);
+			  		
 				}
 			});
 		}
