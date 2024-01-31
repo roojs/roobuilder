@@ -809,6 +809,13 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "child",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "xtype" : "SingleSelection"
+              }
+             ],
              "xtype" : "ColumnView"
             }
            ],
