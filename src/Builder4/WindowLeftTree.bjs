@@ -3,7 +3,7 @@
  "gen_extended" : false,
  "items" : [
   {
-   "# Xcls_MainWindow main_window" : "null",
+   "# Xcls_MainWindow? main_window" : "null",
    "$ xns" : "Gtk",
    "@ bool before_node_change" : "()",
    "@ void changed" : "()",
