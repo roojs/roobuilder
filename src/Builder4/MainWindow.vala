@@ -232,7 +232,6 @@ public class Xcls_MainWindow : Object
 
 
 			// my vars (def)
-		public bool always_show_image;
 
 		// ctor
 		public Xcls_Button4(Xcls_MainWindow _owner )
@@ -241,11 +240,9 @@ public class Xcls_MainWindow : Object
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
-			this.always_show_image = true;
 
 			// set gobject values
-			this.el.icon_name = "system-file-manager";
-			this.el.label = "Files / Projects";
+			this.el.icon_name = "this.spitview.el.show_sidebar ";
 
 			//listeners
 			this.el.clicked.connect( ( ) => {

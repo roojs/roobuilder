@@ -37,7 +37,6 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "append",
-         "bool always_show_image" : true,
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
@@ -45,9 +44,8 @@
            "}"
           ]
          },
-         "string icon_name" : "system-file-manager",
-         "string label" : "Files / Projects",
-         "tooltop_text" : "\"Open File\"",
+         "string icon_name" : "this.spitview.el.show_sidebar ",
+         "tooltop_text" : "Manage Windows",
          "xtype" : "Button"
         }
        ],
