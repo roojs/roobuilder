@@ -838,12 +838,6 @@
                "bool can_unselect" : true,
                "items" : [
                 {
-                 "$ xns" : "GLib",
-                 "* prop" : "model",
-                 "GLib.Type item_type" : "typeof(WindowState)",
-                 "xtype" : "ListStore"
-                },
-                {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
                  "items" : [
