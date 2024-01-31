@@ -897,6 +897,49 @@
                 }
                ],
                "xtype" : "SingleSelection"
+              },
+              {
+               "$ xns" : "Gtk",
+               "bool expand" : true,
+               "bool resizable" : true,
+               "id" : "projcol",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "factory",
+                 "listeners" : {
+                  "bind" : [
+                   "(listitem) => {",
+                   "\t var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();",
+                   "\t var item =  (listitem as Gtk.ListItem).get_item() as WindowState;",
+                   "\t ",
+                   "\t lb.label = item.project.name;",
+                   "",
+                   "",
+                   "  ",
+                   "",
+                   "}",
+                   ""
+                  ],
+                  "setup" : [
+                   "(listitem) => {",
+                   "\tvar lbl = new Gtk.Label(\"\");",
+                   " \t(listitem as Gtk.ListItem).set_child(lbl);",
+                   " \tlbl.justify = Gtk.Justification.LEFT;",
+                   " \tlbl.xalign = 1;",
+                   " \tlbl.use_markup = true;",
+                   "\tlbl.ellipsize = Pango.EllipsizeMode.START;",
+                   "  ",
+                   "\t(listitem as Gtk.ListItem).activatable = true;",
+                   "}",
+                   ""
+                  ]
+                 },
+                 "xtype" : "SignalListItemFactory"
+                }
+               ],
+               "title" : "Project",
+               "xtype" : "ColumnViewColumn"
               }
              ],
              "xtype" : "ColumnView"
