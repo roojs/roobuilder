@@ -586,7 +586,6 @@
 		
 		
 		void runTests()
-		{
 			if (opt_test == null) {
 				return;
 			}
@@ -682,8 +681,8 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 		{
 		    var w = new Xcls_MainWindow();
 			w.ref();
-			BuilderApplication.addWindow(w);
 			w.initChildren();
+			BuilderApplication.addWindow(w);
 			w.windowstate.init();
 			w.windowstate.fileViewOpen(file, false, line);
 			w.el.present();
