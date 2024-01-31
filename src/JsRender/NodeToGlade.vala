@@ -99,6 +99,14 @@ public class JsRender.NodeToGlade : Object {
  		if (gdata.inherits.contains("Gtk.Native")&& !is_top) {
 			return doc;
 		}
+		// what namespaces are supported
+		switch(this.node.NS) {
+			case "Gtk":
+			case "Webkit": //??
+				break;
+			default:
+				return doc;
+		}
 		
 		// other problems!!!
 		
