@@ -45,7 +45,7 @@ public class WindowState : Object
 
 	// used by window list..
 	public string file_name {
-		get { return this.file.relpath;  }
+		owned get { return this.file.relpath;  }
 		private set {}
 	}
 	
