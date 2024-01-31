@@ -1335,6 +1335,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.icon_name = "system-file-manager";
+			this.el.hexpand = true;
 			this.el.label = "Files / Projects";
 
 			//listeners
@@ -1613,7 +1614,6 @@ public class Xcls_MainWindow : Object
 
 
 			// my vars (def)
-		public bool has_frame;
 
 		// ctor
 		public Xcls_Box42(Xcls_MainWindow _owner )
@@ -1622,7 +1622,6 @@ public class Xcls_MainWindow : Object
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
 			// my vars (dec)
-			this.has_frame = false;
 
 			// set gobject values
 			var child_1 = new Xcls_Image43( _this );
