@@ -1061,7 +1061,8 @@
             }
            ],
            "string xns" : "Gtk",
-           "string xtyle" : "ScrolledWindow"
+           "string xtyle" : "ScrolledWindow",
+           "string xtype" : "ScrolledWindow"
           }
          ],
          "xtype" : "Paned"

@@ -1785,7 +1785,7 @@ public class Xcls_MainWindow : Object
 			this.el.vexpand = true;
 			var child_1 = new Xcls_ScrolledWindow48( _this );
 			this.el.start_child = child_1.el;
-			var child_2 = new Xcls_59( _this );
+			var child_2 = new Xcls_ScrolledWindow59( _this );
 			this.el.end_child = child_2.el;
 		}
 
@@ -2054,9 +2054,9 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_59 : Object
+	public class Xcls_ScrolledWindow59 : Object
 	{
-		public Gtk. el;
+		public Gtk.ScrolledWindow el;
 		private Xcls_MainWindow  _this;
 
 
@@ -2064,13 +2064,15 @@ public class Xcls_MainWindow : Object
 		public string xtyle;
 
 		// ctor
-		public Xcls_59(Xcls_MainWindow _owner )
+		public Xcls_ScrolledWindow59(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new ();
+			this.el = new Gtk.ScrolledWindow();
 
 			// my vars (dec)
 			this.xtyle = ScrolledWindow;
+
+			// set gobject values
 			var child_1 = new Xcls_ColumnView60( _this );
 			this.el.child = child_1.el;
 		}
