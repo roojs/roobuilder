@@ -926,7 +926,7 @@
                    "\tvar lbl = new Gtk.Label(\"\");",
                    " \t(listitem as Gtk.ListItem).set_child(lbl);",
                    " \tlbl.justify = Gtk.Justification.LEFT;",
-                   " \tlbl.xalign = 1;",
+                   " \tlbl.xalign = 0;",
                    " \tlbl.use_markup = true;",
                    "\tlbl.ellipsize = Pango.EllipsizeMode.START;",
                    "  ",
@@ -1109,7 +1109,6 @@
                "* pack" : "append_column",
                "bool expand" : true,
                "bool resizable" : true,
-               "id" : "filecol",
                "items" : [
                 {
                  "$ xns" : "Gtk",

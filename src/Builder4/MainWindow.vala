@@ -43,7 +43,6 @@ public class Xcls_MainWindow : Object
 	public Xcls_filecol filecol;
 	public Xcls_histmodel histmodel;
 	public Xcls_histsearch histsearch;
-	public Xcls_filecol filecol;
 
 		// my vars (def)
 	public WindowState windowstate;
@@ -2111,7 +2110,7 @@ public class Xcls_MainWindow : Object
 				var lbl = new Gtk.Label("");
 			 	(listitem as Gtk.ListItem).set_child(lbl);
 			 	lbl.justify = Gtk.Justification.LEFT;
-			 	lbl.xalign = 1;
+			 	lbl.xalign = 0;
 			 	lbl.use_markup = true;
 				lbl.ellipsize = Pango.EllipsizeMode.START;
 			  
@@ -2256,8 +2255,9 @@ public class Xcls_MainWindow : Object
 			var child_2 = new Xcls_ColumnViewColumn73( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
-			new Xcls_filecol( _this );
-			this.el.append_column ( _this.filecol.el  );
+			var child_3 = new Xcls_ColumnViewColumn75( _this );
+			child_3.ref();
+			this.el.append_column ( child_3.el  );
 		}
 
 		// user defined functions
@@ -2525,7 +2525,7 @@ public class Xcls_MainWindow : Object
 	}
 
 
-	public class Xcls_filecol : Object
+	public class Xcls_ColumnViewColumn75 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_MainWindow  _this;
@@ -2534,10 +2534,9 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_filecol(Xcls_MainWindow _owner )
+		public Xcls_ColumnViewColumn75(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.filecol = this;
 			var child_1 = new Xcls_SignalListItemFactory76( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "File", child_1.el );
@@ -2545,7 +2544,6 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.id = "filecol";
 			this.el.expand = true;
 			this.el.resizable = true;
 		}
