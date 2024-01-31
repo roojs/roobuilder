@@ -759,6 +759,14 @@
        "* prop" : "sidebar",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "int spacing" : 0,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int spacing" : 0,
+         "xtype" : "Box"
+        }
+       ],
        "xtype" : "Box"
       }
      ],
