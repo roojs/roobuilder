@@ -40,9 +40,9 @@ public class Xcls_MainWindow : Object
 	public Xcls_windowsearch windowsearch;
 	public Xcls_winmodel winmodel;
 	public Xcls_projcol projcol;
+	public Xcls_filecol filecol;
 	public Xcls_histmodel histmodel;
 	public Xcls_histsearch histsearch;
-	public Xcls_projcol projcol;
 	public Xcls_filecol filecol;
 
 		// my vars (def)
@@ -1790,7 +1790,7 @@ public class Xcls_MainWindow : Object
 			this.el.vexpand = true;
 			var child_1 = new Xcls_ScrolledWindow48( _this );
 			this.el.start_child = child_1.el;
-			var child_2 = new Xcls_ScrolledWindow61( _this );
+			var child_2 = new Xcls_ScrolledWindow63( _this );
 			this.el.end_child = child_2.el;
 		}
 
@@ -1840,6 +1840,8 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			new Xcls_projcol( _this );
 			this.el.append_column( _this.projcol.el );
+			new Xcls_filecol( _this );
+			this.el.append_column ( _this.filecol.el  );
 		}
 
 		// user defined functions
@@ -2131,9 +2133,81 @@ public class Xcls_MainWindow : Object
 	}
 
 
+	public class Xcls_filecol : Object
+	{
+		public Gtk.ColumnViewColumn el;
+		private Xcls_MainWindow  _this;
 
 
-	public class Xcls_ScrolledWindow61 : Object
+			// my vars (def)
+
+		// ctor
+		public Xcls_filecol(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			_this.filecol = this;
+			var child_1 = new Xcls_SignalListItemFactory62( _this );
+			child_1.ref();
+			this.el = new Gtk.ColumnViewColumn( "File", child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.id = "filecol";
+			this.el.expand = true;
+			this.el.resizable = true;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_SignalListItemFactory62 : Object
+	{
+		public Gtk.SignalListItemFactory el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SignalListItemFactory62(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SignalListItemFactory();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.setup.connect( (listitem) => {
+				var lbl = new Gtk.Label("");
+			 	(listitem as Gtk.ListItem).set_child(lbl);
+			 	lbl.justify = Gtk.Justification.LEFT;
+			 	lbl.xalign = 1;
+			 	lbl.use_markup = true;
+				lbl.ellipsize = Pango.EllipsizeMode.START;
+			  
+				(listitem as Gtk.ListItem).activatable = true;
+			});
+			this.el.bind.connect( (listitem) => {
+			 var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();
+			 var item =  (listitem as Gtk.ListItem).get_item() as WindowState;
+			 
+			 lb.label = item.file.relpath;
+			
+			
+			  
+			
+			});
+		}
+
+		// user defined functions
+	}
+
+
+
+
+	public class Xcls_ScrolledWindow63 : Object
 	{
 		public Gtk.ScrolledWindow el;
 		private Xcls_MainWindow  _this;
@@ -2142,7 +2216,7 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ScrolledWindow61(Xcls_MainWindow _owner )
+		public Xcls_ScrolledWindow63(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.ScrolledWindow();
@@ -2152,13 +2226,13 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			var child_1 = new Xcls_ColumnView62( _this );
+			var child_1 = new Xcls_ColumnView64( _this );
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ColumnView62 : Object
+	public class Xcls_ColumnView64 : Object
 	{
 		public Gtk.ColumnView el;
 		private Xcls_MainWindow  _this;
@@ -2167,10 +2241,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ColumnView62(Xcls_MainWindow _owner )
+		public Xcls_ColumnView64(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SingleSelection63( _this );
+			var child_1 = new Xcls_SingleSelection65( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnView( child_1.el );
 
@@ -2179,15 +2253,16 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			new Xcls_projcol( _this );
-			this.el.append_column( _this.projcol.el );
+			var child_2 = new Xcls_ColumnViewColumn73( _this );
+			child_2.ref();
+			this.el.append_column( child_2.el );
 			new Xcls_filecol( _this );
 			this.el.append_column ( _this.filecol.el  );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SingleSelection63 : Object
+	public class Xcls_SingleSelection65 : Object
 	{
 		public Gtk.SingleSelection el;
 		private Xcls_MainWindow  _this;
@@ -2196,10 +2271,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SingleSelection63(Xcls_MainWindow _owner )
+		public Xcls_SingleSelection65(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SortListModel64( _this );
+			var child_1 = new Xcls_SortListModel66( _this );
 			child_1.ref();
 			this.el = new Gtk.SingleSelection( child_1.el );
 
@@ -2212,7 +2287,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_SortListModel64 : Object
+	public class Xcls_SortListModel66 : Object
 	{
 		public Gtk.SortListModel el;
 		private Xcls_MainWindow  _this;
@@ -2221,12 +2296,12 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SortListModel64(Xcls_MainWindow _owner )
+		public Xcls_SortListModel66(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_FilterListModel65( _this );
+			var child_1 = new Xcls_FilterListModel67( _this );
 			child_1.ref();
-			var child_2 = new Xcls_StringSorter69( _this );
+			var child_2 = new Xcls_StringSorter71( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
@@ -2237,7 +2312,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_FilterListModel65 : Object
+	public class Xcls_FilterListModel67 : Object
 	{
 		public Gtk.FilterListModel el;
 		private Xcls_MainWindow  _this;
@@ -2246,7 +2321,7 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel65(Xcls_MainWindow _owner )
+		public Xcls_FilterListModel67(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
 			new Xcls_histmodel( _this );
@@ -2296,61 +2371,13 @@ public class Xcls_MainWindow : Object
 		{
 			_this = _owner;
 			_this.histsearch = this;
-			var child_1 = new Xcls_PropertyExpression68( _this );
+			var child_1 = new Xcls_PropertyExpression70( _this );
 			child_1.ref();
 			this.el = new Gtk.StringFilter( child_1.el );
 
 			// my vars (dec)
 
 			// set gobject values
-		}
-
-		// user defined functions
-	}
-	public class Xcls_PropertyExpression68 : Object
-	{
-		public Gtk.PropertyExpression el;
-		private Xcls_MainWindow  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_PropertyExpression68(Xcls_MainWindow _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(WindowState), null, "file_name" );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
-
-	public class Xcls_StringSorter69 : Object
-	{
-		public Gtk.StringSorter el;
-		private Xcls_MainWindow  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_StringSorter69(Xcls_MainWindow _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression70( _this );
-			child_1.ref();
-			this.el = new Gtk.StringSorter( child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.ignore_case = true;
 		}
 
 		// user defined functions
@@ -2379,8 +2406,56 @@ public class Xcls_MainWindow : Object
 
 
 
+	public class Xcls_StringSorter71 : Object
+	{
+		public Gtk.StringSorter el;
+		private Xcls_MainWindow  _this;
 
-	public class Xcls_projcol : Object
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_StringSorter71(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_PropertyExpression72( _this );
+			child_1.ref();
+			this.el = new Gtk.StringSorter( child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.ignore_case = true;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_PropertyExpression72 : Object
+	{
+		public Gtk.PropertyExpression el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_PropertyExpression72(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.PropertyExpression( typeof(WindowState), null, "file_name" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
+
+
+	public class Xcls_ColumnViewColumn73 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_MainWindow  _this;
@@ -2389,25 +2464,23 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_projcol(Xcls_MainWindow _owner )
+		public Xcls_ColumnViewColumn73(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.projcol = this;
-			var child_1 = new Xcls_SignalListItemFactory72( _this );
+			var child_1 = new Xcls_SignalListItemFactory74( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Project", child_1.el );
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.id = "projcol";
 			this.el.expand = true;
 			this.el.resizable = true;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory72 : Object
+	public class Xcls_SignalListItemFactory74 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_MainWindow  _this;
@@ -2416,7 +2489,7 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory72(Xcls_MainWindow _owner )
+		public Xcls_SignalListItemFactory74(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -2465,7 +2538,7 @@ public class Xcls_MainWindow : Object
 		{
 			_this = _owner;
 			_this.filecol = this;
-			var child_1 = new Xcls_SignalListItemFactory74( _this );
+			var child_1 = new Xcls_SignalListItemFactory76( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "File", child_1.el );
 
@@ -2479,7 +2552,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory74 : Object
+	public class Xcls_SignalListItemFactory76 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_MainWindow  _this;
@@ -2488,7 +2561,7 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory74(Xcls_MainWindow _owner )
+		public Xcls_SignalListItemFactory76(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
