@@ -1876,7 +1876,7 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.notify["selected"].connect( () => {
-				if (_this.winloading || this.selecting) {
+				if (_this.winloading || this.selecting || this.el.selected == Gtk.INVALID_LIST_POSITION) {
 					return;
 				}
 				var ws = this.el.selected_item as WindowState;

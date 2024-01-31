@@ -898,7 +898,7 @@
                "listeners" : {
                 "notify[\"selected\"]" : [
                  "() => {",
-                 "\tif (_this.winloading || this.selecting) {",
+                 "\tif (_this.winloading || this.selecting || this.el.selected == Gtk.INVALID_LIST_POSITION) {",
                  "\t\treturn;",
                  "\t}",
                  "\tvar ws = this.el.selected_item as WindowState;",
