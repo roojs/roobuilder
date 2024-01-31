@@ -1368,7 +1368,7 @@ public class Xcls_MainWindow : Object
 			this.el.margin_end = 4;
 			this.el.halign = Gtk.Align.START;
 			new Xcls_windowspopup( _this );
-			var child_2 = new Xcls_Box42( _this );
+			var child_2 = new Xcls_Button42( _this );
 			this.el.child = child_2.el;
 
 			// init method
@@ -1606,21 +1606,23 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_Box42 : Object
+	public class Xcls_Button42 : Object
 	{
-		public Gtk.Box el;
+		public Gtk.Button el;
 		private Xcls_MainWindow  _this;
 
 
 			// my vars (def)
+		public Gtk.Orientation orientation;
 
 		// ctor
-		public Xcls_Box42(Xcls_MainWindow _owner )
+		public Xcls_Button42(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+			this.el = new Gtk.Button();
 
 			// my vars (dec)
+			this.orientation = Gtk.Orientation.HORIZONTAL;
 
 			// set gobject values
 			var child_1 = new Xcls_Image43( _this );

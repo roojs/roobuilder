@@ -687,7 +687,7 @@
                "xtype" : "Label"
               }
              ],
-             "xtype" : "Box"
+             "xtype" : "Button"
             }
            ],
            "listeners" : {
