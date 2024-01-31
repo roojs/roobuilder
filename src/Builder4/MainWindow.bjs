@@ -586,6 +586,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "child",
+           "string placeholder_text" : "Search for file",
            "xtype" : "SearchEntry"
           }
          ],
