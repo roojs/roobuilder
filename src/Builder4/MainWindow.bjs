@@ -893,6 +893,15 @@
                "listeners" : {
                 "notify[\"selected\"]" : [
                  "() => {",
+                 "\tif (_this.winloading) {",
+                 "\t\treturn;",
+                 "\t}",
+                 "\tvar ws = this.el.selected;",
+                 "\tif (ws == null) {",
+                 "\t\treturn;",
+                 "\t}",
+                 "\t",
+                 "",
                  " }"
                 ]
                },

@@ -1869,6 +1869,15 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.notify["selected"].connect( () => {
+				if (_this.winloading) {
+					return;
+				}
+				var ws = this.el.selected;
+				if (ws == null) {
+					return;
+				}
+				
+			
 			 });
 		}
 
