@@ -909,6 +909,7 @@
              "$ xns" : "Gtk",
              "* prop" : "child",
              "bool hexpand" : true,
+             "bool vexpand" : true,
              "items" : [
               {
                "$ xns" : "Gtk",

@@ -2097,6 +2097,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.hexpand = true;
+			this.el.vexpand = true;
 			new Xcls_projcol( _this );
 			this.el.append_column( _this.projcol.el );
 			new Xcls_filecol( _this );
