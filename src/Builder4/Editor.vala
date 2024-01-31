@@ -341,8 +341,8 @@ public class Editor : Object
 	 	    if (spos > iter.get_chars_in_line()) {
 	 	    	spos = iter.get_chars_in_line();
 	    	}
-		    buf.get_iter_at_line( out iter, eline_to);
-	       var epos = (int)diag.range.end.character - hoffset;
+			buf.get_iter_at_line( out iter, eline_to);
+			var epos = (int)diag.range.end.character - hoffset;
 	 	    if (epos < 0) { epos =0 ; }
 	 	    if (epos > iter.get_chars_in_line()) {
 	 	    	epos = iter.get_chars_in_line();
