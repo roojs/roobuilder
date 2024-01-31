@@ -1620,6 +1620,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.homogeneous = false;
+			this.el.hexpand = true;
 			this.el.vexpand = false;
 		}
 
