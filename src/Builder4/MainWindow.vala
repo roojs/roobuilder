@@ -1893,7 +1893,7 @@ public class Xcls_MainWindow : Object
 		  		for(var i = 0;i < this.el.get_n_items(); i++) {
 					var ws = this.el.get_item(i) as WindowState;
 					if (ws.file.path == _this.windowstate.file.path) {
-					  	this.winselected.el = i;
+					  	//this.winselected.el = i;
 					  	break;
 				  	}
 				}
