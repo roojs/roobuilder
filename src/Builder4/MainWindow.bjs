@@ -751,6 +751,15 @@
     {
      "$ xns" : "Adw",
      "* prop" : "child",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "content",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "int spacing" : 0,
+       "xtype" : "Box"
+      }
+     ],
      "xtype" : "OverlaySplitView"
     }
    ],
