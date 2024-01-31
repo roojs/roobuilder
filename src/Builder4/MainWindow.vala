@@ -1885,6 +1885,7 @@ public class Xcls_MainWindow : Object
 				}
 				if (ws.file.path != _this.windowstate.file.path) {
 					_this.windowstate.fileViewOpen(ws.file, ws.file_details.new_window,  -1);
+					_this.splitview.el.show_sidebar = false;
 				}
 				
 				this.selectCurrent();

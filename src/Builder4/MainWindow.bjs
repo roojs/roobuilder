@@ -907,6 +907,7 @@
                  "\t}",
                  "\tif (ws.file.path != _this.windowstate.file.path) {",
                  "\t\t_this.windowstate.fileViewOpen(ws.file, ws.file_details.new_window,  -1);",
+                 "\t\t_this.splitview.el.show_sidebar = false;",
                  "\t}",
                  "\t",
                  "\tthis.selectCurrent();",
