@@ -384,7 +384,7 @@ public class Xcls_WindowLeftTree : Object
 					 
 						
 						reading_header = false;
-						 
+						continue;
 				    }
 				    
 				  
@@ -561,7 +561,7 @@ public class Xcls_WindowLeftTree : Object
 						header_height =  h;
 						
 						reading_header = false;
-						
+						continue;
 			        }
 				    line_no++;
 		
@@ -571,7 +571,12 @@ public class Xcls_WindowLeftTree : Object
 		
 					var hh = child.get_height();
 					//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
-		
+					if (child.has_css_class("node-err") || 
+						child.has_css_class("node-warn") || 
+						child.has_css_class("node-depr")) {
+						hh += 10;
+					
+					}	
 				    if (y > curr_y && y <= header_height + hh + curr_y ) {
 					    return (Gtk.Widget)child;
 				    }
