@@ -40,7 +40,7 @@
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
-           "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
+           "  \t_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;",
            "}"
           ]
          },
