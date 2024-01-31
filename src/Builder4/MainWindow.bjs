@@ -747,6 +747,11 @@
       }
      ],
      "xtype" : "Box"
+    },
+    {
+     "$ xns" : "Adw",
+     "* prop" : "child",
+     "xtype" : "OverlaySplitView"
     }
    ],
    "listeners" : {
