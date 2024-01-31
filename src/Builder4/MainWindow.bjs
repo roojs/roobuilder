@@ -814,6 +814,8 @@
                "$ xns" : "Gtk",
                "* prop" : "model",
                "GLib.Type item_type" : "typeof(MainWindow)",
+               "bool autoselect" : false,
+               "bool can_unselect" : true,
                "xtype" : "SingleSelection"
               }
              ],
