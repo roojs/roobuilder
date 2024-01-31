@@ -363,7 +363,10 @@ public class JsRender.Node : GLib.Object {
 		owned get { return this.fqn(); }
 		private set  {}
 	}
-	
+	public string NS { // for sorting
+		owned get { return this.props.has_key ? ("xns")this.props.get("xns").val  : ""; }
+		private set  {}
+	}
 	public string fqn()
 	{
 		if (!this.hasXnsType ()) {
