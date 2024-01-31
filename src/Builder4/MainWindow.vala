@@ -39,7 +39,8 @@ public class Xcls_MainWindow : Object
 	public Xcls_winfilter winfilter;
 	public Xcls_windowsearch windowsearch;
 	public Xcls_winmodel winmodel;
-	public Xcls_windowsearch windowsearch;
+	public Xcls_histmodel histmodel;
+	public Xcls_histsearch histsearch;
 	public Xcls_projcol projcol;
 	public Xcls_filecol filecol;
 
@@ -1924,10 +1925,9 @@ public class Xcls_MainWindow : Object
 		{
 			_this = _owner;
 			_this.winfilter = this;
-			var child_1 = new Xcls_ListStore56( _this );
-			child_1.ref();
+			new Xcls_winmodel( _this );
 			new Xcls_windowsearch( _this );
-			this.el = new Gtk.FilterListModel( child_1.el, _this.windowsearch.el );
+			this.el = new Gtk.FilterListModel( _this.winmodel.el, _this.windowsearch.el );
 
 			// my vars (dec)
 
@@ -1983,7 +1983,7 @@ public class Xcls_MainWindow : Object
 	}
 
 
-	public class Xcls_ListStore56 : Object
+	public class Xcls_winmodel : Object
 	{
 		public GLib.ListStore el;
 		private Xcls_MainWindow  _this;
@@ -1992,9 +1992,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ListStore56(Xcls_MainWindow _owner )
+		public Xcls_winmodel(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.winmodel = this;
 			this.el = new GLib.ListStore( typeof(WindowState) );
 
 			// my vars (dec)
@@ -2173,9 +2174,9 @@ public class Xcls_MainWindow : Object
 		public Xcls_FilterListModel63(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			new Xcls_winmodel( _this );
-			new Xcls_windowsearch( _this );
-			this.el = new Gtk.FilterListModel( _this.winmodel.el, _this.windowsearch.el );
+			new Xcls_histmodel( _this );
+			new Xcls_histsearch( _this );
+			this.el = new Gtk.FilterListModel( _this.histmodel.el, _this.histsearch.el );
 
 			// my vars (dec)
 
@@ -2184,7 +2185,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_winmodel : Object
+	public class Xcls_histmodel : Object
 	{
 		public GLib.ListStore el;
 		private Xcls_MainWindow  _this;
@@ -2193,10 +2194,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_winmodel(Xcls_MainWindow _owner )
+		public Xcls_histmodel(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.winmodel = this;
+			_this.histmodel = this;
 			this.el = new GLib.ListStore( typeof(WindowState) );
 
 			// my vars (dec)
@@ -2207,7 +2208,7 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
-	public class Xcls_windowsearch : Object
+	public class Xcls_histsearch : Object
 	{
 		public Gtk.StringFilter el;
 		private Xcls_MainWindow  _this;
@@ -2216,10 +2217,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_windowsearch(Xcls_MainWindow _owner )
+		public Xcls_histsearch(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.windowsearch = this;
+			_this.histsearch = this;
 			var child_1 = new Xcls_PropertyExpression66( _this );
 			child_1.ref();
 			this.el = new Gtk.StringFilter( child_1.el );

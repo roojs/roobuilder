@@ -871,6 +871,7 @@
                      "$ xns" : "GLib",
                      "* prop" : "model",
                      "GLib.Type item_type" : "typeof(WindowState)",
+                     "id" : "winmodel",
                      "xtype" : "ListStore"
                     }
                    ],
@@ -932,13 +933,13 @@
                      "$ xns" : "GLib",
                      "* prop" : "model",
                      "GLib.Type item_type" : "typeof(WindowState)",
-                     "id" : "winmodel",
+                     "id" : "histmodel",
                      "xtype" : "ListStore"
                     },
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "filter",
-                     "id" : "windowsearch",
+                     "id" : "histsearch",
                      "items" : [
                       {
                        "$ xns" : "Gtk",
