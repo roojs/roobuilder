@@ -916,7 +916,7 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "filter",
-                     "id" : "windowse",
+                     "id" : "windowsearch",
                      "items" : [
                       {
                        "$ xns" : "Gtk",
