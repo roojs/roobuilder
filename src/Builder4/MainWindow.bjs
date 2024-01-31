@@ -981,10 +981,10 @@
                  "listeners" : {
                   "bind" : [
                    "(listitem) => {",
-                   " var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();",
-                   " var item =  (listitem as Gtk.ListItem).get_item() as WindowState;",
-                   " ",
-                   " lb.label = item.project.name;",
+                   "\t var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();",
+                   "\t var item =  (listitem as Gtk.ListItem).get_item() as WindowState;",
+                   "\t ",
+                   "\t lb.label = item.project.name;",
                    "",
                    "",
                    "  ",

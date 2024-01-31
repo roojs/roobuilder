@@ -2354,10 +2354,10 @@ public class Xcls_MainWindow : Object
 				(listitem as Gtk.ListItem).activatable = true;
 			});
 			this.el.bind.connect( (listitem) => {
-			 var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();
-			 var item =  (listitem as Gtk.ListItem).get_item() as WindowState;
-			 
-			 lb.label = item.project.name;
+				 var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();
+				 var item =  (listitem as Gtk.ListItem).get_item() as WindowState;
+				 
+				 lb.label = item.project.name;
 			
 			
 			  
