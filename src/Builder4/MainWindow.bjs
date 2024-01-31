@@ -811,7 +811,10 @@
              "* prop" : "child",
              "items" : [
               {
+               "$ xns" : "Gtk",
                "* prop" : "model",
+               "bool autoselect" : false,
+               "bool can_unselect" : true,
                "items" : [
                 {
                  "$ xns" : "Gtk",
@@ -820,12 +823,21 @@
                   {
                    "$ xns" : "Gtk",
                    "* prop" : "model",
+                   "items" : [
+                    {
+                     "$ xns" : "GLib",
+                     "* prop" : "model",
+                     "GLib.Type item_type" : "typeof(WindowState)",
+                     "xtype" : "ListStore"
+                    }
+                   ],
                    "xtype" : "FilterListModel"
                   }
                  ],
                  "xtype" : "SortListModel"
                 }
-               ]
+               ],
+               "xtype" : "SingleSelection"
               }
              ],
              "xtype" : "ColumnView"
