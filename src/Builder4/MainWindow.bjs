@@ -631,6 +631,11 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "string icon_name" : "\"\"",
+               "xtype" : "Image"
+              },
+              {
+               "$ xns" : "Gtk",
                "string label" : "Open File",
                "xtype" : "Label"
               }
@@ -645,7 +650,6 @@
              "}"
             ]
            },
-           "string label" : "Open",
            "tooltop_text" : "\"Open File\"",
            "xtype" : "Button"
           },
