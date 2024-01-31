@@ -1477,6 +1477,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.icon_name = "document-open";
+			this.el.margin_end = 4;
 		}
 
 		// user defined functions

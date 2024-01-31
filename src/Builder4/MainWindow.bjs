@@ -632,6 +632,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "int margin_end" : 4,
                "string icon_name" : "document-open",
                "xtype" : "Image"
               },
