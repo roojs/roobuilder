@@ -661,7 +661,7 @@ public class WindowState : Object
 		this.win.project = file.project;
 		this.project = file.project;
 		this.file = file;
-		BuilderApplication.updateWindows();
+
 		
 		file.getLanguageServer().document_open(file);
 		BuilderApplication.showSpinner("spinner", "document open sent");	
