@@ -1888,7 +1888,8 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 		public void selectCurrent () {
-		
+			_this.winloading = true;
+			
 		}
 	}
 	public class Xcls_SortListModel51 : Object

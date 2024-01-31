@@ -912,7 +912,8 @@
                "xtype" : "SingleSelection",
                "| void selectCurrent" : [
                 "() {",
-                "",
+                "\t_this.winloading = true;",
+                "\t",
                 "}"
                ]
               },
