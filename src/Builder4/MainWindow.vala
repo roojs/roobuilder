@@ -279,7 +279,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.collapsed = true;
-			this.el.sidebar_width_fraction = 0.35f;
+			this.el.sidebar_width_fraction = 0.35;
 			this.el.show_sidebar = false;
 			new Xcls_vbox( _this );
 			this.el.content = _this.vbox.el;
