@@ -631,7 +631,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "string icon_name" : "\"\"",
+               "string icon_name" : "document-open",
                "xtype" : "Image"
               },
               {
@@ -658,6 +658,27 @@
            "$ xns" : "Gtk",
            "bool hexpand" : true,
            "int margin_end" : 4,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "string icon_name" : "document-open",
+               "xtype" : "Image"
+              },
+              {
+               "$ xns" : "Gtk",
+               "string label" : "Open File",
+               "xtype" : "Label"
+              }
+             ],
+             "xtype" : "Box"
+            }
+           ],
            "listeners" : {
             "clicked" : [
              "( ) => {",
