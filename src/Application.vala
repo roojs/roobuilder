@@ -635,7 +635,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 			 
 	        windowlist.append(w.windowstate);
 			BuilderApplication.windows.add(w);
-			BuilderApplication.updateWindows();
+
   
 			
 		}
