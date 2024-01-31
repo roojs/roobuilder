@@ -1826,7 +1826,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
-			this.el.item_type = typeof(Xcls_MainWindow);
+			this.el.item_type = typeof(WindowState);
 			this.el.autoselect = false;
 		}
 
@@ -1844,16 +1844,40 @@ public class Xcls_MainWindow : Object
 		public Xcls_SortListModel51(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.SortListModel( null, null );
+			var child_1 = new Xcls_FilterListModel52( _this );
+			child_1.ref();
+			this.el = new Gtk.SortListModel( child_1.el, null );
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.item_type = typeof(Xcls_MainWindow);
+			this.el.item_type = typeof(WindowState);
 		}
 
 		// user defined functions
 	}
+	public class Xcls_FilterListModel52 : Object
+	{
+		public Gtk.FilterListModel el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_FilterListModel52(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.FilterListModel( null, null );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 
