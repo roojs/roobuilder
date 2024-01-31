@@ -491,6 +491,13 @@ public class Xcls_WindowLeftTree : Object
 				    
 				    line_no++;
 					var hh = child.get_height();
+					
+					if (child.has_css_class("node-err") || 
+						child.has_css_class("node-warn") || 
+						child.has_css_class("node-depr")) {
+						hh += 10;
+					
+					}
 					//child.get_allocation(out alloc);
 					//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
 					//GLib.debug("row %d y= %d %s", line_no, (int) (header_height + alloc.y),
