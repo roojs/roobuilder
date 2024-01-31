@@ -245,7 +245,7 @@ public class Xcls_LeftProps : Object
 		var reading_header = true;
 	 
 		while (child != null) {
-			GLib.debug("Got %s", child.get_type().name());
+			//GLib.debug("Got %s", child.get_type().name());
 		   
 		   if (reading_header) {
 				
