@@ -591,6 +591,8 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "child",
+           "bool hexpand" : true,
+           "id" : "filesearch",
            "string placeholder_text" : "Search for file",
            "xtype" : "SearchEntry"
           }

@@ -31,6 +31,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_run statusbar_run;
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 	public Xcls_statusbar_compile_icon statusbar_compile_icon;
+	public Xcls_filesearch filesearch;
 	public Xcls_open_projects_btn open_projects_btn;
 	public Xcls_windowbtn windowbtn;
 	public Xcls_windowspopup windowspopup;
@@ -1318,13 +1319,13 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.search_mode_enabled = true;
-			var child_1 = new Xcls_SearchEntry35( _this );
-			this.el.child = child_1.el;
+			new Xcls_filesearch( _this );
+			this.el.child = _this.filesearch.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SearchEntry35 : Object
+	public class Xcls_filesearch : Object
 	{
 		public Gtk.SearchEntry el;
 		private Xcls_MainWindow  _this;
@@ -1333,14 +1334,16 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SearchEntry35(Xcls_MainWindow _owner )
+		public Xcls_filesearch(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.filesearch = this;
 			this.el = new Gtk.SearchEntry();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.hexpand = true;
 			this.el.placeholder_text = "Search for file";
 		}
 
