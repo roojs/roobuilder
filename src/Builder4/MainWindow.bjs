@@ -833,6 +833,14 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "filter",
+                     "items" : [
+                      {
+                       "$ xns" : "Gtk",
+                       "* prop" : "expression",
+                       "string property_name" : "file_name",
+                       "xtype" : "PropertyExpression"
+                      }
+                     ],
                      "xtype" : "StringFilter"
                     }
                    ],

@@ -1868,7 +1868,9 @@ public class Xcls_MainWindow : Object
 			_this = _owner;
 			var child_1 = new Xcls_ListStore53( _this );
 			child_1.ref();
-			this.el = new Gtk.FilterListModel( child_1.el, null );
+			var child_2 = new Xcls_StringFilter54( _this );
+			child_2.ref();
+			this.el = new Gtk.FilterListModel( child_1.el, child_2.el );
 
 			// my vars (dec)
 
@@ -1898,6 +1900,52 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
+
+	public class Xcls_StringFilter54 : Object
+	{
+		public Gtk.StringFilter el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_StringFilter54(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_PropertyExpression55( _this );
+			child_1.ref();
+			this.el = new Gtk.StringFilter( child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_PropertyExpression55 : Object
+	{
+		public Gtk.PropertyExpression el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_PropertyExpression55(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.PropertyExpression( null, null, "file_name" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 
