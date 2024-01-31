@@ -900,7 +900,7 @@
                  "\tif (ws == null) {",
                  "\t\treturn;",
                  "\t}",
-                 "\t",
+                 "\tws.fileViewOpen(ws.file, ws.file_details.new_window,  -1);",
                  "",
                  " }"
                 ]

@@ -1876,7 +1876,7 @@ public class Xcls_MainWindow : Object
 				if (ws == null) {
 					return;
 				}
-				
+				ws.fileViewOpen(ws.file, ws.file_details.new_window,  -1);
 			
 			 });
 		}
