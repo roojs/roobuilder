@@ -332,18 +332,19 @@ public class Editor : Object
 		        continue;
 		    }
 		   
-		    
+		    /*
 		    buf.get_iter_at_line( out iter, eline);
 		   	var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
 		    buf.create_source_mark( msg, diag.category, iter);
 	 	    
 	 	    buf.get_iter_at_line_offset( out start, 
 	 	    	eline, (int)diag.range.start.character - hoffset); 
+	 	   
 	 	    buf.get_iter_at_line_offset( out end, 
 	 	    	eline_to, (int)diag.range.end.character - hoffset); 
 	 	    	
 		    buf.apply_tag_by_name(diag.category, start, end);
-		    
+		    */
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
