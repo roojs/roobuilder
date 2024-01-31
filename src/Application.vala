@@ -586,6 +586,7 @@
 		
 		
 		void runTests()
+		{
 			if (opt_test == null) {
 				return;
 			}
