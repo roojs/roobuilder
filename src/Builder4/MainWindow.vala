@@ -1818,7 +1818,9 @@ public class Xcls_MainWindow : Object
 		public Xcls_SingleSelection50(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.SingleSelection( null );
+			var child_1 = new Xcls_SortListModel51( _this );
+			child_1.ref();
+			this.el = new Gtk.SingleSelection( child_1.el );
 
 			// my vars (dec)
 
@@ -1830,6 +1832,29 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
+	public class Xcls_SortListModel51 : Object
+	{
+		public Gtk.SortListModel el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SortListModel51(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SortListModel( null, null );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.item_type = ;
+		}
+
+		// user defined functions
+	}
+
 
 
 
