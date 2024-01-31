@@ -581,6 +581,10 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "xtype" : "SearchBar"
+        },
+        {
+         "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "int spacing" : 0,
          "items" : [
