@@ -269,7 +269,7 @@ public class Xcls_MainWindow : Object
 			  		for(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {
 						_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));
 					}
-					_this.winsel.el.selected =
+					_this.winsel.el.selected = Gtk.INVALID_LIST_POSITION;
 					_this.winloading = false;
 			 	}
 			});
