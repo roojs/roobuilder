@@ -703,6 +703,8 @@ public class Xcls_WindowLeftTree : Object
 			    	GLib.warning("No node found at row %d", row);
 			    	return;
 				}
+				
+				
 				_this.model.selectNode(node);
 			     
 			     
