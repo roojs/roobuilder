@@ -2182,7 +2182,7 @@ public class Xcls_MainWindow : Object
 				var lbl = new Gtk.Label("");
 			 	(listitem as Gtk.ListItem).set_child(lbl);
 			 	lbl.justify = Gtk.Justification.LEFT;
-			 	lbl.xalign = 1;
+			 	lbl.xalign = 0;
 			 	lbl.use_markup = true;
 				lbl.ellipsize = Pango.EllipsizeMode.START;
 			  
