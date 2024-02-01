@@ -40,7 +40,7 @@
            "$ xns" : "Adw",
            "* prop" : "child",
            "string icon_name" : "preferences-system-windows",
-           "string label" : " Files (Ctrl-O)",
+           "string label" : " Files",
            "xtype" : "ButtonContent"
           }
          ],
@@ -55,7 +55,6 @@
           ]
          },
          "string tooltip_text" : "Manage Windows (Ctrl-O)",
-         "tooltop_text" : "Manage Windows (Ctrl-O)",
          "xtype" : "Button"
         }
        ],

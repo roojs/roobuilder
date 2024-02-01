@@ -295,7 +295,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.icon_name = "preferences-system-windows";
-			this.el.label = " Files (Ctrl-O)";
+			this.el.label = " Files";
 		}
 
 		// user defined functions
