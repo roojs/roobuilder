@@ -20,7 +20,6 @@
    "id" : "MainWindow",
    "items" : [
     {
-     "$ string title" : "\"Application Builder\"",
      "$ xns" : "Gtk",
      "* pack" : "set_titlebar",
      "bool show_close_button" : true,
@@ -79,6 +78,7 @@
        "xtype" : "Box"
       }
      ],
+     "string title" : "Application Builder",
      "xtype" : "HeaderBar"
     },
     {

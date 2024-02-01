@@ -210,7 +210,7 @@ public class Xcls_MainWindow : Object
 
 			// my vars (dec)
 			this.show_close_button = true;
-			this.title = "Application Builder";
+			this.title = Application Builder;
 
 			// set gobject values
 			var child_1 = new Xcls_Box3( _this );
