@@ -1457,9 +1457,25 @@ public class Xcls_MainWindow : Object
 				
 					"searcj key release %d, %d, %d  ?= %d" , 
 						(int) keyval, (int)  keycode, state,
-						(int)Gdk.Key.Pointer_Up
+						(int)Gdk.Key.Up
 					);
-			
+				var dir = 0;
+				if (keyval == Gdk.Key.Up) {
+					dir = -1;
+				}if (keyval == Gdk.Key.Down) {
+					dir = 1;
+				}
+				if (dir == 0) {
+					return;
+				}
+				var ns = _this.treeselmodel.el.selected + dir;
+				if (ns < 0) {
+					ns = 0;
+				}
+				if (ns => this.treeselmodel.el.get_n_items()) {
+					ns  = this.treeselmodel.el.get_n_items()-1;
+				}
+				_this.treeselmodel.el.selected = ns;
 			});
 		}
 
