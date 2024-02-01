@@ -1151,7 +1151,7 @@
                    "",
                    " ",
                    "    \t",
-                   "    \t if (lbl.label != \"\") { // do not update",
+                   "    \t if (lbl == null || llbl.label != \"\") { // do not update",
                    "    \t \treturn;",
                    "     \t}",
                    "    \tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
