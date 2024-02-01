@@ -54,7 +54,7 @@
            "}"
           ]
          },
-         "string tooltip_text" : "\"\"",
+         "string tooltip_text" : "Manage Windows (Ctrl-O)",
          "tooltop_text" : "Manage Windows (Ctrl-O)",
          "xtype" : "Button"
         }

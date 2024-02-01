@@ -261,7 +261,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.has_frame = false;
-			this.el.tooltip_text = "\"\"";
+			this.el.tooltip_text = "Manage Windows (Ctrl-O)";
 			this.el.has_tooltip = true;
 			var child_1 = new Xcls_ButtonContent5( _this );
 			this.el.child = child_1.el;
