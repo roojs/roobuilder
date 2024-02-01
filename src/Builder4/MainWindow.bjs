@@ -910,51 +910,6 @@
              "* prop" : "child",
              "bool hexpand" : true,
              "bool vexpand" : true,
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "* pack" : "append_column",
-               "bool expand" : true,
-               "bool resizable" : true,
-               "items" : [
-                {
-                 "$ xns" : "Gtk",
-                 "* prop" : "factory",
-                 "listeners" : {
-                  "bind" : [
-                   "(listitem) => {",
-                   " var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();",
-                   " var item =  (listitem as Gtk.ListItem).get_item() as WindowState;",
-                   " ",
-                   " lb.label = item.file.relpath;",
-                   "",
-                   "",
-                   "  ",
-                   "",
-                   "}",
-                   ""
-                  ],
-                  "setup" : [
-                   "(listitem) => {",
-                   "\tvar lbl = new Gtk.Label(\"\");",
-                   " \t(listitem as Gtk.ListItem).set_child(lbl);",
-                   " \tlbl.justify = Gtk.Justification.LEFT;",
-                   " \tlbl.xalign = 1;",
-                   " \tlbl.use_markup = true;",
-                   "\tlbl.ellipsize = Pango.EllipsizeMode.START;",
-                   "  ",
-                   "\t(listitem as Gtk.ListItem).activatable = true;",
-                   "}",
-                   ""
-                  ]
-                 },
-                 "xtype" : "SignalListItemFactory"
-                }
-               ],
-               "title" : "File",
-               "xtype" : "ColumnViewColumn"
-              }
-             ],
              "xtype" : "ColumnView"
             }
            ],
