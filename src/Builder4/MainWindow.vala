@@ -2340,7 +2340,7 @@ public class Xcls_MainWindow : Object
 	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
 		return false;
 	}
-	var str = _this.searchbox.el.text.down();	
+	var str = _this.filesearch.el.text.down();	
 	if (j.xtype == "Dir") {
 	
 		
