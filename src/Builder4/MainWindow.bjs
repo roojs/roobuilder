@@ -44,6 +44,7 @@
          "items" : [
           {
            "$ xns" : "Adw",
+           "string cms-id" : "child",
            "string icon_name" : "_this.splitview.el.show_sidebar ",
            "string label" : "Files",
            "xtype" : "ButtonContent"
