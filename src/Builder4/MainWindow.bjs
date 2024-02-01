@@ -913,66 +913,6 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "* prop" : "model",
-               "bool autoselect" : false,
-               "bool can_unselect" : true,
-               "items" : [
-                {
-                 "$ xns" : "Gtk",
-                 "* prop" : "model",
-                 "items" : [
-                  {
-                   "$ xns" : "Gtk",
-                   "* prop" : "model",
-                   "items" : [
-                    {
-                     "$ xns" : "GLib",
-                     "* prop" : "model",
-                     "GLib.Type item_type" : "typeof(WindowState)",
-                     "id" : "histmodel",
-                     "xtype" : "ListStore"
-                    },
-                    {
-                     "$ xns" : "Gtk",
-                     "* prop" : "filter",
-                     "id" : "histsearch",
-                     "items" : [
-                      {
-                       "$ xns" : "Gtk",
-                       "* prop" : "expression",
-                       "GLib.Type this_type" : "typeof(WindowState)",
-                       "string property_name" : "file_name",
-                       "xtype" : "PropertyExpression"
-                      }
-                     ],
-                     "xtype" : "StringFilter"
-                    }
-                   ],
-                   "xtype" : "FilterListModel"
-                  },
-                  {
-                   "$ xns" : "Gtk",
-                   "* prop" : "sorter",
-                   "bool ignore_case" : true,
-                   "items" : [
-                    {
-                     "$ xns" : "Gtk",
-                     "* prop" : "expression",
-                     "GLib.Type this_type" : "typeof(WindowState)",
-                     "string property_name" : "file_name",
-                     "xtype" : "PropertyExpression"
-                    }
-                   ],
-                   "xtype" : "StringSorter"
-                  }
-                 ],
-                 "xtype" : "SortListModel"
-                }
-               ],
-               "xtype" : "SingleSelection"
-              },
-              {
-               "$ xns" : "Gtk",
                "* pack" : "append_column",
                "bool expand" : true,
                "bool resizable" : true,
