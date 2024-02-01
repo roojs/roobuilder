@@ -2161,12 +2161,13 @@ public class Xcls_MainWindow : Object
 		{
 			_this = _owner;
 			new Xcls_treelistsort( _this );
-			new Xcls_treefilter( _this );
-			this.el = new Gtk.FilterListModel( _this.treelistsort.el, _this.treefilter.el );
+			this.el = new Gtk.FilterListModel( _this.treelistsort.el, null );
 
 			// my vars (dec)
 
 			// set gobject values
+			new Xcls_treefilter( _this );
+			this.el.filesfilter = _this.treefilter.el;
 		}
 
 		// user defined functions
