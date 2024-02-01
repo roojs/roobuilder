@@ -39,6 +39,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_winmodel winmodel;
 	public Xcls_projcol projcol;
 	public Xcls_filecol filecol;
+	public Xcls_ColumnView61 ColumnView61;
 	public Xcls_treeselmodel treeselmodel;
 	public Xcls_treelistsort treelistsort;
 	public Xcls_treelistmodel treelistmodel;
@@ -2107,6 +2108,7 @@ public class Xcls_MainWindow : Object
 		public Xcls_ColumnView61(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.ColumnView61 = this;
 			new Xcls_treeselmodel( _this );
 			this.el = new Gtk.ColumnView( _this.treeselmodel.el );
 
@@ -2142,33 +2144,9 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
-
-			//listeners
-			this.el.notify["selected"].connect( () => {
-				if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-					
-					return;
-				}
-				
-				var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
-				GLib.debug("SELECTED = %s", tr.item.get_type().name());
-				var f = (JsRender.JsRender) tr.item;
-				 
-			 
-			
-			});
 		}
 
 		// user defined functions
-		public JsRender.JsRender? selectedFile () {
-		
-			if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-				return null;
-			}
-			var tr = (Gtk.TreeListRow) this.el.selected_item;
-		
-			return  (JsRender.JsRender) tr.item;
-		}
 	}
 	public class Xcls_FilterListModel63 : Object
 	{

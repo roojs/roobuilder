@@ -911,6 +911,7 @@
              "* prop" : "child",
              "bool hexpand" : true,
              "bool vexpand" : true,
+             "id" : "",
              "items" : [
               {
                "$ xns" : "Gtk",
@@ -1034,38 +1035,7 @@
                  "xtype" : "FilterListModel"
                 }
                ],
-               "listeners" : {
-                "notify[\"selected\"]" : [
-                 "() => {",
-                 "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
-                 "\t\t",
-                 "\t\treturn;",
-                 "\t}",
-                 "\t",
-                 "\tvar tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;",
-                 "\tGLib.debug(\"SELECTED = %s\", tr.item.get_type().name());",
-                 "\tvar f = (JsRender.JsRender) tr.item;",
-                 "\t ",
-                 " ",
-                 "",
-                 "}",
-                 " ",
-                 " ",
-                 " "
-                ]
-               },
-               "xtype" : "SingleSelection",
-               "| JsRender.JsRender? selectedFile" : [
-                "() {",
-                "",
-                "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
-                "\t\treturn null;",
-                "\t}",
-                "\tvar tr = (Gtk.TreeListRow) this.el.selected_item;",
-                "",
-                "\treturn  (JsRender.JsRender) tr.item;",
-                "}"
-               ]
+               "xtype" : "SingleSelection"
               },
               {
                "$ xns" : "Gtk",
