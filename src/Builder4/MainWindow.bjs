@@ -24,6 +24,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "* pack" : "add_shortcut",
        "items" : [
         {
          "$ xns" : "Gtk",

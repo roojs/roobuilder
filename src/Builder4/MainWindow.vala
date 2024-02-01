@@ -213,7 +213,7 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			var child_1 = new Xcls_Shortcut3( _this );
 			child_1.ref();
-			this.el.append( child_1.el );
+			this.el.add_shortcut ( child_1.el  );
 		}
 
 		// user defined functions
