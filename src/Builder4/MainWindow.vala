@@ -278,7 +278,7 @@ public class Xcls_MainWindow : Object
 					
 					 _this.treeview.el.set_model(new Gtk.SingleSelection(null));
 					
-					this.windowstate.project.loadDirsIntoStore(_this.treemodel.el);
+					_this.windowstate.project.loadDirsIntoStore(_this.treemodel.el);
 					
 					_this.treeview.el.set_model(_this.treeselmodel.el);
 					
