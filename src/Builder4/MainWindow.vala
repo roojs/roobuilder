@@ -39,8 +39,12 @@ public class Xcls_MainWindow : Object
 	public Xcls_winmodel winmodel;
 	public Xcls_projcol projcol;
 	public Xcls_filecol filecol;
-	public Xcls_histmodel histmodel;
-	public Xcls_histsearch histsearch;
+	public Xcls_treeselmodel treeselmodel;
+	public Xcls_treelistsort treelistsort;
+	public Xcls_treelistmodel treelistmodel;
+	public Xcls_treemodel treemodel;
+	public Xcls_treefilter treefilter;
+	public Xcls_name name;
 
 		// my vars (def)
 	public WindowState windowstate;
@@ -2081,6 +2085,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.has_frame = true;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			this.el.visible = false;
@@ -2102,23 +2107,21 @@ public class Xcls_MainWindow : Object
 		public Xcls_ColumnView61(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SingleSelection62( _this );
-			child_1.ref();
-			this.el = new Gtk.ColumnView( child_1.el );
+			new Xcls_treeselmodel( _this );
+			this.el = new Gtk.ColumnView( _this.treeselmodel.el );
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			var child_2 = new Xcls_ColumnViewColumn70( _this );
-			child_2.ref();
-			this.el.append_column ( child_2.el  );
+			new Xcls_name( _this );
+			this.el.append_column ( _this.name.el  );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SingleSelection62 : Object
+	public class Xcls_treeselmodel : Object
 	{
 		public Gtk.SingleSelection el;
 		private Xcls_MainWindow  _this;
@@ -2127,10 +2130,11 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SingleSelection62(Xcls_MainWindow _owner )
+		public Xcls_treeselmodel(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SortListModel63( _this );
+			_this.treeselmodel = this;
+			var child_1 = new Xcls_FilterListModel63( _this );
 			child_1.ref();
 			this.el = new Gtk.SingleSelection( child_1.el );
 
@@ -2138,37 +2142,43 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
-			this.el.autoselect = false;
+
+			//listeners
+			this.el.notify["selected"].connect( () => {
+				if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+					if (_this.iconsel.el.selected == Gtk.INVALID_LIST_POSITION) {
+						_this.btn_delfile.el.hide();
+					}
+					return;
+				}
+				
+				var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
+				GLib.debug("SELECTED = %s", tr.item.get_type().name());
+				var f = (JsRender.JsRender) tr.item;
+				if (f.xtype == "Dir") {
+					_this.btn_delfile.el.hide();	
+				} else {
+					_this.btn_delfile.el.show();
+				}
+			
+				_this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
+			
+			
+			});
 		}
 
 		// user defined functions
-	}
-	public class Xcls_SortListModel63 : Object
-	{
-		public Gtk.SortListModel el;
-		private Xcls_MainWindow  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_SortListModel63(Xcls_MainWindow _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_FilterListModel64( _this );
-			child_1.ref();
-			var child_2 = new Xcls_StringSorter68( _this );
-			child_2.ref();
-			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
-
-			// my vars (dec)
-
-			// set gobject values
+		public JsRender.JsRender? selectedFile () {
+		
+			if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+				return null;
+			}
+			var tr = (Gtk.TreeListRow) this.el.selected_item;
+		
+			return  (JsRender.JsRender) tr.item;
 		}
-
-		// user defined functions
 	}
-	public class Xcls_FilterListModel64 : Object
+	public class Xcls_FilterListModel63 : Object
 	{
 		public Gtk.FilterListModel el;
 		private Xcls_MainWindow  _this;
@@ -2177,12 +2187,12 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel64(Xcls_MainWindow _owner )
+		public Xcls_FilterListModel63(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			new Xcls_histmodel( _this );
-			new Xcls_histsearch( _this );
-			this.el = new Gtk.FilterListModel( _this.histmodel.el, _this.histsearch.el );
+			new Xcls_treelistsort( _this );
+			new Xcls_treefilter( _this );
+			this.el = new Gtk.FilterListModel( _this.treelistsort.el, _this.treefilter.el );
 
 			// my vars (dec)
 
@@ -2191,7 +2201,59 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_histmodel : Object
+	public class Xcls_treelistsort : Object
+	{
+		public Gtk.SortListModel el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_treelistsort(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			_this.treelistsort = this;
+			new Xcls_treelistmodel( _this );
+			var child_2 = new Xcls_TreeListRowSorter67( _this );
+			child_2.ref();
+			this.el = new Gtk.SortListModel( _this.treelistmodel.el, child_2.el );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.incremental = true;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_treelistmodel : Object
+	{
+		public Gtk.TreeListModel el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_treelistmodel(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			_this.treelistmodel = this;
+			new Xcls_treemodel( _this );
+			this.el = new Gtk.TreeListModel( _this.treemodel.el, false, true, (item) => {
+	//GLib.debug("liststore got %s", item.get_type().name());
+	return ((JsRender.JsRender)item).childfiles;
+}  );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_treemodel : Object
 	{
 		public GLib.ListStore el;
 		private Xcls_MainWindow  _this;
@@ -2200,11 +2262,11 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_histmodel(Xcls_MainWindow _owner )
+		public Xcls_treemodel(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.histmodel = this;
-			this.el = new GLib.ListStore( typeof(WindowState) );
+			_this.treemodel = this;
+			this.el = new GLib.ListStore( typeof(JsRender.JsRender) );
 
 			// my vars (dec)
 
@@ -2214,22 +2276,22 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
-	public class Xcls_histsearch : Object
+
+	public class Xcls_TreeListRowSorter67 : Object
 	{
-		public Gtk.StringFilter el;
+		public Gtk.TreeListRowSorter el;
 		private Xcls_MainWindow  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_histsearch(Xcls_MainWindow _owner )
+		public Xcls_TreeListRowSorter67(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.histsearch = this;
-			var child_1 = new Xcls_PropertyExpression67( _this );
+			var child_1 = new Xcls_StringSorter68( _this );
 			child_1.ref();
-			this.el = new Gtk.StringFilter( child_1.el );
+			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
 			// my vars (dec)
 
@@ -2238,30 +2300,6 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression67 : Object
-	{
-		public Gtk.PropertyExpression el;
-		private Xcls_MainWindow  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_PropertyExpression67(Xcls_MainWindow _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(WindowState), null, "file_name" );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
-
 	public class Xcls_StringSorter68 : Object
 	{
 		public Gtk.StringSorter el;
@@ -2298,7 +2336,7 @@ public class Xcls_MainWindow : Object
 		public Xcls_PropertyExpression69(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(WindowState), null, "file_name" );
+			this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender) , null, "name" );
 
 			// my vars (dec)
 
@@ -2311,7 +2349,77 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_ColumnViewColumn70 : Object
+	public class Xcls_treefilter : Object
+	{
+		public Gtk.CustomFilter el;
+		private Xcls_MainWindow  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_treefilter(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			_this.treefilter = this;
+			this.el = new Gtk.CustomFilter( (item) => { 
+	var tr = ((Gtk.TreeListRow)item).get_item();
+	//GLib.debug("filter %s", tr.get_type().name());
+	var j =  (JsRender.JsRender) tr;
+	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
+		return false;
+	}
+	var str = _this.searchbox.el.text.down();	
+	if (j.xtype == "Dir") {
+	
+		
+		for (var i =0 ; i < j.childfiles.n_items; i++) {
+			var f = (JsRender.JsRender) j.childfiles.get_item(i);
+			if (f.xtype != "PlainFile") {
+				continue;
+			}
+			if (f.content_type.contains("image")) {
+				continue;
+			}
+			if (str.length < 1) {
+				return true;
+			}
+			if (f.name.down().contains(str)) {
+				return true;
+			}
+			
+		}
+		 
+		return false;
+	}
+	if (j.xtype != "PlainFile") {
+		return false;
+	}
+ 	if (j.content_type.contains("image")) {
+		return false;
+	}
+			 
+	if (str.length < 1) { // no search.
+		return true;
+	}
+	if (j.name.down().contains(str)) {
+		return true;
+	}
+	return false; 
+
+} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
+
+	public class Xcls_name : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_MainWindow  _this;
@@ -2320,23 +2428,34 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ColumnViewColumn70(Xcls_MainWindow _owner )
+		public Xcls_name(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory71( _this );
+			_this.name = this;
+			var child_1 = new Xcls_SignalListItemFactory72( _this );
 			child_1.ref();
-			this.el = new Gtk.ColumnViewColumn( "File", child_1.el );
+			this.el = new Gtk.ColumnViewColumn( "General Files", child_1.el );
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.id = "name";
 			this.el.expand = true;
 			this.el.resizable = true;
+
+			// init method
+
+			{
+				// this.el.set_sorter(  new Gtk.StringSorter(
+				// 	new Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, "name")
+			 //	));
+					
+			}
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory71 : Object
+	public class Xcls_SignalListItemFactory72 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_MainWindow  _this;
@@ -2345,7 +2464,7 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory71(Xcls_MainWindow _owner )
+		public Xcls_SignalListItemFactory72(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -2356,24 +2475,72 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.setup.connect( (listitem) => {
+				
+				var expand = new Gtk.TreeExpander();
+				 
+				expand.set_indent_for_depth(true);
+				expand.set_indent_for_icon(true);
+				var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
+				var icon = new Gtk.Image();
+				icon.margin_end = 4;
 				var lbl = new Gtk.Label("");
-			 	(listitem as Gtk.ListItem).set_child(lbl);
+				lbl.use_markup = true;
+				
+				
 			 	lbl.justify = Gtk.Justification.LEFT;
-			 	lbl.xalign = 1;
-			 	lbl.use_markup = true;
-				lbl.ellipsize = Pango.EllipsizeMode.START;
-			  
-				(listitem as Gtk.ListItem).activatable = true;
+			 	lbl.xalign = 0;
+			
+			 	hbox.append(icon);
+				hbox.append(lbl);
+				expand.set_child(hbox);
+				((Gtk.ListItem)listitem).set_child(expand);
+				((Gtk.ListItem)listitem).activatable = false;
 			});
 			this.el.bind.connect( (listitem) => {
-			 var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();
-			 var item =  (listitem as Gtk.ListItem).get_item() as WindowState;
+				
+				 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+			                	
+			            	
+			            	
+			        	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+			    	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+			    	  
+			     	var hbox = (Gtk.Box) expand.child;
 			 
-			 lb.label = item.file.relpath;
+				
+					var img = (Gtk.Image) hbox.get_first_child();
+					var lbl = (Gtk.Label) img.get_next_sibling();
 			
+			 
+			    	
+			    	 if (lbl.label != "") { // do not update
+			    	 	return;
+			     	}
+			    	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+			    	//GLib.debug("LR = %s", lr.get_type().name());
+			    
+			    	
+			    	var jr =(JsRender.JsRender) lr.get_item();
+			    	//GLib.debug("JR = %s", jr.get_type().name());		
+			    	
+			    	 if (jr == null) {
+			    		 GLib.debug("Problem getting item"); 
+			    		 return;
+			    	 }
 			
-			  
+					jr.bind_property("icon",
+			                img, "gicon",
+			               GLib.BindingFlags.SYNC_CREATE);
 			
+			    	//GLib.debug("change  %s to %s", lbl.label, np.name);
+			    	lbl.label = jr.name; // for dir's we could hsow the sub path..
+			    	lbl.tooltip_markup = jr.path;
+			    	 
+			        expand.set_hide_expander(  jr.xtype != "Dir" );
+			     	 expand.set_list_row(lr);
+			     
+			         	 
+			                 	// bind image...
 			});
 		}
 
