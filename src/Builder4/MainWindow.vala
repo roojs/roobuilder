@@ -1385,6 +1385,7 @@ public class Xcls_MainWindow : Object
 			this.el.search_changed.connect( ( ) => {
 			
 				_this.windowsearch.el.set_search(this.el.get_text());
+				_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
 			});
 		}
 

@@ -614,6 +614,7 @@
              "( ) => {",
              "",
              "\t_this.windowsearch.el.set_search(this.el.get_text());",
+             "\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
              "}",
              ""
             ]
