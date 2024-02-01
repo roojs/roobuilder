@@ -979,7 +979,7 @@
                   },
                   {
                    "$ xns" : "Gtk",
-                   "* prop" : "filesfilter",
+                   "* prop" : "filter",
                    "Gtk.CustomFilterFunc match_func" : [
                     "(item) => { ",
                     "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
@@ -1028,7 +1028,7 @@
                     "",
                     "}"
                    ],
-                   "id" : "treefilter",
+                   "id" : "filesfilter",
                    "xtype" : "CustomFilter"
                   }
                  ],

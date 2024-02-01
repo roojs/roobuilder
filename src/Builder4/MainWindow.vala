@@ -44,7 +44,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_treelistsort treelistsort;
 	public Xcls_treelistmodel treelistmodel;
 	public Xcls_treemodel treemodel;
-	public Xcls_treefilter treefilter;
+	public Xcls_filesfilter filesfilter;
 	public Xcls_name name;
 
 		// my vars (def)
@@ -2161,13 +2161,12 @@ public class Xcls_MainWindow : Object
 		{
 			_this = _owner;
 			new Xcls_treelistsort( _this );
-			this.el = new Gtk.FilterListModel( _this.treelistsort.el, null );
+			new Xcls_filesfilter( _this );
+			this.el = new Gtk.FilterListModel( _this.treelistsort.el, _this.filesfilter.el );
 
 			// my vars (dec)
 
 			// set gobject values
-			new Xcls_treefilter( _this );
-			this.el.filesfilter = _this.treefilter.el;
 		}
 
 		// user defined functions
@@ -2320,7 +2319,7 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_treefilter : Object
+	public class Xcls_filesfilter : Object
 	{
 		public Gtk.CustomFilter el;
 		private Xcls_MainWindow  _this;
@@ -2329,10 +2328,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_treefilter(Xcls_MainWindow _owner )
+		public Xcls_filesfilter(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.treefilter = this;
+			_this.filesfilter = this;
 			this.el = new Gtk.CustomFilter( (item) => { 
 	var tr = ((Gtk.TreeListRow)item).get_item();
 	//GLib.debug("filter %s", tr.get_type().name());
