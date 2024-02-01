@@ -599,6 +599,21 @@
            "* prop" : "child",
            "bool hexpand" : true,
            "id" : "filesearch",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "listeners" : {
+              "key_released" : [
+               "(keyval, keycode, state) => {",
+               "",
+               "",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "EventControllerKey"
+            }
+           ],
            "listeners" : {
             "search_changed" : [
              "( ) => {",
