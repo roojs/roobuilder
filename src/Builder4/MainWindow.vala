@@ -2146,23 +2146,15 @@ public class Xcls_MainWindow : Object
 			//listeners
 			this.el.notify["selected"].connect( () => {
 				if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-					if (_this.iconsel.el.selected == Gtk.INVALID_LIST_POSITION) {
-						_this.btn_delfile.el.hide();
-					}
+					
 					return;
 				}
 				
 				var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
 				GLib.debug("SELECTED = %s", tr.item.get_type().name());
 				var f = (JsRender.JsRender) tr.item;
-				if (f.xtype == "Dir") {
-					_this.btn_delfile.el.hide();	
-				} else {
-					_this.btn_delfile.el.show();
-				}
-			
-				_this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
-			
+				 
+			 
 			
 			});
 		}
