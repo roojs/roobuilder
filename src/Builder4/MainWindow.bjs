@@ -1039,7 +1039,7 @@
                     "",
                     "}"
                    ],
-                   "id" : "filesfilter",
+                   "id" : "treefilter",
                    "xtype" : "CustomFilter"
                   }
                  ],
