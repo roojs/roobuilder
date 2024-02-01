@@ -35,8 +35,8 @@
         {
          "$ Gtk.ShortcutFunc callback" : [
           "(widget, args) => {",
-          "",
-          "\treturn bool;",
+          "\tGLib.debug(\"got ctl-O\");",
+          "\treturn true;",
           "}",
           ""
          ],

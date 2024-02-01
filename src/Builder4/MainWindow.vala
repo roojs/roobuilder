@@ -278,8 +278,8 @@ public class Xcls_MainWindow : Object
 		{
 			_this = _owner;
 			this.el = new Gtk.CallbackAction( (widget, args) => {
-
-	return bool;
+	GLib.debug("got ctl-O");
+	return true;
 }
  );
 
