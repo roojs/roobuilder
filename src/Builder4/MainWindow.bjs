@@ -39,7 +39,7 @@
            "$ xns" : "Adw",
            "* prop" : "child",
            "string icon_name" : "preferences-system-windows",
-           "string label" : "Files",
+           "string label" : " Files",
            "xtype" : "ButtonContent"
           }
          ],
