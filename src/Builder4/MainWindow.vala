@@ -1453,13 +1453,25 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.key_released.connect( (keyval, keycode, state) => {
-			GLib.debug(
+				if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
+					return;
+				}
+				GLib.debug(
 				
 					"searcj key release %d, %d, %d  ?= %d" , 
 						(int) keyval, (int)  keycode, state,
 						(int)Gdk.Key.Up
 					);
+				if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
+					return;
+				}
+					
 				var dir = 0;
+				
+				if (keyval == Gdk.Key.Enter) {
+				
+				
+				}
 				if (keyval == Gdk.Key.Up) {
 					dir = -1;
 				}if (keyval == Gdk.Key.Down) {
