@@ -614,6 +614,11 @@
              "( ) => {",
              "",
              "\t_this.windowsearch.el.set_search(this.el.get_text());",
+             "\tif (this.el.text == \"\") {",
+             "\t\t_this.treescroll.el.visible = false;",
+             "\t\treturn;",
+             "\t}",
+             "\t_this.treescroll.el.visible = true;",
              "\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
              "}",
              ""
