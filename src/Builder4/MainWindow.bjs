@@ -1099,7 +1099,7 @@
                "* pack" : "append_column",
                "bool expand" : true,
                "bool resizable" : true,
-               "id" : "name (",
+               "id" : "name",
                "items" : [
                 {
                  "$ xns" : "Gtk",
