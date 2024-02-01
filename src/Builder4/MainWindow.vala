@@ -1469,7 +1469,22 @@ public class Xcls_MainWindow : Object
 				var dir = 0;
 				
 				if (keyval == Gdk.Key.Return) {
-				
+					var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
+					GLib.debug("SELECTED = %s", tr.item.get_type().name());
+					var f = (JsRender.JsRender) tr.item;
+					GLib.debug("Click %s", f.name);
+					if (f.xtype == "Dir") {
+						return;
+					}
+					
+					
+				 	_this.windowstate.fileViewOpen(f,
+				 		_this.keystate.is_shift != 1 
+					);
+					
+					_this.splitview.el.show_sidebar = false;
+					return;
+					
 				
 				}
 				if (keyval == Gdk.Key.Up) {
