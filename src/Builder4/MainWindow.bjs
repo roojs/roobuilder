@@ -1245,7 +1245,7 @@
                  "xtype" : "SignalListItemFactory"
                 }
                ],
-               "string title" : "General Files",
+               "string title" : "All Project Files",
                "xtype" : "ColumnViewColumn"
               }
              ],

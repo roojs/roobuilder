@@ -2589,7 +2589,7 @@ public class Xcls_MainWindow : Object
 			_this.name = this;
 			var child_1 = new Xcls_SignalListItemFactory75( _this );
 			child_1.ref();
-			this.el = new Gtk.ColumnViewColumn( "General Files", child_1.el );
+			this.el = new Gtk.ColumnViewColumn( "All Project Files", child_1.el );
 
 			// my vars (dec)
 
