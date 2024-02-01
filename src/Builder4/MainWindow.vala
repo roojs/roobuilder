@@ -2107,7 +2107,7 @@ public class Xcls_MainWindow : Object
 			this.el.has_frame = true;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			this.el.tooltip_text = "dbl-click - opens in new window                        shift--dbl-click opens in this window";
+			this.el.tooltip_text = "dbl-click - opens in NEW window                        \nshift--dbl-click opens in this window";
 			this.el.visible = false;
 			new Xcls_treeview( _this );
 			this.el.child = _this.treeview.el;
