@@ -261,7 +261,6 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "c";
 			this.el.has_frame = false;
 			var child_1 = new Xcls_ButtonContent5( _this );
 			this.el.child = child_1.el;
@@ -312,7 +311,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "_this.splitview.el.show_sidebar ";
+			this.el.icon_name = "preferences-system-windows";
 			this.el.label = "Files";
 		}
 
