@@ -2206,8 +2206,7 @@ public class Xcls_MainWindow : Object
 				
 				
 			 	_this.windowstate.fileViewOpen(f,
-			 		// i know.. but its a bit easier to read....
-			 		_this.keystate.is_shift == 0 ? false : true
+			 		_this.keystate.is_shift == 1 
 				);
 				
 				_this.splitview.el.show_sidebar = false;
