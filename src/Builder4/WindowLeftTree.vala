@@ -14,11 +14,11 @@ public class Xcls_WindowLeftTree : Object
 	}
 	public Xcls_viewwin viewwin;
 	public Xcls_view view;
+	public Xcls_keystate keystate;
 	public Xcls_drop drop;
 	public Xcls_selmodel selmodel;
 	public Xcls_model model;
 	public Xcls_maincol maincol;
-	public Xcls_keystate keystate;
 	public Xcls_LeftTreeMenu LeftTreeMenu;
 
 		// my vars (def)
@@ -278,15 +278,15 @@ public class Xcls_WindowLeftTree : Object
 			var child_5 = new Xcls_EventControllerKey9( _this );
 			child_5.ref();
 			this.el.add_controller(  child_5.el );
+			new Xcls_keystate( _this );
+			this.el.add_controller(  _this.keystate.el );
 			new Xcls_drop( _this );
 			this.el.add_controller(  _this.drop.el );
 			new Xcls_maincol( _this );
 			this.el.append_column ( _this.maincol.el  );
-			var child_8 = new Xcls_ColumnViewColumn15( _this );
-			child_8.ref();
-			this.el.append_column ( child_8.el  );
-			new Xcls_keystate( _this );
-			this.el.add_controller(  _this.keystate.el );
+			var child_9 = new Xcls_ColumnViewColumn16( _this );
+			child_9.ref();
+			this.el.append_column ( child_9.el  );
 
 			// init method
 
@@ -868,6 +868,50 @@ public class Xcls_WindowLeftTree : Object
 				_this.model.deleteSelected();
 				return true;
 			
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_keystate : Object
+	{
+		public Gtk.EventControllerKey el;
+		private Xcls_WindowLeftTree  _this;
+
+
+			// my vars (def)
+		public int is_shift;
+
+		// ctor
+		public Xcls_keystate(Xcls_WindowLeftTree _owner )
+		{
+			_this = _owner;
+			_this.keystate = this;
+			this.el = new Gtk.EventControllerKey();
+
+			// my vars (dec)
+			this.is_shift = 0;
+
+			// set gobject values
+
+			//listeners
+			this.el.key_released.connect( (keyval, keycode, state) => {
+				GLib.debug("key release %d, %d, %d" , (int) keyval, (int)  keycode, state);
+			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
+			 		this.is_shift = 0;
+				}
+				//GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
+			
+			
+			 
+			});
+			this.el.key_pressed.connect( (keyval, keycode, state) => {
+			
+			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
+			 		this.is_shift = 1;
+				}
+				return true;
 			});
 		}
 
@@ -1672,7 +1716,7 @@ public class Xcls_WindowLeftTree : Object
 		{
 			_this = _owner;
 			_this.maincol = this;
-			var child_1 = new Xcls_SignalListItemFactory14( _this );
+			var child_1 = new Xcls_SignalListItemFactory15( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
 
@@ -1686,7 +1730,7 @@ public class Xcls_WindowLeftTree : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory14 : Object
+	public class Xcls_SignalListItemFactory15 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_WindowLeftTree  _this;
@@ -1695,7 +1739,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory14(Xcls_WindowLeftTree _owner )
+		public Xcls_SignalListItemFactory15(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -1796,7 +1840,7 @@ public class Xcls_WindowLeftTree : Object
 	}
 
 
-	public class Xcls_ColumnViewColumn15 : Object
+	public class Xcls_ColumnViewColumn16 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_WindowLeftTree  _this;
@@ -1805,10 +1849,10 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ColumnViewColumn15(Xcls_WindowLeftTree _owner )
+		public Xcls_ColumnViewColumn16(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory16( _this );
+			var child_1 = new Xcls_SignalListItemFactory17( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Add", child_1.el );
 
@@ -1820,7 +1864,7 @@ public class Xcls_WindowLeftTree : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory16 : Object
+	public class Xcls_SignalListItemFactory17 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_WindowLeftTree  _this;
@@ -1829,7 +1873,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory16(Xcls_WindowLeftTree _owner )
+		public Xcls_SignalListItemFactory17(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -1872,50 +1916,6 @@ public class Xcls_WindowLeftTree : Object
 		// user defined functions
 	}
 
-
-	public class Xcls_keystate : Object
-	{
-		public Gtk.EventControllerKey el;
-		private Xcls_WindowLeftTree  _this;
-
-
-			// my vars (def)
-		public int is_shift;
-
-		// ctor
-		public Xcls_keystate(Xcls_WindowLeftTree _owner )
-		{
-			_this = _owner;
-			_this.keystate = this;
-			this.el = new Gtk.EventControllerKey();
-
-			// my vars (dec)
-			this.is_shift = 0;
-
-			// set gobject values
-
-			//listeners
-			this.el.key_released.connect( (keyval, keycode, state) => {
-				GLib.debug("key release %d, %d, %d" , (int) keyval, (int)  keycode, state);
-			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
-			 		this.is_shift = 0;
-				}
-				//GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
-			
-			
-			 
-			});
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-			
-			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
-			 		this.is_shift = 1;
-				}
-				return true;
-			});
-		}
-
-		// user defined functions
-	}
 
 
 	public class Xcls_LeftTreeMenu : Object
