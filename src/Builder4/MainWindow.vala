@@ -39,7 +39,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_winmodel winmodel;
 	public Xcls_projcol projcol;
 	public Xcls_filecol filecol;
-	public Xcls_view view;
+	public Xcls_treeview treeview;
 	public Xcls_treeselmodel treeselmodel;
 	public Xcls_treelistsort treelistsort;
 	public Xcls_treelistmodel treelistmodel;
@@ -275,6 +275,16 @@ public class Xcls_MainWindow : Object
 					}
 					_this.winsel.selectCurrent();
 					_this.winloading = false;
+					
+					 _this.treeview.el.set_model(new Gtk.SingleSelection(null));
+					
+					this.selectedProject.loadDirsIntoStore(_this.treemodel.el);
+					
+					_this.treeview.el.set_model(_this.treeselmodel.el);
+					
+				 	 _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;
+					
+					
 			 	}
 			});
 		}
@@ -2090,13 +2100,13 @@ public class Xcls_MainWindow : Object
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			this.el.visible = false;
-			new Xcls_view( _this );
-			this.el.child = _this.view.el;
+			new Xcls_treeview( _this );
+			this.el.child = _this.treeview.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_view : Object
+	public class Xcls_treeview : Object
 	{
 		public Gtk.ColumnView el;
 		private Xcls_MainWindow  _this;
@@ -2105,10 +2115,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_view(Xcls_MainWindow _owner )
+		public Xcls_treeview(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.view = this;
+			_this.treeview = this;
 			new Xcls_treeselmodel( _this );
 			this.el = new Gtk.ColumnView( _this.treeselmodel.el );
 

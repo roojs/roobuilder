@@ -49,6 +49,16 @@
            "\t\t}",
            "\t\t_this.winsel.selectCurrent();",
            "\t\t_this.winloading = false;",
+           "\t\t",
+           "\t\t _this.treeview.el.set_model(new Gtk.SingleSelection(null));",
+           "\t\t",
+           "\t\tthis.selectedProject.loadDirsIntoStore(_this.treemodel.el);",
+           "\t\t",
+           "\t\t_this.treeview.el.set_model(_this.treeselmodel.el);",
+           "\t\t",
+           "\t \t _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
+           "\t\t",
+           "\t\t",
            " \t}",
            "}"
           ]
@@ -911,7 +921,7 @@
              "* prop" : "child",
              "bool hexpand" : true,
              "bool vexpand" : true,
-             "id" : "view",
+             "id" : "treeview",
              "items" : [
               {
                "$ xns" : "Gtk",
