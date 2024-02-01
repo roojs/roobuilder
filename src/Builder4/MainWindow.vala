@@ -2653,7 +2653,7 @@ public class Xcls_MainWindow : Object
 			
 			 
 			    	
-			    	 if (lbl == null || llbl.label != "") { // do not update
+			    	 if (lbl == null || lbl.label != "") { // do not update
 			    	 	return;
 			     	}
 			    	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
