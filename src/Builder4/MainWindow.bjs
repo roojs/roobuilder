@@ -680,7 +680,7 @@
             ]
            },
            "string placeholder_text" : "Search for file",
-           "string tooltip_text" : "up/down arrow to select file, enter opens selected in new window/ shift enter opens it in this window x",
+           "string tooltip_text" : "up/down arrow to select file, enter opens selected in new window/ shift enter opens it in this window xxxxxxxxxxxxxxxxxxxxxx",
            "xtype" : "SearchEntry"
           }
          ],
