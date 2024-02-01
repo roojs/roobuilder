@@ -1472,8 +1472,8 @@ public class Xcls_MainWindow : Object
 				if (ns < 0) {
 					ns = 0;
 				}
-				if (ns => this.treeselmodel.el.get_n_items()) {
-					ns  = this.treeselmodel.el.get_n_items()-1;
+				if (ns => _this.treeselmodel.el.get_n_items()) {
+					ns  = _this.treeselmodel.el.get_n_items()-1;
 				}
 				_this.treeselmodel.el.selected = ns;
 			});
