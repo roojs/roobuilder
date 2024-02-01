@@ -2345,9 +2345,9 @@ public class Xcls_MainWindow : Object
 		
 		for (var i =0 ; i < j.childfiles.n_items; i++) {
 			var f = (JsRender.JsRender) j.childfiles.get_item(i);
-			if (f.xtype != "PlainFile") {
-				continue;
-			}
+			//if (f.xtype != "PlainFile") {
+			//	continue;
+			//}
 			if (f.content_type.contains("image")) {
 				continue;
 			}
