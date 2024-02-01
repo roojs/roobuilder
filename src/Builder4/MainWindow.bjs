@@ -957,7 +957,7 @@
                  "\t",
                  "\t",
                  " \t_this.windowstate.fileViewOpen(f,",
-                 " \t\t_this.keystate.is_shift == 1 ",
+                 " \t\t_this.keystate.is_shift != 1 ",
                  "\t);",
                  "\t",
                  "\t_this.splitview.el.show_sidebar = false;",

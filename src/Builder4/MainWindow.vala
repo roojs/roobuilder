@@ -2206,7 +2206,7 @@ public class Xcls_MainWindow : Object
 				
 				
 			 	_this.windowstate.fileViewOpen(f,
-			 		_this.keystate.is_shift == 1 
+			 		_this.keystate.is_shift != 1 
 				);
 				
 				_this.splitview.el.show_sidebar = false;
