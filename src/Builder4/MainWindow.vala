@@ -2362,9 +2362,9 @@ public class Xcls_MainWindow : Object
 		 
 		return false;
 	}
-	if (j.xtype != "PlainFile") {
-		return false;
-	}
+	//if (j.xtype != "PlainFile") {
+	//	return false;
+	//}
  	if (j.content_type.contains("image")) {
 		return false;
 	}
