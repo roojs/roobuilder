@@ -932,6 +932,37 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "listeners" : {
+                "pressed" : [
+                 "(n_press, x, y) => {",
+                 "\tif (n_press == 2) {",
+                 "\t\tGLib.debug(\"double cliced\");",
+                 "\t} else {",
+                 "\t\treturn;",
+                 "\t}",
+                 "\tvar tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;",
+                 "\tGLib.debug(\"SELECTED = %s\", tr.item.get_type().name());",
+                 "\tvar f = (JsRender.JsRender) tr.item;",
+                 "\tGLib.debug(\"Click %s\", f.name);",
+                 "\tif (f.xtype == \"Dir\") {",
+                 "\t\treturn;",
+                 "\t}",
+                 "\t",
+                 "\t",
+                 " \t_this.win.windowstate.fileViewOpen(f, _this.new_window);",
+                 "\t",
+                 "\t_this.el.hide();",
+                 "\t",
+                 "\t",
+                 "",
+                 "}",
+                 ""
+                ]
+               },
+               "xtype" : "GestureClick"
+              },
+              {
+               "$ xns" : "Gtk",
                "* prop" : "model",
                "bool can_unselect" : true,
                "id" : "treeselmodel",
