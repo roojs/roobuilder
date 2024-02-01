@@ -31,6 +31,18 @@
          "Gdk.ModifierType modifiers" : "Gdk.ModifierType.CONTROL_MASK",
          "uint keyval" : "O",
          "xtype" : "KeyvalTrigger"
+        },
+        {
+         "$ Gtk.ShortcutFunc callback" : [
+          "(widget, args) => {",
+          "",
+          "\treturn bool;",
+          "}",
+          ""
+         ],
+         "$ xns" : "Gtk",
+         "* prop" : "action",
+         "xtype" : "CallbackAction"
         }
        ],
        "xtype" : "Shortcut"
