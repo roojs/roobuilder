@@ -21,6 +21,21 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "trigger",
+         "Gdk.ModifierType modifiers" : "Gdk.ModifierType.META_MASK",
+         "uint keyval" : "",
+         "xtype" : "KeyvalTrigger"
+        }
+       ],
+       "xtype" : "Shortcut"
+      }
+     ],
      "xtype" : "ShortcutController"
     },
     {
