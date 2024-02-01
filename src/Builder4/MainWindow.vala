@@ -268,25 +268,7 @@ public class Xcls_MainWindow : Object
 			this.el.clicked.connect( ( ) => {
 			  	_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;
 			  	if (_this.splitview.el.show_sidebar) {
-			  		_this.filesearch.el.grab_focus();
-			  		_this.winloading = true;
-			  		_this.winmodel.el.remove_all();
-			  		_this.filesearch.el.set_text("");
-			  		for(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {
-						_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));
-					}
-					_this.winsel.selectCurrent();
-					_this.winloading = false;
-					
-					 _this.treeview.el.set_model(new Gtk.SingleSelection(null));
-					
-					_this.windowstate.project.loadDirsIntoStore(_this.treemodel.el);
-					
-					_this.treeview.el.set_model(_this.treeselmodel.el);
-					
-				 	 _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;
-					
-					
+			  		_this.sidebar.show(); 
 			 	}
 			});
 		}
