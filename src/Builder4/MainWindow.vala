@@ -46,7 +46,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_treelistmodel treelistmodel;
 	public Xcls_treemodel treemodel;
 	public Xcls_treefilter treefilter;
-	public Xcls_name name;
+	public Xcls_name ( name (;
 
 		// my vars (def)
 	public WindowState windowstate;
@@ -2138,8 +2138,8 @@ public class Xcls_MainWindow : Object
 			var child_2 = new Xcls_GestureClick62( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
-			new Xcls_name( _this );
-			this.el.append_column ( _this.name.el  );
+			new Xcls_name (( _this );
+			this.el.append_column ( _this.name (.el  );
 		}
 
 		// user defined functions
@@ -2456,7 +2456,7 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_name : Object
+	public class Xcls_name ( : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_MainWindow  _this;
@@ -2465,10 +2465,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_name(Xcls_MainWindow _owner )
+		public Xcls_name ((Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.name = this;
+			_this.name ( = this;
 			var child_1 = new Xcls_SignalListItemFactory73( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "General Files", child_1.el );
@@ -2476,7 +2476,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.id = "name";
+			this.el.id = "name (";
 			this.el.expand = true;
 			this.el.resizable = true;
 
