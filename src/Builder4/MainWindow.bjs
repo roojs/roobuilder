@@ -1245,6 +1245,36 @@
       }
      ],
      "xtype" : "OverlaySplitView"
+    },
+    {
+     "$ xns" : "Gtk",
+     "id" : "keystate",
+     "int is_shift" : 0,
+     "listeners" : {
+      "key_pressed" : [
+       "(keyval, keycode, state) => {",
+       "",
+       " \tif (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {",
+       " \t\tthis.is_shift = 1;",
+       "\t}",
+       "\treturn true;",
+       "}",
+       ""
+      ],
+      "key_released" : [
+       "(keyval, keycode, state) => {",
+       "\tGLib.debug(\"key release %d, %d, %d\" , (int) keyval, (int)  keycode, state);",
+       " \tif (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {",
+       " \t\tthis.is_shift = 0;",
+       "\t}",
+       "\t//GLib.debug(\"set state %d , shift = %d\", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);",
+       "",
+       "",
+       " ",
+       "}"
+      ]
+     },
+     "xtype" : "EventControllerKey"
     }
    ],
    "listeners" : {
