@@ -261,6 +261,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.has_frame = false;
+			this.el.has_tooltip = true;
 			var child_1 = new Xcls_ButtonContent5( _this );
 			this.el.child = child_1.el;
 

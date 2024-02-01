@@ -34,6 +34,7 @@
          "$ xns" : "Gtk",
          "* pack" : "append",
          "bool has_frame" : false,
+         "bool has_tooltip" : true,
          "items" : [
           {
            "$ xns" : "Adw",
