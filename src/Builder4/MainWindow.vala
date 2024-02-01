@@ -2182,7 +2182,7 @@ public class Xcls_MainWindow : Object
 				}
 				
 				
-			 	_this.windowstate.fileViewOpen(f, true);
+			 	_this.windowstate.fileViewOpen(f, _this.keystate.is_shift ? false : true);
 				
 				_this.el.hide();
 				
