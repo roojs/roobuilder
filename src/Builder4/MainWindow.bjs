@@ -52,7 +52,7 @@
            "\t\t",
            "\t\t _this.treeview.el.set_model(new Gtk.SingleSelection(null));",
            "\t\t",
-           "\t\tthis.selectedProject.loadDirsIntoStore(_this.treemodel.el);",
+           "\t\tthis.windowstate.project.loadDirsIntoStore(_this.treemodel.el);",
            "\t\t",
            "\t\t_this.treeview.el.set_model(_this.treeselmodel.el);",
            "\t\t",
