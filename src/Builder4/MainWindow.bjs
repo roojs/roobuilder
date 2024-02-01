@@ -612,7 +612,7 @@
                "\t",
                "\t\t\"searcj key release %d, %d, %d  ?= %d\" , ",
                "\t\t\t(int) keyval, (int)  keycode, state,",
-               "\t\t\t(int)Gdk.Key.Up",
+               "\t\t\t(int)Gdk.Key.Enter",
                "\t\t);",
                "\tif (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {",
                "\t\treturn;",

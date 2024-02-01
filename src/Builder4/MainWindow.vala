@@ -1460,7 +1460,7 @@ public class Xcls_MainWindow : Object
 				
 					"searcj key release %d, %d, %d  ?= %d" , 
 						(int) keyval, (int)  keycode, state,
-						(int)Gdk.Key.Up
+						(int)Gdk.Key.Enter
 					);
 				if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
 					return;
