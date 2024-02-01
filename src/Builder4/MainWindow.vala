@@ -2082,6 +2082,7 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
+			this.el.visible = false;
 			var child_1 = new Xcls_ColumnView61( _this );
 			this.el.child = child_1.el;
 		}
@@ -2111,10 +2112,7 @@ public class Xcls_MainWindow : Object
 			this.el.vexpand = true;
 			var child_2 = new Xcls_ColumnViewColumn70( _this );
 			child_2.ref();
-			this.el.append_column( child_2.el );
-			var child_3 = new Xcls_ColumnViewColumn72( _this );
-			child_3.ref();
-			this.el.append_column ( child_3.el  );
+			this.el.append_column ( child_2.el  );
 		}
 
 		// user defined functions
@@ -2326,7 +2324,7 @@ public class Xcls_MainWindow : Object
 			_this = _owner;
 			var child_1 = new Xcls_SignalListItemFactory71( _this );
 			child_1.ref();
-			this.el = new Gtk.ColumnViewColumn( "Project", child_1.el );
+			this.el = new Gtk.ColumnViewColumn( "File", child_1.el );
 
 			// my vars (dec)
 
@@ -2347,76 +2345,6 @@ public class Xcls_MainWindow : Object
 
 		// ctor
 		public Xcls_SignalListItemFactory71(Xcls_MainWindow _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.SignalListItemFactory();
-
-			// my vars (dec)
-
-			// set gobject values
-
-			//listeners
-			this.el.setup.connect( (listitem) => {
-				var lbl = new Gtk.Label("");
-			 	(listitem as Gtk.ListItem).set_child(lbl);
-			 	lbl.justify = Gtk.Justification.LEFT;
-			 	lbl.xalign = 1;
-			 	lbl.use_markup = true;
-				lbl.ellipsize = Pango.EllipsizeMode.START;
-			  
-				(listitem as Gtk.ListItem).activatable = true;
-			});
-			this.el.bind.connect( (listitem) => {
-				 var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();
-				 var item =  (listitem as Gtk.ListItem).get_item() as WindowState;
-				 
-				 lb.label = item.project.name;
-			
-			
-			  
-			
-			});
-		}
-
-		// user defined functions
-	}
-
-
-	public class Xcls_ColumnViewColumn72 : Object
-	{
-		public Gtk.ColumnViewColumn el;
-		private Xcls_MainWindow  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_ColumnViewColumn72(Xcls_MainWindow _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory73( _this );
-			child_1.ref();
-			this.el = new Gtk.ColumnViewColumn( "File", child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.expand = true;
-			this.el.resizable = true;
-		}
-
-		// user defined functions
-	}
-	public class Xcls_SignalListItemFactory73 : Object
-	{
-		public Gtk.SignalListItemFactory el;
-		private Xcls_MainWindow  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_SignalListItemFactory73(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();

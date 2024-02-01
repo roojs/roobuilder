@@ -902,6 +902,7 @@
            "* prop" : "end_child",
            "bool hexpand" : true,
            "bool vexpand" : true,
+           "bool visible" : false,
            "items" : [
             {
              "$ xns" : "Gtk",
