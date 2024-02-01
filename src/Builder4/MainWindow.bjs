@@ -605,7 +605,12 @@
              "listeners" : {
               "key_released" : [
                "(keyval, keycode, state) => {",
-               "",
+               "GLib.debug(",
+               "\t",
+               "\t\t\"searcj key release %d, %d, %d  ?= %d %d\" , ",
+               "\t\t\t(int) keyval, (int)  keycode, state,",
+               "\t\t\t(int)Gdk.Key.Pointer_Up, Gdk.ModifierType.CONTROL_MASK",
+               "\t\t);",
                "",
                "}",
                ""

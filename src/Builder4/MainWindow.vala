@@ -1453,7 +1453,12 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.key_released.connect( (keyval, keycode, state) => {
-			
+			GLib.debug(
+				
+					"searcj key release %d, %d, %d  ?= %d %d" , 
+						(int) keyval, (int)  keycode, state,
+						(int)Gdk.Key.Pointer_Up, Gdk.ModifierType.CONTROL_MASK
+					);
 			
 			});
 		}
