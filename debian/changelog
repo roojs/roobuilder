@@ -13,6 +13,7 @@ roobuilder (5.0.2) UNRELEASED; urgency=medium
   * add other property - use menubutton and tidy up pulldown so it looks like a menu.
   * switch window now uses libadwadi panel
   * switch window search shows full file list in panel - so you can jump to file
+  * control-o tiggers file open, after file serach up/down arrows select file, and enter / shift enter will open.
   
  -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
 
