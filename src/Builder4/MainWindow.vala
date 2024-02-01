@@ -39,7 +39,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_winmodel winmodel;
 	public Xcls_projcol projcol;
 	public Xcls_filecol filecol;
-	public Xcls_ColumnView61 ColumnView61;
+	public Xcls_view view;
 	public Xcls_treeselmodel treeselmodel;
 	public Xcls_treelistsort treelistsort;
 	public Xcls_treelistmodel treelistmodel;
@@ -2090,13 +2090,13 @@ public class Xcls_MainWindow : Object
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			this.el.visible = false;
-			var child_1 = new Xcls_ColumnView61( _this );
-			this.el.child = child_1.el;
+			new Xcls_view( _this );
+			this.el.child = _this.view.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ColumnView61 : Object
+	public class Xcls_view : Object
 	{
 		public Gtk.ColumnView el;
 		private Xcls_MainWindow  _this;
@@ -2105,10 +2105,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ColumnView61(Xcls_MainWindow _owner )
+		public Xcls_view(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.ColumnView61 = this;
+			_this.view = this;
 			new Xcls_treeselmodel( _this );
 			this.el = new Gtk.ColumnView( _this.treeselmodel.el );
 

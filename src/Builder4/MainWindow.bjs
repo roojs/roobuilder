@@ -911,7 +911,7 @@
              "* prop" : "child",
              "bool hexpand" : true,
              "bool vexpand" : true,
-             "id" : "",
+             "id" : "view",
              "items" : [
               {
                "$ xns" : "Gtk",
