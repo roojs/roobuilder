@@ -954,7 +954,7 @@
                  " \t\t_this.keystate.is_shift == 0 ? false : true",
                  "\t);",
                  "\t",
-                 "\t_this.splitview.el.sho",
+                 "\t_this.splitview.el.show_sidebar = false;",
                  "\t",
                  "\t",
                  "",

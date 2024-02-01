@@ -2187,7 +2187,7 @@ public class Xcls_MainWindow : Object
 			 		_this.keystate.is_shift == 0 ? false : true
 				);
 				
-				_this.splitview.el.sho
+				_this.splitview.el.show_sidebar = false;
 				
 				
 			
