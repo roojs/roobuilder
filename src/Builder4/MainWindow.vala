@@ -1414,7 +1414,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.hexpand = true;
-			this.el.tooltip_text = "up/down arrow to select file, enter opens selected in new window/ shift enter opens it in this window xxxxxxxxxxxxxxxxxxxxxx";
+			this.el.tooltip_text = "up/down arrow to select file from lower file list\nenter opens selected in new window\nshift+enter opens it in this window ";
 			this.el.has_tooltip = true;
 			this.el.placeholder_text = "Search for file";
 			var child_1 = new Xcls_EventControllerKey37( _this );
