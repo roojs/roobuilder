@@ -2758,6 +2758,8 @@ public class Xcls_MainWindow : Object
 			 		this.is_shift = 1;
 			 		
 				}
+				
+				
 				return true;
 				
 			});

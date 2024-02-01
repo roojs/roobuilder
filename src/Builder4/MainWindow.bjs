@@ -1256,6 +1256,8 @@
          " \t\tthis.is_shift = 1;",
          " \t\t",
          "\t}",
+         "\t",
+         "\t",
          "\treturn true;",
          "\t",
          "}",
