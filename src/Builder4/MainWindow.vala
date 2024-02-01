@@ -1414,6 +1414,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.hexpand = true;
+			this.el.has_tooltip = true;
 			this.el.placeholder_text = "Search for file";
 			var child_1 = new Xcls_EventControllerKey37( _this );
 			child_1.ref();
