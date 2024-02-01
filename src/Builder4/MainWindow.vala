@@ -253,7 +253,7 @@ public class Xcls_MainWindow : Object
 		public Xcls_KeyvalTrigger4(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.KeyvalTrigger( , Gdk.ModifierType.CONTROL_MASK );
+			this.el = new Gtk.KeyvalTrigger( O, Gdk.ModifierType.CONTROL_MASK );
 
 			// my vars (dec)
 

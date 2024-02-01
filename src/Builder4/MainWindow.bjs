@@ -29,7 +29,7 @@
          "$ xns" : "Gtk",
          "* prop" : "trigger",
          "Gdk.ModifierType modifiers" : "Gdk.ModifierType.CONTROL_MASK",
-         "uint keyval" : "",
+         "uint keyval" : "O",
          "xtype" : "KeyvalTrigger"
         }
        ],
