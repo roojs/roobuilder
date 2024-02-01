@@ -48,7 +48,6 @@ public class Xcls_MainWindow : Object
 	public Xcls_treemodel treemodel;
 	public Xcls_treefilter treefilter;
 	public Xcls_name name;
-	public Xcls_keystate keystate;
 
 		// my vars (def)
 	public WindowState windowstate;
@@ -75,8 +74,6 @@ public class Xcls_MainWindow : Object
 		this.el.set_titlebar ( _this.headerbar.el  );
 		new Xcls_splitview( _this );
 		this.el.child = _this.splitview.el;
-		new Xcls_keystate( _this );
-		this.el.add_controller(  _this.keystate.el );
 
 		// init method
 
@@ -2666,49 +2663,5 @@ public class Xcls_MainWindow : Object
 
 
 
-
-	public class Xcls_keystate : Object
-	{
-		public Gtk.EventControllerKey el;
-		private Xcls_MainWindow  _this;
-
-
-			// my vars (def)
-		public int is_shift;
-
-		// ctor
-		public Xcls_keystate(Xcls_MainWindow _owner )
-		{
-			_this = _owner;
-			_this.keystate = this;
-			this.el = new Gtk.EventControllerKey();
-
-			// my vars (dec)
-			this.is_shift = 0;
-
-			// set gobject values
-
-			//listeners
-			this.el.key_released.connect( (keyval, keycode, state) => {
-				GLib.debug("key release %d, %d, %d" , (int) keyval, (int)  keycode, state);
-			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
-			 		this.is_shift = 0;
-				}
-				//GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
-			
-			
-			 
-			});
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-			
-			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
-			 		this.is_shift = 1;
-				}
-				return true;
-			});
-		}
-
-		// user defined functions
-	}
 
 }
