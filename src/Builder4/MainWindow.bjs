@@ -702,6 +702,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "start_child",
+           "bool has_frame" : true,
            "items" : [
             {
              "$ xns" : "Gtk",

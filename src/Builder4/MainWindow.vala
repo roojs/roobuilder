@@ -1658,6 +1658,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.has_frame = true;
 			var child_1 = new Xcls_ColumnView47( _this );
 			this.el.child = child_1.el;
 		}
