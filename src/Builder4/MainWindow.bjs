@@ -21,38 +21,6 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "add_shortcut",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "trigger",
-         "Gdk.ModifierType modifiers" : "Gdk.ModifierType.CONTROL_MASK",
-         "uint keyval" : "Gdk.Key.O",
-         "xtype" : "KeyvalTrigger"
-        },
-        {
-         "$ Gtk.ShortcutFunc callback" : [
-          "(widget, args) => {",
-          "\tGLib.debug(\"got ctl-O\");",
-          "\treturn true;",
-          "}",
-          ""
-         ],
-         "$ xns" : "Gtk",
-         "* prop" : "action",
-         "xtype" : "CallbackAction"
-        }
-       ],
-       "xtype" : "Shortcut"
-      }
-     ],
-     "xtype" : "ShortcutController"
-    },
-    {
-     "$ xns" : "Gtk",
      "* pack" : "set_titlebar",
      "bool show_close_button" : true,
      "id" : "headerbar",
@@ -1270,7 +1238,9 @@
          " \t\tthis.is_shift = 0;",
          "\t}",
          "\t//GLib.debug(\"set state %d , shift = %d\", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);",
-         "",
+         "\tif (keyval = Gdk.Key.O && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {",
+         "\t\t// ctrl O pressed",
+         "\t}",
          "",
          " ",
          "}"
