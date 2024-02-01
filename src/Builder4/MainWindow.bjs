@@ -33,6 +33,8 @@
        "items" : [
         {
          "$ xns" : "Adw",
+         "string icon_name" : "_this.splitview.el.show_sidebar ",
+         "string label" : "Files",
          "xtype" : "ButtonContent"
         },
         {
@@ -67,7 +69,7 @@
            "}"
           ]
          },
-         "string icon_name" : "preferences-system-windows",
+         "string icon_name" : "c",
          "tooltop_text" : "Manage Windows",
          "xtype" : "Button"
         }
