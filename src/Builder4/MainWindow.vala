@@ -291,8 +291,7 @@ public class Xcls_MainWindow : Object
 			this.el.icon_name = "c";
 			this.el.has_frame = false;
 			var child_1 = new Xcls_ButtonContent6( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
+			this.el.child = child_1.el;
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
@@ -330,7 +329,6 @@ public class Xcls_MainWindow : Object
 
 
 			// my vars (def)
-		public string cms-id;
 
 		// ctor
 		public Xcls_ButtonContent6(Xcls_MainWindow _owner )
@@ -339,7 +337,6 @@ public class Xcls_MainWindow : Object
 			this.el = new Adw.ButtonContent();
 
 			// my vars (dec)
-			this.cms-id = child;
 
 			// set gobject values
 			this.el.icon_name = "_this.splitview.el.show_sidebar ";

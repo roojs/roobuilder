@@ -32,19 +32,13 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
-         "$ xns" : "Adw",
-         "string icon_name" : "_this.splitview.el.show_sidebar ",
-         "string label" : "Files",
-         "xtype" : "ButtonContent"
-        },
-        {
          "$ xns" : "Gtk",
          "* pack" : "append",
          "bool has_frame" : false,
          "items" : [
           {
            "$ xns" : "Adw",
-           "string cms-id" : "child",
+           "* prop" : "child",
            "string icon_name" : "_this.splitview.el.show_sidebar ",
            "string label" : "Files",
            "xtype" : "ButtonContent"
