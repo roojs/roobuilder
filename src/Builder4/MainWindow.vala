@@ -1361,6 +1361,9 @@ public class Xcls_MainWindow : Object
 		}
 
 		// user defined functions
+		public void show () {
+		
+		}
 	}
 	public class Xcls_SearchBar35 : Object
 	{

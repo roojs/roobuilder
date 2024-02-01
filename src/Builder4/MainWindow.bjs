@@ -1210,7 +1210,12 @@
          "xtype" : "Paned"
         }
        ],
-       "xtype" : "Box"
+       "xtype" : "Box",
+       "| void show" : [
+        "() {",
+        "",
+        "}"
+       ]
       },
       {
        "$ xns" : "Gtk",
