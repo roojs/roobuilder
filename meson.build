@@ -93,7 +93,6 @@ roobuilder_src = files([
    'src/Builder4/EditProject.vala',
    'src/Builder4/FakeServer.vala',
    'src/Builder4/GtkView.vala',
-   'src/Builder4/MainWindow.vala',
    'src/Builder4/PopoverAddObject.vala',
    'src/Builder4/PopoverProperty.vala',
    'src/Builder4/StandardErrorDialog.vala',
@@ -148,6 +147,7 @@ roobuilder_src = files([
    'src/JsRender/NodeWriter.vala',
    'src/JsRender/NodeToValaExtended.vala',
    'src/JsRender/NodeToValaWrapped.vala',
+   'src/Builder4/MainWindow.vala',
 ])
 
 roobuilder = executable('roobuilder',
