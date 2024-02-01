@@ -624,7 +624,7 @@
                "\tif (ns < 0) {",
                "\t\tns = 0;",
                "\t}",
-               "\tif (ns => _this.treeselmodel.el.get_n_items()) {",
+               "\tif (ns >= _this.treeselmodel.el.get_n_items()) {",
                "\t\tns  = _this.treeselmodel.el.get_n_items()-1;",
                "\t}",
                "\t_this.treeselmodel.el.selected = ns;",
