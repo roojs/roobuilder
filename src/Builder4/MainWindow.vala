@@ -2329,6 +2329,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
+			this.el.autoselect = true;
 		}
 
 		// user defined functions
