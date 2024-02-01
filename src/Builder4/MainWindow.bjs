@@ -916,6 +916,7 @@
            "bool hexpand" : true,
            "bool vexpand" : true,
            "bool visible" : false,
+           "id" : "treescroll",
            "items" : [
             {
              "$ xns" : "Gtk",

@@ -39,6 +39,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_winmodel winmodel;
 	public Xcls_projcol projcol;
 	public Xcls_filecol filecol;
+	public Xcls_treescroll treescroll;
 	public Xcls_treeview treeview;
 	public Xcls_treeselmodel treeselmodel;
 	public Xcls_treelistsort treelistsort;
@@ -1651,8 +1652,8 @@ public class Xcls_MainWindow : Object
 			this.el.vexpand = true;
 			var child_1 = new Xcls_ScrolledWindow46( _this );
 			this.el.start_child = child_1.el;
-			var child_2 = new Xcls_ScrolledWindow60( _this );
-			this.el.end_child = child_2.el;
+			new Xcls_treescroll( _this );
+			this.el.end_child = _this.treescroll.el;
 		}
 
 		// user defined functions
@@ -2080,7 +2081,7 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_ScrolledWindow60 : Object
+	public class Xcls_treescroll : Object
 	{
 		public Gtk.ScrolledWindow el;
 		private Xcls_MainWindow  _this;
@@ -2089,9 +2090,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ScrolledWindow60(Xcls_MainWindow _owner )
+		public Xcls_treescroll(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.treescroll = this;
 			this.el = new Gtk.ScrolledWindow();
 
 			// my vars (dec)
