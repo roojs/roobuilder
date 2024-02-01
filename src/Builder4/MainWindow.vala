@@ -2646,9 +2646,10 @@ public class Xcls_MainWindow : Object
 			 		this.is_shift = 0;
 				}
 				//GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
-				if (keyval = Gdk.Key.O && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {
+				if (keyval == Gdk.Key.O && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {
 					// ctrl O pressed
 				}
+				
 			
 			 
 			});

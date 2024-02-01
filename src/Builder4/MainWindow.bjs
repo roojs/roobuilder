@@ -1238,9 +1238,10 @@
          " \t\tthis.is_shift = 0;",
          "\t}",
          "\t//GLib.debug(\"set state %d , shift = %d\", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);",
-         "\tif (keyval = Gdk.Key.O && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {",
+         "\tif (keyval == Gdk.Key.O && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {",
          "\t\t// ctrl O pressed",
          "\t}",
+         "\t",
          "",
          " ",
          "}"
