@@ -2756,8 +2756,9 @@ public class Xcls_MainWindow : Object
 			
 			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
 			 		this.is_shift = 1;
+			 		
 				}
-				return true;
+				return false;
 				
 			});
 		}
