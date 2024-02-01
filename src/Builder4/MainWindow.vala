@@ -2178,7 +2178,7 @@ public class Xcls_MainWindow : Object
 				}
 				
 				
-			 	_this.win.windowstate.fileViewOpen(f, _this.new_window);
+			 	_this.windowstate.fileViewOpen(f, true);
 				
 				_this.el.hide();
 				

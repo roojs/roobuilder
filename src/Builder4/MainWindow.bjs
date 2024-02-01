@@ -949,7 +949,7 @@
                  "\t}",
                  "\t",
                  "\t",
-                 " \t_this.win.windowstate.fileViewOpen(f, _this.new_window);",
+                 " \t_this.windowstate.fileViewOpen(f, true);",
                  "\t",
                  "\t_this.el.hide();",
                  "\t",
