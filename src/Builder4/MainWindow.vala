@@ -2652,12 +2652,15 @@ public class Xcls_MainWindow : Object
 				
 					"key release %d, %d, %d  ?= %d %d" , 
 						(int) keyval, (int)  keycode, state,
-						(int)Gdk.Key.o, (int)Gdk.ModifierType.CONTROL_MASK
+						(int)Gdk.Key.O, Gdk.ModifierType.CONTROL_MASK
 					);
 			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
 			 		this.is_shift = 0;
 				}
-				//GLib.debug("set state %dOr) {
+				//GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
+				if (keyval == Gdk.Key.o && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {
+					// ctrl O pressed
+					if (!_this.splitview.el.show_sidebar) {
 				  		_this.sidebar.show(); 
 				 	}
 				}
