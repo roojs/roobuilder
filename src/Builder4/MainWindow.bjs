@@ -21,6 +21,10 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "xtype" : "ShortcutController"
+    },
+    {
+     "$ xns" : "Gtk",
      "* pack" : "set_titlebar",
      "bool show_close_button" : true,
      "id" : "headerbar",
