@@ -78,7 +78,6 @@
        "xtype" : "Box"
       }
      ],
-     "string title" : "roobuilder",
      "xtype" : "HeaderBar"
     },
     {

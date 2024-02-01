@@ -199,7 +199,6 @@ public class Xcls_MainWindow : Object
 
 			// my vars (def)
 		public bool show_close_button;
-		public string title;
 
 		// ctor
 		public Xcls_headerbar(Xcls_MainWindow _owner )
@@ -210,7 +209,6 @@ public class Xcls_MainWindow : Object
 
 			// my vars (dec)
 			this.show_close_button = true;
-			this.title = roobuilder;
 
 			// set gobject values
 			var child_1 = new Xcls_Box3( _this );
