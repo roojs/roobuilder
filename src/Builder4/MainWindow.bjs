@@ -604,6 +604,7 @@
        "$ xns" : "Gtk",
        "* prop" : "sidebar",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "id" : "sidebar",
        "int spacing" : 0,
        "items" : [
         {

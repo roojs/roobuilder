@@ -31,6 +31,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_run statusbar_run;
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 	public Xcls_statusbar_compile_icon statusbar_compile_icon;
+	public Xcls_sidebar sidebar;
 	public Xcls_filesearch filesearch;
 	public Xcls_open_projects_btn open_projects_btn;
 	public Xcls_winsel winsel;
@@ -342,8 +343,8 @@ public class Xcls_MainWindow : Object
 			this.el.show_sidebar = false;
 			new Xcls_vbox( _this );
 			this.el.content = _this.vbox.el;
-			var child_2 = new Xcls_Box34( _this );
-			this.el.sidebar = child_2.el;
+			new Xcls_sidebar( _this );
+			this.el.sidebar = _this.sidebar.el;
 			new Xcls_keystate( _this );
 			this.el.add_controller(  _this.keystate.el );
 		}
@@ -1332,7 +1333,7 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_Box34 : Object
+	public class Xcls_sidebar : Object
 	{
 		public Gtk.Box el;
 		private Xcls_MainWindow  _this;
@@ -1341,9 +1342,10 @@ public class Xcls_MainWindow : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box34(Xcls_MainWindow _owner )
+		public Xcls_sidebar(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.sidebar = this;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
 			// my vars (dec)
