@@ -2655,6 +2655,9 @@ public class Xcls_MainWindow : Object
 				//GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
 				if (keyval == Gdk.Key.O && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {
 					// ctrl O pressed
+					if (!_this.splitview.el.show_sidebar) {
+				  		_this.sidebar.show(); 
+				 	}
 				}
 				
 			
