@@ -1241,7 +1241,12 @@
         ],
         "key_released" : [
          "(keyval, keycode, state) => {",
-         "\tGLib.debug(\"key release %d, %d, %d\" , (int) keyval, (int)  keycode, state);",
+         "\tGLib.debug(",
+         "\t",
+         "\t\t\"key release %d, %d, %d  ?= %d %d\" , ",
+         "\t\t\t(int) keyval, (int)  keycode, state,",
+         "\t\t\t(int)Gdk.Key.O, (int)Gdk.ModifierType.CONTROL_MASK",
+         "\t\t);",
          " \tif (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {",
          " \t\tthis.is_shift = 0;",
          "\t}",
