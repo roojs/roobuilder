@@ -53,7 +53,7 @@
            "}"
           ]
          },
-         "tooltop_text" : "Manage Windows",
+         "tooltop_text" : "Manage Windows (Ctrl-O)",
          "xtype" : "Button"
         }
        ],
