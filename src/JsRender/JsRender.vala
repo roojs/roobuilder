@@ -447,12 +447,28 @@ namespace JsRender {
 		void updateUndo()
 		{
 			if (this.xtype == "PlainFile") {
-				return this.undo_json.set(this.revision, this.toSource());
+				this.undo_json.set(this.version, this.toSource());
 				return;
 			}
-			this.undo_json.set(this.revision, this.JsonString());
+			this.undo_json.set(this.version, this.JsonString());
 		}
-		 
+		
+		void undoBack()
+		{
+ 
+			if (!this.undo_json.has_key(this.version -1)) {
+				return;
+			}
+			var pa = new Json.Parser();
+			pa.load_from_file(this.path);
+			var node = pa.get_root();
+		
+			this.tree = new Node();
+			this.tree.loadFromJson(
+			this.tree.updated_count = this.revision -1;
+			 
+			
+		}
 		 
 
 
