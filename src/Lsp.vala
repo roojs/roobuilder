@@ -83,7 +83,7 @@ namespace Lsp {
                  (character > other.character ? 1 :
                   (character == other.character ? 0 : -1)) : -1);
         }
-        public equals(Position o) {
+        public bool equals(Position o) {
         	return o.line == this.line && o.character == this.character;
     	}
 		
