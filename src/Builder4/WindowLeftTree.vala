@@ -405,36 +405,36 @@ public class Xcls_WindowLeftTree : Object
 		
 		 }
 		public int getColAt (double x,  double y) {
-		/*
-		    	
-		from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+			/*
+					
+			from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
 		    	  
-		    	*/
-				//Gtk.Allocation alloc = { 0, 0, 0, 0 };
-				//GLib.debug("Cehck %d, %d", x,y);
-		        var  child = this.el.get_first_child(); 
-		    	 
-		    	var col = 0;
-		    	var offx = 0;
-		    	while (child != null) {
-					
-					if (child.get_type().name() == "GtkColumnViewRowWidget") {
-						child = child.get_first_child();
-						continue;
-					}
-					
-					//child.get_allocation(out alloc);
-					if (x <  (child.get_width() + offx)) {
-						return col;
-					}
-					return 1;
-					//offx += child.get_width();
-					//col++;
-					//child = child.get_next_sibling();
+			*/
+			//Gtk.Allocation alloc = { 0, 0, 0, 0 };
+			//GLib.debug("Cehck %d, %d", x,y);
+		    var  child = this.el.get_first_child(); 
+			 
+			var col = 0;
+			var offx = 0;
+			while (child != null) {
+				
+				if (child.get_type().name() == "GtkColumnViewRowWidget") {
+					child = child.get_first_child();
+					continue;
 				}
-		    	     
-					  
-		        return -1;
+				
+				//child.get_allocation(out alloc);
+				if (x <  (child.get_width() + offx)) {
+					return col;
+				}
+				return 1;
+				//offx += child.get_width();
+				//col++;
+				//child = child.get_next_sibling();
+			}
+			     
+				  
+		    return -1;
 		
 		 }
 		public int getRowAt (double x,  double in_y, out string pos) {
