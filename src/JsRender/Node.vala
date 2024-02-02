@@ -129,7 +129,7 @@ public class JsRender.Node : GLib.Object {
 			if (this.parent != null) {
 				this.parent.updated_count++;
 			}  else {
-				GLib.debug("UNDO top node is %d", value);
+				//GLib.debug("UNDO top node is %d", value);
 				this.version_changed();
 			}
 		}
