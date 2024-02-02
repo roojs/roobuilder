@@ -455,7 +455,7 @@ namespace JsRender {
 				return;
 			}
 			GLib.debug("undo store %d", this.version);
-			this.undo_json.set(this.version, this.toJsonString());
+			this.undo_json.set(this.version, this.tree.toJsonString());
 			if (this.undo_json.has_key(this.version+1)) {
 				var n = this.version +1;
 				while (this.undo_json.has_key(n)) {
