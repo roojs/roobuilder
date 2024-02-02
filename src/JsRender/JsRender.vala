@@ -448,10 +448,14 @@ namespace JsRender {
 		    }
 		}
 		
+		var in_undo = false;
 		protected void updateUndo()
 		{
+			if (this.in_undo) {
+				return;
+			}
 			if (this.xtype == "PlainFile") {
-				this.undo_json.set(this.version, this.toSource());
+				// handled by gtk sourceview buffer...
 				return;
 			}
 			GLib.debug("undo store %d", this.version);
