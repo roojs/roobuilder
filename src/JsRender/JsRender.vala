@@ -846,7 +846,7 @@ namespace JsRender {
 			return ret;
 			
 		
-		}
+		} 
 		
 		
 		public abstract string language_id();
@@ -862,6 +862,8 @@ namespace JsRender {
 		public abstract string targetName();
 		public abstract void loadItems() throws GLib.Error;
 	} 
+	
+	 
 
 }
  
