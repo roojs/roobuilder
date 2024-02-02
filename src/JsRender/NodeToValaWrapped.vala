@@ -56,7 +56,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	public override string munge ( )
 	{
 		//return this.mungeToString(this.node);
-		if (this.node.as_source_version == this.node.version) {
+		if (this.node.as_source_version == this.node.updated_count) {
 			return this.node.as_source;
 		}
 	
@@ -85,7 +85,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.namespaceFooter();
 		
 		
-		this.node.as_source_version = this.node.version
+		this.node.as_source_version = this.node.updated_count
 		this.node.as_source == this.ret;
 		return this.ret;
 		 
