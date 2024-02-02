@@ -397,7 +397,7 @@ namespace Palete {
 			}
 			     
 			
-			GLib.debug ("LS send change");
+			GLib.debug ("LS send change %s rev %d", file.path, file.version);
 			var ar = new Json.Array();
 			var obj = new Json.Object();
 			obj.set_string_member("text", contents);
