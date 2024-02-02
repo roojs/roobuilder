@@ -605,7 +605,7 @@
            "\t\t",
            "\t\t var m = (GLib.ListStore) _this.model.el.model;",
            "     \t_this.main_window.windowstate.file.tree = dropNode;  ",
-           "    ",
+           "    \tdropNode.updated_count++;",
            "   ",
            "\t\tm.append(dropNode);",
            "\t\t_this.model.selectNode(dropNode); \t",

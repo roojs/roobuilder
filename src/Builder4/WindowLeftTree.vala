@@ -1291,7 +1291,7 @@ public class Xcls_WindowLeftTree : Object
 					
 					 var m = (GLib.ListStore) _this.model.el.model;
 			     	_this.main_window.windowstate.file.tree = dropNode;  
-			    
+			    	dropNode.updated_count++;
 			   
 					m.append(dropNode);
 					_this.model.selectNode(dropNode); 	
