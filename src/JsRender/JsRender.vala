@@ -198,7 +198,7 @@ namespace JsRender {
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
 			//this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
 			this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); }); 
-			
+			this.undo_json = new Gee.HashMap<int,string>();
 
 
 		}
