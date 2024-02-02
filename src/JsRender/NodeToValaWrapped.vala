@@ -85,7 +85,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.namespaceFooter();
 		
 		
-		this.node.as_source_version = this.node.updated_count
+		this.node.as_source_version = this.node.updated_count;
 		this.node.as_source == this.ret;
 		return this.ret;
 		 
