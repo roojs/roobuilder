@@ -473,6 +473,8 @@ namespace JsRender {
 				return false;
 			}
 			var pa = new Json.Parser();
+			GLib.debug("RESTORE : %s", this.undo_json.get(this.version + step));
+			
 			pa.load_from_data(this.undo_json.get(this.version + step));
 			var node = pa.get_root();
 			this.loadTree(node.get_object(),2); 
