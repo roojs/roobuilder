@@ -41,6 +41,13 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 	public override string munge ( )
 	{
 		//return this.mungeToString(this.node);
+		
+		if (this.node.as_source_version > 0 && 
+			this.node.as_source_version == this.node.updated_count
+			&& this.node.as_source != ""
+		) {
+			return this.node.as_source;
+		}
 		this.child_count = 1;
 	 
 		
@@ -68,6 +75,8 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		this.iterChildren(); // add children class definitions.
 		this.namespaceFooter();
 		
+		this.node.as_source_version = this.node.updated_count;
+		this.node.as_source == this.ret;
 		return this.ret;
 		 
 			 

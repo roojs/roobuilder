@@ -56,6 +56,72 @@
          },
          "string tooltip_text" : "Manage Windows (Ctrl-O)",
          "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "bool has_frame" : false,
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "\t",
+           "\tGLib.debug(\"undo clicked\");",
+           "\tif (_this.windowstate.file.xtype == \"PlainFile\") {",
+           "\t\t_this.windowstate.code_editor_tab.buffer.el.undo();",
+           "\t}",
+           "\tif (!_this.windowstate.file.undoStep(-1)) {",
+           "\t\treturn;",
+           "\t}",
+           "\t",
+           "\t ",
+           "\t_this.windowstate.switchState (WindowState.State.PREVIEW); ",
+           "\t// this triggers loadItems..",
+           "\t_this.windowstate.left_tree.model.loadFile(",
+           "\t\t_this.windowstate.file);",
+           "\t ",
+           "",
+           "\t",
+           " ",
+           "",
+           "\t// load it everywhere",
+           "}",
+           ""
+          ]
+         },
+         "string icon_name" : "edit-undo",
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "bool has_frame" : false,
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "\t",
+           "\tGLib.debug(\"undo clicked\");",
+           "\tif (_this.windowstate.file.xtype == \"PlainFile\") {",
+           "\t\t_this.windowstate.code_editor_tab.buffer.el.redo();",
+           "\t}",
+           "\tif (!_this.windowstate.file.undoStep(1)) {",
+           "\t\treturn;",
+           "\t}",
+           "\t",
+           "\t ",
+           "\t_this.windowstate.switchState (WindowState.State.PREVIEW); ",
+           "\t// this triggers loadItems..",
+           "\t_this.windowstate.left_tree.model.loadFile(",
+           "\t\t_this.windowstate.file);",
+           "\t ",
+           "",
+           "\t",
+           " ",
+           "",
+           "\t// load it everywhere",
+           "}",
+           ""
+          ]
+         },
+         "string icon_name" : "edit-redo",
+         "xtype" : "Button"
         }
        ],
        "xtype" : "Box"
@@ -592,7 +658,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* prop" : "child",
          "bool has_tooltip" : true,
          "bool hexpand" : true,
          "id" : "filesearch",
@@ -717,6 +782,7 @@
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
+             "  \t_this.splitview.el.show_sidebar = false;",
              "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
              "}"
             ]
@@ -1277,7 +1343,7 @@
         "\t",
         "\t_this.treeview.el.set_model(_this.treeselmodel.el);",
         "\t",
-        " \t _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
+        " \t_this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
         "\t",
         " ",
         "}"

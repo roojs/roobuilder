@@ -85,10 +85,13 @@ namespace JsRender {
 				return ++this._version; // increased on every call? - bit of a kludge until we do real versioning
 			}
 			private set {
+				
 				this._version = value;
+				this.updateUndo();
 			}
 			
 		}
+
 
 		public string permname;
 		public string language;
@@ -116,13 +119,16 @@ namespace JsRender {
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
 		public	Gee.HashMap<string,string> namedStrings;
+		
+		public Gee.HashMap<int,string> undo_json;
+		
 		//public	Gee.HashMap<string, GLib.ListStore> errorsByType;
 		private Gee.ArrayList<Lsp.Diagnostic> errors;
 		public int error_counter {
 			get; private set; default = 0;
 		}
 
-		public signal void changed (Node? node, string source); 
+		//public signal void changed (Node? node, string source);  (not used?)
 		
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
@@ -146,6 +152,7 @@ namespace JsRender {
 				return this._icon;
 			}
 		}
+		
 		
 		/**
 		 * UI componenets
@@ -195,7 +202,7 @@ namespace JsRender {
 			this.childfiles = new GLib.ListStore(typeof(JsRender));
 			//this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
 			this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); }); 
-			
+			this.undo_json = new Gee.HashMap<int,string>();
 
 
 		}
@@ -440,13 +447,48 @@ namespace JsRender {
 		        print("Save failed");
 		    }
 		}
-		 
-		 
-
-
-		 
-		 
-		 
+		
+		bool in_undo = false;
+		protected void updateUndo()
+		{
+			if (this.in_undo) {
+				return;
+			}
+			if (this.xtype == "PlainFile") {
+				// handled by gtk sourceview buffer...
+				return;
+			}
+			//GLib.debug("UNDO store %d", this.version);
+			this.undo_json.set(this.version, this.tree.toJsonString());
+			if (this.undo_json.has_key(this.version+1)) {
+				var n = this.version +1;
+				while (this.undo_json.has_key(n)) {
+					this.undo_json.unset(n++);
+				}
+			
+			}
+			
+		}
+		
+		public bool undoStep(int step = -1) // undo back/next
+		{
+ 
+			if (!this.undo_json.has_key(this.version + step)) {
+				//GLib.debug("UNDO step %d failed - no version available", this.version + step);
+				return false;
+			}
+			var new_version = this.version + step;
+			var pa = new Json.Parser();
+			//GLib.debug("UNDO RESTORE : %d",  this.version + step);
+			
+			pa.load_from_data(this.undo_json.get(new_version));
+			var node = pa.get_root();
+			this.in_undo = true;
+			this.loadTree(node.get_object(),2); 
+			this.tree.updated_count = new_version;
+			this.in_undo = false;
+			return true;
+		}
 		  
 		public string jsonHasOrEmpty(Json.Object obj, string key) {
 			return obj.has_member(key) ? 
@@ -812,7 +854,22 @@ namespace JsRender {
 			return ret;
 			
 		
+		} 
+		
+		public void loadTree(Json.Object obj, int bjs_version = 2)
+		{
+			if (this.xtype == "PlainFile" ){
+				return;
+			}
+			Node.uid_count = 0;
+			this.tree = new Node();
+			this.tree.loadFromJson(obj,bjs_version);
+			this.tree.version_changed.connect(() => {
+				this.updateUndo();
+			});
+		
 		}
+		
 		
 		
 		public abstract string language_id();
@@ -827,7 +884,10 @@ namespace JsRender {
 		public abstract string toGlade();
 		public abstract string targetName();
 		public abstract void loadItems() throws GLib.Error;
+
 	} 
+	
+	 
 
 }
  

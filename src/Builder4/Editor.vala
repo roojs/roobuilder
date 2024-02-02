@@ -277,7 +277,9 @@ public class Editor : Object
 		}
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
-			buf.remove_source_marks (start, end, null);
+			buf.remove_source_marks (start, end, "ERR");
+			buf.remove_source_marks (start, end, "WARN");
+			buf.remove_source_marks (start, end, "DEPR");
 			buf.remove_tag_by_name ("ERR", start, end);
 			buf.remove_tag_by_name ("WARN", start, end);
 			buf.remove_tag_by_name ("DEPR", start, end);
@@ -313,7 +315,9 @@ public class Editor : Object
 			}
 		
 		}
-		buf.remove_source_marks (start, end, null);
+		buf.remove_source_marks (start, end, "ERR");
+		buf.remove_source_marks (start, end, "WARN");
+		buf.remove_source_marks (start, end, "DEPR");
 		buf.remove_tag_by_name ("ERR", start, end);
 		buf.remove_tag_by_name ("WARN", start, end);
 		buf.remove_tag_by_name ("DEPR", start, end);

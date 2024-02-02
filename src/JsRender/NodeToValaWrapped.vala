@@ -27,8 +27,7 @@
 public class JsRender.NodeToValaWrapped : NodeToVala {
 
 
-	
-
+	 
 	public NodeToValaWrapped( JsRender file,  Node node,  int depth, NodeToVala? parent) 
 	{
 		base (file, node, depth, parent);
@@ -56,7 +55,12 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	public override string munge ( )
 	{
 		//return this.mungeToString(this.node);
-		
+		if (this.node.as_source_version > 0 && 
+			this.node.as_source_version == this.node.updated_count
+			&& this.node.as_source != ""
+		) {
+			return this.node.as_source;
+		}
 	
 		
 		this.namespaceHeader();
@@ -82,6 +86,9 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.iterChildren();
 		this.namespaceFooter();
 		
+		
+		this.node.as_source_version = this.node.updated_count;
+		this.node.as_source == this.ret;
 		return this.ret;
 		 
 			 

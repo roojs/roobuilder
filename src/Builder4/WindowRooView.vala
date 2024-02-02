@@ -274,7 +274,9 @@ public class Xcls_WindowRooView : Object
 			buf.remove_tag_by_name ("ERR", start, end);
 			buf.remove_tag_by_name ("WARN", start, end);
 			buf.remove_tag_by_name ("DEPR", start, end);
-			buf.remove_source_marks (start, end, null);
+			buf.remove_source_marks (start, end, "ERR");
+			buf.remove_source_marks (start, end, "WARN");
+			buf.remove_source_marks (start, end, "DEPR");
 			this.last_error_counter = file.error_counter ;
 			GLib.debug("higjlight has no errors");
 			return;
@@ -287,7 +289,9 @@ public class Xcls_WindowRooView : Object
 		
 	 
 		 
-		buf.remove_source_marks (start, end, null);
+		buf.remove_source_marks (start, end, "ERR");
+		buf.remove_source_marks (start, end, "WARN");
+		buf.remove_source_marks (start, end, "DEPR");
 		buf.remove_tag_by_name ("ERR", start, end);
 		buf.remove_tag_by_name ("WARN", start, end);
 		buf.remove_tag_by_name ("DEPR", start, end);

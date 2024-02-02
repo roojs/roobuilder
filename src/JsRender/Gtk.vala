@@ -131,16 +131,17 @@ namespace JsRender {
 			) {
 				var ar = obj.get_array_member("items");
 				var tree_base = ar.get_object_element(0);
-				this.tree = new Node();
-				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
-
+				this.loadTree(tree_base,  int.parse(bjs_version_str));
 			}
 		 	this.gen_extended ? 
 		 		NodeToValaExtended.mungeFile(this) :
 				NodeToValaWrapped.mungeFile(this); // force line numbering..?? should we call toSourceCode???
 			this.loaded = true;
+			this.updateUndo();
 		
 		}
+		
+		
 	     
 	    
 	
@@ -163,7 +164,11 @@ namespace JsRender {
 		    this.last_source =   	this.gen_extended ? 
 		 		NodeToValaExtended.mungeFile(this) :
 				NodeToValaWrapped.mungeFile(this);
+				
 		    this.last_source_version = this.version;
+		    
+		    
+		    
 		    return this.last_source;
 		    
 	    }
@@ -177,12 +182,14 @@ namespace JsRender {
 	        
 	    }
 	
-	    public override void save() {
+	    public override void save() 
+	    {
 	        this.saveBJS();
 	        // this.saveJS(); - disabled at present.. project settings will probably enable this later..
 	
 	        this.saveVala();
 
+			
 	        this.getLanguageServer().document_save.begin(this, (obj, res) => {
 	        	this.getLanguageServer().document_save.end(res);
 	        });

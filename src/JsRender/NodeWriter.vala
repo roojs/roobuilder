@@ -41,9 +41,7 @@ namespace JsRender {
 			this.file = file;
 			this.node = node;
 			this.depth = depth;
-			if (parent == null) {
-				this.var_name_count = 0;
-			}
+			 
 			this.top_level_items = new Gee.ArrayList<Node>();
 			this.cur_line = parent == null ? 0 : parent.cur_line;
 			this.top = parent == null ? this : parent.top;
@@ -62,7 +60,7 @@ namespace JsRender {
 			
 		}
 		
-		int var_name_count = 0; // was vcnt
+		//int var_name_count = 0; // was vcnt
 
 		string toValaNS(Node item)
 		{
@@ -93,7 +91,7 @@ namespace JsRender {
 		
 		public void  toValaName(Node item, int depth =0) 
 		{
-			this.var_name_count++;
+ 
 
 			var ns =  this.toValaNS(item) ;
 			var cls = ns + item.get("xtype");
@@ -101,7 +99,7 @@ namespace JsRender {
 			item.xvala_cls = cls;
 			
 			string id = item.get("id").length > 0 ?
-				item.get("id") :  "%s%d".printf(item.get("xtype"), this.var_name_count);
+				item.get("id") :  "%s%d".printf(item.get("xtype"), item.oid);
 
 			
 			

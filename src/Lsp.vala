@@ -83,7 +83,10 @@ namespace Lsp {
                  (character > other.character ? 1 :
                   (character == other.character ? 0 : -1)) : -1);
         }
-
+        public bool equals(Position o) {
+        	return o.line == this.line && o.character == this.character;
+    	}
+		
         public string to_string () {
             return @"$line:$character";
         }
@@ -148,7 +151,7 @@ namespace Lsp {
 
         public bool equal_to (Range other) { return this.to_string () == other.to_string (); }
 		public bool equals (Range o) {
-			return this.filename == o.filename && this.start == o.start && this.end == o.end;
+			return this.filename == o.filename && this.start.equals(o.start) && this.end.equals(o.end);
 		}
 
         public int compare_to (Range other) {
@@ -229,7 +232,11 @@ namespace Lsp {
 	    	
         }
         public bool equals(Lsp.Diagnostic o) {
-        	return this.range.equals(o.range) && this.severity == o.severity && this.message == o.message;
+       		var ret = this.range.equals(o.range) && this.severity == o.severity && this.message == o.message;
+        	//GLib.debug("compare %s  (%s == %s)", ret ? "YES" : "NO", this.to_string(), o.to_string()); 
+        	
+        	
+        	return ret;
         }
         public string to_string()
         {

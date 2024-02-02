@@ -123,13 +123,24 @@ public class JsRender.Node : GLib.Object {
 			this.nodeTitleProp = ""; // ?? should trigger set?
 			this.iconFilename = "";
 			this._updated_count = value;
+ 
+				
+			//GLib.debug("Update Node %d p%d - rev %d", this.oid, this.parent != null ? this.parent.oid : -1, value);
 			if (this.parent != null) {
 				this.parent.updated_count++;
+			}  else {
+				//GLib.debug("UNDO top node is %d", value);
+				this.version_changed();
 			}
 		}
  
 	} // changes to this trigger updates on the tree..
-
+	
+	public string as_source = "";
+	public int as_source_version = -1;
+	
+	public signal void  version_changed();
+	
 	public Node()
 	{
 		this.items = new Gee.ArrayList<Node>();
@@ -442,7 +453,7 @@ public class JsRender.Node : GLib.Object {
 		if ( this.parent.childstore.find(this, out pos)) {
 			this.parent.childstore.remove(pos);
 		} 
-		
+		this.parent.updated_count++;
 		this.parent.items = nlist;
 		this.parent = null;
 

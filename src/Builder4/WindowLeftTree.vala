@@ -51,8 +51,12 @@ public class Xcls_WindowLeftTree : Object
 	// user defined functions
 	public void updateErrors () {
 		var file = this.getActiveFile();
+		if (file == null) {
+			return;
+		}
+		
 		var ar = file.getErrors();
-			if (ar.size < 1) {
+		if (ar == null || ar.size < 1) {
 			if (this.last_error_counter != file.error_counter) {
 				this.removeErrors();
 			}
@@ -128,7 +132,7 @@ public class Xcls_WindowLeftTree : Object
 			 
 				
 				reading_header = false;
-				 
+				 continue;
 		    }
 		    
 		  	if (child.has_css_class("node-err")) {
@@ -368,7 +372,7 @@ public class Xcls_WindowLeftTree : Object
 		    	var reading_header = true;
 			 
 		    	while (child != null) {
-					GLib.debug("Got %s", child.get_type().name());
+					//GLib.debug("Got %s", child.get_type().name());
 		    	   
 		    	   if (reading_header) {
 						
@@ -401,36 +405,36 @@ public class Xcls_WindowLeftTree : Object
 		
 		 }
 		public int getColAt (double x,  double y) {
-		/*
-		    	
-		from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+			/*
+					
+			from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
 		    	  
-		    	*/
-				//Gtk.Allocation alloc = { 0, 0, 0, 0 };
-				//GLib.debug("Cehck %d, %d", x,y);
-		        var  child = this.el.get_first_child(); 
-		    	 
-		    	var col = 0;
-		    	var offx = 0;
-		    	while (child != null) {
-					
-					if (child.get_type().name() == "GtkColumnViewRowWidget") {
-						child = child.get_first_child();
-						continue;
-					}
-					
-					//child.get_allocation(out alloc);
-					if (x <  (child.get_width() + offx)) {
-						return col;
-					}
-					return 1;
-					//offx += child.get_width();
-					//col++;
-					//child = child.get_next_sibling();
+			*/
+			//Gtk.Allocation alloc = { 0, 0, 0, 0 };
+			//GLib.debug("Cehck %d, %d", x,y);
+		    var  child = this.el.get_first_child(); 
+			 
+			var col = 0;
+			var offx = 0;
+			while (child != null) {
+				
+				if (child.get_type().name() == "GtkColumnViewRowWidget") {
+					child = child.get_first_child();
+					continue;
 				}
-		    	     
-					  
-		        return -1;
+				
+				//child.get_allocation(out alloc);
+				if (x <  (child.get_width() + offx)) {
+					return col;
+				}
+				return 1;
+				//offx += child.get_width();
+				//col++;
+				//child = child.get_next_sibling();
+			}
+			     
+				  
+		    return -1;
 		
 		 }
 		public int getRowAt (double x,  double in_y, out string pos) {
@@ -450,7 +454,7 @@ public class Xcls_WindowLeftTree : Object
 		    	*/
 		 		 
 		 		
-		 		//GLib.debug("offset = %d  y = %d", (int) voff, (int) in_y);
+		 		GLib.debug("get Widget At Row x = %d  y = %d", (int) x, (int) in_y);
 		    	var y = in_y + _this.viewwin.el.vadjustment.value; 
 		        var  child = this.el.get_first_child(); 
 		    	//Gtk.Allocation alloc = { 0, 0, 0, 0 };
@@ -1291,7 +1295,7 @@ public class Xcls_WindowLeftTree : Object
 					
 					 var m = (GLib.ListStore) _this.model.el.model;
 			     	_this.main_window.windowstate.file.tree = dropNode;  
-			    
+			    	dropNode.updated_count++;
 			   
 					m.append(dropNode);
 					_this.model.selectNode(dropNode); 	
@@ -1351,7 +1355,7 @@ public class Xcls_WindowLeftTree : Object
 					 		_this.view.dragNode.remove();
 				 		}
 				 			
-				 		
+				 		dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode); 
 			 			
 			 			_this.changed();				 		
@@ -1365,7 +1369,7 @@ public class Xcls_WindowLeftTree : Object
 					 		_this.model.selectNode(null); 	 		
 					 		_this.view.dragNode.remove();
 				 		}
-				
+						dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode); 			
 			 			_this.changed();
 			 			return true;
@@ -1379,6 +1383,7 @@ public class Xcls_WindowLeftTree : Object
 				
 			 			
 			 			node.parent.insertAfter(dropNode, node);
+			 			dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode);	
 			 			_this.changed();
 			 			// select it
@@ -1591,7 +1596,7 @@ public class Xcls_WindowLeftTree : Object
 			for (var i = 0; i < s.n_items; i++) {
 				//GLib.debug("check node %s", s.get_item(i).get_type().name());
 				var lr = s.get_item(i) as Gtk.TreeListRow;
-				GLib.debug("check node %s", lr.get_item().get_type().name());
+				//GLib.debug("check node %s", lr.get_item().get_type().name());
 				if ((lr.get_item() as JsRender.Node).oid == node.oid) {
 					return i;
 					
