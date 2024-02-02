@@ -1472,7 +1472,7 @@
         "    \t*/",
         " \t\t ",
         " \t\t",
-        " \t\tGLib.debug(\"get Widget At Row offset = %d  y = %d\", (int) voff, (int) in_y);",
+        " \t\tGLib.debug(\"get Widget At Row x = %d  y = %d\", (int) x, (int) in_y);",
         "    \tvar y = in_y + _this.viewwin.el.vadjustment.value; ",
         "        var  child = this.el.get_first_child(); ",
         "    \t//Gtk.Allocation alloc = { 0, 0, 0, 0 };",
