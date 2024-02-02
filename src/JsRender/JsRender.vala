@@ -454,7 +454,7 @@ namespace JsRender {
 			if (this.undo_json.has_key(this.version+1)) {
 				var n = this.version +1;
 				while (this.undo_json.has_key(n)) {
-					this.undo_json.remove(n++);
+					this.undo_json.unset(n++);
 				}
 			
 			}
