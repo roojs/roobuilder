@@ -128,7 +128,7 @@ namespace JsRender {
 			get; private set; default = 0;
 		}
 
-		public signal void changed (Node? node, string source); 
+		//public signal void changed (Node? node, string source);  (not used?)
 		
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
