@@ -141,7 +141,7 @@ namespace JsRender {
 		
 		}
 		
-		public loadTree(Json.Object obj, bjs_version = 2)
+		public void loadTree(Json.Object obj, bjs_version = 2)
 		{
 			Node.uid_count = 0;
 			this.tree = new Node();
