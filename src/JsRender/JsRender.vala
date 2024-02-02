@@ -116,6 +116,9 @@ namespace JsRender {
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
 		public	Gee.HashMap<string,string> namedStrings;
+		
+		public Gee.HashMap<int,string> undo_json;
+		
 		//public	Gee.HashMap<string, GLib.ListStore> errorsByType;
 		private Gee.ArrayList<Lsp.Diagnostic> errors;
 		public int error_counter {
