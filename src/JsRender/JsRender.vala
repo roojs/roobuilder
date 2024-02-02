@@ -443,6 +443,15 @@ namespace JsRender {
 		        print("Save failed");
 		    }
 		}
+		
+		void updateUndo()
+		{
+			if (this.xtype == "PlainFile") {
+				return this.undo_json.set(this.revision, this.toSource());
+				return;
+			}
+			this.undo_json.set(this.revision, this.JsonString());
+		}
 		 
 		 
 
