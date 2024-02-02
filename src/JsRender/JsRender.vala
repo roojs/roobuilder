@@ -450,7 +450,7 @@ namespace JsRender {
 				this.undo_json.set(this.version, this.toSource());
 				return;
 			}
-			this.undo_json.set(this.version, this.JsonString());
+			this.undo_json.set(this.version, this.toJsonString());
 		}
 		
 		void undoBack()
@@ -460,12 +460,12 @@ namespace JsRender {
 				return;
 			}
 			var pa = new Json.Parser();
-			pa.load_from_file(this.path);
+			pa.load_from_sting(this.undo_json.get(this.version -1);
 			var node = pa.get_root();
 		
 			this.tree = new Node();
-			this.tree.loadFromJson(
-			this.tree.updated_count = this.revision -1;
+			this.tree.loadFromJson(node.get_object (), 2); 
+			this.tree.updated_count = this.revision - 1;
 			 
 			
 		}
