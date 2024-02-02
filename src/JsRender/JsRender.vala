@@ -861,6 +861,7 @@ namespace JsRender {
 		public abstract string toGlade();
 		public abstract string targetName();
 		public abstract void loadItems() throws GLib.Error;
+		public abstract void loadTree(Json.Object obj, bjs_version = 2);
 	} 
 	
 	 
