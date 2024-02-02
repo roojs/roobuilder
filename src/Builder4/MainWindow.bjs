@@ -59,6 +59,15 @@
         },
         {
          "$ xns" : "Gtk",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
          "string icon_name" : "edit-undo",
          "xtype" : "Button"
         },
