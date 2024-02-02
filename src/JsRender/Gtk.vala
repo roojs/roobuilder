@@ -163,7 +163,11 @@ namespace JsRender {
 		    this.last_source =   	this.gen_extended ? 
 		 		NodeToValaExtended.mungeFile(this) :
 				NodeToValaWrapped.mungeFile(this);
+				
 		    this.last_source_version = this.version;
+		    
+		    this.updateUndo();
+		    
 		    return this.last_source;
 		    
 	    }
@@ -177,7 +181,8 @@ namespace JsRender {
 	        
 	    }
 	
-	    public override void save() {
+	    public override void save() 
+	    {
 	        this.saveBJS();
 	        // this.saveJS(); - disabled at present.. project settings will probably enable this later..
 	
