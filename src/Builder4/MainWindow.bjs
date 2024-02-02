@@ -56,6 +56,15 @@
          },
          "string tooltip_text" : "Manage Windows (Ctrl-O)",
          "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "string icon_name" : "\"\"",
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "Button"
         }
        ],
        "xtype" : "Box"
