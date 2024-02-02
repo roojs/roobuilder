@@ -28,11 +28,10 @@ public class WindowState : Object
 	public Xcls_RooProjectSettings roo_projectsettings_pop;
 	public ValaProjectSettingsPopover  vala_projectsettings_pop; 
 	public Xcls_PopoverAddObject     rightpalete;
-	//public Xcls_PopoverEditor               code_editor_popover;
-	public Editor					 code_editor_tab; 
-	public Xcls_WindowRooView   window_rooview;
-	public Xcls_GtkView         window_gladeview;
-	public DialogFiles popover_files;
+	public Editor					code_editor_tab; 
+	public Xcls_WindowRooView		window_rooview;
+	public Xcls_GtkView				window_gladeview;
+	public DialogFiles				popover_files;
 	
 	//public Xcls_ClutterFiles     clutterfiles;
 	//public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
@@ -394,7 +393,7 @@ public class WindowState : Object
 			}
 			//this.left_tree.model.updateSelected();
 			this.file.save();
-
+			this.file.updateUndo();
 			 
 		});
 	 
