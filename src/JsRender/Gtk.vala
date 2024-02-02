@@ -188,7 +188,8 @@ namespace JsRender {
 	        // this.saveJS(); - disabled at present.. project settings will probably enable this later..
 	
 	        this.saveVala();
-
+			this.updateUndo();
+			
 	        this.getLanguageServer().document_save.begin(this, (obj, res) => {
 	        	this.getLanguageServer().document_save.end(res);
 	        });
