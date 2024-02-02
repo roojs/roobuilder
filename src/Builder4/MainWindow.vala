@@ -333,7 +333,7 @@ public class Xcls_MainWindow : Object
 				
 				GLib.debug("undo clicked");
 				if (_this.windowstate.file.xtype == "PlainFile") {
-					_this.windowstate.code_editor_tab.view.el.undo();
+					_this.windowstate.code_editor_tab.buffer.el.undo();
 				}
 				if (!_this.windowstate.file.undoStep(-1)) {
 					return;
@@ -380,7 +380,7 @@ public class Xcls_MainWindow : Object
 				
 				GLib.debug("undo clicked");
 				if (_this.windowstate.file.xtype == "PlainFile") {
-					_this.codeeditviewbox.view.el.reddo();
+					_this.windowstate.code_editor_tab.buffer.el.redo();
 				}
 				if (!_this.windowstate.file.undoStep(1)) {
 					return;
