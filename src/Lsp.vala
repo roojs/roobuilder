@@ -83,7 +83,10 @@ namespace Lsp {
                  (character > other.character ? 1 :
                   (character == other.character ? 0 : -1)) : -1);
         }
-
+        public equals(Position o) {
+        	return o.line == this.line && o.character == this.character;
+    	}
+		
         public string to_string () {
             return @"$line:$character";
         }
