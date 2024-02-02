@@ -394,7 +394,7 @@ public class WindowState : Object
 			}
 			//this.left_tree.model.updateSelected();
 			this.file.save();
-			this.file.updateUndo();
+
 			 
 		});
 	 
