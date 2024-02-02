@@ -64,6 +64,7 @@
         },
         {
          "$ xns" : "Gtk",
+         "string icon_name" : "edit-redo",
          "xtype" : "Button"
         }
        ],
