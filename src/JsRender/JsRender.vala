@@ -92,6 +92,7 @@ namespace JsRender {
 			
 		}
 
+
 		public string permname;
 		public string language;
 		public string content_type;
