@@ -148,7 +148,7 @@ namespace Lsp {
 
         public bool equal_to (Range other) { return this.to_string () == other.to_string (); }
 		public bool equals (Range o) {
-			return this.filename == o.filename && this.start == o.start && this.end == o.end;
+			return this.filename == o.filename && this.start.equals(o.start) && this.end.equals(o.end);
 		}
 
         public int compare_to (Range other) {
