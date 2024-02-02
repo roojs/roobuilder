@@ -445,7 +445,7 @@ public class JsRender.Node : GLib.Object {
 		if ( this.parent.childstore.find(this, out pos)) {
 			this.parent.childstore.remove(pos);
 		} 
-		
+		this.parent.updated_count++;
 		this.parent.items = nlist;
 		this.parent = null;
 
