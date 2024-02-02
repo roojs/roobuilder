@@ -59,6 +59,7 @@
         },
         {
          "$ xns" : "Gtk",
+         "bool has_frame" : false,
          "listeners" : {
           "clicked" : [
            "( ) => {",

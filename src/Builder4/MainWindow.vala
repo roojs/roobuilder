@@ -326,6 +326,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.icon_name = "edit-undo";
+			this.el.has_frame = false;
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
