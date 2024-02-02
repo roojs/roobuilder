@@ -461,11 +461,11 @@ namespace JsRender {
 			
 		}
 		
-		public void undoStep(int step = -1) // undo back/next
+		public bool undoStep(int step = -1) // undo back/next
 		{
  
 			if (!this.undo_json.has_key(this.version + step)) {
-				return;
+				return false;
 			}
 			var pa = new Json.Parser();
 			pa.load_from_data(this.undo_json.get(this.version + step);
@@ -474,6 +474,7 @@ namespace JsRender {
 			this.tree = new Node();
 			this.tree.loadFromJson(node.get_object (), 2); 
 			this.tree.updated_count = this.revision + step;
+			return true;
 		}
 		  
 		public string jsonHasOrEmpty(Json.Object obj, string key) {
