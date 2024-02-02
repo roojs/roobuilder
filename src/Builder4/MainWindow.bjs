@@ -59,7 +59,7 @@
         },
         {
          "$ xns" : "Gtk",
-         "string icon_name" : "\"\"",
+         "string icon_name" : "edit-undo",
          "xtype" : "Button"
         },
         {
