@@ -85,7 +85,9 @@ namespace JsRender {
 				return ++this._version; // increased on every call? - bit of a kludge until we do real versioning
 			}
 			private set {
+				
 				this._version = value;
+				this.updateUndo();
 			}
 			
 		}
