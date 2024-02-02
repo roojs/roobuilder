@@ -43,7 +43,7 @@ namespace Palete {
 		{
 			// extend versions will proably call initialize to start and connect to server.
 			base(project);
-			this.open_files = new 	Gee.ArrayList<JsRender.JsRender>();
+
 			this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
 		 		if (this.change_queue_file == null) {
 					return true;
@@ -201,9 +201,7 @@ namespace Palete {
 		public async void restartServer()
 		{
 			this.startServer();
-			foreach(var f in this.open_files) {
-				this.document_open(f);
-			}
+			 
 		}
 	
 		public bool isReady()
@@ -396,7 +394,9 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
-			     
+		   if (!this.open_files.contains(file)) {
+				 this.document_open(file);
+			}  
 			
 			GLib.debug ("LS send change %s rev %d", file.path, file.version);
 			var ar = new Json.Array();
