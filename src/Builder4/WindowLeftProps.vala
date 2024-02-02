@@ -88,8 +88,11 @@ public class Xcls_LeftProps : Object
 	}
 	public void updateErrors () {
 		var file = this.file;
+		if (file == null) {
+			return;
+		}
 		var ar = file.getErrors();
-		if (ar.size < 1) {
+		if (ar == null || ar.size < 1) {
 			if (this.last_error_counter != file.error_counter) {
 				this.removeErrors();
 			}
