@@ -1351,7 +1351,7 @@ public class Xcls_WindowLeftTree : Object
 					 		_this.view.dragNode.remove();
 				 		}
 				 			
-				 		
+				 		dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode); 
 			 			
 			 			_this.changed();				 		
@@ -1365,7 +1365,7 @@ public class Xcls_WindowLeftTree : Object
 					 		_this.model.selectNode(null); 	 		
 					 		_this.view.dragNode.remove();
 				 		}
-				
+						dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode); 			
 			 			_this.changed();
 			 			return true;
@@ -1379,6 +1379,7 @@ public class Xcls_WindowLeftTree : Object
 				
 			 			
 			 			node.parent.insertAfter(dropNode, node);
+			 			dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode);	
 			 			_this.changed();
 			 			// select it
