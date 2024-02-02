@@ -458,7 +458,7 @@ namespace JsRender {
 				// handled by gtk sourceview buffer...
 				return;
 			}
-			GLib.debug("UNDO store %d", this.version);
+			//GLib.debug("UNDO store %d", this.version);
 			this.undo_json.set(this.version, this.tree.toJsonString());
 			if (this.undo_json.has_key(this.version+1)) {
 				var n = this.version +1;
@@ -474,12 +474,12 @@ namespace JsRender {
 		{
  
 			if (!this.undo_json.has_key(this.version + step)) {
-				GLib.debug("UNDO step %d failed - no version available", this.version + step);
+				//GLib.debug("UNDO step %d failed - no version available", this.version + step);
 				return false;
 			}
 			var new_version = this.version + step;
 			var pa = new Json.Parser();
-			GLib.debug("UNDO RESTORE : %d",  this.version + step);
+			//GLib.debug("UNDO RESTORE : %d",  this.version + step);
 			
 			pa.load_from_data(this.undo_json.get(new_version));
 			var node = pa.get_root();
