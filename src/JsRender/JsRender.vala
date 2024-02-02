@@ -475,9 +475,7 @@ namespace JsRender {
 			var pa = new Json.Parser();
 			pa.load_from_data(this.undo_json.get(this.version + step));
 			var node = pa.get_root();
-		
-			this.tree = new Node();
-			this.tree.loadFromJson(node.get_object (), 2); 
+			this.loadTree(node,2); 
 			this.tree.updated_count = this.version + step;
 			return true;
 		}
