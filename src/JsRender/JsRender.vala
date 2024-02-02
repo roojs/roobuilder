@@ -453,21 +453,20 @@ namespace JsRender {
 			this.undo_json.set(this.version, this.toJsonString());
 		}
 		
-		void undoBack()
+		void undoStep(int step = -1)
 		{
  
-			if (!this.undo_json.has_key(this.version -1)) {
+			if (!this.undo_json.has_key(this.version + step)) {
 				return;
 			}
 			var pa = new Json.Parser();
-			pa.load_from_data(this.undo_json.get(this.version -1);
+			pa.load_from_data(this.undo_json.get(this.version + step);
 			var node = pa.get_root();
 		
 			this.tree = new Node();
 			this.tree.loadFromJson(node.get_object (), 2); 
-			this.tree.updated_count = this.revision - 1;
+			this.tree.updated_count = this.revision + step;
 			 
-			
 		}
 		 
 
