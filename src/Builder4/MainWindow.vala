@@ -335,16 +335,16 @@ public class Xcls_MainWindow : Object
 				
 				if (_this.windowstate.file.xtype == "PlainFile") {
 					_this.codeeditviewbox.el.show();
-					_this.windowstate,switchState (State.CODEONLY); 
+					_this.windowstate.switchState (WindowState.State.CODEONLY); 
 				 
 					_this.windowstate.code_editor_tab.show(_this.windowstate.file, null, null);
 					 
 				} else {
 				
-					_this.windowstate.switchState (State.PREVIEW); 
+					_this.windowstate.switchState (WindowState.State.PREVIEW); 
 					// this triggers loadItems..
 					_this.windowstate.left_tree.model.loadFile(
-						_this..windowstate.file);
+						_this.windowstate.file);
 					 
 			
 				}
