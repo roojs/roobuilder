@@ -152,6 +152,7 @@ namespace JsRender {
 			}
 		}
 		
+		
 		/**
 		 * UI componenets
 		 * 
