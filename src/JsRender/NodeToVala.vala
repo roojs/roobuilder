@@ -25,7 +25,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 	protected string this_el = "??";
 	 
- 	int child_count = 1; // used to number the children.
+ 	//int child_count = 1; // used to number the children.
 	public string cls;  // node fqn()
 	public string xcls;
 	
@@ -67,7 +67,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 		this.ignoreWrappedList  = new Gee.ArrayList<string>();
 		this.myvars = new Gee.ArrayList<string>();
-		this.child_count = 1;
+		//this.child_count = 1;
 		 
 	}
  
