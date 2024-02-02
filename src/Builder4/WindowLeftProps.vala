@@ -261,7 +261,7 @@ public class Xcls_LeftProps : Object
 			 
 				
 				reading_header = false;
-				 
+				continue;
 		    }
 		    
 		  	if (child.has_css_class("node-err")) {

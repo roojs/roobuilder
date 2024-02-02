@@ -1542,7 +1542,7 @@
     "\t\t ",
     "\t\t\t",
     "\t\t\treading_header = false;",
-    "\t\t\t ",
+    "\t\t\tcontinue;",
     "\t    }",
     "\t    ",
     "\t  \tif (child.has_css_class(\"node-err\")) {",
