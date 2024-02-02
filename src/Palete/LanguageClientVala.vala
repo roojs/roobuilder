@@ -151,6 +151,7 @@ namespace Palete {
 				    out return_value
 				);
 				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
+				this.open_files = new Gee.ArrayList<JsRender.JsRender>();
 				this.initialized = true;
 				return;
 			} catch (GLib.Error e) {
@@ -275,9 +276,11 @@ namespace Palete {
 			if (!this.isReady()) {
 				return;
 			}
-			if (!this.open_files.contains(file)) {
-				this.open_files.add(file);
+			if (this.open_files.contains(file)) {
+				return;
 			}
+			this.open_files.add(file);
+			
 			
 			GLib.debug ("LS sent open");			 
  			try {
