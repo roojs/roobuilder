@@ -267,7 +267,7 @@ namespace Palete {
 				//this.project.updateErrorsforFile(null);
 				return;
 			}
-			GLib.debug("got Diagnostics for %s", f.path);
+			//GLib.debug("got Diagnostics for %s", f.path);
 			f.updateErrors( dg.diagnostics );
 			 
 			
