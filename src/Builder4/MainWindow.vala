@@ -329,8 +329,10 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
-			
-			
+				if (!this.file.undoStep(-1)) {
+					return;
+				}
+				// load it everywhere
 			});
 		}
 

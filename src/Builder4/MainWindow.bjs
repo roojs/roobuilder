@@ -62,8 +62,10 @@
          "listeners" : {
           "clicked" : [
            "( ) => {",
-           "",
-           "",
+           "\tif (!this.file.undoStep(-1)) {",
+           "\t\treturn;",
+           "\t}",
+           "\t// load it everywhere",
            "}",
            ""
           ]
