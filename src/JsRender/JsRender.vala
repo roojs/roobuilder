@@ -477,14 +477,15 @@ namespace JsRender {
 				GLib.debug("UNDO step %d failed - no version available", this.version + step);
 				return false;
 			}
+			var new_version = this.version + step;
 			var pa = new Json.Parser();
 			GLib.debug("UNDO RESTORE : %d",  this.version + step);
 			
-			pa.load_from_data(this.undo_json.get(this.version + step));
+			pa.load_from_data(this.undo_json.get(new_version));
 			var node = pa.get_root();
 			this.in_undo = true;
 			this.loadTree(node.get_object(),2); 
-			this.tree.updated_count = this.version + step;
+			this.tree.updated_count = new_version;
 			this.in_undo = false;
 			return true;
 		}
