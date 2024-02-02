@@ -473,7 +473,7 @@ namespace JsRender {
 		
 			this.tree = new Node();
 			this.tree.loadFromJson(node.get_object (), 2); 
-			this.tree.updated_count = this.revision + step;
+			this.tree.updated_count = this.version + step;
 			return true;
 		}
 		  
