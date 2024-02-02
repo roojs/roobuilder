@@ -460,7 +460,7 @@ namespace JsRender {
 				return;
 			}
 			var pa = new Json.Parser();
-			pa.load_from_sting(this.undo_json.get(this.version -1);
+			pa.load_from_data(this.undo_json.get(this.version -1);
 			var node = pa.get_root();
 		
 			this.tree = new Node();
