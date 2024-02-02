@@ -1336,7 +1336,7 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			new Xcls_filesearch( _this );
-			this.el.child = _this.filesearch.el;
+			this.el.append( _this.filesearch.el );
 			var child_2 = new Xcls_Box37( _this );
 			child_2.ref();
 			this.el.append( child_2.el );

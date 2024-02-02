@@ -592,7 +592,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* prop" : "child",
          "bool has_tooltip" : true,
          "bool hexpand" : true,
          "id" : "filesearch",
