@@ -123,9 +123,7 @@ public class JsRender.Node : GLib.Object {
 			this.nodeTitleProp = ""; // ?? should trigger set?
 			this.iconFilename = "";
 			this._updated_count = value;
-			GLib.debug("Update Node %d p%d - rev %d", this.oid, this.parent != null ? this.parent.oid : -1, value);
-			
-			
+			//GLib.debug("Update Node %d p%d - rev %d", this.oid, this.parent != null ? this.parent.oid : -1, value);
 			if (this.parent != null) {
 				this.parent.updated_count++;
 			}  else {
