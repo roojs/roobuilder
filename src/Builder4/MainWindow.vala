@@ -334,20 +334,20 @@ public class Xcls_MainWindow : Object
 				}
 				
 				if (_this.windowstate.file.xtype == "PlainFile") {
-						this.codeeditviewbox.el.show();
-						_this.windowstate,switchState (State.CODEONLY); 
+					this.codeeditviewbox.el.show();
+					_this.windowstate,switchState (State.CODEONLY); 
+				 
+					_this.windowstate.code_editor_tab.show(_this.windowstate.file, null, null);
 					 
-						_this.windowstate.code_editor_tab.show(_this.windowstate.file, null, null);
-						 
-					} else {
-					
-						_this.windowstate.switchState (State.PREVIEW); 
-						// this triggers loadItems..
-						_this.windowstate.left_tree.model.loadFile(
-							_this..windowstate.file);
-						 
+				} else {
+				
+					_this.windowstate.switchState (State.PREVIEW); 
+					// this triggers loadItems..
+					_this.windowstate.left_tree.model.loadFile(
+						_this..windowstate.file);
+					 
 			
-					}
+				}
 			 
 			
 				// load it everywhere
