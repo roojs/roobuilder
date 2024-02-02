@@ -128,7 +128,7 @@ public class Xcls_WindowLeftTree : Object
 			 
 				
 				reading_header = false;
-				 
+				 continue;
 		    }
 		    
 		  	if (child.has_css_class("node-err")) {
