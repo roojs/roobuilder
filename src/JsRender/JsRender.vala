@@ -848,7 +848,7 @@ namespace JsRender {
 		
 		} 
 		
-		public override void loadTree(Json.Object obj, int bjs_version = 2)
+		public void loadTree(Json.Object obj, int bjs_version = 2)
 		{
 			if (this.xtype == "PlainFile" ){
 				return;
