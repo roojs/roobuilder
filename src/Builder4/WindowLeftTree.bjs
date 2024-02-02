@@ -1737,6 +1737,10 @@
    "| void updateErrors" : [
     "() {",
     "\tvar file = this.getActiveFile();",
+    "\tif (file == null) {",
+    "\t\treturn;",
+    "\t}",
+    "\t",
     "\tvar ar = file.getErrors();",
     "\tif (ar == null || ar.size < 1) {",
     "\t\tif (this.last_error_counter != file.error_counter) {",

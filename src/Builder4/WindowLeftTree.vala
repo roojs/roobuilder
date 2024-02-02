@@ -51,6 +51,10 @@ public class Xcls_WindowLeftTree : Object
 	// user defined functions
 	public void updateErrors () {
 		var file = this.getActiveFile();
+		if (file == null) {
+			return;
+		}
+		
 		var ar = file.getErrors();
 		if (ar == null || ar.size < 1) {
 			if (this.last_error_counter != file.error_counter) {
