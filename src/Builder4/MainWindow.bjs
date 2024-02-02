@@ -1278,7 +1278,7 @@
         "\t",
         "\t_this.treeview.el.set_model(_this.treeselmodel.el);",
         "\t",
-        " \t _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
+        " \t_this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
         "\t",
         " ",
         "}"
