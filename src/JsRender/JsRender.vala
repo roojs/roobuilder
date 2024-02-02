@@ -453,7 +453,7 @@ namespace JsRender {
 			this.undo_json.set(this.version, this.toJsonString());
 		}
 		
-		void undoStep(int step = -1)
+		void undoStep(int step = -1) // undo back/next
 		{
  
 			if (!this.undo_json.has_key(this.version + step)) {
