@@ -848,6 +848,21 @@ namespace JsRender {
 		
 		} 
 		
+		public override void loadTree(Json.Object obj, bjs_version = 2)
+		{
+			if (this.xtype == "PlainFile" ){
+				return;
+			}
+			Node.uid_count = 0;
+			this.tree = new Node();
+			this.tree.loadFromJson(tree_base,bjs_version);
+			this.tree.version_changed.connect(() => {
+				this.updateUndo();
+			});
+		
+		}
+		
+		
 		
 		public abstract string language_id();
 		public abstract void save();
