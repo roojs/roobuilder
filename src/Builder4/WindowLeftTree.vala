@@ -52,7 +52,7 @@ public class Xcls_WindowLeftTree : Object
 	public void updateErrors () {
 		var file = this.getActiveFile();
 		var ar = file.getErrors();
-			if (ar.size < 1) {
+		if (ar == null || ar.size < 1) {
 			if (this.last_error_counter != file.error_counter) {
 				this.removeErrors();
 			}
