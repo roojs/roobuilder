@@ -451,6 +451,14 @@ namespace JsRender {
 				return;
 			}
 			this.undo_json.set(this.version, this.toJsonString());
+			if (this.undo_json.has_key(this.version+1)) {
+				var n = this.version +1;
+				while (this.undo_json.has_key(n)) {
+					this.undo_json.remove(n++);
+				}
+			
+			}
+			
 		}
 		
 		public void undoStep(int step = -1) // undo back/next
