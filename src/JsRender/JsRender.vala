@@ -855,7 +855,7 @@ namespace JsRender {
 			}
 			Node.uid_count = 0;
 			this.tree = new Node();
-			this.tree.loadFromJson(tree_base,bjs_version);
+			this.tree.loadFromJson(obj,bjs_version);
 			this.tree.version_changed.connect(() => {
 				this.updateUndo();
 			});
