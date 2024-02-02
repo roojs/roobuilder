@@ -446,7 +446,7 @@ namespace JsRender {
 		    }
 		}
 		
-		public void updateUndo()
+		private void updateUndo()
 		{
 			if (this.xtype == "PlainFile") {
 				this.undo_json.set(this.version, this.toSource());
