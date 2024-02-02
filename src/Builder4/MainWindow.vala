@@ -329,6 +329,9 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
+				
+				GLib.debug("undo clicked");
+				
 				if (!_this.windowstate.file.undoStep(-1)) {
 					return;
 				}

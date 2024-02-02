@@ -62,6 +62,9 @@
          "listeners" : {
           "clicked" : [
            "( ) => {",
+           "\t",
+           "\tGLib.debug(\"undo clicked\");",
+           "\t",
            "\tif (!_this.windowstate.file.undoStep(-1)) {",
            "\t\treturn;",
            "\t}",
