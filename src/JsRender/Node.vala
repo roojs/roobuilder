@@ -136,7 +136,7 @@ public class JsRender.Node : GLib.Object {
 	} // changes to this trigger updates on the tree..
 	
 	public string as_source = "";
-	public string as_source_version = -1;
+	public int as_source_version = -1;
 	
 	public signal void  version_changed();
 	
