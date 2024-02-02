@@ -170,7 +170,7 @@ namespace JsRender {
 				
 		    this.last_source_version = this.version;
 		    
-		    this.updateUndo();
+		    
 		    
 		    return this.last_source;
 		    
