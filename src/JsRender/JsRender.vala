@@ -466,14 +466,7 @@ namespace JsRender {
 			this.tree = new Node();
 			this.tree.loadFromJson(node.get_object (), 2); 
 			this.tree.updated_count = this.revision + step;
-			 
 		}
-		 
-
-
-		 
-		 
-		 
 		  
 		public string jsonHasOrEmpty(Json.Object obj, string key) {
 			return obj.has_member(key) ? 
