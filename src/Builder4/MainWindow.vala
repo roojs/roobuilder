@@ -1543,11 +1543,12 @@ public class Xcls_MainWindow : Object
 				if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
 					return;
 				}
-				//GLib.debug(
-				//	"search key release %d, %d, %d  ?= %d" , 
-				//		(int) keyval, (int)  keycode, state,
-				//		(int)Gdk.Key.Return
-				//	);
+				GLib.debug(
+				
+					"searcj key release %d, %d, %d  ?= %d" , 
+						(int) keyval, (int)  keycode, state,
+						(int)Gdk.Key.Return
+					);
 				if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
 					return;
 				}
@@ -2814,11 +2815,12 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.key_released.connect( (keyval, keycode, state) => {
-				//GLib.debug(
-				//	"key release %d, %d, %d  ?= %d %d" , 
-				//		(int) keyval, (int)  keycode, state,
-				//		(int)Gdk.Key.O, Gdk.ModifierType.CONTROL_MASK
-				//);
+				GLib.debug(
+				
+					"key release %d, %d, %d  ?= %d %d" , 
+						(int) keyval, (int)  keycode, state,
+						(int)Gdk.Key.O, Gdk.ModifierType.CONTROL_MASK
+					);
 			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
 			 		this.is_shift = 0;
 				}
