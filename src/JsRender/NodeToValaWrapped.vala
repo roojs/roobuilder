@@ -57,7 +57,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	{
 		//return this.mungeToString(this.node);
 		if (this.node.as_source_version == this.node.updated_count) {
-			return this.node.as_source;
+			//return this.node.as_source;
 		}
 	
 		
