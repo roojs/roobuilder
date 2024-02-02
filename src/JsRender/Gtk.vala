@@ -139,6 +139,7 @@ namespace JsRender {
 		 		NodeToValaExtended.mungeFile(this) :
 				NodeToValaWrapped.mungeFile(this); // force line numbering..?? should we call toSourceCode???
 			this.loaded = true;
+			this.updateUndo();
 		
 		}
 	     
