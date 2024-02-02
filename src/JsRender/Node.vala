@@ -125,11 +125,14 @@ public class JsRender.Node : GLib.Object {
 			this._updated_count = value;
 			if (this.parent != null) {
 				this.parent.updated_count++;
+			}  else {
+				this.version_changed();
 			}
 		}
  
 	} // changes to this trigger updates on the tree..
-
+	public signal void  version_changed();
+	
 	public Node()
 	{
 		this.items = new Gee.ArrayList<Node>();
