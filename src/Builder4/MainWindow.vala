@@ -334,7 +334,7 @@ public class Xcls_MainWindow : Object
 				}
 				
 				if (_this.windowstate.file.xtype == "PlainFile") {
-					this.codeeditviewbox.el.show();
+					_this.codeeditviewbox.el.show();
 					_this.windowstate,switchState (State.CODEONLY); 
 				 
 					_this.windowstate.code_editor_tab.show(_this.windowstate.file, null, null);
@@ -383,7 +383,7 @@ public class Xcls_MainWindow : Object
 				}
 				
 				if (_this.windowstate.file.xtype == "PlainFile") {
-					this.codeeditviewbox.el.show();
+					_this.codeeditviewbox.el.show();
 					_this.windowstate,switchState (State.CODEONLY); 
 				 
 					_this.windowstate.code_editor_tab.show(_this.windowstate.file, null, null);
