@@ -378,8 +378,28 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
+				if (!_this.windowstate.file.undoStep(1)) {
+					return;
+				}
+				
+				if (_this.windowstate.file.xtype == "PlainFile") {
+					this.codeeditviewbox.el.show();
+					_this.windowstate,switchState (State.CODEONLY); 
+				 
+					_this.windowstate.code_editor_tab.show(_this.windowstate.file, null, null);
+					 
+				} else {
+				
+					_this.windowstate.switchState (State.PREVIEW); 
+					// this triggers loadItems..
+					_this.windowstate.left_tree.model.loadFile(
+						_this..windowstate.file);
+					 
 			
+				}
+			 
 			
+				// load it everywhere
 			});
 		}
 
