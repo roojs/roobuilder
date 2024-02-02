@@ -717,6 +717,7 @@
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
+             "  \t_this.splitview.el.show_sidebar = false;",
              "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
              "}"
             ]

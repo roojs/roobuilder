@@ -1539,6 +1539,7 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
+			  	_this.splitview.el.show_sidebar = false;
 			  	_this.windowstate.showPopoverFiles(this.el, _this.project, false);
 			});
 		}
