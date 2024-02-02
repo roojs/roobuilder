@@ -448,7 +448,7 @@ namespace JsRender {
 		    }
 		}
 		
-		var in_undo = false;
+		bool in_undo = false;
 		protected void updateUndo()
 		{
 			if (this.in_undo) {
@@ -474,6 +474,7 @@ namespace JsRender {
 		{
  
 			if (!this.undo_json.has_key(this.version + step)) {
+				GLib.debug("undo step %d failed - no version available", this.version + step);
 				return false;
 			}
 			var pa = new Json.Parser();
@@ -481,8 +482,10 @@ namespace JsRender {
 			
 			pa.load_from_data(this.undo_json.get(this.version + step));
 			var node = pa.get_root();
+			this.in_undo = true;
 			this.loadTree(node.get_object(),2); 
 			this.tree.updated_count = this.version + step;
+			this.in_undo = false;
 			return true;
 		}
 		  
