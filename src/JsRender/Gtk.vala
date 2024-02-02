@@ -131,6 +131,8 @@ namespace JsRender {
 			) {
 				var ar = obj.get_array_member("items");
 				var tree_base = ar.get_object_element(0);
+				Node.uid_count = 0;
+				
 				this.tree = new Node();
 				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
 				this.tree.version_changed.connect(() => {
