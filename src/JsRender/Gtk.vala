@@ -133,6 +133,9 @@ namespace JsRender {
 				var tree_base = ar.get_object_element(0);
 				this.tree = new Node();
 				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
+				this.tree.version_changed.connect(() {
+					this.updateUndo();
+				});
 
 			}
 		 	this.gen_extended ? 
