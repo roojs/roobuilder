@@ -229,7 +229,11 @@ namespace Lsp {
 	    	
         }
         public bool equals(Lsp.Diagnostic o) {
-        	return this.range.equals(o.range) && this.severity == o.severity && this.message == o.message;
+       		var ret = this.range.equals(o.range) && this.severity == o.severity && this.message == o.message;
+        	GLib.debug("compare %s  (%s == %s)", ret ? "YES" : "NO", this.to_string(), o.to_string()); 
+        	
+        	
+        	return ret;
         }
         public string to_string()
         {
