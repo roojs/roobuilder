@@ -3,33 +3,7 @@ using Gtk;
 
 /**
 
-Palete.map
- -> contains a list of parent and child classes
- // eg. what can be added to what.
- 
-// defaults
-
-// node properties??
-  (mostly from 
-
-Known issues with Palete
-
-
-Object Add:
-
-SourceView/TextView - can add widget (which doesnt really seem to work) - as it's subclassing a container
-Gtk.Table - adding children? (nothing is currently allowed.
-
-
-Properties list 
-- need to remove widgets from this..
-- help / show source interface etc..?
-- make wider?
-
-Events list
-- signature on insert
-- show source interface / help
-
+This basically provides all the data needed to add stuff to gtk objects 
   
 
 */
@@ -231,6 +205,10 @@ namespace Palete {
 				if (val.is_deprecated) {
 					continue;
 				}
+				if (!val.is_writable && !val.ctor_only ) { // if it's ctor we accept it.
+					continue;
+				}
+				
 				if (val.type == "GLib.Object") { /// this is practually everything? ?? shoud we display it as a property?
 					continue;
 				}
