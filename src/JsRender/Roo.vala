@@ -535,7 +535,7 @@ namespace JsRender {
 			}
 
 			var x = new NodeToJs( this,  this.tree,   pad , null, this.doubleStringProps);
-			x.addLine(prefix); 
+			x.addMultiLine(prefix, false); 
 			var ret = x.munge();
 		 	return  ret + suffix;
 			
