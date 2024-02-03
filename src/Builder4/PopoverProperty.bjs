@@ -106,6 +106,12 @@
           ]
          },
          "xtype" : "SignalListItemFactory"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "expression",
+         "string property_name" : "",
+         "xtype" : "PropertyExpression"
         }
        ],
        "xtype" : "DropDown"

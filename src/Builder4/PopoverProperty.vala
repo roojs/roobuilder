@@ -326,13 +326,15 @@ public class Xcls_PopoverProperty : Object
 		{
 			_this = _owner;
 			new Xcls_pmodel( _this );
-			this.el = new Gtk.DropDown( _this.pmodel.el, null );
+			var child_2 = new Xcls_PropertyExpression1139( _this );
+			child_2.ref();
+			this.el = new Gtk.DropDown( _this.pmodel.el, child_2.el );
 
 			// my vars (dec)
 
 			// set gobject values
-			var child_2 = new Xcls_SignalListItemFactory986( _this );
-			this.el.list_factory = child_2.el;
+			var child_3 = new Xcls_SignalListItemFactory986( _this );
+			this.el.list_factory = child_3.el;
 		}
 
 		// user defined functions
@@ -414,6 +416,28 @@ public class Xcls_PopoverProperty : Object
 				lbl.label = np.ptype.to_name();
 			 	 
 			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_PropertyExpression1139 : Object
+	{
+		public Gtk.PropertyExpression el;
+		private Xcls_PopoverProperty  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_PropertyExpression1139(Xcls_PopoverProperty _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.PropertyExpression( null, null, "" );
+
+			// my vars (dec)
+
+			// set gobject values
 		}
 
 		// user defined functions
