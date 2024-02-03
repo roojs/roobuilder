@@ -38,23 +38,15 @@ public class JsRender.NodeToJs : JsRender.NodeWriter {
 	
  
 
-	protected NodeWriter( JsRender file,  Node node,  int depth, NodeWriter? parent) 
-	public NodeToJs( Node node, Gee.ArrayList<string> doubleStringProps, string pad, NodeToJs? parent) 
+	protected NodetoJs( JsRender file,  Node node,  int depth, NodeWriter? parent, Gee.ArrayList<string> doubleStringProps) 
+	 
 	{
-		base(file
-		this.node = node;
+		base(file, node, depth, parent)
 		this.doubleStringProps = doubleStringProps;
-		this.pad = pad;
-		this.node.node_pad = pad;
 		
-		//this.els = new Gee.ArrayList<string>(); 
-		//this.ar_props = new Gee.HashMap<string,string>();
-		
-		
-		
-		// this is the bit that causes issues - we have to output as we go, otherwise we 
-		// can not work out which line is which...
-		
+		this.initPadding(4 * depth, " "); // fixme?
+		 
+		 
 		this.out_props = new Gee.HashMap<string,string>();
 		this.out_listeners = new Gee.HashMap<string,string>();	
 		
