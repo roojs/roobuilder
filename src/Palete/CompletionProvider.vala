@@ -60,6 +60,7 @@ namespace Palete {
 					word += i > 0 ? ", " : " ";
 					var wbit = args[i].strip().split(" ");
 					if (wbit.length < 2) {
+						word += wbit[0];
 						continue;
 					}
 					var ty = wbit[wbit.length - 2];
