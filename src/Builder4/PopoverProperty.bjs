@@ -64,7 +64,18 @@
         "\t\t"
        ],
        "$ xns" : "Gtk",
-       "* ctor" : "new Gtk.DropDown.from_strings(this.ptypes)",
+       "* ctor" : [
+        "new Gtk.DropDown.from_strings({ ",
+        "\t\"Raw Property (not quoted or escaped)\",",
+        "\t\"User Defined Method\",",
+        "\t\"Vala Signal\",",
+        "\t\"User Defined Property\",",
+        "\t\"Special Property (eg. prop / arg / ctor / init)\",",
+        "\t\"Listener / Signal Handler\",",
+        "\t\"Constructor?\",",
+        "\t\"Gtk/Roo Property\"",
+        "})"
+       ],
        "bool show_arrow" : true,
        "xtype" : "DropDown"
       },

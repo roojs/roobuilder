@@ -325,7 +325,16 @@ public class Xcls_PopoverProperty : Object
 		public Xcls_DropDown882(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.DropDown.from_strings(this.ptypes);
+			this.el = new Gtk.DropDown.from_strings({ 
+	"Raw Property (not quoted or escaped)",
+	"User Defined Method",
+	"Vala Signal",
+	"User Defined Property",
+	"Special Property (eg. prop / arg / ctor / init)",
+	"Listener / Signal Handler",
+	"Constructor?",
+	"Gtk/Roo Property"
+});
 
 			// my vars (dec)
 			this.ptypes = { 
