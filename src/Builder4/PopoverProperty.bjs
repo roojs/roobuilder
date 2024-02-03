@@ -51,7 +51,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* ctor" : "new Gtk.DropDown.from_strings(_this.})",
+       "* ctor" : "new Gtk.DropDown.from_strings(this..ptypes})",
        "* init" : [
         "{",
         "\t",
