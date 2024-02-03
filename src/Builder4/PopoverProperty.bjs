@@ -45,7 +45,7 @@
        "Gtk.Align halign" : "Gtk.Align.START",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "int margin_top" : 12,
-       "label" : "Type or Return Type",
+       "label" : "Property Type (eg. property or method)",
        "x_options" : 4,
        "xtype" : "Label"
       },

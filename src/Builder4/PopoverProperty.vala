@@ -299,7 +299,7 @@ public class Xcls_PopoverProperty : Object
 		public Xcls_Label399(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "Type or Return Type" );
+			this.el = new Gtk.Label( "Property Type (eg. property or method)" );
 
 			// my vars (dec)
 
