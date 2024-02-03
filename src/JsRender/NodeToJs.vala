@@ -16,14 +16,12 @@
 
 
 
-public class JsRender.NodeToJs : Object {
+public class JsRender.NodeToJs : JsRender.NodeWriter {
 
 	static uint indent = 1;
 	static string indent_str = " ";
 	
-	
-	
-	Node node;
+	 
 	Gee.ArrayList<string>  doubleStringProps;  // need to think if this is a good idea like this
 	string pad;
 	public JsRender renderer;
@@ -38,7 +36,7 @@ public class JsRender.NodeToJs : Object {
 	NodeToJs top;
 	public string ret;
 	
-	public int cur_line;
+ 
 
 	
 	public NodeToJs( Node node, Gee.ArrayList<string> doubleStringProps, string pad, NodeToJs? parent) 
