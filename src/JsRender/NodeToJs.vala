@@ -345,7 +345,7 @@ namespace JsRender {
 	 
 		public string mungeChildNew(string pad ,  Node cnode )
 		{
-			var x = new  NodetoJs( this.file, cnode,  pad , this, this.doubleStringProps); 
+			var x = new  NodeToJs( this.file, cnode,  pad , this, this.doubleStringProps); 
 
 		 
 			x.munge();
