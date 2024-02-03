@@ -74,6 +74,39 @@
          "* prop" : "model",
          "id" : "pmodel",
          "xtype" : "ListStore"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "factory",
+         "listeners" : {
+          "bind" : [
+           "(listitem) => {",
+           "",
+           " \tvar lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); ",
+           " \tvar np = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();",
+           " ",
+           "\t",
+           "  ",
+           "\tlbl.label = np.ptype.to_name();",
+           " \t ",
+           "}",
+           ""
+          ],
+          "setup" : [
+           "(listitem) => {",
+           "",
+           "\t ",
+           "\tvar label = new Gtk.Label(\"\");",
+           "\tlabel.xalign = 0;",
+           "\t ",
+           "\t((Gtk.ListItem)listitem).set_child(label);",
+           "\t((Gtk.ListItem)listitem).activatable = false;",
+           "\t",
+           "}",
+           ""
+          ]
+         },
+         "xtype" : "SignalListItemFactory"
         }
        ],
        "xtype" : "DropDown"

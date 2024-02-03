@@ -331,6 +331,8 @@ public class Xcls_PopoverProperty : Object
 			// my vars (dec)
 
 			// set gobject values
+			var child_2 = new Xcls_SignalListItemFactory986( _this );
+			this.el.factory = child_2.el;
 		}
 
 		// user defined functions
@@ -369,6 +371,50 @@ public class Xcls_PopoverProperty : Object
 				
 			
 			}
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_SignalListItemFactory986 : Object
+	{
+		public Gtk.SignalListItemFactory el;
+		private Xcls_PopoverProperty  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SignalListItemFactory986(Xcls_PopoverProperty _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SignalListItemFactory();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.setup.connect( (listitem) => {
+			
+				 
+				var label = new Gtk.Label("");
+				label.xalign = 0;
+				 
+				((Gtk.ListItem)listitem).set_child(label);
+				((Gtk.ListItem)listitem).activatable = false;
+				
+			});
+			this.el.bind.connect( (listitem) => {
+			
+			 	var lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); 
+			 	var np = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+			 
+				
+			  
+				lbl.label = np.ptype.to_name();
+			 	 
+			});
 		}
 
 		// user defined functions
