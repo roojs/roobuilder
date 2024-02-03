@@ -433,7 +433,7 @@ public class Xcls_PopoverProperty : Object
 		public Xcls_PropertyExpression1139(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.PropertyExpression( null, null, "" );
+			this.el = new Gtk.PropertyExpression( typeof(JsRender.NodeProp), null, "ptype_as_string" );
 
 			// my vars (dec)
 

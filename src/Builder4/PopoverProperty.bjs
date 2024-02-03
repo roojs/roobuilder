@@ -110,7 +110,8 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "expression",
-         "string property_name" : "",
+         "GLib.Type this_type" : "typeof(JsRender.NodeProp)",
+         "string property_name" : "ptype_as_string",
          "xtype" : "PropertyExpression"
         }
        ],
