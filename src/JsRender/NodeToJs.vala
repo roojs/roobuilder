@@ -41,7 +41,7 @@ public class JsRender.NodeToJs : NodeWriter {
 	public NodetoJs( JsRender file,  Node node,  int depth, NodeWriter? parent, Gee.ArrayList<string> doubleStringProps) 
 	 
 	{
-		base(file, node, depth, parent)
+		base(file, node, depth, parent);
 		this.doubleStringProps = doubleStringProps;
 		
 		this.initPadding(4 * depth, " "); // fixme?
