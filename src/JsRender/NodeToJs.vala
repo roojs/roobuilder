@@ -38,13 +38,13 @@ public class JsRender.NodeToJs : NodeWriter {
 	
  
 
-	public NodetoJs( JsRender file,  Node node,  int depth, NodeWriter? parent, Gee.ArrayList<string> doubleStringProps) 
+	public NodetoJs( JsRender file,  Node node,  string pad , NodeWriter? parent, Gee.ArrayList<string> doubleStringProps) 
 	 
 	{
-		base(file, node, depth, parent);
+		base(file, node, pad.length, parent);
 		this.doubleStringProps = doubleStringProps;
 		
-		this.initPadding(4 * depth, " "); // fixme?
+		this.pad = pad;  
 		 
 		 
 		this.out_props = new Gee.HashMap<string,string>();
@@ -170,10 +170,10 @@ public class JsRender.NodeToJs : NodeWriter {
 		var spad = this.pad.substring(0, this.pad.length-indent);
 		
 		if (this.node.props.has_key("* xinclude")) {
-			this.addLine("Roo.apply(" + this.node.props.get("* xinclude").val + "._tree(), {",0 );
+			this.addJsLine("Roo.apply(" + this.node.props.get("* xinclude").val + "._tree(), {",0 );
 	 
 		} else {
-			this.addLine("{", 0);
+			this.addJsLine("{", 0);
 		}
 		var suffix = "";
 		// output the items...
@@ -184,7 +184,7 @@ public class JsRender.NodeToJs : NodeWriter {
 			var v = this.out_props.get("xtype");
 			 
 			this.node.setLine(this.cur_line, "p","xtype"); 
-			this.addLine(this.pad + "xtype" + " : " + v + suffix, ',');
+			this.addJsLine(this.pad + "xtype" + " : " + v + suffix, ',');
 		}
 		
 		// plain properties.
@@ -200,7 +200,7 @@ public class JsRender.NodeToJs : NodeWriter {
 			var v = this.out_props.get(k);
 			this.node.setLine(this.cur_line, "p",k); 
 
-			this.addLine(this.pad + k + " : " + v + suffix, ',');
+			this.addJsLine(this.pad + k + " : " + v + suffix, ',');
 
 			this.node.setLine(this.cur_line, "e", k);
 			
@@ -210,7 +210,7 @@ public class JsRender.NodeToJs : NodeWriter {
 		
 		if (this.out_listeners.size > 0 ) { 
 			 
-			this.addLine(this.pad + "listeners : {", 0);
+			this.addJsLine(this.pad + "listeners : {", 0);
 			iter = this.orderedListenerKeys().list_iterator();
 			 
 			while(iter.next()) {
@@ -219,13 +219,13 @@ public class JsRender.NodeToJs : NodeWriter {
 				var v = this.out_listeners.get(k);
 
 				this.node.setLine(this.cur_line, "l",k); //listener
-				this.addLine(this.pad + indent_str + k + " : " + v , ',');
+				this.addJsLine(this.pad + indent_str + k + " : " + v , ',');
 
 				this.node.setLine(this.cur_line, "x", k);
 			}
 			
 			this.closeLine();
-			this.addLine(this.pad + "}" ,',');
+			this.addJsLine(this.pad + "}" ,',');
 			
 		}
 		
@@ -235,9 +235,9 @@ public class JsRender.NodeToJs : NodeWriter {
 			var v = this.out_props.get("xns");
 			 
 			this.node.setLine(this.cur_line, "p","xns"); 
-			this.addLine(this.pad + "xns" + " : " + v + suffix, ',');
+			this.addJsLine(this.pad + "xns" + " : " + v + suffix, ',');
 			this.node.setLine(this.cur_line, "p","| xns"); 
-			this.addLine(this.pad + "'|xns' : '" + v + "'", ',');
+			this.addJsLine(this.pad + "'|xns' : '" + v + "'", ',');
 			this.node.setLine(this.cur_line, "e", "xns");
 			 
 		}
@@ -254,7 +254,7 @@ public class JsRender.NodeToJs : NodeWriter {
 			this.node.setLine(this.cur_line, "p",niter.get_key());
 		 
 			var addstr = this.mungeChildNew(this.pad + indent_str, niter.get_value());
-			this.addLine(this.pad + niter.get_key() + " : " + addstr, ',');
+			this.addJsLine(this.pad + niter.get_key() + " : " + addstr, ',');
 			 	
 			this.node.setLine(this.cur_line, "e", "");
 		}			 
@@ -265,41 +265,41 @@ public class JsRender.NodeToJs : NodeWriter {
 		while(piter.next()) {
 			 
 			this.node.setLine(this.cur_line, "p",piter.get_key());
-			this.addLine(this.pad + piter.get_key() + " : [", 0);
+			this.addJsLine(this.pad + piter.get_key() + " : [", 0);
 			
 			var pliter = piter.get_value().list_iterator();
 			while (pliter.next()) {
 				var addstr = this.mungeChildNew(this.pad + indent_str  + indent_str, pliter.get());
-				this.addLine(this.pad + indent_str + addstr, ',');
+				this.addJsLine(this.pad + indent_str + addstr, ',');
 				this.node.setLine(this.cur_line, "e", "");
 			}
 			this.closeLine();
 			
-			this.addLine(this.pad + "]" , ',');			
+			this.addJsLine(this.pad + "]" , ',');			
 		 
 		}	
 		
 		// children..
 		if (this.out_children.size > 0) {
-			this.addLine(this.pad + "items  : [" , 0);
+			this.addJsLine(this.pad + "items  : [" , 0);
 			var cniter = this.out_children.list_iterator();
 			while (cniter.next()) {
 				suffix = cniter.has_next()  ? "," : "";
 				var addstr = this.mungeChildNew(this.pad + indent_str  + indent_str, cniter.get());
-				this.addLine(this.pad + indent_str + addstr, ',');
+				this.addJsLine(this.pad + indent_str + addstr, ',');
 				this.node.setLine(this.cur_line, "e", "");
 				
 			}
 			this.closeLine();
-			this.addLine(this.pad +   "]",',');
+			this.addJsLine(this.pad +   "]",',');
 		}
 		this.node.setLine(this.cur_line, "e", "");
 		this.closeLine();
 		if (this.node.props.has_key("* xinclude")) {
-			this.addLine(spad + "})",0);
+			this.addJsLine(spad + "})",0);
 	 
 		} else {
-			this.addLine( spad + "}", 0);
+			this.addJsLine( spad + "}", 0);
 		}
 		
 		this.node.sortLines();
@@ -327,7 +327,7 @@ public class JsRender.NodeToJs : NodeWriter {
 	*        line_end = ','  and ","
 	*  
 	*/
-	public void addLine(string str, char line_end)
+	public void addJsLine(string str, char line_end)
 	{
 		if (this.last_line_end != '!') {
 			this.ret += (this.last_line_end == 0 ? "" : this.last_line_end.to_string()) + "\n"; 
@@ -346,14 +346,7 @@ public class JsRender.NodeToJs : NodeWriter {
 		this.last_line_end = 0;
 	}
 	
-/*	public void addMultiLine(str= "")
-	{
-		
-		//this.ret +=   "/ * %d(%d-%d) * / ".printf(this.cur_line, this.node.line_start,this.node.line_end)+ str + "\n";
-		this.ret +=   str + "\n";
-		this.cur_line += str.split("\n").length;
-	}
- */
+ 
 	public string mungeChildNew(string pad ,  Node cnode )
 	{
 		var x = new  NodeToJs(cnode, this.doubleStringProps, pad, this);
