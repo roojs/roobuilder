@@ -64,7 +64,7 @@
         "\t\t"
        ],
        "$ xns" : "Gtk",
-       "* ctor" : "new Gtk.DropDown.from_strings(this.ptypes})",
+       "* ctor" : "new Gtk.DropDown.from_strings(this.ptypes)",
        "bool show_arrow" : true,
        "xtype" : "DropDown"
       },
