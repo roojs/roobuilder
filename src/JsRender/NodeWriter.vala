@@ -189,4 +189,4 @@ namespace JsRender {
 		
 		
 	}
-}bool
+}
