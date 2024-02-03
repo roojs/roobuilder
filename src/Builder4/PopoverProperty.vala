@@ -328,17 +328,16 @@ public class Xcls_PopoverProperty : Object
 			this.el = new Gtk.DropDown.from_strings(this..ptypes});
 
 			// my vars (dec)
-			this.ptypes = case RAW: 		return "Raw Property (not quoted or escaped)";
-			case METHOD : 	return "User Defined Method";	
-			case SIGNAL : 	return  "Vala Signal"; // vala signal
-			case USER : 	return  "User Defined Property"; // user defined.
-			case SPECIAL : return  "Special Property (eg. prop / arg / ctor / init)"; // * prop| args | ctor | init
-	 		case LISTENER : return  "Listener / Signal Handler";  // always raw...
-	 		// not used
-	 		case NONE:  return "None??";
-			case CTOR:  return "Constructor?";
-			case PROP:  return "Gtk/Roo Property";
-			default: return "oops";;
+			this.ptypes = { 
+	"Raw Property (not quoted or escaped)",
+	"User Defined Method",
+	"Vala Signal",
+	"User Defined Property",
+	"Special Property (eg. prop / arg / ctor / init)",
+	"Listener / Signal Handler",
+	"Constructor?",
+	"Gtk/Roo Property"
+};
 
 			// set gobject values
 			this.el.show_arrow = true;
