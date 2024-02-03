@@ -2061,6 +2061,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.has_frame = false;
 			this.el.label = "Save as Module";
 
 			//listeners
