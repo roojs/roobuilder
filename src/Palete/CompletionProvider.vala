@@ -59,6 +59,9 @@ namespace Palete {
 				for(var i = 0 ; i < args.length; i++) {
 					word += i > 0 ? ", " : " ";
 					var wbit = args[i].strip().split(" ");
+					if (wbit.length < 2) {
+						continue;
+					}
 					var ty = wbit[wbit.length - 2];
 					ty = ty.has_suffix("?") ? "?" : "";  
 					word += ty + wbit[wbit.length-1]; // property type..?
