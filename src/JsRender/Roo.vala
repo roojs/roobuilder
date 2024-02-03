@@ -533,8 +533,9 @@ namespace JsRender {
 			if (this.tree == null) {
 				return "";
 			}
-			var x = new NodeToJs(this.tree, this.doubleStringProps, pad, null);
-			x.renderer = this;
+
+			var x = new NodeToJs( this,  this.tree,   pad , null, this.doubleStringProps) 
+
 			x.cur_line = prefix.split("\n").length;
 			
 			var ret = x.munge();
