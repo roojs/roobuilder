@@ -24,7 +24,7 @@ namespace JsRender {
 			}
 		}
 	 
-	 	string output = "";  // the result of outputing..
+	 	protected string output = "";  // the result of outputing..
 		
 		Gee.ArrayList<string> ignoreList;
 		static 	Gee.ArrayList<string>? globalIgnoreList = null; 
