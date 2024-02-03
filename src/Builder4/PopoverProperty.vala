@@ -324,7 +324,7 @@ public class Xcls_PopoverProperty : Object
 		public Xcls_DropDown882(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.DropDown( null, null );
+			this.el = new Gtk.DropDown.from_sting(;
 
 			// my vars (dec)
 
