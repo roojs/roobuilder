@@ -17,6 +17,7 @@ roobuilder (5.0.2) UNRELEASED; urgency=medium
   * undo and redo buttons - now work
   * improved performance on node generation, and language server call performance (less uneccessary calls)
   * use find path for searching for vala-language-server (and add it as a dependancy!)
+  * support for Adw in rendering of previews (limited though)
   
  -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
 

@@ -103,6 +103,7 @@ public class JsRender.NodeToGlade : Object {
 		switch(this.node.NS) {
 			case "Gtk":
 			case "Webkit": //??
+			case "Adw": // works if you call adw.init() in main!
 				break;
 			default:
 				return doc;

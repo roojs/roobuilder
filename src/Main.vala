@@ -15,7 +15,7 @@ int main (string[] args) {
 	  
     Gtk.init ();
     GtkSource.init();
- 
+	Adw.init();
 	
 	// not sure why this was done?? - it caused crash bugs on gtk_Box_gadget so removed critical.
 	// GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR | LogLevelFlags.LEVEL_CRITICAL); 
