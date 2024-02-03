@@ -51,7 +51,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* ctor" : "new Gtk.DropDown.from_sting([])",
+       "* ctor" : "new Gtk.DropDown.from_sting({})",
        "bool show_arrow" : true,
        "xtype" : "DropDown"
       },
