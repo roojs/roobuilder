@@ -332,7 +332,7 @@ public class Xcls_PopoverProperty : Object
 
 			// set gobject values
 			var child_2 = new Xcls_SignalListItemFactory986( _this );
-			this.el.factory = child_2.el;
+			this.el.list_factory = child_2.el;
 		}
 
 		// user defined functions

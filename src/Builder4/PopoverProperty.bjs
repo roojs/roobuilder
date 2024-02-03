@@ -77,7 +77,7 @@
         },
         {
          "$ xns" : "Gtk",
-         "* prop" : "factory",
+         "* prop" : "list_factory",
          "listeners" : {
           "bind" : [
            "(listitem) => {",
