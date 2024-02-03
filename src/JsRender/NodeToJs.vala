@@ -45,7 +45,7 @@ public class JsRender.NodeToJs : NodeWriter {
 		this.doubleStringProps = doubleStringProps;
 		
 		this.pad = pad;  
-		 
+		this.node.node_pad = pad;
 		 
 		this.out_props = new Gee.HashMap<string,string>();
 		this.out_listeners = new Gee.HashMap<string,string>();	
