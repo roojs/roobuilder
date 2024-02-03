@@ -136,7 +136,7 @@ namespace JsRender {
 						  
 		}
 		
-		protected void addLine(string str= "")
+		public void addLine(string str= "")
 		{
 			
 			if (str.contains("\n")) {
