@@ -51,6 +51,10 @@
       },
       {
        "$ xns" : "Gtk",
+       "xtype" : "DropDown"
+      },
+      {
+       "$ xns" : "Gtk",
        "bool show_row_separators" : true,
        "bool show_separators" : true,
        "bool visible" : false,

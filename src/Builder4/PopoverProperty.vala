@@ -214,16 +214,19 @@ public class Xcls_PopoverProperty : Object
 			var child_2 = new Xcls_Label399( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
+			var child_3 = new Xcls_DropDown882( _this );
+			child_3.ref();
+			this.el.append( child_3.el );
 			new Xcls_ptype( _this );
 			this.el.append( _this.ptype.el );
-			var child_4 = new Xcls_Label9( _this );
-			child_4.ref();
-			this.el.append( child_4.el );
+			var child_5 = new Xcls_Label9( _this );
+			child_5.ref();
+			this.el.append( child_5.el );
 			new Xcls_ktype( _this );
 			this.el.append( _this.ktype.el );
-			var child_6 = new Xcls_Label11( _this );
-			child_6.ref();
-			this.el.append( child_6.el );
+			var child_7 = new Xcls_Label11( _this );
+			child_7.ref();
+			this.el.append( child_7.el );
 			new Xcls_kname( _this );
 			this.el.append( _this.kname.el );
 			new Xcls_error( _this );
@@ -304,6 +307,28 @@ public class Xcls_PopoverProperty : Object
 			this.el.justify = Gtk.Justification.LEFT;
 			this.el.margin_top = 12;
 			this.el.visible = true;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_DropDown882 : Object
+	{
+		public Gtk.DropDown el;
+		private Xcls_PopoverProperty  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_DropDown882(Xcls_PopoverProperty _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.DropDown( null, null );
+
+			// my vars (dec)
+
+			// set gobject values
 		}
 
 		// user defined functions
