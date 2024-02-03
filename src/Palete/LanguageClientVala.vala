@@ -35,7 +35,13 @@ namespace Palete {
 		}
 		void startServer()
 		{
-			this.initProcess("/usr/bin/vala-language-server");
+			var exe = GLib.Environment.find_program_in_path( "vala-language-server");
+			if (exe == null) {
+				GLib.warning("could not find vala-language-server");
+				 
+				return;
+			}
+			this.initProcess(exe);
 		}
 		
 		
