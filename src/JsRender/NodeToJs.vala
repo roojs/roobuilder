@@ -349,7 +349,8 @@ public class JsRender.NodeToJs : NodeWriter {
  
 	public string mungeChildNew(string pad ,  Node cnode )
 	{
-		var x = new  NodeToJs(cnode, this.doubleStringProps, pad, this);
+		var x = new  NodetoJs( this.file, cnode,  pad , this, this.doubleStringProps); 
+
 	 
 		x.munge();
 		return x.ret;
