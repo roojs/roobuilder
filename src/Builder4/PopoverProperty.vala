@@ -333,6 +333,7 @@ public class Xcls_PopoverProperty : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.show_arrow = true;
 			var child_3 = new Xcls_SignalListItemFactory1243( _this );
 			this.el.factory = child_3.el;
 			var child_4 = new Xcls_SignalListItemFactory986( _this );

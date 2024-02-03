@@ -51,6 +51,7 @@
       },
       {
        "$ xns" : "Gtk",
+       "bool show_arrow" : true,
        "items" : [
         {
          "$ xns" : "GLib",
