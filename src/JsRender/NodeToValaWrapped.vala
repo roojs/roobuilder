@@ -57,12 +57,12 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		//return this.mungeToString(this.node);
 		if (this.node.as_source_version > 0 && 
 			this.node.as_source_version == this.node.updated_count &&
-			this.node_as_source_start_line == cur_line
+			this.node.as_source_start_line == cur_line
 			&& this.node.as_source != ""
 		) {
 			return this.node.as_source;
 		}
-		this.node_as_source_start_line = cur_line;
+		this.node.as_source_start_line = cur_line;
 		
 		this.namespaceHeader();
 		this.globalVars();
@@ -87,7 +87,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.iterChildren();
 		this.namespaceFooter();
 		
-		this.node_as_source_end_line = cur_line;
+		this.node.as_source_end_line = cur_line; // not sure if really needed..
 		this.node.as_source_version = this.node.updated_count;
 		this.node.as_source == this.ret;
 		return this.ret;
