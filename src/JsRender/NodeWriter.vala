@@ -150,13 +150,15 @@ namespace JsRender {
 				this.output += str + "\n";
 			//}
 		}
-		protected void addMultiLine(string str= "")
+		protected void addMultiLine(string str= "", addLastLine = true)
 		{
 			 
 			this.cur_line += str.split("\n").length;
+			this.cur_line -= (addLastLine? 0 : 1);
+			
 			//this.ret +=  "/*%d*/ ".printf(l) + str + "\n";
 			//GLib.debug(str);
-			this.output +=   str + "\n";
+			this.output +=   str + (addLastLine ?  "\n" : "";
 		}
 		protected string padMultiline(string pad, string str)
 		{
