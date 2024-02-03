@@ -9,31 +9,27 @@ Changlog
 ---
 Debian and Ubuntu packages
 
+ * you will need libvala (available on most debian/ubuntu repos), 
+   and vala-language-server (available below)
+ 
   https://github.com/roojs/roobuilder/releases
+  https://github.com/roojs/vala-language-server/releases 
   
-  * you will need libvala, roojspacker and a few other packages 
-
-
 
 
 Building it
 
-  a) Install roojspacker (either from binary or source)
-
-     see https://www.dropbox.com/sh/sgy9kvzkbaowa92/AAC_Yt3KWzFx8t451BiJLqQ7a?dl=0
-
-  b) Clone this code..
+  a) Clone this code..
   
     git clone https://github.com/roojs/roobuilder.git
     
-  c) configure it.
+  b) configure it.
   
     meson setup build --prefix=/usr
     
-  d) make make install
+  c) make make install
   
-    cd build
-    ninja install
+    ninja -C install
     
   e) run it
 
