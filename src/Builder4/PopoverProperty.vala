@@ -14,6 +14,7 @@ public class Xcls_PopoverProperty : Object
 	}
 	public Xcls_header header;
 	public Xcls_headertitle headertitle;
+	public Xcls_pmodel pmodel;
 	public Xcls_ptype ptype;
 	public Xcls_pselmodel pselmodel;
 	public Xcls_pmodel pmodel;
@@ -324,7 +325,8 @@ public class Xcls_PopoverProperty : Object
 		public Xcls_DropDown882(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.DropDown( null, null );
+			new Xcls_pmodel( _this );
+			this.el = new Gtk.DropDown( _this.pmodel.el, null );
 
 			// my vars (dec)
 
@@ -333,6 +335,45 @@ public class Xcls_PopoverProperty : Object
 
 		// user defined functions
 	}
+	public class Xcls_pmodel : Object
+	{
+		public GLib.ListStore el;
+		private Xcls_PopoverProperty  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_pmodel(Xcls_PopoverProperty _owner )
+		{
+			_this = _owner;
+			_this.pmodel = this;
+			this.el = new GLib.ListStore(typeof(JsRender.NodeProp));;
+
+			// my vars (dec)
+
+			// set gobject values
+
+			// init method
+
+			{
+			
+			
+				this.el.append( new JsRender.NodeProp.prop(""));
+				this.el.append( new JsRender.NodeProp.raw(""));
+				this.el.append( new JsRender.NodeProp.valamethod(""));
+				this.el.append( new JsRender.NodeProp.special(""));	
+				this.el.append( new JsRender.NodeProp.listener(""));		
+				this.el.append( new JsRender.NodeProp.user(""));	
+				this.el.append( new JsRender.NodeProp.sig(""));	
+				
+			
+			}
+		}
+
+		// user defined functions
+	}
+
 
 	public class Xcls_ptype : Object
 	{
