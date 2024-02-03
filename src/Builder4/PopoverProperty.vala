@@ -17,7 +17,7 @@ public class Xcls_PopoverProperty : Object
 	public Xcls_pmodel pmodel;
 	public Xcls_ptype ptype;
 	public Xcls_pselmodel pselmodel;
-	public Xcls_pmodel pmodel;
+	public Xcls_xpmodel xpmodel;
 	public Xcls_ktype ktype;
 	public Xcls_kname kname;
 	public Xcls_error error;
@@ -484,8 +484,8 @@ public class Xcls_PopoverProperty : Object
 		{
 			_this = _owner;
 			_this.pselmodel = this;
-			new Xcls_pmodel( _this );
-			this.el = new Gtk.SingleSelection( _this.pmodel.el );
+			new Xcls_xpmodel( _this );
+			this.el = new Gtk.SingleSelection( _this.xpmodel.el );
 
 			// my vars (dec)
 
@@ -494,7 +494,7 @@ public class Xcls_PopoverProperty : Object
 
 		// user defined functions
 	}
-	public class Xcls_pmodel : Object
+	public class Xcls_xpmodel : Object
 	{
 		public GLib.ListStore el;
 		private Xcls_PopoverProperty  _this;
@@ -503,10 +503,10 @@ public class Xcls_PopoverProperty : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_pmodel(Xcls_PopoverProperty _owner )
+		public Xcls_xpmodel(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
-			_this.pmodel = this;
+			_this.xpmodel = this;
 			this.el = new GLib.ListStore(typeof(JsRender.NodeProp));;
 
 			// my vars (dec)
