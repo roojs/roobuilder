@@ -138,6 +138,9 @@ public class JsRender.Node : GLib.Object {
 	
 	public string as_source = "";
 	public int as_source_version = -1;
+	public int as_source_start_line = -1;
+	 
+	
 	
 	public signal void  version_changed();
 	
