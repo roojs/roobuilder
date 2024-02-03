@@ -38,7 +38,7 @@ namespace JsRender {
 		
 	 
 
-		public NodetoJs( JsRender file,  Node node,  string pad , NodeWriter? parent, Gee.ArrayList<string> doubleStringProps) 
+		public NodeToJs( JsRender file,  Node node,  string pad , NodeWriter? parent, Gee.ArrayList<string> doubleStringProps) 
 		 
 		{
 			base(file, node, pad.length, parent);
@@ -56,13 +56,9 @@ namespace JsRender {
 			
 			this.out_props_array = new Gee.HashMap<string,Gee.ArrayList<Node>>(); // filled in by 'checkChildren'
 			this.out_props_array_plain = new Gee.HashMap<string,Gee.ArrayList<string>>() ;
-		
-			
-			
+		 
 			this.cur_line = parent == null ? 0 : parent.cur_line  ; //-1 as we usuall concat onto the existin gline?
-			if (parent != null) {
-				this.file = parent.file;
-			}
+			 
 			this.ret = "";
 			this.top = parent == null ? this : parent.top;
 			// reset the maps...
@@ -330,11 +326,11 @@ namespace JsRender {
 		public void addJsLine(string str, char line_end)
 		{
 			if (this.last_line_end != '!') {
-				this.ret += (this.last_line_end == 0 ? "" : this.last_line_end.to_string()) + "\n"; 
+				this.output += (this.last_line_end == 0 ? "" : this.last_line_end.to_string()) + "\n"; 
 			}
 			this.last_line_end = line_end;
 			this.cur_line += str.split("\n").length;
-			this.ret += str;
+			this.output += str;
 			
 			
 			//this.ret +=  "/*%d(%d-%d)*/ ".printf(this.cur_line -1, this.node.line_start,this.node.line_end) + str + "\n";
