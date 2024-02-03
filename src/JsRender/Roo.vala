@@ -533,17 +533,11 @@ namespace JsRender {
 			if (this.tree == null) {
 				return "";
 			}
-			var x = new NodeToJs(this.tree, this.doubleStringProps, pad, null);
-			x.renderer = this;
-			x.cur_line = prefix.split("\n").length;
-			
+
+			var x = new NodeToJs( this,  this.tree,   pad , null, this.doubleStringProps);
+			x.addMultiLine(prefix, false); 
 			var ret = x.munge();
-			//var nret = x.ret;
-			
-			// output both files.. so we can diff them...
-			//this.writeFile("/tmp/old.js", ret);
-			//this.writeFile("/tmp/new.js", nret);			
-			return prefix +  ret + suffix;
+		 	return  ret + suffix;
 			
 		    
 		}

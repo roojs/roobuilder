@@ -24,7 +24,7 @@ namespace JsRender {
 			}
 		}
 	 
-	 	string output = "";  // the result of outputing..
+	 	protected string output = "";  // the result of outputing..
 		
 		Gee.ArrayList<string> ignoreList;
 		static 	Gee.ArrayList<string>? globalIgnoreList = null; 
@@ -136,9 +136,8 @@ namespace JsRender {
 						  
 		}
 		
-		protected void addLine(string str= "")
+		public void addLine(string str= "")
 		{
-			
 			if (str.contains("\n")) {
 				this.addMultiLine(str);
 				return;
@@ -151,13 +150,15 @@ namespace JsRender {
 				this.output += str + "\n";
 			//}
 		}
-		protected void addMultiLine(string str= "")
+		public void addMultiLine(string str= "", bool addLastLine = true)
 		{
 			 
 			this.cur_line += str.split("\n").length;
+			this.cur_line -= (addLastLine? 0 : 1);
+			
 			//this.ret +=  "/*%d*/ ".printf(l) + str + "\n";
 			//GLib.debug(str);
-			this.output +=   str + "\n";
+			this.output +=   str + (addLastLine ?  "\n" : "");
 		}
 		protected string padMultiline(string pad, string str)
 		{
