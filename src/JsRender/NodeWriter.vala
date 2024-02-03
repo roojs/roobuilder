@@ -158,7 +158,7 @@ namespace JsRender {
 			
 			//this.ret +=  "/*%d*/ ".printf(l) + str + "\n";
 			//GLib.debug(str);
-			this.output +=   str + (addLastLine ?  "\n" : "";
+			this.output +=   str + (addLastLine ?  "\n" : "");
 		}
 		protected string padMultiline(string pad, string str)
 		{
