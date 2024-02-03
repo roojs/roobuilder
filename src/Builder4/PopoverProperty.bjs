@@ -87,7 +87,7 @@
             ""
            ],
            "* prop" : "model",
-           "id" : "xpmodel",
+           "id" : "pmodel",
            "xtype" : "ListStore"
           }
          ],
