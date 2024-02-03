@@ -50,10 +50,7 @@
        "xtype" : "Label"
       },
       {
-       "$ xns" : "Gtk",
-       "* ctor" : "new Gtk.DropDown.from_strings(this..ptypes})",
-       "bool show_arrow" : true,
-       "string[] ptypes" : [
+       "$ string[] ptypes" : [
         "{ ",
         "\t\"Raw Property (not quoted or escaped)\",",
         "\t\"User Defined Method\",",
@@ -66,6 +63,9 @@
         "}",
         "\t\t"
        ],
+       "$ xns" : "Gtk",
+       "* ctor" : "new Gtk.DropDown.from_strings(this.ptypes})",
+       "bool show_arrow" : true,
        "xtype" : "DropDown"
       },
       {
