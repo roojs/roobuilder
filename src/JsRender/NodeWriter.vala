@@ -138,7 +138,6 @@ namespace JsRender {
 		
 		public void addLine(string str= "")
 		{
-			
 			if (str.contains("\n")) {
 				this.addMultiLine(str);
 				return;
