@@ -217,6 +217,10 @@ public class JsRender.NodeProp : Object {
 		this.childstore = new GLib.ListStore( typeof(NodeProp));
 		 
 	}
+	public string ptype_as_string {
+		get { return this.ptype.to_string(); }
+		private set {}
+	}
 	
 	
 	public bool equals(NodeProp p) 
