@@ -150,7 +150,7 @@ namespace JsRender {
 				this.output += str + "\n";
 			//}
 		}
-		protected void addMultiLine(string str= "", addLastLine = true)
+		protected void addMultiLine(string str= "", bool addLastLine = true)
 		{
 			 
 			this.cur_line += str.split("\n").length;
@@ -189,4 +189,4 @@ namespace JsRender {
 		
 		
 	}
-}
+}bool
