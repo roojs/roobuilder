@@ -538,12 +538,13 @@ namespace JsRender {
 			x.addLine(prefix); 
 			
 			var ret = x.munge();
+		
 			//var nret = x.ret;
 			
 			// output both files.. so we can diff them...
 			//this.writeFile("/tmp/old.js", ret);
 			//this.writeFile("/tmp/new.js", nret);			
-			return prefix +  ret + suffix;
+			return  ret + suffix;
 			
 		    
 		}
