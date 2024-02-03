@@ -16,7 +16,7 @@
 
 
 
-public class JsRender.NodeToJs : JsRender.NodeWriter {
+public class JsRender.NodeToJs : NodeWriter {
 
 	static uint indent = 1;
 	static string indent_str = " ";
