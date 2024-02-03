@@ -38,7 +38,7 @@ public class JsRender.NodeToJs : NodeWriter {
 	
  
 
-	protected NodetoJs( JsRender file,  Node node,  int depth, NodeWriter? parent, Gee.ArrayList<string> doubleStringProps) 
+	public NodetoJs( JsRender file,  Node node,  int depth, NodeWriter? parent, Gee.ArrayList<string> doubleStringProps) 
 	 
 	{
 		base(file, node, depth, parent)
