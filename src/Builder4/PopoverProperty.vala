@@ -410,8 +410,7 @@ public class Xcls_PopoverProperty : Object
 			 	var lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); 
 			 	var np = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
 			 
-				
-			  
+				GLib.debug("set label to %s", np.ptype.to_name());
 				lbl.label = np.ptype.to_name();
 			 	 
 			});
