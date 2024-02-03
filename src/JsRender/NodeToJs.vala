@@ -33,14 +33,15 @@ public class JsRender.NodeToJs : JsRender.NodeWriter {
 	Gee.HashMap<string,Gee.ArrayList<Node>> out_props_array;
 	Gee.HashMap<string,Gee.ArrayList<string>> out_props_array_plain;	
 	
-	NodeToJs top;
-	public string ret;
+
+ 
 	
  
 
-	
+	protected NodeWriter( JsRender file,  Node node,  int depth, NodeWriter? parent) 
 	public NodeToJs( Node node, Gee.ArrayList<string> doubleStringProps, string pad, NodeToJs? parent) 
 	{
+		base(file
 		this.node = node;
 		this.doubleStringProps = doubleStringProps;
 		this.pad = pad;
