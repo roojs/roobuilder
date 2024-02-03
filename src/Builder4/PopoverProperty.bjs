@@ -52,13 +52,8 @@
       {
        "$ xns" : "Gtk",
        "* ctor" : "new Gtk.DropDown.from_strings(this..ptypes})",
-       "* init" : [
-        "{",
-        "\t",
-        "}",
-        ""
-       ],
        "bool show_arrow" : true,
+       "string[] ptypes" : " { \"",
        "xtype" : "DropDown"
       },
       {

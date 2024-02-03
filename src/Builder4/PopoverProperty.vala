@@ -319,6 +319,7 @@ public class Xcls_PopoverProperty : Object
 
 
 			// my vars (def)
+		public string[] ptypes;
 
 		// ctor
 		public Xcls_DropDown882(Xcls_PopoverProperty _owner )
@@ -327,15 +328,10 @@ public class Xcls_PopoverProperty : Object
 			this.el = new Gtk.DropDown.from_strings(this..ptypes});
 
 			// my vars (dec)
+			this.ptypes = { ";
 
 			// set gobject values
 			this.el.show_arrow = true;
-
-			// init method
-
-			{
-				
-			}
 		}
 
 		// user defined functions
