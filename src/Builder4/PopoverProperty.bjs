@@ -35,6 +35,16 @@
          "id" : "headertitle",
          "string label" : "Add / Edit property",
          "xtype" : "Label"
+        },
+        {
+         "$ visible" : true,
+         "$ xns" : "Gtk",
+         "Gtk.Align halign" : "Gtk.Align.START",
+         "Gtk.Justification justify" : "Gtk.Justification.LEFT",
+         "int margin_top" : 12,
+         "label" : "Type or Return Type",
+         "x_options" : 4,
+         "xtype" : "Label"
         }
        ],
        "xtype" : "HeaderBar"
@@ -43,6 +53,7 @@
        "$ xns" : "Gtk",
        "bool show_row_separators" : true,
        "bool show_separators" : true,
+       "bool visible" : false,
        "id" : "ptype",
        "items" : [
         {
