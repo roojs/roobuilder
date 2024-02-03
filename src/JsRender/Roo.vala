@@ -535,8 +535,7 @@ namespace JsRender {
 			}
 
 			var x = new NodeToJs( this,  this.tree,   pad , null, this.doubleStringProps);
-
-			x.cur_line = prefix.split("\n").length;
+			x.addLine(prefix); 
 			
 			var ret = x.munge();
 			//var nret = x.ret;
