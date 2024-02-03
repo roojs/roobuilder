@@ -53,7 +53,20 @@
        "$ xns" : "Gtk",
        "* ctor" : "new Gtk.DropDown.from_strings(this..ptypes})",
        "bool show_arrow" : true,
-       "string[] ptypes" : " { \"",
+       "string[] ptypes" : [
+        "\t\tcase RAW: \t\treturn \"Raw Property (not quoted or escaped)\";",
+        "\t\t\tcase METHOD : \treturn \"User Defined Method\";\t",
+        "\t\t\tcase SIGNAL : \treturn  \"Vala Signal\"; // vala signal",
+        "\t\t\tcase USER : \treturn  \"User Defined Property\"; // user defined.",
+        "\t\t\tcase SPECIAL : return  \"Special Property (eg. prop / arg / ctor / init)\"; // * prop| args | ctor | init",
+        "\t \t\tcase LISTENER : return  \"Listener / Signal Handler\";  // always raw...",
+        "\t \t\t// not used",
+        "\t \t\tcase NONE:  return \"None??\";",
+        "\t\t\tcase CTOR:  return \"Constructor?\";",
+        "\t\t\tcase PROP:  return \"Gtk/Roo Property\";",
+        "\t\t\tdefault: return \"oops\";",
+        "\t\t"
+       ],
        "xtype" : "DropDown"
       },
       {
