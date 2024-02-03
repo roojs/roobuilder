@@ -211,16 +211,19 @@ public class Xcls_PopoverProperty : Object
 			this.el.homogeneous = false;
 			new Xcls_header( _this );
 			this.el.append( _this.header.el );
+			var child_2 = new Xcls_Label399( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
 			new Xcls_ptype( _this );
 			this.el.append( _this.ptype.el );
-			var child_3 = new Xcls_Label9( _this );
-			child_3.ref();
-			this.el.append( child_3.el );
+			var child_4 = new Xcls_Label9( _this );
+			child_4.ref();
+			this.el.append( child_4.el );
 			new Xcls_ktype( _this );
 			this.el.append( _this.ktype.el );
-			var child_5 = new Xcls_Label11( _this );
-			child_5.ref();
-			this.el.append( child_5.el );
+			var child_6 = new Xcls_Label11( _this );
+			child_6.ref();
+			this.el.append( child_6.el );
 			new Xcls_kname( _this );
 			this.el.append( _this.kname.el );
 			new Xcls_error( _this );
@@ -252,9 +255,6 @@ public class Xcls_PopoverProperty : Object
 			this.el.show_title_buttons = false;
 			new Xcls_headertitle( _this );
 			this.el.title_widget = _this.headertitle.el;
-			var child_2 = new Xcls_Label179( _this );
-			child_2.ref();
-			this.el.pack_start( child_2.el );
 		}
 
 		// user defined functions
@@ -282,7 +282,8 @@ public class Xcls_PopoverProperty : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label179 : Object
+
+	public class Xcls_Label399 : Object
 	{
 		public Gtk.Label el;
 		private Xcls_PopoverProperty  _this;
@@ -291,7 +292,7 @@ public class Xcls_PopoverProperty : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Label179(Xcls_PopoverProperty _owner )
+		public Xcls_Label399(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "Type or Return Type" );
@@ -307,7 +308,6 @@ public class Xcls_PopoverProperty : Object
 
 		// user defined functions
 	}
-
 
 	public class Xcls_ptype : Object
 	{
