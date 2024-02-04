@@ -153,8 +153,11 @@ public class JsRender.NodeToGlade : Object {
 					 val = bits[bits.length-1].down();
 				}
 			}
-				
 			
+			//  value for model seems to cause problems...(it's ok as a property?)
+			if (k == "model") {
+				continue;
+			}
 
 
 			var domprop = this.create_element("property");

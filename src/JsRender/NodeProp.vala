@@ -86,12 +86,53 @@ public enum JsRender.NodePropType
 		}
 	}
 	
+	public static NodePropType[] alltypes()
+	{
+		return {
+			PROP,
+			USER,
+			RAW,			
+			METHOD,
+			SIGNAL,
+
+			SPECIAL,
+			LISTENER
+		//	CTOR,
+			
+		};
+	}
+	public static NodePropType nameToType(string str)
+	{
+		foreach(var np in alltypes()) {
+			if (np.to_name() == str) {
+				return np;
+			}
+		}
+		return NONE;
+	
+	}
+	public static string[] get_pulldown_list()
+	{
+		// eventually it needs to be smarter.... - but i did not have internet so could not use listmodels for the dropdown
+		 
+		string[] ret = {};
+		foreach(var np in alltypes()) {
+			ret += np.to_name();
+		}
+		return ret;
+	
+	}
+	
 	
 }
 
 
 
 public class JsRender.NodeProp : Object {
+
+
+
+
 
 
 	private string _name = "";
@@ -644,6 +685,7 @@ public class JsRender.NodeProp : Object {
 		this.childstore.append(child);
 
 	}
+	 
 	
 	/**
 	could use enums.. but basically.
