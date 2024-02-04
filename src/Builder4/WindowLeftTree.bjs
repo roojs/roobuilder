@@ -1563,6 +1563,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "bool has_frame" : false,
            "label" : "Delete Element",
            "listeners" : {
             "clicked" : [
@@ -1577,6 +1578,7 @@
           },
           {
            "$ xns" : "Gtk",
+           "bool has_frame" : false,
            "label" : "Save as Template",
            "listeners" : {
             "clicked" : [
@@ -1596,6 +1598,7 @@
           },
           {
            "$ xns" : "Gtk",
+           "bool has_frame" : false,
            "label" : "Save as Module",
            "listeners" : {
             "clicked" : [

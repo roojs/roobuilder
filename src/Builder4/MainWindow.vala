@@ -1469,7 +1469,6 @@ public class Xcls_MainWindow : Object
 			
 		 	_this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;
 			
-		 
 		}
 	}
 	public class Xcls_filesearch : Object

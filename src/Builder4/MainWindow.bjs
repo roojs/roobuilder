@@ -1345,7 +1345,6 @@
         "\t",
         " \t_this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
         "\t",
-        " ",
         "}"
        ]
       },
