@@ -236,6 +236,56 @@ public class JsRender.NodeProp : Object {
 	
 	}
 	
+	private  string last_ptype_check = "";
+	public bool is_invalid_ptype {
+		  get;
+		  private set ;
+		  default = false;
+ 	}
+	
+	public bool update_is_valid_ptype(Project.Project project) 
+	{
+		 
+		if (this.parent == null) {
+			return false;
+		}
+		// what types are we interested in checking?
+		// raw/ prop / user
+		if (this.ptype != NodePropType.PROP && this.ptype != NodePropType.USER) {
+			return false;
+		}
+		if (this.name == "xtype" || this.name == "xns"  || this.name == "id" ) { // flaky..
+			return false;
+		}
+		if (this.name == this.last_ptype_check) {
+			return this.is_invalid_ptype;
+		}
+		if (project.xtype != "Gtk") { // js not handled?
+			return false;
+		}
+		this.last_ptype_check = this.name;
+		
+		var cls = Palete.Gir.factoryFqn(project, this.parent.fqn());
+		if (cls == null) {
+			this.is_invalid_ptype = false;
+			return false;
+		}
+		var is_native = cls.props.has_key(this.name);
+		if ( is_native && this.ptype == NodePropType.PROP ) {
+			this.is_invalid_ptype = false;
+			return false;
+		}
+		if ( !is_native && this.ptype == NodePropType.USER ) {
+			this.is_invalid_ptype = false;
+			return false;
+		}
+
+		this.is_invalid_ptype = true;
+		return true;
+		
+		 
+	
+	}
 	
 	public Node? parent; // the parent node.
 
@@ -429,31 +479,33 @@ public class JsRender.NodeProp : Object {
     
 	public string to_display_name()
 	{
-		
+		var bg = this.is_invalid_ptype ? "  bgcolor=\"red\"" : "";
+		var nm =  GLib.Markup.escape_text(this.name);
+		var rt =  GLib.Markup.escape_text(this.rtype);
 		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
 		// before we showed "@" for signals
 		switch(this.ptype) {
 			case NodePropType.PROP:
-				return   GLib.Markup.escape_text(this.name);
+				return  @"<span$bg>$nm</span>";
 				
 			case NodePropType.RAW:
-				return "<span style=\"italic\">" + GLib.Markup.escape_text(this.name) + "</span>";
+				return @"<span style=\"italic\">$nm</span>";
 				
 			case NodePropType.METHOD :
-				return "<i>" + GLib.Markup.escape_text(this.rtype)  + "</i> <span color=\"#008000\" font_weight=\"bold\">" + GLib.Markup.escape_text( this.name) + "</span>";
+				return @"<i>$rt</i> <span color=\"#008000\" font_weight=\"bold\">$nm</span>";
 			 	
 			case NodePropType.SIGNAL : // purpley
-				return "<span   color=\"#ea00d6\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.name)+ "</span>";
+				return @"<span color=\"#ea00d6\" font_weight=\"bold\">$nm</span>";
 				
 			case NodePropType.USER : 
-				return  "<i>" + GLib.Markup.escape_text(this.rtype)  + "</i> <span  font_weight=\"bold\">" + GLib.Markup.escape_text(this.name) + "</span>";
+				return  @"<i>$rt</i> <span$bg font_weight=\"bold\">$nm</span>";
 			
 			case NodePropType.SPECIAL : 
-				return "<span   color=\"#0000CC\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.name) + "</span>";       
+				return @"<span color=\"#0000CC\" font_weight=\"bold\">$nm</span>";       
 				
 			// in seperate list..
 			case NodePropType.LISTENER : 
-				return  "<b>" + this.name + "</b>";
+				return  @"<b>$nm</b>";
 				
 	 		case NodePropType.NONE: // not used
 			case NodePropType.CTOR:
