@@ -173,7 +173,10 @@ install_data(
 		
 		string addResources()
 		{
-		
+		// once added we can refer to these via
+//		          _icon_current = new FileIcon (File.new_for_uri("resource:///path/name.svg"));
+
+
 		
 		// write the resources file?
 		/*
