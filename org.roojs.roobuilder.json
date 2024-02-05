@@ -66,18 +66,8 @@
                 }
             ]
         },
-	{
-            "name" : "libgda-5.0",
-            "buildsystem" : "autotools",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/libgda.git",
-                    "branch" : "LIBGDA_5.2"
-                }
-            ]
-        },
-	{
+	 
+	    {
             "name" : "gtksourceview",
             "buildsystem" : "meson",
             "config-opts" : [
