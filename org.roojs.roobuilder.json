@@ -3,6 +3,13 @@
     "runtime": "org.gnome.Sdk",
     "runtime-version": "45",
     "sdk": "org.gnome.Sdk",
+    "sdk-extensions": [
+    	"org.freedesktop.Sdk.Extension.vala"
+    ],
+    "build-options" : {
+        "append-path" : "/usr/lib/sdk/vala/bin",
+        "prepend-ld-library-path" : "/usr/lib/sdk/vala/lib"
+    },
     "command": "roobuilder",
     "finish-args": [
         "--device=dri",
@@ -66,8 +73,7 @@
                 }
             ]
         },
-	 
-	    {
+	{
             "name" : "gtksourceview",
             "buildsystem" : "meson",
             "config-opts" : [
@@ -91,12 +97,13 @@
                     "type": "git",
                     "tag": "master",
                     "url": "https://github.com/roojs/roobuilder.git"
-		},
-		{
-          	"type": "patch",
-          	"path": "gda_vapi.patch"
-            	}
-            ]
+		}
+            ],
+	    "post-install": [
+	        "cp -a /usr/lib/sdk/vala/bin/. /app/bin/",
+	        "cp -a /usr/lib/sdk/vala/lib/. /app/lib/",
+	        "cp -a /usr/lib/sdk/vala/share/. /app/share/"
+	    ]
         }
     ]
 }
