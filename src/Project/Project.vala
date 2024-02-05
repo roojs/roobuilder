@@ -692,7 +692,6 @@ namespace Project {
 			if (subdir == "build") { // cmake!
 				return;
 			}
-			
 			if (subdir == "autom4te.cache") { // automake?
 				return;
 			}
@@ -733,13 +732,18 @@ namespace Project {
 					}
 					
 					if (FileUtils.test(dir  + "/" + fn, GLib.FileTest.IS_DIR)) {
+						if (subdir == "debian") { // dont bother with subdirs  of debian.
+            				continue;
+        			}
+
+						
 						subs.add(dir  + "/" + fn);
 						continue;
 					}
 					if (Regex.match_simple("\\.(o|cache|out|stamp|~)$", fn)) { // object..
 						continue;
 					}
-					if (Regex.match_simple("^(config1.builder|a.out|stamp-h1|depcomp|config.log|config.status|obj-x86_64-linux-gnu)$", fn)) { // object..
+					if (Regex.match_simple("^(config1.builder|a.out|stamp-h1|depcomp|config.log|config.status|obj\\-x86_64\\-linux\\-gnu)$", fn)) { // object..
 						continue;
 					}
 					
