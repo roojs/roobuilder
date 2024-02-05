@@ -695,6 +695,9 @@ namespace Project {
 			if (subdir == "autom4te.cache") { // automake?
 				return;
 			}
+			if (subdir == "obj-x86_64-linux-gnu") { // meson?
+				return;
+			}
 			//if (subdir == "debian") { // debian!?
 			//	return;
 			//}
@@ -743,7 +746,7 @@ namespace Project {
 					if (Regex.match_simple("\\.(o|cache|out|stamp|~)$", fn)) { // object..
 						continue;
 					}
-					if (Regex.match_simple("^(config1.builder|a.out|stamp-h1|depcomp|config.log|config.status|obj\\-x86_64\\-linux\\-gnu)$", fn)) { // object..
+					if (Regex.match_simple("^(config1.builder|a.out|stamp-h1|depcomp|config.log|config.status)$", fn)) { // object..
 						continue;
 					}
 					
