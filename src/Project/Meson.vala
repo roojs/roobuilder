@@ -226,7 +226,7 @@ resourcesh = custom_target('resourcesh',
 
 	
 */
-		
+			return "";
 		
 		}
 		
