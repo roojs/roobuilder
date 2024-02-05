@@ -1,47 +1,111 @@
 {
-    "id": "org.roojs.roobuilder",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "3.32",
+    "app-id": "org.roojs.roobuilder",
+    "runtime": "org.gnome.Sdk",
+    "runtime-version": "45",
     "sdk": "org.gnome.Sdk",
     "command": "roobuilder",
-    "clean": [ "/include", "*.la" ],
-    "build-options" : {
-        "cflags": "-O2 -g",
-        "cxxflags": "-O2 -g",
-        "env": {
-            "V": "1"
-        },
-        "arch": {
-            "x86_64": {
-                "cflags": "-O3 -g"
-            }
-        }
-    },
+    "finish-args": [
+        "--device=dri",
+        "--share=ipc",
+        "--share=network",
+        "--socket=fallback-x11",
+        "--socket=pulseaudio",
+        "--socket=wayland",
+    	"--socket=session-bus",
+        "--filesystem=xdg-download:ro",
+        "--filesystem=xdg-music:ro",
+        "--filesystem=xdg-run/gvfsd",
+        "--filesystem=xdg-run/pipewire-0:ro"
+    ],
+    "cleanup": [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "/share/vala",
+        "*.la",
+        "*.a"
+    ],
     "modules": [
         {
-            "name" : "gtksourceview",
+            "name" : "jsonrpc-glib",
             "config-opts" : [
-                "--disable-Werror"
+                "--buildtype=debugoptimized",
+                "-Denable_tests=false"
             ],
+            "buildsystem" : "meson",
+            "builddir" : true,
             "sources" : [
                 {
                     "type" : "git",
-                    "branch" : "gnome-3-24",
-                    "url" : "https://gitlab.gnome.org/GNOME/gtksourceview.git"
+                    "url" : "https://gitlab.gnome.org/GNOME/jsonrpc-glib.git",
+                    "branch" : "main"
                 }
             ]
         },
         {
-            "name" : "vala",
+            "name": "gnome-common",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/gnome-common.git"
+                }
+            ]
+        },
+        {
+            "name": "intltool",
+            "cleanup": [ "*" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz",
+                    "sha256": "67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd"
+                }
+            ]
+        },
+	{
+            "name" : "libgda-5.0",
+            "buildsystem" : "autotools",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libgda.git",
+                    "branch" : "LIBGDA_5.2"
+                }
+            ]
+        },
+	{
+            "name" : "gtksourceview",
+            "buildsystem" : "meson",
             "config-opts" : [
-                "--disable-Werror"
+                "--buildtype=debugoptimized",
+                "-Dsysprof=false"
             ],
             "sources" : [
                 {
                     "type" : "git",
-                    "branch" : "0.36",
-                    "url" : "https://gitlab.gnome.org/GNOME/vala.git"
+                    "url" : "https://gitlab.gnome.org/GNOME/gtksourceview.git",
+                    "branch" : "master"
                 }
+            ]
+        },
+        {
+            "name": "roobuilder",
+            "builddir": true,
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "git",
+                    "tag": "master",
+                    "url": "https://github.com/roojs/roobuilder.git"
+		},
+		{
+          	"type": "patch",
+          	"path": "gda_vapi.patch"
+            	}
             ]
         }
     ]
