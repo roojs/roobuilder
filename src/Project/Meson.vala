@@ -119,7 +119,7 @@ GLib.debug("write meson : %s" , data);
 			
 			str += cg.name +" = executable('" + cg.name + "',\n"+
 			  "   dependencies: deps,\n"+
-			  "   sources: [ " + cg.name + "_src ],\n"+
+			  "   sources: [ " + cg.name + "_src ],\n"+   // + resources_sources (if set..)
 			  "   install: true\n" +
 			  ")\n\n";
 
@@ -170,5 +170,64 @@ install_data(
 )
 ";
 		}
+		
+		string addResources()
+		{
+		
+		
+		// write the resources file?
+		/*
+		<?xml version="1.0" encoding="UTF-8"?>
+<!-- this file is auto generated from roobuilder -->
+<gresources>
+  <gresource prefix="/xxxx">
+    <file>somefile.svg</file>
+    ....
+	</gresource>
+</gresources>
+
+
+		/**
+		compile_resources = find_program('glib-compile-resources')
+
+
+		resourcesc = custom_target('resourcesc',
+	command: [compile_resources,
+		'--sourcedir='+meson.current_source_dir(),
+		'--generate-source',
+		'--target', '@OUTPUT@',
+		'--internal',
+		'@INPUT@'
+		],
+	input: 'gresources.xml',
+	output: 'resource.c',
+	install: false
+	)
+
+resourcesh = custom_target('resourcesh',
+	command: [compile_resources,
+		'--sourcedir='+meson.current_source_dir(),
+		'--generate-header',
+		'--target', '@OUTPUT@',
+		'--internal',
+		'@INPUT@'
+		],
+	input: 'gresources.xml',
+	output: 'resource.h',
+	install: false
+	)
+	
+	resources_sources = [
+		resourcesc, resourcesh
+	]
+
+	
+*/
+		
+		
+		}
+		
+		
+		
 	} 
 }
