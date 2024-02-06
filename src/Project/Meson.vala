@@ -181,7 +181,6 @@ install_data(
 		string addResources()
 		{
 		
- 
 			if (this.project.findDir("resources") == null) {
 				return "";
 			}
