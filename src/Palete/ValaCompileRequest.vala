@@ -64,7 +64,8 @@ namespace Palete {
 			if (GLib.FileUtils.test(this.project.path + "/build/meson-info", GLib.FileTest.EXISTS)) {
 			  	return 0; //assume it's been set up.
 		  	}
-			string[] args = { "/usr/bin/meson" ,"setup", "build", "--prefix=/usr" };	  	
+		  	var exe = GLib.Environment.find_program_in_path( "meson");
+			string[] args = { exe ,"setup", "build", "--prefix=/usr" };	  	
 			GLib.debug("running meson");
 		  	this.spawn = new Spawn(this.project.path , args);
 		  	this.spawn.output_line.connect(( str) => {
@@ -80,7 +81,8 @@ namespace Palete {
 				GLib.debug("build is missing");
 			  	return -1; //assume it's been set up.
 		  	}
-			string[] args = { "/usr/bin/ninja"};	  	
+		  	var exe = GLib.Environment.find_program_in_path( "ninja");
+			string[] args = { exe };	  	
 
 		  	this.spawn = new Spawn(this.project.path + "/build" , args);
 		  	this.spawn.output_line.connect(( str) => {
@@ -178,9 +180,10 @@ namespace Palete {
 			if (!GLib.FileUtils.test(gdb_cfg, GLib.FileTest.EXISTS)) {
 				pr.writeFile("build/.gdb-script", "set debuginfod enabled off\nr");
 			}
-			 
+			var gdb = GLib.Environment.find_program_in_path( "gdb"); 
+			var term = GLib.Environment.find_program_in_path( "gnome-terminal"); 
 			
-			string[] args = "/usr/bin/gnome-terminal --disable-factory --wait -- /usr/bin/gdb -x".split(" ");
+			string[] args = @"$term --disable-factory --wait -- $gdb -x").split(" ");
 
 			args+= gdb_cfg;
  

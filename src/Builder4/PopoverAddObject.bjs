@@ -191,7 +191,7 @@
              "// was item (1) in old layout",
              "",
              "\t ",
-             " \timg.file = node.iconFilename;",
+             " \timg.resource = node.iconResourceName;",
              " \tlbl.label =  node.fqn();",
              "// \tlbl.tooltip_markup = node.nodeTip();",
              " ",

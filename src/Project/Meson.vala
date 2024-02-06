@@ -14,7 +14,7 @@ namespace Project {
 		
 		public void save()
 		{
-		
+			this.has_resources = false;
 			var project_name = this.project.name;
 			var project_version = "1.0"; //this.project.version;
 			var project_licence = "LGPL"; // this.project.licence
@@ -47,11 +47,17 @@ namespace Project {
 			var targets = "";
 			var icons = "";
 			var desktops = "";
+			
+			var resources = this.addResources();
+			
 			foreach(var cg in this.project.compilegroups.values) {
 				targets += this.addTarget(cg);
 				icons += this.addIcons(cg);
 				desktops += this.addDesktop(cg);
 			}
+			
+
+			
 			var data = 
 
 @"project('$project_name', 'vala', 'c',
@@ -62,6 +68,7 @@ namespace Project {
     'c_std=gnu11'       # for C subprojects
   ]
 )
+gnome = import('gnome')
 
 valac = meson.get_compiler('vala')
 
@@ -84,6 +91,8 @@ conf.set('PROJECT_NAME', meson.project_name())
 $addvapidir
 
 $icons
+
+$resources
 
 $desktops
 
@@ -117,11 +126,16 @@ GLib.debug("write meson : %s" , data);
 			}
 			str += "])\n\n";
 			
-			str += cg.name +" = executable('" + cg.name + "',\n"+
-			  "   dependencies: deps,\n"+
-			  "   sources: [ " + cg.name + "_src ],\n"+
-			  "   install: true\n" +
-			  ")\n\n";
+			var resources = this.has_resources ? (", " + this.project.name + "_resources") : "";
+			var cgname = cg.name;
+			
+			str += @"
+$cgname = executable('$cgname',
+   dependencies: deps,
+   sources: [ " + cgname + @"_src $resources ],
+   install: true
+)
+";
 
 			return str;
 		}
@@ -149,7 +163,7 @@ install_data(
 				return "";
 			}
 			ret += "
-gnome = import('gnome')
+
 gnome.post_install(gtk_update_icon_cache : true)
 ";
 			return ret;
@@ -170,5 +184,60 @@ install_data(
 )
 ";
 		}
+		bool has_resources = false;
+		
+		string addResources()
+		{
+		
+			if (this.project.findDir(this.project.path + "/resources") == null) {
+				GLib.debug("no  resources folder");
+				return "";
+			}
+			var ar = this.project.pathsUnder("resources");
+			if (ar.size < 1) {
+			GLib.debug("no paths under resources");
+				return "";
+			}
+			// should probably use DOM (but this is a quick dirty fix
+			var gr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gresources>";
+			string[] paths = {};
+			foreach(var dir in ar) {
+				if (dir.childfiles.get_n_items() < 1) {
+					continue;
+				}
+				var sp = dir.relpath.substring(10);
+				gr += @"  <gresource prefix=\"/$sp\">\n";
+				for (var i = 0; i < dir.childfiles.get_n_items(); i++) {
+					var f = (dir.childfiles.get_item(i) as JsRender.JsRender);
+					if (f.xtype != "PlainFile") {
+						continue;
+					}
+					var fn = f.name;
+				    gr +=  @"    <file>$fn</file>\n";
+				}
+				paths += ("'" + dir.relpath +"'");
+				gr += "  </gresource>\n";
+
+			
+			}
+			gr += "</gresources>\n";
+			FileUtils.set_contents(this.project.path + "/resources/gresources.xml", gr, gr.length);
+			
+			this.has_resources = true;
+			
+			return  "
+" + this.project.name + "_resources = gnome.compile_resources(
+	'" + this.project.name + "-resources', 'resources/gresources.xml',
+	source_dir: [ " + string.joinv(", ", paths) + " ],
+	c_name: '" + this.project.name + "_resources' 
+)";
+			
+		 
+			return "";
+		
+		}
+		
+		
+		
 	} 
 }

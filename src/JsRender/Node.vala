@@ -121,7 +121,7 @@ public class JsRender.Node : GLib.Object {
 		}
 		set  {
 			this.nodeTitleProp = ""; // ?? should trigger set?
-			this.iconFilename = "";
+			this.iconResourceName = "";
 			this._updated_count = value;
  
 				
@@ -929,7 +929,7 @@ public class JsRender.Node : GLib.Object {
 	}
 	// used by trees to display icons?
 	// needs more thought?!?
- 	public string iconFilename { 
+ 	public string iconResourceName { 
 		set {
 			// NOOp ??? should 
 		}
@@ -938,7 +938,7 @@ public class JsRender.Node : GLib.Object {
     
 			var clsb = clsname.split(".");
 		    var sub = clsb.length > 1 ? clsb[1].down()  : "";
-			var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
+			var fn = "/glade-icons/widget-gtk-" + sub + ".png";
 			//if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
 	   			return fn;
    			//}

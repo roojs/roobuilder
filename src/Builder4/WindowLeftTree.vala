@@ -1826,8 +1826,8 @@ public class Xcls_WindowLeftTree : Object
 			    expand.set_hide_expander( !node.hasChildren() );
 			 	expand.set_list_row(lr);
 			 	
-			 	node.bind_property("iconFilename",
-			                    img, "file",
+			 	node.bind_property("iconResourceName",
+			                    img, "resource",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
 			 	node.bind_property("nodeTitleProp",

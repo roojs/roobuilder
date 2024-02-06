@@ -58,7 +58,7 @@ namespace Palete {
 			//GLib.debug("got file %s : %s ", file.path, this.file_contents.get(file.path));
 			
 			var ar = this.file_contents.get(file.path).split("\n");
-			var ln = line >= ar.length ? "" :  ar[line-1];
+			var ln = line >= ar.length || line < 1 ? "" :  ar[line-1];
 			if (offset-1 >= ln.length) {
 				GLib.debug("request for complete on line %d  @ pos %d > line length %d", line, offset, (int) ln.length);
 				return ret;
