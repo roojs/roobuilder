@@ -174,6 +174,7 @@ install_data(
 		string addResources(out bool compile_add)
 		{
 		
+
 			compile_add = false;
 			if (this.project.findDir("resources") == null) {
 				return "";
@@ -182,6 +183,7 @@ install_data(
 			if (ar.size < 1) {
 				return "";
 			}
+			// should probably use DOM (but this is a quick dirty fix
 			var gr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gresources>";
 			foreach(var dir in ar) {
 				if (dir.childfiles.size < 1) {
@@ -198,6 +200,7 @@ install_data(
 			
 			}
 			gr += "</gresources>\n";
+			FileUtils.set_contents(this.project.path + "/resources/gresources.xml", gr, gr.length);
 			
 			
 		
