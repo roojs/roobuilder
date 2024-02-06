@@ -46,4 +46,4 @@ Update Package details.
 
 Build it..
 
-    debuild -us -uc
+    dpkg-buildpackage -rfakeroot -us -uc -b

@@ -183,7 +183,7 @@ namespace Palete {
 			var gdb = GLib.Environment.find_program_in_path( "gdb"); 
 			var term = GLib.Environment.find_program_in_path( "gnome-terminal"); 
 			
-			string[] args = @"$term --disable-factory --wait -- $gdb -x").split(" ");
+			string[] args = @"$term --disable-factory --wait -- $gdb -x".split(" ");
 
 			args+= gdb_cfg;
  
