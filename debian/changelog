@@ -23,6 +23,7 @@ roobuilder (5.0.2) UNRELEASED; urgency=medium
   * added resource support to meson creation
   * added gdb / gnome-terminal / meson / ninja to control file
   * removed gda dependancy ( not used at present)
+  * flatpack might work...
   
   
  -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
