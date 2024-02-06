@@ -6,6 +6,7 @@ project('roobuilder', 'vala', 'c',
     'c_std=gnu11'       # for C subprojects
   ]
 )
+gnome = import('gnome')
 
 valac = meson.get_compiler('vala')
 
@@ -70,9 +71,16 @@ install_data(
 	install_dir:  get_option('datadir') + '/icons/hicolor/48x48/apps/'
 )
 
-gnome = import('gnome')
+
 gnome.post_install(gtk_update_icon_cache : true)
 
+
+
+roobuilder_resources = gnome.compile_resources(
+	'roobuilder-resources', 'resources/gresources.xml',
+	source_dir: [ 'resources/glade-icons', 'resources/html', 'resources/Editors' ],
+	c_name: 'roobuilder_resources' 
+)
 
 
 install_data(
@@ -148,10 +156,10 @@ roobuilder_src = files([
    'src/Builder4/MainWindow.vala',
 ])
 
+
 roobuilder = executable('roobuilder',
    dependencies: deps,
-   sources: [ roobuilder_src ],
+   sources: [ roobuilder_src , roobuilder_resources ],
    install: true
 )
-
 

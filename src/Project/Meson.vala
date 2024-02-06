@@ -47,11 +47,17 @@ namespace Project {
 			var targets = "";
 			var icons = "";
 			var desktops = "";
+			
+			var resources = this.addResources();
+			
 			foreach(var cg in this.project.compilegroups.values) {
 				targets += this.addTarget(cg);
 				icons += this.addIcons(cg);
 				desktops += this.addDesktop(cg);
 			}
+			
+
+			
 			var data = 
 
 @"project('$project_name', 'vala', 'c',
@@ -85,6 +91,8 @@ conf.set('PROJECT_NAME', meson.project_name())
 $addvapidir
 
 $icons
+
+$resources
 
 $desktops
 
@@ -124,7 +132,7 @@ GLib.debug("write meson : %s" , data);
 			str += @"
 $cgname = executable('$cgname',
    dependencies: deps,
-   sources: [ " + cgname + "_src $resources ],
+   sources: [ " + cgname + @"_src $resources ],
    install: true
 )
 ";
@@ -181,25 +189,33 @@ install_data(
 		string addResources()
 		{
 		
-			if (this.project.findDir("resources") == null) {
+			if (this.project.findDir(this.project.path + "/resources") == null) {
+				GLib.debug("no  resources folder");
 				return "";
 			}
 			var ar = this.project.pathsUnder("resources");
 			if (ar.size < 1) {
+			GLib.debug("no paths under resources");
 				return "";
 			}
 			// should probably use DOM (but this is a quick dirty fix
 			var gr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gresources>";
+			string[] paths = {};
 			foreach(var dir in ar) {
 				if (dir.childfiles.get_n_items() < 1) {
 					continue;
 				}
-				var sp = dir.relpath.substring(9);
+				var sp = dir.relpath.substring(10);
 				gr += @"  <gresource prefix=\"/$sp\">\n";
 				for (var i = 0; i < dir.childfiles.get_n_items(); i++) {
-					var fn = (dir.childfiles.get_item(i) as JsRender.JsRender).name;
-				    ret +=  @"    <file>$fn</file>\n";
+					var f = (dir.childfiles.get_item(i) as JsRender.JsRender);
+					if (f.xtype != "PlainFile") {
+						continue;
+					}
+					var fn = f.name;
+				    gr +=  @"    <file>$fn</file>\n";
 				}
+				paths += ("'" + dir.relpath +"'");
 				gr += "  </gresource>\n";
 
 			
@@ -211,65 +227,12 @@ install_data(
 			
 			return  "
 " + this.project.name + "_resources = gnome.compile_resources(
-	'as-resources', 'resources/gresources.xml',
-	source_dir: 'resources',
+	'" + this.project.name + "-resources', 'resources/gresources.xml',
+	source_dir: [ " + string.joinv(", ", paths) + " ],
 	c_name: '" + this.project.name + "_resources' 
 )";
 			
-		
-		// once added we can refer to these via
-//		          _icon_current = new FileIcon (File.new_for_uri("resource:///path/name.svg"));
-
-
-		
-		// write the resources file?
-		/*
-		<?xml version="1.0" encoding="UTF-8"?>
-<!-- this file is auto generated from roobuilder -->
-<gresources>
-  <gresource prefix="/xxxx">
-    <file>somefile.svg</file>
-    ....
-	</gresource>
-</gresources>
-
-
-		/**
-		compile_resources = find_program('glib-compile-resources')
-
-
-		resourcesc = custom_target('resourcesc',
-	command: [compile_resources,
-		'--sourcedir='+meson.current_source_dir(),
-		'--generate-source',
-		'--target', '@OUTPUT@',
-		'--internal',
-		'@INPUT@'
-		],
-	input: 'gresources.xml',
-	output: 'resource.c',
-	install: false
-	)
-
-resourcesh = custom_target('resourcesh',
-	command: [compile_resources,
-		'--sourcedir='+meson.current_source_dir(),
-		'--generate-header',
-		'--target', '@OUTPUT@',
-		'--internal',
-		'@INPUT@'
-		],
-	input: 'gresources.xml',
-	output: 'resource.h',
-	install: false
-	)
-	
-	resources_sources = [
-		resourcesc, resourcesh
-	]
-
-	
-*/
+		 
 			return "";
 		
 		}
