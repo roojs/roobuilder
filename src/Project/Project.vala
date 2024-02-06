@@ -979,9 +979,6 @@ namespace Project {
 			string[] ret = {};
 			 
 			foreach(var jdir in this.sub_paths) { 
-				
-
-				
 				if (Path.get_basename (jdir.path) == name) {
 					GLib.debug("pathsMatching %s\n", jdir.path);
 					ret += full_path ? jdir.path : jdir.relpath;
@@ -991,6 +988,21 @@ namespace Project {
 			return ret;
 			
 		}
+		
+		public Gee.ArrayList<JsRender.Dir> pathsUnder(string name, bool full_path)
+		{
+			var ret = new Gee.ArrayList<JsRender.Dir>();
+			 
+			foreach(var jdir in this.sub_paths) { 
+				if (jdir.relpath.has_prefix(name + "/")) {
+					ret.add(jdir);
+				}
+				
+			}
+			return ret;
+			
+		}
+		
 		public Gee.ArrayList<string> readArray(Json.Array ar) 
 		{
 			var ret = new Gee.ArrayList<string>();
