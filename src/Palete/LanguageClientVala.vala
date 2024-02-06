@@ -407,8 +407,8 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
-			this.countdown = -1;
-			this.change_queue_file = null;
+			this.countdown = 9; // not really relivant..
+			this.change_queue_file = null; // this is more important..
 			
 		    if (!this.open_files.contains(file)) {
 				 this.document_open(file);
