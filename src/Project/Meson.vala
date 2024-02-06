@@ -171,8 +171,19 @@ install_data(
 ";
 		}
 		
-		string addResources()
+		string addResources(out bool compile_add)
 		{
+		
+			compile_add = false;
+			if (this.project.findDir("resources") == null) {
+				return "";
+			}
+			var ar = this.project.pathUnder("resources");
+			if (ar.length < 1) {
+				return "";
+			}
+			
+		
 		// once added we can refer to these via
 //		          _icon_current = new FileIcon (File.new_for_uri("resource:///path/name.svg"));
 
