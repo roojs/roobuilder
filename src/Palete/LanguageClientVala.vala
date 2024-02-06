@@ -402,10 +402,15 @@ namespace Palete {
 
  		public override async void document_change_force (JsRender.JsRender file, string contents)  
     	{
+   			
+   			
    			if (!this.isReady()) {
 				return;
 			}
-		   if (!this.open_files.contains(file)) {
+			this.countdown = -1;
+			this.change_queue_file = null;
+			
+		    if (!this.open_files.contains(file)) {
 				 this.document_open(file);
 			}  
 			
