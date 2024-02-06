@@ -118,11 +118,16 @@ GLib.debug("write meson : %s" , data);
 			}
 			str += "])\n\n";
 			
-			str += cg.name +" = executable('" + cg.name + "',\n"+
-			  "   dependencies: deps,\n"+
-			  "   sources: [ " + cg.name + "_src ],\n"+   // + resources_sources (if set..)
-			  "   install: true\n" +
-			  ")\n\n";
+			var resources = this.has_resources ? (", " + this.project.name + "_resources") : "";
+			var cgname = cg.name;
+			
+			str += @"
+$cgname = executable('$cgname',
+   dependencies: deps,
+   sources: [ $cgname_src $resources ],
+   install: true"
+)
+";
 
 			return str;
 		}
