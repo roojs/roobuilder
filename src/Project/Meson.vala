@@ -124,7 +124,7 @@ GLib.debug("write meson : %s" , data);
 			str += @"
 $cgname = executable('$cgname',
    dependencies: deps,
-   sources: [ $cgname_src $resources ],
+   sources: [ " + cgname + "_src $resources ],
    install: true
 )
 ";
