@@ -19,6 +19,11 @@ roobuilder (5.0.2) UNRELEASED; urgency=medium
   * use find path for searching for vala-language-server (and add it as a dependancy!)
   * support for Adw in rendering of previews (limited though)
   * remove readonly properties from palete 
+  * added icons from glade (and made the resources)
+  * added resource support to meson creation
+  * added gdb / gnome-terminal / meson / ninja to control file
+  * removed gda dependancy ( not used at present)
+  
   
  -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
 
