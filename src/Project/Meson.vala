@@ -192,13 +192,13 @@ install_data(
 			// should probably use DOM (but this is a quick dirty fix
 			var gr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gresources>";
 			foreach(var dir in ar) {
-				if (dir.childfiles.size < 1) {
+				if (dir.childfiles.get_n_items() < 1) {
 					continue;
 				}
 				var sp = dir.relpath.substring(9);
 				gr += @"  <gresource prefix=\"/$sp\">\n";
-				foreach(var f in dir.childfiles) {
-					var fn = f.name;
+				for (var i = 0; i < dir.childfiles.get_n_items()) {
+					var fn = (f as JsRender.JsRender).name;
 				    ret += ~ @"    <file>$fn</file>\n";
 				}
 				gr += "  </gresource>\n";
