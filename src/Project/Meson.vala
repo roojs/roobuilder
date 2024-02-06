@@ -14,7 +14,7 @@ namespace Project {
 		
 		public void save()
 		{
-		
+			this.has_resources = false;
 			var project_name = this.project.name;
 			var project_version = "1.0"; //this.project.version;
 			var project_licence = "LGPL"; // this.project.licence
@@ -171,12 +171,12 @@ install_data(
 )
 ";
 		}
+		bool has_resources = false;
 		
-		string addResources(out bool compile_add)
+		string addResources()
 		{
 		
-
-			compile_add = false;
+ 
 			if (this.project.findDir("resources") == null) {
 				return "";
 			}
@@ -203,7 +203,7 @@ install_data(
 			gr += "</gresources>\n";
 			FileUtils.set_contents(this.project.path + "/resources/gresources.xml", gr, gr.length);
 			
-			compile_add = true;
+			this.has_resources = true;
 			
 			return  "
 " + this.project.name + "_resources = gnome.compile_resources(
