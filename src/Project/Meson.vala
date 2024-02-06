@@ -62,6 +62,7 @@ namespace Project {
     'c_std=gnu11'       # for C subprojects
   ]
 )
+gnome = import('gnome')
 
 valac = meson.get_compiler('vala')
 
@@ -149,7 +150,7 @@ install_data(
 				return "";
 			}
 			ret += "
-gnome = import('gnome')
+
 gnome.post_install(gtk_update_icon_cache : true)
 ";
 			return ret;
@@ -202,6 +203,14 @@ install_data(
 			gr += "</gresources>\n";
 			FileUtils.set_contents(this.project.path + "/resources/gresources.xml", gr, gr.length);
 			
+			compile_add = true;
+			
+			return  "
+" + this.project.name + "_resources = gnome.compile_resources(
+	'as-resources', 'resources/gresources.xml',
+	source_dir: 'resources',
+	c_name: '" + this.project.name + "_resources' 
+)";
 			
 		
 		// once added we can refer to these via
