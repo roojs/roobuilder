@@ -989,7 +989,7 @@ namespace Project {
 			
 		}
 		
-		public Gee.ArrayList<JsRender.Dir> pathsUnder(string name h)
+		public Gee.ArrayList<JsRender.Dir> pathsUnder(string name)
 		{
 			var ret = new Gee.ArrayList<JsRender.Dir>();
 			 
