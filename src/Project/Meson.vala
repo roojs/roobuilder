@@ -198,7 +198,7 @@ install_data(
 				gr += @"  <gresource prefix=\"/$sp\">\n";
 				for (var i = 0; i < dir.childfiles.get_n_items(); i++) {
 					var fn = (dir.childfiles.get_item(i) as JsRender.JsRender).name;
-				    ret += ~ @"    <file>$fn</file>\n";
+				    ret +=  @"    <file>$fn</file>\n";
 				}
 				gr += "  </gresource>\n";
 
