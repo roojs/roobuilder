@@ -995,7 +995,7 @@ namespace Project {
 			 
 			foreach(var jdir in this.sub_paths) { 
 				if (jdir.relpath.has_prefix(name + "/")) {
-					ret.add(jdir);
+					ret.add(jdir as JsRender.Dir);
 				}
 				
 			}
