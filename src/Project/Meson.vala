@@ -178,10 +178,27 @@ install_data(
 			if (this.project.findDir("resources") == null) {
 				return "";
 			}
-			var ar = this.project.pathUnder("resources");
-			if (ar.length < 1) {
+			var ar = this.project.pathsUnder("resources");
+			if (ar.size < 1) {
 				return "";
 			}
+			var gr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gresources>";
+			foreach(var dir in ar) {
+				if (dir.childfiles.size < 1) {
+					continue;
+				}
+				var sp = dir.relpath.substring(9);
+				gr += @"  <gresource prefix=\"/$sp\">\n";
+				foreach(var f in dir.childfiles) {
+					var fn = f.name;
+				    ret += ~ @"    <file>$fn</file>\n";
+				}
+				gr += "  </gresource>\n";
+
+			
+			}
+			gr += "</gresources>\n";
+			
 			
 		
 		// once added we can refer to these via
