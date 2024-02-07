@@ -373,7 +373,7 @@ public class Xcls_WindowRooView : Object
 			new Xcls_label_code( _this );
 			new Xcls_paned( _this );
 			this.el.append_page ( _this.paned.el , _this.label_preview.el );
-			var child_4 = new Xcls_Box13( _this );
+			var child_4 = new Xcls_Box12( _this );
 			child_4.ref();
 			this.el.append_page ( child_4.el , _this.label_code.el );
 		}
@@ -473,7 +473,7 @@ public class Xcls_WindowRooView : Object
 			// set gobject values
 			this.el.homogeneous = false;
 			this.el.vexpand = true;
-			var child_1 = new Xcls_Box7( _this );
+			var child_1 = new Xcls_Box6( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_view( _this );
@@ -482,7 +482,7 @@ public class Xcls_WindowRooView : Object
 
 		// user defined functions
 	}
-	public class Xcls_Box7 : Object
+	public class Xcls_Box6 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowRooView  _this;
@@ -491,7 +491,7 @@ public class Xcls_WindowRooView : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box7(Xcls_WindowRooView _owner )
+		public Xcls_Box6(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -502,19 +502,19 @@ public class Xcls_WindowRooView : Object
 			this.el.homogeneous = true;
 			this.el.height_request = 20;
 			this.el.vexpand = false;
-			var child_1 = new Xcls_Button8( _this );
+			var child_1 = new Xcls_Button7( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_AutoRedraw( _this );
 			this.el.append( _this.AutoRedraw.el );
-			var child_3 = new Xcls_Button10( _this );
+			var child_3 = new Xcls_Button9( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button8 : Object
+	public class Xcls_Button7 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_WindowRooView  _this;
@@ -523,7 +523,7 @@ public class Xcls_WindowRooView : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button8(Xcls_WindowRooView _owner )
+		public Xcls_Button7(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -572,7 +572,7 @@ public class Xcls_WindowRooView : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button10 : Object
+	public class Xcls_Button9 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_WindowRooView  _this;
@@ -581,7 +581,7 @@ public class Xcls_WindowRooView : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Button10(Xcls_WindowRooView _owner )
+		public Xcls_Button9(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -890,39 +890,37 @@ public class Xcls_WindowRooView : Object
 		    this.pendingRedraw = true;
 		
 		    var runhtml = "<script type=\"text/javascript\">\n" ;
-		    string builderhtml;
+		    uint8[] builderhtml;
 		    
 		    try {
-		        GLib.FileUtils.get_contents(BuilderApplication.configDirectory() + "/resources/roo.builder.js", out builderhtml);
+		        GLib. File.new_for_uri("resources:///html/roo.builder.js").load_contents(null,  out   builderhtml, null);
 		    } catch (Error e) {
-		        builderhtml = "";
+		        builderhtml = {};
 		    }
 		
-		    runhtml += builderhtml + "\n";
+		    runhtml += (string) builderhtml + "\n";
 		    runhtml += "</script>\n" ;
 		
 		    // fix to make sure they are the same..
 		    this.runhtml = project.runhtml;
 		    // need to modify paths
 		
-		    string inhtml;
+		    uint8[] inhtml;
 		    var base_template = project.base_template;
+		    var f = GLib. File.new_for_uri("resources:///html/" + base_template);
 		    
-		    if (base_template.length > 0 && !FileUtils.test(
-		        BuilderApplication.configDirectory() + "/resources/" +  base_template, FileTest.EXISTS)  
-		        ) {
-		           print("invalid base_template name - using default:  %s\n", base_template);
-		           base_template = "";
+		    if (base_template.length > 0 && !f.query_exists(null)) {
+		       
+		           GLib.debug("invalid base_template name - using default:  %Scanner", base_template);
+		           f = GLib. File.new_for_uri("resources:///html/roo.builder.html");
 		    
 		    }
 		    try {
-		        GLib.FileUtils.get_contents(
-		            BuilderApplication.configDirectory() + "/resources/" + 
-		                (base_template.length > 0 ? base_template :  "roo.builder.html")
-		                , out inhtml);
+			    f.load_contents(null,  out inhtml, null);
+		         
 		    
 		    } catch (Error e) {
-		        inhtml = "";
+		        inhtml = {};
 		    }    
 		    this.renderedData = js;
 		
@@ -948,25 +946,25 @@ public class Xcls_WindowRooView : Object
 		    //this.runjs = js_src;
 		    var fc =    FakeServerCache.factory_with_data(js_src);
 		    this.runjs = fc.fname;
+		    var html  = (string) inhtml;
+			html = html.replace("</head>", runhtml + this.runhtml + 
+		        "<script type=\"text/javascript\" src=\"xhttp://localhost" + fc.fname + "\"></script>" +   
+		          //  "<script type=\"text/javascript\">\n" +
+		          //  js_src + "\n" + 
+		          //  "</script>" + 
+		                    
+		    "</head>");
+		    //print("LOAD HTML " + html);
 		    
-		        var html = inhtml.replace("</head>", runhtml + this.runhtml + 
-		            "<script type=\"text/javascript\" src=\"xhttp://localhost" + fc.fname + "\"></script>" +   
-		              //  "<script type=\"text/javascript\">\n" +
-		              //  js_src + "\n" + 
-		              //  "</script>" + 
-		                        
-		        "</head>");
-		        //print("LOAD HTML " + html);
-		        
-		         var rootURL = project.rootURL;
-		   
-		        
-		        
-		        this.el.load_html( html , 
-		            //fixme - should be a config option!
-		            (rootURL.length > 0 ? rootURL : "xhttp://localhost/roobuilder/")
-		        );
-		          this.initInspector();   
+		     var rootURL = project.rootURL;
+		
+		    
+		    
+		    this.el.load_html( html , 
+		        //fixme - should be a config option!
+		        (rootURL.length > 0 ? rootURL : "xhttp://localhost/roobuilder/")
+		    );
+		      this.initInspector();   
 		    // force the inspector...        
 		       //   this.initInspector();
 		        
@@ -1007,7 +1005,7 @@ public class Xcls_WindowRooView : Object
 	}
 
 
-	public class Xcls_Box13 : Object
+	public class Xcls_Box12 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowRooView  _this;
@@ -1016,7 +1014,7 @@ public class Xcls_WindowRooView : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box13(Xcls_WindowRooView _owner )
+		public Xcls_Box12(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1027,7 +1025,7 @@ public class Xcls_WindowRooView : Object
 			this.el.vexpand = true;
 			new Xcls_sourceviewscroll( _this );
 			this.el.append( _this.sourceviewscroll.el );
-			var child_2 = new Xcls_Box18( _this );
+			var child_2 = new Xcls_Box17( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 		}
@@ -1070,8 +1068,9 @@ public class Xcls_WindowRooView : Object
 		public bool loading;
 		public bool button_is_pressed;
 		public string prop_selected;
+		public Gtk.CssProvider? css;
 		public bool key_is_pressed;
-		public Gtk.CssProvider css;
+		public bool show_line_marks;
 		public JsRender.Node? node_selected;
 
 		// ctor
@@ -1086,17 +1085,18 @@ public class Xcls_WindowRooView : Object
 			this.loading = true;
 			this.button_is_pressed = false;
 			this.prop_selected = "";
+			this.css = null;
 			this.key_is_pressed = false;
+			this.show_line_marks = true;
 			this.node_selected = null;
 
 			// set gobject values
 			this.el.name = "roo-view";
 			this.el.editable = false;
-			this.el.show_line_marks = true;
 			this.el.show_line_numbers = true;
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
-			var child_2 = new Xcls_EventControllerKey17( _this );
+			var child_2 = new Xcls_EventControllerKey16( _this );
 			child_2.ref();
 			this.el.add_controller ( child_2.el  );
 
@@ -1650,7 +1650,7 @@ public class Xcls_WindowRooView : Object
 		}
 	}
 
-	public class Xcls_EventControllerKey17 : Object
+	public class Xcls_EventControllerKey16 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Xcls_WindowRooView  _this;
@@ -1659,7 +1659,7 @@ public class Xcls_WindowRooView : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey17(Xcls_WindowRooView _owner )
+		public Xcls_EventControllerKey16(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -1699,7 +1699,7 @@ public class Xcls_WindowRooView : Object
 
 
 
-	public class Xcls_Box18 : Object
+	public class Xcls_Box17 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowRooView  _this;
@@ -1708,7 +1708,7 @@ public class Xcls_WindowRooView : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box18(Xcls_WindowRooView _owner )
+		public Xcls_Box17(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1726,7 +1726,7 @@ public class Xcls_WindowRooView : Object
 			this.el.append( _this.nextBtn.el );
 			new Xcls_backBtn( _this );
 			this.el.append( _this.backBtn.el );
-			var child_5 = new Xcls_MenuButton24( _this );
+			var child_5 = new Xcls_MenuButton23( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
 		}
@@ -1740,7 +1740,7 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
-		public Gtk.CssProvider css;
+		public Gtk.CssProvider? css;
 
 		// ctor
 		public Xcls_search_entry(Xcls_WindowRooView _owner )
@@ -1750,12 +1750,13 @@ public class Xcls_WindowRooView : Object
 			this.el = new Gtk.SearchEntry();
 
 			// my vars (dec)
+			this.css = null;
 
 			// set gobject values
 			this.el.name = "roo-search-entry";
 			this.el.hexpand = true;
 			this.el.placeholder_text = "Press enter to search";
-			var child_1 = new Xcls_EventControllerKey20( _this );
+			var child_1 = new Xcls_EventControllerKey19( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
@@ -1814,7 +1815,7 @@ public class Xcls_WindowRooView : Object
 			
 		}
 	}
-	public class Xcls_EventControllerKey20 : Object
+	public class Xcls_EventControllerKey19 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Xcls_WindowRooView  _this;
@@ -1823,7 +1824,7 @@ public class Xcls_WindowRooView : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey20(Xcls_WindowRooView _owner )
+		public Xcls_EventControllerKey19(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -1974,7 +1975,7 @@ public class Xcls_WindowRooView : Object
 		// user defined functions
 	}
 
-	public class Xcls_MenuButton24 : Object
+	public class Xcls_MenuButton23 : Object
 	{
 		public Gtk.MenuButton el;
 		private Xcls_WindowRooView  _this;
@@ -1984,7 +1985,7 @@ public class Xcls_WindowRooView : Object
 		public bool always_show_image;
 
 		// ctor
-		public Xcls_MenuButton24(Xcls_WindowRooView _owner )
+		public Xcls_MenuButton23(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.MenuButton();
@@ -2018,13 +2019,13 @@ public class Xcls_WindowRooView : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box26( _this );
+			var child_1 = new Xcls_Box25( _this );
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box26 : Object
+	public class Xcls_Box25 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowRooView  _this;
@@ -2033,7 +2034,7 @@ public class Xcls_WindowRooView : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box26(Xcls_WindowRooView _owner )
+		public Xcls_Box25(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
