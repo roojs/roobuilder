@@ -41,6 +41,7 @@ Notes on updating packaging..
 
 Update Package details.
     Edit the about version (check debian/changelog)
+    
     dch -U -i (auto increases release..)
     dch -v {release version}
 

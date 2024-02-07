@@ -1,4 +1,10 @@
-roobuilder (5.0.2) UNRELEASED; urgency=medium
+roobuilder (5.0.3) UNRELEASED; urgency=medium
+
+  * new stuff 
+
+ -- Alan <alan@office.roojs.com>  Wed, 07 Feb 2024 09:51:44 +0800
+
+roobuilder (5.0.2) unstable; urgency=medium
 
   * support for extended writing of vala applications
     Note that sealed classes causes issues, so generally it's not usable yet
