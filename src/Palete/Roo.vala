@@ -88,15 +88,24 @@ namespace Palete {
 			}
 			
 			
-			// this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/RooUsage.txt");
+ 
 			this.classes = new Gee.HashMap<string,GirObject>();
 			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
-				
+			
+			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/resources/roodata.json");
+			if (!f.query_exists(null)) {
+				f = GLib. File.new_for_uri("resources:///html/roodata.json");	
+			}			
+
+			
+			
 			var pa = new Json.Parser();
 			try { 
-				pa.load_from_file(BuilderApplication.configDirectory() + "/resources/roodata.json");
+				uint8[] data;
+				f.load_contents( null, out data, null );
+				pa.load_from_data((string) data);
 			} catch(GLib.Error e) {
-				GLib.error("Could not load %s",BuilderApplication.configDirectory() + "/resources/roodata.json");
+				GLib.error("Could not load %s",f.get_uri());
 			}
 			var node = pa.get_root();
 

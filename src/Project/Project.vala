@@ -692,6 +692,9 @@ namespace Project {
 			if (subdir == "build") { // cmake!
 				return;
 			}
+			if (subdir == "build-dir") { // flatpack
+				return;
+			}
 			if (subdir == "autom4te.cache") { // automake?
 				return;
 			}

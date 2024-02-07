@@ -157,7 +157,6 @@
   </gresource>
   <gresource prefix="/html">
     <file>bootstrap4.builder.html</file>
-    <file>RooUsage.txt</file>
     <file>bootstrap.builder.html</file>
     <file>mailer.builder.html</file>
     <file>roo.builder.html</file>
