@@ -48,3 +48,12 @@ Update Package details.
 Build it..
 
     dpkg-buildpackage -rfakeroot -us -uc -b
+
+    flatpak-builder --force-clean --sandbox --user --install --mirror-screenshots-url=https://dl.flathub.org/repo/screenshots --repo=repo build-dir org.roojs.roobuilder.json
+
+---
+
+Known issues
+
+  * Flatpack -  run doesnt work - needs more work understanding how flatpack would manage to compile with libraries from the system, or inside the pack
+  

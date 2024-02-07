@@ -35,7 +35,6 @@
         "/share/gtk-doc",
         "/share/man",
         "/share/pkgconfig",
-        "/share/vala",
         "*.la",
         "*.a"
     ],
@@ -44,7 +43,8 @@
             "name" : "jsonrpc-glib",
             "config-opts" : [
                 "--buildtype=debugoptimized",
-                "-Denable_tests=false"
+                "-Denable_tests=false",
+                "-Denable_gtk_doc=true"
             ],
             "buildsystem" : "meson",
             "builddir" : true,
@@ -61,7 +61,9 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/gnome-common.git"
+                    "url": "https://gitlab.gnome.org/GNOME/gnome-common.git",
+                    "branch" : "master"
+
                 }
             ]
         },
