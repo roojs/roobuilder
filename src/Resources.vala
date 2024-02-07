@@ -91,10 +91,10 @@ public class Resources : Object
 	{	
 		string[] avail_files = { 
 			"roodata.json",
-			"flutter_tree.json",
-			"*",
-			"Editors/*.js",
-			"vapi/*"
+//			"flutter_tree.json",
+//			"*",
+	//		"Editors/*.js",
+//			"vapi/*"
 			
 		};
 		this.fetch_files = new Gee.ArrayList<ResourcesItem>();
@@ -108,7 +108,7 @@ public class Resources : Object
 			if (target == "flutter_tree.json") {
 				src = "https://raw.githubusercontent.com/roojs/flutter-docs-json/master/tree.json";
 			}
-			
+			/*
 			if (target.contains("*")) {
 				var split = target.split("*");
 				
@@ -119,7 +119,7 @@ public class Resources : Object
 				}
 				
 			}
-			
+			*/
 			this.fetch_files.add(new ResourcesItem(src,target, ""));
 		}
 	
