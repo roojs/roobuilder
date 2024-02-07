@@ -51,4 +51,5 @@ debian/auto*
 debian/debhelper*
 debian/files
 
+.flatpak-builder/*
 .gdb_history
