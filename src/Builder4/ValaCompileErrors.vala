@@ -19,6 +19,7 @@ public class Xcls_ValaCompileErrors : Object
 	public Xcls_model model;
 
 		// my vars (def)
+	public Gee.HashMap<string,Gtk.TreeListRow>? rows;
 	public Xcls_MainWindow window;
 	public bool loaded;
 
@@ -29,6 +30,7 @@ public class Xcls_ValaCompileErrors : Object
 		this.el = new Gtk.Popover();
 
 		// my vars (dec)
+		this.rows = null;
 		this.loaded = false;
 
 		// set gobject values
@@ -61,10 +63,13 @@ public class Xcls_ValaCompileErrors : Object
 			}
 			
 		);
-	 
+		this.rows = new Gee.HashMap<string,Gtk.TreeListRow>();
 		_this.model.el = tm;
 		_this.sortmodel.el.set_model(tm);
 		 this.tree.el.show();
+		 if (this.rows.has_key(this.window.windowstate.file.path)) {
+	    	this.rows.get(this.window.windowstate.file.path).expanded = true;
+	    }
 	}
 	public void show (   ) {
 		GLib.debug("errors  : show");
@@ -74,17 +79,7 @@ public class Xcls_ValaCompileErrors : Object
 	 	    GLib.debug("errors  : none available");
 	    	return;
 		}
-	 	//this.el.present();
-	    //this.el.popup();
-	    
-	     //print("looking for %s\n", id);
-	    // loop through parent childnre
-	      
-	    
-	     ; //<< very important!!!
-	      
-	   // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
-	 
+	 	 
 	    var win = this.window.el;
 	    var  w = win.get_width();
 	    var h = win.get_height();
@@ -100,28 +95,13 @@ public class Xcls_ValaCompileErrors : Object
 	    GLib.debug("set size");
 	    this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
 	 
-	
-	   // this.el.set_relative_to(onbtn);
-		//Gtk.Allocation rect;
-		//onbtn.get_allocation(out rect);
-	    //this.el.set_pointing_to(rect);
-		//this.el.present();
+	 
 		
 		GLib.debug("call popup");
 	    this.el.popup();
-	    // only need to load once.
-	 	//if (!this.loaded) {
-	 		 
-			//this.loaded = true;
-		 //}
-		 
-	       
-	   
-	   	//if (expand != null) {
-	    //	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
-	//	}
-	    
-	 //   this.hpane.el.set_position( 0);
+	    if (this.rows.has_key(this.window.windowstate.file.path)) {
+	    	this.rows.get(this.window.windowstate.file.path).expanded = true;
+	    }
 	}
 	public class Xcls_compile_view : Object
 	{
@@ -143,14 +123,14 @@ public class Xcls_ValaCompileErrors : Object
 			// set gobject values
 			this.el.homogeneous = false;
 			this.el.hexpand = false;
-			var child_1 = new Xcls_ScrolledWindow3( _this );
+			var child_1 = new Xcls_ScrolledWindow2( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ScrolledWindow3 : Object
+	public class Xcls_ScrolledWindow2 : Object
 	{
 		public Gtk.ScrolledWindow el;
 		private Xcls_ValaCompileErrors  _this;
@@ -159,7 +139,7 @@ public class Xcls_ValaCompileErrors : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ScrolledWindow3(Xcls_ValaCompileErrors _owner )
+		public Xcls_ScrolledWindow2(Xcls_ValaCompileErrors _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.ScrolledWindow();
@@ -202,10 +182,10 @@ public class Xcls_ValaCompileErrors : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			var child_2 = new Xcls_ColumnViewColumn11( _this );
+			var child_2 = new Xcls_ColumnViewColumn10( _this );
 			child_2.ref();
 			this.el.append_column ( child_2.el  );
-			var child_3 = new Xcls_GestureClick13( _this );
+			var child_3 = new Xcls_GestureClick12( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
@@ -259,7 +239,7 @@ public class Xcls_ValaCompileErrors : Object
 			_this = _owner;
 			_this.sortmodel = this;
 			new Xcls_model( _this );
-			var child_2 = new Xcls_TreeListRowSorter8( _this );
+			var child_2 = new Xcls_TreeListRowSorter7( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( _this.model.el, child_2.el );
 
@@ -316,7 +296,7 @@ public class Xcls_ValaCompileErrors : Object
 		// user defined functions
 	}
 
-	public class Xcls_TreeListRowSorter8 : Object
+	public class Xcls_TreeListRowSorter7 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Xcls_ValaCompileErrors  _this;
@@ -325,10 +305,10 @@ public class Xcls_ValaCompileErrors : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter8(Xcls_ValaCompileErrors _owner )
+		public Xcls_TreeListRowSorter7(Xcls_ValaCompileErrors _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter9( _this );
+			var child_1 = new Xcls_StringSorter8( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -339,7 +319,7 @@ public class Xcls_ValaCompileErrors : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter9 : Object
+	public class Xcls_StringSorter8 : Object
 	{
 		public Gtk.StringSorter el;
 		private Xcls_ValaCompileErrors  _this;
@@ -348,10 +328,10 @@ public class Xcls_ValaCompileErrors : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter9(Xcls_ValaCompileErrors _owner )
+		public Xcls_StringSorter8(Xcls_ValaCompileErrors _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression10( _this );
+			var child_1 = new Xcls_PropertyExpression9( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -362,7 +342,7 @@ public class Xcls_ValaCompileErrors : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression10 : Object
+	public class Xcls_PropertyExpression9 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Xcls_ValaCompileErrors  _this;
@@ -371,7 +351,7 @@ public class Xcls_ValaCompileErrors : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression10(Xcls_ValaCompileErrors _owner )
+		public Xcls_PropertyExpression9(Xcls_ValaCompileErrors _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Palete.CompileError), null, "linemsg" );
@@ -388,7 +368,7 @@ public class Xcls_ValaCompileErrors : Object
 
 
 
-	public class Xcls_ColumnViewColumn11 : Object
+	public class Xcls_ColumnViewColumn10 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_ValaCompileErrors  _this;
@@ -397,10 +377,10 @@ public class Xcls_ValaCompileErrors : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ColumnViewColumn11(Xcls_ValaCompileErrors _owner )
+		public Xcls_ColumnViewColumn10(Xcls_ValaCompileErrors _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory12( _this );
+			var child_1 = new Xcls_SignalListItemFactory11( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Compile Result", child_1.el );
 
@@ -413,7 +393,7 @@ public class Xcls_ValaCompileErrors : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory12 : Object
+	public class Xcls_SignalListItemFactory11 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_ValaCompileErrors  _this;
@@ -422,7 +402,7 @@ public class Xcls_ValaCompileErrors : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory12(Xcls_ValaCompileErrors _owner )
+		public Xcls_SignalListItemFactory11(Xcls_ValaCompileErrors _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -470,6 +450,11 @@ public class Xcls_ValaCompileErrors : Object
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
 				var np = (Palete.CompileError) lr.get_item();
 				
+				if (np.diag == null) {
+					_this.rows.set(np.file.path, lr);
+				
+				}
+			
 				
 				//GLib.debug("change  %s to %s", lbl.label, np.name);
 				lbl.label = np.linemsg;
@@ -496,7 +481,7 @@ public class Xcls_ValaCompileErrors : Object
 	}
 
 
-	public class Xcls_GestureClick13 : Object
+	public class Xcls_GestureClick12 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_ValaCompileErrors  _this;
@@ -505,7 +490,7 @@ public class Xcls_ValaCompileErrors : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick13(Xcls_ValaCompileErrors _owner )
+		public Xcls_GestureClick12(Xcls_ValaCompileErrors _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();

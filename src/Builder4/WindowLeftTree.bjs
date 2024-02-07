@@ -4,6 +4,7 @@
  "items" : [
   {
    "# Xcls_MainWindow? main_window" : "null",
+   "# int last_error_counter" : "-1",
    "$ xns" : "Gtk",
    "@ bool before_node_change" : "()",
    "@ void changed" : "()",
@@ -12,7 +13,6 @@
    "bool hexpand" : true,
    "bool vexpand" : true,
    "id" : "WindowLeftTree",
-   "int last_error_counter" : "-1",
    "items" : [
     {
      "$ xns" : "Gtk",
@@ -1671,6 +1671,7 @@
    "| JsRender.JsRender getActiveFile" : [
     "() {",
     "    return this.main_window.windowstate.file;",
+    "    ",
     "}",
     ""
    ],

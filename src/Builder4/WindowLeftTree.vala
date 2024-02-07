@@ -160,6 +160,7 @@ public class Xcls_WindowLeftTree : Object
 	}
 	public JsRender.JsRender getActiveFile () {
 	    return this.main_window.windowstate.file;
+	    
 	}
 	public class Xcls_ListView1 : Object
 	{

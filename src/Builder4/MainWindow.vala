@@ -67,7 +67,6 @@ public class Xcls_MainWindow : Object
 
 		// set gobject values
 		this.el.title = "Roo Application Builder";
-		this.el.default_height = 850;
 		this.el.default_width = 1200;
 		new Xcls_headerbar( _this );
 		this.el.set_titlebar ( _this.headerbar.el  );
@@ -90,7 +89,10 @@ public class Xcls_MainWindow : Object
 			 BuilderApplication.removeWindow(this);
 			 
 			 if (BuilderApplication.windows.size  < 1) {
-				this.windowstate.file.getLanguageServer().exit();
+			 	try {
+					this.windowstate.file.getLanguageServer().exit();
+				} catch(Error e) {}
+				
 				BuilderApplication.singleton(  null ).quit();
 			 }
 			return true;
@@ -2178,19 +2180,34 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.setup.connect( (listitem) => {
+			
+				var li = (listitem as Gtk.ListItem);
+				if (li == null) {
+					return;
+				}
+			
 				var lbl = new Gtk.Label("");
-			 	(listitem as Gtk.ListItem).set_child(lbl);
+			 	li.set_child(lbl);
 			 	lbl.justify = Gtk.Justification.LEFT;
 			 	lbl.xalign = 0;
 			 	lbl.use_markup = true;
 				lbl.ellipsize = Pango.EllipsizeMode.START;
 			  
-				(listitem as Gtk.ListItem).activatable = true;
+				li.activatable = true;
 			});
 			this.el.bind.connect( (listitem) => {
-				 var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();
-				 var item =  (listitem as Gtk.ListItem).get_item() as WindowState;
-				 
+				var li = (listitem as Gtk.ListItem);
+				if (li == null) {
+					return;
+				}
+				 var lb = (Gtk.Label) li.get_child() as Gtk.Label;
+				 if (lb == null) {
+				 	return;
+			 	}
+				 var item =  li.get_item() as WindowState;
+				 if (item == null) {
+				 	return;
+			 	}
 				 lb.label = item.project.name;
 			
 			
@@ -2250,20 +2267,36 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.setup.connect( (listitem) => {
+				var li = (listitem as Gtk.ListItem);
+				if (li == null) {
+					return;
+				}
 				var lbl = new Gtk.Label("");
-			 	(listitem as Gtk.ListItem).set_child(lbl);
+			 	li.set_child(lbl);
 			 	lbl.justify = Gtk.Justification.LEFT;
 			 	lbl.xalign = 0;
 			 	lbl.use_markup = true;
 				lbl.ellipsize = Pango.EllipsizeMode.START;
 			  
-				(listitem as Gtk.ListItem).activatable = true;
+				li.activatable = true;
 			});
 			this.el.bind.connect( (listitem) => {
-			 var lb = (Gtk.Label) (listitem as Gtk.ListItem).get_child();
-			 var item =  (listitem as Gtk.ListItem).get_item() as WindowState;
-			 
-			 lb.label = item.file.relpath;
+				var li = (listitem as Gtk.ListItem);
+				if (li == null) {
+					return;
+				}
+				 var lb = (Gtk.Label) li.get_child() as Gtk.Label;
+				 if (lb == null) {
+				 	return;
+			 	}
+				 var item =  li.get_item() as WindowState;
+				 if (item == null) {
+				 	return;
+			 	}
+			 	
+			 	 
+			  
+			 	lb.label = item.file.relpath;
 			
 			
 			  
