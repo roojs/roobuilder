@@ -20,6 +20,8 @@
         "--socket=wayland",
     	"--socket=session-bus",
     	"--filesystem=home",
+    	"--filesystem=/usr/share/vala-0.56",
+    	"--filesystem=/usr/share/vala",    	
         "--filesystem=xdg-download:ro",
         "--filesystem=xdg-music:ro",
         "--filesystem=xdg-run/gvfsd",
