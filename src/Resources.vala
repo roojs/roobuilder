@@ -164,18 +164,18 @@ public class Resources : Object
 		
 		// this has to check the required files, not the list...
 		string[] required =  {
-			"bootstrap.builder.html",
+			/*"bootstrap.builder.html",
 			"bootstrap4.builder.html",
 			 
 			"mailer.builder.html",
 			"roo.builder.html",
 			"roo.builder.js",
-			
+			*/
 			
 			"roodata.json",
 			
 			//"RooUsage.txt" ?? not needed it's doen from roodata.
-			"Gir.overides" //?? needed anymnore?
+		//	"Gir.overides" //?? needed anymnore?
 			
 		};
 
@@ -304,6 +304,7 @@ public class Resources : Object
 					GLib.error("Problem writing data %s", e.message);
 				}
             switch (item.target) {
+            /*
 				case "Gir.overides":
 					// clear all the project caches....
 					foreach(var p in Project.Project.allProjectsByName()) { 
@@ -313,7 +314,7 @@ public class Resources : Object
 					}
 
 					break;
-				 
+				*/ 
 					
 				case "roodata.json":
 					Palete.Roo.classes_cache = null; // clear the cache.
