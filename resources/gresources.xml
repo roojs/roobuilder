@@ -156,11 +156,14 @@
     <file>widget-vte-terminal.png</file>
   </gresource>
   <gresource prefix="/html">
-    <file>bootstrap4.builder.html</file>
     <file>bootstrap.builder.html</file>
+    <file>bootstrap4.builder.html</file>
     <file>mailer.builder.html</file>
     <file>roo.builder.html</file>
     <file>roo.builder.js</file>
+  </gresource>
+  <gresource prefix="/data">
+    <file>roodata.json</file>
   </gresource>
   <gresource prefix="/Editors">
   </gresource>
