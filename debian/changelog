@@ -1,6 +1,7 @@
 roobuilder (5.0.3) UNRELEASED; urgency=medium
 
-  * new stuff 
+  * error popups with tree of errors, now default to expanding current file
+  
 
  -- Alan <alan@office.roojs.com>  Wed, 07 Feb 2024 09:51:44 +0800
 
