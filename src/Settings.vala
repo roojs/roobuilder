@@ -63,6 +63,15 @@ public class Settings : Object  {
 			return;
 		}
 	}
+	
+	public bool load()
+	{
+		this.loaded = true;
+		return true;
+	}
+	public  loadOld() {
+		this.loaded = true;
+	}
 
 }
 
