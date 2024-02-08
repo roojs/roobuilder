@@ -118,7 +118,7 @@
 		    { "application/x-rootwindow-drop", 0, Target.ROOTWIN }
 		};
 		*/
-		public AppSettings settings = null;
+		//public AppSettings settings = null;
 
 
 
@@ -154,7 +154,7 @@
 			
 			
 			configDirectory();
-			this.settings = AppSettings.factory();	
+		//	this.settings = AppSettings.factory();	
 			var opt_context = new OptionContext ("Application Builder");
 			
 			try {
@@ -187,17 +187,20 @@
 
 		}
 
+		static Settings settings;
+
 		protected override void activate () 
 		{
 			var css = new Gtk.CssProvider();
 			css.load_from_resource("/css/roobuilder.css");
+			
 			
 			Gtk.StyleContext.add_provider_for_display(
 				Gdk.Display.get_default(),
 				css	,
 				Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
 			);
-			
+			BuilderApplication.settings = new Settings();
 		
 			var w = new Xcls_MainWindow();
 		    w.initChildren();
