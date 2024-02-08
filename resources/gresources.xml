@@ -165,6 +165,9 @@
   <gresource prefix="/data">
     <file>roodata.json</file>
   </gresource>
+  <gresource prefix="/css">
+    <file>roobuilder.css</file>
+  </gresource>
   <gresource prefix="/Editors">
   </gresource>
 </gresources>
