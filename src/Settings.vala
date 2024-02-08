@@ -18,15 +18,16 @@ public class Settings : Object  {
 	// things that can be set..
 	
 	private int _editor_font_size = 10;
-	public int editor_font_size {
+	public double editor_font_size {
 		get {
-			return this._editor_font_size;
+			return (double) this._editor_font_size;
 		}
 		set {
-			this._editor_font_size = value;
+			GLib.debug("updated to %d", (int) value );
+			this._editor_font_size = (int) value;
 			if (this.css != null) {
 				this.css.load_from_string(
-					".code-editor { font-size: %dpx; }".printf(value)
+					".code-editor { font: %dpx monospace }".printf((int) value)
 				);
 			}
 			this.save();
