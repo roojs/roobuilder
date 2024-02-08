@@ -502,6 +502,7 @@ public class Editor : Object
 			 	BuilderApplication.settings.notify["editor_font_size"].connect(
 			 		() => {
 			 			this.inchange = true;
+			 			Glib.debug("update range");
 			 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
 			 		 	this.inchange = false;
 			 		}

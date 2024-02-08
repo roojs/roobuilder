@@ -58,6 +58,7 @@
         " \tBuilderApplication.settings.notify[\"editor_font_size\"].connect(",
         " \t\t() => {",
         " \t\t\tthis.inchange = true;",
+        " \t\t\tGlib.debug(\"update range\");",
         " \t\t \tthis.el.set_value (BuilderApplication.settings.editor_font_size);",
         " \t\t \tthis.inchange = false;",
         " \t\t}",
