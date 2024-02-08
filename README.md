@@ -22,12 +22,13 @@ Changlog
 ---
 Debian and Ubuntu packages
 
- * you will need libvala (available on most debian/ubuntu repos), 
+ you will need libvala (available on most debian/ubuntu repos), 
    and vala-language-server (available below)
  
-  https://github.com/roojs/roobuilder/releases
-  https://github.com/roojs/vala-language-server/releases 
+  * https://github.com/roojs/roobuilder/releases
+  * https://github.com/roojs/vala-language-server/releases 
   
+---
 
 
 Building it
