@@ -580,11 +580,11 @@
      "id" : "EditProps",
      "items" : [
       {
+       "# Xcls_PopoverProperty popover" : "null",
        "$ enable_tree_lines" : true,
        "$ headers_visible" : true,
        "$ xns" : "Gtk",
        "* pack" : "set_child",
-       "Xcls_PopoverProperty popover" : "null",
        "bool hexpand" : true,
        "bool show_row_separators" : true,
        "bool single_click_activate" : false,
