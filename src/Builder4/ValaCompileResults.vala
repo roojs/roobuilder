@@ -167,25 +167,6 @@ public class Xcls_ValaCompileResults : Object
 			this.el.show_line_numbers = false;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-
-			// init method
-
-			{
-			
-			   	this.css = new Gtk.CssProvider();
-				 
-				this.css.load_from_string(
-					"#compile-results-view { font: 10px monospace ;}"
-				);
-				 
-						Gtk.StyleContext.add_provider_for_display(
-					this.el.get_display(),
-					this.css,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-				);
-					
-			
-			}
 		}
 
 		// user defined functions
