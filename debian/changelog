@@ -2,6 +2,8 @@ roobuilder (5.0.3) UNRELEASED; urgency=medium
 
   * error popups with tree of errors, now default to expanding current file
   * row detection for drag/drop + contect menu replaced with pick/ bounds and row counting (far more reliable)
+  * css moved to resource
+  * editor resize font now centralized and synced on all windows
   
 
  -- Alan <alan@office.roojs.com>  Wed, 07 Feb 2024 09:51:44 +0800
