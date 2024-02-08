@@ -501,7 +501,6 @@
            "# bool button_is_pressed" : false,
            "# bool key_is_pressed" : false,
            "# bool loading" : true,
-           "# bool show_line_marks" : true,
            "# id" : "sourceview",
            "# int editable_start_pos" : "-1",
            "# string prop_selected" : "\"\"",
@@ -575,6 +574,7 @@
            ],
            "* pack" : "set_child",
            "bool editable" : false,
+           "bool show_line_marks" : true,
            "bool show_line_numbers" : true,
            "items" : [
             {

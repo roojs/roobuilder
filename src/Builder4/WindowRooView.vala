@@ -1070,7 +1070,6 @@ public class Xcls_WindowRooView : Object
 		public string prop_selected;
 		public Gtk.CssProvider? css;
 		public bool key_is_pressed;
-		public bool show_line_marks;
 		public JsRender.Node? node_selected;
 
 		// ctor
@@ -1087,12 +1086,12 @@ public class Xcls_WindowRooView : Object
 			this.prop_selected = "";
 			this.css = null;
 			this.key_is_pressed = false;
-			this.show_line_marks = true;
 			this.node_selected = null;
 
 			// set gobject values
 			this.el.name = "roo-view";
 			this.el.editable = false;
+			this.el.show_line_marks = true;
 			this.el.show_line_numbers = true;
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
