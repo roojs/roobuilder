@@ -1093,6 +1093,7 @@ public class Xcls_WindowRooView : Object
 			this.el.editable = false;
 			this.el.show_line_marks = true;
 			this.el.show_line_numbers = true;
+			this.el.css_classes = { "code-editor" };
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
 			var child_2 = new Xcls_EventControllerKey16( _this );
