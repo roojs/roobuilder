@@ -58,7 +58,7 @@
         " \t\t() => {",
         " \t\t \tthis.el.set_value (BuilderApplication.settings.editor_font_size);",
         " \t\t}",
-        "\t});",
+        "\t);",
         "\t",
         " ",
         "}",

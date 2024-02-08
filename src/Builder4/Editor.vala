@@ -501,7 +501,7 @@ public class Editor : Object
 			 		() => {
 			 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
 			 		}
-				});
+				);
 				
 			 
 			}
