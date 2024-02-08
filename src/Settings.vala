@@ -21,6 +21,7 @@ public class Settings : Object  {
 	public int editor_font_size {
 		get {
 			return this._editor_font_size;
+		}
 		set {
 			this._editor_font_size = value;
 		}
