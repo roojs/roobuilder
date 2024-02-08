@@ -642,20 +642,6 @@ public class Editor : Object
 
 			// init method
 
-			this.css = new Gtk.CssProvider();
-			
-			this.css.load_from_string(
-				"#editor-view { font:  12px monospace;}"
-			);
-			 
-			Gtk.StyleContext.add_provider_for_display(
-				this.el.get_display(),
-				this.css,
-				Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-			);
-				
-			 
-			 
 			this.el.completion.add_provider(
 				new Palete.CompletionProvider(_this)
 			);
