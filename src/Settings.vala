@@ -31,6 +31,7 @@ public class Settings : Object  {
 				);
 			}
 			this.save();
+			this.notify["editor_font_size"]();
 		}
 		
 	}
