@@ -24,7 +24,7 @@ public class Settings : Object  {
 		}
 		set {
 			this._editor_font_size = value;
-			if (this.css != nul) {
+			if (this.css != null) {
 				this.css.load_from_string(" .code-editor{ font-size: %spx; }".printf(value);
 			}
 			this.save();
@@ -34,7 +34,8 @@ public class Settings : Object  {
 	
 	
 	// things we look after..
-	 Gtk.CssProvider? css = null;
+	Gtk.CssProvider? css = null;
+	bool loaded = false;
 	
 	
 	public  Settings ()
@@ -55,6 +56,12 @@ public class Settings : Object  {
 		this.save();
 			
 	}
+
+	public void save()
+	{
+		if (!this.loaded) {
+			return;
+		}
 
 
 }
