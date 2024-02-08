@@ -188,6 +188,7 @@
 		}
 
 		protected override void activate () 
+		{
 			var css = new Gtk.CssProvider();
 			css.load_from_resource("/css/roobuilder.css");
 			
