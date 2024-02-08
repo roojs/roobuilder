@@ -71,7 +71,7 @@
         "change_value" : [
          "(st, val ) => {",
          "\t ",
-         "  //BuilderApplication.settings.editor_font_size = val;",
+         "  BuilderApplication.settings.editor_font_size = val;",
          " \treturn false;",
          "}"
         ]
