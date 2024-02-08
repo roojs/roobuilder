@@ -70,6 +70,7 @@
          "items" : [
           {
            "# JsRender.Node? node_selected" : "",
+           "# bool loading" : false,
            "# string prop_selected" : "\"\"",
            "$ xns" : "GtkSource",
            "* init" : [
@@ -139,7 +140,6 @@
            ],
            "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
-           "bool loading" : false,
            "bool zallow_node_scroll" : true,
            "gboolean editable" : false,
            "gboolean show_line_marks" : true,
