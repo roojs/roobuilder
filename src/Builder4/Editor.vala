@@ -496,7 +496,11 @@ public class Editor : Object
 
 			{
 				this.el.set_range(6,30);
-				this.el.set_value(8);
+				this.el.bind_property( "value",
+				
+					BuilderAplication.settings, "editor_font_size",
+					GLib.BindingFlags.BIDIRECTIONAL);
+					
 			}
 
 			//listeners
