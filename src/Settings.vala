@@ -36,6 +36,7 @@ public class Settings : Object  {
 		}
 		
 	}
+	public signal void editor_font_updated();
 	
 	
 	// things we look after..
