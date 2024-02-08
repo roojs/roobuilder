@@ -32,7 +32,7 @@ public class Settings : Object  {
 	
 	
 	// things we look after..
-	 Gtk.CssProvider css;
+	 Gtk.CssProvider? css = null;
 	
 	
 	public  Settings ()
