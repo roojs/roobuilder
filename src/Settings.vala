@@ -71,7 +71,7 @@ public class Settings : Object  {
 		this.loaded = true;
 		return true;
 	}
-	public  loadOld() {
+	public  void loadOld() {
 		this.loaded = true;
 	}
 
