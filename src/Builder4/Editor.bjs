@@ -75,7 +75,9 @@
        "listeners" : {
         "change_value" : [
          "(st, val ) => {",
-         "\t ",
+         "\tif (this.inchange) {",
+         "\t\treturn false;",
+         "\t}",
          "  \tBuilderApplication.settings.editor_font_size = val;",
          " \treturn false;",
          "}"
