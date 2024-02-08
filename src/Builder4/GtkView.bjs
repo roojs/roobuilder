@@ -8,7 +8,6 @@
    "# JsRender.JsRender file" : "null",
    "# Xcls_MainWindow main_window" : "",
    "$ xns" : "Gtk",
-   "Gtk.CssProvider css" : "",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "bool hexpand" : true,
    "bool vexpand" : true,

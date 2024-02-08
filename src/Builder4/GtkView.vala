@@ -31,7 +31,6 @@ public class Xcls_GtkView : Object
 
 		// my vars (def)
 	public Gtk.Widget lastObj;
-	public Gtk.CssProvider css;
 	public Xcls_MainWindow main_window;
 	public GtkSource.SearchContext searchcontext;
 	public int last_error_counter;
