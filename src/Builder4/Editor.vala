@@ -500,7 +500,7 @@ public class Editor : Object
 				
 				this.el.bind_property( "value",	
 					BuilderApplication.settings, "editor_font_size",
-					GLib.BindingFlags.BIDIRECTIONAL  );
+					GLib.BindingFlags.SYNC_CREATE  );
 					
 			}
 

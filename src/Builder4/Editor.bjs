@@ -57,7 +57,7 @@
         "\t",
         "\tthis.el.bind_property( \"value\",\t",
         "\t\tBuilderApplication.settings, \"editor_font_size\",",
-        "\t\tGLib.BindingFlags.BIDIRECTIONAL  );",
+        "\t\tGLib.BindingFlags.SYNC_CREATE  );",
         "\t\t",
         "}",
         ""
