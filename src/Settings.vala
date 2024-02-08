@@ -36,6 +36,7 @@ public class Settings : Object  {
 		}
 		
 	}
+	public bool editor_font_size_inchange = false;
 	public signal void editor_font_size_updated();
 	
 	
