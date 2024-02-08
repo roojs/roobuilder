@@ -62,7 +62,7 @@ public class Settings : Object  {
 		if (!this.loaded) {
 			return;
 		}
-
+	}
 
 }
 
