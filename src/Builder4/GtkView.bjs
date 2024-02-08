@@ -7,13 +7,13 @@
    "# GtkSource.SearchContext searchcontext" : "",
    "# JsRender.JsRender file" : "null",
    "# Xcls_MainWindow main_window" : "",
+   "# int last_error_counter" : 0,
+   "# int last_search_end" : 0,
    "$ xns" : "Gtk",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "bool hexpand" : true,
    "bool vexpand" : true,
    "id" : "GtkView",
-   "int last_error_counter" : 0,
-   "int last_search_end" : 0,
    "items" : [
     {
      "$ xns" : "Gtk",
