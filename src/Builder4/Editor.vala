@@ -496,12 +496,14 @@ public class Editor : Object
 
 			{
 				//this.el.set_range(6,30);
-			 
+			 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
+			 	BuilderApplication.settings.notify["editor_font_size"].connect(
+			 		() => {
+			 		 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
+			 		}
+				});
 				
-			
-				BuilderApplication.settings.bind_property( "editor_font_size",	
-					this.el, "value",
-					GLib.BindingFlags.SYNC_CREATE  );	
+			 
 			}
 
 			//listeners
