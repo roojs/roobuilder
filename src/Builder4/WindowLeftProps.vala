@@ -1792,97 +1792,50 @@ public class Xcls_LeftProps : Object
 		        return -1;
 		
 		 }
-		public int getRowAt (double x,  double in_y, out string pos) {
+		public int getRowAt (double x,  double  y, out string pos) {
 		
-		
+			var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
+			//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
+			if (w == null) {
+				return -1;
+			}
+			
+			var row= w.get_ancestor(GLib.Type.from_name("GtkColumnViewRowWidget"));
+			if (row == null) {
+				return -1;
+			}
+			
+			//GLib.debug("got colview %s", row == null ? "nothing" : row.get_type().name());
 			 
-		
-		/*
-		    	
-		from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
-		    	var colview = gesture.widget;
-		    	var line_no = check_list_widget(colview, x,y);
-		         if (line_no > -1) {
-		    		var item = colview.model.get_item(line_no);
-		    		 
-		    	}
-		    	*/
-		 		 
-		 		
-		 		//GLib.debug("offset = %d  y = %d", (int) voff, (int) in_y);
-		    	var y = in_y + _this.EditProps.el.vadjustment.value; 
-		        var  child = this.el.get_first_child(); 
-		    	//Gtk.Allocation alloc = { 0, 0, 0, 0 };
-		    	var line_no = -1; 
-		    	var reading_header = true;
-		    	var real_y = 0;
-		    	var header_height  = 0;
-		    	pos = "none";
-		    	var h = 0;
-		    	while (child != null) {
-					//GLib.debug("Got %s", child.get_type().name());
-		    	    if (reading_header) {
-						
-		
-						if (child.get_type().name() != "GtkColumnListView") {
-					        h += child.get_height();
-							child = child.get_next_sibling();
-							continue;
-						}
-						// should be columnlistview
-						child = child.get_first_child(); 
-					    //GLib.debug("header height=%d", h);
-						header_height =  h;
-						
-						reading_header = false;
-						continue;
-			        }
-			        
-				    if (child.get_type().name() != "GtkColumnViewRowWidget") {
-		    		    child = child.get_next_sibling();
-		    		    continue;
-				    }
-				    
-				 	if (y < header_height) {
-				    	return -1;
-			    	}
-				    
-				    line_no++;
-					var hh = child.get_height();
-					if (child.has_css_class("node-err") || 
-						child.has_css_class("node-warn") || 
-						child.has_css_class("node-depr")) {
-						hh += 10;
-					
-					}
-					
-					//child.get_allocation(out alloc);
-					//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
-					//GLib.debug("row %d y= %d %s", line_no, (int) (header_height + alloc.y),
-					
-					//	child.visible ? "VIS" : "hidden");
-		
-				    if (y >  (header_height + real_y) && y <= (header_height +  real_y + hh) ) {
-				    	if (y > ( header_height + real_y + (hh * 0.8))) {
-				    		pos = "below";
-			    		} else if (y > ( header_height + real_y + (hh * 0.2))) {
-			    			pos = "over";
-		    			} else {
-		    				pos = "above";
-						}
-				    	 GLib.debug("getRowAt return : %d, %s", line_no, pos);
-					    return line_no;
-				    }
-		 
-		
-				    if (real_y + hh > y) {
-				        return -1;
-			        }
-			        real_y += hh;
-			        child = child.get_next_sibling(); 
-		    	}
-		        return -1;
-		
+			var rn = 0;
+			var cr = row;
+			 
+			while (cr.get_prev_sibling() != null) {
+				rn++;
+				cr = cr.get_prev_sibling();
+			}
+			
+			//GLib.debug("row number is %d", rn);
+			//GLib.debug("click %d, %d", (int)x, (int)y);
+			// above or belw
+			Graphene.Rect  bounds;
+			row.compute_bounds(this.el, out bounds);
+			//GLib.debug("click x=%d, y=%d, w=%d, h=%d", 
+			//	(int)bounds.get_x(), (int)bounds.get_y(),
+			//	(int)bounds.get_width(), (int)bounds.get_height()
+			//	);
+			var ypos = y - bounds.get_y();
+			//GLib.debug("rel ypos = %d", (int)ypos);	
+			var rpos = 100.0 * (ypos / bounds.get_height());
+			//GLib.debug("rel pos = %d %%", (int)rpos);
+			pos = "over";
+			
+			if (rpos > 80) {
+				pos = "below";
+			} else if (rpos < 20) {
+				pos = "above";
+			} 
+			return rn;
 		 }
 	}
 	public class Xcls_deletemenu : Object
@@ -1950,7 +1903,10 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.has_frame = false;
 			this.el.label = "Delete";
+			var child_1 = new Xcls_Label1187( _this );
+			this.el.child = child_1.el;
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
@@ -1965,6 +1921,29 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
+	public class Xcls_Label1187 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_LeftProps  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label1187(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Delete Property / Method" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+		}
+
+		// user defined functions
+	}
+
 
 
 

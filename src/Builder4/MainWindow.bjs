@@ -6,7 +6,6 @@
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "",
    "# bool winloading" : false,
-   "# default_height" : 850,
    "$ type" : "Gtk.WindowType.TOPLEVEL",
    "$ xns" : "Gtk",
    "* ctor" : "new Gtk.ApplicationWindow(BuilderApplication.singleton({}))",
@@ -16,6 +15,7 @@
     ""
    ],
    "border_width" : 0,
+   "default_height" : 850,
    "default_width" : 1200,
    "id" : "MainWindow",
    "items" : [

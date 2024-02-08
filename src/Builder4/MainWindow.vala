@@ -67,6 +67,7 @@ public class Xcls_MainWindow : Object
 
 		// set gobject values
 		this.el.title = "Roo Application Builder";
+		this.el.default_height = 850;
 		this.el.default_width = 1200;
 		new Xcls_headerbar( _this );
 		this.el.set_titlebar ( _this.headerbar.el  );
