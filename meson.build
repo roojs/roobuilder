@@ -154,6 +154,7 @@ roobuilder_src = files([
    'src/JsRender/NodeToValaExtended.vala',
    'src/JsRender/NodeToValaWrapped.vala',
    'src/Builder4/MainWindow.vala',
+   'src/Settings.vala',
 ])
 
 
