@@ -83,4 +83,7 @@
 
 #gtkview-search-entry { 
     font: 10px monospace ;
-}"
+}
+#gtkview-view-layout { 
+    background-color: #ccc; 
+}

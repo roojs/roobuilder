@@ -55,25 +55,6 @@ public class Xcls_GtkView : Object
 		this.el.vexpand = true;
 		new Xcls_notebook( _this );
 		this.el.append( _this.notebook.el );
-
-		// init method
-
-		{
-		
-			this.css = new Gtk.CssProvider();
-			 
-			this.css.load_from_string(
-				"#gtkview-view-layout { background-color: #ccc; }"
-			);
-			 
-			Gtk.StyleContext.add_provider_for_display(
-				this.el.get_display(),
-				this.css,
-				Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-			);
-				
-		        
-		}
 	}
 
 	// user defined functions
