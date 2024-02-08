@@ -201,6 +201,7 @@
        "bool vexpand" : true,
        "boolean show_line_marks" : true,
        "boolean show_line_numbers" : true,
+       "css_classes" : "{ \"code-editor\" }",
        "gboolean highlight_current_line" : true,
        "id" : "view",
        "indent_width" : 4,
