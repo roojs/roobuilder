@@ -495,7 +495,7 @@ public class Editor : Object
 			// init method
 
 			{
-				this.el.set_range(6,30);
+				//this.el.set_range(6,30);
 			 
 				
 			

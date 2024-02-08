@@ -52,7 +52,7 @@
        "* ctor" : "new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1)",
        "* init" : [
         "{",
-        "\tthis.el.set_range(6,30);",
+        "\t//this.el.set_range(6,30);",
         " ",
         "\t",
         "",
