@@ -1113,23 +1113,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* init" : [
-            "this.css = new Gtk.CssProvider();",
-            " ",
-            "this.css.load_from_string(",
-            "\t\"#roo-search-entry { background-color: #ccc; }\"",
-            ");",
-            " ",
-            "Gtk.StyleContext.add_provider_for_display(",
-            "\tthis.el.get_display(),",
-            "\tthis.css,",
-            "\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
-            ");",
-            "\t\t",
-            "\t ",
-            " ",
-            ""
-           ],
            "Gtk.CssProvider? css" : "null",
            "bool hexpand" : true,
            "id" : "search_entry",

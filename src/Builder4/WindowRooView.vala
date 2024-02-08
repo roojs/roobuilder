@@ -1760,20 +1760,6 @@ public class Xcls_WindowRooView : Object
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
-			// init method
-
-			this.css = new Gtk.CssProvider();
-			 
-			this.css.load_from_string(
-				"#roo-search-entry { background-color: #ccc; }"
-			);
-			 
-			Gtk.StyleContext.add_provider_for_display(
-				this.el.get_display(),
-				this.css,
-				Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-			);
-
 			//listeners
 			this.el.search_changed.connect( ( ) => {
 			
