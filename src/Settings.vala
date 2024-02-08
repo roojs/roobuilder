@@ -17,7 +17,7 @@ public class Settings : Object  {
 
 	// things that can be set..
 	
-	private int _editor_font_size = 16;
+	private int _editor_font_size = 10;
 	public int editor_font_size {
 		get {
 			return this._editor_font_size;
