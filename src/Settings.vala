@@ -32,7 +32,7 @@ public class Settings : Object  {
 			}
 			this.save();
 
-			this.notify_property(("editor_font_size");
+			this.notify_property("editor_font_size");
 		}
 		
 	}
