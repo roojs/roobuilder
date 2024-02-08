@@ -15,8 +15,41 @@ we used to store it in '.Builder/Project.list' .. but that's going to change..
 
 public class Settings : Object  {
 
+	// things that can be set..
 	
-	public  Settings 
+	private int _editor_font_size = 16;
+	public int editor_font_size {
+		get {
+			return this._editor_font_size;
+		set {
+			this._editor_font_size = value;
+		}
+		this.css.load_from_string(" .code-editor{ font-size: %spx; }".printf(value);
+	}
+	
+	
+	// things we look after..
+	 Gtk.CssProvider css;
+	
+	
+	public  Settings ()
+	{
+		
+		this.css = new  Gtk.CssProvider();
+		this editor_font_size = 10;
+		Gtk.StyleContext.add_provider_for_display(
+			Gtk.Display.get_default(),
+			this.css,
+			Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+		);
+		
+		if (this.load()) {
+			return;
+		}
+		this.loadOld();
+		this.save();
+			
+	}
 
 
 }
