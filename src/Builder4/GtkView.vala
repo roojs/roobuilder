@@ -32,9 +32,9 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 	public Gtk.Widget lastObj;
 	public Xcls_MainWindow main_window;
-	public GtkSource.SearchContext searchcontext;
 	public int last_error_counter;
 	public int last_search_end;
+	public GtkSource.SearchContext searchcontext;
 	public JsRender.JsRender file;
 
 	// ctor
@@ -618,7 +618,6 @@ public class Xcls_GtkView : Object
 			// my vars (def)
 		public bool loading;
 		public string prop_selected;
-		public Gtk.CssProvider css;
 		public JsRender.Node? node_selected;
 
 		// ctor
@@ -649,22 +648,10 @@ public class Xcls_GtkView : Object
 
 			{
 			
-			
-				this.css = new Gtk.CssProvider();
-				 
-				this.css.load_from_string("#gtkview-view { font: 10px monospace ;}");
-				 
-				Gtk.StyleContext.add_provider_for_display(
-					this.el.get_display(),
-					this.css,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-				);
-					
-					 
+			  
 				this.loading = true;
 			
-			
-			
+			 
 				var attrs = new GtkSource.MarkAttributes();
 				 attrs.set_icon_name ( "process-stop");    
 				attrs.query_tooltip_text.connect(( mark) => {
