@@ -1,5 +1,5 @@
 
- 
+ /*
 	public class AppSettings : Object
 	{
 
@@ -46,7 +46,7 @@
 
 		
 	}
-	
+	*/
 	
 	public static BuilderApplication application = null;
 	
@@ -118,7 +118,7 @@
 		    { "application/x-rootwindow-drop", 0, Target.ROOTWIN }
 		};
 		*/
-		public AppSettings settings = null;
+		//public AppSettings settings = null;
 
 
 
@@ -154,7 +154,7 @@
 			
 			
 			configDirectory();
-			this.settings = AppSettings.factory();	
+		//	this.settings = AppSettings.factory();	
 			var opt_context = new OptionContext ("Application Builder");
 			
 			try {
@@ -187,7 +187,31 @@
 
 		}
 
+		public static Settings settings;
 
+		protected override void activate () 
+		{
+			var css = new Gtk.CssProvider();
+			css.load_from_resource("/css/roobuilder.css");
+			
+			
+			Gtk.StyleContext.add_provider_for_display(
+				Gdk.Display.get_default(),
+				css	,
+				Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+			);
+			BuilderApplication.settings = new Settings();
+		
+			var w = new Xcls_MainWindow();
+		    w.initChildren();
+			BuilderApplication.addWindow(w);
+			
+			// it looks like showall after children causes segfault on ubuntu 14.4
+			w.windowstate.init();
+		//	w.windowstate.showPopoverFiles(w.open_projects_btn.el, null, false);
+			w.show();
+		
+		}
 		
 		public static BuilderApplication  singleton(  string[]? args)
 		{

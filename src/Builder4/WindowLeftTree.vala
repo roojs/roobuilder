@@ -296,7 +296,7 @@ public class Xcls_WindowLeftTree : Object
 			// init method
 
 			{
-			 
+			 /*
 			  this.css = new Gtk.CssProvider();
 			//	try {
 					this.css.load_from_string("
@@ -350,7 +350,7 @@ public class Xcls_WindowLeftTree : Object
 					this.css,
 					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
 				);
-				
+				*/
 				  
 			}
 		}

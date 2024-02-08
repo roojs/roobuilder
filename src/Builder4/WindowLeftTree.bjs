@@ -41,7 +41,7 @@
        "$ xns" : "Gtk",
        "* init" : [
         "{",
-        " ",
+        " /*",
         "  this.css = new Gtk.CssProvider();",
         "//\ttry {",
         "\t\tthis.css.load_from_string(\"",
@@ -95,7 +95,7 @@
         "\t\tthis.css,",
         "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
         "\t);",
-        "\t",
+        "\t*/",
         "\t  ",
         "}",
         ""

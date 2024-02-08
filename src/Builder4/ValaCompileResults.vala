@@ -104,14 +104,14 @@ public class Xcls_ValaCompileResults : Object
 			this.el.homogeneous = false;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			var child_1 = new Xcls_ScrolledWindow3( _this );
+			var child_1 = new Xcls_ScrolledWindow2( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ScrolledWindow3 : Object
+	public class Xcls_ScrolledWindow2 : Object
 	{
 		public Gtk.ScrolledWindow el;
 		private Xcls_ValaCompileResults  _this;
@@ -120,7 +120,7 @@ public class Xcls_ValaCompileResults : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ScrolledWindow3(Xcls_ValaCompileResults _owner )
+		public Xcls_ScrolledWindow2(Xcls_ValaCompileResults _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.ScrolledWindow();
@@ -151,7 +151,6 @@ public class Xcls_ValaCompileResults : Object
 
 
 			// my vars (def)
-		public Gtk.CssProvider css;
 
 		// ctor
 		public Xcls_sourceview(Xcls_ValaCompileResults _owner )
@@ -168,25 +167,6 @@ public class Xcls_ValaCompileResults : Object
 			this.el.show_line_numbers = false;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-
-			// init method
-
-			{
-			
-			   	this.css = new Gtk.CssProvider();
-				 
-				this.css.load_from_string(
-					"#compile-results-view { font: 10px monospace ;}"
-				);
-				 
-						Gtk.StyleContext.add_provider_for_display(
-					this.el.get_display(),
-					this.css,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-				);
-					
-			
-			}
 		}
 
 		// user defined functions

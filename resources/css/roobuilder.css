@@ -1,0 +1,92 @@
+#left-tree-view { 
+    font-size: 12px;
+}	
+
+.drag-over  { 
+    background-color:#88a3bc; 
+}
+.drag-below  {   
+     border-bottom-width: 5px; 
+     border-bottom-style: solid;
+     border-bottom-color: #88a3bc;
+}
+.drag-above  {
+     border-top-width: 5px;
+     border-top-style: solid;
+     border-top-color: #88a3bc;
+}
+.node-err  {
+     border-top-width: 5px;
+     border-top-style: solid;
+     border-top-color: red;
+     border-bottom-width: 5px; 
+     border-bottom-style: solid;
+     border-bottom-color: red;
+}
+.node-warn  {
+     border-top-width: 5px;
+     border-top-style: solid;
+     border-top-color: #ABF4EB;
+     border-bottom-width: 5px; 
+     border-bottom-style: solid;
+     border-bottom-color: #ABF4EB;
+}
+.node-depr  {
+     border-top-width: 5px;
+     border-top-style: solid;
+     border-top-color: #EEA9FF;
+     border-bottom-width: 5px; 
+     border-bottom-style: solid;
+     border-bottom-color: #EEA9FF;
+}
+
+#left-tree-view indent {
+    -gtk-icon-size : 2px;
+}
+#left-tree-view indent:nth-last-child(2)  {
+    min-width: 24px;
+}
+
+
+#project-list { 
+    font-size: 12px;
+}
+
+
+#leftprops-view { 
+    font-size: 12px;
+}
+	 
+#leftprops-view  dropdown button { 
+	min-height: 16px;			 
+	outline-offset : 0;
+}
+#leftprops-view cell dropdown label  {
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+#leftprops-view cell   { 
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+#leftprops-view cell label,  
+#leftprops-view cell editablelable {
+	padding-top:4px;
+	padding-bottom:4px;
+}
+
+#compile-results-view { 
+    font: 10px monospace ;
+}
+
+#gtkview-search-entry { 
+    font: 10px monospace ;
+}
+#gtkview-view-layout { 
+    background-color: #ccc; 
+}
+#roo-search-entry { 
+    background-color: #ccc; 
+}

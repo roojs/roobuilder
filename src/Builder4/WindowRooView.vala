@@ -1070,7 +1070,6 @@ public class Xcls_WindowRooView : Object
 		public string prop_selected;
 		public Gtk.CssProvider? css;
 		public bool key_is_pressed;
-		public bool show_line_marks;
 		public JsRender.Node? node_selected;
 
 		// ctor
@@ -1087,13 +1086,14 @@ public class Xcls_WindowRooView : Object
 			this.prop_selected = "";
 			this.css = null;
 			this.key_is_pressed = false;
-			this.show_line_marks = true;
 			this.node_selected = null;
 
 			// set gobject values
 			this.el.name = "roo-view";
 			this.el.editable = false;
+			this.el.show_line_marks = true;
 			this.el.show_line_numbers = true;
+			this.el.css_classes = { "code-editor" };
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
 			var child_2 = new Xcls_EventControllerKey16( _this );
@@ -1104,18 +1104,6 @@ public class Xcls_WindowRooView : Object
 
 			{
 			
-				this.css = new Gtk.CssProvider();
-				 
-				this.css.load_from_string(
-					"#roo-view { font:  10px monospace; }"
-				);
-			
-				Gtk.StyleContext.add_provider_for_display(
-					this.el.get_display(),
-					this.css,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-				);
-					
 				 
 			
 				this.loading = true;
@@ -1212,7 +1200,7 @@ public class Xcls_WindowRooView : Object
 		    
 		 
 		    buf.set_text("",0);
-		    var sbuf = (GtkSource.Buffer) buf;
+		 
 		
 		    
 		
@@ -1740,7 +1728,6 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
-		public Gtk.CssProvider? css;
 
 		// ctor
 		public Xcls_search_entry(Xcls_WindowRooView _owner )
@@ -1750,7 +1737,6 @@ public class Xcls_WindowRooView : Object
 			this.el = new Gtk.SearchEntry();
 
 			// my vars (dec)
-			this.css = null;
 
 			// set gobject values
 			this.el.name = "roo-search-entry";
@@ -1759,20 +1745,6 @@ public class Xcls_WindowRooView : Object
 			var child_1 = new Xcls_EventControllerKey19( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
-
-			// init method
-
-			this.css = new Gtk.CssProvider();
-			 
-			this.css.load_from_string(
-				"#roo-search-entry { background-color: #ccc; }"
-			);
-			 
-			Gtk.StyleContext.add_provider_for_display(
-				this.el.get_display(),
-				this.css,
-				Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-			);
 
 			//listeners
 			this.el.search_changed.connect( ( ) => {

@@ -36,27 +36,7 @@
        "items" : [
         {
          "$ xns" : "GtkSource",
-         "* init" : [
-          "{",
-          "",
-          "   \tthis.css = new Gtk.CssProvider();",
-          "\t ",
-          "\tthis.css.load_from_string(",
-          "\t\t\"#compile-results-view { font: 10px monospace ;}\"",
-          "\t);",
-          "\t ",
-          "\t\t\tGtk.StyleContext.add_provider_for_display(",
-          "\t\tthis.el.get_display(),",
-          "\t\tthis.css,",
-          "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
-          "\t);",
-          "\t\t",
-          "",
-          "}",
-          ""
-         ],
          "* prop" : "child",
-         "Gtk.CssProvider css" : "",
          "bool editable" : false,
          "bool hexpand" : true,
          "bool show_line_numbers" : false,

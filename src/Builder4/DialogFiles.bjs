@@ -59,25 +59,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* init" : [
-            "{",
-            " ",
-            "\tthis.css = new Gtk.CssProvider();",
-            " ",
-            "\tthis.css.load_from_string(\"",
-            "\t\t#project-list { font-size: 12px;}",
-            "\t\");",
-            "",
-            "\tGtk.StyleContext.add_provider_for_display(",
-            "\t\tthis.el.get_display(),",
-            "\t\tthis.css,",
-            "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
-            "\t);",
-            "\t\t",
-            "   ",
-            "}",
-            ""
-           ],
            "* prop" : "child",
            "Gtk.CssProvider css" : "",
            "id" : "project_list",
