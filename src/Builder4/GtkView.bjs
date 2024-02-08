@@ -140,7 +140,7 @@
            ],
            "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
-           "bool zallow_node_scroll" : true,
+           "css_classes" : " \"code-editor\" }",
            "gboolean editable" : false,
            "gboolean show_line_marks" : true,
            "gboolean show_line_numbers" : true,

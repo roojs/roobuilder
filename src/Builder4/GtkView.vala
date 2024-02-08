@@ -617,7 +617,6 @@ public class Xcls_GtkView : Object
 
 			// my vars (def)
 		public bool loading;
-		public bool zallow_node_scroll;
 		public string prop_selected;
 		public Gtk.CssProvider css;
 		public JsRender.Node? node_selected;
@@ -631,7 +630,6 @@ public class Xcls_GtkView : Object
 
 			// my vars (dec)
 			this.loading = false;
-			this.zallow_node_scroll = true;
 			this.prop_selected = "";
 
 			// set gobject values
@@ -639,6 +637,7 @@ public class Xcls_GtkView : Object
 			this.el.editable = false;
 			this.el.show_line_marks = true;
 			this.el.show_line_numbers = true;
+			this.el.css_classes =  "code-editor" };
 			this.el.tab_width = 4;
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
