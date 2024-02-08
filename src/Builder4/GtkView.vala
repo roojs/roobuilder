@@ -637,7 +637,7 @@ public class Xcls_GtkView : Object
 			this.el.editable = false;
 			this.el.show_line_marks = true;
 			this.el.show_line_numbers = true;
-			this.el.css_classes =  "code-editor" };
+			this.el.css_classes = { "code-editor" };
 			this.el.tab_width = 4;
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );

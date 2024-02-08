@@ -140,7 +140,7 @@
            ],
            "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
-           "css_classes" : " \"code-editor\" }",
+           "css_classes" : "{ \"code-editor\" }",
            "gboolean editable" : false,
            "gboolean show_line_marks" : true,
            "gboolean show_line_numbers" : true,
