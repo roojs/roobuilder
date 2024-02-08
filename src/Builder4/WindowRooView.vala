@@ -1104,18 +1104,6 @@ public class Xcls_WindowRooView : Object
 
 			{
 			
-				this.css = new Gtk.CssProvider();
-				 
-				this.css.load_from_string(
-					"#roo-view { font:  10px monospace; }"
-				);
-			
-				Gtk.StyleContext.add_provider_for_display(
-					this.el.get_display(),
-					this.css,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-				);
-					
 				 
 			
 				this.loading = true;
