@@ -499,7 +499,7 @@ public class Editor : Object
 			{
 				//this.el.set_range(6,30);
 			 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
-			 	BuilderApplication.settings.notify["editor_font_size"].connect(
+			 	BuilderApplication.settings.editor_font_size_updated.connect(
 			 		() => {
 			 			this.inchange = true;
 			 			GLib.debug("update range");
