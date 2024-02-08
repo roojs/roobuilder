@@ -187,7 +187,7 @@
 
 		}
 
-		static Settings settings;
+		public static Settings settings;
 
 		protected override void activate () 
 		{
