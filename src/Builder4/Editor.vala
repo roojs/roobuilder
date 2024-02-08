@@ -496,20 +496,18 @@ public class Editor : Object
 
 			{
 				this.el.set_range(6,30);
+			 
+				
 				this.el.bind_property( "value",	
 					BuilderApplication.settings, "editor_font_size",
-					GLib.BindingFlags.BIDIRECTIONAL);
+					GLib.BindingFlags.BIDIRECTIONAL  );
 					
 			}
 
 			//listeners
 			this.el.change_value.connect( (st, val ) => {
 				 
-				   
-				  _this.view.css.load_from_string(
-				  		"#editor-view { font: %dpx monospace; }".printf((int)val)
-				   );
-			     
+				  BuilderApplication.settings.editor_font_size = val;
 			 	return false;
 			});
 		}

@@ -53,9 +53,11 @@
        "* init" : [
         "{",
         "\tthis.el.set_range(6,30);",
+        " ",
+        "\t",
         "\tthis.el.bind_property( \"value\",\t",
         "\t\tBuilderApplication.settings, \"editor_font_size\",",
-        "\t\tGLib.BindingFlags.BIDIRECTIONAL);",
+        "\t\tGLib.BindingFlags.BIDIRECTIONAL  );",
         "\t\t",
         "}",
         ""
@@ -69,11 +71,7 @@
         "change_value" : [
          "(st, val ) => {",
          "\t ",
-         "\t   ",
-         "\t  _this.view.css.load_from_string(",
-         "\t  \t\t\"#editor-view { font: %dpx monospace; }\".printf((int)val)",
-         "\t   );",
-         "     ",
+         "\t  BuilderApplication.settings.editor_font_size = val;",
          " \treturn false;",
          "}"
         ]
