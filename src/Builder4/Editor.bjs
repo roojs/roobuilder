@@ -56,7 +56,7 @@
         " \tthis.el.set_value ( BuilderApplication.settings.editor_font_size);",
         " \tBuilderApplication.settings.notify[\"editor_font_size\"].connect(",
         " \t\t() => {",
-        " \t\t \tthis.el.set_value ( BuilderApplication.settings.editor_font_size);",
+        " \t\t \tthis.el.set_value (BuilderApplication.settings.editor_font_size);",
         " \t\t}",
         "\t});",
         "\t",

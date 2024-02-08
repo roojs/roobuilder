@@ -499,7 +499,7 @@ public class Editor : Object
 			 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
 			 	BuilderApplication.settings.notify["editor_font_size"].connect(
 			 		() => {
-			 		 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
+			 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
 			 		}
 				});
 				
