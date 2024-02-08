@@ -31,7 +31,9 @@ public class Settings : Object  {
 				);
 			}
 			this.save();
-			this.notify(this.find_property ("editor_font_size"));
+			GLib.Type type = typeof (Settings);
+			ObjectClass ocl = (GLib.ObjectClass) type.class_ref ();
+			this.notify(ocl.find_property ("editor_font_size"));
 		}
 		
 	}
