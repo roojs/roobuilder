@@ -45,7 +45,7 @@ public class Settings : Object  {
 		
 		this.css = new  Gtk.CssProvider();
 		this.editor_font_size = 10;
-		Gtk.StyleContext.add_provider_for_display(
+		Gdk.StyleContext.add_provider_for_display(
 			Gtk.Display.get_default(),
 			this.css,
 			Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
