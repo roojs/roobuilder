@@ -71,6 +71,42 @@ public class DialogFiles : Object
 		this.el.child = child_1.el;
 		var child_2 = new Xcls_HeaderBar43( _this );
 		this.el.titlebar = child_2.el;
+
+		// init method
+
+		{
+			var ev = new Gtk.EventControllerKey();
+			ev.propagation_phase = Gtk.PropagationPhase.CAPTURE;
+			// my vars (dec)
+		
+			// set gobject values
+		
+			//listeners
+			ev.key_released.connect( (keyval, keycode, state) => {
+			
+				// GLib.debug("key pressed %d", (int)keycode);
+				if (keycode != 9) {
+					return   ;
+				}
+				if (BuilderApplication.windows.size < 2 && 
+					_this.win.windowstate.file == null
+				) { 
+					BuilderApplication.singleton(null).quit();
+					return  ;
+				}
+			
+				_this.el.hide();
+				
+				 if (_this.win.windowstate.file == null) {		 
+					BuilderApplication.removeWindow(_this.win);
+					    
+				}
+			
+				return  ;
+			});
+			ev.ref(); //?? needed?
+			(this.el as Gtk.Widget).add_controller(ev);
+		}
 	}
 
 	// user defined functions
@@ -280,6 +316,9 @@ public class DialogFiles : Object
 			this.el.start_child = _this.projectscroll.el;
 			new Xcls_filepane( _this );
 			this.el.end_child = _this.filepane.el;
+			var child_3 = new Xcls_EventControllerKey411( _this );
+			child_3.ref();
+			this.el.add_controller(  child_3.el );
 		}
 
 		// user defined functions
@@ -1692,6 +1731,51 @@ public class DialogFiles : Object
 
 
 
+
+	public class Xcls_EventControllerKey411 : Object
+	{
+		public Gtk.EventControllerKey el;
+		private DialogFiles  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_EventControllerKey411(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.EventControllerKey();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.key_pressed.connect( (keyval, keycode, state) => {
+			
+				if (keycode != Gdk.Key.Escape) {
+					return true;
+				}
+				if (BuilderApplication.windows.size < 2 && 
+					_this.win.windowstate.file == null
+				) { 
+					BuilderApplication.singleton(null).quit();
+					return true;
+				}
+			
+				_this.el.hide();
+				
+				 if (_this.win.windowstate.file == null) {		 
+					BuilderApplication.removeWindow(_this.win);
+					    
+				}
+			
+				return true;
+			});
+		}
+
+		// user defined functions
+	}
 
 
 
