@@ -1113,7 +1113,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "Gtk.CssProvider? css" : "null",
            "bool hexpand" : true,
            "id" : "search_entry",
            "items" : [
