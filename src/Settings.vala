@@ -25,6 +25,7 @@ public class Settings : Object  {
 			this._editor_font_size = value;
 		}
 		this.css.load_from_string(" .code-editor{ font-size: %spx; }".printf(value);
+		this.save();
 	}
 	
 	
