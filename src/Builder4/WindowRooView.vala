@@ -1212,7 +1212,7 @@ public class Xcls_WindowRooView : Object
 		    
 		 
 		    buf.set_text("",0);
-		    var sbuf = (GtkSource.Buffer) buf;
+		 
 		
 		    
 		
