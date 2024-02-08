@@ -499,10 +499,10 @@ public class Editor : Object
 			 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
 			 	BuilderApplication.settings.editor_font_size_updated.connect(
 			 		() => {
-			 			this.inchange = true;
+			 			BuilderApplication.settings.editor_font_size_inchange = true;
 			 			GLib.debug("update range");
 			 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
-			 		 	this.inchange = false;
+			 		 	BuilderApplication.settings.editor_font_size_inchange = false;
 			 		}
 				);
 				
