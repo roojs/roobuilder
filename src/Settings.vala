@@ -32,11 +32,11 @@ public class Settings : Object  {
 			}
 			this.save();
 
-			this.notify_property("editor_font_size");
+			this.editor_font_size_updated();
 		}
 		
 	}
-	public signal void editor_font_updated();
+	public signal void editor_font_size_updated();
 	
 	
 	// things we look after..
