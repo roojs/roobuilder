@@ -1794,6 +1794,7 @@ public class Xcls_LeftProps : Object
 		 }
 		public int getRowAt (double x,  double  y, out string pos) {
 		
+			pos = "";
 			var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
 			//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
 			if (w == null) {
