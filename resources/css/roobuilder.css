@@ -76,3 +76,7 @@
 	padding-top:4px;
 	padding-bottom:4px;
 }
+
+#compile-results-view { 
+    font: 10px monospace ;
+}

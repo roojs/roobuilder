@@ -56,7 +56,6 @@
           ""
          ],
          "* prop" : "child",
-         "Gtk.CssProvider css" : "",
          "bool editable" : false,
          "bool hexpand" : true,
          "bool show_line_numbers" : false,
