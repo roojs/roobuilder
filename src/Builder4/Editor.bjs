@@ -48,7 +48,6 @@
        "xtype" : "Label"
       },
       {
-       "# bool inchange" : false,
        "$ xns" : "Gtk",
        "* ctor" : "new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1)",
        "* init" : [
@@ -76,7 +75,7 @@
        "listeners" : {
         "change_value" : [
          "(st, val ) => {",
-         "\tif (this.inchange) {",
+         "\tif (BuilderApplication.settings.editor_font_size_inchange) {",
          "\t\treturn false;",
          "\t}",
          "  \tBuilderApplication.settings.editor_font_size = val;",

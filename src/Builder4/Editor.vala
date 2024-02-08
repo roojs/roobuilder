@@ -476,7 +476,6 @@ public class Editor : Object
 
 
 			// my vars (def)
-		public bool inchange;
 
 		// ctor
 		public Xcls_Scale4(Editor _owner )
@@ -485,7 +484,6 @@ public class Editor : Object
 			this.el = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
 
 			// my vars (dec)
-			this.inchange = false;
 
 			// set gobject values
 			this.el.width_request = 200;
@@ -513,7 +511,7 @@ public class Editor : Object
 
 			//listeners
 			this.el.change_value.connect( (st, val ) => {
-				if (this.inchange) {
+				if (BuilderApplication.settings.editor_font_size_inchange) {
 					return false;
 				}
 			  	BuilderApplication.settings.editor_font_size = val;
