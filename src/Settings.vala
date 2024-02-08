@@ -27,7 +27,7 @@ public class Settings : Object  {
 			this._editor_font_size = (int) value;
 			if (this.css != null) {
 				this.css.load_from_string(
-					".code-editor { font: %dpx monospace }".printf((int) value)
+					".code-editor { font: %dpx monospace; }".printf((int) value)
 				);
 			}
 			this.save();
