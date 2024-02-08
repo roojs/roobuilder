@@ -1584,7 +1584,6 @@ public class Xcls_LeftProps : Object
 
 
 			// my vars (def)
-		public Gtk.CssProvider css;
 		public Xcls_PopoverProperty popover;
 
 		// ctor
@@ -1616,41 +1615,6 @@ public class Xcls_LeftProps : Object
 			new Xcls_valcol( _this );
 			this.el.append_column ( _this.valcol.el  );
 			new Xcls_ContextMenu( _this );
-
-			// init method
-
-			{
-			 
-			  	this.css = new Gtk.CssProvider();
-				 
-					this.css.load_from_string("
-			#leftprops-view { font-size: 12px;}
-				 
-			#leftprops-view  dropdown button { 
-						min-height: 16px;			 
-						outline-offset : 0;
-					}
-			#leftprops-view cell dropdown label  {
-			 		padding-top:0px;
-					padding-bottom:0px;
-			}
-			#leftprops-view cell   { 
-			 		padding-top:2px;
-					padding-bottom:2px;
-					}
-			#leftprops-view cell label,  #leftprops-view cell editablelable {
-			 		padding-top:4px;
-					padding-bottom:4px;
-			}");
-			 
-					Gtk.StyleContext.add_provider_for_display(
-					this.el.get_display(),
-					this.css,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-				);
-					
-			   
-			}
 		}
 
 		// user defined functions
