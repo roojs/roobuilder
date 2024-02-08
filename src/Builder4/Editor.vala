@@ -507,7 +507,7 @@ public class Editor : Object
 			//listeners
 			this.el.change_value.connect( (st, val ) => {
 				 
-			  BuilderApplication.settings.editor_font_size = val;
+			  //BuilderApplication.settings.editor_font_size = val;
 			 	return false;
 			});
 		}
