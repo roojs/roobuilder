@@ -39,7 +39,7 @@ namespace Palete {
 			if (this.in_populate) {
 				return false;
 			}
-			//GLib.debug("should trigger? %c", (int) ch);
+			 GLib.debug("should trigger? %c", (int) ch);
 			
 			
 			return true;
