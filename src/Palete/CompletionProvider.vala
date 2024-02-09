@@ -189,7 +189,7 @@ namespace Palete {
 			GLib.debug("pupoulate async");
 			var ret = new GLib.ListStore(typeof(CompletionProposal));
 			
-			if (!this.in_populate) {
+			if (this.in_populate) {
 				GLib.debug("pupoulate async  - skipped waiting for reply");
 				return ret;
 			}
