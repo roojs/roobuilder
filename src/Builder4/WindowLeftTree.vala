@@ -1502,7 +1502,8 @@ public class Xcls_WindowLeftTree : Object
 				//GLib.debug("check node %s", s.get_item(i).get_type().name());
 				var lr = s.get_item(i) as Gtk.TreeListRow;
 				//GLib.debug("check node %s", lr.get_item().get_type().name());
-				if ((lr.get_item() as JsRender.Node).oid == node.oid) {
+				var nn = (lr.get_item() as JsRender.Node);
+				if (nn != null && nn.oid == node.oid) {
 					return i;
 					
 				}
