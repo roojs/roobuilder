@@ -34,7 +34,7 @@ namespace Palete {
 		}
 		
 		
-		public void is_trigger(Gtk.TextIter, iter, inichar ch)
+		public bool is_trigger(Gtk.TextIter, iter, inichar ch)
 		{
 			GLib.debug("should trigger? %c", ch);
 			
