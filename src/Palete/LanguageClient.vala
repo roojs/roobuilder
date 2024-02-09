@@ -15,6 +15,7 @@ namespace Palete {
  		ACCEPT,
  		
  		DIAG,
+ 		DIAG_END,
  		OPEN,
  		SAVE,
  		CLOSE,
