@@ -36,7 +36,7 @@ namespace Palete {
 		
 		public bool is_trigger(global::Gtk.TextIter  iter, unichar ch)
 		{
-			if (this.in_populate || ch = 32) {
+			if (this.in_populate || ch == 32) {
 				return false;
 			}
 			GLib.debug("should trigger? %c", (int) ch);
