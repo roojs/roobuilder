@@ -767,7 +767,7 @@ public class JsRender.Node : GLib.Object {
 				case PROP: 
 				case RAW: // should they be the same?
 				
-					props += "\n\t" + GLib.Markup.escape_text(prop.rtype) +
+					props += "\n\t" + (prop.rtype != null && prop.rytpe.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "") +
 						" <b>" + GLib.Markup.escape_text(i) +"</b> : " + 
 						GLib.Markup.escape_text(val.split("\n")[0]);
 						
