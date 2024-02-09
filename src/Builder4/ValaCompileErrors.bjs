@@ -323,7 +323,7 @@
    ],
    "| void updateNotices" : [
     "( GLib.ListStore? ls) {",
-    "\tGLib.debug(\"errors  : update\");",
+    "\t//GLib.debug(\"errors  : update\");",
     "    if (ls == null || ls.get_n_items() < 1) {",
     " \t//    GLib.debug(\"errors  : none available\");",
     "    \treturn;",
