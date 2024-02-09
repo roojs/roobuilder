@@ -115,7 +115,9 @@ public class Xcls_LeftProps : Object
 		    	continue;
 	    	}
 	    	var prop = node.lineToProp( (int)diag.range.start.line) ;
-	    	
+	    	if (prop == null) {
+	    		continue;
+			}
 	    	var row = _this.selmodel.propToRow(prop);
 	    	if (row < 0) {
 	    		continue;
