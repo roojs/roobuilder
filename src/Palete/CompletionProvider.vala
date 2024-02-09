@@ -187,9 +187,11 @@ namespace Palete {
 		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable) 
 		{
 			GLib.debug("pupoulate async");
+			var ret = new GLib.ListStore(typeof(CompletionProposal));
+			
 			if (!this.in_populate) {
 				GLib.debug("pupoulate async  - skipped waiting for reply");
-				return null;
+				return ret;
 			}
 			this.in_populate = true;
 
@@ -222,7 +224,7 @@ namespace Palete {
 				}
 				
 			} else {
-				res = null;
+				return ret;
 			}
 			
 			GLib.debug("pupoulate async  - got reply");
