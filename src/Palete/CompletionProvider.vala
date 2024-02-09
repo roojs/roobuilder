@@ -33,6 +33,15 @@ namespace Palete {
 		  return 200;
 		}
 		
+		
+		public void is_trigger(Gtk.TextIter, iter, inichar ch)
+		{
+			GLib.debug("should trigger? %c", ch);
+			
+			
+			return true;
+		}
+		
 		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
 		{
 			GLib.debug("compelte activate");
