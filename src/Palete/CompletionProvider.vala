@@ -13,7 +13,7 @@ namespace Palete {
 		public Editor editor; 
 		//public WindowState windowstate;
  		public CompletionModel model;
- 		global::Gtk.StringFilter filter;
+ 		global::Gtk.StringFilter? filter = null;
 
 		public CompletionProvider(Editor editor)
 		{
@@ -263,7 +263,9 @@ namespace Palete {
 		{
  
  			//GLib.debug("pupoulate refilter");
-	 
+	 		if (this.filter == null) {
+	 			return;
+ 			}
 
 			var word = context.get_word();
 			this.filter.set_search(word);
