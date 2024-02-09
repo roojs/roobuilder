@@ -1631,13 +1631,13 @@ public class Xcls_LeftProps : Object
 		    		 
 		    	}
 		    	*/
-				GLib.debug("Get Widget At Row %d", (int)row);
+				//GLib.debug("Get Widget At Row %d", (int)row);
 		        var  child = this.el.get_first_child(); 
 		    	var line_no = -1; 
 		    	var reading_header = true;
 		
 		    	while (child != null) {
-					GLib.debug("Got %s", child.get_type().name());
+					//GLib.debug("Got %s", child.get_type().name());
 		    	    if (reading_header) {
 					 
 					   
@@ -1655,12 +1655,12 @@ public class Xcls_LeftProps : Object
 				    }
 				    line_no++;
 					if (line_no == row) {
-						GLib.debug("Returning widget %s", child.get_type().name());
+						//GLib.debug("Returning widget %s", child.get_type().name());
 					    return (Gtk.Widget)child;
 				    }
 			        child = child.get_next_sibling(); 
 		    	}
-				GLib.debug("Rturning null");
+				//GLib.debug("Rturning null");
 		        return null;
 		
 		 }
