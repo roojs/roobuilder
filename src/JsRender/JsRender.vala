@@ -148,7 +148,11 @@ namespace JsRender {
 				if (!GLib.FileUtils.test(this.path, GLib.FileTest.EXISTS)) {
 					return null;
 				}
-				this._icon = File.new_for_path(this.path).query_info("standard::icon",GLib.FileQueryInfoFlags.NONE).get_icon();
+				try {
+					this._icon = File.new_for_path(this.path).query_info("standard::icon",GLib.FileQueryInfoFlags.NONE).get_icon();
+				} catch(GLib.Error e) {
+					return null;
+				}
 				return this._icon;
 			}
 		}
