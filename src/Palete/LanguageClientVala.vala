@@ -54,7 +54,12 @@ namespace Palete {
 		 		if (this.change_queue_file == null) {
 					return true;
 				}
+				if (this.getting_diagnostics) {
+					return true;
+				}
 				this.countdown--;
+
+			
 				if (this.countdown < 0){
 					this.document_change_force.begin(this.change_queue_file,  this.change_queue_file_source, (o, res) => {
 						this.document_change_force.end(res);
