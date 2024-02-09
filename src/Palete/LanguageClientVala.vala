@@ -166,6 +166,7 @@ namespace Palete {
 					return a.path == b.path;
 				});
 				this.initialized = true;
+				this.getting_diagnostics = false;
 				return;
 			} catch (GLib.Error e) {
 				GLib.debug ("LS replied with error %s", e.message);
