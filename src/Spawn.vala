@@ -325,8 +325,12 @@ public class Spawn : Object
 	  	this.complete.connect( (res, str,  stderr) => {
 	  		loop.quit ();
 	  	});
+	  	try {
+		  	this.run();
+	  	} catch (GLib.Error e) {
+	  		return -1;
+  		}
 	  	
-	  	this.run();
 	  	 
 	  	loop.run ();
 	  	return this.result;
