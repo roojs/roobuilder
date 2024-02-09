@@ -67,7 +67,11 @@ namespace Palete {
 		  	var exe = GLib.Environment.find_program_in_path( "meson");
 			string[] args = { exe ,"setup", "build", "--prefix=/usr" };	  	
 			GLib.debug("running meson");
-		  	this.spawn = new Spawn(this.project.path , args);
+			try {
+			  	this.spawn = new Spawn(this.project.path , args);
+		  	} catch (GLib.Error e) {
+		  		return -1;
+	  		}
 		  	this.spawn.output_line.connect(( str) => {
 		  		this.onOutput(str);
 	  		});
@@ -83,8 +87,11 @@ namespace Palete {
 		  	}
 		  	var exe = GLib.Environment.find_program_in_path( "ninja");
 			string[] args = { exe };	  	
-
-		  	this.spawn = new Spawn(this.project.path + "/build" , args);
+			try {
+			  	this.spawn = new Spawn(this.project.path + "/build" , args);
+		  	} catch (GLib.Error) {
+		  		return -1;
+		  	)
 		  	this.spawn.output_line.connect(( str) => {
 		  		this.onOutput(str);
 	  		});
