@@ -1593,15 +1593,20 @@ public class Xcls_WindowLeftTree : Object
 			_this.selmodel.el.set_model(this.el);
 			return this.el;
 		}
-		public void selectNode (JsRender.Node  node) 
+		public void selectNode (JsRender.Node?  node) 
 		{
-		
-			var row = this.nodeToRow(node);
 			var s = _this.view.el.model as Gtk.SingleSelection;
+			if (node == null) {
+				s.selected=Gtk.INVALID_LIST_POSITION;
+				return;
+			}
+			var row = this.nodeToRow(node);
+		
 			 
 			if (row < 0) {
 				// select none?
 				GLib.debug("Could not find node");
+				s.selected=Gtk.INVALID_LIST_POSITION;
 				return;
 			}
 			GLib.debug("Select %d", row);
