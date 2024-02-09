@@ -1593,8 +1593,9 @@ public class Xcls_WindowLeftTree : Object
 			_this.selmodel.el.set_model(this.el);
 			return this.el;
 		}
-		public void selectNode (JsRender.Node node) 
+		public void selectNode (JsRender.Node  node) 
 		{
+		
 			var row = this.nodeToRow(node);
 			var s = _this.view.el.model as Gtk.SingleSelection;
 			 
