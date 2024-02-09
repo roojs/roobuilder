@@ -194,7 +194,6 @@
 			var css = new Gtk.CssProvider();
 			css.load_from_resource("/css/roobuilder.css");
 			
-			
 			Gtk.StyleContext.add_provider_for_display(
 				Gdk.Display.get_default(),
 				css	,
