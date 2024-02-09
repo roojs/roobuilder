@@ -105,7 +105,7 @@ public class DialogFiles : Object
 				return  ;
 			});
 			ev.ref(); //?? needed?
-			(this.el as Gtk.Widget).add_controller(ev);
+			((Gtk.Widget)this.el).add_controller(ev);
 		}
 	}
 

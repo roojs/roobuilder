@@ -37,7 +37,7 @@
     "\t\treturn  ;",
     "\t});",
     "\tev.ref(); //?? needed?",
-    "\t(this.el as Gtk.Widget).add_controller(ev);",
+    "\t((Gtk.Widget)this.el).add_controller(ev);",
     "}",
     ""
    ],
