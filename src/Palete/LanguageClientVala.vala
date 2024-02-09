@@ -181,6 +181,7 @@ namespace Palete {
  			if (this.launcher == null) {
  				return;
 			}
+			this.getting_diagnostics = false;
  			this.in_close = true;
 	 		GLib.debug("onClose called");
 	 		
