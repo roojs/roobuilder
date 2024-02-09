@@ -2840,12 +2840,11 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.key_released.connect( (keyval, keycode, state) => {
-				GLib.debug(
-				
-					"key release %d, %d, %d  ?= %d %d" , 
-						(int) keyval, (int)  keycode, state,
-						(int)Gdk.Key.O, Gdk.ModifierType.CONTROL_MASK
-					);
+				//GLib.debug(
+				//	"key release %d, %d, %d  ?= %d %d" , 
+				//		(int) keyval, (int)  keycode, state,
+				//		(int)Gdk.Key.O, Gdk.ModifierType.CONTROL_MASK
+				//	);
 			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
 			 		this.is_shift = 0;
 				}
