@@ -1538,12 +1538,11 @@ public class Xcls_MainWindow : Object
 				if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
 					return;
 				}
-				GLib.debug(
-				
-					"searcj key release %d, %d, %d  ?= %d" , 
-						(int) keyval, (int)  keycode, state,
-						(int)Gdk.Key.Return
-					);
+				//GLib.debug(
+				//	"searcj key release %d, %d, %d  ?= %d" , 
+				//		(int) keyval, (int)  keycode, state,
+				//		(int)Gdk.Key.Return
+				//	);
 				if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
 					return;
 				}
