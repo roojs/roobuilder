@@ -486,7 +486,7 @@ namespace JsRender {
 			//GLib.debug("UNDO RESTORE : %d",  this.version + step);
 			try {
 				pa.load_from_data(this.undo_json.get(new_version));
-			} catch (GLib.Error) {
+			} catch (GLib.Error e) {
 				return false;
 			}
 			var node = pa.get_root();
