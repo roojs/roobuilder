@@ -91,7 +91,7 @@ namespace Palete {
 			  	this.spawn = new Spawn(this.project.path + "/build" , args);
 		  	} catch (GLib.Error e) {
 		  		return -1;
-		  	)
+		  	}
 		  	this.spawn.output_line.connect(( str) => {
 		  		this.onOutput(str);
 	  		});
