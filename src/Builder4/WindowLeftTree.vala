@@ -1496,7 +1496,7 @@ public class Xcls_WindowLeftTree : Object
 		}
 		public int nodeToRow (JsRender.Node node) 
 		{
-			var row = -1;
+		 
 			var s = _this.view.el.model as Gtk.SingleSelection;
 			for (var i = 0; i < s.n_items; i++) {
 				//GLib.debug("check node %s", s.get_item(i).get_type().name());

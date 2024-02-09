@@ -904,7 +904,7 @@
            "| int nodeToRow" : [
             "(JsRender.Node node) ",
             "{",
-            "\tvar row = -1;",
+            " ",
             "\tvar s = _this.view.el.model as Gtk.SingleSelection;",
             "\tfor (var i = 0; i < s.n_items; i++) {",
             "\t\t//GLib.debug(\"check node %s\", s.get_item(i).get_type().name());",
