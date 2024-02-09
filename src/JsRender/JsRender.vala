@@ -484,8 +484,11 @@ namespace JsRender {
 			var new_version = this.version + step;
 			var pa = new Json.Parser();
 			//GLib.debug("UNDO RESTORE : %d",  this.version + step);
-			
-			pa.load_from_data(this.undo_json.get(new_version));
+			try {
+				pa.load_from_data(this.undo_json.get(new_version));
+			} catch (GLib.Error) {
+				return false;
+			}
 			var node = pa.get_root();
 			this.in_undo = true;
 			this.loadTree(node.get_object(),2); 
