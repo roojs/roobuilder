@@ -767,18 +767,17 @@ public class JsRender.Node : GLib.Object {
 				case PROP: 
 				case RAW: // should they be the same?
 				
-					props += "\n\t" + (prop.rtype != null && prop.rytpe.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "") +
+					props += "\n\t" + (prop.rtype != null && prop.rtype.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "") +
 						" <b>" + GLib.Markup.escape_text(i) +"</b> : " + 
-						GLib.Markup.escape_text(val.split("\n")[0]);
+						(val.length > 0 ? GLib.Markup.escape_text(val.split("\n")[0]) : "");
 						
 					break;
-					
-			
+					 
 				
 				case METHOD :
-					funcs += "\n\t" + GLib.Markup.escape_text(prop.rtype) +
+					funcs += "\n\t" + (prop.rtype != null && prop.rtype.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "")  +
 						" <b>" + GLib.Markup.escape_text(i) +"</b> : "  +
-						GLib.Markup.escape_text(val.split("\n")[0]);
+						(val.length > 0 ? GLib.Markup.escape_text(val.split("\n")[0]) : "");
 					break;
 					
 				 
@@ -791,7 +790,7 @@ public class JsRender.Node : GLib.Object {
 				case SPECIAL : // * prop| args | ctor | init
 					spec += "\n\t<b>" + 
 						GLib.Markup.escape_text(i) +"</b> : " + 
-						GLib.Markup.escape_text(val.split("\n")[0]);
+						(val.length > 0 ? GLib.Markup.escape_text(val.split("\n")[0]) : "");
 					break;
 					
 		 		case LISTENER : return  "";  // always raw...
