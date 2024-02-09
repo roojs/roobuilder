@@ -89,7 +89,7 @@ namespace Palete {
 			string[] args = { exe };	  	
 			try {
 			  	this.spawn = new Spawn(this.project.path + "/build" , args);
-		  	} catch (GLib.Error) {
+		  	} catch (GLib.Error e) {
 		  		return -1;
 		  	)
 		  	this.spawn.output_line.connect(( str) => {
