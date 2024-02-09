@@ -785,7 +785,7 @@ public class JsRender.Node : GLib.Object {
 				case USER : // user defined.
 					uprops += "\n\t<b>" + 
 						GLib.Markup.escape_text(i) +"</b> : " + 
-						(val.length.length > 0 ? GLib.Markup.escape_text(val.split("\n")[0]) : "");
+						(val.length > 0 ? GLib.Markup.escape_text(val.split("\n")[0]) : "");
 					break;
 					
 				case SPECIAL : // * prop| args | ctor | init
