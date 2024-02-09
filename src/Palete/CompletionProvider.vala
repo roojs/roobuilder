@@ -36,7 +36,7 @@ namespace Palete {
 		
 		public bool is_trigger(global::Gtk.TextIter  iter, unichar ch)
 		{
-			GLib.debug("should trigger? %c", ch);
+			GLib.debug("should trigger? %c", (int) ch);
 			
 			
 			return true;
