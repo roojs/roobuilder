@@ -225,9 +225,8 @@ install_data(
 				FileUtils.set_contents(this.project.path + "/resources/gresources.xml", gr, gr.length);
 			} catch (GLib.Error e) { 
 				return "";
-			)
-			
-			
+			}
+			 
 			
 			
 			this.has_resources = true;
