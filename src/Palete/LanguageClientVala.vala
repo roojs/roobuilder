@@ -266,7 +266,7 @@ namespace Palete {
 		{
 			//GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var dg = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
-			GLib.debug("got diag for %s", db.filename);
+			GLib.debug("got diag for %s", dg.filename);
 			this.log(LanguageClientAction.DIAG, dg.filename);
 			var f = this.project.getByPath(dg.filename);
 			if (f == null) {
