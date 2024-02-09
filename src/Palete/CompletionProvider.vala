@@ -220,10 +220,12 @@ namespace Palete {
 					res = yield this.file.getLanguageServer().completion(this.file, line, offset, 1);
 				} catch (GLib.Error e) {
 					GLib.debug("got error %s", e.message);
-					res = null;
+					this.in_populate = false;
+					return ret;
 				}
 				
 			} else {
+				this.in_populate = false;
 				return ret;
 			}
 			
