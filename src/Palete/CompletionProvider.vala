@@ -210,8 +210,8 @@ namespace Palete {
 						offset += 2;
 					}
 				} 
-				
- 				yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
+				// lets see if disabling this causes issues..
+ 				//yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
 				try {
 					GLib.debug("sending request to language server %s", this.file.getLanguageServer().get_type().name());
 					
