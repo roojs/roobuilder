@@ -221,7 +221,14 @@ install_data(
 			
 			}
 			gr += "</gresources>\n";
-			FileUtils.set_contents(this.project.path + "/resources/gresources.xml", gr, gr.length);
+			try {
+				FileUtils.set_contents(this.project.path + "/resources/gresources.xml", gr, gr.length);
+			} catch (GLib.Error e) { 
+				return "";
+			)
+			
+			
+			
 			
 			this.has_resources = true;
 			
@@ -232,8 +239,7 @@ install_data(
 	c_name: '" + this.project.name + "_resources' 
 )";
 			
-		 
-			return "";
+		  
 		
 		}
 		
