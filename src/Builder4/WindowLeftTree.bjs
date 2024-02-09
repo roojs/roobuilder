@@ -1416,6 +1416,7 @@
        "| int getRowAt" : [
         "(double x,  double  y, out string pos) {",
         "",
+        "\tpos = \"\";",
         "\tvar w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);",
         "\t//GLib.debug(\"got widget %s\", w == null ? \"nothing\" : w.get_type().name());",
         "\tif (w == null) {",
