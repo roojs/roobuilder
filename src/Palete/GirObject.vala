@@ -351,7 +351,7 @@ namespace Palete {
 
  
 		public GirObject? fetchByFqn(string fqn) {
-			GLib.debug("Searching (%s)%s for %s\n", this.nodetype, this.name, fqn);
+			//			GLib.debug("Searching (%s)%s for %s", this.nodetype, this.name, fqn);
 			var bits = fqn.split(".");
 			
 			var ret = this.classes.get(bits[0]);

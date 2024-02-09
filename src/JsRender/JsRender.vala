@@ -148,7 +148,11 @@ namespace JsRender {
 				if (!GLib.FileUtils.test(this.path, GLib.FileTest.EXISTS)) {
 					return null;
 				}
-				this._icon = File.new_for_path(this.path).query_info("standard::icon",GLib.FileQueryInfoFlags.NONE).get_icon();
+				try {
+					this._icon = File.new_for_path(this.path).query_info("standard::icon",GLib.FileQueryInfoFlags.NONE).get_icon();
+				} catch(GLib.Error e) {
+					return null;
+				}
 				return this._icon;
 			}
 		}
@@ -480,8 +484,11 @@ namespace JsRender {
 			var new_version = this.version + step;
 			var pa = new Json.Parser();
 			//GLib.debug("UNDO RESTORE : %d",  this.version + step);
-			
-			pa.load_from_data(this.undo_json.get(new_version));
+			try {
+				pa.load_from_data(this.undo_json.get(new_version));
+			} catch (GLib.Error e) {
+				return false;
+			}
 			var node = pa.get_root();
 			this.in_undo = true;
 			this.loadTree(node.get_object(),2); 
@@ -828,7 +835,7 @@ namespace JsRender {
 		private void addError(Lsp.Diagnostic diag)
 		{
 			
-			GLib.debug("ADD Error %s", diag.to_string());
+			//GLib.debug("ADD Error %s", diag.to_string());
 			this.errors.add(diag);
 			this.project.addError(this, diag);
 			
@@ -838,7 +845,7 @@ namespace JsRender {
 		 
 		public void removeError(Lsp.Diagnostic diag) 
 		{
-			GLib.debug("REMOVE Error %s", diag.to_string());
+			//GLib.debug("REMOVE Error %s", diag.to_string());
 			this.errors.remove(diag);
 			this.project.removeError(this, diag);
 			this.error_counter++;

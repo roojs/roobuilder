@@ -13,7 +13,7 @@ namespace Palete {
 		public Editor editor; 
 		//public WindowState windowstate;
  		public CompletionModel model;
- 		global::Gtk.StringFilter filter;
+ 		global::Gtk.StringFilter? filter = null;
 
 		public CompletionProvider(Editor editor)
 		{
@@ -31,6 +31,18 @@ namespace Palete {
 		public int get_priority (GtkSource.CompletionContext context)
 		{
 		  return 200;
+		}
+		
+		
+		public bool is_trigger(global::Gtk.TextIter  iter, unichar ch)
+		{
+			if (this.in_populate || ch == 32) {
+				return false;
+			}
+			GLib.debug("should trigger? %c", (int) ch);
+			
+			
+			return true;
 		}
 		
 		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
@@ -187,12 +199,14 @@ namespace Palete {
 		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable) 
 		{
 			GLib.debug("pupoulate async");
-			/*if (!this.in_populate) {
+			var ret = new GLib.ListStore(typeof(CompletionProposal));
+			
+			if (this.in_populate) {
 				GLib.debug("pupoulate async  - skipped waiting for reply");
-				return null;
+				return ret;
 			}
 			this.in_populate = true;
-*/
+
 			global::Gtk.TextIter begin, end;
 			Lsp.CompletionList res;
 			if (context.get_bounds (out begin, out end)) {
@@ -210,7 +224,7 @@ namespace Palete {
 						offset += 2;
 					}
 				} 
-				
+				//  this should not really be slow, as it's a quick repsonse
  				yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
 				try {
 					GLib.debug("sending request to language server %s", this.file.getLanguageServer().get_type().name());
@@ -218,11 +232,13 @@ namespace Palete {
 					res = yield this.file.getLanguageServer().completion(this.file, line, offset, 1);
 				} catch (GLib.Error e) {
 					GLib.debug("got error %s", e.message);
-					res = null;
+					this.in_populate = false;
+					return ret;
 				}
 				
 			} else {
-				res = null;
+				this.in_populate = false;
+				return ret;
 			}
 			
 			GLib.debug("pupoulate async  - got reply");
@@ -247,7 +263,9 @@ namespace Palete {
 		{
  
  			//GLib.debug("pupoulate refilter");
-	 
+	 		if (this.filter == null) {
+	 			return;
+ 			}
 
 			var word = context.get_word();
 			this.filter.set_search(word);

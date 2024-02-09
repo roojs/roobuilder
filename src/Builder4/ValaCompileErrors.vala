@@ -44,7 +44,7 @@ public class Xcls_ValaCompileErrors : Object
 
 	// user defined functions
 	public void updateNotices ( GLib.ListStore? ls) {
-		GLib.debug("errors  : update");
+		//GLib.debug("errors  : update");
 	    if (ls == null || ls.get_n_items() < 1) {
 	 	//    GLib.debug("errors  : none available");
 	    	return;

@@ -194,7 +194,6 @@
 			var css = new Gtk.CssProvider();
 			css.load_from_resource("/css/roobuilder.css");
 			
-			
 			Gtk.StyleContext.add_provider_for_display(
 				Gdk.Display.get_default(),
 				css	,
@@ -745,7 +744,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 
 				ww.windowstate.updateErrorMarksAll();
 				 
-				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
+				//GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
 				ww.updateErrors();
 				ww.windowstate.left_tree.updateErrors();
 				ww.windowstate.left_props.updateErrors();
@@ -767,6 +766,10 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 						
 			 		case Palete.LanguageClientAction.DIAG:
 				 		BuilderApplication.showSpinner( "format-justify-fill", msg);			 		
+			 			return;
+
+					case Palete.LanguageClientAction.DIAG_END:
+				 		BuilderApplication.showSpinner( "", "");
 			 			return;
 
 			 		case Palete.LanguageClientAction.OPEN:

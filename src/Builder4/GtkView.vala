@@ -311,7 +311,7 @@ public class Xcls_GtkView : Object
 	
 	
 	 
-		GLib.debug("highlight errors");		 
+		//GLib.debug("highlight errors");		 
 	
 		 // we should highlight other types of errors..
 	
@@ -332,7 +332,7 @@ public class Xcls_GtkView : Object
 			buf.remove_source_marks (start, end, "WARN");
 			buf.remove_source_marks (start, end, "DEPR");
 			this.last_error_counter = file.error_counter ;
-			GLib.debug("higjlight has no errors");
+			//GLib.debug("higjlight has no errors");
 			return;
 		}
 	 	if (this.last_error_counter == file.error_counter) {
@@ -737,7 +737,7 @@ public class Xcls_GtkView : Object
 		    this.loading = true;
 		    var buf = this.el.get_buffer();
 		    buf.set_text("",0);
-		    var sbuf = (GtkSource.Buffer) buf;
+		 
 			var cpos = buf.cursor_position;
 		    
 		   	print("BEFORE LOAD cursor = %d\n", cpos);

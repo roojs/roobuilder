@@ -54,7 +54,12 @@ namespace Palete {
 		 		if (this.change_queue_file == null) {
 					return true;
 				}
+				if (this.getting_diagnostics) {
+					return true;
+				}
 				this.countdown--;
+
+			
 				if (this.countdown < 0){
 					this.document_change_force.begin(this.change_queue_file,  this.change_queue_file_source, (o, res) => {
 						this.document_change_force.end(res);
@@ -161,6 +166,7 @@ namespace Palete {
 					return a.path == b.path;
 				});
 				this.initialized = true;
+				this.getting_diagnostics = false;
 				return;
 			} catch (GLib.Error e) {
 				GLib.debug ("LS replied with error %s", e.message);
@@ -176,6 +182,7 @@ namespace Palete {
  			if (this.launcher == null) {
  				return;
 			}
+			this.getting_diagnostics = false;
  			this.in_close = true;
 	 		GLib.debug("onClose called");
 	 		
@@ -259,6 +266,7 @@ namespace Palete {
 			
 		}
 		
+		bool getting_diagnostics = false;
 		/***
 		
 		*/
@@ -266,7 +274,15 @@ namespace Palete {
 		{
 			//GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var dg = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
+			GLib.debug("got diag for %s", dg.filename);
 			this.log(LanguageClientAction.DIAG, dg.filename);
+			if (this.project.path == dg.filename) {
+				this.getting_diagnostics = false;
+				this.log(LanguageClientAction.DIAG_END, "diagnostics done");
+				return;
+			
+			}
+			this.getting_diagnostics =true;
 			var f = this.project.getByPath(dg.filename);
 			if (f == null) {
 				//GLib.debug("no file %s", dg.uri);

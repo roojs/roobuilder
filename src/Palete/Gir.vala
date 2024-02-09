@@ -197,20 +197,20 @@ namespace Palete {
 			var fqn = in_fqn;
 			// swap Gtk.Source* to GtkSource.
 			
-			GLib.debug("Gir.factoryFqn  search %s", fqn);
+			//GLib.debug("Gir.factoryFqn  search %s", fqn);
 			var bits = fqn.split(".");
 			if (bits.length < 1) {
-				GLib.debug("Gir.factoryFqn  fail - missing '.'");
+				//GLib.debug("Gir.factoryFqn  fail - missing '.'");
 				return null;
 			}
 			
 			var f = (GirObject)factory(project , bits[0]);
 
 			if (bits.length == 1 || f ==null) {
-				GLib.debug("Gir.factoryFqn  fail - factory failed to load NS");
+				//GLib.debug("Gir.factoryFqn  fail - factory failed to load NS");
 				return f;
 			}
-			GLib.debug("Gir.factoryFqn  fetching child %s", fqn.substring(bits[0].length+1));
+			//GLib.debug("Gir.factoryFqn  fetching child %s", fqn.substring(bits[0].length+1));
 			return f.fetchByFqn(fqn.substring(bits[0].length+1)); // since classes are stored in fqn format...?
 			                    
 			

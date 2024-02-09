@@ -440,6 +440,7 @@ public class Xcls_WindowLeftTree : Object
 		 }
 		public int getRowAt (double x,  double  y, out string pos) {
 		
+			pos = "";
 			var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
 			//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
 			if (w == null) {
@@ -1496,13 +1497,14 @@ public class Xcls_WindowLeftTree : Object
 		}
 		public int nodeToRow (JsRender.Node node) 
 		{
-			var row = -1;
+		 
 			var s = _this.view.el.model as Gtk.SingleSelection;
 			for (var i = 0; i < s.n_items; i++) {
 				//GLib.debug("check node %s", s.get_item(i).get_type().name());
 				var lr = s.get_item(i) as Gtk.TreeListRow;
 				//GLib.debug("check node %s", lr.get_item().get_type().name());
-				if ((lr.get_item() as JsRender.Node).oid == node.oid) {
+				var nn = (lr.get_item() as JsRender.Node);
+				if (nn != null && nn.oid == node.oid) {
 					return i;
 					
 				}
@@ -1593,14 +1595,20 @@ public class Xcls_WindowLeftTree : Object
 			_this.selmodel.el.set_model(this.el);
 			return this.el;
 		}
-		public void selectNode (JsRender.Node node) 
+		public void selectNode (JsRender.Node?  node) 
 		{
-			var row = this.nodeToRow(node);
 			var s = _this.view.el.model as Gtk.SingleSelection;
+			if (node == null) {
+				s.selected=Gtk.INVALID_LIST_POSITION;
+				return;
+			}
+			var row = this.nodeToRow(node);
+		
 			 
 			if (row < 0) {
 				// select none?
 				GLib.debug("Could not find node");
+				s.selected=Gtk.INVALID_LIST_POSITION;
 				return;
 			}
 			GLib.debug("Select %d", row);
