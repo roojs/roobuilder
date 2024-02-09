@@ -769,6 +769,10 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 				 		BuilderApplication.showSpinner( "format-justify-fill", msg);			 		
 			 			return;
 
+					case Palete.LanguageClientAction.DIAG_END:
+				 		BuilderApplication.showSpinner( "", "");
+			 			return;
+
 			 		case Palete.LanguageClientAction.OPEN:
 				 		BuilderApplication.showSpinner( "document-open", msg);			 		
 			 			return;
