@@ -281,7 +281,7 @@
             "    this.loading = true;",
             "    var buf = this.el.get_buffer();",
             "    buf.set_text(\"\",0);",
-            "    var sbuf = (GtkSource.Buffer) buf;",
+            " ",
             "\tvar cpos = buf.cursor_position;",
             "    ",
             "   \tprint(\"BEFORE LOAD cursor = %d\\n\", cpos);",

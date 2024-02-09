@@ -737,7 +737,7 @@ public class Xcls_GtkView : Object
 		    this.loading = true;
 		    var buf = this.el.get_buffer();
 		    buf.set_text("",0);
-		    var sbuf = (GtkSource.Buffer) buf;
+		 
 			var cpos = buf.cursor_position;
 		    
 		   	print("BEFORE LOAD cursor = %d\n", cpos);
