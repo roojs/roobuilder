@@ -347,6 +347,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			
 			prop.start_line = this.cur_line;
 			this.addLine("%s%s%s = %s;".printf(ipad,this.this_el,p,v)); // // %s,  iter.get_value().type);
+
+			
+			
 			prop.end_line = this.cur_line;		
 			   // got a property..
 			   
@@ -389,7 +392,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			
 			// this is only needed if it does not have an ID???
 			var childname = this.addPropSet(child, child.has("id") ? child.get_prop("id").val : "") ; 
-			
+			if (!child.has("id")) {
+				// must ref new objects..
+				this.addLine("%s%s.ref();".printf(ipad, childname));
+			}
 			if (child.has("* prop")) {
 			 
 			
@@ -408,6 +414,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				
 			  	this.ignoreWrapped(child.get_prop("* prop").val);
 				var el_name = this.this_el == "this.el." ? ".el" : "";
+				
+				
 				this.addLine(ipad + this.this_el  + child.get_prop("* prop").val + " = " + childname + el_name +";");
 				
 				continue;

@@ -318,7 +318,9 @@ namespace Palete {
  		 	this.search = word;
  			if (res != null) {
 	 		 	foreach(var comp in res.items) {
-	 		 		 
+	 		 		 if (comp.label == "_") { // skip '_'
+	 		 		 	continue;
+ 		 		 	}
 	 				this.items.add(new CompletionProposal(comp));	
 	 				
 	 		 	}
