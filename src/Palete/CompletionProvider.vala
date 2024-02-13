@@ -252,7 +252,9 @@ namespace Palete {
 			this.model = new CompletionModel(this, context, res, cancellable); 
 			var word = context.get_word();
 			GLib.debug("Context word is %s, %d", word, (int)word.length);
-			
+			if (word.length < 1) {
+				word = " "; // this should filter out everything, and prevent it displaying 
+			}
 			
 			var expression = new global::Gtk.PropertyExpression(typeof(CompletionProposal), null, "label");
 			this.filter = new global::Gtk.StringFilter(expression);
