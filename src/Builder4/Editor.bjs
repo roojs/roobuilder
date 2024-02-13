@@ -955,7 +955,7 @@
     "",
     "\tif (this.searchcontext == null) {",
     "\t\treturn;",
-    "\t} ",
+    "\t}",
     "\t",
     "\tGtk.TextIter beg, st,en;",
     "\tbool has_wrapped_around;",

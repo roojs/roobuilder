@@ -39,7 +39,14 @@ namespace Palete {
 			if (this.in_populate || ch == 32) {
 				return false;
 			}
-			GLib.debug("should trigger? %c", (int) ch);
+			if (this.editor.buffer.el.iter_has_context_class(iter, "comment") ||
+				this.editor.buffer.el.iter_has_context_class(iter, "string")
+			) { 
+				return false;
+			}
+			
+			
+			//GLib.debug("should trigger? %c", (int) ch);
 			
 			
 			return true;
@@ -244,6 +251,7 @@ namespace Palete {
 			GLib.debug("pupoulate async  - got reply");
 			this.model = new CompletionModel(this, context, res, cancellable); 
 			var word = context.get_word();
+			GLib.debug("Context word is %s, %d", word, (int)word.length);
 			
 			
 			var expression = new global::Gtk.PropertyExpression(typeof(CompletionProposal), null, "label");
