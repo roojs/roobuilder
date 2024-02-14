@@ -893,7 +893,7 @@ public class Xcls_WindowRooView : Object
 		    uint8[] builderhtml;
 		    
 		    try {
-		        GLib. File.new_for_uri("resources:///html/roo.builder.js").load_contents(null,  out   builderhtml, null);
+		        GLib. File.new_for_uri("resource:///html/roo.builder.js").load_contents(null,  out   builderhtml, null);
 		    } catch (Error e) {
 		        builderhtml = {};
 		    }
@@ -907,12 +907,12 @@ public class Xcls_WindowRooView : Object
 		
 		    uint8[] inhtml;
 		    var base_template = project.base_template;
-		    var f = GLib. File.new_for_uri("resources:///html/" + base_template);
+		    var f = GLib. File.new_for_uri("resource:///html/" + base_template);
 		    
 		    if (base_template.length > 0 && !f.query_exists(null)) {
 		       
 		           GLib.debug("invalid base_template name - using default:  %s", base_template);
-		           f = GLib. File.new_for_uri("resources:///html/roo.builder.html");
+		           f = GLib. File.new_for_uri("resource:///html/roo.builder.html");
 		    
 		    }
 		    try {
