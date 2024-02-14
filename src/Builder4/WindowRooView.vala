@@ -911,7 +911,7 @@ public class Xcls_WindowRooView : Object
 		    
 		    if (base_template.length > 0 && !f.query_exists(null)) {
 		       
-		           GLib.debug("invalid base_template name - using default:  %Scanner", base_template);
+		           GLib.debug("invalid base_template name - using default:  %s", base_template);
 		           f = GLib. File.new_for_uri("resources:///html/roo.builder.html");
 		    
 		    }
