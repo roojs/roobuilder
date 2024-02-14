@@ -3,6 +3,7 @@
  "gen_extended" : false,
  "items" : [
   {
+   "# Gee.ArrayList<Gtk.Widget>? error_widgets" : "",
    "# JsRender.JsRender file" : "",
    "# JsRender.Node node" : "",
    "# Xcls_MainWindow main_window" : "null",
