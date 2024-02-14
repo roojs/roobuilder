@@ -20,6 +20,7 @@ public class Xcls_GtkView : Object
 	public Xcls_sourceviewscroll sourceviewscroll;
 	public Xcls_sourceview sourceview;
 	public Xcls_buffer buffer;
+	public Xcls_keystate keystate;
 	public Xcls_search_entry search_entry;
 	public Xcls_search_results search_results;
 	public Xcls_nextBtn nextBtn;
@@ -640,9 +641,11 @@ public class Xcls_GtkView : Object
 			this.el.tab_width = 4;
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
-			var child_2 = new Xcls_EventControllerKey11( _this );
-			child_2.ref();
-			this.el.add_controller(  child_2.el );
+			new Xcls_keystate( _this );
+			this.el.add_controller(  _this.keystate.el );
+			var child_3 = new Xcls_EventControllerScroll37( _this );
+			child_3.ref();
+			this.el.add_controller(  child_3.el );
 
 			// init method
 
@@ -953,28 +956,39 @@ public class Xcls_GtkView : Object
 		// user defined functions
 	}
 
-	public class Xcls_EventControllerKey11 : Object
+	public class Xcls_keystate : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Xcls_GtkView  _this;
 
 
 			// my vars (def)
+		public bool is_control;
 
 		// ctor
-		public Xcls_EventControllerKey11(Xcls_GtkView _owner )
+		public Xcls_keystate(Xcls_GtkView _owner )
 		{
 			_this = _owner;
+			_this.keystate = this;
 			this.el = new Gtk.EventControllerKey();
 
 			// my vars (dec)
+			this.is_control = false;
 
 			// set gobject values
 
 			//listeners
+			this.el.key_released.connect( (keyval, keycode, state) => {
+			
+				 if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {
+			 		this.is_control = false;
+				}
+			});
 			this.el.key_pressed.connect( (keyval, keycode, state) => {
 			
-				
+				if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {
+			 		this.is_control = true;
+				}
 				 
 				 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
 				    GLib.debug("SAVE: ctrl-g  pressed");
@@ -988,6 +1002,50 @@ public class Xcls_GtkView : Object
 				}
 				 
 				return false;
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_EventControllerScroll37 : Object
+	{
+		public Gtk.EventControllerScroll el;
+		private Xcls_GtkView  _this;
+
+
+			// my vars (def)
+		public double distance;
+
+		// ctor
+		public Xcls_EventControllerScroll37(Xcls_GtkView _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
+
+			// my vars (dec)
+			this.distance = 0.0f;
+
+			// set gobject values
+
+			//listeners
+			this.el.scroll.connect( (dx, dy) => {
+				if (!_this.keystate.is_control) {
+					return false;
+				}
+				//GLib.debug("scroll %f",  dy);
+				
+				this.distance += dy;
+				if (this.distance < 1) {
+					BuilderApplication.settings.editor_font_size ++;
+					this.distance = 0;
+				}
+				if (this.distance > -1) {
+					BuilderApplication.settings.editor_font_size --;
+					this.distance = 0;
+				}
+			
+				return true;
 			});
 		}
 

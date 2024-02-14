@@ -722,13 +722,17 @@
              ]
             },
             {
+             "# bool is_control" : false,
              "$ xns" : "Gtk",
              "* pack" : "add_controller",
+             "id" : "keystate",
              "listeners" : {
               "key_pressed" : [
                "(keyval, keycode, state) => {",
                "",
-               " ",
+               " \tif (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {",
+               " \t\tthis.is_control = true;",
+               "\t}",
                "    ",
                "  \tif (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
                "\t    GLib.debug(\"SAVE: ctrl-g  pressed\");",
@@ -750,9 +754,48 @@
                " ",
                "}",
                ""
+              ],
+              "key_released" : [
+               "(keyval, keycode, state) => {",
+               "",
+               "",
+               " \t if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {",
+               " \t\tthis.is_control = false;",
+               "\t}",
+               "}",
+               ""
               ]
              },
              "xtype" : "EventControllerKey"
+            },
+            {
+             "# double distance" : "0.0f",
+             "$ xns" : "Gtk",
+             "Gtk.EventControllerScrollFlags flags" : "Gtk.EventControllerScrollFlags.VERTICAL",
+             "listeners" : {
+              "scroll" : [
+               "(dx, dy) => {",
+               "\tif (!_this.keystate.is_control) {",
+               "\t\treturn false;",
+               "\t}",
+               "\t//GLib.debug(\"scroll %f\",  dy);",
+               "\t",
+               "\tthis.distance += dy;",
+               "\tif (this.distance < 1) {",
+               "\t\tBuilderApplication.settings.editor_font_size ++;",
+               "\t\tthis.distance = 0;",
+               "\t}",
+               "\tif (this.distance > -1) {",
+               "\t\tBuilderApplication.settings.editor_font_size --;",
+               "\t\tthis.distance = 0;",
+               "\t}",
+               "",
+               "\treturn true;",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "EventControllerScroll"
             }
            ],
            "listeners" : {
