@@ -128,12 +128,13 @@ public class Xcls_LeftProps : Object
 	    	if (w == null) {
 	    		return;
 			}
-			this.error_widgets.add(w);
+	
 			
 	  		var ed = diag.category.down();
 			if (ed != "err" && w.has_css_class("node-err")) {
 				continue;
 			}
+			this.error_widgets.add(w);		
 			if (ed == "err" && w.has_css_class("node-warn")) {
 				w.remove_css_class("node-warn");
 			}
