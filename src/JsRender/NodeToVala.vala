@@ -392,19 +392,16 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			
 			// this is only needed if it does not have an ID???
 			var childname = this.addPropSet(child, child.has("id") ? child.get_prop("id").val : "") ; 
-			if (!child.has("id")) {
-				// must ref new objects..
-				this.addLine("%s%s.ref();".printf(ipad, childname));
-			}
+			if (!child.has("id") && this.this_el == "this.el.") {
+				this.addLine(this.ipad +  childname +".ref();"); 
+		 	} 
 			if (child.has("* prop")) {
 			 
 			
 				// fixme special packing!??!?!
 				if (child.get_prop("* prop").val.contains("[]")) {
-					// currently these 'child props
-					// used for label[]  on Notebook
-					// used for button[]  on Dialog?
-					// columns[] ?
+					// currently this is not used?
+					// and it will not add ref..
 					 
 					this.packChild(child, childname, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
@@ -420,9 +417,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				
 				continue;
 			} 
-			 if (!child.has("id") && this.this_el == "this.el.") {
-				this.addLine(this.ipad +  childname +".ref();"); 
-			 } 
+			 
 			this.packChild(child, childname, cols, colpos);
 			
 			if (child.has("colspan")) {
