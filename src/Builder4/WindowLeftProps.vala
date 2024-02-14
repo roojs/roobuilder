@@ -46,6 +46,7 @@ public class Xcls_LeftProps : Object
 		this.allow_edit = false;
 		this.main_window = null;
 		this.last_error_counter = -1;
+		this.error_widgets = null;
 
 		// set gobject values
 		this.el.homogeneous = false   ;
