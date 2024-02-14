@@ -75,51 +75,42 @@ namespace Palete {
 		    //return typeof(this.comments[ns][what]) == 'undefined' ?  '' : this.comments[ns][what];
 		}
 
+		public GirObject? loadGir (string ename) {
+			var es = ename.split(".");
+			if (es.length < 2) {
+				return null;
+			}
+			var gir = Gir.factory(this.project,es[0]);
+			if (gir == null) {
+				return null;
+			}
+			return gir;
+			
+		}
+
 			// does not handle implements...
 		public override GirObject? getClass(string ename)
 		{
-
 			var es = ename.split(".");
-			if (es.length < 2) {
-				return null;
-			}
-			var gir = Gir.factory(this.project,es[0]);
-			if (gir == null) {
-				return null;
-			}
-			return gir.classes.get(es[1]);
+			var gir = this.loadGir(ename);
+			return gir  == null ? null : gir.classes.get(es[1]);
 		
 		}
-		
+		 
 		public  GirObject? getDelegate(string ename) 
 		{
 			var es = ename.split(".");
-			if (es.length < 2) {
-				return null;
-			}
-			var gir = Gir.factory(this.project,es[0]);
-			if (gir == null) {
-				return null;
-			}
-			return gir.delegates.get(es[1]);
-		
+			var gir = this.loadGir(ename);
+			return gir  == null ? null : gir.delegates.get(es[1]);
 		}
-
+		
 		public  GirObject? getClassOrEnum(string ename)
 		{
-
 			var es = ename.split(".");
-			if (es.length < 2) {
-				return null;
-			}
-			var gir = Gir.factory(this.project,es[0]);
-			if (gir.classes.has_key(es[1])) {
-				return gir.classes.get(es[1]);
-			}
-			if (gir.consts.has_key(es[1])) {
-				return  gir.consts.get(es[1]);
-			}
-			return null;
+			var gir = this.loadGir(ename);
+			return gir  == null ? null : 
+					(gir.classes.has_key(es[1]) ?  gir.classes.get(es[1]) : gir.consts.get(es[1]) );
+		 
 		}
 
 
@@ -457,10 +448,14 @@ namespace Palete {
 			   // GLib.debug("adding property from ctor : %s, %s, %s  [%s]", cname , prop.name, prop.type, sub == null ? "-" : sub.nodetype);
  
 			    if (sub != null) { // can't add child classes here...
-			    
+			    	if (sub.nodetype == "Struct") {
+			    		this.node_defaults.get(cname).set(prop.name, new JsRender.NodeProp.raw(prop.name, prop.type, ""));
+						continue;
+			    	}
 				    GLib.debug("skipping ctor argument proprty is an object");
 				    continue;
 			    }
+			     
 			    sub = this.getDelegate(prop.type);
 			     if (sub != null) { // can't add child classes here...
 			     	this.node_defaults.get(cname).set(prop.name, new JsRender.NodeProp.raw(prop.name, prop.type, sub.sig));
