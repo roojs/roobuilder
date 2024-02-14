@@ -107,7 +107,7 @@ public class Xcls_LeftProps : Object
 			return;
 		}
 		this.removeErrors();
-		
+		this.error_widgets = new Gee.ArrayList<Gtk.Widget>();
 		foreach(var diag in ar) { 
 		
 			 
@@ -128,7 +128,9 @@ public class Xcls_LeftProps : Object
 	    	if (w == null) {
 	    		return;
 			}
-		  		var ed = diag.category.down();
+			this.error_widgets.add(w);
+			
+	  		var ed = diag.category.down();
 			if (ed != "err" && w.has_css_class("node-err")) {
 				continue;
 			}
