@@ -27,6 +27,7 @@ public class Xcls_WindowLeftTree : Object
 	public int last_error_counter;
 	public signal void changed ();
 	public signal void node_selected (JsRender.Node? node);
+	public Gee.ArrayList<Gtk.Widget>? error_widgets;
 
 	// ctor
 	public Xcls_WindowLeftTree()
@@ -37,6 +38,7 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (dec)
 		this.main_window = null;
 		this.last_error_counter = -1;
+		this.error_widgets = null;
 
 		// set gobject values
 		this.el.hexpand = true;
@@ -69,7 +71,7 @@ public class Xcls_WindowLeftTree : Object
 			return;
 		}
 		this.removeErrors();
-		
+		this.error_widgets = new Gee.ArrayList<Gtk.Widget>();
 		foreach(var diag in ar) { 
 		
 			 
@@ -86,6 +88,7 @@ public class Xcls_WindowLeftTree : Object
 	    	if (w == null) {
 	    		return;
 			}
+			this.error_widgets.add(w);
 			// always show errors.
 			var ed = diag.category.down();
 			if (ed != "err" && w.has_css_class("node-err")) {
@@ -111,6 +114,26 @@ public class Xcls_WindowLeftTree : Object
 	//	_this.maincol.el.set_max_width( _this.viewwin.el.get_width()  - 32 );
 	}
 	public void removeErrors () {
+		if (this.error_widgets == null || this.error_widgets.size < 1) {
+	 		return;
+		}
+		foreach(var child in this.error_widgets) {
+		
+			if (child.has_css_class("node-err")) {
+				child.remove_css_class("node-err");
+			}
+			if (child.has_css_class("node-warn")) {
+				child.remove_css_class("node-warn");
+			}
+			
+			if (child.has_css_class("node-depr")) {
+				child.remove_css_class("node-depr");
+			}
+		}
+		this.error_widgets  = null;
+		return;
+		
+		/*
 		var  child = this.view.el.get_first_child(); 
 	 
 		var reading_header = true;
@@ -149,6 +172,7 @@ public class Xcls_WindowLeftTree : Object
 	        child = child.get_next_sibling(); 
 		}
 		//GLib.debug("Rturning null");
+		*/
 	     
 	}
 	public JsRender.Node? getActiveElement () { // return path to actie node.
@@ -1855,6 +1879,7 @@ public class Xcls_WindowLeftTree : Object
 
 			// set gobject values
 			var child_1 = new Xcls_Box18( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 		}
 

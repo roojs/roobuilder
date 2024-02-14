@@ -33,6 +33,7 @@ public class Xcls_LeftProps : Object
 	public JsRender.JsRender file;
 	public JsRender.Node node;
 	public signal void show_editor (JsRender.JsRender file, JsRender.Node node, JsRender.NodeProp prop);
+	public Gee.ArrayList<Gtk.Widget>? error_widgets;
 
 	// ctor
 	public Xcls_LeftProps()
@@ -45,6 +46,7 @@ public class Xcls_LeftProps : Object
 		this.allow_edit = false;
 		this.main_window = null;
 		this.last_error_counter = -1;
+		this.error_widgets = null;
 
 		// set gobject values
 		this.el.homogeneous = false   ;
@@ -105,7 +107,7 @@ public class Xcls_LeftProps : Object
 			return;
 		}
 		this.removeErrors();
-		
+		this.error_widgets = new Gee.ArrayList<Gtk.Widget>();
 		foreach(var diag in ar) { 
 		
 			 
@@ -126,10 +128,13 @@ public class Xcls_LeftProps : Object
 	    	if (w == null) {
 	    		return;
 			}
-		  		var ed = diag.category.down();
+	
+			
+	  		var ed = diag.category.down();
 			if (ed != "err" && w.has_css_class("node-err")) {
 				continue;
 			}
+			this.error_widgets.add(w);		
 			if (ed == "err" && w.has_css_class("node-warn")) {
 				w.remove_css_class("node-warn");
 			}
@@ -245,31 +250,12 @@ public class Xcls_LeftProps : Object
 	        */
 	}
 	public void removeErrors () {
-		var  child = this.view.el.get_first_child(); 
-	 
-		var reading_header = true;
-	 
-		while (child != null) {
-			//GLib.debug("Got %s", child.get_type().name());
-		   
-		   if (reading_header) {
-				
-	
-				if (child.get_type().name() != "GtkColumnListView") {
-				   
-					child = child.get_next_sibling();
-					continue;
-				}
-				// should be columnlistview
-				child = child.get_first_child(); 
-			 
-			 
-				
-				reading_header = false;
-				continue;
-		    }
-		    
-		  	if (child.has_css_class("node-err")) {
+			if (this.error_widgets == null || this.error_widgets.size < 1) {
+	 		return;
+		}
+		foreach(var child in this.error_widgets) {
+		
+			if (child.has_css_class("node-err")) {
 				child.remove_css_class("node-err");
 			}
 			if (child.has_css_class("node-warn")) {
@@ -279,9 +265,9 @@ public class Xcls_LeftProps : Object
 			if (child.has_css_class("node-depr")) {
 				child.remove_css_class("node-depr");
 			}
-			
-	        child = child.get_next_sibling(); 
 		}
+		this.error_widgets  = null;
+		return;
 		//GLib.debug("Rturning null");
 	     
 	}
@@ -510,6 +496,7 @@ public class Xcls_LeftProps : Object
 
 			// set gobject values
 			var child_1 = new Xcls_Box7( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
@@ -606,6 +593,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label9( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -670,6 +658,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label11( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -737,6 +726,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label13( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -802,6 +792,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label15( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -866,6 +857,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label17( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -953,6 +945,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label20( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1015,6 +1008,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label22( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1078,6 +1072,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label24( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1163,6 +1158,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label27( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1226,6 +1222,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label29( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1287,6 +1284,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label31( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1370,6 +1368,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label34( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1433,6 +1432,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			var child_1 = new Xcls_Label36( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1497,6 +1497,7 @@ public class Xcls_LeftProps : Object
 			this.el.has_frame = false;
 			this.el.tooltip_markup = "Add a flexy include (for HTML templates)";
 			var child_1 = new Xcls_Label38( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1824,6 +1825,7 @@ public class Xcls_LeftProps : Object
 
 			// set gobject values
 			var child_1 = new Xcls_Box42( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
@@ -1873,6 +1875,7 @@ public class Xcls_LeftProps : Object
 			this.el.has_frame = false;
 			this.el.label = "Delete";
 			var child_1 = new Xcls_Label44( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -2441,6 +2444,7 @@ public class Xcls_LeftProps : Object
 
 			// set gobject values
 			var child_1 = new Xcls_Box54( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
