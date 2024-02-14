@@ -20,11 +20,12 @@ Changlog
   https://github.com/roojs/roobuilder/blob/master/debian/changelog
 
 ---
-Wishlist
+Features Wishlist
 
     Random list of ideas to add - I regulary add these in totally random order.
     
     https://docs.google.com/spreadsheets/d/1-qNQX1Bwwd1cV405Kj1l3B3Mi6K-GvECnMeuzRKfbGA/edit?usp=sharing
+    
 ---
 Debian and Ubuntu packages
 
