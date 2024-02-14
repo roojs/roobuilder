@@ -247,31 +247,12 @@ public class Xcls_LeftProps : Object
 	        */
 	}
 	public void removeErrors () {
-		var  child = this.view.el.get_first_child(); 
-	 
-		var reading_header = true;
-	 
-		while (child != null) {
-			//GLib.debug("Got %s", child.get_type().name());
-		   
-		   if (reading_header) {
-				
-	
-				if (child.get_type().name() != "GtkColumnListView") {
-				   
-					child = child.get_next_sibling();
-					continue;
-				}
-				// should be columnlistview
-				child = child.get_first_child(); 
-			 
-			 
-				
-				reading_header = false;
-				continue;
-		    }
-		    
-		  	if (child.has_css_class("node-err")) {
+			if (this.error_widgets == null || this.error_widgets.size < 1) {
+	 		return;
+		}
+		foreach(var child in this.error_widgets) {
+		
+			if (child.has_css_class("node-err")) {
 				child.remove_css_class("node-err");
 			}
 			if (child.has_css_class("node-warn")) {
@@ -281,9 +262,9 @@ public class Xcls_LeftProps : Object
 			if (child.has_css_class("node-depr")) {
 				child.remove_css_class("node-depr");
 			}
-			
-	        child = child.get_next_sibling(); 
 		}
+		this.error_widgets  = null;
+		return;
 		//GLib.debug("Rturning null");
 	     
 	}
