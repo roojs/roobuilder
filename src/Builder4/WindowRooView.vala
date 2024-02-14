@@ -697,36 +697,37 @@ public class Xcls_WindowRooView : Object
 
 			//listeners
 			this.el.script_dialog.connect( (dialog) => {
-			    
-			    
-			    if (this.el == null) {
-			        return true;
-			    }
-			    
-			     var msg = dialog.get_message();
-			     if (msg.length < 4) {
-			        return false;
-			     }
-			     
-			     GLib.debug("script dialog got %s", msg);
-			     
-			     if (msg.substring(0,4) != "IPC:") {
-			         return false;
-			     }
-			     var ar = msg.split(":", 3);
-			    if (ar.length < 3) {
-			        return false;
-			    }
 			
-			    switch(ar[1]) {
-			        case "SAVEHTML":
-				        GLib.debug("GOT saveHTML %d", ar[2].length);
-			            _this.file.saveHTML(ar[2]);
-			            _this.createThumb();
-			            return true;
-			        default:
-			            return false;
-			    }
+				if (this.el == null) {
+					return true;
+				}
+			
+				var msg = dialog.get_message();
+				if (msg.length < 4) {
+					return false;
+				}
+				 
+				 //GLib.debug("script dialog got %s", msg);
+				 
+				if (msg.substring(0,4) != "IPC:") {
+					return false;
+				}
+				var ar = msg.split(":", 3);
+				if (ar.length < 3) {
+					return false;
+				}
+			
+				switch(ar[1]) {
+				
+					case "SAVEHTML":
+					 //   GLib.debug("GOT saveHTML %d", ar[2].length);
+					    _this.file.saveHTML(ar[2]);
+					    _this.createThumb();
+					    return true;
+					    
+					default:
+					    return false;
+				}
 			    
 			});
 			this.el.ready_to_show.connect( ( ) => {
@@ -794,6 +795,7 @@ public class Xcls_WindowRooView : Object
 		    }
 		     
 		    this.refreshRequired  = true;
+		    
 		}
 		public void reInit () {
 		   print("reInit?");
@@ -836,8 +838,7 @@ public class Xcls_WindowRooView : Object
 		{
 		    // this is run every 2 seconds from the init..
 		
-		  
-		    
+		   
 		    if (!this.refreshRequired) {
 		       // print("no refresh required");
 		        return;
@@ -893,7 +894,7 @@ public class Xcls_WindowRooView : Object
 		    uint8[] builderhtml;
 		    
 		    try {
-		        GLib. File.new_for_uri("resources:///html/roo.builder.js").load_contents(null,  out   builderhtml, null);
+		        GLib. File.new_for_uri("resource:///html/roo.builder.js").load_contents(null,  out   builderhtml, null);
 		    } catch (Error e) {
 		        builderhtml = {};
 		    }
@@ -907,12 +908,12 @@ public class Xcls_WindowRooView : Object
 		
 		    uint8[] inhtml;
 		    var base_template = project.base_template;
-		    var f = GLib. File.new_for_uri("resources:///html/" + base_template);
+		    var f = GLib. File.new_for_uri("resource:///html/" + base_template);
 		    
 		    if (base_template.length > 0 && !f.query_exists(null)) {
 		       
-		           GLib.debug("invalid base_template name - using default:  %Scanner", base_template);
-		           f = GLib. File.new_for_uri("resources:///html/roo.builder.html");
+		           GLib.debug("invalid base_template name - using default:  %s", base_template);
+		           f = GLib. File.new_for_uri("resource:///html/roo.builder.html");
 		    
 		    }
 		    try {
@@ -1992,6 +1993,7 @@ public class Xcls_WindowRooView : Object
 
 			// set gobject values
 			var child_1 = new Xcls_Box25( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
