@@ -65,12 +65,10 @@ public class Editor : Object
 		this.el.vexpand = true;
 		var child_1 = new Xcls_Box1( _this );
 		child_1.ref();
-		child_1.ref();
 		this.el.append( child_1.el );
 		new Xcls_RightEditor( _this );
 		this.el.append( _this.RightEditor.el );
 		var child_3 = new Xcls_Box11( _this );
-		child_3.ref();
 		child_3.ref();
 		this.el.append ( child_3.el  );
 	}
@@ -409,10 +407,8 @@ public class Editor : Object
 			this.el.append( _this.save_button.el );
 			var child_2 = new Xcls_Label3( _this );
 			child_2.ref();
-			child_2.ref();
 			this.el.append( child_2.el );
 			var child_3 = new Xcls_Scale4( _this );
-			child_3.ref();
 			child_3.ref();
 			this.el.append( child_3.el );
 			new Xcls_close_btn( _this );
@@ -647,7 +643,6 @@ public class Editor : Object
 			new Xcls_buffer( _this );
 			this.el.buffer = _this.buffer.el;
 			var child_2 = new Xcls_EventControllerKey10( _this );
-			child_2.ref();
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
 
@@ -1179,7 +1174,6 @@ public class Editor : Object
 			this.el.append( _this.backBtn.el );
 			var child_5 = new Xcls_MenuButton17( _this );
 			child_5.ref();
-			child_5.ref();
 			this.el.append( child_5.el );
 		}
 
@@ -1209,7 +1203,6 @@ public class Editor : Object
 			this.el.placeholder_text = "Press enter to search";
 			this.el.search_delay = 3;
 			var child_1 = new Xcls_EventControllerKey13( _this );
-			child_1.ref();
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
