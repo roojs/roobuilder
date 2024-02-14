@@ -708,7 +708,7 @@ public class Xcls_WindowRooView : Object
 			        return false;
 			     }
 			     
-			     GLib.debug("script dialog got %s", msg);
+			     //GLib.debug("script dialog got %s", msg);
 			     
 			     if (msg.substring(0,4) != "IPC:") {
 			         return false;
@@ -720,7 +720,7 @@ public class Xcls_WindowRooView : Object
 			
 			    switch(ar[1]) {
 			        case "SAVEHTML":
-				        GLib.debug("GOT saveHTML %d", ar[2].length);
+				     //   GLib.debug("GOT saveHTML %d", ar[2].length);
 			            _this.file.saveHTML(ar[2]);
 			            _this.createThumb();
 			            return true;
