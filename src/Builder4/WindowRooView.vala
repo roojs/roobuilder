@@ -794,6 +794,7 @@ public class Xcls_WindowRooView : Object
 		    }
 		     
 		    this.refreshRequired  = true;
+		    
 		}
 		public void reInit () {
 		   print("reInit?");
@@ -836,8 +837,7 @@ public class Xcls_WindowRooView : Object
 		{
 		    // this is run every 2 seconds from the init..
 		
-		  
-		    
+		   
 		    if (!this.refreshRequired) {
 		       // print("no refresh required");
 		        return;
@@ -1992,6 +1992,7 @@ public class Xcls_WindowRooView : Object
 
 			// set gobject values
 			var child_1 = new Xcls_Box25( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
