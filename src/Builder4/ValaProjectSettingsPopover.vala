@@ -97,7 +97,9 @@ public class ValaProjectSettingsPopover : Object
 	   this.version.el.buffer.set_text(
 	    	project.version.data
 		);
-		   
+		  this.licence.el.buffer.set_text(
+	    	project.licence.data
+		); 
 	    project.loadVapiIntoStore(_this.vapimodel.el);
 	     GLib.Timeout.add(500, () => {
 	 		 this.vapi_scroll.el.vadjustment.value  = 0;	 
