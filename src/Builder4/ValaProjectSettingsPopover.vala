@@ -447,7 +447,7 @@ public class ValaProjectSettingsPopover : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.placeholder_text = "eg. -g --valasrc $BASEDIR ";
+			this.el.placeholder_text = "eg. 1.5";
 
 			//listeners
 			this.el.changed.connect( () => {

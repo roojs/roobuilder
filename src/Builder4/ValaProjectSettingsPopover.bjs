@@ -108,7 +108,7 @@
                "}"
               ]
              },
-             "utf8 placeholder_text" : "eg. -g --valasrc $BASEDIR ",
+             "utf8 placeholder_text" : "eg. 1.5",
              "xtype" : "Entry"
             },
             {
