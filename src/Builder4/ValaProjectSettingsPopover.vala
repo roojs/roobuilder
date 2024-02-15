@@ -360,7 +360,7 @@ public class ValaProjectSettingsPopover : Object
 		public Xcls_Label853(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "compile flags" );
+			this.el = new Gtk.Label( "Compile flags:" );
 
 			// my vars (dec)
 
@@ -417,7 +417,7 @@ public class ValaProjectSettingsPopover : Object
 		public Xcls_Label886(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "Version" );
+			this.el = new Gtk.Label( "Version:" );
 
 			// my vars (dec)
 
@@ -474,7 +474,7 @@ public class ValaProjectSettingsPopover : Object
 		public Xcls_Label906(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "Licence" );
+			this.el = new Gtk.Label( "Licence:" );
 
 			// my vars (dec)
 

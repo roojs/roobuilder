@@ -67,7 +67,7 @@
              "$ xns" : "Gtk",
              "Gtk.Align halign" : "Gtk.Align.START",
              "bool hexpand" : false,
-             "utf8 label" : "compile flags",
+             "utf8 label" : "Compile flags:",
              "xtype" : "Label"
             },
             {
@@ -91,7 +91,7 @@
              "$ xns" : "Gtk",
              "Gtk.Align halign" : "Gtk.Align.START",
              "bool hexpand" : false,
-             "utf8 label" : "Version",
+             "utf8 label" : "Version:",
              "xtype" : "Label"
             },
             {
@@ -115,7 +115,7 @@
              "$ xns" : "Gtk",
              "Gtk.Align halign" : "Gtk.Align.START",
              "bool hexpand" : false,
-             "utf8 label" : "Licence",
+             "utf8 label" : "Licence:",
              "xtype" : "Label"
             },
             {
