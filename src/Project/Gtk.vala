@@ -98,7 +98,12 @@ namespace Project
 			if (obj.has_member("compiler_flags")) {
 				this.compile_flags = obj.get_string_member("compile_flags");
 			}
-			
+			if (obj.has_member("version")) {
+				this.version = obj.get_string_member("version");
+			}
+			if (obj.has_member("licence")) {
+				this.licence = obj.get_string_member("licence");
+			}
 			 if (!obj.has_member("compilegroups") || obj.get_member("compilegroups").get_node_type () != Json.NodeType.ARRAY) {
 			 	// make _default_ ?
 			 	 return;
