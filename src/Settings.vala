@@ -24,6 +24,9 @@ public class Settings : Object  {
 		}
 		set {
 			GLib.debug("updated to %d", (int) value );
+			if (value < 6 || value > 50) {
+				return;
+			}
 			this._editor_font_size = (int) value;
 			if (this.css != null) {
 				this.css.load_from_string(
