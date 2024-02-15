@@ -130,6 +130,9 @@ namespace Project
 			obj.set_array_member("compilegroups", ar);
 			
 			obj.set_string_member("compile_flags", this.compile_flags);
+			obj.set_string_member("version", this.version);
+			obj.set_string_member("licence", this.licence);
+			
 			var par = new Json.Array();
 			foreach(var p in this.packages) {
 				par.add_string_element(p);
