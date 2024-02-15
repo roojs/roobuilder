@@ -122,7 +122,9 @@ $(cgname)_lib = shared_library('$cgname',
     install_dir: [true, true, true]
 )
 pkg = import('pkgconfig')
-pkg.generate( $(cgname)_lib )
+pkg.generate( $(cgname)_lib,
+    filebase: '$(cgname)-$(version)'
+)
 
 ";
 
