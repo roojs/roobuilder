@@ -13,6 +13,7 @@ namespace Project
 		public string execute_args;
 		
 		public bool loading_ui = true;
+		public bool is_library = false;
 		
 		public GtkValaSettings(Gtk project, string name) 
 		{
@@ -29,7 +30,9 @@ namespace Project
 
 			this.project = project;
 			this.name = el.get_string_member("name");
- 
+			if (el.has_member("is_library")) {
+				this.is_library = el.get_boolean_member("is_library");
+	 		}
 			if ( el.has_member("execute_args")) {
 				this.execute_args = el.get_string_member("execute_args");
 			} else {
@@ -49,6 +52,7 @@ namespace Project
 		{
 			var ret = new Json.Object();
 			ret.set_string_member("name", this.name);
+			ret.set_boolean_member("is_library", this.is_library);
 			ret.set_string_member("execute_args", this.execute_args);
  
 			ret.set_array_member("sources", this.writeArray( this.filterFiles(this.sources)));
@@ -92,6 +96,30 @@ namespace Project
 				ret.add(f);
 			}
 			return ret;
+		}
+		
+		public string writeMesonExe(string resources)
+		{
+		
+			var cgname = this.name;
+			if (!this.is_library) {
+				return @"
+$cgname = executable('$cgname',
+    dependencies: deps,
+    sources: [ " + cgname + @"_src $resources ],
+    install: true
+)
+";
+			}
+			// it's a library..
+			return @"
+$(cgname)_lib = shared_library('$cgname',  [ " + cgname + @"_src $resources ],
+    dependencies: deps,
+    install: true,
+    install_dir: [true, true, true]
+)
+";
+		
 		}
 		
 	}

@@ -127,15 +127,9 @@ GLib.debug("write meson : %s" , data);
 			str += "])\n\n";
 			
 			var resources = this.has_resources ? (", " + this.project.name + "_resources") : "";
-			var cgname = cg.name;
+ 
 			
-			str += @"
-$cgname = executable('$cgname',
-   dependencies: deps,
-   sources: [ " + cgname + @"_src $resources ],
-   install: true
-)
-";
+			str +=  cg.writeMesonExe(resources);
 
 			return str;
 		}

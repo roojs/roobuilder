@@ -3,13 +3,13 @@
  "gen_extended" : false,
  "items" : [
   {
+   "# Project.Gtk project" : "null",
+   "# Project.GtkValaSettings? selected_target" : "null",
+   "# Xcls_MainWindow window" : "null",
+   "# bool cg_loading" : false,
+   "# bool done" : false,
    "$ Project.Callback doneObj" : "null",
    "$ xns" : "Gtk",
-   "Project.Gtk project" : "null",
-   "Project.GtkValaSettings? selected_target" : "null",
-   "Xcls_MainWindow window" : "null",
-   "bool cg_loading" : false,
-   "bool done" : false,
    "bool modal" : true,
    "items" : [
     {
@@ -60,27 +60,59 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "Gtk.Align halign" : "Gtk.Align.START",
-           "bool hexpand" : true,
-           "utf8 label" : "compile flags",
-           "xtype" : "Label"
-          },
-          {
-           "$ xns" : "Gtk",
-           "id" : "compile_flags",
-           "listeners" : {
-            "changed" : [
-             "() => {",
-             "    ",
-             "   _this.project.compile_flags = this.el.buffer.text;",
-             "   _this.project.save();",
-             "//    _this.project.save();",
-             "",
-             "}"
-            ]
-           },
-           "utf8 placeholder_text" : "eg. -g --valasrc $BASEDIR ",
-           "xtype" : "Entry"
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "int spacing" : 10,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "Gtk.Align halign" : "Gtk.Align.START",
+             "bool hexpand" : true,
+             "utf8 label" : "compile flags",
+             "xtype" : "Label"
+            },
+            {
+             "$ xns" : "Gtk",
+             "id" : "compile_flags",
+             "listeners" : {
+              "changed" : [
+               "() => {",
+               "    ",
+               "   _this.project.compile_flags = this.el.buffer.text;",
+               "   _this.project.save();",
+               "//    _this.project.save();",
+               "",
+               "}"
+              ]
+             },
+             "utf8 placeholder_text" : "eg. -g --valasrc $BASEDIR ",
+             "xtype" : "Entry"
+            },
+            {
+             "$ xns" : "Gtk",
+             "Gtk.Align halign" : "Gtk.Align.START",
+             "bool hexpand" : false,
+             "utf8 label" : "current version (eg. 1.5.1)",
+             "xtype" : "Label"
+            },
+            {
+             "$ xns" : "Gtk",
+             "id" : "version",
+             "listeners" : {
+              "changed" : [
+               "() => {",
+               "    ",
+               "   _this.project.version = this.el.buffer.text;",
+               "   _this.project.save();",
+               "//    _this.project.save();",
+               "",
+               "}"
+              ]
+             },
+             "utf8 placeholder_text" : "eg. -g --valasrc $BASEDIR ",
+             "xtype" : "Entry"
+            }
+           ],
+           "xtype" : "Box"
           },
           {
            "$ xns" : "Gtk",
@@ -715,7 +747,7 @@
                   "\t GLib.debug(\"Set name to %s\", cg.name);",
                   "\t ",
                   " \t_this.build_name.el.buffer.set_text(cg.name.data);",
-                  " ",
+                  " \t_this.build_as_library.el.active = cg.is_library;",
                   " ",
                   "\t_this.build_execute_args.el.buffer.set_text(  cg.execute_args.data );",
                   " ",
@@ -883,6 +915,24 @@
                },
                "string placeholder_text" : "eg.  -f somefile -g ",
                "xtype" : "Entry"
+              },
+              {
+               "$ xns" : "Gtk",
+               "id" : "build_as_library",
+               "listeners" : {
+                "notify[\"active\"]" : [
+                 "() => {",
+                 "    if (_this.selected_target == null) {",
+                 "        return;",
+                 "    }",
+                 "    _this.selected_target.is_library = this.el.active;",
+                 "    ",
+                 "}",
+                 ""
+                ]
+               },
+               "string label" : "build as library",
+               "xtype" : "CheckButton"
               }
              ],
              "xtype" : "Box"
@@ -992,6 +1042,9 @@
     "\t ",
     "    this.compile_flags.el.buffer.set_text(",
     "    \tproject.compile_flags.data",
+    "\t);",
+    "   this.version.el.buffer.set_text(",
+    "    \tproject.version.data",
     "\t);",
     "\t   ",
     "    project.loadVapiIntoStore(_this.vapimodel.el);",
