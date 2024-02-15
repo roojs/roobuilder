@@ -17,6 +17,7 @@ public class ValaProjectSettingsPopover : Object
 	public Xcls_label_targets label_targets;
 	public Xcls_compile_flags compile_flags;
 	public Xcls_version version;
+	public Xcls_licence licence;
 	public Xcls_vapi_scroll vapi_scroll;
 	public Xcls_vapimodel vapimodel;
 	public Xcls_vapi_filter vapi_filter;
@@ -338,6 +339,11 @@ public class ValaProjectSettingsPopover : Object
 			this.el.append( child_3.el );
 			new Xcls_version( _this );
 			this.el.append( _this.version.el );
+			var child_5 = new Xcls_Label906( _this );
+			child_5.ref();
+			this.el.append( child_5.el );
+			new Xcls_licence( _this );
+			this.el.append( _this.licence.el );
 		}
 
 		// user defined functions
@@ -442,6 +448,63 @@ public class ValaProjectSettingsPopover : Object
 
 			// set gobject values
 			this.el.placeholder_text = "eg. -g --valasrc $BASEDIR ";
+
+			//listeners
+			this.el.changed.connect( () => {
+			    
+			   _this.project.version = this.el.buffer.text;
+			   _this.project.save();
+			//    _this.project.save();
+			
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label906 : Object
+	{
+		public Gtk.Label el;
+		private ValaProjectSettingsPopover  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label906(ValaProjectSettingsPopover _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "licence (eg. LGPL)" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+			this.el.hexpand = false;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_licence : Object
+	{
+		public Gtk.Entry el;
+		private ValaProjectSettingsPopover  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_licence(ValaProjectSettingsPopover _owner )
+		{
+			_this = _owner;
+			_this.licence = this;
+			this.el = new Gtk.Entry();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.placeholder_text = "eg. LGPL";
 
 			//listeners
 			this.el.changed.connect( () => {

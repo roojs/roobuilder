@@ -110,6 +110,30 @@
              },
              "utf8 placeholder_text" : "eg. -g --valasrc $BASEDIR ",
              "xtype" : "Entry"
+            },
+            {
+             "$ xns" : "Gtk",
+             "Gtk.Align halign" : "Gtk.Align.START",
+             "bool hexpand" : false,
+             "utf8 label" : "licence (eg. LGPL)",
+             "xtype" : "Label"
+            },
+            {
+             "$ xns" : "Gtk",
+             "id" : "licence",
+             "listeners" : {
+              "changed" : [
+               "() => {",
+               "    ",
+               "   _this.project.version = this.el.buffer.text;",
+               "   _this.project.save();",
+               "//    _this.project.save();",
+               "",
+               "}"
+              ]
+             },
+             "utf8 placeholder_text" : "eg. LGPL",
+             "xtype" : "Entry"
             }
            ],
            "xtype" : "Box"
