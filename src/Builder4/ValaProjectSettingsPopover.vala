@@ -417,7 +417,7 @@ public class ValaProjectSettingsPopover : Object
 		public Xcls_Label886(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "current version (eg. 1.5.1)" );
+			this.el = new Gtk.Label( "Version" );
 
 			// my vars (dec)
 

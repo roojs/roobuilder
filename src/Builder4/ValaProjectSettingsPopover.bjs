@@ -91,7 +91,7 @@
              "$ xns" : "Gtk",
              "Gtk.Align halign" : "Gtk.Align.START",
              "bool hexpand" : false,
-             "utf8 label" : "current version (eg. 1.5.1)",
+             "utf8 label" : "Version",
              "xtype" : "Label"
             },
             {
