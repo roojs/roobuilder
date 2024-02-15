@@ -111,7 +111,7 @@ $cgname = executable('$cgname',
 )
 ";
 			}
-			var version = this.project.verison;
+			var version = this.project.version;
 			// it's a library..
 			return @"
 $(cgname)_lib = shared_library('$cgname',  
