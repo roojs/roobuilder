@@ -106,14 +106,17 @@ namespace Project
 				return @"
 $cgname = executable('$cgname',
     dependencies: deps,
-    sources: [ " + cgname + @"_src $resources ],
+    sources: [  $(cgname)_src $resources ],
     install: true
 )
 ";
 			}
+			var version = this.project.verison;
 			// it's a library..
 			return @"
-$(cgname)_lib = shared_library('$cgname',  [ " + cgname + @"_src $resources ],
+$(cgname)_lib = shared_library('$cgname',  
+	sources : [ $(cgname)_src $resources ],
+	vala_vapi: '$(cgname)-$(version).vapi',
     dependencies: deps,
     install: true,
     install_dir: [true, true, true]
