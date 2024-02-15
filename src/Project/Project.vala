@@ -69,7 +69,7 @@ namespace Project {
 			 
 		}
 		public string version = "1.0";
-		
+		public string licence = "1.0";		
 		public string path = "";
 		private Gee.ArrayList<JsRender.JsRender> sub_paths;
 		
