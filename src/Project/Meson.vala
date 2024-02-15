@@ -17,7 +17,7 @@ namespace Project {
 			this.has_resources = false;
 			var project_name = this.project.name;
 			var project_version =  this.project.version;
-			var project_licence = "LGPL"; // this.project.licence
+			var project_licence =   this.project.licence;
 
 			var deps = "";
 			foreach(var p in this.project.packages) {
