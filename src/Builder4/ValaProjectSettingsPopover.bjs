@@ -115,7 +115,7 @@
              "$ xns" : "Gtk",
              "Gtk.Align halign" : "Gtk.Align.START",
              "bool hexpand" : false,
-             "utf8 label" : "licence (eg. LGPL)",
+             "utf8 label" : "Licence",
              "xtype" : "Label"
             },
             {

@@ -474,7 +474,7 @@ public class ValaProjectSettingsPopover : Object
 		public Xcls_Label906(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "licence (eg. LGPL)" );
+			this.el = new Gtk.Label( "Licence" );
 
 			// my vars (dec)
 
