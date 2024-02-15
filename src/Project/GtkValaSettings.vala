@@ -121,9 +121,10 @@ $(cgname)_lib = shared_library('$cgname',
     install: true,
     install_dir: [true, true, true]
 )
-";
 pkg = import('pkgconfig')
 pkg.generate(  roojspack_lib )
+";
+
 		
 		}
 		
