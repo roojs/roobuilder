@@ -103,32 +103,44 @@ namespace Palete {
 			 
 			
 		}
-		/*
+		 
 		
-		public Json.Object   compressionErrors(string code , string fn)
+		public  async   Json.Object   compressionErrors(string code , string fn) throws ThreadError
 		{
 			// this uses the roojspacker code to try and compress the code.
 			// it should highlight errors before we actually push live the code.
-			
-			// standard error format:  file %s, line %s, Error 
-			 
-			
-			var cfg = new JSDOC.PackerRun();
-			cfg.opt_keep_whitespace = false;
-			cfg.opt_skip_scope = false;
-			cfg.opt_dump_tokens = false;			
-			cfg.opt_clean_cache = false;
-			
+			SourceFunc callback = compressionErrors.callback;
+			owned Json.Object ret = new Json.Object();
+		   
+		   
+		    ThreadFunc<bool> run = () => {
 
-		 	var p = new JSDOC.Packer(cfg);
-			 
-		  
-			p.packFile(code, fn,"");
-			 
- 			return p.result;
-			 
+			// standard error format:  file %s, line %s, Error 
+			  
+				var cfg = new JSDOC.PackerRun();
+				cfg.opt_keep_whitespace = false;
+				cfg.opt_skip_scope = false;
+				cfg.opt_dump_tokens = false;			
+				cfg.opt_clean_cache = false;
+				
+
+			 	var p = new JSDOC.Packer(cfg);
+				 
+			  
+				p.packFile(code, fn,"");
+				 
+	 			ret = p.result;
+				Idle.add((owned) callback); 
+				return true;
+			};
+			new Thread<bool>("roopacker", run);
+			yield;
+			return ret;
+		
+		
 		}
-		*/
+		 
+	 
 		
 		/**
 		 * extension API concept..
