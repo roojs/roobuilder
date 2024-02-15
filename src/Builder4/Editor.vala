@@ -69,7 +69,7 @@ public class Editor : Object
 		this.el.append( child_1.el );
 		new Xcls_RightEditor( _this );
 		this.el.append( _this.RightEditor.el );
-		var child_3 = new Xcls_Box11( _this );
+		var child_3 = new Xcls_Box12( _this );
 		child_3.ref();
 		this.el.append ( child_3.el  );
 	}
@@ -501,7 +501,7 @@ public class Editor : Object
 			 	BuilderApplication.settings.editor_font_size_updated.connect(
 			 		() => {
 			 			BuilderApplication.settings.editor_font_size_inchange = true;
-			 			GLib.debug("update range");
+			 		//	GLib.debug("update range");
 			 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
 			 		 	BuilderApplication.settings.editor_font_size_inchange = false;
 			 		}
@@ -645,7 +645,7 @@ public class Editor : Object
 			this.el.buffer = _this.buffer.el;
 			new Xcls_keystate( _this );
 			this.el.add_controller(  _this.keystate.el );
-			var child_3 = new Xcls_EventControllerScroll63( _this );
+			var child_3 = new Xcls_EventControllerScroll11( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 
@@ -1158,7 +1158,7 @@ public class Editor : Object
 		// user defined functions
 	}
 
-	public class Xcls_EventControllerScroll63 : Object
+	public class Xcls_EventControllerScroll11 : Object
 	{
 		public Gtk.EventControllerScroll el;
 		private Editor  _this;
@@ -1168,7 +1168,7 @@ public class Editor : Object
 		public double distance;
 
 		// ctor
-		public Xcls_EventControllerScroll63(Editor _owner )
+		public Xcls_EventControllerScroll11(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
@@ -1183,18 +1183,22 @@ public class Editor : Object
 				if (!_this.keystate.is_control) {
 					return false;
 				}
-				//GLib.debug("scroll %f",  dy);
+				 //GLib.debug("scroll %f",  dy);
 				
 				this.distance += dy;
-				if (this.distance < 1) {
+				
+				//GLib.debug("scroll %f / %f",  dy, this.distance);
+			 
+				 if (this.distance < -1) {
+			 
 					BuilderApplication.settings.editor_font_size ++;
 					this.distance = 0;
 				}
-				if (this.distance > -1) {
+				if (this.distance > 1) {
 					BuilderApplication.settings.editor_font_size --;
 					this.distance = 0;
 				}
-			
+				 
 				return true;
 			});
 		}
@@ -1204,7 +1208,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_Box11 : Object
+	public class Xcls_Box12 : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
@@ -1213,7 +1217,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box11(Editor _owner )
+		public Xcls_Box12(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1231,7 +1235,7 @@ public class Editor : Object
 			this.el.append( _this.nextBtn.el );
 			new Xcls_backBtn( _this );
 			this.el.append( _this.backBtn.el );
-			var child_5 = new Xcls_MenuButton17( _this );
+			var child_5 = new Xcls_MenuButton18( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
 		}
@@ -1261,7 +1265,7 @@ public class Editor : Object
 			this.el.hexpand = true;
 			this.el.placeholder_text = "Press enter to search";
 			this.el.search_delay = 3;
-			var child_1 = new Xcls_EventControllerKey13( _this );
+			var child_1 = new Xcls_EventControllerKey14( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
@@ -1306,7 +1310,7 @@ public class Editor : Object
 			
 		}
 	}
-	public class Xcls_EventControllerKey13 : Object
+	public class Xcls_EventControllerKey14 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Editor  _this;
@@ -1315,7 +1319,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey13(Editor _owner )
+		public Xcls_EventControllerKey14(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -1466,7 +1470,7 @@ public class Editor : Object
 		// user defined functions
 	}
 
-	public class Xcls_MenuButton17 : Object
+	public class Xcls_MenuButton18 : Object
 	{
 		public Gtk.MenuButton el;
 		private Editor  _this;
@@ -1476,7 +1480,7 @@ public class Editor : Object
 		public bool always_show_image;
 
 		// ctor
-		public Xcls_MenuButton17(Editor _owner )
+		public Xcls_MenuButton18(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.MenuButton();
@@ -1511,14 +1515,14 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box19( _this );
+			var child_1 = new Xcls_Box20( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box19 : Object
+	public class Xcls_Box20 : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
@@ -1527,7 +1531,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box19(Editor _owner )
+		public Xcls_Box20(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
