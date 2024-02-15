@@ -115,13 +115,15 @@ $cgname = executable('$cgname',
 			// it's a library..
 			return @"
 $(cgname)_lib = shared_library('$cgname',  
-	sources : [ $(cgname)_src $resources ],
-	vala_vapi: '$(cgname)-$(version).vapi',
+    sources : [ $(cgname)_src $resources ],
+    vala_vapi: '$(cgname)-$(version).vapi',
     dependencies: deps,
     install: true,
     install_dir: [true, true, true]
 )
 ";
+pkg = import('pkgconfig')
+pkg.generate(  roojspack_lib )
 		
 		}
 		
