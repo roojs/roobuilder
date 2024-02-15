@@ -42,9 +42,9 @@ public class ValaProjectSettingsPopover : Object
 	public bool cg_loading;
 	public Xcls_MainWindow window;
 	public Project.GtkValaSettings? selected_target;
-	public uint border_width;
 	public bool done;
 	public Project.Gtk project;
+	public uint border_width;
 
 	// ctor
 	public ValaProjectSettingsPopover()
@@ -57,9 +57,9 @@ public class ValaProjectSettingsPopover : Object
 		this.cg_loading = false;
 		this.window = null;
 		this.selected_target = null;
-		this.border_width = 0;
 		this.done = false;
 		this.project = null;
+		this.border_width = 0;
 
 		// set gobject values
 		this.el.modal = true;
@@ -509,7 +509,7 @@ public class ValaProjectSettingsPopover : Object
 			//listeners
 			this.el.changed.connect( () => {
 			    
-			   _this.project.version = this.el.buffer.text;
+			   _this.project.licence = this.el.buffer.text;
 			   _this.project.save();
 			//    _this.project.save();
 			

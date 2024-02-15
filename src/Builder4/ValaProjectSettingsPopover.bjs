@@ -125,7 +125,7 @@
               "changed" : [
                "() => {",
                "    ",
-               "   _this.project.version = this.el.buffer.text;",
+               "   _this.project.licence = this.el.buffer.text;",
                "   _this.project.save();",
                "//    _this.project.save();",
                "",
