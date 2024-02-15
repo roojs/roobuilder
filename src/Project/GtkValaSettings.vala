@@ -111,6 +111,17 @@ $cgname = executable('$cgname',
 )
 ";
 			}
+			string[]  deps = {};
+			foreach(var p in this.project.packages) {
+				if (p == "posix" ) {
+					continue;
+				} 
+				deps += "'" + p  + "'";
+				
+			}
+			var depstr = deps.length < 1 ? "" : ( "["  + string.joinv(",", deps) + "]");
+
+			
 			var version = this.project.version;
 			// it's a library..
 			return @"
@@ -123,7 +134,8 @@ $(cgname)_lib = shared_library('$cgname',
 )
 pkg = import('pkgconfig')
 pkg.generate( $(cgname)_lib,
-    filebase: '$(cgname)-$(version)'
+    filebase: '$(cgname)-$(version)',
+    requires : $(depstr)
 )
 
 ";
