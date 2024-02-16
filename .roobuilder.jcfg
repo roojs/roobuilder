@@ -3,6 +3,7 @@
     "compilegroups" : [
         {
             "name" : "roobuilder",
+            "is_library" : false,
             "execute_args" : "",
             "sources" : [
                 "src/Builder4/About.bjs",
@@ -74,6 +75,8 @@
         }
     ],
     "compile_flags" : "",
+    "version" : "5.0.4",
+    "licence" : "LGPL",
     "packages" : [
         "gtk4",
         "gee-0.8",
@@ -89,6 +92,7 @@
         "gtksourceview-5",
         "jsonrpc-glib-1.0",
         "gio-unix-2.0",
-        "libadwaita-1"
+        "libadwaita-1",
+        "roojspack-1.5"
     ]
 }

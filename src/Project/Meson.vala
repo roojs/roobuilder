@@ -16,8 +16,8 @@ namespace Project {
 		{
 			this.has_resources = false;
 			var project_name = this.project.name;
-			var project_version = "1.0"; //this.project.version;
-			var project_licence = "LGPL"; // this.project.licence
+			var project_version =  this.project.version;
+			var project_licence =   this.project.licence;
 
 			var deps = "";
 			foreach(var p in this.project.packages) {
@@ -127,15 +127,9 @@ GLib.debug("write meson : %s" , data);
 			str += "])\n\n";
 			
 			var resources = this.has_resources ? (", " + this.project.name + "_resources") : "";
-			var cgname = cg.name;
+ 
 			
-			str += @"
-$cgname = executable('$cgname',
-   dependencies: deps,
-   sources: [ " + cgname + @"_src $resources ],
-   install: true
-)
-";
+			str +=  cg.writeMesonExe(resources);
 
 			return str;
 		}

@@ -21,49 +21,7 @@ namespace Palete {
 	Javascript instance = null;
 	
 	public class Javascript {
-
-/*
-		public static JSCore.Object class_constructor(
-				JSCore.Context ctx, 
-				JSCore.Object constructor,  
-				JSCore.Value[] arguments, 
-                              out JSCore.Value exception) 
-		{
-		        var c = new JSCore.Class (class_definition);
-		        var o = new JSCore.Object (ctx, c, null);
-				exception = null;
-		        return o;
-		}
-		const JSCore.StaticFunction[] class_functions = {
-		         { null, null, 0 }
-		};
-		const JSCore.ClassDefinition class_definition = {
-		    0,
-		    JSCore.ClassAttribute.None,
-		    "App",
-		    null,
-
-		    null,
-		    class_functions,
-
-		    null,
-		    null,
-
-		    null,
-		    null,
-		    null,
-		    null,
-
-		    null,
-		    null,
-		    class_constructor,
-		    null,
-		    null
-		};
-
-		
-		public JSCore.GlobalContext js_global_context =  null;
-*/
+ 
 		public static Javascript singleton()
 		{
 			if (instance == null) {
@@ -78,6 +36,9 @@ namespace Palete {
 			
 
 		}
+		
+
+		
 		public void validate(string code, JsRender.JsRender file)
 		{
  
@@ -90,8 +51,13 @@ namespace Palete {
 			var ar = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
  
 			if (ex == null) {
-				file.updateErrors( ar );
-				return ; // this.compressionErrors(code, fn); << to slow on large files?
+//				file.updateErrors( ar ); // clear old errors ?? 
+				this.compressionErrors.begin(code, file.path, (obj, res) => {
+					ar = this.compressionErrors.end(res);
+					file.updateErrors( ar );
+				});
+
+				return ;  
 				 
 			}
  			
@@ -103,32 +69,62 @@ namespace Palete {
 			 
 			
 		}
-		/*
-		
-		public Json.Object   compressionErrors(string code , string fn)
+		 
+		bool packer_running = false;
+		public  async  new Gee.ArrayList<Lsp.Diagnostic>  compressionErrors(string code , string fn) throws ThreadError
 		{
 			// this uses the roojspacker code to try and compress the code.
 			// it should highlight errors before we actually push live the code.
+			SourceFunc callback = compressionErrors.callback;
+			Json.Object ret = new Json.Object();
+		    var ar = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
 			
-			// standard error format:  file %s, line %s, Error 
-			 
-			
-			var cfg = new JSDOC.PackerRun();
-			cfg.opt_keep_whitespace = false;
-			cfg.opt_skip_scope = false;
-			cfg.opt_dump_tokens = false;			
-			cfg.opt_clean_cache = false;
-			
+			if (this.packer_running) {
+				return ar;
+			}
+			this.packer_running = true;
+		    
+		    ThreadFunc<bool> run = () => {
 
-		 	var p = new JSDOC.Packer(cfg);
-			 
-		  
-			p.packFile(code, fn,"");
-			 
- 			return p.result;
-			 
+			// standard error format:  file %s, line %s, Error 
+			  
+				var cfg = new JSDOC.PackerRun();
+				cfg.opt_keep_whitespace = false;
+				cfg.opt_skip_scope = false;
+				cfg.opt_dump_tokens = false;			
+				cfg.opt_clean_cache = false;
+				
+
+			 	var p = new JSDOC.Packer(cfg);
+				 
+			  
+				p.packFile(code, fn,"");
+				 
+	 			ret = p.result;
+				Idle.add((owned) callback); 
+				return true;
+			};
+			new Thread<bool>("roopacker", run);
+			yield;
+			this.packer_running = false;			
+			if (!ret.has_member(fn)) {
+				return ar;
+			}
+			var jar = ret.get_array_member(fn);
+			for(var i = 0; i < jar.get_length(); i++ ){
+				var d = jar.get_object_element(i);
+				
+				ar.add(
+					new Lsp.Diagnostic.simple((int) d.get_int_member("line") , 1, d.get_string_member("message"))
+				);
+			}
+			
+			return ar;
+		
+		
 		}
-		*/
+		 
+	 
 		
 		/**
 		 * extension API concept..

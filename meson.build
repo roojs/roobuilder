@@ -1,5 +1,5 @@
 project('roobuilder', 'vala', 'c',
-  version: '1.0',
+  version: '5.0.4',
   license: 'LGPL',
   default_options: [
     'default_library=static',
@@ -31,6 +31,7 @@ deps = [
    dependency('jsonrpc-glib-1.0'),
    dependency('gio-unix-2.0'),
    dependency('libadwaita-1'),
+   dependency('roojspack-1.5'),
 
 ]
  
@@ -159,8 +160,8 @@ roobuilder_src = files([
 
 
 roobuilder = executable('roobuilder',
-   dependencies: deps,
-   sources: [ roobuilder_src , roobuilder_resources ],
-   install: true
+    dependencies: deps,
+    sources: [  roobuilder_src , roobuilder_resources ],
+    install: true
 )
 
