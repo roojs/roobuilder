@@ -1,9 +1,18 @@
-roobuilder (5.0.3) UNRELEASED; urgency=medium
+roobuilder (5.0.4) UNRELEASED; urgency=medium
 
   * error popups with tree of errors, now default to expanding current file
   * row detection for drag/drop + contect menu replaced with pick/ bounds and row counting (far more reliable)
   * css moved to resource
   * editor resize font now centralized and synced on all windows
+  * added back roopacker dependancy (uses threaded compile)
+  * reference to wishlist on readme
+  * support for structs when adding objects (eg. CClosureExpression)
+  * editor font size uses ctrl-scroll to enlarges / shrink
+  * fixed issue with missing references on node creation
+  * completion now uses editor context to decide if to try and complete
+  * target names in gtk settings only support a-z
+  * file dialogs can be closed with esc key
+  
   
 
  -- Alan <alan@office.roojs.com>  Wed, 07 Feb 2024 09:51:44 +0800
