@@ -1,5 +1,5 @@
 project('roobuilder', 'vala', 'c',
-  version: '5.3',
+  version: '5.0.4',
   license: 'LGPL',
   default_options: [
     'default_library=static',
