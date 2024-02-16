@@ -8,11 +8,11 @@ GLib Settings Demo
 
 Part 1 - click to view on youtube
 
-[![GLib Settings Demo Part 1](https://i.ytimg.com/an_webp/kx4B0frG-vc/mqdefault_6s.webp?du=3000&sqp=COfHkK4G&rs=AOn4CLCCsPUOERRGmjq3GJyjjKojAaFeNQ)](https://www.youtube.com/watch?v=kx4B0frG-vc&t=20s "GLib Settings Demo Part 1 - Click to Watch!")
+[![GLib Settings Demo Part 1](https://i.ytimg.com/vi/kx4B0frG-vc/hqdefault.jpg)](https://www.youtube.com/watch?v=kx4B0frG-vc&t=20s "GLib Settings Demo Part 1 - Click to Watch!")
 
 Part 2 - click to view on youtube
 
-[![GLib Settings Demo Part 2](https://i.ytimg.com/an_webp/XChS0YEB4yY/mqdefault_6s.webp?du=3000&sqp=CNLbkK4G&rs=AOn4CLCnEOREfuG7Pw2UBnGGasCEUlV4Rw)](https://www.youtube.com/watch?v=XChS0YEB4yY&t=6s "GLib Settings Demo Part 2 - Click to Watch!")
+[![GLib Settings Demo Part 2](https://i.ytimg.com/vi/XChS0YEB4yY/hqdefault.jpg)](https://www.youtube.com/watch?v=XChS0YEB4yY&t=6s "GLib Settings Demo Part 2 - Click to Watch!")
 
 ---
 Changlog 
