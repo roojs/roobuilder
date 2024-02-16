@@ -146,7 +146,7 @@ namespace Palete {
 				return ar;
 			}
 			var jar = ret.get_array_member(fn);
-			for(var i = 0; i < ret.get_length(); i++ ){
+			for(var i = 0; i < jar.get_length(); i++ ){
 				var d = jar.get_object_element(i);
 				
 				ar.add(
