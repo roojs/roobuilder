@@ -90,8 +90,8 @@ namespace Palete {
 			var ar = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
  
 			if (ex == null) {
-//				file.updateErrors( ar ); // clear old errors.
-				this.compressionErrors.begin(code, fn, (a, r) => {
+//				file.updateErrors( ar ); // clear old errors ?? 
+				this.compressionErrors.begin(code, file.path, (a, r) => {
 					ar = this.compressionErrors.end(r);
 					file.updateErrors( ar );
 				});
