@@ -61,6 +61,18 @@
                 }
             ]
         },
+         {
+            "name": "roojspacker",
+            "buildsystem" : "meson",
+            "builddir" : true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/roojs/roojspacker.git",
+                    "tag": "release-1.5"
+                }
+            ] 
+        },
         {
             "name": "roobuilder",
             "builddir": true,
@@ -69,7 +81,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/roojs/roobuilder.git",
-                    "tag" : "release-5.0.3"
+                    "tag" : "release-5.0.4"
 		        }
             ],
     	    "post-install": [
