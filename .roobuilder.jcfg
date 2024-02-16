@@ -75,7 +75,7 @@
         }
     ],
     "compile_flags" : "",
-    "version" : "5.3",
+    "version" : "5.0.4",
     "licence" : "LGPL",
     "packages" : [
         "gtk4",
