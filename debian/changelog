@@ -12,7 +12,7 @@ roobuilder (5.0.4) UNRELEASED; urgency=medium
   * completion now uses editor context to decide if to try and complete
   * target names in gtk settings only support a-z
   * file dialogs can be closed with esc key
-  
+  * added library support for meson creation, including version and licence in settings
   
 
  -- Alan <alan@office.roojs.com>  Wed, 07 Feb 2024 09:51:44 +0800
