@@ -110,7 +110,7 @@ namespace Palete {
 			// this uses the roojspacker code to try and compress the code.
 			// it should highlight errors before we actually push live the code.
 			SourceFunc callback = compressionErrors.callback;
-			owned Json.Object ret = new Json.Object();
+			Json.Object ret = new Json.Object();
 		   
 		   
 		    ThreadFunc<bool> run = () => {
