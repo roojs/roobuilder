@@ -2,7 +2,7 @@
 Vala and Javascript IDE - for building Vala Desktop applications and Javascript UI's using the roojs libraries (for bootstrap and classic)
 
 ---
-Videos
+**Videos** 
 
 GLib Settings Demo
 
@@ -15,30 +15,35 @@ Part 2 - click to view on youtube
 [![GLib Settings Demo Part 2](https://i.ytimg.com/vi/XChS0YEB4yY/hqdefault.jpg)](https://www.youtube.com/watch?v=XChS0YEB4yY&t=6s "GLib Settings Demo Part 2 - Click to Watch!")
 
 ---
-Changlog 
+**Changlog** 
 
   https://github.com/roojs/roobuilder/blob/master/debian/changelog
 
 ---
-Features Wishlist
+**Features Wishlist** 
 
     Random list of ideas to add - I regulary add these in totally random order.
     
     https://docs.google.com/spreadsheets/d/1-qNQX1Bwwd1cV405Kj1l3B3Mi6K-GvECnMeuzRKfbGA/edit?usp=sharing
     
 ---
-Debian and Ubuntu packages
+**Debian and Ubuntu packages** 
 
  you will need libvala (available on most debian/ubuntu repos), 
    and vala-language-server (available below)
  
-  * https://github.com/roojs/roobuilder/releases
+Dependancies
+
   * https://github.com/roojs/vala-language-server/releases 
+  * https://github.com/roojs/roojspacker/releases
+  
+Release
+
+  * https://github.com/roojs/roobuilder/releases
   
 ---
 
-
-Building it
+**Building it** 
 
   a) Clone this code..
   
@@ -58,7 +63,7 @@ Building it
     
 ---
 
-Notes on updating packaging..
+**Notes on updating packaging..** 
 
 Update Package details.
     Edit the about version (check debian/changelog)
@@ -74,7 +79,7 @@ Build it..
 
 ---
 
-Known issues
+**Known issues** 
 
   * Flatpack -  run doesnt work - needs more work understanding how flatpack would manage to compile with libraries from the system, or inside the pack
-  
+  * See the wishlist..

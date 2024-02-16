@@ -21,49 +21,7 @@ namespace Palete {
 	Javascript instance = null;
 	
 	public class Javascript {
-
-/*
-		public static JSCore.Object class_constructor(
-				JSCore.Context ctx, 
-				JSCore.Object constructor,  
-				JSCore.Value[] arguments, 
-                              out JSCore.Value exception) 
-		{
-		        var c = new JSCore.Class (class_definition);
-		        var o = new JSCore.Object (ctx, c, null);
-				exception = null;
-		        return o;
-		}
-		const JSCore.StaticFunction[] class_functions = {
-		         { null, null, 0 }
-		};
-		const JSCore.ClassDefinition class_definition = {
-		    0,
-		    JSCore.ClassAttribute.None,
-		    "App",
-		    null,
-
-		    null,
-		    class_functions,
-
-		    null,
-		    null,
-
-		    null,
-		    null,
-		    null,
-		    null,
-
-		    null,
-		    null,
-		    class_constructor,
-		    null,
-		    null
-		};
-
-		
-		public JSCore.GlobalContext js_global_context =  null;
-*/
+ 
 		public static Javascript singleton()
 		{
 			if (instance == null) {
