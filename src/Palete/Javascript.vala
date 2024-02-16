@@ -78,6 +78,9 @@ namespace Palete {
 			
 
 		}
+		
+
+		
 		public void validate(string code, JsRender.JsRender file)
 		{
  
@@ -109,15 +112,20 @@ namespace Palete {
 			
 		}
 		 
-		
+		bool packer_running = false;
 		public  async  new Gee.ArrayList<Lsp.Diagnostic>  compressionErrors(string code , string fn) throws ThreadError
 		{
 			// this uses the roojspacker code to try and compress the code.
 			// it should highlight errors before we actually push live the code.
 			SourceFunc callback = compressionErrors.callback;
 			Json.Object ret = new Json.Object();
-		   
-		   
+		    var ar = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+			
+			if (this.packer_running) {
+				return ar;
+			}
+			this.packer_running = true;
+		    
 		    ThreadFunc<bool> run = () => {
 
 			// standard error format:  file %s, line %s, Error 
@@ -140,8 +148,7 @@ namespace Palete {
 			};
 			new Thread<bool>("roopacker", run);
 			yield;
-			
-			var ar = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+			this.packer_running = false;			
 			if (!ret.has_member(fn)) {
 				return ar;
 			}
