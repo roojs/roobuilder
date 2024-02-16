@@ -142,13 +142,19 @@ namespace Palete {
 			yield;
 			
 			var ar = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
-			if (!this.result.has_member(fn)) {
+			if (!ret.has_member(fn)) {
 				return ar;
 			}
+			var jar = ret.get_array_member(fn);
+			for(var i = 0; i < ret.get_length(); i++ ){
+				var d = jar.get_object_element(i);
+				
+				ar.add(
+					new Lsp.Diagnostic.simple((int) d.get_int_member("line") , 1, d.get_string_member("message"))
+				);
+			}
 			
-			new Lsp.Diagnostic.simple((int) ex.get_line_number() -1 , 1, ex.get_message());
-			
-			return ret;
+			return ar;
 		
 		
 		}
