@@ -90,8 +90,13 @@ namespace Palete {
 			var ar = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
  
 			if (ex == null) {
-				file.updateErrors( ar );
-				return ; // this.compressionErrors(code, fn); << to slow on large files?
+//				file.updateErrors( ar ); // clear old errors.
+				this.compressionErrors.begin(code, fn, (a, r) => {
+					ar = this.compressionErrors.end(r);
+					file.updateErrors( ar );
+				});
+
+				return ;  
 				 
 			}
  			
@@ -105,7 +110,7 @@ namespace Palete {
 		}
 		 
 		
-		public  async   Json.Object   compressionErrors(string code , string fn) throws ThreadError
+		public  async  new Gee.ArrayList<Lsp.Diagnostic>  compressionErrors(string code , string fn) throws ThreadError
 		{
 			// this uses the roojspacker code to try and compress the code.
 			// it should highlight errors before we actually push live the code.
@@ -135,6 +140,14 @@ namespace Palete {
 			};
 			new Thread<bool>("roopacker", run);
 			yield;
+			
+			var ar = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+			if (!this.result.has_member(fn)) {
+				return ar;
+			}
+			
+			new Lsp.Diagnostic.simple((int) ex.get_line_number() -1 , 1, ex.get_message());
+			
 			return ret;
 		
 		
