@@ -15,7 +15,7 @@ roobuilder (5.0.4) UNRELEASED; urgency=medium
   * added library support for meson creation, including version and licence in settings
   
 
- -- Alan <alan@office.roojs.com>  Wed, 07 Feb 2024 09:51:44 +0800
+ -- Alan <alan@roojs.com>  Wed, 07 Feb 2024 09:51:44 +0800
 
 roobuilder (5.0.2) unstable; urgency=medium
 
@@ -45,7 +45,7 @@ roobuilder (5.0.2) unstable; urgency=medium
   * flatpack might work...
   
   
- -- Alan Knowles <alan@touchbox>  Sun, 28 Jan 2024 06:54:56 +0800
+ -- Alan Knowles <alan@roojs.com>  Sun, 28 Jan 2024 06:54:56 +0800
 
 roobuilder (5.0.1) unstable; urgency=medium
 
