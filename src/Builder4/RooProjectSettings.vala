@@ -125,13 +125,7 @@ public class Xcls_RooProjectSettings : Object
 	    Value html_gen_val;
 	    
 	    
-	       var hm = (Gtk.stringList) this.html_gen.el.model;
-	     { 
-		"Do not Generate", // ""
-		"same directory as BJS file", // bjs
-		"in templates subdirectory"  // tmeplate
-	 
-	}  
+	      
 		var val  = "";
 		switch (this.html_gen.el.selected) {
 			case 1: val = "bjs"; break;
