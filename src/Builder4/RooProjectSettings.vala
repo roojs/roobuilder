@@ -73,11 +73,11 @@ public class Xcls_RooProjectSettings : Object
 	    
 	 
 	    var tv = 0;
-	    switch (his.project.html_gen) {
+	    switch (this.project.html_gen) {
 	    	case "bjs": tv = 1; break;
 	    	case "template": tv = 2; break;
 	    }
-	    this.html_get.el.selected = tv;
+	    this.html_gen.el.selected = tv;
 	   
 	    
 	
