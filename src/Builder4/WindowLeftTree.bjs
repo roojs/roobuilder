@@ -591,7 +591,7 @@
            "       ",
            "    var dropNode = new JsRender.Node(); ",
            "\tdropNode.loadFromJsonString(v.get_string(), 2);",
-           "\t",
+           "\tGLib.debug(\"dropped node %s\", dropNode.toJsonString());",
            "\t",
            "\t",
            "\tvar drop_on_to = _this.main_window.windowstate.file.palete().getDropList(dropNode.fqn());",

@@ -1210,7 +1210,7 @@ public class Xcls_WindowLeftTree : Object
 			       
 			    var dropNode = new JsRender.Node(); 
 				dropNode.loadFromJsonString(v.get_string(), 2);
-				
+				GLib.debug("dropped node %s", dropNode.toJsonString());
 				
 				
 				var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(dropNode.fqn());
