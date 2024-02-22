@@ -120,10 +120,7 @@ public class Xcls_RooProjectSettings : Object
 	      
 	    _this.project.rootURL = _this.rootURL.el.get_text();
 	    
-	    
-	    Gtk.TreeIter iter;
-	    Value html_gen_val;
-	    
+	     
 	    
 	      
 		var val  = "";
