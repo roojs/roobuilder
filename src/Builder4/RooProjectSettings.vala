@@ -19,6 +19,7 @@ public class Xcls_RooProjectSettings : Object
 	public Xcls_base_template base_template;
 	public Xcls_rootURL rootURL;
 	public Xcls_html_gen html_gen;
+	public Xcls_html_gen html_gen;
 	public Xcls_html_gen_cellrenderer html_gen_cellrenderer;
 	public Xcls_html_gen_model html_gen_model;
 	public Xcls_view view;
@@ -309,6 +310,8 @@ public class Xcls_RooProjectSettings : Object
 			this.el.attach ( child_7.el , 0,3,1,1 );
 			new Xcls_html_gen( _this );
 			this.el.attach ( _this.html_gen.el , 1,3,1,1 );
+			new Xcls_html_gen( _this );
+			this.el.attach ( _this.html_gen.el , 1,3,1,1 );
 		}
 
 		// user defined functions
@@ -535,6 +538,77 @@ public class Xcls_RooProjectSettings : Object
 
 		// user defined functions
 	}
+
+	public class Xcls_html_gen : Object
+	{
+		public Gtk.DropDown el;
+		private Xcls_RooProjectSettings  _this;
+
+
+			// my vars (def)
+		public bool loading;
+
+		// ctor
+		public Xcls_html_gen(Xcls_RooProjectSettings _owner )
+		{
+			_this = _owner;
+			_this.html_gen = this;
+			var child_1 = new Xcls_StringList322( _this );
+			child_1.ref();
+			this.el = new Gtk.DropDown( child_1.el, null );
+
+			// my vars (dec)
+			this.loading = false;
+
+			// set gobject values
+
+			//listeners
+			this.el.notify["selected"].connect( () => {
+			
+			 
+				// this get's called when we are filling in the data... ???
+				if (this.loading) {
+					return;
+				}
+				var sm = (Gtk.StringList) this.el.model;
+				_this.project.base_template = sm.get_string(this.el.selected);
+					
+					 print("\nSET base template to %s\n", _this.project.base_template );
+					// is_bjs = ((string)vfname) == "bjs";
+			
+			
+			 });
+		}
+
+		// user defined functions
+	}
+	public class Xcls_StringList322 : Object
+	{
+		public Gtk.StringList el;
+		private Xcls_RooProjectSettings  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_StringList322(Xcls_RooProjectSettings _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.StringList( { 
+	"roo.builder.html",
+	"bootstrap.builder.html",
+	"bootstrap4.builder.html",
+	"mailer.builder.html"
+} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 	public class Xcls_html_gen : Object
 	{

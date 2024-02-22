@@ -144,6 +144,47 @@
              "xtype" : "Label"
             },
             {
+             "# bool loading" : false,
+             "$ xns" : "Gtk",
+             "* pack" : "attach,1,3,1,1",
+             "id" : "html_gen",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "strings" : [
+                "{ ",
+                "\t\"roo.builder.html\",",
+                "\t\"bootstrap.builder.html\",",
+                "\t\"bootstrap4.builder.html\",",
+                "\t\"mailer.builder.html\"",
+                "}"
+               ],
+               "xtype" : "StringList"
+              }
+             ],
+             "listeners" : {
+              "notify[\"selected\"]" : [
+               "() => {",
+               "",
+               " ",
+               "\t// this get's called when we are filling in the data... ???",
+               "\tif (this.loading) {",
+               "\t\treturn;",
+               "\t}",
+               "\tvar sm = (Gtk.StringList) this.el.model;",
+               "\t_this.project.base_template = sm.get_string(this.el.selected);",
+               "\t\t",
+               "\t\t print(\"\\nSET base template to %s\\n\", _this.project.base_template );",
+               "\t\t// is_bjs = ((string)vfname) == \"bjs\";",
+               "",
+               "",
+               " }"
+              ]
+             },
+             "xtype" : "DropDown"
+            },
+            {
              "$ xns" : "Gtk",
              "* init" : "this.el.add_attribute(_this.html_gen_cellrenderer.el , \"markup\", 1 );",
              "* pack" : "attach,1,3,1,1",
