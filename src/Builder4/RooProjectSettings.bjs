@@ -154,11 +154,11 @@
                "* prop" : "model",
                "strings" : [
                 "{ ",
-                "\t\"roo.builder.html\",",
-                "\t\"bootstrap.builder.html\",",
-                "\t\"bootstrap4.builder.html\",",
-                "\t\"mailer.builder.html\"",
-                "}"
+                "\t\"Do not Generate\", // \"\"",
+                "\t\"same directory as BJS file\", // bjs",
+                "\t\"in templates subdirectory\"  // tmeplate",
+                " ",
+                "}  "
                ],
                "xtype" : "StringList"
               }

@@ -595,11 +595,11 @@ public class Xcls_RooProjectSettings : Object
 		{
 			_this = _owner;
 			this.el = new Gtk.StringList( { 
-	"roo.builder.html",
-	"bootstrap.builder.html",
-	"bootstrap4.builder.html",
-	"mailer.builder.html"
-} );
+	"Do not Generate", // ""
+	"same directory as BJS file", // bjs
+	"in templates subdirectory"  // tmeplate
+ 
+}   );
 
 			// my vars (dec)
 
