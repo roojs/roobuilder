@@ -872,9 +872,9 @@ namespace JsRender {
 			this.tree = new Node();
 			this.tree.loadFromJson(obj,bjs_version);
 			this.tree.file = this;
-			this.tree.version_changed.connect(() => {
-				this.updateUndo();
-			});
+			//this.tree.version_changed.connect(() => {
+			//	this.updateUndo();
+			//});
 		
 		}
 		
