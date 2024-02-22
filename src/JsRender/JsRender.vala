@@ -453,7 +453,7 @@ namespace JsRender {
 		}
 		
 		bool in_undo = false;
-		protected void updateUndo()
+		public void updateUndo()
 		{
 			if (this.in_undo) {
 				return;
