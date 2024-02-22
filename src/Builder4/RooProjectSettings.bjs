@@ -191,12 +191,6 @@
              "id" : "html_gen",
              "items" : [
               {
-               "$ xns" : "Gtk",
-               "* pack" : "pack_start,true",
-               "id" : "html_gen_cellrenderer",
-               "xtype" : "CellRendererText"
-              },
-              {
                "$ columns" : "typeof(string),typeof(string)",
                "$ xns" : "Gtk",
                "* pack" : "set_model",

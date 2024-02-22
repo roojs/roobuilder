@@ -20,7 +20,6 @@ public class Xcls_RooProjectSettings : Object
 	public Xcls_rootURL rootURL;
 	public Xcls_html_gen html_gen;
 	public Xcls_html_gen html_gen;
-	public Xcls_html_gen_cellrenderer html_gen_cellrenderer;
 	public Xcls_html_gen_model html_gen_model;
 	public Xcls_view view;
 	public Xcls_database_DBTYPE database_DBTYPE;
@@ -628,8 +627,6 @@ public class Xcls_RooProjectSettings : Object
 			// my vars (dec)
 
 			// set gobject values
-			new Xcls_html_gen_cellrenderer( _this );
-			this.el.pack_start ( _this.html_gen_cellrenderer.el , true );
 			new Xcls_html_gen_model( _this );
 			this.el.set_model ( _this.html_gen_model.el  );
 
@@ -640,29 +637,6 @@ public class Xcls_RooProjectSettings : Object
 
 		// user defined functions
 	}
-	public class Xcls_html_gen_cellrenderer : Object
-	{
-		public Gtk.CellRendererText el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_html_gen_cellrenderer(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.html_gen_cellrenderer = this;
-			this.el = new Gtk.CellRendererText();
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
 	public class Xcls_html_gen_model : Object
 	{
 		public Gtk.ListStore el;
