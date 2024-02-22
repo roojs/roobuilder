@@ -71,7 +71,15 @@ public class Xcls_RooProjectSettings : Object
 	      
 	    _this.rootURL.el.set_text( _this.project.rootURL );
 	    
-	    _this.html_gen_model.loadData(_this.project.html_gen);
+	 
+	    var tv = 0;
+	    switch (his.project.html_gen) {
+	    	case "bjs": tv = 1; break;
+	    	case "template": tv = 2; break;
+	    }
+	    this.html_get.el.selected = tv;
+	   
+	    
 	
 		var sm = (Gtk.StringList)     _this.base_template.el.model;
 		this.base_template.loading = true;
