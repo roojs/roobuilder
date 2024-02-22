@@ -712,7 +712,6 @@ public class Xcls_RooProjectSettings : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.name = "roo-project-settings-view";
 			this.el.css_classes = { "code-editor" };
 			var child_1 = new Xcls_EventControllerKey22( _this );
 			child_1.ref();

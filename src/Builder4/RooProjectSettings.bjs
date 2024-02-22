@@ -257,7 +257,6 @@
                "xtype" : "EventControllerKey"
               }
              ],
-             "string name" : "roo-project-settings-view",
              "xtype" : "View"
             }
            ],
