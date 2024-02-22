@@ -232,7 +232,7 @@ namespace Palete {
 					}
 				} 
 				//  this should not really be slow, as it's a quick repsonse
- 				yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
+ 				yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents(), -1);				
 				try {
 					GLib.debug("sending request to language server %s", this.file.getLanguageServer().get_type().name());
 					
