@@ -221,7 +221,7 @@
             {
              "$ xns" : "GtkSource",
              "* pack" : "set_child",
-             "Gtk.CssProvider css" : "",
+             "css_classes" : "{ \"code-editor\" }",
              "id" : "view",
              "items" : [
               {
