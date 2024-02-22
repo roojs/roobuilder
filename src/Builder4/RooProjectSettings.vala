@@ -19,8 +19,6 @@ public class Xcls_RooProjectSettings : Object
 	public Xcls_base_template base_template;
 	public Xcls_rootURL rootURL;
 	public Xcls_html_gen html_gen;
-	public Xcls_html_gen html_gen;
-	public Xcls_html_gen_model html_gen_model;
 	public Xcls_view view;
 	public Xcls_database_DBTYPE database_DBTYPE;
 	public Xcls_database_DBNAME database_DBNAME;
@@ -307,8 +305,6 @@ public class Xcls_RooProjectSettings : Object
 			var child_7 = new Xcls_Label15( _this );
 			child_7.ref();
 			this.el.attach ( child_7.el , 0,3,1,1 );
-			new Xcls_html_gen( _this );
-			this.el.attach ( _this.html_gen.el , 1,3,1,1 );
 			new Xcls_html_gen( _this );
 			this.el.attach ( _this.html_gen.el , 1,3,1,1 );
 		}
@@ -606,92 +602,6 @@ public class Xcls_RooProjectSettings : Object
 		}
 
 		// user defined functions
-	}
-
-
-	public class Xcls_html_gen : Object
-	{
-		public Gtk.ComboBox el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_html_gen(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.html_gen = this;
-			this.el = new Gtk.ComboBox();
-
-			// my vars (dec)
-
-			// set gobject values
-			new Xcls_html_gen_model( _this );
-			this.el.set_model ( _this.html_gen_model.el  );
-
-			// init method
-
-			this.el.add_attribute(_this.html_gen_cellrenderer.el , "markup", 1 );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_html_gen_model : Object
-	{
-		public Gtk.ListStore el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_html_gen_model(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.html_gen_model = this;
-			this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-		public void loadData (string cur) {
-		    this.el.clear();                                    
-		    Gtk.TreeIter iter;
-		    var el = this.el;
-		    
-		 
-		    el.append(out iter);
-		
-		    
-		    el.set_value(iter, 0, "");
-		    el.set_value(iter, 1, "Do not Generate");
-		    _this.html_gen.el.set_active_iter(iter);
-		
-		    el.append(out iter);
-		    
-		    el.set_value(iter, 0, "bjs");
-		    el.set_value(iter, 1, "same directory as BJS file");
-			if (cur == "bjs") {
-			    _this.html_gen.el.set_active_iter(iter);
-		    }
-		
-		
-		
-		    el.append(out iter);
-		    
-		    el.set_value(iter, 0, "templates");
-		    el.set_value(iter, 1, "in templates subdirectory");
-		
-			if (cur == "template") {
-			    _this.html_gen.el.set_active_iter(iter);
-		    }
-		
-		                                     
-		}
 	}
 
 
