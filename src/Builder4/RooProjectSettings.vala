@@ -17,26 +17,17 @@ public class Xcls_RooProjectSettings : Object
 	public Xcls_grid grid;
 	public Xcls_path path;
 	public Xcls_base_template base_template;
-	public Xcls_base_template_cellrenderer base_template_cellrenderer;
-	public Xcls_base_template_model base_template_model;
 	public Xcls_rootURL rootURL;
 	public Xcls_html_gen html_gen;
-	public Xcls_html_gen_cellrenderer html_gen_cellrenderer;
-	public Xcls_html_gen_model html_gen_model;
 	public Xcls_view view;
 	public Xcls_database_DBTYPE database_DBTYPE;
 	public Xcls_database_DBNAME database_DBNAME;
-	public Xcls_database_DBUSERNAME database_DBUSERNAME;
-	public Xcls_database_DBPASSWORD database_DBPASSWORD;
 	public Xcls_database_ERROR database_ERROR;
 
 		// my vars (def)
 	public signal void buttonPressed (string btn);
-	public Gtk.PositionType position;
-	public uint border_width;
 	public bool done;
 	public Project.Roo project;
-	public bool autohide;
 
 	// ctor
 	public Xcls_RooProjectSettings()
@@ -45,10 +36,7 @@ public class Xcls_RooProjectSettings : Object
 		this.el = new Gtk.Window();
 
 		// my vars (dec)
-		this.position = Gtk.PositionType.RIGHT;
-		this.border_width = 0;
 		this.done = false;
-		this.autohide = false;
 
 		// set gobject values
 		this.el.title = "Edit Project settings";
@@ -57,6 +45,7 @@ public class Xcls_RooProjectSettings : Object
 		child_1.ref();
 		this.el.set_child ( child_1.el  );
 		var child_2 = new Xcls_HeaderBar37( _this );
+		child_2.ref();
 		this.el.titlebar = child_2.el;
 	}
 
@@ -80,15 +69,31 @@ public class Xcls_RooProjectSettings : Object
 	      
 	    _this.rootURL.el.set_text( _this.project.rootURL );
 	    
-	    _this.html_gen_model.loadData(_this.project.html_gen);
-	
-	    _this.base_template_model.loadData();
+	 
+	    var tv = 0;
+	    switch (this.project.html_gen) {
+	    	case "bjs": tv = 1; break;
+	    	case "template": tv = 2; break;
+	    }
+	    this.html_gen.el.selected = tv;
+	   
 	    
+	
+		var sm = (Gtk.StringList)     _this.base_template.el.model;
+		this.base_template.loading = true;
+		this.base_template.el.selected = Gtk.INVALID_LIST_POSITION;
+		for(var i=0;i< sm.get_n_items(); i++) {
+			if (sm.get_string( i ) ==  this.project.base_template) {
+				this.base_template.el.selected = i;
+				break;
+			}
+		}
+	    this.base_template.loading = false;
 	     //var js = _this.project;
 	    _this.database_DBTYPE.el.set_text(    _this.project.DBTYPE );
 	    _this.database_DBNAME.el.set_text(    _this.project.DBNAME );
-	    _this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );
-	    _this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );
+	    //_this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );
+	    //_this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );
 	    
 	    	//console.log('show all');
 	
@@ -113,13 +118,16 @@ public class Xcls_RooProjectSettings : Object
 	      
 	    _this.project.rootURL = _this.rootURL.el.get_text();
 	    
+	     
 	    
-	    Gtk.TreeIter iter;
-	    Value html_gen_val;
-	    _this.html_gen.el.get_active_iter(out iter);
-	    _this.html_gen_model.el.get_value (iter, 0, out html_gen_val);
+	      
+		var val  = "";
+		switch (this.html_gen.el.selected) {
+			case 1: val = "bjs"; break;
+			case 2: val = "template"; break;
+		}
 	    
-	    _this.project.html_gen = (string)html_gen_val;
+	    _this.project.html_gen = val;
 	    
 	    // set by event changed...
 	    //_this.project.base_template = _this.base_template.el.get_text();    
@@ -127,8 +135,8 @@ public class Xcls_RooProjectSettings : Object
 	    var js = _this.project;
 	    js.DBTYPE = _this.database_DBTYPE.el.get_text();
 	   js.DBNAME= _this.database_DBNAME.el.get_text();
-	    js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();
-	    js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();
+	   // js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();
+	   // js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();
 	//    _this.project.set_string_member("DBHOST", _this.DBTYPE.el.get_text());    
 	    
 	    // need to re-init the database 
@@ -395,7 +403,7 @@ public class Xcls_RooProjectSettings : Object
 
 	public class Xcls_base_template : Object
 	{
-		public Gtk.ComboBox el;
+		public Gtk.DropDown el;
 		private Xcls_RooProjectSettings  _this;
 
 
@@ -407,64 +415,53 @@ public class Xcls_RooProjectSettings : Object
 		{
 			_this = _owner;
 			_this.base_template = this;
-			this.el = new Gtk.ComboBox();
+			var child_1 = new Xcls_StringList221( _this );
+			child_1.ref();
+			this.el = new Gtk.DropDown( child_1.el, null );
 
 			// my vars (dec)
 			this.loading = false;
 
 			// set gobject values
-			new Xcls_base_template_cellrenderer( _this );
-			this.el.pack_start ( _this.base_template_cellrenderer.el , true );
-			new Xcls_base_template_model( _this );
-			this.el.set_model ( _this.base_template_model.el  );
-
-			// init method
-
-			this.el.add_attribute(_this.base_template_cellrenderer.el , "markup", 0 );
 
 			//listeners
-			this.el.changed.connect( () => {
-				Gtk.TreeIter iter;
+			this.el.notify["selected"].connect( () => {
+			
 			 
 				// this get's called when we are filling in the data... ???
 				if (this.loading) {
 					return;
 				}
-				
-			 
-				if (this.el.get_active_iter(out iter)) {
-					Value vfname;
-					_this.base_template_model.el.get_value (iter, 0, out vfname);
-					_this.project.base_template = ((string)vfname) ;
+				var sm = (Gtk.StringList) this.el.model;
+				_this.project.base_template = sm.get_string(this.el.selected);
 					
 					 print("\nSET base template to %s\n", _this.project.base_template );
 					// is_bjs = ((string)vfname) == "bjs";
-				}
-			    
-			  
-			    // directory is only available for non-bjs 
-			 
 			
 			
-			});
+			 });
 		}
 
 		// user defined functions
 	}
-	public class Xcls_base_template_cellrenderer : Object
+	public class Xcls_StringList221 : Object
 	{
-		public Gtk.CellRendererText el;
+		public Gtk.StringList el;
 		private Xcls_RooProjectSettings  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_base_template_cellrenderer(Xcls_RooProjectSettings _owner )
+		public Xcls_StringList221(Xcls_RooProjectSettings _owner )
 		{
 			_this = _owner;
-			_this.base_template_cellrenderer = this;
-			this.el = new Gtk.CellRendererText();
+			this.el = new Gtk.StringList( { 
+	"roo.builder.html",
+	"bootstrap.builder.html",
+	"bootstrap4.builder.html",
+	"mailer.builder.html"
+} );
 
 			// my vars (dec)
 
@@ -472,70 +469,6 @@ public class Xcls_RooProjectSettings : Object
 		}
 
 		// user defined functions
-	}
-
-	public class Xcls_base_template_model : Object
-	{
-		public Gtk.ListStore el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_base_template_model(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.base_template_model = this;
-			this.el = new Gtk.ListStore.newv(  { typeof(string) }  );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-		public void loadData () {
-			_this.base_template.loading = true;
-		  
-		    this.el.clear();                                    
-		    Gtk.TreeIter iter;
-		    var el = this.el;
-		    
-		   /// el.append(out iter);
-		    
-		   
-		    el.append(out iter);
-		    el.set_value(iter, 0, "roo.builder.html");
-		    _this.base_template.el.set_active_iter(iter);
-			if (_this.project.base_template == "roo.builder.html") {
-			   _this.base_template.el.set_active_iter(iter);
-		    }
-		
-		    el.append(out iter);
-		    el.set_value(iter, 0, "bootstrap.builder.html");
-		  
-			print("\ncur template = %s\n", _this.project.base_template);
-		 
-		    if (_this.project.base_template == "bootstrap.builder.html") {
-			   _this.base_template.el.set_active_iter(iter);
-		    }
-			  el.append(out iter);
-		    el.set_value(iter, 0, "bootstrap4.builder.html");
-		     if (_this.project.base_template == "bootstrap4.builder.html") {
-			   _this.base_template.el.set_active_iter(iter);
-		    }
-		    
-		
-			el.append(out iter);
-		    el.set_value(iter, 0, "mailer.builder.html");
-		
-			if (_this.project.base_template == "mailer.builder.html") {
-			    _this.base_template.el.set_active_iter(iter);
-		    }
-			_this.base_template.loading = false;
-		                                     
-		}
 	}
 
 
@@ -612,48 +545,65 @@ public class Xcls_RooProjectSettings : Object
 
 	public class Xcls_html_gen : Object
 	{
-		public Gtk.ComboBox el;
+		public Gtk.DropDown el;
 		private Xcls_RooProjectSettings  _this;
 
 
 			// my vars (def)
+		public bool loading;
 
 		// ctor
 		public Xcls_html_gen(Xcls_RooProjectSettings _owner )
 		{
 			_this = _owner;
 			_this.html_gen = this;
-			this.el = new Gtk.ComboBox();
+			var child_1 = new Xcls_StringList322( _this );
+			child_1.ref();
+			this.el = new Gtk.DropDown( child_1.el, null );
 
 			// my vars (dec)
+			this.loading = false;
 
 			// set gobject values
-			new Xcls_html_gen_cellrenderer( _this );
-			this.el.pack_start ( _this.html_gen_cellrenderer.el , true );
-			new Xcls_html_gen_model( _this );
-			this.el.set_model ( _this.html_gen_model.el  );
 
-			// init method
-
-			this.el.add_attribute(_this.html_gen_cellrenderer.el , "markup", 1 );
+			//listeners
+			this.el.notify["selected"].connect( () => {
+			
+			 
+				// this get's called when we are filling in the data... ???
+				if (this.loading) {
+					return;
+				}
+				var sm = (Gtk.StringList) this.el.model;
+				_this.project.base_template = sm.get_string(this.el.selected);
+					
+					 print("\nSET base template to %s\n", _this.project.base_template );
+					// is_bjs = ((string)vfname) == "bjs";
+			
+			
+			 });
 		}
 
 		// user defined functions
 	}
-	public class Xcls_html_gen_cellrenderer : Object
+	public class Xcls_StringList322 : Object
 	{
-		public Gtk.CellRendererText el;
+		public Gtk.StringList el;
 		private Xcls_RooProjectSettings  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_html_gen_cellrenderer(Xcls_RooProjectSettings _owner )
+		public Xcls_StringList322(Xcls_RooProjectSettings _owner )
 		{
 			_this = _owner;
-			_this.html_gen_cellrenderer = this;
-			this.el = new Gtk.CellRendererText();
+			this.el = new Gtk.StringList( { 
+	"Do not Generate", // ""
+	"same directory as BJS file", // bjs
+	"in templates subdirectory"  // tmeplate
+ 
+}   );
 
 			// my vars (dec)
 
@@ -661,63 +611,6 @@ public class Xcls_RooProjectSettings : Object
 		}
 
 		// user defined functions
-	}
-
-	public class Xcls_html_gen_model : Object
-	{
-		public Gtk.ListStore el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_html_gen_model(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.html_gen_model = this;
-			this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-		public void loadData (string cur) {
-		    this.el.clear();                                    
-		    Gtk.TreeIter iter;
-		    var el = this.el;
-		    
-		 
-		    el.append(out iter);
-		
-		    
-		    el.set_value(iter, 0, "");
-		    el.set_value(iter, 1, "Do not Generate");
-		    _this.html_gen.el.set_active_iter(iter);
-		
-		    el.append(out iter);
-		    
-		    el.set_value(iter, 0, "bjs");
-		    el.set_value(iter, 1, "same directory as BJS file");
-			if (cur == "bjs") {
-			    _this.html_gen.el.set_active_iter(iter);
-		    }
-		
-		
-		
-		    el.append(out iter);
-		    
-		    el.set_value(iter, 0, "templates");
-		    el.set_value(iter, 1, "in templates subdirectory");
-		
-			if (cur == "template") {
-			    _this.html_gen.el.set_active_iter(iter);
-		    }
-		
-		                                     
-		}
 	}
 
 
@@ -775,7 +668,6 @@ public class Xcls_RooProjectSettings : Object
 
 
 			// my vars (def)
-		public Gtk.CssProvider css;
 
 		// ctor
 		public Xcls_view(Xcls_RooProjectSettings _owner )
@@ -787,26 +679,10 @@ public class Xcls_RooProjectSettings : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.name = "roo-project-settings-view";
+			this.el.css_classes = { "code-editor" };
 			var child_1 = new Xcls_EventControllerKey22( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
-
-			// init method
-
-			this.css = new Gtk.CssProvider();
-			 
-				this.css.load_from_string(
-				"#roo-project-settings-view{ font:  10px monospace;}"
-			);
-			 
-			//this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-			        
-			       Gtk.StyleContext.add_provider_for_display(
-				       Gdk.Display.get_default(), 
-				       this.css,
-				       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-			       );
 		}
 
 		// user defined functions
@@ -889,19 +765,9 @@ public class Xcls_RooProjectSettings : Object
 			this.el.append( child_3.el );
 			new Xcls_database_DBNAME( _this );
 			this.el.append( _this.database_DBNAME.el );
-			var child_5 = new Xcls_Label30( _this );
+			var child_5 = new Xcls_Button35( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
-			new Xcls_database_DBUSERNAME( _this );
-			this.el.append( _this.database_DBUSERNAME.el );
-			var child_7 = new Xcls_Label33( _this );
-			child_7.ref();
-			this.el.append( child_7.el );
-			new Xcls_database_DBPASSWORD( _this );
-			this.el.append( _this.database_DBPASSWORD.el );
-			var child_9 = new Xcls_Button35( _this );
-			child_9.ref();
-			this.el.append( child_9.el );
 			new Xcls_database_ERROR( _this );
 			this.el.append( _this.database_ERROR.el );
 		}
@@ -1072,136 +938,6 @@ public class Xcls_RooProjectSettings : Object
 		// user defined functions
 	}
 
-
-	public class Xcls_Label30 : Object
-	{
-		public Gtk.Label el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Label30(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( "Username" );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.xalign = 0f;
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_database_DBUSERNAME : Object
-	{
-		public Gtk.Entry el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_database_DBUSERNAME(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.database_DBUSERNAME = this;
-			this.el = new Gtk.Entry();
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_EventControllerKey32( _this );
-			child_1.ref();
-			this.el.add_controller(  child_1.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_EventControllerKey32 : Object
-	{
-		public Gtk.EventControllerKey el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_EventControllerKey32(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.EventControllerKey();
-
-			// my vars (dec)
-
-			// set gobject values
-
-			//listeners
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-			    if (keyval == Gdk.Key.Tab) {
-			        _this.database_DBPASSWORD.el.grab_focus();
-			        return true;
-			    }
-			
-			
-				return false;
-				 
-			
-			});
-		}
-
-		// user defined functions
-	}
-
-
-	public class Xcls_Label33 : Object
-	{
-		public Gtk.Label el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Label33(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( "Password" );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.xalign = 0f;
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_database_DBPASSWORD : Object
-	{
-		public Gtk.Entry el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_database_DBPASSWORD(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.database_DBPASSWORD = this;
-			this.el = new Gtk.Entry();
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
 
 	public class Xcls_Button35 : Object
 	{

@@ -3,12 +3,10 @@
  "gen_extended" : false,
  "items" : [
   {
+   "# Project.Roo project" : "",
+   "# bool done" : false,
    "$ xns" : "Gtk",
    "@ void buttonPressed" : "(string btn)",
-   "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
-   "Project.Roo project" : "",
-   "bool autohide" : false,
-   "bool done" : false,
    "bool modal" : true,
    "id" : "RooProjectSettings",
    "items" : [
@@ -83,101 +81,45 @@
              "xtype" : "Label"
             },
             {
+             "# bool loading" : false,
              "$ xns" : "Gtk",
-             "* init" : "this.el.add_attribute(_this.base_template_cellrenderer.el , \"markup\", 0 );",
              "* pack" : "attach,1,1,1,1",
-             "bool loading" : false,
              "id" : "base_template",
              "items" : [
               {
                "$ xns" : "Gtk",
-               "* pack" : "pack_start,true",
-               "id" : "base_template_cellrenderer",
-               "xtype" : "CellRendererText"
-              },
-              {
-               "$ columns" : "typeof(string)",
-               "$ xns" : "Gtk",
-               "* pack" : "set_model",
-               "id" : "base_template_model",
-               "n_columns" : 1,
-               "xtype" : "ListStore",
-               "| void loadData" : [
-                "  () {",
-                "\t_this.base_template.loading = true;",
-                "  ",
-                "    this.el.clear();                                    ",
-                "    Gtk.TreeIter iter;",
-                "    var el = this.el;",
-                "    ",
-                "   /// el.append(out iter);",
-                "    ",
-                "   ",
-                "    el.append(out iter);",
-                "    el.set_value(iter, 0, \"roo.builder.html\");",
-                "    _this.base_template.el.set_active_iter(iter);",
-                "\tif (_this.project.base_template == \"roo.builder.html\") {",
-                "\t   _this.base_template.el.set_active_iter(iter);",
-                "    }",
-                "",
-                "    el.append(out iter);",
-                "    el.set_value(iter, 0, \"bootstrap.builder.html\");",
-                "  ",
-                "\tprint(\"\\ncur template = %s\\n\", _this.project.base_template);",
-                " ",
-                "    if (_this.project.base_template == \"bootstrap.builder.html\") {",
-                "\t   _this.base_template.el.set_active_iter(iter);",
-                "    }",
-                "\t  el.append(out iter);",
-                "    el.set_value(iter, 0, \"bootstrap4.builder.html\");",
-                "     if (_this.project.base_template == \"bootstrap4.builder.html\") {",
-                "\t   _this.base_template.el.set_active_iter(iter);",
-                "    }",
-                "    ",
-                "",
-                "\tel.append(out iter);",
-                "    el.set_value(iter, 0, \"mailer.builder.html\");",
-                "",
-                "\tif (_this.project.base_template == \"mailer.builder.html\") {",
-                "\t    _this.base_template.el.set_active_iter(iter);",
-                "    }",
-                "\t_this.base_template.loading = false;",
-                "                                     ",
-                "}",
-                ""
-               ]
+               "* prop" : "model",
+               "strings" : [
+                "{ ",
+                "\t\"roo.builder.html\",",
+                "\t\"bootstrap.builder.html\",",
+                "\t\"bootstrap4.builder.html\",",
+                "\t\"mailer.builder.html\"",
+                "}"
+               ],
+               "xtype" : "StringList"
               }
              ],
              "listeners" : {
-              "changed" : [
+              "notify[\"selected\"]" : [
                "() => {",
-               "\tGtk.TreeIter iter;",
+               "",
                " ",
                "\t// this get's called when we are filling in the data... ???",
                "\tif (this.loading) {",
                "\t\treturn;",
                "\t}",
-               "\t",
-               " ",
-               "\tif (this.el.get_active_iter(out iter)) {",
-               "\t\tValue vfname;",
-               "\t\t_this.base_template_model.el.get_value (iter, 0, out vfname);",
-               "\t\t_this.project.base_template = ((string)vfname) ;",
+               "\tvar sm = (Gtk.StringList) this.el.model;",
+               "\t_this.project.base_template = sm.get_string(this.el.selected);",
                "\t\t",
                "\t\t print(\"\\nSET base template to %s\\n\", _this.project.base_template );",
                "\t\t// is_bjs = ((string)vfname) == \"bjs\";",
-               "\t}",
-               "    ",
-               "  ",
-               "    // directory is only available for non-bjs ",
-               " ",
                "",
                "",
-               "}",
-               ""
+               " }"
               ]
              },
-             "xtype" : "ComboBox"
+             "xtype" : "DropDown"
             },
             {
              "$ xns" : "Gtk",
@@ -202,64 +144,45 @@
              "xtype" : "Label"
             },
             {
+             "# bool loading" : false,
              "$ xns" : "Gtk",
-             "* init" : "this.el.add_attribute(_this.html_gen_cellrenderer.el , \"markup\", 1 );",
              "* pack" : "attach,1,3,1,1",
              "id" : "html_gen",
              "items" : [
               {
                "$ xns" : "Gtk",
-               "* pack" : "pack_start,true",
-               "id" : "html_gen_cellrenderer",
-               "xtype" : "CellRendererText"
-              },
-              {
-               "$ columns" : "typeof(string),typeof(string)",
-               "$ xns" : "Gtk",
-               "* pack" : "set_model",
-               "id" : "html_gen_model",
-               "n_columns" : 2,
-               "xtype" : "ListStore",
-               "| void loadData" : [
-                "  (string cur) {",
-                "    this.el.clear();                                    ",
-                "    Gtk.TreeIter iter;",
-                "    var el = this.el;",
-                "    ",
+               "* prop" : "model",
+               "strings" : [
+                "{ ",
+                "\t\"Do not Generate\", // \"\"",
+                "\t\"same directory as BJS file\", // bjs",
+                "\t\"in templates subdirectory\"  // tmeplate",
                 " ",
-                "    el.append(out iter);",
-                "",
-                "    ",
-                "    el.set_value(iter, 0, \"\");",
-                "    el.set_value(iter, 1, \"Do not Generate\");",
-                "    _this.html_gen.el.set_active_iter(iter);",
-                "",
-                "    el.append(out iter);",
-                "    ",
-                "    el.set_value(iter, 0, \"bjs\");",
-                "    el.set_value(iter, 1, \"same directory as BJS file\");",
-                "\tif (cur == \"bjs\") {",
-                "\t    _this.html_gen.el.set_active_iter(iter);",
-                "    }",
-                "",
-                "",
-                "",
-                "    el.append(out iter);",
-                "    ",
-                "    el.set_value(iter, 0, \"templates\");",
-                "    el.set_value(iter, 1, \"in templates subdirectory\");",
-                "",
-                "\tif (cur == \"template\") {",
-                "\t    _this.html_gen.el.set_active_iter(iter);",
-                "    }",
-                "",
-                "                                     ",
-                "}",
-                ""
-               ]
+                "}  "
+               ],
+               "xtype" : "StringList"
               }
              ],
-             "xtype" : "ComboBox"
+             "listeners" : {
+              "notify[\"selected\"]" : [
+               "() => {",
+               "",
+               " ",
+               "\t// this get's called when we are filling in the data... ???",
+               "\tif (this.loading) {",
+               "\t\treturn;",
+               "\t}",
+               "\tvar sm = (Gtk.StringList) this.el.model;",
+               "\t_this.project.base_template = sm.get_string(this.el.selected);",
+               "\t\t",
+               "\t\t print(\"\\nSET base template to %s\\n\", _this.project.base_template );",
+               "\t\t// is_bjs = ((string)vfname) == \"bjs\";",
+               "",
+               "",
+               " }"
+              ]
+             },
+             "xtype" : "DropDown"
             }
            ],
            "n_columns" : 2,
@@ -278,25 +201,8 @@
            "items" : [
             {
              "$ xns" : "GtkSource",
-             "* init" : [
-              " ",
-              "    ",
-              "this.css = new Gtk.CssProvider();",
-              " ",
-              "\tthis.css.load_from_string(",
-              "\t\"#roo-project-settings-view{ font:  10px monospace;}\"",
-              ");",
-              " ",
-              "//this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
-              "        ",
-              "       Gtk.StyleContext.add_provider_for_display(",
-              "\t       Gdk.Display.get_default(), ",
-              "\t       this.css,",
-              "\t       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
-              "       );"
-             ],
              "* pack" : "set_child",
-             "Gtk.CssProvider css" : "",
+             "css_classes" : "{ \"code-editor\" }",
              "id" : "view",
              "items" : [
               {
@@ -332,7 +238,6 @@
                "xtype" : "EventControllerKey"
               }
              ],
-             "string name" : "roo-project-settings-view",
              "xtype" : "View"
             }
            ],
@@ -408,50 +313,6 @@
              "xtype" : "EventControllerKey"
             }
            ],
-           "xtype" : "Entry"
-          },
-          {
-           "$ xns" : "Gtk",
-           "label" : "Username",
-           "xalign" : 0,
-           "xtype" : "Label"
-          },
-          {
-           "$ xns" : "Gtk",
-           "id" : "database_DBUSERNAME",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "listeners" : {
-              "key_pressed" : [
-               "(keyval, keycode, state) => {",
-               "    if (keyval == Gdk.Key.Tab) {",
-               "        _this.database_DBPASSWORD.el.grab_focus();",
-               "        return true;",
-               "    }",
-               "",
-               "",
-               "\treturn false;",
-               "\t ",
-               "",
-               "}",
-               ""
-              ]
-             },
-             "xtype" : "EventControllerKey"
-            }
-           ],
-           "xtype" : "Entry"
-          },
-          {
-           "$ xns" : "Gtk",
-           "label" : "Password",
-           "xalign" : 0,
-           "xtype" : "Label"
-          },
-          {
-           "$ xns" : "Gtk",
-           "id" : "database_DBPASSWORD",
            "xtype" : "Entry"
           },
           {
@@ -554,7 +415,6 @@
     }
    ],
    "string title" : "Edit Project settings",
-   "uint border_width" : 0,
    "xtype" : "Window",
    "| void save" : [
     "() {",
@@ -567,13 +427,16 @@
     "      ",
     "    _this.project.rootURL = _this.rootURL.el.get_text();",
     "    ",
+    "     ",
     "    ",
-    "    Gtk.TreeIter iter;",
-    "    Value html_gen_val;",
-    "    _this.html_gen.el.get_active_iter(out iter);",
-    "    _this.html_gen_model.el.get_value (iter, 0, out html_gen_val);",
+    "      ",
+    "\tvar val  = \"\";",
+    "\tswitch (this.html_gen.el.selected) {",
+    "\t\tcase 1: val = \"bjs\"; break;",
+    "\t\tcase 2: val = \"template\"; break;",
+    "\t}",
     "    ",
-    "    _this.project.html_gen = (string)html_gen_val;",
+    "    _this.project.html_gen = val;",
     "    ",
     "    // set by event changed...",
     "    //_this.project.base_template = _this.base_template.el.get_text();    ",
@@ -581,8 +444,8 @@
     "    var js = _this.project;",
     "    js.DBTYPE = _this.database_DBTYPE.el.get_text();",
     "   js.DBNAME= _this.database_DBNAME.el.get_text();",
-    "    js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();",
-    "    js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();",
+    "   // js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();",
+    "   // js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();",
     "//    _this.project.set_string_member(\"DBHOST\", _this.DBTYPE.el.get_text());    ",
     "    ",
     "    // need to re-init the database ",
@@ -612,15 +475,31 @@
     "      ",
     "    _this.rootURL.el.set_text( _this.project.rootURL );",
     "    ",
-    "    _this.html_gen_model.loadData(_this.project.html_gen);",
-    "",
-    "    _this.base_template_model.loadData();",
+    " ",
+    "    var tv = 0;",
+    "    switch (this.project.html_gen) {",
+    "    \tcase \"bjs\": tv = 1; break;",
+    "    \tcase \"template\": tv = 2; break;",
+    "    }",
+    "    this.html_gen.el.selected = tv;",
+    "   ",
     "    ",
+    "",
+    "\tvar sm = (Gtk.StringList)     _this.base_template.el.model;",
+    "\tthis.base_template.loading = true;",
+    "\tthis.base_template.el.selected = Gtk.INVALID_LIST_POSITION;",
+    "\tfor(var i=0;i< sm.get_n_items(); i++) {",
+    "\t\tif (sm.get_string( i ) ==  this.project.base_template) {",
+    "\t\t\tthis.base_template.el.selected = i;",
+    "\t\t\tbreak;",
+    "\t\t}",
+    "\t}",
+    "    this.base_template.loading = false;",
     "     //var js = _this.project;",
     "    _this.database_DBTYPE.el.set_text(    _this.project.DBTYPE );",
     "    _this.database_DBNAME.el.set_text(    _this.project.DBNAME );",
-    "    _this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );",
-    "    _this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );",
+    "    //_this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );",
+    "    //_this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );",
     "    ",
     "    \t//console.log('show all');",
     "",
