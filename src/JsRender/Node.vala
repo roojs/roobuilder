@@ -110,7 +110,7 @@ public class JsRender.Node : GLib.Object {
 	public Gee.HashMap<int,string> line_map; // store of l:xxx or p:....  // fixme - not needed as we can store line numbers in props now.
 	public Gee.ArrayList<int> node_lines; 
 	public Gee.HashMap<int,Node> node_lines_map; // store of l:xxx or p:....
-	
+	public JsRender? file = null;
 	
 	public string node_pad = "";
 	
@@ -127,10 +127,11 @@ public class JsRender.Node : GLib.Object {
 				
 			//GLib.debug("Update Node %d p%d - rev %d", this.oid, this.parent != null ? this.parent.oid : -1, value);
 			if (this.parent != null) {
-				this.parent.updated_count++;
+				this.parent.updated_count++; // will recurse up.
 			}  else {
-				//GLib.debug("UNDO top node is %d", value);
-				this.version_changed();
+				if (this.file != null) {
+					this.file.updateUndo();
+				}
 			}
 		}
  
@@ -142,7 +143,7 @@ public class JsRender.Node : GLib.Object {
 	 
 	
 	
-	public signal void  version_changed();
+	//public signal void  version_changed();
 	
 	public Node()
 	{
@@ -958,15 +959,17 @@ public class JsRender.Node : GLib.Object {
 	
 	public void insertChild(int pos, Node child)
 	{
+		child.parent = this;
 		this.items.insert(pos, child);
 		this.childstore.insert(pos, child);
-		child.parent = this;
+		
 	}
 	public void appendChild(Node child)
 	{
+		child.parent = this;
 		this.items.add( child);
 		this.childstore.append(child);
-		child.parent = this;
+
 	}
 	
 	

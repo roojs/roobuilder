@@ -922,6 +922,7 @@ public class Xcls_WindowRooView : Object
 		         
 		    
 		    } catch (Error e) {
+		    	GLib.debug("error loading %s : %s", f.get_uri(),e.message);
 		        inhtml = {};
 		    }    
 		    this.renderedData = js;
@@ -949,6 +950,8 @@ public class Xcls_WindowRooView : Object
 		    var fc =    FakeServerCache.factory_with_data(js_src);
 		    this.runjs = fc.fname;
 		    var html  = (string) inhtml;
+		    html = html == null ? "" : html; // fix null?
+		    
 			html = html.replace("</head>", runhtml + this.runhtml + 
 		        "<script type=\"text/javascript\" src=\"xhttp://localhost" + fc.fname + "\"></script>" +   
 		          //  "<script type=\"text/javascript\">\n" +

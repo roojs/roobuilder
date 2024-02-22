@@ -453,7 +453,7 @@ namespace JsRender {
 		}
 		
 		bool in_undo = false;
-		protected void updateUndo()
+		public void updateUndo()
 		{
 			if (this.in_undo) {
 				return;
@@ -871,9 +871,10 @@ namespace JsRender {
 			Node.uid_count = 0;
 			this.tree = new Node();
 			this.tree.loadFromJson(obj,bjs_version);
-			this.tree.version_changed.connect(() => {
-				this.updateUndo();
-			});
+			this.tree.file = this;
+			//this.tree.version_changed.connect(() => {
+			//	this.updateUndo();
+			//});
 		
 		}
 		
