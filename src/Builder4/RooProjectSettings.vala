@@ -897,47 +897,10 @@ public class Xcls_RooProjectSettings : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_EventControllerKey29( _this );
-			child_1.ref();
-			this.el.add_controller(  child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_EventControllerKey29 : Object
-	{
-		public Gtk.EventControllerKey el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_EventControllerKey29(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.EventControllerKey();
-
-			// my vars (dec)
-
-			// set gobject values
-
-			//listeners
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-			    if (keyval == Gdk.Key.Tab) {
-			        _this.database_DBUSERNAME.el.grab_focus();
-			        return true;
-			    }
-			
-			
-				return false;
-				 
-			});
-		}
-
-		// user defined functions
-	}
-
 
 	public class Xcls_Button35 : Object
 	{
