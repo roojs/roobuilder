@@ -717,22 +717,6 @@ public class Xcls_RooProjectSettings : Object
 			var child_1 = new Xcls_EventControllerKey22( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
-
-			// init method
-
-			this.css = new Gtk.CssProvider();
-			 
-				this.css.load_from_string(
-				"#roo-project-settings-view{ font:  10px monospace;}"
-			);
-			 
-			//this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-			        
-			       Gtk.StyleContext.add_provider_for_display(
-				       Gdk.Display.get_default(), 
-				       this.css,
-				       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-			       );
 		}
 
 		// user defined functions
