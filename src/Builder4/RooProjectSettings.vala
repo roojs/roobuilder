@@ -17,8 +17,6 @@ public class Xcls_RooProjectSettings : Object
 	public Xcls_grid grid;
 	public Xcls_path path;
 	public Xcls_base_template base_template;
-	public Xcls_base_template_cellrenderer base_template_cellrenderer;
-	public Xcls_base_template_model base_template_model;
 	public Xcls_rootURL rootURL;
 	public Xcls_html_gen html_gen;
 	public Xcls_html_gen_cellrenderer html_gen_cellrenderer;
@@ -32,11 +30,8 @@ public class Xcls_RooProjectSettings : Object
 
 		// my vars (def)
 	public signal void buttonPressed (string btn);
-	public Gtk.PositionType position;
-	public uint border_width;
 	public bool done;
 	public Project.Roo project;
-	public bool autohide;
 
 	// ctor
 	public Xcls_RooProjectSettings()
@@ -45,10 +40,7 @@ public class Xcls_RooProjectSettings : Object
 		this.el = new Gtk.Window();
 
 		// my vars (dec)
-		this.position = Gtk.PositionType.RIGHT;
-		this.border_width = 0;
 		this.done = false;
-		this.autohide = false;
 
 		// set gobject values
 		this.el.title = "Edit Project settings";
@@ -57,6 +49,7 @@ public class Xcls_RooProjectSettings : Object
 		child_1.ref();
 		this.el.set_child ( child_1.el  );
 		var child_2 = new Xcls_HeaderBar37( _this );
+		child_2.ref();
 		this.el.titlebar = child_2.el;
 	}
 
@@ -82,8 +75,16 @@ public class Xcls_RooProjectSettings : Object
 	    
 	    _this.html_gen_model.loadData(_this.project.html_gen);
 	
-	    _this.base_template_model.loadData();
-	    
+		var sm = (Gtk.StringList)     _this.base_template.el.model;
+		this.base_template.loading = true;
+		this.base_template.el.selected = Gtk.INVALID_LIST_POSITION;
+		for(var i=0;i< sm.get_n_items(); i++) {
+			if (sm.get_string( i ) ==  this.project.base_template) {
+				this.base_template.el.selected = i;
+				break;
+			}
+		}
+	    this.base_template.loading = false;
 	     //var js = _this.project;
 	    _this.database_DBTYPE.el.set_text(    _this.project.DBTYPE );
 	    _this.database_DBNAME.el.set_text(    _this.project.DBNAME );
@@ -395,7 +396,7 @@ public class Xcls_RooProjectSettings : Object
 
 	public class Xcls_base_template : Object
 	{
-		public Gtk.ComboBox el;
+		public Gtk.DropDown el;
 		private Xcls_RooProjectSettings  _this;
 
 
@@ -407,64 +408,53 @@ public class Xcls_RooProjectSettings : Object
 		{
 			_this = _owner;
 			_this.base_template = this;
-			this.el = new Gtk.ComboBox();
+			var child_1 = new Xcls_StringList221( _this );
+			child_1.ref();
+			this.el = new Gtk.DropDown( child_1.el, null );
 
 			// my vars (dec)
 			this.loading = false;
 
 			// set gobject values
-			new Xcls_base_template_cellrenderer( _this );
-			this.el.pack_start ( _this.base_template_cellrenderer.el , true );
-			new Xcls_base_template_model( _this );
-			this.el.set_model ( _this.base_template_model.el  );
-
-			// init method
-
-			this.el.add_attribute(_this.base_template_cellrenderer.el , "markup", 0 );
 
 			//listeners
-			this.el.changed.connect( () => {
-				Gtk.TreeIter iter;
+			this.el.notify["selected"].connect( () => {
+			
 			 
 				// this get's called when we are filling in the data... ???
 				if (this.loading) {
 					return;
 				}
-				
-			 
-				if (this.el.get_active_iter(out iter)) {
-					Value vfname;
-					_this.base_template_model.el.get_value (iter, 0, out vfname);
-					_this.project.base_template = ((string)vfname) ;
+				var sm = (Gtk.StringList) this.el.model;
+				_this.project.base_template = sm.get_string(this.el.selected);
 					
 					 print("\nSET base template to %s\n", _this.project.base_template );
 					// is_bjs = ((string)vfname) == "bjs";
-				}
-			    
-			  
-			    // directory is only available for non-bjs 
-			 
 			
 			
-			});
+			 });
 		}
 
 		// user defined functions
 	}
-	public class Xcls_base_template_cellrenderer : Object
+	public class Xcls_StringList221 : Object
 	{
-		public Gtk.CellRendererText el;
+		public Gtk.StringList el;
 		private Xcls_RooProjectSettings  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_base_template_cellrenderer(Xcls_RooProjectSettings _owner )
+		public Xcls_StringList221(Xcls_RooProjectSettings _owner )
 		{
 			_this = _owner;
-			_this.base_template_cellrenderer = this;
-			this.el = new Gtk.CellRendererText();
+			this.el = new Gtk.StringList( { 
+	"roo.builder.html",
+	"bootstrap.builder.html",
+	"bootstrap4.builder.html",
+	"mailer.builder.html"
+} );
 
 			// my vars (dec)
 
@@ -472,70 +462,6 @@ public class Xcls_RooProjectSettings : Object
 		}
 
 		// user defined functions
-	}
-
-	public class Xcls_base_template_model : Object
-	{
-		public Gtk.ListStore el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_base_template_model(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.base_template_model = this;
-			this.el = new Gtk.ListStore.newv(  { typeof(string) }  );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-		public void loadData () {
-			_this.base_template.loading = true;
-		  
-		    this.el.clear();                                    
-		    Gtk.TreeIter iter;
-		    var el = this.el;
-		    
-		   /// el.append(out iter);
-		    
-		   
-		    el.append(out iter);
-		    el.set_value(iter, 0, "roo.builder.html");
-		    _this.base_template.el.set_active_iter(iter);
-			if (_this.project.base_template == "roo.builder.html") {
-			   _this.base_template.el.set_active_iter(iter);
-		    }
-		
-		    el.append(out iter);
-		    el.set_value(iter, 0, "bootstrap.builder.html");
-		  
-			print("\ncur template = %s\n", _this.project.base_template);
-		 
-		    if (_this.project.base_template == "bootstrap.builder.html") {
-			   _this.base_template.el.set_active_iter(iter);
-		    }
-			  el.append(out iter);
-		    el.set_value(iter, 0, "bootstrap4.builder.html");
-		     if (_this.project.base_template == "bootstrap4.builder.html") {
-			   _this.base_template.el.set_active_iter(iter);
-		    }
-		    
-		
-			el.append(out iter);
-		    el.set_value(iter, 0, "mailer.builder.html");
-		
-			if (_this.project.base_template == "mailer.builder.html") {
-			    _this.base_template.el.set_active_iter(iter);
-		    }
-			_this.base_template.loading = false;
-		                                     
-		}
 	}
 
 
