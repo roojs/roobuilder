@@ -130,7 +130,7 @@ public class JsRender.Node : GLib.Object {
 				this.parent.updated_count++;
 			}  else {
 				//GLib.debug("UNDO top node is %d", value);
-				this.version_changed();
+				//this.version_changed();
 			}
 		}
  
@@ -142,7 +142,7 @@ public class JsRender.Node : GLib.Object {
 	 
 	
 	
-	public signal void  version_changed();
+	//public signal void  version_changed();
 	
 	public Node()
 	{
