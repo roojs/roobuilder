@@ -110,7 +110,7 @@ public class JsRender.Node : GLib.Object {
 	public Gee.HashMap<int,string> line_map; // store of l:xxx or p:....  // fixme - not needed as we can store line numbers in props now.
 	public Gee.ArrayList<int> node_lines; 
 	public Gee.HashMap<int,Node> node_lines_map; // store of l:xxx or p:....
-	
+	public JsRender? file = null;
 	
 	public string node_pad = "";
 	
