@@ -22,8 +22,6 @@ public class Xcls_RooProjectSettings : Object
 	public Xcls_view view;
 	public Xcls_database_DBTYPE database_DBTYPE;
 	public Xcls_database_DBNAME database_DBNAME;
-	public Xcls_database_DBUSERNAME database_DBUSERNAME;
-	public Xcls_database_DBPASSWORD database_DBPASSWORD;
 	public Xcls_database_ERROR database_ERROR;
 
 		// my vars (def)
@@ -94,8 +92,8 @@ public class Xcls_RooProjectSettings : Object
 	     //var js = _this.project;
 	    _this.database_DBTYPE.el.set_text(    _this.project.DBTYPE );
 	    _this.database_DBNAME.el.set_text(    _this.project.DBNAME );
-	    _this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );
-	    _this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );
+	    //_this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );
+	    //_this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );
 	    
 	    	//console.log('show all');
 	
@@ -137,8 +135,8 @@ public class Xcls_RooProjectSettings : Object
 	    var js = _this.project;
 	    js.DBTYPE = _this.database_DBTYPE.el.get_text();
 	   js.DBNAME= _this.database_DBNAME.el.get_text();
-	    js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();
-	    js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();
+	   // js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();
+	   // js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();
 	//    _this.project.set_string_member("DBHOST", _this.DBTYPE.el.get_text());    
 	    
 	    // need to re-init the database 
@@ -767,19 +765,9 @@ public class Xcls_RooProjectSettings : Object
 			this.el.append( child_3.el );
 			new Xcls_database_DBNAME( _this );
 			this.el.append( _this.database_DBNAME.el );
-			var child_5 = new Xcls_Label30( _this );
+			var child_5 = new Xcls_Button35( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
-			new Xcls_database_DBUSERNAME( _this );
-			this.el.append( _this.database_DBUSERNAME.el );
-			var child_7 = new Xcls_Label33( _this );
-			child_7.ref();
-			this.el.append( child_7.el );
-			new Xcls_database_DBPASSWORD( _this );
-			this.el.append( _this.database_DBPASSWORD.el );
-			var child_9 = new Xcls_Button35( _this );
-			child_9.ref();
-			this.el.append( child_9.el );
 			new Xcls_database_ERROR( _this );
 			this.el.append( _this.database_ERROR.el );
 		}
@@ -950,136 +938,6 @@ public class Xcls_RooProjectSettings : Object
 		// user defined functions
 	}
 
-
-	public class Xcls_Label30 : Object
-	{
-		public Gtk.Label el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Label30(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( "Username" );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.xalign = 0f;
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_database_DBUSERNAME : Object
-	{
-		public Gtk.Entry el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_database_DBUSERNAME(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.database_DBUSERNAME = this;
-			this.el = new Gtk.Entry();
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_EventControllerKey32( _this );
-			child_1.ref();
-			this.el.add_controller(  child_1.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_EventControllerKey32 : Object
-	{
-		public Gtk.EventControllerKey el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_EventControllerKey32(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.EventControllerKey();
-
-			// my vars (dec)
-
-			// set gobject values
-
-			//listeners
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-			    if (keyval == Gdk.Key.Tab) {
-			        _this.database_DBPASSWORD.el.grab_focus();
-			        return true;
-			    }
-			
-			
-				return false;
-				 
-			
-			});
-		}
-
-		// user defined functions
-	}
-
-
-	public class Xcls_Label33 : Object
-	{
-		public Gtk.Label el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Label33(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( "Password" );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.xalign = 0f;
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_database_DBPASSWORD : Object
-	{
-		public Gtk.Entry el;
-		private Xcls_RooProjectSettings  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_database_DBPASSWORD(Xcls_RooProjectSettings _owner )
-		{
-			_this = _owner;
-			_this.database_DBPASSWORD = this;
-			this.el = new Gtk.Entry();
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
 
 	public class Xcls_Button35 : Object
 	{

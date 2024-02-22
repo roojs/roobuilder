@@ -317,50 +317,6 @@
           },
           {
            "$ xns" : "Gtk",
-           "label" : "Username",
-           "xalign" : 0,
-           "xtype" : "Label"
-          },
-          {
-           "$ xns" : "Gtk",
-           "id" : "database_DBUSERNAME",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "listeners" : {
-              "key_pressed" : [
-               "(keyval, keycode, state) => {",
-               "    if (keyval == Gdk.Key.Tab) {",
-               "        _this.database_DBPASSWORD.el.grab_focus();",
-               "        return true;",
-               "    }",
-               "",
-               "",
-               "\treturn false;",
-               "\t ",
-               "",
-               "}",
-               ""
-              ]
-             },
-             "xtype" : "EventControllerKey"
-            }
-           ],
-           "xtype" : "Entry"
-          },
-          {
-           "$ xns" : "Gtk",
-           "label" : "Password",
-           "xalign" : 0,
-           "xtype" : "Label"
-          },
-          {
-           "$ xns" : "Gtk",
-           "id" : "database_DBPASSWORD",
-           "xtype" : "Entry"
-          },
-          {
-           "$ xns" : "Gtk",
            "listeners" : {
             "clicked" : [
              "() => {",
@@ -488,8 +444,8 @@
     "    var js = _this.project;",
     "    js.DBTYPE = _this.database_DBTYPE.el.get_text();",
     "   js.DBNAME= _this.database_DBNAME.el.get_text();",
-    "    js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();",
-    "    js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();",
+    "   // js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();",
+    "   // js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();",
     "//    _this.project.set_string_member(\"DBHOST\", _this.DBTYPE.el.get_text());    ",
     "    ",
     "    // need to re-init the database ",
@@ -542,8 +498,8 @@
     "     //var js = _this.project;",
     "    _this.database_DBTYPE.el.set_text(    _this.project.DBTYPE );",
     "    _this.database_DBNAME.el.set_text(    _this.project.DBNAME );",
-    "    _this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );",
-    "    _this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );",
+    "    //_this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );",
+    "    //_this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );",
     "    ",
     "    \t//console.log('show all');",
     "",
