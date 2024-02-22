@@ -287,7 +287,7 @@ public class Xcls_LeftProps : Object
 	    	
 	    }
 	    
-	    GLib.debug("load leftprops\n");
+	    GLib.debug("load leftprops");
 	
 	    this.node = node;
 	    this.file = file;
@@ -297,6 +297,7 @@ public class Xcls_LeftProps : Object
 	              
 	    //this.get('/RightEditor').el.hide();
 	    if (node ==null) {
+	        GLib.debug("node is null return");
 	        return ;
 	    }
 	
@@ -2184,7 +2185,9 @@ public class Xcls_LeftProps : Object
 			 var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();
 			 var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
 			
-			
+			 if (item == null) {
+			 	return;
+			}
 			item.bind_property("to_display_name_prop",
 			                    lb, "label",
 			                   GLib.BindingFlags.SYNC_CREATE);
@@ -2352,6 +2355,15 @@ public class Xcls_LeftProps : Object
 				cb.hide();
 				
 				var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
+			 	if (prop == null || _this.node == null ) {
+			 		GLib.error("something is wrong");
+				 	return;
+				}
+				if ( _this.node.fqn() == "") {
+			 		GLib.debug("node is missing fqn");
+				 	return;
+				}
+				
 				//GLib.debug("prop = %s", prop.get_type().name());
 				//GLib.debug("prop.val = %s", prop.val);
 				//GLib.debug("prop.key = %s", prop.to_display_name());

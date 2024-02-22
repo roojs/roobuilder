@@ -1068,7 +1068,7 @@ public class Xcls_WindowLeftTree : Object
 			 
 				var is_shift = _this.keystate.is_shift > 0;
 				
-				GLib.debug("shift is    %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
+				//GLib.debug("shift is    %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
 				string pos; // over / before / after..
 			
 			    //GLib.debug("got drag motion");
@@ -1079,7 +1079,7 @@ public class Xcls_WindowLeftTree : Object
 			   	try {
 			  		cont.get_value(ref v);
 				} catch (GLib.Error e) {
-				    GLib.debug("failed to get drag value");
+				   // GLib.debug("failed to get drag value");
 					return Gdk.DragAction.COPY;	 
 				
 				}
@@ -1101,7 +1101,7 @@ public class Xcls_WindowLeftTree : Object
 			     foreach(var dp in drop_on_to) {
 			     	str += dp;
 			 	}
-			 	GLib.debug("droplist: %s", string.joinv(", ", str));
+			 	//GLib.debug("droplist: %s", string.joinv(", ", str));
 			     
 			     
 			    // if there are not items in the tree.. the we have to set isOver to true for anything..
@@ -1119,13 +1119,14 @@ public class Xcls_WindowLeftTree : Object
 			    }
 			    
 			    
-			 	GLib.debug("check is over");
+			
 			 	 
 			    // if path of source and dest are inside each other..
 			    // need to add source info to drag?
 			    // the fail();
 			 	var row = _this.view.getRowAt(x,y, out pos);
-			 	
+			 	//GLib.debug("check is over %d, %d, %s", (int)x,(int)y, pos);
+			
 			 	if (row < 0) {
 					this.addHighlight(null, "");	
 				 	return Gdk.DragAction.COPY;
@@ -1134,20 +1135,20 @@ public class Xcls_WindowLeftTree : Object
 				
 				var node =  (JsRender.Node)tr.get_item();
 				
-				GLib.debug("Drop over node: %s", node.fqn());
+				//GLib.debug("Drop over node: %s", node.fqn());
 				
 			
 			 	if (pos == "above" || pos == "below") {
 					if (node.parent == null) {
-						GLib.debug("no parent try center");
+						//GLib.debug("no parent try center");
 						pos = "over";
 					} else {
 				 		 
 				 		if (!drop_on_to.contains(node.parent.fqn())) {
-							GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
+							//GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
 				 			pos = "over";
 			 			} else {
-							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+							//GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
 							if (_this.view.dragNode  != null && is_shift) {
 					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
 						 			GLib.debug("shift drop not self not allowed");
@@ -1167,13 +1168,13 @@ public class Xcls_WindowLeftTree : Object
 			 	}
 			 	if (pos == "over") {
 				 	if (!drop_on_to.contains(node.fqn())) {
-						GLib.debug("drop on does not contain %s - try center" , node.fqn());
+						//GLib.debug("drop on does not contain %s - try center" , node.fqn());
 						this.addHighlight(null, ""); 
 						return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 					}
 					if (_this.view.dragNode  != null && is_shift) {
 			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
-				 			GLib.debug("shift drop not self not allowed");
+				 			//GLib.debug("shift drop not self not allowed");
 			 				this.addHighlight(null, "");
 			 				return Gdk.DragAction.COPY;	
 			 			}
@@ -1193,11 +1194,14 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.drop.connect( (v, x, y) => {
 				
+				// must get the pos before we clear the hightlihg.
+			 	var pos = "";
+			 	var row = _this.view.getRowAt(x,y, out pos);
 				this.addHighlight(null,"");
 			 
 			 	var is_shift = _this.keystate.is_shift > 0;
 			 
-			 	var pos = "";
+			
 			 	// -- get position..
 			 	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
 					// still dragging same node
@@ -1224,7 +1228,7 @@ public class Xcls_WindowLeftTree : Object
 						return false;	
 					}
 					// add new node to top..
-					
+					GLib.debug("adding to top");
 					
 					 var m = (GLib.ListStore) _this.model.el.model;
 			     	_this.main_window.windowstate.file.tree = dropNode;  
@@ -1239,8 +1243,9 @@ public class Xcls_WindowLeftTree : Object
 			
 			
 			
-				var row = _this.view.getRowAt(x,y, out pos);
+			
 				if (row < 0) {
+					GLib.debug("could not get row %d,%d, %s", (int)x,(int)y,pos);
 					return   false; //Gdk.DragAction.COPY;
 				}
 				var tr = (Gtk.TreeListRow)_this.view.el.model.get_object(row);
@@ -1340,7 +1345,7 @@ public class Xcls_WindowLeftTree : Object
 		public void addHighlight (Gtk.Widget? w, string hl) {
 			if (this.highlightWidget != null) {
 				var ww  = this.highlightWidget;
-				GLib.debug("clear drag from previous highlight");
+				//GLib.debug("clear drag from previous highlight");
 				if (ww.has_css_class("drag-below")) {
 					 ww.remove_css_class("drag-below");
 				}
@@ -1352,7 +1357,7 @@ public class Xcls_WindowLeftTree : Object
 				}
 			}
 			if (w != null) {
-				GLib.debug("add drag=%s to widget", hl);	
+				//GLib.debug("add drag=%s to widget", hl);	
 				if (!w.has_css_class("drag-" + hl)) {
 					w.add_css_class("drag-" + hl);
 				}
@@ -1434,7 +1439,7 @@ public class Xcls_WindowLeftTree : Object
 				    // why dup_?
 				    
 			
-				    GLib.debug ("calling left_tree.node_selected");
+				    GLib.debug ("calling left_tree.node_selected %s", snode.toJsonString());
 				    _this.node_selected(snode);
 				   
 				     
@@ -1451,8 +1456,11 @@ public class Xcls_WindowLeftTree : Object
 		public JsRender.Node? getSelectedNode () {
 		  if (this.el.selected_item == null) {
 				return null;
-		  }			        
+		  }	
+		   
+		  
 		   var tr = (Gtk.TreeListRow)this.el.selected_item;
+		  
 		   return (JsRender.Node)tr.get_item();
 			 
 		}
@@ -1734,7 +1742,9 @@ public class Xcls_WindowLeftTree : Object
 				
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
 				var node = (JsRender.Node) lr.get_item();
-				
+				if (node == null || node.fqn() == "") {
+					return;
+				}
 			   //GLib.debug("node is %s", node.get_type().name());
 			// was item (1) in old layout
 			
