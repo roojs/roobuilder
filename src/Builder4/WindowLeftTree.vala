@@ -1279,12 +1279,12 @@ public class Xcls_WindowLeftTree : Object
 			 	
 			 	switch(pos) {
 			 		case "over":
-				 		node.appendChild(dropNode);
+			
 				 		if (is_shift && _this.view.dragNode != null) {
 					 		_this.model.selectNode(null); 
 					 		_this.view.dragNode.remove();
 				 		}
-				 			
+			 	 		node.appendChild(dropNode);			
 				 		dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode); 
 			 			
@@ -1294,11 +1294,12 @@ public class Xcls_WindowLeftTree : Object
 			 		case "above":
 			 			GLib.debug("Above - insertBefore");
 			 		
-						node.parent.insertBefore(dropNode, node);
+			
 				 		if (is_shift && _this.view.dragNode != null) {
 					 		_this.model.selectNode(null); 	 		
 					 		_this.view.dragNode.remove();
 				 		}
+						node.parent.insertBefore(dropNode, node);	 		
 						dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode); 			
 			 			_this.changed();
@@ -1716,7 +1717,7 @@ public class Xcls_WindowLeftTree : Object
 				
 			});
 			this.el.bind.connect( (listitem) => {
-				 GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+				// GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
 				
 				//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
 				var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
@@ -1731,7 +1732,7 @@ public class Xcls_WindowLeftTree : Object
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
 				var node = (JsRender.Node) lr.get_item();
 				
-			   GLib.debug("node is %s", node.get_type().name());
+			   //GLib.debug("node is %s", node.get_type().name());
 			// was item (1) in old layout
 			
 				

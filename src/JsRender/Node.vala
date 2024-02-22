@@ -958,15 +958,17 @@ public class JsRender.Node : GLib.Object {
 	
 	public void insertChild(int pos, Node child)
 	{
+		child.parent = this;
 		this.items.insert(pos, child);
 		this.childstore.insert(pos, child);
-		child.parent = this;
+		
 	}
 	public void appendChild(Node child)
 	{
+		child.parent = this;
 		this.items.add( child);
 		this.childstore.append(child);
-		child.parent = this;
+
 	}
 	
 	

@@ -1713,6 +1713,9 @@ public class Xcls_LeftProps : Object
 				}
 				if (l.get_visible()) {
 				 	_this.stop_editor();
+				 	if (prop.parent == null) {
+				 		return;
+			 		}
 			    	_this.show_editor(_this.file, prop.parent, prop);
 				
 				}
