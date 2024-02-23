@@ -873,7 +873,7 @@
              "\tvar prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();",
              " \tif (prop == null || _this.node == null ) {",
              " \t\tGLib.error(\"something is wrong\");",
-             "\t \treturn;",
+             "\t \t ",
              "\t}",
              "\tif ( _this.node.fqn() == \"\") {",
              " \t\tGLib.debug(\"node is missing fqn\");",
