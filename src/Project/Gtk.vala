@@ -39,7 +39,9 @@ namespace Project
  	    public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache;   // what child can on on what node
 		public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache_props; // what child can go on what node (with properties included)
 		
-	     public string compile_flags = ""; // generic to all.	
+	    public string compile_flags = ""; // generic to all.	
+	    public bool generate_meson = false; 
+	     
 		public Gee.ArrayList<string> packages; // list of vapi's that are used by this project. 
 		 
 		//pblic Gee.ArrayList<string> hidden; // list of dirs to be hidden from display...
@@ -157,7 +159,9 @@ namespace Project
 		
 		public override void onSave()
 		{
-			this.meson.save();
+			if (this.generate_meson) {
+				this.meson.save();
+			}
 			var vl = this.language_servers.get("vala");
 			if (vl != null) {
 				vl.initialize_server(); // hopefully better than exit?
@@ -252,6 +256,8 @@ namespace Project
 		 // ------------------  new project stufff
 		public override void initialize()
 		{
+			this.generate_meson = true; // default to true on new projects.
+			
 			string[] dirs = {
 				"src",
 				"src/ui"

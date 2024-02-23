@@ -89,6 +89,29 @@
             },
             {
              "$ xns" : "Gtk",
+             "id" : "generate_meson",
+             "listeners" : {
+              "activate" : [
+               "( ) => {",
+               "",
+               "\t_this.project.generate_meson = this.el.active;",
+               "}",
+               "\t"
+              ]
+             },
+             "string label" : "Generate Meson",
+             "xtype" : "CheckButton"
+            }
+           ],
+           "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "int spacing" : 10,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
              "Gtk.Align halign" : "Gtk.Align.START",
              "bool hexpand" : false,
              "utf8 label" : "Version:",
@@ -1079,7 +1102,7 @@
     "\t     return false;",
     "     });",
     "    ",
-    "   ",
+    "   this.generate_meson.el.active = this.project.generate_meson;",
     " \t",
     " \tproject.loadTargetsIntoStore(this.target_model.el);",
     "\t",
