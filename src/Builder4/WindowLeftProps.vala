@@ -2357,7 +2357,7 @@ public class Xcls_LeftProps : Object
 				var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
 			 	if (prop == null || _this.node == null ) {
 			 		GLib.error("something is wrong");
-				 	return;
+				 	 
 				}
 				if ( _this.node.fqn() == "") {
 			 		GLib.debug("node is missing fqn");
