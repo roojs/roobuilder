@@ -80,7 +80,9 @@ namespace Palete {
 			this.log(LanguageClientAction.LAUNCH, process_path);
 			GLib.debug("Launching %s", process_path);
 			this.launcher = new GLib.SubprocessLauncher (SubprocessFlags.STDIN_PIPE | SubprocessFlags.STDOUT_PIPE);
-			this.launcher.set_environ(GLib.Environ.get());
+			var env = GLib.Environ.get();
+			env += "G_MESSAGES_DEBUG=all";
+			this.launcher.set_environ(env);
 			try {
 
 				
