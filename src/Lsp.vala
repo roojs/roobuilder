@@ -924,7 +924,7 @@ namespace Lsp {
 							array.get_object_element(index).get_string_member("value")
 						);
 		             
-		                contents.add ((MarkedString) Json.gvariant_deserialize (element, null).get_int32() );
+		                contents.add ( add );
 		            } catch (Error e) {
 		                warning ("argument %u to command could not be deserialized: %s", index, e.message);
 		            }
