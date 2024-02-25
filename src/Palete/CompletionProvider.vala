@@ -36,7 +36,7 @@ namespace Palete {
 		
 		public bool is_trigger(global::Gtk.TextIter  iter, unichar ch)
 		{
-			if (this.in_populate || ch == 32) {
+			if (this.in_populate || ch == 32 || ch == 10) {
 				return false;
 			}
 			if (this.editor.buffer.el.iter_has_context_class(iter, "comment") ||
@@ -44,9 +44,12 @@ namespace Palete {
 			) { 
 				return false;
 			}
+			var back = iter.back();
 			
+			// what's the character at the iter?
+			var str = back.get_text(iter);
 			
-			//GLib.debug("should trigger? %c", (int) ch);
+			GLib.debug("Previos char to trigger is '%s;", str);
 			
 			
 			return true;
