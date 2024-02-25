@@ -38,11 +38,12 @@ namespace Palete {
 			} 
 			var res = yield this.file.getLanguageServer().hover(this.file, line, offset);
  			
-			context.get_iter(out pos);
-			
-			GLib.debug("populate hover async Word: %s || %s" ,begin.get_text(pos) ,  pos.get_text(end)    );
-			display.append(new global::Gtk.Label("test"));
-			return true;
+ 			if (res && res.contents.size > 0) {
+ 				var str = res.contents.get(0).value;
+ 				display.append(new global::Gtk.Label(str));
+ 				return true;
+			} 
+			return false;
 		}
 		public bool populate (GtkSource.HoverContext context, GtkSource.HoverDisplay display) throws Error
 		{
