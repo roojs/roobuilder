@@ -8,12 +8,14 @@ namespace Palete {
 		{
 			
 
-			global::Gtk.TextIter begin, end;
+			global::Gtk.TextIter begin, end ,  pos;
 
 			if (!context.get_bounds(out begin, out end)) {
 				return false;
 			}
-			GLib.debug("populate hover async Word: %s || %s" ,begin.get_text(context.get_iter()) ,  context.get_iter().get_text(end)    );
+			context.get_iter(pos);
+			
+			GLib.debug("populate hover async Word: %s || %s" ,begin.get_text(pos) ,  pos.get_text(end)    );
 			display.append(new global::Gtk.Label("test"));
 			return true;
 		}
