@@ -918,11 +918,11 @@ namespace Lsp {
 		        var contents = new Gee.ArrayList<MarkedString>();
 
 		        property_node.get_array ().foreach_element ((array, index, element) => {
-		        
-		        	var add =new MarkedString(
-		        		array.get_object_element(index).get_string_member("language"),
-	        			array.get_object_element(index).get_string_member("value")
-	        		);
+		        	try {
+						var add =new MarkedString(
+							array.get_object_element(index).get_string_member("language"),
+							array.get_object_element(index).get_string_member("value")
+						);
 		             
 		                contents.add ((MarkedString) Json.gvariant_deserialize (element, null).get_int32() );
 		            } catch (Error e) {
