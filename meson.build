@@ -79,7 +79,7 @@ gnome.post_install(gtk_update_icon_cache : true)
 
 roobuilder_resources = gnome.compile_resources(
 	'roobuilder-resources', 'resources/gresources.xml',
-	source_dir: [ 'resources/glade-icons', 'resources/html', 'resources/data', 'resources/css', 'resources/Editors' ],
+	source_dir: [ 'resources/Editors', 'resources/css', 'resources/data', 'resources/glade-icons', 'resources/html' ],
 	c_name: 'roobuilder_resources' 
 )
 
@@ -156,6 +156,7 @@ roobuilder_src = files([
    'src/JsRender/NodeToValaWrapped.vala',
    'src/Builder4/MainWindow.vala',
    'src/Settings.vala',
+   'src/Palete/HoverProvider.vala',
 ])
 
 

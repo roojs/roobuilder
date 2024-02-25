@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gresources>  <gresource prefix="/glade-icons">
+<gresources>  <gresource prefix="/Editors">
+  </gresource>
+  <gresource prefix="/css">
+    <file>roobuilder.css</file>
+  </gresource>
+  <gresource prefix="/data">
+    <file>roodata.json</file>
+  </gresource>
+  <gresource prefix="/glade-icons">
     <file>widget-gtk-aboutdialog.png</file>
     <file>widget-gtk-accelgroup.png</file>
     <file>widget-gtk-accellabel.png</file>
@@ -161,13 +169,5 @@
     <file>mailer.builder.html</file>
     <file>roo.builder.html</file>
     <file>roo.builder.js</file>
-  </gresource>
-  <gresource prefix="/data">
-    <file>roodata.json</file>
-  </gresource>
-  <gresource prefix="/css">
-    <file>roobuilder.css</file>
-  </gresource>
-  <gresource prefix="/Editors">
   </gresource>
 </gresources>
