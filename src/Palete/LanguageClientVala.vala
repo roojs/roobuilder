@@ -597,6 +597,49 @@ namespace Palete {
  		
 
 		}
+		
+		
+		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
+ 		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error 
+		 {
+		 	/* partial_result_token ,  work_done_token   context = null) */
+		 	GLib.debug("get syntax %s", file.relpath);
+			var ret = new Lsp.Hover();	
+		 	//ret = null;
+		    if (!this.isReady()) {
+				return ret;
+			}
+			Variant? return_value;
+			yield this.jsonrpc_client.call_async (
+				"textDocument/hover",
+				this.buildDict (  
+					 
+					textDocument : this.buildDict (    ///TextDocumentItem;
+						uri: new GLib.Variant.string (file.to_url()),
+						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+					),
+					position :  this.buildDict ( 
+						line :  new GLib.Variant.uint64 ( (uint) line) ,
+						character :  new GLib.Variant.uint64 ( uint.max(0,  (offset -1))) 
+					)
+					 
+				),
+				null,
+				out return_value
+			);
+			
+			
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+			var json = Json.gvariant_serialize (return_value);
+			var add= Json.gobject_deserialize ( typeof (Lsp.Hover),  ar.get_element(i)) as Lsp.Hover 
+			return ret ;
+			
+ 		
+
+		}
+		
+		
+		
 		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
  		public override async Gee.ArrayList<Lsp.DocumentSymbol> syntax (JsRender.JsRender file) throws GLib.Error 
 		 {
