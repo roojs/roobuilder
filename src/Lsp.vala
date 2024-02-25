@@ -924,7 +924,7 @@ namespace Lsp {
 
 		        property_node.get_array ().foreach_element ((array, index, element) => {
 		        	try {
-						var add =new MarkedString(
+						var add = new MarkedString(
 							array.get_object_element(index).get_string_member("language"),
 							array.get_object_element(index).get_string_member("value")
 						);
