@@ -92,6 +92,8 @@ public class ValaProjectSettingsPopover : Object
 	    //print("ValaProjectSettings show\n");
 	    this.doneObj = doneObj;
 	    this.project=  project;
+	    
+	    this.project.loading = true;
 		 
 	    this.compile_flags.el.buffer.set_text(
 	    	project.compile_flags.data
@@ -113,6 +115,7 @@ public class ValaProjectSettingsPopover : Object
 	 	 	project.loadTargetsIntoStore(this.target_model.el);
 	 		_this.target_sel.el.selected = Gtk.INVALID_LIST_POSITION;
 			_this.target_sel.selectTarget(null);
+			 this.project.loading = false;
 		 	return false;
 	 	});
 			
