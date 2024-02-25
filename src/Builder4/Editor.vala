@@ -657,7 +657,7 @@ public class Editor : Object
 			 
 			var hover = this.el.get_hover();
 			hover.add_provider(new Palete.HoverProvider());
-			hover.
+			
 			//this.el.completion.unblock_interactive();
 			this.el.completion.select_on_show = true; // select
 			//this.el.completion.remember_info_visibility	 = true;
