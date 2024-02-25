@@ -91,10 +91,10 @@ namespace Palete {
 			}
 			
 			this.launcher.set_stderr_file_path( 
-				GLib.Environment.get_home_dir() + "/.cache/vala-language-server/" + 
+				logpath + "/" + 
 				(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log"
 			);
-			GLib.debug("log lang server to %s", GLib.Environment.get_home_dir() + "/.cache/vala-language-server/" + 
+			GLib.debug("log lang server to %s", logpath + "/" + 
 				(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log");
 
 			try {
