@@ -11,18 +11,18 @@ namespace Palete {
 			global::Gtk.TextIter begin, end;
 
 			if (!context.get_bounds(out begin, out end)) {
-				return false;
+				return true;
 			}
 			GLib.debug("populate hover async Word: %s" ,begin.get_text(end));
 			display.append(new global::Gtk.Label("test"));
-			return trye;
+			return true;
 		}
 		public bool populate (GtkSource.HoverContext context, GtkSource.HoverDisplay display) throws Error
 		{
 			global::Gtk.TextIter begin, end;
 
 			if (!context.get_bounds(out begin, out end)) {
-				return false;
+				return true;
 			}
 			GLib.debug("populate hover Word: %s" ,begin.get_text(end));return false;
 			return true;
