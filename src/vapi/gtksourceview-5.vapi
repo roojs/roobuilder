@@ -347,7 +347,7 @@ namespace GtkSource {
 		protected HoverContext ();
 		public bool get_bounds (out Gtk.TextIter begin, out Gtk.TextIter end);
 		public unowned GtkSource.Buffer get_buffer ();
-		public bool get_iter (Gtk.TextIter iter);
+		public bool get_iter (out Gtk.TextIter iter);
 		public unowned GtkSource.View get_view ();
 	}
 	[CCode (cheader_filename = "gtksourceview/gtksource.h", type_id = "gtk_source_hover_display_get_type ()")]

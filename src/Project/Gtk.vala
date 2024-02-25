@@ -106,6 +106,9 @@ namespace Project
 			if (obj.has_member("licence")) {
 				this.licence = obj.get_string_member("licence");
 			}
+			if (obj.has_member("generate_meson")) {
+				this.generate_meson = obj.get_boolean_member("generate_meson");
+			}
 			 if (!obj.has_member("compilegroups") || obj.get_member("compilegroups").get_node_type () != Json.NodeType.ARRAY) {
 			 	// make _default_ ?
 			 	 return;
@@ -139,7 +142,7 @@ namespace Project
 			obj.set_string_member("compile_flags", this.compile_flags);
 			obj.set_string_member("version", this.version);
 			obj.set_string_member("licence", this.licence);
-			
+			obj.set_boolean_member("generate_meson",this.generate_meson);
 			var par = new Json.Array();
 			foreach(var p in this.packages) {
 				par.add_string_element(p);

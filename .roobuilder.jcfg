@@ -70,13 +70,15 @@
                 "src/JsRender/NodeToValaExtended.vala",
                 "src/JsRender/NodeToValaWrapped.vala",
                 "src/Builder4/MainWindow.bjs",
-                "src/Settings.vala"
+                "src/Settings.vala",
+                "src/Palete/HoverProvider.vala"
             ]
         }
     ],
     "compile_flags" : "",
     "version" : "5.0.4",
     "licence" : "LGPL",
+    "generate_meson" : true,
     "packages" : [
         "gtk4",
         "gee-0.8",
