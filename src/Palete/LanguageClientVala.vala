@@ -90,10 +90,10 @@ namespace Palete {
 				Posix.mkdir(logpath, 0700);
 			}
 			
-			this.launcher.set_stderr_file_path( 
-				logpath + "/" + 
-				(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log"
-			);
+			//this.launcher.set_stderr_file_path( 
+			//	logpath + "/" + 
+			//	(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log"
+			//);
 			GLib.debug("log lang server to %s", logpath + "/" + 
 				(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log");
 
