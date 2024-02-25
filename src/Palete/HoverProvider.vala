@@ -13,7 +13,7 @@ namespace Palete {
 			if (!context.get_bounds(out begin, out end)) {
 				return false;
 			}
-			GLib.debug("populate async Word: %s" ,begin.get_text(end));
+			GLib.debug("populate hover async Word: %s" ,begin.get_text(end));
 			
 			return false;
 		}
@@ -24,7 +24,7 @@ namespace Palete {
 			if (!context.get_bounds(out begin, out end)) {
 				return false;
 			}
-			GLib.debug("populate Word: %s" ,begin.get_text(end));return false;
+			GLib.debug("populate hover Word: %s" ,begin.get_text(end));return false;
 			
 			
 		}
