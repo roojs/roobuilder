@@ -89,13 +89,13 @@ namespace Palete {
 			if (!GLib.FileUtils.test(logpath, GLib.FileTest.IS_DIR)) {
 				Posix.mkdir(logpath, 0700);
 			}
-			
+			// not very reliable..
 			//this.launcher.set_stderr_file_path( 
 			//	logpath + "/" + 
 			//	(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log"
 			//);
-			GLib.debug("log lang server to %s", logpath + "/" + 
-				(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log");
+			//GLib.debug("log lang server to %s", logpath + "/" + 
+			//	(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log");
 
 			try {
 
