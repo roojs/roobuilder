@@ -44,7 +44,8 @@ namespace Palete {
 			) { 
 				return false;
 			}
-			var back = iter.backward_char();
+			var back = iter.copy();
+			back.backward_char();
 			
 			// what's the character at the iter?
 			var str = back.get_text(iter);
