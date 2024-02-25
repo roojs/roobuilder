@@ -335,11 +335,12 @@ namespace Palete {
 	 		 		 if (comp.label == "_") { // skip '_'
 	 		 		 	continue;
  		 		 	}
+ 		 		 	GLib.debug("got suggestion %s", comp.label);
 	 				this.items.add(new CompletionProposal(comp));	
 	 				
 	 		 	}
 			}
-		    print("GOT %d results\n", (int) items.size); 
+		    GLib.debug("GOT %d results\n", (int) items.size); 
 			// WHY TWICE?
 		    if (this.items.size < this.minimum_word_size) {
 				return;
