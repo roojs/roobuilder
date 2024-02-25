@@ -17,7 +17,7 @@ namespace Palete {
 			
 			return false;
 		}
-		/*public bool populate (GtkSource.HoverContext context, GtkSource.HoverDisplay display) throws Error
+		public bool populate (GtkSource.HoverContext context, GtkSource.HoverDisplay display) throws Error
 		{
 			global::Gtk.TextIter begin, end;
 
@@ -28,6 +28,5 @@ namespace Palete {
 			
 			
 		}
-		*/
 	}
 }
