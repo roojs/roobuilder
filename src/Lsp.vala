@@ -906,8 +906,32 @@ namespace Lsp {
             return node;
         }
 
-        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) {
-            error ("deserialization not supported");
+        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+        {
+            if (property_name == "contents") {
+                value = GLib.Value (typeof(Gee.ArrayList));
+		        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+		            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+		            return false;
+		        }
+
+		        var contents = new Gee.ArrayList<MarkedString>();
+
+		        property_node.get_array ().foreach_element ((array, index, element) => {
+		        
+		        	var add =new MarkedString(
+		        		array.get_object_element(index).get_string_member("language"),
+	        			array.get_object_element(index).get_string_member("value")
+	        		);
+		             
+		                contents.add ((MarkedString) Json.gvariant_deserialize (element, null).get_int32() );
+		            } catch (Error e) {
+		                warning ("argument %u to command could not be deserialized: %s", index, e.message);
+		            }
+		        });
+            } 
+            
+            return default_deserialize_property (property_name, out value, pspec, property_node);
         }
     }
 
