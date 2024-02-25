@@ -16,6 +16,7 @@ namespace Palete {
 			return false;
 		}
 		public bool populate (GtkSource.HoverContext context, GtkSource.HoverDisplay display) throws Error
+		{
 			return false;
 			
 			
