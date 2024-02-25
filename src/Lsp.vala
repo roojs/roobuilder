@@ -873,6 +873,7 @@ namespace Lsp {
    		{
    			this.language = language;
    			this.value = value;
+   			GLib.debug("new marked string %s : %s", language, value);
    		}
         public string language { get; set; }
         public string value { get; set; }
@@ -934,7 +935,7 @@ namespace Lsp {
 		                warning ("argument %u to command could not be deserialized: %s", index, e.message);
 		            }
 		        });
-		        return true;
+		        return
             } 
             
             return default_deserialize_property (property_name, out value, pspec, property_node);
