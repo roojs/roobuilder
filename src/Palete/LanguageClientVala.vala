@@ -94,6 +94,8 @@ namespace Palete {
 				GLib.Environment.get_home_dir() + "/.cache/vala-language-server/" + 
 				(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log"
 			);
+			GLib.debug("log lang server to %s", GLib.Environment.get_home_dir() + "/.cache/vala-language-server/" + 
+				(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log");
 
 			try {
 
