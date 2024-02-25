@@ -273,14 +273,9 @@ namespace Palete {
 			switch (method) {
 				case "textDocument/publishDiagnostics":
 					//GLib.debug("got notification %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value), true));
-					if (return_value. != null) {
-						return_value.ref();
-					}
+					 
 					GLib.Idle.add(() => {
 						this.onDiagnostic(return_value);
-						if (return_value. != null) {
-							return_value.unref();
-						}
 						return false;
 					}
 					return;
