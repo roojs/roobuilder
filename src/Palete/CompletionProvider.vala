@@ -36,7 +36,7 @@ namespace Palete {
 		
 		public bool is_trigger(global::Gtk.TextIter  iter, unichar ch)
 		{
-			if (this.in_populate || ch == 32) {
+			if (this.in_populate || ch == 32 || ch == 10) {
 				return false;
 			}
 			if (this.editor.buffer.el.iter_has_context_class(iter, "comment") ||
@@ -44,9 +44,13 @@ namespace Palete {
 			) { 
 				return false;
 			}
+			var back = iter.copy();
+			back.backward_char();
 			
+			// what's the character at the iter?
+			var str = back.get_text(iter);
 			
-			//GLib.debug("should trigger? %c", (int) ch);
+			GLib.debug("Previos char to trigger is '%s;", str);
 			
 			
 			return true;
@@ -251,8 +255,14 @@ namespace Palete {
 			GLib.debug("pupoulate async  - got reply");
 			this.model = new CompletionModel(this, context, res, cancellable); 
 			var word = context.get_word();
-			GLib.debug("Context word is %s, %d", word, (int)word.length);
-			if (word.length < 1) {
+			
+			var lc = end.copy();
+			lc.backward_char();
+			var lchar = lc.get_text(end);
+			
+			
+			GLib.debug("Context word is %s / '%s' , %d", word, lchar, (int)word.length);
+			if (word.length < 1 && lchar != ".") {
 				word = " "; // this should filter out everything, and prevent it displaying 
 			}
 			
@@ -331,11 +341,12 @@ namespace Palete {
 	 		 		 if (comp.label == "_") { // skip '_'
 	 		 		 	continue;
  		 		 	}
+ 		 		 	GLib.debug("got suggestion %s", comp.label);
 	 				this.items.add(new CompletionProposal(comp));	
 	 				
 	 		 	}
 			}
-		    print("GOT %d results\n", (int) items.size); 
+		    GLib.debug("GOT %d results\n", (int) items.size); 
 			// WHY TWICE?
 		    if (this.items.size < this.minimum_word_size) {
 				return;

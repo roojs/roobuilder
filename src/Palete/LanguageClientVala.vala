@@ -80,11 +80,27 @@ namespace Palete {
 			this.log(LanguageClientAction.LAUNCH, process_path);
 			GLib.debug("Launching %s", process_path);
 			this.launcher = new GLib.SubprocessLauncher (SubprocessFlags.STDIN_PIPE | SubprocessFlags.STDOUT_PIPE);
-			this.launcher.set_environ(GLib.Environ.get());
+			var env = GLib.Environ.get();
+			env += "G_MESSAGES_DEBUG=all";
+
+			this.launcher.set_environ(env);
+			var logpath = GLib.Environment.get_home_dir() + "/.cache/vala-language-server";
+			
+			if (!GLib.FileUtils.test(logpath, GLib.FileTest.IS_DIR)) {
+				Posix.mkdir(logpath, 0700);
+			}
+			// not very reliable..
+			//this.launcher.set_stderr_file_path( 
+			//	logpath + "/" + 
+			//	(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log"
+			//);
+			//GLib.debug("log lang server to %s", logpath + "/" + 
+			//	(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log");
+
 			try {
 
 				
-				this.subprocess = launcher.spawnv ({ process_path });
+				this.subprocess = launcher.spawnv ({ process_path , "2>" , "/tmp/vala-language-server.log" });
 				
 				this.subprocess.wait_async.begin( null, ( obj,res ) => {
 					try {
@@ -136,9 +152,10 @@ namespace Palete {
 				 
 				this.jsonrpc_client.failed.connect(() => {
 					this.log(LanguageClientAction.ERROR_RPC, "client failed");
+					GLib.debug("language server server has failed");					
 					this.onClose();
 					
-					GLib.debug("language server server has failed");
+
 				});
 
 				this.initialize_server ();
@@ -256,7 +273,11 @@ namespace Palete {
 			switch (method) {
 				case "textDocument/publishDiagnostics":
 					//GLib.debug("got notification %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value), true));
-					this.onDiagnostic(return_value);
+					 
+					GLib.Idle.add(() => {
+						this.onDiagnostic(return_value);
+						return false;
+					});
 					return;
 				default: 
 					break;
