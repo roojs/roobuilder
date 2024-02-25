@@ -22,7 +22,7 @@ namespace Palete {
 			if (!context.get_bounds(out begin, out end)) {
 				return false;
 			}
-			VAR res = yield this.file.getLanguageServer().hover(this.file, line, offset, 1);
+			var res = yield this.file.getLanguageServer().hover(this.file, line, offset, 1);
  			
 			context.get_iter(out pos);
 			
