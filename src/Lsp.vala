@@ -920,7 +920,7 @@ namespace Lsp {
 		            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 		            return false;
 		        }
-
+				var contents = new Gee.ArrayList<MarkedString>();
 
 		        property_node.get_array ().foreach_element ((array, index, element) => {
 		        	try {
@@ -929,11 +929,12 @@ namespace Lsp {
 							array.get_object_element(index).get_string_member("value")
 						);
 		             
-		                this.contents.add ( add );
+		                contents.add ( add );
 		            } catch (Error e) {
 		                warning ("argument %u to command could not be deserialized: %s", index, e.message);
 		            }
 		        });
+                value.set_object (contents);
 		        return true;
             } 
             
