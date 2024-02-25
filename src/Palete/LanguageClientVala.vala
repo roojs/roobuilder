@@ -277,7 +277,7 @@ namespace Palete {
 					GLib.Idle.add(() => {
 						this.onDiagnostic(return_value);
 						return false;
-					}
+					});
 					return;
 				default: 
 					break;
