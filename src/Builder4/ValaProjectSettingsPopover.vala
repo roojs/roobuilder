@@ -106,6 +106,7 @@ public class ValaProjectSettingsPopover : Object
 		); 
 		
 		
+		
 		GLib.Idle.add(() => {
 			project.loadVapiIntoStore(_this.vapimodel.el);
 			 GLib.Timeout.add(500, () => {

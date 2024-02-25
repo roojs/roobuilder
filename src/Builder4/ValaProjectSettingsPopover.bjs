@@ -1100,6 +1100,7 @@
     "\t); ",
     "\t",
     "\t",
+    "\t",
     "\tGLib.Idle.add(() => {",
     "\t\tproject.loadVapiIntoStore(_this.vapimodel.el);",
     "\t\t GLib.Timeout.add(500, () => {",
