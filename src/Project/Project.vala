@@ -416,7 +416,11 @@ namespace Project {
 
 		public void save()
 		{
-			  
+			
+			if (this.loading) {
+				return;
+			}
+			
 			var  s =  this.toJSON();
 			GLib.debug("Save Project %s\n%s", this.name, s);
 			try {
