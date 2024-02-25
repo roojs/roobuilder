@@ -935,7 +935,7 @@ namespace Lsp {
 		                warning ("argument %u to command could not be deserialized: %s", index, e.message);
 		            }
 		        });
-		        return
+		        return true;
             } 
             
             return default_deserialize_property (property_name, out value, pspec, property_node);
