@@ -22,7 +22,21 @@ namespace Palete {
 			if (!context.get_bounds(out begin, out end)) {
 				return false;
 			}
-			var res = yield this.file.getLanguageServer().hover(this.file, line, offset, 1);
+			var line = end.get_line();
+			var offset =  end.get_line_offset();
+			if (this.editor.prop != null) {
+			//	tried line -1 (does not work)
+				GLib.debug("node pad = '%s' %d", this.editor.node.node_pad, this.editor.node.node_pad.length);
+				
+				line += this.editor.prop.start_line ; 
+				// this is based on Gtk using tabs (hence 1/2 chars);
+				offset += this.editor.node.node_pad.length;
+				// javascript listeners are indented 2 more spaces.
+				if (this.editor.prop.ptype == JsRender.NodePropType.LISTENER) {
+					offset += 2;
+				}
+			} 
+			var res = yield this.file.getLanguageServer().hover(this.file, line, offset);
  			
 			context.get_iter(out pos);
 			
