@@ -3,6 +3,15 @@
 namespace Palete {
 	public class HoverProvider : Object, GtkSource.HoverProvider
 	{
+		public JsRender.JsRender file {
+			get { return this.editor.file; }
+			private set {}
+		}
+		Editor editor;
+		public HoverProvider(Editor editor) 
+		{
+			this.editor = editor;
+		}
 		
 		public async bool populate_async ( GtkSource.HoverContext context, GtkSource.HoverDisplay display, Cancellable? cancellable) throws Error 
 		{
@@ -13,7 +22,8 @@ namespace Palete {
 			if (!context.get_bounds(out begin, out end)) {
 				return false;
 			}
- 
+			VAR res = yield this.file.getLanguageServer().hover(this.file, line, offset, 1);
+ 			
 			context.get_iter(out pos);
 			
 			GLib.debug("populate hover async Word: %s || %s" ,begin.get_text(pos) ,  pos.get_text(end)    );
