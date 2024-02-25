@@ -13,13 +13,18 @@ namespace Palete {
 			if (!context.get_bounds(out begin, out end)) {
 				return false;
 			}
-			GLib.debug("Word: %s" ,begin.get_text(end));
+			GLib.debug("populate async Word: %s" ,begin.get_text(end));
 			
 			return false;
 		}
 		public bool populate (GtkSource.HoverContext context, GtkSource.HoverDisplay display) throws Error
 		{
-			return false;
+			global::Gtk.TextIter begin, end;
+
+			if (!context.get_bounds(out begin, out end)) {
+				return false;
+			}
+			GLib.debug("populate Word: %s" ,begin.get_text(end));return false;
 			
 			
 		}
