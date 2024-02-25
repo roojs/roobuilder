@@ -11,9 +11,9 @@ namespace Palete {
 			global::Gtk.TextIter begin, end;
 
 			if (!context.get_bounds(out begin, out end)) {
-				return true;
+				return false;
 			}
-			GLib.debug("populate hover async Word: %s" ,begin.get_text(end));
+			GLib.debug("populate hover async Word: %s || %s" ,begin.get_text(context.get_iter()) ,  context.get_iter().get_text(end)    );
 			display.append(new global::Gtk.Label("test"));
 			return true;
 		}
