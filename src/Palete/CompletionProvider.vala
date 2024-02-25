@@ -255,8 +255,14 @@ namespace Palete {
 			GLib.debug("pupoulate async  - got reply");
 			this.model = new CompletionModel(this, context, res, cancellable); 
 			var word = context.get_word();
-			GLib.debug("Context word is %s, %d", word, (int)word.length);
-			if (word.length < 1) {
+			
+			var lc = end.copy();
+			lc.backward_char();
+			var lchar = lc.get_text(end);
+			
+			
+			GLib.debug("Context word is %s / '%s' , %d", word, lchar, (int)word.length);
+			if (word.length < 1 && lchar != ".") {
 				word = " "; // this should filter out everything, and prevent it displaying 
 			}
 			
