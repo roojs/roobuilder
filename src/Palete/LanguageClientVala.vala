@@ -278,6 +278,9 @@ namespace Palete {
 					}
 					GLib.Idle.add(() => {
 						this.onDiagnostic(return_value);
+						if (return_value. != null) {
+							return_value.unref();
+						}
 						return false;
 					}
 					return;
