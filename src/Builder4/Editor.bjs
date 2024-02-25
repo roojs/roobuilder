@@ -135,7 +135,7 @@
         ");",
         " ",
         "var hover = this.el.get_hover();",
-        "hover.add_provider(new Palete.HoverProvider());",
+        "hover.add_provider(new Palete.HoverProvider(_this));",
         "",
         "//this.el.completion.unblock_interactive();",
         "this.el.completion.select_on_show = true; // select",
