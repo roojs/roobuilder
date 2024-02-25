@@ -433,7 +433,7 @@ public class ValaProjectSettingsPopover : Object
 			this.el.label = "Generate Meson";
 
 			//listeners
-			this.el.activate.connect( ( ) => {
+			this.el.toggled.connect( ( ) => {
 			
 				_this.project.generate_meson = this.el.active;
 			});

@@ -91,7 +91,7 @@
              "$ xns" : "Gtk",
              "id" : "generate_meson",
              "listeners" : {
-              "activate" : [
+              "toggled" : [
                "( ) => {",
                "",
                "\t_this.project.generate_meson = this.el.active;",
