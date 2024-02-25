@@ -13,6 +13,7 @@ namespace Palete {
 			if (!context.get_bounds(out begin, out end)) {
 				return false;
 			}
+			pos = begin.copy(); // borked.. 
 			context.get_iter(pos);
 			
 			GLib.debug("populate hover async Word: %s || %s" ,begin.get_text(pos) ,  pos.get_text(end)    );
