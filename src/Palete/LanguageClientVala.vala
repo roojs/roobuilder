@@ -152,9 +152,10 @@ namespace Palete {
 				 
 				this.jsonrpc_client.failed.connect(() => {
 					this.log(LanguageClientAction.ERROR_RPC, "client failed");
+					GLib.debug("language server server has failed");					
 					this.onClose();
 					
-					GLib.debug("language server server has failed");
+
 				});
 
 				this.initialize_server ();
