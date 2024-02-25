@@ -921,7 +921,6 @@ namespace Lsp {
 		            return false;
 		        }
 
-		        var contents = new Gee.ArrayList<MarkedString>();
 
 		        property_node.get_array ().foreach_element ((array, index, element) => {
 		        	try {
@@ -930,7 +929,7 @@ namespace Lsp {
 							array.get_object_element(index).get_string_member("value")
 						);
 		             
-		                contents.add ( add );
+		                this.contents.add ( add );
 		            } catch (Error e) {
 		                warning ("argument %u to command could not be deserialized: %s", index, e.message);
 		            }
