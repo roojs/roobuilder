@@ -38,7 +38,7 @@ namespace Palete {
 			} 
 			var res = yield this.file.getLanguageServer().hover(this.file, line, offset);
  			
- 			if (re.contents  != null && res.contents.size > 0) {
+ 			if (res.contents  != null && res.contents.size > 0) {
  				var str = res.contents.get(0).value;
  				display.append(new global::Gtk.Label(str));
  				return true;
