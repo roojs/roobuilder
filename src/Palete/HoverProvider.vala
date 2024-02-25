@@ -3,6 +3,8 @@
 namespace Palete {
 	public class HoverProvider : Object, GtkSource.HoverProvider
 	{
+		
+		
 		public async bool populate_async ( GtkSource.HoverContext context, GtkSource.HoverDisplay display, Cancellable? cancellable) throws Error 
 		{
 			
