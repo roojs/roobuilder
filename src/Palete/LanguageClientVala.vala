@@ -82,7 +82,13 @@ namespace Palete {
 			this.launcher = new GLib.SubprocessLauncher (SubprocessFlags.STDIN_PIPE | SubprocessFlags.STDOUT_PIPE);
 			var env = GLib.Environ.get();
 			env += "G_MESSAGES_DEBUG=all";
+
 			this.launcher.set_environ(env);
+			this.launcher.set_stderr_file_path( 
+				GLib.Environment.get_home_dir() + "/.cache/vala-language-server/" + 
+				(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log"
+			);
+
 			try {
 
 				
