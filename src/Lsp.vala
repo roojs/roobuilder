@@ -869,6 +869,11 @@ namespace Lsp {
     }
 
    public  class MarkedString : Object {
+   		public MarkedString(string language, string value) 
+   		{
+   			this.language = language;
+   			this.value = value;
+   		}
         public string language { get; set; }
         public string value { get; set; }
     }
