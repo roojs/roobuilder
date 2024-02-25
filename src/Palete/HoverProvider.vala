@@ -15,7 +15,7 @@ namespace Palete {
 			}
 			GLib.debug("populate hover async Word: %s" ,begin.get_text(end));
 			display.append(new global::Gtk.Label("test"));
-			return false;
+			return trye;
 		}
 		public bool populate (GtkSource.HoverContext context, GtkSource.HoverDisplay display) throws Error
 		{
@@ -25,7 +25,7 @@ namespace Palete {
 				return false;
 			}
 			GLib.debug("populate hover Word: %s" ,begin.get_text(end));return false;
-			
+			return true;
 			
 		}
 	}
