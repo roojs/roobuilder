@@ -84,6 +84,12 @@ namespace Palete {
 			env += "G_MESSAGES_DEBUG=all";
 
 			this.launcher.set_environ(env);
+			var logpath = GLib.Environment.get_home_dir() + "/.cache/vala-language-server";
+			
+			if (!GLib.FileUtils.test(logpath, GLib.FileTest.IS_DIR)) {
+				Posix.mkdir(logpath, 0700);
+			}
+			
 			this.launcher.set_stderr_file_path( 
 				GLib.Environment.get_home_dir() + "/.cache/vala-language-server/" + 
 				(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log"
