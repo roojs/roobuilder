@@ -86,7 +86,7 @@ namespace Palete {
 			try {
 
 				
-				this.subprocess = launcher.spawnv ({ process_path });
+				this.subprocess = launcher.spawnv ({ process_path , "2>" , "/tmp/vala-language-server.log" });
 				
 				this.subprocess.wait_async.begin( null, ( obj,res ) => {
 					try {
