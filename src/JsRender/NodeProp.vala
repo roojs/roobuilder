@@ -101,7 +101,7 @@ public enum JsRender.NodePropType
 			
 		};
 	}
-	public bool has_opt_list()
+	public bool can_have_opt_list()
 	{
 		switch (this) {
 			case RAW: 		
@@ -113,7 +113,6 @@ public enum JsRender.NodePropType
 			case CTOR:   
 				return false;
 			case USER : 	
-			
 			case PROP: 
 				return true;
 			default: 
