@@ -649,10 +649,10 @@ public class Xcls_PopoverAddObject : Object
 					_this.main_window.windowstate.file.tree = dropNode;  
 			    	add.updated_count++;
 			    	var m = (GLib.ListStore) tf.model.el.model;
-					m.append(dropNode);
-					tf.model.selectNode(dropNode); 	
+					m.append(add);
+					tf.model.selectNode(add); 	
 					tf.changed();
-					tf.node_selected(dropNode);
+					tf.node_selected(add);
 					return;
 				}
 				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
