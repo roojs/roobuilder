@@ -187,8 +187,8 @@ public class JsRender.NodeToGlade : Object {
 		var left = 0, top = 0, cols = 1;
 		var colval = this.node.get_prop("columns");
 		
-		if (colval !== null) {
-			cols = Int.parse(colval.val);
+		if (colval != null) {
+			cols = int.parse(colval.val);
 		}
 
 		var items = this.node.readItems();
