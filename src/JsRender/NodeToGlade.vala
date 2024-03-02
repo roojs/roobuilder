@@ -228,12 +228,18 @@ public class JsRender.NodeToGlade : Object {
 	}
 	void addProperty(Xml.Node* obj, string k, string val) 
 	{
+		var domprop = this.create_element("property");
+		domprop->set_prop("name", k);
+		domprop->add_child(new Xml.Node.text(val));
+		obj->add_child(domprop); 
+	}
+	 void addGridAttach(Xml.Node* obj, string k, string val) 
+	{
 			var domprop = this.create_element("property");
 			domprop->set_prop("name", k);
 			domprop->add_child(new Xml.Node.text(val));
 			obj->add_child(domprop); 
 	}
-	 
 
 
 		
