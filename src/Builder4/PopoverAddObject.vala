@@ -641,12 +641,12 @@ public class Xcls_PopoverAddObject : Object
 				}
 				//var pos = "";
 				// find left tree selected node
-				
-				var lt = _this.mainwindow.windowstate.left_tree;
+				var ws =_this.mainwindow.windowstate;
+				var lt = wws.left_tres
 			
 				var add = _this.selmodel.getSelectedNode().deepClone();
-			if (lt.model.el.n_items < 1) {
-					_this.main_window.windowstate.file.tree = dropNode;  
+				if (lt.model.el.n_items < 1) {
+					ws.file.tree = add;  
 			    	add.updated_count++;
 			    	var m = (GLib.ListStore) tf.model.el.model;
 					m.append(add);
