@@ -642,7 +642,7 @@ public class Xcls_PopoverAddObject : Object
 				//var pos = "";
 				// find left tree selected node
 				var ws =_this.mainwindow.windowstate;
-				var lt = wws.left_tres
+				var lt = ws.left_tree;
 			
 				var add = _this.selmodel.getSelectedNode().deepClone();
 				if (lt.model.el.n_items < 1) {

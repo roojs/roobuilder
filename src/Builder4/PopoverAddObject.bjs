@@ -242,7 +242,7 @@
            "\t//var pos = \"\";",
            "\t// find left tree selected node",
            "\tvar ws =_this.mainwindow.windowstate;",
-           "\tvar lt = wws.left_tres",
+           "\tvar lt = ws.left_tree;",
            "",
            "\tvar add = _this.selmodel.getSelectedNode().deepClone();",
            "\tif (lt.model.el.n_items < 1) {",
