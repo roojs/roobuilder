@@ -884,7 +884,8 @@ namespace GtkSource {
 	[CCode (cheader_filename = "gtksourceview/gtksource.h", type_cname = "GtkSourceHoverProviderInterface", type_id = "gtk_source_hover_provider_get_type ()")]
 	public interface HoverProvider : GLib.Object {
 		[NoWrapper]
-		public abstract async void populate_async (GtkSource.HoverContext context, GtkSource.HoverDisplay display, GLib.Cancellable? cancellable) throws GLib.Error;
+		public abstract bool populate (GtkSource.HoverContext context, GtkSource.HoverDisplay display) throws GLib.Error;
+		public abstract async bool populate_async (GtkSource.HoverContext context, GtkSource.HoverDisplay display, GLib.Cancellable? cancellable) throws GLib.Error;
 	}
 	[CCode (cheader_filename = "gtksourceview/gtksource.h", type_cname = "GtkSourceIndenterInterface", type_id = "gtk_source_indenter_get_type ()")]
 	public interface Indenter : GLib.Object {
