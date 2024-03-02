@@ -44,17 +44,17 @@ public class JsRender.NodeToGlade : Object {
 	{
 
 
-		var doc = this.mungeNode ();
+		this.mungeNode ();
 		string ret;
 		int len;
-        doc->dump_memory_format (out ret, out len, true);
+        this.doc->dump_memory_format (out ret, out len, true);
 
 		return ret;
 	
           
 		     
 	}
-	public Xml.Doc* mungeChild( Node cnode , Xml.Node* cdom)
+	public Xml.Node* mungeChild( Node cnode , Xml.Node* cdom)
 	{
 		var x = new  NodeToGlade(this.project, cnode,  cdom);
 		return x.mungeNode();
@@ -73,32 +73,31 @@ public class JsRender.NodeToGlade : Object {
 	
 	}
 	
-	public Xml.Doc* mungeNode()
+	public Xml.Node* mungeNode()
 	{
-		Xml.Doc* doc;
+		 
 		var is_top = false;
 		if (this.parent == null) {
 			is_top = true;
-			doc = new Xml.Doc("1.0");
+			this.doc = new Xml.Doc("1.0");
 
 			var inf = this.create_element("interface");
-			doc->set_root_element(inf);
+			this.doc->set_root_element(inf);
 			var req = this.create_element("requires");
 			req->set_prop("lib", "gtk+");
 			req->set_prop("version", "4.1");
 			inf->add_child(req);
 			this.parent = inf;
-		} else {
-			doc = this.parent->doc;
-		}
+		} 
+		
 		var cls = this.node.fqn().replace(".", "");
 		
 		var gdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
 		if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
-			return doc;
+			return null;
 		}
  		if (gdata.inherits.contains("Gtk.Native")&& !is_top) {
-			return doc;
+			return null;
 		}
 		// what namespaces are supported
 		switch(this.node.NS) {
@@ -107,13 +106,13 @@ public class JsRender.NodeToGlade : Object {
 			case "Adw": // works if you call adw.init() in main!
 				break;
 			default:
-				return doc;
+				return null;
 		}
 		
 		// other problems!!!
 		
 		if (gdata.fqn() == ("Gtk.ListStore")) {
-			return doc;
+			return null;
 		}
 		
 		// should really use GXml... 
@@ -202,9 +201,9 @@ public class JsRender.NodeToGlade : Object {
 			}
 			
 			
-			this.mungeChild(cn, child);
+			var sub_obj = this.mungeChild(cn, child);
 			if (cls == "GtkGrid") {
-				this.addGridAttach(obj, left, top);
+				this.addGridAttach(child, left, top);
 				left++;
 				if (left == cols) {
 					left = 0;
@@ -223,7 +222,7 @@ public class JsRender.NodeToGlade : Object {
 			obj->add_child(child);
 			 
 		}
-		return doc;
+		return obj;
 
 		 
 
