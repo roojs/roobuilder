@@ -235,10 +235,10 @@ public class JsRender.NodeToGlade : Object {
 	}
 	 void addGridAttach(Xml.Node* obj, int left, int top) 
 	{
-			var packing = this.create_element("packing");
-			this.addProperty(packing, "left-attach", left.to_string());
-			this.addProperty(packing, "top-attach", top.to_string());
-			obj->add_child(packing); 
+		var packing = this.create_element("packing");
+		this.addProperty(packing, "left-attach", left.to_string());
+		this.addProperty(packing, "top-attach", top.to_string());
+		obj->add_child(packing); 
 	}
 
 
