@@ -95,7 +95,7 @@ public class JsRender.NodeToGlade : Object {
 		var gdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
 		if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
 			switch(cls) {
-				case "GtkColumnViewColumn":
+				case "GtkColumnViewColumn": //exception to the rule..
 					break;
 				default:
 					return null;
