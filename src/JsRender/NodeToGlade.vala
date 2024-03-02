@@ -132,7 +132,7 @@ public class JsRender.NodeToGlade : Object {
 			
 				default:
 					obj->set_prop("class", cls);
-					
+			}	
 		}
 		obj->set_prop("id", "w" + this.node.oid.to_string());
 		this.parent->add_child(obj);
