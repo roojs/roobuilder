@@ -185,12 +185,13 @@ public class JsRender.NodeToGlade : Object {
 		}	*/
 		// children..
 		var left = 0, top = 0, cols = 1;
+		if (cls == "GtkGrid") {	
 		var colval = this.node.get_prop("columns");
-		
-		if (colval != null) {
-			cols = int.parse(colval.val);
-		}
-
+			GLib.debug("Columns %s", colval == null ? "no columns" : colval.val);
+			if (colval != null) {
+				cols = int.parse(colval.val);
+			}
+		{
 		var items = this.node.readItems();
 		for (var i = 0; i < items.size; i++ ) {
 			var cn = items.get(i);
