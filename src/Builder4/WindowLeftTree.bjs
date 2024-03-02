@@ -617,6 +617,7 @@
            "\t\tm.append(dropNode);",
            "\t\t_this.model.selectNode(dropNode); \t",
            "\t\t_this.changed();",
+           "\t\t_this.select_node(dropNode);",
            "\t\treturn true; // no need to highlight?",
            "     ",
            "    }",
