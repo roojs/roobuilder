@@ -10,6 +10,7 @@ public class JsRender.NodeToGlade : Object {
 	Node node;
 	Project.Gtk project;
 	Xml.Node* parent;
+	Xml.Doc* doc;
 	
 	public NodeToGlade( Project.Gtk project, Node node, Xml.Node* parent) 
 	{
@@ -43,17 +44,17 @@ public class JsRender.NodeToGlade : Object {
 	{
 
 
-		var doc = this.mungeNode ();
+		this.mungeNode ();
 		string ret;
 		int len;
-        doc->dump_memory_format (out ret, out len, true);
+        this.doc->dump_memory_format (out ret, out len, true);
 
 		return ret;
 	
           
 		     
 	}
-	public Xml.Doc* mungeChild( Node cnode , Xml.Node* cdom)
+	public Xml.Node* mungeChild( Node cnode , Xml.Node* cdom)
 	{
 		var x = new  NodeToGlade(this.project, cnode,  cdom);
 		return x.mungeNode();
@@ -72,32 +73,36 @@ public class JsRender.NodeToGlade : Object {
 	
 	}
 	
-	public Xml.Doc* mungeNode()
+	public Xml.Node* mungeNode()
 	{
-		Xml.Doc* doc;
+		 
 		var is_top = false;
 		if (this.parent == null) {
 			is_top = true;
-			doc = new Xml.Doc("1.0");
+			this.doc = new Xml.Doc("1.0");
 
 			var inf = this.create_element("interface");
-			doc->set_root_element(inf);
+			this.doc->set_root_element(inf);
 			var req = this.create_element("requires");
 			req->set_prop("lib", "gtk+");
 			req->set_prop("version", "4.1");
 			inf->add_child(req);
 			this.parent = inf;
-		} else {
-			doc = this.parent->doc;
-		}
+		} 
+		
 		var cls = this.node.fqn().replace(".", "");
 		
 		var gdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
 		if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
-			return doc;
+			switch(cls) {
+				case "GtkColumnViewColumn": //exception to the rule..
+					break;
+				default:
+					return null;
+			}
 		}
  		if (gdata.inherits.contains("Gtk.Native")&& !is_top) {
-			return doc;
+			return null;
 		}
 		// what namespaces are supported
 		switch(this.node.NS) {
@@ -106,15 +111,19 @@ public class JsRender.NodeToGlade : Object {
 			case "Adw": // works if you call adw.init() in main!
 				break;
 			default:
-				return doc;
+				return null;
 		}
 		
 		// other problems!!!
 		
 		if (gdata.fqn() == ("Gtk.ListStore")) {
-			return doc;
+			return null;
 		}
-		
+		 
+		 // <object class="GtkNotebookPage">
+       	//         <property name="tab-expand">1</property>
+         //       <property name="child">
+		 //      <property name="label">
 		// should really use GXml... 
 		var obj = this.create_element("object");
 		//var id = this.node.uid();
@@ -124,9 +133,19 @@ public class JsRender.NodeToGlade : Object {
 			obj->set_prop("class", "GtkFrame");
 			skip_props = true;
 		} else {
-		
-			obj->set_prop("class", cls);
+			switch(cls) {
+				case  "GtkHeaderBar":
+					obj->set_prop("class", "GtkBox");
+					this.addProperty(obj, "orientation", "horizontal");
+					skip_props = true;
+					break;
+			
+				default:
+					obj->set_prop("class", cls);
+					break;
+			}	
 		}
+		
 		obj->set_prop("id", "w" + this.node.oid.to_string());
 		this.parent->add_child(obj);
 		// properties..
@@ -158,15 +177,9 @@ public class JsRender.NodeToGlade : Object {
 			if (k == "model") {
 				continue;
 			}
+			this.addProperty(obj, k, val);
 
-
-			var domprop = this.create_element("property");
-			domprop->set_prop("name", k);
 			 
-			
-			
-			domprop->add_child(new Xml.Node.text(val));
-			obj->add_child(domprop); 
         }
 		// packing???
 /*
@@ -180,30 +193,67 @@ public class JsRender.NodeToGlade : Object {
 		
 		}	*/
 		// children..
-
+		var left = 0, top = 0, cols = 1;
+		if (cls == "GtkGrid") {	
+		var colval = this.node.get_prop("* columns");
+			GLib.debug("Columns %s", colval == null ? "no columns" : colval.val);
+			if (colval != null) {
+				cols = int.parse(colval.val);
+			}
+		}
 		var items = this.node.readItems();
 		for (var i = 0; i < items.size; i++ ) {
 			var cn = items.get(i);
 			var child  = this.create_element("child");
-			if (cls == "GtkWindow" && cn.fqn() == "Gtk.HeaderBar") {
-				child->set_prop("type", "titlebar");
+			if ((cls == "GtkWindow" || cls == "GtkApplicationWindow") && cn.fqn() == "Gtk.HeaderBar") {
+				child->set_prop("type", "label");
 			}
 			
 			
-			this.mungeChild(cn, child);
+			var sub_obj = this.mungeChild(cn, child);
+			if (sub_obj == null) {
+				continue;
+			}
+			if (cls == "GtkGrid") {
+				this.addGridAttach(sub_obj, left, top);
+				left++;
+				if (left == cols) {
+					left = 0;
+					top++;
+				}
+			
+			
+			}
+			
+			
+			
+			
 			if (child->child_element_count()  < 1) {
 				continue;
 			}
 			obj->add_child(child);
 			 
 		}
-		return doc;
+		return obj;
 
 		 
 
 	}
-	 
-	 
+	void addProperty(Xml.Node* obj, string k, string val) 
+	{
+		var domprop = this.create_element("property");
+		domprop->set_prop("name", k);
+		domprop->add_child(new Xml.Node.text(val));
+		obj->add_child(domprop); 
+	}
+	 void addGridAttach(Xml.Node* obj, int left, int top) 
+	{
+		var layout = this.create_element("layout");
+		this.addProperty(layout, "column", left.to_string());
+		this.addProperty(layout, "row", top.to_string());
+		obj->add_child(layout); 
+		
+	}
 
 
 		
