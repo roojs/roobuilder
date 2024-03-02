@@ -1570,7 +1570,7 @@ public class Xcls_WindowLeftTree : Object
 			}
 			this.updateModel(null);
 			_this.main_window.windowstate.file.tree = null;
-			
+			_this.changed();
 		/*    
 		    print("DELETE SELECTED?");
 		    //_this.view.blockChanges = true;

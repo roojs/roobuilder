@@ -953,7 +953,7 @@
             "\t}",
             "\tthis.updateModel(null);",
             "\t_this.main_window.windowstate.file.tree = null;",
-            "\t",
+            "\t_this.changed();",
             "/*    ",
             "    print(\"DELETE SELECTED?\");",
             "    //_this.view.blockChanges = true;",
