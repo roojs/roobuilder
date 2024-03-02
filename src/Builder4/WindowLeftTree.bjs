@@ -952,7 +952,7 @@
             "\t\treturn;",
             "\t}",
             "\tthis.updateModel(null);",
-            "\t_this.file.tree = null;",
+            "\t_this.main_window.windowstate.file.tree = null;",
             "\t",
             "/*    ",
             "    print(\"DELETE SELECTED?\");",
