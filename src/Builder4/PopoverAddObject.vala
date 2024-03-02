@@ -648,11 +648,11 @@ public class Xcls_PopoverAddObject : Object
 				if (lt.model.el.n_items < 1) {
 					ws.file.tree = add;  
 			    	add.updated_count++;
-			    	var m = (GLib.ListStore) tf.model.el.model;
+			    	var m = (GLib.ListStore) lt.model.el.model;
 					m.append(add);
-					tf.model.selectNode(add); 	
-					tf.changed();
-					tf.node_selected(add);
+					lt.model.selectNode(add); 	
+					lt.changed();
+					lt.node_selected(add);
 					return;
 				}
 				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
