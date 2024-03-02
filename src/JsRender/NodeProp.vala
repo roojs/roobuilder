@@ -101,6 +101,28 @@ public enum JsRender.NodePropType
 			
 		};
 	}
+	public bool has_opt_list()
+	{
+		switch (this) {
+			case RAW: 		
+			case METHOD : 
+			case SIGNAL : 	
+			case SPECIAL :
+	 		case LISTENER :
+	 		case NONE:  
+			case CTOR:   
+				return false;
+			case USER : 	
+			
+			case PROP: 
+				return true;
+			default: 
+				return false;
+		}
+		
+	
+	}
+	
 	public static NodePropType nameToType(string str)
 	{
 		foreach(var np in alltypes()) {
