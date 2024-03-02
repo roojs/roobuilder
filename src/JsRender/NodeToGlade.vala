@@ -124,8 +124,14 @@ public class JsRender.NodeToGlade : Object {
 			obj->set_prop("class", "GtkFrame");
 			skip_props = true;
 		} else {
-		
-			obj->set_prop("class", cls);
+			switch(cls) {
+				case  "GtkHeaderBar":
+					obj->set_prop("class", "GtkBox");
+					break;
+			
+				default:
+					obj->set_prop("class", cls);
+					
 		}
 		obj->set_prop("id", "w" + this.node.oid.to_string());
 		this.parent->add_child(obj);
@@ -202,7 +208,13 @@ public class JsRender.NodeToGlade : Object {
 		 
 
 	}
-	 
+	void addProperty(Xml.Node* obj, string k, string val) 
+	{
+			var domprop = this.create_element("property");
+			domprop->set_prop("name", k);
+			domprop->add_child(new Xml.Node.text(val));
+			obj->add_child(domprop); 
+	}
 	 
 
 
