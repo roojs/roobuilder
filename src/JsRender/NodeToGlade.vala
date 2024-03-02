@@ -191,7 +191,7 @@ public class JsRender.NodeToGlade : Object {
 			if (colval != null) {
 				cols = int.parse(colval.val);
 			}
-		{
+		}
 		var items = this.node.readItems();
 		for (var i = 0; i < items.size; i++ ) {
 			var cn = items.get(i);
