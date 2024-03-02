@@ -114,12 +114,8 @@ public class JsRender.NodeToGlade : Object {
 		if (gdata.fqn() == ("Gtk.ListStore")) {
 			return null;
 		}
-		if (gdata.fqn() == ("Gtk.StringList")) {
-			return null;
-		}
-		if (gdata.fqn() == ("Gtk.DropDown")) {
-			return null;
-		}
+		 
+		 
 		
 		// should really use GXml... 
 		var obj = this.create_element("object");
