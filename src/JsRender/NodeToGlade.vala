@@ -128,6 +128,7 @@ public class JsRender.NodeToGlade : Object {
 				case  "GtkHeaderBar":
 					obj->set_prop("class", "GtkBox");
 					this.addProperty(obj, "orientation", "horizontal");
+					skip_props = true;
 					break;
 			
 				default:
