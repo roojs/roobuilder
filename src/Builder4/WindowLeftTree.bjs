@@ -954,6 +954,7 @@
             "\tthis.updateModel(null);",
             "\t_this.main_window.windowstate.file.tree = null;",
             "\t_this.changed();",
+            "\t_this.node_selected(null);",
             "/*    ",
             "    print(\"DELETE SELECTED?\");",
             "    //_this.view.blockChanges = true;",
