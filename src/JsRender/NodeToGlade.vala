@@ -240,6 +240,7 @@ public class JsRender.NodeToGlade : Object {
 		this.addProperty(packing, "left-attach", left.to_string());
 		this.addProperty(packing, "top-attach", top.to_string());
 		obj->add_child(packing); 
+		
 	}
 
 
