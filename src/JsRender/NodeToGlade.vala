@@ -120,8 +120,10 @@ public class JsRender.NodeToGlade : Object {
 			return null;
 		}
 		 
-		 
-		
+		 // <object class="GtkNotebookPage">
+       	//         <property name="tab-expand">1</property>
+         //       <property name="child">
+		 //      <property name="label">
 		// should really use GXml... 
 		var obj = this.create_element("object");
 		//var id = this.node.uid();
