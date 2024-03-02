@@ -641,10 +641,24 @@ public class Xcls_PopoverAddObject : Object
 				}
 				//var pos = "";
 				// find left tree selected node
-				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();
+				
+				var lt = _this.mainwindow.windowstate.left_tree;
+			
+				var add = _this.selmodel.getSelectedNode().deepClone();
+			if (lt.model.el.n_items < 1) {
+					_this.main_window.windowstate.file.tree = dropNode;  
+			    	add.updated_count++;
+			    	var m = (GLib.ListStore) tf.model.el.model;
+					m.append(dropNode);
+					tf.model.selectNode(dropNode); 	
+					tf.changed();
+					tf.node_selected(dropNode);
+					return;
+				}
+				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
 				//var row = _this.view.getRowAt(x,y, out pos);
 				
-			 	 var add = _this.selmodel.getSelectedNode().deepClone();
+			
 				addto.appendChild(add);
 				_this.mainwindow.windowstate.left_props.changed();
 				_this.mainwindow.windowstate.left_tree.model.selectNode(add);
