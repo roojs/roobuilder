@@ -1237,7 +1237,7 @@ public class Xcls_WindowLeftTree : Object
 					m.append(dropNode);
 					_this.model.selectNode(dropNode); 	
 					_this.changed();
-					_this.select_node(dropNode);
+					_this.node_selected(dropNode);
 					return true; // no need to highlight?
 			     
 			    }
