@@ -127,6 +127,7 @@ public class JsRender.NodeToGlade : Object {
 			switch(cls) {
 				case  "GtkHeaderBar":
 					obj->set_prop("class", "GtkBox");
+					this.addProperty(obj, "orientation", "horizontal");
 					break;
 			
 				default:
@@ -164,15 +165,9 @@ public class JsRender.NodeToGlade : Object {
 			if (k == "model") {
 				continue;
 			}
+			this.addProperty(obj, k, val);
 
-
-			var domprop = this.create_element("property");
-			domprop->set_prop("name", k);
 			 
-			
-			
-			domprop->add_child(new Xml.Node.text(val));
-			obj->add_child(domprop); 
         }
 		// packing???
 /*
