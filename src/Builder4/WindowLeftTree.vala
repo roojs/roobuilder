@@ -1562,10 +1562,15 @@ public class Xcls_WindowLeftTree : Object
 			     return;
 		     }
 		    _this.selmodel.el.unselect_all();
-		    
-		    node.remove();
-		 	GLib.debug("delete Selected - done");
-		    _this.changed();
+		    if (node.parent != null) {
+				node.remove();
+			 	GLib.debug("delete Selected - done");
+				_this.changed();
+				return;
+			}
+			this.updateModel(null);
+			_this.file.tree = null;
+			
 		/*    
 		    print("DELETE SELECTED?");
 		    //_this.view.blockChanges = true;
