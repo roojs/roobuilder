@@ -203,7 +203,7 @@ public class JsRender.NodeToGlade : Object {
 			
 			this.mungeChild(cn, child);
 			if (cls == "GtkGrid") {
-				this.addGridAttach(child, left, top);
+				this.addGridAttach(obj, left, top);
 				left++;
 				if (left == cols) {
 					left = 0;
