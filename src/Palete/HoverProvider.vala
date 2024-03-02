@@ -20,7 +20,7 @@ namespace Palete {
 			global::Gtk.TextIter begin, end ,  pos;
 
 			if (!context.get_bounds(out begin, out end)) {
-				return false;
+				return true;
 			}
 			var line = end.get_line();
 			var offset =  end.get_line_offset();
@@ -43,7 +43,8 @@ namespace Palete {
  				display.append(new global::Gtk.Label(str));
  				return true;
 			} 
-			return false;
+			// return false seems to crash things.
+			return true;
 		}
 		public bool populate (GtkSource.HoverContext context, GtkSource.HoverDisplay display) throws Error
 		{

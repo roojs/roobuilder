@@ -1237,6 +1237,7 @@ public class Xcls_WindowLeftTree : Object
 					m.append(dropNode);
 					_this.model.selectNode(dropNode); 	
 					_this.changed();
+					_this.node_selected(dropNode);
 					return true; // no need to highlight?
 			     
 			    }
@@ -1385,6 +1386,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.can_unselect = true;
 
 			//listeners
 			this.el.selection_changed.connect( (position, n_items) => {
@@ -1561,10 +1563,16 @@ public class Xcls_WindowLeftTree : Object
 			     return;
 		     }
 		    _this.selmodel.el.unselect_all();
-		    
-		    node.remove();
-		 	GLib.debug("delete Selected - done");
-		    _this.changed();
+		    if (node.parent != null) {
+				node.remove();
+			 	GLib.debug("delete Selected - done");
+				_this.changed();
+				return;
+			}
+			this.updateModel(null);
+			_this.main_window.windowstate.file.tree = null;
+			_this.changed();
+			_this.node_selected(null);
 		/*    
 		    print("DELETE SELECTED?");
 		    //_this.view.blockChanges = true;
