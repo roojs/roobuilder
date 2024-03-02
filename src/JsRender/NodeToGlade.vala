@@ -114,7 +114,9 @@ public class JsRender.NodeToGlade : Object {
 		if (gdata.fqn() == ("Gtk.ListStore")) {
 			return null;
 		}
-		
+		if (gdata.fqn() == ("Gtk.StringList")) {
+			return null;
+		}
 		// should really use GXml... 
 		var obj = this.create_element("object");
 		//var id = this.node.uid();
