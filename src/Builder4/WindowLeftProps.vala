@@ -2373,7 +2373,7 @@ public class Xcls_LeftProps : Object
 			    
 			    var pal = _this.file.project.palete;
 			        
-			    string[] opts;
+			    string[] opts = {};
 			  
 			    var has_opts = prop.ptype.can_have_opt_list() ? 
 			    	pal.typeOptions(_this.node.fqn(), prop.name, prop.rtype, out opts)
