@@ -212,7 +212,7 @@ public class JsRender.NodeToGlade : Object {
 				continue;
 			}
 			if (cls == "GtkGrid") {
-				this.addGridAttach(child, left, top);
+				this.addGridAttach(sub_obj, left, top);
 				left++;
 				if (left == cols) {
 					left = 0;
@@ -245,10 +245,10 @@ public class JsRender.NodeToGlade : Object {
 	}
 	 void addGridAttach(Xml.Node* obj, int left, int top) 
 	{
-		var packing = this.create_element("packing");
-		this.addProperty(packing, "left-attach", left.to_string());
-		this.addProperty(packing, "top-attach", top.to_string());
-		obj->add_child(packing); 
+		var layout = this.create_element("layout");
+		this.addProperty(layout, "column", left.to_string());
+		this.addProperty(layout, "row", top.to_string());
+		obj->add_child(layout); 
 		
 	}
 
