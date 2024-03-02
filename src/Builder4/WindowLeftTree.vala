@@ -1385,6 +1385,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.can_unselect = true;
 
 			//listeners
 			this.el.selection_changed.connect( (position, n_items) => {
