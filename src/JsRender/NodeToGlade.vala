@@ -94,7 +94,12 @@ public class JsRender.NodeToGlade : Object {
 		
 		var gdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
 		if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
-			return null;
+			switch(cls) {
+				case "GtkColumnViewColumn":
+					break;
+				default:
+					return null;
+			}
 		}
  		if (gdata.inherits.contains("Gtk.Native")&& !is_top) {
 			return null;
