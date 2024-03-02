@@ -93,9 +93,9 @@ public class JsRender.NodeToGlade : Object {
 		var cls = this.node.fqn().replace(".", "");
 		
 		var gdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
-		//if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
-		//	return null;
-		//}
+		if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
+			return null;
+		}
  		if (gdata.inherits.contains("Gtk.Native")&& !is_top) {
 			return null;
 		}
