@@ -10,6 +10,7 @@ public class JsRender.NodeToGlade : Object {
 	Node node;
 	Project.Gtk project;
 	Xml.Node* parent;
+	Xml.Doc* doc;
 	
 	public NodeToGlade( Project.Gtk project, Node node, Xml.Node* parent) 
 	{
