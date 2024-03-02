@@ -233,12 +233,12 @@ public class JsRender.NodeToGlade : Object {
 		domprop->add_child(new Xml.Node.text(val));
 		obj->add_child(domprop); 
 	}
-	 void addGridAttach(Xml.Node* obj, string k, string val) 
+	 void addGridAttach(Xml.Node* obj, int left, int top) 
 	{
-			var domprop = this.create_element("property");
-			domprop->set_prop("name", k);
-			domprop->add_child(new Xml.Node.text(val));
-			obj->add_child(domprop); 
+			var packing = this.create_element("packing");
+			this.addProperty(packing, "left-attach", left.to_string());
+			this.addProperty(packing, "top-attach", top.to_string());
+			obj->add_child(packing); 
 	}
 
 
