@@ -782,7 +782,7 @@ namespace Palete {
         	 // append << core one to add stuff..
         	 
         	if (in_rval == "Gtk.Notebook") {
-        		ret.add( "Gtk.NotebookPage" ); 
+        		ret.add( "Gtk.NotebookPage" );
         	}
         	 
         	if (!with_props) {
