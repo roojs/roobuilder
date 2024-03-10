@@ -518,6 +518,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
  			}
 		}
 	 	*/
+	 	if (child.fqn() == "Gtk.NotebookPage") {
+	 		xargs +=" , this";
+ 		}
 	 	
 		this.addLine(this.ipad + @"$(prefix)new $cls( _this $xargs);" );
 		 
