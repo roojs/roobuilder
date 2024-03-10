@@ -136,7 +136,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
  
 	protected void addMyVars()
 	{
-		GLib.debug("callinged addMhyVars");
+		GLib.debug("calling  addMyVars");
 		
 		this.addLine();
 		this.addLine(this.ipad + "// my vars (def)");
@@ -181,8 +181,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				continue;
 			}
 			
+			var isUser = prop.ptype == NodePropType.USER;
+			if (this.node.fqn() == "Gtk.NotebookPage") {
+				isUser= true;
+			}
 			// is it a class property...
-			if (cls != null && cls.props.has_key(prop.name) && prop.ptype != NodePropType.USER) {
+			if (cls != null && cls.props.has_key(prop.name) && !isUser) {
 				continue;
 			}
 			
@@ -458,7 +462,6 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			}
 		 
 			if (nb_menu == "" && nb_tab == "") {
-			
 				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child)  );");
 				return;
 			}
