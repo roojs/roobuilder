@@ -579,6 +579,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 		
 		switch (this.node.fqn()) {
+			case "Gtk.NoteBook":
+				if (child.fqn() != "Gtk.NotebookPage") {
+					break;
+				}
+				// do not write add notebook...
+				return;
 			
 				
 		
