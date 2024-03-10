@@ -190,7 +190,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			var tcls = top == null ? "???" : top.xcls;
 			// for sub classes = we passs the top level as _owner
 			if (this.node.fqn() == "Gtk.NotebookPage") {
-				cargs_str += ", " + this.node.parent.xvala_xcls + " nodebook";
+				cargs_str += ", " + this.node.parent.xvala_xcls + " notebook";
 			}
 			
 			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner " + cargs_str + ")");
