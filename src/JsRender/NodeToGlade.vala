@@ -95,8 +95,10 @@ public class JsRender.NodeToGlade : Object {
 		var gdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
 		if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
 			switch(cls) {
-				case "GtkColumnViewColumn": //exception to the rule..
-					break;
+			//exception to the rule.. (must be buildable to work with glade?
+				case "GtkColumnViewColumn": 
+				case "GtkNotebookPage": 
+				break;
 				default:
 					return null;
 			}
