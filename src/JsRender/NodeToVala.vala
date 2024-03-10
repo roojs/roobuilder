@@ -606,7 +606,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				
 			case "Gtk.Notebook": // use label
 				if (child.fqn() == "Gtk.NotebookPage") {
-					return
+					return;
 				}
 				var label = child.has("notebook_label") ?  child.get_prop("notebook_label").val.escape() : "";
 				this.addLine(@"$(ipad)$(this_el)append_page( $(childname)$(el_name), new Gtk.Label(\"$(label)\");");
