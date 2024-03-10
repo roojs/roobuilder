@@ -452,7 +452,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		}
 		
 		if (this.node.fqn() == "Gtk.NotebookPage" && nb_child != "") {
-			if (nb_tab == "" && this.node.hasProp("tab_label")) {
+			if (nb_tab == "" && this.node.has("tab_label")) {
 				nb_tab = "new Gtk.Label(this.tab_label)";
 				return;
 			}
