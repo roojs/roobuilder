@@ -292,7 +292,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			var is_raw = prop.ptype == NodePropType.RAW;
 			
 			// what's the type.. - if it's a string.. then we quote it..
-			if (prop.type == "string" && !is_raw) {
+			if (prop.rtype == "string" && !is_raw) {
 				 v = "\"" +  v.escape("") + "\"";
 			}
 			// if it's a string...
