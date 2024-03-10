@@ -464,6 +464,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				  
 		}
 		
+		GLib.debug("got node %s with nb_child= %s", this.node.fqn() , nb_child);
 		if (this.node.fqn() == "Gtk.NotebookPage" && nb_child != "") {
 			if (nb_tab == "" && this.node.has("tab_label")) {
 				nb_tab = "new Gtk.Label(this.tab_label)";
