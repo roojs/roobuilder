@@ -582,13 +582,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 		
 		switch (this.node.fqn()) {
-			case "Gtk.NoteBook":
-				if (child.fqn() != "Gtk.NotebookPage") {
-					break;
-				}
-				// do not write add notebook...
-				return;
-			
+			 
 				
 		
 			case "Gtk.Fixed":
@@ -611,6 +605,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				return;
 				
 			case "Gtk.Notebook": // use label
+				if (child.fqn() == "Gtk.NotebookPage") {
+					return
+				}
 				var label = child.has("notebook_label") ?  child.get_prop("notebook_label").val.escape() : "";
 				this.addLine(@"$(ipad)$(this_el)append_page( $(childname)$(el_name), new Gtk.Label(\"$(label)\");");
 				
