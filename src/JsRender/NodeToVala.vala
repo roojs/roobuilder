@@ -373,7 +373,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		var cols = this.node.has("* columns") ? int.max(1, int.parse(this.node.get_prop("* columns").val)) : 1;
 		var colpos = 0;
 		
- 
+ 		var nb_child = "";
+		var nb_tab = "";
+		var nb_menu = "";
+			
 		 
 		foreach(var child in this.node.readItems()) {
 			
@@ -389,14 +392,30 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				continue;
 			}
 			// create the element..
+			  
 			
 			// this is only needed if it does not have an ID???
 			var childname = this.addPropSet(child, child.has("id") ? child.get_prop("id").val : "") ; 
 			if (!child.has("id") && this.this_el == "this.el.") {
 				this.addLine(this.ipad +  childname +".ref();"); 
-		 	} 
+		 	}
 			if (child.has("* prop")) {
-			 
+				if (this.node.fqn() == "Gtk.NotebookPage") {
+					switch (child.get_prop("* prop").val) {
+						case "child":
+							nb_child = childname;
+							break;
+							
+						case "tab":
+							nb_tab = childname;
+							break;
+							
+						case "menu":
+							nb_menu = childname;
+						 	break;
+					}
+					continue;
+				}
 			
 				// fixme special packing!??!?!
 				if (child.get_prop("* prop").val.contains("[]")) {
@@ -431,10 +450,20 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			 
 				  
 		}
+		
+		if (this.node.fqn() == "Gtk.NotebookPage" && nb_child != "") {
+			this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child, $(nb_label));");
+		
+		}
+		
 	}
+	/**
+		var childname = new Xcls_.... (....)
+		
 	
+	*/
 	protected string addPropSet(Node child, string child_name) 
-	{
+	{	
 	 
 		
 		var xargs = "";
