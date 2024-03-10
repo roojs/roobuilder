@@ -309,6 +309,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			GLib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
 			return;
 		}
+		
+		if (this.node.fqn() == "Gtk.NotebookPage") {
+			return;
+		}
 			// what are the properties of this class???
 		this.addLine();
 		this.addLine(this.ipad + "// set gobject values");
