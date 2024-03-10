@@ -683,6 +683,7 @@ namespace Palete {
 			
 			var w = this.getClass(cn);
 			if (w == null) {
+				
 				return;
 			}
 			
@@ -779,6 +780,10 @@ namespace Palete {
         	  // add_shortcut? 
         	 // add_tick_callback ?
         	 // append << core one to add stuff..
+        	 
+        	if (in_rval == "Gtk.Notebook") {
+        		ret.add( "Gtk.NotebookPage" ); 
+        	}
         	 
         	if (!with_props) {
         		
