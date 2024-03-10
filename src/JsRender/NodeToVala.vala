@@ -289,7 +289,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				v= v.down();
 			}
 			//FIXME -- check for raw string.. "string XXXX"
+			var is_raw = prop.ptype == NodePropType.RAW;
 			
+			// what's the type.. - if it's a string.. then we quote it..
+			if (val.type == "string" && !is_raw) {
+				 v = "\"" +  v.escape("") + "\"";
+			}
 			// if it's a string...
 			
 			prop.start_line = this.cur_line;
