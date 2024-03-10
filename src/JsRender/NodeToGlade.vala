@@ -208,13 +208,15 @@ public class JsRender.NodeToGlade : Object {
 			var cn = items.get(i);
 			
 			var childname = "child";
-			if (cn.has("* prop") && cn.get_prop("* prop").val == "child") {
+			var pname = "";
+			if (cn.has("* prop")) { // && cn.get_prop("* prop").val == "child") {
 				childname = "property";
+				pname = cn.get_prop("* prop").val
 			}
 			
 			var child  = this.create_element(childname);
-			if (childname == "property") {
-				child->set_prop("name", "child");
+			if (pname != "") {
+				child->set_prop("name", pname);
 			}
 			
 			if ((cls == "GtkWindow" || cls == "GtkApplicationWindow") && cn.fqn() == "Gtk.HeaderBar") {
