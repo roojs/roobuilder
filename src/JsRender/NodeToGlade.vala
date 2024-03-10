@@ -211,7 +211,7 @@ public class JsRender.NodeToGlade : Object {
 			var pname = "";
 			if (cn.has("* prop")) { // && cn.get_prop("* prop").val == "child") {
 				childname = "property";
-				pname = cn.get_prop("* prop").val
+				pname = cn.get_prop("* prop").val;
 			}
 			
 			var child  = this.create_element(childname);
