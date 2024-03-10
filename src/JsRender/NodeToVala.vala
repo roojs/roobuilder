@@ -379,7 +379,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	protected  void addChildren()
 	{
 				//code
-		GLib.debug("addChildren %s, %d", this.node.fqn(), this.node.readItems().size);
+		GLib.debug("addChildren %s, %d", this.node.fqn(), (int)this.node.readItems().size);
 		if (this.node.readItems().size < 1) {
 			return;
 		}
