@@ -136,7 +136,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
  
 	protected void addMyVars()
 	{
-		GLib.debug("callinged addMhyVars");
+		GLib.debug("calling  addMyVars");
 		
 		this.addLine();
 		this.addLine(this.ipad + "// my vars (def)");
@@ -181,8 +181,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				continue;
 			}
 			
+			var isUser = prop.ptype == NodePropType.USER;
+			if (this.node.fqn() == "Gtk.NotebookPage") {
+				isUser= true;
+			}
 			// is it a class property...
-			if (cls != null && cls.props.has_key(prop.name) && prop.ptype != NodePropType.USER) {
+			if (cls != null && cls.props.has_key(prop.name) && !isUser) {
 				continue;
 			}
 			
@@ -285,7 +289,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				v= v.down();
 			}
 			//FIXME -- check for raw string.. "string XXXX"
+			var is_raw = prop.ptype == NodePropType.RAW;
 			
+			// what's the type.. - if it's a string.. then we quote it..
+			if (prop.rtype == "string" && !is_raw) {
+				 v = "\"" +  v.escape("") + "\"";
+			}
 			// if it's a string...
 			
 			prop.start_line = this.cur_line;
@@ -303,6 +312,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (cls == null) {
 			GLib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
+			return;
+		}
+		
+		if (this.node.fqn() == "Gtk.NotebookPage") {
 			return;
 		}
 			// what are the properties of this class???
@@ -366,6 +379,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	protected  void addChildren()
 	{
 				//code
+		GLib.debug("addChildren %s, %d", this.node.fqn(), (int)this.node.readItems().size);
 		if (this.node.readItems().size < 1) {
 			return;
 		}
@@ -373,7 +387,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		var cols = this.node.has("* columns") ? int.max(1, int.parse(this.node.get_prop("* columns").val)) : 1;
 		var colpos = 0;
 		
- 
+ 		var nb_child = "";
+		var nb_tab = "";
+		var nb_menu = "";
+			
 		 
 		foreach(var child in this.node.readItems()) {
 			
@@ -389,14 +406,30 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				continue;
 			}
 			// create the element..
+			  
 			
 			// this is only needed if it does not have an ID???
 			var childname = this.addPropSet(child, child.has("id") ? child.get_prop("id").val : "") ; 
 			if (!child.has("id") && this.this_el == "this.el.") {
 				this.addLine(this.ipad +  childname +".ref();"); 
-		 	} 
+		 	}
 			if (child.has("* prop")) {
-			 
+				if (this.node.fqn() == "Gtk.NotebookPage") {
+					switch (child.get_prop("* prop").val) {
+						case "child":
+							nb_child = childname;
+							break;
+							
+						case "tab":
+							nb_tab = childname;
+							break;
+							
+						case "menu":
+							nb_menu = childname;
+						 	break;
+					}
+					continue;
+				}
 			
 				// fixme special packing!??!?!
 				if (child.get_prop("* prop").val.contains("[]")) {
@@ -431,10 +464,33 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			 
 				  
 		}
+		
+		GLib.debug("got node %s with nb_child= %s", this.node.fqn() , nb_child);
+		if (this.node.fqn() == "Gtk.NotebookPage" && nb_child != "") {
+			if (nb_tab == "" && this.node.has("tab_label")) {
+				nb_tab = "new Gtk.Label(this.tab_label)";
+			}
+		 
+			if (nb_menu == "" && nb_tab == "") {
+				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child)  );");
+				return;
+			}
+			if (nb_menu == "") {
+				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child) , $(nb_tab) );");
+				return;
+			}
+			this.addLine(@"$(ipad)notebook.el.append_page_menu( $(nb_child) , $(nb_tab), $(nb_menu) );");
+		
+		}
+		
 	}
+	/**
+		var childname = new Xcls_.... (....)
+		
 	
+	*/
 	protected string addPropSet(Node child, string child_name) 
-	{
+	{	
 	 
 		
 		var xargs = "";
@@ -463,6 +519,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
  			}
 		}
 	 	*/
+	 	if (child.fqn() == "Gtk.NotebookPage") {
+	 		xargs +=" , this";
+ 		}
 	 	
 		this.addLine(this.ipad + @"$(prefix)new $cls( _this $xargs);" );
 		 
@@ -524,7 +583,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 		
 		switch (this.node.fqn()) {
-			
+			 
 				
 		
 			case "Gtk.Fixed":
@@ -547,6 +606,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				return;
 				
 			case "Gtk.Notebook": // use label
+				if (child.fqn() == "Gtk.NotebookPage") {
+					return;
+				}
 				var label = child.has("notebook_label") ?  child.get_prop("notebook_label").val.escape() : "";
 				this.addLine(@"$(ipad)$(this_el)append_page( $(childname)$(el_name), new Gtk.Label(\"$(label)\");");
 				

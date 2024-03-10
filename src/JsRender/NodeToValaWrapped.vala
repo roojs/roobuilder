@@ -174,7 +174,8 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			//for (var ari =0; ari < ar.length; ari++) {
 				//	cargs +=  (ar[ari].trim().split(" ").pop();
 				  // }
-			}
+		}
+		
 	
 		if (this.depth < 1) {
 		 
@@ -188,6 +189,10 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			var top = this.top as NodeToVala;
 			var tcls = top == null ? "???" : top.xcls;
 			// for sub classes = we passs the top level as _owner
+			if (this.node.fqn() == "Gtk.NotebookPage") {
+				cargs_str += ", " + this.node.parent.xvala_xcls + " notebook";
+			}
+			
 			this.addLine(this.pad + "public " + this.xcls + "(" +  tcls + " _owner " + cargs_str + ")");
 			this.addLine(this.pad + "{");
 		}
@@ -224,8 +229,11 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		
 		this.node.setLine(this.cur_line, "p", "* xtype");;
 		
-		// is the wrapped element a struct?
-		
+
+		// Notebookpage is a fake element 
+		// used to hold label and child...
+		 
+		// is the wrapped element a struct?		
 		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (ncls != null && ncls.nodetype == "Struct") {
 			// we can use regular setters to apply the values.
@@ -238,6 +246,14 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		var ctor = ".new";
 		var args_str = "";
 		switch(this.node.fqn()) {
+		
+		
+			// GTK4
+			case "Gtk.NotebookPage":
+				return;
+				
+		
+		
 		
 		// FIXME -- these are all GTK3 - can be removed when I get rid of them..
 			case "Gtk.ComboBox":

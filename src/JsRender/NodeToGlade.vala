@@ -95,8 +95,10 @@ public class JsRender.NodeToGlade : Object {
 		var gdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
 		if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
 			switch(cls) {
-				case "GtkColumnViewColumn": //exception to the rule..
-					break;
+			//exception to the rule.. (must be buildable to work with glade?
+				case "GtkColumnViewColumn": 
+				case "GtkNotebookPage": 
+				break;
 				default:
 					return null;
 			}
@@ -204,7 +206,19 @@ public class JsRender.NodeToGlade : Object {
 		var items = this.node.readItems();
 		for (var i = 0; i < items.size; i++ ) {
 			var cn = items.get(i);
-			var child  = this.create_element("child");
+			
+			var childname = "child";
+			var pname = "";
+			if (cn.has("* prop")) { // && cn.get_prop("* prop").val == "child") {
+				childname = "property";
+				pname = cn.get_prop("* prop").val;
+			}
+			
+			var child  = this.create_element(childname);
+			if (pname != "") {
+				child->set_prop("name", pname);
+			}
+			
 			if ((cls == "GtkWindow" || cls == "GtkApplicationWindow") && cn.fqn() == "Gtk.HeaderBar") {
 				child->set_prop("type", "label");
 			}
