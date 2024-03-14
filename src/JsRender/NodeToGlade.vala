@@ -101,7 +101,6 @@ public class JsRender.NodeToGlade : Object {
 					if (this.node.childstore.get_n_items() < 1) {
 						return null;
 					}
-				
 					break;
 				
 				case "GtkColumnViewColumn": 
