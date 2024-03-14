@@ -75,7 +75,6 @@ public class JsRender.NodeToGlade : Object {
 	
 	public Xml.Node* mungeNode()
 	{
-		 
 		var is_top = false;
 		if (this.parent == null) {
 			is_top = true;
