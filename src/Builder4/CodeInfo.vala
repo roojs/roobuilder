@@ -142,6 +142,7 @@ public class CodeInfo : Object
 			_this = _owner;
 
 			// my vars (dec)
+			this.tab_label = "details";
 			var child_1 = new Xcls_Box483( _this );
 			child_1.ref();
 			notebook.el.append_page( child_1 , new Gtk.Label(this.tab_label) );
