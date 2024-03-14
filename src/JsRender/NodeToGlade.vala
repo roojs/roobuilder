@@ -75,7 +75,6 @@ public class JsRender.NodeToGlade : Object {
 	
 	public Xml.Node* mungeNode()
 	{
-		 
 		var is_top = false;
 		if (this.parent == null) {
 			is_top = true;
@@ -96,9 +95,16 @@ public class JsRender.NodeToGlade : Object {
 		if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
 			switch(cls) {
 			//exception to the rule.. (must be buildable to work with glade?
-				case "GtkColumnViewColumn": 
+				
 				case "GtkNotebookPage": 
-				break;
+					if (this.node.childstore.get_n_items() < 1) {
+						return null;
+					}
+					break;
+				
+				case "GtkColumnViewColumn": 
+					break;
+				
 				default:
 					return null;
 			}

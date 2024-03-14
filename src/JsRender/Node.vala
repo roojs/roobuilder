@@ -89,7 +89,8 @@
 
 
 
-public class JsRender.Node : GLib.Object {
+public class JsRender.Node : GLib.Object 
+{
 	
 
 	public static int uid_count = 0;
