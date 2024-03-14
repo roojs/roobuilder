@@ -98,7 +98,9 @@ public class JsRender.NodeToGlade : Object {
 			//exception to the rule.. (must be buildable to work with glade?
 				
 				case "GtkNotebookPage": 
-					
+					if (this.node.childstore.get_n_items() < 1) {
+						return null;
+					}
 				
 					break;
 				
