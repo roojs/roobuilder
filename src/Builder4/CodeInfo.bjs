@@ -37,6 +37,7 @@
            "xtype" : "Box"
           }
          ],
+         "string tab_label" : "",
          "xtype" : "NotebookPage"
         }
        ],

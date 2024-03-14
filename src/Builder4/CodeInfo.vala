@@ -134,6 +134,7 @@ public class CodeInfo : Object
 
 
 			// my vars (def)
+		public string tab_label;
 
 		// ctor
 		public Xcls_NotebookPage5(CodeInfo _owner , Xcls_Notebook4 notebook)
@@ -141,10 +142,35 @@ public class CodeInfo : Object
 			_this = _owner;
 
 			// my vars (dec)
+			var child_1 = new Xcls_Box483( _this );
+			child_1.ref();
+			notebook.el.append_page( child_1 , new Gtk.Label(this.tab_label) );
 		}
 
 		// user defined functions
 	}
+	public class Xcls_Box483 : Object
+	{
+		public Gtk.Box el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Box483(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 
