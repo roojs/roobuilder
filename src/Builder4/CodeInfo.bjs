@@ -70,6 +70,22 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "model",
+             "items" : [
+              {
+               "$ Gtk.TreeListModelCreateModelFunc create_func" : [
+                "(item) => {",
+                "",
+                "\treturn GLib.ListModel;",
+                "}",
+                ""
+               ],
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "bool autoexpand" : true,
+               "bool passthrough" : true,
+               "xtype" : "TreeListModel"
+              }
+             ],
              "xtype" : "SingleSelection"
             }
            ],
