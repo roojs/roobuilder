@@ -1065,8 +1065,8 @@
              "\t    return;",
              "    }",
              "    //Lsp.DocumentSymbol",
-             "    var node =   _this.navigationselmodel.getSymoblAt(row);",
-             "    if (node == null) {",
+             "    var sym =   _this.navigationselmodel.getSymoblAt(row);",
+             "    if (sym == null) {",
              "    \treturn;",
              "\t}",
              "\t/*",
@@ -1081,6 +1081,7 @@
              "              }",
              "            },",
              "            */",
+             "    var line = sym.range.start.line;",
              "\t",
              "}"
             ]

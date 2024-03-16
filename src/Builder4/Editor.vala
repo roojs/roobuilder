@@ -2059,8 +2059,8 @@ public class Editor : Object
 				    return;
 			    }
 			    //Lsp.DocumentSymbol
-			    var node =   _this.navigationselmodel.getSymoblAt(row);
-			    if (node == null) {
+			    var sym =   _this.navigationselmodel.getSymoblAt(row);
+			    if (sym == null) {
 			    	return;
 				}
 				/*
@@ -2075,6 +2075,7 @@ public class Editor : Object
 			              }
 			            },
 			            */
+			    var line = sym.range.start.line;
 				
 			});
 		}
