@@ -326,9 +326,40 @@ public class CodeInfo : Object
 				((Gtk.ListItem)listitem).set_child(expand);
 				
 			});
-			this.el.bind.connect( (object) => {
-			
-			
+			this.el.bind.connect( (listitem) => {
+				// GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+				
+				//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+				var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+				 
+				 
+				var hbox = (Gtk.Box) expand.child;
+			 
+				
+				var img = (Gtk.Image) hbox.get_first_child();
+				var lbl = (Gtk.Label) img.get_next_sibling();
+				
+				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+				var node = (JsRender.Node) lr.get_item();
+				if (node == null || node.fqn() == "") {
+					return;
+				}
+			   
+			    expand.set_hide_expander( !node.hasChildren() );
+			 	expand.set_list_row(lr);
+			 	
+			 	node.bind_property("iconResourceName",
+			                    img, "resource",
+			                   GLib.BindingFlags.SYNC_CREATE);
+			 	
+			 	node.bind_property("nodeTitleProp",
+			                    lbl, "label",
+			                   GLib.BindingFlags.SYNC_CREATE);
+			 	node.bind_property("nodeTipProp",
+			                    lbl, "tooltip_markup",
+			                   GLib.BindingFlags.SYNC_CREATE);
+			 	// bind image...
+			 	
 			});
 		}
 
