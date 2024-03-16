@@ -196,6 +196,8 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.hexpand = true;
+			this.el.vexpand = true;
 			var child_1 = new Xcls_ColumnView596( _this );
 			child_1.ref();
 			this.el.child = child_1.el;

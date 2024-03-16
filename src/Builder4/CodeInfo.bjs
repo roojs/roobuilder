@@ -44,6 +44,8 @@
         },
         {
          "$ xns" : "Gtk",
+         "bool hexpand" : true,
+         "bool vexpand" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
