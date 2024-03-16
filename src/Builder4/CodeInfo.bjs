@@ -16,6 +16,13 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "WebKit",
+           "* prop" : "child",
+           "xtype" : "WebView"
+          }
+         ],
          "string tab_label" : "details",
          "xtype" : "NotebookPage"
         }

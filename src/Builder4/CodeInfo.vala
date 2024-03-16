@@ -50,7 +50,7 @@ public class CodeInfo : Object
 			var child_1 = new Xcls_Notebook2( _this );
 			child_1.ref();
 			this.el.end_child = child_1.el;
-			var child_2 = new Xcls_Box5( _this );
+			var child_2 = new Xcls_Box4( _this );
 			child_2.ref();
 			this.el.start_child = child_2.el;
 		}
@@ -102,7 +102,7 @@ public class CodeInfo : Object
 	}
 
 
-	public class Xcls_Box5 : Object
+	public class Xcls_Box4 : Object
 	{
 		public Gtk.Box el;
 		private CodeInfo  _this;
@@ -111,7 +111,7 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box5(CodeInfo _owner )
+		public Xcls_Box4(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -119,14 +119,14 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_SearchBar6( _this );
+			var child_1 = new Xcls_SearchBar5( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SearchBar6 : Object
+	public class Xcls_SearchBar5 : Object
 	{
 		public Gtk.SearchBar el;
 		private CodeInfo  _this;
@@ -135,7 +135,7 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SearchBar6(CodeInfo _owner )
+		public Xcls_SearchBar5(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SearchBar();
@@ -143,14 +143,14 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_ScrolledWindow7( _this );
+			var child_1 = new Xcls_ScrolledWindow6( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ScrolledWindow7 : Object
+	public class Xcls_ScrolledWindow6 : Object
 	{
 		public Gtk.ScrolledWindow el;
 		private CodeInfo  _this;
@@ -159,7 +159,7 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ScrolledWindow7(CodeInfo _owner )
+		public Xcls_ScrolledWindow6(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.ScrolledWindow();
@@ -167,14 +167,14 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_ListView8( _this );
+			var child_1 = new Xcls_ListView7( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ListView8 : Object
+	public class Xcls_ListView7 : Object
 	{
 		public Gtk.ListView el;
 		private CodeInfo  _this;
@@ -183,10 +183,10 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ListView8(CodeInfo _owner )
+		public Xcls_ListView7(CodeInfo _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SingleSelection9( _this );
+			var child_1 = new Xcls_SingleSelection8( _this );
 			child_1.ref();
 			this.el = new Gtk.ListView( child_1.el, null );
 
@@ -197,7 +197,7 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
-	public class Xcls_SingleSelection9 : Object
+	public class Xcls_SingleSelection8 : Object
 	{
 		public Gtk.SingleSelection el;
 		private CodeInfo  _this;
@@ -206,7 +206,7 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SingleSelection9(CodeInfo _owner )
+		public Xcls_SingleSelection8(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SingleSelection( null );
