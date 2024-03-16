@@ -335,18 +335,18 @@ namespace Lsp {
     }
 
     public class DocumentSymbol : Object, Json.Serializable {
-        private Vala.SourceReference? _source_reference;
-        public string name { get; set; }
-        public string? detail { get; set; }
-        public SymbolKind kind { get; set; }
-        public bool deprecated { get; set; }
+		private Vala.SourceReference? _source_reference;
+		public string name { get; set; }
+		public string? detail { get; set; }
+		public SymbolKind kind { get; set; }
+		public bool deprecated { get; set; }
 
-       public Range range { get; set; } 
-        public Range selectionRange { get; set; }
-        public GLib.ListStore children { get; private set; default = new GLib.ListStore(typeof(DocumentSymbol)); }
-        public string? parent_name;
+		public Range range { get; set; } 
+		public Range selectionRange { get; set; }
+		public GLib.ListStore children { get; private set; default = new GLib.ListStore(typeof(DocumentSymbol)); }
+		public string? parent_name;
 
-        private DocumentSymbol () {}
+		private DocumentSymbol () {}
 
         /**
          * @param type the data type containing this symbol, if there was one (not available for Namespaces, for example)
