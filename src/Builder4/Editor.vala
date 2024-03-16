@@ -26,6 +26,7 @@ public class Editor : Object
 	public Xcls_case_sensitive case_sensitive;
 	public Xcls_regex regex;
 	public Xcls_multiline multiline;
+	public Xcls_navigationwindow navigationwindow;
 	public Xcls_navigation navigation;
 
 		// my vars (def)
@@ -408,9 +409,8 @@ public class Editor : Object
 			var child_1 = new Xcls_Box2( _this );
 			child_1.ref();
 			this.el.start_child = child_1.el;
-			var child_2 = new Xcls_ScrolledWindow27( _this );
-			child_2.ref();
-			this.el.end_child = child_2.el;
+			new Xcls_navigationwindow( _this );
+			this.el.end_child = _this.navigationwindow.el;
 		}
 
 		// user defined functions
@@ -1726,7 +1726,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_ScrolledWindow27 : Object
+	public class Xcls_navigationwindow : Object
 	{
 		public Gtk.ScrolledWindow el;
 		private Editor  _this;
@@ -1735,9 +1735,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ScrolledWindow27(Editor _owner )
+		public Xcls_navigationwindow(Editor _owner )
 		{
 			_this = _owner;
+			_this.navigationwindow = this;
 			this.el = new Gtk.ScrolledWindow();
 
 			// my vars (dec)
@@ -1777,7 +1778,7 @@ public class Editor : Object
 
 		// user defined functions
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
-			
+			this.navigationwindow.el.show();
 		
 		}
 	}

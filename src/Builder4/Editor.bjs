@@ -922,6 +922,7 @@
        "$ xns" : "Gtk",
        "* prop" : "end_child",
        "bool visible" : false,
+       "id" : "navigationwindow",
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -1041,7 +1042,7 @@
          "xtype" : "ColumnView",
          "| void show" : [
           "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
-          "\t",
+          "\tthis.navigationwindow.el.show();",
           "",
           "}"
          ]
