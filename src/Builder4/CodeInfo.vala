@@ -47,63 +47,13 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_ScrolledWindow2( _this );
+			var child_1 = new Xcls_Notebook4( _this );
 			child_1.ref();
-			this.el.start_child = child_1.el;
-			var child_2 = new Xcls_Notebook4( _this );
-			child_2.ref();
-			this.el.end_child = child_2.el;
+			this.el.end_child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ScrolledWindow2 : Object
-	{
-		public Gtk.ScrolledWindow el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_ScrolledWindow2(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.ScrolledWindow();
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_ListView3( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
-		}
-
-		// user defined functions
-	}
-	public class Xcls_ListView3 : Object
-	{
-		public Gtk.ListView el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_ListView3(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.ListView( null, null );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
 	public class Xcls_Notebook4 : Object
 	{
 		public Gtk.Notebook el;

@@ -12,18 +12,6 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* prop" : "start_child",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "child",
-         "xtype" : "ListView"
-        }
-       ],
-       "xtype" : "ScrolledWindow"
-      },
-      {
-       "$ xns" : "Gtk",
        "* prop" : "end_child",
        "items" : [
         {
