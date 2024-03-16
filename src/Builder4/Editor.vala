@@ -1871,7 +1871,8 @@ public class Editor : Object
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
 				var sym = (Lsp.DocumentSymbol) lr.get_item();
 				
-			   
+				GLib.debug("got %d children for %s" , sym.children.get_n_items(), sym.name);
+			    
 			    expand.set_hide_expander( sym.children.get_n_items()  < 1);
 			 	expand.set_list_row(lr);
 			 	
