@@ -904,6 +904,11 @@
       }
      ],
      "xtype" : "Box"
+    },
+    {
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "xtype" : "Paned"
     }
    ],
    "xtype" : "Box",
