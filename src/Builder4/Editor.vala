@@ -1791,6 +1791,9 @@ public class Editor : Object
 			
 		
 		}
+		public int getRowAt () {
+		
+		}
 	}
 	public class Xcls_ColumnViewColumn29 : Object
 	{

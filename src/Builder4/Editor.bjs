@@ -1064,6 +1064,11 @@
          ],
          "string name" : "editor-navigation",
          "xtype" : "ColumnView",
+         "| int getRowAt" : [
+          "() {",
+          "",
+          "}"
+         ],
          "| void show" : [
           "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
           "\t_this.navigationwindow.el.show();",
