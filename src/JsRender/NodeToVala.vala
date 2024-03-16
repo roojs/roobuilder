@@ -467,19 +467,21 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 		GLib.debug("got node %s with nb_child= %s", this.node.fqn() , nb_child);
 		if (this.node.fqn() == "Gtk.NotebookPage" && nb_child != "") {
+			var nb = (this.this_el == "this.el." ? "notebook.el" : "notebook")
+			
 			if (nb_tab == "" && this.node.has("tab_label")) {
 				nb_tab = "new Gtk.Label(this.tab_label)";
 			}
 		 
 			if (nb_menu == "" && nb_tab == "") {
-				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child)  );");
+				this.addLine(@"$(ipad)$(nb).append_page( $(nb_child)  );");
 				return;
 			}
 			if (nb_menu == "") {
-				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child) , $(nb_tab) );");
+				this.addLine(@"$(ipad)$(nb).append_page( $(nb_child) , $(nb_tab) );");
 				return;
 			}
-			this.addLine(@"$(ipad)notebook.el.append_page_menu( $(nb_child) , $(nb_tab), $(nb_menu) );");
+			this.addLine(@"$(ipad)$(nb).append_page_menu( $(nb_child) , $(nb_tab), $(nb_menu) );");
 		
 		}
 		
