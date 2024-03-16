@@ -430,7 +430,7 @@ namespace Lsp {
 	   			
 	   			switch (this.kind) {
 					
-					  				  	case 	Lsp.CompletionItemKind.Text: return "completion-snippet-symbolic"
+	  				  	case 	Lsp.CompletionItemKind.Text: return "completion-snippet-symbolic"
 						case 	Lsp.CompletionItemKind.Method: return "lang-method-symbolic";
 						case 	Lsp.CompletionItemKind.Function: return "lang-function-symbolic";
 						case 	Lsp.CompletionItemKind.Constructor: return "lang-method-symbolic";
@@ -457,10 +457,7 @@ namespace Lsp {
 						case 	Lsp.CompletionItemKind.Operator:return "lang-typedef-symbolic";
 						case 	Lsp.CompletionItemKind.TypeParameter:return "lang-typedef-symbolic";
 						default: 
-
-
-					
-							 return "completion-snippet-symbolic";
+						 return "completion-snippet-symbolic";
 							
 				}
 			}
