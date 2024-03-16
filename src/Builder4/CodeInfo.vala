@@ -326,6 +326,10 @@ public class CodeInfo : Object
 				((Gtk.ListItem)listitem).set_child(expand);
 				
 			});
+			this.el.bind.connect( (object) => {
+			
+			
+			});
 		}
 
 		// user defined functions
