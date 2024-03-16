@@ -424,6 +424,51 @@ namespace Lsp {
 	        value.set_object (arguments);
 	        return true;
 	   }
+	   string symbol_icon { 
+	   		set {},
+	   		get {
+	   			
+	   			switch (this.kind) {
+					
+					  				  	case 	Lsp.CompletionItemKind.Text: return "completion-snippet-symbolic"
+						case 	Lsp.CompletionItemKind.Method: return "lang-method-symbolic";
+						case 	Lsp.CompletionItemKind.Function: return "lang-function-symbolic";
+						case 	Lsp.CompletionItemKind.Constructor: return "lang-method-symbolic";
+						case 	Lsp.CompletionItemKind.Field: return "lang-struct-field-symbolic";
+						case 	Lsp.CompletionItemKind.Variable: return "lang-variable-symbolic";
+						case 	Lsp.CompletionItemKind.Class: return "lang-class-symbolic";
+						case 	Lsp.CompletionItemKind.Interface: return "lang-class-symbolic";
+						case 	Lsp.CompletionItemKind.Module: return "lang-namespace-symbolic";
+						case 	Lsp.CompletionItemKind.Property:return "lang-struct-field-symbolic";
+						case 	Lsp.CompletionItemKind.Unit: return "lang-variable-symbolic";
+						case 	Lsp.CompletionItemKind.Value: return "lang-variable-symbolic";
+						case 	Lsp.CompletionItemKind.Enum: return "lang-enum-symbolic";
+						case 	Lsp.CompletionItemKind.Keyword: return "completion-word-symbolic";
+						case 	Lsp.CompletionItemKind.Snippet: return "completion-snippet-symbolic";
+
+						case 	Lsp.CompletionItemKind.Color: return "lang-typedef-symbolic";
+						case 	Lsp.CompletionItemKind.File:return "lang-typedef-symbolic";
+						case 	Lsp.CompletionItemKind.Reference: return "lang-typedef-symbolic";
+						case 	Lsp.CompletionItemKind.Folder:return "lang-typedef-symbolic";
+						case 	Lsp.CompletionItemKind.EnumMember: return "lang-typedef-symbolic";
+						case 	Lsp.CompletionItemKind.Constant:return "lang-typedef-symbolic";
+						case 	Lsp.CompletionItemKind.Struct: return "lang-struct-symbolic";
+						case 	Lsp.CompletionItemKind.Event:return "lang-typedef-symbolic";
+						case 	Lsp.CompletionItemKind.Operator:return "lang-typedef-symbolic";
+						case 	Lsp.CompletionItemKind.TypeParameter:return "lang-typedef-symbolic";
+						default: 
+
+
+					
+							 return "completion-snippet-symbolic";
+							
+				}
+			}
+		}
+						
+	   
+	   
+	   
     }
 
     public class SymbolInformation : Object {
