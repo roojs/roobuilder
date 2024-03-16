@@ -116,7 +116,7 @@ public class JsRender.NodeToGlade : Object {
 		// what namespaces are supported
 		switch(this.node.NS) {
 			case "Gtk":
-			case "Webkit": //??
+			case "WebKit": //??
 			case "Adw": // works if you call adw.init() in main!
 				break;
 			default:
