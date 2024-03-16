@@ -153,7 +153,7 @@ public class Editor : Object
 	        this.close_btn.el.hide();
 	        var ls = file.getLanguageServer();
 	        ls.documentSymbols.begin(file, (a,o) => {
-	        	var ret = ls.documentSymbols.end(o); 
+	        	_this.navigation.show(ls.documentSymbols.end(o)); 
 	        });
 	        //documentSymbols
 	        
