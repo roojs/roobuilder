@@ -1039,7 +1039,7 @@
             }
            ],
            "xtype" : "NoSelection",
-           "| Lsp.D getAtRow" : [
+           "| Lsp.DocumentSymbol getAtRow" : [
             "(uint row) {",
             "",
             "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",

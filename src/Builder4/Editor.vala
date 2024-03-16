@@ -1969,7 +1969,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public Lsp.D getAtRow (uint row) {
+		public Lsp.DocumentSymbol getAtRow (uint row) {
 		
 		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
 		   
