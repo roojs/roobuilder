@@ -82,7 +82,7 @@
                "$ xns" : "Gtk",
                "* prop" : "model",
                "bool autoexpand" : true,
-               "bool passthrough" : true,
+               "bool passthrough" : false,
                "xtype" : "TreeListModel"
               }
              ],
