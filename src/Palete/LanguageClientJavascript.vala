@@ -278,10 +278,7 @@ namespace Palete {
 					
 				
 			}
-			
 			 
-			
-			
 			
 			
 			return ret;
