@@ -91,4 +91,19 @@
     background-color: #ccc; 
 }
 
+
+#editor-navigation indent {
+    -gtk-icon-size : 2px;
+}
+#editor-navigation { 
+    font-size: 12px;
+}
+#editor-navigation cell {
+	padding-top: 2px;
+	padding-bottom: 2px;
+} 
+
+
+
+
  
