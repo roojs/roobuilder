@@ -418,7 +418,7 @@ namespace Lsp {
 	            return false;
 	        }
 			 
-	        var arguments = new GLib.ListStore(typeof(<DocumentSymbol));
+	        var arguments = new GLib.ListStore(typeof(DocumentSymbol));
 
 	        property_node.get_array ().foreach_element ((array, index, element) => {
 	            
