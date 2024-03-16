@@ -400,6 +400,9 @@ public class Editor : Object
 			var child_1 = new Xcls_Box637( _this );
 			child_1.ref();
 			this.el.end_child = child_1.el;
+			var child_2 = new Xcls_ScrolledWindow1893( _this );
+			child_2.ref();
+			this.el.start_child = child_2.el;
 		}
 
 		// user defined functions
@@ -1710,6 +1713,240 @@ public class Editor : Object
 		// user defined functions
 	}
 
+
+
+
+
+
+	public class Xcls_ScrolledWindow1893 : Object
+	{
+		public Gtk.ScrolledWindow el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ScrolledWindow1893(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ScrolledWindow();
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_ColumnView2086( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ColumnView2086 : Object
+	{
+		public Gtk.ColumnView el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ColumnView2086(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_SingleSelection2089( _this );
+			child_1.ref();
+			this.el = new Gtk.ColumnView( child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_2 = new Xcls_ColumnViewColumn2087( _this );
+			child_2.ref();
+			this.el.append_column( child_2.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ColumnViewColumn2087 : Object
+	{
+		public Gtk.ColumnViewColumn el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ColumnViewColumn2087(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_SignalListItemFactory2088( _this );
+			child_1.ref();
+			this.el = new Gtk.ColumnViewColumn( "Code Navigation", child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.expand = true;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_SignalListItemFactory2088 : Object
+	{
+		public Gtk.SignalListItemFactory el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SignalListItemFactory2088(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SignalListItemFactory();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.setup.connect( (listitem) => {
+				
+				var expand = new Gtk.TreeExpander();
+				 
+				expand.set_indent_for_depth(true);
+				expand.set_indent_for_icon(true);
+				var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
+				var icon = new Gtk.Image();
+				var lbl = new Gtk.Label("");
+				lbl.use_markup = true;
+				lbl.ellipsize = Pango.EllipsizeMode.END;
+				
+				icon.margin_end = 4;
+			 	lbl.justify = Gtk.Justification.LEFT;
+			 	lbl.xalign = 0;
+			
+			//	listitem.activatable = true; ??
+				
+				hbox.append(icon);
+				hbox.append(lbl);
+				expand.set_child(hbox);
+				((Gtk.ListItem)listitem).set_child(expand);
+				
+			});
+			this.el.bind.connect( (listitem) => {
+				// GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+				
+				//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+				var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+				 
+				 
+				var hbox = (Gtk.Box) expand.child;
+			 
+				
+				var img = (Gtk.Image) hbox.get_first_child();
+				var lbl = (Gtk.Label) img.get_next_sibling();
+				
+				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+				var node = (JsRender.Node) lr.get_item();
+				if (node == null || node.fqn() == "") {
+					return;
+				}
+			   
+			    expand.set_hide_expander( !node.hasChildren() );
+			 	expand.set_list_row(lr);
+			 	
+			 	node.bind_property("iconResourceName",
+			                    img, "resource",
+			                   GLib.BindingFlags.SYNC_CREATE);
+			 	
+			 	node.bind_property("nodeTitleProp",
+			                    lbl, "label",
+			                   GLib.BindingFlags.SYNC_CREATE);
+			 	node.bind_property("nodeTipProp",
+			                    lbl, "tooltip_markup",
+			                   GLib.BindingFlags.SYNC_CREATE);
+			 	// bind image...
+			 	
+			});
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_SingleSelection2089 : Object
+	{
+		public Gtk.SingleSelection el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SingleSelection2089(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_TreeListModel2090( _this );
+			child_1.ref();
+			this.el = new Gtk.SingleSelection( child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_TreeListModel2090 : Object
+	{
+		public Gtk.TreeListModel el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_TreeListModel2090(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_ListStore2091( _this );
+			child_1.ref();
+			this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
+	//fixme...
+	return ((JsRender.Node)item).childstore;
+}
+ );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ListStore2091 : Object
+	{
+		public GLib.ListStore el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ListStore2091(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new GLib.ListStore( typeof(JsRender.Node) );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 

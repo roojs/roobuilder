@@ -921,6 +921,124 @@
       {
        "$ xns" : "Gtk",
        "* prop" : "start_child",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "bool expand" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "factory",
+             "listeners" : {
+              "bind" : [
+               "(listitem) => {",
+               "\t// GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
+               "\t",
+               "\t//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();",
+               "\tvar expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();",
+               "\t ",
+               "\t ",
+               "\tvar hbox = (Gtk.Box) expand.child;",
+               " ",
+               "\t",
+               "\tvar img = (Gtk.Image) hbox.get_first_child();",
+               "\tvar lbl = (Gtk.Label) img.get_next_sibling();",
+               "\t",
+               "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
+               "\tvar node = (JsRender.Node) lr.get_item();",
+               "\tif (node == null || node.fqn() == \"\") {",
+               "\t\treturn;",
+               "\t}",
+               "   ",
+               "    expand.set_hide_expander( !node.hasChildren() );",
+               " \texpand.set_list_row(lr);",
+               " \t",
+               " \tnode.bind_property(\"iconResourceName\",",
+               "                    img, \"resource\",",
+               "                   GLib.BindingFlags.SYNC_CREATE);",
+               " \t",
+               " \tnode.bind_property(\"nodeTitleProp\",",
+               "                    lbl, \"label\",",
+               "                   GLib.BindingFlags.SYNC_CREATE);",
+               " \tnode.bind_property(\"nodeTipProp\",",
+               "                    lbl, \"tooltip_markup\",",
+               "                   GLib.BindingFlags.SYNC_CREATE);",
+               " \t// bind image...",
+               " \t",
+               "}",
+               ""
+              ],
+              "setup" : [
+               "(listitem) => {",
+               "\t",
+               "\tvar expand = new Gtk.TreeExpander();",
+               "\t ",
+               "\texpand.set_indent_for_depth(true);",
+               "\texpand.set_indent_for_icon(true);",
+               "\tvar hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
+               "\tvar icon = new Gtk.Image();",
+               "\tvar lbl = new Gtk.Label(\"\");",
+               "\tlbl.use_markup = true;",
+               "\tlbl.ellipsize = Pango.EllipsizeMode.END;",
+               "\t",
+               "\ticon.margin_end = 4;",
+               " \tlbl.justify = Gtk.Justification.LEFT;",
+               " \tlbl.xalign = 0;",
+               "",
+               "//\tlistitem.activatable = true; ??",
+               "\t",
+               "\thbox.append(icon);",
+               "\thbox.append(lbl);",
+               "\texpand.set_child(hbox);",
+               "\t((Gtk.ListItem)listitem).set_child(expand);",
+               "\t",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "SignalListItemFactory"
+            }
+           ],
+           "string title" : "Code Navigation",
+           "xtype" : "ColumnViewColumn"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "items" : [
+            {
+             "$ Gtk.TreeListModelCreateModelFunc create_func" : [
+              "(item) => {",
+              "\t//fixme...",
+              "\treturn ((JsRender.Node)item).childstore;",
+              "}",
+              ""
+             ],
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "bool autoexpand" : true,
+             "bool passthrough" : false,
+             "items" : [
+              {
+               "$ GLib.Type item_type" : "typeof(JsRender.Node)",
+               "$ xns" : "GLib",
+               "* prop" : "root",
+               "xtype" : "ListStore"
+              }
+             ],
+             "xtype" : "TreeListModel"
+            }
+           ],
+           "xtype" : "SingleSelection"
+          }
+         ],
+         "xtype" : "ColumnView"
+        }
+       ],
        "xtype" : "ScrolledWindow"
       }
      ],
