@@ -1869,22 +1869,21 @@ public class Editor : Object
 				var lbl = (Gtk.Label) img.get_next_sibling();
 				
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-				var node = (JsRender.Node) lr.get_item();
-				if (node == null || node.fqn() == "") {
-					return;
-				}
+				var sym = (Lsp.DocumentSymbol) lr.get_item();
+				
 			   
-			    expand.set_hide_expander( !node.hasChildren() );
+			    expand.set_hide_expander( sym.children.get_n_items()  < 1);
 			 	expand.set_list_row(lr);
 			 	
-			 	node.bind_property("iconResourceName",
-			                    img, "resource",
-			                   GLib.BindingFlags.SYNC_CREATE);
+			 	//node.bind_property("iconResourceName",
+			     //               img, "resource",
+			     //              GLib.BindingFlags.SYNC_CREATE);
 			 	
-			 	node.bind_property("nodeTitleProp",
+			 	sym.bind_property("name",
 			                    lbl, "label",
 			                   GLib.BindingFlags.SYNC_CREATE);
-			 	node.bind_property("nodeTipProp",
+			 	// should be better?- --line no?
+			 	sym.bind_property("detail",
 			                    lbl, "tooltip_markup",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	// bind image...
