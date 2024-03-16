@@ -657,9 +657,10 @@ public class Editor : Object
 			this.el.completion.add_provider(
 				new Palete.CompletionProvider(_this)
 			);
-			 
-			var hover = this.el.get_hover();
-			hover.add_provider(new Palete.HoverProvider(_this));
+			
+			// hover seems pretty useless.. - ??
+			//var hover = this.el.get_hover();
+			//hover.add_provider(new Palete.HoverProvider(_this));
 			
 			//this.el.completion.unblock_interactive();
 			this.el.completion.select_on_show = true; // select
