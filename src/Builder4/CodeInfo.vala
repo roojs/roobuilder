@@ -241,7 +241,7 @@ public class CodeInfo : Object
 		public Xcls_ColumnViewColumn597(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.ColumnViewColumn( "", null );
+			this.el = new Gtk.ColumnViewColumn( "Object Navigation", null );
 
 			// my vars (dec)
 

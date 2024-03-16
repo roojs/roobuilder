@@ -53,7 +53,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "string title" : "",
+             "string title" : "Object Navigation",
              "xtype" : "ColumnViewColumn"
             }
            ],
