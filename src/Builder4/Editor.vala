@@ -1934,7 +1934,7 @@ public class Editor : Object
 			new Xcls_navliststore( _this );
 			this.el = new Gtk.TreeListModel( _this.navliststore.el, false, true, (item) => {
 	//fixme...
-	return ((Lsp.DocumentSymbol).children;
+	return ((Lsp.DocumentSymbol)item).children;
 }
  );
 
