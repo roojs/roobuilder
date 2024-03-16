@@ -1030,6 +1030,7 @@
                "$ GLib.Type item_type" : "typeof(JsRender.Node)",
                "$ xns" : "GLib",
                "* prop" : "root",
+               "id" : "navliststore",
                "xtype" : "ListStore"
               }
              ],
