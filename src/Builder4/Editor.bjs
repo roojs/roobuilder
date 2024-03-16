@@ -1038,7 +1038,12 @@
              "xtype" : "TreeListModel"
             }
            ],
-           "xtype" : "NoSelection"
+           "xtype" : "NoSelection",
+           "| Lsp.D getAtRow" : [
+            "() {",
+            "",
+            "}"
+           ]
           },
           {
            "$ xns" : "Gtk",

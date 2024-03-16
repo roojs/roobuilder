@@ -1969,6 +1969,9 @@ public class Editor : Object
 		}
 
 		// user defined functions
+		public Lsp.D getAtRow () {
+		
+		}
 	}
 	public class Xcls_TreeListModel32 : Object
 	{
