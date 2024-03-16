@@ -417,15 +417,15 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				if (this.node.fqn() == "Gtk.NotebookPage") {
 					switch (child.get_prop("* prop").val) {
 						case "child":
-							nb_child = childname;
+							nb_child = childname + (this.this_el == "this.el." ? ".el" : "");
 							break;
 							
 						case "tab":
-							nb_tab = childname;
+							nb_tab = childname + (this.this_el == "this.el." ? ".el" : "");
 							break;
 							
 						case "menu":
-							nb_menu = childname;
+							nb_menu = childname + (this.this_el == "this.el." ? ".el" : ""); 
 						 	break;
 					}
 					continue;
@@ -472,14 +472,14 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			}
 		 
 			if (nb_menu == "" && nb_tab == "") {
-				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child).el  );");
+				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child)  );");
 				return;
 			}
 			if (nb_menu == "") {
-				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child).el , $(nb_tab).el );");
+				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child) , $(nb_tab) );");
 				return;
 			}
-			this.addLine(@"$(ipad)notebook.el.append_page_menu( $(nb_child).el , $(nb_tab).el, $(nb_menu).el );");
+			this.addLine(@"$(ipad)notebook.el.append_page_menu( $(nb_child) , $(nb_tab), $(nb_menu) );");
 		
 		}
 		
