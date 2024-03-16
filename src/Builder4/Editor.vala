@@ -648,6 +648,9 @@ public class Editor : Object
 			var child_3 = new Xcls_EventControllerScroll11( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
+			var child_4 = new Xcls_GestureClick44( _this );
+			child_4.ref();
+			this.el.add_controller(  child_4.el );
 
 			// init method
 
@@ -1204,6 +1207,28 @@ public class Editor : Object
 				 
 				return true;
 			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_GestureClick44 : Object
+	{
+		public Gtk.GestureClick el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_GestureClick44(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.GestureClick();
+
+			// my vars (dec)
+
+			// set gobject values
 		}
 
 		// user defined functions
