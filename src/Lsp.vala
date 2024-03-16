@@ -351,7 +351,7 @@ namespace Lsp {
         }
         */
         public Range selectionRange { get; set; }
-        public GLib.ListStore children { get; private set; default = new GLib.ListStore(typeof(DocumentSymbol)); }
+        public GLib.ListStore children { get; private set; default = new GL//ib.ListStore(typeof(DocumentSymbol)); }
         public string? parent_name;
 
         private DocumentSymbol () {}
@@ -443,7 +443,7 @@ namespace Lsp {
         public SymbolInformation.from_document_symbol (DocumentSymbol dsym, string uri) {
             this.name = dsym.name;
             this.kind = dsym.kind;
-            this.location = new Location (uri, dsym.range);
+          //  this.location = new Location (uri, dsym.range);
             this.containerName = dsym.parent_name;
         }
     }
