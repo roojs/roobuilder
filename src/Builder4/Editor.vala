@@ -142,6 +142,8 @@ public class Editor : Object
 	        // find the text for the node..
 	        this.view.load( prop.val );
 	        this.updateErrorMarks();
+	        //documentSymbols
+	        
 	        
 	        this.close_btn.el.show();       
 	    
