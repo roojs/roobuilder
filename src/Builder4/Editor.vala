@@ -1969,8 +1969,16 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public Lsp.D getAtRow () {
+		public Lsp.D getAtRow (uint row) {
 		
+		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
+		   
+		   var a = tr.get_item();;   
+		   GLib.debug("get_item (2) = %s", a.get_type().name());
+		  	
+		   
+		   return (JsRender.Node)tr.get_item();
+			 
 		}
 	}
 	public class Xcls_TreeListModel32 : Object
