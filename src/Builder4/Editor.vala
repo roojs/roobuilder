@@ -1776,6 +1776,9 @@ public class Editor : Object
 			var child_2 = new Xcls_ColumnViewColumn29( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
+			var child_3 = new Xcls_GestureClick252( _this );
+			child_3.ref();
+			this.el.add_controller(  child_3.el );
 		}
 
 		// user defined functions
@@ -1970,6 +1973,34 @@ public class Editor : Object
 	}
 
 
+
+	public class Xcls_GestureClick252 : Object
+	{
+		public Gtk.GestureClick el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_GestureClick252(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.GestureClick();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.pressed.connect( (n_press, x, y) => {
+			
+			
+			});
+		}
+
+		// user defined functions
+	}
 
 
 

@@ -1038,6 +1038,19 @@
             }
            ],
            "xtype" : "NoSelection"
+          },
+          {
+           "$ xns" : "Gtk",
+           "listeners" : {
+            "pressed" : [
+             "(n_press, x, y) => {",
+             "",
+             "",
+             "}",
+             ""
+            ]
+           },
+           "xtype" : "GestureClick"
           }
          ],
          "string name" : "editor-navigation",
