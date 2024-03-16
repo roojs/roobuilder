@@ -1037,7 +1037,7 @@
              "xtype" : "TreeListModel"
             }
            ],
-           "xtype" : "SingleSelection"
+           "xtype" : "NoSelection"
           }
          ],
          "string name" : "editor-navigation",

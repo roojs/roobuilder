@@ -1765,7 +1765,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigation = this;
-			var child_1 = new Xcls_SingleSelection31( _this );
+			var child_1 = new Xcls_NoSelection31( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnView( child_1.el );
 
@@ -1897,21 +1897,21 @@ public class Editor : Object
 	}
 
 
-	public class Xcls_SingleSelection31 : Object
+	public class Xcls_NoSelection31 : Object
 	{
-		public Gtk.SingleSelection el;
+		public Gtk.NoSelection el;
 		private Editor  _this;
 
 
 			// my vars (def)
 
 		// ctor
-		public Xcls_SingleSelection31(Editor _owner )
+		public Xcls_NoSelection31(Editor _owner )
 		{
 			_this = _owner;
 			var child_1 = new Xcls_TreeListModel32( _this );
 			child_1.ref();
-			this.el = new Gtk.SingleSelection( child_1.el );
+			this.el = new Gtk.NoSelection( child_1.el );
 
 			// my vars (dec)
 
