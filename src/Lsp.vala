@@ -430,7 +430,7 @@ namespace Lsp {
 	   			
 	   			switch (this.kind) {
 					
-	  				  	case 	CompletionItemKind.Text: return "completion-snippet-symbolic"
+	  				  	case 	CompletionItemKind.Text: return "completion-snippet-symbolic";
 						case 	CompletionItemKind.Method: return "lang-method-symbolic";
 						case 	CompletionItemKind.Function: return "lang-function-symbolic";
 						case 	CompletionItemKind.Constructor: return "lang-method-symbolic";
