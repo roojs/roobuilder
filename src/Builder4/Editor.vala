@@ -72,6 +72,9 @@ public class Editor : Object
 		var child_3 = new Xcls_Box12( _this );
 		child_3.ref();
 		this.el.append ( child_3.el  );
+		var child_4 = new Xcls_Paned317( _this );
+		child_4.ref();
+		this.el.append( child_4.el );
 	}
 
 	// user defined functions
@@ -1664,6 +1667,53 @@ public class Editor : Object
 
 
 
+
+
+	public class Xcls_Paned317 : Object
+	{
+		public Gtk.Paned el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Paned317(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Box637( _this );
+			child_1.ref();
+			this.el.end_child = child_1.el;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box637 : Object
+	{
+		public Gtk.Box el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Box637(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 }
