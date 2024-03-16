@@ -418,7 +418,7 @@ namespace Lsp {
 	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
 	        }
-			 
+			GLib.debug("got child length of %d", property_node.get_array ().get_length());
 	        var arguments = new GLib.ListStore(typeof(DocumentSymbol));
 
 	        property_node.get_array ().foreach_element ((array, index, element) => {
