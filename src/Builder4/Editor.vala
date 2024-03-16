@@ -1958,7 +1958,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navliststore = this;
-			this.el = new GLib.ListStore( typeof(JsRender.Node) );
+			this.el = new GLib.ListStore( typeof(Lsp.DocumentSymbol) );
 
 			// my vars (dec)
 
