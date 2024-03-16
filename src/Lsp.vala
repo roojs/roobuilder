@@ -425,7 +425,7 @@ namespace Lsp {
 	        return true;
 	   }
 	   public string symbol_icon { 
-	   		private set;
+	   		private set {};
 	   		get {
 	   			
 	   			switch (this.kind) {
