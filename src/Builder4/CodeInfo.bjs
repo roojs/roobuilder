@@ -30,6 +30,13 @@
         }
        ],
        "xtype" : "Notebook"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "start_child",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "int spacing" : 0,
+       "xtype" : "Box"
       }
      ],
      "xtype" : "Paned"

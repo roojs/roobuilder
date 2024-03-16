@@ -50,6 +50,9 @@ public class CodeInfo : Object
 			var child_1 = new Xcls_Notebook4( _this );
 			child_1.ref();
 			this.el.end_child = child_1.el;
+			var child_2 = new Xcls_Box1620( _this );
+			child_2.ref();
+			this.el.start_child = child_2.el;
 		}
 
 		// user defined functions
@@ -123,6 +126,28 @@ public class CodeInfo : Object
 	}
 
 
+
+	public class Xcls_Box1620 : Object
+	{
+		public Gtk.Box el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Box1620(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 }
