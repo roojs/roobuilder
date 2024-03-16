@@ -200,6 +200,7 @@ public class CodeInfo : Object
 
 			// set gobject values
 			this.el.hexpand = true;
+			this.el.activates_default = true;
 		}
 
 		// user defined functions

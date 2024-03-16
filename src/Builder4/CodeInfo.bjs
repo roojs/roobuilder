@@ -45,6 +45,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "child",
+           "bool activates_default" : true,
            "bool hexpand" : true,
            "xtype" : "SearchEntry"
           }
