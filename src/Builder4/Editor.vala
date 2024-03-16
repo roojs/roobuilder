@@ -2063,6 +2063,19 @@ public class Editor : Object
 			    if (node == null) {
 			    	return;
 				}
+				/*
+				 "range" : {
+			              "start" : {
+			                "line" : 1410,
+			                "character" : 8
+			              },
+			              "end" : {
+			                "line" : 1410,
+			                "character" : 39
+			              }
+			            },
+			            */
+				
 			});
 		}
 
