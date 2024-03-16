@@ -28,6 +28,7 @@ public class Editor : Object
 	public Xcls_multiline multiline;
 	public Xcls_navigationwindow navigationwindow;
 	public Xcls_navigation navigation;
+	public Xcls_navigationselmodel navigationselmodel;
 	public Xcls_navliststore navliststore;
 
 		// my vars (def)
@@ -1765,9 +1766,8 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigation = this;
-			var child_1 = new Xcls_NoSelection31( _this );
-			child_1.ref();
-			this.el = new Gtk.ColumnView( child_1.el );
+			new Xcls_navigationselmodel( _this );
+			this.el = new Gtk.ColumnView( _this.navigationselmodel.el );
 
 			// my vars (dec)
 
@@ -1900,7 +1900,7 @@ public class Editor : Object
 	}
 
 
-	public class Xcls_NoSelection31 : Object
+	public class Xcls_navigationselmodel : Object
 	{
 		public Gtk.NoSelection el;
 		private Editor  _this;
@@ -1909,9 +1909,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_NoSelection31(Editor _owner )
+		public Xcls_navigationselmodel(Editor _owner )
 		{
 			_this = _owner;
+			_this.navigationselmodel = this;
 			var child_1 = new Xcls_TreeListModel32( _this );
 			child_1.ref();
 			this.el = new Gtk.NoSelection( child_1.el );
@@ -1995,7 +1996,15 @@ public class Editor : Object
 			//listeners
 			this.el.pressed.connect( (n_press, x, y) => {
 			
-			
+			  var row = _this.navigation.getRowAt(x,y, out pos );
+			    if (row < 0) {
+				    GLib.debug("no row selected items");
+				    return;
+			    }
+			    
+			    var node =   _this.navigationselmodel.getNodeAt(row);
+			    if (node == null) {
+			    
 			});
 		}
 

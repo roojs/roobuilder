@@ -1012,6 +1012,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
+           "id" : "navigationselmodel",
            "items" : [
             {
              "$ Gtk.TreeListModelCreateModelFunc create_func" : [
@@ -1045,7 +1046,15 @@
             "pressed" : [
              "(n_press, x, y) => {",
              "",
-             "",
+             "  var row = _this.navigation.getRowAt(x,y, out pos );",
+             "    if (row < 0) {",
+             "\t    GLib.debug(\"no row selected items\");",
+             "\t    return;",
+             "    }",
+             "    ",
+             "    var node =   _this.navigationselmodel.getNodeAt(row);",
+             "    if (node == null) {",
+             "    ",
              "}",
              ""
             ]
