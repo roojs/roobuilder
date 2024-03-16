@@ -157,6 +157,7 @@ roobuilder_src = files([
    'src/Builder4/MainWindow.vala',
    'src/Settings.vala',
    'src/Palete/HoverProvider.vala',
+   'src/Builder4/CodeInfo.vala',
 ])
 
 
