@@ -142,6 +142,10 @@ public class Editor : Object
 	        // find the text for the node..
 	        this.view.load( prop.val );
 	        this.updateErrorMarks();
+	        var ls =file.getLanguageServer();
+	        ls.documentSymbols.begin(file, (a,o) => {
+	        	var ret = ls.documentSymbols.end(o); 
+	        });
 	        //documentSymbols
 	        
 	        
