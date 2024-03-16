@@ -2058,8 +2058,8 @@ public class Editor : Object
 				    GLib.debug("no row selected items");
 				    return;
 			    }
-			    
-			    var node =   _this.navigationselmodel.getNodeAt(row);
+			    //Lsp.DocumentSymbol
+			    var node =   _this.navigationselmodel.getSymoblAt(row);
 			    if (node == null) {
 			    
 			});
