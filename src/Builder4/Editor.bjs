@@ -920,7 +920,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* prop" : "start_child",
+       "* prop" : "end_child",
        "items" : [
         {
          "$ xns" : "Gtk",

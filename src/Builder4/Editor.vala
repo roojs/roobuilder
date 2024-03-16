@@ -400,6 +400,9 @@ public class Editor : Object
 			var child_1 = new Xcls_Box2( _this );
 			child_1.ref();
 			this.el.start_child = child_1.el;
+			var child_2 = new Xcls_ScrolledWindow27( _this );
+			child_2.ref();
+			this.el.end_child = child_2.el;
 		}
 
 		// user defined functions
