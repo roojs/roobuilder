@@ -1058,8 +1058,8 @@
            "listeners" : {
             "pressed" : [
              "(n_press, x, y) => {",
-             "",
-             "  var row = _this.navigation.getRowAt(x,y, out pos );",
+             "\tstring pos;",
+             "  \tvar row = _this.navigation.getRowAt(x,y, out pos );",
              "    if (row < 0) {",
              "\t    GLib.debug(\"no row selected items\");",
              "\t    return;",

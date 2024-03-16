@@ -2052,8 +2052,8 @@ public class Editor : Object
 
 			//listeners
 			this.el.pressed.connect( (n_press, x, y) => {
-			
-			  var row = _this.navigation.getRowAt(x,y, out pos );
+				string pos;
+			  	var row = _this.navigation.getRowAt(x,y, out pos );
 			    if (row < 0) {
 				    GLib.debug("no row selected items");
 				    return;
