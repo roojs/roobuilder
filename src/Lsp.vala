@@ -443,8 +443,8 @@ namespace Lsp {
 						//case 	SymbolKind.Unit: return "lang-variable-symbolic";
 						//case 	SymbolKind.Value: return "lang-variable-symbolic";
 						case 	SymbolKind.Enum: return "lang-enum-symbolic";
-						case 	SymbolKind.Keyword: return "completion-word-symbolic";
-						case 	SymbolKind.Snippet: return "completion-snippet-symbolic";
+						//case 	SymbolKind.Keyword: return "completion-word-symbolic";
+						//case 	SymbolKind.Snippet: return "completion-snippet-symbolic";
 
 						//case 	SymbolKind.Color: return "lang-typedef-symbolic";
 						case 	SymbolKind.File:return "lang-typedef-symbolic";
