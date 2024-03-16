@@ -144,6 +144,7 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.hexpand = true;
 			var child_1 = new Xcls_SearchBar6( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
