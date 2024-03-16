@@ -954,7 +954,7 @@
                "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
                "\tvar sym = (Lsp.DocumentSymbol) lr.get_item();",
                "\t",
-               "\tGLib.debug(\"got %d children for %s\" , sym.children.get_n_items(), sym.name);",
+               "\tGLib.debug(\"got %d children for %s\" , (int)sym.children.get_n_items(), sym.name);",
                "    ",
                "    expand.set_hide_expander( sym.children.get_n_items()  < 1);",
                " \texpand.set_list_row(lr);",
