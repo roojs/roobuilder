@@ -1040,6 +1040,7 @@
            "xtype" : "SingleSelection"
           }
          ],
+         "string name" : "editor-navigation",
          "xtype" : "ColumnView",
          "| void show" : [
           "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
@@ -1054,7 +1055,6 @@
          ]
         }
        ],
-       "string name" : "navigationtree",
        "xtype" : "ScrolledWindow"
       }
      ],

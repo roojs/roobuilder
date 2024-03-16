@@ -1745,7 +1745,6 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.name = "navigationtree";
 			this.el.visible = false;
 			new Xcls_navigation( _this );
 			this.el.child = _this.navigation.el;
@@ -1773,6 +1772,7 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.name = "editor-navigation";
 			var child_2 = new Xcls_ColumnViewColumn29( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
