@@ -472,14 +472,14 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			}
 		 
 			if (nb_menu == "" && nb_tab == "") {
-				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child)  );");
+				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child).el  );");
 				return;
 			}
 			if (nb_menu == "") {
-				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child) , $(nb_tab) );");
+				this.addLine(@"$(ipad)notebook.el.append_page( $(nb_child).el , $(nb_tab).el );");
 				return;
 			}
-			this.addLine(@"$(ipad)notebook.el.append_page_menu( $(nb_child) , $(nb_tab), $(nb_menu) );");
+			this.addLine(@"$(ipad)notebook.el.append_page_menu( $(nb_child).el , $(nb_tab).el, $(nb_menu).el );");
 		
 		}
 		
