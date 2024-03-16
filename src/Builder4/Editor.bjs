@@ -917,6 +917,11 @@
         }
        ],
        "xtype" : "Box"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "start_child",
+       "xtype" : "ScrolledWindow"
       }
      ],
      "xtype" : "Paned"
