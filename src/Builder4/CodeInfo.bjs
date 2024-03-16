@@ -39,6 +39,12 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "xtype" : "ScrolledWindow"
+          }
+         ],
          "xtype" : "SearchBar"
         }
        ],
