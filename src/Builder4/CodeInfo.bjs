@@ -85,7 +85,7 @@
                "bool passthrough" : false,
                "items" : [
                 {
-                 "$ GLib.Type item_type" : "tyopeof(JsRender.Node)",
+                 "$ GLib.Type item_type" : "typeof(JsRender.Node)",
                  "$ xns" : "GLib",
                  "* prop" : "root",
                  "xtype" : "ListStore"

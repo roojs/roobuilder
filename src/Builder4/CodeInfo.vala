@@ -344,7 +344,7 @@ public class CodeInfo : Object
 		public Xcls_ListStore81(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new GLib.ListStore( tyopeof(JsRender.Node) );
+			this.el = new GLib.ListStore( typeof(JsRender.Node) );
 
 			// my vars (dec)
 
