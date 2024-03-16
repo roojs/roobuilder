@@ -1791,9 +1791,52 @@ public class Editor : Object
 			
 		
 		}
-		public int getRowAt () {
+		public int getRowAt (double x,  double  y, out string pos) {
 		
-		}
+			pos = "";
+			var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
+			//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
+			if (w == null) {
+				return -1;
+			}
+			
+			var row= w.get_ancestor(GLib.Type.from_name("GtkColumnViewRowWidget"));
+			if (row == null) {
+				return -1;
+			}
+			
+			//GLib.debug("got colview %s", row == null ? "nothing" : row.get_type().name());
+			 
+			var rn = 0;
+			var cr = row;
+			 
+			while (cr.get_prev_sibling() != null) {
+				rn++;
+				cr = cr.get_prev_sibling();
+			}
+			
+			//GLib.debug("row number is %d", rn);
+			//GLib.debug("click %d, %d", (int)x, (int)y);
+			// above or belw
+			Graphene.Rect  bounds;
+			row.compute_bounds(this.el, out bounds);
+			//GLib.debug("click x=%d, y=%d, w=%d, h=%d", 
+			//	(int)bounds.get_x(), (int)bounds.get_y(),
+			//	(int)bounds.get_width(), (int)bounds.get_height()
+			//	);
+			var ypos = y - bounds.get_y();
+			//GLib.debug("rel ypos = %d", (int)ypos);	
+			var rpos = 100.0 * (ypos / bounds.get_height());
+			//GLib.debug("rel pos = %d %%", (int)rpos);
+			pos = "over";
+			
+			if (rpos > 80) {
+				pos = "below";
+			} else if (rpos < 20) {
+				pos = "above";
+			} 
+			return rn;
+		 }
 	}
 	public class Xcls_ColumnViewColumn29 : Object
 	{
