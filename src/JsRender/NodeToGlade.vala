@@ -106,6 +106,7 @@ public class JsRender.NodeToGlade : Object {
 					break;
 				
 				default:
+					GLib.debug("Skip %s - is not buildable / no data", cls);
 					return null;
 			}
 		}
@@ -119,6 +120,7 @@ public class JsRender.NodeToGlade : Object {
 			case "Adw": // works if you call adw.init() in main!
 				break;
 			default:
+				GLib.debug("Skip %s - NS is not available", cls);
 				return null;
 		}
 		
