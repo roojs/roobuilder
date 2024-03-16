@@ -437,7 +437,7 @@ namespace Lsp {
     public class SymbolInformation : Object {
         public string name { get; set; }
         public SymbolKind kind { get; set; }
-        public Location location { get; set; }
+      //  public Location location { get; set; }
         public string? containerName { get; set; }
 
         public SymbolInformation.from_document_symbol (DocumentSymbol dsym, string uri) {
