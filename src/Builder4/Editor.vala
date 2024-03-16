@@ -1776,6 +1776,9 @@ public class Editor : Object
 		}
 
 		// user defined functions
+		public void show () {
+		
+		}
 	}
 	public class Xcls_ColumnViewColumn29 : Object
 	{

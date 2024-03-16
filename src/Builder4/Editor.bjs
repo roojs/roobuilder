@@ -1038,7 +1038,12 @@
            "xtype" : "SingleSelection"
           }
          ],
-         "xtype" : "ColumnView"
+         "xtype" : "ColumnView",
+         "| void show" : [
+          "() {",
+          "",
+          "}"
+         ]
         }
        ],
        "xtype" : "ScrolledWindow"
