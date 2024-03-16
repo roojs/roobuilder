@@ -1048,7 +1048,7 @@
             "   GLib.debug(\"get_item (2) = %s\", a.get_type().name());",
             "  \t",
             "   ",
-            "   return (JsRender.Node)tr.get_item();",
+            "   return (Lsp.DocumentSymbol)tr.get_item();",
             "\t ",
             "}"
            ]

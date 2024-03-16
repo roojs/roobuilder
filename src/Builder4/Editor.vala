@@ -1977,7 +1977,7 @@ public class Editor : Object
 		   GLib.debug("get_item (2) = %s", a.get_type().name());
 		  	
 		   
-		   return (JsRender.Node)tr.get_item();
+		   return (Lsp.DocumentSymbol)tr.get_item();
 			 
 		}
 	}
