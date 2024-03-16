@@ -1016,7 +1016,7 @@
             {
              "$ Gtk.TreeListModelCreateModelFunc create_func" : [
               "(item) => {",
-              "\t//fixme...",
+              " ",
               "\treturn ((Lsp.DocumentSymbol)item).children;",
               "}",
               ""

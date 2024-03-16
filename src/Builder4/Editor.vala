@@ -1933,7 +1933,7 @@ public class Editor : Object
 			_this = _owner;
 			new Xcls_navliststore( _this );
 			this.el = new Gtk.TreeListModel( _this.navliststore.el, false, true, (item) => {
-	//fixme...
+ 
 	return ((Lsp.DocumentSymbol)item).children;
 }
  );
