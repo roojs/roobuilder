@@ -74,8 +74,8 @@
               {
                "$ Gtk.TreeListModelCreateModelFunc create_func" : [
                 "(item) => {",
-                "",
-                "\treturn GLib.ListModel;",
+                "\t//fixme...",
+                "\treturn ((JsRender.Node)item).childstore;",
                 "}",
                 ""
                ],

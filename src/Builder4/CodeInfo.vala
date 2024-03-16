@@ -318,8 +318,8 @@ public class CodeInfo : Object
 		{
 			_this = _owner;
 			this.el = new Gtk.TreeListModel( null, false, true, (item) => {
-
-	return GLib.ListModel;
+	//fixme...
+	return ((JsRender.Node)item).childstore;
 }
  );
 
