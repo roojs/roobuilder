@@ -409,13 +409,13 @@ namespace Lsp {
 
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
 	    {
-	    	
+	    	GLib.debug("deserialise property %s" , property_name);
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
 	        }
             value = GLib.Value (typeof(GLib.ListStore));
 	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+	            GLib.debug ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
 	        }
 			GLib.debug("got child length of %d", (int) property_node.get_array ().get_length());
