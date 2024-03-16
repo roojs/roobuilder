@@ -921,6 +921,7 @@
       {
        "$ xns" : "Gtk",
        "* prop" : "end_child",
+       "bool visible" : false,
        "items" : [
         {
          "$ xns" : "Gtk",
