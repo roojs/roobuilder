@@ -271,7 +271,9 @@ public class CodeInfo : Object
 		public Xcls_ColumnViewColumn597(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.ColumnViewColumn( "Object Navigation", null );
+			var child_1 = new Xcls_SignalListItemFactory95( _this );
+			child_1.ref();
+			this.el = new Gtk.ColumnViewColumn( "Object Navigation", child_1.el );
 
 			// my vars (dec)
 
@@ -281,6 +283,34 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
+	public class Xcls_SignalListItemFactory95 : Object
+	{
+		public Gtk.SignalListItemFactory el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SignalListItemFactory95(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SignalListItemFactory();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.setup.connect( (object) => {
+			
+			
+			});
+		}
+
+		// user defined functions
+	}
+
 
 	public class Xcls_SingleSelection35 : Object
 	{
