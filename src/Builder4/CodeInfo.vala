@@ -147,6 +147,9 @@ public class CodeInfo : Object
 			var child_1 = new Xcls_SearchBar6( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
+			var child_2 = new Xcls_ScrolledWindow595( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
 		}
 
 		// user defined functions
@@ -168,14 +171,12 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_ScrolledWindow143( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ScrolledWindow143 : Object
+
+	public class Xcls_ScrolledWindow595 : Object
 	{
 		public Gtk.ScrolledWindow el;
 		private CodeInfo  _this;
@@ -184,10 +185,58 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ScrolledWindow143(CodeInfo _owner )
+		public Xcls_ScrolledWindow595(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.ScrolledWindow();
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_ColumnView596( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ColumnView596 : Object
+	{
+		public Gtk.ColumnView el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ColumnView596(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ColumnView( null );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_ColumnViewColumn597( _this );
+			child_1.ref();
+			this.el.append_column( child_1.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ColumnViewColumn597 : Object
+	{
+		public Gtk.ColumnViewColumn el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ColumnViewColumn597(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ColumnViewColumn( "", null );
 
 			// my vars (dec)
 
@@ -196,6 +245,7 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
+
 
 
 

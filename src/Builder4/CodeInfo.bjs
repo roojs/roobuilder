@@ -37,27 +37,25 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "xtype" : "SearchBar"
+        },
+        {
+         "$ xns" : "Gtk",
          "items" : [
           {
            "$ xns" : "Gtk",
+           "* prop" : "child",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* prop" : "child",
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "string title" : "",
-               "xtype" : "ColumnViewColumn"
-              }
-             ],
-             "xtype" : "ColumnView"
+             "string title" : "",
+             "xtype" : "ColumnViewColumn"
             }
            ],
-           "xtype" : "ScrolledWindow"
+           "xtype" : "ColumnView"
           }
          ],
-         "xtype" : "SearchBar"
+         "xtype" : "ScrolledWindow"
         }
        ],
        "xtype" : "Box"
