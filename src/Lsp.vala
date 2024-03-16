@@ -340,16 +340,8 @@ namespace Lsp {
         public string? detail { get; set; }
         public SymbolKind kind { get; set; }
         public bool deprecated { get; set; }
-        private Range? _initial_range;
-       /* public Range range {
-            owned get {
-                if (_initial_range == null)
-                    _initial_range = new Range.from_sourceref (children.first ()._source_reference);
-                
-                return children.fold<Range> ((child, current_range) => current_range.union (child.range), _initial_range);
-            }
-        }
-        */
+
+       public Range range { get; set; } 
         public Range selectionRange { get; set; }
         public GLib.ListStore children { get; private set; default = new GLib.ListStore(typeof(DocumentSymbol)); }
         public string? parent_name;
