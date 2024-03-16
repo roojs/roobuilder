@@ -37,26 +37,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* prop" : "child",
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "* prop" : "model",
-               "xtype" : "SingleSelection"
-              }
-             ],
-             "xtype" : "ListView"
-            }
-           ],
-           "xtype" : "ScrolledWindow"
-          }
-         ],
          "xtype" : "SearchBar"
         }
        ],

@@ -96,10 +96,35 @@ public class CodeInfo : Object
 
 			// my vars (dec)
 			this.tab_label = "details";
+			var child_1 = new Xcls_WebView486( _this );
+			child_1.ref();
+			notebook.el.append_page( child_1.el , new Gtk.Label(this.tab_label).el );
 		}
 
 		// user defined functions
 	}
+	public class Xcls_WebView486 : Object
+	{
+		public WebKit.WebView el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_WebView486(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new WebKit.WebView();
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 	public class Xcls_Box4 : Object
@@ -143,84 +168,10 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_ScrolledWindow6( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ScrolledWindow6 : Object
-	{
-		public Gtk.ScrolledWindow el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_ScrolledWindow6(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.ScrolledWindow();
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_ListView7( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
-		}
-
-		// user defined functions
-	}
-	public class Xcls_ListView7 : Object
-	{
-		public Gtk.ListView el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_ListView7(CodeInfo _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_SingleSelection8( _this );
-			child_1.ref();
-			this.el = new Gtk.ListView( child_1.el, null );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-	public class Xcls_SingleSelection8 : Object
-	{
-		public Gtk.SingleSelection el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_SingleSelection8(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.SingleSelection( null );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
-
 
 
 
