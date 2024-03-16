@@ -424,8 +424,8 @@ namespace Lsp {
 	        value.set_object (arguments);
 	        return true;
 	   }
-	   string symbol_icon { 
-	   		set {}
+	   public string symbol_icon { 
+	   		private set;
 	   		get {
 	   			
 	   			switch (this.kind) {
