@@ -174,6 +174,7 @@ public class CodeInfo : Object
 
 			// set gobject values
 			this.el.hexpand = true;
+			this.el.visible = true;
 		}
 
 		// user defined functions
