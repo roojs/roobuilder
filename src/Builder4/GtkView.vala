@@ -106,7 +106,7 @@ public class Xcls_GtkView : Object
 	   		var xmlstr = JsRender.NodeToGlade.mungeFile( file);
 	   		var builder = new Gtk.Builder();
 	   		try {
-		   		if (!builder.add_from_string(xmlstr, xmlstr.length))
+		   		if (!builder.add_from_string(xmlstr, xmlstr.length)) {
 		   			return;
 				}
 			} catch(GLib.Error e) {
