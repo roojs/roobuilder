@@ -1776,7 +1776,7 @@ public class Editor : Object
 			var child_2 = new Xcls_ColumnViewColumn29( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
-			var child_3 = new Xcls_GestureClick252( _this );
+			var child_3 = new Xcls_GestureClick34( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
@@ -1926,9 +1926,9 @@ public class Editor : Object
 			    expand.set_hide_expander( sym.children.get_n_items()  < 1);
 			 	expand.set_list_row(lr);
 			 	
-			 	//node.bind_property("iconResourceName",
-			     //               img, "resource",
-			     //              GLib.BindingFlags.SYNC_CREATE);
+			 	sym.bind_property("symbol_icon",
+			                    img, "icon_name",
+			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
 			 	sym.bind_property("name",
 			                    lbl, "label",
@@ -2032,7 +2032,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_GestureClick252 : Object
+	public class Xcls_GestureClick34 : Object
 	{
 		public Gtk.GestureClick el;
 		private Editor  _this;
@@ -2041,7 +2041,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick252(Editor _owner )
+		public Xcls_GestureClick34(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
