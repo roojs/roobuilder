@@ -50,7 +50,7 @@ public class CodeInfo : Object
 			var child_1 = new Xcls_Notebook2( _this );
 			child_1.ref();
 			this.el.end_child = child_1.el;
-			var child_2 = new Xcls_Box4( _this );
+			var child_2 = new Xcls_Box5( _this );
 			child_2.ref();
 			this.el.start_child = child_2.el;
 		}
@@ -95,15 +95,15 @@ public class CodeInfo : Object
 			_this = _owner;
 
 			// my vars (dec)
-			this.tab_label = "details";
-			var child_1 = new Xcls_WebView486( _this );
+			this.tab_label = "Documentation";
+			var child_1 = new Xcls_WebView4( _this );
 			child_1.ref();
-			notebook.el.append_page( child_1.el , new Gtk.Label(this.tab_label).el );
+			notebook.el.append_page( child_1.el , new Gtk.Label(this.tab_label) );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_WebView486 : Object
+	public class Xcls_WebView4 : Object
 	{
 		public WebKit.WebView el;
 		private CodeInfo  _this;
@@ -112,7 +112,7 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_WebView486(CodeInfo _owner )
+		public Xcls_WebView4(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new WebKit.WebView();
@@ -127,7 +127,7 @@ public class CodeInfo : Object
 
 
 
-	public class Xcls_Box4 : Object
+	public class Xcls_Box5 : Object
 	{
 		public Gtk.Box el;
 		private CodeInfo  _this;
@@ -136,7 +136,7 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box4(CodeInfo _owner )
+		public Xcls_Box5(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -144,14 +144,14 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_SearchBar5( _this );
+			var child_1 = new Xcls_SearchBar6( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SearchBar5 : Object
+	public class Xcls_SearchBar6 : Object
 	{
 		public Gtk.SearchBar el;
 		private CodeInfo  _this;
@@ -160,7 +160,7 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SearchBar5(CodeInfo _owner )
+		public Xcls_SearchBar6(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SearchBar();

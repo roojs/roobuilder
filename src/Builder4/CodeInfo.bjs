@@ -23,7 +23,7 @@
            "xtype" : "WebView"
           }
          ],
-         "string tab_label" : "details",
+         "string tab_label" : "Documentation",
          "xtype" : "NotebookPage"
         }
        ],
