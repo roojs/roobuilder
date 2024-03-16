@@ -39,6 +39,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "bool hexpand" : true,
          "xtype" : "SearchBar"
         },
         {

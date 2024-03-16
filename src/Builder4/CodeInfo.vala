@@ -173,6 +173,7 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.hexpand = true;
 		}
 
 		// user defined functions
