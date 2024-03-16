@@ -683,6 +683,46 @@ namespace Palete {
  		
 
 		}
+		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error {
+ 			/* partial_result_token ,  work_done_token   context = null) */
+		 	GLib.debug("get documentSymbols %s", file.relpath);
+			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
+		 	//ret = null;
+		    if (!this.isReady()) {
+				return ret;
+			}
+			Variant? return_value;
+			yield this.jsonrpc_client.call_async (
+				"textDocument/documentSymbol",
+				this.buildDict (  
+					 
+					textDocument : this.buildDict (    ///TextDocumentItem;
+						uri: new GLib.Variant.string (file.to_url()),
+						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+					) 
+					 
+				),
+				null,
+				out return_value
+			);
+			
+			
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+			var json = Json.gvariant_serialize (return_value);
+			 
+			 
+
+			var ar = json.get_array();
+			for(var i = 0; i < ar.get_length(); i++ ) {
+				var add= Json.gobject_deserialize ( typeof (Lsp.DocumentSymbol),  ar.get_element(i)) as Lsp.DocumentSymbol;
+				ret.add( add);
+					 
+	 		}
+			return ret ;
+			
+ 		
+		}
+		
 		
 	}
 	
