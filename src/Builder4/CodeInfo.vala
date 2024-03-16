@@ -175,10 +175,36 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.visible = true;
+			var child_1 = new Xcls_SearchEntry1881( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
+	public class Xcls_SearchEntry1881 : Object
+	{
+		public Gtk.SearchEntry el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SearchEntry1881(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SearchEntry();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.hexpand = true;
+		}
+
+		// user defined functions
+	}
+
 
 	public class Xcls_ScrolledWindow595 : Object
 	{
