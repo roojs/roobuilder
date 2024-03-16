@@ -104,7 +104,16 @@ public class Xcls_GtkView : Object
 	   		}
 	        
 	   		var xmlstr = JsRender.NodeToGlade.mungeFile( file);
-	   		var builder = new Gtk.Builder.from_string (xmlstr, xmlstr.length);
+	   		var builder = new Gtk.Builder();
+	   		try {
+		   		if (!builder.add_from_string(xmlstr, xmlstr.length))
+		   			return;
+				}
+			} catch(Error e) {
+				return;
+			}
+	   		
+	
 	   		var obj = (Gtk.Widget) builder.get_object("w"+ file.tree.oid.to_string());
 	   		 this.container.el.append(obj);
 		    obj.show();
@@ -630,7 +639,7 @@ public class Xcls_GtkView : Object
 
 			// my vars (dec)
 			this.loading = false;
-			this.prop_selected = "";
+			this.prop_selected = "\"\"";
 
 			// set gobject values
 			this.el.name = "gtkview-view";
