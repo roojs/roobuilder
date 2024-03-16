@@ -41,7 +41,6 @@
          "$ xns" : "Gtk",
          "bool hexpand" : true,
          "bool search_mode_enabled" : true,
-         "bool visible" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -64,6 +63,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "bool expand" : true,
              "string title" : "Object Navigation",
              "xtype" : "ColumnViewColumn"
             }
