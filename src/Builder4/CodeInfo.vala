@@ -168,10 +168,35 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_ScrolledWindow143( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
+	public class Xcls_ScrolledWindow143 : Object
+	{
+		public Gtk.ScrolledWindow el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ScrolledWindow143(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ScrolledWindow();
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 
