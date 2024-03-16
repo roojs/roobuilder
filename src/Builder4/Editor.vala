@@ -26,7 +26,7 @@ public class Editor : Object
 	public Xcls_case_sensitive case_sensitive;
 	public Xcls_regex regex;
 	public Xcls_multiline multiline;
-	public Xcls_ColumnView28 ColumnView28;
+	public Xcls_navigation navigation;
 
 		// my vars (def)
 	public int pos_root_x;
@@ -1744,13 +1744,13 @@ public class Editor : Object
 
 			// set gobject values
 			this.el.visible = false;
-			var child_1 = new Xcls_ColumnView28( _this );
-			this.el.child = child_1.el;
+			new Xcls_navigation( _this );
+			this.el.child = _this.navigation.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ColumnView28 : Object
+	public class Xcls_navigation : Object
 	{
 		public Gtk.ColumnView el;
 		private Editor  _this;
@@ -1759,10 +1759,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ColumnView28(Editor _owner )
+		public Xcls_navigation(Editor _owner )
 		{
 			_this = _owner;
-			_this.ColumnView28 = this;
+			_this.navigation = this;
 			var child_1 = new Xcls_SingleSelection31( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnView( child_1.el );
