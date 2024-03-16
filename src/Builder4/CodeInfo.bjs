@@ -34,6 +34,7 @@
        "* prop" : "start_child",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "bool hexpand" : true,
+       "bool vexpand" : true,
        "int spacing" : 0,
        "items" : [
         {
