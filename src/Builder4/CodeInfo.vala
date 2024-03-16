@@ -302,9 +302,29 @@ public class CodeInfo : Object
 			// set gobject values
 
 			//listeners
-			this.el.setup.connect( (object) => {
+			this.el.setup.connect( (listitem) => {
+				
+				var expand = new Gtk.TreeExpander();
+				 
+				expand.set_indent_for_depth(true);
+				expand.set_indent_for_icon(true);
+				var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
+				var icon = new Gtk.Image();
+				var lbl = new Gtk.Label("");
+				lbl.use_markup = true;
+				lbl.ellipsize = Pango.EllipsizeMode.END;
+				
+				icon.margin_end = 4;
+			 	lbl.justify = Gtk.Justification.LEFT;
+			 	lbl.xalign = 0;
 			
-			
+			//	listitem.activatable = true; ??
+				
+				hbox.append(icon);
+				hbox.append(lbl);
+				expand.set_child(hbox);
+				((Gtk.ListItem)listitem).set_child(expand);
+				
 			});
 		}
 
