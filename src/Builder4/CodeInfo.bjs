@@ -40,6 +40,20 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "string title" : "",
+               "xtype" : "ColumnViewColumn"
+              }
+             ],
+             "xtype" : "ColumnView"
+            }
+           ],
            "xtype" : "ScrolledWindow"
           }
          ],
