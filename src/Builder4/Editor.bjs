@@ -1040,7 +1040,8 @@
          ],
          "xtype" : "ColumnView",
          "| void show" : [
-          "() {",
+          "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
+          "\t",
           "",
           "}"
          ]

@@ -1776,7 +1776,8 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public void show () {
+		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
+			
 		
 		}
 	}
