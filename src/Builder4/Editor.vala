@@ -2075,7 +2075,7 @@ public class Editor : Object
 			              }
 			            },
 			            */
-			    _this.scroll_to_line(sym.range.start.line);
+			    _this.scroll_to_line((int)sym.range.start.line);
 				
 			});
 		}
