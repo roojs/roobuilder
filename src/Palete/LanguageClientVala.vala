@@ -173,7 +173,14 @@ namespace Palete {
 				    this.buildDict (
 				        processId: new Variant.int32 ((int32) Posix.getpid ()),
 				        rootPath: new Variant.string (this.project.path),
-				        rootUri: new Variant.string (File.new_for_path (this.project.path).get_uri ())
+				        rootUri: new Variant.string (File.new_for_path (this.project.path).get_uri ()),
+				        capabilities : this.buildDict (
+				        	textDocument: this.buildDict (
+				        		documentSymbol : this.buildDict (
+				        			hierarchicalDocumentSymbolSupport : new Variant.boolean (true)
+			        			)
+				        	)
+				        )
 				    ),
 				    null,
 				    out return_value
