@@ -1067,9 +1067,9 @@
              "    //Lsp.DocumentSymbol",
              "    var node =   _this.navigationselmodel.getSymoblAt(row);",
              "    if (node == null) {",
-             "    ",
-             "}",
-             ""
+             "    \treturn;",
+             "\t}",
+             "}"
             ]
            },
            "xtype" : "GestureClick"

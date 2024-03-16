@@ -2061,7 +2061,8 @@ public class Editor : Object
 			    //Lsp.DocumentSymbol
 			    var node =   _this.navigationselmodel.getSymoblAt(row);
 			    if (node == null) {
-			    
+			    	return;
+				}
 			});
 		}
 
