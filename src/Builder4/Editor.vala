@@ -1745,6 +1745,7 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.name = "navigationtr";
 			this.el.visible = false;
 			new Xcls_navigation( _this );
 			this.el.child = _this.navigation.el;

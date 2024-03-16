@@ -1054,6 +1054,7 @@
          ]
         }
        ],
+       "string name" : "navigationtr",
        "xtype" : "ScrolledWindow"
       }
      ],
