@@ -351,7 +351,7 @@ namespace Lsp {
         }
         */
         public Range selectionRange { get; set; }
-        public GLib.ListStore children { get; private set; default = new Glib.ListStore(typeof(DocumentSymbol)); }
+        public GLib.ListStore children { get; private set; default = new GLib.ListStore(typeof(DocumentSymbol)); }
         public string? parent_name;
 
         private DocumentSymbol () {}
