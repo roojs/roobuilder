@@ -109,7 +109,8 @@ public class Xcls_GtkView : Object
 		   		if (!builder.add_from_string(xmlstr, xmlstr.length))
 		   			return;
 				}
-			} catch(Error e) {
+			} catch(GLib.Error e) {
+				GLib.debug(e.message);
 				return;
 			}
 	   		
