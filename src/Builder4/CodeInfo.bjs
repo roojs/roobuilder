@@ -66,6 +66,11 @@
              "bool expand" : true,
              "string title" : "Object Navigation",
              "xtype" : "ColumnViewColumn"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "xtype" : "SingleSelection"
             }
            ],
            "xtype" : "ColumnView"
