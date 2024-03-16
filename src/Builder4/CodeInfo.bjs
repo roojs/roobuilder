@@ -183,7 +183,12 @@
      "xtype" : "Paned"
     }
    ],
-   "xtype" : "Popover"
+   "xtype" : "Popover",
+   "| void show" : [
+    "() {",
+    "",
+    "}"
+   ]
   }
  ],
  "name" : "CodeInfo"

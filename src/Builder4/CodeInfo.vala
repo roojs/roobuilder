@@ -30,6 +30,9 @@ public class CodeInfo : Object
 	}
 
 	// user defined functions
+	public void show () {
+	
+	}
 	public class Xcls_Paned1 : Object
 	{
 		public Gtk.Paned el;
