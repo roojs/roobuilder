@@ -23,96 +23,6 @@
    "int last_search_end" : 0,
    "items" : [
     {
-     "$ homogeneous" : false,
-     "$ xns" : "Gtk",
-     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-     "bool hexpand" : true,
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "id" : "save_button",
-       "label" : "Save",
-       "listeners" : {
-        "clicked" : [
-         " () => { ",
-         "    _this.saveContents();",
-         "}",
-         "  "
-        ]
-       },
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "bool hexpand" : true,
-       "xtype" : "Label"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* ctor" : "new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1)",
-       "* init" : [
-        "{",
-        "\t//this.el.set_range(6,30);",
-        " \tthis.el.set_value ( BuilderApplication.settings.editor_font_size);",
-        " \tBuilderApplication.settings.editor_font_size_updated.connect(",
-        " \t\t() => {",
-        " \t\t\tBuilderApplication.settings.editor_font_size_inchange = true;",
-        " \t\t//\tGLib.debug(\"update range\");",
-        " \t\t \tthis.el.set_value (BuilderApplication.settings.editor_font_size);",
-        " \t\t \tBuilderApplication.settings.editor_font_size_inchange = false;",
-        " \t\t}",
-        "\t);",
-        "\t",
-        " ",
-        "}",
-        ""
-       ],
-       "bool draw_value" : false,
-       "bool has_origin" : true,
-       "bool sensitive" : true,
-       "int digits" : 0,
-       "int width_request" : 200,
-       "listeners" : {
-        "change_value" : [
-         "(st, val ) => {",
-         "\tif (BuilderApplication.settings.editor_font_size_inchange) {",
-         "\t\treturn false;",
-         "\t}",
-         "  \tBuilderApplication.settings.editor_font_size = val;",
-         " \treturn false;",
-         "}"
-        ]
-       },
-       "xtype" : "Scale"
-      },
-      {
-       "$ xns" : "Gtk",
-       "id" : "close_btn",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "child",
-         "Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
-         "string icon_name" : "window-close",
-         "xtype" : "Image"
-        }
-       ],
-       "listeners" : {
-        "clicked" : [
-         " () => { ",
-         "    _this.saveContents();",
-         "    _this.window.windowstate.switchState(WindowState.State.PREVIEW);",
-         "}",
-         "  "
-        ]
-       },
-       "string icon_name" : "window-close",
-       "xtype" : "Button"
-      }
-     ],
-     "xtype" : "Box"
-    },
-    {
      "$ xns" : "Gtk",
      "Gtk.PolicyType hscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
      "Gtk.PolicyType vscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
@@ -914,6 +824,98 @@
        "* prop" : "end_child",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "int spacing" : 0,
+       "items" : [
+        {
+         "$ homogeneous" : false,
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "bool hexpand" : true,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "id" : "save_button",
+           "label" : "Save",
+           "listeners" : {
+            "clicked" : [
+             " () => { ",
+             "    _this.saveContents();",
+             "}",
+             "  "
+            ]
+           },
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "bool hexpand" : true,
+           "xtype" : "Label"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* ctor" : "new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1)",
+           "* init" : [
+            "{",
+            "\t//this.el.set_range(6,30);",
+            " \tthis.el.set_value ( BuilderApplication.settings.editor_font_size);",
+            " \tBuilderApplication.settings.editor_font_size_updated.connect(",
+            " \t\t() => {",
+            " \t\t\tBuilderApplication.settings.editor_font_size_inchange = true;",
+            " \t\t//\tGLib.debug(\"update range\");",
+            " \t\t \tthis.el.set_value (BuilderApplication.settings.editor_font_size);",
+            " \t\t \tBuilderApplication.settings.editor_font_size_inchange = false;",
+            " \t\t}",
+            "\t);",
+            "\t",
+            " ",
+            "}",
+            ""
+           ],
+           "bool draw_value" : false,
+           "bool has_origin" : true,
+           "bool sensitive" : true,
+           "int digits" : 0,
+           "int width_request" : 200,
+           "listeners" : {
+            "change_value" : [
+             "(st, val ) => {",
+             "\tif (BuilderApplication.settings.editor_font_size_inchange) {",
+             "\t\treturn false;",
+             "\t}",
+             "  \tBuilderApplication.settings.editor_font_size = val;",
+             " \treturn false;",
+             "}"
+            ]
+           },
+           "xtype" : "Scale"
+          },
+          {
+           "$ xns" : "Gtk",
+           "id" : "close_btn",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
+             "string icon_name" : "window-close",
+             "xtype" : "Image"
+            }
+           ],
+           "listeners" : {
+            "clicked" : [
+             " () => { ",
+             "    _this.saveContents();",
+             "    _this.window.windowstate.switchState(WindowState.State.PREVIEW);",
+             "}",
+             "  "
+            ]
+           },
+           "string icon_name" : "window-close",
+           "xtype" : "Button"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
        "xtype" : "Box"
       }
      ],

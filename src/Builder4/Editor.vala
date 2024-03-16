@@ -12,8 +12,6 @@ public class Editor : Object
 		}
 		return _Editor;
 	}
-	public Xcls_save_button save_button;
-	public Xcls_close_btn close_btn;
 	public Xcls_RightEditor RightEditor;
 	public Xcls_view view;
 	public Xcls_buffer buffer;
@@ -26,6 +24,8 @@ public class Editor : Object
 	public Xcls_case_sensitive case_sensitive;
 	public Xcls_regex regex;
 	public Xcls_multiline multiline;
+	public Xcls_save_button save_button;
+	public Xcls_close_btn close_btn;
 
 		// my vars (def)
 	public int pos_root_x;
@@ -64,17 +64,14 @@ public class Editor : Object
 		this.el.homogeneous = false;
 		this.el.hexpand = true;
 		this.el.vexpand = true;
-		var child_1 = new Xcls_Box1( _this );
-		child_1.ref();
-		this.el.append( child_1.el );
 		new Xcls_RightEditor( _this );
 		this.el.append( _this.RightEditor.el );
-		var child_3 = new Xcls_Box12( _this );
+		var child_2 = new Xcls_Box12( _this );
+		child_2.ref();
+		this.el.append ( child_2.el  );
+		var child_3 = new Xcls_Paned317( _this );
 		child_3.ref();
-		this.el.append ( child_3.el  );
-		var child_4 = new Xcls_Paned317( _this );
-		child_4.ref();
-		this.el.append( child_4.el );
+		this.el.append( child_3.el );
 	}
 
 	// user defined functions
@@ -388,202 +385,6 @@ public class Editor : Object
 			return false;
 		});   
 	}
-	public class Xcls_Box1 : Object
-	{
-		public Gtk.Box el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Box1(Editor _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.homogeneous = false;
-			this.el.hexpand = true;
-			new Xcls_save_button( _this );
-			this.el.append( _this.save_button.el );
-			var child_2 = new Xcls_Label3( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
-			var child_3 = new Xcls_Scale4( _this );
-			child_3.ref();
-			this.el.append( child_3.el );
-			new Xcls_close_btn( _this );
-			this.el.append( _this.close_btn.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_save_button : Object
-	{
-		public Gtk.Button el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_save_button(Editor _owner )
-		{
-			_this = _owner;
-			_this.save_button = this;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.label = "Save";
-
-			//listeners
-			this.el.clicked.connect( () => { 
-			    _this.saveContents();
-			});
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Label3 : Object
-	{
-		public Gtk.Label el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Label3(Editor _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( null );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.hexpand = true;
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Scale4 : Object
-	{
-		public Gtk.Scale el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Scale4(Editor _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.width_request = 200;
-			this.el.has_origin = true;
-			this.el.draw_value = false;
-			this.el.digits = 0;
-			this.el.sensitive = true;
-
-			// init method
-
-			{
-				//this.el.set_range(6,30);
-			 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
-			 	BuilderApplication.settings.editor_font_size_updated.connect(
-			 		() => {
-			 			BuilderApplication.settings.editor_font_size_inchange = true;
-			 		//	GLib.debug("update range");
-			 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
-			 		 	BuilderApplication.settings.editor_font_size_inchange = false;
-			 		}
-				);
-				
-			 
-			}
-
-			//listeners
-			this.el.change_value.connect( (st, val ) => {
-				if (BuilderApplication.settings.editor_font_size_inchange) {
-					return false;
-				}
-			  	BuilderApplication.settings.editor_font_size = val;
-			 	return false;
-			});
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_close_btn : Object
-	{
-		public Gtk.Button el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_close_btn(Editor _owner )
-		{
-			_this = _owner;
-			_this.close_btn = this;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.icon_name = "window-close";
-			var child_1 = new Xcls_Image6( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
-
-			//listeners
-			this.el.clicked.connect( () => { 
-			    _this.saveContents();
-			    _this.window.windowstate.switchState(WindowState.State.PREVIEW);
-			});
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Image6 : Object
-	{
-		public Gtk.Image el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Image6(Editor _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Image();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.icon_name = "window-close";
-			this.el.icon_size = Gtk.IconSize.NORMAL;
-		}
-
-		// user defined functions
-	}
-
-
-
 	public class Xcls_RightEditor : Object
 	{
 		public Gtk.ScrolledWindow el;
@@ -1710,10 +1511,209 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_Box806( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
+	public class Xcls_Box806 : Object
+	{
+		public Gtk.Box el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Box806(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.homogeneous = false;
+			this.el.hexpand = true;
+			new Xcls_save_button( _this );
+			this.el.append( _this.save_button.el );
+			var child_2 = new Xcls_Label808( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
+			var child_3 = new Xcls_Scale809( _this );
+			child_3.ref();
+			this.el.append( child_3.el );
+			new Xcls_close_btn( _this );
+			this.el.append( _this.close_btn.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_save_button : Object
+	{
+		public Gtk.Button el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_save_button(Editor _owner )
+		{
+			_this = _owner;
+			_this.save_button = this;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.label = "Save";
+
+			//listeners
+			this.el.clicked.connect( () => { 
+			    _this.saveContents();
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label808 : Object
+	{
+		public Gtk.Label el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Label808(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( null );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.hexpand = true;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Scale809 : Object
+	{
+		public Gtk.Scale el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Scale809(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.width_request = 200;
+			this.el.has_origin = true;
+			this.el.draw_value = false;
+			this.el.digits = 0;
+			this.el.sensitive = true;
+
+			// init method
+
+			{
+				//this.el.set_range(6,30);
+			 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
+			 	BuilderApplication.settings.editor_font_size_updated.connect(
+			 		() => {
+			 			BuilderApplication.settings.editor_font_size_inchange = true;
+			 		//	GLib.debug("update range");
+			 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
+			 		 	BuilderApplication.settings.editor_font_size_inchange = false;
+			 		}
+				);
+				
+			 
+			}
+
+			//listeners
+			this.el.change_value.connect( (st, val ) => {
+				if (BuilderApplication.settings.editor_font_size_inchange) {
+					return false;
+				}
+			  	BuilderApplication.settings.editor_font_size = val;
+			 	return false;
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_close_btn : Object
+	{
+		public Gtk.Button el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_close_btn(Editor _owner )
+		{
+			_this = _owner;
+			_this.close_btn = this;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "window-close";
+			var child_1 = new Xcls_Image811( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( () => { 
+			    _this.saveContents();
+			    _this.window.windowstate.switchState(WindowState.State.PREVIEW);
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Image811 : Object
+	{
+		public Gtk.Image el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Image811(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "window-close";
+			this.el.icon_size = Gtk.IconSize.NORMAL;
+		}
+
+		// user defined functions
+	}
+
+
+
 
 
 }
