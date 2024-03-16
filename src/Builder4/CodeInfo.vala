@@ -317,7 +317,9 @@ public class CodeInfo : Object
 		public Xcls_TreeListModel58(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.TreeListModel( null, false, true, (item) => {
+			var child_1 = new Xcls_ListStore81( _this );
+			child_1.ref();
+			this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
 	//fixme...
 	return ((JsRender.Node)item).childstore;
 }
@@ -330,6 +332,28 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
+	public class Xcls_ListStore81 : Object
+	{
+		public GLib.ListStore el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ListStore81(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new GLib.ListStore(  );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 

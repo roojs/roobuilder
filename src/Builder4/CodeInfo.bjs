@@ -83,6 +83,14 @@
                "* prop" : "model",
                "bool autoexpand" : true,
                "bool passthrough" : false,
+               "items" : [
+                {
+                 "$ GLib.Type item_type" : "",
+                 "$ xns" : "GLib",
+                 "* prop" : "root",
+                 "xtype" : "ListStore"
+                }
+               ],
                "xtype" : "TreeListModel"
               }
              ],
