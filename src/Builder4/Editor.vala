@@ -1778,7 +1778,12 @@ public class Editor : Object
 
 		// user defined functions
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
-			this.navigationwindow.el.show();
+			_this.navigationwindow.el.show();
+			_this.navliststore.el.remove_all();
+			foreach(var sym in syms) {
+				_this.navliststore.el.append(sym);
+			}
+			
 		
 		}
 	}

@@ -1042,7 +1042,12 @@
          "xtype" : "ColumnView",
          "| void show" : [
           "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
-          "\tthis.navigationwindow.el.show();",
+          "\t_this.navigationwindow.el.show();",
+          "\t_this.navliststore.el.remove_all();",
+          "\tforeach(var sym in syms) {",
+          "\t\t_this.navliststore.el.append(sym);",
+          "\t}",
+          "\t",
           "",
           "}"
          ]
