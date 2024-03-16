@@ -350,7 +350,7 @@ namespace Lsp {
             }
         }
         public Range selectionRange { get; set; }
-        public Gee.List<DocumentSymbol> children { get; private set; default = new Gee.LinkedList<DocumentSymbol> (); }
+        public Glib.ListStore children { get; private set; default = new Glib.ListStore(typeof(DocumentSymbol)); }
         public string? parent_name;
 
         private DocumentSymbol () {}
@@ -395,14 +395,15 @@ namespace Lsp {
         }
 
         public Json.Node serialize_property (string property_name, Value value, ParamSpec pspec) {
-            if (property_name != "children")
+           // if (property_name != "children")
                 return default_serialize_property (property_name, value, pspec);
-            var node = new Json.Node (Json.NodeType.ARRAY);
+            /*var node = new Json.Node (Json.NodeType.ARRAY);
             node.init_array (new Json.Array ());
             var array = node.get_array ();
             foreach (var child in children)
                 array.add_element (Json.gobject_serialize (child));
             return node;
+            */
         }
 
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
@@ -411,18 +412,18 @@ namespace Lsp {
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
 	        }
-            value = GLib.Value (typeof(Gee.ArrayList));
+            value = GLib.Value (typeof(GLib.ListStore));
 	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
 	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
 	        }
 			 
-	        var arguments = new Gee.ArrayList<DocumentSymbol>();
+	        var arguments = new GLib.ListStore(typeof(<DocumentSymbol));
 
 	        property_node.get_array ().foreach_element ((array, index, element) => {
 	            
 		        var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
-				arguments.add( add);
+				arguments.append( add);
 
 	           
 	        });
