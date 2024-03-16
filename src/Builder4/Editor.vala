@@ -26,6 +26,7 @@ public class Editor : Object
 	public Xcls_case_sensitive case_sensitive;
 	public Xcls_regex regex;
 	public Xcls_multiline multiline;
+	public Xcls_ColumnView28 ColumnView28;
 
 		// my vars (def)
 	public int pos_root_x;
@@ -1744,7 +1745,6 @@ public class Editor : Object
 			// set gobject values
 			this.el.visible = false;
 			var child_1 = new Xcls_ColumnView28( _this );
-			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
@@ -1762,6 +1762,7 @@ public class Editor : Object
 		public Xcls_ColumnView28(Editor _owner )
 		{
 			_this = _owner;
+			_this.ColumnView28 = this;
 			var child_1 = new Xcls_SingleSelection31( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnView( child_1.el );

@@ -926,6 +926,7 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "child",
+         "id" : "",
          "items" : [
           {
            "$ xns" : "Gtk",
