@@ -568,6 +568,10 @@
           ]
          },
          "xtype" : "EventControllerScroll"
+        },
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "GestureClick"
         }
        ],
        "listeners" : {

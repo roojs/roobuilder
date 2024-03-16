@@ -58,7 +58,7 @@ public class Editor : Object
 		this.file = null;
 		this.node = null;
 		this.prop = null;
-		this.activeEditor = "";
+		this.activeEditor = "\"\"";
 
 		// set gobject values
 		this.el.homogeneous = false;
