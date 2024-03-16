@@ -47,17 +47,17 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Notebook4( _this );
+			var child_1 = new Xcls_Notebook2( _this );
 			child_1.ref();
 			this.el.end_child = child_1.el;
-			var child_2 = new Xcls_Box1620( _this );
+			var child_2 = new Xcls_Box5( _this );
 			child_2.ref();
 			this.el.start_child = child_2.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Notebook4 : Object
+	public class Xcls_Notebook2 : Object
 	{
 		public Gtk.Notebook el;
 		private CodeInfo  _this;
@@ -66,7 +66,7 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Notebook4(CodeInfo _owner )
+		public Xcls_Notebook2(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Notebook();
@@ -74,13 +74,13 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_NotebookPage5( _this  , this);
+			var child_1 = new Xcls_NotebookPage3( _this  , this);
 			child_1.ref();
 		}
 
 		// user defined functions
 	}
-	public class Xcls_NotebookPage5 : Object
+	public class Xcls_NotebookPage3 : Object
 	{
 		public Gtk.NotebookPage el;
 		private CodeInfo  _this;
@@ -90,20 +90,19 @@ public class CodeInfo : Object
 		public string tab_label;
 
 		// ctor
-		public Xcls_NotebookPage5(CodeInfo _owner , Xcls_Notebook4 notebook)
+		public Xcls_NotebookPage3(CodeInfo _owner , Xcls_Notebook2 notebook)
 		{
 			_this = _owner;
 
 			// my vars (dec)
 			this.tab_label = "details";
-			var child_1 = new Xcls_Box483( _this );
-			child_1.ref();
-			notebook.el.append_page( child_1 , new Gtk.Label(this.tab_label) );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box483 : Object
+
+
+	public class Xcls_Box5 : Object
 	{
 		public Gtk.Box el;
 		private CodeInfo  _this;
@@ -112,31 +111,7 @@ public class CodeInfo : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box483(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
-
-	public class Xcls_Box1620 : Object
-	{
-		public Gtk.Box el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Box1620(CodeInfo _owner )
+		public Xcls_Box5(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -144,10 +119,109 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_SearchBar6( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
+	public class Xcls_SearchBar6 : Object
+	{
+		public Gtk.SearchBar el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SearchBar6(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SearchBar();
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_ScrolledWindow7( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ScrolledWindow7 : Object
+	{
+		public Gtk.ScrolledWindow el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ScrolledWindow7(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ScrolledWindow();
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_ListView8( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ListView8 : Object
+	{
+		public Gtk.ListView el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_ListView8(CodeInfo _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_SingleSelection9( _this );
+			child_1.ref();
+			this.el = new Gtk.ListView( child_1.el, null );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_SingleSelection9 : Object
+	{
+		public Gtk.SingleSelection el;
+		private CodeInfo  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SingleSelection9(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SingleSelection( null );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
+
+
 
 
 }
