@@ -185,8 +185,9 @@
    ],
    "xtype" : "Popover",
    "| void show" : [
-    "() {",
-    "",
+    "(Gtk.Widget onbtn) {",
+    "   this.el.set_parent(onbtn);",
+    "\tthis.el.popup();",
     "}"
    ]
   }

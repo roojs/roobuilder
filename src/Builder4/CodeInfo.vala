@@ -30,8 +30,9 @@ public class CodeInfo : Object
 	}
 
 	// user defined functions
-	public void show () {
-	
+	public void show (Gtk.Widget onbtn) {
+	   this.el.set_parent(onbtn);
+		this.el.popup();
 	}
 	public class Xcls_Paned1 : Object
 	{
