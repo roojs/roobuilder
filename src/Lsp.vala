@@ -530,7 +530,7 @@ namespace Lsp {
 			}
 		}
 		public int sort_key { 
-			 {
+			get  {
 				switch (this) {
 					case Enum : return 1;
 					case Class: return 2;
