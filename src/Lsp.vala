@@ -439,7 +439,7 @@ namespace Lsp {
 				
 	   		}
    		}
-   		public stirng sort_key {
+   		public string sort_key {
    			owned get { 
    				return this.kind.sort_key().to_string() + "=" + this.name;
 			}
