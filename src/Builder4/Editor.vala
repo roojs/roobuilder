@@ -1766,16 +1766,17 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigation = this;
-			new Xcls_navigationselmodel( _this );
-			this.el = new Gtk.ColumnView( _this.navigationselmodel.el );
+			this.el = new Gtk.ColumnView( null );
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.name = "editor-navigation";
-			var child_2 = new Xcls_ColumnViewColumn29( _this );
-			child_2.ref();
-			this.el.append_column( child_2.el );
+			var child_1 = new Xcls_ColumnViewColumn29( _this );
+			child_1.ref();
+			this.el.append_column( child_1.el );
+			new Xcls_navigationselmodel( _this );
+			this.el.modelx = _this.navigationselmodel.el;
 			var child_3 = new Xcls_GestureClick34( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
