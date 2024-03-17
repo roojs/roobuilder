@@ -1038,6 +1038,11 @@
               }
              ],
              "xtype" : "TreeListModel"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "xtype" : "SortListModel"
             }
            ],
            "xtype" : "NoSelection",
