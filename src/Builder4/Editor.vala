@@ -1961,14 +1961,13 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			this.el = new Gtk.NoSelection( null );
+			var child_1 = new Xcls_TreeListModel32( _this );
+			child_1.ref();
+			this.el = new Gtk.NoSelection( child_1.el );
 
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_TreeListModel32( _this );
-			child_1.ref();
-			this.el.modelx = child_1.el;
 		}
 
 		// user defined functions
@@ -2033,6 +2032,28 @@ public class Editor : Object
 		// user defined functions
 	}
 
+
+	public class Xcls_SortListModel60 : Object
+	{
+		public Gtk.SortListModel el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SortListModel60(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SortListModel( null, null );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 	public class Xcls_GestureClick34 : Object
