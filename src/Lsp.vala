@@ -529,22 +529,22 @@ namespace Lsp {
 						
 			}
 		}
-		public int sort_key { 
-			get  {
-				switch (this) {
-					case Enum : return 1;
-					case Class: return 2;
-					
-					case Constructor : return 1;
-					case Method : return 2;
-					case Field : return 3;
-					case Property : return 3;
-					
-					default:
-						return 5;
-					
-			
-			}
+		public int sort_key() { 
+			 
+			switch (this) {
+				case Enum : return 1;
+				case Class: return 2;
+				
+				case Constructor : return 1;
+				case Method : return 2;
+				case Field : return 3;
+				case Property : return 3;
+				
+				default:
+					return 5;
+				
+		
+		
 		
 		}
         
