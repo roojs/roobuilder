@@ -430,14 +430,7 @@ namespace Lsp {
 	   			return this.kind.icon(); 
 			}
 		}
-		public string[] symbol_classes { 
-	   		
-	   		owned get {
-	   			string[] ret = { };
-	   			ret += this.kind.icon(); 
-	   			return ret;
-			}
-		}
+		 
 		public string tooltip {
 			owned get {
 				GLib.debug("%s : %s", this.name, this.detail);
@@ -446,6 +439,11 @@ namespace Lsp {
 				
 	   		}
    		}
+   		public stirng sort_key {
+   			owned get { 
+   				return this.kind.sort_key().to_string() + '-' + this.name;
+			}
+		}
 	   
 	   
     }
