@@ -46,7 +46,10 @@
 #left-tree-view indent:nth-last-child(2)  {
     min-width: 24px;
 }
-
+#left-tree-view cell {
+	padding-top: 3px;
+	padding-bottom: 3px;
+} 
 
 #project-list { 
     font-size: 12px;
