@@ -1930,9 +1930,7 @@ public class Editor : Object
 			                    img, "icon_name",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
-			 	sym.bind_property("symbol_classes",
-			                    hbox, "css_classes",
-			                   GLib.BindingFlags.SYNC_CREATE);
+			 	hbox.add_css_class(sym.symbol_icon);
 			 	
 			 	sym.bind_property("name",
 			                    lbl, "label",
