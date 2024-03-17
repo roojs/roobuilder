@@ -439,7 +439,7 @@ namespace Lsp {
 			}
 		}
 		public string tooltip {
-			get {
+			owned get {
 				 return this.detail + "\nline: " + this.range.start.line.to_string();
 				
 	   		}
