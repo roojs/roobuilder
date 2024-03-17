@@ -510,41 +510,41 @@ namespace Lsp {
         Struct = 23,
         Event = 24,
         Operator = 25,
-        TypeParameter = 26
+        TypeParameter = 26;
         
         public string icon () { 
 	   			
 			switch (this) {
 				
-				 	// case 	SymbolKind.Text: return "completion-snippet-symbolic";
-					case 	SymbolKind.Method: return "lang-method-symbolic";
-					case 	SymbolKind.Function: return "lang-function-symbolic";
-					case 	SymbolKind.Constructor: return "lang-method-symbolic";
-					case 	SymbolKind.Field: return "lang-struct-field-symbolic";
-					case 	SymbolKind.Variable: return "lang-variable-symbolic";
-					case 	SymbolKind.Class: return "lang-class-symbolic";
-					case 	SymbolKind.Interface: return "lang-class-symbolic";
-					case 	SymbolKind.Module: return "lang-namespace-symbolic";
-					case 	SymbolKind.Property:return "lang-struct-field-symbolic";
-					//case 	SymbolKind.Unit: return "lang-variable-symbolic";
-					//case 	SymbolKind.Value: return "lang-variable-symbolic";
-					case 	SymbolKind.Enum: return "lang-enum-symbolic";
-					//case 	SymbolKind.Keyword: return "completion-word-symbolic";
-					//case 	SymbolKind.Snippet: return "completion-snippet-symbolic";
+			 	// case 	SymbolKind.Text: return "completion-snippet-symbolic";
+				case 	SymbolKind.Method: return "lang-method-symbolic";
+				case 	SymbolKind.Function: return "lang-function-symbolic";
+				case 	SymbolKind.Constructor: return "lang-method-symbolic";
+				case 	SymbolKind.Field: return "lang-struct-field-symbolic";
+				case 	SymbolKind.Variable: return "lang-variable-symbolic";
+				case 	SymbolKind.Class: return "lang-class-symbolic";
+				case 	SymbolKind.Interface: return "lang-class-symbolic";
+				case 	SymbolKind.Module: return "lang-namespace-symbolic";
+				case 	SymbolKind.Property:return "lang-struct-field-symbolic";
+				//case 	SymbolKind.Unit: return "lang-variable-symbolic";
+				//case 	SymbolKind.Value: return "lang-variable-symbolic";
+				case 	SymbolKind.Enum: return "lang-enum-symbolic";
+				//case 	SymbolKind.Keyword: return "completion-word-symbolic";
+				//case 	SymbolKind.Snippet: return "completion-snippet-symbolic";
 
-					//case 	SymbolKind.Color: return "lang-typedef-symbolic";
-					case 	SymbolKind.File:return "lang-typedef-symbolic";
-					//case 	SymbolKind.Reference: return "lang-typedef-symbolic";
-					//case 	SymbolKind.Folder:return "lang-typedef-symbolic";
-					case 	SymbolKind.EnumMember: return "lang-typedef-symbolic";
-					case 	SymbolKind.Constant:return "lang-typedef-symbolic";
-					case 	SymbolKind.Struct: return "lang-struct-symbolic";
-					case 	SymbolKind.Event:return "lang-typedef-symbolic";
-					case 	SymbolKind.Operator:return "lang-typedef-symbolic";
-					case 	SymbolKind.TypeParameter:return "lang-typedef-symbolic";
-				
-					default: 
-					 return "completion-snippet-symbolic";
+				//case 	SymbolKind.Color: return "lang-typedef-symbolic";
+				case 	SymbolKind.File:return "lang-typedef-symbolic";
+				//case 	SymbolKind.Reference: return "lang-typedef-symbolic";
+				//case 	SymbolKind.Folder:return "lang-typedef-symbolic";
+				case 	SymbolKind.EnumMember: return "lang-typedef-symbolic";
+				case 	SymbolKind.Constant:return "lang-typedef-symbolic";
+				case 	SymbolKind.Struct: return "lang-struct-symbolic";
+				case 	SymbolKind.Event:return "lang-typedef-symbolic";
+				case 	SymbolKind.Operator:return "lang-typedef-symbolic";
+				case 	SymbolKind.TypeParameter:return "lang-typedef-symbolic";
+			
+				default: 
+				 return "completion-snippet-symbolic";
 						
 			}
 		}
