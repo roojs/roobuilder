@@ -1042,6 +1042,11 @@
                 }
                ],
                "xtype" : "TreeListModel"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "sorter",
+               "xtype" : "TreeListRowSorter"
               }
              ],
              "xtype" : "SortListModel"
