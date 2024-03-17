@@ -542,7 +542,7 @@ namespace Lsp {
 				
 				default:
 					return 5;
-				
+			}	
 		
 		
 		
