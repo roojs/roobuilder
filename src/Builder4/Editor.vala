@@ -1766,17 +1766,16 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigation = this;
-			this.el = new Gtk.ColumnView( null );
+			new Xcls_navigationselmodel( _this );
+			this.el = new Gtk.ColumnView( _this.navigationselmodel.el );
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.name = "editor-navigation";
-			var child_1 = new Xcls_ColumnViewColumn29( _this );
-			child_1.ref();
-			this.el.append_column( child_1.el );
-			new Xcls_navigationselmodel( _this );
-			this.el.modelx = _this.navigationselmodel.el;
+			var child_2 = new Xcls_ColumnViewColumn29( _this );
+			child_2.ref();
+			this.el.append_column( child_2.el );
 			var child_3 = new Xcls_GestureClick34( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
@@ -1962,13 +1961,14 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			var child_1 = new Xcls_TreeListModel32( _this );
-			child_1.ref();
-			this.el = new Gtk.NoSelection( child_1.el );
+			this.el = new Gtk.NoSelection( null );
 
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_TreeListModel32( _this );
+			child_1.ref();
+			this.el.modelx = child_1.el;
 		}
 
 		// user defined functions

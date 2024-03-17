@@ -1013,7 +1013,7 @@
           },
           {
            "$ xns" : "Gtk",
-           "* prop" : "modelx",
+           "* prop" : "model",
            "id" : "navigationselmodel",
            "items" : [
             {
@@ -1025,7 +1025,7 @@
               ""
              ],
              "$ xns" : "Gtk",
-             "* prop" : "model",
+             "* prop" : "modelx",
              "bool autoexpand" : true,
              "bool passthrough" : false,
              "items" : [
