@@ -441,7 +441,7 @@ namespace Lsp {
 		public string tooltip {
 			owned get {
 				var detail = this.detail == "" ? (this.kind.to_string() + ": " + this.name) : this.detail;
-				 return detail + "\nline: " + this.range.start.line.to_string();
+				 return GLib.markup_escape_text(detail + "\nline: " + this.range.start.line.to_string());
 				
 	   		}
    		}
