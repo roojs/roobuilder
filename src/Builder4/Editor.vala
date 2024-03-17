@@ -1930,11 +1930,15 @@ public class Editor : Object
 			                    img, "icon_name",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
+			 	sym.bind_property("symbol_classes",
+			                    hbox, "classes",
+			                   GLib.BindingFlags.SYNC_CREATE);
+			 	
 			 	sym.bind_property("name",
 			                    lbl, "label",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	// should be better?- --line no?
-			 	sym.bind_property("detail",
+			 	sym.bind_property("tooltip",
 			                    lbl, "tooltip_markup",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	// bind image...
