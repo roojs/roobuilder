@@ -337,7 +337,7 @@ namespace Lsp {
     public class DocumentSymbol : Object, Json.Serializable {
 		private Vala.SourceReference? _source_reference;
 		public string name { get; set; }
-		public string? detail { get; set; }
+		public string detail { get; set; default = ""; }
 		public SymbolKind kind { get; set; }
 		public bool deprecated { get; set; }
 
@@ -437,8 +437,13 @@ namespace Lsp {
 	   			ret += this.kind.icon(); 
 	   			return ret;
 			}
-		}				
-	   
+		}
+		public string tooltip {
+			get {
+				 return this.detail + "\nline: " + this.range.start.line.to_string();
+				
+	   		}
+   		}
 	   
 	   
     }
