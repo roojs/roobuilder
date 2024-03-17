@@ -107,6 +107,28 @@
 } 
 
 
+tooltip {
+    padding: 2px;
+    margin: 0px 0px 0px 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    border-color: #eee;
+    background-image: none;
+    background-color: #eee;
+    color: #000;
+    border: 0px;
+}
+
+tooltip * {
+    background-color: #eee;
+
+    padding: 5px 5px 5px 5px;
+    margin: 0px 0px 0px 0px;
+    border-width: 1px;
+    color: #000;
+
+}
 
 
  
