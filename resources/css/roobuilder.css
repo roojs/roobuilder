@@ -46,7 +46,10 @@
 #left-tree-view indent:nth-last-child(2)  {
     min-width: 24px;
 }
-
+#left-tree-view cell {
+	padding-top: 3px;
+	padding-bottom: 3px;
+} 
 
 #project-list { 
     font-size: 12px;
@@ -90,5 +93,55 @@
 #roo-search-entry { 
     background-color: #ccc; 
 }
+
+
+#editor-navigation indent {
+    -gtk-icon-size : 2px;
+}
+#editor-navigation { 
+    font-size: 12px;
+}
+#editor-navigation cell {
+	padding-top: 2px;
+	padding-bottom: 2px;
+} 
+.lang-class-symbolic {
+	color : #266b02;
+	font-weight: bold;
+}
+.lang-method-symbolic,
+.lang-function-symbolic {
+	color : #029f2b;
+	font-weight: bold;
+
+}
+
+.lang-struct-field-symbolic {
+	color : #1111ff;
+}
+
+tooltip {
+    padding: 2px;
+    margin: 0px 0px 0px 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    border-color: #eee;
+    background-image: none;
+    background-color: #eee;
+    color: #000;
+    border: 0px;
+}
+
+tooltip * {
+    background-color: #eee;
+
+    padding: 5px 5px 5px 5px;
+    margin: 0px 0px 0px 0px;
+    border-width: 1px;
+    color: #000;
+
+}
+
 
  

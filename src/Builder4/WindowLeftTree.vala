@@ -874,7 +874,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 			this.highlightWidget = null;
 			this.lastDragNode = null;
-			this.lastDragString = "";
+			this.lastDragString = "\"\"";
 
 			// set gobject values
 

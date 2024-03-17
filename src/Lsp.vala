@@ -335,25 +335,18 @@ namespace Lsp {
     }
 
     public class DocumentSymbol : Object, Json.Serializable {
-        private Vala.SourceReference? _source_reference;
-        public string name { get; set; }
-        public string? detail { get; set; }
-        public SymbolKind kind { get; set; }
-        public bool deprecated { get; set; }
-        private Range? _initial_range;
-        public Range range {
-            owned get {
-                if (_initial_range == null)
-                    _initial_range = new Range.from_sourceref (children.first ()._source_reference);
-                
-                return children.fold<Range> ((child, current_range) => current_range.union (child.range), _initial_range);
-            }
-        }
-        public Range selectionRange { get; set; }
-        public Gee.List<DocumentSymbol> children { get; private set; default = new Gee.LinkedList<DocumentSymbol> (); }
-        public string? parent_name;
+		private Vala.SourceReference? _source_reference;
+		public string name { get; set; }
+		public string detail { get; set; default = ""; }
+		public SymbolKind kind { get; set; }
+		public bool deprecated { get; set; }
 
-        private DocumentSymbol () {}
+		public Range range { get; set; } 
+		public Range selectionRange { get; set; }
+		public GLib.ListStore children { get;  set; default = new GLib.ListStore(typeof(DocumentSymbol)); }
+		public string? parent_name;
+
+		private DocumentSymbol () {}
 
         /**
          * @param type the data type containing this symbol, if there was one (not available for Namespaces, for example)
@@ -395,34 +388,35 @@ namespace Lsp {
         }
 
         public Json.Node serialize_property (string property_name, Value value, ParamSpec pspec) {
-            if (property_name != "children")
+           // if (property_name != "children")
                 return default_serialize_property (property_name, value, pspec);
-            var node = new Json.Node (Json.NodeType.ARRAY);
+            /*var node = new Json.Node (Json.NodeType.ARRAY);
             node.init_array (new Json.Array ());
             var array = node.get_array ();
             foreach (var child in children)
                 array.add_element (Json.gobject_serialize (child));
             return node;
+            */
         }
 
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
 	    {
-	    	
+	    	GLib.debug("deserialise property %s" , property_name);
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
 	        }
-            value = GLib.Value (typeof(Gee.ArrayList));
+            value = GLib.Value (typeof(GLib.ListStore));
 	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-	            warning ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+	            GLib.debug ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
 	        }
-			 
-	        var arguments = new Gee.ArrayList<DocumentSymbol>();
+			GLib.debug("got child length of %d", (int) property_node.get_array ().get_length());
+	        var arguments = new GLib.ListStore(typeof(DocumentSymbol));
 
 	        property_node.get_array ().foreach_element ((array, index, element) => {
 	            
 		        var add= Json.gobject_deserialize ( typeof (DocumentSymbol),  array.get_element(index)) as DocumentSymbol;
-				arguments.add( add);
+				arguments.append( add);
 
 	           
 	        });
@@ -430,6 +424,28 @@ namespace Lsp {
 	        value.set_object (arguments);
 	        return true;
 	   }
+	   public string symbol_icon { 
+	   		
+	   		owned get {
+	   			return this.kind.icon(); 
+			}
+		}
+		 
+		public string tooltip {
+			owned get {
+				GLib.debug("%s : %s", this.name, this.detail);
+				//var detail = this.detail == "" ? (this.kind.to_string() + ": " + this.name) : this.detail;
+				 return GLib.Markup.escape_text(this.detail + "\nline: " + this.range.start.line.to_string());
+				
+	   		}
+   		}
+   		public string sort_key {
+   			owned get { 
+   				return this.kind.sort_key().to_string() + "=" + this.name;
+			}
+		}
+	   
+	   
     }
 
     public class SymbolInformation : Object {
@@ -441,7 +457,7 @@ namespace Lsp {
         public SymbolInformation.from_document_symbol (DocumentSymbol dsym, string uri) {
             this.name = dsym.name;
             this.kind = dsym.kind;
-            this.location = new Location (uri, dsym.range);
+          //  this.location = new Location (uri, dsym.range);
             this.containerName = dsym.parent_name;
         }
     }
@@ -473,7 +489,63 @@ namespace Lsp {
         Struct = 23,
         Event = 24,
         Operator = 25,
-        TypeParameter = 26
+        TypeParameter = 26;
+        
+        public string icon () { 
+	   			
+			switch (this) {
+				
+			 	// case 	SymbolKind.Text: return "completion-snippet-symbolic";
+				case 	SymbolKind.Method: return "lang-method-symbolic";
+				case 	SymbolKind.Function: return "lang-function-symbolic";
+				case 	SymbolKind.Constructor: return "lang-method-symbolic";
+				case 	SymbolKind.Field: return "lang-struct-field-symbolic";
+				case 	SymbolKind.Variable: return "lang-variable-symbolic";
+				case 	SymbolKind.Class: return "lang-class-symbolic";
+				case 	SymbolKind.Interface: return "lang-class-symbolic";
+				case 	SymbolKind.Module: return "lang-namespace-symbolic";
+				case 	SymbolKind.Property:return "lang-struct-field-symbolic";
+				//case 	SymbolKind.Unit: return "lang-variable-symbolic";
+				//case 	SymbolKind.Value: return "lang-variable-symbolic";
+				case 	SymbolKind.Enum: return "lang-enum-symbolic";
+				//case 	SymbolKind.Keyword: return "completion-word-symbolic";
+				//case 	SymbolKind.Snippet: return "completion-snippet-symbolic";
+
+				//case 	SymbolKind.Color: return "lang-typedef-symbolic";
+				case 	SymbolKind.File:return "lang-typedef-symbolic";
+				//case 	SymbolKind.Reference: return "lang-typedef-symbolic";
+				//case 	SymbolKind.Folder:return "lang-typedef-symbolic";
+				case 	SymbolKind.EnumMember: return "lang-typedef-symbolic";
+				case 	SymbolKind.Constant:return "lang-typedef-symbolic";
+				case 	SymbolKind.Struct: return "lang-struct-symbolic";
+				case 	SymbolKind.Event:return "lang-typedef-symbolic";
+				case 	SymbolKind.Operator:return "lang-typedef-symbolic";
+				case 	SymbolKind.TypeParameter:return "lang-typedef-symbolic";
+			
+				default: 
+				 return "completion-snippet-symbolic";
+						
+			}
+		}
+		public int sort_key() { 
+			 
+			switch (this) {
+				case Enum : return 1;
+				case Class: return 2;
+				
+				case Constructor : return 1;
+				case Method : return 2;
+				case Field : return 3;
+				case Property : return 3;
+				
+				default:
+					return 5;
+			}	
+		
+		
+		
+		}
+        
     }
 
    	public class CompletionList : Object, Json.Serializable {

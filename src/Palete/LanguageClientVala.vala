@@ -173,7 +173,14 @@ namespace Palete {
 				    this.buildDict (
 				        processId: new Variant.int32 ((int32) Posix.getpid ()),
 				        rootPath: new Variant.string (this.project.path),
-				        rootUri: new Variant.string (File.new_for_path (this.project.path).get_uri ())
+				        rootUri: new Variant.string (File.new_for_path (this.project.path).get_uri ()),
+				        capabilities : this.buildDict (
+				        	textDocument: this.buildDict (
+				        		documentSymbol : this.buildDict (
+				        			hierarchicalDocumentSymbolSupport : new Variant.boolean (true)
+			        			)
+				        	)
+				        )
 				    ),
 				    null,
 				    out return_value
@@ -641,11 +648,10 @@ namespace Palete {
 		
 		
 		
-		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
- 		public override async Gee.ArrayList<Lsp.DocumentSymbol> syntax (JsRender.JsRender file) throws GLib.Error 
-		 {
-		 	/* partial_result_token ,  work_done_token   context = null) */
-		 	GLib.debug("get syntax %s", file.relpath);
+	 
+		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error {
+ 			/* partial_result_token ,  work_done_token   context = null) */
+		 	GLib.debug("get documentSymbols %s", file.relpath);
 			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
 		 	//ret = null;
 		    if (!this.isReady()) {
@@ -673,16 +679,17 @@ namespace Palete {
 			 
 
 			var ar = json.get_array();
+			GLib.debug ("LS replied with %D items", ar.get_length());
 			for(var i = 0; i < ar.get_length(); i++ ) {
 				var add= Json.gobject_deserialize ( typeof (Lsp.DocumentSymbol),  ar.get_element(i)) as Lsp.DocumentSymbol;
 				ret.add( add);
 					 
 	 		}
-				return ret ;
+			return ret ;
 			
  		
-
 		}
+		
 		
 	}
 	
