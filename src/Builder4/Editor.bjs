@@ -964,7 +964,7 @@
                "                   GLib.BindingFlags.SYNC_CREATE);",
                " \t",
                " \tsym.bind_property(\"symbol_classes\",",
-               "                    hbox, \"classes\",",
+               "                    hbox, \"css_classes\",",
                "                   GLib.BindingFlags.SYNC_CREATE);",
                " \t",
                " \tsym.bind_property(\"name\",",

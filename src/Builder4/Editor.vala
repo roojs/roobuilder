@@ -1931,7 +1931,7 @@ public class Editor : Object
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
 			 	sym.bind_property("symbol_classes",
-			                    hbox, "classes",
+			                    hbox, "css_classes",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
 			 	sym.bind_property("name",
