@@ -105,7 +105,20 @@
 	padding-top: 2px;
 	padding-bottom: 2px;
 } 
+.lang-class-symbolic {
+	color : #266b02;
+	font-weight: bold;
+}
+.lang-method-symbolic,
+.lang-function-symbolic {
+	color : #029f2b;
+	font-weight: bold;
 
+}
+
+.lang-struct-field-symbolic {
+	color : #1111ff;
+}
 
 tooltip {
     padding: 2px;
