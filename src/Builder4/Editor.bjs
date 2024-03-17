@@ -1017,31 +1017,33 @@
            "id" : "navigationselmodel",
            "items" : [
             {
-             "$ Gtk.TreeListModelCreateModelFunc create_func" : [
-              "(item) => {",
-              " ",
-              "\treturn ((Lsp.DocumentSymbol)item).children;",
-              "}",
-              ""
-             ],
              "$ xns" : "Gtk",
              "* prop" : "model",
-             "bool autoexpand" : true,
-             "bool passthrough" : false,
              "items" : [
               {
-               "$ GLib.Type item_type" : "typeof(Lsp.DocumentSymbol)",
-               "$ xns" : "GLib",
-               "* prop" : "root",
-               "id" : "navliststore",
-               "xtype" : "ListStore"
+               "$ Gtk.TreeListModelCreateModelFunc create_func" : [
+                "(item) => {",
+                " ",
+                "\treturn ((Lsp.DocumentSymbol)item).children;",
+                "}",
+                ""
+               ],
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "bool autoexpand" : true,
+               "bool passthrough" : false,
+               "items" : [
+                {
+                 "$ GLib.Type item_type" : "typeof(Lsp.DocumentSymbol)",
+                 "$ xns" : "GLib",
+                 "* prop" : "root",
+                 "id" : "navliststore",
+                 "xtype" : "ListStore"
+                }
+               ],
+               "xtype" : "TreeListModel"
               }
              ],
-             "xtype" : "TreeListModel"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* prop" : "model",
              "xtype" : "SortListModel"
             }
            ],

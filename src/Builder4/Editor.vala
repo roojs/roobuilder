@@ -1961,7 +1961,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			var child_1 = new Xcls_TreeListModel32( _this );
+			var child_1 = new Xcls_SortListModel60( _this );
 			child_1.ref();
 			this.el = new Gtk.NoSelection( child_1.el );
 
@@ -1983,7 +1983,30 @@ public class Editor : Object
 			 
 		}
 	}
-	public class Xcls_TreeListModel32 : Object
+	public class Xcls_SortListModel60 : Object
+	{
+		public Gtk.SortListModel el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_SortListModel60(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_TreeListModel171( _this );
+			child_1.ref();
+			this.el = new Gtk.SortListModel( child_1.el, null );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_TreeListModel171 : Object
 	{
 		public Gtk.TreeListModel el;
 		private Editor  _this;
@@ -1992,7 +2015,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_TreeListModel32(Editor _owner )
+		public Xcls_TreeListModel171(Editor _owner )
 		{
 			_this = _owner;
 			new Xcls_navliststore( _this );
@@ -2033,27 +2056,6 @@ public class Editor : Object
 	}
 
 
-	public class Xcls_SortListModel60 : Object
-	{
-		public Gtk.SortListModel el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_SortListModel60(Editor _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.SortListModel( null, null );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
 
 
 	public class Xcls_GestureClick34 : Object
