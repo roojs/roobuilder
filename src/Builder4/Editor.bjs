@@ -1046,6 +1046,13 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "sorter",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "sorter",
+                 "xtype" : "StringSorter"
+                }
+               ],
                "xtype" : "TreeListRowSorter"
               }
              ],
