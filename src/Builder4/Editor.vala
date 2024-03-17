@@ -1997,7 +1997,9 @@ public class Editor : Object
 			_this = _owner;
 			var child_1 = new Xcls_TreeListModel171( _this );
 			child_1.ref();
-			this.el = new Gtk.SortListModel( child_1.el, null );
+			var child_2 = new Xcls_TreeListRowSorter209( _this );
+			child_2.ref();
+			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
 			// my vars (dec)
 
@@ -2054,6 +2056,76 @@ public class Editor : Object
 
 		// user defined functions
 	}
+
+
+	public class Xcls_TreeListRowSorter209 : Object
+	{
+		public Gtk.TreeListRowSorter el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_TreeListRowSorter209(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_StringSorter217( _this );
+			child_1.ref();
+			this.el = new Gtk.TreeListRowSorter( child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_StringSorter217 : Object
+	{
+		public Gtk.StringSorter el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_StringSorter217(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_PropertyExpression224( _this );
+			child_1.ref();
+			this.el = new Gtk.StringSorter( child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_PropertyExpression224 : Object
+	{
+		public Gtk.PropertyExpression el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_PropertyExpression224(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.PropertyExpression( typeof(Lsp.DocumentSymbol), null, "sort_key" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 

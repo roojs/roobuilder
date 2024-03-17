@@ -1052,10 +1052,10 @@
                  "* prop" : "sorter",
                  "items" : [
                   {
-                   "$ GLib.Type this_type" : "",
+                   "$ GLib.Type this_type" : "typeof(Lsp.DocumentSymbol)",
                    "$ xns" : "Gtk",
                    "* prop" : "expression",
-                   "string property_name" : "",
+                   "string property_name" : "sort_key",
                    "xtype" : "PropertyExpression"
                   }
                  ],
