@@ -63,10 +63,10 @@ namespace Lsp {
 
     public  class Position : Object, Gee.Comparable<Position> {
         
-        public Position.new_line(uint line)
+        public Position(uint line, uint chr)
         {
         	this.line = line;
-        	this.character = 1;
+        	this.character = chr;
         }
         /**
          * Line position in a document (zero-based).
