@@ -1984,7 +1984,7 @@ public class Editor : Object
 		}
 		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
 		
-		for (var i=0;i < this.el.get_items(); i++) {
+		for (var i=0;i < this.el.get_n_items(); i++) {
 		
 		
 		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
