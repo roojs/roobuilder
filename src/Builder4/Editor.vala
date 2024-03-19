@@ -1921,7 +1921,7 @@ public class Editor : Object
 			}
 			if (this.selected_row > -1) {
 				var old = this.getWidgetAtRow(this.selected_row);
-				if (old !=null) {
+				if (old != null) {
 					old.remove_css_class("selected-row");
 				}
 			}	

@@ -1302,7 +1302,7 @@
           "\t}",
           "\tif (this.selected_row > -1) {",
           "\t\tvar old = this.getWidgetAtRow(this.selected_row);",
-          "\t\tif (old !=null) {",
+          "\t\tif (old != null) {",
           "\t\t\told.remove_css_class(\"selected-row\");",
           "\t\t}",
           "\t}\t",
