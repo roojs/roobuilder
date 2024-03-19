@@ -1291,7 +1291,7 @@
           "\t \tnew_row = _this.navigationselmodel.getRowFromSymbol(sym);",
           " \t\tGLib.debug(\"select line %d - row found %d\", line, new_row);",
           " \t} else {",
-          " \t\tGLib.debug(\" no sumbol found at line %d\", line);",
+          " \t\tGLib.debug(\" no symbol found at line %d\", line);",
           " \t}",
           " \tif (new_row == this.selected_row) {",
           " \t\treturn;",
