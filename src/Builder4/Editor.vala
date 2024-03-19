@@ -1914,7 +1914,7 @@ public class Editor : Object
 			 	new_row = _this.navigationselmodel.getRowFromSymbol(sym);
 		 		GLib.debug("select line %d - row found %d", line, new_row);
 		 	} else {
-		 		GLib.debug(" now sumbol found at line %d", line);
+		 		GLib.debug(" no sumbol found at line %d", line);
 		 	}
 		 	if (new_row == this.selected_row) {
 		 		return;
