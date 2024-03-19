@@ -1982,8 +1982,17 @@ public class Editor : Object
 		   return (Lsp.DocumentSymbol)tr.get_item();
 			 
 		}
-		public int getRowFromSymbol () {
+		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
 		
+		for (var i=0;i < this.el.get_items(); i++) {
+		
+		
+		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
+		   
+		   if (sym.equals( (Lsp.DocumentSymbol)tr.get_item()) {
+		   		return row;
+			}
+		   	return -1;
 		}
 	}
 	public class Xcls_SortListModel32 : Object
