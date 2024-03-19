@@ -1299,6 +1299,7 @@
           " \t}",
           " \t",
           "\tif (this.selected_row != null) { ",
+          "\t\tGLib.debug(\" remove selected row\");",
           "\t\tthis.selected_row.remove_css_class(\"selected-row\");",
           "\t}",
           "\tthis.selected_row  = null;",

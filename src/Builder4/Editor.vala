@@ -1918,6 +1918,7 @@ public class Editor : Object
 		 	}
 		 	
 			if (this.selected_row != null) { 
+				GLib.debug(" remove selected row");
 				this.selected_row.remove_css_class("selected-row");
 			}
 			this.selected_row  = null;
