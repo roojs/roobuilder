@@ -2191,7 +2191,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public Lsp.DocumentSymbol? symbolAtLine (uint line) {
+		public Lsp.DocumentSymbol? symbolAtLine (uint line, uint chr) {
 		 
 			
 			for(var i = 0; i < this.el.get_n_items();i++) {
@@ -2200,7 +2200,7 @@ public class Editor : Object
 				//	el.name , (int)el.range.start.line,
 				//	(int)el.range.end.line
 				//);
-				var ret = el.containsLine((int)line);
+				var ret = el.containsLine(line,chr);
 				if (ret != null) {
 					return ret;
 				}

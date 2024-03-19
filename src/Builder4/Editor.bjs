@@ -1056,7 +1056,7 @@
                  "id" : "navliststore",
                  "xtype" : "ListStore",
                  "| Lsp.DocumentSymbol? symbolAtLine" : [
-                  "(uint line) {",
+                  "(uint line, uint chr) {",
                   " ",
                   "\t",
                   "\tfor(var i = 0; i < this.el.get_n_items();i++) {",
@@ -1065,7 +1065,7 @@
                   "\t\t//\tel.name , (int)el.range.start.line,",
                   "\t\t//\t(int)el.range.end.line",
                   "\t\t//);",
-                  "\t\tvar ret = el.containsLine((int)line);",
+                  "\t\tvar ret = el.containsLine(line,chr);",
                   "\t\tif (ret != null) {",
                   "\t\t\treturn ret;",
                   "\t\t}",
