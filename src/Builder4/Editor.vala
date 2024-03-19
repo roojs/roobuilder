@@ -29,6 +29,7 @@ public class Editor : Object
 	public Xcls_navigationwindow navigationwindow;
 	public Xcls_navigation navigation;
 	public Xcls_navigationselmodel navigationselmodel;
+	public Xcls_navigationsort navigationsort;
 	public Xcls_navliststore navliststore;
 
 		// my vars (def)
@@ -926,6 +927,19 @@ public class Editor : Object
 			buf.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
 
 			//listeners
+			this.el.cursor_moved.connect( ( ) => {
+			
+				Gtk.TextIter iter;
+				this.el.get_iter_at_offset (
+						out iter, this.el.cursor_position);
+				var line = iter.get_line();
+				_this.navigation.updateSelectedLine(
+						(uint)iter.get_line(),
+						(uint)iter.get_line_offset()
+					);
+			
+			
+			});
 			this.el.changed.connect( () => {
 			    // check syntax??
 			    // ??needed..??
@@ -1760,6 +1774,8 @@ public class Editor : Object
 
 
 			// my vars (def)
+		public int last_selected_line;
+		public Gtk.Widget? selected_row;
 
 		// ctor
 		public Xcls_navigation(Editor _owner )
@@ -1770,18 +1786,69 @@ public class Editor : Object
 			this.el = new Gtk.ColumnView( _this.navigationselmodel.el );
 
 			// my vars (dec)
+			this.last_selected_line = -1;
+			this.selected_row = null;
 
 			// set gobject values
 			this.el.name = "editor-navigation";
 			var child_2 = new Xcls_ColumnViewColumn29( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
-			var child_3 = new Xcls_GestureClick34( _this );
+			var child_3 = new Xcls_GestureClick38( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
 
 		// user defined functions
+		public Gtk.Widget? getWidgetAtRow (uint row) {
+		/*
+		    	
+		from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+		    	var colview = gesture.widget;
+		    	var line_no = check_list_widget(colview, x,y);
+		         if (line_no > -1) {
+		    		var item = colview.model.get_item(line_no);
+		    		 
+		    	}
+		    	*/
+				//GLib.debug("Get Widget At Row %d", (int)row);
+		        var  child = this.el.get_first_child(); 
+		    	var line_no = -1; 
+		    	var reading_header = true;
+			 
+		    	while (child != null) {
+					//GLib.debug("Got %s", child.get_type().name());
+		    	   
+		    	   if (reading_header) {
+						
+		
+						if (child.get_type().name() != "GtkColumnListView") {
+						   
+							child = child.get_next_sibling();
+							continue;
+						}
+						// should be columnlistview
+						child = child.get_first_child(); 
+					 
+					 
+						
+						reading_header = false;
+						continue;
+				    }
+				    
+				  
+		    	    
+				    line_no++;
+					if (line_no == row) {
+						//GLib.debug("Returning widget %s", child.get_type().name());
+					    return (Gtk.Widget)child;
+				    }
+			        child = child.get_next_sibling(); 
+		    	}
+				GLib.debug("Failed to find row (max = %d)", line_no);
+		        return null;
+		
+		 }
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
 			_this.navigationwindow.el.show();
 			_this.navliststore.el.remove_all();
@@ -1837,6 +1904,46 @@ public class Editor : Object
 			} 
 			return rn;
 		 }
+		public void updateSelectedLine (uint line, uint chr) {
+			if (line == this.last_selected_line) {
+				return;
+			}
+			GLib.debug("select line %d", (int)line);
+			this.last_selected_line = (int)line;
+			
+			
+			var new_row = -1;
+			var sym = _this.navliststore.symbolAtLine(line, chr);
+			if (sym != null) {
+			 	new_row = _this.navigationsort.getRowFromSymbol(sym);
+		 		GLib.debug("select line %d - row found %d", (int)line, new_row);
+		 	} else {
+		 		GLib.debug(" no symbol found at line %d", (int)line);
+		 	}
+		 	
+			if (this.selected_row != null) { 
+				GLib.debug(" remove selected row");
+				this.selected_row.remove_css_class("selected-row");
+			}
+			this.selected_row  = null;
+			if (new_row > -1) {
+				this.el.scroll_to(new_row,null,Gtk.ListScrollFlags.NONE, null);
+				var row = this.getWidgetAtRow(new_row);
+				if (row != null) {
+					GLib.debug(" Add selected row");
+		 			
+					row.add_css_class("selected-row");
+					this.selected_row = row;
+		
+					
+				} else {
+					GLib.debug("could not find widget on row %d", new_row);
+				}
+		
+			}
+		
+		
+		}
 	}
 	public class Xcls_ColumnViewColumn29 : Object
 	{
@@ -1961,9 +2068,8 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			var child_1 = new Xcls_SortListModel60( _this );
-			child_1.ref();
-			this.el = new Gtk.NoSelection( child_1.el );
+			new Xcls_navigationsort( _this );
+			this.el = new Gtk.NoSelection( _this.navigationsort.el );
 
 			// my vars (dec)
 
@@ -1971,7 +2077,18 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public Lsp.DocumentSymbol? getSymoblAt (uint row) {
+		public int getRowFromSymbolx (Lsp.DocumentSymbol sym) {
+		
+			for (var i=0;i < this.el.get_n_items(); i++) {
+				var tr = (Gtk.TreeListRow)this.el.get_item(i);
+			   
+				if (sym.equals( (Lsp.DocumentSymbol)tr.get_item())) {
+					return i;
+				}
+			}
+		   	return -1;
+		}
+		public Lsp.DocumentSymbol? getSymbollAtOLD (uint row) {
 		
 		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
 		   
@@ -1983,7 +2100,7 @@ public class Editor : Object
 			 
 		}
 	}
-	public class Xcls_SortListModel60 : Object
+	public class Xcls_navigationsort : Object
 	{
 		public Gtk.SortListModel el;
 		private Editor  _this;
@@ -1992,12 +2109,13 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SortListModel60(Editor _owner )
+		public Xcls_navigationsort(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_TreeListModel171( _this );
+			_this.navigationsort = this;
+			var child_1 = new Xcls_TreeListModel33( _this );
 			child_1.ref();
-			var child_2 = new Xcls_TreeListRowSorter209( _this );
+			var child_2 = new Xcls_TreeListRowSorter35( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
@@ -2007,8 +2125,30 @@ public class Editor : Object
 		}
 
 		// user defined functions
+		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
+		
+			for (var i=0;i < this.el.get_n_items(); i++) {
+				var tr = (Gtk.TreeListRow)this.el.get_item(i);
+			   
+				if (sym.equals( (Lsp.DocumentSymbol)tr.get_item())) {
+					return i;
+				}
+			}
+		   	return -1;
+		}
+		public Lsp.DocumentSymbol? getSymbolAt (uint row) {
+		
+		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
+		   
+		   var a = tr.get_item();;   
+		   GLib.debug("get_item (2) = %s", a.get_type().name());
+		  	
+		   
+		   return (Lsp.DocumentSymbol)tr.get_item();
+			 
+		}
 	}
-	public class Xcls_TreeListModel171 : Object
+	public class Xcls_TreeListModel33 : Object
 	{
 		public Gtk.TreeListModel el;
 		private Editor  _this;
@@ -2017,7 +2157,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_TreeListModel171(Editor _owner )
+		public Xcls_TreeListModel33(Editor _owner )
 		{
 			_this = _owner;
 			new Xcls_navliststore( _this );
@@ -2055,10 +2195,28 @@ public class Editor : Object
 		}
 
 		// user defined functions
+		public Lsp.DocumentSymbol? symbolAtLine (uint line, uint chr) {
+		 
+			
+			for(var i = 0; i < this.el.get_n_items();i++) {
+				var el = (Lsp.DocumentSymbol)this.el.get_item(i);
+				//GLib.debug("Check sym %s : %d-%d",
+				//	el.name , (int)el.range.start.line,
+				//	(int)el.range.end.line
+				//);
+				var ret = el.containsLine(line,chr);
+				if (ret != null) {
+					return ret;
+				}
+				
+			}
+			
+			return null;
+		}
 	}
 
 
-	public class Xcls_TreeListRowSorter209 : Object
+	public class Xcls_TreeListRowSorter35 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Editor  _this;
@@ -2067,10 +2225,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter209(Editor _owner )
+		public Xcls_TreeListRowSorter35(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter217( _this );
+			var child_1 = new Xcls_StringSorter36( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -2081,7 +2239,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter217 : Object
+	public class Xcls_StringSorter36 : Object
 	{
 		public Gtk.StringSorter el;
 		private Editor  _this;
@@ -2090,10 +2248,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter217(Editor _owner )
+		public Xcls_StringSorter36(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression224( _this );
+			var child_1 = new Xcls_PropertyExpression37( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -2104,7 +2262,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression224 : Object
+	public class Xcls_PropertyExpression37 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Editor  _this;
@@ -2113,7 +2271,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression224(Editor _owner )
+		public Xcls_PropertyExpression37(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Lsp.DocumentSymbol), null, "sort_key" );
@@ -2130,7 +2288,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_GestureClick34 : Object
+	public class Xcls_GestureClick38 : Object
 	{
 		public Gtk.GestureClick el;
 		private Editor  _this;
@@ -2139,7 +2297,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick34(Editor _owner )
+		public Xcls_GestureClick38(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -2157,7 +2315,7 @@ public class Editor : Object
 				    return;
 			    }
 			    //Lsp.DocumentSymbol
-			    var sym =   _this.navigationselmodel.getSymoblAt(row);
+			    var sym =   _this.navigationsort.getSymbolAt(row);
 			    if (sym == null) {
 			    	return;
 				}
@@ -2172,7 +2330,8 @@ public class Editor : Object
 			                "character" : 39
 			              }
 			            },
-			            */
+			        */
+			     GLib.debug("goto line %d",   (int)sym.range.start.line); 
 			    _this.scroll_to_line((int)sym.range.start.line);
 				
 			});

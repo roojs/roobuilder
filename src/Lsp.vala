@@ -62,6 +62,12 @@ namespace Lsp {
     }
 
     public  class Position : Object, Gee.Comparable<Position> {
+        
+        public Position(uint line, uint chr)
+        {
+        	this.line = line;
+        	this.character = chr;
+        }
         /**
          * Line position in a document (zero-based).
          */
@@ -78,6 +84,7 @@ namespace Lsp {
         public uint character { get; set; default = -1; }
 
         public int compare_to (Position other) {
+             
             return line > other.line ? 1 :
                 (line == other.line ?
                  (character > other.character ? 1 :
@@ -101,20 +108,14 @@ namespace Lsp {
         }
 
         public Position translate (int dl = 0, int dc = 0) {
-            return new Position () {
-                line = this.line + dl,
-                character = this.character + dc
-            };
+            return new Position (this.character + dc, this.character + dc) ;
         }
     }
 
     public class Range : Object, Gee.Hashable<Range>, Gee.Comparable<Range> {
         
         public Range.simple(uint line, uint pos) {
-        	var p =  new Position () {
-                line = line,
-                character = pos
-            };
+        	var p =  new Position (line,pos);
         	this.start = p;
         	this.end = p;
         	
@@ -172,7 +173,10 @@ namespace Lsp {
         }
 
         public bool contains (Position pos) {
-            return start.compare_to (pos) <= 0 && pos.compare_to (end) <= 0;
+        	
+            var ret =  start.compare_to (pos) <= 0 && pos.compare_to (end) <= 0;
+           // GLib.debug( "range contains %d  (%d-%d) %s", (int)pos.line, (int)start.line, (int)end.line, ret ? "Y" : "N");
+            return ret;
         }
        
     }
@@ -443,6 +447,26 @@ namespace Lsp {
    			owned get { 
    				return this.kind.sort_key().to_string() + "=" + this.name;
 			}
+		}
+		
+		public DocumentSymbol? containsLine(uint line, uint chr)
+		{
+			if (!this.range.contains(new Position(line, chr))) {
+				return null;
+			}
+
+			for(var i = 0; i < this.children.get_n_items();i++) {
+				var el = (DocumentSymbol)this.children.get_item(i);
+				var ret = el.containsLine(line,chr);
+				if (ret != null) {
+					return ret;
+				}
+			}
+			return this;
+			
+		}
+		public bool equals(DocumentSymbol sym) {
+			return this.name == sym.name && this.kind == sym.kind &&  sym.range.equals(this.range);
 		}
 	   
 	   
