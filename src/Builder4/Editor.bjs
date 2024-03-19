@@ -938,8 +938,8 @@
        "id" : "navigationwindow",
        "items" : [
         {
-         "# Gtk.Widget? selected_row" : "null",
          "# int last_selected_line" : "-1",
+         "$ Gtk.Widget? selected_row" : "null",
          "$ xns" : "Gtk",
          "* prop" : "child",
          "id" : "navigation",
