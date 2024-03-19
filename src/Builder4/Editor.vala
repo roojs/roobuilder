@@ -933,7 +933,10 @@ public class Editor : Object
 				this.el.get_iter_at_offset (
 						out iter, this.el.cursor_position);
 				var line = iter.get_line();
-				_this.navigation.updateSelectedLine(iter.get_line());
+				_this.navigation.updateSelectedLine(
+						(uint)iter.get_line(),
+						(uint)iter.get_line_offset()
+					);
 			
 			
 			});
