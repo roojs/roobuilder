@@ -1097,6 +1097,11 @@
             "   return (Lsp.DocumentSymbol)tr.get_item();",
             "\t ",
             "}"
+           ],
+           "| int getRowFromSymbol" : [
+            "() {",
+            "",
+            "}"
            ]
           },
           {

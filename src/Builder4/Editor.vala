@@ -1982,6 +1982,9 @@ public class Editor : Object
 		   return (Lsp.DocumentSymbol)tr.get_item();
 			 
 		}
+		public int getRowFromSymbol () {
+		
+		}
 	}
 	public class Xcls_SortListModel32 : Object
 	{
