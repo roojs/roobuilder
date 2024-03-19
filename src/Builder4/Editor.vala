@@ -2171,7 +2171,7 @@ public class Editor : Object
 				    return;
 			    }
 			    //Lsp.DocumentSymbol
-			    var sym =   _this.navigationselmodel.getSymbolAt(row);
+			    var sym =   _this.navigationselmodel.getSymbollAt(row);
 			    if (sym == null) {
 			    	return;
 				}
@@ -2186,7 +2186,8 @@ public class Editor : Object
 			                "character" : 39
 			              }
 			            },
-			            */
+			        */
+			        
 			    _this.scroll_to_line((int)sym.range.start.line);
 				
 			});
