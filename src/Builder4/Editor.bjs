@@ -1315,7 +1315,7 @@
           "\tif (line == this.last_selected_line) {",
           "\t\treturn;",
           "\t}",
-          "\tGLib.debug(\"select line %d\", (int)ine);",
+          "\tGLib.debug(\"select line %d\", (int)line);",
           "\tthis.last_selected_line = (int)line;",
           "\t",
           "\t",

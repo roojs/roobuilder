@@ -1908,7 +1908,7 @@ public class Editor : Object
 			if (line == this.last_selected_line) {
 				return;
 			}
-			GLib.debug("select line %d", (int)ine);
+			GLib.debug("select line %d", (int)line);
 			this.last_selected_line = (int)line;
 			
 			
