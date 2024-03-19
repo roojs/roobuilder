@@ -1927,13 +1927,14 @@ public class Editor : Object
 			}
 			this.selected_row  = null;
 			if (new_row > -1) {
+				this.el.scroll_to(new_row,null,Gtk.ListScrollFlags.NONE, null);
 				var row = this.getWidgetAtRow(new_row);
 				if (row != null) {
 					GLib.debug(" Add selected row");
 		 			
 					row.add_css_class("selected-row");
 					this.selected_row = row;
-					this.el.scroll_to(new_row,null,Gtk.ListScrollFlags.NONE, null);
+		
 					
 				} else {
 					GLib.debug("could not find widget on row %d", new_row);
