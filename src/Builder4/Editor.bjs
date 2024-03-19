@@ -1039,7 +1039,7 @@
                  "* prop" : "root",
                  "id" : "navliststore",
                  "xtype" : "ListStore",
-                 "| Lsp.DocumentSymbol)item? symbolAtLine" : [
+                 "| Lsp.DocumentSymbol? symbolAtLine" : [
                   "(uint line) {",
                   " ",
                   "\t",

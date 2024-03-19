@@ -2055,7 +2055,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public Lsp.DocumentSymbol)item? symbolAtLine (uint line) {
+		public Lsp.DocumentSymbol? symbolAtLine (uint line) {
 		 
 			
 			for(var i = 0; i < this.el.get_n_items();i++) {
