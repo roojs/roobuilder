@@ -1040,7 +1040,7 @@
                  "id" : "navliststore",
                  "xtype" : "ListStore",
                  "| Lsp.DocumentSymbol)item? symbolAtLine" : [
-                  "(int line) {",
+                  "(uint line) {",
                   "\tLsp .DocumentSymbol ret = null;",
                   "\t",
                   "\tfor(var i = 0; i < this.el.get_n_items();i++) {",
