@@ -1907,7 +1907,7 @@ public class Editor : Object
 			if (new_row > -1) {
 				var row = this.getWidgetAtRow((new_row);
 				if (row != null) {
-					row.remove_css_class("selcted-row");
+					row.add_css_class("selcted-row");
 				}
 			}
 		

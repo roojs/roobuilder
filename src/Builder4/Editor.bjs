@@ -1284,7 +1284,7 @@
           "\tif (new_row > -1) {",
           "\t\tvar row = this.getWidgetAtRow((new_row);",
           "\t\tif (row != null) {",
-          "\t\t\trow.remove_css_class(\"selcted-row\");",
+          "\t\t\trow.add_css_class(\"selcted-row\");",
           "\t\t}",
           "\t}",
           "",
