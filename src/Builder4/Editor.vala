@@ -929,7 +929,7 @@ public class Editor : Object
 			this.el.cursor_moved.connect( ( ) => {
 			
 				 TextIter iter
-				_this.view.el.get_iter_at_offset (
+				this.el.get_iter_at_offset (
 						out iter, _this.view.el.cursor_position);
 				var line =iter.get_line();
 				_this.navigation.updateSelectedLine(iter.get_line());
