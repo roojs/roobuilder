@@ -1153,6 +1153,11 @@
          ],
          "string name" : "editor-navigation",
          "xtype" : "ColumnView",
+         "| Gtk.Widget? getWidgetAtRow" : [
+          "() {",
+          "",
+          "}"
+         ],
          "| int getRowAt" : [
           "(double x,  double  y, out string pos) {",
           "",

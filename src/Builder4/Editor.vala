@@ -1782,6 +1782,9 @@ public class Editor : Object
 		}
 
 		// user defined functions
+		public Gtk.Widget? getWidgetAtRow () {
+		
+		}
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
 			_this.navigationwindow.el.show();
 			_this.navliststore.el.remove_all();
