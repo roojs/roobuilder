@@ -1888,6 +1888,9 @@ public class Editor : Object
 			} 
 			return rn;
 		 }
+		public void updateSelectedLine () {
+		
+		}
 	}
 	public class Xcls_ColumnViewColumn29 : Object
 	{
