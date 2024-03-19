@@ -467,6 +467,9 @@ namespace Lsp {
 			return this;
 			
 		}
+		public bool equals(DocumentSymbol sym) {
+			return this.name == sym.name && sym.range.equals(this.range);
+		}
 	   
 	   
     }
