@@ -29,6 +29,7 @@ public class Editor : Object
 	public Xcls_navigationwindow navigationwindow;
 	public Xcls_navigation navigation;
 	public Xcls_navigationselmodel navigationselmodel;
+	public Xcls_navigationsort navigationsort;
 	public Xcls_navliststore navliststore;
 
 		// my vars (def)
@@ -2063,9 +2064,8 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			var child_1 = new Xcls_SortListModel32( _this );
-			child_1.ref();
-			this.el = new Gtk.NoSelection( child_1.el );
+			new Xcls_navigationsort( _this );
+			this.el = new Gtk.NoSelection( _this.navigationsort.el );
 
 			// my vars (dec)
 
@@ -2096,7 +2096,7 @@ public class Editor : Object
 		   	return -1;
 		}
 	}
-	public class Xcls_SortListModel32 : Object
+	public class Xcls_navigationsort : Object
 	{
 		public Gtk.SortListModel el;
 		private Editor  _this;
@@ -2105,9 +2105,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SortListModel32(Editor _owner )
+		public Xcls_navigationsort(Editor _owner )
 		{
 			_this = _owner;
+			_this.navigationsort = this;
 			var child_1 = new Xcls_TreeListModel33( _this );
 			child_1.ref();
 			var child_2 = new Xcls_TreeListRowSorter35( _this );

@@ -1034,6 +1034,7 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "model",
+             "id" : "navigationsort",
              "items" : [
               {
                "$ Gtk.TreeListModelCreateModelFunc create_func" : [
