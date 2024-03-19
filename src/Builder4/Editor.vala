@@ -1905,10 +1905,11 @@ public class Editor : Object
 				}
 			}	
 			if (new_row > -1) {
-				var row = this.getWidgetAtRow((new_row);
+				var row = this.getWidgetAtRow(new_row);
 				if (row != null) {
 					row.add_css_class("selcted-row");
 				}
+				this.selected_row = new_row;
 			}
 		
 		
