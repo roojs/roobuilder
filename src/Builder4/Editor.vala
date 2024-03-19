@@ -1904,6 +1904,7 @@ public class Editor : Object
 			if (line == this.last_selected_line) {
 				return;
 			}
+			GLib.debug("select line %d", line);
 			this.last_selected_line = line;
 			
 			
@@ -1911,6 +1912,9 @@ public class Editor : Object
 			var sym = _this.navliststore.symbolAtLine(line);
 			if (sym != null) {
 			 	new_row = _this.navigationselmodel.getRowFromSymbol(sym);
+		 		GLib.debug("select line %d - row found %d", line, new_row);
+		 	} else {
+		 		GLib.debug(" now sumbol found at line %d", line);
 		 	}
 		 	if (new_row == this.selected_row) {
 		 		return;
