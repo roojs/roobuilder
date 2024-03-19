@@ -2175,7 +2175,7 @@ public class Editor : Object
 					el.name , (int)el.range.start.line,
 					(int)el.range.end.line
 				);
-				var ret = el.containsLine(i);
+				var ret = el.containsLine(line);
 				if (ret != null) {
 					return ret;
 				}
