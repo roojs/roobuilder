@@ -1310,7 +1310,7 @@
           " \t\t\t",
           "\t\t\trow.add_css_class(\"selected-row\");",
           "\t\t\tthis.selected_row = row;",
-          "\t\t\t",
+          "\t\t\tthis.el.scroll_to(new_row,null,Gtk.ListScrollFlags.NONE,null);",
           "\t\t\t",
           "\t\t} else {",
           "\t\t\tGLib.debug(\"could not find widget on row %d\", new_row);",
