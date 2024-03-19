@@ -1919,7 +1919,7 @@ public class Editor : Object
 		 	if (new_row == this.selected_row) {
 		 		return;
 			}
-			if (this.selected_row != nul) { 
+			if (this.selected_row != null) { 
 				this.selected_row.remove_css_class("selected-row");
 			}
 			this.selected_row  = null;
@@ -1930,6 +1930,7 @@ public class Editor : Object
 		 			
 					row.add_css_class("selected-row");
 					this.selected_row = row;
+					
 					
 				} else {
 					GLib.debug("could not find widget on row %d", new_row);
