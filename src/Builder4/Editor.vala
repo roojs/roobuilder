@@ -927,9 +927,9 @@ public class Editor : Object
 
 			//listeners
 			this.el.cursor_moved.connect( ( ) => {
-				var cp = _this.view.el.cursor_position;
+			
 				 TextIter iter
-				_this.view.el.et_iter_at_offset (
+				_this.view.el.get_iter_at_offset (
 						out iter, _this.view.el.cursor_position);
 				var line =iter.get_line();
 				_this.navigation.updateSelectedLine(iter.get_line());

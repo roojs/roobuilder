@@ -266,9 +266,9 @@
               ],
               "cursor_moved" : [
                "( ) => {",
-               "\tvar cp = _this.view.el.cursor_position;",
+               "",
                "\t TextIter iter",
-               "\t_this.view.el.et_iter_at_offset (",
+               "\t_this.view.el.get_iter_at_offset (",
                "\t\t\tout iter, _this.view.el.cursor_position);",
                "\tvar line =iter.get_line();",
                "\t_this.navigation.updateSelectedLine(iter.get_line());",
