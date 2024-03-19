@@ -108,20 +108,14 @@ namespace Lsp {
         }
 
         public Position translate (int dl = 0, int dc = 0) {
-            return new Position () {
-                line = this.line + dl,
-                character = this.character + dc
-            };
+            return new Position (this.character + dc, this.character + dc) ;
         }
     }
 
     public class Range : Object, Gee.Hashable<Range>, Gee.Comparable<Range> {
         
         public Range.simple(uint line, uint pos) {
-        	var p =  new Position () {
-                line = line,
-                character = pos
-            };
+        	var p =  new Position (line,pos);
         	this.start = p;
         	this.end = p;
         	
