@@ -2073,17 +2073,6 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public Lsp.DocumentSymbol? getSymbollAt (uint row) {
-		
-		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
-		   
-		   var a = tr.get_item();;   
-		   GLib.debug("get_item (2) = %s", a.get_type().name());
-		  	
-		   
-		   return (Lsp.DocumentSymbol)tr.get_item();
-			 
-		}
 		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
 		
 			for (var i=0;i < this.el.get_n_items(); i++) {
@@ -2094,6 +2083,17 @@ public class Editor : Object
 				}
 			}
 		   	return -1;
+		}
+		public Lsp.DocumentSymbol? getSymbollAtOLD (uint row) {
+		
+		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
+		   
+		   var a = tr.get_item();;   
+		   GLib.debug("get_item (2) = %s", a.get_type().name());
+		  	
+		   
+		   return (Lsp.DocumentSymbol)tr.get_item();
+			 
 		}
 	}
 	public class Xcls_navigationsort : Object
@@ -2121,7 +2121,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public void getxxx (uint row) {
+		public Lsp.DocumentSymbol? getSymbolAt (uint row) {
 		
 		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
 		   

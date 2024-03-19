@@ -1102,7 +1102,7 @@
               }
              ],
              "xtype" : "SortListModel",
-             "| void getxxx" : [
+             "| Lsp.DocumentSymbol? getSymbolAt" : [
               "(uint row) {",
               "",
               "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",
@@ -1118,7 +1118,7 @@
             }
            ],
            "xtype" : "NoSelection",
-           "| Lsp.DocumentSymbol? getSymbollAt" : [
+           "| Lsp.DocumentSymbol? getSymbollAtOLD" : [
             "(uint row) {",
             "",
             "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",
