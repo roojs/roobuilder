@@ -1929,7 +1929,7 @@ public class Editor : Object
 		 			
 					row.add_css_class("selected-row");
 					this.selected_row = row;
-					this.el.scroll_to(new_row,null,Gtk.ListScrollFlags.NONE,null);
+					this.el.scroll_to(new_row,null,Gtk.ListScrollFlags.NONE, null);
 					
 				} else {
 					GLib.debug("could not find widget on row %d", new_row);
