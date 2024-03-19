@@ -66,7 +66,7 @@ namespace Lsp {
         public Position.new_line(uint line)
         {
         	this.line = line;
-        	this.character = 0;
+        	this.character = 1;
         }
         /**
          * Line position in a document (zero-based).
@@ -84,6 +84,7 @@ namespace Lsp {
         public uint character { get; set; default = -1; }
 
         public int compare_to (Position other) {
+             
             return line > other.line ? 1 :
                 (line == other.line ?
                  (character > other.character ? 1 :
