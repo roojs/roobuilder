@@ -1912,7 +1912,7 @@ public class Editor : Object
 			var new_row = -1;
 			var sym = _this.navliststore.symbolAtLine(line);
 			if (sym != null) {
-			 	new_row = _this.navigationselmodel.getRowFromSymbol(sym);
+			 	new_row = _this.navigationsort.getRowFromSymbol(sym);
 		 		GLib.debug("select line %d - row found %d", line, new_row);
 		 	} else {
 		 		GLib.debug(" no symbol found at line %d", line);
