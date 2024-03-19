@@ -178,7 +178,8 @@ namespace Lsp {
         }
 
         public bool contains (Position pos) {
-            return start.compare_to (pos) <= 0 && pos.compare_to (end) <= 0;
+        	GLib.debug( "range contains %d  (%d-%d)", pos.line, start.line, end.line);
+            var ret =  start.compare_to (pos) <= 0 && pos.compare_to (end) <= 0;
         }
        
     }
