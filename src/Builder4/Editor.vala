@@ -1987,10 +1987,10 @@ public class Editor : Object
 		for (var i=0;i < this.el.get_n_items(); i++) {
 		
 		
-		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
+		   var tr = (Gtk.TreeListRow)this.el.get_item(i);
 		   
 		   if (sym.equals( (Lsp.DocumentSymbol)tr.get_item()) {
-		   		return row;
+		   		return i;
 			}
 		   	return -1;
 		}
