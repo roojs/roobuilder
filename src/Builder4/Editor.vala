@@ -1901,21 +1901,21 @@ public class Editor : Object
 			} 
 			return rn;
 		 }
-		public void updateSelectedLine (int line) {
+		public void updateSelectedLine (uint line, uint chr) {
 			if (line == this.last_selected_line) {
 				return;
 			}
-			GLib.debug("select line %d", line);
+			GLib.debug("select line %d", (int)ine);
 			this.last_selected_line = line;
 			
 			
 			var new_row = -1;
-			var sym = _this.navliststore.symbolAtLine(line);
+			var sym = _this.navliststore.symbolAtLine(line,chr);
 			if (sym != null) {
 			 	new_row = _this.navigationsort.getRowFromSymbol(sym);
-		 		GLib.debug("select line %d - row found %d", line, new_row);
+		 		GLib.debug("select line %d - row found %d", (int)line, new_row);
 		 	} else {
-		 		GLib.debug(" no symbol found at line %d", line);
+		 		GLib.debug(" no symbol found at line %d", (int)line);
 		 	}
 		 	
 			if (this.selected_row != null) { 
