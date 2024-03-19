@@ -1932,7 +1932,8 @@ public class Editor : Object
 		 
 					row.add_css_class("selected-row");
 				} else {
-					GLib.debug("could not find widget on row %d", new_row");
+					GLib.debug("could not find widget on row %d", new_row);
+				}
 				this.selected_row = new_row;
 			}
 		
