@@ -263,6 +263,13 @@
                "    return ;",
                "}",
                ""
+              ],
+              "cursor_moved" : [
+               "( ) => {",
+               "",
+               "",
+               "}",
+               ""
               ]
              },
              "| bool OLDhighlightErrorsJson" : [

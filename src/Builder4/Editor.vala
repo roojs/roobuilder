@@ -926,6 +926,10 @@ public class Editor : Object
 			buf.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
 
 			//listeners
+			this.el.cursor_moved.connect( ( ) => {
+			
+			
+			});
 			this.el.changed.connect( () => {
 			    // check syntax??
 			    // ??needed..??
