@@ -455,9 +455,9 @@ namespace Lsp {
 			}
 		}
 		
-		public DocumentSymbol? containsLine(int line)
+		public DocumentSymbol? containsLine(ucharint line, uint chr)
 		{
-			if (!this.range.contains(new Position.new_line(line))) {
+			if (!this.range.contains(new Position(line, chr))) {
 				return null;
 			}
 
