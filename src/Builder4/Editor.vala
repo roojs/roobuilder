@@ -928,7 +928,7 @@ public class Editor : Object
 			//listeners
 			this.el.cursor_moved.connect( ( ) => {
 			
-				TextIter iter;
+				Gtk.TextIter iter;
 				this.el.get_iter_at_offset (
 						out iter, _this.view.el.cursor_position);
 				var line = iter.get_line();
