@@ -62,6 +62,12 @@ namespace Lsp {
     }
 
     public  class Position : Object, Gee.Comparable<Position> {
+        
+        public Position.new_line(uint line)
+        {
+        	this.line = line;
+        	this.character = 0;
+        }
         /**
          * Line position in a document (zero-based).
          */
@@ -443,6 +449,23 @@ namespace Lsp {
    			owned get { 
    				return this.kind.sort_key().to_string() + "=" + this.name;
 			}
+		}
+		
+		public DocumentSymbol? containsLine(int line)
+		{
+			if (!this.range.contains(new Position.new_line(line))) {
+				return null;
+			}
+
+			for(var i = 0; i < this.children.get_n_items();i++) {
+				var el = (DocumentSymbol)this.children.get_item(i);
+				var ret = el.containsLine(line);
+				if (ret != null) {
+					return ret;
+				}
+			}
+			return this;
+			
 		}
 	   
 	   

@@ -1776,7 +1776,7 @@ public class Editor : Object
 			var child_2 = new Xcls_ColumnViewColumn29( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
-			var child_3 = new Xcls_GestureClick34( _this );
+			var child_3 = new Xcls_GestureClick38( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
@@ -1961,7 +1961,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			var child_1 = new Xcls_SortListModel60( _this );
+			var child_1 = new Xcls_SortListModel32( _this );
 			child_1.ref();
 			this.el = new Gtk.NoSelection( child_1.el );
 
@@ -1983,7 +1983,7 @@ public class Editor : Object
 			 
 		}
 	}
-	public class Xcls_SortListModel60 : Object
+	public class Xcls_SortListModel32 : Object
 	{
 		public Gtk.SortListModel el;
 		private Editor  _this;
@@ -1992,12 +1992,12 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SortListModel60(Editor _owner )
+		public Xcls_SortListModel32(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_TreeListModel171( _this );
+			var child_1 = new Xcls_TreeListModel33( _this );
 			child_1.ref();
-			var child_2 = new Xcls_TreeListRowSorter209( _this );
+			var child_2 = new Xcls_TreeListRowSorter35( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
@@ -2008,7 +2008,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_TreeListModel171 : Object
+	public class Xcls_TreeListModel33 : Object
 	{
 		public Gtk.TreeListModel el;
 		private Editor  _this;
@@ -2017,7 +2017,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_TreeListModel171(Editor _owner )
+		public Xcls_TreeListModel33(Editor _owner )
 		{
 			_this = _owner;
 			new Xcls_navliststore( _this );
@@ -2055,10 +2055,24 @@ public class Editor : Object
 		}
 
 		// user defined functions
+		public Lsp.DocumentSymbol)item? symbolAtLine (int line) {
+			Lsp .DocumentSymbol ret = null;
+			
+			for(var i = 0; i < this.el.get_n_items();i++) {
+				var el = (Lsp.DocumentSymbol)this.el.get_item(i);
+				var ret = el.containsLine(i);
+				if (ret != null) {
+					return ret;
+				}
+				
+			}
+			
+			return null;
+		}
 	}
 
 
-	public class Xcls_TreeListRowSorter209 : Object
+	public class Xcls_TreeListRowSorter35 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Editor  _this;
@@ -2067,10 +2081,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter209(Editor _owner )
+		public Xcls_TreeListRowSorter35(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter217( _this );
+			var child_1 = new Xcls_StringSorter36( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -2081,7 +2095,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter217 : Object
+	public class Xcls_StringSorter36 : Object
 	{
 		public Gtk.StringSorter el;
 		private Editor  _this;
@@ -2090,10 +2104,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter217(Editor _owner )
+		public Xcls_StringSorter36(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression224( _this );
+			var child_1 = new Xcls_PropertyExpression37( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -2104,7 +2118,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression224 : Object
+	public class Xcls_PropertyExpression37 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Editor  _this;
@@ -2113,7 +2127,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression224(Editor _owner )
+		public Xcls_PropertyExpression37(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Lsp.DocumentSymbol), null, "sort_key" );
@@ -2130,7 +2144,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_GestureClick34 : Object
+	public class Xcls_GestureClick38 : Object
 	{
 		public Gtk.GestureClick el;
 		private Editor  _this;
@@ -2139,7 +2153,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick34(Editor _owner )
+		public Xcls_GestureClick38(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
