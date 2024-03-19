@@ -1280,6 +1280,11 @@
          ],
          "| void updateSelectedLine" : [
           "(int line) {",
+          "\tif (line == this.last_selected_line) {",
+          "\t\treturn;",
+          "\t}",
+          "\tthis.last_selected_line = line;",
+          "\t",
           "\t",
           "\tvar new_row = -1;",
           "\tvar sym = _this.navliststore.symbolAtLine(line);",

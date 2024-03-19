@@ -1901,6 +1901,11 @@ public class Editor : Object
 			return rn;
 		 }
 		public void updateSelectedLine (int line) {
+			if (line == this.last_selected_line) {
+				return;
+			}
+			this.last_selected_line = line;
+			
 			
 			var new_row = -1;
 			var sym = _this.navliststore.symbolAtLine(line);
