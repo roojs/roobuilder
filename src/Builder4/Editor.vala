@@ -2187,7 +2187,7 @@ public class Editor : Object
 			              }
 			            },
 			        */
-			        
+			     GLib.debug("goto line %d",   (int)sym.range.start.line); 
 			    _this.scroll_to_line((int)sym.range.start.line);
 				
 			});
