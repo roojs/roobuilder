@@ -468,7 +468,7 @@ namespace Lsp {
 			
 		}
 		public bool equals(DocumentSymbol sym) {
-			return this.name == sym.name && sym.range.equals(this.range);
+			return this.name == sym.name && this.kind == sym.kind &&  sym.range.equals(this.range);
 		}
 	   
 	   
