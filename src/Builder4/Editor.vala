@@ -1922,13 +1922,15 @@ public class Editor : Object
 			if (this.selected_row > -1) {
 				var old = this.getWidgetAtRow(this.selected_row);
 				if (old !=null) {
-					old.remove_css_class("selcted-row");
+					old.remove_css_class("selected-row");
 				}
 			}	
 			if (new_row > -1) {
 				var row = this.getWidgetAtRow(new_row);
 				if (row != null) {
-					row.add_css_class("selcted-row");
+					GLib.debug(" Add selected row");
+		 
+					row.add_css_class("selected-row");
 				}
 				this.selected_row = new_row;
 			}
