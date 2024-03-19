@@ -1269,7 +1269,7 @@
           "\t",
           "\tvar new_row = -1;",
           "\tvar sym = _this.navliststore.symbolAtLine(line);",
-          "\tif (sym) {",
+          "\tif (sym != null) {",
           "\t \tnew_row = _this.navigationselmodel.getRowFromSymbol(sym);",
           " \t}",
           " \tif (new_row == this.selected_row) {",

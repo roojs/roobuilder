@@ -1892,7 +1892,7 @@ public class Editor : Object
 			
 			var new_row = -1;
 			var sym = _this.navliststore.symbolAtLine(line);
-			if (sym) {
+			if (sym != null) {
 			 	new_row = _this.navigationselmodel.getRowFromSymbol(sym);
 		 	}
 		 	if (new_row == this.selected_row) {
