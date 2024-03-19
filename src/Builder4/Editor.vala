@@ -2073,7 +2073,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
+		public int getRowFromSymbolx (Lsp.DocumentSymbol sym) {
 		
 			for (var i=0;i < this.el.get_n_items(); i++) {
 				var tr = (Gtk.TreeListRow)this.el.get_item(i);
