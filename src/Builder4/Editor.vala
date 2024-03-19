@@ -1919,22 +1919,22 @@ public class Editor : Object
 		 	if (new_row == this.selected_row) {
 		 		return;
 			}
-			if (this.selected_row > -1) {
-				var old = this.getWidgetAtRow(this.selected_row);
-				if (old != null) {
-					old.remove_css_class("selected-row");
-				}
-			}	
+			if (this.selected_row != nul) { 
+				this.selected_row.remove_css_class("selected-row");
+			}
+			this.selected_row  = null;
 			if (new_row > -1) {
 				var row = this.getWidgetAtRow(new_row);
 				if (row != null) {
 					GLib.debug(" Add selected row");
-		 
+		 			
 					row.add_css_class("selected-row");
+					this.selected_row = row;
+					
 				} else {
 					GLib.debug("could not find widget on row %d", new_row);
 				}
-				this.selected_row = new_row;
+		
 			}
 		
 		
