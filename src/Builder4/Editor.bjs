@@ -1041,7 +1041,7 @@
                  "xtype" : "ListStore",
                  "| Lsp.DocumentSymbol)item? symbolAtLine" : [
                   "(uint line) {",
-                  "\tLsp .DocumentSymbol ret = null;",
+                  " ",
                   "\t",
                   "\tfor(var i = 0; i < this.el.get_n_items();i++) {",
                   "\t\tvar el = (Lsp.DocumentSymbol)this.el.get_item(i);",
