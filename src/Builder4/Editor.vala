@@ -2300,7 +2300,7 @@ public class Editor : Object
 				    return;
 			    }
 			    //Lsp.DocumentSymbol
-			    var sym =   _this.navigationselsort.getSymbollAt(row);
+			    var sym =   _this.navigationsort.getSymbollAt(row);
 			    if (sym == null) {
 			    	return;
 				}
