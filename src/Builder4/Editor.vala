@@ -1845,7 +1845,7 @@ public class Editor : Object
 				    }
 			        child = child.get_next_sibling(); 
 		    	}
-				//GLib.debug("Rturning null");
+				GLib.debug("Failed to find row (max = %d)", line_no);
 		        return null;
 		
 		 }

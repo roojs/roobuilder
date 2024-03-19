@@ -1246,7 +1246,7 @@
           "\t\t    }",
           "\t        child = child.get_next_sibling(); ",
           "    \t}",
-          "\t\t//GLib.debug(\"Rturning null\");",
+          "\t\tGLib.debug(\"Failed to find row (max = %d)\", line_no);",
           "        return null;",
           "",
           " }"
