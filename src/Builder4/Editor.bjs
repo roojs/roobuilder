@@ -267,10 +267,10 @@
               "cursor_moved" : [
                "( ) => {",
                "",
-               "\t TextIter iter",
+               "\tTextIter iter;",
                "\tthis.el.get_iter_at_offset (",
                "\t\t\tout iter, _this.view.el.cursor_position);",
-               "\tvar line =iter.get_line();",
+               "\tvar line = iter.get_line();",
                "\t_this.navigation.updateSelectedLine(iter.get_line());",
                "",
                "",
