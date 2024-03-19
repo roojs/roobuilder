@@ -1888,7 +1888,29 @@ public class Editor : Object
 			} 
 			return rn;
 		 }
-		public void updateSelectedLine () {
+		public void updateSelectedLine (int line) {
+			
+			var new_row = -1;
+			var sym = _this.navliststore.symbolAtLine(line);
+			if (sym) {
+			 	new_row = _this.navigationselmodel.getRowFromSymbol(sym);
+		 	}
+		 	if (new_row == this.selected_row) {
+		 		return;
+			}
+			if (this.selected_row > -1) {
+				var old = this.getWidgetAtRow(this.selected_row);
+				if (old !=null) {
+					old.remove_css_class("selcted-row");
+				}
+			}	
+			if (new_row > -1) {
+				var row = this.getWidgetAtRow((new_row);
+				if (row != null) {
+					row.remove_css_class("selcted-row");
+				}
+			}
+		
 		
 		}
 	}
