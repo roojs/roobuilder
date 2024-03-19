@@ -1064,7 +1064,7 @@
                   "\t\t//\tel.name , (int)el.range.start.line,",
                   "\t\t//\t(int)el.range.end.line",
                   "\t\t//);",
-                  "\t\tvar ret = el.containsLine(line);",
+                  "\t\tvar ret = el.containsLine((int)line);",
                   "\t\tif (ret != null) {",
                   "\t\t\treturn ret;",
                   "\t\t}",
