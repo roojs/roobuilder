@@ -2171,6 +2171,10 @@ public class Editor : Object
 			
 			for(var i = 0; i < this.el.get_n_items();i++) {
 				var el = (Lsp.DocumentSymbol)this.el.get_item(i);
+				GLib.debug("Check sym %s : %d-%d",
+					el.name , el.range.start.line,
+					el.range.end.line
+				);
 				var ret = el.containsLine(i);
 				if (ret != null) {
 					return ret;
