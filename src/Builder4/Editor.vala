@@ -1916,9 +1916,7 @@ public class Editor : Object
 		 	} else {
 		 		GLib.debug(" no symbol found at line %d", line);
 		 	}
-		 	if (new_row == this.selected_row) {
-		 		return;
-			}
+		 	
 			if (this.selected_row != null) { 
 				this.selected_row.remove_css_class("selected-row");
 			}
