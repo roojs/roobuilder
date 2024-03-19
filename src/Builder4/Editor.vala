@@ -1770,6 +1770,7 @@ public class Editor : Object
 
 
 			// my vars (def)
+		public int last_selected_line;
 		public int selected_row;
 
 		// ctor
@@ -1781,6 +1782,7 @@ public class Editor : Object
 			this.el = new Gtk.ColumnView( _this.navigationselmodel.el );
 
 			// my vars (dec)
+			this.last_selected_line = -1;
 			this.selected_row = -1;
 
 			// set gobject values

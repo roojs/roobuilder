@@ -938,6 +938,7 @@
        "id" : "navigationwindow",
        "items" : [
         {
+         "# int last_selected_line" : "-1",
          "# int selected_row" : "-1",
          "$ xns" : "Gtk",
          "* prop" : "child",
