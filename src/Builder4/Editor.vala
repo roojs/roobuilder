@@ -1771,7 +1771,7 @@ public class Editor : Object
 
 			// my vars (def)
 		public int last_selected_line;
-		public int selected_row;
+		public Gtk.Widget? selected_row;
 
 		// ctor
 		public Xcls_navigation(Editor _owner )
@@ -1783,7 +1783,7 @@ public class Editor : Object
 
 			// my vars (dec)
 			this.last_selected_line = -1;
-			this.selected_row = -1;
+			this.selected_row = null;
 
 			// set gobject values
 			this.el.name = "editor-navigation";
