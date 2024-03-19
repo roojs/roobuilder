@@ -463,7 +463,7 @@ namespace Lsp {
 
 			for(var i = 0; i < this.children.get_n_items();i++) {
 				var el = (DocumentSymbol)this.children.get_item(i);
-				var ret = el.containsLine(line);
+				var ret = el.containsLine(line,chr);
 				if (ret != null) {
 					return ret;
 				}
