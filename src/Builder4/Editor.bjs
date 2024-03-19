@@ -269,7 +269,7 @@
                "",
                "\tGtk.TextIter iter;",
                "\tthis.el.get_iter_at_offset (",
-               "\t\t\tout iter, _this.view.el.cursor_position);",
+               "\t\t\tout iter, _this.cursor_position);",
                "\tvar line = iter.get_line();",
                "\t_this.navigation.updateSelectedLine(iter.get_line());",
                "",

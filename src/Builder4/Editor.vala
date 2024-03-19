@@ -930,7 +930,7 @@ public class Editor : Object
 			
 				Gtk.TextIter iter;
 				this.el.get_iter_at_offset (
-						out iter, _this.view.el.cursor_position);
+						out iter, _this.cursor_position);
 				var line = iter.get_line();
 				_this.navigation.updateSelectedLine(iter.get_line());
 			
