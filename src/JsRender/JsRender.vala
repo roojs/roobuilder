@@ -129,7 +129,7 @@ namespace JsRender {
 		}
 
 		//public signal void changed (Node? node, string source);  (not used?)
-		
+		public signal void navigation_tree_updated( Gee.ArrayList<Lsp.DocumentSymbol> syms);
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
 		

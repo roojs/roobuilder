@@ -138,8 +138,15 @@ public class Editor : Object
 	public void show (JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)
 	{
 	    this.reset();
+	    if (this.file != null) {
+	    	this.file.navigation_tree_updated.disconnect(
+	    		_this.navigation.show
+	    	);
+	    }
 	    this.file = file;    
-	    
+	    this.file.navigation_tree_updated.connect(
+			_this.navigation.show
+		);
 	    if (file.xtype != "PlainFile") {
 	    	this.prop = prop;
 	        this.node = node;
@@ -154,12 +161,13 @@ public class Editor : Object
 	    
 	    } else {
 	        this.view.load(        file.toSource() );
-	         this.updateErrorMarks();
+	        this.updateErrorMarks();
 	        this.close_btn.el.hide();
 	        var ls = file.getLanguageServer();
-	        ls.documentSymbols.begin(file, (a,o) => {
-	        	_this.navigation.show(ls.documentSymbols.end(o)); 
-	        });
+	        ls.queueDocumentSymbols(file);
+	        ////ls.documentSymbols.begin(file, (a,o) => {
+	        //	_this.navigation.show(ls.documentSymbols.end(o)); 
+	       //});
 	        //documentSymbols
 	        
 	    }
@@ -1092,7 +1100,7 @@ public class Editor : Object
 		        _this.file.setSource(str);
 			    BuilderApplication.showSpinner("appointment soon","document change pending");
 		    	_this.file.getLanguageServer().document_change(_this.file);
-		
+				_this.file.getLanguageServer().queueDocumentSymbols(_this.file);
 		        _this.file.setSource(oldcode);
 		        
 				 
@@ -1844,7 +1852,21 @@ public class Editor : Object
 			foreach(var sym in syms) {
 				_this.navliststore.el.append(sym);
 			}
-			
+			this.last_selected_line = -1;
+			GLib.Idle.add(() => {
+		
+				Gtk.TextIter iter;
+				_this.buffer.el.get_iter_at_offset (
+						out iter, _this.buffer.el.cursor_position);
+				
+				GLib.debug("idle update scroll %d, %d", iter.get_line(),
+						iter.get_line_offset());
+				this.updateSelectedLine(
+						(uint)iter.get_line(),
+						(uint)iter.get_line_offset()
+				);
+				return false;
+			});
 		
 		}
 		public int getRowAt (double x,  double  y, out string pos) {
