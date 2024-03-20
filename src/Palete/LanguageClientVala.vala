@@ -109,7 +109,7 @@ namespace Palete {
 				var sendfile = this.doc_queue_file;
 				this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
 					var ret = this.documentSymbols.end(res);
-					//sendfile.navigation_tree_updated(res);
+					sendfile.navigation_tree_updated(res);
 				});
 				this.doc_queue_file = null;
 				   
@@ -694,7 +694,7 @@ namespace Palete {
 				var sendfile = this.doc_queue_file,;
 				this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
 					var ret = documentSymbols.end(res);
-					//sendfile.navigation_tree_updated(res);
+					sendfile.navigation_tree_updated(res);
 				});
 			}
 			
