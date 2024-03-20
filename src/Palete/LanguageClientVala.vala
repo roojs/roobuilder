@@ -1,7 +1,6 @@
 
 namespace Palete {
 	public class LanguageClientVala : LanguageClient {
-		int countdown = 0;
 		protected bool initialized = false;
 		bool sent_shutdown = false;
 		uint change_queue_id = 0;
@@ -20,11 +19,13 @@ namespace Palete {
 		private IOStream? subprocess_stream = null;
 	    public Jsonrpc.Client? jsonrpc_client = null;
 		
+		int countdown = 0;
 		Gee.ArrayList<JsRender.JsRender> open_files;
 		private JsRender.JsRender? _change_queue_file = null;
+		int doc_countdown = 0;
 		private string change_queue_file_source = "";
-		private JsRender.JsRender? _doc_queue_file = null;
-		private string doc_queue_file_source = "";
+		private JsRender.JsRender? doc_queue_file = null;
+
 		
 		JsRender.JsRender? change_queue_file {
 			set {
@@ -36,15 +37,7 @@ namespace Palete {
 			} 
 		}
 		
-		JsRender.JsRender? doc_queue_file {
-			set {
-				this.doc_queue_file_source = value == null ? "" : value.toSource();
-				this._doc_queue_file = value;
-			} 
-			get {
-				return this._doc_queue_file;
-			} 
-		}
+
 		
 		void startServer()
 		{
