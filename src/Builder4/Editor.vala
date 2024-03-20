@@ -1865,7 +1865,7 @@ public class Editor : Object
 						(uint)iter.get_line(),
 						(uint)iter.get_line_offset()
 				);
-				return false;
+				//return false;
 			//});
 		
 		}

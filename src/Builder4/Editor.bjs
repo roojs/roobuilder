@@ -1295,7 +1295,7 @@
           "\t\t\t\t(uint)iter.get_line(),",
           "\t\t\t\t(uint)iter.get_line_offset()",
           "\t\t);",
-          "\t\treturn false;",
+          "\t\t//return false;",
           "\t//});",
           "",
           "}"
