@@ -1172,6 +1172,12 @@
              "        */",
              "     GLib.debug(\"goto line %d\",   (int)sym.range.start.line); ",
              "    _this.scroll_to_line((int)sym.range.start.line);",
+             "    Gtk.TextIter iter;",
+             "    _this.buffer.el.get_iter_at_line_offset(out iter, ",
+             "    \tsym.range.start.line,",
+             "    \tsym.range.start.character",
+             "\t)",
+             "    _this.buffer.el.place_cursor(iter);",
              "\t",
              "}"
             ]
