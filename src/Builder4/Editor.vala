@@ -2311,8 +2311,8 @@ public class Editor : Object
 			    _this.scroll_to_line((int)sym.range.start.line);
 			    Gtk.TextIter iter;
 			    _this.buffer.el.get_iter_at_line_offset(out iter, 
-			    	sym.range.start.line,
-			    	sym.range.start.character
+			    	(int)sym.range.start.line,
+			    	(int)sym.range.start.character
 				)
 			    _this.buffer.el.place_cursor(iter);
 				
