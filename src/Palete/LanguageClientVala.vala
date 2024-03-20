@@ -74,6 +74,9 @@ namespace Palete {
 	 		if (this.change_queue_file == null) {
 				return ;
 			}
+			if (this.countdown < -1) {
+				return;
+			}
 			if (this.getting_diagnostics) {
 				return;
 			}
@@ -97,10 +100,11 @@ namespace Palete {
 	 		if (this.doc_queue_file == null) {
 				return ;
 			}
-			 
+			if (this.doc_countdown < -1) {
+				return;
+			}
 			this.doc_countdown--;
 
-		
 			if (this.doc_countdown < 0){
 				var sendfile = this.doc_queue_file;
 				this.documentSymbols.begin(this.doc_queue_file (o, res) => {
