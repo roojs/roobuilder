@@ -154,7 +154,7 @@ public class Editor : Object
 	    
 	    } else {
 	        this.view.load(        file.toSource() );
-	         this.updateErrorMarks();
+	        this.updateErrorMarks();
 	        this.close_btn.el.hide();
 	        var ls = file.getLanguageServer();
 	        ls.documentSymbols.begin(file, (a,o) => {
