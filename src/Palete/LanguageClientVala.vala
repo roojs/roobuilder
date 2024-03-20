@@ -56,7 +56,7 @@ namespace Palete {
 			// extend versions will proably call initialize to start and connect to server.
 			base(project);
 
-			if (this.change_queue_id ! =0 ) {
+			if (this.change_queue_id != 0 ) {
 				this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
 			 		this.run_change_queue()
 			 		this.run_doc_queue();
