@@ -73,18 +73,13 @@ public class Xcls_WindowLeftTree : Object
 		this.removeErrors();
 		this.error_widgets = new Gee.ArrayList<Gtk.Widget>();
 		foreach(var diag in ar) { 
-		
-			 
+		 
 	//        print("get inter\n");
 		    var node= file.lineToNode( (int)diag.range.start.line) ;
 		    if (node == null) {
 		    	continue;
 	    	}
-	    	var row = _this.model.nodeToRow(node);
-	    	if (row < 0) {
-	    		continue;
-			}
-	    	var w = this.view.getWidgetAtRow(row);
+	    	var w = node.get_data<Gtk.Widget>("tree-row");
 	    	if (w == null) {
 	    		return;
 			}
@@ -380,7 +375,126 @@ public class Xcls_WindowLeftTree : Object
 		}
 
 		// user defined functions
-		public Gtk.Widget? getWidgetAtRow (uint row) {
+		public Gtk.Widget? getRowWidgetAt (double x,  double  y, out string pos) {
+		
+			pos = "";
+			var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
+			//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
+			if (w == null) {
+				return null;
+			}
+			
+			var row = w.get_ancestor(GLib.Type.from_name("GtkColumnViewRowWidget"));
+			if (row == null) {
+				return null;
+			}
+			
+			//GLib.debug("got colview %s", row == null ? "nothing" : row.get_type().name());
+			 
+			
+			
+			//GLib.debug("row number is %d", rn);
+			//GLib.debug("click %d, %d", (int)x, (int)y);
+			// above or belw
+			Graphene.Rect  bounds;
+			row.compute_bounds(this.el, out bounds);
+			//GLib.debug("click x=%d, y=%d, w=%d, h=%d", 
+			//	(int)bounds.get_x(), (int)bounds.get_y(),
+			//	(int)bounds.get_width(), (int)bounds.get_height()
+			//	);
+			var ypos = y - bounds.get_y();
+			//GLib.debug("rel ypos = %d", (int)ypos);	
+			var rpos = 100.0 * (ypos / bounds.get_height());
+			//GLib.debug("rel pos = %d %%", (int)rpos);
+			pos = "over";
+			
+			if (rpos > 80) {
+				pos = "below";
+			} else if (rpos < 20) {
+				pos = "above";
+			} 
+			return row;
+		 }
+		public int getColAt (double x,  double y) {
+			/*
+					
+			from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+		    	  
+			*/
+			//Gtk.Allocation alloc = { 0, 0, 0, 0 };
+			//GLib.debug("Cehck %d, %d", x,y);
+		    var  child = this.el.get_first_child(); 
+			 
+			var col = 0;
+			var offx = 0;
+			while (child != null) {
+				
+				if (child.get_type().name() == "GtkColumnViewRowWidget") {
+					child = child.get_first_child();
+					continue;
+				}
+				
+				//child.get_allocation(out alloc);
+				if (x <  (child.get_width() + offx)) {
+					return col;
+				}
+				return 1;
+				//offx += child.get_width();
+				//col++;
+				//child = child.get_next_sibling();
+			}
+			     
+				  
+		    return -1;
+		
+		 }
+		public int getRowAtOLD (double x,  double  y, out string pos) {
+		
+			pos = "";
+			var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
+			//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
+			if (w == null) {
+				return -1;
+			}
+			
+			var row= w.get_ancestor(GLib.Type.from_name("GtkColumnViewRowWidget"));
+			if (row == null) {
+				return -1;
+			}
+			
+			//GLib.debug("got colview %s", row == null ? "nothing" : row.get_type().name());
+			 
+			var rn = 0;
+			var cr = row;
+			 
+			while (cr.get_prev_sibling() != null) {
+				rn++;
+				cr = cr.get_prev_sibling();
+			}
+			
+			//GLib.debug("row number is %d", rn);
+			//GLib.debug("click %d, %d", (int)x, (int)y);
+			// above or belw
+			Graphene.Rect  bounds;
+			row.compute_bounds(this.el, out bounds);
+			//GLib.debug("click x=%d, y=%d, w=%d, h=%d", 
+			//	(int)bounds.get_x(), (int)bounds.get_y(),
+			//	(int)bounds.get_width(), (int)bounds.get_height()
+			//	);
+			var ypos = y - bounds.get_y();
+			//GLib.debug("rel ypos = %d", (int)ypos);	
+			var rpos = 100.0 * (ypos / bounds.get_height());
+			//GLib.debug("rel pos = %d %%", (int)rpos);
+			pos = "over";
+			
+			if (rpos > 80) {
+				pos = "below";
+			} else if (rpos < 20) {
+				pos = "above";
+			} 
+			return rn;
+		 }
+		public Gtk.Widget? getWidgetAtRowBROKE (uint row) {
 		/*
 		    	
 		from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
@@ -427,101 +541,6 @@ public class Xcls_WindowLeftTree : Object
 		    	}
 				//GLib.debug("Rturning null");
 		        return null;
-		
-		 }
-		public int getColAt (double x,  double y) {
-			/*
-					
-			from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
-		    	  
-			*/
-			//Gtk.Allocation alloc = { 0, 0, 0, 0 };
-			//GLib.debug("Cehck %d, %d", x,y);
-		    var  child = this.el.get_first_child(); 
-			 
-			var col = 0;
-			var offx = 0;
-			while (child != null) {
-				
-				if (child.get_type().name() == "GtkColumnViewRowWidget") {
-					child = child.get_first_child();
-					continue;
-				}
-				
-				//child.get_allocation(out alloc);
-				if (x <  (child.get_width() + offx)) {
-					return col;
-				}
-				return 1;
-				//offx += child.get_width();
-				//col++;
-				//child = child.get_next_sibling();
-			}
-			     
-				  
-		    return -1;
-		
-		 }
-		public int getRowAt (double x,  double  y, out string pos) {
-		
-			pos = "";
-			var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
-			//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
-			if (w == null) {
-				return -1;
-			}
-			
-			var row= w.get_ancestor(GLib.Type.from_name("GtkColumnViewRowWidget"));
-			if (row == null) {
-				return -1;
-			}
-			
-			//GLib.debug("got colview %s", row == null ? "nothing" : row.get_type().name());
-			 
-			var rn = 0;
-			var cr = row;
-			 
-			while (cr.get_prev_sibling() != null) {
-				rn++;
-				cr = cr.get_prev_sibling();
-			}
-			
-			//GLib.debug("row number is %d", rn);
-			//GLib.debug("click %d, %d", (int)x, (int)y);
-			// above or belw
-			Graphene.Rect  bounds;
-			row.compute_bounds(this.el, out bounds);
-			//GLib.debug("click x=%d, y=%d, w=%d, h=%d", 
-			//	(int)bounds.get_x(), (int)bounds.get_y(),
-			//	(int)bounds.get_width(), (int)bounds.get_height()
-			//	);
-			var ypos = y - bounds.get_y();
-			//GLib.debug("rel ypos = %d", (int)ypos);	
-			var rpos = 100.0 * (ypos / bounds.get_height());
-			//GLib.debug("rel pos = %d %%", (int)rpos);
-			pos = "over";
-			
-			if (rpos > 80) {
-				pos = "below";
-			} else if (rpos < 20) {
-				pos = "above";
-			} 
-			return rn;
-		 }
-		public Gtk.Widget? getWidgetAt (double x,  double  y) {
-		
-			var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
-			//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
-			if (w == null) {
-				return null;
-			}
-			
-			var row= w.get_ancestor(GLib.Type.from_name("GtkColumnViewRowWidget"));
-			if (row == null) {
-				return null;
-			}
-			return row;
-		 
 		
 		 }
 	}
@@ -573,15 +592,15 @@ public class Xcls_WindowLeftTree : Object
 				    return ;
 			    }
 			    string pos;
-			    var row = _this.view.getRowAt(x,y, out pos );
-			    if (row < 0) {
+			    var row_widget = _this.view.getRowWidgetAt(x,y, out pos );
+			    if (row_widget == null) {
 				    GLib.debug("no row selected items");
 				    return;
 			    }
 			    
-			    var node =   _this.selmodel.getNodeAt(row);
+			    var node =   row_widget.get_data<JsRender.Node>("node");
 			    if (node == null) {
-			    	GLib.warning("No node found at row %d", row);
+			    	GLib.warning("No node found bound to widget");
 			    	return;
 				}
 			
@@ -642,15 +661,15 @@ public class Xcls_WindowLeftTree : Object
 				    return ;
 			    }
 			    string pos;
-			    var row = _this.view.getRowAt(x,y, out pos );
-			    if (row < 0) {
+			    var row_widget = _this.view.getRowWidgetAt(x,y, out pos );
+			    if (row_widget == null) {
 				    GLib.debug("no row selected items");
 				    return;
 			    }
 			    
-			    var node =   _this.selmodel.getNodeAt(row);
+			    var node =  row_widget.get_data<JsRender.Node>("node");
 			    if (node == null) {
-			    	GLib.warning("No node found at row %d", row);
+			    	GLib.warning("No node found from widget");
 			    	return;
 				}
 				
@@ -755,7 +774,7 @@ public class Xcls_WindowLeftTree : Object
 			    var xname = data.fqn();
 			    GLib.debug ("XNAME  IS %s", xname);
 			
-			 	var widget = _this.view.getWidgetAtRow(_this.selmodel.el.selected);
+			 	var widget = data.get_data<Gtk.Widget>("tree-row");
 			 	
 			 	
 			    var paintable = new Gtk.WidgetPaintable(widget);
@@ -1124,16 +1143,15 @@ public class Xcls_WindowLeftTree : Object
 			    // if path of source and dest are inside each other..
 			    // need to add source info to drag?
 			    // the fail();
-			 	var row = _this.view.getRowAt(x,y, out pos);
+			 	 var row_widget = _this.view.getRowWidgetAt( x,y, out pos);    
+			// 	var row = _this.view.getRowAt(x,y, out pos);
 			 	//GLib.debug("check is over %d, %d, %s", (int)x,(int)y, pos);
 			
-			 	if (row < 0) {
+			 	if (row_widget == null) {
 					this.addHighlight(null, "");	
 				 	return Gdk.DragAction.COPY;
 			 	}
-				var tr = (Gtk.TreeListRow)_this.view.el.model.get_object(row);
-				
-				var node =  (JsRender.Node)tr.get_item();
+			 	var node = row_widget.get_data<JsRender.Node>("node");
 				
 				//GLib.debug("Drop over node: %s", node.fqn());
 				
@@ -1184,8 +1202,8 @@ public class Xcls_WindowLeftTree : Object
 			 	
 			 	
 			 	    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
-				var w = _this.view.getWidgetAt(x,y);
-				this.addHighlight(w, pos); 
+			
+				this.addHighlight(row_widget, pos); 
 				return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 			});
 			this.el.leave.connect( ( ) => {
@@ -1196,7 +1214,7 @@ public class Xcls_WindowLeftTree : Object
 				
 				// must get the pos before we clear the hightlihg.
 			 	var pos = "";
-			 	var row = _this.view.getRowAt(x,y, out pos);
+			 	var row_widget = _this.view.getRowWidgetAt(x,y, out pos);
 				this.addHighlight(null,"");
 			 
 			 	var is_shift = _this.keystate.is_shift > 0;
@@ -1245,13 +1263,12 @@ public class Xcls_WindowLeftTree : Object
 			
 			
 			
-				if (row < 0) {
+				if (row_widget == null) {
 					GLib.debug("could not get row %d,%d, %s", (int)x,(int)y,pos);
 					return   false; //Gdk.DragAction.COPY;
 				}
-				var tr = (Gtk.TreeListRow)_this.view.el.model.get_object(row);
-				
-				var node =  (JsRender.Node)tr.get_item();
+			 	
+				var node =  row_widget.get_data<JsRender.Node>("node");
 			
 			 	if (pos == "above" || pos == "below") {
 					if (node.parent == null) {
@@ -1753,6 +1770,10 @@ public class Xcls_WindowLeftTree : Object
 				if (node == null || node.fqn() == "") {
 					return;
 				}
+				
+				node.set_data<Gtk.Widget>("tree-row", expand.get_parent().get_parent());
+				expand.get_parent().get_parent().set_data<JsRender.Node>("node", node);
+				
 			   //GLib.debug("node is %s", node.get_type().name());
 			// was item (1) in old layout
 			
