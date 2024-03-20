@@ -1283,7 +1283,7 @@
           "\t\t_this.navliststore.el.append(sym);",
           "\t}",
           "\tGLib.Idle.add(() => {",
-          "\t\tGlib.debug(\"idle update scroll\");",
+          "\t\tGLib.debug(\"idle update scroll\");",
           "\t\tGtk.TextIter iter;",
           "\t\t_this.buffer.el.get_iter_at_offset (",
           "\t\t\t\tout iter, _this.buffer.el.cursor_position);",
