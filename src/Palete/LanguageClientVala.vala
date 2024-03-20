@@ -108,7 +108,7 @@ namespace Palete {
 			if (this.doc_countdown < 0){
 				var sendfile = this.doc_queue_file;
 				this.documentSymbols.begin(this.doc_queue_file (o, res) => {
-					var ret = documentSymbols.end(res);
+					var ret = this.documentSymbols.end(res);
 					//sendfile.navigation_tree_updated(res);
 				});
 				this.doc_queue_file = null;
