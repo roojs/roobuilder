@@ -1337,10 +1337,13 @@ public class Xcls_PopoverFileDetails : Object
 			
 			
 				if (_this.name.el.get_text().length  < 1) {
-				    Xcls_StandardErrorDialog.singleton().show(
+				   var msg = new Adw.MessageDialog(
 				        _this.mainwindow.el,
+				        "Opps",
 				        "You have to set a Component name "
 				    );
+				    msg.modal = true;
+				    msg.present();
 				     
 				    return;
 				}
