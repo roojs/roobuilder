@@ -58,7 +58,7 @@ namespace Palete {
 
 			if (this.change_queue_id != 0 ) {
 				this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
-			 		this.run_change_queue()
+			 		this.run_change_queue();
 			 		this.run_doc_queue();
 			 		return true;
 				});
