@@ -339,7 +339,7 @@ namespace Lsp {
     }
 
     public class DocumentSymbol : Object, Json.Serializable {
-		private Vala.SourceReference? _source_reference;
+
 		public string name { get; set; }
 		public string detail { get; set; default = ""; }
 		public SymbolKind kind { get; set; }
@@ -1019,16 +1019,13 @@ namespace Lsp {
 				var contents = new Gee.ArrayList<MarkedString>();
 
 		        property_node.get_array ().foreach_element ((array, index, element) => {
-		        	try {
-						var add = new MarkedString(
-							array.get_object_element(index).get_string_member("language"),
-							array.get_object_element(index).get_string_member("value")
-						);
-		             
-		                contents.add ( add );
-		            } catch (Error e) {
-		                warning ("argument %u to command could not be deserialized: %s", index, e.message);
-		            }
+	        		var add = new MarkedString(
+						array.get_object_element(index).get_string_member("language"),
+						array.get_object_element(index).get_string_member("value")
+					);
+	             
+	                contents.add ( add );
+	             
 		        });
                 value.set_object (contents);
 		        return true;
