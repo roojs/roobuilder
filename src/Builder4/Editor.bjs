@@ -422,7 +422,7 @@
               "        _this.file.setSource(str);",
               "\t    BuilderApplication.showSpinner(\"appointment soon\",\"document change pending\");",
               "    \t_this.file.getLanguageServer().document_change(_this.file);",
-              "",
+              "\t\t_this.file.getLanguageServer().queueDocumentSymbols(_this.file);",
               "        _this.file.setSource(oldcode);",
               "        ",
               "\t\t ",

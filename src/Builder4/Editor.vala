@@ -1092,7 +1092,7 @@ public class Editor : Object
 		        _this.file.setSource(str);
 			    BuilderApplication.showSpinner("appointment soon","document change pending");
 		    	_this.file.getLanguageServer().document_change(_this.file);
-		
+				_this.file.getLanguageServer().queueDocumentSymbols(_this.file);
 		        _this.file.setSource(oldcode);
 		        
 				 

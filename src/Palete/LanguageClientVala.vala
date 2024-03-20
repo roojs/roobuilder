@@ -691,7 +691,7 @@ namespace Palete {
 		public override void queueDocumentSymbols (JsRender.JsRender file) 
 		{
 			if (this.doc_queue_file != null && this.doc_queue_file.path != file.path) {
-				var sendfile = this.doc_queue_file,;
+				var sendfile = this.doc_queue_file;
 				this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
 					var ret = documentSymbols.end(res);
 					sendfile.navigation_tree_updated(ret);
