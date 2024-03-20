@@ -138,8 +138,15 @@ public class Editor : Object
 	public void show (JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)
 	{
 	    this.reset();
+	    if (this.file != null) {
+	    	this.file.navigation_tree_updated.disconnect(
+	    		_this.navigation.show
+	    	);
+	    }
 	    this.file = file;    
-	    
+	    this.file.navigation_tree_updated.connect(
+			_this.navigation.show
+		);
 	    if (file.xtype != "PlainFile") {
 	    	this.prop = prop;
 	        this.node = node;
@@ -157,8 +164,9 @@ public class Editor : Object
 	        this.updateErrorMarks();
 	        this.close_btn.el.hide();
 	        var ls = file.getLanguageServer();
-	        ls.documentSymbols.begin(file, (a,o) => {
-	        	_this.navigation.show(ls.documentSymbols.end(o)); 
+	        ls.queueDocumentSymbols(file);
+	        ////ls.documentSymbols.begin(file, (a,o) => {
+	        //	_this.navigation.show(ls.documentSymbols.end(o)); 
 	        });
 	        //documentSymbols
 	        
