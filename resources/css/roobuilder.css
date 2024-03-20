@@ -149,8 +149,8 @@ tooltip * {
 
 
  gridview { 
-	background : #000;
-	color : #666;
+	background : #666;
+	color : #fff;
 }
 gridview child  {
 	border: 1px solid #999;
