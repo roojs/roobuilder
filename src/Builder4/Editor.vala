@@ -1854,7 +1854,7 @@ public class Editor : Object
 			}
 			GLib.Idle.add(() => {
 				Glib.debug("idle update scroll");
-				Gtk.TextILter iter;
+				Gtk.TextIter iter;
 				_this.buffer.el.get_iter_at_offset (
 						out iter, _this.buffer.el.cursor_position);
 				var line = iter.get_line();

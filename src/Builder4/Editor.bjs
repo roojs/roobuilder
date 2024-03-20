@@ -1284,7 +1284,7 @@
           "\t}",
           "\tGLib.Idle.add(() => {",
           "\t\tGlib.debug(\"idle update scroll\");",
-          "\t\tGtk.TextILter iter;",
+          "\t\tGtk.TextIter iter;",
           "\t\t_this.buffer.el.get_iter_at_offset (",
           "\t\t\t\tout iter, _this.buffer.el.cursor_position);",
           "\t\tvar line = iter.get_line();",
