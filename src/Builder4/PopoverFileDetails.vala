@@ -434,7 +434,7 @@ public class Xcls_PopoverFileDetails : Object
 			new Xcls_title_lbl( _this );
 			this.el.attach( _this.title_lbl.el, 0, 3, 1, 1 );
 			new Xcls_title( _this );
-			this.el.attach ( _this.title.el , 1,2,1,1 );
+			this.el.attach( _this.title.el, 1, 3, 1, 1 );
 			new Xcls_region_lbl( _this );
 			this.el.attach( _this.region_lbl.el, 0, 4, 1, 1 );
 			new Xcls_region( _this );
