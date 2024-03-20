@@ -118,6 +118,7 @@ public class JsRender.NodeToGlade : Object {
 			case "Gtk":
 			case "WebKit": //??
 			case "Adw": // works if you call adw.init() in main!
+			case "GtkSource":
 				break;
 			default:
 				GLib.debug("Skip %s - NS is not available", cls);
