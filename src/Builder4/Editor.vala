@@ -1853,7 +1853,7 @@ public class Editor : Object
 				_this.navliststore.el.append(sym);
 			}
 			this.last_selected_line = -1;
-			//GLib.Timeout.add_seconds(1,() => {
+			GLib.Idle.add(() => {
 		
 				Gtk.TextIter iter;
 				_this.buffer.el.get_iter_at_offset (
@@ -1865,8 +1865,8 @@ public class Editor : Object
 						(uint)iter.get_line(),
 						(uint)iter.get_line_offset()
 				);
-				//return false;
-			//});
+				return false;
+			});
 		
 		}
 		public int getRowAt (double x,  double  y, out string pos) {
