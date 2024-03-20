@@ -699,9 +699,9 @@ namespace Palete {
 		{
 			if (this.doc_queue_file != null && this.doc_queue_file.path != file.path) {
 				var sendfile = this.doc_queue_file,;
-				this.documentSymbols.begin(this.doc_queue_file, this.doc_queue_file_source, (o, res) => {
-					var res = documentSymbols.end(res);
-					sendfile.navigation_tree_updated(res);
+				this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
+					var ret = documentSymbols.end(res);
+					//sendfile.navigation_tree_updated(res);
 				});
 			}
 			
