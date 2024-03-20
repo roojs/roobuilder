@@ -1852,6 +1852,7 @@ public class Editor : Object
 			foreach(var sym in syms) {
 				_this.navliststore.el.append(sym);
 			}
+			
 			GLib.Timeout.add_seconds(1,() => {
 		
 				Gtk.TextIter iter;
