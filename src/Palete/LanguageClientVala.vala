@@ -63,10 +63,6 @@ namespace Palete {
 			 		return true;
 				});
 			}
-			 
-			
-			
-			
 			
 			this.startServer();
 
