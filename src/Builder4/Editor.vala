@@ -1857,7 +1857,6 @@ public class Editor : Object
 				Gtk.TextIter iter;
 				_this.buffer.el.get_iter_at_offset (
 						out iter, _this.buffer.el.cursor_position);
-				var line = iter.get_line();
 				this.updateSelectedLine(
 						(uint)iter.get_line(),
 						(uint)iter.get_line_offset()

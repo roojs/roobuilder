@@ -1287,7 +1287,6 @@
           "\t\tGtk.TextIter iter;",
           "\t\t_this.buffer.el.get_iter_at_offset (",
           "\t\t\t\tout iter, _this.buffer.el.cursor_position);",
-          "\t\tvar line = iter.get_line();",
           "\t\tthis.updateSelectedLine(",
           "\t\t\t\t(uint)iter.get_line(),",
           "\t\t\t\t(uint)iter.get_line_offset()",
