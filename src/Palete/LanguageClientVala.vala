@@ -23,6 +23,8 @@ namespace Palete {
 		Gee.ArrayList<JsRender.JsRender> open_files;
 		private JsRender.JsRender? _change_queue_file = null;
 		private string change_queue_file_source = "";
+		private JsRender.JsRender? _doc_queue_file = null;
+		private string doc_queue_file_source = "";
 		
 		JsRender.JsRender? change_queue_file {
 			set {
@@ -33,6 +35,17 @@ namespace Palete {
 				return this._change_queue_file;
 			} 
 		}
+		
+		JsRender.JsRender? doc_queue_file {
+			set {
+				this.doc_queue_file_source = value == null ? "" : value.toSource();
+				this._doc_queue_file = value;
+			} 
+			get {
+				return this._doc_queue_file;
+			} 
+		}
+		
 		void startServer()
 		{
 			var exe = GLib.Environment.find_program_in_path( "vala-language-server");
@@ -50,30 +63,66 @@ namespace Palete {
 			// extend versions will proably call initialize to start and connect to server.
 			base(project);
 
-			this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
-		 		if (this.change_queue_file == null) {
-					return true;
-				}
-				if (this.getting_diagnostics) {
-					return true;
-				}
-				this.countdown--;
-
+			if (this.change_queue_id ! =0 ) {
+				this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
+			 		this.run_change_queue()
+			 		this.run_doc_queue();
+			 		return true;
+				});
+			}
+			 
 			
-				if (this.countdown < 0){
-					this.document_change_force.begin(this.change_queue_file,  this.change_queue_file_source, (o, res) => {
-						this.document_change_force.end(res);
-					});
-					this.change_queue_file = null;
-					   
-				}
-				return true;
-			});
+			
+			
+			
 			this.startServer();
 
 		}
 		
+		void run_change_queue()
+		{
+		
+	 		if (this.change_queue_file == null) {
+				return ;
+			}
+			if (this.getting_diagnostics) {
+				return;
+			}
+			this.countdown--;
+
+		
+			if (this.countdown < 0){
+				this.document_change_force.begin(this.change_queue_file,  this.change_queue_file_source, (o, res) => {
+					this.document_change_force.end(res);
+				});
+				this.change_queue_file = null;
+				   
+			}
+			return ;
+		}
 		 
+		 
+	 	void run_doc_queue()
+		{
+		
+	 		if (this.doc_queue_file == null) {
+				return ;
+			}
+			 
+			this.doc_countdown--;
+
+		
+			if (this.doc_countdown < 0){
+				var sendfile = this.doc_queue_file;
+				this.documentSymbols.begin(this.doc_queue_file, this.doc_queue_file_source, (o, res) => {
+					var res = documentSymbols.end(res);
+					sendfile.navigation_tree_updated(res);
+				});
+				this.doc_queue_file = null;
+				   
+			}
+			return ;
+		}
 		public bool initProcess(string process_path)
 		{
 			this.onClose();
@@ -646,7 +695,19 @@ namespace Palete {
 
 		}
 		
-		
+		public override void queueDocumentSymbols (JsRender.JsRender file) 
+		{
+			if (this.doc_queue_file != null && this.doc_queue_file.path != file.path) {
+				var sendfile = this.doc_queue_file,;
+				this.documentSymbols.begin(this.doc_queue_file, this.doc_queue_file_source, (o, res) => {
+					var res = documentSymbols.end(res);
+					sendfile.navigation_tree_updated(res);
+				});
+			}
+			
+			this.doc_countdown = 3;
+ 			this.doc_queue_file = file;
+		}
 		
 	 
 		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error {
