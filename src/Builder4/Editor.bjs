@@ -1176,7 +1176,7 @@
              "    _this.buffer.el.get_iter_at_line_offset(out iter, ",
              "    \t(int)sym.range.start.line,",
              "    \t(int)sym.range.start.character",
-             "\t)",
+             "\t);",
              "    _this.buffer.el.place_cursor(iter);",
              "\t",
              "}"

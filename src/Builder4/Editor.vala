@@ -2313,7 +2313,7 @@ public class Editor : Object
 			    _this.buffer.el.get_iter_at_line_offset(out iter, 
 			    	(int)sym.range.start.line,
 			    	(int)sym.range.start.character
-				)
+				);
 			    _this.buffer.el.place_cursor(iter);
 				
 			});
