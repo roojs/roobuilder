@@ -1220,9 +1220,7 @@ public class Editor : Object
 				} 
 			    //_this.view.el.show_completion();
 			   // print(event.key.keyval)
-			   
-			   
-			   
+			    
 			    
 			    return;
 			 
