@@ -444,8 +444,10 @@ namespace Palete {
 			}
 			
 			foreach(var str in cls.can_drop_onto) {
-
 				ret.add(str);
+			}
+			if (this.top_classes.contains(rval)) {
+				ret.add("*top");
 			}
 			//GLib.debug("getDropList for %s return[] %s", rval, string.joinv(", ", ret));
 			this.dropCache.set(rval,ret);
