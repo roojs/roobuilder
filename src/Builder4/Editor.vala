@@ -1859,7 +1859,7 @@ public class Editor : Object
 				_this.buffer.el.get_iter_at_offset (
 						out iter, _this.buffer.el.cursor_position);
 				
-				GLib.debug("idle update scroll %d, %d".iter.get_line(),
+				GLib.debug("idle update scroll %d, %d", iter.get_line(),
 						iter.get_line_offset());
 				this.updateSelectedLine(
 						(uint)iter.get_line(),
