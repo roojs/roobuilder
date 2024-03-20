@@ -1800,54 +1800,45 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public Gtk.Widget? getWidgetAtRow (uint row) {
-		/*
-		    	
-		from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
-		    	var colview = gesture.widget;
-		    	var line_no = check_list_widget(colview, x,y);
-		         if (line_no > -1) {
-		    		var item = colview.model.get_item(line_no);
-		    		 
-		    	}
-		    	*/
-				//GLib.debug("Get Widget At Row %d", (int)row);
-		        var  child = this.el.get_first_child(); 
-		    	var line_no = -1; 
-		    	var reading_header = true;
+		public Gtk.Widget? getRowWidgetAt (double x,  double  y, out string pos) {
+		
+			pos = "";
+			var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
+			//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
+			if (w == null) {
+				return null;
+			}
+			
+			var row= w.get_ancestor(GLib.Type.from_name("GtkColumnViewRowWidget"));
+			if (row == null) {
+				return null;
+			}
+			
+			//GLib.debug("got colview %s", row == null ? "nothing" : row.get_type().name());
 			 
-		    	while (child != null) {
-					//GLib.debug("Got %s", child.get_type().name());
-		    	   
-		    	   if (reading_header) {
-						
-		
-						if (child.get_type().name() != "GtkColumnListView") {
-						   
-							child = child.get_next_sibling();
-							continue;
-						}
-						// should be columnlistview
-						child = child.get_first_child(); 
-					 
-					 
-						
-						reading_header = false;
-						continue;
-				    }
-				    
-				  
-		    	    
-				    line_no++;
-					if (line_no == row) {
-						//GLib.debug("Returning widget %s", child.get_type().name());
-					    return (Gtk.Widget)child;
-				    }
-			        child = child.get_next_sibling(); 
-		    	}
-				GLib.debug("Failed to find row (max = %d)", line_no);
-		        return null;
-		
+		 
+			
+			//GLib.debug("row number is %d", rn);
+			//GLib.debug("click %d, %d", (int)x, (int)y);
+			// above or belw
+			Graphene.Rect  bounds;
+			row.compute_bounds(this.el, out bounds);
+			//GLib.debug("click x=%d, y=%d, w=%d, h=%d", 
+			//	(int)bounds.get_x(), (int)bounds.get_y(),
+			//	(int)bounds.get_width(), (int)bounds.get_height()
+			//	);
+			var ypos = y - bounds.get_y();
+			//GLib.debug("rel ypos = %d", (int)ypos);	
+			var rpos = 100.0 * (ypos / bounds.get_height());
+			//GLib.debug("rel pos = %d %%", (int)rpos);
+			pos = "over";
+			
+			if (rpos > 80) {
+				pos = "below";
+			} else if (rpos < 20) {
+				pos = "above";
+			} 
+			return row;
 		 }
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
 			_this.navigationwindow.el.show();
@@ -1928,7 +1919,7 @@ public class Editor : Object
 			this.selected_row  = null;
 			if (new_row > -1) {
 				this.el.scroll_to(new_row,null,Gtk.ListScrollFlags.NONE, null);
-				var row = this.getWidgetAtRow(new_row);
+				var row = sym.get_data<Gtk.Widget>("widget");
 				if (row != null) {
 					GLib.debug(" Add selected row");
 		 			
@@ -2028,7 +2019,12 @@ public class Editor : Object
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
 				var sym = (Lsp.DocumentSymbol) lr.get_item();
 				
-				GLib.debug("got %d children for %s" , (int)sym.children.get_n_items(), sym.name);
+				sym.set_data<Gtk.Widget>("widget", expand.get_parent());
+				expand.get_parent().get_parent().set_data<Lsp.DocumentSymbol>("symbol", sym);
+				
+				GLib.debug("save sym on %s", expand.get_parent().get_parent().get_type().name());
+				
+				//GLib.debug("got %d children for %s" , (int)sym.children.get_n_items(), sym.name);
 			    
 			    expand.set_hide_expander( sym.children.get_n_items()  < 1);
 			 	expand.set_list_row(lr);
@@ -2077,28 +2073,6 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public int getRowFromSymbolx (Lsp.DocumentSymbol sym) {
-		
-			for (var i=0;i < this.el.get_n_items(); i++) {
-				var tr = (Gtk.TreeListRow)this.el.get_item(i);
-			   
-				if (sym.equals( (Lsp.DocumentSymbol)tr.get_item())) {
-					return i;
-				}
-			}
-		   	return -1;
-		}
-		public Lsp.DocumentSymbol? getSymbollAtOLD (uint row) {
-		
-		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
-		   
-		   var a = tr.get_item();;   
-		   GLib.debug("get_item (2) = %s", a.get_type().name());
-		  	
-		   
-		   return (Lsp.DocumentSymbol)tr.get_item();
-			 
-		}
 	}
 	public class Xcls_navigationsort : Object
 	{
@@ -2309,13 +2283,15 @@ public class Editor : Object
 			//listeners
 			this.el.pressed.connect( (n_press, x, y) => {
 				string pos;
-			  	var row = _this.navigation.getRowAt(x,y, out pos );
-			    if (row < 0) {
+			  	var row = _this.navigation.getRowWidgetAt(x,y, out pos );
+			
+			    if (row == null) {
 				    GLib.debug("no row selected items");
 				    return;
 			    }
+				GLib.debug("got click on %s", row.get_type().name());    
 			    //Lsp.DocumentSymbol
-			    var sym =   _this.navigationsort.getSymbolAt(row);
+			    var sym =  row.get_data<Lsp.DocumentSymbol>("symbol");
 			    if (sym == null) {
 			    	return;
 				}
@@ -2333,6 +2309,12 @@ public class Editor : Object
 			        */
 			     GLib.debug("goto line %d",   (int)sym.range.start.line); 
 			    _this.scroll_to_line((int)sym.range.start.line);
+			    Gtk.TextIter iter;
+			    _this.buffer.el.get_iter_at_line_offset(out iter, 
+			    	(int)sym.range.start.line,
+			    	(int)sym.range.start.character
+				);
+			    _this.buffer.el.place_cursor(iter);
 				
 			});
 		}
