@@ -1852,7 +1852,14 @@ public class Editor : Object
 			foreach(var sym in syms) {
 				_this.navliststore.el.append(sym);
 			}
-			
+			Gtk.TextIter iter;
+			_this.buffer.el.get_iter_at_offset (
+					out iter, _this.buffer..el.cursor_position);
+			var line = iter.get_line();
+			_this.navigation.updateSelectedLine(
+					(uint)iter.get_line(),
+					(uint)iter.get_line_offset()
+				);
 		
 		}
 		public int getRowAt (double x,  double  y, out string pos) {
