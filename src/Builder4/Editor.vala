@@ -167,7 +167,7 @@ public class Editor : Object
 	        ls.queueDocumentSymbols(file);
 	        ////ls.documentSymbols.begin(file, (a,o) => {
 	        //	_this.navigation.show(ls.documentSymbols.end(o)); 
-	        });
+	       //});
 	        //documentSymbols
 	        
 	    }

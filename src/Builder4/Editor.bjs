@@ -1551,7 +1551,7 @@
     "        ls.queueDocumentSymbols(file);",
     "        ////ls.documentSymbols.begin(file, (a,o) => {",
     "        //\t_this.navigation.show(ls.documentSymbols.end(o)); ",
-    "        });",
+    "       //});",
     "        //documentSymbols",
     "        ",
     "    }",
