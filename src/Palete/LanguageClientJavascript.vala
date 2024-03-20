@@ -288,6 +288,7 @@ namespace Palete {
 		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error {
  			return new Lsp.Hover();
 		}
+		public override void queueDocumentSymbols (JsRender.JsRender file) { }
 		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error {
  			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
 			return ret;
