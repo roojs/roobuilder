@@ -319,7 +319,21 @@
 				GLib.error("need a project %s, to use --drop-list",BuilderApplication.opt_compile_project);
 			 }
 			  if (cur_project.xtype != "Gtk") {
-				GLib.error("need a Gtk project %s, to use --drop-list",BuilderApplication.opt_compile_project);
+			 	 var rp = (Palete.Roo) cur_project.palete;
+			   	print("\n\nDropList:\n%s", geeArrayToString(rp.getDropList(BuilderApplication.opt_drop_list)));
+	 			 print("\n\nChildList:\n%s", geeArrayToString(rp.getChildList(BuilderApplication.opt_drop_list, false)));
+	 			 print("\n\nChildList \n(with props): %s", geeArrayToString(rp.getChildList(BuilderApplication.opt_drop_list, true))); 	
+	 			 
+	 			 
+	 			 print("\n\nPropsList: %s", this.girArrayToString(rp.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.PROP)));
+	  			 print("\n\nSignalList: %s", this.girArrayToString(rp.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.LISTENER)));
+	 			 
+	 			 // ctor.
+	 			  print("\n\nCtor Values: %s", rp.fqnToNode(BuilderApplication.opt_drop_list).toJsonString());
+	 			 GLib.Process.exit(Posix.EXIT_SUCCESS);
+			  
+			  
+			 
 			 }
 			 var p = (Palete.Gtk) cur_project.palete;
 			
