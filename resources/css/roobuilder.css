@@ -140,7 +140,6 @@ tooltip {
 
 tooltip * {
     background-color: #eee;
-
     padding: 5px 5px 5px 5px;
     margin: 0px 0px 0px 0px;
     border-width: 1px;
@@ -149,4 +148,10 @@ tooltip * {
 }
 
 
- 
+ gridview { 
+	background : #000;
+	color : #fff;
+}
+gridview child  {
+	border: 1px solid #333;
+}
