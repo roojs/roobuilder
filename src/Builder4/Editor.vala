@@ -2048,7 +2048,7 @@ public class Editor : Object
 				sym.set_data<Gtk.Widget>("widget", expand.get_parent());
 				expand.get_parent().get_parent().set_data<Lsp.DocumentSymbol>("symbol", sym);
 				
-				GLib.debug("save sym on %s", expand.get_parent().get_parent().get_type().name());
+				//GLib.debug("save sym on %s", expand.get_parent().get_parent().get_type().name());
 				
 				//GLib.debug("got %d children for %s" , (int)sym.children.get_n_items(), sym.name);
 			    

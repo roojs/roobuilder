@@ -973,7 +973,7 @@
                "\tsym.set_data<Gtk.Widget>(\"widget\", expand.get_parent());",
                "\texpand.get_parent().get_parent().set_data<Lsp.DocumentSymbol>(\"symbol\", sym);",
                "\t",
-               "\tGLib.debug(\"save sym on %s\", expand.get_parent().get_parent().get_type().name());",
+               "\t//GLib.debug(\"save sym on %s\", expand.get_parent().get_parent().get_type().name());",
                "\t",
                "\t//GLib.debug(\"got %d children for %s\" , (int)sym.children.get_n_items(), sym.name);",
                "    ",
