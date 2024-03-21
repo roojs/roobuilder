@@ -152,7 +152,9 @@ namespace Lsp {
 
         public bool equal_to (Range other) { return this.to_string () == other.to_string (); }
 		public bool equals (Range o) {
-			return this.filename == o.filename && this.start.equals(o.start) && this.end.equals(o.end);
+			return this.filename == o.filename && 
+					this.start.equals(o.start) && 
+					this.end.equals(o.end);
 		}
 
         public int compare_to (Range other) {
@@ -405,16 +407,16 @@ namespace Lsp {
 
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
 	    {
-	    	GLib.debug("deserialise property %s" , property_name);
+	    	//GLib.debug("deserialise property %s" , property_name);
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
 	        }
             value = GLib.Value (typeof(GLib.ListStore));
 	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-	            GLib.debug ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+	           // GLib.debug ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
 	            return false;
 	        }
-			GLib.debug("got child length of %d", (int) property_node.get_array ().get_length());
+			//GLib.debug("got child length of %d", (int) property_node.get_array ().get_length());
 	        var arguments = new GLib.ListStore(typeof(DocumentSymbol));
 
 	        property_node.get_array ().foreach_element ((array, index, element) => {
@@ -437,7 +439,7 @@ namespace Lsp {
 		 
 		public string tooltip {
 			owned get {
-				GLib.debug("%s : %s", this.name, this.detail);
+				//GLib.debug("%s : %s", this.name, this.detail);
 				//var detail = this.detail == "" ? (this.kind.to_string() + ": " + this.name) : this.detail;
 				 return GLib.Markup.escape_text(this.detail + "\nline: " + this.range.start.line.to_string());
 				
@@ -465,8 +467,57 @@ namespace Lsp {
 			return this;
 			
 		}
+		// does not compare children...
 		public bool equals(DocumentSymbol sym) {
-			return this.name == sym.name && this.kind == sym.kind &&  sym.range.equals(this.range);
+			return this.name == sym.name && 
+					this.kind == sym.kind && 
+					this.detail == sym.detail &&
+					sym.range.equals(this.range);
+		}
+		
+		public static void copyList(GLib.ListStore source, GLib.ListStore target) 
+		{
+			//GLib.debug("copyList source=%d target=%d", (int)source.get_n_items(), (int)target.get_n_items());
+			var i = 0;
+			while (i < source.get_n_items()) {
+				//GLib.debug("copyList compare %d", i);
+				if (i >= target.get_n_items()) {
+					//GLib.debug("copyList append");
+					target.append(source.get_item(i));
+					i++;
+					continue;
+				}
+				var sel = (Lsp.DocumentSymbol) source.get_item(i);
+				var tel = (Lsp.DocumentSymbol) target.get_item(i);
+				if (!sel.equals(tel)) {
+					//GLib.debug("copyList replace");
+					target.remove(i);
+					target.insert(i, sel);
+					i++;
+					continue;
+				}
+
+				if (sel.children.get_n_items() < 1 && tel.children.get_n_items() < 1) {
+					i++;
+					//GLib.debug("copyList same  noChlidren %s", sel.name);
+					continue;
+
+				}
+				//GLib.debug("copyList same = updateChildren %s", sel.name);
+				//
+					// they are the same (ignoring children
+				copyList(sel.children,tel.children);
+				i++;
+			
+			}
+			// remove target items, that dont exist anymore
+			while (i < target.get_n_items()) {
+				//GLib.debug("copyList remove");
+				target.remove(i);
+			}
+			
+			
+		
 		}
 	   
 	   

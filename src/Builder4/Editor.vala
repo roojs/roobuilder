@@ -1848,10 +1848,16 @@ public class Editor : Object
 		 }
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
 			_this.navigationwindow.el.show();
-			_this.navliststore.el.remove_all();
+			//_this.navliststore.el.remove_all();
+			
+			
+			var ls  = new GLib.ListStore(typeof(Lsp.DocumentSymbol));
+			
 			foreach(var sym in syms) {
-				_this.navliststore.el.append(sym);
+				ls.append(sym);
 			}
+			Lsp.DocumentSymbol.copyList(ls, _this.navliststore.el);
+			//_this.navliststore.el.append(sym);
 			this.last_selected_line = -1;
 			GLib.Idle.add(() => {
 		
@@ -2042,7 +2048,7 @@ public class Editor : Object
 				sym.set_data<Gtk.Widget>("widget", expand.get_parent());
 				expand.get_parent().get_parent().set_data<Lsp.DocumentSymbol>("symbol", sym);
 				
-				GLib.debug("save sym on %s", expand.get_parent().get_parent().get_type().name());
+				//GLib.debug("save sym on %s", expand.get_parent().get_parent().get_type().name());
 				
 				//GLib.debug("got %d children for %s" , (int)sym.children.get_n_items(), sym.name);
 			    

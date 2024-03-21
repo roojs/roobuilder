@@ -57,7 +57,7 @@ namespace Palete {
 			base(project);
 
 			if (this.change_queue_id == 0 ) {
-				this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
+				this.change_queue_id = GLib.Timeout.add(500, () => {
 			 		this.run_change_queue();
 			 		this.run_doc_queue();
 			 		return true;
@@ -478,7 +478,7 @@ namespace Palete {
 				});
 			}
 			
-			this.countdown = 3;
+			this.countdown = 4;
  			this.change_queue_file = file;
  			 
 			
@@ -493,7 +493,7 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
-			this.countdown = 9; // not really relivant..
+			this.countdown = -2; // not really relivant..
 			this.change_queue_file = null; // this is more important..
 			
 		    if (!this.open_files.contains(file)) {
@@ -698,7 +698,7 @@ namespace Palete {
 				});
 			}
 			
-			this.doc_countdown = 3;
+			this.doc_countdown = 4;
  			this.doc_queue_file = file;
 		}
 		
