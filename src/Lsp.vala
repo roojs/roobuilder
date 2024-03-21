@@ -506,7 +506,6 @@ namespace Lsp {
 			while (i < target.get_n_items()) {
 				GLib.debug("copyList remove");
 				target.remove(i);
-				i++;
 			}
 			
 			
