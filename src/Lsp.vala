@@ -467,9 +467,11 @@ namespace Lsp {
 			return this;
 			
 		}
+		// does not compare children...
 		public bool equals(DocumentSymbol sym) {
 			return this.name == sym.name && 
 					this.kind == sym.kind && 
+					this.detail == sym.detail &&
 					sym.range.equals(this.range);
 		}
 		
