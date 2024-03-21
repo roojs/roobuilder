@@ -480,6 +480,7 @@ namespace Lsp {
 			GLib.debug("copyList source=%d target=%d", (int)source.get_n_items(), (int)target.get_n_items());
 			var i = 0;
 			while (i < source.get_n_items()) {
+				GLib.debug("copyList compare %d", i);
 				if (i >= target.get_n_items()) {
 					GLib.debug("copyList append");
 					target.append(source.get_item(i));
@@ -495,7 +496,7 @@ namespace Lsp {
 					i++;
 					continue;
 				}
-				GLib.debug("copyList updateChildren");
+				GLib.debug("copyList same = updateChildren");
 				//
 					// they are the same (ignoring children
 				copyList(sel.children,tel.children);
