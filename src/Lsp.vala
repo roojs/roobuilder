@@ -152,7 +152,9 @@ namespace Lsp {
 
         public bool equal_to (Range other) { return this.to_string () == other.to_string (); }
 		public bool equals (Range o) {
-			return this.filename == o.filename && this.start.equals(o.start) && this.end.equals(o.end);
+			return this.filename == o.filename && 
+					this.start.equals(o.start) && 
+					this.end.equals(o.end);
 		}
 
         public int compare_to (Range other) {
@@ -466,7 +468,9 @@ namespace Lsp {
 			
 		}
 		public bool equals(DocumentSymbol sym) {
-			return this.name == sym.name && this.kind == sym.kind &&  sym.range.equals(this.range);
+			return this.name == sym.name && 
+					this.kind == sym.kind && 
+					sym.range.equals(this.range);
 		}
 		
 		public static void copyList(GLib.ListStore source, GLib.ListStore target) 
