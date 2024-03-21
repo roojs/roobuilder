@@ -492,7 +492,7 @@ namespace Lsp {
 				if (!sel.equals(tel)) {
 					GLib.debug("copyList replace");
 					target.remove(i);
-					target.insert(i, tel);
+					target.insert(i, sel);
 					i++;
 					continue;
 				}
