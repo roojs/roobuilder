@@ -1848,10 +1848,16 @@ public class Editor : Object
 		 }
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
 			_this.navigationwindow.el.show();
-			_this.navliststore.el.remove_all();
+			//_this.navliststore.el.remove_all();
+			
+			
+			var ls  = new GLib.ListStore(typeof(Lsp.DocumentSymbol));
+			
 			foreach(var sym in syms) {
-				_this.navliststore.el.append(sym);
+				ls.append(sym);
 			}
+			Lsp.DocumentSymbol.copyList(ls, _this.navliststore.el);
+			//_this.navliststore.el.append(sym);
 			this.last_selected_line = -1;
 			GLib.Idle.add(() => {
 		
