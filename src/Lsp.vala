@@ -497,7 +497,7 @@ namespace Lsp {
 					continue;
 				}
 
-				if (sel.children.get_n_items() < 1 && tel.children.get_items() < 1) {
+				if (sel.children.get_n_items() < 1 && tel.children.get_n_items() < 1) {
 					i++;
 					GLib.debug("copyList same  noChlidren %s", sel.name);
 					continue;
