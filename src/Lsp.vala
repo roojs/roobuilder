@@ -477,7 +477,7 @@ namespace Lsp {
 		
 		public static void copyList(GLib.ListStore source, GLib.ListStore target) 
 		{
-			GLib.debug("copyList source=%d target=%d", source.get_n_items(), target.get_n_items());
+			GLib.debug("copyList source=%d target=%d", (int)source.get_n_items(), (int)target.get_n_items());
 			var i = 0;
 			while (i < source.get_n_items()) {
 				if (i >= target.get_n_items()) {
