@@ -478,7 +478,7 @@ namespace Palete {
 				});
 			}
 			
-			this.countdown = 3;
+			this.countdown = 2;
  			this.change_queue_file = file;
  			 
 			
@@ -493,7 +493,7 @@ namespace Palete {
    			if (!this.isReady()) {
 				return;
 			}
-			this.countdown = 9; // not really relivant..
+			this.countdown = -2; // not really relivant..
 			this.change_queue_file = null; // this is more important..
 			
 		    if (!this.open_files.contains(file)) {
