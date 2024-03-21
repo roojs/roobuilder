@@ -477,9 +477,11 @@ namespace Lsp {
 		
 		public static void copyList(GLib.ListStore source, GLib.ListStore target) 
 		{
+			GLib.debug("copyList source=%d target=%d", source.get_n_items(), target.get_n_items());
 			var i = 0;
 			while (i < source.get_n_items()) {
 				if (i >= target.get_n_items()) {
+					GLib.debug("copyList append");
 					target.append(source.get_item(i));
 					i++;
 					continue;
@@ -487,11 +489,13 @@ namespace Lsp {
 				var sel = (Lsp.DocumentSymbol) source.get_item(i);
 				var tel = (Lsp.DocumentSymbol) target.get_item(i);
 				if (!sel.equals(tel)) {
+					GLib.debug("copyList replace");
 					target.remove(i);
 					target.insert(i, tel);
 					i++;
 					continue;
 				}
+				GLib.debug("copyList updateChildren");
 				//
 					// they are the same (ignoring children
 				copyList(sel.children,tel.children);
@@ -500,7 +504,9 @@ namespace Lsp {
 			}
 			// remove target items, that dont exist anymore
 			while (i < target.get_n_items()) {
+				GLib.debug("copyList remove");
 				target.remove(i);
+				i++;
 			}
 			
 			
