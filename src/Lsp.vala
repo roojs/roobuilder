@@ -468,6 +468,41 @@ namespace Lsp {
 		public bool equals(DocumentSymbol sym) {
 			return this.name == sym.name && this.kind == sym.kind &&  sym.range.equals(this.range);
 		}
+		
+		public static void copyList(GLib.ListStore source, GLib.ListStore target) 
+		{
+			var i = 0;
+			while (i < source.get_n_items()) {
+				if (i >= target.get_n_itmes()) {
+					target.append(source.get_item(i);
+					i++;
+					continue;
+				}
+				var sel = (Lsp.DocumentSymbol) source.get_item(i);
+				var tel = (Lsp.DocumentSymbol) target.get_item(i);
+				if (!sel.equals(tel) {
+					target.remove(i);
+					target.insert(i, tel);
+					i++;
+					continue;
+				}
+				//
+					// they are the same (ignoring children
+				copyList(sel).children,tel.children);
+				i++;
+			
+			}
+			// remove target items, that dont exist anymore
+			while (i < target.get_n_items()) {
+				target.remove(i);
+			}
+			
+			
+			
+			
+			
+		
+		}
 	   
 	   
     }
