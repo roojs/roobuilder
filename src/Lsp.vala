@@ -492,7 +492,7 @@ namespace Lsp {
 				}
 				//
 					// they are the same (ignoring children
-				copyList(sel).children,tel.children);
+				copyList(sel.children,tel.children);
 				i++;
 			
 			}
