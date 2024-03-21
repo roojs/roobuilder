@@ -484,7 +484,7 @@ namespace Lsp {
 				}
 				var sel = (Lsp.DocumentSymbol) source.get_item(i);
 				var tel = (Lsp.DocumentSymbol) target.get_item(i);
-				if (!sel.equals(tel) {
+				if (!sel.equals(tel)) {
 					target.remove(i);
 					target.insert(i, tel);
 					i++;
