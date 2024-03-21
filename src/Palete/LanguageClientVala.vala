@@ -57,7 +57,7 @@ namespace Palete {
 			base(project);
 
 			if (this.change_queue_id == 0 ) {
-				this.change_queue_id = GLib.Timeout.add_seconds(1, () => {
+				this.change_queue_id = GLib.Timeout.add(500, () => {
 			 		this.run_change_queue();
 			 		this.run_doc_queue();
 			 		return true;
@@ -478,7 +478,7 @@ namespace Palete {
 				});
 			}
 			
-			this.countdown = 2;
+			this.countdown = 4;
  			this.change_queue_file = file;
  			 
 			
@@ -698,7 +698,7 @@ namespace Palete {
 				});
 			}
 			
-			this.doc_countdown = 2;
+			this.doc_countdown = 4;
  			this.doc_queue_file = file;
 		}
 		
