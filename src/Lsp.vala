@@ -477,12 +477,12 @@ namespace Lsp {
 		
 		public static void copyList(GLib.ListStore source, GLib.ListStore target) 
 		{
-			GLib.debug("copyList source=%d target=%d", (int)source.get_n_items(), (int)target.get_n_items());
+			//GLib.debug("copyList source=%d target=%d", (int)source.get_n_items(), (int)target.get_n_items());
 			var i = 0;
 			while (i < source.get_n_items()) {
-				GLib.debug("copyList compare %d", i);
+				//GLib.debug("copyList compare %d", i);
 				if (i >= target.get_n_items()) {
-					GLib.debug("copyList append");
+					//GLib.debug("copyList append");
 					target.append(source.get_item(i));
 					i++;
 					continue;
@@ -490,7 +490,7 @@ namespace Lsp {
 				var sel = (Lsp.DocumentSymbol) source.get_item(i);
 				var tel = (Lsp.DocumentSymbol) target.get_item(i);
 				if (!sel.equals(tel)) {
-					GLib.debug("copyList replace");
+					//GLib.debug("copyList replace");
 					target.remove(i);
 					target.insert(i, sel);
 					i++;
@@ -499,11 +499,11 @@ namespace Lsp {
 
 				if (sel.children.get_n_items() < 1 && tel.children.get_n_items() < 1) {
 					i++;
-					GLib.debug("copyList same  noChlidren %s", sel.name);
+					//GLib.debug("copyList same  noChlidren %s", sel.name);
 					continue;
 
 				}
-				GLib.debug("copyList same = updateChildren %s", sel.name);
+				//GLib.debug("copyList same = updateChildren %s", sel.name);
 				//
 					// they are the same (ignoring children
 				copyList(sel.children,tel.children);
@@ -512,7 +512,7 @@ namespace Lsp {
 			}
 			// remove target items, that dont exist anymore
 			while (i < target.get_n_items()) {
-				GLib.debug("copyList remove");
+				//GLib.debug("copyList remove");
 				target.remove(i);
 			}
 			
