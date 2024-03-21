@@ -496,11 +496,14 @@ namespace Lsp {
 					i++;
 					continue;
 				}
-				GLib.debug("copyList same = updateChildren %s", sel.name);
+
 				if (sel.children.get_n_items() < 1 && tel.children.get_items() < 1) {
 					i++;
+					GLib.debug("copyList same  noChlidren %s", sel.name);
 					continue;
+
 				}
+				GLib.debug("copyList same = updateChildren %s", sel.name);
 				//
 					// they are the same (ignoring children
 				copyList(sel.children,tel.children);
