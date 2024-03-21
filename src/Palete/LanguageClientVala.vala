@@ -698,7 +698,7 @@ namespace Palete {
 				});
 			}
 			
-			this.doc_countdown = 3;
+			this.doc_countdown = 2;
  			this.doc_queue_file = file;
 		}
 		
