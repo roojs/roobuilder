@@ -502,9 +502,6 @@ namespace Lsp {
 			}
 			
 			
-			
-			
-			
 		
 		}
 	   
