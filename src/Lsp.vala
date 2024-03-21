@@ -439,7 +439,7 @@ namespace Lsp {
 		 
 		public string tooltip {
 			owned get {
-				GLib.debug("%s : %s", this.name, this.detail);
+				//GLib.debug("%s : %s", this.name, this.detail);
 				//var detail = this.detail == "" ? (this.kind.to_string() + ": " + this.name) : this.detail;
 				 return GLib.Markup.escape_text(this.detail + "\nline: " + this.range.start.line.to_string());
 				
