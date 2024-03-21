@@ -407,7 +407,7 @@ namespace Lsp {
 
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
 	    {
-	    	GLib.debug("deserialise property %s" , property_name);
+	    	//GLib.debug("deserialise property %s" , property_name);
 	    	if (property_name != "children") {
 	            return default_deserialize_property (property_name, out value, pspec, property_node);
 	        }
