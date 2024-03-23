@@ -2235,8 +2235,9 @@ public class Editor : Object
 				if (added  < 1) {
 					return;
 				}
-				var sym = (Lsp.DocumentSymbol) this.el.get_item(position);
+				//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);
 				var row = this.el.get_row(position);
+				var sym = (Lsp.DocumentSymbol)  row.get_item();
 				switch (sym.kind) {
 			 		case Lsp.SymbolKind.Enum: 
 			 			row.expanded = false;
