@@ -2119,7 +2119,7 @@ public class Editor : Object
 			 		//	expand.list_row.expanded = false;
 			 			break;
 					default:
-						expand.list_row.expanded = true;
+					//	expand.list_row.expanded = true;
 						break;
 				}
 			 	//this.in_bind = false;

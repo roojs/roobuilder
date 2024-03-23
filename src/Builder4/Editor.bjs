@@ -1005,7 +1005,7 @@
                  " \t\t//\texpand.list_row.expanded = false;",
                  " \t\t\tbreak;",
                  "\t\tdefault:",
-                 "\t\t\texpand.list_row.expanded = true;",
+                 "\t\t//\texpand.list_row.expanded = true;",
                  "\t\t\tbreak;",
                  "\t}",
                  " \t//this.in_bind = false;",
