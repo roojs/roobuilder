@@ -122,18 +122,21 @@
     language symbols?
 */
 .lang-class-symbolic {
-	color : #266b02;
+	color : brown;
 	font-weight: bold;
 }
-.lang-method-symbolic,
-.lang-function-symbolic {
+.lang-method-symbolic {
 	color : #029f2b;
 	font-weight: bold;
 
 }
 
-.lang-struct-field-symbolic {
+.lang-property-symbolic {
 	color : #1111ff;
+}
+.lang-enummember-symbolic {
+	color : #666;
+
 }
 
 tooltip {
