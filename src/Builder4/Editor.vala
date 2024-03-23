@@ -2117,7 +2117,7 @@ public class Editor : Object
 			                    img, "icon_name",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
-			 	hbox.add_css_class(sym.symbol_icon);
+			 	hbox.css_classes = { sym.symbol_icon };
 			 	
 			 	sym.bind_property("name",
 			                    lbl, "label",

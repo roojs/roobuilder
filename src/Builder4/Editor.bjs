@@ -1004,7 +1004,7 @@
                  "                    img, \"icon_name\",",
                  "                   GLib.BindingFlags.SYNC_CREATE);",
                  " \t",
-                 " \thbox.add_css_class(sym.symbol_icon);",
+                 " \thbox.css_classes = { sym.symbol_icon };",
                  " \t",
                  " \tsym.bind_property(\"name\",",
                  "                    lbl, \"label\",",
