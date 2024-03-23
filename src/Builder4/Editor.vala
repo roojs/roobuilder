@@ -1913,7 +1913,7 @@ public class Editor : Object
 			//_this.navliststore.el.append(sym);
 			this.last_selected_line = -1;
 			GLib.Idle.add(() => {
-		
+				_this.navigationstore.collapseOnLoad();
 				Gtk.TextIter iter;
 				_this.buffer.el.get_iter_at_offset (
 						out iter, _this.buffer.el.cursor_position);

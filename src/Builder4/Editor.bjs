@@ -1347,7 +1347,7 @@
             "\t//_this.navliststore.el.append(sym);",
             "\tthis.last_selected_line = -1;",
             "\tGLib.Idle.add(() => {",
-            "",
+            "\t\t_this.navigationstore.collapseOnLoad();",
             "\t\tGtk.TextIter iter;",
             "\t\t_this.buffer.el.get_iter_at_offset (",
             "\t\t\t\tout iter, _this.buffer.el.cursor_position);",
