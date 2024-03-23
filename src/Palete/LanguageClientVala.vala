@@ -779,7 +779,7 @@ namespace Palete {
 			var ar = json.get_array();
 			GLib.debug ("LS replied with %D items", ar.get_length());
 			for(var i = 0; i < ar.get_length(); i++ ) {
-				var add= Json.gobject_deserialize ( typeof (Lsp.SignatureInformation),  ar.get_element(i)) as Lsp.DocumentSymbol;
+				var add= Json.gobject_deserialize ( typeof (Lsp.SignatureInformation),  ar.get_element(i)) as Lsp.SignatureInformation;
 				ret.add( add);
 					 
 	 		}
