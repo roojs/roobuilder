@@ -614,7 +614,7 @@
                "\tif (str.strip().length < 1) {",
                "\t\treturn;",
                "\t}",
-               "\tvar ls = _this.file.getLanguageSever();",
+               "\tvar ls = _this.file.getLanguageServer();",
                "\tls.signatureHelp.begin(",
                "\t\tfile, iter.get_line(), iter.get_line_offset(),",
                "\t\t( a, o)  => {",
