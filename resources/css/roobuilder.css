@@ -121,8 +121,8 @@
 /**
     language symbols?
 */
-.lang-class-symbolic {
-	color : brown;
+.lang-class-symbolic ,
+.lang-constructor-symbolic {
 	font-weight: bold;
 }
 .lang-method-symbolic {
@@ -131,7 +131,8 @@
 
 }
 
-.lang-property-symbolic {
+.lang-property-symbolic,
+.lang-field-symbolic {
 	color : #1111ff;
 }
 .lang-enummember-symbolic {
