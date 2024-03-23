@@ -2111,8 +2111,7 @@ public class Editor : Object
 			 	// default is to expand
 			 	switch (sym.kind) {
 			 		case Lsp.SymbolKind.Enum: 
-			 		
-			 			expand.list_row.expanded = false;
+			 			//expand.list_row.expanded = false;
 			 			break;
 					default:
 						break;
