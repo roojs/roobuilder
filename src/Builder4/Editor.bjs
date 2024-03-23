@@ -600,9 +600,9 @@
               "pressed" : [
                "(n_press, x, y) => {",
                "\tGtk.TextIter iter;",
-               "\t_this.view.el.get_iter_at_location (out  iter,  x,  y);",
+               "\t_this.view.el.get_iter_at_location (out  iter,  (int)x,  (int)y);",
                "\tif (_this.buffer.el.iter_has_context_class(iter, \"comment\") ||",
-               "\t\tthis.editor.buffer.el.iter_has_context_class(iter, \"string\")",
+               "\t\t_this.buffer.el.iter_has_context_class(iter, \"string\")",
                "\t) { ",
                "\t\treturn ;",
                "\t}",

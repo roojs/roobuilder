@@ -1316,9 +1316,9 @@ public class Editor : Object
 			//listeners
 			this.el.pressed.connect( (n_press, x, y) => {
 				Gtk.TextIter iter;
-				_this.view.el.get_iter_at_location (out  iter,  x,  y);
+				_this.view.el.get_iter_at_location (out  iter,  (int)x,  (int)y);
 				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
-					this.editor.buffer.el.iter_has_context_class(iter, "string")
+					_this.buffer.el.iter_has_context_class(iter, "string")
 				) { 
 					return ;
 				}
