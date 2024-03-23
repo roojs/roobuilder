@@ -2184,18 +2184,21 @@ public class Editor : Object
 
 		// user defined functions
 		public void collapseOnLoad () {
-		
-		return;
-			var sym = (Lsp.DocumentSymbol)  row.get_item();
-			
-			switch (sym.kind) {
-		 		case Lsp.SymbolKind.Enum: 
-		 		//	row.expanded = false;
-		 			break;
-				default:
-					row.expanded = true;
-					break;
+			for (var i=0;i < this.el.get_n_items(); i++) {
+				var tr = (Gtk.TreeListRow)this.el.get_item(i);
+			   
+				var sym =  (Lsp.DocumentSymbol)tr.get_item();
+				switch (sym.kind) {
+			 		case Lsp.SymbolKind.Enum: 
+			 			tr.expanded = false;
+			 			break;
+					default:
+						//tr.expanded = true;
+						break;
+				}
 			}
+		 
+			
 		
 		
 		}
@@ -2235,7 +2238,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			new Xcls_navliststore( _this );
-			this.el = new Gtk.TreeListModel( _this.navliststore.el, false, false, (item) => {
+			this.el = new Gtk.TreeListModel( _this.navliststore.el, false, true, (item) => {
  
 	return ((Lsp.DocumentSymbol)item).children;
 }
