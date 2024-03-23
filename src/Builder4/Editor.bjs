@@ -599,6 +599,10 @@
              "listeners" : {
               "pressed" : [
                "(n_press, x, y) => {",
+               "\tGtk.TextIter iter;",
+               "\t_this.view.get_iter_at_location (out  iter,  x,  y);",
+               "\t",
+               "\t",
                "",
                "",
                "}",
