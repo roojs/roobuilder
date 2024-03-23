@@ -596,6 +596,15 @@
             },
             {
              "$ xns" : "Gtk",
+             "listeners" : {
+              "pressed" : [
+               "(n_press, x, y) => {",
+               "",
+               "",
+               "}",
+               ""
+              ]
+             },
              "xtype" : "GestureClick"
             }
            ],
