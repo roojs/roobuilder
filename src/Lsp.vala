@@ -1006,7 +1006,7 @@ namespace Lsp {
     }
 
     public class ParameterInformation : Object, Json.Serializable {
-        public string label { get; set; }, Json.Serializable
+        public string label { get; set; }
         public MarkupContent documentation { get; set; }
         
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
