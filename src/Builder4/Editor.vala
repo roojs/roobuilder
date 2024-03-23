@@ -2237,7 +2237,11 @@ public class Editor : Object
 			 	}
 				//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);
 				var row = this.el.get_row(position);
+				
+				GLib.debug("got %s", row.get_item().get_type().name());
+				return;
 				var sym = (Lsp.DocumentSymbol)  row.get_item();
+				
 				switch (sym.kind) {
 			 		case Lsp.SymbolKind.Enum: 
 			 		//	row.expanded = false;
