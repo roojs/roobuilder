@@ -40,9 +40,15 @@
      border-bottom-color: #EEA9FF;
 }
 
-#left-tree-view indent {
-    -gtk-icon-size : 2px;
+
+#left-tree-view indent,
+#left-tree-view expander
+{
+    -gtk-icon-size : 4px;
+     min-width: 4px;
 }
+
+
 #left-tree-view indent:nth-last-child(2)  {
     min-width: 24px;
 }
@@ -95,8 +101,11 @@
 }
 
 
-#editor-navigation indent {
-    -gtk-icon-size : 2px;
+#editor-navigation indent,
+#editor-navigation expander
+{
+    -gtk-icon-size : 10px;
+     min-width: 10px;
 }
 #editor-navigation { 
     font-size: 12px;
@@ -109,38 +118,46 @@
 #editor-navigation .selected-row {
     background-color:#88a3bc; 
 } 
-
-.lang-class-symbolic {
-	color : #266b02;
+/**
+    language symbols?
+*/
+.lang-class-symbolic ,
+.lang-constructor-symbolic {
 	font-weight: bold;
 }
-.lang-method-symbolic,
-.lang-function-symbolic {
+.lang-method-symbolic {
 	color : #029f2b;
 	font-weight: bold;
 
 }
 
-.lang-struct-field-symbolic {
+.lang-property-symbolic,
+.lang-field-symbolic {
 	color : #1111ff;
 }
+.lang-enummember-symbolic {
+	color : #666;
 
+}
 tooltip {
-    padding: 2px;
+    padding: 1px;
     margin: 0px 0px 0px 0px;
     border-width: 1px;
     border-style: solid;
     border-radius: 2px;
     border-color: #eee;
     background-image: none;
-    background-color: #eee;
+    background-color: #fff;
     color: #000;
-    border: 0px;
+    border-bottom: 4px solid #ccc;
+    border-right: 4px solid #aaa;
+   border-top: 4px solid #eee;
+    border-left: 4px solid #ddd;
 }
 
 tooltip * {
-    background-color: #eee;
-    padding: 5px 5px 5px 5px;
+    background-color: #fff;
+    padding: 3px 3px 3px 3px;
     margin: 0px 0px 0px 0px;
     border-width: 1px;
     color: #000;

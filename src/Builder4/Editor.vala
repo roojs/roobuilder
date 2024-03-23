@@ -420,8 +420,9 @@ public class Editor : Object
 			var child_1 = new Xcls_Box2( _this );
 			child_1.ref();
 			this.el.start_child = child_1.el;
-			new Xcls_navigationwindow( _this );
-			this.el.end_child = _this.navigationwindow.el;
+			var child_2 = new Xcls_Box27( _this );
+			child_2.ref();
+			this.el.end_child = child_2.el;
 		}
 
 		// user defined functions
@@ -1748,6 +1749,56 @@ public class Editor : Object
 
 
 
+	public class Xcls_Box27 : Object
+	{
+		public Gtk.Box el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Box27(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.hexpand = true;
+			this.el.vexpand = true;
+			var child_1 = new Xcls_Box28( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			new Xcls_navigationwindow( _this );
+			this.el.append( _this.navigationwindow.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box28 : Object
+	{
+		public Gtk.Box el;
+		private Editor  _this;
+
+
+			// my vars (def)
+
+		// ctor
+		public Xcls_Box28(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 	public class Xcls_navigationwindow : Object
 	{
 		public Gtk.ScrolledWindow el;
@@ -1766,6 +1817,8 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.hexpand = true;
+			this.el.vexpand = true;
 			this.el.visible = false;
 			new Xcls_navigation( _this );
 			this.el.child = _this.navigation.el;
@@ -1797,10 +1850,10 @@ public class Editor : Object
 
 			// set gobject values
 			this.el.name = "editor-navigation";
-			var child_2 = new Xcls_ColumnViewColumn29( _this );
+			var child_2 = new Xcls_ColumnViewColumn31( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
-			var child_3 = new Xcls_GestureClick38( _this );
+			var child_3 = new Xcls_GestureClick40( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
@@ -1860,7 +1913,7 @@ public class Editor : Object
 			//_this.navliststore.el.append(sym);
 			this.last_selected_line = -1;
 			GLib.Idle.add(() => {
-		
+				_this.navigationsort.collapseOnLoad();
 				Gtk.TextIter iter;
 				_this.buffer.el.get_iter_at_offset (
 						out iter, _this.buffer.el.cursor_position);
@@ -1962,7 +2015,7 @@ public class Editor : Object
 		
 		}
 	}
-	public class Xcls_ColumnViewColumn29 : Object
+	public class Xcls_ColumnViewColumn31 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Editor  _this;
@@ -1971,10 +2024,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_ColumnViewColumn29(Editor _owner )
+		public Xcls_ColumnViewColumn31(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory30( _this );
+			var child_1 = new Xcls_SignalListItemFactory32( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Code Navigation", child_1.el );
 
@@ -1986,7 +2039,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory30 : Object
+	public class Xcls_SignalListItemFactory32 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Editor  _this;
@@ -1995,7 +2048,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory30(Editor _owner )
+		public Xcls_SignalListItemFactory32(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -2030,6 +2083,7 @@ public class Editor : Object
 				
 			});
 			this.el.bind.connect( (listitem) => {
+				 
 				// GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
 				
 				//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
@@ -2054,12 +2108,16 @@ public class Editor : Object
 			    
 			    expand.set_hide_expander( sym.children.get_n_items()  < 1);
 			 	expand.set_list_row(lr);
+			 	//this.in_bind = true;
+			 	// default is to expand
+			 
+			 	//this.in_bind = false;
 			 	
 			 	sym.bind_property("symbol_icon",
 			                    img, "icon_name",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
-			 	hbox.add_css_class(sym.symbol_icon);
+			 	hbox.css_classes = { sym.symbol_icon };
 			 	
 			 	sym.bind_property("name",
 			                    lbl, "label",
@@ -2113,9 +2171,9 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationsort = this;
-			var child_1 = new Xcls_TreeListModel33( _this );
+			var child_1 = new Xcls_TreeListModel35( _this );
 			child_1.ref();
-			var child_2 = new Xcls_TreeListRowSorter35( _this );
+			var child_2 = new Xcls_TreeListRowSorter37( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
@@ -2125,6 +2183,24 @@ public class Editor : Object
 		}
 
 		// user defined functions
+		public void collapseOnLoad () {
+			for (var i=0;i < this.el.get_n_items(); i++) {
+				var tr = (Gtk.TreeListRow)this.el.get_item(i);
+				var sym =  (Lsp.DocumentSymbol)tr.get_item();
+				switch (sym.kind) {
+			 		case Lsp.SymbolKind.Enum: 
+			 			tr.expanded = false;
+			 			break;
+					default:
+						//tr.expanded = true;
+						break;
+				}
+			}
+		 
+			
+		
+		
+		}
 		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
 		
 			for (var i=0;i < this.el.get_n_items(); i++) {
@@ -2148,7 +2224,7 @@ public class Editor : Object
 			 
 		}
 	}
-	public class Xcls_TreeListModel33 : Object
+	public class Xcls_TreeListModel35 : Object
 	{
 		public Gtk.TreeListModel el;
 		private Editor  _this;
@@ -2157,7 +2233,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_TreeListModel33(Editor _owner )
+		public Xcls_TreeListModel35(Editor _owner )
 		{
 			_this = _owner;
 			new Xcls_navliststore( _this );
@@ -2170,6 +2246,20 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+
+			//listeners
+			this.el.items_changed.connect( (position, removed, added) => {
+				GLib.debug("tree item changed %d , %d , %d",(int) position, (int)removed, (int) added);
+				 if (added < 1) { 
+				 	return;
+			 	}
+				//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);
+				var row = this.el.get_row(position);
+				
+				GLib.debug("got %s", row.get_item().get_type().name());
+				
+			
+			});
 		}
 
 		// user defined functions
@@ -2216,7 +2306,7 @@ public class Editor : Object
 	}
 
 
-	public class Xcls_TreeListRowSorter35 : Object
+	public class Xcls_TreeListRowSorter37 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Editor  _this;
@@ -2225,10 +2315,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter35(Editor _owner )
+		public Xcls_TreeListRowSorter37(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter36( _this );
+			var child_1 = new Xcls_StringSorter38( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -2239,7 +2329,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter36 : Object
+	public class Xcls_StringSorter38 : Object
 	{
 		public Gtk.StringSorter el;
 		private Editor  _this;
@@ -2248,10 +2338,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter36(Editor _owner )
+		public Xcls_StringSorter38(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression37( _this );
+			var child_1 = new Xcls_PropertyExpression39( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -2262,7 +2352,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression37 : Object
+	public class Xcls_PropertyExpression39 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Editor  _this;
@@ -2271,7 +2361,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression37(Editor _owner )
+		public Xcls_PropertyExpression39(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Lsp.DocumentSymbol), null, "sort_key" );
@@ -2288,7 +2378,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_GestureClick38 : Object
+	public class Xcls_GestureClick40 : Object
 	{
 		public Gtk.GestureClick el;
 		private Editor  _this;
@@ -2297,7 +2387,7 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick38(Editor _owner )
+		public Xcls_GestureClick40(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -2347,6 +2437,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
+
 
 
 
