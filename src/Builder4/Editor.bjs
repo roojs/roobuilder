@@ -1072,7 +1072,7 @@
                  ],
                  "$ xns" : "Gtk",
                  "* prop" : "model",
-                 "bool autoexpand" : true,
+                 "bool autoexpand" : false,
                  "bool passthrough" : false,
                  "items" : [
                   {
@@ -1106,10 +1106,8 @@
                  "listeners" : {
                   "items_changed" : [
                    "(position, removed, added) => {",
-                   "\tGLib.debug(\"tree item changed\");",
-                   "\tif (added  < 1) {",
-                   "\t\treturn;",
-                   "\t}",
+                   "\tGLib.debug(\"tree item changed %d %d %d\", position, removed, added);",
+                   "\t return;",
                    "\t//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);",
                    "\tvar row = this.el.get_row(position);",
                    "\tvar sym = (Lsp.DocumentSymbol)  row.get_item();",
