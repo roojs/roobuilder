@@ -1317,9 +1317,7 @@ public class Editor : Object
 			this.el.pressed.connect( (n_press, x, y) => {
 				Gtk.TextIter iter;
 				_this.view.get_iter_at_location (out  iter,  x,  y);
-				
-				
-			
+				 
 			
 			});
 		}
