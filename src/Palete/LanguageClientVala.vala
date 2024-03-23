@@ -745,7 +745,7 @@ namespace Palete {
 		}
 		public override async Gee.ArrayList<Lsp.SignatureInformation> signatureHelp (JsRender.JsRender file, int line, int offset) throws GLib.Error {
  			/* partial_result_token ,  work_done_token   context = null) */
-		 	GLib.debug("get documentSymbols %s", file.relpath);
+		 	GLib.debug("get documentSymbols %s, %d, %d", file.relpath, line, offset);
 			var ret = new Gee.ArrayList<Lsp.SignatureInformation>();	
 		 	//ret = null;
 		    if (!this.isReady()) {
