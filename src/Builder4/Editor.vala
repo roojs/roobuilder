@@ -1316,8 +1316,23 @@ public class Editor : Object
 			//listeners
 			this.el.pressed.connect( (n_press, x, y) => {
 				Gtk.TextIter iter;
-				_this.view.get_iter_at_location (out  iter,  x,  y);
-				 
+				_this.view.el.get_iter_at_location (out  iter,  x,  y);
+				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
+					this.editor.buffer.el.iter_has_context_class(iter, "string")
+				) { 
+					return ;
+				}
+				var back = iter.copy();
+				back.backward_char();
+				
+				// what's the character at the iter?
+				var str = back.get_text(iter);
+				if (str.strip().length < 1) {
+					return;
+				}
+				
+					
+						
 			
 			});
 		}
