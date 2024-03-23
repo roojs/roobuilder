@@ -2183,6 +2183,9 @@ public class Editor : Object
 		}
 
 		// user defined functions
+		public void collapseOnLoad () {
+		
+		}
 		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
 		
 			for (var i=0;i < this.el.get_n_items(); i++) {
