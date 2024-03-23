@@ -40,9 +40,15 @@
      border-bottom-color: #EEA9FF;
 }
 
-#left-tree-view indent {
-    -gtk-icon-size : 2px;
+
+#left-tree-view indent,
+#left-tree-view expander
+{
+    -gtk-icon-size : 10px;
+     min-width: 10px;
 }
+
+
 #left-tree-view indent:nth-last-child(2)  {
     min-width: 24px;
 }
@@ -95,8 +101,11 @@
 }
 
 
-#editor-navigation indent {
-    -gtk-icon-size : 2px;
+#editor-navigation indent,
+#editor-navigation expander
+{
+    -gtk-icon-size : 10px;
+     min-width: 10px;
 }
 #editor-navigation { 
     font-size: 12px;
@@ -109,7 +118,9 @@
 #editor-navigation .selected-row {
     background-color:#88a3bc; 
 } 
-
+/**
+    language symbols?
+*/
 .lang-class-symbolic {
 	color : #266b02;
 	font-weight: bold;
