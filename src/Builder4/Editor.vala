@@ -2186,7 +2186,6 @@ public class Editor : Object
 		public void collapseOnLoad () {
 			for (var i=0;i < this.el.get_n_items(); i++) {
 				var tr = (Gtk.TreeListRow)this.el.get_item(i);
-			   
 				var sym =  (Lsp.DocumentSymbol)tr.get_item();
 				switch (sym.kind) {
 			 		case Lsp.SymbolKind.Enum: 
