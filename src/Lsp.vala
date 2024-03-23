@@ -967,7 +967,7 @@ namespace Lsp {
 
 	        property_node.get_array ().foreach_element ((array, index, element) => {
 	            
-		        var add= Json.gobject_deserialize ( typeof (ParameterInformation),  array.get_element(index)) as DocumentSymbol;
+		        var add= Json.gobject_deserialize ( typeof (ParameterInformation),  array.get_element(index)) as ParameterInformation;
 				arguments.add( add);
 
 	           
