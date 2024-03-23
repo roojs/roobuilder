@@ -2046,6 +2046,7 @@ public class Editor : Object
 
 
 			// my vars (def)
+		public bool in_bind;
 
 		// ctor
 		public Xcls_SignalListItemFactory32(Editor _owner )
@@ -2054,6 +2055,7 @@ public class Editor : Object
 			this.el = new Gtk.SignalListItemFactory();
 
 			// my vars (dec)
+			this.in_bind = false;
 
 			// set gobject values
 
@@ -2083,6 +2085,9 @@ public class Editor : Object
 				
 			});
 			this.el.bind.connect( (listitem) => {
+				if (this.in_bind) {
+					return;
+				}
 				// GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
 				
 				//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
@@ -2107,16 +2112,16 @@ public class Editor : Object
 			    
 			    expand.set_hide_expander( sym.children.get_n_items()  < 1);
 			 	expand.set_list_row(lr);
-			 	
+			 	this.in_bind = true;
 			 	// default is to expand
 			 	switch (sym.kind) {
 			 		case Lsp.SymbolKind.Enum: 
-			 			//expand.list_row.expanded = false;
+			 			expand.list_row.expanded = false;
 			 			break;
 					default:
 						break;
 				}
-			 	
+			 	this.in_bind = false;
 			 	
 			 	sym.bind_property("symbol_icon",
 			                    img, "icon_name",
