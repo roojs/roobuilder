@@ -757,8 +757,7 @@ namespace Palete {
 				this.buildDict (  
 					 
 					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+						uri: new GLib.Variant.string (file.to_url())
 					),
 					position :  this.buildDict ( 
 						line :  new GLib.Variant.uint64 ( (uint) line) ,
