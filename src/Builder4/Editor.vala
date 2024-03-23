@@ -2231,7 +2231,7 @@ public class Editor : Object
 
 			//listeners
 			this.el.items_changed.connect( (position, removed, added) => {
-				GLib.debug("tree item changed %d , %d , %d", position, removed,  added);
+				GLib.debug("tree item changed %d , %d , %d",(int) position, removed,  added);
 				 return;
 				//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);
 				var row = this.el.get_row(position);

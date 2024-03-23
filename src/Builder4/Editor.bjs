@@ -1106,7 +1106,7 @@
                  "listeners" : {
                   "items_changed" : [
                    "(position, removed, added) => {",
-                   "\tGLib.debug(\"tree item changed %d , %d , %d\", position, removed,  added);",
+                   "\tGLib.debug(\"tree item changed %d , %d , %d\",(int) position, removed,  added);",
                    "\t return;",
                    "\t//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);",
                    "\tvar row = this.el.get_row(position);",
