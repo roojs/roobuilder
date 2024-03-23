@@ -1005,7 +1005,7 @@ namespace Lsp {
         }
     }
 
-    public class ParameterInformation : Object {
+    public class ParameterInformation : Object, Json.Serializable {
         public string label { get; set; }
         public MarkupContent documentation { get; set; }
         
