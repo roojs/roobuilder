@@ -2239,6 +2239,12 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+
+			//listeners
+			this.el.items_changed.connect( (position, removed, added) => {
+			
+			
+			});
 		}
 
 		// user defined functions

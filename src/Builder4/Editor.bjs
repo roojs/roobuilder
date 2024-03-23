@@ -1113,6 +1113,15 @@
                    ]
                   }
                  ],
+                 "listeners" : {
+                  "items_changed" : [
+                   "(position, removed, added) => {",
+                   "",
+                   "",
+                   "}",
+                   ""
+                  ]
+                 },
                  "xtype" : "TreeListModel"
                 },
                 {
