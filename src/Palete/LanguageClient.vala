@@ -74,9 +74,6 @@ namespace Palete {
 		 
 		
 		
- 
-		
-		
 		public abstract  void initialize_server();
  
 		
@@ -91,6 +88,7 @@ namespace Palete {
  		public abstract async Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error;
 		public abstract void queueDocumentSymbols (JsRender.JsRender file); 
  		public abstract async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error;	
+		public abstract async Gee.ArrayList<Lsp.SignatureInformation> signatureHelp (JsRender.JsRender file, int line, int offset) throws GLib.Error;
 	}
 	
 }
