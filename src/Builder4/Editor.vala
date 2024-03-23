@@ -2185,6 +2185,19 @@ public class Editor : Object
 		// user defined functions
 		public void collapseOnLoad () {
 		
+		return;
+			var sym = (Lsp.DocumentSymbol)  row.get_item();
+			
+			switch (sym.kind) {
+		 		case Lsp.SymbolKind.Enum: 
+		 		//	row.expanded = false;
+		 			break;
+				default:
+					row.expanded = true;
+					break;
+			}
+		
+		
 		}
 		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
 		

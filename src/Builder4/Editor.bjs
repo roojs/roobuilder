@@ -1174,6 +1174,19 @@
                "| void collapseOnLoad" : [
                 "() {",
                 "",
+                "return;",
+                "\tvar sym = (Lsp.DocumentSymbol)  row.get_item();",
+                "\t",
+                "\tswitch (sym.kind) {",
+                " \t\tcase Lsp.SymbolKind.Enum: ",
+                " \t\t//\trow.expanded = false;",
+                " \t\t\tbreak;",
+                "\t\tdefault:",
+                "\t\t\trow.expanded = true;",
+                "\t\t\tbreak;",
+                "\t}",
+                "",
+                "",
                 "}"
                ]
               }
