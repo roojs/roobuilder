@@ -2083,9 +2083,7 @@ public class Editor : Object
 				
 			});
 			this.el.bind.connect( (listitem) => {
-				if (this.in_bind) {
-					return;
-				}
+				 
 				// GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
 				
 				//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
@@ -2112,14 +2110,7 @@ public class Editor : Object
 			 	expand.set_list_row(lr);
 			 	//this.in_bind = true;
 			 	// default is to expand
-			 	switch (sym.kind) {
-			 		case Lsp.SymbolKind.Enum: 
-			 		//	expand.list_row.expanded = false;
-			 			break;
-					default:
-					//	expand.list_row.expanded = true;
-						break;
-				}
+			 
 			 	//this.in_bind = false;
 			 	
 			 	sym.bind_property("symbol_icon",
