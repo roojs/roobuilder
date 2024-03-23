@@ -616,7 +616,7 @@
                "\t}",
                "\tvar ls = _this.file.getLanguageServer();",
                "\tls.signatureHelp.begin(",
-               "\t\tfile, iter.get_line(), iter.get_line_offset(),",
+               "\t\t_this.file, iter.get_line(), iter.get_line_offset(),",
                "\t\t( a, o)  => {",
                "\t\t\tvar res = ls.signatureHelp.end(o );",
                "\t\t\t",
