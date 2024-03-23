@@ -618,7 +618,7 @@
                "\tls.signatureHelp.begin(",
                "\t\tfile, iter.get_line(), iter.get_line_offset(),",
                "\t\t( a, o)  => {",
-               "\t\t\tvar res = ls.signatureHelp.end();",
+               "\t\t\tvar res = ls.signatureHelp.end(o );",
                "\t\t\t",
                "\t\t});",
                "\t\t",

@@ -1334,7 +1334,7 @@ public class Editor : Object
 				ls.signatureHelp.begin(
 					file, iter.get_line(), iter.get_line_offset(),
 					( a, o)  => {
-						var res = ls.signatureHelp.end();
+						var res = ls.signatureHelp.end(o );
 						
 					});
 					
