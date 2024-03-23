@@ -2108,6 +2108,17 @@ public class Editor : Object
 			    expand.set_hide_expander( sym.children.get_n_items()  < 1);
 			 	expand.set_list_row(lr);
 			 	
+			 	// default is to expand
+			 	switch (sym.kind) {
+			 		case Lsp.SymbolKind.Enum: 
+			 		
+			 			expand.list_row.expanded = false;
+			 			break;
+					default:
+						break;
+				}
+			 	
+			 	
 			 	sym.bind_property("symbol_icon",
 			                    img, "icon_name",
 			                   GLib.BindingFlags.SYNC_CREATE);
