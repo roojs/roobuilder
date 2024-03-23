@@ -963,7 +963,7 @@ namespace Lsp {
 	            return false;
 	        }
 			//GLib.debug("got child length of %d", (int) property_node.get_array ().get_length());
-	        var arguments = new Gee.arrayList<ParameterInformation>();
+	        var arguments = new Gee.ArrayList<ParameterInformation>();
 
 	        property_node.get_array ().foreach_element ((array, index, element) => {
 	            
