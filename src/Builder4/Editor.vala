@@ -2046,7 +2046,6 @@ public class Editor : Object
 
 
 			// my vars (def)
-		public bool in_bind;
 
 		// ctor
 		public Xcls_SignalListItemFactory32(Editor _owner )
@@ -2055,7 +2054,6 @@ public class Editor : Object
 			this.el = new Gtk.SignalListItemFactory();
 
 			// my vars (dec)
-			this.in_bind = false;
 
 			// set gobject values
 

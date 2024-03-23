@@ -965,7 +965,6 @@
              "bool expand" : true,
              "items" : [
               {
-               "# bool in_bind" : false,
                "$ xns" : "Gtk",
                "* prop" : "factory",
                "listeners" : {
