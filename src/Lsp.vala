@@ -1003,6 +1003,13 @@ namespace Lsp {
     public class ParameterInformation : Object {
         public string label { get; set; }
         public MarkupContent documentation { get; set; }
+        
+        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+        {
+            
+            return default_deserialize_property (property_name, out value, pspec, property_node);
+        }
+        
     }
 
    public  class MarkedString : Object {
