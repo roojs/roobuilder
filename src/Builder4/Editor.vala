@@ -2232,16 +2232,18 @@ public class Editor : Object
 			//listeners
 			this.el.items_changed.connect( (position, removed, added) => {
 				GLib.debug("tree item changed %d , %d , %d",(int) position, (int)removed, (int) added);
-				 return;
+				 if (added < 1) { 
+				 	return;
+			 	}
 				//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);
 				var row = this.el.get_row(position);
 				var sym = (Lsp.DocumentSymbol)  row.get_item();
 				switch (sym.kind) {
 			 		case Lsp.SymbolKind.Enum: 
-			 			row.expanded = false;
+			 		//	row.expanded = false;
 			 			break;
 					default:
-					//	expand.list_row.expanded = true;
+						row.expanded = true;
 						break;
 				}
 			
