@@ -953,7 +953,28 @@ namespace Lsp {
         }
 
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) {
-            error ("deserialization not supported");
+           //GLib.debug("deserialise property %s" , property_name);
+	    	if (property_name != "parameters") {
+	            return default_deserialize_property (property_name, out value, pspec, property_node);
+	        }
+            value = GLib.Value (typeof(Gee.ArrayList));
+	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+	           // GLib.debug ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+	            return false;
+	        }
+			//GLib.debug("got child length of %d", (int) property_node.get_array ().get_length());
+	        var arguments = new Gee.arrayList<<ParameterInformation>();
+
+	        property_node.get_array ().foreach_element ((array, index, element) => {
+	            
+		        var add= Json.gobject_deserialize ( typeof (ParameterInformation),  array.get_element(index)) as DocumentSymbol;
+				arguments.add( add);
+
+	           
+	        });
+
+	        value.set_object (arguments);
+	        return true;
         }
     }
 
