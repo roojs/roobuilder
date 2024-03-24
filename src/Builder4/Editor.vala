@@ -1316,17 +1316,12 @@ public class Editor : Object
 			//listeners
 			this.el.pressed.connect( (n_press, x, y) => {
 				Gtk.TextIter iter;
-				int buffer_x, buffer_y;
-				_this.view.el.window_to_buffer_coords (
-					Gtk.TextWindowType.TEXT, 
-					(int)x, (int)y, out  buffer_x, out  buffer_y
-				);
-				GLib.debug("converted %d, %d to %d %d", 
-					(int)x, (int)y,  buffer_x,  buffer_y
-					);
+			
+				var gut = _this.view.el.get_gutter(Gtk.TextWindowType.TEXT);
 				
+				 
 				_this.view.el.get_iter_at_location (out  iter,  
-						buffer_x,  buffer_y);
+						(int)x - gut.get_width(),  (int)y);
 				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
 					_this.buffer.el.iter_has_context_class(iter, "string")
 				) { 
