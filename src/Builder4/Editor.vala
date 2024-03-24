@@ -1335,7 +1335,7 @@ public class Editor : Object
 				
 				// what's the character at the iter?
 				var str = back.get_text(iter);
-				str+ = iter.get_text(forward);
+				str += iter.get_text(forward);
 				if (str.strip().length < 1) {
 					return;
 				}

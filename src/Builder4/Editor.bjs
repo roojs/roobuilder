@@ -619,7 +619,7 @@
                "\t",
                "\t// what's the character at the iter?",
                "\tvar str = back.get_text(iter);",
-               "\tstr+ = iter.get_text(forward);",
+               "\tstr += iter.get_text(forward);",
                "\tif (str.strip().length < 1) {",
                "\t\treturn;",
                "\t}",
