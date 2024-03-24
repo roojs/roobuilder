@@ -1330,11 +1330,12 @@ public class Editor : Object
 				if (str.strip().length < 1) {
 					return;
 				}
+				
 				var ls = _this.file.getLanguageServer();
-				ls.signatureHelp.begin(
+				ls.hover.begin(
 					_this.file, iter.get_line(), iter.get_line_offset(),
 					( a, o)  => {
-						var res = ls.signatureHelp.end(o );
+						var res = ls.hover.end(o );
 						
 					});
 					
