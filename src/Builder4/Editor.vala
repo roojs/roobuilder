@@ -1322,7 +1322,8 @@ public class Editor : Object
 					(int)x, (int)y, out  buffer_x, out  buffer_y
 				);
 			
-				_this.view.el.get_iter_at_location (out  iter,  buffer_x,  buffer_x;
+				_this.view.el.get_iter_at_location (out  iter,  
+						buffer_x,  buffer_y);
 				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
 					_this.buffer.el.iter_has_context_class(iter, "string")
 				) { 
