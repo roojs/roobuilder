@@ -1022,7 +1022,7 @@ namespace Lsp {
    		{
    			this.language = language;
    			this.value = value;
-   			GLib.debug("new marked string %s : %s", language, value);
+   			//GLib.debug("new marked string %s : %s", language, value);
    		}
         public string language { get; set; }
         public string value { get; set; }
