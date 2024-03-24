@@ -1075,7 +1075,7 @@ namespace Lsp {
 		        	if (array.get_object_element(index) == null) {
 		        		var str = array.get_string_element(index);
 		        		if (str != null) {
-		        			var add = new MarkedString( "", str );
+		        			contents.add (  new MarkedString( "", str ));
 		        		}
 		        		return;
 		        	}
