@@ -1072,8 +1072,8 @@ namespace Lsp {
 		        }
 				var contents = new Gee.ArrayList<MarkedString>();
 		        property_node.get_array ().foreach_element ((array, index, element) => {
-		        	if (array.get_object_element(index) == null) {
-		        		var str = array.get_string_element(index);
+		        	if (element.get_object() == null) {
+		        		var str = element.get_string();
 		        		if (str != null) {
 		        			contents.add (  new MarkedString( "", str ));
 		        		}
@@ -1081,8 +1081,8 @@ namespace Lsp {
 		        	}
 		        
 	        		var add = new MarkedString(
-						array.get_object_element(index).get_string_member("language"),
-						array.get_object_element(index).get_string_member("value")
+						element.get_object().get_string_member("language"),
+						element.get_object().get_string_member("value")
 					);
 	             
 	                contents.add ( add );
