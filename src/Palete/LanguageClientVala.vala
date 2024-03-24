@@ -676,12 +676,17 @@ namespace Palete {
 				null,
 				out return_value
 			);
+			GLib.debug ("LS hover replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			if (return_value == null) {
 				return ret;
 			}
 			
-			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var json = Json.gvariant_serialize (return_value);
+			if (!json.is_object()) {
+				return ret;
+			}
+			
+			
 			ret =  Json.gobject_deserialize ( typeof (Lsp.Hover),  json) as Lsp.Hover; 
 			
 			return ret;
