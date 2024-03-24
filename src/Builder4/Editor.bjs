@@ -602,7 +602,7 @@
                "\tGtk.TextIter iter;",
                "\tint buffer_x, buffer_y;",
                "\t_this.view.el.window_to_buffer_coords (",
-               "\t\tGtk.TextWindowTyp.TEXT, ",
+               "\t\tGtk.TextWindowType.TEXT, ",
                "\t\t(int)x, (int)y, out  buffer_x, out  buffer_y",
                "\t);",
                "",

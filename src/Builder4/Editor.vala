@@ -1318,7 +1318,7 @@ public class Editor : Object
 				Gtk.TextIter iter;
 				int buffer_x, buffer_y;
 				_this.view.el.window_to_buffer_coords (
-					Gtk.TextWindowTyp.TEXT, 
+					Gtk.TextWindowType.TEXT, 
 					(int)x, (int)y, out  buffer_x, out  buffer_y
 				);
 			
