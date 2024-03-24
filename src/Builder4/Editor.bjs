@@ -601,7 +601,7 @@
                "(n_press, x, y) => {",
                "\tGtk.TextIter iter;",
                "",
-               "\tvar gut = _this.view.el.get_gutter(Gtk.TextWindowType.TEXT);",
+               "\tvar gut = _this.view.el.get_gutter(Gtk.TextWindowType.LEFT);",
                "\t",
                "\t ",
                "\t_this.view.el.get_iter_at_location (out  iter,  ",

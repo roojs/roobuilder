@@ -1317,7 +1317,7 @@ public class Editor : Object
 			this.el.pressed.connect( (n_press, x, y) => {
 				Gtk.TextIter iter;
 			
-				var gut = _this.view.el.get_gutter(Gtk.TextWindowType.TEXT);
+				var gut = _this.view.el.get_gutter(Gtk.TextWindowType.LEFT);
 				
 				 
 				_this.view.el.get_iter_at_location (out  iter,  
