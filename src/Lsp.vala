@@ -1072,11 +1072,14 @@ namespace Lsp {
 		        }
 				var contents = new Gee.ArrayList<MarkedString>();
 		        property_node.get_array ().foreach_element ((array, index, element) => {
-		        	if (element.get_node_type() != Json.NodeType.OBJECT) {
+		        	if (element.get_node_type() == Json.NodeType.STRING) {
 		        		var str = element.get_string();
-		        		if (str != null) {
-		        			contents.add (  new MarkedString( "", str ));
-		        		}
+		        		contents.add (  new MarkedString( "", str ));
+		        		
+		        		return;
+	        		}
+		        	if (element.get_node_type() != Json.NodeType.OBJECT) {
+		    
 		        		return;
 		        	}
 		        
