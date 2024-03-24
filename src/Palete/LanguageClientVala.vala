@@ -676,7 +676,9 @@ namespace Palete {
 				null,
 				out return_value
 			);
-			
+			if (return_value == null) {
+				return ret;
+			}
 			
 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var json = Json.gvariant_serialize (return_value);
