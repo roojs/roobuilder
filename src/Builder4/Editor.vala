@@ -1321,7 +1321,10 @@ public class Editor : Object
 					Gtk.TextWindowType.TEXT, 
 					(int)x, (int)y, out  buffer_x, out  buffer_y
 				);
-			
+				GLib.converted("%d, %d to %d %d", 
+					(int)x, (int)y,  buffer_x,  buffer_y
+					);
+				
 				_this.view.el.get_iter_at_location (out  iter,  
 						buffer_x,  buffer_y);
 				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
