@@ -1316,7 +1316,13 @@ public class Editor : Object
 			//listeners
 			this.el.pressed.connect( (n_press, x, y) => {
 				Gtk.TextIter iter;
-				_this.view.el.get_iter_at_location (out  iter,  (int)x,  (int)y);
+				int buffer_x, buffer_y;
+				_this.viewwindow_to_buffer_coords (
+						Gtk.TextWindowTyp.TEXT, 
+						
+						(int)x, (int)y, out  buffer_x, out  buffer_y)
+			
+				_this.view.el.get_iter_at_location (out  iter,  buffer_x,  buffer_x;
 				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
 					_this.buffer.el.iter_has_context_class(iter, "string")
 				) { 
