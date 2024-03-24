@@ -1341,14 +1341,19 @@ public class Editor : Object
 				}
 				
 				var ls = _this.file.getLanguageServer();
-				ls.hover.begin(
+				/*ls.hover.begin(
 					_this.file, iter.get_line(), iter.get_line_offset(),
 					( a, o)  => {
 						var res = ls.hover.end(o );
 						
 					});
-					
+					*/
+				ls.signatureHelp.begin(
+					_this.file, iter.get_line(), iter.get_line_offset(),
+					( a, o)  => {
+						var res = ls.signatureHelp.end(o );
 						
+					});	
 			
 			});
 		}
