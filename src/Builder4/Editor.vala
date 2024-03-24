@@ -1330,8 +1330,12 @@ public class Editor : Object
 				var back = iter.copy();
 				back.backward_char();
 				
+				var forward = iter.copy();
+				forward.forward_char();
+				
 				// what's the character at the iter?
 				var str = back.get_text(iter);
+				str+ = iter.get_text(forward);
 				if (str.strip().length < 1) {
 					return;
 				}
