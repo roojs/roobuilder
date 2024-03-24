@@ -1030,6 +1030,7 @@ namespace Lsp {
 
     public class Hover : Object, Json.Serializable {
         public Gee.List<MarkedString> contents { get; set; default = new Gee.ArrayList<MarkedString> (); }
+        public Gee.List<string> contents_str { get; set; default = new Gee.ArrayList<string> (); }    
         public Range range { get; set; }
 
         public new void Json.Serializable.set_property (ParamSpec pspec, Value value) {
@@ -1072,6 +1073,14 @@ namespace Lsp {
 				var contents = new Gee.ArrayList<MarkedString>();
 
 		        property_node.get_array ().foreach_element ((array, index, element) => {
+		        	if (array.get_object_element(index) == null) {
+		        		var str = array.get_string_element(index);
+		        		if (str != null) {
+		        			contents_str.add(str);
+		        		}
+		        		return;
+		        	}
+		        
 	        		var add = new MarkedString(
 						array.get_object_element(index).get_string_member("language"),
 						array.get_object_element(index).get_string_member("value")
