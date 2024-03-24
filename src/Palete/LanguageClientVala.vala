@@ -682,7 +682,7 @@ namespace Palete {
 			}
 			
 			var json = Json.gvariant_serialize (return_value);
-			if (!json.is_object()) {
+			if (null == json.get_object()) {
 				return ret;
 			}
 			
