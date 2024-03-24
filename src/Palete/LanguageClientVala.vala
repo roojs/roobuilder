@@ -779,7 +779,10 @@ namespace Palete {
 			
 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var json = Json.gvariant_serialize (return_value);
-			 
+		 	if (json.get_node_type() != Json.NodeType.ARRAY) {
+				return ret;
+			}
+			
 			 
 
 			var ar = json.get_array();
