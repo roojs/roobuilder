@@ -1317,7 +1317,7 @@ public class Editor : Object
 			this.el.pressed.connect( (n_press, x, y) => {
 				Gtk.TextIter iter;
 				int buffer_x, buffer_y;
-				_this.view.window_to_buffer_coords (
+				_this.view.el.window_to_buffer_coords (
 					Gtk.TextWindowTyp.TEXT, 
 					(int)x, (int)y, out  buffer_x, out  buffer_y
 				);
