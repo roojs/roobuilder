@@ -1321,7 +1321,7 @@ public class Editor : Object
 					Gtk.TextWindowType.TEXT, 
 					(int)x, (int)y, out  buffer_x, out  buffer_y
 				);
-				GLib.converted("%d, %d to %d %d", 
+				GLib.debug("converted %d, %d to %d %d", 
 					(int)x, (int)y,  buffer_x,  buffer_y
 					);
 				

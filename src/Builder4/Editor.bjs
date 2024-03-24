@@ -605,7 +605,7 @@
                "\t\tGtk.TextWindowType.TEXT, ",
                "\t\t(int)x, (int)y, out  buffer_x, out  buffer_y",
                "\t);",
-               "\tGLib.converted(\"%d, %d to %d %d\", ",
+               "\tGLib.debug(\"converted %d, %d to %d %d\", ",
                "\t\t(int)x, (int)y,  buffer_x,  buffer_y",
                "\t\t);",
                "\t",
