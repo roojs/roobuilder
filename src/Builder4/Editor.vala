@@ -541,6 +541,7 @@ public class Editor : Object
 			// set gobject values
 			this.el.margin_end = 4;
 			this.el.margin_start = 4;
+			this.el.justify = Gtk.Justification.LEFT;
 			this.el.hexpand = true;
 		}
 
