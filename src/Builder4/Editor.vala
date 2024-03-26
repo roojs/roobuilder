@@ -1339,10 +1339,22 @@ public class Editor : Object
 				if (str.strip().length < 1) {
 					return;
 				}
+				var offset = iter.get_line_offset();
+				var line = iter.get_line();
+				if (_this.prop != null) {
+							// 
+					line += _this.prop.start_line ; 
+								// this is based on Gtk using tabs (hence 1/2 chars);
+					offset += _this.node.node_pad.length;
+								// javascript listeners are indented 2 more spaces.
+					if (_this.prop.ptype == JsRender.NodePropType.LISTENER) {
+						offset += 2;
+					}
+				} 
 				
 				var ls = _this.file.getLanguageServer();
 				ls.hover.begin(
-					_this.file, iter.get_line(), iter.get_line_offset(),
+					_this.file, line, offset,
 					( a, o)  => {
 						var res = ls.hover.end(o );
 						
