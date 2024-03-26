@@ -25,7 +25,8 @@
     {
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-     "bool resize_end_child" : true,
+     "bool resize_end_child" : false,
+     "bool resize_start_child" : false,
      "bool shrink_end_child" : false,
      "items" : [
       {
