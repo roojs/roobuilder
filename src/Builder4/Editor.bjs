@@ -73,6 +73,7 @@
             "\t\tstr += (\"<span underline=\\\"single\\\" color=\\\"blue\\\" >\" + ",
             "\t\t\tGLib.Markup.escape_text(sig[i])",
             "\t\t\t+\"</span>\");",
+            "\t}",
             "\tif (help.contents.size() > 1) {",
             "\t\tsig += (\"\\m\\m\"  + help.contents[1].value);",
             "\t}",
