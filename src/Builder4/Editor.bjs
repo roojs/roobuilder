@@ -1062,7 +1062,7 @@
        "bool hexpand" : true,
        "bool vexpand" : true,
        "int spacing" : 0,
-       "int width_request" : 200,
+       "int width_request" : 120,
        "items" : [
         {
          "$ xns" : "Gtk",

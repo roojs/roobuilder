@@ -1880,7 +1880,7 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.width_request = 200;
+			this.el.width_request = 120;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			var child_1 = new Xcls_Box28( _this );
