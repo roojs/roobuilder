@@ -25,21 +25,29 @@
     {
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool resize_end_child" : false,
+     "bool resize_start_child" : false,
+     "bool shrink_end_child" : false,
+     "bool shrink_start_child" : false,
+     "id" : "paned",
      "items" : [
       {
        "$ xns" : "Gtk",
        "* prop" : "start_child",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "bool hexpand" : true,
        "int spacing" : 0,
        "items" : [
         {
          "$ homogeneous" : false,
          "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "bool hexpand" : true,
+         "bool hexpand" : false,
+         "bool vexpand" : false,
          "items" : [
           {
            "$ xns" : "Gtk",
+           "bool vexpand" : true,
            "id" : "save_button",
            "label" : "Save",
            "listeners" : {
@@ -54,8 +62,68 @@
           },
           {
            "$ xns" : "Gtk",
+           "Gtk.Justification justify" : "Gtk.Justification.LEFT",
            "bool hexpand" : true,
-           "xtype" : "Label"
+           "float xalign" : 0,
+           "id" : "helper",
+           "int margin_end" : 4,
+           "int margin_start" : 4,
+           "listeners" : {
+            "query_tooltip" : [
+             "(x, y, keyboard_tooltip, tooltip) => {",
+             "\tGLib.debug(\"using quiery tooltip?\");",
+             "\tvar lbl = new Gtk.Label(this.el.tooltip_markup);",
+             "\tlbl.width_request = 500;",
+             "\ttooltip.set_custom(lbl);",
+             "",
+             "\treturn true;",
+             "}",
+             ""
+            ]
+           },
+           "xtype" : "Label",
+           "| void setHelp" : [
+            "(Lsp.Hover? help) {",
+            "\tif (help == null || help.contents == null",
+            "\t\t|| help.contents.size < 1) {",
+            "\t\tthis.el.set_text(\"\");",
+            "\t\treturn;",
+            "\t}",
+            "\tvar sig = help.contents.get(0).value.split(\" \");",
+            "\tstring[] str = {};",
+            "\tfor(var i =0; i < sig.length; i++) {",
+            "\t",
+            "\t\tswitch(sig[i]) {",
+            "\t\t\tcase \"public\":",
+            "\t\t\tcase \"private\":",
+            "\t\t\tcase \"protected\":",
+            "\t\t\tcase \"async\":",
+            "\t\t\tcase \"class\":",
+            "\t\t\tcase \"{\":",
+            "\t\t\tcase \"}\":",
+            "\t\t\tcase \"(\":",
+            "\t\t\tcase \")\":",
+            "\t\t\t",
+            "\t\t\t\tstr += sig[i];",
+            "\t\t\t\tcontinue;",
+            "\t\t\t\t",
+            "\t\t\t\t",
+            "\t\t\tdefault:",
+            "\t",
+            "\t\t\t\tstr += (\"<span underline=\\\"single\\\" color=\\\"blue\\\" >\" + ",
+            "\t\t\t\t\tGLib.Markup.escape_text(sig[i])",
+            "\t\t\t\t\t+\"</span>\");",
+            "\t\t\tcontinue;",
+            "\t\t}",
+            "\t}",
+            "\tif (help.contents.size > 1) {",
+            "\t\tthis.el.tooltip_markup =  GLib.Markup.escape_text(help.contents.get(1).value);",
+            "\t}",
+            "\t",
+            "\tthis.el.set_markup(string.joinv(\" \",str));",
+            "\t",
+            "}"
+           ]
           },
           {
            "$ xns" : "Gtk",
@@ -77,11 +145,12 @@
             "}",
             ""
            ],
+           "Gtk.Align halign" : "Gtk.Align.END",
            "bool draw_value" : false,
            "bool has_origin" : true,
            "bool sensitive" : true,
            "int digits" : 0,
-           "int width_request" : 200,
+           "int width_request" : 150,
            "listeners" : {
             "change_value" : [
              "(st, val ) => {",
@@ -97,6 +166,7 @@
           },
           {
            "$ xns" : "Gtk",
+           "Gtk.Align halign" : "Gtk.Align.END",
            "id" : "close_btn",
            "items" : [
             {
@@ -275,7 +345,7 @@
                "\t\t\t(uint)iter.get_line(),",
                "\t\t\t(uint)iter.get_line_offset()",
                "\t\t);",
-               "",
+               "\tthis.showHelp(iter);",
                "",
                "}",
                ""
@@ -494,6 +564,49 @@
               "    return ret;",
               "}",
               " "
+             ],
+             "| void showHelp" : [
+              "(Gtk.TextIter iter) {",
+              "\tvar back = iter.copy();",
+              "\tback.backward_char();",
+              "\t",
+              "\tvar forward = iter.copy();",
+              "\tforward.forward_char();",
+              "\t",
+              "\t// what's the character at the iter?",
+              "\tvar str = back.get_text(iter);",
+              "\tstr += iter.get_text(forward);",
+              "\tif (str.strip().length < 1) {",
+              "\t\treturn;",
+              "\t}",
+              "\tvar offset = iter.get_line_offset();",
+              "\tvar line = iter.get_line();",
+              "\tif (_this.prop != null) {",
+              "\t\t\t\t// ",
+              "\t\tline += _this.prop.start_line ; ",
+              "\t\t\t\t\t// this is based on Gtk using tabs (hence 1/2 chars);",
+              "\t\toffset += _this.node.node_pad.length;",
+              "\t\t\t\t\t// javascript listeners are indented 2 more spaces.",
+              "\t\tif (_this.prop.ptype == JsRender.NodePropType.LISTENER) {",
+              "\t\t\toffset += 2;",
+              "\t\t}",
+              "\t} ",
+              "\t",
+              "\tvar ls = _this.file.getLanguageServer();",
+              "\tls.hover.begin(",
+              "\t\t_this.file, line, offset,",
+              "\t\t( a, o)  => {",
+              "\t\t\ttry {",
+              "\t\t\t\tvar res = ls.hover.end(o );",
+              "\t\t\t",
+              "\t\t\t\t_this.helper.setHelp(res);",
+              "\t\t\t} catch (GLib.Error e) {",
+              "\t\t\t\t// noop..",
+              "\t\t\t}",
+              "\t\t});",
+              "}\t",
+              "\t\t ",
+              ""
              ]
             },
             {
@@ -596,6 +709,33 @@
             },
             {
              "$ xns" : "Gtk",
+             "listeners" : {
+              "pressed" : [
+               "(n_press, x, y) => {",
+               "\tGtk.TextIter iter;",
+               "\tint  buffer_x, buffer_y;",
+               "\tvar gut = _this.view.el.get_gutter(Gtk.TextWindowType.LEFT);",
+               "\t",
+               "\t _this.view.el.window_to_buffer_coords (Gtk.TextWindowType.TEXT,",
+               "\t\t(int)x - gut.get_width(),  (int)y,",
+               "  \t\tout  buffer_x, out  buffer_y);",
+               "\t_this.view.el.get_iter_at_location (out  iter,  ",
+               "\t\t\tbuffer_x,  buffer_y);;",
+               "\t",
+               "\t",
+               "\tif (_this.buffer.el.iter_has_context_class(iter, \"comment\") ||",
+               "\t\t_this.buffer.el.iter_has_context_class(iter, \"string\")",
+               "\t) { ",
+               "\t\treturn ;",
+               "\t}",
+               "\t_this.buffer.showHelp(iter);",
+               "\t ",
+               "\t\t ",
+               " ",
+               "}",
+               ""
+              ]
+             },
              "xtype" : "GestureClick"
             }
            ],
@@ -938,7 +1078,10 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "bool hexpand" : true,
        "bool vexpand" : true,
+       "bool visible" : false,
+       "id" : "navigation_holder",
        "int spacing" : 0,
+       "int width_request" : 120,
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -950,7 +1093,7 @@
          "$ xns" : "Gtk",
          "bool hexpand" : true,
          "bool vexpand" : true,
-         "bool visible" : false,
+         "bool visible" : true,
          "id" : "navigationwindow",
          "items" : [
           {
@@ -1334,7 +1477,12 @@
            ],
            "| void show" : [
             "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
-            "\t_this.navigationwindow.el.show();",
+            "\t",
+            "\tif (!_this.navigation_holder.el.visible) {",
+            "\t\t_this.navigation_holder.el.show();",
+            "\t\t_this.paned.el.position  = ",
+            "\t\t\t_this.paned.el.get_width() - 200;",
+            "\t}",
             "\t//_this.navliststore.el.remove_all();",
             "\t",
             "\t",

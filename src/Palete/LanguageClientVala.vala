@@ -478,7 +478,7 @@ namespace Palete {
 				});
 			}
 			
-			this.countdown = 4;
+			this.countdown = 2;
  			this.change_queue_file = file;
  			 
 			
@@ -652,7 +652,7 @@ namespace Palete {
  		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
-		 	GLib.debug("get syntax %s", file.relpath);
+		 	GLib.debug("get hover %s %d %d", file.relpath, (int)line, (int)offset);
 			var ret = new Lsp.Hover();	
 		 	//ret = null;
 		    if (!this.isReady()) {
@@ -676,10 +676,17 @@ namespace Palete {
 				null,
 				out return_value
 			);
+			GLib.debug ("LS hover replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+			if (return_value == null) {
+				return ret;
+			}
 			
-			
-			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var json = Json.gvariant_serialize (return_value);
+			if (json.get_node_type() != Json.NodeType.OBJECT) {
+				return ret;
+			}
+			
+			
 			ret =  Json.gobject_deserialize ( typeof (Lsp.Hover),  json) as Lsp.Hover; 
 			
 			return ret;
@@ -698,7 +705,7 @@ namespace Palete {
 				});
 			}
 			
-			this.doc_countdown = 4;
+			this.doc_countdown = 2;
  			this.doc_queue_file = file;
 		}
 		
@@ -727,7 +734,7 @@ namespace Palete {
 			);
 			
 			
-			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+			//GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var json = Json.gvariant_serialize (return_value);
 			 
 			 
@@ -743,7 +750,52 @@ namespace Palete {
 			
  		
 		}
-		
+		public override async Gee.ArrayList<Lsp.SignatureInformation> signatureHelp (JsRender.JsRender file, int line, int offset) throws GLib.Error {
+ 			/* partial_result_token ,  work_done_token   context = null) */
+		 	GLib.debug("get signatureHelp %s, %d, %d", file.relpath, line, offset);
+			var ret = new Gee.ArrayList<Lsp.SignatureInformation>();	
+		 	//ret = null;
+		    if (!this.isReady()) {
+				return ret;
+			}
+			Variant? return_value;
+				yield this.jsonrpc_client.call_async (
+				"textDocument/signatureHelp",
+				this.buildDict (  
+					 
+					textDocument : this.buildDict (    ///TextDocumentItem;
+						uri: new GLib.Variant.string (file.to_url())
+					),
+					position :  this.buildDict ( 
+						line :  new GLib.Variant.uint64 ( (uint) line) ,
+						character :  new GLib.Variant.uint64 ( uint.max(0,  (offset -1))) 
+					)
+					 
+				),
+				null,
+				out return_value
+			);
+			
+			
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+			var json = Json.gvariant_serialize (return_value);
+		 	if (json.get_node_type() != Json.NodeType.ARRAY) {
+				return ret;
+			}
+			
+			 
+
+			var ar = json.get_array();
+			GLib.debug ("LS replied with %D items", ar.get_length());
+			for(var i = 0; i < ar.get_length(); i++ ) {
+				var add= Json.gobject_deserialize ( typeof (Lsp.SignatureInformation),  ar.get_element(i)) as Lsp.SignatureInformation;
+				ret.add( add);
+					 
+	 		}
+			return ret ;
+			
+ 		
+		}
 		
 	}
 	

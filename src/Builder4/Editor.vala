@@ -12,7 +12,9 @@ public class Editor : Object
 		}
 		return _Editor;
 	}
+	public Xcls_paned paned;
 	public Xcls_save_button save_button;
+	public Xcls_helper helper;
 	public Xcls_close_btn close_btn;
 	public Xcls_RightEditor RightEditor;
 	public Xcls_view view;
@@ -26,6 +28,7 @@ public class Editor : Object
 	public Xcls_case_sensitive case_sensitive;
 	public Xcls_regex regex;
 	public Xcls_multiline multiline;
+	public Xcls_navigation_holder navigation_holder;
 	public Xcls_navigationwindow navigationwindow;
 	public Xcls_navigation navigation;
 	public Xcls_navigationselmodel navigationselmodel;
@@ -69,9 +72,8 @@ public class Editor : Object
 		this.el.homogeneous = false;
 		this.el.hexpand = true;
 		this.el.vexpand = true;
-		var child_1 = new Xcls_Paned1( _this );
-		child_1.ref();
-		this.el.append( child_1.el );
+		new Xcls_paned( _this );
+		this.el.append( _this.paned.el );
 	}
 
 	// user defined functions
@@ -400,7 +402,7 @@ public class Editor : Object
 			return false;
 		});   
 	}
-	public class Xcls_Paned1 : Object
+	public class Xcls_paned : Object
 	{
 		public Gtk.Paned el;
 		private Editor  _this;
@@ -409,20 +411,24 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Paned1(Editor _owner )
+		public Xcls_paned(Editor _owner )
 		{
 			_this = _owner;
+			_this.paned = this;
 			this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.resize_start_child = false;
+			this.el.shrink_end_child = false;
+			this.el.resize_end_child = false;
+			this.el.shrink_start_child = false;
 			var child_1 = new Xcls_Box2( _this );
 			child_1.ref();
 			this.el.start_child = child_1.el;
-			var child_2 = new Xcls_Box27( _this );
-			child_2.ref();
-			this.el.end_child = child_2.el;
+			new Xcls_navigation_holder( _this );
+			this.el.end_child = _this.navigation_holder.el;
 		}
 
 		// user defined functions
@@ -444,6 +450,7 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.hexpand = true;
 			var child_1 = new Xcls_Box3( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
@@ -474,12 +481,12 @@ public class Editor : Object
 
 			// set gobject values
 			this.el.homogeneous = false;
-			this.el.hexpand = true;
+			this.el.hexpand = false;
+			this.el.vexpand = false;
 			new Xcls_save_button( _this );
 			this.el.append( _this.save_button.el );
-			var child_2 = new Xcls_Label5( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
+			new Xcls_helper( _this );
+			this.el.append( _this.helper.el );
 			var child_3 = new Xcls_Scale6( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
@@ -507,6 +514,7 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.vexpand = true;
 			this.el.label = "Save";
 
 			//listeners
@@ -518,7 +526,7 @@ public class Editor : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label5 : Object
+	public class Xcls_helper : Object
 	{
 		public Gtk.Label el;
 		private Editor  _this;
@@ -527,18 +535,73 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Label5(Editor _owner )
+		public Xcls_helper(Editor _owner )
 		{
 			_this = _owner;
+			_this.helper = this;
 			this.el = new Gtk.Label( null );
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.margin_end = 4;
+			this.el.margin_start = 4;
+			this.el.justify = Gtk.Justification.LEFT;
 			this.el.hexpand = true;
+			this.el.xalign = 0f;
+
+			//listeners
+			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
+				GLib.debug("using quiery tooltip?");
+				var lbl = new Gtk.Label(this.el.tooltip_markup);
+				lbl.width_request = 500;
+				tooltip.set_custom(lbl);
+			
+				return true;
+			});
 		}
 
 		// user defined functions
+		public void setHelp (Lsp.Hover? help) {
+			if (help == null || help.contents == null
+				|| help.contents.size < 1) {
+				this.el.set_text("");
+				return;
+			}
+			var sig = help.contents.get(0).value.split(" ");
+			string[] str = {};
+			for(var i =0; i < sig.length; i++) {
+			
+				switch(sig[i]) {
+					case "public":
+					case "private":
+					case "protected":
+					case "async":
+					case "class":
+					case "{":
+					case "}":
+					case "(":
+					case ")":
+					
+						str += sig[i];
+						continue;
+						
+						
+					default:
+			
+						str += ("<span underline=\"single\" color=\"blue\" >" + 
+							GLib.Markup.escape_text(sig[i])
+							+"</span>");
+					continue;
+				}
+			}
+			if (help.contents.size > 1) {
+				this.el.tooltip_markup =  GLib.Markup.escape_text(help.contents.get(1).value);
+			}
+			
+			this.el.set_markup(string.joinv(" ",str));
+			
+		}
 	}
 
 	public class Xcls_Scale6 : Object
@@ -558,8 +621,9 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.width_request = 200;
+			this.el.width_request = 150;
 			this.el.has_origin = true;
+			this.el.halign = Gtk.Align.END;
 			this.el.draw_value = false;
 			this.el.digits = 0;
 			this.el.sensitive = true;
@@ -613,6 +677,7 @@ public class Editor : Object
 
 			// set gobject values
 			this.el.icon_name = "window-close";
+			this.el.halign = Gtk.Align.END;
 			var child_1 = new Xcls_Image8( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
@@ -946,7 +1011,7 @@ public class Editor : Object
 						(uint)iter.get_line(),
 						(uint)iter.get_line_offset()
 					);
-			
+				this.showHelp(iter);
 			
 			});
 			this.el.changed.connect( () => {
@@ -1167,6 +1232,45 @@ public class Editor : Object
 		    //print("TO STRING? " + ret);
 		    return ret;
 		}
+		public void showHelp (Gtk.TextIter iter) {
+			var back = iter.copy();
+			back.backward_char();
+			
+			var forward = iter.copy();
+			forward.forward_char();
+			
+			// what's the character at the iter?
+			var str = back.get_text(iter);
+			str += iter.get_text(forward);
+			if (str.strip().length < 1) {
+				return;
+			}
+			var offset = iter.get_line_offset();
+			var line = iter.get_line();
+			if (_this.prop != null) {
+						// 
+				line += _this.prop.start_line ; 
+							// this is based on Gtk using tabs (hence 1/2 chars);
+				offset += _this.node.node_pad.length;
+							// javascript listeners are indented 2 more spaces.
+				if (_this.prop.ptype == JsRender.NodePropType.LISTENER) {
+					offset += 2;
+				}
+			} 
+			
+			var ls = _this.file.getLanguageServer();
+			ls.hover.begin(
+				_this.file, line, offset,
+				( a, o)  => {
+					try {
+						var res = ls.hover.end(o );
+					
+						_this.helper.setHelp(res);
+					} catch (GLib.Error e) {
+						// noop..
+					}
+				});
+		}
 	}
 
 	public class Xcls_keystate : Object
@@ -1312,6 +1416,30 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+
+			//listeners
+			this.el.pressed.connect( (n_press, x, y) => {
+				Gtk.TextIter iter;
+				int  buffer_x, buffer_y;
+				var gut = _this.view.el.get_gutter(Gtk.TextWindowType.LEFT);
+				
+				 _this.view.el.window_to_buffer_coords (Gtk.TextWindowType.TEXT,
+					(int)x - gut.get_width(),  (int)y,
+			  		out  buffer_x, out  buffer_y);
+				_this.view.el.get_iter_at_location (out  iter,  
+						buffer_x,  buffer_y);;
+				
+				
+				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
+					_this.buffer.el.iter_has_context_class(iter, "string")
+				) { 
+					return ;
+				}
+				_this.buffer.showHelp(iter);
+				 
+					 
+			 
+			});
 		}
 
 		// user defined functions
@@ -1749,7 +1877,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_Box27 : Object
+	public class Xcls_navigation_holder : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
@@ -1758,16 +1886,19 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box27(Editor _owner )
+		public Xcls_navigation_holder(Editor _owner )
 		{
 			_this = _owner;
+			_this.navigation_holder = this;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.width_request = 120;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
+			this.el.visible = false;
 			var child_1 = new Xcls_Box28( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
@@ -1819,7 +1950,7 @@ public class Editor : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			this.el.visible = false;
+			this.el.visible = true;
 			new Xcls_navigation( _this );
 			this.el.child = _this.navigation.el;
 		}
@@ -1900,7 +2031,12 @@ public class Editor : Object
 			return row;
 		 }
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
-			_this.navigationwindow.el.show();
+			
+			if (!_this.navigation_holder.el.visible) {
+				_this.navigation_holder.el.show();
+				_this.paned.el.position  = 
+					_this.paned.el.get_width() - 200;
+			}
 			//_this.navliststore.el.remove_all();
 			
 			

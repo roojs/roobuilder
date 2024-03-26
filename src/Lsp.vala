@@ -833,7 +833,7 @@ namespace Lsp {
        }
     }
 
-    public class MarkupContent : Object {
+    public class MarkupContent : Object , Json.Serializable {
         public string kind { get; set; }
         public string value { get; set; }
 
@@ -853,6 +853,11 @@ namespace Lsp {
         public MarkupContent.from_markdown (string doc) {
             this.kind = "markdown";
             this.value = doc;
+        }
+        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+        {
+            
+            return default_deserialize_property (property_name, out value, pspec, property_node);
         }
     }
     
@@ -953,7 +958,28 @@ namespace Lsp {
         }
 
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) {
-            error ("deserialization not supported");
+           //GLib.debug("deserialise property %s" , property_name);
+	    	if (property_name != "parameters") {
+	            return default_deserialize_property (property_name, out value, pspec, property_node);
+	        }
+            value = GLib.Value (typeof(Gee.ArrayList));
+	        if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+	           // GLib.debug ("unexpected property node type for 'arguments' %s", property_node.get_node_type ().to_string ());
+	            return false;
+	        }
+			//GLib.debug("got child length of %d", (int) property_node.get_array ().get_length());
+	        var arguments = new Gee.ArrayList<ParameterInformation>();
+
+	        property_node.get_array ().foreach_element ((array, index, element) => {
+	            
+		        var add= Json.gobject_deserialize ( typeof (ParameterInformation),  array.get_element(index)) as ParameterInformation;
+				arguments.add( add);
+
+	           
+	        });
+
+	        value.set_object (arguments);
+	        return true;
         }
     }
 
@@ -979,9 +1005,16 @@ namespace Lsp {
         }
     }
 
-    public class ParameterInformation : Object {
+    public class ParameterInformation : Object, Json.Serializable {
         public string label { get; set; }
         public MarkupContent documentation { get; set; }
+        
+        public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+        {
+            
+            return default_deserialize_property (property_name, out value, pspec, property_node);
+        }
+        
     }
 
    public  class MarkedString : Object {
@@ -989,7 +1022,7 @@ namespace Lsp {
    		{
    			this.language = language;
    			this.value = value;
-   			GLib.debug("new marked string %s : %s", language, value);
+   			//GLib.debug("new marked string %s : %s", language, value);
    		}
         public string language { get; set; }
         public string value { get; set; }
@@ -997,6 +1030,7 @@ namespace Lsp {
 
     public class Hover : Object, Json.Serializable {
         public Gee.List<MarkedString> contents { get; set; default = new Gee.ArrayList<MarkedString> (); }
+
         public Range range { get; set; }
 
         public new void Json.Serializable.set_property (ParamSpec pspec, Value value) {
@@ -1037,11 +1071,21 @@ namespace Lsp {
 		            return false;
 		        }
 				var contents = new Gee.ArrayList<MarkedString>();
-
 		        property_node.get_array ().foreach_element ((array, index, element) => {
+		        	if (element.get_node_type() == Json.NodeType.VALUE) {
+		        		var str = element.get_string();
+		        		contents.add (  new MarkedString( "", str ));
+		        		
+		        		return;
+	        		}
+		        	if (element.get_node_type() != Json.NodeType.OBJECT) {
+		    			GLib.debug("got content: %s", element.get_node_type().to_string());
+		        		return;
+		        	}
+		        
 	        		var add = new MarkedString(
-						array.get_object_element(index).get_string_member("language"),
-						array.get_object_element(index).get_string_member("value")
+						element.get_object().get_string_member("language"),
+						element.get_object().get_string_member("value")
 					);
 	             
 	                contents.add ( add );

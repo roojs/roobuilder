@@ -293,7 +293,11 @@ namespace Palete {
  			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
 			return ret;
 		}
- 		
+ 		public override async Gee.ArrayList<Lsp.SignatureInformation> signatureHelp (JsRender.JsRender file, int line, int offset) throws GLib.Error
+ 		{
+			return new Gee.ArrayList<Lsp.SignatureInformation>();	
+		}
+		
 	}
 	
 }
