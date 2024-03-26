@@ -651,7 +651,7 @@
                "\t\t/*",
                "\t\t\tthings that can ber returned..",
                "\t\t\t\"int\" (type only)",
-               "\t\t\tprivae void ..",
+               " ",
                "\t\t\tEditor xxxx._thisJ",
                "\t\t\tJsrennder.jsrender Editor.file ",
                "\t\t\tPalete.LanguageClient? JsRender.JsRender.getLanguageServer ()",

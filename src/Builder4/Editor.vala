@@ -1367,7 +1367,7 @@ public class Editor : Object
 					/*
 						things that can ber returned..
 						"int" (type only)
-						privae void ..
+			 
 						Editor xxxx._thisJ
 						Jsrennder.jsrender Editor.file 
 						Palete.LanguageClient? JsRender.JsRender.getLanguageServer ()
