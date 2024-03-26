@@ -1936,7 +1936,7 @@ public class Editor : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			this.el.visible = false;
+			this.el.visible = true;
 			new Xcls_navigation( _this );
 			this.el.child = _this.navigation.el;
 		}
