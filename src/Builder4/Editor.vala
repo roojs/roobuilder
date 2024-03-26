@@ -554,10 +554,12 @@ public class Editor : Object
 			for(var i =0; i < sig.length; i++) {
 				str += ("<span underline=\"single\" color=\"blue\" >" + 
 					GLib.Markup.escape_text(sig[i])
-					+"</span> ");
-					
+					+"</span>");
+			if (	help.contents.size() > 1) {
+				sig += ("\m\m"  + help.contents[1].value);
+			}
 			
-			this.el.set_markup(str);
+			this.el.set_markup(str.join(" "));
 			
 		}
 	}
