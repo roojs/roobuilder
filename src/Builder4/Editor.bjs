@@ -32,6 +32,7 @@
        "$ xns" : "Gtk",
        "* prop" : "start_child",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "bool hexpand" : true,
        "int spacing" : 0,
        "items" : [
         {
