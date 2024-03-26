@@ -422,6 +422,7 @@ public class Editor : Object
 			this.el.resize_start_child = false;
 			this.el.shrink_end_child = false;
 			this.el.resize_end_child = false;
+			this.el.shrink_start_child = false;
 			var child_1 = new Xcls_Box2( _this );
 			child_1.ref();
 			this.el.start_child = child_1.el;
