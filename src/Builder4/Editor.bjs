@@ -63,7 +63,8 @@
            "xtype" : "Label",
            "| void setHelp" : [
             "(Lsp.Hover? help) {",
-            "\tif (help == null || help.contents == null) {",
+            "\tif (help == null || help.contents == null",
+            "\t\t|| help.contents.size < 1) {",
             "\t\tthis.el.set_text(\"\");",
             "\t\treturn;",
             "\t}",

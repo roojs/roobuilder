@@ -545,7 +545,8 @@ public class Editor : Object
 
 		// user defined functions
 		public void setHelp (Lsp.Hover? help) {
-			if (help == null || help.contents == null) {
+			if (help == null || help.contents == null
+				|| help.contents.size < 1) {
 				this.el.set_text("");
 				return;
 			}
