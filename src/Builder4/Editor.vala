@@ -1245,8 +1245,13 @@ public class Editor : Object
 			ls.hover.begin(
 				_this.file, line, offset,
 				( a, o)  => {
-					var res = ls.hover.end(o );
-					_this.helper.setHelp(res);
+					try {
+						var res = ls.hover.end(o );
+					
+						_this.helper.setHelp(res);
+					} catch (GLib.Error e) {
+						// noop..
+					}
 				});
 		}	
 				 
