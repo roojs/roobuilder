@@ -1963,6 +1963,7 @@ public class Editor : Object
 			this.selected_row = null;
 
 			// set gobject values
+			this.el.width_request = 200;
 			this.el.name = "editor-navigation";
 			var child_2 = new Xcls_ColumnViewColumn31( _this );
 			child_2.ref();
@@ -2015,6 +2016,7 @@ public class Editor : Object
 		 }
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
 			_this.navigationwindow.el.show();
+			
 			//_this.navliststore.el.remove_all();
 			
 			

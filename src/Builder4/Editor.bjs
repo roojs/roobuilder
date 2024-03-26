@@ -1082,6 +1082,7 @@
            "$ xns" : "Gtk",
            "* prop" : "child",
            "id" : "navigation",
+           "int width_request" : 200,
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -1458,6 +1459,7 @@
            "| void show" : [
             "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
             "\t_this.navigationwindow.el.show();",
+            "\t",
             "\t//_this.navliststore.el.remove_all();",
             "\t",
             "\t",
