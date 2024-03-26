@@ -61,7 +61,7 @@
            "int margin_end" : 4,
            "int margin_start" : 4,
            "xtype" : "Label",
-           "| void setHelper" : [
+           "| void setHelp" : [
             "(Lsp.Hover? help) {",
             "\tif (help == null) {",
             "\t\tthis.el.set_text(\"\");",
