@@ -606,7 +606,7 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.width_request = 200;
+			this.el.width_request = 150;
 			this.el.has_origin = true;
 			this.el.halign = Gtk.Align.END;
 			this.el.draw_value = false;
