@@ -1546,7 +1546,7 @@
      "listeners" : {
       "realize" : [
        "( ) => {",
-       "",
+       "\tthis.el.position = this.el.get_width()- 120;",
        "",
        "}",
        ""

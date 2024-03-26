@@ -431,7 +431,7 @@ public class Editor : Object
 
 			//listeners
 			this.el.realize.connect( ( ) => {
-			
+				this.el.position = this.el.get_width()- 120;
 			
 			});
 		}
