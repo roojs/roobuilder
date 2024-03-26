@@ -419,8 +419,8 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.width_request = 200;
 			this.el.shrink_end_child = false;
+			this.el.resize_end_child = false;
 			var child_1 = new Xcls_Box2( _this );
 			child_1.ref();
 			this.el.start_child = child_1.el;
