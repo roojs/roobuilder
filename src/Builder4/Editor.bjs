@@ -1062,6 +1062,7 @@
        "bool hexpand" : true,
        "bool vexpand" : true,
        "bool visible" : false,
+       "id" : "navigation_holder",
        "int spacing" : 0,
        "int width_request" : 120,
        "items" : [

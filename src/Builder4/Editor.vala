@@ -27,6 +27,7 @@ public class Editor : Object
 	public Xcls_case_sensitive case_sensitive;
 	public Xcls_regex regex;
 	public Xcls_multiline multiline;
+	public Xcls_navigation_holder navigation_holder;
 	public Xcls_navigationwindow navigationwindow;
 	public Xcls_navigation navigation;
 	public Xcls_navigationselmodel navigationselmodel;
@@ -423,9 +424,8 @@ public class Editor : Object
 			var child_1 = new Xcls_Box2( _this );
 			child_1.ref();
 			this.el.start_child = child_1.el;
-			var child_2 = new Xcls_Box27( _this );
-			child_2.ref();
-			this.el.end_child = child_2.el;
+			new Xcls_navigation_holder( _this );
+			this.el.end_child = _this.navigation_holder.el;
 		}
 
 		// user defined functions
@@ -1863,7 +1863,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_Box27 : Object
+	public class Xcls_navigation_holder : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
@@ -1872,9 +1872,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Box27(Editor _owner )
+		public Xcls_navigation_holder(Editor _owner )
 		{
 			_this = _owner;
+			_this.navigation_holder = this;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
 			// my vars (dec)
