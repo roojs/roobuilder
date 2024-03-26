@@ -13,6 +13,7 @@ public class Editor : Object
 		return _Editor;
 	}
 	public Xcls_save_button save_button;
+	public Xcls_helper helper;
 	public Xcls_close_btn close_btn;
 	public Xcls_RightEditor RightEditor;
 	public Xcls_view view;
@@ -477,9 +478,8 @@ public class Editor : Object
 			this.el.hexpand = true;
 			new Xcls_save_button( _this );
 			this.el.append( _this.save_button.el );
-			var child_2 = new Xcls_Label5( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
+			new Xcls_helper( _this );
+			this.el.append( _this.helper.el );
 			var child_3 = new Xcls_Scale6( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
@@ -518,7 +518,7 @@ public class Editor : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label5 : Object
+	public class Xcls_helper : Object
 	{
 		public Gtk.Label el;
 		private Editor  _this;
@@ -527,9 +527,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Label5(Editor _owner )
+		public Xcls_helper(Editor _owner )
 		{
 			_this = _owner;
+			_this.helper = this;
 			this.el = new Gtk.Label( null );
 
 			// my vars (dec)
