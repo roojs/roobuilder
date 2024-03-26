@@ -1079,7 +1079,7 @@ namespace Lsp {
 		        		return;
 	        		}
 		        	if (element.get_node_type() != Json.NodeType.OBJECT) {
-		    
+		    			GLib.debug("got content: %s", element.get_node_type().to_string());
 		        		return;
 		        	}
 		        
