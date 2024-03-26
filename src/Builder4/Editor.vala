@@ -556,7 +556,7 @@ public class Editor : Object
 					GLib.Markup.escape_text(sig[i])
 					+"</span>");
 			}
-			if (help.contents.size() > 1) {
+			if (help.contents.size > 1) {
 				sig += ("\n\n"  + help.contents[1].value);
 			}
 			

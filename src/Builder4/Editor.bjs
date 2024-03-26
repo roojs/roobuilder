@@ -74,7 +74,7 @@
             "\t\t\tGLib.Markup.escape_text(sig[i])",
             "\t\t\t+\"</span>\");",
             "\t}",
-            "\tif (help.contents.size() > 1) {",
+            "\tif (help.contents.size > 1) {",
             "\t\tsig += (\"\\n\\n\"  + help.contents[1].value);",
             "\t}",
             "\t",
