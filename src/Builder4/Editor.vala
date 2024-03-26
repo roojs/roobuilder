@@ -544,8 +544,21 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public void setHelper () {
-		
+		public void setHelper (Lsp.Hover? help) {
+			if (help == null) {
+				this.el.set_text("");
+				return;
+			}
+			var sig = help.contents.get(0).value.split(" ");
+			string[] str = [];
+			for(var i =0; i < sig.length; i++) {
+				str += ("<span underline=\"single\" color=\"blue\" >" + 
+					GLib.Markup.escape_text(sig[i])
+					+"</span> ");
+					
+			
+			this.el.set_markup(str);
+			
 		}
 	}
 
