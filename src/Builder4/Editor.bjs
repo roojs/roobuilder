@@ -68,7 +68,7 @@
             "\t\treturn;",
             "\t}",
             "\tvar sig = help.contents.get(0).value.split(\" \");",
-            "\tstring[] str = [];",
+            "\tstring[] str = {};",
             "\tfor(var i =0; i < sig.length; i++) {",
             "\t\tstr += (\"<span underline=\\\"single\\\" color=\\\"blue\\\" >\" + ",
             "\t\t\tGLib.Markup.escape_text(sig[i])",

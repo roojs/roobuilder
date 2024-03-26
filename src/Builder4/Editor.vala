@@ -550,7 +550,7 @@ public class Editor : Object
 				return;
 			}
 			var sig = help.contents.get(0).value.split(" ");
-			string[] str = [];
+			string[] str = {};
 			for(var i =0; i < sig.length; i++) {
 				str += ("<span underline=\"single\" color=\"blue\" >" + 
 					GLib.Markup.escape_text(sig[i])
