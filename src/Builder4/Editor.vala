@@ -1366,7 +1366,7 @@ public class Editor : Object
 					_this.file, line, offset,
 					( a, o)  => {
 						var res = ls.hover.end(o );
-						
+						_this.helper.setHelp(res);
 					});
 					
 					/*

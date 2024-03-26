@@ -650,7 +650,7 @@
                "\t\t_this.file, line, offset,",
                "\t\t( a, o)  => {",
                "\t\t\tvar res = ls.hover.end(o );",
-               "\t\t\t",
+               "\t\t\t_this.helper.setHelp(res);",
                "\t\t});",
                "\t\t",
                "\t\t/*",
