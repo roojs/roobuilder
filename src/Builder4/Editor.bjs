@@ -40,6 +40,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "bool vexpand" : true,
            "id" : "save_button",
            "label" : "Save",
            "listeners" : {

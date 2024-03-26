@@ -507,6 +507,7 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.vexpand = true;
 			this.el.label = "Save";
 
 			//listeners
