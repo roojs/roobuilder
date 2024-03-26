@@ -420,7 +420,7 @@ public class Editor : Object
 
 			// set gobject values
 			this.el.shrink_end_child = false;
-			this.el.resize_end_child = false;
+			this.el.resize_end_child = true;
 			var child_1 = new Xcls_Box2( _this );
 			child_1.ref();
 			this.el.start_child = child_1.el;
