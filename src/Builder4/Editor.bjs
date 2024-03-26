@@ -60,7 +60,12 @@
            "id" : "helper",
            "int margin_end" : 4,
            "int margin_start" : 4,
-           "xtype" : "Label"
+           "xtype" : "Label",
+           "| void setHelper" : [
+            "() {",
+            "",
+            "}"
+           ]
           },
           {
            "$ xns" : "Gtk",

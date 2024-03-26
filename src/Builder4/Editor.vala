@@ -544,6 +544,9 @@ public class Editor : Object
 		}
 
 		// user defined functions
+		public void setHelper () {
+		
+		}
 	}
 
 	public class Xcls_Scale6 : Object
