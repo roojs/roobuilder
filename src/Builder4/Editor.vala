@@ -560,7 +560,7 @@ public class Editor : Object
 				sig += ("\n\n"  + help.contents[1].value);
 			}
 			
-			this.el.set_markup(str.join(" "));
+			this.el.set_markup(string.joinv(str," "));
 			
 		}
 	}
