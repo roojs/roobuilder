@@ -994,7 +994,7 @@ public class Editor : Object
 						(uint)iter.get_line(),
 						(uint)iter.get_line_offset()
 					);
-			
+				this.showHelp(iter);
 			
 			});
 			this.el.changed.connect( () => {
