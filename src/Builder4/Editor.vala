@@ -476,6 +476,7 @@ public class Editor : Object
 			// set gobject values
 			this.el.homogeneous = false;
 			this.el.hexpand = true;
+			this.el.vexpand = false;
 			new Xcls_save_button( _this );
 			this.el.append( _this.save_button.el );
 			new Xcls_helper( _this );
