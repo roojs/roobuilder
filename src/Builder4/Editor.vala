@@ -12,6 +12,7 @@ public class Editor : Object
 		}
 		return _Editor;
 	}
+	public Xcls_paned paned;
 	public Xcls_save_button save_button;
 	public Xcls_helper helper;
 	public Xcls_close_btn close_btn;
@@ -71,9 +72,8 @@ public class Editor : Object
 		this.el.homogeneous = false;
 		this.el.hexpand = true;
 		this.el.vexpand = true;
-		var child_1 = new Xcls_Paned1( _this );
-		child_1.ref();
-		this.el.append( child_1.el );
+		new Xcls_paned( _this );
+		this.el.append( _this.paned.el );
 	}
 
 	// user defined functions
@@ -402,7 +402,7 @@ public class Editor : Object
 			return false;
 		});   
 	}
-	public class Xcls_Paned1 : Object
+	public class Xcls_paned : Object
 	{
 		public Gtk.Paned el;
 		private Editor  _this;
@@ -411,9 +411,10 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_Paned1(Editor _owner )
+		public Xcls_paned(Editor _owner )
 		{
 			_this = _owner;
+			_this.paned = this;
 			this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
 
 			// my vars (dec)

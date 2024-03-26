@@ -29,6 +29,7 @@
      "bool resize_start_child" : false,
      "bool shrink_end_child" : false,
      "bool shrink_start_child" : false,
+     "id" : "paned",
      "items" : [
       {
        "$ xns" : "Gtk",
