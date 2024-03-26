@@ -1316,12 +1316,16 @@ public class Editor : Object
 			//listeners
 			this.el.pressed.connect( (n_press, x, y) => {
 				Gtk.TextIter iter;
-			
+				int  buffer_x, buffer_y;
 				var gut = _this.view.el.get_gutter(Gtk.TextWindowType.LEFT);
 				
-				 
+				 _this.view.el.window_to_buffer_coords (Gtk.TextWindowType.TEXT,
+					 (int)x - gut.get_width(),  (int)y,
+				  out  buffer_x, out  buffer_y);
 				_this.view.el.get_iter_at_location (out  iter,  
-						(int)x - gut.get_width(),  (int)y);
+						buffer_x,  buffer_y);;
+				
+				
 				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
 					_this.buffer.el.iter_has_context_class(iter, "string")
 				) { 
@@ -1359,6 +1363,14 @@ public class Editor : Object
 						var res = ls.hover.end(o );
 						
 					});
+					
+					/*
+						things that can ber returned..
+						"int" (type only)
+						privae void ..
+						Editor xxxx._this
+						. 
+					*/
 					
 					 // could never get this to work anywhere..
 					 // looks like its probably for calling stuff..
