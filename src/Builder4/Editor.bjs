@@ -1543,6 +1543,15 @@
        "xtype" : "Box"
       }
      ],
+     "listeners" : {
+      "realize" : [
+       "( ) => {",
+       "",
+       "",
+       "}",
+       ""
+      ]
+     },
      "xtype" : "Paned"
     }
    ],
