@@ -661,6 +661,7 @@ public class Editor : Object
 
 			// set gobject values
 			this.el.icon_name = "window-close";
+			this.el.halign = Gtk.Align.END;
 			var child_1 = new Xcls_Image8( _this );
 			child_1.ref();
 			this.el.child = child_1.el;

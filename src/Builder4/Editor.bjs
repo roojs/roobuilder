@@ -147,6 +147,7 @@
           },
           {
            "$ xns" : "Gtk",
+           "Gtk.Align halign" : "Gtk.Align.END",
            "id" : "close_btn",
            "items" : [
             {
