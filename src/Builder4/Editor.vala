@@ -560,6 +560,7 @@ public class Editor : Object
 					case "private":
 					case "protected":
 					case "async":
+					case "class":
 					case "{":
 					case "}":
 					case "(":

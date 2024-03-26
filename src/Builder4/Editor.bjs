@@ -78,6 +78,7 @@
             "\t\t\tcase \"private\":",
             "\t\t\tcase \"protected\":",
             "\t\t\tcase \"async\":",
+            "\t\t\tcase \"class\":",
             "\t\t\tcase \"{\":",
             "\t\t\tcase \"}\":",
             "\t\t\tcase \"(\":",
