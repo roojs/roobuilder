@@ -1253,9 +1253,6 @@ public class Editor : Object
 						// noop..
 					}
 				});
-		}	
-				 
-		 
 		}
 	}
 
