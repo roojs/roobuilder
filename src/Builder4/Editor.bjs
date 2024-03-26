@@ -73,7 +73,7 @@
              "(x, y, keyboard_tooltip, tooltip) => {",
              "\tGLib.debug(\"using quiery tooltip?\");",
              "\tvar lbl = new Gtk.Label(this.el.tooltip_markup);",
-             "\tlbl.width_request = 700;",
+             "\tlbl.width_request = 500;",
              "\ttooltip.set_custom(lbl);",
              "",
              "\treturn true;",
