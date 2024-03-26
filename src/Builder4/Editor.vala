@@ -549,6 +549,12 @@ public class Editor : Object
 			this.el.justify = Gtk.Justification.LEFT;
 			this.el.hexpand = true;
 			this.el.xalign = 0f;
+
+			//listeners
+			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
+			
+				return bool;
+			});
 		}
 
 		// user defined functions

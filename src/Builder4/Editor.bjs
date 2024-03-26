@@ -68,6 +68,15 @@
            "id" : "helper",
            "int margin_end" : 4,
            "int margin_start" : 4,
+           "listeners" : {
+            "query_tooltip" : [
+             "(x, y, keyboard_tooltip, tooltip) => {",
+             "",
+             "\treturn bool;",
+             "}",
+             ""
+            ]
+           },
            "xtype" : "Label",
            "| void setHelp" : [
             "(Lsp.Hover? help) {",
