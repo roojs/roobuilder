@@ -38,7 +38,7 @@
          "$ homogeneous" : false,
          "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "bool hexpand" : true,
+         "bool hexpand" : false,
          "bool vexpand" : false,
          "items" : [
           {
