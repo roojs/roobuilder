@@ -478,7 +478,7 @@ namespace Palete {
 				});
 			}
 			
-			this.countdown = 4;
+			this.countdown = 2;
  			this.change_queue_file = file;
  			 
 			
@@ -705,7 +705,7 @@ namespace Palete {
 				});
 			}
 			
-			this.doc_countdown = 4;
+			this.doc_countdown = 2;
  			this.doc_queue_file = file;
 		}
 		
