@@ -1215,6 +1215,9 @@ public class Editor : Object
 		    //print("TO STRING? " + ret);
 		    return ret;
 		}
+		public void showHelp () {
+		
+		}
 	}
 
 	public class Xcls_keystate : Object
