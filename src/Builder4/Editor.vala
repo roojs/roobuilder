@@ -552,6 +552,7 @@ public class Editor : Object
 
 			//listeners
 			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
+				GLib.debug("using quiery tooltip?");
 				var lbl = new Gtk.Label(this.el.tooltip_markup);
 				lbl.width_request = 700;
 				tooltip.set_custom(lbl);
