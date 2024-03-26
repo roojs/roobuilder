@@ -2018,7 +2018,7 @@ public class Editor : Object
 			return row;
 		 }
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
-			_this.navigationwindow.el.show();
+			_this.navigation_holder.el.show();
 			
 			//_this.navliststore.el.remove_all();
 			

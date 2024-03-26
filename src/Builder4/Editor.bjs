@@ -1461,7 +1461,7 @@
            ],
            "| void show" : [
             "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
-            "\t_this.navigationwindow.el.show();",
+            "\t_this.navigation_holder.el.show();",
             "\t",
             "\t//_this.navliststore.el.remove_all();",
             "\t",
