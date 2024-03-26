@@ -555,7 +555,7 @@ public class Editor : Object
 				str += ("<span underline=\"single\" color=\"blue\" >" + 
 					GLib.Markup.escape_text(sig[i])
 					+"</span>");
-			if (	help.contents.size() > 1) {
+			if (help.contents.size() > 1) {
 				sig += ("\m\m"  + help.contents[1].value);
 			}
 			
