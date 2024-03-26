@@ -552,8 +552,8 @@ public class Editor : Object
 
 			//listeners
 			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
-				tooltop.
-				return true;
+			
+				return bool;
 			});
 		}
 

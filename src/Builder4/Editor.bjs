@@ -71,8 +71,8 @@
            "listeners" : {
             "query_tooltip" : [
              "(x, y, keyboard_tooltip, tooltip) => {",
-             "\ttooltop.",
-             "\treturn true;",
+             "",
+             "\treturn bool;",
              "}",
              ""
             ]
