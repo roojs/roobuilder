@@ -1379,6 +1379,9 @@ public class Editor : Object
 				) { 
 					return ;
 				}
+				
+				
+				
 				var back = iter.copy();
 				back.backward_char();
 				
@@ -1412,35 +1415,8 @@ public class Editor : Object
 						_this.helper.setHelp(res);
 					});
 					
-					/*
-						things that can ber returned..
-						"int" (type only)
+					 
 			 
-						Editor xxxx._thisJ
-						Jsrennder.jsrender Editor.file 
-						Palete.LanguageClient? JsRender.JsRender.getLanguageServer ()
-						Palete.LanguageClient? ls = _this.file.getLanguageServer()
-						async Lsp.Hover Palete.LanguageClient.hover (JsRender.JsRender file, int line, int offset) throws GLib.Error
-						.string JsRender.Node.node_pad = \"\" 
-						Gtk.TextIter iter
-						
-					  string Gtk.TextIter.get_text (Gtk.TextIter end)
-			     
-			
-					*/
-					
-					 // could never get this to work anywhere..
-					 // looks like its probably for calling stuff..
-					 // but always returns null..
-					 /*
-				ls.signatureHelp.begin(
-					_this.file, iter.get_line(), iter.get_line_offset(),
-					( a, o)  => {
-						var res = ls.signatureHelp.end(o );
-						
-					});	
-			
-			*/
 			});
 		}
 
