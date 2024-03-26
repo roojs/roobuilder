@@ -558,8 +558,15 @@ public class Editor : Object
 					case "private":
 					case "protected":
 					case "async":
+					case "{":
+					case "}":
+					case "(":
+					case ")":
+					
 						str += sig[i];
 						continue;
+						
+						
 					default:
 			
 						str += ("<span underline=\"single\" color=\"blue\" >" + 
