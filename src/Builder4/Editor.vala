@@ -1368,8 +1368,17 @@ public class Editor : Object
 						things that can ber returned..
 						"int" (type only)
 						privae void ..
-						Editor xxxx._this
-						. 
+						Editor xxxx._thisJ
+						Jsrennder.jsrender Editor.file 
+						Palete.LanguageClient? JsRender.JsRender.getLanguageServer ()
+						Palete.LanguageClient? ls = _this.file.getLanguageServer()
+						async Lsp.Hover Palete.LanguageClient.hover (JsRender.JsRender file, int line, int offset) throws GLib.Error
+						.string JsRender.Node.node_pad = \"\" 
+						Gtk.TextIter iter
+						
+					  string Gtk.TextIter.get_text (Gtk.TextIter end)
+			     
+			
 					*/
 					
 					 // could never get this to work anywhere..
