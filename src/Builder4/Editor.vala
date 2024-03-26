@@ -557,7 +557,7 @@ public class Editor : Object
 					+"</span>");
 			}
 			if (help.contents.size() > 1) {
-				sig += ("\m\m"  + help.contents[1].value);
+				sig += ("\n\n"  + help.contents[1].value);
 			}
 			
 			this.el.set_markup(str.join(" "));

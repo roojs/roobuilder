@@ -75,7 +75,7 @@
             "\t\t\t+\"</span>\");",
             "\t}",
             "\tif (help.contents.size() > 1) {",
-            "\t\tsig += (\"\\m\\m\"  + help.contents[1].value);",
+            "\t\tsig += (\"\\n\\n\"  + help.contents[1].value);",
             "\t}",
             "\t",
             "\tthis.el.set_markup(str.join(\" \"));",
