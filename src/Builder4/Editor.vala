@@ -586,7 +586,7 @@ public class Editor : Object
 				}
 			}
 			if (help.contents.size > 1) {
-				str += ("\n\n"  + help.contents.get(1).value);
+				str += ("\n\n"  + GLib.Markup.escape_text(help.contents.get(1).value));
 			}
 			
 			this.el.set_markup(string.joinv(" ",str));
