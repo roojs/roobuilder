@@ -1085,7 +1085,6 @@
            "$ xns" : "Gtk",
            "* prop" : "child",
            "id" : "navigation",
-           "int width_request" : 200,
            "items" : [
             {
              "$ xns" : "Gtk",
