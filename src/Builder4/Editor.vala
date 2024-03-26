@@ -1883,6 +1883,7 @@ public class Editor : Object
 			this.el.width_request = 120;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
+			this.el.visible = false;
 			var child_1 = new Xcls_Box28( _this );
 			child_1.ref();
 			this.el.append( child_1.el );

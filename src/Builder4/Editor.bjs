@@ -1061,6 +1061,7 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "bool hexpand" : true,
        "bool vexpand" : true,
+       "bool visible" : false,
        "int spacing" : 0,
        "int width_request" : 120,
        "items" : [
