@@ -25,6 +25,7 @@
     {
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool shrink_end_child" : false,
      "items" : [
       {
        "$ xns" : "Gtk",
