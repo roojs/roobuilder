@@ -1320,8 +1320,8 @@ public class Editor : Object
 				var gut = _this.view.el.get_gutter(Gtk.TextWindowType.LEFT);
 				
 				 _this.view.el.window_to_buffer_coords (Gtk.TextWindowType.TEXT,
-					 (int)x - gut.get_width(),  (int)y,
-				  out  buffer_x, out  buffer_y);
+					(int)x - gut.get_width(),  (int)y,
+			  		out  buffer_x, out  buffer_y);
 				_this.view.el.get_iter_at_location (out  iter,  
 						buffer_x,  buffer_y);;
 				
