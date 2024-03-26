@@ -59,7 +59,6 @@
           {
            "$ xns" : "Gtk",
            "Gtk.Justification justify" : "Gtk.Justification.LEFT",
-           "bool hexpand" : true,
            "float xalign" : 0,
            "id" : "helper",
            "int margin_end" : 4,

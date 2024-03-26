@@ -543,7 +543,6 @@ public class Editor : Object
 			this.el.margin_end = 4;
 			this.el.margin_start = 4;
 			this.el.justify = Gtk.Justification.LEFT;
-			this.el.hexpand = true;
 			this.el.xalign = 0f;
 		}
 
