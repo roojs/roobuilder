@@ -78,7 +78,7 @@
             "\t\tsig += (\"\\n\\n\"  + help.contents[1].value);",
             "\t}",
             "\t",
-            "\tthis.el.set_markup(string.join(str,\" \"));",
+            "\tthis.el.set_markup(string.join(\" \",str));",
             "\t",
             "}"
            ]
