@@ -2020,8 +2020,12 @@ public class Editor : Object
 			return row;
 		 }
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
-			_this.navigation_holder.el.show();
 			
+			if (!_this.navigation_holder.el.visible) {
+				_this.navigation_holder.el.show();
+				_this.paned.el.position  = 
+					_this.paned.el.get_width() - 120;
+			}
 			//_this.navliststore.el.remove_all();
 			
 			
