@@ -428,12 +428,6 @@ public class Editor : Object
 			this.el.start_child = child_1.el;
 			new Xcls_navigation_holder( _this );
 			this.el.end_child = _this.navigation_holder.el;
-
-			//listeners
-			this.el.realize.connect( ( ) => {
-				this.el.position = this.el.get_width()- 120;
-			
-			});
 		}
 
 		// user defined functions
