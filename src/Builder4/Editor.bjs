@@ -1468,7 +1468,7 @@
             "\tif (!_this.navigation_holder.el.visible) {",
             "\t\t_this.navigation_holder.el.show();",
             "\t\t_this.paned.el.position  = ",
-            "\t\t\t_this.paned.el.get_width() - 120;",
+            "\t\t\t_this.paned.el.get_width() - 200;",
             "\t}",
             "\t//_this.navliststore.el.remove_all();",
             "\t",

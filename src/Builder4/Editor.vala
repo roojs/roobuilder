@@ -2025,7 +2025,7 @@ public class Editor : Object
 			if (!_this.navigation_holder.el.visible) {
 				_this.navigation_holder.el.show();
 				_this.paned.el.position  = 
-					_this.paned.el.get_width() - 120;
+					_this.paned.el.get_width() - 200;
 			}
 			//_this.navliststore.el.remove_all();
 			
