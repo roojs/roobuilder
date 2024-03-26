@@ -104,7 +104,7 @@
             "\t\t}",
             "\t}",
             "\tif (help.contents.size > 1) {",
-            "\t\tsig += (\"\\n\\n\"  + help.contents.get(1).value);",
+            "\t\tstr += (\"\\n\\n\"  + help.contents.get(1).value);",
             "\t}",
             "\t",
             "\tthis.el.set_markup(string.joinv(\" \",str));",
