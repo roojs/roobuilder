@@ -608,6 +608,7 @@ public class Editor : Object
 			// set gobject values
 			this.el.width_request = 200;
 			this.el.has_origin = true;
+			this.el.halign = Gtk.Align.END;
 			this.el.draw_value = false;
 			this.el.digits = 0;
 			this.el.sensitive = true;

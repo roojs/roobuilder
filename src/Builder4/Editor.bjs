@@ -127,6 +127,7 @@
             "}",
             ""
            ],
+           "Gtk.Align halign" : "Gtk.Align.END",
            "bool draw_value" : false,
            "bool has_origin" : true,
            "bool sensitive" : true,
