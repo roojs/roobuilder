@@ -743,7 +743,7 @@ namespace Palete {
 				return ret;
 			}
 			if (this.getting_symbols) {
-				return;
+				return ret;
 			}
 
 			
@@ -756,22 +756,27 @@ namespace Palete {
 			this.getting_symbols = true;
 			
 			Variant? return_value;
-			yield this.jsonrpc_client.call_async (
-				"textDocument/documentSymbol",
-				this.buildDict (  
-					 
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
-					) 
-					 
-				),
-				null,
-				out return_value
-			);
+			try { 
+				yield this.jsonrpc_client.call_async (
+					"textDocument/documentSymbol",
+					this.buildDict (  
+						 
+						textDocument : this.buildDict (    ///TextDocumentItem;
+							uri: new GLib.Variant.string (file.to_url()),
+							version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+						) 
+						 
+					),
+					null,
+					out return_value
+				);
+			} catch(Error e) {
+				this.getting_symbols = false;			
+				throw e;
+			}
 			this.getting_symbols = false;
 			
-			 GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var json = Json.gvariant_serialize (return_value);
 			 
 			 
