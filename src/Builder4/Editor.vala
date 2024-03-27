@@ -2046,7 +2046,7 @@ public class Editor : Object
 				_this.navigation_holder.el.show();
 				_this.paned.el.position  = 
 					_this.paned.el.get_width() - 200;
-			}
+			} 
 			//_this.navliststore.el.remove_all();
 			
 			
@@ -2054,6 +2054,10 @@ public class Editor : Object
 			
 			foreach(var sym in syms) {
 				ls.append(sym);
+			}
+			// if syms updated is empty, but we already have one..
+			if (_this.navliststore.el.get_n_items() > 0 && ls.get_n_items < 1) {
+				return;
 			}
 			Lsp.DocumentSymbol.copyList(ls, _this.navliststore.el);
 			//_this.navliststore.el.append(sym);
