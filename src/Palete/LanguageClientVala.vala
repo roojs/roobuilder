@@ -668,12 +668,14 @@ namespace Palete {
 			// try and block multiple calls - better than a big timeout loop?
 			hover_call_count++;
 			var call_id = hover_call_count;
+			GLib.debug("get hover call=%d   count=%d", call_id, hover_call_count);
 			var loop = new MainLoop();
 			GLib.Timeout.add(500, () => {
 		 		 loop.quit(); 
 		 		 return false;
 			});
 			loop.run();
+			GLib.debug("end hover call=%d   count=%d", call_id, hover_call_count);			
 			if (call_id != hover_call_count) {
 			 	GLib.debug("get hover CANCELLED %s %d %d", file.relpath, (int)line, (int)offset);
 				return ret;
