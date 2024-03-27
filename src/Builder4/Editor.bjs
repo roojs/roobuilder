@@ -118,8 +118,9 @@
             "\t}",
             "\tif (help.contents.size > 1) {",
             "\t\tthis.el.tooltip_markup =  GLib.Markup.escape_text(help.contents.get(1).value);",
+            "\t} else {",
+            "\t\tthis.el.tooltip_markup = GLib.Markup.escape_text((help.contents.get(0).value)",
             "\t}",
-            "\t",
             "\tthis.el.set_markup(string.joinv(\" \",str));",
             "\t",
             "}"

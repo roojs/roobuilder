@@ -597,8 +597,9 @@ public class Editor : Object
 			}
 			if (help.contents.size > 1) {
 				this.el.tooltip_markup =  GLib.Markup.escape_text(help.contents.get(1).value);
+			} else {
+				this.el.tooltip_markup = GLib.Markup.escape_text((help.contents.get(0).value)
 			}
-			
 			this.el.set_markup(string.joinv(" ",str));
 			
 		}
