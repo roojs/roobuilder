@@ -828,10 +828,11 @@ namespace Palete {
 			
  		
 		}
-		public override async Gee.ArrayList<Lsp.WorkspaceSymbol> symbol (string sym) throws GLib.Error {
+		public override async Gee.ArrayList<Lsp.SymbolInformation> symbol (string sym) throws GLib.Error
+		{
 			/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get symbol %s,", sym);
-			var ret = new Gee.ArrayList<Lsp.WorkspaceSymbol>();	
+			var ret = new Gee.ArrayList<Lsp.SymbolInformation>();	
 		 	//ret = null;
 			if (!this.isReady()) {
 				return ret;
