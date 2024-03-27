@@ -106,30 +106,7 @@ namespace Palete {
 		}
 		static int doc_queue_id = 0;
 		
-		/*
-	 	void run_doc_queue()
-		{
-		
-	 		if (this.doc_queue_file == null) {
-				return ;
-			}
-			if (this.doc_countdown < -1) {
-				return;
-			}
-			this.doc_countdown--;
-
-			if (this.doc_countdown < 0){
-				var sendfile = this.doc_queue_file;
-				this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
-					var ret = this.documentSymbols.end(res);
-					sendfile.navigation_tree_updated(ret);
-				});
-				this.doc_queue_file = null;
-				   
-			}
-			return ;
-		}
-		*/
+	 
 		
 		
 		public bool initProcess(string process_path)
