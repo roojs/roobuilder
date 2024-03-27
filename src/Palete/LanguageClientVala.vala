@@ -670,7 +670,7 @@ namespace Palete {
 			var call_id = hover_call_count;
 			GLib.debug("get hover call=%d   count=%d", call_id, hover_call_count);
 			var loop = new MainLoop();
-			GLib.Timeout.add(500, () => {
+			GLib.Timeout.add(1000, () => {
 		 		 loop.quit(); 
 		 		 return false;
 			});
