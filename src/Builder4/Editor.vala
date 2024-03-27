@@ -559,6 +559,15 @@ public class Editor : Object
 			
 				return true;
 			});
+			this.el.activate_link.connect( (uri) => {
+				GLib.debug("got uri %s", uri);
+				var ls = _this.file.getLanguageServer();
+				ls.symbol.begin(uri, (a,b) => {
+					ls.symbol.end(b);
+				});
+				
+				return true;
+			});
 		}
 
 		// user defined functions
@@ -589,16 +598,17 @@ public class Editor : Object
 						
 					default:
 			
-						str += ("<span underline=\"single\" color=\"blue\" >" + 
+						str += ("<a href=\"" + GLib.Markup.escape_text(sig[i]) + "\">" + 
 							GLib.Markup.escape_text(sig[i])
-							+"</span>");
+							+"</a>");
 					continue;
 				}
 			}
 			if (help.contents.size > 1) {
 				this.el.tooltip_markup =  GLib.Markup.escape_text(help.contents.get(1).value);
+			} else {
+				this.el.tooltip_markup = GLib.Markup.escape_text(help.contents.get(0).value);
 			}
-			
 			this.el.set_markup(string.joinv(" ",str));
 			
 		}
@@ -2036,7 +2046,7 @@ public class Editor : Object
 				_this.navigation_holder.el.show();
 				_this.paned.el.position  = 
 					_this.paned.el.get_width() - 200;
-			}
+			} 
 			//_this.navliststore.el.remove_all();
 			
 			
@@ -2044,6 +2054,10 @@ public class Editor : Object
 			
 			foreach(var sym in syms) {
 				ls.append(sym);
+			}
+			// if syms updated is empty, but we already have one..
+			if (_this.navliststore.el.get_n_items() > 0 && ls.get_n_items() < 1) {
+				return;
 			}
 			Lsp.DocumentSymbol.copyList(ls, _this.navliststore.el);
 			//_this.navliststore.el.append(sym);

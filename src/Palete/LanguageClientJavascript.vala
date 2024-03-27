@@ -297,6 +297,10 @@ namespace Palete {
  		{
 			return new Gee.ArrayList<Lsp.SignatureInformation>();	
 		}
+		public override async Gee.ArrayList<Lsp.SymbolInformation> symbol (string sym) throws GLib.Error 
+		{
+			return new Gee.ArrayList<Lsp.SymbolInformation>();
+		}
 		
 	}
 	

@@ -58,8 +58,7 @@ namespace Palete {
 
 			if (this.change_queue_id == 0 ) {
 				this.change_queue_id = GLib.Timeout.add(500, () => {
-			 		this.run_change_queue();
-			 		this.run_doc_queue();
+			 		this.run_change_queue(); 
 			 		return true;
 				});
 			}
@@ -93,29 +92,23 @@ namespace Palete {
 			return ;
 		}
 		 
-		 
-	 	void run_doc_queue()
+	 	async int queuer(int cnt)
 		{
-		
-	 		if (this.doc_queue_file == null) {
-				return ;
-			}
-			if (this.doc_countdown < -1) {
-				return;
-			}
-			this.doc_countdown--;
-
-			if (this.doc_countdown < 0){
-				var sendfile = this.doc_queue_file;
-				this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
-					var ret = this.documentSymbols.end(res);
-					sendfile.navigation_tree_updated(ret);
-				});
-				this.doc_queue_file = null;
-				   
-			}
-			return ;
+			SourceFunc cb = this.queuer.callback;
+		  
+			GLib.Timeout.add(500, () => {
+		 		 GLib.Idle.add((owned) cb);
+		 		 return false;
+			});
+			
+			yield;
+			return cnt;
 		}
+		static int doc_queue_id = 0;
+		
+	 
+		
+		
 		public bool initProcess(string process_path)
 		{
 			this.onClose();
@@ -647,36 +640,63 @@ namespace Palete {
 
 		}
 		
+	 
+		
+		static int hover_call_count = 1;
+ 		bool getting_hover = false;
 		
 		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
  		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
-		 	GLib.debug("get hover %s %d %d", file.relpath, (int)line, (int)offset);
+		 	//GLib.debug("get hover %s %d %d", file.relpath, (int)line, (int)offset);
 			var ret = new Lsp.Hover();	
 		 	//ret = null;
 		    if (!this.isReady()) {
 				return ret;
 			}
+			if (this.getting_hover) {
+				return ret;
+			}
+			
+			hover_call_count++;
+			var  call_id = yield this.queuer(hover_call_count);
+			
+			//GLib.debug("end hover call=%d   count=%d", call_id, hover_call_count);			
+			if (call_id != hover_call_count) {
+			 	//GLib.debug("get hover CANCELLED %s %d %d", file.relpath, (int)line, (int)offset);
+				return ret;
+			}
+			
+		 	//GLib.debug("get hover RUN %s %d %d", file.relpath, (int)line, (int)offset);
+			
+			this.getting_hover = true;
+			
 			Variant? return_value;
-			yield this.jsonrpc_client.call_async (
-				"textDocument/hover",
-				this.buildDict (  
-					 
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+			try {
+				yield this.jsonrpc_client.call_async (
+					"textDocument/hover",
+					this.buildDict (  
+						 
+						textDocument : this.buildDict (    ///TextDocumentItem;
+							uri: new GLib.Variant.string (file.to_url()),
+							version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+						),
+						position :  this.buildDict ( 
+							line :  new GLib.Variant.uint64 ( (uint) line) ,
+							character :  new GLib.Variant.uint64 ( uint.max(0,  (offset -1))) 
+						)
+						 
 					),
-					position :  this.buildDict ( 
-						line :  new GLib.Variant.uint64 ( (uint) line) ,
-						character :  new GLib.Variant.uint64 ( uint.max(0,  (offset -1))) 
-					)
-					 
-				),
-				null,
-				out return_value
-			);
-			GLib.debug ("LS hover replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+					null,
+					out return_value
+				);
+			} catch(GLib.Error e) {
+				this.getting_hover = false;
+				throw e;
+			}
+			this.getting_hover = false;
+			 GLib.debug ("LS hover replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			if (return_value == null) {
 				return ret;
 			}
@@ -695,22 +715,26 @@ namespace Palete {
 
 		}
 		
+		
+		static int doc_symbol_queue_call_count = 1;
+ 
+		
+		
 		public override void queueDocumentSymbols (JsRender.JsRender file) 
 		{
-			if (this.doc_queue_file != null && this.doc_queue_file.path != file.path) {
-				var sendfile = this.doc_queue_file;
-				this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
-					var ret = documentSymbols.end(res);
-					sendfile.navigation_tree_updated(ret);
-				});
-			}
-			
-			this.doc_countdown = 2;
- 			this.doc_queue_file = file;
+			  
+			this.documentSymbols.begin(file, (o, res) => {
+				var ret = documentSymbols.end(res);
+				file.navigation_tree_updated(ret);
+			});
+		  
+			 
 		}
 		
+		bool getting_symbols = false;
 	 
-		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error {
+		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error 
+		{
  			/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get documentSymbols %s", file.relpath);
 			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
@@ -718,23 +742,41 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return ret;
 			}
+			if (this.getting_symbols) {
+				return ret;
+			}
+
+			
+			doc_symbol_queue_call_count++;
+			var call_id = yield this.queuer(doc_symbol_queue_call_count);
+			if (call_id != doc_symbol_queue_call_count) {
+				
+				return ret;
+			}
+			this.getting_symbols = true;
+			
 			Variant? return_value;
-			yield this.jsonrpc_client.call_async (
-				"textDocument/documentSymbol",
-				this.buildDict (  
-					 
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
-					) 
-					 
-				),
-				null,
-				out return_value
-			);
+			try { 
+				yield this.jsonrpc_client.call_async (
+					"textDocument/documentSymbol",
+					this.buildDict (  
+						 
+						textDocument : this.buildDict (    ///TextDocumentItem;
+							uri: new GLib.Variant.string (file.to_url()),
+							version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+						) 
+						 
+					),
+					null,
+					out return_value
+				);
+			} catch(Error e) {
+				this.getting_symbols = false;			
+				throw e;
+			}
+			this.getting_symbols = false;
 			
-			
-			//GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var json = Json.gvariant_serialize (return_value);
 			 
 			 
@@ -750,6 +792,7 @@ namespace Palete {
 			
  		
 		}
+		// cant seem to get this to show anything!!
 		public override async Gee.ArrayList<Lsp.SignatureInformation> signatureHelp (JsRender.JsRender file, int line, int offset) throws GLib.Error {
  			/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get signatureHelp %s, %d, %d", file.relpath, line, offset);
@@ -796,7 +839,37 @@ namespace Palete {
 			
  		
 		}
+		// ok for general symbol search, not much details though.
+		public override async Gee.ArrayList<Lsp.SymbolInformation> symbol (string sym) throws GLib.Error
+		{
+			/* partial_result_token ,  work_done_token   context = null) */
+		 	GLib.debug("get symbol %s,", sym);
+			var ret = new Gee.ArrayList<Lsp.SymbolInformation>();	
+		 	//ret = null;
+			if (!this.isReady()) {
+				return ret;
+			}
+			Variant? return_value;
+				yield this.jsonrpc_client.call_async (
+				"workspace/symbol",
+				this.buildDict (  
+					query :  new GLib.Variant.string (sym)					 
+				),
+				null,
+				out return_value
+			);
+			
+GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));	
+			return ret;
+		}
 		
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
