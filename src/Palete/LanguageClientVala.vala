@@ -672,7 +672,7 @@ namespace Palete {
  		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
-		 	GLib.debug("get hover %s %d %d", file.relpath, (int)line, (int)offset);
+		 	//GLib.debug("get hover %s %d %d", file.relpath, (int)line, (int)offset);
 			var ret = new Lsp.Hover();	
 		 	//ret = null;
 		    if (!this.isReady()) {
@@ -680,13 +680,13 @@ namespace Palete {
 			}
 			var  call_id = yield this.hover_queue();
 			
-			GLib.debug("end hover call=%d   count=%d", call_id, hover_call_count);			
+			//GLib.debug("end hover call=%d   count=%d", call_id, hover_call_count);			
 			if (call_id != hover_call_count) {
-			 	GLib.debug("get hover CANCELLED %s %d %d", file.relpath, (int)line, (int)offset);
+			 	//GLib.debug("get hover CANCELLED %s %d %d", file.relpath, (int)line, (int)offset);
 				return ret;
 			}
 			
-		 	GLib.debug("get hover RUN %s %d %d", file.relpath, (int)line, (int)offset);
+		 	//GLib.debug("get hover RUN %s %d %d", file.relpath, (int)line, (int)offset);
 			
 			
 			
@@ -708,7 +708,7 @@ namespace Palete {
 				null,
 				out return_value
 			);
-			GLib.debug ("LS hover replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
+			//GLib.debug ("LS hover replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			if (return_value == null) {
 				return ret;
 			}
