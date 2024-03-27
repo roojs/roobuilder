@@ -652,7 +652,7 @@ namespace Palete {
 		
 		
 		static int hover_call_count = 1;
-		int hover_call = 0;
+ 
 		
 		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
  		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error 
