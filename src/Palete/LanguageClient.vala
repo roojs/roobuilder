@@ -89,7 +89,7 @@ namespace Palete {
 		public abstract void queueDocumentSymbols (JsRender.JsRender file); 
  		public abstract async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error;	
 		public abstract async Gee.ArrayList<Lsp.SignatureInformation> signatureHelp (JsRender.JsRender file, int line, int offset) throws GLib.Error;
-		public abstract async Gee.ArrayList<Lsp.WorkspaceSymbol> symbol (string sym) throws GLib.Error;
+		public abstract async Gee.ArrayList<Lsp.SymbolInformation> symbol (string sym) throws GLib.Error;
 	}
 	
 }
