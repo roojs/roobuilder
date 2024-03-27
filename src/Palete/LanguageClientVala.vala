@@ -713,12 +713,7 @@ namespace Palete {
 		public override void queueDocumentSymbols (JsRender.JsRender file) 
 		{
 			
-			 
-			doc_symbol_queue_call_count++;
-			var call_id = yield this.queuer(doc_symbol_queue_call_count);
-			if (call_id != doc_symbol_queue_call_count) {
-				return;
-			}
+			  
 			this.documentSymbols.begin(file, (o, res) => {
 				var ret = documentSymbols.end(res);
 				file.navigation_tree_updated(ret);
@@ -738,6 +733,13 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return ret;
 			}
+			
+			doc_symbol_queue_call_count++;
+			var call_id = yield this.queuer(doc_symbol_queue_call_count);
+			if (call_id != doc_symbol_queue_call_count) {
+				return;
+			}
+			
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
 				"textDocument/documentSymbol",
