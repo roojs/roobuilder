@@ -656,7 +656,7 @@ namespace Palete {
 				return ret;
 			}
 			if (this.getting_hover) {
-				return;
+				return ret;
 			}
 			
 			hover_call_count++;
@@ -673,23 +673,28 @@ namespace Palete {
 			this.getting_hover = true;
 			
 			Variant? return_value;
-			yield this.jsonrpc_client.call_async (
-				"textDocument/hover",
-				this.buildDict (  
-					 
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+			try {
+				yield this.jsonrpc_client.call_async (
+					"textDocument/hover",
+					this.buildDict (  
+						 
+						textDocument : this.buildDict (    ///TextDocumentItem;
+							uri: new GLib.Variant.string (file.to_url()),
+							version :  new GLib.Variant.uint64 ( (uint64) file.version) 
+						),
+						position :  this.buildDict ( 
+							line :  new GLib.Variant.uint64 ( (uint) line) ,
+							character :  new GLib.Variant.uint64 ( uint.max(0,  (offset -1))) 
+						)
+						 
 					),
-					position :  this.buildDict ( 
-						line :  new GLib.Variant.uint64 ( (uint) line) ,
-						character :  new GLib.Variant.uint64 ( uint.max(0,  (offset -1))) 
-					)
-					 
-				),
-				null,
-				out return_value
-			);
+					null,
+					out return_value
+				);
+			} catch(GLib.Error e) {
+				this.getting_hover = false;
+				throw e;
+			}
 			this.getting_hover = false;
 			 GLib.debug ("LS hover replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			if (return_value == null) {
