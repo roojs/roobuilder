@@ -38,6 +38,10 @@ namespace Palete {
  		{
 			return new Gee.ArrayList<Lsp.SignatureInformation>();	
 		}
+		public override async Gee.ArrayList<Lsp.WorkspaceSymbol> symbol (string sym) throws GLib.Error 
+		{
+			return new Gee.ArrayList<Lsp.WorkspaceSymbol>();
+		}
 	}
 	
 }
