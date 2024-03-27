@@ -663,20 +663,7 @@ namespace Palete {
 
 		}
 		
-		async int hover_queue()
-		{
-			SourceFunc cb = this.hover_queue.callback;
-			hover_call_count++;
-			var call_id = hover_call_count;
-			
-			GLib.Timeout.add(500, () => {
-		 		 GLib.Idle.add((owned) cb);
-		 		 return false;
-			});
-			
-			yield;
-			return call_id;
-		}
+	 
 		
 		static int hover_call_count = 1;
  
@@ -691,7 +678,8 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return ret;
 			}
-			var  call_id = yield this.hover_queue();
+			hover_call_count++;
+			var  call_id = yield this.queuer(hover_call_count);
 			
 			//GLib.debug("end hover call=%d   count=%d", call_id, hover_call_count);			
 			if (call_id != hover_call_count) {
