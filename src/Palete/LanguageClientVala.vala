@@ -712,17 +712,16 @@ namespace Palete {
 		
 		public override void queueDocumentSymbols (JsRender.JsRender file) 
 		{
-			
 			  
 			this.documentSymbols.begin(file, (o, res) => {
 				var ret = documentSymbols.end(res);
 				file.navigation_tree_updated(ret);
 			});
-		 
-			
+		  
 			 
 		}
 		
+		bool getting_symbols = false;
 	 
 		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error 
 		{
@@ -733,12 +732,18 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return ret;
 			}
+			if (this.getting_symbols) {
+				return;
+			}
+
 			
 			doc_symbol_queue_call_count++;
 			var call_id = yield this.queuer(doc_symbol_queue_call_count);
 			if (call_id != doc_symbol_queue_call_count) {
+				
 				return ret;
 			}
+			this.getting_symbols = true;
 			
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
@@ -754,7 +759,7 @@ namespace Palete {
 				null,
 				out return_value
 			);
-			
+			this.getting_symbols = false;
 			
 			 GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var json = Json.gvariant_serialize (return_value);
