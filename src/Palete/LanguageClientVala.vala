@@ -667,7 +667,7 @@ namespace Palete {
 			
 			// try and block multiple calls - better than a big timeout loop?
 			hover_call_count++;
-			var this_call = hover_call_count;
+			var call_id = hover_call_count;
 			 
 			var loop = new MainLoop();
 
@@ -676,7 +676,7 @@ namespace Palete {
 		 		 return false;
 			});
 			loop.run();
-			if (this_call != hover_call_count) {
+			if (call_id != hover_call_count) {
 				return ret;
 			}
 			
