@@ -737,7 +737,7 @@ namespace Palete {
 			doc_symbol_queue_call_count++;
 			var call_id = yield this.queuer(doc_symbol_queue_call_count);
 			if (call_id != doc_symbol_queue_call_count) {
-				return;
+				return ret;
 			}
 			
 			Variant? return_value;
