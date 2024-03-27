@@ -2056,7 +2056,7 @@ public class Editor : Object
 				ls.append(sym);
 			}
 			// if syms updated is empty, but we already have one..
-			if (_this.navliststore.el.get_n_items() > 0 && ls.get_n_items < 1) {
+			if (_this.navliststore.el.get_n_items() > 0 && ls.get_n_items() < 1) {
 				return;
 			}
 			Lsp.DocumentSymbol.copyList(ls, _this.navliststore.el);
