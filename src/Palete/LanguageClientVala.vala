@@ -839,7 +839,7 @@ namespace Palete {
 			}
 			Variant? return_value;
 				yield this.jsonrpc_client.call_async (
-				"textDocument/symbol",
+				"workspace/symbol",
 				this.buildDict (  
 					query :  new GLib.Variant.string (sym)					 
 				),
