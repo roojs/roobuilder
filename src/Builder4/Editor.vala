@@ -593,9 +593,9 @@ public class Editor : Object
 						
 					default:
 			
-						str += ("<span underline=\"single\" color=\"blue\" >" + 
+						str += ("<a href=\" + GLib.Markup.escape_text(sig[i]) + "\">" + 
 							GLib.Markup.escape_text(sig[i])
-							+"</span>");
+							+"</a>");
 					continue;
 				}
 			}
