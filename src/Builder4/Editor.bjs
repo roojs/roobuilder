@@ -68,23 +68,14 @@
            "id" : "helper",
            "int margin_end" : 4,
            "int margin_start" : 4,
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "listeners" : {
-              "pressed" : [
-               "(n_press, x, y) => {",
-               "\tint ix, tr;",
-               "\t_this.helper.el.get_layout().xy_to_index((int)x, (int)y, out ix, out tr);",
-               "\tGLib.debug(\"label click %d\", ix);",
-               "}",
-               ""
-              ]
-             },
-             "xtype" : "GestureClick"
-            }
-           ],
            "listeners" : {
+            "activate_link" : [
+             "(uri) => {",
+             "",
+             "\treturn bool;",
+             "}",
+             ""
+            ],
             "query_tooltip" : [
              "(x, y, keyboard_tooltip, tooltip) => {",
              "\tGLib.debug(\"using quiery tooltip?\");",

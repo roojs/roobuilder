@@ -549,9 +549,6 @@ public class Editor : Object
 			this.el.justify = Gtk.Justification.LEFT;
 			this.el.hexpand = true;
 			this.el.xalign = 0f;
-			var child_1 = new Xcls_GestureClick61( _this );
-			child_1.ref();
-			this.el.add_controller(  child_1.el );
 
 			//listeners
 			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
@@ -561,6 +558,10 @@ public class Editor : Object
 				tooltip.set_custom(lbl);
 			
 				return true;
+			});
+			this.el.activate_link.connect( (uri) => {
+			
+				return bool;
 			});
 		}
 
@@ -607,35 +608,6 @@ public class Editor : Object
 			
 		}
 	}
-	public class Xcls_GestureClick61 : Object
-	{
-		public Gtk.GestureClick el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_GestureClick61(Editor _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.GestureClick();
-
-			// my vars (dec)
-
-			// set gobject values
-
-			//listeners
-			this.el.pressed.connect( (n_press, x, y) => {
-				int ix, tr;
-				_this.helper.el.get_layout().xy_to_index((int)x, (int)y, out ix, out tr);
-				GLib.debug("label click %d", ix);
-			});
-		}
-
-		// user defined functions
-	}
-
 
 	public class Xcls_Scale6 : Object
 	{
