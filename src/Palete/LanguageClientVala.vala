@@ -650,6 +650,20 @@ namespace Palete {
 
 		}
 		
+		async int hover_queue()
+		{
+			var cb = hover_queue.callback;
+			hover_call_count++;
+			var call_id = hover_call_count;
+			
+			GLib.Timeout.add(1000, () => {
+		 		 GLib.Idle.add(cb);
+		 		 return false;
+			});
+			
+			yield;
+			return call_id;
+		}
 		
 		static int hover_call_count = 1;
  
@@ -664,17 +678,8 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return ret;
 			}
-			var  callback = hover.callback;
-			// try and block multiple calls - better than a big timeout loop?
-			hover_call_count++;
-			var call_id = hover_call_count;
-			GLib.debug("get hover call=%d   count=%d", call_id, hover_call_count);
-
-			GLib.Timeout.add(1000, () => {
-		 		 GLib.Idle.add(callback);
-		 		 return false;
-			});
-			yield;
+			var  call_id = hover_queue();
+			
 			GLib.debug("end hover call=%d   count=%d", call_id, hover_call_count);			
 			if (call_id != hover_call_count) {
 			 	GLib.debug("get hover CANCELLED %s %d %d", file.relpath, (int)line, (int)offset);
