@@ -219,8 +219,31 @@ namespace Palete {
 			this.in_populate = true;
 
 			global::Gtk.TextIter begin, end;
-			Lsp.CompletionList res;
+
+			
+			var expression = new global::Gtk.PropertyExpression(typeof(CompletionProposal), null, "label");
+			
 			if (context.get_bounds (out begin, out end)) {
+				this.model = new CompletionModel(this, context,  cancellable); 
+			 	var word = context.get_word();
+				
+				var lc = end.copy();
+				lc.backward_char();
+				var lchar = lc.get_text(end);
+				
+				
+				GLib.debug("Context word is %s / '%s' , %d", word, lchar, (int)word.length);
+				if (word.length < 1 && lchar != ".") {
+					word = " "; // this should filter out everything, and prevent it displaying 
+				}
+				this.filter = new global::Gtk.StringFilter(expression);
+				this.filter.set_search( word);
+				var  filter_model = new global::Gtk.FilterListModel(this.model, this.filter); 
+				
+				filter.match_mode = global::Gtk.StringFilterMatchMode.PREFIX;
+				filter_model.set_incremental(true);
+				
+				
 				var line = end.get_line();
 				var offset =  end.get_line_offset();
 				if (this.editor.prop != null) {
@@ -236,45 +259,35 @@ namespace Palete {
 					}
 				} 
 				//  this should not really be slow, as it's a quick repsonse
- 				yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
+				var ls = this.file.getLanguageServer();
+ 				yield ls.document_change_force(this.file, this.editor.tempFileContents());
+
+				
+				GLib.debug("sending request to language server %s", this.file.getLanguageServer().get_type().name());
 				try {
-					GLib.debug("sending request to language server %s", this.file.getLanguageServer().get_type().name());
-					
-					res = yield this.file.getLanguageServer().completion(this.file, line, offset, 1);
-				} catch (GLib.Error e) {
+				 	var res = yield ls.completion(this.file, line, offset, 1);
+					this.model.updateList(res);
+				} catch(GLib.Error e) {
 					GLib.debug("got error %s", e.message);
 					this.in_populate = false;
-					return ret;
+					return ret; // empty.
 				}
+					// got a result...
+					
+				GLib.debug("pupoulate async  - got reply");
 				
-			} else {
+				
+			
 				this.in_populate = false;
-				return ret;
-			}
-			
-			GLib.debug("pupoulate async  - got reply");
-			this.model = new CompletionModel(this, context, res, cancellable); 
-			var word = context.get_word();
-			
-			var lc = end.copy();
-			lc.backward_char();
-			var lchar = lc.get_text(end);
-			
-			
-			GLib.debug("Context word is %s / '%s' , %d", word, lchar, (int)word.length);
-			if (word.length < 1 && lchar != ".") {
-				word = " "; // this should filter out everything, and prevent it displaying 
-			}
-			
-			var expression = new global::Gtk.PropertyExpression(typeof(CompletionProposal), null, "label");
-			this.filter = new global::Gtk.StringFilter(expression);
-			this.filter.set_search( word);
-			var  filter_model = new global::Gtk.FilterListModel(this.model, this.filter); 
-			filter.match_mode = global::Gtk.StringFilterMatchMode.PREFIX;
-			filter_model.set_incremental(true);
+				
+					
+						 
+				return filter_model;				 
+				
+			}  
 			this.in_populate = false;
-			return filter_model; 
-			
+			return ret;
+			  
 			 
 			
 		}
@@ -327,7 +340,7 @@ namespace Palete {
  		
  		public Cancellable? cancellable;
  		
- 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context, Lsp.CompletionList? res, Cancellable? cancellable)
+ 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context, Cancellable? cancellable)
  		{
  		 	this.provider = provider;
 			this.cancellable = cancellable;
@@ -336,28 +349,28 @@ namespace Palete {
  		 	var word = context.get_word();
  		 	GLib.debug("looking for %s", word);
  		 	this.search = word;
- 			if (res != null) {
-	 		 	foreach(var comp in res.items) {
-	 		 		 if (comp.label == "_") { // skip '_'
-	 		 		 	continue;
- 		 		 	}
- 		 		 	GLib.debug("got suggestion %s", comp.label);
-	 				this.items.add(new CompletionProposal(comp));	
-	 				
-	 		 	}
-			}
-		    GLib.debug("GOT %d results\n", (int) items.size); 
+ 			 
+		    //GLib.debug("GOT %d results\n", (int) items.size); 
 			// WHY TWICE?
-		    if (this.items.size < this.minimum_word_size) {
-				return;
-		    }
-		
-		    items.sort((a, b) => {
-			    return ((string)(a.label)).collate((string)(b.label));
-		    });
+		     this.items.add(new CompletionProposal(new Lsp.CompletionItem.keyword ("Loading...")));
  		
  		}
- 		
+		public void updateList( Lsp.CompletionList? res ) 
+		{
+			this.items.clear();
+			foreach(var comp in res.items) {
+		 		if (comp.label == "_") { // skip '_'
+		 		 	continue;
+	 		 	}
+	 		 	GLib.debug("got suggestion %s", comp.label);
+				this.items.add(new CompletionProposal(comp));	
+ 		 	}
+ 		 	
+			this.items.sort((a, b) => {
+			    return ((string)(a.label)).collate((string)(b.label));
+		    });
+	 	}
+		 
  		 
  		
  		public GLib.Object? get_item (uint pos)

@@ -472,6 +472,12 @@ namespace Palete {
     	 
  		public override void document_change (JsRender.JsRender file )    
  		{
+ 			this.change_queue_file = file;
+			this.document_change_force.begin(this.change_queue_file, this.change_queue_file_source, (o, res) => {
+				this.document_change_force.end(res);
+			});
+			return;
+			/*
 			if (this.change_queue_file != null && this.change_queue_file.path != file.path) {
 				this.document_change_force.begin(this.change_queue_file, this.change_queue_file_source, (o, res) => {
 					this.document_change_force.end(res);
@@ -480,7 +486,7 @@ namespace Palete {
 			
 			this.countdown = 2;
  			this.change_queue_file = file;
- 			 
+ 			*/
 			
 
  		}
@@ -697,6 +703,16 @@ namespace Palete {
 		
 		public override void queueDocumentSymbols (JsRender.JsRender file) 
 		{
+			this.doc_queue_file = file;
+			this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
+				try { 
+					var ret = documentSymbols.end(res);
+					file.navigation_tree_updated(ret);
+				} catch(GLib.Error e) {}
+			});
+			return;
+			/*
+			
 			if (this.doc_queue_file != null && this.doc_queue_file.path != file.path) {
 				var sendfile = this.doc_queue_file;
 				this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
@@ -707,6 +723,7 @@ namespace Palete {
 			
 			this.doc_countdown = 2;
  			this.doc_queue_file = file;
+ 			*/
 		}
 		
 	 
