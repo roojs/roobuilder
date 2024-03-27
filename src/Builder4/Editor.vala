@@ -627,8 +627,9 @@ public class Editor : Object
 
 			//listeners
 			this.el.pressed.connect( (n_press, x, y) => {
-			
-			
+				int ix, tr;
+				_this.helper.el.get_layout().xy_to_index(x,y, out ix, out tr);
+				GLib.debug("label click %d", ix);
 			});
 		}
 

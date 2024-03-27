@@ -74,8 +74,9 @@
              "listeners" : {
               "pressed" : [
                "(n_press, x, y) => {",
-               "",
-               "",
+               "\tint ix, tr;",
+               "\t_this.helper.el.get_layout().xy_to_index(x,y, out ix, out tr);",
+               "\tGLib.debug(\"label click %d\", ix);",
                "}",
                ""
               ]
