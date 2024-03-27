@@ -560,8 +560,8 @@ public class Editor : Object
 				return true;
 			});
 			this.el.activate_link.connect( (uri) => {
-			
-				return bool;
+				GLib.debug("got uri %s", uri);
+				return true;
 			});
 		}
 

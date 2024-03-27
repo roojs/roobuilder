@@ -71,8 +71,8 @@
            "listeners" : {
             "activate_link" : [
              "(uri) => {",
-             "",
-             "\treturn bool;",
+             "\tGLib.debug(\"got uri %s\", uri);",
+             "\treturn true;",
              "}",
              ""
             ],
