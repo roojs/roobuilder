@@ -651,7 +651,7 @@ namespace Palete {
 		}
 		
 		
-		static hover_call_count = 1;
+		static int hover_call_count = 1;
 		int hover_call = 0;
 		
 		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
