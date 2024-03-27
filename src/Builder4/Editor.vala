@@ -593,7 +593,7 @@ public class Editor : Object
 						
 					default:
 			
-						str += ("<a href=\" + GLib.Markup.escape_text(sig[i]) + "\">" + 
+						str += ("<a href=\"" + GLib.Markup.escape_text(sig[i]) + "\">" + 
 							GLib.Markup.escape_text(sig[i])
 							+"</a>");
 					continue;

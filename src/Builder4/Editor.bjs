@@ -117,7 +117,7 @@
             "\t\t\t\t",
             "\t\t\tdefault:",
             "\t",
-            "\t\t\t\tstr += (\"<a href=\\\" + GLib.Markup.escape_text(sig[i]) + \"\\\">\" + ",
+            "\t\t\t\tstr += (\"<a href=\\\"\" + GLib.Markup.escape_text(sig[i]) + \"\\\">\" + ",
             "\t\t\t\t\tGLib.Markup.escape_text(sig[i])",
             "\t\t\t\t\t+\"</a>\");",
             "\t\t\tcontinue;",
