@@ -58,8 +58,7 @@ namespace Palete {
 
 			if (this.change_queue_id == 0 ) {
 				this.change_queue_id = GLib.Timeout.add(500, () => {
-			 		this.run_change_queue();
-			 		this.run_doc_queue();
+			 		this.run_change_queue(); 
 			 		return true;
 				});
 			}
@@ -93,7 +92,21 @@ namespace Palete {
 			return ;
 		}
 		 
-		 
+	 	async int queuer(int cnt)
+		{
+			SourceFunc cb = this.queuer.callback;
+		  
+			GLib.Timeout.add(500, () => {
+		 		 GLib.Idle.add((owned) cb);
+		 		 return false;
+			});
+			
+			yield;
+			return cnt;
+		}
+		static int doc_queue_id = 0;
+		
+		/*
 	 	void run_doc_queue()
 		{
 		
@@ -116,7 +129,7 @@ namespace Palete {
 			}
 			return ;
 		}
-		
+		*/
 		
 		
 		public bool initProcess(string process_path)
@@ -727,22 +740,32 @@ namespace Palete {
 
 		}
 		
+		
+		static int doc_symbol_queue_call_count = 1;
+ 
+		
+		
 		public override void queueDocumentSymbols (JsRender.JsRender file) 
 		{
-			if (this.doc_queue_file != null && this.doc_queue_file.path != file.path) {
-				var sendfile = this.doc_queue_file;
-				this.documentSymbols.begin(this.doc_queue_file, (o, res) => {
-					var ret = documentSymbols.end(res);
-					sendfile.navigation_tree_updated(ret);
-				});
-			}
 			
-			this.doc_countdown = 2;
- 			this.doc_queue_file = file;
+			 
+			doc_symbol_queue_call_count++;
+			var call_id = yield this.queuer(doc_symbol_queue_call_count);
+			if (call_id != doc_symbol_queue_call_count) {
+				return;
+			}
+			this.documentSymbols.begin(file, (o, res) => {
+				var ret = documentSymbols.end(res);
+				file.navigation_tree_updated(ret);
+			});
+		 
+			
+			 
 		}
 		
 	 
-		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error {
+		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error 
+		{
  			/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get documentSymbols %s", file.relpath);
 			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
