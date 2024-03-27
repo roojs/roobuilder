@@ -675,10 +675,11 @@ namespace Palete {
 			});
 			loop.run();
 			if (call_id != hover_call_count) {
+			 	GLib.debug("get hover CANCELLED %s %d %d", file.relpath, (int)line, (int)offset);
 				return ret;
 			}
 			
-			
+		 	GLib.debug("get hover RUN %s %d %d", file.relpath, (int)line, (int)offset);
 			
 			
 			
