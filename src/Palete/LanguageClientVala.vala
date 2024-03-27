@@ -782,6 +782,7 @@ namespace Palete {
 			
  		
 		}
+		// cant seem to get this to show anything!!
 		public override async Gee.ArrayList<Lsp.SignatureInformation> signatureHelp (JsRender.JsRender file, int line, int offset) throws GLib.Error {
  			/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("get signatureHelp %s, %d, %d", file.relpath, line, offset);
@@ -828,6 +829,7 @@ namespace Palete {
 			
  		
 		}
+		// ok for general symbol search, not much details though.
 		public override async Gee.ArrayList<Lsp.SymbolInformation> symbol (string sym) throws GLib.Error
 		{
 			/* partial_result_token ,  work_done_token   context = null) */
