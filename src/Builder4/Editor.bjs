@@ -73,7 +73,7 @@
              "(uri) => {",
              "\tGLib.debug(\"got uri %s\", uri);",
              "\tvar ls = _this.file.getLanguageServer();",
-             "\tls.symbol.being(uri, (a,b) => {",
+             "\tls.symbol.begin(uri, (a,b) => {",
              "\t\tls.symbol.end(b);",
              "\t});",
              "\t",
