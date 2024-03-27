@@ -828,10 +828,29 @@ namespace Palete {
 			
  		
 		}
+		public override async Gee.ArrayList<Lsp.WorkspaceSymbol> symbol (string sym) throws GLib.Error {
+			/* partial_result_token ,  work_done_token   context = null) */
+		 	GLib.debug("get symbol %s,", sym);
+			var ret = new Gee.ArrayList<Lsp.WorkspaceSymbol>();	
+		 	//ret = null;
+			if (!this.isReady()) {
+				return ret;
+			}
+			Variant? return_value;
+				yield this.jsonrpc_client.call_async (
+				"textDocument/symbol",
+				this.buildDict (  
+					query :  new GLib.Variant.string (sym)					 
+				),
+				null,
+				out return_value
+			);
+			
+			GLib.debug ("LS replied with %D items", ar.get_length());
+			return ret;
+		}
 		
 	}
-	
-	
 	
 	
 	
