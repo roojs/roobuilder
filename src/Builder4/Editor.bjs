@@ -68,6 +68,12 @@
            "id" : "helper",
            "int margin_end" : 4,
            "int margin_start" : 4,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "GestureClick"
+            }
+           ],
            "listeners" : {
             "query_tooltip" : [
              "(x, y, keyboard_tooltip, tooltip) => {",
