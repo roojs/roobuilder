@@ -643,7 +643,7 @@ namespace Palete {
 	 
 		
 		static int hover_call_count = 1;
- 
+ 		bool getting_hover = false;
 		
 		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
  		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error 
@@ -655,6 +655,10 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return ret;
 			}
+			if (this.getting_hover) {
+				return;
+			}
+			
 			hover_call_count++;
 			var  call_id = yield this.queuer(hover_call_count);
 			
@@ -666,7 +670,7 @@ namespace Palete {
 			
 		 	//GLib.debug("get hover RUN %s %d %d", file.relpath, (int)line, (int)offset);
 			
-			
+			this.getting_hover = true;
 			
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
@@ -686,6 +690,7 @@ namespace Palete {
 				null,
 				out return_value
 			);
+			this.getting_hover = false;
 			 GLib.debug ("LS hover replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			if (return_value == null) {
 				return ret;
