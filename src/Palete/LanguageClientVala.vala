@@ -847,7 +847,7 @@ namespace Palete {
 				out return_value
 			);
 			
-			GLib.debug ("LS replied with %D items", ar.get_length());
+GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));	
 			return ret;
 		}
 		
