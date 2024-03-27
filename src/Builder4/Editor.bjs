@@ -72,6 +72,11 @@
             "activate_link" : [
              "(uri) => {",
              "\tGLib.debug(\"got uri %s\", uri);",
+             "\tvar ls = _this.file.getLanguageServer();",
+             "\tls.symbol.being(uri, (a,b) => {",
+             "\t\tls.symbol.end(b);",
+             "\t});",
+             "\t",
              "\treturn true;",
              "}",
              ""

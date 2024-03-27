@@ -561,6 +561,11 @@ public class Editor : Object
 			});
 			this.el.activate_link.connect( (uri) => {
 				GLib.debug("got uri %s", uri);
+				var ls = _this.file.getLanguageServer();
+				ls.symbol.being(uri, (a,b) => {
+					ls.symbol.end(b);
+				});
+				
 				return true;
 			});
 		}
