@@ -678,7 +678,7 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return ret;
 			}
-			var  call_id = yield hover_queue();
+			var  call_id = yield this.hover_queue();
 			
 			GLib.debug("end hover call=%d   count=%d", call_id, hover_call_count);			
 			if (call_id != hover_call_count) {
