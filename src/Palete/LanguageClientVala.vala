@@ -666,13 +666,14 @@ namespace Palete {
 			}
 			
 			// try and block multiple calls - better than a big timeout loop?
-			hover_call_count ++;
+			hover_call_count++;
 			var this_call = hover_call_count;
 			 
 			var loop = new MainLoop();
 
 			GLib.Timeout.add(500, () => {
 		 		 loop.quit(); 
+		 		 return false;
 			});
 			loop.run();
 			if (this_call != hover_call_count) {
