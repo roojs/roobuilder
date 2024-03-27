@@ -116,6 +116,9 @@ namespace Palete {
 			}
 			return ;
 		}
+		
+		
+		
 		public bool initProcess(string process_path)
 		{
 			this.onClose();
@@ -648,6 +651,9 @@ namespace Palete {
 		}
 		
 		
+		static hover_call_count = 1;
+		int hover_call = 0;
+		
 		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
  		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error 
 		 {
@@ -658,6 +664,25 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return ret;
 			}
+			
+			// try and block multiple calls - better than a big timeout loop?
+			hover_call_count ++;
+			var this_call = hover_call_count;
+			 
+			var loop = new MainLoop();
+
+			GLib.Timeout.add(500, () => {
+		 		 loop.quit(); 
+			});
+			loop.run();
+			if (this_call != hover_call_count) {
+				return ret;
+			}
+			
+			
+			
+			
+			
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
 				"textDocument/hover",
