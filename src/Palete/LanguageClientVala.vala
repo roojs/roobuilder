@@ -657,7 +657,7 @@ namespace Palete {
 			var call_id = hover_call_count;
 			
 			GLib.Timeout.add(500, () => {
-		 		 GLib.Idle.add(cb);
+		 		 GLib.Idle.add((owned) cb);
 		 		 return false;
 			});
 			
