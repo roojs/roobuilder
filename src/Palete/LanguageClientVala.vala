@@ -652,7 +652,7 @@ namespace Palete {
 		
 		async int hover_queue()
 		{
-			var cb = hover_queue.callback;
+			var cb = this.hover_queue.callback;
 			hover_call_count++;
 			var call_id = hover_call_count;
 			
