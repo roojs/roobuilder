@@ -556,7 +556,13 @@
 			var file = cur_project.getByRelPath(BuilderApplication.opt_language_server);
 			if (file == null) {
 				// then compile them all, and compare them...
-				 GLib.error("missing file %s in project %s", BuilderApplication.opt_language_server, cur_project.name);
+
+	 			if (!GLib.FileUtils.test(BuilderApplication.opt_language_server, FileTest.EXISTS)) {
+					GLib.error("missing file %s in project %s", BuilderApplication.opt_language_server, cur_project.name);
+
+	 			}
+	 			// in theory we can test a vapi?
+ 				file = new JsRender.PlainFile(cur_project,BuilderApplication.opt_language_server)
 			}
 			
 			var ls = file.getLanguageServer();
@@ -572,16 +578,18 @@
 				GLib.debug("Sending document_open");
 				// it's ready..
 				 
-				ls.document_open(file);
-				ls.document_save.begin( file, (o,res) => {
-					ls.document_save.end(res);
-				 });
+				//ls.document_open(file);
+				//ls.document_save.begin( file, (o,res) => {
+				//	ls.document_save.end(res);
+				 //});
 				
 				//ls.syntax.begin(file, (obj,res) => {
 				//	ls.syntax.end(res);
 				
 				//});
-				
+				ls.documentSymbols.begin(file, (o,res) => {
+					ls.documentSymbols.end(res);
+				});
 				
 				return false;
 				
