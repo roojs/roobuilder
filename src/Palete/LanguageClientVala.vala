@@ -195,7 +195,6 @@ namespace Palete {
 
 				this.initialize_server ();
 			} 
-					 
 			 
 		}
 		
