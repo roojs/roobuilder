@@ -2042,7 +2042,7 @@ public class Editor : Object
 		 }
 		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
 			
-			if (!_this.navigation_holder.el.visible) {
+			if (!_this.navigation_holder.el.visible && syms.size() > 0) {
 				_this.navigation_holder.el.show();
 				_this.paned.el.position  = 
 					_this.paned.el.get_width() - 200;

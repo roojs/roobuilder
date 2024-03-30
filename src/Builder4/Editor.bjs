@@ -1491,7 +1491,7 @@
            "| void show" : [
             "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
             "\t",
-            "\tif (!_this.navigation_holder.el.visible) {",
+            "\tif (!_this.navigation_holder.el.visible && syms.size() > 0) {",
             "\t\t_this.navigation_holder.el.show();",
             "\t\t_this.paned.el.position  = ",
             "\t\t\t_this.paned.el.get_width() - 200;",
