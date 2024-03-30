@@ -234,6 +234,8 @@ namespace Project
 			if (this.language_servers.has_key(lang)) {
 				return this.language_servers.get(lang);
 			}
+			
+			GLib.debug("Get language Server %s", lang);
 			switch( lang ) {
 				case "vala":
 				case "c": // not really... but we like it..
