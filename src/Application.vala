@@ -562,7 +562,7 @@
 
 	 			}
 	 			// in theory we can test a vapi?
- 				file = new JsRender.PlainFile(cur_project,BuilderApplication.opt_language_server)
+ 				file = new JsRender.PlainFile(cur_project,BuilderApplication.opt_language_server);
 			}
 			
 			var ls = file.getLanguageServer();
