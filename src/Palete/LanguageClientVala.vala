@@ -278,7 +278,7 @@ namespace Palete {
 			 
 		}
 	
-		public bool isReady()
+		public override bool isReady()
 		{
 			if (this.closed) {
 				this.log(LanguageClientAction.RESTART,"closed is set - restarting");
