@@ -574,8 +574,12 @@
 			//Posix.sleep( 30 );
 			var loop = new MainLoop();
 			GLib.Timeout.add_seconds(1, () => {
-			 
-				GLib.debug("Sending document_open");
+			 	if (!ls.isReady()) {
+			 		GLib.debug("LS not ready - try again");
+				
+			 		return true;
+		 		}
+				//GLib.debug("Sending document_open");
 				// it's ready..
 				 
 				//ls.document_open(file);
