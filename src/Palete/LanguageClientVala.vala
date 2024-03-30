@@ -751,7 +751,7 @@ namespace Palete {
 			doc_symbol_queue_call_count++;
 			var call_id = yield this.queuer(doc_symbol_queue_call_count);
 			if (call_id != doc_symbol_queue_call_count) {
-				GLib.debug("docsymbols call id does not match %d %d" call_id , doc_symbol_queue_call_count);
+				GLib.debug("docsymbols call id does not match %d %d" ,call_id , doc_symbol_queue_call_count);
 				return ret;
 			}
 			this.getting_symbols = true;
