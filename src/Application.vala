@@ -594,6 +594,7 @@
 				GLib.debug("Sending docSybmols");
 				
 				ls.documentSymbols.begin(file, (o,res) => {
+					GLib.debug("Got doc symbols return");
 					ls.documentSymbols.end(res);
 				});
 				
