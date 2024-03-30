@@ -236,6 +236,7 @@ namespace Project
 			}
 			switch( lang ) {
 				case "vala":
+				case "c": // not really... but we like it..
 					var ls = new Palete.LanguageClientVala(this);
 					ls.log.connect((act, msg) => {
 						//GLib.debug("log %s: %s", act.to_string(), msg);
