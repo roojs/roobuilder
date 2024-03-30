@@ -13,6 +13,7 @@ namespace Palete {
 		public override   void  initialize_server()   {
 			GLib.debug("initialize dummy server");			
 		}
+		public override bool isReady ()  { return true; } 
 		public override void document_open (JsRender.JsRender file)  {}
 		public override async void document_save (JsRender.JsRender file)   {}
  		public override void document_change (JsRender.JsRender file    )     {}
