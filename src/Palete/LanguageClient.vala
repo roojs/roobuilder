@@ -76,7 +76,7 @@ namespace Palete {
 		
 		public abstract  void initialize_server();
  
-		
+		public abstract bool isReady () ; 
 		public abstract void document_open (JsRender.JsRender file) ; 
  		public abstract async void document_save (JsRender.JsRender file); 
 		public abstract void document_close (JsRender.JsRender file);
