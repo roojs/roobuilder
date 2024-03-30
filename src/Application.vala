@@ -586,7 +586,9 @@
 				//ls.syntax.begin(file, (obj,res) => {
 				//	ls.syntax.end(res);
 				
-				//});
+				//});				
+				GLib.debug("Sending docSybmols");
+				
 				ls.documentSymbols.begin(file, (o,res) => {
 					ls.documentSymbols.end(res);
 				});
