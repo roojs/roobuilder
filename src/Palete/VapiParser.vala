@@ -31,7 +31,7 @@ namespace Palete {
 				
 				return;
 			}
-			 
+
 			
 			//print("parsing namespace %s\n", element.name);
 			if (element.name == null) {
@@ -43,7 +43,7 @@ namespace Palete {
 		public void add_namespace(GirObject? parent, Vala.Namespace element)
 		{
 			
-			
+			GLib.debug("NS: %s", element.name);
 			var g = new GirObject("Package",element.name) ;
 			if (parent == null) {
 				this.project.gir_cache.set(element.name,   g);
@@ -83,7 +83,7 @@ namespace Palete {
 		
 		public void add_enum(GirObject parent, Vala.Enum cls)
 		{
-		
+			GLib.debug("Enum: %s", cls.name);
 			var c = new GirObject("Enum",   cls.name);
 			parent.consts.set(cls.name, c);
 			c.ns = parent.name;
@@ -112,7 +112,7 @@ namespace Palete {
 		
 		public void add_interface(GirObject parent, Vala.Interface cls)
 		{
-		
+			GLib.debug("Interface: %s", cls.name);
 			var c = new GirObject("Interface", parent.name + "." + cls.name);
 			parent.classes.set(cls.name, c);
 			c.ns = parent.name;
@@ -155,7 +155,7 @@ namespace Palete {
 		
 		public void add_struct(GirObject parent, Vala.Struct cls)
 		{
-		
+			GLib.debug("Struct: %s", cls.name);
 			var c = new GirObject("Struct", parent.name + "." + cls.name);
 			parent.classes.set(cls.name, c);
 			  
@@ -177,7 +177,7 @@ namespace Palete {
 		
 		public void add_class(GirObject parent, Vala.Class cls)
 		{
-		
+			GLib.debug("Class: %s", cls.name);
 			var c = new GirObject("Class", parent.name + "." + cls.name);
 			parent.classes.set(cls.name, c);
 			c.ns = parent.name;
@@ -326,6 +326,7 @@ namespace Palete {
 		
 		public void add_property(GirObject parent, Vala.Property prop)
 		{
+			GLib.debug("Prop: %s", prop.name);
 			var c = new GirObject("Prop",prop.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
@@ -352,6 +353,7 @@ namespace Palete {
 		
 		public void add_field(GirObject parent, Vala.Field prop)
 		{
+			GLib.debug("Field: %s", prop.name);	
 			var c = new GirObject("Field",prop.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
@@ -372,7 +374,7 @@ namespace Palete {
 		}
 		public void add_delegate(GirObject parent, Vala.Delegate sig)
 		{
-		
+			GLib.debug("Delegate: %s", prop.name);
 			var c = new GirObject("Delegate",   sig.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
@@ -431,6 +433,7 @@ namespace Palete {
 		
 		public void add_signal(GirObject parent, Vala.Signal sig)
 		{
+			GLib.debug("Signal: %s", sig.name);
 			var c = new GirObject("Signal",sig.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
@@ -486,6 +489,7 @@ namespace Palete {
 		
 		public void add_method(GirObject parent, Vala.Method met)
 		{
+			GLib.debug("Method: %s", met.name);
 			var n = met.name == null ? "" : met.name;
 			var ty  = "Method";
 			if (met is Vala.CreationMethod) {
@@ -552,7 +556,7 @@ namespace Palete {
 		
 		public GirObject add_param(GirObject parent, Vala.Parameter pam)
 		{
-			
+			GLib.debug("Param: %s", pam.name);
 			var n = pam.name;
 			if (pam.ellipsis) {
 				n = "___";
