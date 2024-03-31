@@ -78,6 +78,7 @@
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
             { "language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
+            { "gir-test", 0, 0, OptionArg.STRING, ref opt_gir_test, "run gir test on this file", null },
             { "drop-list", 0, 0, OptionArg.STRING, ref opt_drop_list, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
             
@@ -93,7 +94,8 @@
 		public static string opt_test;  
 		public static string opt_drop_list;
 		public static string opt_language_server;
-        
+		public static string opt_gir_test;
+		
         public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
 		public static bool opt_list_projects = false;
@@ -178,7 +180,8 @@
 			this.listProjects();
 			var cur_project = this.compileProject();
 			this.dropList(cur_project); // --drop-list
-			this.languageServer(cur_project); // --language-server			
+			this.languageServer(cur_project); // --language-server
+			this.girTest(cur_project); // -vapi/vala parser
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
 			this.languageServer(cur_project);
@@ -604,6 +607,68 @@
 			
 			 
 			loop.run();
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
+		}
+		void girTest(Project.Project? cur_project)
+		{
+			if (BuilderApplication.opt_gir_test == null) {
+				return;
+			}
+			if (cur_project == null) {
+				GLib.error("missing project, use --project to select which project");
+			}/*
+			var file = cur_project.getByRelPath(BuilderApplication.opt_language_server);
+			if (file == null) {
+				// then compile them all, and compare them...
+
+	 			if (!GLib.FileUtils.test(BuilderApplication.opt_language_server, FileTest.EXISTS)) {
+					GLib.error("missing file %s in project %s", BuilderApplication.opt_language_server, cur_project.name);
+
+	 			}
+	 			// in theory we can test a vapi?
+ 				file = new JsRender.PlainFile(cur_project,BuilderApplication.opt_language_server);
+			}
+			
+			var ls = file.getLanguageServer();
+			if (ls == null) {
+				GLib.error("No langauge server returned for file:%s", file.relpath);
+			}
+			
+			//GLib.debug("started server - sleep 30 secs so you can gdb attach");
+			//Posix.sleep( 30 );
+			var loop = new MainLoop();
+			GLib.Timeout.add_seconds(1, () => {
+			 	if (!ls.isReady()) {
+			 		GLib.debug("LS not ready - try again");
+				
+			 		return true;
+		 		}
+				//GLib.debug("Sending document_open");
+				// it's ready..
+				 
+				//ls.document_open(file);
+				//ls.document_save.begin( file, (o,res) => {
+				//	ls.document_save.end(res);
+				 //});
+				
+				//ls.syntax.begin(file, (obj,res) => {
+				//	ls.syntax.end(res);
+				
+				//});				
+				GLib.debug("Sending docSybmols");
+				
+				ls.documentSymbols.begin(file, (o,res) => {
+					GLib.debug("Got doc symbols return");
+					ls.documentSymbols.end(res);
+				});
+				
+				return false;
+				
+			});
+			
+			 
+			loop.run();
+			*/
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 			
