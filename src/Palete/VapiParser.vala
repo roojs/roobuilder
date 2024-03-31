@@ -374,7 +374,7 @@ namespace Palete {
 		}
 		public void add_delegate(GirObject parent, Vala.Delegate sig)
 		{
-			GLib.debug("Delegate: %s", prop.name);
+			GLib.debug("Delegate: %s", sig.name);
 			var c = new GirObject("Delegate",   sig.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
