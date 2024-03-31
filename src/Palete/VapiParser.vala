@@ -727,27 +727,6 @@ namespace Palete {
 			
 			
 			 
-			// core packages we are interested in for the builder..
-			// some of these may fail... - we probalby need a better way to handle this..
-			/*
-			context.add_external_package ("gtk+-3.0");
-			context.add_external_package ("libsoup-2.4");
-			if (!context.add_external_package ("webkit2gtk-4.0")) {
-				context.add_external_package ("webkit2gtk-3.0");
-			}
-			// these are supposed to be in the 'deps' file, but it's not getting read..
-			context.add_external_package ("cogl-1.0");
-			context.add_external_package ("json-glib-1.0");
-			context.add_external_package ("clutter-gtk-1.0");
-
-
-		    
-			context.add_external_package ("gdl-3.0");
-			context.add_external_package ("gtksourceview-3.0");
-			context.add_external_package ("vte-2.90"); //??? -- hopefullly that works..
-			*/
-			//add_documented_files (context, settings.source_files);
-		
 			Vala.Parser parser = new Vala.Parser ();
 			parser.parse (context);
 			//gir_parser.parse (context);
