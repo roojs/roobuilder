@@ -609,6 +609,10 @@
 			loop.run();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
+		/**
+		language server doesnt really give us a rich data set on code,
+		so let's see if we can use the existing GIR code to gather that data.
+		*/
 		void girTest(Project.Project? cur_project)
 		{
 			if (BuilderApplication.opt_gir_test == null) {
@@ -616,7 +620,13 @@
 			}
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
-			}/*
+			}
+			GLib.debug("running vapiparser");
+			var vp = new Palete.VapiParser((Project.Gtk) cur_project);
+			vp.create_valac_tree();
+			
+			
+			/*
 			var file = cur_project.getByRelPath(BuilderApplication.opt_language_server);
 			if (file == null) {
 				// then compile them all, and compare them...
