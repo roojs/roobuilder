@@ -78,7 +78,7 @@ namespace Palete {
 		}
 		
 	
-		public Symbol.ns(Symbol parent, Vala.Namespace ns)
+		public Symbol.new_namespace(Symbol parent, Vala.Namespace ns)
 		{
 			
 			this.initSymbol(ns);
@@ -86,28 +86,28 @@ namespace Palete {
 			this.stype = Lsp.SymbolType.Namespace;
 			
 			foreach(var c in ns.get_classes()) {
-				this.add_class(this, c);
+				new Symbol.new_class(this, c);
 			}
 			foreach(var c in ns.get_enums()) {
-				this.add_enum(this, c);
+				new Symbol.new_enum(this, c);
 			}
 			foreach(var c in ns.get_interfaces()) {
-				this.add_interface(this, c);
+				new Symbol.new_interface(this, c);
 			}
 			foreach(var c in ns.get_namespaces()) {
-				this.add_namespace(this, c);
+				new Symbol.newnamespace(this, c);
 			}
 			foreach(var c in ns.get_methods()) {
-				this.add_method(thithis, c);
+				new Symbol.new_method(thithis, c);
 			}
 			
-			foreach(var c in element.get_structs()) {
-				this.add_struct(thiz, c);
+			foreach(var c in ns.get_structs()) {
+				new Symbol.new Symbol.struct(thiz, c);
 			}
-			foreach(var c in element.get_delegates()) {
-				this.add_delegate(this, c);
+			foreach(var c in elnsment.get_delegates()) {
+				new Symbol.new Symbol.delegate(this, c);
 			}
-			ns.accept_children(this); // catch sub namespaces..
+ 
  
 			
 			
