@@ -62,7 +62,8 @@ namespace Palete {
 			this.begin = new Lsp.Range(ns.source_reference.begin);
 			this.end = new Lsp.Range(ns.source_reference.end);
 			this.name = ns.name;
-			this.
+			this.stype = Lsp.SymbolType.Namespace;
+			
 			
 		}
 		
