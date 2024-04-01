@@ -17,12 +17,15 @@ namespace Palete {
 	
 		static Gee.HashMap<string, SymbolFile> files;
 		
-		public static SymbolFile factory(string path, int version) 
+		public static SymbolFile factory(string path) 
 		{
-			if (files.has_key(path) && files.get(path).version == version) {
+			if (files.has(path)) { // && files.get(path).version == version) {
 				return files.get(path);
 				
 			}
+			//version = filemtime....
+			var version = 111;
+			
 			this.files.set(path, new SymbolFile(path,version));
 			return  files.get(path);
 				
@@ -44,9 +47,23 @@ namespace Palete {
 	
 	public class Symbol {
 	
+		int id = -1;
+		Lsp.SymbolType stype { get; set; default = lsp.SymbolType.NONE; }
+		SymbolFile file;
+		Lsp.Range begin  { get; set; }
+		Lsp.Range end { get; set; }
+		
+		
+		
+	
 		public Symbol.ns(Vala.Namespace ns)
 		{
-		
+			this.file = SymbolFile.factory(ns.source_reference.file.filename);
+			this.begin = new Lsp.Range(ns.source_reference.begin);
+			this.end = new Lsp.Range(ns.source_reference.end);
+			this.name = ns.name;
+			this.
+			
 		}
 		
 	
