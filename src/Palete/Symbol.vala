@@ -42,7 +42,15 @@ namespace Palete {
 		
 	}
 	
-	public class Symbol
+	public class Symbol {
+	
+		public Symbol.ns(Vala.Namespace ns)
+		{
+		
+		}
+		
+	
+	}
 	
 	
 }
