@@ -74,16 +74,41 @@ namespace Palete {
 			this.end_col = s.source_reference.end.col;
 			
 			this.end = new Lsp.Range(ns.source_reference.end);
+			this.file.add(this);
 		}
 		
 	
-		public Symbol.ns(Vala.Namespace ns, Symbol parent  null)
+		public Symbol.ns(Symbol parent, Vala.Namespace ns)
 		{
 			
 			this.initSymbol(ns);
 			this.name = ns.name;
 			this.stype = Lsp.SymbolType.Namespace;
-			this.parent = parent;
+			
+			foreach(var c in ns.get_classes()) {
+				this.add_class(this, c);
+			}
+			foreach(var c in ns.get_enums()) {
+				this.add_enum(this, c);
+			}
+			foreach(var c in ns.get_interfaces()) {
+				this.add_interface(this, c);
+			}
+			foreach(var c in ns.get_namespaces()) {
+				this.add_namespace(this, c);
+			}
+			foreach(var c in ns.get_methods()) {
+				this.add_method(thithis, c);
+			}
+			
+			foreach(var c in element.get_structs()) {
+				this.add_struct(thiz, c);
+			}
+			foreach(var c in element.get_delegates()) {
+				this.add_delegate(this, c);
+			}
+			ns.accept_children(this); // catch sub namespaces..
+ 
 			
 			
 		}
