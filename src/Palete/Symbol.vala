@@ -26,7 +26,7 @@ namespace Palete {
 			//version = filemtime....
 			var version = 111;
 			
-			this.files.set(path, new SymbolFile(path,version));
+			files.set(path, new SymbolFile(path,version));
 			return  files.get(path);
 				
 		}
