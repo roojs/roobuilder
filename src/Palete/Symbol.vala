@@ -74,7 +74,7 @@ namespace Palete {
 			this.end_col = s.source_reference.end.col;
 			
 			this.end = new Lsp.Range(ns.source_reference.end);
-			this.file.add(this);
+			this.file.add(this); //referenced...
 		}
 		
 	
