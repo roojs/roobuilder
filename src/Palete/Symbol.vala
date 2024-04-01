@@ -52,6 +52,7 @@ namespace Palete {
 		SymbolFile file;
 		Lsp.Range begin  { get; set; }
 		Lsp.Range end { get; set; }
+		string name;
 		
 		
 		
