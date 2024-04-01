@@ -15,7 +15,7 @@ namespace Palete {
 	
 	public class SymbolFile {
 	
-		static Gee.HashMap<string, SymbolFile> files { default = new Gee.HashMap<string, SymbolFile>(); };
+		static Gee.HashMap<string, SymbolFile> files { default = new Gee.HashMap<string, SymbolFile>(); }
 		
 		public static SymbolFile factory(string path) 
 		{
@@ -32,10 +32,10 @@ namespace Palete {
 		}
 	
 	
-		int id = -1;
-		string path { get; set; default = ""; }
-		int version { get; set; default = -1; } // utime?
-		Gee.ArrayList<Symbol> symbols ;
+		public int id = -1;
+		public string path { get; set; default = ""; }
+		public int version { get; set; default = -1; } // utime?
+		public Gee.ArrayList<Symbol> symbols ;
 		
 		public SymbolFile (string path, int version) {
 			this.path = path;
