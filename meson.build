@@ -32,6 +32,7 @@ deps = [
    dependency('gio-unix-2.0'),
    dependency('libadwaita-1'),
    dependency('roojspack-1.5'),
+   dependency('sqlite3'),
 
 ]
  
