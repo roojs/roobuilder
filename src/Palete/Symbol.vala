@@ -82,7 +82,7 @@ namespace Palete {
 			
 		}
 		
-		public void Symbol(Sybmol parent, Vala.Symbol s)
+		public void Symbol(Sybmol? parent, Vala.Symbol s)
 		{
 			this.parent = parent;
 			this.file = SymbolFile.factory(s.source_reference.file.filename);
@@ -95,7 +95,7 @@ namespace Palete {
 		}
 		
 	
-		public Symbol.new_namespace(Symbol parent, Vala.Namespace ns)
+		public Symbol.new_namespace(Symbol? parent, Vala.Namespace ns)
 		{
 			Symbol(parent,ns);
 			 
