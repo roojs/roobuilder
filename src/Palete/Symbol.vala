@@ -21,12 +21,11 @@ namespace Palete {
 		{
 			if (files.has_key(path)) { // && files.get(path).version == version) {
 				return files.get(path);
-				
 			}
 			//version = filemtime....
-			var version = 111;
+			var version = GLib.FileUtime.utime(path,UTimBuf.modtime);
 			
-			files.set(path, new SymbolFile(path,version));
+			files.set(path, new SymbolFile(path,-1));
 			return  files.get(path);
 				
 		}
@@ -36,6 +35,14 @@ namespace Palete {
 		public string path { get; set; default = ""; }
 		public int version { get; set; default = -1; } // utime?
 		public Gee.ArrayList<Symbol> symbols ;
+		bool is_parsed {
+			get {
+				return this.version ==  GLib.FileUtime.utime(this.path ,UTimBuf.modtime);
+			}
+			set {
+				this.version =  GLib.FileUtime.utime(this.path ,UTimBuf.modtime);
+			}
+		}
 		
 		public SymbolFile (string path, int version) {
 			this.path = path;
