@@ -565,7 +565,7 @@ namespace Lsp {
         Struct = 23,
         Event = 24,
         Operator = 25,
-        TypeParameter = 26
+        TypeParameter = 26,
         Delegate = 27,// ?? not standard.
         Parameter = 28, // ?? not standard.
         Signal = 29; // ?? not standard.
