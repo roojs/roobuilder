@@ -81,7 +81,7 @@ namespace Palete {
 			set {
 				if (value) {
 					this.version = this.cur_mod_time();
-					this.save_to_db();
+					this.db_write();
 				}
 			}
 		}
