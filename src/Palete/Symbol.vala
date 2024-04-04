@@ -70,10 +70,13 @@ namespace Palete {
 		int begin_col  { get; set; }
 		int end_line  { get; set; }
 		int end_col  { get; set; }
-		bool deprecated { get; set; } 
+		int sequence  { get; set; default = 0; } // parameters
 		
-		string name  { get; set; }
-		string type  { get; set; }
+		string name  { get; set;  default = "";  }
+		string type  { get; set;  default = ""; }
+		string direction { get; set; default = ""; }
+		
+		bool deprecated { get; set; default = false;  } 
 		bool is_abstract { get; set; default = false; }
 		bool is_sealed { get; set; default = false; }
  		bool is_readable { get; set; default = false; }
@@ -210,7 +213,7 @@ namespace Palete {
 		public Symbol.new_field(Symbol? parent, Vala.Field prop)	
 		{
 			Symbol(parent,prop);
-			this.name = prop.prop;
+			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Field;
 			this.type  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
 		}
@@ -223,29 +226,34 @@ namespace Palete {
 			 		
 		 	this.type = sig.return_type == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
-		 		
-		 	foreach(var p in cls.get_parameters()) {
-				new new_property(this, e);
+		 	var n  = 0;
+		 	foreach(var p in sig.get_parameters()) {
+				new new_parameter(this, e, n++);
 			}
+ 
+		}
+		public Symbol.new_parameter(Symbol? parent, Vala.Parameter p, int seq)	
+		{
+			Symbol(parent,sig);
+			this.name = pam.ellipsis ? "..." : sig.name;
+			this.stype = Lsp.SymbolKind.Parameter;
+			this.type = pam.ellipsis || pam.variable_type.type_symbol == null ? "" :
+				pam.variable_type.type_symbol.get_full_name();
 
-			foreach(var p in cls.get_signals()) {
-				new new_signal(this, e);
-			}
-			foreach(var p in cls.get_methods()) {
-				new new_method(this, e);
+			this.sequence = seq;
+			switch (pam.direction) {
+				case Vala.ParameterDirection.IN:
+					c.direction = "in";
+					break;
+				case Vala.ParameterDirection.OUT:
+					c.direction = "out";
+					break;
+				case Vala.ParameterDirection.REF:
+					c.direction = "ref";
+					break;
 			}
 			
-			if (cls.base_class != null) {
-				this.inherits.add(cls.base_class.get_full_name());
-			}
-			 
-		 	foreach(var p in cls.get_base_types()) {
-				if (p.type_symbol != null) {
-					this.implements.add(p.type_symbol.get_full_name());
-				}
-				 
-			}
-		}
+ 
 		
 		
 	}
