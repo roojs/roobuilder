@@ -22,8 +22,7 @@ namespace Palete {
 			if (files.has_key(path)) { // && files.get(path).version == version) {
 				return files.get(path);
 			}
-			//version = filemtime....
-			var version = 
+			
 			
 			files.set(path, new SymbolFile(path,-1));
 			return  files.get(path);
