@@ -110,10 +110,10 @@ namespace Palete {
 			this.stype = Lsp.SymbolKind.Enum;
 			
 			foreach(var e in cls.get_values()) {
-				new Symbol.new_enummember(this, e);
+				new new_enummember(this, e);
 			}
 			foreach(var e in cls.get_methods()) {
-				new Symbol.new_method(this, e);
+				new new_method(this, e);
 			}
 			//?? constants?
 			
@@ -123,15 +123,37 @@ namespace Palete {
 			Symbol(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.EnumMember;
-			
-
-
 				
 			this.type  = cls.type_reference == null ||  cls.type_reference.type_symbol == null ? "" : 
 					cls.type_reference.type_symbol.get_full_name();			
 			 
 		}
-		
+		public Symbol.new_interface(Symbol? parent, Vala.Interface cls)	
+		{
+			Symbol(parent,cls);
+			this.name = cls.name;
+			this.stype = Lsp.SymbolKind.Interface;
+				
+			
+			foreach(var p in cls.get_properties()) {
+				new new_property(this, e);
+			}
+			// methods...
+			foreach(var p in cls.get_signals()) {
+				new new_signal(this, e);
+			}
+			
+			foreach(var p in cls.get_methods()) {
+				// skip static methods..
+				//if (p.bindig != Vala.MemberBinding.INSTANCE &&
+				//	!(p is Vala.CreationMethod)
+				//) {
+				//	continue;
+				//}
+				new new_method(this, e);
+			}		
+			 
+		}
 	
 	}
 	
