@@ -81,6 +81,10 @@ namespace Palete {
 		
 		void db_write()
 		{
+			this.replaceInto();
+			
+			
+			
 			var ids = this.db_get_ids();
 			string[] new_ids = {};
 			foreach (var s in this.symbols) {
@@ -105,5 +109,24 @@ namespace Palete {
 			return ret;
 		}
 		
+		void replaceInto()
+		{
+			
+			if (this.id < 1) {
+				this.init_id();
+			}
+			var stmt = db_prepare("REPLACE INTO 
+				files (id, path, version) 
+			VALUES
+				($id, $path, $verison)
+			");
+			  
+			stmt.bind_int (stmt.bind_parameter_index ("$id"), this.id);
+			stmt.bind_string (stmt.bind_parameter_index ("$path"), this.path);
+			stmt.bind_int (stmt.bind_parameter_index ("$version"), this.version);
+			
+		
+		
+		}
 	}
 }
