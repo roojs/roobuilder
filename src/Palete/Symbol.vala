@@ -232,10 +232,10 @@ namespace Palete {
 			}
  
 		}
-		public Symbol.new_parameter(Symbol? parent, Vala.Parameter p, int seq)	
+		public Symbol.new_parameter(Symbol? parent, Vala.Parameter pam, int seq)	
 		{
-			Symbol(parent,sig);
-			this.name = pam.ellipsis ? "..." : sig.name;
+			Symbol(parent,pam);
+			this.name = pam.ellipsis ? "..." : pam.name;
 			this.stype = Lsp.SymbolKind.Parameter;
 			this.type = pam.ellipsis || pam.variable_type.type_symbol == null ? "" :
 				pam.variable_type.type_symbol.get_full_name();
