@@ -200,7 +200,7 @@ namespace Palete {
 		public Symbol.new_property(Symbol? parent, Vala.Property prop)	
 		{
 			Symbol(parent,prop);
-			this.name = cls.prop;
+			this.name = prop.prop;
 			this.stype = Lsp.SymbolKind.Property;
 			this.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
 
@@ -210,9 +210,9 @@ namespace Palete {
 		public Symbol.new_field(Symbol? parent, Vala.Field prop)	
 		{
 			Symbol(parent,prop);
-			this.name = cls.prop;
+			this.name = prop.prop;
 			this.stype = Lsp.SymbolKind.Field;
-			this.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
+			this.type  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
 		}
 		
 		
