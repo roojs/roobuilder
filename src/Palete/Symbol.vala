@@ -131,7 +131,7 @@ namespace Palete {
 				new new_method(this, c);
 			}
 			
-			foreach(var c in element.get_structs()) {
+			foreach(var c in ns.get_structs()) {
 				new new_struct(this, c);
 			}
 			foreach(var c in ns.get_delegates()) {
