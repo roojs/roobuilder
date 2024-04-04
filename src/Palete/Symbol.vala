@@ -253,7 +253,39 @@ namespace Palete {
 					break;
 			}
 			
- 
+ 		}
+ 		public Symbol.new_signal(Symbol? parent, Vala.Signal sig)	
+		{
+			Symbol(parent,sig);
+			this.name = sig.name;
+			this.stype = Lsp.SymbolKind.Signal;
+			 		
+		 	this.type = sig.return_type == null ? "": 
+		 		sig.return_type.type_symbol.get_full_name();
+		 	var n  = 0;
+		 	foreach(var p in sig.get_parameters()) {
+				new new_parameter(this, e, n++);
+			}
+
+		}
+		public Symbol.new_method(Symbol? parent, Vala.Method sig)	
+		{
+			Symbol(parent,sig);
+			this.name = sig.name;
+			this.stype = Lsp.SymbolKind.Signal;
+			if (sig is Vala.CreationMethod) {
+				this.is_ctor = true;
+			}
+			 		
+		 	this.type = sig.return_type == null ? "": 
+		 		sig.return_type.type_symbol.get_full_name();
+		 	var n  = 0;
+		 	foreach(var p in sig.get_parameters()) {
+				new new_parameter(this, e, n++);
+			}
+
+		}
+				
 		
 		
 	}
