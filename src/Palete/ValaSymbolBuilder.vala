@@ -30,7 +30,7 @@ namespace Palete {
 			}
 			
 			// parse it...
-	        file.accept_children (this);
+	        sfile.accept_children (this);
 
 			sf.is_parsed = true;
 			
