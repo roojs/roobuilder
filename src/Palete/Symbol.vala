@@ -82,7 +82,7 @@ namespace Palete {
 			
 		}
 		
-		public void Symbol(Sybmol? parent, Vala.Symbol s)
+		public void Symbol(Symbol? parent, Vala.Symbol s)
 		{
 			this.parent = parent;
 			this.file = SymbolFile.factory(s.source_reference.file.filename);
@@ -103,8 +103,8 @@ namespace Palete {
 		}
 		public Symbol.new_enum(Symbol? parent, Vala.Enum cls)
 		{
-			Symbol(parent,ns);
-			this.name = ns.name;
+			Symbol(parent,cls);
+			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Enum;
 			
 			foreach(var e in cls.get_values()) {
@@ -113,8 +113,8 @@ namespace Palete {
 		}
 		public Symbol.new_enummember(memberSymbol? parent, Vala.EnumMember cls)	
 		{
-			Symbol(parent,ns);
-			this.name = ns.name;
+			Symbol(parent,cls);
+			this.name = cls.name;
 				
 			this.type  = e.type_reference == null ||  e.type_reference.type_symbol == null ? "" : 
 					e.type_reference.type_symbol.get_full_name();			
