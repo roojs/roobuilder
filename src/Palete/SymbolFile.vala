@@ -123,7 +123,7 @@ namespace Palete {
 			  
 			stmt.bind_int (stmt.bind_parameter_index ("$id"), this.id);
 			stmt.bind_string (stmt.bind_parameter_index ("$path"), this.path);
-			stmt.bind_int (stmt.bind_parameter_index ("$version"), this.version);
+			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), this.version);
 			
 		
 		
