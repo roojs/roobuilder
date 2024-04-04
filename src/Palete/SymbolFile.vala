@@ -5,6 +5,7 @@ namespace Palete {
 	
 		static Gee.HashMap<string, SymbolFile> files { get; set; default = new Gee.HashMap<string, SymbolFile>(); }
 		
+		static int _max_id = 0;
 		static Sqlite.Database? _db = null;
 		static Sqlite.Database db {
 			get {
@@ -28,6 +29,22 @@ namespace Palete {
 		{
 			string errmsg;
 			db.exec (q, null, out errmsg);
+		}
+		static void db_max_id(string table)
+		{
+			if (max_ids.has_key(table)) {
+				return;
+			}
+			
+			var s = db_prepare("SELECT MAX(id) FROM " + table);
+			if (s.step() == Sqlite.ROW) {
+				max_ids.set(table, stmt.column_int(0) + 1);
+			}
+			max_ids.set(table,   1);
+		}
+		static Gee.HashMap<string,int> max_ids {
+			get; set;
+			default = new Gee.HashMap<string,int>(); 
 		}
 		
 		
@@ -73,6 +90,7 @@ namespace Palete {
 			this.path = path;
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
+			this.db_load_file(); 
 		}
 		
 		
@@ -81,9 +99,6 @@ namespace Palete {
 		
 		void db_write()
 		{
-			this.replaceInto();
-			
-			
 			
 			var ids = this.db_get_ids();
 			string[] new_ids = {};
@@ -104,17 +119,15 @@ namespace Palete {
 			var stmt = db_prepare("SELECT id  FROM symbols WHERE 
 				file_id = " + this.id.to_string());
 			while (stmt.step() == Sqlite.ROW) {
-				ret += stmt.column_text(0);
+				ret += stmt.column_text(0); //?? to_string?
 			}
 			return ret;
 		}
 		
-		void replaceInto()
+		void db_replace_into()
 		{
 			
-			if (this.id < 1) {
-				this.init_id();
-			}
+			 
 			var stmt = db_prepare("REPLACE INTO 
 				files (id, path, version) 
 			VALUES
@@ -127,6 +140,21 @@ namespace Palete {
 			
 		
 		
+		}
+		void db_load()
+		{
+			var stmt = db_prepare("SELECT id, verson FROM files where path = $path");
+			stmt.bind_string (stmt.bind_parameter_index ("$path"), this.path);	 
+			if (stmt.step() == Sqlite.ROW) { 
+				this.id = stmt.column_int(0);
+				this.verison = stmt.column_int64(1);
+				return;
+			}
+			db_max_id("files");
+			this.id = max_ids.get("files");
+			max_ids.set("files", this.id + 1);
+			db_replace_into();
+			
 		}
 	}
 }

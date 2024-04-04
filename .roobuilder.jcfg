@@ -74,7 +74,9 @@
                 "src/Palete/HoverProvider.vala",
                 "src/Builder4/CodeInfo.bjs",
                 "src/Palete/ValaSymbolBuilder.vala",
-                "src/Palete/Symbol.vala"
+                "src/Palete/Symbol.vala",
+                "src/Palete/SymbolFile.vala",
+                "src/Palete/SymbolVala.vala"
             ]
         }
     ],
@@ -98,6 +100,7 @@
         "jsonrpc-glib-1.0",
         "gio-unix-2.0",
         "libadwaita-1",
-        "roojspack-1.5"
+        "roojspack-1.5",
+        "sqlite3"
     ]
 }
