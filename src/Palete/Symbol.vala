@@ -23,7 +23,7 @@ namespace Palete {
 				return files.get(path);
 			}
 			//version = filemtime....
-			var version = GLib.FileUtime.utime(path,UTimBuf.modtime);
+			var version = 
 			
 			files.set(path, new SymbolFile(path,-1));
 			return  files.get(path);
@@ -35,12 +35,18 @@ namespace Palete {
 		public string path { get; set; default = ""; }
 		public int version { get; set; default = -1; } // utime?
 		public Gee.ArrayList<Symbol> symbols ;
+		public int64 cur_mod_time() {
+			return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+		}
+		
 		bool is_parsed {
 			get {
-				return this.version ==  GLib.FileUtime.utime(this.path ,UTimBuf.modtime);
+				return this.version ==  this.cur_mod_time();
 			}
 			set {
-				this.version =  GLib.FileUtime.utime(this.path ,UTimBuf.modtime);
+				if (value) {
+					this.version = this.cur_mod_time();
+				}
 			}
 		}
 		
