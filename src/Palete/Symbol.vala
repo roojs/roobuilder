@@ -76,6 +76,8 @@ namespace Palete {
 		string type  { get; set; }
 		bool is_abstract { get; set; default = false; }
 		bool is_sealed { get; set; default = false; }
+ 		bool is_readable { get; set; default = false; }
+		bool is_writable { get; set; default = false; }
  
  		Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
@@ -169,7 +171,7 @@ namespace Palete {
 		{
 			Symbol(parent,cls);
 			this.name = cls.name;
-			this.stype = Lsp.SymbolKind.Struct;
+			this.stype = Lsp.SymbolKind.Class;
 			this.is_abstract = cls.is_abstract;
 			this.is_sealed = cls.is_sealed;	
 			 		
@@ -183,6 +185,7 @@ namespace Palete {
 			foreach(var p in cls.get_methods()) {
 				new new_method(this, e);
 			}
+			
 			if (cls.base_class != null) {
 				this.inherits.add(cls.base_class.get_full_name());
 			}
@@ -193,6 +196,19 @@ namespace Palete {
 				}
 				 
 			}
+		}
+		public Symbol.new_property(Symbol? parent, Vala.Property prop)	
+		{
+			Symbol(parent,prop);
+			this.name = cls.prop;
+			this.stype = Lsp.SymbolKind.Property;
+			this.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
+
+		 	c.is_readable = prop.get_accessor != null ?  prop.get_accessor.readable : false;
+			c.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable ||  prop.set_accessor.construction : false;
+		 		
+		 	 
+			 
 		}
 	
 	}
