@@ -77,6 +77,8 @@ namespace Palete {
 		bool is_abstract { get; set; default = false; }
 		bool is_sealed { get; set; default = false; }
  
+ 		Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
+  		Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
 		
 		Symbol? parent = null;
 		int parent_id {
@@ -180,8 +182,17 @@ namespace Palete {
 			}
 			foreach(var p in cls.get_methods()) {
 				new new_method(this, e);
-			}	
+			}
+			if (cls.base_class != null) {
+				this.inherits.add(cls.base_class.get_full_name());
+			}
 			 
+		 	foreach(var p in cls.get_base_types()) {
+				if (p.type_symbol != null) {
+					this.implements.add(p.type_symbol.get_full_name());
+				}
+				 
+			}
 		}
 	
 	}
