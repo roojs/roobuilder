@@ -50,7 +50,7 @@ namespace Palete {
 		int id = -1;
 		Lsp.SymbolKind stype { get; set; default = 0; }
 		SymbolFile 	file;
-		int begin_line  { get; set; 
+		int begin_line  { get; set; } 
 		int begin_col  { get; set; }
 		int end_line  { get; set; }
 		int end_col  { get; set; }
@@ -60,9 +60,10 @@ namespace Palete {
 		Symbol parent = null;
 		int parent_id {
 			get {
-				return parent == null? 0 :  parent.id;
+				return this.parent == null? 0 :  this.parent.id;
 			}
-			private set;
+			private set {}
+			
 		}
 		
 		public void initSymbol(Vala.Symbol s)
