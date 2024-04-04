@@ -163,7 +163,7 @@ namespace Palete {
 				
 			 		
 		 	foreach(var p in cls.get_fields()) {
-				this.add_field(c, p);
+				new new_field(this, p);
 			}
 			 
 		}
