@@ -9,11 +9,11 @@ namespace Palete {
 		static Sqlite.Database db {
 			get {
 			 	if (_db != null) {
-			 		return db;
+			 		return _db;
 		 		}
 
 		 		Sqlite.Database.open (BuilderApplication.configDirectory() + "/symbols.db", out _db);
-			
+				return _db;
 			}
 			
 		}
