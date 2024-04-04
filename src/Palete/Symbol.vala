@@ -205,12 +205,17 @@ namespace Palete {
 			this.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
 
 		 	this.is_readable = prop.get_accessor != null ?  prop.get_accessor.readable : false;
-			this.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable ||  prop.set_accessor.construction : false;
-		 		
-		 	 
-			 
+			this.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable ||  prop.set_accessor.construction : false;	 
 		}
-	
+		public Symbol.new_field(Symbol? parent, Vala.Field prop)	
+		{
+			Symbol(parent,prop);
+			this.name = cls.prop;
+			this.stype = Lsp.SymbolKind.Field;
+			this.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
+		}
+		
+		
 	}
 	
 	
