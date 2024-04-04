@@ -98,12 +98,30 @@ namespace Palete {
 		public Symbol.new_namespace(Symbol? parent, Vala.Namespace ns)
 		{
 			Symbol(parent,ns);
-			 
 			this.name = ns.name;
-			this.stype = Lsp.SymbolKind.Namespace;
+			this.stype = Lsp.SymbolKind.Namespace; 
+		}
+		public Symbol.new_enum(Symbol? parent, Vala.Enum cls)
+		{
+			Symbol(parent,ns);
+			this.name = ns.name;
+			this.stype = Lsp.SymbolKind.Enum;
+			
+			foreach(var e in cls.get_values()) {
+				new Symbol.new_enummember(this. e);
+			}
+		}
+		public Symbol.new_enummember(memberSymbol? parent, Vala.EnumMember cls)	
+		{
+			Symbol(parent,ns);
+			this.name = ns.name;
+				
+			this.type  = e.type_reference == null ||  e.type_reference.type_symbol == null ? "" : 
+					e.type_reference.type_symbol.get_full_name();			
+		
+				
 			 
 		}
-		
 		
 	
 	}
