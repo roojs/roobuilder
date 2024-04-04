@@ -103,7 +103,7 @@ namespace Palete {
 			var ids = this.db_get_ids();
 			string[] new_ids = {};
 			foreach (var s in this.symbols) {
-				s.replaceInto();
+				s.db_replace_into();
 				new_ids += s.id.to_string();
 			}
 			db_exec("DELETE FROM symbols WHERE 
