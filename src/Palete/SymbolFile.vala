@@ -90,7 +90,7 @@ namespace Palete {
 			this.path = path;
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
-			this.db_load_file(); 
+			this.db_load(); 
 		}
 		
 		
