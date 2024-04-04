@@ -97,12 +97,13 @@ namespace Palete {
 		{
 			string[]  ret = {};
 	 
-			db_prepare("SELECT id  FROM symbols WHERE 
+			var stmt = db_prepare("SELECT id  FROM symbols WHERE 
 				file_id = " + this.id.to_string());
-				
-			
-			
-		
+			while (stmt.step () == Sqlite.ROW) {
+				ret += stmt.column_text(0);
+			}
+			return ret;
+		}
 		
 	}
 }
