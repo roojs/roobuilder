@@ -117,7 +117,7 @@ namespace Palete {
 		
 		
 		
-		public void create_valac_tree( )
+		public void create_valac_tree( string  build_module)
 		{
 			// init context:
 			context = new Vala.CodeContext ();
@@ -197,8 +197,51 @@ namespace Palete {
 				}
 				GLib.debug("ADD vapi '%s'",pkgs.get(i));
 				context.add_external_package (pkgs.get(i));
-			}			
-			
+			}	
+			var pr = this.scan_project;
+			var cg =  this.scan_project.compilegroups.get(build_module);
+			for (var i = 0; i < cg.sources.size; i++) {
+				var path = cg.sources.get(i);
+				GLib.debug("Try add source file %s", path);
+				// flip bjs to vala
+				if (path.has_suffix(".bjs")) {
+					path  = path.splice(path.length -4, path.length, ".vala");
+					GLib.debug("Change source file %s", path);
+				}
+				if (!path.has_suffix(".vala") && path.has_suffix(".c") ) {
+					continue;
+				}
+				if (!FileUtils.test(pr.path + "/" + path, FileTest.EXISTS)) {
+					continue;
+				}       
+                // skip thie original
+				//if (pr.path + "/" + path == this.original_filepath) {
+				//	GLib.debug("Add orig source file %s", path);
+				//	valac += " " + path;
+				//	continue;
+				//}
+				if (FileUtils.test(pr.path + "/" + path, FileTest.IS_DIR)) {
+					continue;
+				}
+				GLib.debug("Add source file %s", path);
+				
+				//valac += " " + pr.path + "/" + path;
+				
+				if ( path.has_suffix(".c")) {
+					context.add_c_source_file(path);
+					continue;
+				}
+				
+				
+				var xsf = new Vala.SourceFile (
+					context,
+					Vala.SourceFileType.SOURCE, 
+					pr.path + "/" +  path
+				);
+				xsf.add_using_directive (ns_ref);
+				context.add_source_file(xsf);
+				
+			}
 			
 			
 			 
