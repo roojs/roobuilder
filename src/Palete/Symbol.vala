@@ -230,7 +230,7 @@ namespace Palete {
 		 	foreach(var p in sig.get_parameters()) {
 				new new_parameter(this, e, n++);
 			}
- 
+
 		}
 		public Symbol.new_parameter(Symbol? parent, Vala.Parameter pam, int seq)	
 		{
