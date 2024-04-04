@@ -48,9 +48,9 @@ namespace Palete {
 	public class Symbol {
 	
 		int id = -1;
-		Lsp.SymbolType stype { get; set; default = lsp.SymbolType.NONE; }
+		Lsp.SymbolKind stype { get; set; default = 0; }
 		SymbolFile 	file;
-		int begin_line  { get; set; }
+		int begin_line  { get; set; 
 		int begin_col  { get; set; }
 		int end_line  { get; set; }
 		int end_col  { get; set; }
