@@ -81,7 +81,8 @@ namespace Palete {
 		bool is_sealed { get; set; default = false; }
  		bool is_readable { get; set; default = false; }
 		bool is_writable { get; set; default = false; }
- 
+ 		bool is_ctor { get; set; default = false; }
+ 		
  		Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
 		
