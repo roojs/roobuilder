@@ -71,6 +71,7 @@ namespace Palete {
 		int end_line  { get; set; }
 		int end_col  { get; set; }
 		bool deprecated { get; set; } 
+		
 		string name  { get; set; }
 		string type  { get; set; }
 		
