@@ -70,21 +70,20 @@ namespace Palete {
 		{
 			this.file = SymbolFile.factory(s.source_reference.file.filename);
 			this.begin_line = s.source_reference.begin.line;
-			this.begin_col = s.source_reference.end.line;
+			this.begin_col = s.source_reference.begin.column;
 			this.end_line = s.source_reference.end.line;
-			this.end_col = s.source_reference.end.col;
-			
-			this.end = new Lsp.Range(ns.source_reference.end);
+			this.end_col = s.source_reference.end.column;
+
 			this.file.symbols.add(this); //referenced...
 		}
 		
-	
+	/*
 		public Symbol.new_namespace(Symbol parent, Vala.Namespace ns)
 		{
 			
 			this.initSymbol(ns);
 			this.name = ns.name;
-			this.stype = Lsp.SymbolType.Namespace;
+			this.stype = Lsp.SymbolKind.Namespace;
 			
 			foreach(var c in ns.get_classes()) {
 				new Symbol.new_class(this, c);
@@ -113,6 +112,7 @@ namespace Palete {
 			
 			
 		}
+		*/
 		
 	
 	}
