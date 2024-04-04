@@ -215,6 +215,36 @@ namespace Palete {
 			this.type  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
 		}
 		
+		public Symbol.new_delegate(Symbol? parent, Vala.Delegate sig)	
+		{
+			Symbol(parent,sig);
+			this.name = sig.name;
+			this.stype = Lsp.SymbolKind.Delegate;
+			 		
+		 	this.type = sig.return_type == null ? "": sig.return_type.type_symbol.get_full_name();
+		 	foreach(var p in cls.get_properties()) {
+				new new_property(this, e);
+			}
+
+			foreach(var p in cls.get_signals()) {
+				new new_signal(this, e);
+			}
+			foreach(var p in cls.get_methods()) {
+				new new_method(this, e);
+			}
+			
+			if (cls.base_class != null) {
+				this.inherits.add(cls.base_class.get_full_name());
+			}
+			 
+		 	foreach(var p in cls.get_base_types()) {
+				if (p.type_symbol != null) {
+					this.implements.add(p.type_symbol.get_full_name());
+				}
+				 
+			}
+		}
+		
 		
 	}
 	
