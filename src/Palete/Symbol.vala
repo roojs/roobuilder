@@ -70,9 +70,9 @@ namespace Palete {
 		int begin_col  { get; set; }
 		int end_line  { get; set; }
 		int end_col  { get; set; }
-		
-		string name;
-		string type;
+		bool deprecated { get; set; } 
+		string name  { get; set; }
+		string type  { get; set; }
 		
 		
 		Symbol? parent = null;
@@ -92,7 +92,7 @@ namespace Palete {
 			this.begin_col = s.source_reference.begin.column;
 			this.end_line = s.source_reference.end.line;
 			this.end_col = s.source_reference.end.column;
-
+			this.deprecated  = s.version.deprecated;
 			this.file.symbols.add(this); //referenced...
 		}
 		
@@ -152,6 +152,18 @@ namespace Palete {
 				//}
 				new new_method(this, e);
 			}		
+			 
+		}
+		public Symbol.new_struct(Symbol? parent, Vala.Struct cls)	
+		{
+			Symbol(parent,cls);
+			this.name = cls.name;
+			this.stype = Lsp.SymbolKind.Struct;
+				
+			 		
+		 	foreach(var p in cls.get_fields()) {
+				this.add_field(c, p);
+			}
 			 
 		}
 	
