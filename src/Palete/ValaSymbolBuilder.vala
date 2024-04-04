@@ -21,6 +21,16 @@ namespace Palete {
 			 
 		}
 		 
+		public override void visit_source_file(Vala.SourceFile sfile)
+		{
+			// visit classes and namespaces..?
+			var sf = SymbolFile.factory(sfile.filename);
+			if (sf.is_parsed) {
+				return;
+			}
+		
+		}
+		 
 		
 		public override void visit_namespace (Vala.Namespace element) 
 		{
