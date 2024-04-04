@@ -160,6 +160,8 @@ roobuilder_src = files([
    'src/Builder4/CodeInfo.vala',
    'src/Palete/ValaSymbolBuilder.vala',
    'src/Palete/Symbol.vala',
+   'src/Palete/SymbolFile.vala',
+   'src/Palete/SymbolVala.vala',
 ])
 
 
