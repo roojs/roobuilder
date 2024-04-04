@@ -19,7 +19,7 @@ namespace Palete {
 		
 		public static SymbolFile factory(string path) 
 		{
-			if (files.has(path)) { // && files.get(path).version == version) {
+			if (files.has_key(path)) { // && files.get(path).version == version) {
 				return files.get(path);
 				
 			}
