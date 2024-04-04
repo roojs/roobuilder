@@ -566,7 +566,8 @@ namespace Lsp {
         Event = 24,
         Operator = 25,
         TypeParameter = 26
-        Delegate = 27; // ?? not standard.
+        Delegate = 27,// ?? not standard.
+        Parameter = 28; // ?? not standard.
         
         public string icon () { 
 	   		return "lang-" + this.to_string().replace( "LSP_SYMBOL_KIND_", "" ).down() + "-symbolic"; 
