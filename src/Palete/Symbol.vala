@@ -73,7 +73,7 @@ namespace Palete {
 		
 		string	 	name;
 		
-		Symbol parent = null;
+		public Symbol parent = null;
 		int parent_id {
 			get {
 				return this.parent == null? 0 :  this.parent.id;
@@ -82,8 +82,9 @@ namespace Palete {
 			
 		}
 		
-		public void initSymbol(Vala.Symbol s)
+		public void Symbol(Sybmol parent, Vala.Symbol s)
 		{
+			this.parent = parent;
 			this.file = SymbolFile.factory(s.source_reference.file.filename);
 			this.begin_line = s.source_reference.begin.line;
 			this.begin_col = s.source_reference.begin.column;
@@ -93,42 +94,16 @@ namespace Palete {
 			this.file.symbols.add(this); //referenced...
 		}
 		
-	/*
+	
 		public Symbol.new_namespace(Symbol parent, Vala.Namespace ns)
 		{
-			
-			this.initSymbol(ns);
+			Symbol(parent,ns);
+			 
 			this.name = ns.name;
 			this.stype = Lsp.SymbolKind.Namespace;
-			
-			foreach(var c in ns.get_classes()) {
-				new Symbol.new_class(this, c);
-			}
-			foreach(var c in ns.get_enums()) {
-				new Symbol.new_enum(this, c);
-			}
-			foreach(var c in ns.get_interfaces()) {
-				new Symbol.new_interface(this, c);
-			}
-			foreach(var c in ns.get_namespaces()) {
-				new Symbol.newnamespace(this, c);
-			}
-			foreach(var c in ns.get_methods()) {
-				new Symbol.new_method(thithis, c);
-			}
-			
-			foreach(var c in ns.get_structs()) {
-				new Symbol.new Symbol.struct(thiz, c);
-			}
-			foreach(var c in elnsment.get_delegates()) {
-				new Symbol.new Symbol.delegate(this, c);
-			}
- 
- 
-			
-			
+			 
 		}
-		*/
+		
 		
 	
 	}
