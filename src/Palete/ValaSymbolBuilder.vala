@@ -51,7 +51,7 @@ namespace Palete {
 				element.accept_children(this); // catch sub namespaces..
 				return;
 			}
-			new Symbol.new_namespace(null, element);
+			new SymbolVala.new_namespace(null, element);
 			element.accept_children(this); // catch sub namespaces..
 		}
 		 
