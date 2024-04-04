@@ -221,8 +221,10 @@ namespace Palete {
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Delegate;
 			 		
-		 	this.type = sig.return_type == null ? "": sig.return_type.type_symbol.get_full_name();
-		 	foreach(var p in cls.get_properties()) {
+		 	this.type = sig.return_type == null ? "": 
+		 		sig.return_type.type_symbol.get_full_name();
+		 		
+		 	foreach(var p in cls.get_parameters()) {
 				new new_property(this, e);
 			}
 
