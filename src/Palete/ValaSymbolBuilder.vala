@@ -180,7 +180,7 @@ namespace Palete {
 			
  
 			 			
-			var pkgs = this.fillDeps(this.project.packages);
+			var pkgs = this.fillDeps(this.scan_project.packages);
 			
 	    	
 	    	for (var i = 0; i < pkgs.size; i++) {
