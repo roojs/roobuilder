@@ -147,7 +147,7 @@ namespace Palete {
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), this.path);	 
 			if (stmt.step() == Sqlite.ROW) { 
 				this.id = stmt.column_int(0);
-				this.verison = stmt.column_int64(1);
+				this.version = stmt.column_int64(1);
 				return;
 			}
 			db_max_id("files");
