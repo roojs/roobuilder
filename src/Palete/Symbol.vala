@@ -141,18 +141,12 @@ namespace Palete {
 			foreach(var p in cls.get_properties()) {
 				new new_property(this, e);
 			}
-			// methods...
+
 			foreach(var p in cls.get_signals()) {
 				new new_signal(this, e);
 			}
 			
 			foreach(var p in cls.get_methods()) {
-				// skip static methods..
-				//if (p.bindig != Vala.MemberBinding.INSTANCE &&
-				//	!(p is Vala.CreationMethod)
-				//) {
-				//	continue;
-				//}
 				new new_method(this, e);
 			}		
 			 
@@ -177,9 +171,16 @@ namespace Palete {
 			this.is_abstract = cls.is_abstract;
 			this.is_sealed = cls.is_sealed;	
 			 		
-		 	foreach(var p in cls.get_fields()) {
-				new new_field(this, p);
+		 	foreach(var p in cls.get_properties()) {
+				new new_property(this, e);
 			}
+
+			foreach(var p in cls.get_signals()) {
+				new new_signal(this, e);
+			}
+			foreach(var p in cls.get_methods()) {
+				new new_method(this, e);
+			}	
 			 
 		}
 	
