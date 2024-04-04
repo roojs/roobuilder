@@ -121,9 +121,11 @@ namespace Palete {
 		public Symbol.new_enummember(Symbol? parent, Vala.EnumValue cls)	
 		{
 			Symbol(parent,cls);
+			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.EnumMember;
 			
-			this.name = cls.name;
+
+
 				
 			this.type  = e.type_reference == null ||  e.type_reference.type_symbol == null ? "" : 
 					e.type_reference.type_symbol.get_full_name();			
