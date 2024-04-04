@@ -5,7 +5,25 @@ namespace Palete {
 	
 		static Gee.HashMap<string, SymbolFile> files { get; set; default = new Gee.HashMap<string, SymbolFile>(); }
 		
+		static Sqlite.Database? _db = null;
+		static Sqlite.Database db {
+			get {
+			 	if (_db != null) {
+			 		return db;
+		 		}
+
+		 		Sqlite.Database.open ("test.db", out _db);
+			
+			}
+			
+		}
 		
+		static Sqlite.Statement db_prepare(string q) 
+		{
+			Sqlite.Statement stmt;
+			db.prepare_v2 (q, q.length, out stmt);
+			return stmt;
+		}
 		
 		
 		
@@ -53,6 +71,8 @@ namespace Palete {
 			this.symbols = new Gee.ArrayList<Symbol>();
 		}
 		
+		
+		
 		// save a single file to database
 		
 		void db_write()
@@ -72,7 +92,8 @@ namespace Palete {
 		string[] db_get_ids()
 		{
 			string[]  ret = {};
-			db_select("SELECT id  FROM symbols WHERE 
+	 
+			db_prepare("SELECT id  FROM symbols WHERE 
 				file_id = " + this.id.to_string());
 				
 			
