@@ -175,15 +175,15 @@ namespace Palete {
 				
 			
 			foreach(var p in cls.get_properties()) {
-				new new_property(this, e);
+				new new_property(this, p);
 			}
 
 			foreach(var p in cls.get_signals()) {
-				new new_signal(this, e);
+				new new_signal(this, p);
 			}
 			
 			foreach(var p in cls.get_methods()) {
-				new new_method(this, e);
+				new new_method(this, p);
 			}		
 			 
 		}
