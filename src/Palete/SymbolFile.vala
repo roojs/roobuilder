@@ -24,7 +24,11 @@ namespace Palete {
 			db.prepare_v2 (q, q.length, out stmt);
 			return stmt;
 		}
-		
+		static void db_exec(string q) 
+		{
+			string errmsg;
+			db.exec (q, null, out errmsg);
+		}
 		
 		
 		
