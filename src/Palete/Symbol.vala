@@ -127,10 +127,8 @@ namespace Palete {
 
 
 				
-			this.type  = e.type_reference == null ||  e.type_reference.type_symbol == null ? "" : 
-					e.type_reference.type_symbol.get_full_name();			
-		
-				
+			this.type  = cls.type_reference == null ||  cls.type_reference.type_symbol == null ? "" : 
+					cls.type_reference.type_symbol.get_full_name();			
 			 
 		}
 		
