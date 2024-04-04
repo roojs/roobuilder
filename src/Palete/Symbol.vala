@@ -74,7 +74,9 @@ namespace Palete {
 		
 		string name  { get; set; }
 		string type  { get; set; }
-		
+		bool is_abstract { get; set; default = false; }
+		bool is_sealed { get; set; default = false; }
+ 
 		
 		Symbol? parent = null;
 		int parent_id {
@@ -161,6 +163,19 @@ namespace Palete {
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Struct;
 				
+			 		
+		 	foreach(var p in cls.get_fields()) {
+				new new_field(this, p);
+			}
+			 
+		}
+		public Symbol.new_class(Symbol? parent, Vala.Class cls)	
+		{
+			Symbol(parent,cls);
+			this.name = cls.name;
+			this.stype = Lsp.SymbolKind.Struct;
+			this.is_abstract = cls.is_abstract;
+			this.is_sealed = cls.is_sealed;	
 			 		
 		 	foreach(var p in cls.get_fields()) {
 				new new_field(this, p);
