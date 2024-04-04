@@ -114,27 +114,27 @@ namespace Palete {
 			this.name = ns.name;
 			this.stype = Lsp.SymbolKind.Namespace; 
 				
-			foreach(var c in element.get_classes()) {
+			foreach(var c in ns.get_classes()) {
 				new new_class(this,c);
 			}
-			foreach(var c in element.get_enums()) {
+			foreach(var c in ns.get_enums()) {
 				new new_enum(this, c);
 			}
-			foreach(var c in element.get_interfaces()) {
+			foreach(var c in ns.get_interfaces()) {
 				new new_interface(this, c);
 
 			}
-			foreach(var c in element.get_namespaces()) {
+			foreach(var c in ns.get_namespaces()) {
 				new new_namespace(this, c);
 			}
-			foreach(var c in element.get_methods()) {
+			foreach(var c in ns.get_methods()) {
 				new new_method(this, c);
 			}
 			
 			foreach(var c in element.get_structs()) {
 				new new_struct(this, c);
 			}
-			foreach(var c in element.get_delegates()) {
+			foreach(var c in ns.get_delegates()) {
 				new new_delegate(this, c);
 			}
 			
