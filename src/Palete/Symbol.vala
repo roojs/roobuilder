@@ -71,9 +71,9 @@ namespace Palete {
 		int end_line  { get; set; }
 		int end_col  { get; set; }
 		
-		string	 	name;
+		string name;
 		
-		public Symbol parent = null;
+		Symbol? parent = null;
 		int parent_id {
 			get {
 				return this.parent == null? 0 :  this.parent.id;
