@@ -112,6 +112,8 @@ namespace Palete {
 			foreach(var e in cls.get_values()) {
 				new Symbol.new_enummember(this, e);
 			}
+			// methods???
+			
 		}
 		public Symbol.new_enummember(Symbol? parent, Vala.EnumValue cls)	
 		{
