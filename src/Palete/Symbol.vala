@@ -38,7 +38,7 @@ namespace Palete {
 			return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
 		}
 		
-		bool is_parsed {
+		public bool is_parsed {
 			get {
 				return this.version ==  this.cur_mod_time();
 			}
