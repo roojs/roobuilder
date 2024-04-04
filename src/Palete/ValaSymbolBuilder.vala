@@ -28,6 +28,13 @@ namespace Palete {
 			if (sf.is_parsed) {
 				return;
 			}
+			
+			// parse it...
+	        file.accept_children (this);
+
+			sf.is_parsed = true;
+			
+			//?? do we need to accept children?
 		
 		}
 		 
@@ -35,7 +42,6 @@ namespace Palete {
 		public override void visit_namespace (Vala.Namespace element) 
 		{
 			if (element == null) {
-				
 				return;
 			}
 
@@ -47,24 +53,18 @@ namespace Palete {
 			}
 			this.add_namespace(null, element);
 		}
-		public void add_namespace(GirObject? parent, Vala.Namespace element)
+		public void add_namespace(Symbol? parent, Vala.Namespace element)
 		{
 			
 			GLib.debug("NS: %s", element.name);
-			var g = new GirObject("Package",element.name) ;
-			if (parent == null) {
-				//this.project.gir_cache.set(element.name,   g);
-			} else {
-				// we add it as a class of the package.. even though its a namespace..
-				parent.classes.set(element.name, g);
-			}
+			var g = new Symbol.new_namespace(parent, element);
 			
 			
 			foreach(var c in element.get_classes()) {
 				this.add_class(g, c);
 			}
 			foreach(var c in element.get_enums()) {
-				this.add_enum(g, c);
+				new Symbol.new_enum(parent, cls); 
 			}
 			foreach(var c in element.get_interfaces()) {
 				this.add_interface(g, c);
@@ -87,35 +87,7 @@ namespace Palete {
 			
 		}
 		
-		
-		public void add_enum(GirObject parent, Vala.Enum cls)
-		{
-			GLib.debug("Enum: %s", cls.name);
-			var c = new GirObject("Enum",   cls.name);
-			parent.consts.set(cls.name, c);
-			c.ns = parent.name;
-			
-			c.gparent = parent;
-			
-			foreach(var e in cls.get_values()) {
-				var em = new GirObject("EnumMember",e.name);
-				em.gparent = c;
-				em.ns = c.ns;
-				
-#if VALA_0_56
-				em.type  = e.type_reference == null ||  e.type_reference.type_symbol == null ? "" : e.type_reference.type_symbol.get_full_name();			
-#elif VALA_0_36
-				em.type  = e.type_reference == null ||  e.type_reference.data_type == null ? "" : e.type_reference.data_type.get_full_name();
-#endif				
-				
-				
-				// unlikely to get value..
-				//c.value = element->get_prop("value");
-				c.consts.set(e.name,em);
-			}
-			
-			 
-		}
+		 
 		
 		public void add_interface(GirObject parent, Vala.Interface cls)
 		{
@@ -331,54 +303,7 @@ namespace Palete {
 		}
 		 
 		
-		public void add_property(GirObject parent, Vala.Property prop)
-		{
-			GLib.debug("Prop: %s", prop.name);
-			var c = new GirObject("Prop",prop.name);
-			c.gparent = parent;
-			c.ns = parent.ns;
-			c.propertyof = parent.name;
-#if VALA_0_56
-			c.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
-#elif VALA_0_36
-			c.type  = prop.property_type.data_type == null ? "" : prop.property_type.data_type.get_full_name();		
-#endif
-			c.is_readable = prop.get_accessor != null ?  prop.get_accessor.readable : false;
-			c.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable ||  prop.set_accessor.construction : false;
-		 	//if (prop.name == "child") {
-		 	//	GLib.debug("prop child : w%s r%s", c.is_writable ? "YES" : "n" , c.is_readable ? "YES" : "n");
-	 		//}
-			if (prop.version.deprecated) { 
-				GLib.debug("class %s is deprecated", c.name);
-				c.is_deprecated = true;
-			}
-			parent.props.set(prop.name,c);
-
-			
-		}
-		
-		
-		public void add_field(GirObject parent, Vala.Field prop)
-		{
-			GLib.debug("Field: %s", prop.name);	
-			var c = new GirObject("Field",prop.name);
-			c.gparent = parent;
-			c.ns = parent.ns;
-			c.propertyof = parent.name;
-#if VALA_0_56
-			c.type  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
-#elif VALA_0_36
-			c.type  = prop.variable_type.data_type == null ? "" : prop.variable_type.data_type.get_full_name();		
-#endif
-			 
-			if (prop.version.deprecated) { 
-				GLib.debug("class %s is deprecated", c.name);
-				c.is_deprecated = true;
-			}
-			parent.props.set(prop.name,c);
-
-			
-		}
+		  
 		public void add_delegate(GirObject parent, Vala.Delegate sig)
 		{
 			GLib.debug("Delegate: %s", sig.name);
@@ -559,44 +484,7 @@ namespace Palete {
 			}
 			c.sig += (c.sig == "(" ? ")" : " )");
 			
-		}
-		
-		public GirObject add_param(GirObject parent, Vala.Parameter pam)
-		{
-			GLib.debug("Param: %s", pam.name);
-			var n = pam.name;
-			if (pam.ellipsis) {
-				n = "___";
-			}
-			var c = new GirObject("Param",n);
-			c.gparent = parent;
-			c.ns = parent.ns;
-			c.direction = "??";
-			switch (pam.direction) {
-				case Vala.ParameterDirection.IN:
-					c.direction = "in";
-					break;
-				case Vala.ParameterDirection.OUT:
-					c.direction = "out";
-					break;
-				case Vala.ParameterDirection.REF:
-					c.direction = "ref";
-					break;
-			}
-			
-			parent.params.add(c);
-			
-			if (!pam.ellipsis) {
-#if VALA_0_56			
-				c.type = pam.variable_type.type_symbol == null ? "" : pam.variable_type.type_symbol.get_full_name();
-#elif VALA_0_36
-				c.type = pam.variable_type.data_type == null ? "" : pam.variable_type.data_type.get_full_name();
-#endif				
-			}
-			Gir.checkParamOverride(c); 
-			return c;
-			
-		}
+		} 
 		
 #if VALA_0_56
 		int vala_version=56;

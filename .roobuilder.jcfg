@@ -72,7 +72,9 @@
                 "src/Builder4/MainWindow.bjs",
                 "src/Settings.vala",
                 "src/Palete/HoverProvider.vala",
-                "src/Builder4/CodeInfo.bjs"
+                "src/Builder4/CodeInfo.bjs",
+                "src/Palete/ValaSymbolBuilder.vala",
+                "src/Palete/Symbol.vala"
             ]
         }
     ],
