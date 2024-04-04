@@ -35,7 +35,11 @@ namespace Palete {
 		public int64 version { get; set; default = -1; } // utime?
 		public Gee.ArrayList<Symbol> symbols ;
 		public int64 cur_mod_time() {
-			return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+			try {
+				return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+			} catch (GLib.Error e) {
+				return -2;
+			}
 		}
 		
 		public bool is_parsed {
