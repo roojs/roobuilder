@@ -135,7 +135,7 @@ namespace Palete {
 			");
 			  
 			stmt.bind_int (stmt.bind_parameter_index ("$id"), this.id);
-			stmt.bind_string (stmt.bind_parameter_index ("$path"), this.path);
+			stmt.bind_text (stmt.bind_parameter_index ("$path"), this.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), this.version);
 			
 		
@@ -144,7 +144,7 @@ namespace Palete {
 		void db_load()
 		{
 			var stmt = db_prepare("SELECT id, verson FROM files where path = $path");
-			stmt.bind_string (stmt.bind_parameter_index ("$path"), this.path);	 
+			stmt.bind_text (stmt.bind_parameter_index ("$path"), this.path);	 
 			if (stmt.step() == Sqlite.ROW) { 
 				this.id = stmt.column_int(0);
 				this.verison = stmt.column_int64(1);
