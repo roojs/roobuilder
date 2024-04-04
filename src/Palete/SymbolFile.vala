@@ -12,7 +12,7 @@ namespace Palete {
 			 		return db;
 		 		}
 
-		 		Sqlite.Database.open ("test.db", out _db);
+		 		Sqlite.Database.open ("symbols.db", out _db);
 			
 			}
 			
