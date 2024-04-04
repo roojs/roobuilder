@@ -113,7 +113,7 @@ namespace Palete {
 				new Symbol.new_enummember(this, e);
 			}
 		}
-		public Symbol.new_enummember(Symbol? parent, Vala.EnumMember cls)	
+		public Symbol.new_enummember(Symbol? parent, Vala.EnumValue cls)	
 		{
 			Symbol(parent,cls);
 			this.name = cls.name;
