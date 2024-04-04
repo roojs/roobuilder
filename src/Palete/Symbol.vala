@@ -232,7 +232,7 @@ namespace Palete {
 		public Symbol.new_property(Symbol? parent, Vala.Property prop)	
 		{
 			Symbol(parent,prop);
-			this.name = prop.prop;
+			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
 			this.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
 
@@ -257,7 +257,7 @@ namespace Palete {
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(this, e, n++);
+				new new_parameter(this, p, n++);
 			}
 
 		}
@@ -272,13 +272,13 @@ namespace Palete {
 			this.sequence = seq;
 			switch (pam.direction) {
 				case Vala.ParameterDirection.IN:
-					c.direction = "in";
+					this.direction = "in";
 					break;
 				case Vala.ParameterDirection.OUT:
-					c.direction = "out";
+					this.direction = "out";
 					break;
 				case Vala.ParameterDirection.REF:
-					c.direction = "ref";
+					this.direction = "ref";
 					break;
 			}
 			
@@ -293,7 +293,7 @@ namespace Palete {
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(this, e, n++);
+				new new_parameter(this, p, n++);
 			}
 
 		}
@@ -310,7 +310,7 @@ namespace Palete {
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(this, e, n++);
+				new new_parameter(this, p, n++);
 			}
 
 		}
