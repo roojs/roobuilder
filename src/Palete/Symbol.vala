@@ -72,6 +72,8 @@ namespace Palete {
 		int end_col  { get; set; }
 		
 		string name;
+		string type;
+		
 		
 		Symbol? parent = null;
 		int parent_id {
@@ -108,7 +110,7 @@ namespace Palete {
 			this.stype = Lsp.SymbolKind.Enum;
 			
 			foreach(var e in cls.get_values()) {
-				new Symbol.new_enummember(this. e);
+				new Symbol.new_enummember(this, e);
 			}
 		}
 		public Symbol.new_enummember(Symbol? parent, Vala.EnumMember cls)	
