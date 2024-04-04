@@ -82,6 +82,7 @@ namespace Palete {
  		bool is_readable { get; set; default = false; }
 		bool is_writable { get; set; default = false; }
  		bool is_ctor { get; set; default = false; }
+ 		bool is_static { get; set; default = false; }
  		
  		Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
@@ -206,7 +207,7 @@ namespace Palete {
 			this.stype = Lsp.SymbolKind.Class;
 			this.is_abstract = cls.is_abstract;
 			this.is_sealed = cls.is_sealed;	
-			 		
+	 		this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
 		 	foreach(var p in cls.get_properties()) {
 				new new_property(this, p);
 			}
@@ -235,7 +236,7 @@ namespace Palete {
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
 			this.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
-
+			this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
 		 	this.is_readable = prop.get_accessor != null ?  prop.get_accessor.readable : false;
 			this.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable ||  prop.set_accessor.construction : false;	 
 		}
@@ -288,7 +289,7 @@ namespace Palete {
 			Symbol(parent,sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Signal;
-			 		
+	 		this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
 		 	this.type = sig.return_type == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
@@ -305,7 +306,8 @@ namespace Palete {
 			if (sig is Vala.CreationMethod) {
 				this.is_ctor = true;
 			}
-			 		
+			this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
+			 
 		 	this.type = sig.return_type == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
