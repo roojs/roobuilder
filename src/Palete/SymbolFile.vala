@@ -87,7 +87,7 @@ namespace Palete {
 				s.replaceInto();
 				new_ids += s.id.to_string();
 			}
-			db_query("DELETE FROM symbols WHERE 
+			db_exec("DELETE FROM symbols WHERE 
 				id IN (" + string.joinv(ids, ",") + ") AND
 				id NOT IN (" + string.joinv(new_ids, ",") + ") AND 
 				file_id = " + this.id.to_string());
