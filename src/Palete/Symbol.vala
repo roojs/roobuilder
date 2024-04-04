@@ -33,7 +33,7 @@ namespace Palete {
 	
 		public int id = -1;
 		public string path { get; set; default = ""; }
-		public int version { get; set; default = -1; } // utime?
+		public int64 version { get; set; default = -1; } // utime?
 		public Gee.ArrayList<Symbol> symbols ;
 		public int64 cur_mod_time() {
 			return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
