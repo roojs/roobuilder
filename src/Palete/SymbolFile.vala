@@ -3,17 +3,16 @@ namespace Palete {
 	
 	public class SymbolFile {
 	
-		static Gee.HashMap<string, SymbolFile> files;
-		
-		static construct  {
-			files = new Gee.HashMap<string, SymbolFile>(); 
-		}
-		
+		static Gee.HashMap<string, SymbolFile>? files = null;
+		 
 		
   
 		  
 		public static SymbolFile factory(string path) 
 		{
+			if (files == null) {
+				files = new Gee.HashMap<string, SymbolFile>(); 
+			}
 			if (files.has_key(path)) { // && files.get(path).version == version) {
 				return files.get(path);
 			}
