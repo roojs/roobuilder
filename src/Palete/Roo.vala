@@ -365,7 +365,7 @@ namespace Palete {
 			var cacheKey = fqn + ":"+ key;
 			 if (this.typeOptionsCache.has_key(cacheKey)) {
 			 	opts = this.typeOptionsCache.get(cacheKey).split("\n");
-			 	return opts.size < 1 ? false : true;
+			 	return opts.length < 1 ? false : true;
 		 	}
 			 
 			 var props = this.getPropertiesFor(fqn, JsRender.NodePropType.PROP);
