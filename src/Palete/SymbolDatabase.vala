@@ -137,7 +137,7 @@ namespace Palete {
 		}
 		
 		static Sqlite.Statement? write_symbol_sql = null;
-		}
+		
 		public static void writeSymbol(Symbol  s)
 		{
 			if (write_symbol_sql == null) { 
