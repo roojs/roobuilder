@@ -288,8 +288,8 @@ namespace Palete {
 				}
 				
 			}
-			var keys = pids.keys();
-			foreach(var cid in  keys ) {
+
+			foreach(var cid in  pid.keys ) {
 				ids.get(cid).parent = ids.get(pids.get(cid));
 			}
 			
