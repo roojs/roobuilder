@@ -48,71 +48,12 @@ namespace Palete {
 			this.path = path;
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
-			this.db_load(); 
+			SymbolDatabase.writeSymbols(this);
 		}
 		
 		
-		
-		// save a single file to database
-		
-		void db_write()
-		{
-			
-			var ids = this.db_get_ids();
-			string[] new_ids = {};
-			foreach (var s in this.symbols) {
-				s.db_replace_into();
-				new_ids += s.id.to_string();
-			}
-			db_exec("DELETE FROM symbols WHERE 
-				id IN (" + string.joinv("," , ids) + ") AND
-				id NOT IN (" + string.joinv("," , new_ids) + ") AND 
-				file_id = " + this.id.to_string());
-		}
-		
-		string[] db_get_ids()
-		{
-			string[]  ret = {};
-	 
-			var stmt = db_prepare("SELECT id  FROM symbols WHERE 
-				file_id = " + this.id.to_string());
-			while (stmt.step() == Sqlite.ROW) {
-				ret += stmt.column_text(0); //?? to_string?
-			}
-			return ret;
-		}
-		
-		void db_replace_into()
-		{
-			
-			 
-			var stmt = db_prepare("REPLACE INTO 
-				files (id, path, version) 
-			VALUES
-				($id, $path, $verison)
-			");
-			  
-			stmt.bind_int (stmt.bind_parameter_index ("$id"), this.id);
-			stmt.bind_text (stmt.bind_parameter_index ("$path"), this.path);
-			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), this.version);
-			
-		
-		
-		}
-		void db_load()
-		{
-			var stmt = db_prepare("SELECT id, verson FROM files where path = $path");
-			stmt.bind_text (stmt.bind_parameter_index ("$path"), this.path);	 
-			if (stmt.step() == Sqlite.ROW) { 
-				this.id = stmt.column_int(0);
-				this.version = stmt.column_int64(1);
-				return;
-			}
-			db_max_id("files");
-			this.id = max_ids.get("files");
-			max_ids.set("files", this.id + 1);
-			db_replace_into();
-			
-		}
+		 
+		 
+		 
 	}
 }
