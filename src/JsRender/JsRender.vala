@@ -167,17 +167,18 @@ namespace JsRender {
 		
 		
 		private  Vala.SourceFile? _vala_source_file = null;
-		public Vala.SourceFile vala_source_file(Vala.Context context) {
-			 	if (this._vala_source_file != null) {
-					return this._vala_source_file; 
-				}
-				 
-				this._vala_source_file  = new Vala.SourceFile (
-					context, // needs replacing when you use it...
-					Vala.SourceFileType.SOURCE, 
-					this.targetName()
-				);
+		public Vala.SourceFile vala_source_file(Vala.Context context) 
+		{
+		 	if (this._vala_source_file != null) {
 				return this._vala_source_file; 
+			}
+			 
+			this._vala_source_file  = new Vala.SourceFile (
+				context, // needs replacing when you use it...
+				Vala.SourceFileType.SOURCE, 
+				this.targetName()
+			);
+			return this._vala_source_file; 
 			
 		}
 		
