@@ -215,7 +215,7 @@ namespace Palete {
 			}
 			this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
 			 
-		 	this.rtype = sig.return_type == null ? "": 
+		 	this.rtype = sig.return_type == null || sig.return_type.type_symbol == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
