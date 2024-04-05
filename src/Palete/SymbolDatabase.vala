@@ -224,7 +224,7 @@ namespace Palete {
 	
 			stmt.step () ;
 			
-						GLib.debug("error %s", _db.errmsg());
+			GLib.debug("error %s", _db.errmsg());
 			s.id = db.last_insert_rowid();
  			stmt.reset();
  		
