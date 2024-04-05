@@ -41,12 +41,13 @@ namespace Palete {
  		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
 		
+		// FIXME!!!!
 		public Symbol? parent = null;
 		public int64 parent_id {
 			get {
 				return this.parent == null? 0 :  this.parent.id;
 			}
-			private set {}
+			set {}
 			
 		}
 		
