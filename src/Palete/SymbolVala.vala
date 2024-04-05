@@ -18,7 +18,7 @@ namespace Palete {
 	
 		public SymbolVala.new_namespace(Symbol? parent, Vala.Namespace ns)
 		{
-			SymbolVala(parent,ns);
+			this(parent,ns);
 			this.name = ns.name;
 			this.stype = Lsp.SymbolKind.Namespace; 
 				
@@ -52,7 +52,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_enum(Symbol? parent, Vala.Enum cls)
 		{
-			SymbolVala(parent,cls);
+			this(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Enum;
 			
@@ -67,7 +67,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_enummember(Symbol? parent, Vala.EnumValue cls)	
 		{
-			SymbolVala(parent,cls);
+			this(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.EnumMember;
 				
@@ -77,7 +77,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_interface(Symbol? parent, Vala.Interface cls)	
 		{
-			SymbolVala(parent,cls);
+			this(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Interface;
 				
@@ -97,7 +97,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_struct(Symbol? parent, Vala.Struct cls)	
 		{
-			SymbolVala(parent,cls);
+			this(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Struct;
 				
@@ -109,7 +109,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_class(Symbol? parent, Vala.Class cls)	
 		{
-			SymbolVala(parent,cls);
+			this(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Class;
 			this.is_abstract = cls.is_abstract;
@@ -139,7 +139,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_property(Symbol? parent, Vala.Property prop)	
 		{
-			SymbolVala(parent,prop);
+			this(parent,prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
 			this.rtype  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
@@ -149,7 +149,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_field(Symbol? parent, Vala.Field prop)	
 		{
-			SymbolVala(parent,prop);
+			this(parent,prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Field;
 			this.rtype  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
@@ -157,7 +157,7 @@ namespace Palete {
 		
 		public SymbolVala.new_delegate(Symbol? parent, Vala.Delegate sig)	
 		{
-			SymbolVala(parent,sig);
+			this(parent,sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Delegate;
 			 		
@@ -171,7 +171,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_parameter(Symbol? parent, Vala.Parameter pam, int seq)	
 		{
-			SymbolVala(parent,pam);
+			this(parent,pam);
 			this.name = pam.ellipsis ? "..." : pam.name;
 			this.stype = Lsp.SymbolKind.Parameter;
 			this.rtype = pam.ellipsis || pam.variable_type.type_symbol == null ? "" :
@@ -193,7 +193,7 @@ namespace Palete {
  		}
  		public SymbolVala.new_signal(Symbol? parent, Vala.Signal sig)	
 		{
-			SymbolVala(parent,sig);
+			this(parent,sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Signal;
 	 		//this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
@@ -207,7 +207,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_method(Symbol? parent, Vala.Method sig)	
 		{
-			SymbolVala(parent,sig);
+			this(parent,sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Signal;
 			if (sig is Vala.CreationMethod) {
