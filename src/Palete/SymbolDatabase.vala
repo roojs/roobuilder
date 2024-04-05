@@ -50,6 +50,7 @@ namespace Palete {
 		{
 	 		Sqlite.Database filedb;
 			Sqlite.Database.open (BuilderApplication.configDirectory() + "/symbols.db", out filedb);
+			GLib.debug("error %s", filedb.errmsg());
 			var b = new Sqlite.Backup(filedb, "main", _db, "main");
 			GLib.debug("error %s", filedb.errmsg());
 			GLib.debug("error %s", _db.errmsg());
