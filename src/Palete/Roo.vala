@@ -349,27 +349,34 @@ namespace Palete {
 			
 
 		}
-
- 
+	
+ 		Gee.HashMap<string,string> typeOptionsCache { get ;set ; default = new Gee.HashMap<string,string>(); }
 		/*
 		 *  Pulldown options for type
 		 */
 		public override bool typeOptions(string fqn, string key, string type, out string[] opts) 
 		{
 			opts = {};
-			print("get typeOptions %s (%s)%s", fqn, type, key);
+			GLib.debug("get typeOptions %s (%s)%s", fqn, type, key);
 			if (type.up() == "BOOL" || type.up() == "BOOLEAN") {
 				opts = { "true", "false" };
 				return true;
-			 }
+			}
+			var cacheKey = fqn + ":"+ key;
+			 if (this.typeOptionsCache.has_key(cacheKey)) {
+			 	opts = this.typeOptionsCache.get(cacheKey).split("\n");
+			 	return opts.length < 1 ? false : true;
+		 	}
 			 
 			 var props = this.getPropertiesFor(fqn, JsRender.NodePropType.PROP);
 			 if (!props.has_key(key)) {
+				 this.typeOptionsCache.set(cacheKey, "");
 				 print("prop %s does not have key %s\n", fqn, key);
 				 return false;
 			 }
 			 var pr = props.get(key);
 			 if (pr.optvalues.size < 1) {
+				 this.typeOptionsCache.set(cacheKey, "");
 				 print("prop %s no optvalues for %s\n", fqn, key);
 				 return false;
 			 }
@@ -379,6 +386,7 @@ namespace Palete {
 			 }
 			 opts = ret;
 			 print("prop %s returning optvalues for %s\n", fqn, key);
+			 this.typeOptionsCache.set(cacheKey, string.joinv("\n", ret));
 			 return true;
 			 
 		}

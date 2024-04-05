@@ -2340,9 +2340,7 @@ public class Xcls_LeftProps : Object
 			
 			
 				var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
-			 
-				
-				
+			  
 				
 				var elbl = (Gtk.EditableLabel)bx.get_first_child();
 				var lbl = (Gtk.Label) elbl.get_next_sibling();
