@@ -254,6 +254,35 @@ namespace Palete {
 			");
 			
 			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), file.id);
+			while (stmt.step() == Sqlite.ROW) {
+				var s = new Symbol();
+				
+				s.id=stmt.column_int64(0);
+				s.file = file;
+				s.parent_id = stmt.column_int64(2);
+				s.stype=stmt.column_int(3);
+
+				s.begin_line=stmt.column_int(4);
+				s.begin_col=stmt.column_int(5);
+				s.end_line=stmt.column_int(6);
+				s.end_col=stmt.column_int(7);
+				s.sequence=stmt.column_int(8);
+
+				s.name=stmt.column_text(9);
+				s.type=stmt.column_text(10);
+				s.direction=stmt.column_text(11);
+
+				s.deprecated=stmt.column_int(12) == 1;
+				s.is_abstract=stmt.column_int(13) == 1;
+				s.is_sealed=stmt.column_int(14) == 1;
+				s.is_readable=stmt.column_int(15) == 1;
+				s.is_writable=stmt.column_int(16) == 1;
+				s.is_ctor=stmt.column_int(17) == 1;
+				s.is_static=stmt.column_int(18) == 1;
+				
+			}
+			
+			
 		}
 		
 		public static void initDB()
