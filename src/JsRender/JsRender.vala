@@ -179,7 +179,7 @@ namespace JsRender {
 				);
 				return this._vala_source_file; 
 			}
-			private set;
+			private set {}
 		}
 		
 		
