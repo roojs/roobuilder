@@ -237,7 +237,7 @@ namespace Palete {
 				);
 				xsf.add_using_directive (ns_ref);
 				context.add_source_file(xsf);
-				jfile.vala_source_file = xsf;
+ 
 			}
 			
 			
