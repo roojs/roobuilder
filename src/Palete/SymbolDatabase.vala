@@ -87,20 +87,19 @@ namespace Palete {
  
 		
 		}
-		static Sqlite.Statement write_file_sql {
-			get; set; default =  prepare("UPDATE   files  SET 
+		static Sqlite.Statement? write_file_sql = null;
+		
+		public static void writeFile(SymbolFile file)
+		{
+			 
+			if (write_file_sql == null) {
+				write_file_sql = prepare("UPDATE   files  SET 
 					path = $path,
 					version =  - $version
 					WHERE id = $id
 				");
 			}
-		
-		
-		public static void writeFile(SymbolFile file)
-		{
-			 
-			
-			var stmt =  prepare("");
+			var stmt = write_file_sql
 			 
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
