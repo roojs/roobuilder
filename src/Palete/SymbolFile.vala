@@ -20,7 +20,7 @@ namespace Palete {
 		}
 	
 	
-		public int id = -1;
+		public int64 id = -1;
 		public string path { get; set; default = ""; }
 		public int64 version { get; set; default = -1; } // utime?
 		public Gee.ArrayList<Symbol> symbols ;
@@ -39,7 +39,7 @@ namespace Palete {
 			set {
 				if (value) {
 					this.version = this.cur_mod_time();
-					this.writeSymbols(this);
+					SymbolDatabase.writeSymbols(this);
 					
 				}
 			}
@@ -50,6 +50,7 @@ namespace Palete {
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
 			SymbolDatabase.initFile(this);
+			SymbolDatabase.loadSymbols(this);
 		}
 		
 		

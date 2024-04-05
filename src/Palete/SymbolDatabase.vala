@@ -26,14 +26,27 @@ namespace Palete {
 		 		}
 		 		Sqlite.Database filedb;
 		 		Sqlite.config(Sqlite.Config.SERIALIZED);
-		 		Sqlite.Database.open (BuilderApplication.configDirectory() + "/symbols.db", out filedb);
-		 		Sqlite.Database.open (":memory:", out _db, OPEN_MEMORY);
+		 		var fdb = BuilderApplication.configDirectory() + "/symbols.db";
+		 		var exists = GLib.FileUtils.test(fdb, GLib.FileTest.EXISTS);
+		 		
+		 		Sqlite.Database.open (fdb, out filedb);
+		 		Sqlite.Database.open_v2(":memory:", out _db, Sqlite.OPEN_MEMORY);
+		 		if (!exists) {
+		 			initDB();
+		 		}
 		 		var b = new Sqlite.Backup(_db, "main", filedb, "main");
 		 		b.step(-1);
-		 		b.finish();
 				return _db;
 			}
 			
+		}
+		
+		public static void backupDB()
+		{
+	 		Sqlite.Database filedb;
+			Sqlite.Database.open (BuilderApplication.configDirectory() + "/symbols.db", out filedb);
+			var b = new Sqlite.Backup(_db, "main", filedb, "main");
+	 		b.step(-1);
 		}
 		
 		static Sqlite.Statement prepare(string q) 
@@ -48,77 +61,58 @@ namespace Palete {
 			db.exec (q, null, out errmsg);
 		}
 		
-		static Gee.HashMap<string,int> max_ids {
-			get; set;
-			default = new Gee.HashMap<string,int>(); 
-		}
-		private static int max_id_cur(string table)
-		{
-			if (max_ids.has_key(table)) {
-				return max_ids.get(table);
-			}
-			
-			var s = prepare("SELECT MAX(id) FROM " + table);
-			if (s.step() == Sqlite.ROW) {
-				max_ids.set(table, stmt.column_int(0) + 1);
-				return max_ids.get(table);
-			}
-			max_ids.set(table,   1);
-			return max_ids.get(table);
-		}
-		static int max_id_inc(string table)
-		{
-			var old = max_id_cur( table);
-			max_ids.set(table,   old+1);
-			return old;
-		}
+		 
 		public static void initFile(SymbolFile file)
 		{
 			if (file.id > 0) {
 				return;
 			}
-			var stmt = db_prepare("SELECT id, verson FROM files where path = $path");
+			var stmt =  prepare("SELECT id, verson FROM files where path = $path");
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);	 
 			if (stmt.step() == Sqlite.ROW) { 
 				file.id = stmt.column_int(0);
 				file.version = stmt.column_int64(1);
 				return;
 			}
-			file.id = max_id_inc("files");
-			
-			this.writeFile(file);
+ 
+		 	stmt =  prepare("INSERT INTO   
+				files  (path, version)
+				VALUES ($path, $version) 
+			");
+			 
+			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
+			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
+			stmt.step () ;
+			file.id = db.last_insert_rowid();
+ 
+		
+		}
+		static Sqlite.Statement write_file_sql {
+			get; set; default =  prepare("UPDATE   files  SET 
+					path = $path,
+					version =  - $version
+					WHERE id = $id
+				");
+			}
 		
 		
 		public static void writeFile(SymbolFile file)
 		{
-			if (file.id < 1) {
-				var stmt = db_prepare("SELECT id, verson FROM files where path = $path");
-				stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);	 
-				if (stmt.step() == Sqlite.ROW) { 
-					file.id = stmt.column_int(0);
-					file.version = stmt.column_int64(1);
-					
-				}
+			 
 			
-			}
-			
-			var stmt =  prepare("REPLACE INTO 
-				files (id, path, version) 
-			VALUES
-				($id, $path, $verison)
-			");
-			
-			stmt.bind_int (stmt.bind_parameter_index ("$id"), file.id);
+			var stmt =  prepare("");
+			 
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
-			
+			stmt.bind_int64 (stmt.bind_parameter_index ("$id"), file.id);			
+			stmt.step () ;
 		
 		}
 		
 		public static void writeSymbols(SymbolFile  file)
 		{
 			
-			var ids = get_ids( file.id);
+			var ids = get_symbol_ids( file.id);
 			string[] new_ids = {};
 			foreach (var s in file.symbols) {
 				writeSymbol(s);
@@ -130,26 +124,148 @@ namespace Palete {
 				file_id = " + file.id.to_string());
 		}
 		
-		public static string[]  get_symbol_ids( int file_id)
+		public static string[]  get_symbol_ids( int64 file_id)
 		{
 			string[]  ret = {};
 	 
 			var stmt = prepare("SELECT id  FROM symbols WHERE 
-				file_id = " + file.id.to_string());
+				file_id = " + file_id.to_string());
 			while (stmt.step() == Sqlite.ROW) {
 				ret += stmt.column_text(0); //?? to_string?
 			}
 			return ret;
 		}
+		
+		static Sqlite.Statement write_symbol_sql {
+			get; set; default =  prepare("
+			 	INSERT INTO  symbol (
+					file_id,
+					parent_id,
+					stype,
+					
+					begin_line,
+					begin_col,
+					end_line,
+					end_col,
+					sequence,
+					
+					name,
+					type,
+					direction,
+					
+					deprecated,
+					is_abstract,
+					is_sealed,
+			 		is_readable,
+					is_writable,
+			 		is_ctor,
+					is_static
+			 		
+		 		)  VALUES (
+		 			$file_id,
+					$parent_id,
+					$stype,
+					
+					$begin_line,
+					$begin_col,
+					$end_line,
+					$end_col,
+					$sequence,
+					
+					$name,
+					$type,
+					$direction,
+					
+					deprecated,
+					is_abstract,
+					is_sealed,
+			 		is_readable,
+					is_writable,
+			 		is_ctor,
+					is_static
+	 			)
+			");
+		}
 		public static void writeSymbol(Symbol  s)
 		{
-		
+			 
+			var  stmt = write_symbol_sql;
+
+			
+			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), s.file.id);
+			stmt.bind_int64 (stmt.bind_parameter_index ("$parent_id"), s.parent_id);
+			stmt.bind_int (stmt.bind_parameter_index ("$stype"), s.stype);
+
+			stmt.bind_int (stmt.bind_parameter_index ("$begin_line"), s.begin_line);
+			stmt.bind_int (stmt.bind_parameter_index ("$begin_col"), s.begin_col);
+			stmt.bind_int (stmt.bind_parameter_index ("$end_line"), s.end_line);
+			stmt.bind_int (stmt.bind_parameter_index ("$end_col"), s.end_col);
+			stmt.bind_int (stmt.bind_parameter_index ("$sequence"), s.sequence);
+
+			stmt.bind_text (stmt.bind_parameter_index ("$name"), s.name);
+			stmt.bind_text (stmt.bind_parameter_index ("$type"), s.type);
+			stmt.bind_text (stmt.bind_parameter_index ("$direction"), s.direction);
+
+			stmt.bind_int (stmt.bind_parameter_index ("$deprecated"), s.deprecated? 1 : 0);
+			stmt.bind_int (stmt.bind_parameter_index ("$is_abstract"), s.is_abstract? 1 : 0);
+			stmt.bind_int (stmt.bind_parameter_index ("$is_sealed"), s.is_sealed? 1 : 0);
+			stmt.bind_int (stmt.bind_parameter_index ("$is_readable"), s.is_readable? 1 : 0);
+			stmt.bind_int (stmt.bind_parameter_index ("$is_writable"), s.is_writable? 1 : 0);
+			stmt.bind_int (stmt.bind_parameter_index ("$is_ctor"), s.is_ctor? 1 : 0);
+			stmt.bind_int (stmt.bind_parameter_index ("$is_static"), s.is_static? 1 : 0);
+	
+			stmt.step () ;
+			
+			
+			s.id = db.last_insert_rowid();
+ 			stmt.reset();
+ 			
+			
 		
 		
 		}
+		public static void initDB()
+		{
 		
+			exec("
+				CREATE TABLE files (
+				   id INTEGER PRIMARY KEY,
+				   path TEXT NOT NULL,
+				   version INT64 NOT NULL DEFAULT -1
+				);
+			");
+			exec("
+				CREATE TABLE symbol (
+				    id INTEGER PRIMARY KEY,
+					file_id INTEGER ,
+					parent_id INTEGER,
+					stype INTEGER,
+					
+					begin_line INTEGER,
+					begin_col INTEGER,
+					end_line INTEGER,
+					end_col INTEGER,
+					sequence INTEGER,
+					
+					name TEXT,
+					type TEXT,
+					direction TEXT,
+					
+					deprecated INT2,
+					is_abstract INT2,
+					is_sealed INT2,
+			 		is_readable INT2,
+					is_writable INT2,
+			 		is_ctor INT2,
+					is_static INT2
+				);
+		 	");	
 		
+		}
+		public static void loadSymbols(SymbolFile file)
+		{
 		
+		}
 		
 	}
 }

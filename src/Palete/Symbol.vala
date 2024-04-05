@@ -17,7 +17,7 @@ namespace Palete {
 	
 	public class Symbol : Object {
 	
-		public int id = -1;
+		public int64 id = -1;
 		public Lsp.SymbolKind stype { get; set; default = 0; }
 		public SymbolFile 	file;
 		public int begin_line  { get; set; } 
@@ -39,10 +39,10 @@ namespace Palete {
  		public bool is_static { get; set; default = false; }
  		
  		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
-  		Geepublic .ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
+  		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
 		
 		public Symbol? parent = null;
-		public int parent_id {
+		public int64 parent_id {
 			get {
 				return this.parent == null? 0 :  this.parent.id;
 			}
