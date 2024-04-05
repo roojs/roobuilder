@@ -27,7 +27,7 @@ namespace Palete {
 		public int sequence  { get; set; default = 0; } // parameters
 		
 		public string name  { get; set;  default = "";  }
-		public string type  { get; set;  default = ""; }
+		public string @type  { get; set;  default = ""; }
 		public string direction { get; set; default = ""; }
 		
 		public bool deprecated { get; set; default = false;  } 
