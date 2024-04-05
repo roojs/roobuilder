@@ -282,9 +282,9 @@ namespace Palete {
 				s.is_ctor=stmt.column_int(17) == 1;
 				s.is_static=stmt.column_int(18) == 1;
 				file.symbols.add(s);
-				ids.set(s.id, s);
+				ids.set((int)s.id, s);
 				if (parent_id > 0) {
-					pids.set(s.id, parent_id);
+					pids.set((int)s.id, (int)parent_id);
 				}
 				
 			}
