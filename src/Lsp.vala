@@ -594,9 +594,9 @@ namespace Lsp {
 		
 		}
 		public static SymbolKind parse(int i ) {		
-			foreach (SymbolKind s in SymbolKind) {
-				if (i == (int)s) {
-					return s;
+			foreach (unowned EnumValue val in enumc.values) {
+				if (i == (int) val.@value) {
+					return (SymbolKind) val.@value;
 				}
 			}
 			return Variable;
