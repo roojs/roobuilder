@@ -50,7 +50,6 @@ namespace Palete {
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
 			SymbolDatabase.initFile(this);
-
 		}
 		
 		
