@@ -29,14 +29,17 @@ namespace Palete {
 		 		var fdb = BuilderApplication.configDirectory() + "/symbols.db";
 		 		var exists = GLib.FileUtils.test(fdb, GLib.FileTest.EXISTS);
 		 		
-		 		Sqlite.Database.open (fdb, out filedb);
-		 		Sqlite.Database.open_v2(":memory:", out _db, Sqlite.OPEN_MEMORY);
+		 		if (exists) {
+		 			Sqlite.Database.open (fdb, out filedb);
+		 			Sqlite.Database.open_v2(":memory:", out _db, Sqlite.OPEN_MEMORY);
 		 		
-		 		var b = new Sqlite.Backup(_db, "main", filedb, "main");
-		 		b.step(-1);
-				if (!exists) {
-		 			initDB();
-		 		}
+			 		var b = new Sqlite.Backup(_db, "main", filedb, "main");
+			 		b.step(-1);
+			 		return _db;
+	 			}
+		 		Sqlite.Database.open_v2(":memory:", out _db, Sqlite.OPEN_MEMORY);
+		 		initDB();
+		 		
 				return _db;
 			}
 			
