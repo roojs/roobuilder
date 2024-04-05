@@ -846,9 +846,9 @@
          "id" : "valcol",
          "items" : [
           {
+           "# bool is_setting" : false,
            "$ xns" : "Gtk",
            "* prop" : "factory",
-           "bool is_setting" : false,
            "listeners" : {
             "bind" : [
              "(listitem) => {",
