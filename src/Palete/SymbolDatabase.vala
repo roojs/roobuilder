@@ -48,6 +48,33 @@ namespace Palete {
 			db.exec (q, null, out errmsg);
 		}
 		
+		static Gee.HashMap<string,int> max_ids {
+			get; set;
+			default = new Gee.HashMap<string,int>(); 
+		}
+		private static int max_id_cur(string table)
+		{
+			if (max_ids.has_key(table)) {
+				return max_ids.get(table);
+			}
+			
+			var s = db_prepare("SELECT MAX(id) FROM " + table);
+			if (s.step() == Sqlite.ROW) {
+				max_ids.set(table, stmt.column_int(0) + 1);
+				return max_ids.get(table);
+			}
+			max_ids.set(table,   1);
+			return max_ids.get(table);
+		}
+		static int max_id_inc(string table)
+		{
+			var old = max_id_cur( table);
+			max_ids.set(table,   old+1);
+			return old;
+		}
+		
+		
+		
 		
 		
 		
