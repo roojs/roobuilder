@@ -49,7 +49,8 @@ namespace Palete {
 		{
 	 		Sqlite.Database filedb;
 			Sqlite.Database.open (BuilderApplication.configDirectory() + "/symbols.db", out filedb);
-			var b = new Sqlite.Backup(_db, "main", filedb, "main");
+			var b = new Sqlite.Backup(filedb, "main", _db, "main");
+
 	 		b.step(-1);
 		}
 		
