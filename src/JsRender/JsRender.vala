@@ -187,7 +187,7 @@ namespace JsRender {
 				if (this._vala_source_file == null) {
 					return;
 				}
-				this._vala_source_file = value;
+				this._vala_source_file.content = value;
 			}
 		}
 		
