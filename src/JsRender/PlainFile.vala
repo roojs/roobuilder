@@ -161,9 +161,13 @@ namespace JsRender {
 
 		public   override string language_id() 
 		{
+			
+			GLib.debug("file ext: %s", this.file_ext);
 			switch(this.file_ext) {
 				case "js": return "javascript";
 				case "vala": return "vala";
+				case "vapi": return "vala";
+				case "c": return "c";				
 				case "php": return "php";
 				case "css": return "css";
 				case "sql": return "sql";
