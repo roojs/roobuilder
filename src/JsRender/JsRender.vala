@@ -182,7 +182,7 @@ namespace JsRender {
 			
 		}
 		public string vala_source_file_content {
-			private get {}
+			private get { return ''; }
 			set  {
 				if (this._vala_source_file == null) {
 					return;
