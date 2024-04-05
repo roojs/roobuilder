@@ -17,7 +17,7 @@
 namespace Palete {
 	
 	
-	public class SymbolFile {
+	public class SymbolDatabase {
 		static Sqlite.Database? _db = null;
 		static Sqlite.Database db {
 			get {
@@ -34,6 +34,18 @@ namespace Palete {
 				return _db;
 			}
 			
+		}
+		
+		static Sqlite.Statement prepare(string q) 
+		{
+			Sqlite.Statement stmt;
+			db.prepare_v2 (q, q.length, out stmt);
+			return stmt;
+		}
+		static void  exec(string q) 
+		{
+			string errmsg;
+			db.exec (q, null, out errmsg);
 		}
 		
 		
