@@ -28,8 +28,9 @@ namespace Palete {
 		 		Sqlite.config(Sqlite.Config.SERIALIZED);
 		 		var fdb = BuilderApplication.configDirectory() + "/symbols.db";
 		 		var exists = GLib.FileUtils.test(fdb, GLib.FileTest.EXISTS);
-		 		
-		 		if (exists) {
+		 		Posix.Stat buf;
+		 		stat (fdb, out  buf)
+		 		if (exists && buf.st_size  > 0 ) {
 		 			Sqlite.Database.open (fdb, out filedb);
 		 			Sqlite.Database.open_v2(":memory:", out _db, Sqlite.OPEN_MEMORY);
 		 		
