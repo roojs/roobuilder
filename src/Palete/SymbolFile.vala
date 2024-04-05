@@ -3,7 +3,11 @@ namespace Palete {
 	
 	public class SymbolFile {
 	
-		static Gee.HashMap<string, SymbolFile> files { get; set; default = new Gee.HashMap<string, SymbolFile>(); }
+		static Gee.HashMap<string, SymbolFile> files;
+		public static SymbolFile () {
+			files = new Gee.HashMap<string, SymbolFile>(); 
+		}
+		
 		
   
 		  
