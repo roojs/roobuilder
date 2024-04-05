@@ -74,7 +74,7 @@ namespace Palete {
 					cls.type_reference.type_symbol.get_full_name();			
 			 
 		}
-		public Symbol.new_interface(Symbol? parent, Vala.Interface cls)	
+		public SymbolVala.new_interface(Symbol? parent, Vala.Interface cls)	
 		{
 			Symbol(parent,cls);
 			this.name = cls.name;
