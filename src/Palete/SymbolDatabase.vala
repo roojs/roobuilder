@@ -72,14 +72,42 @@ namespace Palete {
 			max_ids.set(table,   old+1);
 			return old;
 		}
+		public static void initFile(SymbolFile file)
+		{
+			if (file.id > 0) {
+				return;
+			}
+			var stmt = db_prepare("SELECT id, verson FROM files where path = $path");
+			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);	 
+			if (stmt.step() == Sqlite.ROW) { 
+				file.id = stmt.column_int(0);
+				file.version = stmt.column_int64(1);
+				return;
+			}
+			file.id = max_id_inc("files");
+			
+			this.writeFile(file);
+		
+		
 		public static void writeFile(SymbolFile file)
 		{
+			if (file.id < 1) {
+				var stmt = db_prepare("SELECT id, verson FROM files where path = $path");
+				stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);	 
+				if (stmt.step() == Sqlite.ROW) { 
+					file.id = stmt.column_int(0);
+					file.version = stmt.column_int64(1);
+					
+				}
+			
+			}
+			
 			var stmt =  prepare("REPLACE INTO 
 				files (id, path, version) 
 			VALUES
 				($id, $path, $verison)
 			");
-			  
+			
 			stmt.bind_int (stmt.bind_parameter_index ("$id"), file.id);
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
@@ -113,7 +141,12 @@ namespace Palete {
 			}
 			return ret;
 		}
+		public static void writeSymbol(Symbol  s)
+		{
 		
+		
+		
+		}
 		
 		
 		
