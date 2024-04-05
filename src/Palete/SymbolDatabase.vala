@@ -254,12 +254,14 @@ namespace Palete {
 			");
 			
 			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), file.id);
+			var ids = new Gee.HashMap<int, Symbol>();
+			var parents = new Gee.HashMap<int, int>();
 			while (stmt.step() == Sqlite.ROW) {
 				var s = new Symbol();
 				
 				s.id=stmt.column_int64(0);
 				s.file = file;
-				s.parent_id = stmt.column_int64(2);
+				var parent_id = stmt.column_int64(2);
 				s.stype=stmt.column_int(3);
 
 				s.begin_line=stmt.column_int(4);
@@ -279,6 +281,11 @@ namespace Palete {
 				s.is_writable=stmt.column_int(16) == 1;
 				s.is_ctor=stmt.column_int(17) == 1;
 				s.is_static=stmt.column_int(18) == 1;
+				file.symbols.add(s);
+				ids.set(s.id, s);
+				if (parent_id > 0) {
+					pids.set(s.id, parent_id);
+				}
 				
 			}
 			
