@@ -136,59 +136,60 @@ namespace Palete {
 			return ret;
 		}
 		
-		static Sqlite.Statement write_symbol_sql {
-			get; set; default =  prepare("
-			 	INSERT INTO  symbol (
-					file_id,
-					parent_id,
-					stype,
-					
-					begin_line,
-					begin_col,
-					end_line,
-					end_col,
-					sequence,
-					
-					name,
-					type,
-					direction,
-					
-					deprecated,
-					is_abstract,
-					is_sealed,
-			 		is_readable,
-					is_writable,
-			 		is_ctor,
-					is_static
-			 		
-		 		)  VALUES (
-		 			$file_id,
-					$parent_id,
-					$stype,
-					
-					$begin_line,
-					$begin_col,
-					$end_line,
-					$end_col,
-					$sequence,
-					
-					$name,
-					$type,
-					$direction,
-					
-					deprecated,
-					is_abstract,
-					is_sealed,
-			 		is_readable,
-					is_writable,
-			 		is_ctor,
-					is_static
-	 			)
-			");
+		static Sqlite.Statement? write_symbol_sql = null;
 		}
 		public static void writeSymbol(Symbol  s)
 		{
-			 
+			if (write_symbol_sql == null) { 
+				write_symbol_sql=  prepare("
+				 	INSERT INTO  symbol (
+						file_id,
+						parent_id,
+						stype,
+						
+						begin_line,
+						begin_col,
+						end_line,
+						end_col,
+						sequence,
+						
+						name,
+						type,
+						direction,
+						
+						deprecated,
+						is_abstract,
+						is_sealed,
+				 		is_readable,
+						is_writable,
+				 		is_ctor,
+						is_static
+				 		
+			 		)  VALUES (
+			 			$file_id,
+						$parent_id,
+						$stype,
+						
+						$begin_line,
+						$begin_col,
+						$end_line,
+						$end_col,
+						$sequence,
+						
+						$name,
+						$type,
+						$direction,
+						
+						deprecated,
+						is_abstract,
+						is_sealed,
+				 		is_readable,
+						is_writable,
+				 		is_ctor,
+						is_static
+		 			)
+				");
+			}
 			var  stmt = write_symbol_sql;
 
 			
