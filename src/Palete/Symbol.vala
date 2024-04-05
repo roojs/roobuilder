@@ -18,7 +18,7 @@ namespace Palete {
 	public class Symbol : Object {
 	
 		public int64 id = -1;
-		public Lsp.SymbolKind stype { get; set; default = 0; }
+		public Lsp.SymbolKind stype;
 		public SymbolFile 	file;
 		public int begin_line  { get; set; } 
 		public int begin_col  { get; set; }
