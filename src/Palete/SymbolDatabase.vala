@@ -196,7 +196,7 @@ namespace Palete {
 						is_static
 		 			)
 				");
-			}
+			}			GLib.debug("error %s", _db.errmsg());
 			unowned Sqlite.Statement stmt = write_symbol_sql;
 
 			
@@ -224,7 +224,7 @@ namespace Palete {
 	
 			stmt.step () ;
 			
-			
+						GLib.debug("error %s", _db.errmsg());
 			s.id = db.last_insert_rowid();
  			stmt.reset();
  		
