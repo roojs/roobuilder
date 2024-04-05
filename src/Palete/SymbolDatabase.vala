@@ -153,7 +153,7 @@ namespace Palete {
 						sequence,
 						
 						name,
-						type,
+						rtype,
 						direction,
 						
 						deprecated,
@@ -176,7 +176,7 @@ namespace Palete {
 						$sequence,
 						
 						$name,
-						$type,
+						$rtype,
 						$direction,
 						
 						deprecated,
@@ -203,7 +203,7 @@ namespace Palete {
 			stmt.bind_int (stmt.bind_parameter_index ("$sequence"), s.sequence);
 
 			stmt.bind_text (stmt.bind_parameter_index ("$name"), s.name);
-			stmt.bind_text (stmt.bind_parameter_index ("$type"), s.type);
+			stmt.bind_text (stmt.bind_parameter_index ("$rtype"), s.rtype);
 			stmt.bind_text (stmt.bind_parameter_index ("$direction"), s.direction);
 
 			stmt.bind_int (stmt.bind_parameter_index ("$deprecated"), s.deprecated? 1 : 0);
@@ -238,7 +238,7 @@ namespace Palete {
 					sequence,
 					
 					name,
-					type,
+					rtype,
 					direction,
 					
 					deprecated,
@@ -271,7 +271,7 @@ namespace Palete {
 				s.sequence=stmt.column_int(8);
 
 				s.name=stmt.column_text(9);
-				s.type=stmt.column_text(10);
+				s.rtype=stmt.column_text(10);
 				s.direction=stmt.column_text(11);
 
 				s.deprecated=stmt.column_int(12) == 1;
@@ -320,7 +320,7 @@ namespace Palete {
 					sequence INTEGER,
 					
 					name TEXT,
-					type TEXT,
+					rtype TEXT,
 					direction TEXT,
 					
 					deprecated INT2,
