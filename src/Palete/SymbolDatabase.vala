@@ -99,7 +99,7 @@ namespace Palete {
 					WHERE id = $id
 				");
 			}
-			var stmt = write_file_sql;
+			unowned Sqlite.Statement stmt stmt = write_file_sql;
 			 
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
