@@ -262,10 +262,10 @@ namespace Palete {
 				s.id=stmt.column_int64(0);
 				s.file = file; // file id is (1)...
 				var parent_id = stmt.column_int64(2);
-				var st = stmt.column_int(3);
-				if (st != null) {
-					s.stype = (Lsp.SybmolKind) st;
-				}
+				
+
+				s.stype =  Lsp.SybmolKind.parse( st );
+				
 
 				s.begin_line=stmt.column_int(4);
 				s.begin_col=stmt.column_int(5);
