@@ -172,8 +172,15 @@ namespace JsRender {
 				if (this._vala_source_file != null) {
 					return this._vala_source_file; 
 				}
+				var cx = new Vala.CodeContext();
+				var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
+				cx.root.add_using_directive (ns_ref);
+				
+				
+				cx.add_external_package ("glib-2.0"); 
+				cx.add_external_package ("gobject-2.0");
 				this._vala_source_file  = new Vala.SourceFile (
-					null, // needs replacing when you use it...
+					cx, // needs replacing when you use it...
 					Vala.SourceFileType.SOURCE, 
 					this.targetName()
 				);
