@@ -195,7 +195,7 @@ namespace Palete {
 			SymbolVala(parent,sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Signal;
-	 		this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
+	 		//this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
 		 	this.type = sig.return_type == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
