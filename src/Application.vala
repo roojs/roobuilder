@@ -78,7 +78,7 @@
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
             { "language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
-            { "gir-test", 0, 0, OptionArg.STRING, ref opt_gir_test, "run gir test on this file", null },
+            { "symbol-db-test", 0, 0, OptionArg.STRING, ref opt_symbol_test, "run symbold database test on this file", null },
             { "drop-list", 0, 0, OptionArg.STRING, ref opt_drop_list, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
             
@@ -94,7 +94,7 @@
 		public static string opt_test;  
 		public static string opt_drop_list;
 		public static string opt_language_server;
-		public static string opt_gir_test;
+		public static string opt_symbol_test;
 		
         public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
@@ -615,15 +615,15 @@
 		*/
 		void girTest(Project.Project? cur_project)
 		{
-			if (BuilderApplication.opt_gir_test == null) {
+			if (BuilderApplication.opt_symbol_test == null) {
 				return;
 			}
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
 			GLib.debug("running vapiparser");
-			var vp = new Palete.VapiParser((Project.Gtk) cur_project);
-			vp.create_valac_tree();
+			var vp = new Palete.ValaSymbolBuilder((Project.Gtk) cur_project);
+			vp.create_valac_tree(opt_symbol_test);
 			
 			
 			/*
