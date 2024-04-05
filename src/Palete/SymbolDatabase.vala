@@ -219,11 +219,43 @@ namespace Palete {
 			
 			s.id = db.last_insert_rowid();
  			stmt.reset();
- 			
-			
-		
-		
+ 		
 		}
+		
+		public static void loadSymbols(SymbolFile file)
+		{
+			var stmt = prepare(
+				"SELECT
+					id,
+					file_id,
+					parent_id,
+					stype,
+					
+					begin_line,
+					begin_col,
+					end_line,
+					end_col,
+					sequence,
+					
+					name,
+					type,
+					direction,
+					
+					deprecated,
+					is_abstract,
+					is_sealed,
+			 		is_readable,
+					is_writable,
+			 		is_ctor,
+					is_static
+				FROM
+					symbol
+				WHERE file_id = $file_id
+			");
+			
+			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), file.id);
+		}
+		
 		public static void initDB()
 		{
 		
@@ -262,10 +294,7 @@ namespace Palete {
 		 	");	
 		
 		}
-		public static void loadSymbols(SymbolFile file)
-		{
 		
-		}
 		
 	}
 }
