@@ -262,12 +262,8 @@ namespace Palete {
 				s.id=stmt.column_int64(0);
 				s.file = file; // file id is (1)...
 				var parent_id = stmt.column_int64(2);
-				
-
- 
 				s.stype =  (Lsp.SymbolKind)  st ;
-				
-
+			
 				s.begin_line=stmt.column_int(4);
 				s.begin_col=stmt.column_int(5);
 				s.end_line=stmt.column_int(6);
