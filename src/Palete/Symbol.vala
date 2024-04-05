@@ -38,11 +38,11 @@ namespace Palete {
  		public bool is_ctor { get; set; default = false; }
  		public bool is_static { get; set; default = false; }
  		
- 		Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
-  		Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
+ 		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
+  		Geepublic .ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
 		
-		Symbol? parent = null;
-		int parent_id {
+		public Symbol? parent = null;
+		public int parent_id {
 			get {
 				return this.parent == null? 0 :  this.parent.id;
 			}
@@ -50,8 +50,6 @@ namespace Palete {
 			
 		}
 		
-		
-				
 		
 		
 	}
