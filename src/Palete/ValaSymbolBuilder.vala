@@ -204,42 +204,30 @@ namespace Palete {
 				var path = cg.sources.get(i);
 				
 				var jfile = pr.getByRelPath(path);
-				if (jfile.vala_source_file != null) {
-					jfile.vala_source_file.context = context;
-					//jfile.vala_source_file.add_using_directive (ns_ref);
-					context.add_source_file(jfile.vala_source_file);
+				if (jfile == null) {
+					GLib.debug("Can't file %s", path);
+					continue;
+				}
+				var tn = jfile.targetName();
+				if (!tn.has_suffix(".vala") && tn.has_suffix(".c") ) {
 					continue;
 				}
 				
-				GLib.debug("Try add source file %s", path);
-				// flip bjs to vala
-				if (path.has_suffix(".bjs")) {
-					path  = path.splice(path.length -4, path.length, ".vala");
-					GLib.debug("Change source file %s", path);
-				}
-				if (!path.has_suffix(".vala") && path.has_suffix(".c") ) {
+				if ( tn.has_suffix(".c")) {
+					context.add_c_source_file(path);
 					continue;
 				}
-				if (!FileUtils.test(pr.path + "/" + path, FileTest.EXISTS)) {
-					continue;
-				}       
-                // skip thie original
-				//if (pr.path + "/" + path == this.original_filepath) {
-				//	GLib.debug("Add orig source file %s", path);
-				//	valac += " " + path;
-				//	continue;
-				//}
-				if (FileUtils.test(pr.path + "/" + path, FileTest.IS_DIR)) {
-					continue;
-				}
+				
+				jfile.vala_source_file.context = context;
+				//jfile.vala_source_file.add_using_directive (ns_ref);
+				context.add_source_file(jfile.vala_source_file);
+				 
+			 
 				GLib.debug("Add source file %s", path);
 				
 				//valac += " " + pr.path + "/" + path;
 				
-				if ( path.has_suffix(".c")) {
-					context.add_c_source_file(path);
-					continue;
-				}
+				
 				
 				
 				var xsf = new Vala.SourceFile (
