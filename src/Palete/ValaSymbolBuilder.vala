@@ -222,22 +222,7 @@ namespace Palete {
 				//jfile.vala_source_file.add_using_directive (ns_ref);
 				context.add_source_file(jfile.vala_source_file);
 				 
-			 
-				GLib.debug("Add source file %s", path);
-				
-				//valac += " " + pr.path + "/" + path;
-				
-				
-				
-				
-				var xsf = new Vala.SourceFile (
-					context,
-					Vala.SourceFileType.SOURCE, 
-					pr.path + "/" +  path
-				);
-				xsf.add_using_directive (ns_ref);
-				context.add_source_file(xsf);
- 
+			   
 			}
 			
 			
