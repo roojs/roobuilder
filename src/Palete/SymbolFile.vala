@@ -39,7 +39,8 @@ namespace Palete {
 			set {
 				if (value) {
 					this.version = this.cur_mod_time();
-					this.db_write();
+					this.writeFile(this);
+					
 				}
 			}
 		}
@@ -48,7 +49,8 @@ namespace Palete {
 			this.path = path;
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
-			SymbolDatabase.writeSymbols(this);
+			SymbolDatabase.initFile(this);
+
 		}
 		
 		
