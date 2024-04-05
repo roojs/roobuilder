@@ -846,9 +846,9 @@
          "id" : "valcol",
          "items" : [
           {
+           "# bool is_setting" : false,
            "$ xns" : "Gtk",
            "* prop" : "factory",
-           "bool is_setting" : false,
            "listeners" : {
             "bind" : [
              "(listitem) => {",
@@ -856,9 +856,7 @@
              "",
              "",
              "\tvar bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();",
-             " ",
-             "\t",
-             "\t",
+             "  ",
              "\t",
              "\tvar elbl = (Gtk.EditableLabel)bx.get_first_child();",
              "\tvar lbl = (Gtk.Label) elbl.get_next_sibling();",
