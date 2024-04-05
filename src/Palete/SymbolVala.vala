@@ -2,7 +2,7 @@ namespace Palete {
 
 	class SymbolVala : Symbol {
 	
-	public SymbolVala(Symbol? parent, Vala.Symbol s)
+		public SymbolVala(Symbol? parent, Vala.Symbol s)
 		{
 
 			this.parent = parent;
