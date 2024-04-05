@@ -38,7 +38,7 @@ namespace Palete {
 			 		b.step(-1);
 			 		return _db;
 	 			}
-		 		Sqlite.Database.open_v2(":memory:", out _db, Sqlite.OPEN_MEMORY);
+		 		Sqlite.Database.open(":memory:", out _db);
 		 		initDB();
 		 		
 				return _db;
