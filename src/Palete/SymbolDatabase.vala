@@ -254,8 +254,8 @@ namespace Palete {
 			");
 			
 			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), file.id);
-			var ids = new Gee.HashMap<int, Symbol>();
-			var pids = new Gee.HashMap<int, int>();
+			var ids = new Gee.HashMap<int64, Symbol>();
+			var pids = new Gee.HashMap<int64, int64>();
 			while (stmt.step() == Sqlite.ROW) {
 				var s = new Symbol();
 				
