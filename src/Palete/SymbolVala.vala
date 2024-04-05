@@ -70,7 +70,7 @@ namespace Palete {
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.EnumMember;
 				
-			this.type  = cls.type_reference == null ||  cls.type_reference.type_symbol == null ? "" : 
+			this.rtype  = cls.type_reference == null ||  cls.type_reference.type_symbol == null ? "" : 
 					cls.type_reference.type_symbol.get_full_name();			
 			 
 		}
@@ -141,7 +141,7 @@ namespace Palete {
 			SymbolVala(parent,prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
-			this.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
+			this.rtype  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
 			this.is_static =  prop.binding != Vala.MemberBinding.INSTANCE;
 		 	this.is_readable = prop.get_accessor != null ?  prop.get_accessor.readable : false;
 			this.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable ||  prop.set_accessor.construction : false;	 
@@ -151,7 +151,7 @@ namespace Palete {
 			SymbolVala(parent,prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Field;
-			this.type  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
+			this.rtype  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
 		}
 		
 		public SymbolVala.new_delegate(Symbol? parent, Vala.Delegate sig)	
@@ -160,7 +160,7 @@ namespace Palete {
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Delegate;
 			 		
-		 	this.type = sig.return_type == null ? "": 
+		 	this.rtype = sig.return_type == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
@@ -173,7 +173,7 @@ namespace Palete {
 			SymbolVala(parent,pam);
 			this.name = pam.ellipsis ? "..." : pam.name;
 			this.stype = Lsp.SymbolKind.Parameter;
-			this.type = pam.ellipsis || pam.variable_type.type_symbol == null ? "" :
+			this.rtype = pam.ellipsis || pam.variable_type.type_symbol == null ? "" :
 				pam.variable_type.type_symbol.get_full_name();
 
 			this.sequence = seq;
@@ -196,7 +196,7 @@ namespace Palete {
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Signal;
 	 		//this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
-		 	this.type = sig.return_type == null ? "": 
+		 	this.rtype = sig.return_type == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
@@ -214,7 +214,7 @@ namespace Palete {
 			}
 			this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
 			 
-		 	this.type = sig.return_type == null ? "": 
+		 	this.rtype = sig.return_type == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
