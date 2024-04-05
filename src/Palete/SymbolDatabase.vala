@@ -187,13 +187,13 @@ namespace Palete {
 						$rtype,
 						$direction,
 						
-						deprecated,
-						is_abstract,
-						is_sealed,
-				 		is_readable,
-						is_writable,
-				 		is_ctor,
-						is_static
+						$deprecated,
+						$is_abstract,
+						$is_sealed,
+				 		$is_readable,
+						$is_writable,
+				 		$is_ctor,
+						$is_static
 		 			)
 				");
 			}			GLib.debug("error %s", _db.errmsg());
