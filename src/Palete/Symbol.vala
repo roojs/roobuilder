@@ -47,7 +47,7 @@ namespace Palete {
 			get {
 				return this.parent == null? 0 :  this.parent.id;
 			}
-			set {}
+			private set {}
 			
 		}
 		
