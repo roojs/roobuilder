@@ -181,7 +181,15 @@ namespace JsRender {
 			return this._vala_source_file; 
 			
 		}
-		
+		public string vala_source_file_content {
+			private get;
+			set  {
+				if (this._vala_source_file == null) {
+					return;
+				}
+				this._vala_source_file = value;
+			}
+		}
 		
 		//abstract JsRender(Project.Project project, string path); 
 		
