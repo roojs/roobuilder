@@ -471,7 +471,7 @@ public class JsRender.NodeProp : Object {
 			 	return this._val;
 		 	 }
 		 	 var vals = this._val.split("\n");
-		 	 return vals[0]  + (vals.length > 1 ? " ..." : "");
+		 	 return GLib.Markup.escape_text(vals[0]  + (vals.length > 1 ? " ..." : ""));
 		} 
 	}
  
