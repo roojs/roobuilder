@@ -176,7 +176,8 @@ namespace JsRender {
 			this._vala_source_file  = new Vala.SourceFile (
 				context, // needs replacing when you use it...
 				Vala.SourceFileType.SOURCE, 
-				this.targetName()
+				this.targetName(),
+				this.toSourceCode()
 			);
 			return this._vala_source_file; 
 			
