@@ -264,7 +264,8 @@ namespace Palete {
 				var parent_id = stmt.column_int64(2);
 				
 
-				s.stype =  Lsp.SymbolKind.parse( st );
+				//s.stype =  Lsp.SymbolKind.parse( st );
+				s.stype =  (Lsp.SymbolKind)  st ;
 				
 
 				s.begin_line=stmt.column_int(4);
