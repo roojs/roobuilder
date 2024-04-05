@@ -350,7 +350,7 @@ namespace Palete {
 
 		}
 	
- 		Gee.HashMap<string,string[]> typeOptionsCache { get ;set ; default = new Gee.HashMap<string,string[]>(); }
+ 		Gee.HashMap<string,string> typeOptionsCache { get ;set ; default = new Gee.HashMap<string,string>(); }
 		/*
 		 *  Pulldown options for type
 		 */
@@ -364,19 +364,19 @@ namespace Palete {
 			}
 			var cacheKey = fqn + ":"+ key;
 			 if (this.typeOptionsCache.has_key(cacheKey)) {
-			 	opts = this.typeOptionsCache.get(cacheKey);
+			 	opts = this.typeOptionsCache.get(cacheKey).split("\n");
 			 	return opts.size < 1 ? false : true;
 		 	}
 			 
 			 var props = this.getPropertiesFor(fqn, JsRender.NodePropType.PROP);
 			 if (!props.has_key(key)) {
-				 this.typeOptionsCache.set(cacheKey, {});
+				 this.typeOptionsCache.set(cacheKey, "");
 				 print("prop %s does not have key %s\n", fqn, key);
 				 return false;
 			 }
 			 var pr = props.get(key);
 			 if (pr.optvalues.size < 1) {
-				 this.typeOptionsCache.set(cacheKey, {});
+				 this.typeOptionsCache.set(cacheKey, "");
 				 print("prop %s no optvalues for %s\n", fqn, key);
 				 return false;
 			 }
@@ -386,7 +386,7 @@ namespace Palete {
 			 }
 			 opts = ret;
 			 print("prop %s returning optvalues for %s\n", fqn, key);
-			 this.typeOptionsCache.set(cacheKey, ret);
+			 this.typeOptionsCache.set(cacheKey, string.joinv("\n", ret));
 			 return true;
 			 
 		}
