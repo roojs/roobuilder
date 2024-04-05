@@ -593,6 +593,14 @@ namespace Lsp {
 		
 		
 		}
+		public SymbolType parse(int i ) {		
+			foreach (SymbolType s in SymbolType) {
+				if (i == (int)s) {
+					return s;
+				}
+			}
+			return Variable;
+		}
         
     }
 
