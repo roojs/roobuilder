@@ -78,7 +78,7 @@
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
             { "language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
-            { "symbol-db-test", 0, 0, OptionArg.STRING, ref opt_symbol_test, "run symbold database test on this file", null },
+            { "symbol-db-test", 0, 0, OptionArg.STRING, ref opt_symbol_test, "run symbold database test on this compile group", null },
             { "drop-list", 0, 0, OptionArg.STRING, ref opt_drop_list, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
             
