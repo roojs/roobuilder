@@ -262,7 +262,7 @@ namespace Palete {
 				s.id=stmt.column_int64(0);
 				s.file = file; // file id is (1)...
 				var parent_id = stmt.column_int64(2);
-				s.stype =  (Lsp.SymbolKind)   stmt.column_int(3) ;
+				s.stype =  (Lsp.SymbolKind)   stmt.column_int(3);
 			
 				s.begin_line=stmt.column_int(4);
 				s.begin_col=stmt.column_int(5);
@@ -288,7 +288,7 @@ namespace Palete {
 				}
 				
 			}
-			foreach(var cid in pids.keys()) {
+			foreach(var cid in owned pids.keys()) {
 				ids.get(cid).parent = ids.get(pids.get(cid));
 			}
 			
