@@ -264,7 +264,7 @@ namespace Palete {
 				var parent_id = stmt.column_int64(2);
 				var st = stmt.column_int(3);
 				if (st !== null) {
-					s.stype = (Lsp.SybmolKind) stmt.column_int(3);
+					s.stype = (Lsp.SybmolKind) st;
 				}
 
 				s.begin_line=stmt.column_int(4);
