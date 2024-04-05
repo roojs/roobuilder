@@ -593,8 +593,8 @@ namespace Lsp {
 		
 		
 		}
-		public SymbolType parse(int i ) {		
-			foreach (SymbolType s in SymbolType) {
+		public static SymbolKind parse(int i ) {		
+			foreach (SymbolKind s in SymbolKind) {
 				if (i == (int)s) {
 					return s;
 				}
