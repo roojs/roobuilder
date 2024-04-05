@@ -202,6 +202,15 @@ namespace Palete {
 			var cg =  this.scan_project.compilegroups.get(build_module);
 			for (var i = 0; i < cg.sources.size; i++) {
 				var path = cg.sources.get(i);
+				
+				var jfile = pr.getByRelPath(path);
+				if (jfile.vala_source_file != null) {
+					jfile.vala_source_file.context = context;
+					//jfile.vala_source_file.add_using_directive (ns_ref);
+					context.add_source_file(jfile.vala_source_file);
+					continue;
+				}
+				
 				GLib.debug("Try add source file %s", path);
 				// flip bjs to vala
 				if (path.has_suffix(".bjs")) {
@@ -240,7 +249,7 @@ namespace Palete {
 				);
 				xsf.add_using_directive (ns_ref);
 				context.add_source_file(xsf);
-				
+				jfile.vala_source_file = xsf
 			}
 			
 			
