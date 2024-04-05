@@ -5,50 +5,8 @@ namespace Palete {
 	
 		static Gee.HashMap<string, SymbolFile> files { get; set; default = new Gee.HashMap<string, SymbolFile>(); }
 		
-		static int _max_id = 0;
-		static Sqlite.Database? _db = null;
-		static Sqlite.Database db {
-			get {
-			 	if (_db != null) {
-			 		return _db;
-		 		}
-
-		 		Sqlite.Database.open (BuilderApplication.configDirectory() + "/symbols.db", out _db);
-				return _db;
-			}
-			
-		}
-		
-		static Sqlite.Statement db_prepare(string q) 
-		{
-			Sqlite.Statement stmt;
-			db.prepare_v2 (q, q.length, out stmt);
-			return stmt;
-		}
-		static void db_exec(string q) 
-		{
-			string errmsg;
-			db.exec (q, null, out errmsg);
-		}
-		static void db_max_id(string table)
-		{
-			if (max_ids.has_key(table)) {
-				return;
-			}
-			
-			var s = db_prepare("SELECT MAX(id) FROM " + table);
-			if (s.step() == Sqlite.ROW) {
-				max_ids.set(table, stmt.column_int(0) + 1);
-			}
-			max_ids.set(table,   1);
-		}
-		static Gee.HashMap<string,int> max_ids {
-			get; set;
-			default = new Gee.HashMap<string,int>(); 
-		}
-		
-		
-		
+  
+		  
 		public static SymbolFile factory(string path) 
 		{
 			if (files.has_key(path)) { // && files.get(path).version == version) {
