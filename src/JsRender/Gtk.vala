@@ -222,7 +222,7 @@ namespace JsRender {
 	        
 	    }
 	    */
-	    
+	    // full path  of target file..
 	    public override string targetName()
 	    {
 	    	return GLib.Path.get_dirname(this.path) + "/" + this.name + ".vala";
