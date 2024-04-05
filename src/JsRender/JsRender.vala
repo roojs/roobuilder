@@ -166,8 +166,22 @@ namespace JsRender {
 		public GLib.ListStore childfiles; // used by directories..
 		
 		
+		private  Vala.SourceFile? _vala_source_file = null;
+		public Vala.SourceFile vala_source_file {
+			get {
+				if (this._vala_source_file != null) {
+					return this._vala_source_file; 
+				}
+				this._vala_source_file; = Vala.SourceFile (
+					new Vala.CodeContext(), // needs replacing when you use it...
+					Vala.SourceFileType.SOURCE, 
+					this.path
+				);
+				return this._vala_source_file; 
+			}
+			private set;
+		}
 		
-		public Vala.SourceFile? vala_source_file = null;
 		
 		//abstract JsRender(Project.Project project, string path); 
 		
