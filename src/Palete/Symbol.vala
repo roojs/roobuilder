@@ -50,6 +50,9 @@ namespace Palete {
 			private set {}
 			
 		}
+		public Symbol()
+		{
+		}
 		
 		
 		
