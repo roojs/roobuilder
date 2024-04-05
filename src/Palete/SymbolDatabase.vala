@@ -125,7 +125,7 @@ namespace Palete {
 				writeSymbol(s);
 				new_ids += s.id.to_string();
 			}
-			exec("DELETE FROM symbols WHERE 
+			exec("DELETE FROM symbol WHERE 
 				id IN (" + string.joinv("," , ids) + ") AND
 				id NOT IN (" + string.joinv("," , new_ids) + ") AND 
 				file_id = " + file.id.to_string());
@@ -135,7 +135,7 @@ namespace Palete {
 		{
 			string[]  ret = {};
 	 
-			var stmt = prepare("SELECT id  FROM symbols WHERE 
+			var stmt = prepare("SELECT id  FROM symbol WHERE 
 				file_id = " + file_id.to_string());
 			while (stmt.step() == Sqlite.ROW) {
 				ret += stmt.column_text(0); //?? to_string?
