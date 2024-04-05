@@ -58,7 +58,7 @@ namespace Palete {
 				return max_ids.get(table);
 			}
 			
-			var s = db_prepare("SELECT MAX(id) FROM " + table);
+			var s = prepare("SELECT MAX(id) FROM " + table);
 			if (s.step() == Sqlite.ROW) {
 				max_ids.set(table, stmt.column_int(0) + 1);
 				return max_ids.get(table);
@@ -72,7 +72,47 @@ namespace Palete {
 			max_ids.set(table,   old+1);
 			return old;
 		}
+		public static void writeFile(SymbolFile file)
+		{
+			var stmt =  prepare("REPLACE INTO 
+				files (id, path, version) 
+			VALUES
+				($id, $path, $verison)
+			");
+			  
+			stmt.bind_int (stmt.bind_parameter_index ("$id"), file.id);
+			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
+			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
+			
 		
+		}
+		
+		public static void writeSymbols(SymbolFile  file)
+		{
+			
+			var ids = get_ids( file.id);
+			string[] new_ids = {};
+			foreach (var s in file.symbols) {
+				writeSymbol(s);
+				new_ids += s.id.to_string();
+			}
+			exec("DELETE FROM symbols WHERE 
+				id IN (" + string.joinv("," , ids) + ") AND
+				id NOT IN (" + string.joinv("," , new_ids) + ") AND 
+				file_id = " + file.id.to_string());
+		}
+		
+		public static string[]  get_symbol_ids( int file_id)
+		{
+			string[]  ret = {};
+	 
+			var stmt = prepare("SELECT id  FROM symbols WHERE 
+				file_id = " + file.id.to_string());
+			while (stmt.step() == Sqlite.ROW) {
+				ret += stmt.column_text(0); //?? to_string?
+			}
+			return ret;
+		}
 		
 		
 		
