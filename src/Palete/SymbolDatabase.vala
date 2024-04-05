@@ -255,7 +255,7 @@ namespace Palete {
 			
 			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), file.id);
 			var ids = new Gee.HashMap<int, Symbol>();
-			var parents = new Gee.HashMap<int, int>();
+			var pids = new Gee.HashMap<int, int>();
 			while (stmt.step() == Sqlite.ROW) {
 				var s = new Symbol();
 				
@@ -287,6 +287,9 @@ namespace Palete {
 					pids.set(s.id, parent_id);
 				}
 				
+			}
+			foreach(var cid in pid.keys()) {
+				ids.get(cid).parent = ids.get(pids.get(cid));
 			}
 			
 			
