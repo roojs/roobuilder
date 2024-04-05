@@ -113,7 +113,7 @@ namespace Palete {
 			this.stype = Lsp.SymbolKind.Class;
 			this.is_abstract = cls.is_abstract;
 			this.is_sealed = cls.is_sealed;	
-	 		this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
+	 		this.is_static =  cls.binding != Vala.MemberBinding.INSTANCE;
 		 	foreach(var p in cls.get_properties()) {
 				new new_property(this, p);
 			}
