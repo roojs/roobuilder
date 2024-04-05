@@ -181,7 +181,7 @@
 			var cur_project = this.compileProject();
 			this.dropList(cur_project); // --drop-list
 			this.languageServer(cur_project); // --language-server
-			this.girTest(cur_project); // -vapi/vala parser
+			this.symbolBuilderTest(cur_project); // -vapi/vala parser
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
 			this.languageServer(cur_project);
@@ -613,7 +613,7 @@
 		language server doesnt really give us a rich data set on code,
 		so let's see if we can use the existing GIR code to gather that data.
 		*/
-		void girTest(Project.Project? cur_project)
+		void symbolBuilderTest(Project.Project? cur_project)
 		{
 			if (BuilderApplication.opt_symbol_test == null) {
 				return;
