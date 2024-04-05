@@ -263,7 +263,7 @@ namespace Palete {
 				s.file = file; // file id is (1)...
 				var parent_id = stmt.column_int64(2);
 				var st = stmt.column_int(3);
-				if (st !== null) {
+				if (st != null) {
 					s.stype = (Lsp.SybmolKind) st;
 				}
 
