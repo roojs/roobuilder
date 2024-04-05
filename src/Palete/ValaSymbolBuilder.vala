@@ -234,7 +234,7 @@ namespace Palete {
 				
 				//throw new VapiParserError.PARSE_FAILED("failed parse VAPIS, so we can not write file correctly");
 				
-				print("parse got errors");
+				GLib.debug("parse got errors");
 				 
 				
 				Vala.CodeContext.pop ();
@@ -265,7 +265,7 @@ namespace Palete {
 		 
 			
 			
-			print("ALL OK?\n");
+			GLib.debug("ALL OK?\n");
 		 
 		}
 	//
