@@ -168,8 +168,7 @@ namespace JsRender {
 		
 		private  Vala.SourceFile? _vala_source_file = null;
 		public Vala.SourceFile vala_source_file(Vala.Context context) {
-			get {
-				if (this._vala_source_file != null) {
+			 	if (this._vala_source_file != null) {
 					return this._vala_source_file; 
 				}
 				 
@@ -179,8 +178,7 @@ namespace JsRender {
 					this.targetName()
 				);
 				return this._vala_source_file; 
-			}
-			private set {}
+			
 		}
 		
 		
