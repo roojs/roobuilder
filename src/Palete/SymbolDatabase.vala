@@ -189,7 +189,7 @@ namespace Palete {
 		 			)
 				");
 			}
-			var  stmt = write_symbol_sql;
+			unowned Sqlite.Statement stmt = write_symbol_sql;
 
 			
 			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), s.file.id);
