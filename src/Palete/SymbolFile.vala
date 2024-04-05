@@ -4,7 +4,8 @@ namespace Palete {
 	public class SymbolFile {
 	
 		static Gee.HashMap<string, SymbolFile> files;
-		public static SymbolFile () {
+		
+		static construct  {
 			files = new Gee.HashMap<string, SymbolFile>(); 
 		}
 		
