@@ -4,6 +4,7 @@ namespace Palete {
 	
 	public void SymbolVala(Symbol? parent, Vala.Symbol s)
 		{
+			Symbol();
 			this.parent = parent;
 			this.file = SymbolFile.factory(s.source_reference.file.filename);
 			this.begin_line = s.source_reference.begin.line;
