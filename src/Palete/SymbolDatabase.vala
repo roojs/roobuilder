@@ -31,11 +31,12 @@ namespace Palete {
 		 		
 		 		Sqlite.Database.open (fdb, out filedb);
 		 		Sqlite.Database.open_v2(":memory:", out _db, Sqlite.OPEN_MEMORY);
-		 		if (!exists) {
-		 			initDB();
-		 		}
+		 		
 		 		var b = new Sqlite.Backup(_db, "main", filedb, "main");
 		 		b.step(-1);
+				if (!exists) {
+		 			initDB();
+		 		}
 				return _db;
 			}
 			
