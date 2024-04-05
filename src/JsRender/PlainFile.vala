@@ -79,21 +79,21 @@ namespace JsRender {
         },
         */
 
-	public   override void	 removeFiles() {
-		if (FileUtils.test(this.path, FileTest.EXISTS)) {
-			GLib.FileUtils.remove(this.path);
-		}
-		 
-	}
-    
-	public   override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
-	{
-			if (this.loaded) {
-				return;
+		public   override void	 removeFiles() {
+			if (FileUtils.test(this.path, FileTest.EXISTS)) {
+				GLib.FileUtils.remove(this.path);
 			}
-	        GLib.FileUtils.get_contents(this.path, out this.contents);
-	        this.loaded = true;
-	}
+			 
+		}
+		
+		public   override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
+		{
+				if (this.loaded) {
+					return;
+				}
+			    GLib.FileUtils.get_contents(this.path, out this.contents);
+			    this.loaded = true;
+		}
      
         
 		
@@ -104,7 +104,7 @@ namespace JsRender {
 		public override void setSource(string str) {
 			this.contents = str;
 			if(this.vala_source_file != null) {
-			    this.vala_source_file.contents = this.last_source;
+			    this.vala_source_file.contents = this.contents;
 		    }
 		}
         public override string toSource()
@@ -116,7 +116,7 @@ namespace JsRender {
 		 public override string toSourceCode()
         {
 			if(this.vala_source_file != null) {
-			    this.vala_source_file.contents = this.last_source;
+			    this.vala_source_file.contents = this.contents;
 		    }
 			return this.contents;
             
