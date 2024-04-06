@@ -75,7 +75,7 @@ namespace Palete {
 			if (file.id > 0) {
 				return;
 			}
-			var stmt =  prepare("SELECT id, verson FROM files where path = $path");
+			var stmt =  prepare("SELECT id, version FROM files where path = $path");
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);	 
 			if (stmt.step() == Sqlite.ROW) { 
 				file.id = stmt.column_int(0);
