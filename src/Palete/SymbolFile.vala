@@ -66,7 +66,7 @@ namespace Palete {
 		
 		public void dump()
 		{
-			GLib.debug("File %s (%d)", this.path, this.version);
+			GLib.debug("File %s (%d)", this.path, (int)this.version);
 			//foreach(var s in this.symbols) {
 				//s.dump(0, 
 		
