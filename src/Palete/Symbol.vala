@@ -11,10 +11,7 @@
  
 */
 namespace Palete {
-	
-	
-	 
-	
+		
 	public class Symbol : Object {
 	
 		public int64 id = -1;
@@ -52,8 +49,11 @@ namespace Palete {
 		}
 		public Symbol()
 		{
-		
+			this.inherits   = new Gee.ArrayList<string>();
+  			this.implements  = new Gee.ArrayList<string>(); 	
+			this.children = new GLib.ListStore(typeof(Symbol));
 		}
+		
 		
 		
 		
