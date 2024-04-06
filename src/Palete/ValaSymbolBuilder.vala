@@ -229,7 +229,7 @@ namespace Palete {
 				var sf = new Vala.SourceFile (
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.SOURCE, 
-					this.targetName() 
+					jfile.targetName() 
 				);
 
 				//jfile.vala_source_file.add_using_directive (ns_ref);
