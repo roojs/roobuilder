@@ -225,6 +225,8 @@ namespace Palete {
 					context.add_c_source_file(path);
 					continue;
 				}
+				string cont;
+				GLib.FileUtils.get_contents(jfile.targetName(), out cont);
 				//var sf = jfile.vala_source_file(context,ns_ref);
 				//sf.context = context;
 				//var cont = jfile.toSourceCode();
@@ -232,7 +234,8 @@ namespace Palete {
 				var sf = new Vala.SourceFile (
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.SOURCE, 
-					jfile.targetName()
+					jfile.targetName(),
+					cont
 				);
 				// doing this causes visit to fail?
 				//sf.content = jfile.toSourceCode();
