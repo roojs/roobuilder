@@ -36,7 +36,7 @@ namespace Palete {
 		public int64 version { get; set; default = -1; } // utime?
 		public Gee.ArrayList<Symbol> symbols ;
 		public Gee.ArrayList<Symbol> top_symbols ;
-		public Gee.HashMap<int,Symbol> symbols_map;
+		public Gee.HashMap<int,Symbol> symbol_map;
 		public int64 cur_mod_time() {
 			try {
 				return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
