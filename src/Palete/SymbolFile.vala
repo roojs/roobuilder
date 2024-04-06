@@ -71,8 +71,6 @@ namespace Palete {
 			this.symbol_map.clear();
 			foreach(var s in this.symbols) {
 				this.symbol_map.set((int)s.id, s);
-				s.parent.children.append(s);
-				
 			}
 			 
 		}
