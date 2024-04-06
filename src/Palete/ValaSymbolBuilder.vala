@@ -234,7 +234,7 @@ namespace Palete {
 					Vala.SourceFileType.SOURCE, 
 					jfile.targetName()
 				);
-				sf.content = cont;
+				sf.content = jfile.toSourceCode();
 				sf.add_using_directive (ns_ref);
 				context.add_source_file(sf);
 				 
