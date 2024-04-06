@@ -35,6 +35,7 @@ namespace Palete {
 		public string path { get; set; default = ""; }
 		public int64 version { get; set; default = -1; } // utime?
 		public Gee.ArrayList<Symbol> symbols ;
+		public Gee.ArrayList<Symbol> top_symbols ;
 		public Gee.HashMap<int,Symbol> symbols_map;
 		public int64 cur_mod_time() {
 			try {
