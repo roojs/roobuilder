@@ -92,7 +92,8 @@ namespace Palete {
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
 			stmt.step () ;
 			file.id = db.last_insert_rowid();
- 			GLib.debug("WriteFile: %s", db.errmsg());
+			stmt.reset();
+ 			//GLib.debug("WriteFile: %s", db.errmsg());
 		
 		}
 		static Sqlite.Statement? write_file_sql = null;
@@ -113,7 +114,8 @@ namespace Palete {
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$id"), file.id);			
 			stmt.step () ;
-			GLib.debug("WriteFile: %s", db.sql());
+			stmt.reset();
+
 		}
 		
 		public static void writeSymbols(SymbolFile  file)
