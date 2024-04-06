@@ -161,15 +161,25 @@ namespace JsRender {
 		    	return this.last_source;
 	    	}
 	    	GLib.debug("toSource %s - generating %s", this.path, this.gen_extended  ? "Extended": "Wrapped");
+	    	//var utime = new GLib.DateTime.now();
+	    	
 	    	if (this.tree == null) {
+				// stime =  GLib.File.new_for_path(this.path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				// ttime =  GLib.File.new_for_path(this.targetName()).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				// if ttime > stime .. set this utime = ttime
+				/// and return the contents of targetName..
+				// otherwise set utime = now()
 	    		this.loadItems();
+	    		 
     		
+    		}
+    		// check utime on target and source ...
 		    this.last_source =   	this.gen_extended ? 
 		 		NodeToValaExtended.mungeFile(this) :
 				NodeToValaWrapped.mungeFile(this);
 				
 		    this.last_source_version = this.version;
- 
+ 			// set utime as now... 
 
 		     
 		    
