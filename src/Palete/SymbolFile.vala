@@ -70,7 +70,7 @@ namespace Palete {
 			//foreach(var s in this.symbols) {
 				//s.dump(0, 
 		
-		 
+		 }
 		 
 		 
 	}
