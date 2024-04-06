@@ -172,7 +172,9 @@ namespace Palete {
 				 		is_readable,
 						is_writable,
 				 		is_ctor,
-						is_static
+						is_static,
+						
+						parent_name
 				 		
 			 		)  VALUES (
 			 			$file_id,
@@ -195,7 +197,9 @@ namespace Palete {
 				 		$is_readable,
 						$is_writable,
 				 		$is_ctor,
-						$is_static
+						$is_static,
+						
+						$parent_name
 		 			)
 				");
 			}	//		GLib.debug("error %s", _db.errmsg());
@@ -223,6 +227,8 @@ namespace Palete {
 			stmt.bind_int (stmt.bind_parameter_index ("$is_writable"), s.is_writable? 1 : 0);
 			stmt.bind_int (stmt.bind_parameter_index ("$is_ctor"), s.is_ctor? 1 : 0);
 			stmt.bind_int (stmt.bind_parameter_index ("$is_static"), s.is_static? 1 : 0);
+			
+			stmt.bind_text (stmt.bind_parameter_index ("$parent_name"), s.parent_name);
 	
 			stmt.step () ;
 			
@@ -257,7 +263,9 @@ namespace Palete {
 			 		is_readable,
 					is_writable,
 			 		is_ctor,
-					is_static
+					is_static,
+					
+					parent_name
 				FROM
 					symbol
 				WHERE file_id = $file_id
@@ -353,7 +361,9 @@ namespace Palete {
 			 		is_readable INT2,
 					is_writable INT2,
 			 		is_ctor INT2,
-					is_static INT2
+					is_static INT2,
+					
+					parent_name TEXT
 				);
 		 	");	
 		
