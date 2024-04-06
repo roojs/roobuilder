@@ -47,6 +47,8 @@ namespace Palete {
 		
 		public bool is_parsed {
 			get {
+				GLib.debug("check parsed %d, %d", (int)this.version,  (int)this.cur_mod_time());
+				
 				return this.version ==  this.cur_mod_time();
 			}
 			set {
