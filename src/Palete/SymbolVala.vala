@@ -7,7 +7,7 @@ namespace Palete {
 			base();
 			this.file = SymbolFile.factory(s.source_reference.file.filename);
 			if (parent != null && parent.file.id != this.file.id) {
-				if (this.parent.stype != Lsp.SymbolKind.NAMESPACE)  {
+				if (this.parent.stype != Lsp.SymbolKind.Namespace)  {
 					GLib.error("parent is from differnt file, and its' type is %s", 
 						this.parent.stype.to_string());
 				}
