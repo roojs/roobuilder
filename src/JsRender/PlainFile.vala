@@ -114,12 +114,8 @@ namespace JsRender {
 		 public override string toSourceCode()
         {
  
-		    this.vala_source_file_content= this.contents;
-		    
-			return this.contents;
-            
-             
-            
+		   return this.contents;
+           
         }
         public override void save() {
     		if (!this.loaded) {
