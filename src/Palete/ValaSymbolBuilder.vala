@@ -225,15 +225,15 @@ namespace Palete {
 					context.add_c_source_file(path);
 					continue;
 				}
-				//var sf = jfile.vala_source_file(context);
+				var sf = jfile.vala_source_file(context);
 				//sf.context = context;
 				var cont = jfile.toSourceCode();
-				GLib.debug("File %s content = %d", jfile.path, cont.length);
-				var sf = new Vala.SourceFile (
-					context, // needs replacing when you use it...
-					Vala.SourceFileType.SOURCE, 
-					jfile.targetName()
-				);
+				//GLib.debug("File %s content = %d", jfile.path, cont.length);
+				////var sf = new Vala.SourceFile (
+				//	context, // needs replacing when you use it...
+				//	Vala.SourceFileType.SOURCE, 
+				//	jfile.targetName()
+				//);
 				sf.content = cont;
 				sf.add_using_directive (ns_ref);
 				context.add_source_file(sf);
