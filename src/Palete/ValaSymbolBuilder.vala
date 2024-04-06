@@ -231,6 +231,7 @@ namespace Palete {
 				if (cont !=  contgen) {
 					GLib.error("file %s contents do not match generated %d != %d", 
 					 	jfile.path, contgen.length, cont.length);
+			 	}
 				//var sf = jfile.vala_source_file(context,ns_ref);
 				//sf.context = context;
 				//var cont = jfile.toSourceCode();
