@@ -23,7 +23,7 @@ namespace Palete {
 				
 		}
 		
-		static void dumpAll()
+		public static void dumpAll()
 		{
 			foreach(var f in files.values) {
 				f.dump();
