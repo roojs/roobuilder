@@ -40,6 +40,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	public static string mungeFile(JsRender file) 
 	{
 		if (file.tree == null) {
+			GLib.debug("tree is empty!");
 			return "";
 		}
 
