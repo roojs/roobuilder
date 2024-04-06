@@ -12,7 +12,7 @@ namespace Palete {
 			this.end_line = s.source_reference.end.line;
 			this.end_col = s.source_reference.end.column;
 			this.deprecated  = s.version.deprecated;
-			this.file.symbols.add(this); //referenced...
+			//this.file.symbols.add(this); //referenced...
 		}
 		
 	
