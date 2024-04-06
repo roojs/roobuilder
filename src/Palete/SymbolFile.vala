@@ -71,11 +71,10 @@ namespace Palete {
 			this.symbol_map.clear();
 			foreach(var s in this.symbols) {
 				this.symbol_map.set((int)s.id, s);
-				s.children.remove_all();
+				s.parent.children.append(s);
+				
 			}
-			foreach(var s in this.symbols) {	
-			
-		
+			 
 		}
 		
 		public void dump()
