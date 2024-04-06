@@ -302,8 +302,12 @@ namespace Palete {
 			}
 
 			foreach(var cid in  pids.keys ) {
-				ids.get(cid).parent = ids.get(pids.get(cid));
-				ids.get(cid).parent.children.append(ids.get(cid));
+				var child = ids.get(cid);
+				var parent_id = pids.get(cid);
+				var parent = ids.get(parent_id);
+				
+				child.parent = parent;
+				parent.children.append(child); 
 			}
 			
 			
