@@ -7,6 +7,8 @@ namespace Palete {
 			base();
 			this.file = SymbolFile.factory(s.source_reference.file.filename);
 			if (parent != null && parent.file.id != this.file.id) {
+				
+				this.parent_name = this.parent.name;
 				parent = null;
 			}
 			
