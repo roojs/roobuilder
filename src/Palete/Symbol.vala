@@ -53,6 +53,7 @@ namespace Palete {
 		}
 		public Symbol()
 		{
+			Object();
 			this.inherits   = new Gee.ArrayList<string>();
   			this.implements  = new Gee.ArrayList<string>(); 	
 			this.children = new GLib.ListStore(typeof(Symbol));
