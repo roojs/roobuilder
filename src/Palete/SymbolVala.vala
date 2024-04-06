@@ -5,6 +5,12 @@ namespace Palete {
 		public SymbolVala(Symbol? parent, Vala.Symbol s)
 		{
 			base();
+			this.file = SymbolFile.factory(s.source_reference.file.filename);
+			if (parent != null && parent.file.id != this.file.id) {
+				parent = SymbolVala.fake_parent(file, parent);
+			
+			}
+			
 			this.parent = parent;
 			this.file = SymbolFile.factory(s.source_reference.file.filename);
 			this.begin_line = s.source_reference.begin.line;
