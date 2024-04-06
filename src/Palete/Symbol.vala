@@ -16,7 +16,8 @@ namespace Palete {
 	
 		public int64 id = -1;
 		public Lsp.SymbolKind stype;
-		public SymbolFile 	file;
+		private SymbolFile? 	file = null;
+		 
 		public int begin_line  { get; set; } 
 		public int begin_col  { get; set; }
 		public int end_line  { get; set; }
