@@ -234,7 +234,8 @@ namespace Palete {
 					Vala.SourceFileType.SOURCE, 
 					jfile.targetName()
 				);
-				sf.content = jfile.toSourceCode();
+				// doing this causes visit to fail?
+				//sf.content = jfile.toSourceCode();
 				sf.add_using_directive (ns_ref);
 				context.add_source_file(sf);
 				 
