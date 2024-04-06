@@ -16,7 +16,8 @@ namespace Palete {
 			if (this.parent != null) {
 				this.parent.children.append(this);
 			} else {
-			this.file.top_symbols.append(this);
+				this.file.top_symbols.append(this);
+			}
 		}
 		
 	
