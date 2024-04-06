@@ -225,13 +225,13 @@ namespace Palete {
 					context.add_c_source_file(path);
 					continue;
 				}
-				var sf = jfile.vala_source_file(context);
-				sf.context = context;
-				//var sf = new Vala.SourceFile (
-				//	context, // needs replacing when you use it...
-				//	Vala.SourceFileType.SOURCE, 
-				//	jfile.targetName() 
-				//);
+				//var sf = jfile.vala_source_file(context);
+				//sf.context = context;
+				var sf = new Vala.SourceFile (
+					context, // needs replacing when you use it...
+					Vala.SourceFileType.SOURCE, 
+					jfile.targetName() 
+				);
 
 				sf.add_using_directive (ns_ref);
 				context.add_source_file(sf);
