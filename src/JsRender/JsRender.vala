@@ -167,7 +167,7 @@ namespace JsRender {
 		
 		
 		private  Vala.SourceFile? _vala_source_file = null;
-		public Vala.SourceFile vala_source_file(Vala.CodeContext context) 
+		public Vala.SourceFile vala_source_file(Vala.CodeContext context, Vala.UsingDirective ns_ref) 
 		{
 		 	if (this._vala_source_file != null) {
 				return this._vala_source_file; 
@@ -176,9 +176,10 @@ namespace JsRender {
 			this._vala_source_file  = new Vala.SourceFile (
 				context, // needs replacing when you use it...
 				Vala.SourceFileType.SOURCE, 
-				this.targetName(),
-				this.toSourceCode()
+				this.targetName() 
 			);
+			this._vala_source_file.sf.content = cont;
+			this._vala_source_file.add_using_directive (ns_ref);
 			return this._vala_source_file; 
 			
 		}
