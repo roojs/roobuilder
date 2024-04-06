@@ -228,7 +228,7 @@ namespace Palete {
 				string cont;
 				GLib.FileUtils.get_contents(jfile.targetName(), out cont);
 				var contgen = jfile.toSourceCode();
-				if (cont !=  contgen) {
+				if (cont != contgen) {
 					GLib.error("file %s contents do not match generated %d != %d", 
 					 	jfile.path, contgen.length, cont.length);
 			 	}
