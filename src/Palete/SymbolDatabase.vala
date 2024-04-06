@@ -103,7 +103,7 @@ namespace Palete {
 			if (write_file_sql == null) {
 				write_file_sql = prepare("UPDATE   files  SET 
 					path = $path,
-					version =  - $version
+					version = $version
 					WHERE id = $id
 				");
 			}
