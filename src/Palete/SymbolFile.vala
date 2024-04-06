@@ -80,8 +80,9 @@ namespace Palete {
 		public void dump()
 		{
 			GLib.debug("File %s (%d)", this.path, (int)this.version);
-			//foreach(var s in this.symbols) {
-				//s.dump(0, 
+			foreach(var s in this.top_symbols) {
+				s.dump("  ");
+			}
 		
 		 }
 		 
