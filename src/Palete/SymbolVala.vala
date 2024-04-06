@@ -12,7 +12,7 @@ namespace Palete {
 						parent.stype.to_string());
 				}
 				
-				this.parent_name = this.parent.name;
+				this.parent_name = parent.name;
 				parent = null;
 			}
 			
