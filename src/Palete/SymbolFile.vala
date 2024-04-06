@@ -49,7 +49,7 @@ namespace Palete {
 			get {
 				GLib.debug("check parsed %d, %d", (int)this.version,  (int)this.cur_mod_time());
 				
-				return this.version ==  this.cur_mod_time();
+				return this.version ==  this.cur_mod_time() && this.symbols.size > 0;
 			}
 			set {
 				if (value) {
