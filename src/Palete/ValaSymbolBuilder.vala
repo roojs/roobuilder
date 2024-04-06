@@ -25,6 +25,7 @@ namespace Palete {
 		{
 			// visit classes and namespaces..?
 			var sf = SymbolFile.factory(sfile.filename);
+			
 			if (sf.is_parsed) {
 				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
 				return;
@@ -42,12 +43,13 @@ namespace Palete {
 		
 		public override void visit_namespace (Vala.Namespace element) 
 		{
+
 			if (element == null) {
 				return;
 			}
 
 			
-			//print("parsing namespace %s\n", element.name);
+			GLib.debug("parsing namespace %s\n", element.name);
 			if (element.name == null) {
 				element.accept_children(this); // catch sub namespaces..
 				return;
