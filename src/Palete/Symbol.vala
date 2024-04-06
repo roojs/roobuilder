@@ -41,7 +41,7 @@ namespace Palete {
 		
 		public GLib.ListStore children;
 		
-		
+		public string parent_name = "";
 		// FIXME!!!!
 		public Symbol? parent = null;
 		public int64 parent_id {
