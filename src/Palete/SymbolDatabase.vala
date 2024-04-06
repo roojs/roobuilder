@@ -305,6 +305,10 @@ namespace Palete {
 				var child = ids.get(cid);
 				var parent_id = pids.get(cid);
 				var parent = ids.get(parent_id);
+				if(parent == null) {
+					GLib.debug("Can not find parent %d of row %d", parent_id , cid);
+					continue;
+				}
 				
 				child.parent = parent;
 				parent.children.append(child); 
