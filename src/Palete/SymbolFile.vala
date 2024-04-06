@@ -51,7 +51,9 @@ namespace Palete {
 			}
 			set {
 				if (value) {
+					
 					this.version = this.cur_mod_time();
+					GLib.debug("is_parsed %s : %d", this.path, this.version);
 					SymbolDatabase.writeFile(this);
 					SymbolDatabase.writeSymbols(this);
 					
