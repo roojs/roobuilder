@@ -101,7 +101,7 @@ namespace Palete {
 		{
 			 
 			if (write_file_sql == null) {
-				write_file_sql = prepare("UPDATE   files  SET 
+				write_file_sql = prepare("UPDATE files  SET 
 					path = $path,
 					version = $version
 					WHERE id = $id
@@ -113,7 +113,7 @@ namespace Palete {
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$id"), file.id);			
 			stmt.step () ;
-			GLib.debug("WriteFile: %s", db.errmsg());
+			GLib.debug("WriteFile: %s", db.sql());
 		}
 		
 		public static void writeSymbols(SymbolFile  file)
