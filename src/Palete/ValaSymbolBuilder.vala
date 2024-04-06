@@ -225,7 +225,7 @@ namespace Palete {
 					context.add_c_source_file(path);
 					continue;
 				}
-				var sf = jfile.vala_source_file(context);
+				var sf = jfile.vala_source_file(context,ns_ref);
 				//sf.context = context;
 				var cont = jfile.toSourceCode();
 				//GLib.debug("File %s content = %d", jfile.path, cont.length);
