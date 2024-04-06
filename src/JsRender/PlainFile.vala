@@ -103,9 +103,7 @@ namespace JsRender {
 		}
 		public override void setSource(string str) {
 			this.contents = str;
- 
-		    this.vala_source_file_content = this.contents;
-		     
+  
 		}
         public override string toSource()
         {
