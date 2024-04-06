@@ -61,7 +61,7 @@ namespace Palete {
 		{
 			GLib.debug("Got Class %s", element.name);
 			element.accept_children(this);
-		 
+		} 
 		 
 		 
 		
