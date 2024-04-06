@@ -260,7 +260,7 @@ namespace Palete {
 					symbol
 				WHERE file_id = $file_id
 			");
-			
+			file.symbol_map.clear(); 
 			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), file.id);
 			var ids = new Gee.HashMap<int, Symbol>();
 			var pids = new Gee.HashMap<int, int>();
@@ -293,12 +293,15 @@ namespace Palete {
 				ids.set((int)s.id, s);
 				if (parent_id > 0) {
 					pids.set((int)s.id, (int)parent_id);
+				} else {
+					files.top_symbols.add(s);
 				}
 				
 			}
 
 			foreach(var cid in  pids.keys ) {
 				ids.get(cid).parent = ids.get(pids.get(cid));
+				ids.get(cid).parent.children.append(ids.get(cid));
 			}
 			
 			
