@@ -26,7 +26,7 @@ namespace Palete {
 			// visit classes and namespaces..?
 			var sf = SymbolFile.factory(sfile.filename);
 			if (sf.is_parsed) {
-				GLib.debug("SKIP %s (db uptodate)");
+				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
 				return;
 			}
 			
