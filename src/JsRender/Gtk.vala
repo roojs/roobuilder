@@ -157,10 +157,7 @@ namespace JsRender {
 	    {
 		    if (this.version == this.last_source_version) {
 		    	GLib.debug("toSource - using Cache");
- 
-				this.vala_source_file_content  = this.last_source;
-				 
-				
+ 				
 		    	return this.last_source;
 	    	}
 	    	GLib.debug("toSource %s - generating %s", this.path, this.gen_extended  ? "Extended": "Wrapped");
@@ -171,7 +168,7 @@ namespace JsRender {
 				
 		    this.last_source_version = this.version;
  
-		    this.vala_source_file_content  = this.last_source;
+
 		     
 		    
 		    
