@@ -57,6 +57,16 @@ namespace Palete {
 			this.children = new GLib.ListStore(typeof(Symbol));
 		}
 		
+		public void dump(string indent)
+		{
+			GLib.dump("%s%s : %s  (%s)", indent, this.stype.to_string(), this.name, this.rtype);
+			var si = indent + "  ";
+			for(var i = 0; i < this.children.get_n_items();i++) {
+				var c = (Symbol) this.children.get_item(i);
+				c.dump(si);
+			}
+		}
+		
 		
 		
 		
