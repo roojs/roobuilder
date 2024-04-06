@@ -61,9 +61,10 @@ namespace Palete {
 			this.path = path;
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
+			this.symbol_map = new Gee.HashMap<int,Symbol>();
 			SymbolDatabase.initFile(this);
 			SymbolDatabase.loadSymbols(this);
-			this.symbol_map = new Gee.HashMap<int,Symbol>();
+
 		}
 		
 		public void initSymbolMap()
