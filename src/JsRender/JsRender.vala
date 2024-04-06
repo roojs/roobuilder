@@ -178,7 +178,7 @@ namespace JsRender {
 				Vala.SourceFileType.SOURCE, 
 				this.targetName() 
 			);
-			this._vala_source_file.sf.content = cont;
+			this._vala_source_file.content = this.toSourceCode();
 			this._vala_source_file.add_using_directive (ns_ref);
 			return this._vala_source_file; 
 			
