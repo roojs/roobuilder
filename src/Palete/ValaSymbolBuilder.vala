@@ -47,7 +47,6 @@ namespace Palete {
 			if (element == null) {
 				return;
 			}
-
 			
 			GLib.debug("parsing namespace %s\n", element.name);
 			if (element.name == null) {
@@ -58,7 +57,10 @@ namespace Palete {
 			element.accept_children(this); // catch sub namespaces..
 		}
 		 
-		  
+	  	public override void visit_class (Vala.Class element) 
+		{
+			GLib.debug("Got Class %s", element.name);
+			element.accept_children(this);
 		 
 		 
 		 
