@@ -35,6 +35,7 @@ namespace Palete {
 		public string path { get; set; default = ""; }
 		public int64 version { get; set; default = -1; } // utime?
 		public Gee.ArrayList<Symbol> symbols ;
+		public Gee.HashMap<int,Symbol> symbols_map;
 		public int64 cur_mod_time() {
 			try {
 				return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
@@ -62,6 +63,19 @@ namespace Palete {
 			this.symbols = new Gee.ArrayList<Symbol>();
 			SymbolDatabase.initFile(this);
 			SymbolDatabase.loadSymbols(this);
+			this.symbol_map = new Gee.HashMap<int,Symbol>();
+		}
+		
+		public void initSymbolMap()
+		{
+			this.symbol_map.clear();
+			foreach(var s in this.symbols) {
+				this.symbol_map.set((int)s.id, s);
+				s.children.remove_all();
+			}
+			foreach(var s in this.symbols) {	
+			
+		
 		}
 		
 		public void dump()
