@@ -20,7 +20,9 @@ namespace Palete {
 			// should not really happen..
 			 
 		}
-		 
+		
+		
+		
 		public override void visit_source_file(Vala.SourceFile sfile)
 		{
 			// visit classes and namespaces..?
@@ -222,9 +224,14 @@ namespace Palete {
 					context.add_c_source_file(path);
 					continue;
 				}
-				var sf = jfile.vala_source_file(context);
-				
-				sf.context = context;
+				//var sf = jfile.vala_source_file(context);
+				//sf.context = context;
+				var sf = new Vala.SourceFile (
+					context, // needs replacing when you use it...
+					Vala.SourceFileType.SOURCE, 
+					this.targetName() 
+				);
+
 				//jfile.vala_source_file.add_using_directive (ns_ref);
 				context.add_source_file(sf);
 				 
