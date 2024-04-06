@@ -7,8 +7,7 @@ namespace Palete {
 			base();
 			this.file = SymbolFile.factory(s.source_reference.file.filename);
 			if (parent != null && parent.file.id != this.file.id) {
-				parent = SymbolVala.fake_parent(file, parent);
-			
+				parent = null;
 			}
 			
 			this.parent = parent;
@@ -234,6 +233,8 @@ namespace Palete {
 			}
 
 		}
+		 
+		 
 	
 	}
 }
