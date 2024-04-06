@@ -161,7 +161,9 @@ namespace JsRender {
 		    	return this.last_source;
 	    	}
 	    	GLib.debug("toSource %s - generating %s", this.path, this.gen_extended  ? "Extended": "Wrapped");
-	    	
+	    	if (this.tree == null) {
+	    		this.loadItems();
+    		
 		    this.last_source =   	this.gen_extended ? 
 		 		NodeToValaExtended.mungeFile(this) :
 				NodeToValaWrapped.mungeFile(this);
