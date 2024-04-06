@@ -52,7 +52,9 @@ namespace Palete {
 			set {
 				if (value) {
 					this.version = this.cur_mod_time();
+					SymbolDatabase.writeFile(this);
 					SymbolDatabase.writeSymbols(this);
+					
 					
 				}
 			}
