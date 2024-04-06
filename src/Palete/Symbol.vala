@@ -38,6 +38,8 @@ namespace Palete {
  		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
 		
+		public GLib.ListStore children;
+		
 		// FIXME!!!!
 		public Symbol? parent = null;
 		public int64 parent_id {
