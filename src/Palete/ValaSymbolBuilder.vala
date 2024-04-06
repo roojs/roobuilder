@@ -232,7 +232,7 @@ namespace Palete {
 					jfile.targetName() 
 				);
 
-				//jfile.vala_source_file.add_using_directive (ns_ref);
+				sf.add_using_directive (ns_ref);
 				context.add_source_file(sf);
 				 
 			   
