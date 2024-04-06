@@ -679,6 +679,8 @@
 			 
 			loop.run();
 			*/
+			
+			Palete.SymbolFile.dumpAll();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 			
