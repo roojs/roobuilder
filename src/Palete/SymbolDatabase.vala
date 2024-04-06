@@ -294,7 +294,7 @@ namespace Palete {
 				if (parent_id > 0) {
 					pids.set((int)s.id, (int)parent_id);
 				} else {
-					files.top_symbols.add(s);
+					file.top_symbols.add(s);
 				}
 				
 			}
