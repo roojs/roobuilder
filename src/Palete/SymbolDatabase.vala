@@ -50,10 +50,10 @@ namespace Palete {
 		{
 	 		Sqlite.Database filedb;
 			Sqlite.Database.open (BuilderApplication.configDirectory() + "/symbols.db", out filedb);
-			GLib.debug("error %s", filedb.errmsg());
+			//GLib.debug("error %s", filedb.errmsg());
 			var b = new Sqlite.Backup(filedb, "main", _db, "main");
-			GLib.debug("error %s", filedb.errmsg());
-			GLib.debug("error %s", _db.errmsg());
+			//GLib.debug("error %s", filedb.errmsg());
+			//GLib.debug("error %s", _db.errmsg());
 	 		b.step(-1);
 		}
 		
@@ -196,7 +196,7 @@ namespace Palete {
 						$is_static
 		 			)
 				");
-			}			GLib.debug("error %s", _db.errmsg());
+			}	//		GLib.debug("error %s", _db.errmsg());
 			unowned Sqlite.Statement stmt = write_symbol_sql;
 
 			
@@ -224,7 +224,7 @@ namespace Palete {
 	
 			stmt.step () ;
 			
-			GLib.debug("error %s", _db.errmsg());
+			//GLib.debug("error %s", _db.errmsg());
 			s.id = db.last_insert_rowid();
  			stmt.reset();
  		
