@@ -291,6 +291,9 @@ namespace Palete {
 				s.is_writable=stmt.column_int(16) == 1;
 				s.is_ctor=stmt.column_int(17) == 1;
 				s.is_static=stmt.column_int(18) == 1;
+				// stuff I forgot..
+				s.parent_name =stmt.column_text(19);
+				
 				file.symbols.add(s);
 				ids.set((int)s.id, s);
 				if (parent_id > 0) {
