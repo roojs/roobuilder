@@ -22,6 +22,13 @@ namespace Palete {
 			return  files.get(path);
 				
 		}
+		
+		static void dumpAll()
+		{
+			foreach(var f in files.values) {
+				f.dump();
+			}
+		}
 	
 	
 		public int64 id = -1;
@@ -57,6 +64,11 @@ namespace Palete {
 			SymbolDatabase.loadSymbols(this);
 		}
 		
+		public void dump()
+		{
+			GLib.debug("File %s (%d)", this.path, this.version);
+			//foreach(var s in this.symbols) {
+				//s.dump(0, 
 		
 		 
 		 
