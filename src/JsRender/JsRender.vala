@@ -165,7 +165,7 @@ namespace JsRender {
 		//public Xcls_Editor editor;
 		public GLib.ListStore childfiles; // used by directories..
 		
-		
+		/*
 		private  Vala.SourceFile? _vala_source_file = null;
 		public Vala.SourceFile vala_source_file(Vala.CodeContext context, Vala.UsingDirective ns_ref) 
 		{
@@ -192,6 +192,7 @@ namespace JsRender {
 				this._vala_source_file.content = value;
 			}
 		}
+		*/
 		
 		//abstract JsRender(Project.Project project, string path); 
 		
