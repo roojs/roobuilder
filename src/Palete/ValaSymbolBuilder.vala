@@ -26,7 +26,7 @@ namespace Palete {
 		public override void visit_source_file(Vala.SourceFile sfile)
 		{
 			// visit classes and namespaces..?
-			var sf = SymbolFile.factory(sfile.filename);
+			var sf = SymbolFile.factory_by_path(sfile.filename);
 			
 			if (sf.is_parsed) {
 				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
@@ -230,13 +230,14 @@ namespace Palete {
 				//sf.context = context;
 				//var cont = jfile.toSourceCode();
 				//GLib.debug("File %s content = %d", jfile.path, cont.length);
+				SymbolFile.factory(jfile);
 				var sf = new Vala.SourceFile (
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.SOURCE, 
 					jfile.targetName(),
 					cont
 				);
-				SymbolFile.factory(sfile.filename, jfile.vtime);
+
 				// doing this causes visit to fail?
 				//sf.content = jfile.toSourceCode();
 				sf.add_using_directive (ns_ref);
