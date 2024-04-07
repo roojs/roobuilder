@@ -82,7 +82,7 @@ namespace Palete {
 		}
 		public SymbolFile_new_file (JsRender.JsRender file) {
 			this.file = file;
-			this(file.path, -1);
+			this(file.targetName(), -1);
 		}
 		
 		public SymbolFile (string path, int version) {
