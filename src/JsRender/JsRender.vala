@@ -92,7 +92,7 @@ namespace JsRender {
 			}
 			
 		}
-		public int64 vtime; // the version modifiection time
+		public int64 vtime = 0; // the version modifiection time
 
 
 		public string permname;
