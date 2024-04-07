@@ -230,7 +230,7 @@ namespace Palete {
 				//sf.context = context;
 				//var cont = jfile.toSourceCode();
 				//GLib.debug("File %s content = %d", jfile.path, cont.length);
-				SymbolFile.factory(jfile);
+				SymbolFile.factory(jfile); // make sure it's initialized.
 				var sf = new Vala.SourceFile (
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.SOURCE, 
@@ -295,7 +295,7 @@ namespace Palete {
 	 public bool has_vapi(string[] dirs,  string vapi) 
 		{
 			for(var i =0 ; i < dirs.length; i++) {
-				GLib.debug("check VAPI - %s", dirs[i] + "/" + vapi + ".vapi");
+				//GLib.debug("check VAPI - %s", dirs[i] + "/" + vapi + ".vapi");
 				if (!FileUtils.test( dirs[i] + "/" + vapi + ".vapi", FileTest.EXISTS)) {
 					continue;
 				}   
