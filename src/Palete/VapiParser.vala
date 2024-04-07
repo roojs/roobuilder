@@ -167,7 +167,7 @@ namespace Palete {
 			  
 			
 			if (cls.version.deprecated) { 
-				GLib.debug("class %s is deprecated", c.name);
+				//GLib.debug("class %s is deprecated", c.name);
 				c.is_deprecated = true;
 			}
 			
@@ -489,7 +489,7 @@ namespace Palete {
 		
 		public void add_method(GirObject parent, Vala.Method met)
 		{
-			GLib.debug("Method: %s", met.name);
+			//GLib.debug("Method: %s", met.name);
 			var n = met.name == null ? "" : met.name;
 			var ty  = "Method";
 			if (met is Vala.CreationMethod) {
