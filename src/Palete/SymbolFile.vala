@@ -8,21 +8,34 @@ namespace Palete {
 		
   
 		  
-		public static SymbolFile factory(string path) 
+		public static SymbolFile factory(JsRender.JsRender? file) 
+		{
+			if (files == null) {
+				files = new Gee.HashMap<string, SymbolFile>(); 
+			}
+			if (files.has_key(file.path)) { // && files.get(path).version == version) {
+				
+				return files.get(file.path);
+			}
+			
+			
+			files.set(path, new SymbolFile_new_file(file));
+			return  files.get(file.path);	
+		}
+		public static SymbolFile factory_by_path(string path) 
 		{
 			if (files == null) {
 				files = new Gee.HashMap<string, SymbolFile>(); 
 			}
 			if (files.has_key(path)) { // && files.get(path).version == version) {
+				
 				return files.get(path);
 			}
 			
-			
+
 			files.set(path, new SymbolFile(path,-1));
-			return  files.get(path);
-				
+			return files.get(path);	
 		}
-		
 		public static void dumpAll()
 		{
 			foreach(var f in files.values) {
@@ -37,8 +50,12 @@ namespace Palete {
 		public Gee.ArrayList<Symbol> symbols ;
 		public Gee.ArrayList<Symbol> top_symbols ;
 		public Gee.HashMap<int,Symbol> symbol_map;
+		public JsRender.JsRender? file= null;
 		public int64 cur_mod_time() {
 			try {
+				if (file != null) {
+					return file.vtime;
+				}
 				return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
 			} catch (GLib.Error e) {
 				return -2;
@@ -62,6 +79,10 @@ namespace Palete {
 					
 				}
 			}
+		}
+		public SymbolFile_new_file (JsRender.JsRender file) {
+			this.file = file;
+			this(file.path, -1);
 		}
 		
 		public SymbolFile (string path, int version) {
