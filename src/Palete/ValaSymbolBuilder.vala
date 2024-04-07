@@ -236,7 +236,7 @@ namespace Palete {
 					jfile.targetName(),
 					cont
 				);
-				var sf = SymbolFile.factory(sfile.filename, jfile.vtime);
+				SymbolFile.factory(sfile.filename, jfile.vtime);
 				// doing this causes visit to fail?
 				//sf.content = jfile.toSourceCode();
 				sf.add_using_directive (ns_ref);
