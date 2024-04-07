@@ -164,15 +164,25 @@ namespace JsRender {
 	    	//var utime = new GLib.DateTime.now();
 	    	
 	    	if (this.tree == null) {
-				// stime =  GLib.File.new_for_path(this.path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
-				// ttime =  GLib.File.new_for_path(this.targetName()).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
-				// if ttime > stime .. set this utime = ttime
+				var stime =  GLib.File.new_for_path(this.path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				var ttime =  GLib.FileUtils.test(this.targetName()), GLib.FileTest.EXISTS) ?
+					GLib.File.new_for_path(this.targetName()).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix()
+					: 0;
+				if (ttime >= stime && this.vtime < ttime) {
+					this.vtime = ttime;
+					string ret;
+					GLib.FileUtils.get_contents(this.targetName(), out ret;
+					return ret;
+				}
+				this.vtime = stime;
 				/// and return the contents of targetName..
 				// otherwise set utime = now()
 	    		this.loadItems();
 	    		 
     		
-    		}
+    		} else {
+    			this.vtime = new GLib.DateTime.now_local().to_unix();
+			}
     		// check utime on target and source ...
 		    this.last_source =   	this.gen_extended ? 
 		 		NodeToValaExtended.mungeFile(this) :
