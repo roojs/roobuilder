@@ -92,6 +92,8 @@ namespace JsRender {
 					return;
 				}
 			    GLib.FileUtils.get_contents(this.path, out this.contents);
+			    this.vtime = GLib.File.new_for_path(this.path).query_info( 
+					FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
 			    this.loaded = true;
 		}
      
@@ -102,6 +104,7 @@ namespace JsRender {
 			 return "";
 		}
 		public override void setSource(string str) {
+			this.vtime = new GLib.DateTime.now_local().to_unix();
 			this.contents = str;
   
 		}
@@ -113,7 +116,9 @@ namespace JsRender {
         }
 		 public override string toSourceCode()
         {
- 
+ 			if (!this.loaded) {
+ 				this.loadItems();
+			}
 		   return this.contents;
            
         }
