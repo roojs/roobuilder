@@ -235,7 +235,7 @@ namespace Palete {
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.SOURCE, 
 					jfile.targetName(),
-					jfile.toSourceCode()
+					cont
 				);
 
 				// doing this causes visit to fail?
