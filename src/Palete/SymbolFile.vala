@@ -65,7 +65,7 @@ namespace Palete {
 		
 		public bool is_parsed {
 			get {
-				GLib.debug("check parsed %d, %d", (int)this.version,  (int)this.cur_mod_time());
+				GLib.debug("check parsed %d, %d (no sym: %d)", (int)this.version,  (int)this.cur_mod_time(), this.symbols.size);
 				
 				return this.version ==  this.cur_mod_time() && this.symbols.size > 0;
 			}
@@ -83,7 +83,7 @@ namespace Palete {
 		}
 		public SymbolFile.new_file (JsRender.JsRender file) {
 
-			this(file.targetName(), -1);		
+			this(file.targetName(), -1r);		
 			this.file = file;
 			
 		}
