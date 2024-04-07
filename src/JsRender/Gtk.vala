@@ -164,9 +164,11 @@ namespace JsRender {
 	    	//var utime = new GLib.DateTime.now();
 	    	
 	    	if (this.tree == null) {
-				var stime =  GLib.File.new_for_path(this.path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
-				var ttime =  GLib.FileUtils.test(this.targetName()), GLib.FileTest.EXISTS) ?
-					GLib.File.new_for_path(this.targetName()).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix()
+				var stime =  GLib.File.new_for_path(this.path).query_info( 
+					FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				var ttime =  GLib.FileUtils.test(this.targetName()), GLib.FileTest.EXIST) ?
+					GLib.File.new_for_path(this.targetName()).query_info( 
+						FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix()
 					: 0;
 				if (ttime >= stime && this.vtime < ttime) {
 					this.vtime = ttime;
