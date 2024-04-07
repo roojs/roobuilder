@@ -166,7 +166,7 @@ namespace JsRender {
 	    	if (this.tree == null) {
 				var stime =  GLib.File.new_for_path(this.path).query_info( 
 					FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
-				var ttime =  GLib.FileUtils.test(this.targetName()), GLib.FileTest.EXIST) ?
+				var ttime =  GLib.FileUtils.test(this.targetName(), GLib.FileTest.EXIST) ?
 					GLib.File.new_for_path(this.targetName()).query_info( 
 						FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix()
 					: 0;
