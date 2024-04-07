@@ -228,8 +228,8 @@ namespace Palete {
 				  			
 				//var sf = jfile.vala_source_file(context,ns_ref);
 				//sf.context = context;
-				//var cont = jfile.toSourceCode();
-				//GLib.debug("File %s content = %d", jfile.path, cont.length);
+				var cont = jfile.toSourceCode();
+				GLib.debug("File %s content = %d", jfile.path, cont.length);
 				SymbolFile.factory(jfile); // make sure it's initialized.
 				var sf = new Vala.SourceFile (
 					context, // needs replacing when you use it...
