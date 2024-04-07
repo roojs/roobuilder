@@ -131,6 +131,10 @@ namespace Palete {
 			this.is_abstract = cls.is_abstract;
 			this.is_sealed = cls.is_sealed;	
 	 		//this.is_static =  cls.binding != Vala.MemberBinding.INSTANCE;
+		 	foreach(var c in cls.get_classes()) {
+				new new_class(this,c);
+			}
+		 	
 		 	foreach(var p in cls.get_properties()) {
 				new new_property(this, p);
 			}
