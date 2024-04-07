@@ -202,7 +202,7 @@ namespace JsRender {
 		{
 		    
 			//this.cn = new GLib.List<JsRender>();
-			GLib.debug("new jsrender %s", path);
+			//.debug("new jsrender %s", path);
 			this.path = path;
 			this.project = project;
 			this.hasParent = false;
