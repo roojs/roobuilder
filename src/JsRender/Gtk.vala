@@ -160,7 +160,7 @@ namespace JsRender {
  				
 		    	return this.last_source;
 	    	}
-	    	GLib.debug("toSource %s - generating %s", this.path, this.gen_extended  ? "Extended": "Wrapped");
+
 	    	//var utime = new GLib.DateTime.now();
 	    	
 	    	if (this.tree == null) {
@@ -171,6 +171,7 @@ namespace JsRender {
 						FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix()
 					: 0;
 				if (ttime >= stime && this.vtime < ttime) {
+				GLib.debug("toSource %s from existing vala file", this.path);
 					this.vtime = ttime;
 					string ret;
 					GLib.FileUtils.get_contents(this.targetName(), out ret);
@@ -185,6 +186,7 @@ namespace JsRender {
     		} else {
     			this.vtime = new GLib.DateTime.now_local().to_unix();
 			}
+			GLib.debug("toSource %s -x generating %s", this.path, this.gen_extended  ? "Extended": "Wrapped");
     		// check utime on target and source ...
 		    this.last_source =   	this.gen_extended ? 
 		 		NodeToValaExtended.mungeFile(this) :
