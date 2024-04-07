@@ -76,6 +76,7 @@ namespace JsRender {
         
 		public string title = "";  // a title.. ?? nickname.. ??? -
 
+	
 		private int _version = 1;   // should we increment this based on the node..?
 		public int version {
 			get {
@@ -91,6 +92,7 @@ namespace JsRender {
 			}
 			
 		}
+		public int64 vtime; // the version modifiection time
 
 
 		public string permname;
