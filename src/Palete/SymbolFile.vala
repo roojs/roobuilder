@@ -19,7 +19,7 @@ namespace Palete {
 			}
 			
 			
-			files.set(path, new SymbolFile_new_file(file));
+			files.set(path, new SymbolFile.new_file(file));
 			return  files.get(file.path);	
 		}
 		public static SymbolFile factory_by_path(string path) 
@@ -80,7 +80,7 @@ namespace Palete {
 				}
 			}
 		}
-		public SymbolFile_new_file (JsRender.JsRender file) {
+		public SymbolFile.new_file (JsRender.JsRender file) {
 			this.file = file;
 			this(file.targetName(), -1);
 		}
