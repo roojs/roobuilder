@@ -83,7 +83,7 @@ namespace Palete {
 		
 		public void add_enum(GirObject parent, Vala.Enum cls)
 		{
-			GLib.debug("Enum: %s", cls.name);
+			//GLib.debug("Enum: %s", cls.name);
 			var c = new GirObject("Enum",   cls.name);
 			parent.consts.set(cls.name, c);
 			c.ns = parent.name;
@@ -112,7 +112,7 @@ namespace Palete {
 		
 		public void add_interface(GirObject parent, Vala.Interface cls)
 		{
-			GLib.debug("Interface: %s", cls.name);
+			//GLib.debug("Interface: %s", cls.name);
 			var c = new GirObject("Interface", parent.name + "." + cls.name);
 			parent.classes.set(cls.name, c);
 			c.ns = parent.name;
@@ -155,7 +155,7 @@ namespace Palete {
 		
 		public void add_struct(GirObject parent, Vala.Struct cls)
 		{
-			GLib.debug("Struct: %s", cls.name);
+			//GLib.debug("Struct: %s", cls.name);
 			var c = new GirObject("Struct", parent.name + "." + cls.name);
 			parent.classes.set(cls.name, c);
 			  
@@ -177,7 +177,7 @@ namespace Palete {
 		
 		public void add_class(GirObject parent, Vala.Class cls)
 		{
-			GLib.debug("Class: %s", cls.name);
+			//GLib.gdebug("Class: %s", cls.name);
 			var c = new GirObject("Class", parent.name + "." + cls.name);
 			parent.classes.set(cls.name, c);
 			c.ns = parent.name;
@@ -222,7 +222,7 @@ namespace Palete {
 			}
 			
 			if (cls.version.deprecated) { 
-				GLib.debug("class %s is deprecated", c.name);
+				//GLib.debug("class %s is deprecated", c.name);
 				c.is_deprecated = true;
 			}
 			
@@ -326,7 +326,7 @@ namespace Palete {
 		
 		public void add_property(GirObject parent, Vala.Property prop)
 		{
-			GLib.debug("Prop: %s", prop.name);
+			//GLib.debug("Prop: %s", prop.name);
 			var c = new GirObject("Prop",prop.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
@@ -342,7 +342,7 @@ namespace Palete {
 		 	//	GLib.debug("prop child : w%s r%s", c.is_writable ? "YES" : "n" , c.is_readable ? "YES" : "n");
 	 		//}
 			if (prop.version.deprecated) { 
-				GLib.debug("class %s is deprecated", c.name);
+				//GLib.debug("class %s is deprecated", c.name);
 				c.is_deprecated = true;
 			}
 			parent.props.set(prop.name,c);
@@ -353,7 +353,7 @@ namespace Palete {
 		
 		public void add_field(GirObject parent, Vala.Field prop)
 		{
-			GLib.debug("Field: %s", prop.name);	
+			//GLib.debug("Field: %s", prop.name);	
 			var c = new GirObject("Field",prop.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
@@ -365,7 +365,7 @@ namespace Palete {
 #endif
 			 
 			if (prop.version.deprecated) { 
-				GLib.debug("class %s is deprecated", c.name);
+				//GLib.debug("class %s is deprecated", c.name);
 				c.is_deprecated = true;
 			}
 			parent.props.set(prop.name,c);
@@ -374,7 +374,7 @@ namespace Palete {
 		}
 		public void add_delegate(GirObject parent, Vala.Delegate sig)
 		{
-			GLib.debug("Delegate: %s", sig.name);
+			//GLib.debug("Delegate: %s", sig.name);
 			var c = new GirObject("Delegate",   sig.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
@@ -385,7 +385,7 @@ namespace Palete {
 			var dt  = sig.return_type.data_type;
 #endif			
 			if (sig.version.deprecated) { 
-				GLib.debug("class %s is deprecated", c.name);
+				//GLib.debug("class %s is deprecated", c.name);
 				c.is_deprecated = true;
 			} 
 			
@@ -433,7 +433,7 @@ namespace Palete {
 		
 		public void add_signal(GirObject parent, Vala.Signal sig)
 		{
-			GLib.debug("Signal: %s", sig.name);
+			//GLib.debug("Signal: %s", sig.name);
 			var c = new GirObject("Signal",sig.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
@@ -444,7 +444,7 @@ namespace Palete {
 			var dt  = sig.return_type.data_type;
 #endif			
 			if (sig.version.deprecated) { 
-				GLib.debug("class %s is deprecated", c.name);
+				//GLib.debug("class %s is deprecated", c.name);
 				c.is_deprecated = true;
 			} 
 			
@@ -556,7 +556,7 @@ namespace Palete {
 		
 		public GirObject add_param(GirObject parent, Vala.Parameter pam)
 		{
-			GLib.debug("Param: %s", pam.name);
+			//GLib.debug("Param: %s", pam.name);
 			var n = pam.name;
 			if (pam.ellipsis) {
 				n = "___";
@@ -724,7 +724,7 @@ namespace Palete {
 				 
 					continue;
 				}
-				GLib.debug("ADD vapi '%s'",pkgs.get(i));
+				//GLib.debug("ADD vapi '%s'",pkgs.get(i));
 				context.add_external_package (pkgs.get(i));
 			}			
 			
@@ -781,7 +781,7 @@ namespace Palete {
 	 public bool has_vapi(string[] dirs,  string vapi) 
 		{
 			for(var i =0 ; i < dirs.length; i++) {
-				GLib.debug("check VAPI - %s", dirs[i] + "/" + vapi + ".vapi");
+				//GLib.debug("check VAPI - %s", dirs[i] + "/" + vapi + ".vapi");
 				if (!FileUtils.test( dirs[i] + "/" + vapi + ".vapi", FileTest.EXISTS)) {
 					continue;
 				}   
