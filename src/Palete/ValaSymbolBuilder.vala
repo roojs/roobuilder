@@ -62,6 +62,11 @@ namespace Palete {
 	  	public override void visit_class (Vala.Class element) 
 		{
 			GLib.debug("Got Class %s", element.name);
+			if (element.parent_symbol != null) {
+				return;
+			}
+			new SymbolVala.new_class(null, element);
+			//?? childre???
 			element.accept_children(this);
 		} 
 		
