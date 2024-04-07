@@ -173,7 +173,7 @@ namespace JsRender {
 				if (ttime >= stime && this.vtime < ttime) {
 					this.vtime = ttime;
 					string ret;
-					GLib.FileUtils.get_contents(this.targetName(), out ret;
+					GLib.FileUtils.get_contents(this.targetName(), out ret);
 					return ret;
 				}
 				this.vtime = stime;
