@@ -58,13 +58,13 @@ namespace Palete {
 			new SymbolVala.new_namespace(null, element);
 			element.accept_children(this); // catch sub namespaces..
 		}
-		/** 
+		 
 	  	public override void visit_class (Vala.Class element) 
 		{
 			GLib.debug("Got Class %s", element.name);
 			element.accept_children(this);
 		} 
-		*/
+		
 		 
 		 
 		
