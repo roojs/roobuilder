@@ -61,13 +61,16 @@ namespace Palete {
 		 
 	  	public override void visit_class (Vala.Class element) 
 		{
-			//.debug("Got Class %s", element.name);
+			debug("Got Class %s", element.name);
+
 			if (element.parent_symbol != null) {
+				debug("skip Class %s (has parent?)", element.name);
 				return;
 			}
+			element.accept_children(this);
 			new SymbolVala.new_class(null, element);
 			//?? childre???
-			element.accept_children(this);
+			
 		} 
 		
 		 
