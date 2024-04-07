@@ -64,7 +64,7 @@ namespace Palete {
 			debug("Got Class %s", element.name);
 
 			if (element.parent_symbol != null && element.parent_symbol.name != null) {
-				debug("skip Class (has parent?)  '%s' ",  element.parent_symbol.name);
+				//debug("skip Class (has parent?)  '%s' ",  element.parent_symbol.name);
 				return;
 			}
 			element.accept_children(this);
