@@ -229,7 +229,7 @@ namespace Palete {
 		{
 			this(parent,sig);
 			this.name = sig.name;
-			this.stype = Lsp.SymbolKind.Signal;
+			this.stype = Lsp.SymbolKind.Method;
 			if (sig is Vala.CreationMethod) {
 				this.is_ctor = true;
 			}
