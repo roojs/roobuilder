@@ -5,7 +5,7 @@ namespace Palete {
 		public SymbolVala(Symbol? parent, Vala.Symbol s)
 		{
 			base();
-			this.file = SymbolFile.factory(s.source_reference.file.filename);
+			this.file = SymbolFile.factory_by_path(s.source_reference.file.filename);
 			if (parent != null && parent.file.id != this.file.id) {
 				if (parent.stype != Lsp.SymbolKind.Namespace)  {
 					GLib.error("parent is from differnt file, and its' type is %s", 
@@ -17,7 +17,7 @@ namespace Palete {
 			}
 			
 			this.parent = parent;
-			this.file = SymbolFile.factory(s.source_reference.file.filename);
+
 			this.begin_line = s.source_reference.begin.line;
 			this.begin_col = s.source_reference.begin.column;
 			this.end_line = s.source_reference.end.line;
