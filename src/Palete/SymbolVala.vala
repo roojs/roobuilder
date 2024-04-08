@@ -125,6 +125,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_class(Symbol? parent, Vala.Class cls)	
 		{
+			GLib.debug("new Class %s", cls.name);
 			this(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Class;
@@ -159,6 +160,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_property(Symbol? parent, Vala.Property prop)	
 		{
+			GLib.debug("new Property  %s", prop.name);
 			this(parent,prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
@@ -227,6 +229,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_method(Symbol? parent, Vala.Method sig)	
 		{
+			GLib.debug("new Method %s", sig.name);
 			this(parent,sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Method;
