@@ -150,7 +150,7 @@ namespace Palete {
 			var sf =new Vala.SourceFile(
 				context, // needs replacing when you use it...
 					Vala.SourceFileType.PACKAGE, 
-					"/usr/share/gir-1.0/Gtk-4.0.gir"
+					"/usr/share/gir-1.0/GLib-2.0.gir"
 			);
 			context.add_source_file(sf);
 			
