@@ -138,12 +138,12 @@ namespace Palete {
 		
 			var p = new Vala.GirParser();
 			
-			p.parse_file(new Vala.SourceFile(
+			var sf =new Vala.SourceFile(
 				context, // needs replacing when you use it...
 					Vala.SourceFileType.PACKAGE, 
 					"/usr/share/gir-1.0/Gtk-4.0.gir"
 			));
-			
+			context.add_source_file(sf);
 			
 		
 		
