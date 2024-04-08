@@ -135,7 +135,9 @@ namespace Palete {
 		 	foreach(var c in cls.get_classes()) {
 				new new_class(this,c);
 			}
-		 	
+		 	foreach(var p in cls.get_fields()) {
+				new new_field(this, p);
+			}
 		 	foreach(var p in cls.get_properties()) {
 				new new_property(this, p);
 			}
@@ -171,6 +173,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_field(Symbol? parent, Vala.Field prop)	
 		{
+			GLib.debug("new Field  %s", prop.name);
 			this(parent,prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Field;
