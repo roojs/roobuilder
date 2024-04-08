@@ -623,8 +623,11 @@
 			}
 			GLib.debug("running vapiparser");
 			var vp = new Palete.ValaSymbolBuilder((Project.Gtk) cur_project);
-			vp.create_valac_tree(opt_symbol_test);
-			Palete.SymbolDatabase.backupDB();
+			
+			vp.read_gir();
+			
+			//vp.create_valac_tree(opt_symbol_test);
+			//Palete.SymbolDatabase.backupDB();
 			
 			/*
 			var file = cur_project.getByRelPath(BuilderApplication.opt_language_server);
