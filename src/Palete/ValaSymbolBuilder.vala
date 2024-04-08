@@ -50,7 +50,7 @@ namespace Palete {
 				return;
 			}
 			
-			//GLib.debug("parsing namespace %s", element.name);
+		   GLib.debug("parsing namespace %s", element.name);
 			if (element.name == null) {
 				element.accept_children(this); // catch sub namespaces..
 				return;
@@ -61,7 +61,7 @@ namespace Palete {
 		 
 	  	public override void visit_class (Vala.Class element) 
 		{
-			//debug("Got Class %s", element.name); 
+			 debug("Got Class %s", element.name); 
 
 			if (element.parent_symbol != null && element.parent_symbol.name != null) {
 				//debug("skip Class (has parent?)  '%s' ",  element.parent_symbol.name);
@@ -131,6 +131,30 @@ namespace Palete {
 			
 		}
 		
+		public read_gir()
+		{
+		   context = new Vala.CodeContext ();
+			Vala.CodeContext.push (context);
+		
+			var p = new GirParser();
+			
+			p.parse_file(new SourceFile(
+				context, // needs replacing when you use it...
+					Vala.SourceFileType.PACKAGE, 
+				"/lib/x86_64-linux-gnu/girepository-1.0/Gtk-4.0.typelib"
+			));
+			
+			
+		
+		
+			context.accept(this);
+			
+			context = null;
+			// dump the tree for Gtk?
+			
+			Vala.CodeContext.pop ();
+		
+		}
 		
 		
 		public void create_valac_tree( string  build_module)
