@@ -131,7 +131,7 @@ namespace Palete {
 			
 		}
 		
-		public read_gir()
+		public void  read_gir()
 		{
 		   context = new Vala.CodeContext ();
 			Vala.CodeContext.push (context);
