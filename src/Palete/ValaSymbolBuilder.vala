@@ -142,7 +142,7 @@ namespace Palete {
 				context, // needs replacing when you use it...
 					Vala.SourceFileType.PACKAGE, 
 					"/usr/share/gir-1.0/Gtk-4.0.gir"
-			));
+			);
 			context.add_source_file(sf);
 			
 			p.parse(context);
