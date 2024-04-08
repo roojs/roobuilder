@@ -136,9 +136,9 @@ namespace Palete {
 		   context = new Vala.CodeContext ();
 			Vala.CodeContext.push (context);
 		
-			var p = new GirParser();
+			var p = new Vala.GirParser();
 			
-			p.parse_file(new SourceFile(
+			p.parse_file(new Vala.SourceFile(
 				context, // needs replacing when you use it...
 					Vala.SourceFileType.PACKAGE, 
 				"/lib/x86_64-linux-gnu/girepository-1.0/Gtk-4.0.typelib"
