@@ -101,7 +101,9 @@ namespace Palete {
 			foreach(var p in cls.get_properties()) {
 				new new_property(this, p);
 			}
-
+			foreach(var p in cls.get_fields()) {
+				new new_field(this, p);
+			}
 			foreach(var p in cls.get_signals()) {
 				new new_signal(this, p);
 			}
@@ -162,7 +164,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_property(Symbol? parent, Vala.Property prop)	
 		{
-			GLib.debug("new Property  %s", prop.name);
+			//GLib.debug("new Property  %s", prop.name);
 			this(parent,prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
@@ -173,7 +175,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_field(Symbol? parent, Vala.Field prop)	
 		{
-			GLib.debug("new Field  %s", prop.name);
+			//GLib.debug("new Field  %s", prop.name);
 			this(parent,prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Field;
