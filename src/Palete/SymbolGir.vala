@@ -351,7 +351,7 @@ public string get_symbol_cname (Vala.Symbol sym) {
     }
 		private void map_cname (Vala.Symbol sym) {
 		    string cname = get_symbol_cname (sym);
-		    // debug ("mapping C name %s -> symbol %s (%s)", cname, sym.get_full_name (), sym.type_name);
+		    debug ("mapping C name %s -> symbol %s (%s)", cname, sym.get_full_name (), sym.type_name);
 		    if (!cname_to_sym.has_key (cname)) {
 		        cname_to_sym[cname] = sym;
 		        if (sym is Vala.ErrorDomain || sym is Vala.Enum) {
