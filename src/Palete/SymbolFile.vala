@@ -110,7 +110,7 @@ namespace Palete {
 		
 		public void dump()
 		{
-			print("File %s (%d)", this.path, (int)this.version);
+			print("File %s (%d)\n", this.path, (int)this.version);
 			foreach(var s in this.top_symbols) {
 				s.dump("  ");
 			}
