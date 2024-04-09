@@ -4,7 +4,6 @@
 namespace Palete {
 	 
 	 
-	 
  
 	public class SymbolGir  : Vala.CodeVisitor {
 		
