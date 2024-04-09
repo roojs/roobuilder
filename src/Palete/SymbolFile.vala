@@ -110,7 +110,7 @@ namespace Palete {
 		
 		public void dump()
 		{
-			GLib.debug("File %s (%d)", this.path, (int)this.version);
+			printf("File %s (%d)", this.path, (int)this.version);
 			foreach(var s in this.top_symbols) {
 				s.dump("  ");
 			}
