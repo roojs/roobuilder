@@ -64,7 +64,7 @@ namespace Palete {
 		{
 			print("%s%s : %s  (%s)\n", indent, this.stype.to_string().substring( 16, -1 ), this.name, this.rtype);
 			if (this.doc != "") {
-			    print("%s-->%s",indent, this.doc.split("\n")[0]);
+			    print("%s-->%s\n",indent, this.doc.split("\n")[0]);
 			}
 			var si = indent + "  ";
 			for(var i = 0; i < this.children.get_n_items();i++) {
