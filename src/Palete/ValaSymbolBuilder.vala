@@ -30,7 +30,7 @@ namespace Palete {
 		{
 			// visit classes and namespaces..?
 			var sf = SymbolFile.factory_by_path(sfile.filename);
-			if (this.parsing_gir && sfile.filename.has_prefix(".gir")) {
+			if (this.parsing_gir && sfile.filename.has_suffix(".gir")) {
 			    gir_parser.parse_file (sfile);
 		        sfile.accept_children (this);			    
 				return;
