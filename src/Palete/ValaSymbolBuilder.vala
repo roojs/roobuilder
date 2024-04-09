@@ -13,10 +13,7 @@ namespace Palete {
 		Vala.CodeContext context;
 		 
 		Project.Gtk scan_project;
-		
-		bool parsing_gir = false;
-		Vala.GirParser gir_parser;
-		
+		 
   		public ValaSymbolBuilder(Project.Gtk project) {
 			base();
 			this.scan_project = project;
@@ -30,12 +27,7 @@ namespace Palete {
 		{
 			// visit classes and namespaces..?
 			var sf = SymbolFile.factory_by_path(sfile.filename);
-			if (this.parsing_gir && sfile.filename.has_suffix(".gir")) {
-					GLib.debug("visit gir file %s nodes? %d", sfile.filename, sfile.get_nodes().size);
-			    gir_parser.parse_file (sfile);
-		        sfile.accept_children (this);			    
-				return;
-			}
+			 
 
 			
 			if (sf.is_parsed) {
