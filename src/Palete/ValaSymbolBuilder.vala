@@ -38,6 +38,7 @@ namespace Palete {
 				return;
 			}
 			
+			GLib.debug("visit source file %s %d", sfile.filename, sfile.get_nodes().length())
 			// parse it...
 	        sfile.accept_children (this);
 			GLib.debug("flag as parsed %s", sfile.filename);
@@ -164,7 +165,8 @@ namespace Palete {
 		
 
 			p.parse(context);
-			context.accept(this);			
+			context.accept(this);
+			
 			context = null;
 			// dump the tree for Gtk?
 			
