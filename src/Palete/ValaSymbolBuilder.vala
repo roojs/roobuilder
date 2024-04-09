@@ -218,7 +218,7 @@ namespace Palete {
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.PACKAGE, 
 					pkg
-				);
+				));
 
 				//context.add_external_package (pkgs.get(i));
 			}	
