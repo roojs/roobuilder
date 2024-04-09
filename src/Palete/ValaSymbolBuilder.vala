@@ -38,7 +38,7 @@ namespace Palete {
 				return;
 			}
 			
-			GLib.debug("visit source file %s %d", sfile.filename, sfile.get_nodes().length())
+			GLib.debug("visit source file %s nodes? %d", sfile.filename, sfile.get_nodes().length())
 			// parse it...
 	        sfile.accept_children (this);
 			GLib.debug("flag as parsed %s", sfile.filename);
