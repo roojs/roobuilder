@@ -15,6 +15,7 @@ namespace Palete {
 		Project.Gtk scan_project;
 		
 		bool parsing_gir = false;
+		Vala.GirParser gir_parser;
 		
   		public ValaSymbolBuilder(Project.Gtk project) {
 			base();
@@ -33,8 +34,8 @@ namespace Palete {
 				return;
 			}
 			if (this.parsing_gir) {
-				var gir_parser = new Vala.GirParser ();
-			    gir_parser.parse (context);
+
+			    gir_parser.parse_file (sfile);
 		    }
 
 			
@@ -259,7 +260,7 @@ namespace Palete {
 
 			add_types();
 			
-			var gir_parser = new Vala.GirParser ();
+			gir_parser = new Vala.GirParser ();
 		    gir_parser.parse (context);
 
 		    // build a cache of all CodeNodes with a C name
