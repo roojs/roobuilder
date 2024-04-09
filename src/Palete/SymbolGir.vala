@@ -3,7 +3,12 @@
 
 namespace Palete {
 	 
-	 
+	 private class Sink : Vala.Report {
+        public override void depr (Vala.SourceReference? sr, string message) { /* do nothing */ }
+        public override void err (Vala.SourceReference? sr, string message) { /* do nothing */ }
+        public override void warn (Vala.SourceReference? sr, string message) { /* do nothing */ }
+        public override void note (Vala.SourceReference? sr, string message) { /* do nothing */ }
+    }
  
 	public class SymbolGir  : Vala.CodeVisitor {
 		
