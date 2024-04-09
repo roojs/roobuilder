@@ -197,7 +197,8 @@ namespace Palete {
 			vapidirs += "/usr/share/vala-0.%d/vapi".printf(this.vala_version);
 			vapidirs += "/usr/share/vala/vapi";
 			context.vapi_directories = vapidirs;
-			
+			 add_gir ("GLib-2.0", "glib-2.0");
+        	add_gir ("GObject-2.0", "gobject-2.0");			
 			
 			var pkgs = this.fillDeps(this.scan_project.packages);
 			
