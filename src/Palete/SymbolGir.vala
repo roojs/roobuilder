@@ -140,8 +140,24 @@ namespace Palete {
 		}
 
 // from vls...
-    private Gee.HashMap<string, string?> added = new Gee.HashMap<string, string?> ();
 
+		 private void create_context () {
+				context = new Vala.CodeContext ();
+				context.report = new Sink ();
+				Vala.CodeContext.push (context);
+		#if VALA_0_50
+				context.set_target_profile (Vala.Profile.GOBJECT, false);
+		#else
+				context.profile = Vala.Profile.GOBJECT;
+				context.add_define ("GOBJECT");
+		#endif
+				Vala.CodeContext.pop ();
+			}
+
+    	private Gee.HashMap<string, string?> added = new Gee.HashMap<string, string?> ();
+
+		
+		
 		private bool add_gir (string gir_package, string? vapi_package) {
 		    string? girpath = context.get_gir_path (gir_package);
 		    GLib.debug("Gripath for gir_package = %s" , girpath);
@@ -185,89 +201,66 @@ namespace Palete {
 		
 		public void  read_gir()
 		{
-
-			this.parsing_gir = true;
-		   	context = new Vala.CodeContext ();
-			Vala.CodeContext.push (context);
-			var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
-			context.root.add_using_directive (ns_ref);
-			context.set_target_profile (Vala.Profile.GOBJECT,false);
-			//context.add_external_package ("glib-2.0"); 
-			//context.add_external_package ("gobject-2.0");
-			var vapidirs = context.vapi_directories;
-			
-			vapidirs += "/usr/share/vala-0.%d/vapi".printf(this.vala_version);
-			vapidirs += "/usr/share/vala/vapi";
-			context.vapi_directories = vapidirs;
-			 add_gir ("GLib-2.0", "glib-2.0");
-        	add_gir ("GObject-2.0", "gobject-2.0");			
-			
-			var pkgs = this.fillDeps(this.scan_project.packages);
-			
-	    	var vala_packages = new Gee.ArrayList<Vala.SourceFile>();
-	    	
-	    	for (var i = 0; i < pkgs.size; i++) {
-	    	
-	    		var pkg = pkgs.get(i);
-	    		// do not add libvala versions except the one that matches the one we are compiled against..
-	    		if (Regex.match_simple("^libvala", pkg) && pkg != ("libvala-0." + vala_version.to_string())) {
-	    			continue;
-    			}
-				//valac += " --pkg " + dcg.packages.get(i);
-				 if (!this.has_vapi(context.vapi_directories, pkg)) {
-				 
-					continue;
-				}
-				GLib.debug("ADD vapi '%s'",pkgs.get(i));
-
-				vala_packages.add( new Vala.SourceFile (
+		
+		create_context ();
+		
+		var  vala_packages = new Gee.Collection<Vala.SourceFile>();
+		 
+		vala_packages.add(new Vala.SourceFile (
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.PACKAGE, 
-					pkg
+					"/usr/share/vala-0.56/vapi/glib-2.0.vapi"
 				));
+				
+		 vala_packages.add(new Vala.SourceFile (
+					context, // needs replacing when you use it...
+					Vala.SourceFileType.PACKAGE, 
+					"/usr/share/vala-0.56/vapi/gobject-2.0.vapi"
+				));
+				vala_packages.add(new Vala.SourceFile (
+					context, // needs replacing when you use it...
+					Vala.SourceFileType.PACKAGE, 
+					"/usr/share/vala-0.56/vapi/gtk4.vapi"
+				));
+				
+        Vala.CodeContext.push (context);
 
-				context.add_external_package (pkgs.get(i));
-			}	
+        // add additional dirs
+        string[] gir_directories = context.gir_directories;
+        foreach (var additional_gir_dir in custom_gir_dirs)
+            gir_directories += additional_gir_dir.get_path ();
+        context.gir_directories = gir_directories;
 
-			
-			
-			
- 
-			
-			foreach (var vapi_pkg in vala_packages) {
-		        if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null) {
-		            add_gir (@"$(vapi_pkg.gir_namespace)-$(vapi_pkg.gir_version)", vapi_pkg.package_name);
-	            } else {
-	            	GLib.debug("could not find gir info for %s", vapi_pkg.filename);
-            	}
-	    	}
-			
-			string missed = "";
-		    vala_packages.filter (pkg => !added.keys.any_match (pkg_name => pkg.gir_namespace != null && pkg.gir_version != null && pkg_name == @"$(pkg.gir_namespace)-$(pkg.gir_version)"))
-		        .foreach (vapi_pkg => {
-		            if (missed.length > 0)
-		                missed += ", ";
-		            missed += vapi_pkg.package_name;
-		            return true;
-		        });
-		    if (missed.length > 0)
-		        debug (@"did not add GIRs for these packages: $missed");
+        // add packages
+        add_gir ("GLib-2.0", "glib-2.0");
+        add_gir ("GObject-2.0", "gobject-2.0");
 
+        foreach (var vapi_pkg in vala_packages) {
+            if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null)
+                add_gir (@"$(vapi_pkg.gir_namespace)-$(vapi_pkg.gir_version)", vapi_pkg.package_name);
+        }
 
-			add_types();
-			
-			gir_parser = new Vala.GirParser ();
-		    gir_parser.parse (context);
+        string missed = "";
+        vala_packages.filter (pkg => !added.keys.any_match (pkg_name => pkg.gir_namespace != null && pkg.gir_version != null && pkg_name == @"$(pkg.gir_namespace)-$(pkg.gir_version)"))
+            .foreach (vapi_pkg => {
+                if (missed.length > 0)
+                    missed += ", ";
+                missed += vapi_pkg.package_name;
+                return true;
+            });
+        if (missed.length > 0)
+            debug (@"did not add GIRs for these packages: $missed");
 
-		    // build a cache of all CodeNodes with a C name
-		    context.accept (this);
-						
-			
-			
-			context = null;
-			// dump the tree for Gtk?
-			
-			Vala.CodeContext.pop ();
+        add_types ();
+
+        // parse once
+        var gir_parser = new Vala.GirParser ();
+        gir_parser.parse (context);
+
+        // build a cache of all CodeNodes with a C name
+        context.accept (new CNameMapper (cname_to_sym));
+
+        Vala.CodeContext.pop ();
 		
 		}
 		
