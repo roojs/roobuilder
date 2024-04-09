@@ -198,6 +198,7 @@ namespace Palete {
 			
 			var pkgs = this.fillDeps(this.scan_project.packages);
 			
+	    	var vala_packages = new Gee.ArrayList<Vala.SourceFile>();
 	    	
 	    	for (var i = 0; i < pkgs.size; i++) {
 	    	
