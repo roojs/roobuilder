@@ -180,7 +180,7 @@ namespace Palete {
 		
 		public void  read_gir()
 		{
-			vala_packages = new 
+
 			this.parsing_gir = true;
 		   	context = new Vala.CodeContext ();
 			Vala.CodeContext.push (context);
