@@ -229,6 +229,14 @@ namespace Palete {
 			*/	
         Vala.CodeContext.push (context);
 
+		var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
+		context.root.add_using_directive (ns_ref);
+		
+		
+		context.add_external_package ("glib-2.0"); 
+		context.add_external_package ("gobject-2.0");
+
+
         // add additional dirs
         string[] gir_directories = context.gir_directories;
        // foreach (var additional_gir_dir in custom_gir_dirs)
