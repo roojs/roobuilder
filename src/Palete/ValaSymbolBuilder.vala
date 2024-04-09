@@ -145,9 +145,9 @@ namespace Palete {
 		    GLib.debug("Gripath for gir_package = %s" , girpath);
 		    
 		    if (girpath != null && !added.has (gir_package, vapi_package)) {
-		        Vala.CodeContext.push (context);
+		        //Vala.CodeContext.push (context);
 		        context.add_source_file (new Vala.SourceFile (context, Vala.SourceFileType.PACKAGE, girpath));
-		        Vala.CodeContext.pop ();
+		        //Vala.CodeContext.pop ();
 		        added[gir_package] = vapi_package;
 		        debug ("adding GIR %s for package %s", gir_package, vapi_package);
 		        return true;
