@@ -204,7 +204,7 @@ namespace Palete {
 		
 		create_context ();
 		
-		var  vala_packages = new Gee.Collection<Vala.SourceFile>();
+		var  vala_packages = new Gee.ArrayList<Vala.SourceFile>();
 		 
 		vala_packages.add(new Vala.SourceFile (
 					context, // needs replacing when you use it...
