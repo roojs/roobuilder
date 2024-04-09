@@ -246,7 +246,8 @@ namespace Palete {
         // add packages
         add_gir ("GLib-2.0", "glib-2.0");
         add_gir ("GObject-2.0", "gobject-2.0");
-		add_gir ("Gtk-4.0", "gtk4");
+        add_gir ("Pango-1.0", "pango");
+		//add_gir ("Gdk-4.0", "gdk4");
         foreach (var vapi_pkg in vala_packages) {
             if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null)
                 add_gir (@"$(vapi_pkg.gir_namespace)-$(vapi_pkg.gir_version)", vapi_pkg.package_name);
