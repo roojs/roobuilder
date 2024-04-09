@@ -69,7 +69,7 @@ namespace Palete {
 					
 				}	
 				
-				//print(type + ":" + name +"\n");
+				GLib.debug("%s : %s  (%s)", cls.name,  name , type);
 				ret.set(name,prop);
 			}
 			return ret;
@@ -306,7 +306,7 @@ namespace Palete {
 			var outprops = new Gee.HashMap<string,GirObject>(); 
 			
 			foreach(var k in props.keys) {
-				GLib.debug("add %s ? ", k);
+				//GLib.debug("add %s ? ", k);
 				var val = props.get(k);
 				if (k == "listeners") {
 					continue; 			
