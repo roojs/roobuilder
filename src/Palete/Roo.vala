@@ -94,7 +94,7 @@ namespace Palete {
 			
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/resources/roodata.json");
 			if (!f.query_exists(null)) {
-				f = GLib. File.new_for_uri("resources:///data/roodata.json");	
+				f = GLib. File.new_for_uri("resources://data/roodata.json");	
 			}			
 
 			
