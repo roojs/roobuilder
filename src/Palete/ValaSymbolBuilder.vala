@@ -160,9 +160,10 @@ namespace Palete {
 			);
 			context.add_source_file(sf);
 			
-			p.parse(context);
+			
 		
 			context.accept(this);
+			p.parse(context);
 			
 			context = null;
 			// dump the tree for Gtk?
