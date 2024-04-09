@@ -69,7 +69,7 @@ namespace Palete {
 					
 				}	
 				
-				GLib.debug("%s : %s  (%s)", cls.name,  name , type);
+				//GLib.debug("%s : %s  (%s)", cls.name,  name , type);
 				ret.set(name,prop);
 			}
 			return ret;
