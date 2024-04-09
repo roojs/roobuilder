@@ -622,7 +622,7 @@
 				GLib.error("missing project, use --project to select which project");
 			}
 			GLib.debug("running vapiparser");
-			var vp = new Palete.ValaSymbolBuilder((Project.Gtk) cur_project);
+			var vp = new Palete.SymbolGir((Project.Gtk) cur_project);
 			
 			vp.read_gir();
 			
