@@ -142,6 +142,8 @@ namespace Palete {
 
 		private bool add_gir (string gir_package, string? vapi_package) {
 		    string? girpath = context.get_gir_path (gir_package);
+		    GLib.debug("Gripath for gir_package = %s" , girpath);
+		    
 		    if (girpath != null && !added.has (gir_package, vapi_package)) {
 		        Vala.CodeContext.push (context);
 		        context.add_source_file (new Vala.SourceFile (context, Vala.SourceFileType.PACKAGE, girpath));
