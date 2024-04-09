@@ -136,6 +136,31 @@ namespace Palete {
 			
 			
 		}
+
+// from vls...
+	    private void add_types () {
+        // add some types manually
+			Vala.SourceFile? sr_file = null;
+			foreach (var source_file in this.context.get_source_files ()) {
+			    if (source_file.filename.has_suffix ("GLib-2.0.gir"))
+			        sr_file = source_file;
+			}
+			var sr_begin = Vala.SourceLocation (null, 1, 1);
+			var sr_end = sr_begin;
+
+			// ... add string
+			var string_class = new Vala.Class ("string", new Vala.SourceReference (sr_file, sr_begin, sr_end));
+			this.context.root.add_class (string_class);
+
+			// ... add bool
+			var bool_type = new Vala.Struct ("bool", new Vala.SourceReference (sr_file, sr_begin, sr_end));
+			bool_type.add_method (new Vala.Method ("to_string", new Vala.ClassType (string_class)));
+			context.root.add_struct (bool_type);
+
+			// ... add GLib namespace
+			var glib_ns = new Vala.Namespace ("GLib", new Vala.SourceReference (sr_file, sr_begin, sr_end));
+			this.context.root.add_namespace (glib_ns);
+		}
 		
 		public void  read_gir()
 		{
