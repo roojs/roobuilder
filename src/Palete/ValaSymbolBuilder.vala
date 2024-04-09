@@ -152,7 +152,6 @@ namespace Palete {
 			vapidirs += "/usr/share/vala-0.%d/vapi".printf(this.vala_version);
 			vapidirs += "/usr/share/vala/vapi";
 			context.vapi_directories = vapidirs;
-			var p = new Vala.GirParser();
 			
 			var sf =new Vala.SourceFile(
 				context, // needs replacing when you use it...
@@ -162,9 +161,10 @@ namespace Palete {
 			context.add_source_file(sf);
 			
 			
-		
+			Vala.Parser parser = new Vala.Parser ();
+			parser.parse (context);
 
-			p.parse(context);
+	
 			context.accept(this);
 			
 			context = null;
