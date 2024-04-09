@@ -227,9 +227,9 @@ namespace Palete {
 
         // add additional dirs
         string[] gir_directories = context.gir_directories;
-        foreach (var additional_gir_dir in custom_gir_dirs)
-            gir_directories += additional_gir_dir.get_path ();
-        context.gir_directories = gir_directories;
+       // foreach (var additional_gir_dir in custom_gir_dirs)
+        //    gir_directories += additional_gir_dir.get_path ();
+        //context.gir_directories = gir_directories;
 
         // add packages
         add_gir ("GLib-2.0", "glib-2.0");
