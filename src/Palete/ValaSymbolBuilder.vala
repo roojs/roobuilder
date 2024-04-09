@@ -247,7 +247,7 @@ namespace Palete {
 		        debug (@"did not add GIRs for these packages: $missed");
 
 
-			add_types();
+//			add_types();
 			
 			var gir_parser = new Vala.GirParser ();
 		    gir_parser.parse (context);
