@@ -169,7 +169,7 @@ namespace Palete {
 			Vala.CodeContext.push (context);
 			var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
 			context.root.add_using_directive (ns_ref);
-			context.set_target_profile (Vala.Profile.GOBJECT);
+			context.set_target_profile (Vala.Profile.GOBJECT,false);
 			context.add_external_package ("glib-2.0"); 
 			context.add_external_package ("gobject-2.0");
 			var vapidirs = context.vapi_directories;
