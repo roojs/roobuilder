@@ -32,6 +32,11 @@ namespace Palete {
 			if (this.parsing_gir && sfile.filename.has_prefix(".gir")) {
 				return;
 			}
+			if (this.parsing_gir) {
+				var gir_parser = new Vala.GirParser ();
+			    gir_parser.parse (context);
+		    }
+
 			
 			if (sf.is_parsed) {
 				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
