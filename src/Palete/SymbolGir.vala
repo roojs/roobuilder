@@ -210,7 +210,7 @@ namespace Palete {
 		create_context ();
 		
 		var  vala_packages = new Gee.ArrayList<Vala.SourceFile>();
-		 
+		 /*
 		vala_packages.add(new Vala.SourceFile (
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.PACKAGE, 
@@ -227,7 +227,7 @@ namespace Palete {
 					Vala.SourceFileType.PACKAGE, 
 					"/usr/share/vala-0.56/vapi/gtk4.vapi"
 				));
-				
+			*/	
         Vala.CodeContext.push (context);
 
         // add additional dirs
