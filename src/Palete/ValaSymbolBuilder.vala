@@ -138,6 +138,7 @@ namespace Palete {
 		}
 
 // from vls...
+    private Gee.HashMap<string, string?> added = new Gee.HashMap<string, string?> ();
 
 		private bool add_gir (string gir_package, string? vapi_package) {
 		    string? girpath = context.get_gir_path (gir_package);
