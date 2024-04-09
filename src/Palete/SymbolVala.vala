@@ -29,6 +29,9 @@ namespace Palete {
 			} else {
 				this.file.top_symbols.add(this);
 			}
+			if (s.comment != null) {
+				this.doc = s.comment.content;
+			}
 		}
 		
 	
