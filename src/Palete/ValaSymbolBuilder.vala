@@ -1,5 +1,5 @@
 
- // valac -g  --pkg libvala-0.26  --pkg gee-1.0 --pkg json-glib-1.0  --pkg gtk+-3.0   VapiParser.vala Gir.vala GirObject.vala -o /tmp/vdoc
+ 
 
 namespace Palete {
 	 
@@ -14,6 +14,8 @@ namespace Palete {
 		 
 		Project.Gtk scan_project;
 		
+		bool parsing_gir = false;
+		
   		public ValaSymbolBuilder(Project.Gtk project) {
 			base();
 			this.scan_project = project;
@@ -27,6 +29,9 @@ namespace Palete {
 		{
 			// visit classes and namespaces..?
 			var sf = SymbolFile.factory_by_path(sfile.filename);
+			if (this.parsing_gir && sfile.filename.has_prefix(".gir")) {
+				return;
+			}
 			
 			if (sf.is_parsed) {
 				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
