@@ -306,6 +306,7 @@ namespace Palete {
 			var outprops = new Gee.HashMap<string,GirObject>(); 
 			
 			foreach(var k in props.keys) {
+				GLib.debug("add %s ? ", k);
 				var val = props.get(k);
 				if (k == "listeners") {
 					continue; 			
