@@ -138,6 +138,22 @@ namespace Palete {
 		}
 
 // from vls...
+
+		private bool add_gir (string gir_package, string? vapi_package) {
+		    string? girpath = context.get_gir_path (gir_package);
+		    if (girpath != null && !added.has (gir_package, vapi_package)) {
+		        Vala.CodeContext.push (context);
+		        context.add_source_file (new Vala.SourceFile (context, Vala.SourceFileType.PACKAGE, girpath));
+		        Vala.CodeContext.pop ();
+		        added[gir_package] = vapi_package;
+		        debug ("adding GIR %s for package %s", gir_package, vapi_package);
+		        return true;
+		    }
+		    return false;
+		}
+
+
+
 	    private void add_types () {
         // add some types manually
 			Vala.SourceFile? sr_file = null;
