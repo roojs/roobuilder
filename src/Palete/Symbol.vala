@@ -61,7 +61,7 @@ namespace Palete {
 		
 		public void dump(string indent)
 		{
-			print("%s%s : %s  (%s)", indent, this.stype.to_string(), this.name, this.rtype);
+			print("%s%s : %s  (%s)", indent, this.stype.to_string().substring( 16, -1 ), this.name, this.rtype);
 			var si = indent + "  ";
 			for(var i = 0; i < this.children.get_n_items();i++) {
 				var c = (Symbol) this.children.get_item(i);
