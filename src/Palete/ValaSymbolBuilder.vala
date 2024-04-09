@@ -221,7 +221,7 @@ namespace Palete {
 					pkg
 				));
 
-				//context.add_external_package (pkgs.get(i));
+				context.add_external_package (pkgs.get(i));
 			}	
 
 			
