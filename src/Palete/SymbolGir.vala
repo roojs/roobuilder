@@ -11,7 +11,7 @@ namespace Palete {
     }
  
 	public class SymbolGir  : Vala.CodeVisitor {
-		
+		    private Gee.HashMap<string, Vala.Symbol> cname_to_sym = new Gee.HashMap<string, Vala.Symbol> ();
 		Vala.CodeContext context;
 		 
 		Project.Gtk scan_project;
