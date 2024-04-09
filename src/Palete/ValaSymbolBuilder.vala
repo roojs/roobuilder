@@ -234,7 +234,9 @@ namespace Palete {
 			foreach (var vapi_pkg in vala_packages) {
 		        if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null) {
 		            add_gir (@"$(vapi_pkg.gir_namespace)-$(vapi_pkg.gir_version)", vapi_pkg.package_name);
-	            }
+	            } else {
+	            	GLib.debug("could not find gir info for %s", vapi_pkg.filename);
+            	}
 	    	}
 			
 			string missed = "";
