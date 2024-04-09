@@ -263,7 +263,7 @@ namespace Palete {
         gir_parser.parse (context);
 
         // build a cache of all CodeNodes with a C name
-        context.accept (this);
+        context.accept (new CNameMapper (cname_to_sym));
 
         Vala.CodeContext.pop ();
 		
