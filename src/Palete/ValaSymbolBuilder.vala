@@ -230,7 +230,7 @@ namespace Palete {
 			
 			
 			
-			string[] gir_directories = context.gir_directories;
+ 
 			
 			foreach (var vapi_pkg in vala_packages) {
 		        if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null) {
@@ -252,7 +252,7 @@ namespace Palete {
 		        debug (@"did not add GIRs for these packages: $missed");
 
 
-//			add_types();
+			add_types();
 			
 			var gir_parser = new Vala.GirParser ();
 		    gir_parser.parse (context);
