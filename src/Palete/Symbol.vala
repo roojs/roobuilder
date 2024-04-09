@@ -27,6 +27,7 @@ namespace Palete {
 		public string name  { get; set;  default = "";  }
 		public string rtype  {get; set;  default = ""; }
 		public string direction { get; set; default = ""; }
+		public string doc { get; set; default = ""; }
 		
 		public bool deprecated { get; set; default = false;  } 
 		public bool is_abstract { get; set; default = false; }
