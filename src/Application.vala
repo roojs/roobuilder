@@ -67,7 +67,7 @@
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
 			{ "output", 0, 0, OptionArg.STRING, ref opt_compile_output, "output binary file path", null },
 			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages for non-ui ", null },
-			{ "debug-critical", 0, 0, OptionArg.NONE, ref opt_debug, " crash on warnings for gdb ", null },
+			{ "debug-critical", 0, 0, OptionArg.NONE, ref opt_debug_critical, " crash on warnings for gdb ", null },
 			{ "pull-resources", 0, 0, OptionArg.NONE, ref opt_pull_resources, "Fetch the online resources", null },			
             
             // some testing code.
@@ -99,6 +99,7 @@
 		
         public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
+		public static bool opt_debug_critical = false;
 		public static bool opt_list_projects = false;
 		public static bool opt_list_files = false;
 		public static bool opt_pull_resources = false;
@@ -272,7 +273,7 @@
 					//if (msg.contains("gdk_popup_present")) { // seems to be problems with the popup present on gtksourceview competion.
 					//	return;
 					//}
-					if (BuilderApplication.opt_debug && lvl ==  GLib.LogLevelFlags.LEVEL_CRITICAL) {
+					if (BuilderApplication.opt_debug_critical && lvl ==  GLib.LogLevelFlags.LEVEL_CRITICAL) {
 						GLib.error(msg);
 					}
 				});
