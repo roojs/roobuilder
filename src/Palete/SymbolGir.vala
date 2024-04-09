@@ -209,24 +209,7 @@ namespace Palete {
 		create_context ();
 		
 		var  vala_packages = new Gee.ArrayList<Vala.SourceFile>();
-		 /*
-		vala_packages.add(new Vala.SourceFile (
-					context, // needs replacing when you use it...
-					Vala.SourceFileType.PACKAGE, 
-					"/usr/share/vala-0.56/vapi/glib-2.0.vapi"
-				));
-				
-		 vala_packages.add(new Vala.SourceFile (
-					context, // needs replacing when you use it...
-					Vala.SourceFileType.PACKAGE, 
-					"/usr/share/vala-0.56/vapi/gobject-2.0.vapi"
-				));
-				vala_packages.add(new Vala.SourceFile (
-					context, // needs replacing when you use it...
-					Vala.SourceFileType.PACKAGE, 
-					"/usr/share/vala-0.56/vapi/gtk4.vapi"
-				));
-			*/	
+		  
         Vala.CodeContext.push (context);
 
 		var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
@@ -238,7 +221,7 @@ namespace Palete {
 
 
         // add additional dirs
-        string[] gir_directories = context.gir_directories;
+ 
        // foreach (var additional_gir_dir in custom_gir_dirs)
         //    gir_directories += additional_gir_dir.get_path ();
         //context.gir_directories = gir_directories;
@@ -296,148 +279,7 @@ namespace Palete {
 	}
 	
 	
-	class CNameMapper : Vala.CodeVisitor {
-		private Gee.HashMap<string, Vala.Symbol> cname_to_sym;
-private bool is_snake_case_symbol (Vala.Symbol sym) {
-        return sym is Vala.Method || sym is Vala.Property || sym is Vala.Field ||
-            sym is Vala.EnumValue || sym is Vala.ErrorCode || sym is Vala.Constant ||
-            sym is Vala.Signal;
-    }
-		public CNameMapper (Gee.HashMap<string, Vala.Symbol> cname_to_sym) {
-		    this.cname_to_sym = cname_to_sym;
-		}
-		public string get_symbol_cname (Vala.Symbol sym) {
-		    string? cname = null;
-
-		    if ((cname = sym.get_attribute_string ("CCode", "cname")) != null)
-		        return cname;
-		    
-		    var cname_sb = new StringBuilder ();
-		    bool to_snake_case = is_snake_case_symbol (sym);
-		    bool all_caps = sym is Vala.EnumValue || sym is Vala.ErrorCode || sym is Vala.Constant;
-
-		    for (var current_sym = sym; current_sym != null && current_sym.name != null; current_sym = current_sym.parent_symbol) {
-		        string component = current_sym.name;
-		        if (current_sym is Vala.CreationMethod) {
-		            if (component == ".new")
-		                component = "new";
-		            else
-		                component = "new_" + component;
-		        }
-		        if (to_snake_case) {
-		            string? lower_case_cprefix = null;
-		            string? cprefix = current_sym.get_attribute_string ("CCode", "cprefix");
-		            if ((lower_case_cprefix = current_sym.get_attribute_string ("CCode", "lower_case_cprefix")) != null ||
-		                cprefix != null && cprefix.contains ("_")) {
-		                component = lower_case_cprefix ?? cprefix;
-		                cname_sb.prepend (all_caps ? component.up () : component);
-		                break;
-		            } else if (!is_snake_case_symbol (current_sym)) {
-		                component = Vala.Symbol.camel_case_to_lower_case (component);
-		            }
-		            if (cname_sb.len > 0)
-		                cname_sb.prepend_c ('_');
-		        } else {
-		            string? cprefix = null;
-		            if ((cprefix = current_sym.get_attribute_string ("CCode", "cprefix")) != null &&
-		                !cprefix.contains ("_")) {
-		                cname_sb.prepend (all_caps ? cprefix.up () : cprefix);
-		                break;
-		            }
-		        }
-		        cname_sb.prepend (all_caps && current_sym != sym ? component.up () : component);
-		    }
-
-		    return cname_sb.str;
-		}
-		private void map_cname (Vala.Symbol sym) {	
-			GLib.debug("got sym %s from %s", sym.name, sym.source_reference.file.filename);
-		
-		    string cname = get_symbol_cname (sym);
-		    //debug ("mapping C name %s -> symbol %s (%s)", cname, sym.get_full_name (), sym.type_name);
-		    if (!cname_to_sym.has_key (cname)) {
-		        cname_to_sym[cname] = sym;
-		        if (sym is Vala.ErrorDomain || sym is Vala.Enum) {
-		            // also map its C prefix (without the trailing underscore)
-		            string? cprefix = sym.get_attribute_string ("CCode", "cprefix");
-		            MatchInfo match_info = null;
-		            if (cprefix != null && /^([A-Z]+(_[A-Z]+)*)_$/.match (cprefix, 0, out match_info)) {
-		                cname_to_sym[match_info.fetch (1)] = sym;
-		            }
-		        }
-		    }
-		}
-
-		public override void visit_source_file (Vala.SourceFile source_file) {
-		    source_file.accept_children (this);
-		}
-
-		public override void visit_class (Vala.Class cl) {
-		    map_cname (cl);
-		    cl.accept_children (this);
-		}
-
-		public override void visit_constant (Vala.Constant c) {
-		    map_cname (c);
-		}
-
-		public override void visit_creation_method (Vala.CreationMethod m) {
-		    map_cname (m);
-		}
-
-		public override void visit_delegate (Vala.Delegate d) {
-		    map_cname (d);
-		}
-
-		public override void visit_enum (Vala.Enum en) {
-		    map_cname (en);
-		    en.accept_children (this);
-		}
-
-		public override void visit_enum_value (Vala.EnumValue ev) {
-		    map_cname (ev);
-		}
-
-		public override void visit_error_domain (Vala.ErrorDomain edomain) {
-		    map_cname (edomain);
-		    edomain.accept_children (this);
-		}
-
-		public override void visit_error_code (Vala.ErrorCode ecode) {
-		    map_cname (ecode);
-		}
-
-		public override void visit_field (Vala.Field f) {
-		    map_cname (f);
-		}
-
-		public override void visit_interface (Vala.Interface iface) {
-		    map_cname (iface);
-		    iface.accept_children (this);
-		}
-
-		public override void visit_method (Vala.Method m) {
-		    map_cname (m);
-		}
-
-		public override void visit_namespace (Vala.Namespace ns) {
-		    map_cname (ns);
-		    ns.accept_children (this);
-		}
-
-		public override void visit_property (Vala.Property prop) {
-		    map_cname (prop);
-		}
-
-		public override void visit_signal (Vala.Signal sig) {
-		    map_cname (sig);
-		}
-
-		public override void visit_struct (Vala.Struct st) {
-		    map_cname (st);
-		    st.accept_children (this);
-		}
-	}
+	 
 
 }
  /*
