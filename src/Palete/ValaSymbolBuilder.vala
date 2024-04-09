@@ -220,7 +220,7 @@ namespace Palete {
 		    gir_parser.parse (context);
 
 		    // build a cache of all CodeNodes with a C name
-		    context.accept (this)
+		    context.accept (this);
 						
 			
 			
