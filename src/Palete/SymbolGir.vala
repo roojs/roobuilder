@@ -350,7 +350,7 @@ private bool is_snake_case_symbol (Vala.Symbol sym) {
 		    return cname_sb.str;
 		}
 		private void map_cname (Vala.Symbol sym) {	
-			GLib.debug("got sym %s from %s", sym, sym.source_reference.file.filename);
+			GLib.debug("got sym %s from %s", sym.name, sym.source_reference.file.filename);
 		
 		    string cname = get_symbol_cname (sym);
 		    //debug ("mapping C name %s -> symbol %s (%s)", cname, sym.get_full_name (), sym.type_name);
