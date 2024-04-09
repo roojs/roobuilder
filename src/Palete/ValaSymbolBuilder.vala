@@ -180,7 +180,8 @@ namespace Palete {
 		
 		public void  read_gir()
 		{
-		   	this.parsing_gir = true;
+			vala_packages = new 
+			this.parsing_gir = true;
 		   	context = new Vala.CodeContext ();
 			Vala.CodeContext.push (context);
 			var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
@@ -194,9 +195,39 @@ namespace Palete {
 			vapidirs += "/usr/share/vala/vapi";
 			context.vapi_directories = vapidirs;
 			
+			
+			var pkgs = this.fillDeps(this.scan_project.packages);
+			
+	    	
+	    	for (var i = 0; i < pkgs.size; i++) {
+	    	
+	    		var pkg = pkgs.get(i);
+	    		// do not add libvala versions except the one that matches the one we are compiled against..
+	    		if (Regex.match_simple("^libvala", pkg) && pkg != ("libvala-0." + vala_version.to_string())) {
+	    			continue;
+    			}
+				//valac += " --pkg " + dcg.packages.get(i);
+				 if (!this.has_vapi(context.vapi_directories, pkg)) {
+				 
+					continue;
+				}
+				GLib.debug("ADD vapi '%s'",pkgs.get(i));
+
+				vala_packages.add( new Vala.SourceFile (
+					context, // needs replacing when you use it...
+					Vala.SourceFileType.PACKAGE, 
+					pkg
+				);
+
+				//context.add_external_package (pkgs.get(i));
+			}	
+
+			
+			
+			
 			string[] gir_directories = context.gir_directories;
 			
-			 foreach (var vapi_pkg in vala_packages) {
+			foreach (var vapi_pkg in vala_packages) {
 		        if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null) {
 		            add_gir (@"$(vapi_pkg.gir_namespace)-$(vapi_pkg.gir_version)", vapi_pkg.package_name);
 	            }
