@@ -162,9 +162,9 @@ namespace Palete {
 			
 			
 		
-			context.accept(this);
+
 			p.parse(context);
-			
+			context.accept(this);			
 			context = null;
 			// dump the tree for Gtk?
 			
