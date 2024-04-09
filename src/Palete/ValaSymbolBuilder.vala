@@ -178,19 +178,35 @@ namespace Palete {
 			vapidirs += "/usr/share/vala/vapi";
 			context.vapi_directories = vapidirs;
 			
-			var sf =new Vala.SourceFile(
-				context, // needs replacing when you use it...
-					Vala.SourceFileType.PACKAGE, 
-					"/usr/share/gir-1.0/GLib-2.0.gir"
-			);
-			context.add_source_file(sf);
+			string[] gir_directories = context.gir_directories;
 			
+			 foreach (var vapi_pkg in vala_packages) {
+		        if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null) {
+		            add_gir (@"$(vapi_pkg.gir_namespace)-$(vapi_pkg.gir_version)", vapi_pkg.package_name);
+	            }
+	    	}
 			
-			Vala.Parser parser = new Vala.Parser ();
-			parser.parse (context);
+			string missed = "";
+		    vala_packages.filter (pkg => !added.keys.any_match (pkg_name => pkg.gir_namespace != null && pkg.gir_version != null && pkg_name == @"$(pkg.gir_namespace)-$(pkg.gir_version)"))
+		        .foreach (vapi_pkg => {
+		            if (missed.length > 0)
+		                missed += ", ";
+		            missed += vapi_pkg.package_name;
+		            return true;
+		        });
+		    if (missed.length > 0)
+		        debug (@"did not add GIRs for these packages: $missed");
 
-	
-			context.accept(this);
+
+			add_types();
+			
+			var gir_parser = new Vala.GirParser ();
+		    gir_parser.parse (context);
+
+		    // build a cache of all CodeNodes with a C name
+		    context.accept (this)
+						
+			
 			
 			context = null;
 			// dump the tree for Gtk?
