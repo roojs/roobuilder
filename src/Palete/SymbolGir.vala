@@ -17,15 +17,15 @@ namespace Palete {
 				this.file.relversion = s.source_reference.file.gir_version;
 			}
 			
-			if (parent != null && parent.file.id != this.file.id) {
-				if (parent.stype != Lsp.SymbolKind.Namespace)  {
-					GLib.error("parent is from differnt file, and its' type is %s", 
-						parent.stype.to_string());
-				}
+			//if (parent != null && parent.file.id != this.file.id) {
+			//	if (parent.stype != Lsp.SymbolKind.Namespace)  {
+			//		GLib.error("parent is from differnt file, and its' type is %s", 
+			//			parent.stype.to_string());
+			//	}
 				
-				this.parent_name = parent.name;
-				parent = null;
-			}
+			//	this.parent_name = parent.name;
+			//		parent = null;
+			//}
 		 	this.file.symbols.add(this); //referenced...
 			if (this.parent != null) {
 				this.parent.children.append(this);
