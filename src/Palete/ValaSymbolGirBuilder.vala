@@ -246,12 +246,14 @@ namespace Palete {
 					if (!fn.has_suffix(".gir")) {
 						continue;
 					}
-					var lc = fn.down();
+					var lc = fn.down().replace(".gir", "");;
 					var lcs = lc.split("-");
 					add_gir(fn.replace(".gir",""), lc); // eg. gtkcluterr-1.0
 					add_gir(fn.replace(".gir",""), lcs[0]); // eg. pango
 					add_gir(fn.replace(".gir",""), lcs[0] + lcs[1].substring(0,1)); // eg. gtk4
 					add_gir(fn.replace(".gir",""), lcs[0] + "+-" +  lcs[1]); // eg. gtk+-3.0
+					add_gir(fn.replace(".gir",""), "lib" + lc ); // eg. libsoup
+					add_gir(fn.replace(".gir",""),  lc.replace("gdk", "gdk-") ); // eg. gdk-pixbuf
 				}	
 			 } catch(GLib.Error e) {
 					// noop
