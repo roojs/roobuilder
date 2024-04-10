@@ -244,14 +244,14 @@ namespace Palete {
 					add_gir(fn.replace(".gir",""), lcs[0]); // eg. pango
 					add_gir(fn.replace(".gir",""), lcs[0] + lcs[1].substring(0,1); // eg. gtk4
 					add_gir(fn.replace(".gir",""), lcs[0] + "+-" lcs[1]); // eg. gtk+-3.0
-					
-					context.add_external_package ("pango");
+				}	
+			 }
 			
 
 		    // add packages
-		    add_gir ("GLib-2.0", "glib-2.0");
-		    add_gir ("GObject-2.0", "gobject-2.0");
-		    add_gir ("Pango-1.0", "pango");
+		    //add_gir ("GLib-2.0", "glib-2.0");
+		    //add_gir ("GObject-2.0", "gobject-2.0");
+		    //add_gir ("Pango-1.0", "pango");
 			//add_gir ("Gdk-4.0", "gdk4");
 		    foreach (var vapi_pkg in vala_packages) {
 		        if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null)
