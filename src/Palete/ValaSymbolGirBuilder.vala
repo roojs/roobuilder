@@ -81,7 +81,7 @@ namespace Palete {
 				return;
 			}
 			element.accept_children(this);
-			new SymbolVala.new_class(null, element);
+			new SymbolGir.new_class(null, element);
 			//?? childre???
 			
 		} 
