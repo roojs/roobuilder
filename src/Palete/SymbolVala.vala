@@ -29,8 +29,8 @@ namespace Palete {
 			} else {
 				this.file.top_symbols.add(this);
 			}
-			 
 			
+			this.fqn = this.to_fqn();
 			
 		}
 		
