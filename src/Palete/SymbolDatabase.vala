@@ -114,7 +114,7 @@ namespace Palete {
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$id"), file.id);			
-			stmt.bind_int64 (stmt.bind_parameter_index ("$relversion"), file.relversion);			
+			stmt.bind_text (stmt.bind_parameter_index ("$relversion"), file.relversion);			
 			stmt.step () ;
 			stmt.reset();
 
@@ -331,7 +331,7 @@ namespace Palete {
 				s.is_static=stmt.column_int(18) == 1;
 				// stuff I forgot..
 				s.parent_name =stmt.column_text(19);
-				s.doc = stmt.column_text( col )(20);
+				s.doc = stmt.column_text(20);
 				s.is_gir = stmt.column_int(21);
 				s.fqn = stmt.column_text(22);
 				
