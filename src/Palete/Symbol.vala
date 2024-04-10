@@ -27,8 +27,9 @@ namespace Palete {
 		public string name  { get; set;  default = "";  }
 		public string rtype  {get; set;  default = ""; }
 		public string direction { get; set; default = ""; }
+		public string fqn { get; set; default = ""; }
+
 		public string doc { get; set; default = ""; }
-		
 		public bool deprecated { get; set; default = false;  } 
 		public bool is_abstract { get; set; default = false; }
 		public bool is_sealed { get; set; default = false; }
@@ -36,6 +37,7 @@ namespace Palete {
 		public bool is_writable { get; set; default = false; }
  		public bool is_ctor { get; set; default = false; }
  		public bool is_static { get; set; default = false; }
+ 		public bool is_gir { get; set; default = false; }
  		
  		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
