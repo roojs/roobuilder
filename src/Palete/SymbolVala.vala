@@ -32,11 +32,11 @@ namespace Palete {
 			if (s.comment != null) {
 				this.doc = s.comment.content;
 			}
-		 
-			for (var i =0; i < s.attributes.length(); i++) {
-				var at = s.attributes.nth_data(i);
-				GLib.debug("got attribute %s : %s", at.name, at.get_string(at.name));
-			}
+			GLib.debug("got attribute  cname=%s cprefix=%s lc_suffix- %s", 
+				s.get_attribute_string ("CCode", "cname"),
+				s.get_attribute_string ("CCode", "cprefix"),
+				s.get_attribute_string ("CCode", "lower_case_csuffix")
+			);
 			
 			
 		}
