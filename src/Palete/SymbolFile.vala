@@ -48,6 +48,7 @@ namespace Palete {
 		public int64 id = -1;
 		public string path { get; set; default = ""; }
 		public int64 version { get; set; default = -1; } // utime?
+		public string relversion { get; set; default = ""; } // version eg. 1.0 (mathcing gir to vapis?)
 		public Gee.ArrayList<Symbol> symbols ;
 		public Gee.ArrayList<Symbol> top_symbols ;
 		public Gee.HashMap<int,Symbol> symbol_map;
