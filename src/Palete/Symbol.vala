@@ -64,11 +64,11 @@ namespace Palete {
 		
 		public string to_fqn()
 		{
-			var ret = this.name;
+
 			if (this.parent == null) {
-				return ret;
+				return this.name;;
 			}
-			return this.parent.to_fqn() + "." + ret; 
+			return this.parent.to_fqn() + "." + this.name; 
 		
 		}
 		
