@@ -36,7 +36,7 @@ namespace Palete {
 				this.doc = s.comment.content;
 			}
 			this.is_gir = true;
-			this.fqn = this.to_fqn();
+
 			
 		}
 		public SymbolGir.new_namespace(Symbol? parent, Vala.Namespace ns)
@@ -93,7 +93,7 @@ namespace Palete {
 				new new_method(this, e);
 			}
 		}
-		public SymbolGir.new_enummember(Symbol? parent, Vala.EnumValue cls)	
+		public SymbolGir.new_enummember(Symbol parent, Vala.EnumValue cls)	
 		{
 			this(parent,cls);
 			this.name = cls.name;
