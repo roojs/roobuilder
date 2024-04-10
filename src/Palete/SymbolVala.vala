@@ -32,7 +32,7 @@ namespace Palete {
 			if (s.comment != null) {
 				this.doc = s.comment.content;
 			}
-			var li = s.attributes;
+		 
 			for (var i =0; i < s.attributes.length(); i++) {
 				var at = s.attributes.nth_data(i);
 				GLib.debug("got attribute %s", at.name);
