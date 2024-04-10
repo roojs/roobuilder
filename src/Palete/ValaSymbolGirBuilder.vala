@@ -234,7 +234,7 @@ namespace Palete {
 		    //    gir_directories += additional_gir_dir.get_path ();
 		    //context.gir_directories = gir_directories;
 			var dir = "/usr/share/gir-1.0/";
-			var f = File.new_for_path(d);
+			var f = File.new_for_path(dir);
 			try {
 				var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME,
 						GLib.FileQueryInfoFlags.NONE, null);
