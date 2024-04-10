@@ -166,7 +166,7 @@ namespace Palete {
 		 
 		 	if (!GLib.FileUtils.test("/usr/share/vala-0.56/vapi/" + vapi_package + ".vapi", GLib.FileTest.EXISTS)) {
 		 		GLib.debug("cant find /usr/share/vala-0.56/vapi/%s.vapi", vapi_package  );
-		 		return;
+		 		return false;
 		 	}
 		 
 		    string? girpath = context.get_gir_path (gir_package);
