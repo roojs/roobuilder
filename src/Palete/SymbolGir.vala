@@ -216,8 +216,9 @@ namespace Palete {
 			context.root.add_using_directive (ns_ref);
 			
 			
-			//context.add_external_package ("glib-2.0"); 
-			//context.add_external_package ("gobject-2.0");
+			context.add_external_package ("glib-2.0"); 
+			context.add_external_package ("gobject-2.0");
+			context.add_external_package ("pango");
 
 
 		    // add additional dirs
