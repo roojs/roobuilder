@@ -240,7 +240,7 @@ namespace Palete {
 			stmt.bind_text (stmt.bind_parameter_index ("$doc"), s.doc);
 			stmt.bind_int (stmt.bind_parameter_index ("$is_gir"), s.is_gir ? 1 : 0);
 			
-			stmt.bind_text (stmt.bind_parameter_index ("$fqn"), s.fqn);
+			stmt.bind_text (stmt.bind_parameter_index ("$fqn"), s.to_fqn());
 			stmt.step () ;
 			
 			//GLib.debug("error %s", _db.errmsg());
