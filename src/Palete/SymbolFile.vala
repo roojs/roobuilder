@@ -51,6 +51,8 @@ namespace Palete {
 		public Gee.ArrayList<Symbol> symbols ;
 		public Gee.ArrayList<Symbol> top_symbols ;
 		public Gee.HashMap<int,Symbol> symbol_map;
+		public bool database_has_symbols = false;
+		
 		public JsRender.JsRender? file= null;
 		public int64 cur_mod_time() {
 			try {
@@ -65,9 +67,9 @@ namespace Palete {
 		
 		public bool is_parsed {
 			get {
-				GLib.debug("check parsed %d, %d (no sym: %d)", (int)this.version,  (int)this.cur_mod_time(), this.symbols.size);
+				GLib.debug("check parsed %d, %d (no sym: %d)", (int)this.version,  (int)this.cur_mod_time(), this.database_has_symbols ? 999 : 0);
 				
-				return this.version ==  this.cur_mod_time() && this.symbols.size > 0;
+				return this.version ==  this.cur_mod_time() && this.database_has_symbols;
 			}
 			set {
 				if (value) {
@@ -76,7 +78,7 @@ namespace Palete {
 					//GLib.debug("is_parsed %s : %d", this.path, (int)this.version);
 					SymbolDatabase.writeFile(this);
 					SymbolDatabase.writeSymbols(this);
-					
+					SymbolDatabase.loadFileHasSymbols(this);	
 					
 				}
 			}
@@ -95,7 +97,7 @@ namespace Palete {
 			this.top_symbols = new Gee.ArrayList<Symbol>();
 			this.symbol_map = new Gee.HashMap<int,Symbol>();
 			SymbolDatabase.initFile(this);
-			SymbolDatabase.loadSymbols(this);
+			SymbolDatabase.loadFileHasSymbols(this);
 
 		}
 		

@@ -238,7 +238,22 @@ namespace Palete {
  		
 		}
 		
-		public static void loadSymbols(SymbolFile file)
+		public static void loadFileHasSymbols(SymbolFile file)
+		{
+			var stmt = prepare(
+				"SELECT
+					id
+				FROM
+					symbol
+				WHERE file_id = $file_id
+				LIMIT 1");
+			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), file.id);
+			while (stmt.step() == Sqlite.ROW) {
+				file.database_has_symbols = true;
+			}
+		}
+		
+		public static void loadFileSymbols(SymbolFile file)
 		{
 			var stmt = prepare(
 				"SELECT

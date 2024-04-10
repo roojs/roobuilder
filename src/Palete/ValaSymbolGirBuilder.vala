@@ -32,13 +32,7 @@ namespace Palete {
 		{
 			// visit classes and namespaces..?
 			var sf = SymbolFile.factory_by_path(sfile.filename);
-			if (this.parsing_gir && sfile.filename.has_suffix(".gir")) {
-					GLib.debug("visit gir file %s nodes? %d", sfile.filename, sfile.get_nodes().size);
-			    gir_parser.parse_file (sfile);
-		        sfile.accept_children (this);			    
-				return;
-			}
-
+			 
 			
 			if (sf.is_parsed) {
 				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
@@ -47,6 +41,7 @@ namespace Palete {
 			
 			GLib.debug("visit source file %s nodes? %d", sfile.filename, sfile.get_nodes().size);
 			// parse it...
+			gir_parser.parse_file (sfile);
 	        sfile.accept_children (this);
 			GLib.debug("flag as parsed %s", sfile.filename);
 			sf.is_parsed = true; // should trigger save..
@@ -68,24 +63,26 @@ namespace Palete {
 				element.accept_children(this); // catch sub namespaces..
 				return;
 			}
-			new SymbolVala.new_namespace(null, element);
+			 var s = new SymbolGir.new_namespace(null, element);
 			element.accept_children(this); // catch sub namespaces..
-		}
-		 
+			s.file.is_parsed = true;
+			
+		 }
+		 /*
 	  	public override void visit_class (Vala.Class element) 
 		{
-			 debug("Got Class %s", element.name); 
+		     debug("Got Class %s", element.name); 
 
 			if (element.parent_symbol != null && element.parent_symbol.name != null) {
 				//debug("skip Class (has parent?)  '%s' ",  element.parent_symbol.name);
 				return;
 			}
 			element.accept_children(this);
-			new SymbolGir.new_class(null, element);
+			  new SymbolGir.new_class(null, element);
 			//?? childre???
-			
+			 
 		} 
-		
+		*/
 		 
 		 
 		

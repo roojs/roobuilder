@@ -1,6 +1,6 @@
 namespace Palete {
 
-	class SymbolVala : Symbol {
+	public class SymbolVala : Symbol {
 	
 		public SymbolVala(Symbol? parent, Vala.Symbol s)
 		{
@@ -28,9 +28,6 @@ namespace Palete {
 				this.parent.children.append(this);
 			} else {
 				this.file.top_symbols.add(this);
-			}
-			if (s.comment != null) {
-				this.doc = s.comment.content;
 			}
 			 
 			
