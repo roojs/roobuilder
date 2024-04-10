@@ -163,6 +163,12 @@ namespace Palete {
 		
 		
 		 private bool add_gir (string gir_package, string? vapi_package) {
+		 
+		 	if (!GLib.FileUtils.test("/usr/share/vala-0.56/vapi/" + vapi_package + ".vapi", GLib.FileText.EXISTS)) {
+		 		GLib.debug("cant find /usr/share/vala-0.56/vapi/%s.vapi", vapi_package  );
+		 		return;
+		 	}
+		 
 		    string? girpath = context.get_gir_path (gir_package);
 		    if (girpath != null && !added.has (gir_package, vapi_package)) {
 		        Vala.CodeContext.push (context);
@@ -172,7 +178,8 @@ namespace Palete {
 		        debug ("adding GIR %s for package %s", gir_package, vapi_package);
 		        return true;
 		    } else { 
-		    	GLib.debug("cant find %s " , gir_package)
+		    	GLib.debug("cant find %s " , gir_package);
+	    	}
 		    return false;
 		}
 
