@@ -261,10 +261,10 @@ namespace Palete {
 		    //add_gir ("GObject-2.0", "gobject-2.0");
 		    //add_gir ("Pango-1.0", "pango");
 			//add_gir ("Gdk-4.0", "gdk4");
-		    foreach (var vapi_pkg in vala_packages) {
-		        if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null)
-		            add_gir (@"$(vapi_pkg.gir_namespace)-$(vapi_pkg.gir_version)", vapi_pkg.package_name);
-		    }
+		   //foreach (var vapi_pkg in vala_packages) {
+		     //   if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null)
+		    //        add_gir (@"$(vapi_pkg.gir_namespace)-$(vapi_pkg.gir_version)", vapi_pkg.package_name);
+		   // }
 
 		    string missed = "";
 		    vala_packages.filter (pkg => !added.keys.any_match (pkg_name => pkg.gir_namespace != null && pkg.gir_version != null && pkg_name == @"$(pkg.gir_namespace)-$(pkg.gir_version)"))
