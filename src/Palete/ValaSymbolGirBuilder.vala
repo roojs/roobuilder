@@ -30,6 +30,8 @@ namespace Palete {
 		
 		public override void visit_source_file(Vala.SourceFile sfile)
 		{
+			
+			GLib.debug("Visit source file %s %s", sfile.filename, sfile.gir_version);
 			// visit classes and namespaces..?
 			var sf = SymbolFile.factory_by_path(sfile.filename);
 			 
