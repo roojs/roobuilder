@@ -171,7 +171,8 @@ namespace Palete {
 		        added[gir_package] = vapi_package;
 		        debug ("adding GIR %s for package %s", gir_package, vapi_package);
 		        return true;
-		    }
+		    } else { 
+		    	GLib.debug("cant find %s " , gir_package)
 		    return false;
 		}
 
