@@ -252,10 +252,10 @@ namespace Palete {
 					add_gir(fn.replace(".gir",""), lcs[0]); // eg. pango
 					add_gir(fn.replace(".gir",""), lcs[0] + lcs[1].substring(0,1)); // eg. gtk4
 					add_gir(fn.replace(".gir",""), lcs[0] + "+-" +  lcs[1]); // eg. gtk+-3.0
-				}	 catch(GLib.Error e) {
+				}	
+			 } catch(GLib.Error e) {
 					// noop
 				}
-			 }
 			
 
 		    // add packages
