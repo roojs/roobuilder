@@ -104,7 +104,8 @@ namespace Palete {
 			if (write_file_sql == null) {
 				write_file_sql = prepare("UPDATE files  SET 
 					path = $path,
-					version = $version
+					version = $version,
+					relversion = $relversion
 					WHERE id = $id
 				");
 			}
@@ -113,6 +114,7 @@ namespace Palete {
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$id"), file.id);			
+			stmt.bind_int64 (stmt.bind_parameter_index ("$relversion"), file.relversion);			
 			stmt.step () ;
 			stmt.reset();
 
@@ -174,7 +176,10 @@ namespace Palete {
 				 		is_ctor,
 						is_static,
 						
-						parent_name
+						parent_name,
+						doc,
+						is_gir,
+						fqn
 				 		
 			 		)  VALUES (
 			 			$file_id,
@@ -199,7 +204,10 @@ namespace Palete {
 				 		$is_ctor,
 						$is_static,
 						
-						$parent_name
+						$parent_name,
+						$doc,
+						$is_gir,
+						$fqn
 		 			)
 				");
 			}	//		GLib.debug("error %s", _db.errmsg());
@@ -229,7 +237,10 @@ namespace Palete {
 			stmt.bind_int (stmt.bind_parameter_index ("$is_static"), s.is_static? 1 : 0);
 			
 			stmt.bind_text (stmt.bind_parameter_index ("$parent_name"), s.parent_name);
-	
+			stmt.bind_text (stmt.bind_parameter_index ("$doc"), s.doc);
+			stmt.bind_int (stmt.bind_parameter_index ("$is_gir"), s.is_gir ? 1 : 0);
+			
+			stmt.bind_text (stmt.bind_parameter_index ("$fqn"), s.fqn);
 			stmt.step () ;
 			
 			//GLib.debug("error %s", _db.errmsg());
@@ -280,7 +291,11 @@ namespace Palete {
 			 		is_ctor,
 					is_static,
 					
-					parent_name
+					parent_name,
+					doc,
+					is_gir,
+					fqn
+					
 				FROM
 					symbol
 				WHERE file_id = $file_id
@@ -316,6 +331,9 @@ namespace Palete {
 				s.is_static=stmt.column_int(18) == 1;
 				// stuff I forgot..
 				s.parent_name =stmt.column_text(19);
+				s.doc = stmt.column_text( col )(20);
+				s.is_gir = stmt.column_int(21);
+				s.fqn = stmt.column_text(22);
 				
 				file.symbols.add(s);
 				ids.set((int)s.id, s);
@@ -350,7 +368,8 @@ namespace Palete {
 				CREATE TABLE files (
 				   id INTEGER PRIMARY KEY,
 				   path TEXT NOT NULL,
-				   version INT64 NOT NULL DEFAULT -1
+				   version INT64 NOT NULL DEFAULT -1,
+				   relversion TEXT NOT NULL DEFAULT ''
 				);
 			");
 			exec("
@@ -378,7 +397,10 @@ namespace Palete {
 			 		is_ctor INT2,
 					is_static INT2,
 					
-					parent_name TEXT
+					parent_name TEXT,
+					doc TEXT,
+					is_gir INTEGER,
+					fqn TEXT
 				);
 		 	");	
 		
