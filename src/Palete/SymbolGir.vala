@@ -142,7 +142,7 @@ namespace Palete {
 			this(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Class;
-	 		GLib.debug("new Class %s", cls.to_fqn());			 
+	 		GLib.debug("new Class %s", this.to_fqn());			 
 	 		//this.is_static =  cls.binding != Vala.MemberBinding.INSTANCE;
 		 	foreach(var c in cls.get_classes()) {
 				new new_class(this,c);
@@ -216,11 +216,11 @@ namespace Palete {
 		}
 		public SymbolGir.new_method(Symbol? parent, Vala.Method sig)	
 		{
-			GLib.debug("new Method %s", sig.name);
+
 			this(parent,sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Method;
-			 
+			GLib.debug("new Method %s", this.to_fqn());			 
 		 	 
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
