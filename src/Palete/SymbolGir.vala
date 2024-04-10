@@ -12,6 +12,11 @@ namespace Palete {
 				return;
 			}
 			this.file = SymbolFile.factory_by_path(s.source_reference.file.filename);
+			if (this.file.relversion == "") {
+				GLib.debug("new file %s ? %s", s.source_reference.file.filename,s.source_reference.file.gir_version);
+				this.file.relversion = gir_version;
+			}
+			
 			if (parent != null && parent.file.id != this.file.id) {
 				if (parent.stype != Lsp.SymbolKind.Namespace)  {
 					GLib.error("parent is from differnt file, and its' type is %s", 
