@@ -3,27 +3,18 @@
 
 namespace Palete {
 	 
-	 private class Sink : Vala.Report {
-        public override void depr (Vala.SourceReference? sr, string message) { /* do nothing */ }
-        public override void err (Vala.SourceReference? sr, string message) { /* do nothing */ }
-        public override void warn (Vala.SourceReference? sr, string message) { /* do nothing */ }
-        public override void note (Vala.SourceReference? sr, string message) { /* do nothing */ }
-    }
- 
-	public class SymbolGir  : Vala.CodeVisitor {
-		    private Gee.HashMap<string, Vala.Symbol> cname_to_sym = new Gee.HashMap<string, Vala.Symbol> ();
-		Vala.CodeContext context;
-		 
-		Project.Gtk scan_project;
-		
-		bool parsing_gir = false;
-		Vala.GirParser gir_parser;
-		
-  		public SymbolGir(Project.Gtk project) {
-			base();
-			this.scan_project = project;
-			// should not really happen..
+	public class SymbolGir  : SymbolVala {
+		  
+  		public SymbolGir(Symbol? parent, Vala.Symbol s)
+		{
+			base(parent, s);
 			 
+			if (s.comment != null) {
+				this.doc = s.comment.content;
+			}
+			 
+			
+			
 		}
 		
 		
