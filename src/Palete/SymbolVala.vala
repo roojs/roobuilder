@@ -32,10 +32,10 @@ namespace Palete {
 			if (s.comment != null) {
 				this.doc = s.comment.content;
 			}
-			GLib.debug("got attribute %s / %s / %s / %s / %s", 
+			GLib.debug("got attribute %s / %s / %s / %s / %s  / %s", 
 				s.get_attribute_string ("GIR", "name"),
 				s.get_attribute_string ("CCode", "cname"),
-				s.get_attribute_string ("CCode", "vfunc_name");
+				s.get_attribute_string ("CCode", "vfunc_name"),
 				s.get_attribute_string ("CCode", "cprefix"),
 				s.get_attribute_string ("CCode", "lower_case_cprefix"),
 				s.get_attribute_string ("CCode", "lower_case_csuffix")
