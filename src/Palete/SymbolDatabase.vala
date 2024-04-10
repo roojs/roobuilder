@@ -332,7 +332,7 @@ namespace Palete {
 				// stuff I forgot..
 				s.parent_name =stmt.column_text(19);
 				s.doc = stmt.column_text(20);
-				s.is_gir = stmt.column_int(21);
+				s.is_gir = stmt.column_int(21) == 1;
 				s.fqn = stmt.column_text(22);
 				
 				file.symbols.add(s);
