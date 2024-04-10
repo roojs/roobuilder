@@ -164,7 +164,7 @@ namespace Palete {
 		
 		 private bool add_gir (string gir_package, string? vapi_package) {
 		 
-		 	if (!GLib.FileUtils.test("/usr/share/vala-0.56/vapi/" + vapi_package + ".vapi", GLib.FileText.EXISTS)) {
+		 	if (!GLib.FileUtils.test("/usr/share/vala-0.56/vapi/" + vapi_package + ".vapi", GLib.FileTest.EXISTS)) {
 		 		GLib.debug("cant find /usr/share/vala-0.56/vapi/%s.vapi", vapi_package  );
 		 		return;
 		 	}
