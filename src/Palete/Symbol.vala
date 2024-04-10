@@ -29,7 +29,8 @@ namespace Palete {
 		public string direction  = ""; 
 		public string fqn  = ""; 
 
-		public string doc = ""; }
+		public string doc = ""; 
+		
 		public bool deprecated = false;  
 		public bool is_abstract   = false; 
 		public bool is_sealed   = false; 
