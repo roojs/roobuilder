@@ -138,11 +138,11 @@ namespace Palete {
 		
 		public SymbolGir.new_class(Symbol? parent, Vala.Class cls)
 	 	{
-	 		GLib.debug("new Class %s", cls.name);
+
 			this(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Class;
-			 
+	 		GLib.debug("new Class %s", cls.to_fqn());			 
 	 		//this.is_static =  cls.binding != Vala.MemberBinding.INSTANCE;
 		 	foreach(var c in cls.get_classes()) {
 				new new_class(this,c);
