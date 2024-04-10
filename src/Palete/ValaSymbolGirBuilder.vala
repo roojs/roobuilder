@@ -225,6 +225,28 @@ namespace Palete {
 		   // foreach (var additional_gir_dir in custom_gir_dirs)
 		    //    gir_directories += additional_gir_dir.get_path ();
 		    //context.gir_directories = gir_directories;
+			var dir = "/usr/share/gir-1.0/";
+			var f = File.new_for_path(d);
+			try {
+				var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME,
+						GLib.FileQueryInfoFlags.NONE, null);
+				
+				 
+				FileInfo next_file; 
+				while ((next_file = file_enum.next_file(null)) != null) {
+					var fn = next_file.get_display_name();
+					if (!fn.has_suffix(".gir")) {
+						continue;
+					}
+					var lc = fn.down();
+					var lcs = lc.split("-");
+					add_gir(fn.replace(".gir",""), lc); // eg. gtkcluterr-1.0
+					add_gir(fn.replace(".gir",""), lcs[0]); // eg. pango
+					add_gir(fn.replace(".gir",""), lcs[0] + lcs[1][0]); // eg. gtk4
+					add_gir(fn.replace(".gir",""), lcs[0] + "+-" lcs[1]); // eg. gtk+-3.0
+					
+					context.add_external_package ("pango");
+			
 
 		    // add packages
 		    add_gir ("GLib-2.0", "glib-2.0");
