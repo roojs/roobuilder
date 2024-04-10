@@ -35,7 +35,7 @@ namespace Palete {
 		 
 			for (var i =0; i < s.attributes.length(); i++) {
 				var at = s.attributes.nth_data(i);
-				GLib.debug("got attribute %s", at.name);
+				GLib.debug("got attribute %s : %s", at.name, at.get_string(at.name));
 			}
 			
 			
