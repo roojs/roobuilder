@@ -30,7 +30,8 @@ namespace Palete {
 			if (s.comment != null) {
 				this.doc = s.comment.content;
 			}
-			 
+			this.is_gir = true;
+			
 		}
 		public SymbolGir.new_namespace(Symbol? parent, Vala.Namespace ns)
 		{
