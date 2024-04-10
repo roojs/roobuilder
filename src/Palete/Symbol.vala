@@ -62,6 +62,16 @@ namespace Palete {
 			this.children = new GLib.ListStore(typeof(Symbol));
 		}
 		
+		public string to_fqn()
+		{
+			var ret = this.name;
+			if (this.parent == null) {
+				return ret;
+			}
+			return this.parent.to_fqn() + "." + ret; 
+		
+		}
+		
 		public void dump(string indent)
 		{
 			print("%s%s : %s  (%s)\n", indent, this.stype.to_string().substring( 16, -1 ), this.name, this.rtype);
