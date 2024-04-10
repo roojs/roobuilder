@@ -31,6 +31,7 @@ namespace Palete {
 				this.doc = s.comment.content;
 			}
 			this.is_gir = true;
+			this.fqn = this.to_fqn();
 			
 		}
 		public SymbolGir.new_namespace(Symbol? parent, Vala.Namespace ns)
