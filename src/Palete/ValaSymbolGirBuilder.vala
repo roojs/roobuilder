@@ -146,38 +146,22 @@ namespace Palete {
 			    break;
 			
 			case "instance-parameter":
-					break;
-					// looks  like this is the C first arg, that is ignored (as it is 
-					// treated as 'this' )
-		    		var c = new GirObject("Param",n);
-					c.gparent = parent;
-					c.ns = this.ns;
-		    		c.is_instance = true;
-		    		parent.params.add(c);
-		    		parent = c;
-		    		break;
+				child  = new  SymbolGir.new_parameter( f, parent, n);
+				break;
+				 
 			
 			case "parameter":
-				var c = new GirObject("Param",n);
-				c.gparent = parent;
-				c.ns = this.ns;
-				
+				child  = new  SymbolGir.new_parameter( f, parent, n);
+				break;
 				 
-				parent.params.add(c);
-				 
-				parent = c;
-				this.checkParamOverride(c);   
-			    break;
 			
 			case "property":
+				child  = new  SymbolGir.new_property( f, parent, n);
+				break;
+			
 			case "field":
-		    		var c = new GirObject("Prop",n.replace("-", "_"));
-				c.gparent = parent;
-				c.ns = this.ns;
-				c.propertyof = parent.name;
-		    		parent.props.set(n.replace("-", "_"),c);
-		    		parent = c;
-		    		break;
+		    	child  = new  SymbolGir.new_field( f, parent, n);
+				break;
 			
 			case "function":
 			    var c = new GirObject("Function",n);
