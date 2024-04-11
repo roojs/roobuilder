@@ -50,7 +50,7 @@ namespace Palete {
 			
 		}
 		
-	 	public SymbolGir.new_enum(Symbol? parent, Vala.Enum cls)
+	 	public SymbolGir.new_enum(Symbol? parent, SymbolFile f,   string name)
 	 	{
 	 		this(parent,cls);
 			this.name = cls.name;
@@ -63,139 +63,97 @@ namespace Palete {
 				new new_method(this, e);
 			}
 		}
-		public SymbolGir.new_enummember(Symbol parent, Vala.EnumValue cls)	
+		public SymbolGir.new_enummember(Symbol? parent, SymbolFile f,   string name)
 		{
-			this(parent,cls);
-			this.name = cls.name;
+			this(f, parent);
+			this.name = name;
 			this.stype = Lsp.SymbolKind.EnumMember;
 		 
 			 
 		}	
-	 	public SymbolGir.new_interface(Symbol? parent, Vala.Interface cls)
+	 	public SymbolGir.new_interface(Symbol? parent, SymbolFile f,   string name)
 	 	{
 	 		
 			this(parent,cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Interface;
 				
-			
-			foreach(var p in cls.get_properties()) {
-				new new_property(this, p);
-			}
-			foreach(var p in cls.get_fields()) {
-				new new_field(this, p);
-			}
-			foreach(var p in cls.get_signals()) {
-				new new_signal(this, p);
-			}
-			
-			foreach(var p in cls.get_methods()) {
-				new new_method(this, p);
-			}	
+			 
 		}
-		public SymbolGir.new_struct(Symbol? parent, Vala.Struct cls)	
+		public SymbolGir.new_struct(Symbol? parent, SymbolFile f,   string name)
 		{
-			this(parent,cls);
-			this.name = cls.name;
+			this(f, parent);
+			this.name = name;
 			this.stype = Lsp.SymbolKind.Struct;
 				
-			 		
-		 	foreach(var p in cls.get_fields()) {
-				new new_field(this, p);
-			}
+			 
 			 
 		}
 		
-		public SymbolGir.new_class(Symbol? parent, Vala.Class cls)
+		public SymbolGir.new_class(Symbol? parent, SymbolFile f,   string name)
 	 	{
 
-			this(parent,cls);
-			this.name = cls.name;
+			this(f, parent);
+			this.name = name;
 			this.stype = Lsp.SymbolKind.Class;
 	 		GLib.debug("new Class %s", this.to_fqn());			 
-	 		//this.is_static =  cls.binding != Vala.MemberBinding.INSTANCE;
-		 	foreach(var c in cls.get_classes()) {
-				new new_class(this,c);
-			}
-		 	foreach(var p in cls.get_fields()) {
-				new new_field(this, p);
-			}
-		 	foreach(var p in cls.get_properties()) {
-				new new_property(this, p);
-			}
-
-			foreach(var p in cls.get_signals()) {
-				new new_signal(this, p);
-			}
-			foreach(var p in cls.get_methods()) {
-				new new_method(this, p);
-			}
-			
+	 	 
+		 	 
 			 
 		 	 
 		}
 		 
-		public SymbolGir.new_property(Symbol? parent, Vala.Property prop)	
+		public SymbolGir.new_property(Symbol? parent, SymbolFile f,   string name)
 		{
 			//GLib.debug("new Property  %s", prop.name);
-			this(parent,prop);
-			this.name = prop.name;
+			this(f, parent);
+			this.name = name;
 			this.stype = Lsp.SymbolKind.Property;
  
 		}
-		public SymbolGir.new_field(Symbol? parent, Vala.Field prop)	
+		public SymbolGir.new_field(Symbol? parent, SymbolFile f,   string name)
 		{
 			//GLib.debug("new Field  %s", prop.name);
-			this(parent,prop);
-			this.name = prop.name;
+			this(f, parent);
+			this.name = name;
 			this.stype = Lsp.SymbolKind.Field;
  
 		}
 		
-		public SymbolGir.new_delegate(Symbol? parent, Vala.Delegate sig)
+		public SymbolGir.new_delegate(Symbol? parent, SymbolFile f,   string name)
 	 	{
-	 		this(parent,sig);
-			this.name = sig.name;
+	 		this(f, parent);
+			this.name = name;
 			this.stype = Lsp.SymbolKind.Delegate;
 			 		
 		 	 
 		 	var n  = 0;
-		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(this, p, n++);
-			}
+		 	 
 		}
-		public SymbolGir.new_parameter(Symbol? parent, Vala.Parameter pam, int seq)	
+		public SymbolGir.new_parameter(Symbol? parent, SymbolFile f,   string name)
 		{
-			this(parent,pam);
-			this.name = pam.ellipsis ? "..." : pam.name;
+			this(f, parent);
+			this.name = name;
 			this.stype = Lsp.SymbolKind.Parameter;
 			  
 			
  		}
-		public SymbolGir.new_signal(Symbol? parent, Vala.Signal sig)	
+		public SymbolGir.new_signal(Symbol? parent, SymbolFile f,   string name)
 		{
-			this(parent,sig);
-			this.name = sig.name;
+			this(f, parent);
+			this.name = name;
 			this.stype = Lsp.SymbolKind.Signal;
 	  
-		 	var n  = 0;
-		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(this, p, n++);
-			}
+		 	 
 
 		}
-		public SymbolGir.new_method(Symbol? parent, Vala.Method sig)	
+		public SymbolGir.new_method(Symbol? parent, SymbolFile f,   string name)	
 		{
 
-			this(parent,sig);
-			this.name = sig.name;
+			this(f, parent);
+			this.name =  name;
 			this.stype = Lsp.SymbolKind.Method;
-			GLib.debug("new Method %s", this.to_fqn());			 
-		 	 
-		 	var n  = 0;
-		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(this, p, n++);
-			}
+			 
 
 		}
  	}
