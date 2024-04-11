@@ -40,7 +40,7 @@ namespace Palete {
 		
 		public void readGir(string fn)
 		{
-			var file = new SymbolFile.factory(fn);
+			var file =   SymbolFile.factory(fn);
  			if (file.is_parsed) {
  				GLib.debug("file %s is parsed", fn);
 				return;
