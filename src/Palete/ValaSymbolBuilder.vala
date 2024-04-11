@@ -32,7 +32,7 @@ namespace Palete {
 			 ThreadFunc<bool> run = () => {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
-				var o = new ValaSymbolBuilder();
+				var o = new ValaSymbolBuilder(project);
 				o.create_valac_tree(   build_module);
 				foreach(var c in o.changed) {
 					output += c;
