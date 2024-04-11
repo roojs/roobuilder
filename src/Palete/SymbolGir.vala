@@ -5,7 +5,7 @@ namespace Palete {
 	 
 	public class SymbolGir  : Symbol  {
 		  
-  		public SymbolGir(SymbolFile f, Symbol? parent, )
+  		public SymbolGir(SymbolFile f, Symbol? parent)
 		{
 			base();
 			this.file = f;
