@@ -3,316 +3,282 @@
 
 namespace Palete {
 	 
-	 private class Sink : Vala.Report {
-        public override void depr (Vala.SourceReference? sr, string message) { /* do nothing */ }
-        public override void err (Vala.SourceReference? sr, string message) { /* do nothing */ }
-        public override void warn (Vala.SourceReference? sr, string message) { /* do nothing */ }
-        public override void note (Vala.SourceReference? sr, string message) { /* do nothing */ }
-    }
  
-	public class ValaSymbolGirBuilder  : Vala.CodeVisitor {
-		    private Gee.HashMap<string, Vala.Symbol> cname_to_sym = new Gee.HashMap<string, Vala.Symbol> ();
-		Vala.CodeContext context;
-		 
-		Project.Gtk scan_project;
+ 
+	public class ValaSymbolGirBuilder  : Object {
 		
-		bool parsing_gir = false;
-		Vala.GirParser gir_parser;
 		
-  		public ValaSymbolGirBuilder(Project.Gtk project) {
-			base();
-			this.scan_project = project;
-			// should not really happen..
-			 
+		public void scanGirs()
+		{
+			context = new Vala.CodeContext ();
+			
+			for(var i = 0; i < context.gir_directories; i++) {
+				this.scanGirDir(context.gir_directories[i]);
+			}
+		}
+		public scanGriDir(string dir)
+		{
+		
+		
 		}
 		
 		
 		
-		public override void visit_source_file(Vala.SourceFile sfile)
+		public void readGir(string fn)
 		{
-			
-			GLib.debug("Visit source file %s %s", sfile.filename, sfile.gir_version);
-			// visit classes and namespaces..?
-			var sf = SymbolFile.factory_by_path(sfile.filename);
-			 
-			
-			if (sf.is_parsed) {
-				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
-				return;
-			}
-			
-			GLib.debug("visit source file %s nodes? %d", sfile.filename, sfile.get_nodes().size);
-			// parse it...
-			gir_parser.parse_file (sfile);
-	        sfile.accept_children (this);
-			GLib.debug("flag as parsed %s", sfile.filename);
-			sf.is_parsed = true; // should trigger save..
-			
-			//?? do we need to accept children?
+		
+		
 		
 		}
-		 
 		
-		public override void visit_namespace (Vala.Namespace element) 
+		
+		public void walk(Xml.Node* element, SymbolGir? parent)
 		{
-
-			if (element == null) {
-				return;
-			}
+		    var n = element->get_prop("name");
+			// ignore null or c:include...
+		    if (n == null || (element->ns->prefix != null && element->ns->prefix == "c")) {
+				n = "";
+		    }
+		    //print("%s:%s (%s ==> %s\n", element->ns->prefix , element->name , parent.name , n);
+		    switch (element->name) {
+			case "repository":
+			    break;
 			
-		   GLib.debug("parsing namespace %s", element.name);
-			if (element.name == null) {
-				element.accept_children(this); // catch sub namespaces..
-				return;
-			}
-			 var s = new SymbolGir.new_namespace(null, element);
-			element.accept_children(this); // catch sub namespaces..
-			s.file.is_parsed = true;
+			case "include":
+			    parent.includes.set(n, element->get_prop("version"));
+			    break;
 			
-		 }
-		 /*
-	  	public override void visit_class (Vala.Class element) 
-		{
-		     debug("Got Class %s", element.name); 
-
-			if (element.parent_symbol != null && element.parent_symbol.name != null) {
-				//debug("skip Class (has parent?)  '%s' ",  element.parent_symbol.name);
-				return;
-			}
-			element.accept_children(this);
-			  new SymbolGir.new_class(null, element);
-			//?? childre???
-			 
-		} 
-		*/
-		 
-		 
-		
-		 
-		
-#if VALA_0_56
-		int vala_version=56;
-#elif VALA_0_36
-		int vala_version=36;
-#endif		
-		public Gee.ArrayList<string> fillDeps(Gee.ArrayList<string> in_ar)
-		{
-			var ret = new Gee.ArrayList<string>();
-			foreach(var k in in_ar) {
-				if (!ret.contains(k)) {			
-					ret.add(k);
+			case "package":
+			    parent.package = n;
+			    break;
+			
+			case "c:include":
+			    break;
+			
+			case "namespace":
+			    parent.name = n;
+			    break;
+			
+			case "alias":
+			    return;
+			    //break; // not handled..
+			
+			case "class":
+				var c = new GirObject("Class", parent.name + "." + n);
+				parent.classes.set(n, c);
+				c.ns = this.ns;
+				c.parent = element->get_prop("parent");
+				c.gparent = parent;
+				if (c.parent == null) {
+					c.parent = "";
 				}
-				var deps = this.loadDeps(k);
-				// hopefully dont need to recurse through these..
-				for(var i =0;i< deps.length;i++) {
-					if (!ret.contains(deps[i])) {
-						ret.add(deps[i]);
-					}
+				parent =  c;
+				break;
+			
+			case "interface":
+			    var c = new GirObject("Interface", parent.name + "." + n);
+			    c.gparent = parent;
+			    parent.classes.set(n, c);
+				c.ns = this.ns;
+				c.ns = parent.name;
+				c.parent = element->get_prop("parent");
+				if (c.parent == null) {
+					c.parent = "";
 				}
+				parent =  c;
+			    break;
+			
+			
+			case "doc":
+			    parent.doctxt = element->get_content();
+			    return;
+			
+			case "implements":
+			    parent.implements.add(n);
+		
+			    break;
+			
+			case "constructor":
+			    var c = new GirObject("Ctor",n);
+			    c.ns = this.ns;
+			    c.gparent = parent;
+			    parent.ctors.set(n,c);
+			    parent  = c;
+			    break;
+			
+			case "return-value":
+			    var c = new GirObject("Return", "return-value");
+			    c.gparent = parent;
+			    c.ns = this.ns;
+			    parent.return_value = c;
+			    parent =  c;
+			    break;
+			
+			case "virtual-method": // not sure...
+			    return;
+			/*
+			    var c = new GirObject("Signal",n);
+			    parent.signals.set(n,c);
+			    parent = c;
+			    break;
+			*/
+			case "signal": // Glib:signal
+				var c = new GirObject("Signal",n.replace("-", "_"));
+				c.gparent = parent;
+				c.ns = this.ns;
+				parent.signals.set(n.replace("-", "_"),c);
+				parent = c;
+				break;
+			    
+			
+		      
+			case "callback": // not sure...
+			    return;
+			
+			
+			case "type":
+			    parent.type = n;
 				
+						return; // no children?
+			    //break;
 			
-			}
-
-
-			return ret;
-		}
-		
-		public string[] loadDeps(string n) 
-		{
-			// only try two? = we are ignoreing our configDirectory?
-			string[] ret  = {};
-			var fn =  "/usr/share/vala-0.%d/vapi/%s.deps".printf(this.vala_version, n);
-			if (!FileUtils.test (fn, FileTest.EXISTS)) {
-				fn = "";
-			}
-			if (fn == "") { 
-				fn =  "/usr/share/vala/vapi/%s.deps".printf( n);
-				if (!FileUtils.test (fn, FileTest.EXISTS)) {
-					return ret;
-				}
-			}
-			string  ostr;
-			try {
-				FileUtils.get_contents(fn, out ostr);
-			} catch (GLib.Error e) {
-				GLib.debug("failed loading deps %s", e.message);
-				return {};
-			}
-			return ostr.split("\n");
+			case "method":
+		    		var c = new GirObject("Method",n);
+				c.gparent = parent;
+				c.ns = this.ns;
+				c.propertyof = parent.name;
+		    		parent.methods.set(n,c);
+		    		parent = c;
+		    		break;
 			
+			case "parameters":
+			    var c = new GirObject("Paramset",n);
+			    c.gparent = parent;
+			    c.ns = this.ns;
+			    parent.paramset = c;
+			    parent =  c;
+			    break;
 			
-		}
-
-// from vls...
-
-		 private void create_context () {
-				context = new Vala.CodeContext ();
-				context.report = new Sink ();
-				Vala.CodeContext.push (context);
-		#if VALA_0_50
-				context.set_target_profile (Vala.Profile.GOBJECT, false);
-		#else
-				context.profile = Vala.Profile.GOBJECT;
-				context.add_define ("GOBJECT");
-		#endif
-				Vala.CodeContext.pop ();
-			}
-
-    	private Gee.HashMap<string, string?> added = new Gee.HashMap<string, string?> ();
-
-		
-		
-		 private bool add_gir (string gir_package, string? vapi_package) {
-		 
-		 	if (!GLib.FileUtils.test("/usr/share/vala-0.56/vapi/" + vapi_package + ".vapi", GLib.FileTest.EXISTS)) {
-		 		GLib.debug("cant find /usr/share/vala-0.56/vapi/%s.vapi", vapi_package  );
-		 		return false;
-		 	}
-		 
-		    string? girpath = context.get_gir_path (gir_package);
-		    if (girpath != null && !added.has (gir_package, vapi_package)) {
-		        Vala.CodeContext.push (context);
-		        context.add_source_file (new Vala.SourceFile (context, Vala.SourceFileType.PACKAGE, girpath));
-		        Vala.CodeContext.pop ();
-		        added[gir_package] = vapi_package;
-		        debug ("adding GIR %s for package %s", gir_package, vapi_package);
-		        return true;
-		    } else { 
-		    	GLib.debug("cant find %s " , gir_package);
-	    	}
-		    return false;
-		}
-
-
-
-
-	    private void add_types () {
-        // add some types manually
-			Vala.SourceFile? sr_file = null;
-			foreach (var source_file in this.context.get_source_files ()) {
-			    if (source_file.filename.has_suffix ("GLib-2.0.gir"))
-			        sr_file = source_file;
-			}
-			var sr_begin = Vala.SourceLocation (null, 1, 1);
-			var sr_end = sr_begin;
-
-			// ... add string
-			var string_class = new Vala.Class ("string", new Vala.SourceReference (sr_file, sr_begin, sr_end));
-			this.context.root.add_class (string_class);
-
-			// ... add bool
-			var bool_type = new Vala.Struct ("bool", new Vala.SourceReference (sr_file, sr_begin, sr_end));
-			bool_type.add_method (new Vala.Method ("to_string", new Vala.ClassType (string_class)));
-			context.root.add_struct (bool_type);
-
-			// ... add GLib namespace
-			var glib_ns = new Vala.Namespace ("GLib", new Vala.SourceReference (sr_file, sr_begin, sr_end));
-			this.context.root.add_namespace (glib_ns);
-		}
-		
-		public void  read_gir()
-		{
+			case "instance-parameter":
+					break;
+					// looks  like this is the C first arg, that is ignored (as it is 
+					// treated as 'this' )
+		    		var c = new GirObject("Param",n);
+					c.gparent = parent;
+					c.ns = this.ns;
+		    		c.is_instance = true;
+		    		parent.params.add(c);
+		    		parent = c;
+		    		break;
 			
-			create_context ();
-			
-			var  vala_packages = new Gee.ArrayList<Vala.SourceFile>();
-			  
-		    Vala.CodeContext.push (context);
-
-			var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
-			context.root.add_using_directive (ns_ref);
-			
-			
-			context.add_external_package ("glib-2.0"); 
-			context.add_external_package ("gobject-2.0");
-			context.add_external_package ("pango");
-
-
-		    // add additional dirs
-	 
-		   // foreach (var additional_gir_dir in custom_gir_dirs)
-		    //    gir_directories += additional_gir_dir.get_path ();
-		    //context.gir_directories = gir_directories;
-			var dir = "/usr/share/gir-1.0/";
-			var f = File.new_for_path(dir);
-			try {
-				var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME,
-						GLib.FileQueryInfoFlags.NONE, null);
+			case "parameter":
+				var c = new GirObject("Param",n);
+				c.gparent = parent;
+				c.ns = this.ns;
 				
 				 
-				FileInfo next_file; 
-				while ((next_file = file_enum.next_file(null)) != null) {
-					var fn = next_file.get_display_name();
-					if (!fn.has_suffix(".gir")) {
-						continue;
-					}
-					var lc = fn.down().replace(".gir", "");;
-					var lcs = lc.split("-");
-					add_gir(fn.replace(".gir",""), lc); // eg. gtkcluterr-1.0
-					add_gir(fn.replace(".gir",""), lcs[0]); // eg. pango
-					add_gir(fn.replace(".gir",""), lcs[0] + lcs[1].substring(0,1)); // eg. gtk4
-					add_gir(fn.replace(".gir",""), lcs[0] + "+-" +  lcs[1]); // eg. gtk+-3.0
-					add_gir(fn.replace(".gir",""), "lib" + lc ); // eg. libsoup
-					add_gir(fn.replace(".gir",""),  lc.replace("gdk", "gdk-") ); // eg. gdk-pixbuf
-				}	
-			 } catch(GLib.Error e) {
-					// noop
-				}
+				parent.params.add(c);
+				 
+				parent = c;
+				this.checkParamOverride(c);   
+			    break;
 			
-
-		    // add packages
-		    //add_gir ("GLib-2.0", "glib-2.0");
-		    //add_gir ("GObject-2.0", "gobject-2.0");
-		    //add_gir ("Pango-1.0", "pango");
-			//add_gir ("Gdk-4.0", "gdk4");
-		   //foreach (var vapi_pkg in vala_packages) {
-		     //   if (vapi_pkg.gir_namespace != null && vapi_pkg.gir_version != null)
-		    //        add_gir (@"$(vapi_pkg.gir_namespace)-$(vapi_pkg.gir_version)", vapi_pkg.package_name);
-		   // }
-
-		    string missed = "";
-		    vala_packages.filter (pkg => !added.keys.any_match (pkg_name => pkg.gir_namespace != null && pkg.gir_version != null && pkg_name == @"$(pkg.gir_namespace)-$(pkg.gir_version)"))
-		        .foreach (vapi_pkg => {
-		            if (missed.length > 0)
-		                missed += ", ";
-		            missed += vapi_pkg.package_name;
-		            return true;
-		        });
-		    if (missed.length > 0)
-		        debug (@"did not add GIRs for these packages: $missed");
-
-		    add_types ();
-
-		    // parse once
-		    var gir_parser = new Vala.GirParser ();
-		    gir_parser.parse (context);
-
-		    // build a cache of all CodeNodes with a C name
-		    context.accept (this); //new CNameMapper (cname_to_sym));
-
-		    Vala.CodeContext.pop ();
+			case "property":
+			case "field":
+		    		var c = new GirObject("Prop",n.replace("-", "_"));
+				c.gparent = parent;
+				c.ns = this.ns;
+				c.propertyof = parent.name;
+		    		parent.props.set(n.replace("-", "_"),c);
+		    		parent = c;
+		    		break;
 			
+			case "function":
+			    var c = new GirObject("Function",n);
+			    c.gparent = parent;
+			    c.ns = this.ns;
+			    parent.methods.set(n,c);
+			    parent = c;
+			    break;
+			
+			case "array":
+			    parent.is_array = true;  
+			    break; // type is added soon..
+			
+			case "varargs":
+			    parent.is_varargs= true;  
+			    return;
+			
+			case "constant":
+			    var c = new GirObject("Const",n);
+			    c.gparent = parent;
+			    c.value = element->get_prop("value");
+						c.ns = this.ns;
+			    parent.consts.set(n,c);
+			    parent = c;
+			    return;
+			    //break;
+			case "bitfield":
+			case "enumeration":
+		    		var c = new GirObject("Enum",n);
+				c.gparent = parent;
+				c.ns = this.ns;
+		    		parent.consts.set(n,c);
+				
+				parent = c;
+				break;
+			
+			case "member":
+		    		var c = new GirObject("EnumMember",n);
+				c.gparent = parent;
+				c.ns = this.ns;
+		    		c.value = element->get_prop("value");
+		    		parent.consts.set(n,c);
+		    		return;
+		    		break;
+			
+			
+			case "doc-deprecated":
+			    return;
+			
+			case "record": // struct?
+			    return;
+			 
+					    
+			    return;
+			case "prerequisite": // ignore?
+			    return;
+					case "union": // ignore?
+			    return;
+					default:
+			    print("UNHANDLED Gir file element: " + element->name +"\n");
+			    return;
+		    }
+		    /*
+		    if (element->name == "signal") {
+			path += ".signal";
+		    }
+		    
+		    
+		    if (element->name == "return-value") {
+			path += ".return-value";
+		    }
+		    print(path + ":"  + element->name + "\n");
+		    */
+		    //var d =   getAttribute(element,'doc');
+		    //if (d) {
+		     //   Seed.print(path + ':' + d);
+		    //    ret[path] = d;
+		    //}
+		    for (Xml.Node* iter = element->children; iter != null; iter = iter->next) {
+		     	if (iter->type == Xml.ElementType.TEXT_NODE) {
+			    continue;
+			}
+			this.walk(iter, parent);
+		    }
+
 		}
 		
-		 
-	//
-		// startpoint:
-		//
-	 public bool has_vapi(string[] dirs,  string vapi) 
-		{
-			for(var i =0 ; i < dirs.length; i++) {
-				//GLib.debug("check VAPI - %s", dirs[i] + "/" + vapi + ".vapi");
-				if (!FileUtils.test( dirs[i] + "/" + vapi + ".vapi", FileTest.EXISTS)) {
-					continue;
-				}   
-				return true;
-			}
-			return false;
-			
-		}
-	}
-	
-	
 	 
 
 }
