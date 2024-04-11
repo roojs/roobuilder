@@ -187,7 +187,7 @@ namespace Palete {
 				case "constant":
 					//child  = new  SymbolGir.new_function( f, parent, n);					return; // cant find any doc..
 					//child  = 
-					var child = new  SymbolGir.new_constant( f, parent, n);
+					child = new  SymbolGir.new_constant( f, parent, n);
 					//break;
 					 
 					//break;
@@ -198,6 +198,7 @@ namespace Palete {
 					break;
 				
 				case "member":
+					child  = new  SymbolGir.new_enummember( f, parent, n);
 					return; // cant see any docs.
 				
 				
