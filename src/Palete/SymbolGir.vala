@@ -42,6 +42,7 @@ namespace Palete {
 					break;
 
 			}
+			this.name = name;
 			this.stype = Lsp.SymbolKind.Namespace; 
 			 
 			
