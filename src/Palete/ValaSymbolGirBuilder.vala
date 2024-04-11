@@ -173,6 +173,7 @@ namespace Palete {
 				case "function-macro": break;
 				case "source-position": break;
 				case "attribute": break;
+				case "boxed": break;				
 				case "array":  break; 
 				
 				case "varargs":
