@@ -50,16 +50,10 @@ namespace Palete {
 		
 	 	public SymbolGir.new_enum(Symbol? parent, SymbolFile f,   string name)
 	 	{
-	 		this(parent,cls);
+			this(f, null);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Enum;
-			
-			foreach(var e in cls.get_values()) {
-				new new_enummember(this, e);
-			}
-			foreach(var e in cls.get_methods()) {
-				new new_method(this, e);
-			}
+			 
 		}
 		public SymbolGir.new_enummember(Symbol? parent, SymbolFile f,   string name)
 		{
