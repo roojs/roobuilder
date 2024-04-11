@@ -129,13 +129,13 @@ namespace Palete {
 			
 			
 			case "type":
-			    parent.type = n;
+			    //parent.type = n;
 				
-						return; // no children?
+				return; // no children?
 			    //break;
 			
 			case "method":
-		    		var c = new GirObject("Method",n);
+	    		var c = new GirObject("Method",n);
 				c.gparent = parent;
 				c.ns = this.ns;
 				c.propertyof = parent.name;
