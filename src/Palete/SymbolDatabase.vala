@@ -71,7 +71,10 @@ namespace Palete {
 		{
 			GLib.debug("EXEC %s", q);
 			string errmsg;
-			db.exec (q, null, out errmsg);
+			if (Sqlite.OK != db.exec (q, null, out errmsg)) {
+				GLib.debug("error %s", db.errmsg());
+			}
+			
 		}
 		
 		 
@@ -136,7 +139,7 @@ namespace Palete {
 				new_ids += s.id.to_string();
 			}
 			exec("DELETE FROM symbol WHERE 
-				id IN (" + string.joinv("," , ids) + ") AND
+				id IN (" + (ids.length > 0 ? string.joinv("," , ids) : "-1")  + ") AND
 				id NOT IN (" + string.joinv("," , new_ids) + ") AND 
 				file_id = " + file.id.to_string());
 		}
