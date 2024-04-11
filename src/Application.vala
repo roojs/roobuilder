@@ -190,7 +190,7 @@
 			this.compileBjs(cur_project);
 			//this.compileVala();
 			
-			Palete.ValaSymbolGirBuiler.updateGirs();  // done in background thread.
+			Palete.ValaSymbolGirBuilder.updateGirs();  // done in background thread.
 		}
 
 		public static Settings settings;
