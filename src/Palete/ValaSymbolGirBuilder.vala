@@ -11,7 +11,7 @@ namespace Palete {
 		public   ValaSymbolGirBuilder()
 		{
 			var context = new Vala.CodeContext ();
-			
+			GLib.debug("gir directory lenght = %d" , context.gir_directories.length);
 			for(var i = 0; i < context.gir_directories.length; i++) {
 				this.scanGirDir(context.gir_directories[i]);
 			}
