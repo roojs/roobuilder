@@ -156,6 +156,7 @@ namespace Palete {
 			 
 
 		}
+		 
 		public SymbolGir.new_return_value(SymbolFile f, Symbol? parent,   string name)	
 		{
 
