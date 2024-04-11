@@ -78,7 +78,7 @@ namespace Palete {
 					break;
 				
 				case "namespace":
-					child  = new  SymbolGir.new_namespace(file,   n) ;
+					child  = new  SymbolGir.new_namespace(f,   n) ;
 					break;
 				
 				case "alias":
