@@ -17,7 +17,7 @@ namespace Palete {
 			
 			
 			
-			updateBackground.begin(project,(o,r )  => {
+			updateBackground.begin(project,buildmodule, (o,r )  => {
 				var paths = updateBackground.end(r);
 				project.onTreeUpdated(paths);
 			});
