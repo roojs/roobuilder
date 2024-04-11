@@ -8,9 +8,9 @@ namespace Palete {
 	public class ValaSymbolGirBuilder  : Object {
 		
 		
-		public void scanGirs()
+		public void ValaSymbolGirBuilder()
 		{
-			context = new Vala.CodeContext ();
+			var context = new Vala.CodeContext ();
 			
 			for(var i = 0; i < context.gir_directories; i++) {
 				this.scanGirDir(context.gir_directories[i]);
@@ -18,7 +18,20 @@ namespace Palete {
 		}
 		public scanGriDir(string dir)
 		{
-		
+			var f = File.new_for_path(dir);
+			try {
+				var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME,
+						GLib.FileQueryInfoFlags.NONE, null);
+				
+				 
+				FileInfo next_file; 
+				while ((next_file = file_enum.next_file(null)) != null) {
+					var fn = next_file.get_display_name();
+					if (!fn.has_suffix(".gir")) {
+						continue;
+					}
+					this.readGir(dir + "/" + fn);
+				}
 		
 		}
 		
