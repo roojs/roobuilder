@@ -568,7 +568,7 @@ namespace Lsp {
         TypeParameter = 26,
         Delegate = 27,// ?? not standard.
         Parameter = 28, // ?? not standard.
-        Signal = 29; // ?? not standard.
+        Signal = 29, // ?? not standard.
      	Return = 30; // ?? not standard.
         
         public string icon () { 
