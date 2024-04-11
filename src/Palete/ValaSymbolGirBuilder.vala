@@ -10,7 +10,7 @@ namespace Palete {
 		
 		public   ValaSymbolGirBuilder()
 		{
-
+			this.readGir("/usr/share/gir-1.0/Gdk-4.0.gir");
 			// cant find a better way to work out where these dir's are..
 			// probably need to config this somehow..
 			string[] gir_directories = { "/usr/share" ,"/usr/local/share/" };
