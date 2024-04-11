@@ -171,6 +171,8 @@ namespace Palete {
 					break;
 
 				case "function-macro": break;
+				case "source-position": break;
+
 				case "array":  break; 
 				
 				case "varargs":
