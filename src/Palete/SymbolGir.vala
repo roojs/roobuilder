@@ -94,7 +94,7 @@ namespace Palete {
 		 	 
 		}
 		 
-		public SymbolGir.new_property(Symbol? parent, SymbolFile f,   string name)
+		public SymbolGir.new_property(SymbolFile f, Symbol? parent,   string name)
 		{
 			//GLib.debug("new Property  %s", prop.name);
 			this(f, parent);
