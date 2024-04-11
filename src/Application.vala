@@ -626,7 +626,7 @@
 			GLib.debug("running vapiparser");
 			 new Palete.ValaSymbolGirBuilder();
 		 
-			Palete.SymbolDatabase.backupDB();
+			//Palete.SymbolDatabase.backupDB();
 			//vp.create_valac_tree(opt_symbol_test);
 			//Palete.SymbolDatabase.backupDB();
 			
