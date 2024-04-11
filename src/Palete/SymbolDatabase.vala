@@ -69,6 +69,7 @@ namespace Palete {
 		}
 		static void  exec(string q) 
 		{
+			GLib.debug("EXEC %s", q);
 			string errmsg;
 			db.exec (q, null, out errmsg);
 		}
@@ -157,6 +158,7 @@ namespace Palete {
 		public static void writeSymbol(Symbol  s)
 		{
 			// we dont care about gir data that is not doc..
+			
 			if(s.is_gir  && s.doc == "") {
 				return;
 			}
