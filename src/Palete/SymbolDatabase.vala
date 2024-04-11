@@ -48,6 +48,10 @@ namespace Palete {
 		
 		public static void backupDB()
 		{
+	 		if (_db == null) {
+	 			GLib.debug("database not open  = not saving");
+	 			return;
+	 		}
 	 		Sqlite.Database filedb;
 			Sqlite.Database.open (BuilderApplication.configDirectory() + "/symbols.db", out filedb);
 			//GLib.debug("error %s", filedb.errmsg());
