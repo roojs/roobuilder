@@ -12,7 +12,7 @@ namespace Palete {
 		{
 			var context = new Vala.CodeContext ();
 			
-			for(var i = 0; i < context.gir_directories; i++) {
+			for(var i = 0; i < context.gir_directories.length; i++) {
 				this.scanGirDir(context.gir_directories[i]);
 			}
 		}
