@@ -135,13 +135,8 @@ namespace Palete {
 			    //break;
 			
 			case "method":
-	    		var c = new GirObject("Method",n);
-				c.gparent = parent;
-				c.ns = this.ns;
-				c.propertyof = parent.name;
-		    		parent.methods.set(n,c);
-		    		parent = c;
-		    		break;
+	    		child  = new  SymbolGir.new_method( f, parent, n);
+			    break;
 			
 			case "parameters":
 			    var c = new GirObject("Paramset",n);
