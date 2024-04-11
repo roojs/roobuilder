@@ -97,7 +97,7 @@ namespace Palete {
 				
 				case "doc":
 					if (parent.doc.length > 0) {
-						parent += "\n\n";
+						parent.doc += "\n\n";
 					}
 					parent.doc = element->get_content();
 					return;
