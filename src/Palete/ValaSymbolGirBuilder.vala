@@ -62,163 +62,150 @@ namespace Palete {
 		    var child = parent;
 		    //print("%s:%s (%s ==> %s\n", element->ns->prefix , element->name , parent.name , n);
 		    switch (element->name) {
-			case "repository":
-			    break;
-			
-			case "include":
-			    //parent.includes.set(n, element->get_prop("version"));
-			    break;
-			
-			case "package":
-			    //parent.package = n;
-			    break;
-			
-			case "c:include":
-			    break;
-			
-			case "namespace":
-				child  = new  SymbolGir.new_namespace(file,   n) 
-			    break;
-			
-			case "alias":
-			    return;
-			    //break; // not handled..
-			
-			case "class":
-				child  = new  SymbolGir.new_class( f, parent,  n) 
-				 
-				break;
-			
-			case "interface":
-			    child  = new  SymbolGir.new_interface( f, parent,  n) 
-			    break;
-			
-			
-			case "doc":
-				if (parent.doc.length > 0) {
-					parent += "\n\n";
-				}
-			    parent.doc = element->get_content();
-			    return;
-			
-			case "implements":
-			   
-			    break;
-			
-			case "constructor":
-				child  = new  SymbolGir.new_method( f, parent,  n) 
-			    break;
-			
-			case "return-value":
-			    child  = new  SymbolGir.new_return_value( f, parent, n);
-			    break;
-			
-			case "virtual-method": // not sure...
-			    return;
-			/*
-			    var c = new GirObject("Signal",n);
-			    parent.signals.set(n,c);
-			    parent = c;
-			    break;
-			*/
-			case "signal": // Glib:signal
-			  	child  = new  SymbolGir.new_signal( f, parent, n);
-			    break;
-			    
-			
-		      
-			case "callback": // not sure...
-			    return;
-			
-			
-			case "type":
-			    //parent.type = n;
+				case "repository":
+					break;
 				
-				return; // no children?
-			    //break;
-			
-			case "method":
-	    		child  = new  SymbolGir.new_method( f, parent, n);
-			    break;
-			
-			case "parameters":
-			     
-			    break;
-			
-			case "instance-parameter":
-				child  = new  SymbolGir.new_parameter( f, parent, n);
-				break;
-				 
-			
-			case "parameter":
-				child  = new  SymbolGir.new_parameter( f, parent, n);
-				break;
-				 
-			
-			case "property":
-				child  = new  SymbolGir.new_property( f, parent, n);
-				break;
-			
-			case "field":
-		    	child  = new  SymbolGir.new_field( f, parent, n);
-				break;
-			
-			case "function":
-			    child  = new  SymbolGir.new_function( f, parent, n);
-				break;
-			
-			case "array":
-			    parent.is_array = true;  
-			    break; // type is added soon..
-			
-			case "varargs":
-			    parent.is_varargs= true;  
-			    return;
-			
-			case "constant":
-			    var c = new GirObject("Const",n);
-			    c.gparent = parent;
-			    c.value = element->get_prop("value");
-						c.ns = this.ns;
-			    parent.consts.set(n,c);
-			    parent = c;
-			    return;
-			    //break;
-			case "bitfield":
-			case "enumeration":
-		    		var c = new GirObject("Enum",n);
-				c.gparent = parent;
-				c.ns = this.ns;
-		    		parent.consts.set(n,c);
+				case "include":
+					//parent.includes.set(n, element->get_prop("version"));
+					break;
 				
-				parent = c;
-				break;
-			
-			case "member":
-		    		var c = new GirObject("EnumMember",n);
-				c.gparent = parent;
-				c.ns = this.ns;
-		    		c.value = element->get_prop("value");
-		    		parent.consts.set(n,c);
-		    		return;
-		    		break;
-			
-			
-			case "doc-deprecated":
-			    return;
-			
-			case "record": // struct?
-			    return;
-			 
-					    
-			    return;
-			case "prerequisite": // ignore?
-			    return;
-					case "union": // ignore?
-			    return;
-					default:
-			    print("UNHANDLED Gir file element: " + element->name +"\n");
-			    return;
+				case "package":
+					//parent.package = n;
+					break;
+				
+				case "c:include":
+					break;
+				
+				case "namespace":
+					child  = new  SymbolGir.new_namespace(file,   n) ;
+					break;
+				
+				case "alias":
+					return;
+					//break; // not handled..
+				
+				case "class":
+					child  = new  SymbolGir.new_class( f, parent,  n) ;
+					 
+					break;
+				
+				case "interface":
+					child  = new  SymbolGir.new_interface( f, parent,  n) ;
+					break;
+				
+				
+				case "doc":
+					if (parent.doc.length > 0) {
+						parent += "\n\n";
+					}
+					parent.doc = element->get_content();
+					return;
+				
+				case "implements":
+				   
+					break;
+				
+				case "constructor":
+					child  = new  SymbolGir.new_method( f, parent,  n) ;
+					break;
+				
+				case "return-value":
+					child  = new  SymbolGir.new_return_value( f, parent, n);
+					break;
+				
+				case "virtual-method": // not sure...
+					return;
+				/*
+					var c = new GirObject("Signal",n);
+					parent.signals.set(n,c);
+					parent = c;
+					break;
+				*/
+				case "signal": // Glib:signal
+				  	child  = new  SymbolGir.new_signal( f, parent, n);
+					break;
+					
+				
+				  
+				case "callback": // not sure...
+					return;
+				
+				
+				case "type":
+					//parent.type = n;
+					
+					return; // no children?
+					//break;
+				
+				case "method":
+					child  = new  SymbolGir.new_method( f, parent, n);
+					break;
+				
+				case "parameters":
+					 
+					break;
+				
+				case "instance-parameter":
+					child  = new  SymbolGir.new_parameter( f, parent, n);
+					break;
+					 
+				
+				case "parameter":
+					child  = new  SymbolGir.new_parameter( f, parent, n);
+					break;
+					 
+				
+				case "property":
+					child  = new  SymbolGir.new_property( f, parent, n);
+					break;
+				
+				case "field":
+					child  = new  SymbolGir.new_field( f, parent, n);
+					break;
+				
+				case "function":
+					child  = new  SymbolGir.new_function( f, parent, n);
+					break;
+				
+				case "array":
+ 
+					break; // type is added soon..
+				
+				case "varargs":
+					
+					return;
+				
+				case "constant":
+					return; // cant find any doc..
+					child  = new  SymbolGir.new_function( f, parent, n);
+					break;
+					 
+					//break;
+				case "bitfield":
+				case "enumeration":
+					child  = new  SymbolGir.new_enum( f, parent, n);
+					 
+					break;
+				
+				case "member":
+						return; // cant see any docs.
+				
+				
+				case "doc-deprecated":
+					return;
+				
+				case "record": // struct?
+					return;
+				 
+							
+					return;
+				case "prerequisite": // ignore?
+					return;
+				case "union": // ignore?
+					return;
+				default:
+					GLib.error("UNHANDLED Gir file element: " + element->name +"\n");
+					return;
 		    }
 		    /*
 		    if (element->name == "signal") {
