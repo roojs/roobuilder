@@ -14,7 +14,7 @@ namespace Palete {
 		public static void updateTree(Project.Gtk project) 
 		{
 			// this needs to do the  'last' queued change..
-			.
+			
 			
 			
 			updateBackground.begin(project,(o,r )  => {
