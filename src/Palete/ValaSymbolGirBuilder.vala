@@ -85,54 +85,29 @@ namespace Palete {
 			    //break; // not handled..
 			
 			case "class":
-				child  = new  SymbolGir.new_namespace(SymbolFile f, parent,  n) 
-				parent.classes.set(n, c);
-				c.ns = this.ns;
-				c.parent = element->get_prop("parent");
-				c.gparent = parent;
-				if (c.parent == null) {
-					c.parent = "";
-				}
-				parent =  c;
+				child  = new  SymbolGir.new_class( f, parent,  n) 
+				 
 				break;
 			
 			case "interface":
-			    var c = new GirObject("Interface", parent.name + "." + n);
-			    c.gparent = parent;
-			    parent.classes.set(n, c);
-				c.ns = this.ns;
-				c.ns = parent.name;
-				c.parent = element->get_prop("parent");
-				if (c.parent == null) {
-					c.parent = "";
-				}
-				parent =  c;
+			    child  = new  SymbolGir.new_interface( f, parent,  n) 
 			    break;
 			
 			
 			case "doc":
-			    parent.doctxt = element->get_content();
+			    parent.doc = element->get_content();
 			    return;
 			
 			case "implements":
-			    parent.implements.add(n);
-		
+			   
 			    break;
 			
 			case "constructor":
-			    var c = new GirObject("Ctor",n);
-			    c.ns = this.ns;
-			    c.gparent = parent;
-			    parent.ctors.set(n,c);
-			    parent  = c;
+				child  = new  SymbolGir.new_method( f, parent,  n) 
 			    break;
 			
 			case "return-value":
-			    var c = new GirObject("Return", "return-value");
-			    c.gparent = parent;
-			    c.ns = this.ns;
-			    parent.return_value = c;
-			    parent =  c;
+			    child  = new  SymbolGir.new_return_value( f, parent, n);
 			    break;
 			
 			case "virtual-method": // not sure...
