@@ -10,6 +10,38 @@ namespace Palete {
  
 	public class ValaSymbolBuilder  : Vala.CodeVisitor {
 		
+		
+		public static void updateTree(Project.Gtk project) 
+		{
+			updateBackground.begin(project,(o,r )  => {
+				var paths = updateBackground.end(r);
+				project.onTreeUpdated(paths);
+			});
+		}
+		
+		static async void updateBackground() {
+			
+			 SourceFunc callback = updateBackground.callback;
+			 
+			 string output[] = {};
+			 SymbolDatabase.initDB();  // connect out of thread..
+			 ThreadFunc<bool> run = () => {
+				// Perform a dummy slow calculation.
+				// (Insert real-life time-consuming algorithm here.)
+				new ValaSymbolGirBuilder();
+				
+				Idle.add((owned) callback);
+				return true;
+			};
+			new Thread<bool>("thread-example", run);
+
+			// Wait for background thread to schedule our callback
+			yield;
+					 
+    
+		
+		}
+		
 		Vala.CodeContext context;
 		 
 		Project.Gtk scan_project;
