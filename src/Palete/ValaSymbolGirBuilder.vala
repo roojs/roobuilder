@@ -26,7 +26,7 @@ namespace Palete {
 				Idle.add((owned) callback);
 				return true;
 			};
-			new Thread<bool>("thread-example", run);
+			new Thread<bool>("thread-update-gir", run);
 
 			// Wait for background thread to schedule our callback
 			yield;
