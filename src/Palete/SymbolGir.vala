@@ -119,7 +119,6 @@ namespace Palete {
 			this.stype = Lsp.SymbolKind.Delegate;
 			 		
 		 	 
-		 	var n  = 0;
 		 	 
 		}
 		public SymbolGir.new_parameter(Symbol? parent, SymbolFile f,   string name)
@@ -145,6 +144,15 @@ namespace Palete {
 			this(f, parent);
 			this.name =  name;
 			this.stype = Lsp.SymbolKind.Method;
+			 
+
+		}
+		public SymbolGir.new_function(Symbol? parent, SymbolFile f,   string name)	
+		{
+
+			this(f, parent);
+			this.name =  name;
+			this.stype = Lsp.SymbolKind.Function;
 			 
 
 		}
