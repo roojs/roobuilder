@@ -169,10 +169,9 @@ namespace Palete {
 				case "function":
 					child  = new  SymbolGir.new_function( f, parent, n);
 					break;
-				
-				case "array":
- 
-					break; // type is added soon..
+
+				case "function-macro": break;
+				case "array":  break; 
 				
 				case "varargs":
 					
