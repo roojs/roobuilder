@@ -100,6 +100,7 @@ namespace Palete {
 			
 			if (this.path.has_suffix(".gir")) {
 				var bits = GLib.Path.get_basename(this.path).replace(".gir","").split("-");
+				GLib.debug("set relpath = %s", bits[bits.length-1]);
 				this.relversion = bits[bits.length-1];
 			}
 			
