@@ -97,6 +97,13 @@ namespace Palete {
 			this.symbols = new Gee.ArrayList<Symbol>();
 			this.top_symbols = new Gee.ArrayList<Symbol>();
 			this.symbol_map = new Gee.HashMap<int,Symbol>();
+			
+			if (this.path.has_suffix(".gir")) {
+				var bits = GLib.Path.get_basename(this.path).replace(".gir","").split("-");
+				this.relversion = bits[bits.length-1];
+			}
+			
+			
 			SymbolDatabase.initFile(this);
 			SymbolDatabase.loadFileHasSymbols(this);
 
