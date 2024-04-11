@@ -11,7 +11,7 @@ namespace Palete {
 	public class ValaSymbolBuilder  : Vala.CodeVisitor {
 		
 		
-		public static void updateTree(Project.Gtk project) 
+		public static void updateTree(Project.Gtk project, string buildmodulet) 
 		{
 			// this needs to do the  'last' queued change..
 			
@@ -23,7 +23,7 @@ namespace Palete {
 			});
 		}
 		
-		static async void updateBackground(Project.Gtk project) {
+		static async void updateBackground(Project.Gtk project, string buildmodule) {
 			
 			 SourceFunc callback = updateBackground.callback;
 			 
@@ -33,6 +33,7 @@ namespace Palete {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
 				var o = new ValaSymbolGirBuilder();
+				o.create_valac_tree(   build_module)
 				foreach(var c in o.changed) {
 					output += c;
 				}
