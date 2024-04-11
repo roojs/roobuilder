@@ -88,12 +88,13 @@ namespace Palete {
 			}
  
 		 	stmt =  prepare("INSERT INTO   
-				files  (path, version)
-				VALUES ($path, $version) 
+				files  (path, version, relversion)
+				VALUES ($path, $version, $relversion) 
 			");
 			 
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
+			stmt.bind_text (stmt.bind_parameter_index ("$relvesino"), file.relversion);			
 			stmt.step () ;
 			file.id = db.last_insert_rowid();
 			stmt.reset();
