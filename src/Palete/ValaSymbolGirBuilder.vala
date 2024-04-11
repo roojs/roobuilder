@@ -80,7 +80,7 @@ namespace Palete {
 			this.walk( root, file, null);
 			//GLib.exit(0);
 			SymbolDatabase.writeFile(file);
-			SymbolDatabase.writeSymbols(  file)
+			SymbolDatabase.writeSymbols(file);
 		
 		}
 		
