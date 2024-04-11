@@ -46,19 +46,20 @@ namespace Palete {
 			
 			var doc = Xml.Parser.parse_file (fn);
 			var root = doc->get_root_element();
-			this.walk( root, null, file  );
+			this.walk( root, file, null);
 		
 		
 		}
 		
 		
-		public void walk(Xml.Node* element, SymbolGir? parent. SymbolFile file)
+		public void walk(Xml.Node* element, SymbolFile file, SymbolGir? parent  )
 		{
 		    var n = element->get_prop("name");
 			// ignore null or c:include...
 		    if (n == null || (element->ns->prefix != null && element->ns->prefix == "c")) {
 				n = "";
 		    }
+		    var child = parent;
 		    //print("%s:%s (%s ==> %s\n", element->ns->prefix , element->name , parent.name , n);
 		    switch (element->name) {
 			case "repository":
@@ -76,7 +77,7 @@ namespace Palete {
 			    break;
 			
 			case "namespace":
-			    parent.name = n;
+				child  = new  SymbolGir.new_namespace(file,   n) 
 			    break;
 			
 			case "alias":
@@ -84,7 +85,7 @@ namespace Palete {
 			    //break; // not handled..
 			
 			case "class":
-				var c = new GirObject("Class", parent.name + "." + n);
+				child  = new  SymbolGir.new_namespace(SymbolFile f, parent,  n) 
 				parent.classes.set(n, c);
 				c.ns = this.ns;
 				c.parent = element->get_prop("parent");
