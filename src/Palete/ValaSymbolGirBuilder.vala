@@ -7,7 +7,7 @@ namespace Palete {
  
 	public class ValaSymbolGirBuilder  : Object {
 		
-		public void updateGirs() 
+		public static void updateGirs() 
 		{
 			updateGirBackground.begin((o,r )  => {
 				updateGirBackground.end(r);
