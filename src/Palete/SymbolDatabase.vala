@@ -99,7 +99,9 @@ namespace Palete {
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
 			stmt.bind_text (stmt.bind_parameter_index ("$relvesino"), file.relversion);			
-			stmt.step () ;
+			if (Sqlite.OK != stmt.step ()) {
+			    GLib.debug("insertfile: %s", db.errmsg());
+			}
 			file.id = db.last_insert_rowid();
 			stmt.reset();
  			//GLib.debug("WriteFile: %s", db.errmsg());
@@ -124,7 +126,9 @@ namespace Palete {
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$id"), file.id);			
 			stmt.bind_text (stmt.bind_parameter_index ("$relversion"), file.relversion);			
-			stmt.step () ;
+			if (Sqlite.OK != stmt.step ()) {
+			    GLib.debug("WriteFile: %s", db.errmsg());
+			}
 			stmt.reset();
 
 		}
