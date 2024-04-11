@@ -75,7 +75,7 @@ namespace Palete {
 		
 		public void dump(string indent)
 		{
-			print("%s%s : %s  (%s)\n", indent, this.stype.to_string().substring( 16, -1 ), this.name, this.rtype);
+			print("%s%s : %s  (%s)\n", indent, this.stype.to_string().substring( 16, -1 ), this.to_fqn(), this.rtype);
 			if (this.doc != "") {
 			    print("%s-->%s\n",indent, this.doc.split("\n")[0]);
 			}
