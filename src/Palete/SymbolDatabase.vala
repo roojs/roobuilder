@@ -166,9 +166,9 @@ namespace Palete {
 		{
 			// we dont care about gir data that is not doc..
 			
-			//if(s.is_gir  && s.doc == "") {
-			//	return;
-			//}
+			if(s.is_gir  && s.doc == "") {
+				return;
+			}
 			
 			if (write_symbol_sql == null) { 
 				write_symbol_sql=  prepare("
