@@ -177,6 +177,7 @@ namespace Palete {
 				case "array":  break; 
 				case "docsection": break;	 ///??? 
 				case "doc-version": break;	 ///??? 				
+				case "doc-stability": break;
 				case "varargs":
 					
 					return;
