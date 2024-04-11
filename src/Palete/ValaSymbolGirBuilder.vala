@@ -207,27 +207,12 @@ namespace Palete {
 					GLib.error("UNHANDLED Gir file element: " + element->name +"\n");
 					return;
 		    }
-		    /*
-		    if (element->name == "signal") {
-			path += ".signal";
-		    }
-		    
-		    
-		    if (element->name == "return-value") {
-			path += ".return-value";
-		    }
-		    print(path + ":"  + element->name + "\n");
-		    */
-		    //var d =   getAttribute(element,'doc');
-		    //if (d) {
-		     //   Seed.print(path + ':' + d);
-		    //    ret[path] = d;
-		    //}
+		     
 		    for (Xml.Node* iter = element->children; iter != null; iter = iter->next) {
 		     	if (iter->type == Xml.ElementType.TEXT_NODE) {
-			    continue;
-			}
-			this.walk(iter, parent);
+					continue;
+				}
+				this.walk(iter, file, child);
 		    }
 
 		}
