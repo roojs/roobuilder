@@ -47,14 +47,14 @@ namespace Palete {
 			
 		}
 		
-	 	public SymbolGir.new_enum(Symbol? parent, SymbolFile f,   string name)
+	 	public SymbolGir.new_enum(SymbolFile f, Symbol? parent,   string name)
 	 	{
 			this(f, null);
 			this.name =  name;
 			this.stype = Lsp.SymbolKind.Enum;
 			 
 		}
-		public SymbolGir.new_enummember(Symbol? parent, SymbolFile f,   string name)
+		public SymbolGir.new_enummember(SymbolFile f, Symbol? parent,   string name)
 		{
 			this(f, parent);
 			this.name = name;
@@ -62,7 +62,7 @@ namespace Palete {
 		 
 			 
 		}	
-	 	public SymbolGir.new_interface(Symbol? parent, SymbolFile f,   string name)
+	 	public SymbolGir.new_interface(SymbolFile f, Symbol? parent,   string name)
 	 	{
 	 		
 			this(f, parent);
@@ -71,7 +71,7 @@ namespace Palete {
 				
 			 
 		}
-		public SymbolGir.new_struct(Symbol? parent, SymbolFile f,   string name)
+		public SymbolGir.new_struct(SymbolFile f, Symbol? parent,   string name)
 		{
 			this(f, parent);
 			this.name = name;
@@ -81,7 +81,7 @@ namespace Palete {
 			 
 		}
 		
-		public SymbolGir.new_class(Symbol? parent, SymbolFile f,   string name)
+		public SymbolGir.new_class(SymbolFile f, Symbol? parent,   string name)
 	 	{
 
 			this(f, parent);
@@ -102,7 +102,7 @@ namespace Palete {
 			this.stype = Lsp.SymbolKind.Property;
  
 		}
-		public SymbolGir.new_field(Symbol? parent, SymbolFile f,   string name)
+		public SymbolGir.new_field(SymbolFile f, Symbol? parent,   string name)
 		{
 			//GLib.debug("new Field  %s", prop.name);
 			this(f, parent);
@@ -111,7 +111,7 @@ namespace Palete {
  
 		}
 		
-		public SymbolGir.new_delegate(Symbol? parent, SymbolFile f,   string name)
+		public SymbolGir.new_delegate(SymbolFile f, Symbol? parent,   string name)
 	 	{
 	 		this(f, parent);
 			this.name = name;
@@ -120,7 +120,7 @@ namespace Palete {
 		 	 
 		 	 
 		}
-		public SymbolGir.new_parameter(Symbol? parent, SymbolFile f,   string name)
+		public SymbolGir.new_parameter(SymbolFile f, Symbol? parent,   string name)
 		{
 			this(f, parent);
 			this.name = name;
@@ -128,7 +128,7 @@ namespace Palete {
 			  
 			
  		}
-		public SymbolGir.new_signal(Symbol? parent, SymbolFile f,   string name)
+		public SymbolGir.new_signal(SymbolFile f, Symbol? parent,   string name)
 		{
 			this(f, parent);
 			this.name = name;
@@ -137,7 +137,7 @@ namespace Palete {
 		 	 
 
 		}
-		public SymbolGir.new_method(Symbol? parent, SymbolFile f,   string name)	
+		public SymbolGir.new_method(SymbolFile f, Symbol? parent,   string name)	
 		{
 
 			this(f, parent);
@@ -146,7 +146,7 @@ namespace Palete {
 			 
 
 		}
-		public SymbolGir.new_function(Symbol? parent, SymbolFile f,   string name)	
+		public SymbolGir.new_function(SymbolFile f, Symbol? parent,   string name)	
 		{
 
 			this(f, parent);
@@ -164,7 +164,7 @@ namespace Palete {
 			 
 
 		}
-		public SymbolGir.new_constant(Symbol? parent, SymbolFile f,   string name)	
+		public SymbolGir.new_constant(SymbolFile f, Symbol? parent,   string name)	
 		{
 
 			this(f, parent);
