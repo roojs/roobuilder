@@ -624,9 +624,8 @@
 				GLib.error("missing project, use --project to select which project");
 			}
 			GLib.debug("running vapiparser");
-			var vp = new Palete.ValaSymbolGirBuilder((Project.Gtk) cur_project);
-			
-			vp.read_gir();
+			 new Palete.ValaSymbolGirBuilder();
+		 
 			Palete.SymbolDatabase.backupDB();
 			//vp.create_valac_tree(opt_symbol_test);
 			//Palete.SymbolDatabase.backupDB();
