@@ -5,17 +5,10 @@ namespace Palete {
 	 
 	public class SymbolGir  : Symbol  {
 		  
-  		public SymbolGir(Symbol? parent, Vala.Symbol s)
+  		public SymbolGir(SymbolFile f, Symbol? parent, )
 		{
 			base();
-			if (!s.source_reference.file.filename.has_suffix(".gir")) {
-				return;
-			}
-			this.file = SymbolFile.factory_by_path(s.source_reference.file.filename);
-			if (this.file.relversion == "" &&  s.source_reference.file.gir_version != null) {
-				GLib.debug("new file %s ? %s", s.source_reference.file.filename,s.source_reference.file.gir_version);
-				this.file.relversion = s.source_reference.file.gir_version;
-			}
+			this.file = f;
 			this.parent  = parent;
 			//if (parent != null && parent.file.id != this.file.id) {
 			//	if (parent.stype != Lsp.SymbolKind.Namespace)  {
@@ -39,44 +32,21 @@ namespace Palete {
 
 			
 		}
-		public SymbolGir.new_namespace(Symbol? parent, Vala.Namespace ns)
+		public SymbolGir.new_namespace(SymbolFile f,   string name)
 		{
-			this(parent,ns);
+			this(f, null);
 			
-			switch (ns.name) {
+			switch (name) {
 				case "G": 
-					this.name = "GLib";
+					 name = "GLib";
 					break;
 				default:
-					this.name = ns.name;
+					 name = ns.name;
 					break;
 
 			}
 			this.stype = Lsp.SymbolKind.Namespace; 
-				
-			foreach(var c in ns.get_classes()) {
-				new new_class(this,c);
-			}
-			foreach(var c in ns.get_enums()) {
-				new new_enum(this, c);
-			}
-			foreach(var c in ns.get_interfaces()) {
-				new new_interface(this, c);
-
-			}
-			foreach(var c in ns.get_namespaces()) {
-				new new_namespace(this, c);
-			}
-			foreach(var c in ns.get_methods()) {
-				new new_method(this, c);
-			}
-			
-			foreach(var c in ns.get_structs()) {
-				new new_struct(this, c);
-			}
-			foreach(var c in ns.get_delegates()) {
-				new new_delegate(this, c);
-			}
+			 
 			
 		}
 		
