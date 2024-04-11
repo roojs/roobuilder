@@ -140,7 +140,7 @@ namespace Palete {
 			string[] new_ids = {};
 			foreach (var s in file.symbols) {
 				writeSymbol(s);
-				if (s.id.to_string() > 0) {
+				if (s.id > 0) {
 					new_ids += s.id.to_string();
 				}
 			}
