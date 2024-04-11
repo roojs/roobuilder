@@ -50,6 +50,7 @@ namespace Palete {
 			var doc = Xml.Parser.parse_file (fn);
 			var root = doc->get_root_element();
 			this.walk( root, file, null);
+			GLib.exit(0);
 			SymbolDatabase.writeFile(file);
 		
 		}
