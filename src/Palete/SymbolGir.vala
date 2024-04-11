@@ -148,6 +148,15 @@ namespace Palete {
 			 
 
 		}
+		public SymbolGir.new_return_value(Symbol? parent, SymbolFile f,   string name)	
+		{
+
+			this(f, parent);
+			this.name =  name;
+			this.stype = Lsp.SymbolKind.Return;
+			 
+
+		}
  	}
  	
 }
