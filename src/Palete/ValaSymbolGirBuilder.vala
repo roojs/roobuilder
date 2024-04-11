@@ -41,7 +41,10 @@ namespace Palete {
 		public void readGir(string fn)
 		{
 			var file = new SymbolFile.factory(fn);
- 
+ 			if (file.is_parsed) {
+ 				GLib.debug("file %s is parsed", fn);
+				return;
+			}
 			var doc = Xml.Parser.parse_file (fn);
 			var root = doc->get_root_element();
 			this.walk( root, file, null);
