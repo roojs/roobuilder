@@ -48,7 +48,7 @@ namespace Palete {
 		public int64 id = -1;
 		public string path = ""; 
 		public int64 version  = -1;  // utime?
-		public string relversion   = "";  // version eg. 1.0 (mathcing gir to vapis?)
+		public string relversion  = "";  // version eg. 1.0 (mathcing gir to vapis?)
 		public Gee.ArrayList<Symbol> symbols ;
 		public Gee.ArrayList<Symbol> top_symbols ;
 		public Gee.HashMap<int,Symbol> symbol_map;
@@ -68,7 +68,7 @@ namespace Palete {
 		
 		public bool is_parsed {
 			get {
-				GLib.debug("check parsed %d, %d (no sym: %d)", (int)this.version,  (int)this.cur_mod_time(), this.database_has_symbols ? 999 : 0);
+				GLib.debug("check parsed %s : %d, %d (no sym: %d)", this.path, (int)this.version,  (int)this.cur_mod_time(), this.database_has_symbols ? 999 : 0);
 				
 				return this.version ==  this.cur_mod_time() && this.database_has_symbols;
 			}
