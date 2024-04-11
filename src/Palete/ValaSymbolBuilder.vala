@@ -27,7 +27,8 @@ namespace Palete {
 			
 			 SourceFunc callback = updateBackground.callback;
 			 
-			 string output[];
+			 string[] output = {};
+			 
 			 SymbolDatabase.initDB();  // connect out of thread..
 			 ThreadFunc<bool> run = () => {
 				// Perform a dummy slow calculation.
