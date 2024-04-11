@@ -199,7 +199,7 @@ namespace Palete {
 				
 				case "member":
 					child  = new  SymbolGir.new_enummember( f, parent, n);
-					return; // cant see any docs.
+					break; // cant see any docs.
 				
 				
 				case "doc-deprecated":
