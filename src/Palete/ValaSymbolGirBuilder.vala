@@ -32,6 +32,7 @@ namespace Palete {
 					}
 					this.readGir(dir + "/" + fn);
 				}
+			} catch (GLib.Error e) { }
 		
 		}
 		
