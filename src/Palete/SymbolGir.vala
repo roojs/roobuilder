@@ -65,8 +65,8 @@ namespace Palete {
 	 	public SymbolGir.new_interface(Symbol? parent, SymbolFile f,   string name)
 	 	{
 	 		
-			this(parent,cls);
-			this.name = cls.name;
+			this(f, parent);
+			this.name = name
 			this.stype = Lsp.SymbolKind.Interface;
 				
 			 
