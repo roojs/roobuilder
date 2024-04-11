@@ -177,8 +177,8 @@ namespace Palete {
 				
 				case "constant":
 					return; // cant find any doc..
-					child  = new  SymbolGir.new_function( f, parent, n);
-					break;
+					//child  = new  SymbolGir.new_function( f, parent, n);
+					//break;
 					 
 					//break;
 				case "bitfield":
