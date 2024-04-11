@@ -22,6 +22,7 @@ namespace Palete {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
 				new ValaSymbolBuilder();
+				
 				Idle.add((owned) callback);
 				return true;
 			};
@@ -43,6 +44,7 @@ namespace Palete {
 			for(var i = 0; i <  gir_directories.length; i++) {
 				this.scanGirDir( gir_directories[i] + "/gir-1.0" );
 			}
+			Palete.SymbolDatabase.backupDB();
 		}
 		public void scanGirDir(string dir)
 		{
