@@ -66,7 +66,7 @@ namespace Palete {
 	 	{
 	 		
 			this(f, parent);
-			this.name = name
+			this.name = name;
 			this.stype = Lsp.SymbolKind.Interface;
 				
 			 
