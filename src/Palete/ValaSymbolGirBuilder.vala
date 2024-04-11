@@ -12,6 +12,7 @@ namespace Palete {
 		{
 
 			// cant find a better way to work out where these dir's are..
+			// probably need to config this somehow..
 			string[] gir_directories = { "/usr/share" ,"/usr/local/share/" };
 			for(var i = 0; i <  gir_directories.length; i++) {
 				this.scanGirDir( gir_directories[i] + "/gir-1.0" );
