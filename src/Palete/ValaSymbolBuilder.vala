@@ -28,8 +28,10 @@ namespace Palete {
 			 ThreadFunc<bool> run = () => {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
-				new ValaSymbolGirBuilder();
-				
+				var o = new ValaSymbolGirBuilder();
+				foreach(var c in o.changed) {
+					output += c;
+				}
 				Idle.add((owned) callback);
 				return true;
 			};
@@ -37,7 +39,8 @@ namespace Palete {
 
 			// Wait for background thread to schedule our callback
 			yield;
-					 
+					
+			return output;
     
 		
 		}
