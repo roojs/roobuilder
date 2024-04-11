@@ -79,8 +79,7 @@ namespace Palete {
 			var root = doc->get_root_element();
 			this.walk( root, file, null);
 			//GLib.exit(0);
-			SymbolDatabase.writeFile(file);
-			SymbolDatabase.writeSymbols(file);
+			file.is_parsed= true; // triggers write to db.
 		
 		}
 		
