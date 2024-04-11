@@ -185,8 +185,9 @@ namespace Palete {
 					return;
 				
 				case "constant":
-					return; // cant find any doc..
-					//child  = new  SymbolGir.new_function( f, parent, n);
+					//child  = new  SymbolGir.new_function( f, parent, n);					return; // cant find any doc..
+					//child  = 
+					var child = new  SymbolGir.new_constant( f, parent, n);
 					//break;
 					 
 					//break;
