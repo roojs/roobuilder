@@ -165,6 +165,15 @@ namespace Palete {
 			 
 
 		}
+		public SymbolGir.new_constant(Symbol? parent, SymbolFile f,   string name)	
+		{
+
+			this(f, parent);
+			this.name =  name;
+			this.stype = Lsp.SymbolKind.Constant;
+			 
+
+		}
  	}
  	
 }
