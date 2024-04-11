@@ -39,7 +39,6 @@ namespace Palete {
 					 name = "GLib";
 					break;
 				default:
-					 name = ns.name;
 					break;
 
 			}
@@ -51,7 +50,7 @@ namespace Palete {
 	 	public SymbolGir.new_enum(Symbol? parent, SymbolFile f,   string name)
 	 	{
 			this(f, null);
-			this.name = cls.name;
+			this.name =  name;
 			this.stype = Lsp.SymbolKind.Enum;
 			 
 		}
