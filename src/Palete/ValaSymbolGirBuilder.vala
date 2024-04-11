@@ -40,10 +40,8 @@ namespace Palete {
 		
 		public void readGir(string fn)
 		{
-			var file = SymbolFile.factory(fn);
-
-			
-			
+			var file = new SymbolFile.factory(fn);
+ 
 			var doc = Xml.Parser.parse_file (fn);
 			var root = doc->get_root_element();
 			this.walk( root, file, null);
