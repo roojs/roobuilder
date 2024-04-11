@@ -156,6 +156,11 @@ namespace Palete {
 		
 		public static void writeSymbol(Symbol  s)
 		{
+			// we dont care about gir data that is not doc..
+			if(s.is_gir  && s.doc == "") {
+				return;
+			}
+			
 			if (write_symbol_sql == null) { 
 				write_symbol_sql=  prepare("
 				 	INSERT INTO  symbol (
@@ -217,7 +222,7 @@ namespace Palete {
 				");
 			}	//		GLib.debug("error %s", _db.errmsg());
 			unowned Sqlite.Statement stmt = write_symbol_sql;
-
+			
 			
 			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), s.file.id);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$parent_id"), s.parent_id);
