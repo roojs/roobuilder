@@ -23,7 +23,7 @@ namespace Palete {
 			});
 		}
 		
-		static async void updateBackground() {
+		static async void updateBackground(Project.Gtk project) {
 			
 			 SourceFunc callback = updateBackground.callback;
 			 
