@@ -33,7 +33,7 @@ namespace Palete {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
 				var o = new ValaSymbolGirBuilder();
-				o.create_valac_tree(   build_module)
+				o.create_valac_tree(   build_module);
 				foreach(var c in o.changed) {
 					output += c;
 				}
