@@ -172,14 +172,14 @@ namespace Palete {
 					child  = new  SymbolGir.new_function( f, parent, n);
 					break;
 
-				case "function-macro": break;
-				case "source-position": break;
-				case "attribute": break;
-				case "boxed": break;				
-				case "array":  break; 
-				case "docsection": break;	 ///??? 
-				case "doc-version": break;	 ///??? 				
-				case "doc-stability": break;
+				case "function-macro": return;
+				case "source-position": return;
+				case "attribute": return;
+				case "boxed": return;				
+				case "array":  return; 
+				case "docsection": return;	 ///??? 
+				case "doc-version": return;	 ///??? 				
+				case "doc-stability": return;
 				case "varargs":
 					
 					return;
