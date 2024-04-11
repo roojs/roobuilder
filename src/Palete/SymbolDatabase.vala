@@ -140,7 +140,12 @@ namespace Palete {
 			string[] new_ids = {};
 			foreach (var s in file.symbols) {
 				writeSymbol(s);
-				new_ids += s.id.to_string();
+				if (s.id.to_string() > 0) {
+					new_ids += s.id.to_string();
+				}
+			}
+			if (ids.length < 1 && new_ids.length < 1) {
+				return;
 			}
 			exec("DELETE FROM symbol WHERE 
 				id IN (" + (ids.length > 0 ? string.joinv("," , ids) : "-1")  + ") AND
