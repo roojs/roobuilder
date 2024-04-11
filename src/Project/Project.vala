@@ -1082,7 +1082,7 @@ namespace Project {
 			}
 			return ls;
 		}
-		public void onTreeChanged(strin[] paths) {
+		public void onTreeChanged(string[] paths) {
 			// loop trhoug paths - see if files are open, if so... update right tree?
 			
 		
