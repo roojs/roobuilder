@@ -8,6 +8,26 @@ namespace Palete {
 	public class ValaSymbolGirBuilder  : Object {
 		
 		
+		static async void updateGir() {
+			
+			 SourceFunc callback = updateGir.callback;
+			 SymbolDatabase.initDB();  // connect out of thread..
+			 ThreadFunc<bool> run = () => {
+				// Perform a dummy slow calculation.
+				// (Insert real-life time-consuming algorithm here.)
+				new ValaSymbolBuilder();
+				Idle.add((owned) callback);
+				return true;
+			};
+			new Thread<bool>("thread-example", run);
+
+			// Wait for background thread to schedule our callback
+			yield;
+					 
+    
+		
+		}
+		
 		public   ValaSymbolGirBuilder()
 		{
 		 
