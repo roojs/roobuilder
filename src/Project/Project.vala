@@ -58,6 +58,9 @@ namespace Project {
 	public abstract class Project : Object {
 		
 		public signal void on_changed (); 
+		
+		
+		
 	
 		//public string id;
 		//public string fn = ""; // just a md5...
@@ -1079,7 +1082,11 @@ namespace Project {
 			}
 			return ls;
 		}
+		public void onTreeChanged(strin[] paths) {
+			// loop trhoug paths - see if files are open, if so... update right tree?
+			
 		
+		}
 		
 		public abstract Palete.LanguageClient  getLanguageServer(string lang);
 		
