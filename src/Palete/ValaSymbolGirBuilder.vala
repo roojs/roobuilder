@@ -40,13 +40,19 @@ namespace Palete {
 		
 		public void readGir(string fn)
 		{
-		
+			var file = SymbolFile.factory(fn);
+
+			
+			
+			var doc = Xml.Parser.parse_file (fn);
+			var root = doc->get_root_element();
+			this.walk( root, null, file  );
 		
 		
 		}
 		
 		
-		public void walk(Xml.Node* element, SymbolGir? parent)
+		public void walk(Xml.Node* element, SymbolGir? parent. SymbolFile file)
 		{
 		    var n = element->get_prop("name");
 			// ignore null or c:include...
@@ -59,11 +65,11 @@ namespace Palete {
 			    break;
 			
 			case "include":
-			    parent.includes.set(n, element->get_prop("version"));
+			    //parent.includes.set(n, element->get_prop("version"));
 			    break;
 			
 			case "package":
-			    parent.package = n;
+			    //parent.package = n;
 			    break;
 			
 			case "c:include":
