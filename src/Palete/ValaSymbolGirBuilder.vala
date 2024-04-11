@@ -188,7 +188,7 @@ namespace Palete {
 					break;
 				
 				case "member":
-						return; // cant see any docs.
+					return; // cant see any docs.
 				
 				
 				case "doc-deprecated":
