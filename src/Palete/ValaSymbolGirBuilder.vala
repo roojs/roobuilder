@@ -10,7 +10,7 @@ namespace Palete {
 		public void updateGirs() 
 		{
 			updateGirBackground.begin((o,r ) {
-				Palete.ValaSymbolGirBuiler.updateGirBackground.end(r);
+				updateGirBackground.end(r);
 			});
 		}
 		
