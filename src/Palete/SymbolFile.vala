@@ -74,7 +74,10 @@ namespace Palete {
 			}
 			set {
 				if (value) {
-					
+					if (this.version = this.cur_mod_time() && (!this.database_has_symbols && this.symbols.size < 1){ 
+						// version the same, no new symbols
+						return;
+					}
 					this.version = this.cur_mod_time();
 					//GLib.debug("is_parsed %s : %d", this.path, (int)this.version);
 					SymbolDatabase.writeFile(this);
