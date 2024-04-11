@@ -119,12 +119,8 @@ namespace Palete {
 			    break;
 			*/
 			case "signal": // Glib:signal
-				var c = new GirObject("Signal",n.replace("-", "_"));
-				c.gparent = parent;
-				c.ns = this.ns;
-				parent.signals.set(n.replace("-", "_"),c);
-				parent = c;
-				break;
+			  	child  = new  SymbolGir.new_signal( f, parent, n);
+			    break;
 			    
 			
 		      
