@@ -10,10 +10,11 @@ namespace Palete {
 		
 		public   ValaSymbolGirBuilder()
 		{
-			var context = new Vala.CodeContext ();
-			GLib.debug("gir directory lenght = %d" , context.gir_directories.length);
-			for(var i = 0; i < context.gir_directories.length; i++) {
-				this.scanGirDir(context.gir_directories[i]);
+
+			// cant find a better way to work out where these dir's are..
+			string[] gir_directories = { "/usr/share" ,"/usr/local/share/" };
+			for(var i = 0; i <  gir_directories.length; i++) {
+				this.scanGirDir( gir_directories[i] + "/gir-1.0" );
 			}
 		}
 		public void scanGirDir(string dir)
