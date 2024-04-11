@@ -95,6 +95,9 @@ namespace Palete {
 			
 			
 			case "doc":
+				if (parent.doc.length > 0) {
+					parent += "\n";
+				}
 			    parent.doc = element->get_content();
 			    return;
 			
@@ -139,11 +142,7 @@ namespace Palete {
 			    break;
 			
 			case "parameters":
-			    var c = new GirObject("Paramset",n);
-			    c.gparent = parent;
-			    c.ns = this.ns;
-			    parent.paramset = c;
-			    parent =  c;
+			     
 			    break;
 			
 			case "instance-parameter":
