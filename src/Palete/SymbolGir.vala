@@ -20,14 +20,12 @@ namespace Palete {
 			//		parent = null;
 			//}
 		 	this.file.symbols.add(this); //referenced...
-			if (this.parent != null && parent.file.path != this.file.path) {
+			if (this.parent != null) {
 				this.parent.children.append(this);
 			} else {
 				this.file.top_symbols.add(this);
 			}
-			if (s.comment != null) {
-				this.doc = s.comment.content;
-			}
+			 
 			this.is_gir = true;
 
 			
