@@ -11,7 +11,7 @@ namespace Palete {
 	public class ValaSymbolBuilder  : Vala.CodeVisitor {
 		
 		
-		public static void updateTree(Project.Gtk project, string buildmodulet) 
+		public static void updateTree(Project.Gtk project, string buildmodule) 
 		{
 			// this needs to do the  'last' queued change..
 			
