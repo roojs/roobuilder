@@ -8,7 +8,7 @@ namespace Palete {
 	public class ValaSymbolGirBuilder  : Object {
 		
 		
-		public void ValaSymbolGirBuilder()
+		public   ValaSymbolGirBuilder()
 		{
 			var context = new Vala.CodeContext ();
 			
