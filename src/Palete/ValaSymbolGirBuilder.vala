@@ -9,7 +9,7 @@ namespace Palete {
 		
 		public void updateGirs() 
 		{
-			updateGirBackground.begin((o,r ) {
+			updateGirBackground.begin((o,r )  => {
 				updateGirBackground.end(r);
 			});
 		}
