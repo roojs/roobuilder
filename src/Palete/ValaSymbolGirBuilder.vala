@@ -16,7 +16,7 @@ namespace Palete {
 				this.scanGirDir(context.gir_directories[i]);
 			}
 		}
-		public void scanGriDir(string dir)
+		public void scanGirDir(string dir)
 		{
 			var f = File.new_for_path(dir);
 			try {
