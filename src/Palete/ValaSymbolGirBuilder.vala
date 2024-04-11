@@ -53,7 +53,7 @@ namespace Palete {
 		}
 		
 		
-		public void walk(Xml.Node* element, SymbolFile file, SymbolGir? parent  )
+		public void walk(Xml.Node* element, SymbolFile f, SymbolGir? parent  )
 		{
 		    var n = element->get_prop("name");
 			// ignore null or c:include...
@@ -213,7 +213,7 @@ namespace Palete {
 		     	if (iter->type == Xml.ElementType.TEXT_NODE) {
 					continue;
 				}
-				this.walk(iter, file, child);
+				this.walk(iter, f, child);
 		    }
 
 		}
