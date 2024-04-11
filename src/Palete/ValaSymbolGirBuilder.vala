@@ -21,7 +21,7 @@ namespace Palete {
 			 ThreadFunc<bool> run = () => {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
-				new ValaSymbolBuilder();
+				new ValaSymbolGirBuilder();
 				
 				Idle.add((owned) callback);
 				return true;
