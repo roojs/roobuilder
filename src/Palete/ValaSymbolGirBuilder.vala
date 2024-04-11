@@ -164,12 +164,8 @@ namespace Palete {
 				break;
 			
 			case "function":
-			    var c = new GirObject("Function",n);
-			    c.gparent = parent;
-			    c.ns = this.ns;
-			    parent.methods.set(n,c);
-			    parent = c;
-			    break;
+			    child  = new  SymbolGir.new_function( f, parent, n);
+				break;
 			
 			case "array":
 			    parent.is_array = true;  
