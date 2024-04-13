@@ -122,10 +122,11 @@ namespace Palete {
 			
 			GLib.debug("visit source file %s nodes? %d", sfile.filename, sfile.get_nodes().size);
 			// parse it...
+			
 	        sfile.accept_children (this);
 			GLib.debug("flag as parsed %s", sfile.filename);
 			sf.is_parsed = true; // should trigger save..
-			
+			this.changed += sfile.filaname;
 			//?? do we need to accept children?
 		
 		}
