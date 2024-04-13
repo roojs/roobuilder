@@ -23,7 +23,7 @@ namespace Palete {
 			});
 		}
 		
-		async int queuer(int cnt)
+		static async int queuer(int cnt)
 		{
 			SourceFunc cb = this.queuer.callback;
 		  
