@@ -11,11 +11,10 @@ namespace Palete {
 	public class ValaSymbolBuilder  : Vala.CodeVisitor {
 		
 		static bool running = false;
-		
+		static int queue_id = 0;
 		public static void updateTree(Project.Gtk project, string buildmodule) 
 		{
 			// this needs to do the  'last' queued change..
-			
 			
 			
 			updateBackground.begin(project,buildmodule, (o,r )  => {
@@ -26,6 +25,28 @@ namespace Palete {
 		
 		static async string[] updateBackground(Project.Gtk project, string build_module) {
 			
+			queue_id++;
+			
+			while (true) {
+				yield var qid = this.lastInQueue(queue_id);
+				if (queue_id > qid) {
+					return false;
+				}
+				if (!running) {
+					break;
+				}
+			}
+			
+			
+			// -- nothing running - queue it for 500s
+			// -- if this is 'end of queue at end of 500s - then we can run it.
+			// what if we are already running something..
+			// - then we need to wait until that finishes until we run this..
+			// we only give up if we are last in queue otherwise
+			
+			 
+			 
+			 
 			 SourceFunc callback = updateBackground.callback;
 			 
 			 string[] output = {};
