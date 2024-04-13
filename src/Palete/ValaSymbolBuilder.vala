@@ -10,6 +10,7 @@ namespace Palete {
  
 	public class ValaSymbolBuilder  : Vala.CodeVisitor {
 		
+		static bool running = false;
 		
 		public static void updateTree(Project.Gtk project, string buildmodule) 
 		{
@@ -41,11 +42,12 @@ namespace Palete {
 				Idle.add((owned) callback);
 				return true;
 			};
+			running = true;
 			new Thread<bool>("thread-update-tree", run);
 
 			// Wait for background thread to schedule our callback
 			yield;
-					
+			running = false;		
 			return output;
     
 		
