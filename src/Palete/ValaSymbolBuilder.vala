@@ -19,7 +19,7 @@ namespace Palete {
 			bool success;
 			updateBackground.begin(project, buildmodule, (o,r )  => {
 				var paths = updateBackground.end(r);
-				if (paths.length) {
+				if (paths.length > 0) {
 					project.onTreeChanged(paths);
 				}
 			});
@@ -39,15 +39,15 @@ namespace Palete {
 		}
 		static int doc_queue_id = 0;
 		
-		static async string[] updateBackground(Project.Gtk project, string build_module, out bool success) {
+		static async string[] updateBackground(Project.Gtk project, string build_module) {
 			
-			success = true;
+ 
 			queue_id++;
 			
 			while (true) {
 				var qid = yield queuer(queue_id);
 				if (queue_id > qid) {
-					success  = false;
+					 
 					return {};
 				}
 				if (!running) {
