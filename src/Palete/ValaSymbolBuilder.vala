@@ -27,7 +27,7 @@ namespace Palete {
 		
 		static async int queuer(int cnt)
 		{
-			SourceFunc cb = this.queuer.callback;
+			SourceFunc cb = queuer.callback;
 		  
 			GLib.Timeout.add(500, () => {
 		 		 GLib.Idle.add((owned) cb);
