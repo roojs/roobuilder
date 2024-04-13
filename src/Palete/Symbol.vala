@@ -120,6 +120,7 @@ namespace Palete {
 			foreach(var k in s.implements) {
 				this.implements.add(k);
 			}
+			this.softCopyChildren(this, s.children);
 			//?? soft copy children?
 		}
 		public void softCopyChildren(GLib.ListStore old, Glib.ListStore newer) 
