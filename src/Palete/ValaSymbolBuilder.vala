@@ -37,14 +37,16 @@ namespace Palete {
 		}
 		static int doc_queue_id = 0;
 		
-		static async string[] updateBackground(Project.Gtk project, string build_module) {
+		static async string[] updateBackground(Project.Gtk project, string build_module, out int success) {
 			
+			success = true;
 			queue_id++;
 			
 			while (true) {
 				var qid = yield queuer(queue_id);
 				if (queue_id > qid) {
-					return false;
+					success  = false;
+					return {};
 				}
 				if (!running) {
 					break;
