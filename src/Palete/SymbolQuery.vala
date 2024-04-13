@@ -25,6 +25,8 @@ namespace Palete {
 			if (f == null) {
 				return null;
 			}
+			var sy = SymbolDatabase.loadFileSymbols(f);
+			
 		
 		}
 	
