@@ -20,7 +20,7 @@ namespace Palete {
 			}
 			
 			
-			files.set(path, new SymbolFile.new_file(file));
+			files.set(path, new SymbolFile.load_from_db(file));
 			return  files.get(path);	
 		}
 		public static SymbolFile factory_by_path(string path) 
@@ -34,7 +34,7 @@ namespace Palete {
 			}
 			
 
-			files.set(path, new SymbolFile(path,-1));
+			files.set(path, new SymbolFile.load_from_db(path,-1));
 			return files.get(path);	
 		}
 		public static void dumpAll()
