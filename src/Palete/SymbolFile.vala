@@ -94,7 +94,16 @@ namespace Palete {
 			
 		}
 		
-		public SymbolFile (string path, int version) {
+		public SymbolFile.new_from_db(string path, int version) {
+			this.path = path;
+			this.version = version;
+			this.symbols = new Gee.ArrayList<Symbol>();
+			this.top_symbols = new Gee.ArrayList<Symbol>();
+			this.symbol_map = new Gee.HashMap<int,Symbol>();
+			 
+		}
+		
+		public SymbolFile.new_load_db(string path, int version) {
 			this.path = path;
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
