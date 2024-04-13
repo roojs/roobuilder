@@ -62,11 +62,10 @@ namespace Palete {
 			
 			while (true) {
 				var qid = yield queuer(queue_id);
-				if (queue_id > qid) {
-					 
+				if (queue_id > qid) { 
 					return {};
 				}
-				if (!running) {
+				if (!running) {  // wait till it's not running...
 					break;
 				}
 			}
