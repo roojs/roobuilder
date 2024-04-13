@@ -91,11 +91,11 @@ namespace Palete {
 		
 	}
 	// this assumes you are testing two trees..
-	public simpleEquals(Symbol s) 
+	public bool simpleEquals(Symbol s) 
 	{
 		return this.stype == s.stype && this.name = s.name;
 	}
-	public copyFrom(Symbol s)
+	public void copyFrom(Symbol s)
 	{
 		this.begin_line=s.begin_line;
 		this.begin_col=s.begin_col;
