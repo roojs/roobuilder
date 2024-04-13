@@ -112,17 +112,18 @@ namespace Palete {
 			this.is_ctor=s.is_ctor;
 			this.is_static=s.is_static;
 			this.is_gir=s.is_gir;
-			this.inherits.remove_all();;
-			this.implements.remove_all();
+			this.inherits.clear();;
+			this.implements.clear();
 			foreach(var k in s.inherits) {
-				this.inherits.append(k);
+				this.inherits.add(k);
 			}
 			foreach(var k in s.implements) {
-				this.implements.append(k);
+				this.implements.add(k);
 			}
 
 		}
-		public void softCopyChildren(GLib.ListStore old, Glib.ListStore newer) {
+		public void softCopyChildren(GLib.ListStore old, Glib.ListStore newer) 
+		{
 		
 		
 		
