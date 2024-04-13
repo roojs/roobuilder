@@ -20,7 +20,7 @@ namespace Palete {
 			}
 			
 			
-			files.set(path, new SymbolFile.load_from_db(file));
+			files.set(path, new SymbolFile.new_file(file));
 			return  files.get(path);	
 		}
 		public static SymbolFile factory_by_path(string path) 
@@ -34,7 +34,7 @@ namespace Palete {
 			}
 			
 
-			files.set(path, new SymbolFile.load_from_db(path,-1));
+			files.set(path, new SymbolFile.new_from_path(path,-1));
 			return files.get(path);	
 		}
 		public static void dumpAll()
@@ -91,10 +91,11 @@ namespace Palete {
 
 			this(file.targetName(), -1);		
 			this.file = file;
+			this.initDB();
 			
 		}
 		
-		public SymbolFile.new_from_db(string path, int version) {
+		public SymbolFile(string path, int version) {
 			this.path = path;
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
@@ -103,23 +104,23 @@ namespace Palete {
 			 
 		}
 		
-		public SymbolFile.new_load_db(string path, int version) {
-			this.path = path;
-			this.version = version;
-			this.symbols = new Gee.ArrayList<Symbol>();
-			this.top_symbols = new Gee.ArrayList<Symbol>();
-			this.symbol_map = new Gee.HashMap<int,Symbol>();
-			
+		public SymbolFile.new_from_path (string path, int version) {
+			this(path,version); 
 			if (this.path.has_suffix(".gir")) {
 				var bits = GLib.Path.get_basename(this.path).replace(".gir","").split("-");
 				GLib.debug("set relversion = %s", bits[bits.length-1]);
 				this.relversion = bits[bits.length-1];
 			}
+			this.initDB();
 			
-			
+		}
+		void initDB()
+		{
+		
 			SymbolDatabase.initFile(this);
 			SymbolDatabase.loadFileHasSymbols(this);
 
+		
 		}
 		
 		public void initSymbolMap()
