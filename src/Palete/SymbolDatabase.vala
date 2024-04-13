@@ -82,6 +82,7 @@ namespace Palete {
 			var stmt =  prepare("SELECT id, version, relversion FROM files where path = $path");
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);	 
 			if (stmt.step() == Sqlite.ROW) { 
+				var file = new SymbolFile(path, -1);
 				file.id = stmt.column_int(0);
 				file.path = path;
 				file.version = stmt.column_int64(1);
@@ -89,7 +90,7 @@ namespace Palete {
 				
 				return;
 			}
- 
+ 			return null;
 		
 		}
 		
