@@ -98,7 +98,7 @@ namespace Palete {
 		
 		Gee.ArrayList<string> changed;
 		 
-  		public ValaSymbolBuilder(Project.Gtk project) {
+  		private ValaSymbolBuilder(Project.Gtk project) {
 			base();
 			this.scan_project = project;
 			this.changed = new Gee.ArrayList<string>();
