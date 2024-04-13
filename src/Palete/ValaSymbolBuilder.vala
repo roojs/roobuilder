@@ -1,5 +1,16 @@
 
+ /**
+ this is the threaded code compileer - that extracts symbols from the running codebase
+ it will update the database, and SymbolFiles etc..
+ ** as far as thread safety?
+ - will the program be accessing any of the data generate from this? 0 maybe not.?
  
+- program should use the SymbolQuery ??? class ?? or should we lock the SymbolFile so that the main thread can't read stuff from there?
+-- if we go with SybmolQuery logic, the the UI will only do SQL query after the update (or maybe during the compilcatoin)
+???
+ 
+ 
+ */
 
 namespace Palete {
 	 
@@ -172,7 +183,7 @@ namespace Palete {
 #elif VALA_0_36
 		int vala_version=36;
 #endif		
-		public Gee.ArrayList<string> fillDeps(Gee.ArrayList<string> in_ar)
+		Gee.ArrayList<string> fillDeps(Gee.ArrayList<string> in_ar)
 		{
 			var ret = new Gee.ArrayList<string>();
 			foreach(var k in in_ar) {
@@ -194,7 +205,7 @@ namespace Palete {
 			return ret;
 		}
 		
-		public string[] loadDeps(string n) 
+		string[] loadDeps(string n) 
 		{
 			// only try two? = we are ignoreing our configDirectory?
 			string[] ret  = {};
@@ -221,7 +232,7 @@ namespace Palete {
 		}
  
 		
-		public void create_valac_tree( string  build_module)
+		void create_valac_tree( string  build_module)
 		{
 			// init context:
 			context = new Vala.CodeContext ();
@@ -388,7 +399,7 @@ namespace Palete {
 	//
 		// startpoint:
 		//
-	 public bool has_vapi(string[] dirs,  string vapi) 
+	 	 bool has_vapi(string[] dirs,  string vapi) 
 		{
 			for(var i =0 ; i < dirs.length; i++) {
 				//GLib.debug("check VAPI - %s", dirs[i] + "/" + vapi + ".vapi");
