@@ -16,7 +16,7 @@ namespace Palete {
 		{
 			// this needs to do the  'last' queued change..
 			
-			bool success;
+
 			updateBackground.begin(project, buildmodule, (o,r )  => {
 				var paths = updateBackground.end(r);
 				if (paths.length > 0) {
@@ -37,7 +37,7 @@ namespace Palete {
 			yield;
 			return cnt;
 		}
-		static int doc_queue_id = 0;
+
 		
 		static async string[] updateBackground(Project.Gtk project, string build_module) {
 			
