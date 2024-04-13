@@ -90,6 +90,53 @@ namespace Palete {
 		
 		
 	}
+	// this assumes you are testing two trees..
+	public simpleEquals(Symbol s) 
+	{
+		return this.stype == s.stype && this.name = s.name;
+	}
+	public copyFrom(Symbol s)
+	{
+		this.begin_line=s.begin_line;
+		this.begin_col=s.begin_col;
+		this.end_line=s.end_line;
+		this.end_col=s.end_col;
+		this.sequence=s.sequence;
+
+		this.name=s.name;
+		this.rtype=s.rtype;
+		this.direction=s.direction;
+		this.fqn=s.fqn;
+
+		this.doc=s.doc;
+
+		this.deprecated=s.deprecated;
+		this.is_abstract=s.is_abstract;
+		this.is_sealed=s.is_sealed;
+		this.is_readable=s.is_readable;
+		this.is_writable=s.is_writable;
+		this.is_ctor=s.is_ctor;
+		this.is_static=s.is_static;
+		this.is_gir=s.is_gir;
+		this.inherits.remove_all();;
+		this.implements.remove_all();
+		foreach(var k in s.inherits) {
+			this.inherits.append(k);
+		}
+		foreach(var k in s.implements) {
+			this.implements.append(k);
+		}
+
+	}
+		  
+		 
+ 
+ 		
+ 		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
+  		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }	
+	
+	
+	
 	
 	
 }
