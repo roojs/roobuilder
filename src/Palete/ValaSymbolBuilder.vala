@@ -23,12 +23,26 @@ namespace Palete {
 			});
 		}
 		
+		async int queuer(int cnt)
+		{
+			SourceFunc cb = this.queuer.callback;
+		  
+			GLib.Timeout.add(500, () => {
+		 		 GLib.Idle.add((owned) cb);
+		 		 return false;
+			});
+			
+			yield;
+			return cnt;
+		}
+		static int doc_queue_id = 0;
+		
 		static async string[] updateBackground(Project.Gtk project, string build_module) {
 			
 			queue_id++;
 			
 			while (true) {
-				yield var qid = this.lastInQueue(queue_id);
+				var qid = yield queuer(queue_id);
 				if (queue_id > qid) {
 					return false;
 				}
