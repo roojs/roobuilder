@@ -17,9 +17,9 @@ namespace Palete {
 			// this needs to do the  'last' queued change..
 			
 			bool success;
-			updateBackground.begin(project,buildmodule, out success, (o,r )  => {
+			updateBackground.begin(project, buildmodule, (o,r )  => {
 				var paths = updateBackground.end(r);
-				if (success) {
+				if (paths.length) {
 					project.onTreeChanged(paths);
 				}
 			});
