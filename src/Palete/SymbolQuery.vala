@@ -18,14 +18,16 @@ namespace Palete {
 	class SymbolQuery  : Object {
 		
 		
-		GLib.ListStore? fileSymbols(JsRender,JsRender file)
+		GLib.ListStore? fileSymbols(JsRender,JsRender file,  GLib.ListStore? old )
 		{
 			
 			var f = SymbolDatabase.lookupFile(file.path);
 			if (f == null) {
-				return null;
+				return old;
 			}
-			var sy = SymbolDatabase.loadFileSymbols(f);
+			SymbolDatabase.loadFileSymbols(f);
+			 
+			
 			
 		
 		}
