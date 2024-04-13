@@ -16,10 +16,12 @@ namespace Palete {
 		{
 			// this needs to do the  'last' queued change..
 			
-			
-			updateBackground.begin(project,buildmodule, (o,r )  => {
+			bool success;
+			updateBackground.begin(project,buildmodule, out success, (o,r )  => {
 				var paths = updateBackground.end(r);
-				project.onTreeChanged(paths);
+				if (success) {
+					project.onTreeChanged(paths);
+				}
 			});
 		}
 		
@@ -37,7 +39,7 @@ namespace Palete {
 		}
 		static int doc_queue_id = 0;
 		
-		static async string[] updateBackground(Project.Gtk project, string build_module, out int success) {
+		static async string[] updateBackground(Project.Gtk project, string build_module, out bool success) {
 			
 			success = true;
 			queue_id++;
