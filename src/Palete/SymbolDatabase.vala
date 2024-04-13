@@ -87,7 +87,7 @@ namespace Palete {
 				 
 				file.relversion = stmt.column_int(2);
 				
-				return;
+				return file;
 			}
  			return null;
 		
