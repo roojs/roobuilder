@@ -127,8 +127,8 @@ namespace Palete {
 		{
 			for(var i = 0; i < newer.get_n_items(); i++) {
 				var s = newer.get_item(i);
-				if ( i >= (old.get_n_items() -1)) {
-					old.append(s);
+				if ( i >= (this.children.get_n_items() -1)) {
+					this.children.append(s);
 					continue;
 				}
 				var os = (Symbol)this.children.get_item(i);
