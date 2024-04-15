@@ -132,7 +132,7 @@ namespace Palete {
 					continue;
 				}
 				var os = (Symbol)this.children.get_item(i);
-				if (os.equal(s)) {
+				if (os.simpleEquals(s)) {
 					os.copyFrom(s);
 					os.updateChildren(os.children, s.children);
 					continue;
