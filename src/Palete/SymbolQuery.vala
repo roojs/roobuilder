@@ -17,8 +17,8 @@ Usage:
 namespace Palete {
 	class SymbolQuery  : Object {
 		
-		
-		GLib.ListStore? fileSymbols(JsRender.JsRender file,  GLib.ListStore? old )
+		// updates 'old'...
+		void updateFileSymbols(JsRender.JsRender file,  GLib.ListStore? old )
 		{
 			
 			var f = SymbolDatabase.lookupFile(file.path);
@@ -28,10 +28,12 @@ namespace Palete {
 			SymbolDatabase.loadFileSymbols(f);
 			// now merge old and new
 			var i =0;
+
 			foreach(var s in f.top_symbols) {
 				if ( i >= (old.get_n_items() -1)) {
 					old.append(s);
 					i++;
+					
 					continue;
 				}
 				var os = (Symbol)old.get_item(i);
@@ -44,6 +46,7 @@ namespace Palete {
 				old.insert(i,s);
 				i++;
 			}
+			
 		
 		}
 	}
