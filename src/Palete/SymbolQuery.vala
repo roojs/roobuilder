@@ -18,7 +18,7 @@ namespace Palete {
 	class SymbolQuery  : Object {
 		
 		
-		GLib.ListStore? fileSymbols(JsRender,JsRender file,  GLib.ListStore? old )
+		GLib.ListStore? fileSymbols(JsRender.JsRender file,  GLib.ListStore? old )
 		{
 			
 			var f = SymbolDatabase.lookupFile(file.path);
@@ -26,10 +26,26 @@ namespace Palete {
 				return old;
 			}
 			SymbolDatabase.loadFileSymbols(f);
-			 
-			
-			
+			// now merge old and new
+			var i =0;
+			foreach(var s in f.top_symbols) {
+				if ( i >= (old.get_n_items() -1)) {
+					old.add(s);
+					i++;
+					continue;
+				}
+				var os = old.get_item(i);
+				if (os.equal(s)) {
+					os.updateChildren(os.children, s.children);
+					i++;
+					continue;
+				}
+				old.remove(i);
+				old.insert(i,s);
+				i++;
+			}
 		
 		}
+	}
 	
-	
+}

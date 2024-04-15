@@ -79,7 +79,8 @@
                 "src/Palete/SymbolVala.vala",
                 "src/Palete/SymbolDatabase.vala",
                 "src/Palete/ValaSymbolGirBuilder.vala",
-                "src/Palete/SymbolGir.vala"
+                "src/Palete/SymbolGir.vala",
+                "src/Palete/SymbolQuery.vala"
             ]
         }
     ],
