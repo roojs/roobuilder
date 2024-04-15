@@ -85,7 +85,7 @@ namespace Palete {
 				var file = new SymbolFile(path, (int)stmt.column_int64(1));
 				file.id = stmt.column_int(0);
 				 
-				file.relversion = stmt.column_int(2);
+				file.relversion = stmt.column_text(2);
 				
 				return file;
 			}
