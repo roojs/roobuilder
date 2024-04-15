@@ -23,7 +23,7 @@ namespace Palete {
 			
 			var f = SymbolDatabase.lookupFile(file.path);
 			if (f == null) {
-				return old;
+				return;
 			}
 			SymbolDatabase.loadFileSymbols(f);
 			// now merge old and new
