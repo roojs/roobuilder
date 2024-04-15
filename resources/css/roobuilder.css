@@ -44,14 +44,11 @@
 #left-tree-view indent,
 #left-tree-view expander
 {
-    -gtk-icon-size : 4px;
-     min-width: 4px;
+    -gtk-icon-size : 6px;
+     min-width: 6px;
 }
 
 
-#left-tree-view indent:nth-last-child(2)  {
-    min-width: 24px;
-}
 #left-tree-view cell {
 	padding-top: 3px;
 	padding-bottom: 3px;
