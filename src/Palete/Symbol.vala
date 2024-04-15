@@ -126,7 +126,7 @@ namespace Palete {
 		public void copyChildrenFrom( GLib.ListStore newer) 
 		{
 			for(var i = 0; i < newer.get_n_items(); i++) {
-				var s = newer.get_item(i);
+				var s = (Symbol)newer.get_item(i);
 				if ( i >= (this.children.get_n_items() -1)) {
 					this.children.append(s);
 					continue;
