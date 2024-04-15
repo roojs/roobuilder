@@ -123,7 +123,7 @@ namespace Palete {
 			this.softCopyChildrenFrom( s.children);
 			//?? soft copy children?
 		}
-		public void softCopyChildren( GLib.ListStore newer) 
+		public void softCopyChildrenFrom( GLib.ListStore newer) 
 		{
 			for(var i = 0; i < newer.get_n_items(); i++) {
 				var s = newer.get_item(i);
