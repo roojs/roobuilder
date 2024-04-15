@@ -30,13 +30,13 @@ namespace Palete {
 			var i =0;
 			foreach(var s in f.top_symbols) {
 				if ( i >= (old.get_n_items() -1)) {
-					old.add(s);
+					old.append(s);
 					i++;
 					continue;
 				}
-				var os = old.get_item(i);
-				if (os.equal(s)) {
-					os.updateChildren(os.children, s.children);
+				var os = (Symbol)old.get_item(i);
+				if (os.simpleEquals( s )) {
+					os.copyChildrenFrom(s.children);
 					i++;
 					continue;
 				}
