@@ -93,7 +93,7 @@ namespace Palete {
 				}
 			}
 		}
-		public SymbolFile.new_file (JsRender.JsRender file) {
+		private SymbolFile.new_file (JsRender.JsRender file) {
 
 			this(file.targetName(), -1);		
 			this.file = file;
@@ -101,7 +101,7 @@ namespace Palete {
 			
 		}
 		
-		public SymbolFile(string path, int version) {
+		private SymbolFile(string path, int version) {
 			this.path = path;
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
@@ -110,7 +110,7 @@ namespace Palete {
 			 
 		}
 		
-		public SymbolFile.new_from_path (string path, int version) {
+		private SymbolFile.new_from_path (string path, int version) {
 			this(path,version); 
 			if (this.path.has_suffix(".gir")) {
 				var bits = GLib.Path.get_basename(this.path).replace(".gir","").split("-");
