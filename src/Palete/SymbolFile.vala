@@ -93,6 +93,16 @@ namespace Palete {
 				}
 			}
 		}
+		
+		public SymbolFile(string path, int version) {
+			this.path = path;
+			this.version = version;
+			this.symbols = new Gee.ArrayList<Symbol>();
+			this.top_symbols = new Gee.ArrayList<Symbol>();
+			this.symbol_map = new Gee.HashMap<int,Symbol>();
+			 
+		}
+		
 		private SymbolFile.new_file (JsRender.JsRender file) {
 
 			this(file.targetName(), -1);		
@@ -101,14 +111,7 @@ namespace Palete {
 			
 		}
 		
-		private SymbolFile(string path, int version) {
-			this.path = path;
-			this.version = version;
-			this.symbols = new Gee.ArrayList<Symbol>();
-			this.top_symbols = new Gee.ArrayList<Symbol>();
-			this.symbol_map = new Gee.HashMap<int,Symbol>();
-			 
-		}
+		
 		
 		private SymbolFile.new_from_path (string path, int version) {
 			this(path,version); 
@@ -120,6 +123,7 @@ namespace Palete {
 			this.initDB();
 			
 		}
+		
 		void initDB()
 		{
 		
