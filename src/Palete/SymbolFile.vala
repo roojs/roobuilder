@@ -10,33 +10,39 @@ namespace Palete {
 		  
 		public static SymbolFile factory(JsRender.JsRender file) 
 		{
-			if (files == null) {
-				files = new Gee.HashMap<string, SymbolFile>(); 
-			}
-			var path = file.targetName();
-			if (files.has_key(path)) { // && files.get(path).version == version) {
+			lock(files) {
+				if (files == null) {
+					files = new Gee.HashMap<string, SymbolFile>(); 
+				}
+				var path = file.targetName();
+				if (files.has_key(path)) { // && files.get(path).version == version) {
+					
+					return files.get(path);
+				}
 				
-				return files.get(path);
+				
+				files.set(path, new SymbolFile.new_file(file));
+				return  files.get(path);	
 			}
-			
-			
-			files.set(path, new SymbolFile.new_file(file));
-			return  files.get(path);	
 		}
 		public static SymbolFile factory_by_path(string path) 
 		{
-			if (files == null) {
-				files = new Gee.HashMap<string, SymbolFile>(); 
-			}
-			if (files.has_key(path)) { // && files.get(path).version == version) {
+			lock(files) {
+				if (files == null) {
+					files = new Gee.HashMap<string, SymbolFile>(); 
+				}
+				if (files.has_key(path)) { // && files.get(path).version == version) {
+					
+					return files.get(path);
+				}
 				
-				return files.get(path);
-			}
-			
 
-			files.set(path, new SymbolFile.new_from_path(path,-1));
-			return files.get(path);	
+				files.set(path, new SymbolFile.new_from_path(path,-1));
+				return files.get(path);	
+			}
 		}
+		
+		
 		public static void dumpAll()
 		{
 			foreach(var f in files.values) {
