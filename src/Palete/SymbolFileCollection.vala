@@ -2,7 +2,7 @@ namespace Palete {
 	
 	
 	public class SymbolFileCollection {
-		Gee.HashMap<string, SymbolFile>? files = null;
+		public Gee.HashMap<string, SymbolFile>? files = null;
 		
 		
 		public  SymbolFileCollection()
@@ -38,6 +38,7 @@ namespace Palete {
 			return this.files.get(path);	
 		 
 		}
+		
 		public   void dumpAll()
 		{
 			foreach(var f in this.files.values) {
@@ -45,5 +46,16 @@ namespace Palete {
 			}
 		}
 		
+		public SymbolFileCollection copy()
+		{
+			var ret= new SymbolFileCollection();
+			foreach(var k in this.files.keys) {
+				ret.files.set(k, this.files.get(k).copy());
+			}
+			return ret;
+		}
+		
 	}
+	
+	
 }

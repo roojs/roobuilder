@@ -106,6 +106,22 @@ namespace Palete {
 		
 		 }
 		 
+		 public SymbolFile copy()
+		 {
+		 
+		 	var ret = new SymbolFile(this.path, (int)this.version);
+		 	ret.id = this.id;
+		 	ret.relversion = this.relversion;
+		 	ret.database_has_symbols = this.database_has_symbols;
+			//public Gee.ArrayList<Symbol> symbols ;
+			//public Gee.ArrayList<Symbol> top_symbols ;
+				//public Gee.HashMap<int,Symbol> symbol_map;
+		
+				//public JsRender.JsRender? file= null;
+		 	return ret;
+	 	}
+		
+		 
 		 
 	}
 }
