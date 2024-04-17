@@ -21,7 +21,7 @@ namespace Palete {
 			}
 			
 			this.files.set(path, new SymbolFile.new_file(file));
-			return this. files.get(path);	
+			return this.files.get(path);	
 		 
 		}
 			
