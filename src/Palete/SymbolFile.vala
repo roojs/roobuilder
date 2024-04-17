@@ -5,9 +5,6 @@ namespace Palete {
 	
 		static Gee.HashMap<string, SymbolFile>? files = null;
 		 
-		
-  
-		  
 		public static SymbolFile factory(JsRender.JsRender file) 
 		{
 			lock(files) {
@@ -103,7 +100,7 @@ namespace Palete {
 			 
 		}
 		
-		private SymbolFile.new_file (JsRender.JsRender file) {
+		public SymbolFile.new_file (JsRender.JsRender file) {
 
 			this(file.targetName(), -1);		
 			this.file = file;
