@@ -41,4 +41,7 @@ namespace Palete {
 			return files.get(path);	
 		 
 		}
+		
+		
 	}
+}
