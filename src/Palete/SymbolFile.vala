@@ -3,50 +3,8 @@ namespace Palete {
 	
 	public class SymbolFile {
 	
-		static Gee.HashMap<string, SymbolFile>? files = null;
 		 
-		public static SymbolFile factory(JsRender.JsRender file) 
-		{
-			lock(files) {
-				if (files == null) {
-					files = new Gee.HashMap<string, SymbolFile>(); 
-				}
-				var path = file.targetName();
-				if (files.has_key(path)) { // && files.get(path).version == version) {
-					
-					return files.get(path);
-				}
-				
-				
-				files.set(path, new SymbolFile.new_file(file));
-				return  files.get(path);	
-			}
-		}
-		public static SymbolFile factory_by_path(string path) 
-		{
-			lock(files) {
-				if (files == null) {
-					files = new Gee.HashMap<string, SymbolFile>(); 
-				}
-				if (files.has_key(path)) { // && files.get(path).version == version) {
-					
-					return files.get(path);
-				}
-				
-
-				files.set(path, new SymbolFile.new_from_path(path,-1));
-				return files.get(path);	
-			}
-		}
-		
-		
-		public static void dumpAll()
-		{
-			foreach(var f in files.values) {
-				f.dump();
-			}
-		}
-	
+		 
 	
 		public int64 id = -1;
 		public string path = ""; 
@@ -110,7 +68,7 @@ namespace Palete {
 		
 		
 		
-		private SymbolFile.new_from_path (string path, int version) {
+		public SymbolFile.new_from_path (string path, int version) {
 			this(path,version); 
 			if (this.path.has_suffix(".gir")) {
 				var bits = GLib.Path.get_basename(this.path).replace(".gir","").split("-");
