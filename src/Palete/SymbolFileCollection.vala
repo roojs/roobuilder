@@ -1,11 +1,11 @@
 namespace Palete {
 	
 	
-	public class SymbolFile {
+	public class SymbolFileCollection {
 		Gee.HashMap<string, SymbolFile>? files = null;
 		
 		
-		public  SymbolFile()
+		public  SymbolFileCollection()
 		{
 			this.files = new Gee.HashMap<string, SymbolFile>();
 		}
