@@ -349,7 +349,7 @@ namespace Palete {
 				//sf.context = context;
 				var cont = jfile.toSourceCode();
 				GLib.debug("File %s content = %d", jfile.path, cont.length);
-				SymbolFile.factory(jfile); // make sure it's initialized.
+				this.filemanager.factory(jfile); // make sure it's initialized.
 				var sf = new Vala.SourceFile (
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.SOURCE, 
