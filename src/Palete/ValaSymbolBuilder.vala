@@ -71,7 +71,7 @@ namespace Palete {
 		}
 
 		
-		async string[] updateBackground(  string build_module) {
+		async void updateBackground(  string build_module) {
 			
 			// -- nothing running - queue it for 500s
 			// -- if this is 'end of queue at end of 500s - then we can run it.
@@ -103,9 +103,7 @@ namespace Palete {
 				// (Insert real-life time-consuming algorithm here.)
 				 
 				this.create_valac_tree( build_module);
-				foreach(var c in o.changed) {
-					output += c;
-				}
+				 
 				Idle.add((owned) callback);
 				return true;
 			};
@@ -114,6 +112,8 @@ namespace Palete {
 
 			// Wait for background thread to schedule our callback
 			yield;
+			
+			
 			running = false;		
 			return output;
     
