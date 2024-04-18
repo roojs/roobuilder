@@ -45,7 +45,7 @@ namespace Palete {
 			// this needs to do the  'last' queued change..
 			
 
-			updateBackground.begin(project, buildmodule, (o,r )  => {
+			updateBackground.begin(buildmodule, (o,r )  => {
 				var paths = updateBackground.end(r);
 				if (paths.length > 0) {
 					project.onTreeChanged(paths);
@@ -67,7 +67,7 @@ namespace Palete {
 		}
 
 		
-		async string[] updateBackground(Project.Gtk project, string build_module) {
+		async string[] updateBackground(  string build_module) {
 			
 			// -- nothing running - queue it for 500s
 			// -- if this is 'end of queue at end of 500s - then we can run it.
