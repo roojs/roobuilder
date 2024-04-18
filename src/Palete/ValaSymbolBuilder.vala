@@ -122,13 +122,7 @@ namespace Palete {
 		
 	
 		 
-  		private ValaSymbolBuilder(Project.Gtk project) {
-			
-			this.scan_project = project;
-			this.changed = new Gee.ArrayList<string>();
-			// should not really happen..
-			 
-		}
+  		 
 		
 		
 		
