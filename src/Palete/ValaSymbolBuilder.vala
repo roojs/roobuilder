@@ -43,7 +43,8 @@ namespace Palete {
 		}
 		
 		
-		
+		// main entrance point.. 
+		// starts the process of updating the tree..
 		public void updateTree(string buildmodule) 
 		{
 			// this needs to do the  'last' queued change..
@@ -112,6 +113,10 @@ namespace Palete {
 
 			// Wait for background thread to schedule our callback
 			yield;
+			
+			
+			// at this point we can merge the project file colleciotn with the one we have generated..
+			
 			
 			
 			running = false;		
