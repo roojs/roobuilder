@@ -28,14 +28,18 @@ namespace Palete {
 		bool running = false;
 		int queue_id = 0;
 		
-		Project.Gtk project;
+		Vala.CodeContext context;
+	 
+		Gee.ArrayList<string> changed;
+		
+		Project.Gtk scan_project;
 		SymbolFileCollection filenfilemanageranager;
 		
 		public ValaSymbolBuilder(Project.Gtk project)
 		{
-			this.project = project;
+			this.scan_project = project;
 			this.filemanager = new SymbolFileCollection();
-			
+			base();
 		}
 		
 		
@@ -87,8 +91,6 @@ namespace Palete {
 				}
 			}
 			
-			
-			 
 			 
 			 
 			 SourceFunc callback = this.updateBackground.callback;
@@ -99,8 +101,8 @@ namespace Palete {
 			 ThreadFunc<bool> run = () => {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
-				var o = new ValaSymbolBuilder(project);
-				o.create_valac_tree(   build_module);
+				 
+				this.create_valac_tree( build_module);
 				foreach(var c in o.changed) {
 					output += c;
 				}
@@ -118,14 +120,10 @@ namespace Palete {
 		
 		}
 		
-		Vala.CodeContext context;
-		 
-		Project.Gtk scan_project;
-		
-		Gee.ArrayList<string> changed;
+	
 		 
   		private ValaSymbolBuilder(Project.Gtk project) {
-			base();
+			
 			this.scan_project = project;
 			this.changed = new Gee.ArrayList<string>();
 			// should not really happen..
