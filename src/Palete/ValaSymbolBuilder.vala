@@ -134,7 +134,7 @@ namespace Palete {
 		public override void visit_source_file(Vala.SourceFile sfile)
 		{
 			// visit classes and namespaces..?
-			var sf = SymbolFile.factory_by_path(sfile.filename);
+			var sf = this.filemanager.factory_by_path(sfile.filename);
 			 
 
 			
