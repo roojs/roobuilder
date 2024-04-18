@@ -53,7 +53,7 @@ namespace Palete {
 			updateBackground.begin(buildmodule, (o,r )  => {
 				var paths = updateBackground.end(r);
 				if (paths.length > 0) {
-					project.onTreeChanged(paths);
+					this.scan_project.onTreeChanged(paths);
 				}
 			});
 		}
@@ -85,7 +85,7 @@ namespace Palete {
 			while (true) {
 				var qid = yield this.queuer(queue_id);
 				if (queue_id > qid) { 
-					return {};
+					return;
 				}
 				if (!running) {  // wait till it's not running...
 					break;
