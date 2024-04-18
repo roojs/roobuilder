@@ -10,6 +10,10 @@
 ???
  
  
+ 
+ // we can have one of these for each 'project'...
+ 
+ 
  */
 
 namespace Palete {
@@ -21,9 +25,22 @@ namespace Palete {
  
 	public class ValaSymbolBuilder  : Vala.CodeVisitor {
 		
-		static bool running = false;
-		static int queue_id = 0;
-		public static void updateTree(Project.Gtk project, string buildmodule) 
+		bool running = false;
+		int queue_id = 0;
+		
+		Project.Gtk project;
+		SymbolFileCollection filenfilemanageranager;
+		
+		public ValaSymbolBuilder(Project.Gtk project)
+		{
+			this.project = project;
+			this.filemanager = new SymbolFileCollection();
+			
+		}
+		
+		
+		
+		public void updateTree(string buildmodule) 
 		{
 			// this needs to do the  'last' queued change..
 			
@@ -36,7 +53,7 @@ namespace Palete {
 			});
 		}
 		
-		static async int queuer(int cnt)
+		async int queuer(int cnt)
 		{
 			SourceFunc cb = queuer.callback;
 		  
@@ -50,7 +67,7 @@ namespace Palete {
 		}
 
 		
-		static async string[] updateBackground(Project.Gtk project, string build_module) {
+		async string[] updateBackground(Project.Gtk project, string build_module) {
 			
 			// -- nothing running - queue it for 500s
 			// -- if this is 'end of queue at end of 500s - then we can run it.
@@ -61,7 +78,7 @@ namespace Palete {
 			queue_id++;
 			
 			while (true) {
-				var qid = yield queuer(queue_id);
+				var qid = yield this.queuer(queue_id);
 				if (queue_id > qid) { 
 					return {};
 				}
@@ -74,7 +91,7 @@ namespace Palete {
 			 
 			 
 			 
-			 SourceFunc callback = updateBackground.callback;
+			 SourceFunc callback = this.updateBackground.callback;
 			 
 			 string[] output = {};
 			 
