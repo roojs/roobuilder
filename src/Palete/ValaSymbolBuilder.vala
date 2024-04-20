@@ -421,6 +421,14 @@ namespace Palete {
 			return false;
 			
 		}
+		
+		void updateFile(SymbolFile file)
+		{
+			var old 
+		
+		}
+		
+		
 	}
 }
  /*
