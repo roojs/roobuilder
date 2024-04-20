@@ -80,11 +80,11 @@ namespace Palete {
 			// - then we need to wait until that finishes until we run this..
 			// we only give up if we are last in queue otherwise
 			
-			queue_id++;
+			this.queue_id++;
 			
 			while (true) {
 				var qid = yield this.queuer(queue_id);
-				if (queue_id > qid) { 
+				if (this.queue_id > qid) { 
 					return;
 				}
 				if (!this.running) {  // wait till it's not running...
