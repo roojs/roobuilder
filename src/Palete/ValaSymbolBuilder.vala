@@ -351,7 +351,7 @@ namespace Palete {
 			string[] output = {};
 			 
  
-			ThreadFunc<bool> run = () => {
+			owned ThreadFunc<bool> run = () => {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
 				 
