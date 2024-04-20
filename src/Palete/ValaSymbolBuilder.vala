@@ -87,15 +87,15 @@ namespace Palete {
 				if (queue_id > qid) { 
 					return;
 				}
-				if (!running) {  // wait till it's not running...
+				if (!this.running) {  // wait till it's not running...
 					break;
 				}
 			}
-			running = true;
+			this.running = true;
  			yield this.create_valac_tree( build_module);
 			  
 			
-			running = false;		
+			this.running = false;		
 			return ;
     
 		
