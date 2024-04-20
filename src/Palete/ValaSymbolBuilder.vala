@@ -350,8 +350,8 @@ namespace Palete {
 			 
 			string[] output = {};
 			 
- 
-			ThreadFunc<bool> run = () => {
+  
+			new Thread<bool>("thread-update-tree", () => {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
 				 
@@ -393,9 +393,7 @@ namespace Palete {
 					 
 				Idle.add((owned) callback);
 				return true;
-			};
-
-			new Thread<bool>("thread-update-tree", run);
+			});
 
 			// Wait for background thread to schedule our callback
 			yield;
