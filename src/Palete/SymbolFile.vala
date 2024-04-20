@@ -127,8 +127,8 @@ namespace Palete {
 	 		SymbolDatabase.loadFileSymbols(old);
 	 	  
 
-			foreach(var s in .top_symbols) {
-				if ( i >= (old.get_n_items() -1)) {
+			foreach(var s in this.top_symbols) {
+				if ( i >= (old.top_symbols() -1)) {
 					old.append(s);
 					i++;
 					
