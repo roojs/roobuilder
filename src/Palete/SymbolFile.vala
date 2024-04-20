@@ -120,6 +120,39 @@ namespace Palete {
 				//public JsRender.JsRender? file= null;
 		 	return ret;
 	 	}
+	 	// called from symbol builders..
+	 	public void updateSymbols() 
+	 	{
+	 		var old = this.copy();
+	 		SymbolDatabase.loadFileSymbols(old);
+	 	  
+
+			foreach(var s in .top_symbols) {
+				if ( i >= (old.get_n_items() -1)) {
+					old.append(s);
+					i++;
+					
+					continue;
+				}
+				var os = (Symbol)old.get_item(i);
+				if (os.simpleEquals( s )) {
+					os.copyChildrenFrom(s.children);
+					i++;
+					continue;
+				}
+				old.remove(i);
+				old.insert(i,s);
+				i++;
+			}
+			
+		
+		}
+	 	
+	 	
+	 	
+	 	
+	 	}
+	 	
 		
 		 
 		 
