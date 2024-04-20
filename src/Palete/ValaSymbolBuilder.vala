@@ -39,6 +39,7 @@ namespace Palete {
 		{
 			this.scan_project = project;
 			this.filemanager = new SymbolFileCollection();
+			this.changed = new Gee.ArrayList<string>();
 			base();
 		}
 		
@@ -84,7 +85,7 @@ namespace Palete {
 			
 			while (true) {
 				var qid = yield this.queuer(queue_id);
-				if (this.queue_id > qid) { 
+				if (this.queue_id > qid) { // has somethig increased the 
 					return;
 				}
 				if (!this.running) {  // wait till it's not running...
