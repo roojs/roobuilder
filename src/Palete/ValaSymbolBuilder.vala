@@ -244,7 +244,7 @@ namespace Palete {
 		}
  
 		
-		void create_valac_tree( string  build_module)
+		async void create_valac_tree( string  build_module)
 		{
 			// init context:
 			context = new Vala.CodeContext ();
@@ -365,40 +365,63 @@ namespace Palete {
 			   
 			}
 			
+			//this.runParser
 			
+			
+			
+			SourceFunc callback = this.create_valac_tree.callback;
 			 
-			Vala.Parser parser = new Vala.Parser ();
-			parser.parse (context);
-			//gir_parser.parse (context);
-			if (context.report.get_errors () > 0) {
-				
-				//throw new VapiParserError.PARSE_FAILED("failed parse VAPIS, so we can not write file correctly");
-				
-				GLib.debug("parse got errors");
+			string[] output = {};
+			 
+ 
+			ThreadFunc<bool> run = () => {
+				// Perform a dummy slow calculation.
+				// (Insert real-life time-consuming algorithm here.)
 				 
-				
-				Vala.CodeContext.pop ();
- 				return ;
-			}
+				Vala.Parser parser = new Vala.Parser ();
+				parser.parse (context);
+				//gir_parser.parse (context);
+				if (context.report.get_errors () > 0) {
+					
+					//throw new VapiParserError.PARSE_FAILED("failed parse VAPIS, so we can not write file correctly");
+					
+					GLib.debug("parse got errors");
+					 
+					
+					Vala.CodeContext.pop ();
+	 				return ;
+				}
 
 
-			
-			// check context:
-			context.check ();
-			if (context.report.get_errors () > 0) {
-				GLib.error("failed check VAPIS, so we can not write file correctly");
-				// throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
-				//Vala.CodeContext.pop ();
-				 
-				//return;
 				
-			}
-			 
+				// check context:
+				context.check ();
+				if (context.report.get_errors () > 0) {
+					GLib.error("failed check VAPIS, so we can not write file correctly");
+					// throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
+					//Vala.CodeContext.pop ();
+					 
+					//return;
+					
+				}
+				 
+				
+				 
+				context.accept(this);
+				
+				context = null;
+					 
+				Idle.add((owned) callback);
+				return true;
+			};
+
+			new Thread<bool>("thread-update-tree", run);
+
+			// Wait for background thread to schedule our callback
+			yield;
 			
 			 
-			context.accept(this);
-			
-			context = null;
+		
 			// dump the tree for Gtk?
 			
 			Vala.CodeContext.pop ();
