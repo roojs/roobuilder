@@ -167,7 +167,7 @@ namespace Palete {
 				element.accept_children(this); // catch sub namespaces..
 				return;
 			}
-			new SymbolVala.new_namespace(null, element);
+			new SymbolVala.new_namespace(this, null, element);
 			element.accept_children(this); // catch sub namespaces..
 		}
 		 
@@ -180,7 +180,7 @@ namespace Palete {
 				return;
 			}
 			element.accept_children(this);
-			new SymbolVala.new_class(null, element);
+			new SymbolVala.new_class(this,null, element);
 			//?? childre???
 			
 		} 
