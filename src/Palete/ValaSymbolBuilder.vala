@@ -51,10 +51,10 @@ namespace Palete {
 			
 
 			updateBackground.begin(buildmodule, (o,r )  => {
-				var paths = updateBackground.end(r);
-				if (paths.length > 0) {
-					this.scan_project.onTreeChanged(paths);
-				}
+				updateBackground.end(r);
+				
+				//this.scan_project.onTreeChanged();
+				
 			});
 		}
 		
@@ -120,7 +120,7 @@ namespace Palete {
 			
 			
 			running = false;		
-			return output;
+			return ;
     
 		
 		}
