@@ -89,7 +89,7 @@ namespace Palete {
 		{
 			return this.stype == s.stype && this.name == s.name;
 		}
-		public void copyFrom(Symbol s)
+		public void copyFrom(Symbol s, bool updateDatabase)
 		{
 			this.begin_line=s.begin_line;
 			this.begin_col=s.begin_col;
@@ -120,37 +120,47 @@ namespace Palete {
 			foreach(var k in s.implements) {
 				this.implements.add(k);
 			}
-			this.copyChildrenFrom(s.children);
+			this.copyChildrenFrom(s.children, updateDatabase);
 			//?? soft copy children?
 		}
-		public void copyChildrenFrom( GLib.ListStore newer) 
+		public void copyChildrenFrom( GLib.ListStore newer, bool updateDatabase) 
 		{
 			for(var i = 0; i < newer.get_n_items(); i++) {
 				var s = (Symbol)newer.get_item(i);
 				if ( i >= (this.children.get_n_items() -1)) {
 					this.children.append(s);
 					s.parent = this;
-					SymbolDatabase.insertSymbol(s);
+					if (updateDatabse) {
+						SymbolDatabase.insertSymbol(s);
+					}
 					continue;
 				}
 				var os = (Symbol)this.children.get_item(i);
 				if (os.simpleEquals(s)) {
-					os.copyFrom(s);
-					os.copyChildrenFrom(  s.children);
-					SymbolDatabase.updateSymbol(os); /// ?/? fixme???
+					os.copyFrom(s, updateDatabase);
+
+					if (updateDatabase) {
+						SymbolDatabase.updateSymbol(os); /// ?/? fixme???
+					}
 					continue;
 				}
-				SymbolDataase.removeSymbol(os);
+				if (updateDatabase) {
+					SymbolDataase.removeSymbol(os);
+				}
 				this.children.remove(i);
 				this.children.insert(i,s);
 				s.parent = this;
-				SymbolDatabase.insertSymbol(s);
+				if (updateDatabase) {
+					SymbolDatabase.insertSymbol(s);
+				}
 			}
 			var nl = newer.get_n_items();
 			while (this.children.get_n_items() > nl) {
 				var os = (Symbol)this.children.get_item(nl);		
 				this.children.remove(nl);
-				SybmolDatabase.removeSymbol(os);
+				if (updateDatabase) {
+					SybmolDatabase.removeSymbol(os);
+				}
 			}
 		
 		
