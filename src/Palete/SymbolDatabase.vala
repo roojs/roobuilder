@@ -304,7 +304,7 @@ namespace Palete {
 			}
 		}
 		
-		public static void loadFileSymbols(SymbolFile file)
+		public static void loadFileSymbols(SymbolFile file, bool buildtree)
 		{
 			var stmt = prepare(
 				"SELECT
