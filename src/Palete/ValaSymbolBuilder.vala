@@ -50,11 +50,11 @@ namespace Palete {
 		{
 			// this needs to do the  'last' queued change..
 			
-			this.changed.clear();
+
 			updateBackground.begin(buildmodule, (o,r )  => {
 				updateBackground.end(r);
 				
-				//this.scan_project.onTreeChanged();
+				this.scan_project.onTreeChanged();
 				
 			});
 		}
@@ -73,7 +73,7 @@ namespace Palete {
 		}
 
 		
-		async void updateBackground(  string build_module) {
+		async Gee.ArrayList<string> updateBackground(  string build_module) {
 			
 			// -- nothing running - queue it for 500s
 			// -- if this is 'end of queue at end of 500s - then we can run it.
@@ -93,9 +93,14 @@ namespace Palete {
 				}
 			}
 			this.running = true;
+			this.changed.clear();
  			yield this.create_valac_tree( build_module);
+			var ar = new Gee.ArrayList<string>();
+			foreach(var s in this.changed) {
+				ar.add(s);
+			}
 			this.running = false;		
-			return ;
+			return ar;
     
 		
 		}
