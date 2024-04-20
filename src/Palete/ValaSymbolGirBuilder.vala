@@ -18,7 +18,7 @@ namespace Palete {
 			
 			 SourceFunc callback = updateGirBackground.callback;
 			 SymbolDatabase.initDB();  // connect out of thread..
-			 ThreadFunc<bool> run = () => {
+			 owned ThreadFunc<bool> run = () => {
 				// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
 				new ValaSymbolGirBuilder();
