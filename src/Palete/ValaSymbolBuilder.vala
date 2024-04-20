@@ -365,7 +365,8 @@ namespace Palete {
 					GLib.debug("parse got errors");
 					 
 					
-					Vala.CodeContext.pop ();
+  
+					context = null;
 	 				Idle.add((owned) callback);
 					return true; ;
 				}
@@ -378,7 +379,7 @@ namespace Palete {
 					GLib.debug("failed check VAPIS, so we can not write file correctly");
 					// throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
 					//Vala.CodeContext.pop ();
-					 
+					context = null;
 					//return;
 					Idle.add((owned) callback);
 					return true;
@@ -388,7 +389,6 @@ namespace Palete {
 				
 				 
 				context.accept(this);
-				
 				context = null;
 					 
 				Idle.add((owned) callback);
