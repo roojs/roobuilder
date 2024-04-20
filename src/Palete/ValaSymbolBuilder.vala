@@ -93,8 +93,6 @@ namespace Palete {
 			}
 			this.running = true;
  			yield this.create_valac_tree( build_module);
-			  
-			
 			this.running = false;		
 			return ;
     
