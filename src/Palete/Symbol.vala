@@ -148,7 +148,9 @@ namespace Palete {
 			}
 			var nl = newer.get_n_items();
 			while (this.children.get_n_items() > nl) {
+				var os = (Symbol)this.children.get_item(nl);		
 				this.children.remove(nl);
+				SybmolDatabase.removeSymbol(os);
 			}
 		
 		
