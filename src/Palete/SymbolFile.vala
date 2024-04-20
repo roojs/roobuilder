@@ -128,7 +128,7 @@ namespace Palete {
 	 	  
 
 			foreach(var s in this.top_symbols) {
-				if ( i >= (old.top_symbols() -1)) {
+				if ( i >= (old.top_symbols.size -1)) {
 					old.append(s);
 					i++;
 					
