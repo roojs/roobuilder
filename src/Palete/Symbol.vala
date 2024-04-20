@@ -137,6 +137,7 @@ namespace Palete {
 				if (os.simpleEquals(s)) {
 					os.copyFrom(s);
 					os.copyChildrenFrom(  s.children);
+				SymbolDatabase.updateSymbol(s);
 					continue;
 				}
 				SymbolDataase.removeSymbol(os);
