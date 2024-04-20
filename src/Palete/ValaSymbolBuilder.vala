@@ -72,7 +72,7 @@ namespace Palete {
 		}
 
 		
-		async Gee.ArrayList<string> updateBackground(  string build_module) {
+		async Gee.ArrayList<string>? updateBackground(  string build_module) {
 			
 			// -- nothing running - queue it for 500s
 			// -- if this is 'end of queue at end of 500s - then we can run it.
@@ -85,7 +85,7 @@ namespace Palete {
 			while (true) {
 				var qid = yield this.queuer(queue_id);
 				if (this.queue_id > qid) { // has somethig increased the 
-					return;
+					return null;
 				}
 				if (!this.running) {  // wait till it's not running...
 					break;
