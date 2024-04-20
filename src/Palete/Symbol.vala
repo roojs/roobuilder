@@ -145,7 +145,6 @@ namespace Palete {
 				this.children.insert(i,s);
 				s.parent = this;
 				SymbolDatabase.insertSymbol(s);
-				
 			}
 			var nl = newer.get_n_items();
 			while (this.children.get_n_items() > nl) {
