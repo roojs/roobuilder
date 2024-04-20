@@ -179,7 +179,7 @@ namespace Palete {
 		public SymbolVala.new_field(ValaSymbolBuilder builder, Symbol? parent, Vala.Field prop)	
 		{
 			//GLib.debug("new Field  %s", prop.name);
-			this(parent,prop);
+			this(builder, parent,prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Field;
 			this.rtype  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
@@ -195,7 +195,7 @@ namespace Palete {
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(this, p, n++);
+				new new_parameter(builder, this, p, n++);
 			}
 
 		}
@@ -231,11 +231,11 @@ namespace Palete {
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(this, p, n++);
+				new new_parameter(builder, this, p, n++);
 			}
 
 		}
-		public SymbolVala.new_methodValaSymbolBuilder builder, (Symbol? parent, Vala.Method sig)	
+		public SymbolVala.new_method(ValaSymbolBuilder builder, Symbol? parent, Vala.Method sig)	
 		{
 			GLib.debug("new Method %s", sig.name);
 			this(builder, parent,sig);
@@ -250,7 +250,7 @@ namespace Palete {
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(this, p, n++);
+				new new_parameter(builder, this, p, n++);
 			}
 
 		}
