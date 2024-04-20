@@ -304,7 +304,7 @@ namespace Palete {
 			}
 		}
 		
-		public static void loadFileSymbols(SymbolFile file, bool buildtree)
+		public static void loadFileSymbols(SymbolFile file)
 		{
 			var stmt = prepare(
 				"SELECT
@@ -376,18 +376,13 @@ namespace Palete {
 				s.fqn = stmt.column_text(22);
 				
 				file.symbols.add(s);
-				if (buildtree) {
-					ids.set((int)s.id, s);
-					if (parent_id > 0) {
-						pids.set((int)s.id, (int)parent_id);
-					} else {
-						file.top_symbols.add(s);
-					}
+				ids.set((int)s.id, s);
+				if (parent_id > 0) {
+					pids.set((int)s.id, (int)parent_id);
+				} else {
+					file.top_symbols.add(s);
 				}
 				
-			}
-			if (!buildtree) {
-				return;
 			}
 
 			foreach(var cid in  pids.keys ) {
