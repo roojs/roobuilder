@@ -33,7 +33,7 @@ namespace Palete {
 		Gee.ArrayList<string> changed;
 		
 		Project.Gtk scan_project;
-		SymbolFileCollection  filemanager;
+		public SymbolFileCollection  filemanager;
 		
 		public ValaSymbolBuilder(Project.Gtk project)
 		{
