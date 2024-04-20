@@ -401,8 +401,6 @@ namespace Palete {
 			yield;
 			
 			 
-		
-			// dump the tree for Gtk?
 			
 			Vala.CodeContext.pop ();
 		 
