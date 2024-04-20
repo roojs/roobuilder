@@ -52,9 +52,9 @@ namespace Palete {
 			
 
 			updateBackground.begin(buildmodule, (o,r )  => {
-				updateBackground.end(r);
+				var ar = updateBackground.end(r);
 				
-				this.scan_project.onTreeChanged();
+				this.scan_project.onTreeChanged(ar);
 				
 			});
 		}
