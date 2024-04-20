@@ -91,33 +91,9 @@ namespace Palete {
 					break;
 				}
 			}
-			
-			 
-			 
-			 SourceFunc callback = this.updateBackground.callback;
-			 
-			 string[] output = {};
-			 
-			 SymbolDatabase.initDB();  // connect out of thread..
-			 ThreadFunc<bool> run = () => {
-				// Perform a dummy slow calculation.
-				// (Insert real-life time-consuming algorithm here.)
-				 
-				this.create_valac_tree( build_module);
-				 
-				Idle.add((owned) callback);
-				return true;
-			};
 			running = true;
-			new Thread<bool>("thread-update-tree", run);
-
-			// Wait for background thread to schedule our callback
-			yield;
-			
-			
-			// at this point we can merge the project file colleciotn with the one we have generated..
-			
-			
+ 			yield this.create_valac_tree( build_module);
+			  
 			
 			running = false;		
 			return ;
