@@ -128,7 +128,6 @@ namespace Palete {
 			for(var i = 0; i < newer.get_n_items(); i++) {
 				var s = (Symbol)newer.get_item(i);
 				if ( i >= (this.children.get_n_items() -1)) {
-					
 					this.children.append(s);
 					s.parent = this;
 					SymbolDatabase.insertSymbol(s);
