@@ -50,7 +50,7 @@ namespace Palete {
 		{
 			// this needs to do the  'last' queued change..
 			
-
+			this.changed.clear();
 			updateBackground.begin(buildmodule, (o,r )  => {
 				updateBackground.end(r);
 				
