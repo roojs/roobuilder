@@ -254,7 +254,27 @@ namespace Palete {
 			}
 
 		}
-		 
+	 	public void addChild(Symbol s) 
+		{
+			if (!this.children_map.has_key(s.type_name)) {
+				s.parent = this;
+				this.children.append(s);
+				this.children_map.set(s.typename, s);
+				var q = s.fillQuery(null);
+				s.id = q.insert(SymbolDatabase.db);
+				return;
+				
+			}
+			
+			var old = this.children_map.get(s.type_name);
+			var q = s.fillQuery(old);
+			if (!q.shouldUpdate()) {
+				return; // no need to update..
+			}
+			q.update(SymbolDatabase.db);
+		}
+			
+		
 		 
 	
 	}
