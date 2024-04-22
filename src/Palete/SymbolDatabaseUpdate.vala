@@ -15,7 +15,7 @@ namespace Palete {
 		Object newer;
 		int id;
 		
-		public SymbolDatabaseQuery(string table, int id, Object old, Object newer) 
+		public SymbolDatabaseQuery(string table, int id, Object? old, Object newer) 
 		{
 			this.table = table;
 			this.id = id;
@@ -27,7 +27,7 @@ namespace Palete {
 
 		}
 		
-		public void updateInt( string[] cols) 
+		public void usetInts( string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
@@ -46,7 +46,7 @@ namespace Palete {
 				// not the same..
 			}
 		}
-		public void updateInt64( string[] cols) 
+		public void setInt64s( string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
@@ -67,7 +67,7 @@ namespace Palete {
 				// not the same..
 			}
 		}
-		public void updateString(string[] cols) 
+		public void setStrings(string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
@@ -88,7 +88,7 @@ namespace Palete {
 			}
 		}
 		
-		public void updateBool(string[] cols) 
+		public void setBools(string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
@@ -144,7 +144,7 @@ namespace Palete {
 			}
 			Sqlite.Statement stmt;
 			string[] keys = {};
-			string[] values = {}
+			string[] values = {};
 			foreach(var k in this.ints.keys) {
 				keys += k;
 				values += ("$" + k);
