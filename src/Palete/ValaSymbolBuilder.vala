@@ -42,7 +42,7 @@ namespace Palete {
 		{
 			this.scan_project = project;
 			this.filemanager = new SymbolFileCollection();
-			this.changed = new Gee.ArrayList<string>();
+			this.changed = new Gee.ArrayList<SymbolFile>();
 			base();
 		}
 		
