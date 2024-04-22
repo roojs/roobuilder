@@ -166,10 +166,10 @@ namespace Palete {
 		
 		}
 		
-		public void SymbolDatabaseQuery fillQuery(Symbol old)
+		public void SymbolQuery fillQuery(Symbol? old)
 		{
 			
-			var q = new SymbolDatabaseQuery("symbol", this.id, old, newer);
+			var q = new SymbolQuery("symbol", this.id, old, newer);
 			q.setInt64s( {
 				"file_id", 
 				"parent_id"
