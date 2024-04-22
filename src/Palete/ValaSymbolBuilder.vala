@@ -128,7 +128,7 @@ namespace Palete {
 	        sfile.accept_children (this);
 			GLib.debug("flag as parsed %s", sfile.filename);
 			sf.is_parsed = true; // should trigger save..
-			this.changed.add( sf );
+			this.changed.add( sf.path );
 			//?? do we need to accept children?
 		
 		}
