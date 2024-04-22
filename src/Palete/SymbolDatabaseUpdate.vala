@@ -31,13 +31,27 @@ namespace Palete {
 					continue;
 				}
 				this.setter.add(col + " = $" +col);
-				this.stmt.bind_int(stmt.bind_parameter_index ("$" + col),newv);
+				this.ints.set("$" + col, newv);
 				// not the same..
-				
-			
-		
-		
+			}
 		}
+		
+		public updateString(Object old, Object newer, string[] cols) 
+		{
+			for(var i = 0;i < cols.length; i++) {
+				var col = cols[i];
+				var oldv = old.get_property(col).get_string();
+				var newv = newer.get_property(col).get_string();
+				if (oldv == newv) {
+					continue;
+				}
+				this.setter.add(col + " = $" +col);
+				this.strings.set("$" + col, newv);
+				// not the same..
+			}
+		}
+		
+
 		
 	}
 }
