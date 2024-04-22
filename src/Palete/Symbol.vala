@@ -89,7 +89,7 @@ namespace Palete {
 		{
 			return this.stype == s.stype && this.name == s.name;
 		}
-		public void copyFrom(Symbol s, bool updateDatabase)
+		public void copyFrom(Symbol s )
 		{
 			this.begin_line=s.begin_line;
 			this.begin_col=s.begin_col;
@@ -120,10 +120,10 @@ namespace Palete {
 			foreach(var k in s.implements) {
 				this.implements.add(k);
 			}
-			this.copyChildrenFrom(s.children, updateDatabase);
+			this.copyChildrenFrom(s.children);
 			//?? soft copy children?
 		}
-		public void copyChildrenFrom( GLib.ListStore newer, bool updateDatabase) 
+		public void copyChildrenFrom( GLib.ListStore newer) 
 		{
 			for(var i = 0; i < newer.get_n_items(); i++) {
 				var s = (Symbol)newer.get_item(i);
@@ -135,8 +135,7 @@ namespace Palete {
 				}
 				var os = (Symbol)this.children.get_item(i);
 				if (os.simpleEquals(s)) {
-					os.copyFrom(s, updateDatabase);
- 
+					os.copyFrom(s);
 					continue;
 				}
 				 
