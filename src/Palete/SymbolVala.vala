@@ -22,10 +22,10 @@ namespace Palete {
 	
 		public SymbolVala.new_namespace(ValaSymbolBuilder builder, Symbol? parent, Vala.Namespace ns)
 		{
-			this(builder, parent,ns);
+			this(builder, ns);
 			this.name = ns.name;
 			this.stype = Lsp.SymbolKind.Namespace; 
-				
+			this.setParent(parent);	
 			foreach(var c in ns.get_classes()) {
 				new new_class(builder, this,c);
 			}
@@ -56,10 +56,10 @@ namespace Palete {
 		}
 		public SymbolVala.new_enum(ValaSymbolBuilder builder, Symbol? parent, Vala.Enum cls)
 		{
-			this(builder, parent,cls);
+			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Enum;
-			
+			this.setParent(parent);
 			foreach(var e in cls.get_values()) {
 				new new_enummember(builder, this, e);
 			}
@@ -71,20 +71,21 @@ namespace Palete {
 		}
 		public SymbolVala.new_enummember(ValaSymbolBuilder builder, Symbol? parent, Vala.EnumValue cls)	
 		{
-			this(builder, parent,cls);
+			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.EnumMember;
 				
 			this.rtype  = cls.type_reference == null ||  cls.type_reference.type_symbol == null ? "" : 
 					cls.type_reference.type_symbol.get_full_name();			
+			this.setParent(parent);
 			 
 		}
 		public SymbolVala.new_interface(ValaSymbolBuilder builder, Symbol? parent, Vala.Interface cls)	
 		{
-			this(builder, parent,cls);
+			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Interface;
-				
+			this.setParent(parent);
 			
 			foreach(var p in cls.get_properties()) {
 				new new_property(builder, this, p);
@@ -236,7 +237,7 @@ namespace Palete {
 		 	var n  = 0;
 		 	
 		 	 
-			this.setParent(this); 
+			this.setParent(parent); 
 			 
 		 	
 		 	foreach(var p in sig.get_parameters()) {
