@@ -42,7 +42,7 @@ namespace Palete {
 					}
 				}
 				this.setter += (col + " = $" +col);
-				this.ints.set("$" + col, newv.get_int());
+				this.ints.set(col, newv.get_int());
 				// not the same..
 			}
 		}
@@ -63,7 +63,7 @@ namespace Palete {
 			
 
 				this.setter += (col + " = $" +col);
-				this.ints.set("$" + col, (int)newv.get_int64());
+				this.ints.set(col, (int)newv.get_int64());
 				// not the same..
 			}
 		}
@@ -83,7 +83,7 @@ namespace Palete {
 				}
 				this.setter +=  (col + " = $" +col);
 				
-				this.strings.set("$" + col, newv.get_string());
+				this.strings.set(col, newv.get_string());
 				// not the same..
 			}
 		}
@@ -105,7 +105,7 @@ namespace Palete {
 					}
 				}
 				this.setter +=  (col + " = $" + col);
-				this.ints.set("$" + col, newv.get_boolean() ? 1 : 0);
+				this.ints.set(col, newv.get_boolean() ? 1 : 0);
 				// not the same..
 			}
 		}
@@ -125,10 +125,10 @@ namespace Palete {
 			
 			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var k in this.ints.keys) {
-				stmt.bind_int (stmt.bind_parameter_index (k), ints.get(k));
+				stmt.bind_int (stmt.bind_parameter_index ("$"+ k), ints.get(k));
 			}
 			foreach(var k in this.strings.keys) {
-				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
+				stmt.bind_text (stmt.bind_parameter_index ("$"+ k), strings.get(k));
 			}
 			if (Sqlite.OK != stmt.step ()) {
 			    GLib.debug("SymbolUpdate: %s", db.errmsg());
@@ -143,14 +143,20 @@ namespace Palete {
 				return;
 			}
 			Sqlite.Statement stmt;
-			var q = "INSERT INTO " + this.table + " ( ";
 			string keys = {};
 			string vaules = {}
+			foreach(var k in this.ints.keys) {
+				keys += k;
+				values += ("$" + k);
+			}
+			foreach(var k in this.strings.keys) {
+				keys += k;			
+				values += ("$" + k);
+			}
 			
-			
-			
-			
-			+ string.joinv(",", this.setter) + "WHERE id = " + this.id.to_string();
+			var q = "INSERT INTO " + this.table + " ( " +
+				string.joinv(",", keys) + " ) VALUES ( " + 
+				string.joinv(",", values) +  " ")";
 			
 			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var k in this.ints.keys) {
