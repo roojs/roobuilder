@@ -95,12 +95,19 @@ namespace Palete {
 				return;
 			}
 			Sqlite.Statement stmt;
-			var q = "UPDATE " + this.table + " SET  ";
-			foreach(var sv in 
+			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", this.setter) + "WHERE id = " + this.id.to_string();
 			
 			db.prepare_v2 (q, q.length, out stmt);
-			return stmt;
-		
+			foreach(var k in this.ints.keys()) {
+				stmt.bind_int (stmt.bind_parameter_index (k), ints.get(k));
+			}
+			foreach(var k in this.strings.keys()) {
+				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
+			}
+			foreach(var k in this.ints64.keys()) {
+				stmt.bind_int64 (stmt.bind_parameter_index (k), (int64)ints.get(k));
+			}
+
 		}
 		
 
