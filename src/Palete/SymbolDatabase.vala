@@ -191,7 +191,7 @@ namespace Palete {
 				return;
 			}
 			
-			var q = new SymbolDatabaseQuery("symbol", null, s, 0);
+			var q = new SymbolDatabaseQuery("symbol", 0, null, s);
 			q.setInt64s( {
 				"file_id", 
 				"parent_id"
@@ -224,8 +224,8 @@ namespace Palete {
 				"is_gir"
 			});
 						
-			q.insert(db);
-					 
+			s.id = q.insert(db);
+ 
  		
 		}
 		

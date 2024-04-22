@@ -141,7 +141,7 @@ namespace Palete {
 
 		}
 		
-		public void insert(Sqlite.Database db)
+		public int64 insert(Sqlite.Database db)
 		{	
 			if (!this.shouldUpdate()) {
 				return;
@@ -173,7 +173,7 @@ namespace Palete {
 			    GLib.debug("SYmbol insert: %s", db.errmsg());
 			}
 			stmt.reset(); //not really needed.
-			
+			return db.last_insert_rowid();
 
 		}
 		
