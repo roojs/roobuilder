@@ -44,6 +44,7 @@ namespace Palete {
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
 		
 		public GLib.ListStore children;
+		public Gee.HashMap<string,Symbol> children_map;
 		
 		public string parent_name = "";
 		// FIXME!!!!
@@ -71,6 +72,7 @@ namespace Palete {
 			this.inherits   = new Gee.ArrayList<string>();
   			this.implements  = new Gee.ArrayList<string>(); 	
 			this.children = new GLib.ListStore(typeof(Symbol));
+			this.children_map = new Gee.HashMap<string,Symbol>();
 		}
 		
 		public string to_fqn()
