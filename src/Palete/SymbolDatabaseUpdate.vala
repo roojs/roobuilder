@@ -45,7 +45,24 @@ namespace Palete {
 				// not the same..
 			}
 		}
-		
+		public void updateInt( string[] cols) 
+		{
+			for(var i = 0;i < cols.length; i++) {
+				var col = cols[i];
+				var  oldv = GLib.Value (typeof (int64));
+				var  newv = GLib.Value (typeof (int64));				
+				
+				this.old.get_property(col, ref oldv);
+				this.newer.get_property(col, ref newv);
+				
+				if (oldv.get_int64() == newv.get_int64()) {
+					continue;
+				}
+				this.setter += (col + " = $" +col);
+				this.ints.set("$" + col, (int)newv.get_int64());
+				// not the same..
+			}
+		}
 		public void updateString(string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
