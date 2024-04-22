@@ -143,8 +143,8 @@ namespace Palete {
 				return;
 			}
 			Sqlite.Statement stmt;
-			string keys = {};
-			string vaules = {}
+			string[] keys = {};
+			string[] values = {}
 			foreach(var k in this.ints.keys) {
 				keys += k;
 				values += ("$" + k);
