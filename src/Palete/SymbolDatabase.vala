@@ -19,7 +19,7 @@ namespace Palete {
 	
 	public class SymbolDatabase {
 		static Sqlite.Database? _db = null;
-		static Sqlite.Database db {
+		public static Sqlite.Database db {
 			get {
 			 	if (_db != null) {
 			 		return _db;
