@@ -11,25 +11,29 @@ namespace Palete {
 		Gee.ArrayList<string> setter;		
 		Gee.HashMap<string,int> ints;
 		Gee.HashMap<string,string> strings;	
+		Object old;
+		Object newer;
 		
-		public SymbolDatabaseUpdate(string table) 
+		public SymbolDatabaseUpdate(string table, Object old, Object newer) 
 		{
 			this.table = table;
 			this.setter = new Gee.ArrayList<string>();
 			this.ints = new Gee.HashMap<string,int>();
 			this.strings = new Gee.HashMap<string,string>();	
+			this.old = old;
+			this.newer = newer;
 
 		}
 		
-		public void updateInt(Object old, Object newer, string[] cols) 
+		public void updateInt( string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
 				var  oldv = GLib.Value (typeof (int));
 				var  newv = GLib.Value (typeof (int));				
 				
-				old.get_property(col, ref oldv);
-				newer.get_property(col, ref newv);
+				this.old.get_property(col, ref oldv);
+				this.newer.get_property(col, ref newv);
 				
 				if (oldv.get_string() == newv.get_int()) {
 					continue;
@@ -40,7 +44,7 @@ namespace Palete {
 			}
 		}
 		
-		public void updateString(Object old, Object newer, string[] cols) 
+		public void updateString(string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
