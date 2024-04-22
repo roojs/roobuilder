@@ -119,7 +119,7 @@ namespace Palete {
 				return;
 			}
 			if (sf.database_has_symbols && sf.children.get_n_items() < 1) {
-				SymbolDatabase.loadFileSymbols(sf);
+				SymbolDatabase.loadFileSymbols( sf );
 			}
 			
 			GLib.debug("visit source file %s nodes? %d", sfile.filename, sfile.get_nodes().size);
