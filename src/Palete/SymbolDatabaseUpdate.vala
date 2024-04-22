@@ -35,7 +35,7 @@ namespace Palete {
 				this.old.get_property(col, ref oldv);
 				this.newer.get_property(col, ref newv);
 				
-				if (oldv.get_string() == newv.get_int()) {
+				if (oldv.get_int() == newv.get_int()) {
 					continue;
 				}
 				this.setter.add(col + " = $" +col);
