@@ -28,8 +28,8 @@ namespace Palete {
 				var  oldv = GLib.Value (typeof (int));
 				var  newv = GLib.Value (typeof (int));				
 				
-				old.get_property(col, ref oldv)
-				newer.get_property(col, ref newv)
+				old.get_property(col, ref oldv);
+				newer.get_property(col, ref newv);
 				
 				if (oldv.get_string() == newv.get_int()) {
 					continue;
@@ -47,8 +47,8 @@ namespace Palete {
 				var  oldv = GLib.Value (typeof (string));
 				var  newv = GLib.Value (typeof (string));				
 				
-				old.get_property(col, ref oldv)
-				newer.get_property(col, ref newv)
+				old.get_property(col, ref oldv);
+				newer.get_property(col, ref newv);
 				
 				if (oldv.get_string() == newv.get_string()) {
 					continue;
@@ -66,8 +66,8 @@ namespace Palete {
 				var  oldv = GLib.Value (typeof (boolean));
 				var  newv = GLib.Value (typeof (boolean));				
 				
-				old.get_property(col, ref oldv)
-				newer.get_property(col, ref newv)
+				old.get_property(col, ref oldv);
+				newer.get_property(col, ref newv);
 				
 				if (oldv.get_boolean() == newv.get_boolean()) {
 					continue;
