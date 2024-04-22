@@ -201,6 +201,8 @@ namespace Palete {
 				"is_static",
 				"is_gir"
 			});
+			return q;
+		}
 		
 		
 		
