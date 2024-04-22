@@ -51,8 +51,8 @@ namespace Palete {
 				var  oldv = GLib.Value (typeof (string));
 				var  newv = GLib.Value (typeof (string));				
 				
-				old.get_property(col, ref oldv);
-				newer.get_property(col, ref newv);
+				this.old.get_property(col, ref oldv);
+				this.newer.get_property(col, ref newv);
 				
 				if (oldv.get_string() == newv.get_string()) {
 					continue;
@@ -63,15 +63,15 @@ namespace Palete {
 			}
 		}
 		
-		public void updateBool(Object old, Object newer, string[] cols) 
+		public void updateBool(string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
 				var  oldv = GLib.Value (typeof (boolean));
 				var  newv = GLib.Value (typeof (boolean));				
 				
-				old.get_property(col, ref oldv);
-				newer.get_property(col, ref newv);
+				this.old.get_property(col, ref oldv);
+				this.newer.get_property(col, ref newv);
 				
 				if (oldv.get_boolean() == newv.get_boolean()) {
 					continue;
