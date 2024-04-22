@@ -12,7 +12,7 @@ namespace Palete {
 			this.end_line = s.source_reference.end.line;
 			this.end_col = s.source_reference.end.column;
 			this.deprecated  = s.version.deprecated;
-			this.file.symbols.add(this); //referenced...
+			
 			
 			
 			
@@ -284,6 +284,8 @@ namespace Palete {
 				var q = this.fillQuery(null);
 				this.id = q.insert(SymbolDatabase.db);
 				this.rev = this.file.version;
+				this.file.symbols.add(this);
+				this.file.symbols_map.set(this.id, this);
 				return;
 				
 			}
@@ -295,6 +297,7 @@ namespace Palete {
 				return; // no need to update..
 			}
 			q.update(SymbolDatabase.db);
+			// should nto need to update file symbols.
 		}
 			
 		
