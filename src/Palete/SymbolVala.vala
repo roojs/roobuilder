@@ -262,6 +262,7 @@ namespace Palete {
 				this.children_map.set(s.typename, s);
 				var q = s.fillQuery(null);
 				s.id = q.insert(SymbolDatabase.db);
+				s.rev++;
 				return;
 				
 			}
