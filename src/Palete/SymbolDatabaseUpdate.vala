@@ -156,7 +156,7 @@ namespace Palete {
 			
 			var q = "INSERT INTO " + this.table + " ( " +
 				string.joinv(",", keys) + " ) VALUES ( " + 
-				string.joinv(",", values) +  " ")";
+				string.joinv(",", values) +   " )";
 			
 			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var k in this.ints.keys) {
