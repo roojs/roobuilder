@@ -5,7 +5,7 @@
 */
 
 namespace Palete {
-	public class SymbolDatabaseUpdate {
+	public class SymbolDatabaseQuery {
 	
 		string table;
 		string[] setter = {};		
@@ -15,7 +15,7 @@ namespace Palete {
 		Object newer;
 		int id;
 		
-		public SymbolDatabaseUpdate(string table, int id, Object old, Object newer) 
+		public SymbolDatabaseQuery(string table, int id, Object old, Object newer) 
 		{
 			this.table = table;
 			this.id = id;
