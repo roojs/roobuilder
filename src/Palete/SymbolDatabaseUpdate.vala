@@ -21,7 +21,7 @@ namespace Palete {
 
 		}
 		
-		public updateInt(Object old, Object newer, string[] cols) 
+		public void updateInt(Object old, Object newer, string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
@@ -36,7 +36,7 @@ namespace Palete {
 			}
 		}
 		
-		public updateString(Object old, Object newer, string[] cols) 
+		public void updateString(Object old, Object newer, string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
