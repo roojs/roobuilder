@@ -50,17 +50,22 @@ namespace Palete {
 				// not the same..
 			}
 		}
+		
 		public void updateBool(Object old, Object newer, string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-				var oldv = old.get_property(col).get_boolean();
-				var newv = newer.get_property(col).get_boolean();
-				if (oldv == newv) {
+				var  oldv = GLib.Value (typeof (boolean);;
+				var  newv = GLib.Value (typeof (boolean);;				
+				
+				old.get_property(col, ref oldv)
+				newer.get_property(col, ref newv)
+				
+				if (oldv.get_boolean() == newv.get_boolean()) {
 					continue;
 				}
 				this.setter.add(col + " = $" + col);
-				this.ints.set("$" + col, newv ? 1 : 0);
+				this.ints.set("$" + col, newv.get_boolean() ? 1 : 0);
 				// not the same..
 			}
 		}
