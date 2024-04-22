@@ -170,7 +170,7 @@ namespace Palete {
 		
 		}
 		
-		public void SymbolQuery fillQuery(Symbol? old)
+		public  SymbolQuery fillQuery(Symbol? old)
 		{
 			
 			var q = new SymbolQuery("symbol", this.id, old, newer);
