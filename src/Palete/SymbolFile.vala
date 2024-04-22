@@ -136,7 +136,18 @@ namespace Palete {
 			}
 			this.symbols = ns;
 			
+			for(var i = 0; i < this.children.get_n_items();i++) {
+				var s = (Symbol) this.children.get_item(i);
+				if (s.rev == this.revision) {
+					s.removeOldSymbols();
+					continue;
+				}
+				this.children.remove(i);
+				i--;
+				this.children_map.remove(s.type_name);
+				
 			
+			}
 			
 	 	
  		public GLib.ListStore children;
