@@ -131,7 +131,7 @@ namespace Palete {
 	 		var ns = new Gee.ArrayList<Symbol>();
 	 		foreach(var s in this.symbols) {
 	 			if (s.rev == this.version) {
-	 				ns.add(s)
+	 				ns.add(s);
  				} else {
 	 				this.symbol_map.unset(s.id);
  				}
