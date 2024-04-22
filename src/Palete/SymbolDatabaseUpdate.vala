@@ -45,7 +45,7 @@ namespace Palete {
 				// not the same..
 			}
 		}
-		public void updateInt( string[] cols) 
+		public void updateInt64( string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
