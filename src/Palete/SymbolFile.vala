@@ -11,8 +11,11 @@ namespace Palete {
 		public int64 version  = -1;  // utime?
 		public string relversion  = "";  // version eg. 1.0 (mathcing gir to vapis?)
 		public Gee.ArrayList<Symbol> symbols ;
-		public Gee.ArrayList<Symbol> top_symbols ;
-		public Gee.HashMap<int,Symbol> symbol_map;
+ 		public Gee.HashMap<int,Symbol> symbol_map;
+ 		
+ 		public GLib.ListStore children;
+		public Gee.HashMap<string,Symbol> children_map;
+
 		public bool database_has_symbols = false;
 		
 		public JsRender.JsRender? file= null;
@@ -53,8 +56,9 @@ namespace Palete {
 			this.path = path;
 			this.version = version;
 			this.symbols = new Gee.ArrayList<Symbol>();
-			this.top_symbols = new Gee.ArrayList<Symbol>();
 			this.symbol_map = new Gee.HashMap<int,Symbol>();
+			this.children = new GLib.ListStore(typeof(Symbol));
+			this.children_map = new Gee.HashMap<string,Symbol>();
 			 
 		}
 		
