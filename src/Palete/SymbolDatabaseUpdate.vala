@@ -31,14 +31,15 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-				var  oldv = GLib.Value (typeof (int));
 				var  newv = GLib.Value (typeof (int));				
-				
-				this.old.get_property(col, ref oldv);
 				this.newer.get_property(col, ref newv);
 				
-				if (oldv.get_int() == newv.get_int()) {
-					continue;
+				if (this.old != null) {
+					var  oldv = GLib.Value (typeof (int));
+					this.old.get_property(col, ref oldv);
+					if (oldv.get_int() == newv.get_int()) {
+						continue;
+					}
 				}
 				this.setter += (col + " = $" +col);
 				this.ints.set("$" + col, newv.get_int());
