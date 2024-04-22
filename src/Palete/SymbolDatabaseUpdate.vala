@@ -106,7 +106,7 @@ namespace Palete {
 			return this.ints.size +   this.strings.size > 0;
 		}
 		
-		public void run(Sqlite db)
+		public void run(Sqlite.Database db)
 		{
 			if (!this.shouldUpdate()) {
 				return;
