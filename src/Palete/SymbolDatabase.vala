@@ -208,103 +208,24 @@ namespace Palete {
 				"name",
 				"rtype",
 				"direction",
+				"parent_name",
+				"doc",
+				"fqn"
+
 			});	
-			
-			if (write_symbol_sql == null) { 
-				write_symbol_sql=  prepare("
-				 	INSERT INTO  symbol (
-						file_id,
-						parent_id,
-						stype,
+			q.setBools({
+				"deprecated",
+				"is_abstract",
+				"is_sealed",
+		 		"is_readable",
+				"is_writable",
+		 		"is_ctor",
+				"is_static",
+				"is_gir"
+			});
 						
-						begin_line,
-						begin_col,
-						end_line,
-						end_col,
-						sequence,
-						
-						name,
-						rtype,
-						direction,
-						
-						deprecated,
-						is_abstract,
-						is_sealed,
-				 		is_readable,
-						is_writable,
-				 		is_ctor,
-						is_static,
-						
-						parent_name,
-						doc,
-						is_gir,
-						fqn
-				 		
-			 		)  VALUES (
-			 			$file_id,
-						$parent_id,
-						$stype,
-						
-						$begin_line,
-						$begin_col,
-						$end_line,
-						$end_col,
-						$sequence,
-						
-						$name,
-						$rtype,
-						$direction,
-						
-						$deprecated,
-						$is_abstract,
-						$is_sealed,
-				 		$is_readable,
-						$is_writable,
-				 		$is_ctor,
-						$is_static,
-						
-						$parent_name,
-						$doc,
-						$is_gir,
-						$fqn
-		 			)
-				");
-			}	//		GLib.debug("error %s", _db.errmsg());
-			unowned Sqlite.Statement stmt = write_symbol_sql;
-			
-			
-			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), s.file.id);
-			stmt.bind_int64 (stmt.bind_parameter_index ("$parent_id"), s.parent_id);
-			stmt.bind_int (stmt.bind_parameter_index ("$stype"), s.stype);
-
-			stmt.bind_int (stmt.bind_parameter_index ("$begin_line"), s.begin_line);
-			stmt.bind_int (stmt.bind_parameter_index ("$begin_col"), s.begin_col);
-			stmt.bind_int (stmt.bind_parameter_index ("$end_line"), s.end_line);
-			stmt.bind_int (stmt.bind_parameter_index ("$end_col"), s.end_col);
-			stmt.bind_int (stmt.bind_parameter_index ("$sequence"), s.sequence);
-
-			stmt.bind_text (stmt.bind_parameter_index ("$name"), s.name);
-			stmt.bind_text (stmt.bind_parameter_index ("$rtype"), s.rtype);
-			stmt.bind_text (stmt.bind_parameter_index ("$direction"), s.direction);
-
-			stmt.bind_int (stmt.bind_parameter_index ("$deprecated"), s.deprecated? 1 : 0);
-			stmt.bind_int (stmt.bind_parameter_index ("$is_abstract"), s.is_abstract? 1 : 0);
-			stmt.bind_int (stmt.bind_parameter_index ("$is_sealed"), s.is_sealed? 1 : 0);
-			stmt.bind_int (stmt.bind_parameter_index ("$is_readable"), s.is_readable? 1 : 0);
-			stmt.bind_int (stmt.bind_parameter_index ("$is_writable"), s.is_writable? 1 : 0);
-			stmt.bind_int (stmt.bind_parameter_index ("$is_ctor"), s.is_ctor? 1 : 0);
-			stmt.bind_int (stmt.bind_parameter_index ("$is_static"), s.is_static? 1 : 0);
-			
-			stmt.bind_text (stmt.bind_parameter_index ("$parent_name"), s.parent_name);
-			stmt.bind_text (stmt.bind_parameter_index ("$doc"), s.doc);
-			stmt.bind_int (stmt.bind_parameter_index ("$is_gir"), s.is_gir ? 1 : 0);
-			
-			stmt.bind_text (stmt.bind_parameter_index ("$fqn"), s.to_fqn());
-			stmt.step () ;
-			
-			//GLib.debug("error %s", _db.errmsg());
-			s.id = db.last_insert_rowid();
- 			stmt.reset();
+			q.insert(db);
+					 
  		
 		}
 		
