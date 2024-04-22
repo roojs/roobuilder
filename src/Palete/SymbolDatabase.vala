@@ -191,39 +191,7 @@ namespace Palete {
 				return;
 			}
 			
-			var q = new SymbolDatabaseQuery("symbol", 0, null, s);
-			q.setInt64s( {
-				"file_id", 
-				"parent_id"
-			});
-			q.setInts({
-				"stype",
-				"begin_line",
-				"begin_col",
-				"end_line",
-				"end_col",
-				"sequence"
-			});
-			q.setStrings({
-				"name",
-				"rtype",
-				"direction",
-				"parent_name",
-				"doc",
-				"fqn"
-
-			});	
-			q.setBools({
-				"deprecated",
-				"is_abstract",
-				"is_sealed",
-		 		"is_readable",
-				"is_writable",
-		 		"is_ctor",
-				"is_static",
-				"is_gir"
-			});
-						
+			var q = s.fillQuery(null); 		
 			s.id = q.insert(db);
  
  		
