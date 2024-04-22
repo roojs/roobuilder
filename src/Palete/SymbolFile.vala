@@ -125,37 +125,29 @@ namespace Palete {
 		 	return ret;
 	 	}
 	 	// called from symbol builders..
-	 	public void updateSymbols() 
-	 	{
-	 		var old = this.copy();
-	 		SymbolDatabase.loadFileSymbols(old);
-	 	  
-
-			foreach(var s in this.top_symbols) {
-				if ( i >= (old.top_symbols.size -1)) {
-					old.append(s);
-					i++;
-					
-					continue;
-				}
-				var os = (Symbol)old.get_item(i);
-				if (os.simpleEquals( s )) {
-					os.copyChildrenFrom(s.children);
-					i++;
-					continue;
-				}
-				old.remove(i);
-				old.insert(i,s);
-				i++;
+	 	public removeOldSymbols() {
+	 		var ns = new Gee.ArrayList<Symbol>();
+	 		foreach(s in this.symbols) {
+	 			if (s.rev == this.revision) {
+	 				ns.add(s)
+ 				} else {
+	 				this.symbol_map.remove(s.id);
+ 				}
 			}
+			this.symbols = ns;
 			
-		
-		}
+			
+			
 	 	
-	 	
+ 		public GLib.ListStore children;
+		public Gee.HashMap<string,Symbol> children_map;
+
 	 	
 	 	
 	 	}
+	 	
+	 	
+	 	 
 	 	
 		
 		 
