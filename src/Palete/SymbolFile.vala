@@ -125,7 +125,7 @@ namespace Palete {
 		 	return ret;
 	 	}
 	 	// called from symbol builders..
-	 	public removeOldSymbols() {
+	 	public void  removeOldSymbols() {
 	 		var ns = new Gee.ArrayList<Symbol>();
 	 		foreach(s in this.symbols) {
 	 			if (s.rev == this.revision) {
@@ -149,11 +149,7 @@ namespace Palete {
 			
 			}
 			
-	 	
- 		public GLib.ListStore children;
-		public Gee.HashMap<string,Symbol> children_map;
-
-	 	
+	 	 
 	 	
 	 	}
 	 	
