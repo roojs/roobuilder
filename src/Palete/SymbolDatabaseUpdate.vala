@@ -143,9 +143,7 @@ namespace Palete {
 		
 		public int64 insert(Sqlite.Database db)
 		{	
-			if (!this.shouldUpdate()) {
-				return;
-			}
+			 
 			Sqlite.Statement stmt;
 			string[] keys = {};
 			string[] values = {};
