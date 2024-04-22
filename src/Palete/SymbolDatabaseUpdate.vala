@@ -122,7 +122,7 @@ namespace Palete {
 				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
 			}
 			if (Sqlite.OK != stmt.step ()) {
-			    GLib.debug("WriteFile: %s", db.errmsg());
+			    GLib.debug("SymbolUpdate: %s", db.errmsg());
 			}
 			
 
