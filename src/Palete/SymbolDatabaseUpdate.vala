@@ -27,7 +27,7 @@ namespace Palete {
 
 		}
 		
-		public void usetInts( string[] cols) 
+		public void setInts( string[] cols) 
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
