@@ -33,7 +33,7 @@ namespace Palete {
 		
 		Vala.CodeContext context;
 	 
-		Gee.ArrayList<SymbolFile> changed;
+		Gee.ArrayList<string> changed;
 		
 		Project.Gtk scan_project;
 		public SymbolFileCollection  filemanager;
