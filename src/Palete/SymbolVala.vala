@@ -273,7 +273,7 @@ namespace Palete {
 			if (this.parent != null) {
 				children_map = this.parent.children_map;
 				children =  this.parent.children;
-				 
+			}	 
 			this.fqn = this.to_fqn();
 			
 			
