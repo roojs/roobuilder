@@ -49,15 +49,18 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-				var  oldv = GLib.Value (typeof (int64));
 				var  newv = GLib.Value (typeof (int64));				
-				
-				this.old.get_property(col, ref oldv);
 				this.newer.get_property(col, ref newv);
-				
-				if (oldv.get_int64() == newv.get_int64()) {
-					continue;
-				}
+
+				if (this.old != null) {
+					var  oldv = GLib.Value (typeof (int64));
+					this.old.get_property(col, ref oldv);
+					if (oldv.get_int64() == newv.get_int64()) {
+						continue;
+					}
+				}	
+			
+
 				this.setter += (col + " = $" +col);
 				this.ints.set("$" + col, (int)newv.get_int64());
 				// not the same..
@@ -106,7 +109,7 @@ namespace Palete {
 			return this.ints.size +   this.strings.size > 0;
 		}
 		
-		public void run(Sqlite.Database db)
+		public void update(Sqlite.Database db)
 		{
 			if (!this.shouldUpdate()) {
 				return;
@@ -128,7 +131,27 @@ namespace Palete {
 
 		}
 		
+		public void update(Sqlite.Database db)
+		{	
+			if (!this.shouldUpdate()) {
+				return;
+			}
+			Sqlite.Statement stmt;
+			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", this.setter) + "WHERE id = " + this.id.to_string();
+			
+			db.prepare_v2 (q, q.length, out stmt);
+			foreach(var k in this.ints.keys) {
+				stmt.bind_int (stmt.bind_parameter_index (k), ints.get(k));
+			}
+			foreach(var k in this.strings.keys) {
+				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
+			}
+			if (Sqlite.OK != stmt.step ()) {
+			    GLib.debug("SymbolUpdate: %s", db.errmsg());
+			}
+			
 
+		}
 		
 	}
 }
