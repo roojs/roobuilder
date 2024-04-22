@@ -285,7 +285,7 @@ namespace Palete {
 				this.id = q.insert(SymbolDatabase.db);
 				this.rev = this.file.version;
 				this.file.symbols.add(this);
-				this.file.symbols_map.set(this.id, this);
+				this.file.symbol_map.set(this.id, this);
 				return;
 				
 			}
