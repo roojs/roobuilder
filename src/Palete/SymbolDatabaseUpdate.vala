@@ -40,6 +40,7 @@ namespace Palete {
 					if (oldv.get_int() == newv.get_int()) {
 						continue;
 					}
+					this.old.set_property(col, newv);
 				}
 				this.setter += (col + " = $" +col);
 				this.ints.set(col, newv.get_int());
@@ -59,6 +60,7 @@ namespace Palete {
 					if (oldv.get_int64() == newv.get_int64()) {
 						continue;
 					}
+					this.old.set_property(col, newv);
 				}	
 			
 
@@ -80,6 +82,7 @@ namespace Palete {
 					if (oldv.get_string() == newv.get_string()) {
 						continue;
 					}
+					this.old.set_property(col, newv);					
 				}
 				this.setter +=  (col + " = $" +col);
 				
