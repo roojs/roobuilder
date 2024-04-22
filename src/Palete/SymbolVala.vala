@@ -277,10 +277,10 @@ namespace Palete {
 			this.fqn = this.to_fqn();
 			
 			
-			if (!this.children_map.has_key(s.type_name)) {
+			if (!this.children_map.has_key(this.type_name)) {
 
-				children.append(s);
-				children_map.set(s.typename, s);
+				children.append(this);
+				children_map.set(this.type_name, this);
 				var q = this.fillQuery(null);
 				this.id = q.insert(SymbolDatabase.db);
 				this.rev = this.file.version;
