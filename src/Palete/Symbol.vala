@@ -99,7 +99,7 @@ namespace Palete {
 		}
 		public bool simpleEquals(Symbol s) 
 		{
-			return this.stype == s.stype && this.name == s.name;
+			return this.rev = s.rev && this.stype == s.stype && this.name == s.name;
 		}
 		public void copyFrom(Symbol s )
 		{
