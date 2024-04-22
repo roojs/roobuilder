@@ -86,7 +86,7 @@ namespace Palete {
 		
 		public boolean shouldUpdate()
 		{
-			return this.ints.length + this.strings.length > 0;
+			return this.ints.size +  this.ints64.size + this.strings.size > 0;
 		}
 		
 		public run(Sqlite db)
