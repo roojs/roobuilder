@@ -272,6 +272,7 @@ namespace Palete {
 				return; // no need to update..
 			}
 			q.update(SymbolDatabase.db);
+			q.rev++;
 		}
 			
 		
