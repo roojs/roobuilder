@@ -137,13 +137,20 @@ namespace Palete {
 
 		}
 		
-		public void update(Sqlite.Database db)
+		public void insert(Sqlite.Database db)
 		{	
 			if (!this.shouldUpdate()) {
 				return;
 			}
 			Sqlite.Statement stmt;
-			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", this.setter) + "WHERE id = " + this.id.to_string();
+			var q = "INSERT INTO " + this.table + " ( ";
+			string keys = {};
+			string vaules = {}
+			
+			
+			
+			
+			+ string.joinv(",", this.setter) + "WHERE id = " + this.id.to_string();
 			
 			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var k in this.ints.keys) {
