@@ -25,13 +25,17 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-				var oldv = old.get_property(col).get_int();
-				var newv = newer.get_property(col).get_int();
-				if (oldv == newv) {
+				var  oldv = GLib.Value (typeof (int));
+				var  newv = GLib.Value (typeof (int));				
+				
+				old.get_property(col, ref oldv)
+				newer.get_property(col, ref newv)
+				
+				if (oldv.get_string() == newv.get_int()) {
 					continue;
 				}
 				this.setter.add(col + " = $" +col);
-				this.ints.set("$" + col, newv);
+				this.ints.set("$" + col, newv.get_int());
 				// not the same..
 			}
 		}
@@ -46,7 +50,7 @@ namespace Palete {
 				old.get_property(col, ref oldv)
 				newer.get_property(col, ref newv)
 				
-				if (oldv.get_string() == newv.get_string)) {
+				if (oldv.get_string() == newv.get_string()) {
 					continue;
 				}
 				this.setter.add(col + " = $" +col);
