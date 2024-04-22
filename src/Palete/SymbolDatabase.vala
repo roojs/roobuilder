@@ -191,6 +191,25 @@ namespace Palete {
 				return;
 			}
 			
+			var q = new SymbolDatabaseQuery("symbol", null, s, 0);
+			q.setInt64s( {
+				"file_id", 
+				"parent_id"
+			});
+			q.setInts({
+				"stype",
+				"begin_line",
+				"begin_col",
+				"end_line",
+				"end_col",
+				"sequence"
+			});
+			q.setStrings({
+				"name",
+				"rtype",
+				"direction",
+			});	
+			
 			if (write_symbol_sql == null) { 
 				write_symbol_sql=  prepare("
 				 	INSERT INTO  symbol (
