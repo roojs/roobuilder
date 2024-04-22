@@ -273,18 +273,18 @@ namespace Palete {
 				children_map.set(s.typename, s);
 				var q = s.fillQuery(null);
 				s.id = q.insert(SymbolDatabase.db);
-				s.rev++;
+				s.rev = this.file.version;
 				return;
 				
 			}
 			// update..
+			s.rev = this.file.version;
 			var old = children_map.get(s.type_name);
 			var q = s.fillQuery(old);
 			if (!q.shouldUpdate()) {
 				return; // no need to update..
 			}
 			q.update(SymbolDatabase.db);
-			q.rev++;
 		}
 			
 		
