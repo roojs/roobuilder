@@ -42,7 +42,7 @@ namespace Palete {
 		{
 			this.scan_project = project;
 			this.filemanager = new SymbolFileCollection();
-			this.changed = new Gee.ArrayList<SymbolFile>();
+			this.changed = new Gee.ArrayList<string>();
 			base();
 		}
 		
@@ -57,7 +57,7 @@ namespace Palete {
 			updateBackground.begin(buildmodule, (o,r )  => {
 				var ar = updateBackground.end(r);
 				if (ar != null) {
-					this.scan_project.onTreeChanged(ar); // NOT SAFE!!!!
+					this.scan_project.onTreeChanged(ar);
 				}
 				
 			});
@@ -77,7 +77,7 @@ namespace Palete {
 		}
 
 		
-		async Gee.ArrayList<SymbolFile>? updateBackground(  string build_module) {
+		async Gee.ArrayList<string>? updateBackground(  string build_module) {
 			
 			// -- nothing running - queue it for 500s
 			// -- if this is 'end of queue at end of 500s - then we can run it.
@@ -99,7 +99,7 @@ namespace Palete {
 			this.running = true;
 			this.changed.clear();
  			yield this.create_valac_tree( build_module);
-			var ar = new Gee.ArrayList<SymbolFile>();
+			var ar = new Gee.ArrayList<string>();
 			foreach(var s in this.changed) {
 				ar.add(s);
 			}
@@ -119,7 +119,7 @@ namespace Palete {
 				return;
 			}
 			if (sf.database_has_symbols && sf.children.get_n_items() < 1) {
-				SymbolDatabase.loadSymbols(sf);
+				SymbolDatabase.loadFileSymbols(sf);
 			}
 			
 			GLib.debug("visit source file %s nodes? %d", sfile.filename, sfile.get_nodes().size);
