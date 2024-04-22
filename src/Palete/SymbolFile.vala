@@ -104,7 +104,8 @@ namespace Palete {
 		public void dump()
 		{
 			print("File %s (%d)\n", this.path, (int)this.version);
-			foreach(var s in this.top_symbols) {
+			for(var i = 0; i < this.children.get_n_items();i++) {
+				var s = (Symbol) this.children.get_item(i);
 				s.dump("  ");
 			}
 		
