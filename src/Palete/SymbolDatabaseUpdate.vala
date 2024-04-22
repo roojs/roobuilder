@@ -54,8 +54,8 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-				var oldv = old.get_property(col).get_bool();
-				var newv = newer.get_property(col).get_bool();
+				var oldv = old.get_property(col).get_boolean();
+				var newv = newer.get_property(col).get_boolean();
 				if (oldv == newv) {
 					continue;
 				}
