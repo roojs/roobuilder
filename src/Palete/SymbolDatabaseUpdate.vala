@@ -50,7 +50,20 @@ namespace Palete {
 				// not the same..
 			}
 		}
-		
+		public void updateBool(Object old, Object newer, string[] cols) 
+		{
+			for(var i = 0;i < cols.length; i++) {
+				var col = cols[i];
+				var oldv = old.get_property(col).get_bool();
+				var newv = newer.get_property(col).get_bool();
+				if (oldv == newv) {
+					continue;
+				}
+				this.setter.add(col + " = $" +col);
+				this.ints.set("$" + col, newv);
+				// not the same..
+			}
+		}
 
 		
 	}
