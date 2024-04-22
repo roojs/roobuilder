@@ -173,7 +173,7 @@ namespace Palete {
 		public  SymbolQuery fillQuery(Symbol? old)
 		{
 			
-			var q = new SymbolQuery("symbol", this.id, old, this);
+			var q = new SymbolQuery("symbol", old == null ? 0 : old.id, old, this);
 			q.setInt64s( {
 				"file_id", 
 				"parent_id"
