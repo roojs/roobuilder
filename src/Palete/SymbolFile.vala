@@ -129,7 +129,7 @@ namespace Palete {
 	 	public void  removeOldSymbols()
 	 	{
 	 		var ns = new Gee.ArrayList<Symbol>();
-	 		foreach(s in this.symbols) {
+	 		foreach(var s in this.symbols) {
 	 			if (s.rev == this.revision) {
 	 				ns.add(s)
  				} else {
