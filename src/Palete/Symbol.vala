@@ -63,7 +63,7 @@ namespace Palete {
 				return ((int)this.stype).to_string() + ":" + this.name;
 			}
 		}
-		public int rev = 0;
+		public int64 rev = 0;
 		
 		
 		public Symbol()
