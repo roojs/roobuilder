@@ -130,37 +130,26 @@ namespace Palete {
 				if ( i >= (this.children.get_n_items() -1)) {
 					this.children.append(s);
 					s.parent = this;
-					if (updateDatabse) {
-						SymbolDatabase.insertSymbol(s);
-					}
+					 
 					continue;
 				}
 				var os = (Symbol)this.children.get_item(i);
 				if (os.simpleEquals(s)) {
 					os.copyFrom(s, updateDatabase);
-
-					if (updateDatabase) {
-						SymbolDatabase.updateSymbol(os); /// ?/? fixme???
-					}
+ 
 					continue;
 				}
-				if (updateDatabase) {
-					SymbolDataase.removeSymbol(os);
-				}
+				 
 				this.children.remove(i);
 				this.children.insert(i,s);
 				s.parent = this;
-				if (updateDatabase) {
-					SymbolDatabase.insertSymbol(s);
-				}
+				 
 			}
 			var nl = newer.get_n_items();
 			while (this.children.get_n_items() > nl) {
 				var os = (Symbol)this.children.get_item(nl);		
 				this.children.remove(nl);
-				if (updateDatabase) {
-					SybmolDatabase.removeSymbol(os);
-				}
+				 
 			}
 		
 		
