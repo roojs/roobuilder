@@ -211,7 +211,7 @@ namespace Palete {
 	 		 
 			for(var i = 0; i < this.children.get_n_items();i++) {
 				var s = (Symbol) this.children.get_item(i);
-				if (s.rev == this.file.revision) {
+				if (s.rev == this.file.version) {
 					s.removeOldSymbols();
 					continue;
 				}
