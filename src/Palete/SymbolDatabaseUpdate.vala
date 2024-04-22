@@ -13,9 +13,9 @@ namespace Palete {
 		Gee.HashMap<string,string> strings;	
 		Object old;
 		Object newer;
-		int id;
+		int64 id;
 		
-		public SymbolDatabaseQuery(string table, int id, Object? old, Object newer) 
+		public SymbolDatabaseQuery(string table, int id, Object? old, Object newer, int64 id) 
 		{
 			this.table = table;
 			this.id = id;
@@ -168,6 +168,7 @@ namespace Palete {
 			if (Sqlite.OK != stmt.step ()) {
 			    GLib.debug("SYmbol insert: %s", db.errmsg());
 			}
+			stmt.reset(); //not really needed.
 			
 
 		}
