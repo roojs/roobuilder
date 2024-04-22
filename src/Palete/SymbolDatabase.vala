@@ -306,7 +306,7 @@ namespace Palete {
 				
 				child.parent = parent;
 				parent.children.append(child); 
- 				parent.children_map.set(child.type_name, s);
+ 				parent.children_map.set(child.type_name, child);
 			}
 			
 			
