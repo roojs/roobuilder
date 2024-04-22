@@ -109,6 +109,7 @@ namespace Palete {
 				}
 				this.setter +=  (col + " = $" + col);
 				this.ints.set(col, newv.get_boolean() ? 1 : 0);
+				this.old.set_property(col, newv);				
 				// not the same..
 			}
 		}
