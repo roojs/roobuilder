@@ -103,34 +103,36 @@ namespace Palete {
 		}
 		public void copyFrom(Symbol s )
 		{
-			this.begin_line=s.begin_line;
-			this.begin_col=s.begin_col;
-			this.end_line=s.end_line;
-			this.end_col=s.end_col;
-			this.sequence=s.sequence;
+			if (s.rev != this.rev) {
+				this.begin_line=s.begin_line;
+				this.begin_col=s.begin_col;
+				this.end_line=s.end_line;
+				this.end_col=s.end_col;
+				this.sequence=s.sequence;
 
-			this.name=s.name;
-			this.rtype=s.rtype;
-			this.direction=s.direction;
-			this.fqn=s.fqn;
+				this.name=s.name;
+				this.rtype=s.rtype;
+				this.direction=s.direction;
+				this.fqn=s.fqn;
 
-			this.doc=s.doc;
+				this.doc=s.doc;
 
-			this.deprecated=s.deprecated;
-			this.is_abstract=s.is_abstract;
-			this.is_sealed=s.is_sealed;
-			this.is_readable=s.is_readable;
-			this.is_writable=s.is_writable;
-			this.is_ctor=s.is_ctor;
-			this.is_static=s.is_static;
-			this.is_gir=s.is_gir;
-			this.inherits.clear();;
-			this.implements.clear();
-			foreach(var k in s.inherits) {
-				this.inherits.add(k);
-			}
-			foreach(var k in s.implements) {
-				this.implements.add(k);
+				this.deprecated=s.deprecated;
+				this.is_abstract=s.is_abstract;
+				this.is_sealed=s.is_sealed;
+				this.is_readable=s.is_readable;
+				this.is_writable=s.is_writable;
+				this.is_ctor=s.is_ctor;
+				this.is_static=s.is_static;
+				this.is_gir=s.is_gir;
+				this.inherits.clear();;
+				this.implements.clear();
+				foreach(var k in s.inherits) {
+					this.inherits.add(k);
+				}
+				foreach(var k in s.implements) {
+					this.implements.add(k);
+				}
 			}
 			this.copyChildrenFrom(s.children);
 			//?? soft copy children?
