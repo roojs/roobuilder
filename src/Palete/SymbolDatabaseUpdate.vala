@@ -21,7 +21,6 @@ namespace Palete {
 			this.id = id;
  
 			this.ints = new Gee.HashMap<string,int>();
-			this.ints64 = new Gee.HashMap<string,int>();			
 			this.strings = new Gee.HashMap<string,string>();	
 			this.old = old;
 			this.newer = newer;
@@ -87,7 +86,7 @@ namespace Palete {
 		
 		public boolean shouldUpdate()
 		{
-			return this.ints.size +  this.ints64.size + this.strings.size > 0;
+			return this.ints.size +   this.strings.size > 0;
 		}
 		
 		public run(Sqlite db)
@@ -105,9 +104,7 @@ namespace Palete {
 			foreach(var k in this.strings.keys()) {
 				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
 			}
-			foreach(var k in this.ints64.keys()) {
-				stmt.bind_int64 (stmt.bind_parameter_index (k), (int64)ints.get(k));
-			}
+			 
 
 		}
 		
