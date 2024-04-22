@@ -193,7 +193,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_parameter(ValaSymbolBuilder builder, Symbol? parent, Vala.Parameter pam, int seq)	
 		{
-			this(builder, parent,pam);
+			this(builder, pam);
 			this.name = pam.ellipsis ? "..." : pam.name;
 			this.stype = Lsp.SymbolKind.Parameter;
 			this.rtype = pam.ellipsis || pam.variable_type.type_symbol == null ? "" :
@@ -217,12 +217,13 @@ namespace Palete {
  		}
  		public SymbolVala.new_signal(ValaSymbolBuilder builder, Symbol? parent, Vala.Signal sig)	
 		{
-			this(builder, parent,sig);
+			this(builder, sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Signal;
 	 		//this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
 		 	this.rtype = sig.return_type == null || sig.return_type.type_symbol == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
+	 		this.setParent(parent);
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
 				new new_parameter(builder, this, p, n++);
@@ -232,7 +233,7 @@ namespace Palete {
 		public SymbolVala.new_method(ValaSymbolBuilder builder, Symbol? parent, Vala.Method sig)	
 		{
 			GLib.debug("new Method %s", sig.name);
-			this(builder, parent,sig);
+			this(builder, sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Method;
 			if (sig is Vala.CreationMethod) {
@@ -242,19 +243,19 @@ namespace Palete {
 			 
 		 	this.rtype = sig.return_type == null || sig.return_type.type_symbol == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
-		 	var n  = 0;
+
 		 	
 		 	 
 			this.setParent(parent); 
 			 
-		 	
+		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
 				 new new_parameter(builder, this, p, n++);
 			}
 			
 				
 		}
-	 	public void setParent(Symbol parent?) 
+	 	public void setParent(Symbol? parent) 
 		{
 			if (parent != null && parent.file.id != s.file.id) {
 				if (parent.stype != Lsp.SymbolKind.Namespace)  {
