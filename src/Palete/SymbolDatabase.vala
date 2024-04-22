@@ -289,6 +289,9 @@ namespace Palete {
 					pids.set((int)s.id, (int)parent_id);
 				} else {
 					file.top_symbols.add(s);
+					file.children.append(s);
+					file.children_map.set(s.type_name, s);
+					
 				}
 				
 			}
@@ -304,6 +307,7 @@ namespace Palete {
 				
 				child.parent = parent;
 				parent.children.append(child); 
+ 				parent.children_map.set(s.type_name, s);
 			}
 			
 			
