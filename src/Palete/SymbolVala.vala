@@ -286,7 +286,7 @@ namespace Palete {
  				children.append(this);
 				children_map.set(this.type_name, this);
 				this.file.symbols.add(this);
-				this.file.symbol_map.set(this.id, this);
+				this.file.symbol_map.set((int)this.id, this);
 				return;
 				
 			}
