@@ -8,15 +8,17 @@ namespace Palete {
 	public class SymbolDatabaseUpdate {
 	
 		string table;
-		Gee.ArrayList<string> setter;		
+		string[] setter = {};		
 		Gee.HashMap<string,int> ints;
 		Gee.HashMap<string,string> strings;	
 		Object old;
 		Object newer;
+		int id;
 		
-		public SymbolDatabaseUpdate(string table, Object old, Object newer) 
+		public SymbolDatabaseUpdate(string table, int id, Object old, Object newer) 
 		{
 			this.table = table;
+			this.id = id;
 			this.setter = new Gee.ArrayList<string>();
 			this.ints = new Gee.HashMap<string,int>();
 			this.strings = new Gee.HashMap<string,string>();	
@@ -38,7 +40,7 @@ namespace Palete {
 				if (oldv.get_int() == newv.get_int()) {
 					continue;
 				}
-				this.setter.add(col + " = $" +col);
+				this.setter += (col + " = $" +col);
 				this.ints.set("$" + col, newv.get_int());
 				// not the same..
 			}
@@ -57,7 +59,7 @@ namespace Palete {
 				if (oldv.get_string() == newv.get_string()) {
 					continue;
 				}
-				this.setter.add(col + " = $" +col);
+				this.setter +=  (col + " = $" +col);
 				this.strings.set("$" + col, newv.get_string());
 				// not the same..
 			}
@@ -76,11 +78,31 @@ namespace Palete {
 				if (oldv.get_boolean() == newv.get_boolean()) {
 					continue;
 				}
-				this.setter.add(col + " = $" + col);
+				this.setter +=  (col + " = $" + col);
 				this.ints.set("$" + col, newv.get_boolean() ? 1 : 0);
 				// not the same..
 			}
 		}
+		
+		public boolean shouldUpdate()
+		{
+			return this.ints.length + this.strings.length > 0;
+		}
+		
+		public run(Sqlite db)
+		{
+			if (!this.shouldUpdate()) {
+				return;
+			}
+			Sqlite.Statement stmt;
+			var q = "UPDATE " + this.table + " SET  ";
+			foreach(var sv in 
+			
+			db.prepare_v2 (q, q.length, out stmt);
+			return stmt;
+		
+		}
+		
 
 		
 	}
