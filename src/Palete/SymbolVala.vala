@@ -276,21 +276,22 @@ namespace Palete {
 			}	 
 			this.fqn = this.to_fqn();
 			
+			this.rev = this.file.version;
 			
 			if (!this.children_map.has_key(this.type_name)) {
 
-				children.append(this);
-				children_map.set(this.type_name, this);
+				
 				var q = this.fillQuery(null);
 				this.id = q.insert(SymbolDatabase.db);
-				this.rev = this.file.version;
+ 				children.append(this);
+				children_map.set(this.type_name, this);
 				this.file.symbols.add(this);
 				this.file.symbol_map.set(this.id, this);
 				return;
 				
 			}
 			// update..
-			this.rev = this.file.version;
+
 			var old = children_map.get(this.type_name);
 			var q = this.fillQuery(old);
 			if (!q.shouldUpdate()) {
