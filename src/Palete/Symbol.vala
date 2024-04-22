@@ -59,7 +59,7 @@ namespace Palete {
 		
 		public string type_name {
 			set {}
-			unowned get {
+			owned get {
 				return ((int)this.stype).to_string() + ":" + this.name;
 			}
 		}
