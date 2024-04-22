@@ -33,7 +33,7 @@ namespace Palete {
 		
 		Vala.CodeContext context;
 	 
-		Gee.ArrayList<string> changed;
+		Gee.ArrayList<SymbolFile> changed;
 		
 		Project.Gtk scan_project;
 		public SymbolFileCollection  filemanager;
@@ -128,7 +128,7 @@ namespace Palete {
 	        sfile.accept_children (this);
 			GLib.debug("flag as parsed %s", sfile.filename);
 			sf.is_parsed = true; // should trigger save..
-			this.changed.add( sfile.filename );
+			this.changed.add( sf );
 			//?? do we need to accept children?
 		
 		}
@@ -392,6 +392,13 @@ namespace Palete {
 				 
 				context.accept(this);
 				context = null;
+				
+				foreach(var sf in this.changed) {
+					sf.removeOldSymbols();
+				}
+				
+				
+				
 					 
 				Idle.add((owned) callback);
 				return true;
