@@ -104,10 +104,10 @@ namespace Palete {
 		}
 		public SymbolVala.new_struct(ValaSymbolBuilder builder, Symbol? parent, Vala.Struct cls)	
 		{
-			this(builder, parent,cls);
+			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Struct;
-				
+			this.setParent(parent);
 			 		
 		 	foreach(var p in cls.get_fields()) {
 				new new_field(builder, this, p);
@@ -117,11 +117,22 @@ namespace Palete {
 		public SymbolVala.new_class(ValaSymbolBuilder builder, Symbol? parent, Vala.Class cls)	
 		{
 			GLib.debug("new Class %s", cls.name);
-			this(builder, parent,cls);
+			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Class;
 			this.is_abstract = cls.is_abstract;
 			this.is_sealed = cls.is_sealed;	
+			if (cls.base_class != null) {
+				this.inherits.add(cls.base_class.get_full_name());
+			}
+			 
+		 	foreach(var p in cls.get_base_types()) {
+				if (p.type_symbol != null) {
+					this.implements.add(p.type_symbol.get_full_name());
+				} 
+			}
+			this.setParent(parent);
+			
 	 		//this.is_static =  cls.binding != Vala.MemberBinding.INSTANCE;
 		 	foreach(var c in cls.get_classes()) {
 				new new_class(builder, this,c);
@@ -140,46 +151,41 @@ namespace Palete {
 				new new_method(builder, this, p);
 			}
 			
-			if (cls.base_class != null) {
-				this.inherits.add(cls.base_class.get_full_name());
-			}
-			 
-		 	foreach(var p in cls.get_base_types()) {
-				if (p.type_symbol != null) {
-					this.implements.add(p.type_symbol.get_full_name());
-				}
-				 
-			}
+			
 		}
 		public SymbolVala.new_property(ValaSymbolBuilder builder, Symbol? parent, Vala.Property prop)	
 		{
 			//GLib.debug("new Property  %s", prop.name);
-			this(builder, parent,prop);
+			this(builder, prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
 			this.rtype  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
 			this.is_static =  prop.binding != Vala.MemberBinding.INSTANCE;
 		 	this.is_readable = prop.get_accessor != null ?  prop.get_accessor.readable : false;
 			this.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable ||  prop.set_accessor.construction : false;	 
+			this.setParent(parent);
 		}
 		public SymbolVala.new_field(ValaSymbolBuilder builder, Symbol? parent, Vala.Field prop)	
 		{
 			//GLib.debug("new Field  %s", prop.name);
-			this(builder, parent,prop);
+			this(builder, prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Field;
 			this.rtype  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
+			this.setParent(parent);
 		}
 		
 		public SymbolVala.new_delegate(ValaSymbolBuilder builder, Symbol? parent, Vala.Delegate sig)	
 		{
-			this(builder, parent,sig);
+			this(builder, sig);
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Delegate;
 			 		
 		 	this.rtype = sig.return_type == null || sig.return_type.type_symbol == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
+			this.setParent(parent);		 		
 		 	var n  = 0;
+
 		 	foreach(var p in sig.get_parameters()) {
 				new new_parameter(builder, this, p, n++);
 			}
@@ -194,6 +200,8 @@ namespace Palete {
 				pam.variable_type.type_symbol.get_full_name();
 
 			this.sequence = seq;
+ 
+
 			switch (pam.direction) {
 				case Vala.ParameterDirection.IN:
 					this.direction = "in";
@@ -205,7 +213,7 @@ namespace Palete {
 					this.direction = "ref";
 					break;
 			}
-			
+			this.setParent(parent);
  		}
  		public SymbolVala.new_signal(ValaSymbolBuilder builder, Symbol? parent, Vala.Signal sig)	
 		{
