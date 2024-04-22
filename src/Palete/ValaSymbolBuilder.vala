@@ -77,7 +77,7 @@ namespace Palete {
 		}
 
 		
-		async Gee.ArrayList<string>? updateBackground(  string build_module) {
+		async Gee.ArrayList<SymbolFile>? updateBackground(  string build_module) {
 			
 			// -- nothing running - queue it for 500s
 			// -- if this is 'end of queue at end of 500s - then we can run it.
