@@ -166,7 +166,7 @@ namespace Palete {
 				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
 			}
 			if (Sqlite.OK != stmt.step ()) {
-			    GLib.debug("SymbolUpdate: %s", db.errmsg());
+			    GLib.debug("SYmbol insert: %s", db.errmsg());
 			}
 			
 
