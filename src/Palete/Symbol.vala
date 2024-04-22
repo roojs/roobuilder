@@ -217,7 +217,7 @@ namespace Palete {
 				}
 				this.children.remove(i);
 				i--;
-				this.children_map.remove(s.type_name);
+				this.children_map.unset(s.type_name);
 				 
 			}
 			
