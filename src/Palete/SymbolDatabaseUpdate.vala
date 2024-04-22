@@ -71,16 +71,18 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-				var  oldv = GLib.Value (typeof (string));
 				var  newv = GLib.Value (typeof (string));				
-				
-				this.old.get_property(col, ref oldv);
 				this.newer.get_property(col, ref newv);
-				
-				if (oldv.get_string() == newv.get_string()) {
-					continue;
+
+				if (this.old != null) {
+					var  oldv = GLib.Value (typeof (string));
+					this.old.get_property(col, ref oldv);
+					if (oldv.get_string() == newv.get_string()) {
+						continue;
+					}
 				}
 				this.setter +=  (col + " = $" +col);
+				
 				this.strings.set("$" + col, newv.get_string());
 				// not the same..
 			}
