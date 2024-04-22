@@ -168,7 +168,6 @@ roobuilder_src = files([
    'src/Palete/SymbolGir.vala',
    'src/Palete/SymbolQuery.vala',
    'src/Palete/SymbolFileCollection.vala',
-   'src/Palete/SymbolDatabaseUpdate.vala',
 ])
 
 
