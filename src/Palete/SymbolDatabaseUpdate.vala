@@ -101,12 +101,12 @@ namespace Palete {
 			}
 		}
 		
-		public boolean shouldUpdate()
+		public bool shouldUpdate()
 		{
 			return this.ints.size +   this.strings.size > 0;
 		}
 		
-		public run(Sqlite db)
+		public void run(Sqlite db)
 		{
 			if (!this.shouldUpdate()) {
 				return;
