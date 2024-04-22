@@ -121,7 +121,8 @@ namespace Palete {
 			foreach(var k in this.strings.keys()) {
 				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
 			}
-			 
+			stmt.step () ;
+			
 
 		}
 		
