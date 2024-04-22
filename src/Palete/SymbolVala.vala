@@ -235,9 +235,9 @@ namespace Palete {
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
 		 	
-		 	if (parent != null) { 
-				parent.addChild(this); 
-			}
+		 	 
+			this.setParent(this); 
+			 
 		 	
 		 	foreach(var p in sig.get_parameters()) {
 				 new new_parameter(builder, this, p, n++);
@@ -245,9 +245,9 @@ namespace Palete {
 			
 				
 		}
-	 	public void addChild(Symbol? parent, Symbol s) 
+	 	public void setParent(Symbol parent?) 
 		{
-			if (parent != null && parent.file.id != this.file.id) {
+			if (parent !=null && parent.file.id != s.file.id) {
 				if (parent.stype != Lsp.SymbolKind.Namespace)  {
 					GLib.error("parent is from differnt file, and its' type is %s", 
 						parent.stype.to_string());
@@ -259,17 +259,20 @@ namespace Palete {
 			
 			this.parent = parent;
 			if (this.parent != null) {
+				var children_map = this.parent.children_map;
+				var children =  this.parent.children;
 				this.parent.children.append(this);
 			} else {
-				this.file.top_symbols.add(this);
+				var children_map = this.file.children_map;
+				var children =  this.file.children;
 			}
 			this.fqn = this.to_fqn();
 			
 			
 			if (!this.children_map.has_key(s.type_name)) {
-				s.parent = this;
-				this.children.append(s);
-				this.children_map.set(s.typename, s);
+				this.parent = parent;
+				this.parent.children.append(s);
+				this.parent.children_map.set(s.typename, s);
 				var q = s.fillQuery(null);
 				s.id = q.insert(SymbolDatabase.db);
 				s.rev++;
