@@ -99,7 +99,7 @@ namespace Palete {
 		}
 		public bool simpleEquals(Symbol s) 
 		{
-			return  this.stype == s.stype && this.name == s.name;
+			return this.stype == s.stype && this.name == s.name;
 		}
 		public void copyFrom(Symbol s )
 		{
@@ -139,6 +139,8 @@ namespace Palete {
 		}
 		public void copyChildrenFrom( GLib.ListStore newer) 
 		{
+			
+			// this should use the map?
 			for(var i = 0; i < newer.get_n_items(); i++) {
 				var s = (Symbol)newer.get_item(i);
 				if ( i >= (this.children.get_n_items() -1)) {
