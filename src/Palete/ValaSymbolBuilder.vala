@@ -101,7 +101,7 @@ namespace Palete {
  			yield this.create_valac_tree( build_module);
 			var ar = new Gee.ArrayList<string>();
 			foreach(var s in this.changed) {
-				ar.add(sf.path);
+				ar.add(s);
 			}
 			this.running = false;		
 			return ar;
