@@ -258,29 +258,27 @@ namespace Palete {
 			}
 			
 			this.parent = parent;
+			var children_map = this.file.children_map;
+			var children =  this.file.children;
 			if (this.parent != null) {
-				var children_map = this.parent.children_map;
-				var children =  this.parent.children;
-				this.parent.children.append(this);
-			} else {
-				var children_map = this.file.children_map;
-				var children =  this.file.children;
-			}
+				children_map = this.parent.children_map;
+				children =  this.parent.children;
+				 
 			this.fqn = this.to_fqn();
 			
 			
 			if (!this.children_map.has_key(s.type_name)) {
-				this.parent = parent;
-				this.parent.children.append(s);
-				this.parent.children_map.set(s.typename, s);
+
+				children.append(s);
+				children_map.set(s.typename, s);
 				var q = s.fillQuery(null);
 				s.id = q.insert(SymbolDatabase.db);
 				s.rev++;
 				return;
 				
 			}
-			
-			var old = this.children_map.get(s.type_name);
+			// update..
+			var old = children_map.get(s.type_name);
 			var q = s.fillQuery(old);
 			if (!q.shouldUpdate()) {
 				return; // no need to update..
