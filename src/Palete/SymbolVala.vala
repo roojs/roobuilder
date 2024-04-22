@@ -5,21 +5,17 @@ namespace Palete {
 		public SymbolVala(ValaSymbolBuilder builder, Symbol? parent, Vala.Symbol s)
 		{
 			base();
+			this.file = builder.filemanager.factory_by_path(s.source_reference.file.filename);
 			
-
 			this.begin_line = s.source_reference.begin.line;
 			this.begin_col = s.source_reference.begin.column;
 			this.end_line = s.source_reference.end.line;
 			this.end_col = s.source_reference.end.column;
 			this.deprecated  = s.version.deprecated;
 			this.file.symbols.add(this); //referenced...
-			if (this.parent != null) {
-				this.parent.children.append(this);
-			} else {
-				this.file.top_symbols.add(this);
-			}
 			
-			this.fqn = this.to_fqn();
+			
+			
 			
 		}
 		
@@ -238,14 +234,36 @@ namespace Palete {
 		 	this.rtype = sig.return_type == null || sig.return_type.type_symbol == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
 		 	var n  = 0;
-		 	foreach(var p in sig.get_parameters()) {
-				this.addChild(new new_parameter(builder, this, p, n++);
+		 	
+		 	if (parent != null) { 
+				parent.addChild(this); 
 			}
-
-		}
-	 	public void addChild(Symbol s) 
-		{
+		 	
+		 	foreach(var p in sig.get_parameters()) {
+				 new new_parameter(builder, this, p, n++);
+			}
 			
+				
+		}
+	 	public void addChild(Symbol? parent, Symbol s) 
+		{
+			if (parent != null && parent.file.id != this.file.id) {
+				if (parent.stype != Lsp.SymbolKind.Namespace)  {
+					GLib.error("parent is from differnt file, and its' type is %s", 
+						parent.stype.to_string());
+				}
+				
+				this.parent_name = parent.name;
+				parent = null;
+			}
+			
+			this.parent = parent;
+			if (this.parent != null) {
+				this.parent.children.append(this);
+			} else {
+				this.file.top_symbols.add(this);
+			}
+			this.fqn = this.to_fqn();
 			
 			
 			if (!this.children_map.has_key(s.type_name)) {
