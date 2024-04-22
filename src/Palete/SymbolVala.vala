@@ -2,7 +2,7 @@ namespace Palete {
 
 	public class SymbolVala : Symbol {
 	
-		public SymbolVala(ValaSymbolBuilder builder, Symbol? parent, Vala.Symbol s)
+		public SymbolVala(ValaSymbolBuilder builder, Vala.Symbol s)
 		{
 			base();
 			this.file = builder.filemanager.factory_by_path(s.source_reference.file.filename);
@@ -247,7 +247,7 @@ namespace Palete {
 		}
 	 	public void setParent(Symbol parent?) 
 		{
-			if (parent !=null && parent.file.id != s.file.id) {
+			if (parent != null && parent.file.id != s.file.id) {
 				if (parent.stype != Lsp.SymbolKind.Namespace)  {
 					GLib.error("parent is from differnt file, and its' type is %s", 
 						parent.stype.to_string());
