@@ -55,6 +55,16 @@ namespace Palete {
 			private set {}
 			
 		}
+		
+		public string type_name {
+			set {}
+			get {
+				return ((int)this.stype).to_string() + ":" + this.name;
+			}
+		}
+			
+		
+		
 		public Symbol()
 		{
 			base();
@@ -153,6 +163,14 @@ namespace Palete {
 		
 		
 		}
+		
+		public void addChild(Symbol s) {
+			
+		
+		
+		}
+		
+		
 		
 		
 	}
