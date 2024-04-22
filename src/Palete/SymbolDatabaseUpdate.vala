@@ -86,8 +86,8 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-				var  oldv = GLib.Value (typeof (boolean));
-				var  newv = GLib.Value (typeof (boolean));				
+				var  oldv = GLib.Value (typeof (bool));
+				var  newv = GLib.Value (typeof (bool));				
 				
 				this.old.get_property(col, ref oldv);
 				this.newer.get_property(col, ref newv);
