@@ -15,7 +15,7 @@ namespace Palete {
 		Object newer;
 		int64 id;
 		
-		public SymbolDatabaseQuery(string table, int id, Object? old, Object newer, int64 id) 
+		public SymbolDatabaseQuery(string table, int64 id, Object? old, Object newer ) 
 		{
 			this.table = table;
 			this.id = id;
