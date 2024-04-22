@@ -101,7 +101,7 @@ namespace Palete {
  			yield this.create_valac_tree( build_module);
 			var ar = new Gee.ArrayList<string>();
 			foreach(var s in this.changed) {
-				ar.add(s);
+				ar.add(sf.path);
 			}
 			this.running = false;		
 			return ar;
@@ -432,11 +432,7 @@ namespace Palete {
 			
 		}
 		
-		void updateFile(SymbolFile file)
-		{
-			var old 
-		
-		}
+		 
 		
 		
 	}
