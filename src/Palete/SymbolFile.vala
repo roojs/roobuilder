@@ -133,7 +133,7 @@ namespace Palete {
 	 			if (s.rev == this.version) {
 	 				ns.add(s);
  				} else {
-	 				this.symbol_map.unset(s.id);
+	 				this.symbol_map.unset((int)s.id);
  				}
 			}
 			this.symbols = ns;
