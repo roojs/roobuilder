@@ -115,10 +115,10 @@ namespace Palete {
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", this.setter) + "WHERE id = " + this.id.to_string();
 			
 			db.prepare_v2 (q, q.length, out stmt);
-			foreach(var k in this.ints.keys()) {
+			foreach(var k in this.ints.keys) {
 				stmt.bind_int (stmt.bind_parameter_index (k), ints.get(k));
 			}
-			foreach(var k in this.strings.keys()) {
+			foreach(var k in this.strings.keys) {
 				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
 			}
 			if (Sqlite.OK != stmt.step ()) {
