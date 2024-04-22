@@ -40,13 +40,17 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-				var oldv = old.get_property(col).get_string();
-				var newv = newer.get_property(col).get_string();
-				if (oldv == newv) {
+				var  oldv = GLib.Value (typeof (string));
+				var  newv = GLib.Value (typeof (string));				
+				
+				old.get_property(col, ref oldv)
+				newer.get_property(col, ref newv)
+				
+				if (oldv.get_string() == newv.get_string)) {
 					continue;
 				}
 				this.setter.add(col + " = $" +col);
-				this.strings.set("$" + col, newv);
+				this.strings.set("$" + col, newv.get_string());
 				// not the same..
 			}
 		}
