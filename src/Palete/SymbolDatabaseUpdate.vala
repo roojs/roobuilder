@@ -19,8 +19,9 @@ namespace Palete {
 		{
 			this.table = table;
 			this.id = id;
-			this.setter = new Gee.ArrayList<string>();
+ 
 			this.ints = new Gee.HashMap<string,int>();
+			this.ints64 = new Gee.HashMap<string,int>();			
 			this.strings = new Gee.HashMap<string,string>();	
 			this.old = old;
 			this.newer = newer;
