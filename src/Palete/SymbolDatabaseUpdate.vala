@@ -59,8 +59,8 @@ namespace Palete {
 				if (oldv == newv) {
 					continue;
 				}
-				this.setter.add(col + " = $" +col);
-				this.ints.set("$" + col, newv);
+				this.setter.add(col + " = $" + col);
+				this.ints.set("$" + col, newv ? 1 : 0);
 				// not the same..
 			}
 		}
