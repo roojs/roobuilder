@@ -122,7 +122,7 @@ namespace Palete {
 		 	return ret;
 	 	}
 	 	// called from symbol builders..
-	 	public refreshSymbolsFromDB()
+	 	public void refreshSymbolsFromDB()
 	 	{
 	 	
 	 	}
