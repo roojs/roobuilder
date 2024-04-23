@@ -12,8 +12,8 @@ namespace Palete {
 		Gee.HashMap<string,int> ints;
 		Gee.HashMap<string,string> strings;	
 		Gee.HashMap<string,GLib.Type> types;
-		Object old;
-		Object newer;
+		T old;
+		T newer;
 		int64 id;
 		
 		public SymbolQuery(string table, int64 id, T? old, T newer ) 
