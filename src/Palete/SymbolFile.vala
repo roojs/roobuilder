@@ -269,11 +269,12 @@ namespace Palete {
 					this.children_map.unset(k);
 				}
 			}
-			foreach(var s in this.symbols) {
+			/*foreach(var s in this.symbols) {
  				if (s.rev != s.file.version) {
 					this.symbols.remove(s);
 				}
 			}
+			*/
 			foreach(var k in this.symbol_map.keys) {
 				var s = this.symbol_map.get(k);
  				if (s.rev != s.file.version) {
