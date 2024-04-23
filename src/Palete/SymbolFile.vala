@@ -171,7 +171,8 @@ namespace Palete {
 			this.symbol_map.clear(); //??? should be fresh load?
 			var q = (new Symbol()).fillQuery(null);
 			var ids = new Gee.HashMap<int,Symbol>();
-		 	q.select(db, "file_id = " + this.id.to_string(), ids);
+		 	q.select(db, "file_id = " + this.id.to_string() +
+		 		" order by parent_id ASC, id ASC", ids);
 			var pids = new Gee.HashMap<int, int>();
 			
 			foreach(var id in ids.keys) {
