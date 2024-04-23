@@ -245,7 +245,7 @@ namespace Palete {
 				child.parent = parent;
 				parent.children.append(child); 
  				parent.children_map.set(child.type_name, child);
- 				this.symbol_map.set(child.id, child);
+ 				this.symbol_map.set((int)child.id, child);
 			}
 			
 			
