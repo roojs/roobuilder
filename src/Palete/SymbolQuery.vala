@@ -177,7 +177,7 @@ namespace Palete {
 		
 		public string where = ""; // used by select...
 		
-		public select(Sqlite.Database db)
+		public Gee.HashMap<int,T> select(Sqlite.Database db)
 		{
 			Sqlite.Statement stmt;
 			string[] keys = {};
