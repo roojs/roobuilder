@@ -186,6 +186,7 @@ namespace Palete {
 			
 			var ret = new Gee.HashMap<int,T>();
 			var cols = new Gee.ArrayList<string,int>();
+			string[] keys;
 			var i = 0;
 			foreach(var k in this.ints.keys) {
 				keys += k;
@@ -199,16 +200,15 @@ namespace Palete {
 			}
 			
 			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + this.where;
-				string.joinv(",", keys) + " ) VALUES ( " + 
-				string.joinv(",", values) +   " )";
-			
+			 
 			db.prepare_v2 (q, q.length, out stmt);
 			while (stmt.step() == Sqlite.ROW) {
 			
 
-			 	foreach(var k in this.keys) {
+			 	foreach(var k in cols.keys) {
 			 		var row = new T();
 			 		var type = this.getTypeof(k);
+			 		var id = 0;
  				 	var  newv = GLib.Value ( type );				
 			 		switch(type) {
 			 			case typeof(bool):
@@ -218,7 +218,11 @@ namespace Palete {
 							newv.set_int(stmt.column_int(cols.get(k)));
 							break;
 			 			case typeof(int64):
-							newv.set_int64(stmt.column_int64(cols.get(k)));
+			 				var val = stmt.column_int64(cols.get(k);
+			 				if (k == "id") {
+			 					id = val;
+		 					}
+							newv.set_int64(val));
 							break;
 						case typeof(string):
 							newv.set_string(stmt.column_text(cols.get(k)));
@@ -226,6 +230,10 @@ namespace Palete {
 
 					}
 					this.newer.set_property(col, ref newv);
+				}
+				ret.set(id, row);
+			}
+			return ret;
 		
 		}
 		
