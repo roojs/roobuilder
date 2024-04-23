@@ -207,23 +207,31 @@ namespace Palete {
 			});
 			return q;
 		}
-		public void  removeOldSymbols() {
+		
+		
+		public void removeOldSymbols()
+	 	{
 	 		 
-			for(var i = 0; i < this.children.get_n_items();i++) {
+			for(var i = 0; i < this.children.get_n_items(); i++) {
 				var s = (Symbol) this.children.get_item(i);
-				if (s.rev == this.file.version) {
-					s.removeOldSymbols();
+				if (s.rev != s.file.version) {
+					this.children.remove(i);
+					i--;
 					continue;
 				}
-				this.children.remove(i);
-				i--;
-				this.children_map.unset(s.type_name);
-				 
+				s.removeOldSymbols();
 			}
+			foreach(var k in this.children_map.keys) {
+				var s = this.children_map.get(k);
+				if (s.rev != s.file.version) {
+					this.children_map.unset(k);
+				}
+			}
+			 
 			
-	 	 
-	 	
+
 	 	}
+		 
 		
 		
 	}
