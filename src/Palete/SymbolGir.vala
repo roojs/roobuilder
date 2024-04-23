@@ -23,7 +23,7 @@ namespace Palete {
 			if (this.parent != null) {
 				this.parent.children.append(this);
 			} else {
-				this.file.top_symbols.add(this);
+				this.file.children.append(this);
 			}
 			 
 			this.is_gir = true;
@@ -175,6 +175,10 @@ namespace Palete {
 			 
 
 		}
+		
+		
+		 
+		
  	}
  	
 }
