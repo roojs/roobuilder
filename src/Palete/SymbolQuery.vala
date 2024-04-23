@@ -187,7 +187,7 @@ namespace Palete {
 			var ret = new Gee.HashMap<int,T>();
 			var cols = new Gee.HashMap<string,int>();
 			string[] keys;
-			var id = 0;
+			int64 id = 0;
 			var i = 0;
 			foreach(var k in this.ints.keys) {
 				keys += k;
