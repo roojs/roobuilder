@@ -136,7 +136,7 @@ namespace Palete {
 			var original_ids = new  Gee.ArrayList<int>();
 			foreach(var id in this.symbol_map.keys) {
 				original_ids.add(id);
-			]
+			}
 			
 			foreach(var id in newar.keys) {
 				var s = newar.get(id);
