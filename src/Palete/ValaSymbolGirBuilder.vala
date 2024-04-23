@@ -7,6 +7,9 @@ namespace Palete {
  
 	public class ValaSymbolGirBuilder  : Object {
 		
+		
+		public SymbolFileCollection  filemanager;
+		
 		public static void updateGirs() 
 		{
 			updateGirBackground.begin((o,r )  => {
@@ -37,7 +40,7 @@ namespace Palete {
 		
 		public   ValaSymbolGirBuilder()
 		{
-		 
+			this.filemanager = new SymbolFileCollection();
 			// cant find a better way to work out where these dir's are..
 			// probably need to config this somehow..
 			string[] gir_directories = { "/usr/share" ,"/usr/local/share/" };
