@@ -55,7 +55,7 @@ namespace Palete {
 		public SymbolFile(string path, int version) {
 			this.path = path;
 			this.version = version;
-			this.symbols = new Gee.ArrayList<Symbol>();
+			this.symbols = new Gee.ArrayList<Symbol>((a,b) => { return a.id == b.id ; });
 			this.symbol_map = new Gee.HashMap<int,Symbol>();
 			this.children = new GLib.ListStore(typeof(Symbol));
 			this.children_map = new Gee.HashMap<string,Symbol>();
@@ -128,7 +128,7 @@ namespace Palete {
 	 	// called from symbol builders..
 	 	public void  removeOldSymbols()
 	 	{
-	 		var ns = new Gee.ArrayList<Symbol>((a,b) => { return a.id == b.id });
+	 		var ns = new Gee.ArrayList<Symbol>((a,b) => { return a.id == b.id ; });
 	 		foreach(var s in this.symbols) {
 	 			if (s.rev == this.version) {
 	 				ns.add(s);
@@ -155,11 +155,38 @@ namespace Palete {
 	 	
 	 	public void removeOldSymbols()
 	 	{
-	 		public Gee.ArrayList<Symbol> symbols;
-	 		public Gee.HashMap<int,Symbol> symbol_map;
+	 		//public Gee.ArrayList<Symbol> symbols;
+	 		//public Gee.HashMap<int,Symbol> symbol_map;
 	 		
-	 		public GLib.ListStore children;
-			public Gee.HashMap<string,Symbol> children_map;
+	 		//public GLib.ListStore children;
+			//public Gee.HashMap<string,Symbol> children_map;
+			for(var i = 0; i < this.children.get_n_items(); i++) {
+				var s = (Symbol) this.children.get_item(i);
+				if (s.rev != s.file.version) {
+					this.children.remove(i);
+					i--;
+					continue;
+				}
+				s.removeOldSymbols();
+			}
+			foreach(var k in this.children_map.keys) {
+				var s = this.children_map.get(k);
+				if (s.rev != s.file.version) {
+					this.children_map.unset(k);
+				}
+			}
+			foreach(var s in this.symobls) {
+ 				if (s.rev != s.file.version) {
+					this.symobls.remove(s);
+				}
+			}
+			foreach(var s in this.symbol_map.keys) {
+				var s = this.symbol_map.get(k);
+ 				if (s.rev != s.file.version) {
+					this.symbol_map.unset(k);
+				}
+			}
+			
 
 	 	}
 	 	
