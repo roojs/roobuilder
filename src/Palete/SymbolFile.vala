@@ -133,7 +133,10 @@ namespace Palete {
 			//this.symbols_all 
 			
 			//?? needs way more thought - as we have to make sure file/parent point to the correct nodes.
-			
+			var original_ids = Gee.ArrayList<int>();
+			foreach(var id in this.symbol_map.keys) {
+				original_ids.add(id);
+			]
 			
 			foreach(var id in newar.keys) {
 				var s = newar.get(id);
@@ -173,14 +176,12 @@ namespace Palete {
 			}
 			 
 			// moved. (they are also mentioned in pids - so added back later.)
-			foreach(var s in moved) {
-				this.removeSymbol(this.symbol_map.get(id));
-			}
+			 
 			
 
 			this.linkNewSymbols(pids, newids);
 			// deleted
-			foreach(var id in this.symbol_map.keys) {
+			foreach(var id in this.original_ids) {
 				if (newar.has_key(id)) {
 					continue;
 				}
@@ -203,7 +204,7 @@ namespace Palete {
 		}
 	 	
 	 	
-	  	public static void loadSymbols()
+	  	public  void loadSymbols()
 		{
 			this.symbols.clear();
 			this.symbol_map.clear(); //??? should be fresh load?
