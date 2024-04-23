@@ -213,11 +213,13 @@ namespace Palete {
 		 	q.select(db, "file_id = " + this.id.to_string() +
 		 		" order by parent_id ASC, id ASC", ids);
 			var pids = new Gee.HashMap<int, int>();
-			
+			var newsymbols = new Gee.ArrayList<Symbol>();
 			foreach(var id in ids.keys) {
 				var s = ids.get(id);
 				s.file = this;				
 				//this.symbols.add(s);
+				this.symbol_map.set((int)s.id, s);
+				newsymbols.add(s);
 				if (s.parent_id > 0) {
 					pids.set((int)s.id, (int)s.parent_id);
 				} else {
@@ -225,7 +227,7 @@ namespace Palete {
 					this.children_map.set(s.type_name, s);
 				}
 			}
-			this.linkNewSymbols(pids, ids);
+			this.linkNewSymbols(pids, newsymbols);
 
 		}
 		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> newsymbols)
