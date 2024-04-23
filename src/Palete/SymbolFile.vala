@@ -151,7 +151,7 @@ namespace Palete {
 					this.symbols.remove(s);
 				}
 			}
-			foreach(var s in this.symbol_map.keys) {
+			foreach(var k in this.symbol_map.keys) {
 				var s = this.symbol_map.get(k);
  				if (s.rev != s.file.version) {
 					this.symbol_map.unset(k);
