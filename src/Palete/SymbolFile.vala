@@ -59,6 +59,7 @@ namespace Palete {
 			this.symbol_map = new Gee.HashMap<int,Symbol>();
 			this.children = new GLib.ListStore(typeof(Symbol));
 			this.children_map = new Gee.HashMap<string,Symbol>();
+			this.fqn_map = new Gee.HashMap<string,Symbol); // used by gir loading
 			 
 		}
 		
