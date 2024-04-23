@@ -173,7 +173,7 @@ namespace Palete {
 	 	
 	 	void removeSymbol(Symbol s)
 	 	{
-	 		var c = s.parent_id = 0 ? this.children : this.symbol_map.get(s.parent_id).children;
+	 		var c = s.parent_id == 0 ? this.children : this.symbol_map.get(s.parent_id).children;
 	 		uint pos;
 			c.find_with_equal_func(s, (a, b) => {
 				return a.id == b.id;
