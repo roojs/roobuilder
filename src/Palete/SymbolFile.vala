@@ -91,7 +91,7 @@ namespace Palete {
 
 		
 		}
-		
+		/*
 		public void initSymbolMap()
 		{
 			this.symbol_map.clear();
@@ -100,6 +100,7 @@ namespace Palete {
 			}
 			 
 		}
+		*/
 		
 		public void dump()
 		{
