@@ -233,10 +233,12 @@ namespace Palete {
 		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> newsymbols)
 		{
 			foreach(var child in newsymbols) {
-			 
+
 				var parent_id = pids.get((int)child.id);
+				
 				var parent = this.symbol_map.get(parent_id);
 				if(parent == null) {
+					
 					GLib.debug("Can not find parent %d of row %d", parent_id , child.id);
 					continue;
 				}
