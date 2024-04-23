@@ -126,32 +126,7 @@ namespace Palete {
 		 	return ret;
 	 	}
 	 	// called from symbol builders..
-	 	public void  removeOldSymbols()
-	 	{
-	 		var ns = new Gee.ArrayList<Symbol>((a,b) => { return a.id == b.id ; });
-	 		foreach(var s in this.symbols) {
-	 			if (s.rev == this.version) {
-	 				ns.add(s);
- 				} else {
-	 				this.symbol_map.unset((int)s.id);
- 				}
-			}
-			this.symbols = ns;
-			
-			for(var i = 0; i < this.children.get_n_items();i++) {
-				var s = (Symbol) this.children.get_item(i);
-				if (s.rev == this.version) {
-					s.removeOldSymbols();
-					continue;
-				}
-				this.children.remove(i);
-				i--;
-				this.children_map.unset(s.type_name);
-				
-			
-			}
-			
-	 	}
+	  
 	 	
 	 	public void removeOldSymbols()
 	 	{
