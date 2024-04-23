@@ -156,7 +156,7 @@ namespace Palete {
 			// moved.
 			foreach(var id in moved) {
 				var s = this.symbols_map.get(id);
-				var c = s.parent.children;
+				var c = s.parent == null ? this.children : s.parent.children;
 				uint pos;
 				c.find_with_equal_func(s, (a, b) => {
 					return a.id == b.idl
@@ -167,8 +167,27 @@ namespace Palete {
 			
 			this.linkNewSymbols(pids, newids);
 			// deleted
-			// moved
+			foreach(var this.symbol_map.keys as id) {
+				if (newids.has_key(id)) {
+					continue;
+				}
+				 
+				this.removeSymbol(this.symbols_map.get(id));
+			}
+			this.symbol_map = newids;
+			 
 	 	}
+	 	
+	 	void removeSymbol(Symbol s)
+	 	{
+	 		var c = s.parent == null ? this.children : s.parent.children;
+	 		uint pos;
+			c.find_with_equal_func(s, (a, b) => {
+				return a.id == b.idl
+			}, out pos);
+			c.remove(pos);
+		}
+	 	
 	 	
 	  	public static void loadSymbols()
 		{
@@ -192,6 +211,7 @@ namespace Palete {
 				}
 			}
 			this.linkNewSymbols(pids, ids);
+			this.symbol_map = ids;
 		}
 		void linkNewSymbols(Gee.HashMap<id,id> pids, Gee.HashMap<int,Symbol> ids)
 		{
@@ -207,7 +227,7 @@ namespace Palete {
 				parent.children.append(child); 
  				parent.children_map.set(child.type_name, child);
 			}
-			this.symbol_map = ids;
+			
 			
 		}
 	 	
