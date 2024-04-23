@@ -12,11 +12,11 @@ namespace Palete {
 		Gee.HashMap<string,int> ints;
 		Gee.HashMap<string,string> strings;	
 		Gee.HashMap<string,GLib.Type> types;
-		T old;
-		T newer;
+		Object old;
+		Object newer;
 		int64 id;
 		
-		public SymbolQuery(string table, int64 id, T? old, T newer ) 
+		public SymbolQuery(string table, int64 id, Object old, Object newer ) 
 		{
 			this.table = table;
 			this.id = id;
@@ -229,7 +229,7 @@ namespace Palete {
 							break;
 
 					}
-					this.newer.set_property(col, ref newv);
+					((Object)row).set_property(col, ref newv);
 				}
 				ret.set(id, row);
 			}
