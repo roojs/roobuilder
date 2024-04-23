@@ -227,19 +227,20 @@ namespace Palete {
 			this.linkNewSymbols(pids, ids);
 
 		}
-		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> ids)
+		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> newsymbols)
 		{
-			foreach(var cid in  pids.keys ) {
-				var child = ids.get(cid);
-				var parent_id = pids.get(cid);
-				var parent = ids.get(parent_id);
+			foreach(var child in newsymbols) {
+			 
+				var parent_id = pids.get(child.id);
+				var parent = this.symbol_map.get(parent_id);
 				if(parent == null) {
-					GLib.debug("Can not find parent %d of row %d", parent_id , cid);
+					GLib.debug("Can not find parent %d of row %d", parent_id , child.id);
 					continue;
 				}
 				child.parent = parent;
 				parent.children.append(child); 
  				parent.children_map.set(child.type_name, child);
+ 				this.symbol_map.set(child.id, child);
 			}
 			
 			
