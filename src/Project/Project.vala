@@ -1085,7 +1085,7 @@ namespace Project {
 		}
 		public void onTreeChanged(Gee.ArrayList<string> paths) {
 			// loop trhoug paths - see if files are open, if so... update right tree?
-			for(var p in paths) {
+			foreach(var p in paths) {
 				this.symbolmanager.factory_by_path(p).refreshSymbolsFromDB();
 			}
 		
