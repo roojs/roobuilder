@@ -45,7 +45,7 @@ namespace Palete {
 					this.version = this.cur_mod_time();
 					//GLib.debug("is_parsed %s : %d", this.path, (int)this.version);
 					SymbolDatabase.writeFile(this);
-					SymbolDatabase.writeSymbols(this);
+					//SymbolDatabase.writeSymbols(this);
 					SymbolDatabase.loadFileHasSymbols(this);	
 					
 				}
@@ -193,7 +193,7 @@ namespace Palete {
 	 	
 	 	void removeSymbol(Symbol s)
 	 	{
-	 		var c = s.parent_id == 0 ? this.children : this.symbol_map.get(s.parent_id).children;
+	 		var c = s.parent_id == 0 ? this.children : this.symbol_map.get((int)s.parent_id).children;
 	 		uint pos;
 			c.find_with_equal_func(s, (a, b) => {
 				return a.id == b.id;
@@ -206,7 +206,7 @@ namespace Palete {
 	 	
 	  	public  void loadSymbols()
 		{
-			this.symbols.clear();
+			//this.symbols.clear();
 			this.symbol_map.clear(); //??? should be fresh load?
 			var q = (new Symbol()).fillQuery(null);
 			var ids = new Gee.HashMap<int,Symbol>();
