@@ -199,7 +199,7 @@ namespace Palete {
 				i++;
 			}
 			
-			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + this.where;
+			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
 			 
 			db.prepare_v2 (q, q.length, out stmt);
 			while (stmt.step() == Sqlite.ROW) {
