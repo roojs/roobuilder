@@ -211,7 +211,7 @@ namespace Palete {
 				file.database_has_symbols = true;
 			}
 		}
-		
+		/*
 		public static void loadFileSymbols(SymbolFile file)
 		{
 			file.symbol_map.clear(); //??? should be fresh load?
@@ -223,7 +223,7 @@ namespace Palete {
 			foreach(var id in ids.keys) {
 				var s = ids.get(id);
 				s.file = file;				
-				file.symbols.add(s);
+				//file.symbols.add(s);
 				if (s.parent_id > 0) {
 					pids.set((int)s.id, (int)s.parent_id);
 				} else {
@@ -248,7 +248,7 @@ namespace Palete {
 			
 			
 		}
-		
+		*/
 		public static void initDB()
 		{
 		
