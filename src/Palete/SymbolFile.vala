@@ -131,6 +131,11 @@ namespace Palete {
 			var pids = new Gee.HashMap<int, int>();
 		 	var moved = new Gee.ArrayList<int>();
 			//this.symbols_all 
+			
+			//?? needs way more thought - as we have to make sure file/parent point to the correct nodes.
+			
+			
+			
 			foreach(var id in newar.keys) {
 				var s = newar.get(id);
 				if (this.symbol_map.has_key(id)) {
@@ -142,7 +147,7 @@ namespace Palete {
 						moved.add((int)s.id);
 						pids.set((int)s.id, (int)s.parent_id);
 					}
-					
+					newar.set((int)os.id, os);
 					continue;
 				}
 				s.file = this;
@@ -153,12 +158,13 @@ namespace Palete {
 					this.children_map.set(s.type_name, s);
 				}
 			}
+			this.symbol_map = newar;	
 			// moved. (they are also mentioned in pids - so added back later.)
 			foreach(var id in moved) {
 				this.removeSymbol(this.symbol_map.get(id));
 			}
 			
-			
+
 			this.linkNewSymbols(pids, newids);
 			// deleted
 			foreach(var id in this.symbol_map.keys) {
@@ -167,7 +173,7 @@ namespace Palete {
 				}
 				this.removeSymbol(this.symbol_map.get(id));
 			}
-			this.symbol_map = newids;
+
 			 
 	 	}
 	 	
