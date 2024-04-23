@@ -232,7 +232,7 @@ namespace Palete {
 							break;
 
 					}
-					((Object)row).set_property(col, newv);
+					row.set_property(col, newv);
 				}
 				if (id > 0) {
 					ret.set(id, row);
