@@ -212,16 +212,16 @@ namespace Palete {
  				 	var  newv = GLib.Value ( type );				
 			 		switch(type) {
 			 			case typeof(bool):
-							newv.set_bool(stmt.column_int(cols.get(k)) == 1)
+							newv.set_bool(stmt.column_int(cols.get(k)) == 1);
 							break;
 						case typeof(int):
-							newv.set_int(stmt.column_int(cols.get(k)))
+							newv.set_int(stmt.column_int(cols.get(k)));
 							break;
 			 			case typeof(int64):
-							newv.set_int64(stmt.column_int64(cols.get(k)))
+							newv.set_int64(stmt.column_int64(cols.get(k)));
 							break;
 						case typeof(string):
-							newv.set_string(stmt.column_text(cols.get(k)))
+							newv.set_string(stmt.column_text(cols.get(k)));
 							break;
 
 					}
