@@ -127,7 +127,43 @@ namespace Palete {
 	 	
 	 	}
 	 	
-	  
+	  public static void loadSymbols()
+		{
+			this.symbols.clear();
+			this.symbol_map.clear(); //??? should be fresh load?
+			var q = (new Symbol()).fillQuery(null);
+			var ids = new Gee.HashMap<int,Symbol>();
+		 	q.select(db, "file_id = " + this.id.to_string(), ids);
+			var pids = new Gee.HashMap<int, int>();
+			
+			foreach(var id in ids.keys) {
+				var s = ids.get(id);
+				s.file = this;				
+				this.symbols.add(s);
+				if (s.parent_id > 0) {
+					pids.set((int)s.id, (int)s.parent_id);
+				} else {
+					this.children.append(s);
+					this.children_map.set(s.type_name, s);
+				}
+			}
+			  
+			foreach(var cid in  pids.keys ) {
+				var child = ids.get(cid);
+				var parent_id = pids.get(cid);
+				var parent = ids.get(parent_id);
+				if(parent == null) {
+					GLib.debug("Can not find parent %d of row %d", parent_id , cid);
+					continue;
+				}
+				
+				child.parent = parent;
+				parent.children.append(child); 
+ 				parent.children_map.set(child.type_name, child);
+			}
+			this.symbol_map = ids;
+			
+		}
 	 	
 	 	public void removeOldSymbols()
 	 	{
