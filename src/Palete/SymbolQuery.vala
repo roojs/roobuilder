@@ -185,7 +185,7 @@ namespace Palete {
 			Sqlite.Statement stmt;
 			
 			var ret = new Gee.HashMap<int,T>();
-			var cols = new Gee.ArrayList<string,int>();
+			var cols = new Gee.HashMap<string,int>();
 			string[] keys;
 			var i = 0;
 			foreach(var k in this.ints.keys) {
