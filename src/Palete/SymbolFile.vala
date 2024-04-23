@@ -133,7 +133,7 @@ namespace Palete {
 			//this.symbols_all 
 			
 			//?? needs way more thought - as we have to make sure file/parent point to the correct nodes.
-			var original_ids = Gee.ArrayList<int>();
+			var original_ids = new  Gee.ArrayList<int>();
 			foreach(var id in this.symbol_map.keys) {
 				original_ids.add(id);
 			]
