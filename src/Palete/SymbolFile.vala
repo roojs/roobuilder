@@ -128,7 +128,7 @@ namespace Palete {
 	 	// called from symbol builders..
 	 	public void  removeOldSymbols()
 	 	{
-	 		var ns = new Gee.ArrayList<Symbol>();
+	 		var ns = new Gee.ArrayList<Symbol>((a,b) => { return a.id == b.id });
 	 		foreach(var s in this.symbols) {
 	 			if (s.rev == this.version) {
 	 				ns.add(s);
