@@ -225,7 +225,7 @@ namespace Palete {
 				s.file = file;				
 				file.symbols.add(s);
 				if (parent_id > 0) {
-					pids.set((int)s.id, (int)parent_id);
+					pids.set((int)s.id, (int)s.parent_id);
 				} else {
 					file.children.append(s);
 					file.children_map.set(s.type_name, s);
