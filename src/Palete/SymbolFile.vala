@@ -239,7 +239,7 @@ namespace Palete {
 				var parent = this.symbol_map.get((int)parent_id);
 				if(parent == null) {
 					
-					GLib.debug("Can not find parent %d of row %d", parent_id , child.id);
+					GLib.debug("Can not find parent %d of row %d", parent_id , (int)child.id);
 					continue;
 				}
 				child.parent = parent;
