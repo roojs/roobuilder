@@ -220,7 +220,7 @@ namespace Palete {
 			var pids = new Gee.HashMap<int, int>();
 			
 			foreach(var id in ids.keys) {
-				var s = ar.get(id);
+				var s = ids.get(id);
 				s.file = file;				
 				file.symbols.add(s);
 				if (parent_id > 0) {
