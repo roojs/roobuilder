@@ -208,7 +208,7 @@ namespace Palete {
 				id = 0;
 			 	foreach(var k in cols.keys) {
 			 		var row =  Object.new (typeof(T));
-			 		var type = this.getTypeof(k);
+			 		var type = this.types.get(k);
 			 		var id = 0;
  				 	var  newv = GLib.Value ( type );				
 			 		switch(type) {
