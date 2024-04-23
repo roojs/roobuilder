@@ -15,7 +15,7 @@ namespace Palete {
 		Object newer;
 		int64 id;
 		
-		public SymbolQuery(string table, int64 id, Object? old, Object newer ) 
+		public SymbolQuery(string table, int64 id, T? old, T newer ) 
 		{
 			this.table = table;
 			this.id = id;
@@ -180,8 +180,9 @@ namespace Palete {
 		public Gee.HashMap<int,T> select(Sqlite.Database db)
 		{
 			Sqlite.Statement stmt;
-			string[] keys = {};
-			string[] values = {};
+			
+			var ret = new Gee.HashMap<int,T>();
+			var cols = new Gee.ArrayList<
 			foreach(var k in this.ints.keys) {
 				keys += k;
 				values += ("$" + k);
