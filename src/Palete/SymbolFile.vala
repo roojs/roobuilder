@@ -155,17 +155,17 @@ namespace Palete {
 			}
 			// moved. (they are also mentioned in pids - so added back later.)
 			foreach(var id in moved) {
-				this.removeSymbol(this.symbols_map.get(id));
+				this.removeSymbol(this.symbol_map.get(id));
 			}
 			
 			
 			this.linkNewSymbols(pids, newids);
 			// deleted
 			foreach(var id in this.symbol_map.keys) {
-				if (newids.has_key(id)) {
+				if (newar.has_key(id)) {
 					continue;
 				}
-				this.removeSymbol(this.symbols_map.get(id));
+				this.removeSymbol(this.symbol_map.get(id));
 			}
 			this.symbol_map = newids;
 			 
