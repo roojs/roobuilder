@@ -219,7 +219,9 @@ namespace Palete {
 			foreach(var id in ids.keys) {
 				var s = ids.get(id);
 				s.file = this;
-				this.fqn_map.set(s.fqn, s);
+				if (s.fqn != "") {
+					this.fqn_map.set(s.fqn, s); // gir only
+				}
 				//this.symbols.add(s);
 				this.symbol_map.set((int)s.id, s);
 				
