@@ -179,7 +179,7 @@ namespace Palete {
 			 
 			
 
-			this.linkNewSymbols(pids, newids);
+			this.linkNewSymbols(pids, addsymbols);
 			// deleted
 			foreach(var id in this.original_ids) {
 				if (newar.has_key(id)) {
