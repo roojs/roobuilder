@@ -78,6 +78,9 @@ namespace Palete {
  				GLib.debug("file %s is parsed", fn);
 				return;
 			}
+			// load old 
+			file.loadSymbols();
+			
 			var doc = Xml.Parser.parse_file (fn);
 			var root = doc->get_root_element();
 			this.walk( root, file, null);
