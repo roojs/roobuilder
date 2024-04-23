@@ -214,43 +214,14 @@ namespace Palete {
 		
 		public static void loadFileSymbols(SymbolFile file)
 		{
-			var stmt = prepare(
-				"SELECT
-					id,
-					file_id,
-					parent_id,
-					stype,
-					
-					begin_line,
-					begin_col,
-					end_line,
-					end_col,
-					sequence,
-					
-					name,
-					rtype,
-					direction,
-					
-					deprecated,
-					is_abstract,
-					is_sealed,
-			 		is_readable,
-					is_writable,
-			 		is_ctor,
-					is_static,
-					
-					parent_name,
-					doc,
-					is_gir,
-					fqn
-					
-				FROM
-					symbol
-				WHERE file_id = $file_id
-			");
-			file.symbol_map.clear(); 
-			stmt.bind_int64 (stmt.bind_parameter_index ("$file_id"), file.id);
-			var ids = new Gee.HashMap<int, Symbol>();
+			file.symbol_map.clear(); //???
+			var q = (new Symbol()).fillQuery(null);
+			var ids = q.select(db, "file_id = " + file.id.to_string());
+			foreach(var id in ids.keys) {
+				var s = ar.get(id);
+				s.file = file;
+			}
+			 
 			var pids = new Gee.HashMap<int, int>();
 			while (stmt.step() == Sqlite.ROW) {
 				var s = new Symbol();
