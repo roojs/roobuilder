@@ -12,7 +12,7 @@ namespace Palete {
 		public string relversion  = "";  // version eg. 1.0 (mathcing gir to vapis?)
 		//public Gee.ArrayList<Symbol> symbols_all ;
  		public Gee.HashMap<int,Symbol> symbol_map;
- 		
+ 		public Gee.HashMap<string,Symbol> fqn_map;
  		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
 
@@ -38,7 +38,7 @@ namespace Palete {
 			}
 			set {
 				if (value) {
-					if (this.version == this.cur_mod_time() && !this.database_has_symbols && this.symbols_map.keys.size < 1){ 
+					if (this.version == this.cur_mod_time() && !this.database_has_symbols && this.symbol_map.keys.size < 1){ 
 						// version the same, no new symbols
 						return;
 					}
