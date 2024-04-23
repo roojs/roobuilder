@@ -183,7 +183,7 @@ namespace Palete {
 	 		var c = s.parent == null ? this.children : s.parent.children;
 	 		uint pos;
 			c.find_with_equal_func(s, (a, b) => {
-				return a.id == b.idl
+				return a.id == b.id;
 			}, out pos);
 			c.remove(pos);
 		}
