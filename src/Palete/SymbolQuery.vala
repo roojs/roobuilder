@@ -54,6 +54,7 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
+				this.types.set(col, typeof(int64));
 				var  newv = GLib.Value (typeof (int64));				
 				this.newer.get_property(col, ref newv);
 
@@ -76,7 +77,8 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-				var  newv = GLib.Value (typeof (string));				
+				var  newv = GLib.Value (typeof (string));	
+				this.types.set(col, typeof(string));
 				this.newer.get_property(col, ref newv);
 
 				if (this.old != null) {
@@ -98,7 +100,7 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
-
+				this.types.set(col, typeof(bool));
 				var  newv = GLib.Value (typeof (bool));				
 				this.newer.get_property(col, ref newv);
 				
@@ -202,10 +204,17 @@ namespace Palete {
 			
 			db.prepare_v2 (q, q.length, out stmt);
 			while (stmt.step() == Sqlite.ROW) {
-			 	foreach(var k in this.ints.keys) {
-			 		 
-				 	var  newv = GLib.Value (this.getTypeof(k) );				
-					this.newer.get_property(col, ref newv);
+			
+
+			 	foreach(var k in this.keys) {
+			 		var row = new T();
+			 		var type = this.getTypeof(k);
+ 				 	var  newv = GLib.Value ( type );				
+			 		switch(type) {
+			 			case typeof(bool):
+			 				;
+							newv.set_bool(stmt.column_int(cols.get(k)) == 1)
+							this.newer.set_property(col, ref newv);
 					
 			 		
 
