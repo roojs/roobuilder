@@ -89,7 +89,7 @@ namespace Project {
 		//public Palete.ValaCompileRequest last_request = null; // depricated?
 		public Gee.HashMap<string,GLib.ListStore>? errorsByType = null;
  		public bool loading = false; // flag this to block saving (normally when loading ui that might trigger save..
-		
+		public SymbolFileCollection symbolmanager;
 		
 		protected Gee.HashMap<string,Palete.LanguageClient> language_servers;
 		
