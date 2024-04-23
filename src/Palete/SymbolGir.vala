@@ -16,7 +16,7 @@ namespace Palete {
 		}
 		public SymbolGir.new_namespace(SymbolFile f,   string name)
 		{
-			this(f);
+			this(fm,null);
 			
 			switch (name) {
 				case "G": 
