@@ -161,7 +161,7 @@ namespace Palete {
 			
 			this.linkNewSymbols(pids, newids);
 			// deleted
-			foreach(var this.symbol_map.keys as id) {
+			foreach(var id in this.symbol_map.keys) {
 				if (newids.has_key(id)) {
 					continue;
 				}
