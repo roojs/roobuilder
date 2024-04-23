@@ -153,7 +153,7 @@ namespace Palete {
 					this.children_map.set(s.type_name, s);
 				}
 			}
-			// moved.
+			// moved. (they are also mentioned in pids - so added back later.)
 			foreach(var id in moved) {
 				this.removeSymbol(this.symbols_map.get(id));
 			}
