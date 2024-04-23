@@ -165,7 +165,6 @@ namespace Palete {
 				if (newids.has_key(id)) {
 					continue;
 				}
-				 
 				this.removeSymbol(this.symbols_map.get(id));
 			}
 			this.symbol_map = newids;
