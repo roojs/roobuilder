@@ -220,7 +220,7 @@ namespace Palete {
 						case GLib.Type.INT:
 							newv.set_int(stmt.column_int(cols.get(k)));
 							break;
-			 			case GLib.Type.INT64
+			 			case GLib.Type.INT64:
 			 				var val = stmt.column_int64(cols.get(k));
 			 				if (k == "id") {
 			 					id = val;
