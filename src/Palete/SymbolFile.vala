@@ -124,10 +124,48 @@ namespace Palete {
 	 	// called from symbol builders..
 	 	public void refreshSymbolsFromDB()
 	 	{
-	 	
+	 		var q = (new Symbol()).fillQuery(null);
+			var newar = new Gee.HashMap<int,Symbol>();
+		 	q.select(db, "file_id = " + this.id.to_string() + 
+		 		" order by parent_id ASC, id ASC", newar);
+		 	
+		 	var moved = new Gee.ArrayList<int>();
+			
+			foreach(var id in newar.keys) {
+				var s = ids.get(id);
+				if (this.symbol_map.has_key(id)) {
+					// update..
+					var os = this.symbol_map.get(id);
+					os.copyFrom(s);
+					if (os.parent_id != s.parent_id) {
+						// moved?
+						moved.add(id);
+					}
+					
+					continue;
+				}
+				s.file = this;
+				if (s.parent_id > 0) {
+					pids.set((int)s.id, (int)s.parent_id);
+				} else {
+					this.children.append(s);
+					this.children_map.set(s.type_name, s);
+				}
+			}
+			// deleted?
+			this.addNewSymbols(pids, newids);
+				
+				this.symbols.add(s);
+				if (s.parent_id > 0) {
+					pids.set((int)s.id, (int)s.parent_id);
+				} else {
+					this.children.append(s);
+					this.children_map.set(s.type_name, s);
+				}
+			}
 	 	}
 	 	
-	  public static void loadSymbols()
+	  	public static void loadSymbols()
 		{
 			this.symbols.clear();
 			this.symbol_map.clear(); //??? should be fresh load?
@@ -147,7 +185,10 @@ namespace Palete {
 					this.children_map.set(s.type_name, s);
 				}
 			}
-			  
+			this.linkNewSymbols(pids, ids);
+		}
+		void linkNewSymbols(Gee.HashMap<id,id> pids, Gee.HashMap<int,Symbol> ids)
+		{
 			foreach(var cid in  pids.keys ) {
 				var child = ids.get(cid);
 				var parent_id = pids.get(cid);
