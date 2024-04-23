@@ -11,6 +11,7 @@ namespace Palete {
 		string[] setter = {};		
 		Gee.HashMap<string,int> ints;
 		Gee.HashMap<string,string> strings;	
+		Gee.HashMap<string,GLib.Type> types;
 		Object old;
 		Object newer;
 		int64 id;
@@ -22,6 +23,7 @@ namespace Palete {
  
 			this.ints = new Gee.HashMap<string,int>();
 			this.strings = new Gee.HashMap<string,string>();	
+			this.types = new Gee.HashMap<string,GLib.Type>();
 			this.old = old;
 			this.newer = newer;
 
@@ -31,6 +33,7 @@ namespace Palete {
 		{
 			for(var i = 0;i < cols.length; i++) {
 				var col = cols[i];
+				this.types.set(col, typeof(int));
 				var  newv = GLib.Value (typeof (int));				
 				this.newer.get_property(col, ref newv);
 				
@@ -175,39 +178,36 @@ namespace Palete {
 
 		}
 		
-		public string where = ""; // used by select...
-		
-		public Gee.HashMap<int,T> select(Sqlite.Database db)
+		public Gee.HashMap<int,T> select(Sqlite.Database db, string where)
 		{
 			Sqlite.Statement stmt;
 			
 			var ret = new Gee.HashMap<int,T>();
-			var cols = new Gee.ArrayList<
+			var cols = new Gee.ArrayList<string,int>();
+			var i = 0;
 			foreach(var k in this.ints.keys) {
 				keys += k;
-				values += ("$" + k);
+				cols.set(k, i);
+				i++;
 			}
 			foreach(var k in this.strings.keys) {
-				keys += k;			
-				values += ("$" + k);
+				keys += k;
+				cols.set(k, i);
+				i++;
 			}
 			
-			var q = "INSERT INTO " + this.table + " ( " +
+			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + this.where;
 				string.joinv(",", keys) + " ) VALUES ( " + 
 				string.joinv(",", values) +   " )";
 			
 			db.prepare_v2 (q, q.length, out stmt);
-			foreach(var k in this.ints.keys) {
-				stmt.bind_int (stmt.bind_parameter_index (k), ints.get(k));
-			}
-			foreach(var k in this.strings.keys) {
-				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
-			}
-			if (Sqlite.OK != stmt.step ()) {
-			    GLib.debug("SYmbol insert: %s", db.errmsg());
-			}
-			stmt.reset(); //not really needed.
-			return db.last_insert_rowid();
+			while (stmt.step() == Sqlite.ROW) {
+			 	foreach(var k in this.ints.keys) {
+			 		 
+				 	var  newv = GLib.Value (this.getTypeof(k) );				
+					this.newer.get_property(col, ref newv);
+					
+			 		
 
 		}
 		
