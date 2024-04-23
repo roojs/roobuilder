@@ -5,7 +5,7 @@
 */
 
 namespace Palete {
-	public class SymbolQuery {
+	public class SymbolQuery < T > {
 	
 		string table;
 		string[] setter = {};		
@@ -173,6 +173,43 @@ namespace Palete {
 			stmt.reset(); //not really needed.
 			return db.last_insert_rowid();
 
+		}
+		
+		public string where = ""; // used by select...
+		
+		public select(Sqlite.Database db)
+		{
+			Sqlite.Statement stmt;
+			string[] keys = {};
+			string[] values = {};
+			foreach(var k in this.ints.keys) {
+				keys += k;
+				values += ("$" + k);
+			}
+			foreach(var k in this.strings.keys) {
+				keys += k;			
+				values += ("$" + k);
+			}
+			
+			var q = "INSERT INTO " + this.table + " ( " +
+				string.joinv(",", keys) + " ) VALUES ( " + 
+				string.joinv(",", values) +   " )";
+			
+			db.prepare_v2 (q, q.length, out stmt);
+			foreach(var k in this.ints.keys) {
+				stmt.bind_int (stmt.bind_parameter_index (k), ints.get(k));
+			}
+			foreach(var k in this.strings.keys) {
+				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
+			}
+			if (Sqlite.OK != stmt.step ()) {
+			    GLib.debug("SYmbol insert: %s", db.errmsg());
+			}
+			stmt.reset(); //not really needed.
+			return db.last_insert_rowid();
+
+		}
+		
 		}
 		
 	}
