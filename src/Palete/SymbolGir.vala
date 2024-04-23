@@ -9,14 +9,14 @@ namespace Palete {
 		{
 			base();
 			this.file = f;
-			
 			this.is_gir = true;
+			this.parent = parent;
 
 			
 		}
 		public SymbolGir.new_namespace(SymbolFile f,   string name)
 		{
-			this(f, null);
+			this(f);
 			
 			switch (name) {
 				case "G": 
@@ -28,7 +28,7 @@ namespace Palete {
 			}
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Namespace; 
-			 
+		 
 			
 		}
 		
@@ -37,6 +37,7 @@ namespace Palete {
 			this(f, null);
 			this.name =  name;
 			this.stype = Lsp.SymbolKind.Enum;
+			 
 			 
 		}
 		public SymbolGir.new_enummember(SymbolFile f, Symbol? parent,   string name)
@@ -160,28 +161,10 @@ namespace Palete {
 
 		}
 		
-		public void setParent(Symbol? parent) 
+		public void write( ) 
 		{
 			
-			this.parent  = parent;
-			//if (parent != null && parent.file.id != this.file.id) {
-			//	if (parent.stype != Lsp.SymbolKind.Namespace)  {
-			//		GLib.error("parent is from differnt file, and its' type is %s", 
-			//			parent.stype.to_string());
-			//	}
-				
-			//	this.parent_name = parent.name;
-			//		parent = null;
-			//}
-		 	this.file.symbol_map.add(this); //referenced...
-			if (this.parent != null) {
-				this.parent.children.append(this);
-			} else {
-				this.file.children.append(this);
-			}
-			 
-			this.parent = parent;
-			
+		 	
 			this.fqn = this.to_fqn();
 			
 			this.rev = this.file.version;
