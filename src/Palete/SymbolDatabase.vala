@@ -168,7 +168,8 @@ namespace Palete {
 				id NOT IN (" + string.joinv("," , new_ids) + ") AND 
 				file_id = " + file.id.to_string());
 		}
-*/
+		*/
+		public static string[]  get_symbol_ids( int64 file_id)
 		{
 			string[]  ret = {};
 	 
