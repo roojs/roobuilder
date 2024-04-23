@@ -394,7 +394,7 @@ namespace Palete {
 				context = null;
 				
 				foreach(var sf in this.changed) {
-					sf.removeOldSymbols();
+					this.filemanager.factory_by_path(sf).removeOldSymbols();
 				}
 				
 				
