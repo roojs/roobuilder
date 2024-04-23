@@ -9,23 +9,7 @@ namespace Palete {
 		{
 			base();
 			this.file = f;
-			this.parent  = parent;
-			//if (parent != null && parent.file.id != this.file.id) {
-			//	if (parent.stype != Lsp.SymbolKind.Namespace)  {
-			//		GLib.error("parent is from differnt file, and its' type is %s", 
-			//			parent.stype.to_string());
-			//	}
-				
-			//	this.parent_name = parent.name;
-			//		parent = null;
-			//}
-		 	this.file.symbols.add(this); //referenced...
-			if (this.parent != null) {
-				this.parent.children.append(this);
-			} else {
-				this.file.children.append(this);
-			}
-			 
+			
 			this.is_gir = true;
 
 			
@@ -176,7 +160,53 @@ namespace Palete {
 
 		}
 		
-		
+		public void setParent(Symbol? parent) 
+		{
+			
+			this.parent  = parent;
+			//if (parent != null && parent.file.id != this.file.id) {
+			//	if (parent.stype != Lsp.SymbolKind.Namespace)  {
+			//		GLib.error("parent is from differnt file, and its' type is %s", 
+			//			parent.stype.to_string());
+			//	}
+				
+			//	this.parent_name = parent.name;
+			//		parent = null;
+			//}
+		 	this.file.symbol_map.add(this); //referenced...
+			if (this.parent != null) {
+				this.parent.children.append(this);
+			} else {
+				this.file.children.append(this);
+			}
+			 
+			this.parent = parent;
+			
+			this.fqn = this.to_fqn();
+			
+			this.rev = this.file.version;
+			
+			if (this.doc == "") {
+				return;
+			}
+			if (!this.file.fqn_map.has_key(this.fqn)) {
+				var q = this.fillQuery(null);
+				this.id = q.insert(SymbolDatabase.db);
+ 				return;
+			
+			}
+			 
+			// update..
+			
+			var old = this.file.fqn_map.get(this.fqn);
+			
+			var q = this.fillQuery(old);
+			if (!q.shouldUpdate()) {
+				return; // no need to update..
+			}
+			q.update(SymbolDatabase.db);
+			// should nto need to update file symbols.
+		}
 		 
 		
  	}
