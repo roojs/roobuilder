@@ -134,12 +134,12 @@ namespace Palete {
 					this.implements.add(k);
 				}
 			}
-			this.copyChildrenFrom(s.children);
+
 			//?? soft copy children?
 		}
-		public void copyChildrenFrom( GLib.ListStore newer) 
+		public void XcopyChildrenFrom( GLib.ListStore newer) 
 		{
-			
+			/*
 			// this should use the map?
 			for(var i = 0; i < newer.get_n_items(); i++) {
 				var s = (Symbol)newer.get_item(i);
@@ -152,6 +152,7 @@ namespace Palete {
 				var os = (Symbol)this.children.get_item(i);
 				if (os.simpleEquals(s)) {
 					os.copyFrom(s);
+					os.copyChildrenFrom(s.children);
 					continue;
 				}
 				 
@@ -162,10 +163,11 @@ namespace Palete {
 			}
 			var nl = newer.get_n_items();
 			while (this.children.get_n_items() > nl) {
-				var os = (Symbol)this.children.get_item(nl);		
+				//var os = (Symbol)this.children.get_item(nl);		
 				this.children.remove(nl);
 				 
 			}
+			*/
 		
 		
 		}
