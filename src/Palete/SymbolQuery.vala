@@ -187,6 +187,7 @@ namespace Palete {
 			var ret = new Gee.HashMap<int,T>();
 			var cols = new Gee.HashMap<string,int>();
 			string[] keys;
+			var id = 0;
 			var i = 0;
 			foreach(var k in this.ints.keys) {
 				keys += k;
@@ -204,7 +205,7 @@ namespace Palete {
 			db.prepare_v2 (q, q.length, out stmt);
 			while (stmt.step() == Sqlite.ROW) {
 			
-
+				id = 0;
 			 	foreach(var k in cols.keys) {
 			 		var row = new T();
 			 		var type = this.getTypeof(k);
