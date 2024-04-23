@@ -203,6 +203,8 @@ namespace Palete {
 			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
 			 
 			db.prepare_v2 (q, q.length, out stmt);
+			assert (typeof(T).is_object());
+
 			while (stmt.step() == Sqlite.ROW) {
 			
 				id = 0;
