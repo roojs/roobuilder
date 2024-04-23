@@ -154,7 +154,7 @@ namespace Palete {
 			
 			var ids = get_symbol_ids( file.id);
 			string[] new_ids = {};
-			foreach (var s in file.symbols) {
+			foreach (var s in file.symbols_map.values) {
 				writeSymbol(s);
 				if (s.id > 0) {
 					new_ids += s.id.to_string();
