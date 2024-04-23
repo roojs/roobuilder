@@ -193,7 +193,6 @@ namespace Palete {
 				var q = this.fillQuery(null);
 				this.id = q.insert(SymbolDatabase.db);
  				return;
-			
 			}
 			 
 			// update..
