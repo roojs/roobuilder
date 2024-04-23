@@ -208,7 +208,7 @@ namespace Palete {
 			this.linkNewSymbols(pids, ids);
 			this.symbol_map = ids;
 		}
-		void linkNewSymbols(Gee.HashMap<id,id> pids, Gee.HashMap<int,Symbol> ids)
+		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.HashMap<int,Symbol> ids)
 		{
 			foreach(var cid in  pids.keys ) {
 				var child = ids.get(cid);
