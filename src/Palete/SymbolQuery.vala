@@ -218,11 +218,11 @@ namespace Palete {
 							newv.set_int(stmt.column_int(cols.get(k)));
 							break;
 			 			case typeof(int64):
-			 				var val = stmt.column_int64(cols.get(k);
+			 				var val = stmt.column_int64(cols.get(k));
 			 				if (k == "id") {
 			 					id = val;
 		 					}
-							newv.set_int64(val));
+							newv.set_int64(val);;
 							break;
 						case typeof(string):
 							newv.set_string(stmt.column_text(cols.get(k)));
