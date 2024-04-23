@@ -217,9 +217,11 @@ namespace Palete {
 			var newsymbols = new Gee.ArrayList<Symbol>();
 			foreach(var id in ids.keys) {
 				var s = ids.get(id);
-				s.file = this;				
+				s.file = this;
+				s.fqn_map.set(s.fqn, s);
 				//this.symbols.add(s);
 				this.symbol_map.set((int)s.id, s);
+				
 				newsymbols.add(s);
 				if (s.parent_id > 0) {
 					pids.set((int)s.id, (int)s.parent_id);
