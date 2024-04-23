@@ -150,9 +150,9 @@ namespace Palete {
 					this.children_map.unset(k);
 				}
 			}
-			foreach(var s in this.symobls) {
+			foreach(var s in this.symbols) {
  				if (s.rev != s.file.version) {
-					this.symobls.remove(s);
+					this.symbols.remove(s);
 				}
 			}
 			foreach(var s in this.symbol_map.keys) {
