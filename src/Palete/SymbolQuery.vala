@@ -239,10 +239,7 @@ namespace Palete {
 			return ret;
 		
 		}
-		T create()
-		{
-			
-		}
+		 
 		
 	}
 }
