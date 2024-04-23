@@ -10,7 +10,7 @@ namespace Palete {
 		public string path = ""; 
 		public int64 version  = -1;  // utime?
 		public string relversion  = "";  // version eg. 1.0 (mathcing gir to vapis?)
-		public Gee.ArrayList<Symbol> symbols ;
+		public Gee.ArrayList<Symbol> symbols_all ;
  		public Gee.HashMap<int,Symbol> symbol_map;
  		
  		public GLib.ListStore children;
