@@ -155,13 +155,7 @@ namespace Palete {
 			}
 			// moved.
 			foreach(var id in moved) {
-				var s = this.symbols_map.get(id);
-				var c = s.parent == null ? this.children : s.parent.children;
-				uint pos;
-				c.find_with_equal_func(s, (a, b) => {
-					return a.id == b.idl
-				}, out pos);
-				c.remove(pos);
+				this.removeSymbol(this.symbols_map.get(id));
 			}
 			
 			
