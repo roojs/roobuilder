@@ -197,7 +197,7 @@ namespace Palete {
 	 		var c = s.parent_id == 0 ? this.children : this.symbol_map.get((int)s.parent_id).children;
 	 		uint pos;
 			c.find_with_equal_func(s, (a, b) => {
-				return a.id == b.id;
+				return ((Symbol)a).id == ((Symbol)b).id;
 			}, out pos);
 			c.remove(pos);
 			s.parent = null;
