@@ -214,58 +214,23 @@ namespace Palete {
 		
 		public static void loadFileSymbols(SymbolFile file)
 		{
-			file.symbol_map.clear(); //???
+			file.symbol_map.clear(); //??? should be fresh load?
 			var q = (new Symbol()).fillQuery(null);
 			var ids = q.select(db, "file_id = " + file.id.to_string());
+			var pids = new Gee.HashMap<int, int>();
+			
 			foreach(var id in ids.keys) {
 				var s = ar.get(id);
-				s.file = file;
-			}
-			 
-			var pids = new Gee.HashMap<int, int>();
-			while (stmt.step() == Sqlite.ROW) {
-				var s = new Symbol();
-				
-				s.id=stmt.column_int64(0);
-				s.file = file; // file id is (1)...
-				var parent_id = stmt.column_int64(2);
-				s.stype =  (Lsp.SymbolKind)   stmt.column_int(3);
-			
-				s.begin_line=stmt.column_int(4);
-				s.begin_col=stmt.column_int(5);
-				s.end_line=stmt.column_int(6);
-				s.end_col=stmt.column_int(7);
-				s.sequence=stmt.column_int(8);
-
-				s.name=stmt.column_text(9);
-				s.rtype=stmt.column_text(10);
-				s.direction=stmt.column_text(11);
-
-				s.deprecated=stmt.column_int(12) == 1;
-				s.is_abstract=stmt.column_int(13) == 1;
-				s.is_sealed=stmt.column_int(14) == 1;
-				s.is_readable=stmt.column_int(15) == 1;
-				s.is_writable=stmt.column_int(16) == 1;
-				s.is_ctor=stmt.column_int(17) == 1;
-				s.is_static=stmt.column_int(18) == 1;
-				// stuff I forgot..
-				s.parent_name =stmt.column_text(19);
-				s.doc = stmt.column_text(20);
-				s.is_gir = stmt.column_int(21) == 1;
-				s.fqn = stmt.column_text(22);
-				
+				s.file = file;				
 				file.symbols.add(s);
-				ids.set((int)s.id, s);
 				if (parent_id > 0) {
 					pids.set((int)s.id, (int)parent_id);
 				} else {
 					file.children.append(s);
 					file.children_map.set(s.type_name, s);
-					
 				}
-				
 			}
-
+			  
 			foreach(var cid in  pids.keys ) {
 				var child = ids.get(cid);
 				var parent_id = pids.get(cid);
