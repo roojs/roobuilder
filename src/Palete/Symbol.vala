@@ -101,7 +101,7 @@ namespace Palete {
 		{
 			return this.stype == s.stype && this.name == s.name;
 		}
-		public void copyFrom(Symbol s )
+		public void XcopyFrom(Symbol s )
 		{
 			if (s.rev != this.rev) {
 				this.begin_line=s.begin_line;
