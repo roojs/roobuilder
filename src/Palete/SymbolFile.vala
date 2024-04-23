@@ -126,7 +126,7 @@ namespace Palete {
 	 	{
 	 		var q = (new Symbol()).fillQuery(null);
 			var newar = new Gee.HashMap<int,Symbol>();
-		 	q.select(db, "file_id = " + this.id.to_string() + 
+		 	q.select(SymbolDatabase.db, "file_id = " + this.id.to_string() + 
 		 		" order by parent_id ASC, id ASC", newar);
 			var pids = new Gee.HashMap<int, int>();
 		 	var moved = new Gee.ArrayList<int>();
