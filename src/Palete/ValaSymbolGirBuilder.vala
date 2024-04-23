@@ -134,6 +134,7 @@ namespace Palete {
 						parent.doc += "\n\n";
 					}
 					parent.doc = element->get_content();
+					parent.write();
 					return;
 				
 				case "implements":
