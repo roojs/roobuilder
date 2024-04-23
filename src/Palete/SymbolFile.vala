@@ -151,8 +151,16 @@ namespace Palete {
 			
 			}
 			
-	 	 
+	 	}
 	 	
+	 	public void removeOldSymbols()
+	 	{
+	 		public Gee.ArrayList<Symbol> symbols;
+	 		public Gee.HashMap<int,Symbol> symbol_map;
+	 		
+	 		public GLib.ListStore children;
+			public Gee.HashMap<string,Symbol> children_map;
+
 	 	}
 	 	
 	 	
