@@ -129,38 +129,51 @@ namespace Palete {
 		 	q.select(SymbolDatabase.db, "file_id = " + this.id.to_string() + 
 		 		" order by parent_id ASC, id ASC", newar);
 			var pids = new Gee.HashMap<int, int>();
-		 	var moved = new Gee.ArrayList<int>();
+		 	var addsymbols = new Gee.ArrayList<Symbol>();
 			//this.symbols_all 
 			
 			//?? needs way more thought - as we have to make sure file/parent point to the correct nodes.
-			
 			
 			
 			foreach(var id in newar.keys) {
 				var s = newar.get(id);
 				if (this.symbol_map.has_key(id)) {
 					// update..
-					var os = this.symbol_map.get(id);
-					os.copyFrom(s);
+					var os = this.symbol_map.get(id);	
+					
 					if (os.parent_id != s.parent_id) {
-						// moved?
-						moved.add((int)s.id);
+						var pid = s.parent_id;
+						
 						pids.set((int)s.id, (int)s.parent_id);
+						this.removeSymbol(os);
+						var ns = new Symbol();
+						ns.copyFrom(s);
+						ns.id = s.id;
+						ns.file = this;
+						addsymbols.add(ns);
+						
+						continue;
 					}
-					newar.set((int)os.id, os);
+					
+					os.copyFrom(s);
+					 
 					continue;
 				}
-				s.file = this;
+				var ns = new Symbol();
+				ns.copyFrom(s);
+				ns.file = this;
 				if (s.parent_id > 0) {
 					pids.set((int)s.id, (int)s.parent_id);
 				} else {
-					this.children.append(s);
+					this.children.append(ns);
 					this.children_map.set(s.type_name, s);
 				}
+				addsymbols.add(ns);
+			 
 			}
-			this.symbol_map = newar;	
+			 
 			// moved. (they are also mentioned in pids - so added back later.)
-			foreach(var id in moved) {
+			foreach(var s in moved) {
 				this.removeSymbol(this.symbol_map.get(id));
 			}
 			
@@ -212,9 +225,9 @@ namespace Palete {
 				}
 			}
 			this.linkNewSymbols(pids, ids);
-			this.symbol_map = ids;
+
 		}
-		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.HashMap<int,Symbol> ids)
+		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> ids)
 		{
 			foreach(var cid in  pids.keys ) {
 				var child = ids.get(cid);
