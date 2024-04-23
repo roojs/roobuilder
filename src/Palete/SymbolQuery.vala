@@ -180,7 +180,7 @@ namespace Palete {
 
 		}
 		
-		public void select(Sqlite.Database db, string where,  Ge.HashMap<int,T> ret)
+		public void select(Sqlite.Database db, string where, Gee.HashMap<int,T> ret)
 		{
 			Sqlite.Statement stmt;
 			
