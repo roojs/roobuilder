@@ -132,7 +132,7 @@ namespace Palete {
 		 	var moved = new Gee.ArrayList<int>();
 			//this.symbols_all 
 			foreach(var id in newar.keys) {
-				var s = ids.get(id);
+				var s = newar.get(id);
 				if (this.symbol_map.has_key(id)) {
 					// update..
 					var os = this.symbol_map.get(id);
