@@ -128,7 +128,7 @@ namespace Palete {
 			var newar = new Gee.HashMap<int,Symbol>();
 		 	q.select(db, "file_id = " + this.id.to_string() + 
 		 		" order by parent_id ASC, id ASC", newar);
-		 	
+			var pids = new Gee.HashMap<int, int>();
 		 	var moved = new Gee.ArrayList<int>();
 			
 			foreach(var id in newar.keys) {
@@ -139,7 +139,8 @@ namespace Palete {
 					os.copyFrom(s);
 					if (os.parent_id != s.parent_id) {
 						// moved?
-						moved.add(id);
+						moved.add(s.id);
+						pids.set((int)s.id, (int)s.parent_id);
 					}
 					
 					continue;
@@ -152,17 +153,21 @@ namespace Palete {
 					this.children_map.set(s.type_name, s);
 				}
 			}
-			// deleted?
-			this.addNewSymbols(pids, newids);
-				
-				this.symbols.add(s);
-				if (s.parent_id > 0) {
-					pids.set((int)s.id, (int)s.parent_id);
-				} else {
-					this.children.append(s);
-					this.children_map.set(s.type_name, s);
-				}
+			// moved.
+			foreach(var id in moved) {
+				var s = this.symbols_map.get(id);
+				var c = s.parent.children;
+				uint pos;
+				c.find_with_equal_func(s, (a, b) => {
+					return a.id == b.idl
+				}, out pos);
+				c.remove(pos);
 			}
+			
+			
+			this.linkNewSymbols(pids, newids);
+			// deleted
+			// moved
 	 	}
 	 	
 	  	public static void loadSymbols()
@@ -198,7 +203,6 @@ namespace Palete {
 					GLib.debug("Can not find parent %d of row %d", parent_id , cid);
 					continue;
 				}
-				
 				child.parent = parent;
 				parent.children.append(child); 
  				parent.children_map.set(child.type_name, child);
