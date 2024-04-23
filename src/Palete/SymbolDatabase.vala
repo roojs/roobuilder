@@ -224,7 +224,7 @@ namespace Palete {
 				var s = ids.get(id);
 				s.file = file;				
 				file.symbols.add(s);
-				if (parent_id > 0) {
+				if (s.parent_id > 0) {
 					pids.set((int)s.id, (int)s.parent_id);
 				} else {
 					file.children.append(s);
