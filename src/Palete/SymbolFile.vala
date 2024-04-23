@@ -130,11 +130,7 @@ namespace Palete {
 	 	
 	 	public void removeOldSymbols()
 	 	{
-	 		//public Gee.ArrayList<Symbol> symbols;
-	 		//public Gee.HashMap<int,Symbol> symbol_map;
-	 		
-	 		//public GLib.ListStore children;
-			//public Gee.HashMap<string,Symbol> children_map;
+	 		 
 			for(var i = 0; i < this.children.get_n_items(); i++) {
 				var s = (Symbol) this.children.get_item(i);
 				if (s.rev != s.file.version) {
