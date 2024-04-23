@@ -10,7 +10,7 @@ namespace Palete {
 		public string path = ""; 
 		public int64 version  = -1;  // utime?
 		public string relversion  = "";  // version eg. 1.0 (mathcing gir to vapis?)
-		public Gee.ArrayList<Symbol> symbols_all ;
+		//public Gee.ArrayList<Symbol> symbols_all ;
  		public Gee.HashMap<int,Symbol> symbol_map;
  		
  		public GLib.ListStore children;
@@ -55,7 +55,7 @@ namespace Palete {
 		public SymbolFile(string path, int version) {
 			this.path = path;
 			this.version = version;
-			this.symbols = new Gee.ArrayList<Symbol>((a,b) => { return a.id == b.id ; });
+			//this.symbols_all = new Gee.ArrayList<Symbol>((a,b) => { return a.id == b.id ; });
 			this.symbol_map = new Gee.HashMap<int,Symbol>();
 			this.children = new GLib.ListStore(typeof(Symbol));
 			this.children_map = new Gee.HashMap<string,Symbol>();
@@ -130,7 +130,7 @@ namespace Palete {
 		 		" order by parent_id ASC, id ASC", newar);
 			var pids = new Gee.HashMap<int, int>();
 		 	var moved = new Gee.ArrayList<int>();
-			
+			//this.symbols_all 
 			foreach(var id in newar.keys) {
 				var s = ids.get(id);
 				if (this.symbol_map.has_key(id)) {
@@ -173,12 +173,14 @@ namespace Palete {
 	 	
 	 	void removeSymbol(Symbol s)
 	 	{
-	 		var c = s.parent == null ? this.children : s.parent.children;
+	 		var c = s.parent_id = 0 ? this.children : this.symbol_map.get(s.parent_id).children;
 	 		uint pos;
 			c.find_with_equal_func(s, (a, b) => {
 				return a.id == b.id;
 			}, out pos);
 			c.remove(pos);
+			s.parent = null;
+			s.file = null;
 		}
 	 	
 	 	
