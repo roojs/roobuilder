@@ -139,7 +139,7 @@ namespace Palete {
 					os.copyFrom(s);
 					if (os.parent_id != s.parent_id) {
 						// moved?
-						moved.add(s.id);
+						moved.add((int)s.id);
 						pids.set((int)s.id, (int)s.parent_id);
 					}
 					
