@@ -19,8 +19,8 @@ namespace Palete {
 		
 		static async void updateGirBackground() {
 			
-			 SourceFunc callback = updateGirBackground.callback;
-			 SymbolDatabase.initDB();  // connect out of thread..
+			SourceFunc callback = updateGirBackground.callback;
+			SymbolDatabase.initDB();  // connect out of thread..
 
 			new Thread<bool>("thread-update-gir", () => {
 				// Perform a dummy slow calculation.
