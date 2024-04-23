@@ -217,7 +217,7 @@ namespace Palete {
 			foreach(var id in ids.keys) {
 				var s = ids.get(id);
 				s.file = this;				
-				this.symbols.add(s);
+				//this.symbols.add(s);
 				if (s.parent_id > 0) {
 					pids.set((int)s.id, (int)s.parent_id);
 				} else {
