@@ -238,8 +238,7 @@ namespace Palete {
 					ret.set((int)id, row);
 				}
 			}
-			return ret;
-		
+					
 		}
 		 
 		
