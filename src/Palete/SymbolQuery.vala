@@ -235,7 +235,7 @@ namespace Palete {
 					row.set_property(k, newv);
 				}
 				if (id > 0) {
-					ret.set(id, row);
+					ret.set((int)id, row);
 				}
 			}
 			return ret;
