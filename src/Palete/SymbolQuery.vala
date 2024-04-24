@@ -169,7 +169,7 @@ namespace Palete {
 				string.joinv(",", keys) + " ) VALUES ( " + 
 				string.joinv(",", values) +   " );";
 			
-			GLib.debug("Query %s", q);
+			//GLib.debug("Query %s", q);
 			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var k in this.ints.keys) {
 				stmt.bind_int (stmt.bind_parameter_index ("$" +k), ints.get(k));
