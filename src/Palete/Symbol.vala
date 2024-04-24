@@ -24,24 +24,44 @@ namespace Palete {
 		public int end_col { get; set; }
 		public int sequence { get; set; default = 0; } // parameters
 		
-		public string name = "";  
-		public string rtype  = ""; 
-		public string direction  = ""; 
-		public string fqn  = ""; 
+		public string name { get; set; default = ""; }  
+		public string rtype  { get; set; default = ""; }  
+		public string direction   { get; set; default = ""; }  
+		public string fqn   { get; set; default = ""; }  
 
-		public string doc = ""; 
+		public string doc { get; set; default = ""; }   
 		
-		public bool deprecated = false;  
-		public bool is_abstract   = false; 
-		public bool is_sealed   = false; 
- 		public bool is_readable   = false; 
-		public bool is_writable= false; 
- 		public bool is_ctor   = false; 
- 		public bool is_static   = false; 
- 		public bool is_gir = false; 
+		public bool deprecated  { get; set; default = false; }    
+		public bool is_abstract  { get; set; default = false; } 
+		public bool is_sealed  { get; set; default = false; } 
+ 		public bool is_readable  { get; set; default = false; } 
+		public bool is_writable { get; set; default = false; } 
+ 		public bool is_ctor  { get; set; default = false; } 
+ 		public bool is_static  { get; set; default = false; } 
+ 		public bool is_gir  { get; set; default = false; } 
  		
  		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
+		
+		public string inherits_str { 
+			get {
+				string[] r = {};
+				foreach(var s in this.inherits) {
+					r += s;
+				}
+				return string.joinv("\n", r);
+			}
+			set {
+				var bits = value.split("\n");
+				this.inherits.clear();
+				for (var i =0;i < bits.length;i++) {
+					this.inherits.add(bits[i]);
+				}
+			}
+		}
+  		public string implements_str { get; set; default = new Gee.ArrayList<string>(); }		
+		
+		
 		
 		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
