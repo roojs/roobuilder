@@ -22,7 +22,7 @@ namespace Palete {
 		public int begin_col { get; set; }
 		public int end_line { get; set; }
 		public int end_col { get; set; }
-		public int sequence { get; set; } = 0; // parameters
+		public int sequence { get; set; default = 0; } // parameters
 		
 		public string name = "";  
 		public string rtype  = ""; 
