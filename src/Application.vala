@@ -642,7 +642,7 @@
 				return false;
 				
 			});
-			var sb = new Palete.ValaSymbolBuilder(cur_project);
+			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 			
 			sb.updateBackground.begin(BuilderApplication.opt_symbol_test, (o,r )  => {
 				var ar = sb.updateBackground.end(r);
