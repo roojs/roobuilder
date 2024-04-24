@@ -358,7 +358,7 @@ namespace Palete {
 
 			// Wait for background thread to schedule our callback
 			yield;
-			
+			GLib.debug("YIELD DONE?");
 			
 			
 			Vala.CodeContext.pop ();
