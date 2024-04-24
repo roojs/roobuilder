@@ -624,10 +624,10 @@
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
-			GLib.debug("running vapiparser");
-			new Palete.ValaSymbolGirBuilder();
+			GLib.debug("running girparser");
+			//new Palete.ValaSymbolGirBuilder();
 			
-		  
+  			GLib.debug("running vapiparser");
    
 			
 			//GLib.debug("started server - sleep 30 secs so you can gdb attach");
