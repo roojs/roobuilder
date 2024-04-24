@@ -183,7 +183,9 @@ namespace Palete {
 			    GLib.debug("SYmbol insert: %s", db.errmsg());
 			}
 			stmt.reset(); //not really needed.
-			return db.last_insert_rowid();
+			var id = db.last_insert_rowid();
+			GLib.debug("got id=%d", (int)id);
+			return id;
 
 		}
 		
