@@ -349,13 +349,30 @@ namespace Palete {
 			
 			
 			
-			SourceFunc callback = this.create_valac_tree.callback;
+			this.threaded_callback = this.create_valac_tree.callback;
 			 
 			string[] output = {};
 			 
   			var cx = this.context;
-			new Thread<bool>("thread-update-tree", () => {
-				// Perform a dummy slow calculation.
+			new Thread<bool>("thread-update-tree",  this.threaded_parse);
+
+			// Wait for background thread to schedule our callback
+			yield;
+			
+			
+			
+			Vala.CodeContext.pop ();
+		 	context =  null;
+			
+			
+			GLib.debug("ALL OK?\n");
+		 
+		}
+		SourceFunc threaded_callback;
+		
+		public void threaded_parse ()
+		{
+			// Perform a dummy slow calculation.
 				// (Insert real-life time-consuming algorithm here.)
 				 
 				Vala.Parser parser = new Vala.Parser ();
@@ -370,8 +387,8 @@ namespace Palete {
 					
   
 					context = null;
-	 				Idle.add((owned) callback);
-					return true; ;
+	 				Idle.add( this.threaded_callback);
+					return; ;
 				}
 
 
@@ -384,8 +401,8 @@ namespace Palete {
 					//Vala.CodeContext.pop ();
 					cx = null;
 					//return;
-					Idle.add((owned) callback);
-					return true;
+					Idle.add(  this.threaded_callback);
+					return;
 					
 				}
 				 
@@ -401,22 +418,11 @@ namespace Palete {
 				
 				
 					 
-				Idle.add((owned) callback);
-				return true;
-			});
-
-			// Wait for background thread to schedule our callback
-			yield;
-			
-			
-			
-			Vala.CodeContext.pop ();
-		 	context =  null;
-			
-			
-			GLib.debug("ALL OK?\n");
-		 
-		}
+				Idle.add(this.threaded_callback);
+				 
+			}
+		
+		
 	//
 		// startpoint:
 		//
