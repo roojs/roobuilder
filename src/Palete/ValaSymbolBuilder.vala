@@ -354,7 +354,7 @@ namespace Palete {
 			string[] output = {};
 			 
   			var cx = this.context;
-			new Thread<bool>("thread-update-tree",  this.threaded_parse);
+			new Thread<void>("thread-update-tree",  this.threaded_parse);
 
 			// Wait for background thread to schedule our callback
 			yield;
