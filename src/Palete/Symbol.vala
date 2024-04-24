@@ -59,7 +59,22 @@ namespace Palete {
 				}
 			}
 		}
-  		public string implements_str { get; set; default = new Gee.ArrayList<string>(); }		
+  		public string implements_str { 
+			get {
+				string[] r = {};
+				foreach(var s in this.implements) {
+					r += s;
+				}
+				return string.joinv("\n", r);
+			}
+			set {
+				var bits = value.split("\n");
+				this.implements.clear();
+				for (var i =0;i < bits.length;i++) {
+					this.implements.add(bits[i]);
+				}
+			}
+		}	
 		
 		
 		
