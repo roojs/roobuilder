@@ -228,7 +228,7 @@ namespace Palete {
 		{
 			// init context:
 			context = new Vala.CodeContext ();
-			Vala.CodeContext.push (context);
+			
 		
 			context.experimental = false;
 			context.experimental_non_null = false;
@@ -374,7 +374,7 @@ namespace Palete {
 		{
 			// Perform a dummy slow calculation.
 			// (Insert real-life time-consuming algorithm here.)
-			 
+			Vala.CodeContext.push (context);
 			Vala.Parser parser = new Vala.Parser ();
 			parser.parse (this.context);
 			//gir_parser.parse (context);
