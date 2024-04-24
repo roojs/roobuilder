@@ -642,14 +642,12 @@
 				return false;
 				
 			});
-			var sb = new Palete/ValaSymbolBuilder(cur_project);
+			var sb = new Palete.ValaSymbolBuilder(cur_project);
 			
-			sb.updateBackground.begin(buildmodule, (o,r )  => {
+			sb.updateBackground.begin(BuilderApplication.opt_symbol_test, (o,r )  => {
 				var ar = sb.updateBackground.end(r);
 				done = true;
-			
-				
-			});
+			 	});
 			 
 			loop.run();
 			 
