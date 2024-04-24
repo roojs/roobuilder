@@ -642,7 +642,14 @@
 				return false;
 				
 			});
+			var sb = new ValaSymbolBuilder(cur_project);
 			
+			sb.updateBackground.begin(buildmodule, (o,r )  => {
+				var ar = sb.updateBackground.end(r);
+				done = true;
+			
+				
+			});
 			 
 			loop.run();
 			 
