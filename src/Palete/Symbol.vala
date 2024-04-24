@@ -44,7 +44,10 @@ namespace Palete {
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
 		
 		public string inherits_str { 
-			unowned get {
+			owned get {
+				if (this.inherits.size < 1) {
+					return "";
+				}
 				string[] r = {};
 				foreach(var s in this.inherits) {
 					r += s;
@@ -60,7 +63,7 @@ namespace Palete {
 			}
 		}
   		public string implements_str { 
-			unowned get {
+			owned get {
 				string[] r = {};
 				foreach(var s in this.implements) {
 					r += s;
