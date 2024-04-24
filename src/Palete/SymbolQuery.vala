@@ -173,18 +173,18 @@ namespace Palete {
 			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var k in this.ints.keys) {
 				stmt.bind_int (stmt.bind_parameter_index ("$" +k), ints.get(k));
-				GLib.debug("set %s=%d", k, ints.get(k));
+			//	GLib.debug("set %s=%d", k, ints.get(k));
 			}
 			foreach(var k in this.strings.keys) {
 				stmt.bind_text (stmt.bind_parameter_index ("$" +k), strings.get(k));
-				GLib.debug("set %s=%s", k, strings.get(k));
+				//GLib.debug("set %s=%s", k, strings.get(k));
 			}
-			if (Sqlite.OK != stmt.step ()) {
+			if (Sqlite.DONE != stmt.step ()) {
 			    GLib.debug("SYmbol insert: %s", db.errmsg());
 			}
 			stmt.reset(); //not really needed.
 			var id = db.last_insert_rowid();
-			GLib.debug("got id=%d", (int)id);
+			//GLib.debug("got id=%d", (int)id);
 			return id;
 
 		}
