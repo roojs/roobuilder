@@ -28,7 +28,7 @@ namespace Palete {
 		public string rtype  { get; set; default = ""; }  
 		public string direction   { get; set; default = ""; }  
 		public string fqn   { get; set; default = ""; }  
-
+		public string parent_name  { get; set; default = ""; }  // ??? needed?
 		public string doc { get; set; default = ""; }   
 		
 		public bool deprecated  { get; set; default = false; }    
@@ -87,7 +87,7 @@ namespace Palete {
 		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
 		
-		public string parent_name = "";
+
 		// FIXME!!!!
 		public Symbol? parent = null;
 		public int64 parent_id {
