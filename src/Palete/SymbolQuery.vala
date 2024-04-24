@@ -177,7 +177,7 @@ namespace Palete {
 			}
 			foreach(var k in this.strings.keys) {
 				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
-					GLib.debug("set %s=%s", k, strings.get(k));
+				GLib.debug("set %s=%s", k, strings.get(k));
 			}
 			if (Sqlite.OK != stmt.step ()) {
 			    GLib.debug("SYmbol insert: %s", db.errmsg());
