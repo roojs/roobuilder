@@ -115,7 +115,7 @@ namespace Palete {
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), file.path);
 			stmt.bind_int64 (stmt.bind_parameter_index ("$version"), file.version);
 			stmt.bind_text (stmt.bind_parameter_index ("$relversion"), file.relversion);			
-			if (Sqlite.OK != stmt.step ()) {
+			if (Sqlite.DONE != stmt.step ()) {
 			    GLib.debug("insertfile: %s", db.errmsg());
 			}
 			file.id = db.last_insert_rowid();
