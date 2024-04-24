@@ -158,6 +158,9 @@ namespace Palete {
 				values += ("$" + k);
 			}
 			foreach(var k in this.strings.keys) {
+				if (strings.get(k) == "") {
+					continue;
+				}
 				keys += k;			
 				values += ("$" + k);
 			}
@@ -166,9 +169,11 @@ namespace Palete {
 				string.joinv(",", keys) + " ) VALUES ( " + 
 				string.joinv(",", values) +   " )";
 			
+			GLib.debug("Query %s", q);
 			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var k in this.ints.keys) {
 				stmt.bind_int (stmt.bind_parameter_index (k), ints.get(k));
+				GLib.debug("Query %s", q);
 			}
 			foreach(var k in this.strings.keys) {
 				stmt.bind_text (stmt.bind_parameter_index (k), strings.get(k));
