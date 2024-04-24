@@ -15,14 +15,14 @@ namespace Palete {
 	public class Symbol : Object {
 	
 		public int64 id = -1;
-		public Lsp.SymbolKind stype;
+		public Lsp.SymbolKind stype { get; set; }
 		public SymbolFile? 	file = null;
 		 
-		public int begin_line;
-		public int begin_col;
-		public int end_line;
-		public int end_col;
-		public int sequence  = 0; // parameters
+		public int begin_line { get; set; }
+		public int begin_col { get; set; }
+		public int end_line { get; set; }
+		public int end_col { get; set; }
+		public int sequence { get; set; } = 0; // parameters
 		
 		public string name = "";  
 		public string rtype  = ""; 
