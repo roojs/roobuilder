@@ -40,10 +40,11 @@ namespace Palete {
 		
 		public ValaSymbolBuilder(Project.Gtk project)
 		{
+			base();
 			this.scan_project = project;
 			this.filemanager = new SymbolFileCollection();
 			this.changed = new Gee.ArrayList<string>();
-			base();
+			
 		}
 		
 		
