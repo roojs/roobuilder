@@ -234,7 +234,9 @@ namespace Palete {
 				"direction",
 				"parent_name",
 				"doc",
-				"fqn"
+				"fqn",
+				"implements_str",
+				"inherits_str"
 
 			});	
 			q.setBools({
