@@ -353,7 +353,7 @@ namespace Palete {
 			 
 			string[] output = {};
 			 
-  			var cx = this.context;
+
 			new Thread<void>("thread-update-tree",  this.threaded_parse);
 
 			// Wait for background thread to schedule our callback
