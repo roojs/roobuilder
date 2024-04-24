@@ -56,7 +56,13 @@ namespace Palete {
 			private set {}
 			
 		}
-		
+		public int64 file_id {
+			get {
+				return this.file == null? 0 :  this.file.id;
+			}
+			private set {}
+			
+		}
 		public string type_name {
 			set {}
 			owned get {
