@@ -642,7 +642,7 @@
 				return false;
 				
 			});
-			var sb = new ValaSymbolBuilder(cur_project);
+			var sb = new Palete/ValaSymbolBuilder(cur_project);
 			
 			sb.updateBackground.begin(buildmodule, (o,r )  => {
 				var ar = sb.updateBackground.end(r);
