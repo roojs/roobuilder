@@ -288,7 +288,9 @@ namespace Palete {
 					parent_name TEXT,
 					doc TEXT,
 					is_gir INTEGER,
-					fqn TEXT
+					fqn TEXT,
+					implements_str TEXT,
+					inherits_str TEXT
 				);
 		 	");	
 		
