@@ -376,9 +376,9 @@ namespace Palete {
 				// (Insert real-life time-consuming algorithm here.)
 				 
 				Vala.Parser parser = new Vala.Parser ();
-				parser.parse (cx);
+				parser.parse (this.context);
 				//gir_parser.parse (context);
-				if (cx.report.get_errors () > 0) {
+				if (this.context.report.get_errors () > 0) {
 					
 					//throw new VapiParserError.PARSE_FAILED("failed parse VAPIS, so we can not write file correctly");
 					
@@ -386,7 +386,7 @@ namespace Palete {
 					 
 					
   
-					context = null;
+					this.context = null;
 	 				Idle.add( this.threaded_callback);
 					return; ;
 				}
@@ -399,7 +399,7 @@ namespace Palete {
 					GLib.debug("failed check VAPIS, so we can not write file correctly");
 					// throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
 					//Vala.CodeContext.pop ();
-					cx = null;
+					this.context= null;
 					//return;
 					Idle.add(  this.threaded_callback);
 					return;
@@ -408,8 +408,8 @@ namespace Palete {
 				 
 				
 				 
-				cx.accept(this);
-				cx = null;
+				this.context.accept(this);
+				this.context = null;
 				
 				foreach(var sf in this.changed) {
 					this.filemanager.factory_by_path(sf).removeOldSymbols();
