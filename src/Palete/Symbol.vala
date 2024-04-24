@@ -64,6 +64,9 @@ namespace Palete {
 		}
   		public string implements_str { 
 			owned get {
+				if (this.implements.size < 1) {
+					return "";
+				}
 				string[] r = {};
 				foreach(var s in this.implements) {
 					r += s;
