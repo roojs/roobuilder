@@ -111,10 +111,11 @@ namespace Palete {
 					if (oldv.get_boolean() == newv.get_boolean()) {
 						continue;
 					}
+					this.old.set_property(col, newv);									
 				}
 				this.setter +=  (col + " = $" + col);
 				this.ints.set(col, newv.get_boolean() ? 1 : 0);
-				this.old.set_property(col, newv);				
+
 				// not the same..
 			}
 		}
