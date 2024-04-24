@@ -12,7 +12,7 @@ namespace Palete {
 		Gee.HashMap<string,int> ints;
 		Gee.HashMap<string,string> strings;	
 		Gee.HashMap<string,GLib.Type> types;
-		Object old;
+		Object? old;
 		Object newer;
 		int64 id;
 		
