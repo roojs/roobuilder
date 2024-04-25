@@ -77,37 +77,37 @@ public class Editor : Object
 
 	// user defined functions
 	public bool saveContents ()  {
-	    
-	    
-	    if (_this.file == null) {
-	        return true;
-	    }
-	    
-	     
-	     
-	     var str = _this.buffer.toString();
-	     
-	     _this.buffer.checkSyntax();
-	     
-	     
-	     
-	     // LeftPanel.model.changed(  str , false);
-	     _this.dirty = false;
-	     _this.save_button.el.sensitive = false;
-	     
-	    // find the text for the node..
-	    if (_this.file.xtype != "PlainFile") {
-	       // in theory these properties have to exist!?!
-	    	this.prop.val = str;
-	        //this.window.windowstate.left_props.reload();
-	    } else {
-	        _this.file.setSource(  str );
-	     }
-	    
-	    // call the signal..
-	    this.save();
-	    
-	    return true;
+	
+	
+		if (_this.file == null) {
+			return true;
+		}
+	
+		 
+		 
+		 var str = _this.buffer.toString();
+		 
+		 _this.buffer.checkSyntax();
+		 
+		 
+		 
+		 // LeftPanel.model.changed(  str , false);
+		 _this.dirty = false;
+		 _this.save_button.el.sensitive = false;
+		 
+		// find the text for the node..
+		if (_this.file.xtype != "PlainFile") {
+		   // in theory these properties have to exist!?!
+			this.prop.val = str;
+			//this.window.windowstate.left_props.reload();
+		} else {
+			_this.file.setSource(  str );
+		}
+	
+		// call the signal..
+		this.save();
+	
+		return true;
 	
 	}
 	public void forwardSearch (bool change_focus) {
