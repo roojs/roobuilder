@@ -161,15 +161,15 @@ public class Editor : Object
 	        this.close_btn.el.show();       
 	    
 	    } else {
-	        this.view.load(        file.toSource() );
+	        this.view.load(  file.toSource() );
 	        this.updateErrorMarks();
 	        this.close_btn.el.hide();
 	        var pr = (Project.Gtk)file.project;
-	        if (pr != null) {
-			    var sf = pr.symbol_manager.factory_by_path(file.path);
-			    sf.loadSymbols();
-	            file.symbol_tree = sf.children;
-		    }
+	       
+		    var sf = file.project.symbol_manager.factory_by_path(file.path);
+		    sf.loadSymbols();
+	        file.symbol_tree = sf.children;
+	    
 	
 	        _this.navigation.show();
 	        //var ls = file.getLanguageServer();
