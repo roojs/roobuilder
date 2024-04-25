@@ -333,7 +333,7 @@ namespace Palete {
 		
 	 	public Palete.Symbol? containsLine(uint line, uint chr)
 		{
-			if (!this.range.contains(new Position(line, chr))) {
+			if (!this.contains(new Position(line, chr))) {
 				return null;
 			}
 
