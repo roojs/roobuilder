@@ -224,7 +224,7 @@ namespace Palete {
 					this.fqn_map.set(s.fqn, s); // gir only
 				}
 				//this.symbols.add(s);
-				this.symbol_map.set((int)s.id, s);
+				this.symbol_map.set(id, s);
 				
 				newsymbols.add(s);
 				if (pids.get(id) < 1) {
