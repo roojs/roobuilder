@@ -718,8 +718,8 @@ namespace Palete {
 		static int doc_symbol_queue_call_count = 1;
  
 		
-		
-		/*public override void queueDocumentSymbols (JsRender.JsRender file) 
+		/*
+		public override void queueDocumentSymbols (JsRender.JsRender file) 
 		{
 			  
 			this.documentSymbols.begin(file, (o, res) => {
