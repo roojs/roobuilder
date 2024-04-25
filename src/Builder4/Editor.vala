@@ -2080,7 +2080,7 @@ public class Editor : Object
 				}
 			}
 			
-			_this.navigationsort.setModel(ls);
+			this.setModel(ls);
 		    
 		    // this happens on first load? - not afterwards?
 		    
