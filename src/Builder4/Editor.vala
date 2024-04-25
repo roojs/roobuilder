@@ -2348,12 +2348,12 @@ public class Editor : Object
 		
 		
 		}
-		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
+		public int getRowFromSymbol (Palete.Symbol sym) {
 		
 			for (var i=0;i < this.el.get_n_items(); i++) {
 				var tr = (Gtk.TreeListRow)this.el.get_item(i);
 			   
-				if (sym.equals( (Lsp.DocumentSymbol)tr.get_item())) {
+				if (sym.equals( (Palete.Symbol)tr.get_item())) {
 					return i;
 				}
 			}
