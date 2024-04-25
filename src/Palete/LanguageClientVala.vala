@@ -719,7 +719,7 @@ namespace Palete {
  
 		
 		
-		public override void queueDocumentSymbols (JsRender.JsRender file) 
+		/*public override void queueDocumentSymbols (JsRender.JsRender file) 
 		{
 			  
 			this.documentSymbols.begin(file, (o, res) => {
@@ -729,6 +729,7 @@ namespace Palete {
 		  
 			 
 		}
+		*/
 		
 		bool getting_symbols = false;
 	 
