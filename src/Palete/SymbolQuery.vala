@@ -265,7 +265,7 @@ namespace Palete {
 				}
 			}
 			 
-		    GLib.debug("SYmbol select: %s", db.errmsg());
+		    GLib.debug("select got %d rows / last errr  %s", ret.values.size, db.errmsg());
 			
 					
 		}
