@@ -273,7 +273,7 @@ namespace Palete {
 				this.symbol_map.unset((int)s.id);
 				this.children_map.unset(s.type_name);
 				uint pos;
-				this.children.find_with_equal_func (s, (a,b) => { return a.id = b.id; }, out pos);
+				this.children.find_with_equal_func (s, (a,b) => { return (Symbol)a.id =  (Symbol)b.id; }, out pos);
 				this.children.remove(pos);
 			}
 
