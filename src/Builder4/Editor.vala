@@ -2072,7 +2072,7 @@ public class Editor : Object
 			}
 			// update.. 
 			if (old.get_n_items() > 0) {
-				var first = (Palete.Symbol)old.get(0);
+				var first = (Palete.Symbol)old.get_item(0);
 				if (first.file.path == _this.file.path) {
 					// file has not changed..
 					// no need to update.. - it's done automatically?

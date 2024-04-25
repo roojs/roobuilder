@@ -1497,7 +1497,7 @@
             "\t}",
             "\t// update.. ",
             "\tif (old.get_n_items() > 0) {",
-            "\t\tvar first = (Palete.Symbol)old.get(0);",
+            "\t\tvar first = (Palete.Symbol)old.get_item(0);",
             "\t\tif (first.file.path == _this.file.path) {",
             "\t\t\t// file has not changed..",
             "\t\t\t// no need to update.. - it's done automatically?",
