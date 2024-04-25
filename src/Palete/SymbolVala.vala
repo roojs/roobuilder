@@ -15,18 +15,14 @@ namespace Palete {
 			
 			  
 		}
-		public string line_sig {
-			owned get {
-				return "%d:%d:%d:%s".printf(this.begin_line, this.begin_col, this.end_line, this.end_col);
-			}
-			privateset {}
-		}
+		
 	
 		public SymbolVala.new_namespace(ValaSymbolBuilder builder, Symbol? parent, Vala.Namespace ns)
 		{
 			this(builder, ns);
 			this.name = ns.name;
-			this.stype = Lsp.SymbolKind.Namespace; 
+			this.stype = Lsp.SymbolKind.Namespace;
+			
 			this.setParent(parent);	
 			foreach(var c in ns.get_classes()) {
 				new new_class(builder, this,c);
@@ -258,7 +254,7 @@ namespace Palete {
 		}
 	 	public void setParent(Symbol? parent) 
 		{
-			   
+			  
 			if (parent != null && parent.file.id != this.file.id) {
 				if (parent.stype != Lsp.SymbolKind.Namespace)  {
 					GLib.error("parent is from differnt file, and its' type is %s", 
@@ -269,7 +265,7 @@ namespace Palete {
 				this.parent_name = parent.name;
 				parent = null;
 			}
-			
+			this.file.parsed_symbols.add(this.line_sig);
 			
 
 			this.parent = parent;
