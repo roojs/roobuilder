@@ -2064,7 +2064,7 @@ public class Editor : Object
 					_this.paned.el.get_width() - 200;
 			}
 			var tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();
-			var old = tlm.get_model();
+			var old = (GLib.ListStore)tlm.get_model();
 			
 			if (ls.get_n_items() < 1) {
 				 old.remove_all();

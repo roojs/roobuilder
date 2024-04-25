@@ -1489,7 +1489,7 @@
             "\t\t\t_this.paned.el.get_width() - 200;",
             "\t}",
             "\tvar tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();",
-            "\tvar old = tlm.get_model();",
+            "\tvar old = (GLib.ListStore)tlm.get_model();",
             "\t",
             "\tif (ls.get_n_items() < 1) {",
             "\t\t old.remove_all();",
