@@ -201,7 +201,8 @@ namespace Palete {
 			string[] keys = {};
 			int64 id = 0;
 			int64 parent_id = 0;
-			var i = 0;
+			cols.set("id", 0);
+			var i = 1;
 			foreach(var k in this.ints.keys) {
 				keys += k;
 				cols.set(k, i);
