@@ -133,6 +133,14 @@ namespace JsRender {
 		//public signal void changed (Node? node, string source);  (not used?)
 		public GLib.ListStore symbol_tree; // part of project/symbolmanager
 		public signal void symbol_tree_updated( );
+		public void update_symbol_tree()
+		{
+			var pr = (Project.Gtk)this.project;
+			if (pr !== null) {
+				pr.symbol_manager.updateTreeFromFile(this);
+			}
+		
+		}
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
 		
