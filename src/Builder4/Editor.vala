@@ -164,9 +164,13 @@ public class Editor : Object
 	        this.view.load(        file.toSource() );
 	        this.updateErrorMarks();
 	        this.close_btn.el.hide();
-	        var sf = file.project.symbol_manager.factory_from_path(file.path);
-	        sf.loadSymbols();
-	        file.symbol_tree = sf.children;
+	        var pr = (Project.Gtk)file.project;
+	        if (pr != null) {
+			    var sf = pr.symbol_manager.factory_from_path(file.path);
+			    sf.loadSymbols();
+	            file.symbol_tree = sf.children;
+		    }
+	
 	        _this.navigation.show();
 	        //var ls = file.getLanguageServer();
 	        //ls.queueDocumentSymbols(file);
