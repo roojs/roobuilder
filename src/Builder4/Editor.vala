@@ -140,12 +140,12 @@ public class Editor : Object
 	{
 	    this.reset();
 	    if (this.file != null) {
-	    	this.file.navigation_tree_updated.disconnect(
+	    	this.file.symbol_tree.disconnect(
 	    		_this.navigation.show
 	    	);
 	    }
 	    this.file = file;    
-	    this.file.navigation_tree_updated.connect(
+	    this.file.symbol_tree.connect(
 			_this.navigation.show
 		);
 	    if (file.xtype != "PlainFile") {
@@ -164,8 +164,12 @@ public class Editor : Object
 	        this.view.load(        file.toSource() );
 	        this.updateErrorMarks();
 	        this.close_btn.el.hide();
-	        var ls = file.getLanguageServer();
-	        ls.queueDocumentSymbols(file);
+	        var sf = file.project.symbol_manager.factory_from_path(file.path);
+	        sf.loadSymbols();
+	        file.symbol_tree = sf.children;
+	        _this.navigation.show();
+	        //var ls = file.getLanguageServer();
+	        //ls.queueDocumentSymbols(file);
 	        ////ls.documentSymbols.begin(file, (a,o) => {
 	        //	_this.navigation.show(ls.documentSymbols.end(o)); 
 	       //});
