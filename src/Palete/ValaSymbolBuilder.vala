@@ -158,6 +158,9 @@ namespace Palete {
 				GLib.debug("SKIP  NS %s (db uptodate)", element.source_reference.file.filename);
 				return;
 			}
+			if (sf.database_has_symbols && sf.children.get_n_items() < 1) {
+				sf.loadSymbols(  );
+			}
 			
 			new SymbolVala.new_namespace(this, null, element);
 			element.accept_children(this); // catch sub namespaces..
@@ -177,6 +180,9 @@ namespace Palete {
 			if (sf.is_parsed) {
 				GLib.debug("SKIP  Class %s (db uptodate)", element.source_reference.file.filename);
 				return;
+			}
+			if (sf.database_has_symbols && sf.children.get_n_items() < 1) {
+				sf.loadSymbols(  );
 			}
 			
 			element.accept_children(this);
