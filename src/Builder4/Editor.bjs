@@ -1239,7 +1239,7 @@
                     " ",
                     "\t",
                     "\tfor(var i = 0; i < this.el.get_n_items();i++) {",
-                    "\t\tvar el = (Lsp.DocumentSymbol)this.el.get_item(i);",
+                    "\t\tvar el = (Palete.Symbol)this.el.get_item(i);",
                     "\t\t//GLib.debug(\"Check sym %s : %d-%d\",",
                     "\t\t//\tel.name , (int)el.range.start.line,",
                     "\t\t//\t(int)el.range.end.line",
