@@ -293,6 +293,7 @@ namespace Palete {
 			// update..
 
 			var old = children_map.get(this.type_name);
+			this.id = old.id;
 			var q = this.fillQuery(old);
 			if (!q.shouldUpdate()) {
 				return; // no need to update..
