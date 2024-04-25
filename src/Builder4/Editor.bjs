@@ -1467,6 +1467,11 @@
             "\treturn rn;",
             " }"
            ],
+           "| void setModel" : [
+            "() {",
+            "",
+            "}"
+           ],
            "| void show" : [
             "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
             "\t",
