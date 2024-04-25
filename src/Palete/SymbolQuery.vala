@@ -192,7 +192,7 @@ namespace Palete {
 
 		}
 		
-		public void select(Sqlite.Database db, string where, Gee.HashMap<int,T> ret)
+		public void select(Sqlite.Database db, string where, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids)
 		{
 			Sqlite.Statement stmt;
 			
@@ -200,6 +200,7 @@ namespace Palete {
 			var cols = new Gee.HashMap<string,int>();
 			string[] keys = {};
 			int64 id = 0;
+			int64 parent_id = 0;
 			var i = 0;
 			foreach(var k in this.ints.keys) {
 				keys += k;
@@ -220,6 +221,7 @@ namespace Palete {
 			while (stmt.step() == Sqlite.ROW) {
 		 		var row =  Object.new (typeof(T));	
 				id = 0;
+				parent_id = 0;
 			 	foreach(var k in cols.keys) {
 
 			 		var type = this.types.get(k);
@@ -237,6 +239,10 @@ namespace Palete {
 			 				if (k == "id") {
 			 					id = val;
 		 					}
+		 					if (k == "parent_id") {
+		 						parent_id = val;
+		 						continue;
+	 						}
 							newv.set_int64(val);;
 							break;
 						case GLib.Type.STRING:
@@ -245,9 +251,12 @@ namespace Palete {
 
 					}
 					row.set_property(k, newv);
+					
 				}
+				
 				if (id > 0) {
 					ret.set((int)id, row);
+					pids.set((int)id, (int)parent_id);
 				}
 			}
 			 
