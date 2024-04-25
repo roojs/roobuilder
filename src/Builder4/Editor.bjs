@@ -505,7 +505,7 @@
               "\t\t_this.file.setSource(str);",
               "\t\tBuilderApplication.showSpinner(\"appointment soon\",\"document change pending\");",
               "\t\t_this.file.getLanguageServer().document_change(_this.file);",
-              "\t\t_this.file.update_symbol_tree();.",
+              "\t\t_this.file.update_symbol_tree();",
               "\t//\t_this.file.getLanguageServer().queueDocumentSymbols(_this.file);",
               "\t\t_this.file.setSource(oldcode);",
               "\t\t",
