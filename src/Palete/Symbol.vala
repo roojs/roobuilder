@@ -347,6 +347,11 @@ namespace Palete {
 			return this;
 			
 		}
+		public string sort_key {
+   			owned get { 
+   				return this.stype.sort_key().to_string() + "=" + this.name;
+			}
+		}
 		
 		
 	}
