@@ -271,10 +271,18 @@ namespace Palete {
 			}
 			foreach(var s in rem) {
 				this.symbol_map.unset((int)s.id);
-				this.children_map.unset(s.type_name);
-				uint pos;
-				if (this.children.find_with_equal_func (s, (a,b) => { return ((Symbol)a).id ==  ((Symbol)b).id; }, out pos)) {
-					this.children.remove(pos);
+				if (s.parent == null) {
+					this.children_map.unset(s.type_name);
+					uint pos;
+					if (this.children.find_with_equal_func (s, (a,b) => { return ((Symbol)a).id ==  ((Symbol)b).id; }, out pos)) {
+						this.children.remove(pos);
+					} 
+				} else {
+					s.parent.children_map.unset(s.type_name);
+					if (s.parent.children.find_with_equal_func (s, (a,b) => { return ((Symbol)a).id ==  ((Symbol)b).id; }, out pos)) {
+						s.parent.children.remove(pos);
+					} 
+				
 				}
 			}
 
