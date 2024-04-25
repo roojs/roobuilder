@@ -1083,6 +1083,7 @@ namespace Project {
 			}
 			return ls;
 		}
+		// triggered from vala symbol compiler 
 		public void onTreeChanged(Gee.ArrayList<string> paths) {
 			// loop trhoug paths - see if files are open, if so... update right tree?
 			foreach(var p in paths) {
