@@ -724,7 +724,7 @@ namespace Palete {
 			  
 			this.documentSymbols.begin(file, (o, res) => {
 				var ret = documentSymbols.end(res);
-				file.navigation_tree_updated(ret);
+				//file.navigation_tree_updated(ret);
 			});
 		  
 			 
