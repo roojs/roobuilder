@@ -259,10 +259,12 @@ namespace Palete {
 	 	public void removeOldSymbols()
 	 	{
  		 	GLib.debug("symbol map size %d", this.symbol_map.keys.size);
- 		 	foreach(var k in this.symbol_map.keys) {
-				var s = this.symbol_map.get(k);
+ 		 	var mi =- this.symbol_map.map_iterator();
+ 		 	while(mi.next()) {
+ 		 	
+				var s = this.mi.get_value();
  				if (s.rev != s.file.version) {
-					this.symbol_map.unset(k);
+					this.symbol_map.unset(mi.get_key());
 				}
 			}
 			/*
