@@ -278,11 +278,11 @@ namespace Palete {
 			
 			this.rev = this.file.version;
 			
-			if (!this.children_map.has_key(this.type_name)) {
-
-				
+			if (!children_map.has_key(this.type_name)) {
+ 
 				var q = this.fillQuery(null);
 				this.id = q.insert(SymbolDatabase.db);
+				GLib.debug("DB INSERT added %d, %s", (int)this.id, this.name);
  				children.append(this);
 				children_map.set(this.type_name, this);
 				//this.file.symbols.add(this);
@@ -298,6 +298,7 @@ namespace Palete {
 				return; // no need to update..
 			}
 			q.update(SymbolDatabase.db);
+			GLib.debug("DB UPDATE added %d, %s", (int)this.id, this.name);
 			// should nto need to update file symbols.
 		}
 			
