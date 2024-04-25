@@ -310,7 +310,7 @@ namespace Palete {
 			GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
 			// should nto need to update file symbols.
 		}
-			
+			 
 		
 		 
 	
