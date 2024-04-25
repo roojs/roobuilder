@@ -169,6 +169,7 @@ public class Editor : Object
 		    var sf = file.project.symbol_manager.factory_by_path(file.path);
 		    sf.loadSymbols();
 	        file.symbol_tree = sf.children;
+	        // trigger a scan
 			_this.file.update_symbol_tree();
 	
 	        _this.navigation.show();
