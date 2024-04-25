@@ -230,6 +230,7 @@ namespace Palete {
 					pids.set((int)s.id, (int)s.parent_id);
 				} else {
 					this.children.append(s);
+					GLib.debug("file add parent : %s", s.type_name);
 					this.children_map.set(s.type_name, s);
 				}
 			}
