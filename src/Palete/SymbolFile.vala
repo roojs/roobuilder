@@ -259,14 +259,25 @@ namespace Palete {
 	 	public void removeOldSymbols()
 	 	{
  		 	GLib.debug("symbol map size %d", this.symbol_map.keys.size);
- 		 	var mi =- this.symbol_map.map_iterator();
- 		 	while(mi.next()) {
- 		 	
-				var s = this.mi.get_value();
+			var rem = new Gee.ArrayList<Symbol>();
+ 		 	 
+ 		 	foreach(var k in this.symbol_map.keys) {
+				var s = this.symbol_map.get(k);
+
  				if (s.rev != s.file.version) {
-					this.symbol_map.unset(mi.get_key());
+					rem.add(s);
+
 				}
 			}
+			foreach(var s in rem) {
+				this.symbol_map.unset(s.id);
+				this.children_map.unset(s.type_name);
+				int pos;
+				this.children.find_with_equal_func (s, (a,b) => { return a.id = b.id; }, out pos);
+				this.children.remove(pos);
+			}
+
+			
 			/*
 			
 			for(var i = 0; i < this.children.get_n_items(); i++) {
