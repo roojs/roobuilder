@@ -15,11 +15,11 @@ namespace Palete {
 			
 			  
 		}
-		public string linesig {
+		public string line_sig {
 			get {
 				return "%d:%d:%d:%s".printf(this.begin_line, this.begin_col, this.end_line, this.end_col);
 			}
-			set {}
+			privateset {}
 		}
 	
 		public SymbolVala.new_namespace(ValaSymbolBuilder builder, Symbol? parent, Vala.Namespace ns)
