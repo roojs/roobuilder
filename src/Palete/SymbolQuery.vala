@@ -229,7 +229,8 @@ namespace Palete {
 
 	 				if (k == "id") {
 		 				var  newv = GLib.Value ( typeof (int64) );
-	 					newv.set_int64(var val = stmt.column_int64(cols.get(k)));
+		 				var val = stmt.column_int64(cols.get(k))
+	 					newv.set_int64(val);
 	 					id = val;
 	 					row.set_property(k, newv);
  						continue;
