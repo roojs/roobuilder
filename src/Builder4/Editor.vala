@@ -2411,20 +2411,6 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
-
-			//listeners
-			this.el.items_changed.connect( (position, removed, added) => {
-				GLib.debug("tree item changed %d , %d , %d",(int) position, (int)removed, (int) added);
-				 if (added < 1) { 
-				 	return;
-			 	}
-				//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);
-				var row = this.el.get_row(position);
-				
-				GLib.debug("got %s", row.get_item().get_type().name());
-				
-			
-			});
 		}
 
 		// user defined functions
@@ -2449,24 +2435,6 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public Palete.Symbol? symbolAtLine (uint line, uint chr) {
-		 
-			
-			for(var i = 0; i < this.el.get_n_items();i++) {
-				var el = (Palete.Symbol)this.el.get_item(i);
-				//GLib.debug("Check sym %s : %d-%d",
-				//	el.name , (int)el.range.start.line,
-				//	(int)el.range.end.line
-				//);
-				var ret = el.containsLine(line,chr);
-				if (ret != null) {
-					return ret;
-				}
-				
-			}
-			
-			return null;
-		}
 	}
 
 

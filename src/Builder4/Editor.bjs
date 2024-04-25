@@ -1232,46 +1232,9 @@
                    "$ GLib.Type item_type" : "typeof(Palete.Symbol)",
                    "$ xns" : "GLib",
                    "* prop" : "root",
-                   "xtype" : "ListStore",
-                   "| Palete.Symbol? symbolAtLine" : [
-                    "(uint line, uint chr) {",
-                    " ",
-                    "\t",
-                    "\tfor(var i = 0; i < this.el.get_n_items();i++) {",
-                    "\t\tvar el = (Palete.Symbol)this.el.get_item(i);",
-                    "\t\t//GLib.debug(\"Check sym %s : %d-%d\",",
-                    "\t\t//\tel.name , (int)el.range.start.line,",
-                    "\t\t//\t(int)el.range.end.line",
-                    "\t\t//);",
-                    "\t\tvar ret = el.containsLine(line,chr);",
-                    "\t\tif (ret != null) {",
-                    "\t\t\treturn ret;",
-                    "\t\t}",
-                    "\t\t",
-                    "\t}",
-                    "\t",
-                    "\treturn null;",
-                    "}"
-                   ]
+                   "xtype" : "ListStore"
                   }
                  ],
-                 "listeners" : {
-                  "items_changed" : [
-                   "(position, removed, added) => {",
-                   "\tGLib.debug(\"tree item changed %d , %d , %d\",(int) position, (int)removed, (int) added);",
-                   "\t if (added < 1) { ",
-                   "\t \treturn;",
-                   " \t}",
-                   "\t//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);",
-                   "\tvar row = this.el.get_row(position);",
-                   "\t",
-                   "\tGLib.debug(\"got %s\", row.get_item().get_type().name());",
-                   "\t",
-                   "",
-                   "}",
-                   ""
-                  ]
-                 },
                  "xtype" : "TreeListModel"
                 },
                 {
