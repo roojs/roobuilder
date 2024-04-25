@@ -263,7 +263,7 @@ namespace Palete {
 				var s = (Symbol) this.children.get_item(i);
 
 				if (s.rev != s.file.version) {
-					this.children_map.unset(s.id);				
+					this.children_map.unset(s.type_name);				
 					this.children.remove(i);
 					i--;
 					continue;
