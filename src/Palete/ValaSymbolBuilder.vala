@@ -44,7 +44,7 @@ namespace Palete {
 			this.scan_project = project;
 			this.filemanager = new SymbolFileCollection();
 			this.changed = new Gee.ArrayList<string>();
-			
+ 
 		}
 		
 		
@@ -155,7 +155,10 @@ namespace Palete {
 				GLib.debug("SKIP  NS %s (db uptodate)", element.source_reference.file.filename);
 				return;
 			}
-			  
+			if (sf.contains(this.line_sig)) {
+				return;
+			}
+			  		
 			new SymbolVala.new_namespace(this, null, element);
 			//element.accept_children(this); // catch sub namespaces..
 		}
@@ -178,6 +181,11 @@ namespace Palete {
 			 
 			
 			element.accept_children(this);
+			if (sf.contains(this.line_sig)) {
+				return;
+			}
+			  
+			
 			new SymbolVala.new_class(this,null, element);
 			//?? childre???
 			
