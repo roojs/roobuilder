@@ -261,19 +261,16 @@ namespace Palete {
 	 		 
 			for(var i = 0; i < this.children.get_n_items(); i++) {
 				var s = (Symbol) this.children.get_item(i);
+
 				if (s.rev != s.file.version) {
+					this.children_map.unset(s.id);				
 					this.children.remove(i);
 					i--;
 					continue;
 				}
 				s.removeOldSymbols();
 			}
-			foreach(var k in this.children_map.keys) {
-				var s = this.children_map.get(k);
-				if (s.rev != s.file.version) {
-					this.children_map.unset(k);
-				}
-			}
+			 
 			/*foreach(var s in this.symbols) {
  				if (s.rev != s.file.version) {
 					this.symbols.remove(s);
