@@ -1328,7 +1328,7 @@
                 "() {",
                 "\tfor (var i=0;i < this.el.get_n_items(); i++) {",
                 "\t\tvar tr = (Gtk.TreeListRow)this.el.get_item(i);",
-                "\t\tvar sym =  (PaleteLsp.DocumentSymbol)tr.get_item();",
+                "\t\tvar sym =  (Palete.Symbol)tr.get_item();",
                 "\t\tswitch (sym.stype) {",
                 "\t \t\tcase Lsp.SymbolKind.Enum: ",
                 "\t \t\t\ttr.expanded = false;",
