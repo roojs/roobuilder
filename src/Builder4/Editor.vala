@@ -2352,7 +2352,7 @@ public class Editor : Object
 		// is this used as we have setdata???
 			for (var i=0;i < this.el.get_n_items(); i++) {
 				var tr = (Gtk.TreeListRow)this.el.get_item(i);
-			   
+			   //var 
 				if (sym.id ==  ((Palete.Symbol)(tr.get_item())).id) {
 					return i;
 				}
