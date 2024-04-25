@@ -152,6 +152,7 @@ namespace Palete {
 				//element.accept_children(this); // catch sub namespaces..
 				return;
 			}
+			GLib.debug("NS from file : %s", element.source_reference.file.filename);
 			var sf = this.filemanager.factory_by_path(element.source_reference.file.filename);
 			if (sf.is_parsed) {
 				GLib.debug("SKIP %s (db uptodate)", element.source_reference.file.filename);
