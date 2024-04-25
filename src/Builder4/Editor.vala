@@ -2055,10 +2055,10 @@ public class Editor : Object
 					_this.paned.el.get_width() - 200;
 			}
 			
-			var old = _this.navlistsort.el.get_model().get_model();
+			var old = _this.navigationsort.el.get_model().get_model();
 			
 			if (ls.get_n_items() < 1) {
-				_this.navlistsort.el.get_model().get_model().remove_all();
+				_this.navigationsort.el.get_model().get_model().remove_all();
 				return;
 			}
 			// update.. 
