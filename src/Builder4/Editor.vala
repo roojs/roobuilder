@@ -2511,7 +2511,7 @@ public class Editor : Object
 		public Xcls_PropertyExpression39(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(Lsp.DocumentSymbol), null, "sort_key" );
+			this.el = new Gtk.PropertyExpression( typeof(Palete.Symbol), null, "sort_key" );
 
 			// my vars (dec)
 

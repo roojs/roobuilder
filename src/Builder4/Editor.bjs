@@ -1284,7 +1284,7 @@
                    "* prop" : "sorter",
                    "items" : [
                     {
-                     "$ GLib.Type this_type" : "typeof(Lsp.DocumentSymbol)",
+                     "$ GLib.Type this_type" : "typeof(Palete.Symbol)",
                      "$ xns" : "Gtk",
                      "* prop" : "expression",
                      "string property_name" : "sort_key",
