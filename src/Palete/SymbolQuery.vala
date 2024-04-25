@@ -192,7 +192,7 @@ namespace Palete {
 
 		}
 		
-		public void select(Sqlite.Database db, string where, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids)
+		public void select(Sqlite.Database db, string where, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
 		{
 			Sqlite.Statement stmt;
 			
