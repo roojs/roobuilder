@@ -2424,7 +2424,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navliststore = this;
-			this.el = new GLib.ListStore( typeof(Lsp.DocumentSymbol) );
+			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
 
 			// my vars (dec)
 

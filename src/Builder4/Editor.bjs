@@ -1229,7 +1229,7 @@
                  "bool passthrough" : false,
                  "items" : [
                   {
-                   "$ GLib.Type item_type" : "typeof(Lsp.DocumentSymbol)",
+                   "$ GLib.Type item_type" : "typeof(Palete.Symbol)",
                    "$ xns" : "GLib",
                    "* prop" : "root",
                    "id" : "navliststore",
