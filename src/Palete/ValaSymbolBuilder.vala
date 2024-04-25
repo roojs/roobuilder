@@ -154,7 +154,8 @@ namespace Palete {
 				GLib.debug("SKIP  NS %s (db uptodate)", element.source_reference.file.filename);
 				return;
 			}
-			if (sf.database_has_symbols && sf.children.get_n_items() < 1) {
+			if ( sf.children.get_n_items() < 1) {
+				GLib.debug("load symbols %s", sf.path);
 				sf.loadSymbols(  );
 			}
 			
