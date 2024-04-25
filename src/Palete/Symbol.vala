@@ -299,13 +299,15 @@ namespace Palete {
 			}
 		}
 		// fixme - details on functions?
-		owned get {
+		public string tooltip {
+			owned get {
 				//GLib.debug("%s : %s", this.name, this.detail);
 				//var detail = this.detail == "" ? (this.kind.to_string() + ": " + this.name) : this.detail;
 				 return "" + this.stype.to_string().replace( "LSP_SYMBOL_KIND_", "" ) + "\n" + 
 			 	GLib.Markup.escape_text(this.name + "\nline: " + this.begin_line.to_string());
 			
-   		}
+   			}
+		}
 		 
 		
 		
