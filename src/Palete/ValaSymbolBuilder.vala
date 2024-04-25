@@ -135,8 +135,11 @@ namespace Palete {
 			//?? do we need to accept children?
 		
 		}
-		 
 		
+		public string line_sig(Vala.Symbols s) {
+			var sr = s.source_reference.
+			return "%d:%d:%d:%d".printf(sr.begin_line, sr.begin_column, sr.end_line, sr.end_column);
+		 }
 		public override void visit_namespace (Vala.Namespace element) 
 		{
 
@@ -155,7 +158,7 @@ namespace Palete {
 				GLib.debug("SKIP  NS %s (db uptodate)", element.source_reference.file.filename);
 				return;
 			}
-			if (sf.parsed_symbols.contains(this.line_sig)) {
+			if (sf.parsed_symbols.contains(this.line_sig(element))) {
 				return;
 			}
 			  		
@@ -181,7 +184,7 @@ namespace Palete {
 			 
 			
 			element.accept_children(this);
-			if (sf.parsed_symbols.contains(this.line_sig)) {
+			if (sf.parsed_symbols.contains(this.line_sig(element))) {
 				return;
 			}
 			  
