@@ -203,7 +203,7 @@ namespace Palete {
 			s.file = null;
 		}
 	 	
-	 	
+	 	// load clean..
 	  	public  void loadSymbols()
 		{
 			//this.symbols.clear();
@@ -215,6 +215,7 @@ namespace Palete {
 		 		" order by parent_id ASC, id ASC", ids, pids);
 
 			var newsymbols = new Gee.ArrayList<Symbol>();
+			// order does not help!!!
 			foreach(var id in ids.keys) {
 
 				var s = ids.get(id);
