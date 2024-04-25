@@ -82,12 +82,8 @@ namespace Palete {
 			}
 		}	
 		
-		public string symbol_icon { 
-	   		
-	   		owned get {
-	   			return this.stype.icon(); 
-			}
-		}
+		
+		
 		
 		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
@@ -294,6 +290,21 @@ namespace Palete {
 			
 
 	 	}
+	 	// for rendering in trees...
+	 	
+	 	public string symbol_icon { 
+	   		
+	   		owned get {
+	   			return this.stype.icon(); 
+			}
+		}
+		owned get {
+				//GLib.debug("%s : %s", this.name, this.detail);
+				//var detail = this.detail == "" ? (this.kind.to_string() + ": " + this.name) : this.detail;
+				 return "" + this.stype.to_string().replace( "LSP_SYMBOL_KIND_", "" ) + "\n" + 
+			 	GLib.Markup.escape_text(this.name + "\nline: " + this.begin_line.to_string());
+			
+   		}
 		 
 		
 		
