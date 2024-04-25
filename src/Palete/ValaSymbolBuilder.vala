@@ -155,7 +155,7 @@ namespace Palete {
 				GLib.debug("SKIP  NS %s (db uptodate)", element.source_reference.file.filename);
 				return;
 			}
-			if (sf.contains(this.line_sig)) {
+			if (sf.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
 			  		
@@ -181,7 +181,7 @@ namespace Palete {
 			 
 			
 			element.accept_children(this);
-			if (sf.contains(this.line_sig)) {
+			if (sf.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
 			  
