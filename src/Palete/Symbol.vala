@@ -112,7 +112,7 @@ namespace Palete {
 		}
 		public int64 rev = 0;
 
-		contruct {
+		construct {
 					GLib.debug("symbol construct");
 		}
 		
