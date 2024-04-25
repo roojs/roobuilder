@@ -273,8 +273,9 @@ namespace Palete {
 			var children_map = this.file.children_map;
 			var children =  this.file.children;
 			if (this.parent != null) {
-				children_map = this.parent.children_map;
-				children =  this.parent.children;
+			
+				children_map = this.file.symbol_map.get((int)this.parent_id).children_map;
+				children =  this.file.symbol_map.get((int)this.parent_id).children;
 			}	 
 			this.fqn = this.to_fqn();
 			
