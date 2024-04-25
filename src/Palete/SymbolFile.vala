@@ -258,7 +258,14 @@ namespace Palete {
 	 	
 	 	public void removeOldSymbols()
 	 	{
-	 		 
+ 		 	foreach(var k in this.symbol_map.keys) {
+				var s = this.symbol_map.get(k);
+ 				if (s.rev != s.file.version) {
+					this.symbol_map.unset(k);
+				}
+			}
+			/*
+			
 			for(var i = 0; i < this.children.get_n_items(); i++) {
 				var s = (Symbol) this.children.get_item(i);
 
@@ -271,18 +278,12 @@ namespace Palete {
 				s.removeOldSymbols();
 			}
 			 
-			/*foreach(var s in this.symbols) {
+			 foreach(var s in this.symbols) {
  				if (s.rev != s.file.version) {
 					this.symbols.remove(s);
 				}
 			}
-			*/
-			foreach(var k in this.symbol_map.keys) {
-				var s = this.symbol_map.get(k);
- 				if (s.rev != s.file.version) {
-					this.symbol_map.unset(k);
-				}
-			}
+			 */
 			
 
 	 	}
