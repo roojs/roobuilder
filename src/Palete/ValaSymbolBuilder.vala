@@ -143,7 +143,7 @@ namespace Palete {
 			}
 			
 			
-			var sf = this.filemanager.factory_by_path(element.source_reference.file.filename);
+
 			 
 		
 			
@@ -152,7 +152,7 @@ namespace Palete {
 				//element.accept_children(this); // catch sub namespaces..
 				return;
 			}
-			
+			var sf = this.filemanager.factory_by_path(element.source_reference.file.filename);
 			if (sf.is_parsed) {
 				GLib.debug("SKIP %s (db uptodate)", element.source_reference.file.filename);
 				return;
