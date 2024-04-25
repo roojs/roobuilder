@@ -2247,15 +2247,12 @@ public class Editor : Object
 				var lbl = (Gtk.Label) img.get_next_sibling();
 				
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-				var sym = (Lsp.DocumentSymbol) lr.get_item();
+				var sym = (Palete.Symbol) lr.get_item();
 				
 				sym.set_data<Gtk.Widget>("widget", expand.get_parent());
-				expand.get_parent().get_parent().set_data<Lsp.DocumentSymbol>("symbol", sym);
+				expand.get_parent().get_parent().set_data<Palete.Symbol>("symbol", sym);
 				
-				//GLib.debug("save sym on %s", expand.get_parent().get_parent().get_type().name());
-				
-				//GLib.debug("got %d children for %s" , (int)sym.children.get_n_items(), sym.name);
-			    
+				  
 			    expand.set_hide_expander( sym.children.get_n_items()  < 1);
 			 	expand.set_list_row(lr);
 			 	//this.in_bind = true;
