@@ -1,52 +1,5 @@
 
- /*
-	public class AppSettings : Object
-	{
-
-		
-		
-		// what are we going to have as settings?
-		public string roo_html_dir { get; set; }
-
-		public AppSettings()
-		{
-			this.notify.connect(() => {
-				this.save();
-			});
-		}
- 
-		public static AppSettings factory()
-		{
-			 
-			var setting_file = BuilderApplication.configDirectory() + "/builder.settings";
-			
-			if (!FileUtils.test(setting_file, FileTest.EXISTS)) {
-				 return new AppSettings();
-			}
-			string data; 
-			try { 
-				FileUtils.get_contents(setting_file, out data);
-				return Json.gobject_from_data (typeof (AppSettings), data) as AppSettings;
-			} catch (Error e) {
-			}
-			return new AppSettings();
-		}
-		public void save()
-		{
-			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
-			var setting_file = dirname + "/builder.settings";
-			string data = Json.gobject_to_data (this, null);
-			GLib.debug("saving application settings\n");
-			try {
-				FileUtils.set_contents(setting_file,   data);
-			} catch (Error e) {
-				print("Error saving app settings");
-			}
-		}
-
-		
-	}
-	*/
+  
 	
 	public static BuilderApplication application = null;
 	
