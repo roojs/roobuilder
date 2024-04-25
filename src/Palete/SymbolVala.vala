@@ -272,7 +272,7 @@ namespace Palete {
 			var children_map = this.file.children_map;
 			var children =  this.file.children;
 			if (this.parent != null && this.parent_id > -1) {
-				GLib.debug("parentid ? %d", (int)this.parent_id);
+				//GLib.debug("parentid ? %d", (int)this.parent_id);
 				children_map = this.file.symbol_map.get((int)this.parent_id).children_map;
 				children =  this.file.symbol_map.get((int)this.parent_id).children;
 			}	 
