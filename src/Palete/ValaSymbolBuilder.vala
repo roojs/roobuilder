@@ -175,7 +175,7 @@ namespace Palete {
 			
 			var sf = this.filemanager.factory_by_path(element.source_reference.file.filename);
 			if (sf.is_parsed) {
-				GLib.debug("SKIP  NS %s (db uptodate)", element.source_reference.file.filename);
+				GLib.debug("SKIP  Class %s (db uptodate)", element.source_reference.file.filename);
 				return;
 			}
 			
