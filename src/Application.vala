@@ -589,6 +589,7 @@
 			var loop = new MainLoop();
 			GLib.Timeout.add_seconds(1, () => {
 			 	if (done) {
+	 				GLib.Process.exit(Posix.EXIT_SUCCESS);
 			 		return true;
 		 		}
 				
@@ -600,7 +601,7 @@
 			sb.updateBackground.begin(BuilderApplication.opt_symbol_test, (o,r )  => {
 				var ar = sb.updateBackground.end(r);
 				done = true;
-			 	});
+		 	});
 			 
 			loop.run();
 			 
