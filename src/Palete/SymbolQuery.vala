@@ -222,7 +222,7 @@ namespace Palete {
 		 		var row =  Object.new (typeof(T));	
 				id = 0;
 				parent_id = 0;
-				id = 0;
+				 
 			 	foreach(var k in cols.keys) {
 
 			 		var type = this.types.get(k);
@@ -262,7 +262,10 @@ namespace Palete {
 				if (id > 0) {
 					ret.set((int)id, row);
 					pids.set((int)id, (int)parent_id);
+				} else {
+					GLib.debug("missing id for row");
 				}
+				
 			}
 			 
 		    GLib.debug("select got %d rows / last errr  %s", ret.values.size, db.errmsg());
