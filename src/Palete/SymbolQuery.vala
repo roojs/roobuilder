@@ -222,10 +222,11 @@ namespace Palete {
 		 		var row =  Object.new (typeof(T));	
 				id = 0;
 				parent_id = 0;
+				id = 0;
 			 	foreach(var k in cols.keys) {
 
 			 		var type = this.types.get(k);
-			 		id = 0;
+			 		
  				 	var  newv = GLib.Value ( type );				
 			 		switch(type) {
 			 			case GLib.Type.BOOLEAN:
