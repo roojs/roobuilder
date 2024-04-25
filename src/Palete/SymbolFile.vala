@@ -243,7 +243,7 @@ namespace Palete {
 				}
 				newsymbols.add(s);
 			}
-			this.linkNewSymbols(pids, newsymbols, ids);
+			this.linkNewSymbols(pids, newsymbols);
 			
 			foreach(var s in this.children_map.values) {
 				GLib.debug("add to top: %s", s.type_name);
