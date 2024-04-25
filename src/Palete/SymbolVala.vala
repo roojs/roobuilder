@@ -290,7 +290,7 @@ namespace Palete {
  
 				var q = this.fillQuery(null);
 				this.id = q.insert(SymbolDatabase.db);
-				GLib.debug("DB INSERT added %d, %s", (int)this.id, this.name);
+				GLib.debug("DB INSERT added %d, %s", (int)this.id, this.fqn);
  				children.append(this);
 				children_map.set(this.type_name, this);
 				//this.file.symbols.add(this);
@@ -304,11 +304,11 @@ namespace Palete {
 			this.id = old.id;
 			var q = this.fillQuery(old);
 			if (!q.shouldUpdate()) {
-				GLib.debug("DB UPDATE no change %d, %s", (int)this.id, this.name);			
+				GLib.debug("DB UPDATE no change %d, %s", (int)this.id, this.fqn);			
 				return; // no need to update..
 			}
 			q.update(SymbolDatabase.db);
-			GLib.debug("DB UPDATE added %d, %s", (int)this.id, this.name);
+			GLib.debug("DB UPDATE added %d, %s", (int)this.id, this.fqn);
 			// should nto need to update file symbols.
 		}
 			
