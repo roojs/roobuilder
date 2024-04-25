@@ -153,6 +153,9 @@ namespace Palete {
 				c.dump(si);
 			}
 		}
+		 
+		
+		
 		public bool simpleEquals(Symbol s) 
 		{
 			return this.stype == s.stype && this.name == s.name;
