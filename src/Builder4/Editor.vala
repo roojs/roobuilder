@@ -2070,11 +2070,11 @@ public class Editor : Object
 					return;
 				}
 			}
+			
 			_this.navigationsort.setModel(ls);
 		    
 		    // this happens on first load? - not afterwards?
 		    
-			//_this.navliststore.el.append(sym);
 			this.last_selected_line = -1;
 			GLib.Idle.add(() => {
 				_this.navigationsort.collapseOnLoad();
