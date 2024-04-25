@@ -1232,7 +1232,6 @@
                    "$ GLib.Type item_type" : "typeof(Palete.Symbol)",
                    "$ xns" : "GLib",
                    "* prop" : "root",
-                   "id" : "navliststore",
                    "xtype" : "ListStore",
                    "| Palete.Symbol? symbolAtLine" : [
                     "(uint line, uint chr) {",

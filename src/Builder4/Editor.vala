@@ -33,7 +33,6 @@ public class Editor : Object
 	public Xcls_navigation navigation;
 	public Xcls_navigationselmodel navigationselmodel;
 	public Xcls_navigationsort navigationsort;
-	public Xcls_navliststore navliststore;
 
 		// my vars (def)
 	public int pos_root_x;
@@ -2401,8 +2400,9 @@ public class Editor : Object
 		public Xcls_TreeListModel35(Editor _owner )
 		{
 			_this = _owner;
-			new Xcls_navliststore( _this );
-			this.el = new Gtk.TreeListModel( _this.navliststore.el, false, true, (item) => {
+			var child_1 = new Xcls_ListStore36( _this );
+			child_1.ref();
+			this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
  
 	return ((Lsp.DocumentSymbol)item).children;
 }
@@ -2429,7 +2429,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_navliststore : Object
+	public class Xcls_ListStore36 : Object
 	{
 		public GLib.ListStore el;
 		private Editor  _this;
@@ -2438,10 +2438,9 @@ public class Editor : Object
 			// my vars (def)
 
 		// ctor
-		public Xcls_navliststore(Editor _owner )
+		public Xcls_ListStore36(Editor _owner )
 		{
 			_this = _owner;
-			_this.navliststore = this;
 			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
 
 			// my vars (dec)
