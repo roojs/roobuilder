@@ -1534,7 +1534,7 @@
             "\t",
             "\t",
             "\tvar new_row = -1;",
-            "\tvar sym = _this.navliststore.symbolAtLine(line, chr);",
+            "\tvar sym = _this.navigationsort.symbolAtLine(line, chr);",
             "\tif (sym != null) {",
             "\t \tnew_row = _this.navigationsort.getRowFromSymbol(sym);",
             " \t\tGLib.debug(\"select line %d - row found %d\", (int)line, new_row);",

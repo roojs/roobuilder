@@ -2147,7 +2147,7 @@ public class Editor : Object
 			
 			
 			var new_row = -1;
-			var sym = _this.navliststore.symbolAtLine(line, chr);
+			var sym = _this.navigationsort.symbolAtLine(line, chr);
 			if (sym != null) {
 			 	new_row = _this.navigationsort.getRowFromSymbol(sym);
 		 		GLib.debug("select line %d - row found %d", (int)line, new_row);
