@@ -298,6 +298,7 @@ namespace Palete {
 	   			return this.stype.icon(); 
 			}
 		}
+		// fixme - details on functions?
 		owned get {
 				//GLib.debug("%s : %s", this.name, this.detail);
 				//var detail = this.detail == "" ? (this.kind.to_string() + ": " + this.name) : this.detail;
