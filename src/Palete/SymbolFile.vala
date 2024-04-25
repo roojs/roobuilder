@@ -129,8 +129,9 @@ namespace Palete {
 	 		var q = (new Symbol()).fillQuery(null);
 			var newar = new Gee.HashMap<int,Symbol>();
 			var pids = new Gee.HashMap<int, int>();
+			var order = new  Gee.ArrayList<int>();
 		 	q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
-		 		" order by parent_id ASC, id ASC", newar, pids);
+		 		" order by parent_id ASC, id ASC", newar, pids ,order);
 			 
 		 	var addsymbols = new Gee.ArrayList<Symbol>();
 			//this.symbols_all 
@@ -141,7 +142,10 @@ namespace Palete {
 				original_ids.add(id);
 			}
 			
-			foreach(var id in newar.keys) {
+			
+			
+			
+			foreach(var id in order) {
 				var s = newar.get(id);
 				if (this.symbol_map.has_key(id)) {
 					// update..
@@ -171,6 +175,7 @@ namespace Palete {
 					this.children.append(ns);
 					this.children_map.set(s.type_name, s);
 				}
+				
 				addsymbols.add(ns);
 			 
 			}
@@ -211,12 +216,13 @@ namespace Palete {
 			var q = (new Symbol()).fillQuery(null);
 			var ids = new Gee.HashMap<int,Symbol>();
 			var pids = new Gee.HashMap<int, int>();
+			var order = new  Gee.ArrayList<int>();
 		 	q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() +
-		 		" order by parent_id ASC, id ASC", ids, pids);
+		 		" order by parent_id ASC, id ASC", ids, pids, order);
 
 			var newsymbols = new Gee.ArrayList<Symbol>();
 			// order does not help!!!
-			foreach(var id in ids.keys) {
+			foreach(var id in order) {
 
 				var s = ids.get(id);
 				GLib.debug ("%d: %d  : %s : %s",pids.get(id), (int) id, s.type_name, s.fqn);;
