@@ -243,6 +243,9 @@ namespace Palete {
 		 						parent_id = val;
 		 						continue;
 	 						}
+	 						if (k == "file_id") { // ?? how to falg..?
+		 						continue;
+	 						}
 							newv.set_int64(val);;
 							break;
 						case GLib.Type.STRING:
