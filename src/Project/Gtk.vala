@@ -76,6 +76,7 @@ namespace Project
 	  		//this.hidden = new Gee.ArrayList<string>();
   		 	this.compilegroups = new  Gee.HashMap<string,GtkValaSettings>();
   		 	this.meson = new Meson(this);
+  		 	this.symbol_builder = new Palete.ValaSymbolBuilder(this);
 		
 		}
 		
