@@ -166,7 +166,7 @@ public class Editor : Object
 	        this.close_btn.el.hide();
 	        var pr = (Project.Gtk)file.project;
 	        if (pr != null) {
-			    var sf = pr.symbol_manager.factory_from_path(file.path);
+			    var sf = pr.symbol_manager.factory_by_path(file.path);
 			    sf.loadSymbols();
 	            file.symbol_tree = sf.children;
 		    }
