@@ -120,6 +120,8 @@ namespace Palete {
 				return;
 			}
 			if (sf.children.get_n_items() < 1) {
+			
+				GLib.debug("Load Symbols %s", sf.path);
 				sf.loadSymbols(  );
 			}
 			
