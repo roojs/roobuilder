@@ -135,6 +135,7 @@ namespace JsRender {
 		public signal void symbol_tree_updated( );
 		public void update_symbol_tree()
 		{
+			// use interfaces if we can get this to suppor tmore...
 			var pr = (Project.Gtk)this.project;
 			if (pr !== null) {
 				pr.symbol_builder.updateTreeFromFile(this);
