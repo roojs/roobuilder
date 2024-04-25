@@ -213,10 +213,10 @@ namespace Palete {
 			}
 			
 			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
-			 
+			GLib.debug("Query %s", q);
 			db.prepare_v2 (q, q.length, out stmt);
 			assert (typeof(T).is_object());
-
+			
 			while (stmt.step() == Sqlite.ROW) {
 		 		var row =  Object.new (typeof(T));	
 				id = 0;
@@ -250,6 +250,9 @@ namespace Palete {
 					ret.set((int)id, row);
 				}
 			}
+			 
+		    GLib.debug("SYmbol select: %s", db.errmsg());
+			
 					
 		}
 		 
