@@ -286,7 +286,7 @@ namespace Palete {
 			
 			this.rev = this.file.version;
 			
-			if (this.fqn == "SymbolVala..new") {
+			if (this.fqn == "Math") {
 				GLib.debug("oops");
 			}
 			 //foreach(var k in children_map.keys) {
