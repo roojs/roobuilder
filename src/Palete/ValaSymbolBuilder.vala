@@ -119,7 +119,7 @@ namespace Palete {
 				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
 				return;
 			}
-			if (sf.database_has_symbols && sf.children.get_n_items() < 1) {
+			if (sf.children.get_n_items() < 1) {
 				sf.loadSymbols(  );
 			}
 			
