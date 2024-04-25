@@ -2055,13 +2055,25 @@ public class Editor : Object
 					_this.paned.el.get_width() - 200;
 			}
 			
+			var old = _this.navlistsort.el.get_model().get_model();
 			
 			if (ls.get_n_items() < 1) {
 				_this.navlistsort.el.get_model().get_model().remove_all();
-			
-			
+				return;
+			}
+			// update.. 
+			if (old.get_n_items() > 0) {
+				var first = (Palete.Symbol)old.get(0);
+				if (first.file.path == _this.file.path) {
+					// file has not changed..
+					// no need to update.. - it's done automatically?
+					return;
+				}
+			}
+			_this.navlistsort.setModel(ls);
 		    
-			Lsp.DocumentSymbol.copyList(ls, _this.navliststore.el);
+		    // this happens on first load? - not afterwards?
+		    
 			//_this.navliststore.el.append(sym);
 			this.last_selected_line = -1;
 			GLib.Idle.add(() => {
