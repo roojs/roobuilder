@@ -267,6 +267,8 @@ namespace Palete {
 				this.parent_name = parent.name;
 				parent = null;
 			}
+			
+			
 
 			this.parent = parent;
 			var children_map = this.file.children_map;
