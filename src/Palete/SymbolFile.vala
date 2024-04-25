@@ -15,7 +15,7 @@ namespace Palete {
  		public Gee.HashMap<string,Symbol> fqn_map;
  		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
-		public Gee.ArrayList<string> parsed_sybmols; //  line:start:end
+		public Gee.ArrayList<string> parsed_symbols; //  line:start:end
 		
 
 		public bool database_has_symbols = false;
@@ -62,7 +62,7 @@ namespace Palete {
 			this.children = new GLib.ListStore(typeof(Symbol));
 			this.children_map = new Gee.HashMap<string,Symbol>();
 			this.fqn_map = new Gee.HashMap<string,Symbol>(); // used by gir loading
-			this. parsed_sybmols = new Gee.ArrayList<string>();
+			this. parsed_symbols = new Gee.ArrayList<string>();
 			 
 		}
 		
