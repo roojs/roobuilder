@@ -262,7 +262,7 @@ namespace Palete {
 					GLib.error("parent is from differnt file, and its' type is %s", 
 						parent.stype.to_string());
 				}
-				
+				GLib.debug("parent namespace is not in same file %s:%s", parent.name, this.name);
 				this.parent_name = parent.name;
 				parent = null;
 			}
