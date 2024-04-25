@@ -2349,7 +2349,7 @@ public class Editor : Object
 		
 		}
 		public int getRowFromSymbol (Palete.Symbol sym) {
-		
+		// is this used as we have setdata???
 			for (var i=0;i < this.el.get_n_items(); i++) {
 				var tr = (Gtk.TreeListRow)this.el.get_item(i);
 			   

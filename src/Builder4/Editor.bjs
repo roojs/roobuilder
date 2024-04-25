@@ -1313,7 +1313,7 @@
                ],
                "| int getRowFromSymbol" : [
                 "(Palete.Symbol sym) {",
-                "",
+                "// is this used as we have setdata???",
                 "\tfor (var i=0;i < this.el.get_n_items(); i++) {",
                 "\t\tvar tr = (Gtk.TreeListRow)this.el.get_item(i);",
                 "\t   ",
