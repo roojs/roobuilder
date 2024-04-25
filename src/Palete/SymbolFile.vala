@@ -218,7 +218,7 @@ namespace Palete {
 			foreach(var id in ids.keys) {
 
 				var s = ids.get(id);
-				GLib.debug ("%d  : %s : %s", (int) id, s.type_name, s.fqn);;
+				GLib.debug ("%d: %d  : %s : %s",pids.get(id) (int) id, s.type_name, s.fqn);;
 				s.file = this;
 				if (s.fqn != "") {
 					this.fqn_map.set(s.fqn, s); // gir only
