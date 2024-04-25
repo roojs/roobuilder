@@ -249,7 +249,8 @@ namespace Palete {
 							newv.set_int64(val);;
 							break;
 						case GLib.Type.STRING:
-							newv.set_string(stmt.column_text(cols.get(k)));
+							var str = stmt.column_text(cols.get(k));
+							newv.set_string(str == null? "": str);
 							break;
 
 					}
