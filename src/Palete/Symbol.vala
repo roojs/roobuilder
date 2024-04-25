@@ -331,7 +331,7 @@ namespace Palete {
         }
 		
 		
-	 	public Palete.Symbol? containsLine(uint line, uint chr)
+	 	public Symbol? containsLine(uint line, uint chr)
 		{
 			if (!this.contains(new Lsp.Position(line, chr))) {
 				return null;
