@@ -136,7 +136,7 @@ namespace Palete {
 		
 		}
 		
-		public string line_sig(Vala.Symbols s) {
+		public string line_sig(Vala.Symbol s) {
 			var sr = s.source_reference;
 			return "%d:%d:%d:%d".printf(sr.begin_line, sr.begin_column, sr.end_line, sr.end_column);
 		 }
