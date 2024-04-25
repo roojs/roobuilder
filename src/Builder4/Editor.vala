@@ -2382,7 +2382,7 @@ public class Editor : Object
 			}
 		   	return -1;
 		}
-		public PaleteSymbol? symbolAtLine (uint line, uint chr) {
+		public Palete.Symbol? symbolAtLine (uint line, uint chr) {
 		 
 			
 			for(var i = 0; i < this.el.model.root.get_n_items();i++) {

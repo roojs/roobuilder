@@ -1274,7 +1274,7 @@
                 "\t ",
                 "}"
                ],
-               "| PaleteSymbol? symbolAtLine" : [
+               "| Palete.Symbol? symbolAtLine" : [
                 "(uint line, uint chr) {",
                 " ",
                 "\t",
