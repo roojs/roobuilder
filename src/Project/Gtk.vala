@@ -49,7 +49,7 @@ namespace Project
 		public GtkValaSettings? active_cg = null;
 		public Gee.HashMap<string,GtkValaSettings> compilegroups;
 		public Meson meson;
-		
+		public Palete.ValaSymbolBuilder symbol_builder;
 		
 		public Palete.Gtk gpalete {
 			get {
