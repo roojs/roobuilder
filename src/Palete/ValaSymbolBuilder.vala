@@ -139,7 +139,7 @@ namespace Palete {
 		public string line_sig(Vala.Symbol s) {
 			var sr = s.source_reference;
 			
-			return sr == null ? "?" :  "%d:%d:%d:%d".printf(sr.begin_line, sr.begin_column, sr.end_line, sr.end_column);
+			return sr == null ? "?" :  "%d:%d:%d:%d".printf(sr.begin.line, sr.begin.column, sr.end.line, sr.end.column);
 		 }
 		public override void visit_namespace (Vala.Namespace element) 
 		{
