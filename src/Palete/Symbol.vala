@@ -87,7 +87,12 @@ namespace Palete {
 		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
 		
-
+		public string line_sig {
+			owned get {
+				return "%d:%d:%d:%s".printf(this.begin_line, this.begin_col, this.end_line, this.end_col);
+			}
+			privateset {}
+		}
 		// FIXME!!!!
 		public Symbol? parent = null;
 		public int64 parent_id {
@@ -121,7 +126,6 @@ namespace Palete {
 		
 		public Symbol()
 		{
-			 
 			base();
 			
 		}
