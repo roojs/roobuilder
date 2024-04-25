@@ -210,7 +210,7 @@ namespace Palete {
 			this.symbol_map.clear(); //??? should be fresh load?
 			var q = (new Symbol()).fillQuery(null);
 			var ids = new Gee.HashMap<int,Symbol>();
- 				var pids = new Gee.HashMap<int, int>();
+			var pids = new Gee.HashMap<int, int>();
 		 	q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() +
 		 		" order by parent_id ASC, id ASC", ids, pids);
 
