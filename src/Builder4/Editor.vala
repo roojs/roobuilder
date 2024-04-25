@@ -1999,8 +1999,13 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public void setModel () {
-		
+		public void setModel (GLib.ListStore ls) {
+		 	_this.navigationsort.el.set_model(
+		 		new Gtk.TreeListModel( ls, false, true, (item) => {
+		 
+					return ((Palete.Symbol)item).children;
+				} )
+			);
 		}
 		public Gtk.Widget? getRowWidgetAt (double x,  double  y, out string pos) {
 		
