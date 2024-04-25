@@ -2404,7 +2404,7 @@ public class Editor : Object
 			child_1.ref();
 			this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
  
-	return ((Lsp.DocumentSymbol)item).children;
+	return ((Palete.Symbol)item).children;
 }
  );
 

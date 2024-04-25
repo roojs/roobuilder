@@ -1219,7 +1219,7 @@
                  "$ Gtk.TreeListModelCreateModelFunc create_func" : [
                   "(item) => {",
                   " ",
-                  "\treturn ((Lsp.DocumentSymbol)item).children;",
+                  "\treturn ((Palete.Symbol)item).children;",
                   "}",
                   ""
                  ],
