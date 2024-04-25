@@ -251,13 +251,13 @@ namespace Palete {
 			
 
 		}
-		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> newsymbols,  Gee.HashMap<int,Symbol> sym_map)
+		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> newsymbols )
 		{
 			foreach(var child in newsymbols) {
 
 				var parent_id = pids.get((int)child.id);
 				 
-				var parent = this.sym_map.get((int)parent_id);
+				var parent = this.symbolmap.get((int)parent_id);
 				if(parent == null) {
 					
 					GLib.debug("Can not find parent %d of id= %d", parent_id , (int)child.id);
