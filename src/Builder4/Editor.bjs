@@ -1312,8 +1312,23 @@
                 "}"
                ],
                "| PaleteSymbol? symbolAtLine" : [
-                "() {",
-                "",
+                "(uint line, uint chr) {",
+                " ",
+                "\t",
+                "\tfor(var i = 0; i < this.el.model.root.get_n_items();i++) {",
+                "\t\tvar el = (Palete.Symbol)this.el.model.root.get_item(i);",
+                "\t\t//GLib.debug(\"Check sym %s : %d-%d\",",
+                "\t\t//\tel.name , (int)el.range.start.line,",
+                "\t\t//\t(int)el.range.end.line",
+                "\t\t//);",
+                "\t\tvar ret = el.containsLine(line,chr);",
+                "\t\tif (ret != null) {",
+                "\t\t\treturn ret;",
+                "\t\t}",
+                "\t\t",
+                "\t}",
+                "\t",
+                "\treturn null;",
                 "}"
                ],
                "| int getRowFromSymbol" : [

@@ -2359,8 +2359,23 @@ public class Editor : Object
 			}
 		   	return -1;
 		}
-		public PaleteSymbol? symbolAtLine () {
-		
+		public PaleteSymbol? symbolAtLine (uint line, uint chr) {
+		 
+			
+			for(var i = 0; i < this.el.model.root.get_n_items();i++) {
+				var el = (Palete.Symbol)this.el.model.root.get_item(i);
+				//GLib.debug("Check sym %s : %d-%d",
+				//	el.name , (int)el.range.start.line,
+				//	(int)el.range.end.line
+				//);
+				var ret = el.containsLine(line,chr);
+				if (ret != null) {
+					return ret;
+				}
+				
+			}
+			
+			return null;
 		}
 		public Palete.Symbol? getSymbolAt (uint row) {
 		
