@@ -91,7 +91,7 @@ namespace Palete {
 			owned get {
 				return "%d:%d:%d:%s".printf(this.begin_line, this.begin_col, this.end_line, this.end_col);
 			}
-			privateset {}
+			private set {}
 		}
 		// FIXME!!!!
 		public Symbol? parent = null;
