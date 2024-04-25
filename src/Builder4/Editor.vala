@@ -2432,7 +2432,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public Lsp.DocumentSymbol? symbolAtLine (uint line, uint chr) {
+		public Palete.Symbol? symbolAtLine (uint line, uint chr) {
 		 
 			
 			for(var i = 0; i < this.el.get_n_items();i++) {

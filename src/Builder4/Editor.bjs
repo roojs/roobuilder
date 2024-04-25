@@ -1234,7 +1234,7 @@
                    "* prop" : "root",
                    "id" : "navliststore",
                    "xtype" : "ListStore",
-                   "| Lsp.DocumentSymbol? symbolAtLine" : [
+                   "| Palete.Symbol? symbolAtLine" : [
                     "(uint line, uint chr) {",
                     " ",
                     "\t",
