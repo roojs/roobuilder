@@ -224,14 +224,17 @@ namespace Palete {
 					this.fqn_map.set(s.fqn, s); // gir only
 				}
 				//this.symbols.add(s);
-				this.symbol_map.set(id, s);
+ 
 				
-				newsymbols.add(s);
+				
 				if (pids.get(id) < 1) {
 					this.children.append(s);
 					GLib.debug("file add parent : %s", s.type_name);
 					this.children_map.set(s.type_name, s);
+					this.symbol_map.set((int)child.id, child);
+					continue;
 				}
+				newsymbols.add(s);
 			}
 			this.linkNewSymbols(pids, newsymbols);
 			
@@ -246,6 +249,7 @@ namespace Palete {
 			foreach(var child in newsymbols) {
 
 				var parent_id = pids.get((int)child.id);
+				if (pid
 				var parent = this.symbol_map.get((int)parent_id);
 				if(parent == null) {
 					
