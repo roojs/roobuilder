@@ -1298,7 +1298,7 @@
                 }
                ],
                "xtype" : "SortListModel",
-               "| Lsp.DocumentSymbol? getSymbolAt" : [
+               "| Palete.Symbol? getSymbolAt" : [
                 "(uint row) {",
                 "",
                 "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",
