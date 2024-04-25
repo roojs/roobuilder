@@ -142,7 +142,7 @@ namespace Palete {
 				return;
 			}
 			
-		  // GLib.debug("parsing namespace %s", element.name);
+		    GLib.debug("parsing namespace %s", element.name);
 			if (element.name == null) {
 				element.accept_children(this); // catch sub namespaces..
 				return;
@@ -153,7 +153,7 @@ namespace Palete {
 		 
 	  	public override void visit_class (Vala.Class element) 
 		{
-			// debug("Got Class %s", element.name); 
+			 debug("Got Class %s", element.name); 
 
 			if (element.parent_symbol != null && element.parent_symbol.name != null) {
 				//debug("skip Class (has parent?)  '%s' ",  element.parent_symbol.name);
