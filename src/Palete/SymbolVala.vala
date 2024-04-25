@@ -278,7 +278,7 @@ namespace Palete {
 			
 			this.rev = this.file.version;
 			
-			foreach(var k in children.keys) {
+			foreach(var k in children_map.keys) {
 				GLib.debug("check children %s != %s", k, this.type_name);
 			}
 			
