@@ -1277,9 +1277,11 @@
                "| Palete.Symbol? symbolAtLine" : [
                 "(uint line, uint chr) {",
                 " ",
+                "\tvar tlm = this.el.get_model();",
+                "\tvar ls = tlm.get_model();",
                 "\t",
-                "\tfor(var i = 0; i < this.el.model.root.get_n_items();i++) {",
-                "\t\tvar el = (Palete.Symbol)this.el.model.root.get_item(i);",
+                "\tfor(var i = 0; i < ls.get_n_items();i++) {",
+                "\t\tvar el = (Palete.Symbol)ls.get_item(i);",
                 "\t\t//GLib.debug(\"Check sym %s : %d-%d\",",
                 "\t\t//\tel.name , (int)el.range.start.line,",
                 "\t\t//\t(int)el.range.end.line",

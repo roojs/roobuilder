@@ -2384,9 +2384,11 @@ public class Editor : Object
 		}
 		public Palete.Symbol? symbolAtLine (uint line, uint chr) {
 		 
+			var tlm = this.el.get_model();
+			var ls = tlm.get_model();
 			
-			for(var i = 0; i < this.el.model.root.get_n_items();i++) {
-				var el = (Palete.Symbol)this.el.model.root.get_item(i);
+			for(var i = 0; i < ls.get_n_items();i++) {
+				var el = (Palete.Symbol)ls.get_item(i);
 				//GLib.debug("Check sym %s : %d-%d",
 				//	el.name , (int)el.range.start.line,
 				//	(int)el.range.end.line
