@@ -132,7 +132,6 @@ namespace JsRender {
 
 		//public signal void changed (Node? node, string source);  (not used?)
 		public GLib.ListStore symbol_tree; // part of project/symbolmanager
-		
 		public signal void navigation_tree_updated( );
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
