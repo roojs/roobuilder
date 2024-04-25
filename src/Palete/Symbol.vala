@@ -311,7 +311,42 @@ namespace Palete {
 			
    			}
 		}
+		Lsp.Position start {
+			get {
+				return new Lsp.Position(this.begin_line, this.begin_col);
+			}
+		}
+		Lsp.Position end {
+			get {
+				return new Lsp.Position(this.end_line, this.end_col);
+			}
+		}
 		 
+		
+		public bool contains (Lsp.Position pos) {
+        	
+            var ret =  start.compare_to (pos) <= 0 && pos.compare_to (end) <= 0;
+           // GLib.debug( "range contains %d  (%d-%d) %s", (int)pos.line, (int)start.line, (int)end.line, ret ? "Y" : "N");
+            return ret;
+        }
+		
+		
+	 	public Palete.Symbol? containsLine(uint line, uint chr)
+		{
+			if (!this.range.contains(new Position(line, chr))) {
+				return null;
+			}
+
+			for(var i = 0; i < this.children.get_n_items();i++) {
+				var el = (DocumentSymbol)this.children.get_item(i);
+				var ret = el.containsLine(line,chr);
+				if (ret != null) {
+					return ret;
+				}
+			}
+			return this;
+			
+		}
 		
 		
 	}
