@@ -156,8 +156,7 @@ namespace Palete {
 				GLib.debug("SKIP  NS %s (db uptodate)", element.source_reference.file.filename);
 				return;
 			}
-			 
-			
+			  
 			new SymbolVala.new_namespace(this, null, element);
 			//element.accept_children(this); // catch sub namespaces..
 		}
