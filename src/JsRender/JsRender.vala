@@ -137,7 +137,7 @@ namespace JsRender {
 		{
 			var pr = (Project.Gtk)this.project;
 			if (pr !== null) {
-				pr.symbol_manager.updateTreeFromFile(this);
+				pr.symbol_builder.updateTreeFromFile(this);
 			}
 		
 		}
