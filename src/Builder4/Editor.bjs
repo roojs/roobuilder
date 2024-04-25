@@ -1471,7 +1471,6 @@
             "(GLib.ListStore ls) {",
             " \t_this.navigationsort.el.set_model(",
             " \t\tnew Gtk.TreeListModel( ls, false, true, (item) => {",
-            " ",
             "\t\t\treturn ((Palete.Symbol)item).children;",
             "\t\t} )",
             "\t);",
