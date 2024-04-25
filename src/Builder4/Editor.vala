@@ -2046,9 +2046,9 @@ public class Editor : Object
 			} 
 			return row;
 		 }
-		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
+		public void show (GLib.ListStore syms) {
 			
-			if (!_this.navigation_holder.el.visible && syms.size > 0) {
+			if (!_this.navigation_holder.el.visible && syms.get_n_items() > 0) {
 				_this.navigation_holder.el.show();
 				_this.paned.el.position  = 
 					_this.paned.el.get_width() - 200;

@@ -1477,9 +1477,9 @@
             "}"
            ],
            "| void show" : [
-            "(Gee.ArrayList<Lsp.DocumentSymbol> syms) {",
+            "(GLib.ListStore syms) {",
             "\t",
-            "\tif (!_this.navigation_holder.el.visible && syms.size > 0) {",
+            "\tif (!_this.navigation_holder.el.visible && syms.get_n_items() > 0) {",
             "\t\t_this.navigation_holder.el.show();",
             "\t\t_this.paned.el.position  = ",
             "\t\t\t_this.paned.el.get_width() - 200;",
