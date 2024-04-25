@@ -217,7 +217,9 @@ namespace Palete {
 			var pids = new Gee.HashMap<int, int>();
 			var newsymbols = new Gee.ArrayList<Symbol>();
 			foreach(var id in ids.keys) {
+
 				var s = ids.get(id);
+				Glib.load ("%d  : %s", (int) id, s.type_name);;
 				s.file = this;
 				if (s.fqn != "") {
 					this.fqn_map.set(s.fqn, s); // gir only
