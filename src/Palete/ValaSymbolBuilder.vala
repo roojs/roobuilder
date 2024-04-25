@@ -159,7 +159,7 @@ namespace Palete {
 			 
 			
 			new SymbolVala.new_namespace(this, null, element);
-			element.accept_children(this); // catch sub namespaces..
+			//element.accept_children(this); // catch sub namespaces..
 		}
 		 
 	  	public override void visit_class (Vala.Class element) 
