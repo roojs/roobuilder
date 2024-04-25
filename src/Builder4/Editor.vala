@@ -140,12 +140,12 @@ public class Editor : Object
 	{
 	    this.reset();
 	    if (this.file != null) {
-	    	this.file.symbol_tree.disconnect(
+	    	this.file.symbol_tree_updated.disconnect(
 	    		_this.navigation.show
 	    	);
 	    }
 	    this.file = file;    
-	    this.file.symbol_tree.connect(
+	    this.file.symbol_tree_updated.connect(
 			_this.navigation.show
 		);
 	    if (file.xtype != "PlainFile") {
