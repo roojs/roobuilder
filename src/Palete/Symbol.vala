@@ -82,7 +82,12 @@ namespace Palete {
 			}
 		}	
 		
-		
+		public string symbol_icon { 
+	   		
+	   		owned get {
+	   			return this.stype.icon(); 
+			}
+		}
 		
 		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
