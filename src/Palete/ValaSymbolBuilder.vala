@@ -145,16 +145,19 @@ namespace Palete {
 			
 			var sf = this.filemanager.factory_by_path(element.source_reference.file.filename);
 			 
+		
+			
+		    GLib.debug("parsing namespace %s", element.name);
+			if (element.name == null) {
+				//element.accept_children(this); // catch sub namespaces..
+				return;
+			}
+			
 			if (sf.is_parsed) {
 				GLib.debug("SKIP %s (db uptodate)", element.source_reference.file.filename);
 				return;
 			}
 			
-		    GLib.debug("parsing namespace %s", element.name);
-			if (element.name == null) {
-				element.accept_children(this); // catch sub namespaces..
-				return;
-			}
 			new SymbolVala.new_namespace(this, null, element);
 			element.accept_children(this); // catch sub namespaces..
 		}
