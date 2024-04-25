@@ -249,7 +249,7 @@ namespace Palete {
 			foreach(var child in newsymbols) {
 
 				var parent_id = pids.get((int)child.id);
-				if (pid
+				 
 				var parent = this.symbol_map.get((int)parent_id);
 				if(parent == null) {
 					
