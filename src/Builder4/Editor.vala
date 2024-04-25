@@ -1172,21 +1172,21 @@ public class Editor : Object
 		    }
 		    
 		    // bit presumptiona
-		    if (_this.file.xtype == "PlainFile") {
-		    
-		        // assume it's gtk...
-		         var  oldcode =_this.file.toSource();
-		        _this.file.setSource(str);
-			    BuilderApplication.showSpinner("appointment soon","document change pending");
-		    	_this.file.getLanguageServer().document_change(_this.file);
+			if (_this.file.xtype == "PlainFile") {
+		
+				// assume it's gtk...
+				 var  oldcode =_this.file.toSource();
+				_this.file.setSource(str);
+				BuilderApplication.showSpinner("appointment soon","document change pending");
+				_this.file.getLanguageServer().document_change(_this.file);
 				_this.file.update_symbol_tree();.
 			//	_this.file.getLanguageServer().queueDocumentSymbols(_this.file);
-		        _this.file.setSource(oldcode);
-		        
+				_this.file.setSource(oldcode);
+				
 				 
-		        return true;
-		    
-		    }
+				return true;
+		
+			}
 		   if (_this.file == null) {
 		       return true;
 		   }
