@@ -2046,25 +2046,21 @@ public class Editor : Object
 			} 
 			return row;
 		 }
-		public void show (GLib.ListStore syms) {
+		public void show () {
 			
-			if (!_this.navigation_holder.el.visible && syms.get_n_items() > 0) {
+			var ls = _this.file.symbol_tree;
+			if (!_this.navigation_holder.el.visible && ls.get_n_items() > 0) {
 				_this.navigation_holder.el.show();
 				_this.paned.el.position  = 
 					_this.paned.el.get_width() - 200;
-			} 
-			//_this.navliststore.el.remove_all();
-			
-			
-			var ls  = new GLib.ListStore(typeof(Lsp.DocumentSymbol));
-			
-			foreach(var sym in syms) {
-				ls.append(sym);
 			}
-			// if syms updated is empty, but we already have one..
-			if (_this.navliststore.el.get_n_items() > 0 && ls.get_n_items() < 1) {
-				return;
-			}
+			
+			
+			if (ls.get_n_items() < 1) {
+				_this.navlistsort.el.get_model().get_model().remove_all();
+			
+			
+		    
 			Lsp.DocumentSymbol.copyList(ls, _this.navliststore.el);
 			//_this.navliststore.el.append(sym);
 			this.last_selected_line = -1;
