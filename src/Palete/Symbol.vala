@@ -312,12 +312,12 @@ namespace Palete {
    			}
 		}
 		Lsp.Position start {
-			get {
+			owned get {
 				return new Lsp.Position(this.begin_line, this.begin_col);
 			}
 		}
 		Lsp.Position end {
-			get {
+			owned get {
 				return new Lsp.Position(this.end_line, this.end_col);
 			}
 		}
@@ -333,7 +333,7 @@ namespace Palete {
 		
 	 	public Palete.Symbol? containsLine(uint line, uint chr)
 		{
-			if (!this.contains(new Position(line, chr))) {
+			if (!this.contains(new Lsp.Position(line, chr))) {
 				return null;
 			}
 
