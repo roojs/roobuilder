@@ -225,7 +225,7 @@ namespace Palete {
 				}
 				//this.symbols.add(s);
  
-				
+				newsymbols.add(s);
 				
 				if (pids.get(id) < 1) {
 					this.children.append(s);
@@ -234,7 +234,7 @@ namespace Palete {
 					this.symbol_map.set(id, s);
 					continue;
 				}
-				newsymbols.add(s);
+				
 			}
 			this.linkNewSymbols(pids, newsymbols);
 			
