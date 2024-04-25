@@ -141,11 +141,7 @@ namespace Palete {
 			if (element == null) {
 				return;
 			}
-			
-			
-
 			 
-		
 			
 		    GLib.debug("parsing namespace %s", element.name);
 			if (element.name == null) {
