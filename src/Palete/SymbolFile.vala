@@ -218,7 +218,7 @@ namespace Palete {
 			foreach(var id in ids.keys) {
 
 				var s = ids.get(id);
-				GLib.debug ("%d  : %s", (int) id, s.type_name);;
+				GLib.debug ("%d  : %s : %s", (int) id, s.type_name, s.fqn);;
 				s.file = this;
 				if (s.fqn != "") {
 					this.fqn_map.set(s.fqn, s); // gir only
@@ -253,7 +253,7 @@ namespace Palete {
 				var parent = this.symbol_map.get((int)parent_id);
 				if(parent == null) {
 					
-					GLib.debug("Can not find parent %d of row %d", parent_id , (int)child.id);
+					GLib.debug("Can not find parent %d of id= %d", parent_id , (int)child.id);
 					continue;
 				}
 				child.parent = parent;
