@@ -1501,7 +1501,7 @@
             "\t\t\treturn;",
             "\t\t}",
             "\t}",
-            "\t_this.navlistsort.setModel(ls);",
+            "\t_this.navigationsort.setModel(ls);",
             "    ",
             "    // this happens on first load? - not afterwards?",
             "    ",
