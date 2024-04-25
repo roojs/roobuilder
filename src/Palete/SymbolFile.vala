@@ -225,7 +225,7 @@ namespace Palete {
 				}
 				//this.symbols.add(s);
  
-				newsymbols.add(s);
+				
 				
 				if (pids.get(id) < 1) {
 					this.children.append(s);
@@ -234,9 +234,9 @@ namespace Palete {
 					this.symbol_map.set(id, s);
 					continue;
 				}
-				
+				newsymbols.add(s);
 			}
-			this.linkNewSymbols(pids, newsymbols);
+			this.linkNewSymbols(pids, newsymbols, ids);
 			
 			foreach(var s in this.children_map.values) {
 				GLib.debug("add to top: %s", s.type_name);
@@ -244,13 +244,13 @@ namespace Palete {
 			
 
 		}
-		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> newsymbols)
+		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> newsymbols,  Gee.HashMap<int,Symbol> sym_map)
 		{
 			foreach(var child in newsymbols) {
 
 				var parent_id = pids.get((int)child.id);
 				 
-				var parent = this.symbol_map.get((int)parent_id);
+				var parent = this.sym_map.get((int)parent_id);
 				if(parent == null) {
 					
 					GLib.debug("Can not find parent %d of id= %d", parent_id , (int)child.id);
