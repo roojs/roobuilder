@@ -213,7 +213,7 @@ namespace Palete {
 				i++;
 			}
 			
-			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
+			var q = "SELECT id," +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
 			GLib.debug("Query %s", q);
 			db.prepare_v2 (q, q.length, out stmt);
 			assert (typeof(T).is_object());
