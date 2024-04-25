@@ -361,7 +361,7 @@ namespace Palete {
 			GLib.debug("YIELD DONE?");
 			
 			
-			Vala.CodeContext.pop ();
+		
 		 	context =  null;
 			
 			
@@ -384,7 +384,7 @@ namespace Palete {
 				
 				GLib.debug("parse got errors");
 				 
-				
+				Vala.CodeContext.pop ();
 
 				this.context = null;
  				Idle.add( this.threaded_callback);
@@ -397,8 +397,9 @@ namespace Palete {
 			this.context.check ();
 			if (this.context.report.get_errors () > 0) {
 				GLib.debug("failed check VAPIS, so we can not write file correctly");
-				// throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
-				//Vala.CodeContext.pop ();
+ 
+ 
+				Vala.CodeContext.pop ();
 				this.context= null;
 				//return;
 				Idle.add(  this.threaded_callback);
@@ -409,14 +410,13 @@ namespace Palete {
 			
 			 
 			this.context.accept(this);
+			Vala.CodeContext.pop ();
 			this.context = null;
 			
 			foreach(var sf in this.changed) {
 				this.filemanager.factory_by_path(sf).removeOldSymbols();
 			}
-			
-			
-			
+			 
 				 
 			Idle.add(this.threaded_callback);
 			 
