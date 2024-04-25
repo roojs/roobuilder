@@ -1277,7 +1277,7 @@
                "| Palete.Symbol? symbolAtLine" : [
                 "(uint line, uint chr) {",
                 " ",
-                "\tvar tlm = this.el.get_model();",
+                "\tvar tlm = (Gtk.TreeListModel)this.el.get_model();",
                 "\tvar ls = tlm.get_model();",
                 "\t",
                 "\tfor(var i = 0; i < ls.get_n_items();i++) {",

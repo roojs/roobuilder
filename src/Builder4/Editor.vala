@@ -2384,7 +2384,7 @@ public class Editor : Object
 		}
 		public Palete.Symbol? symbolAtLine (uint line, uint chr) {
 		 
-			var tlm = this.el.get_model();
+			var tlm = (Gtk.TreeListModel)this.el.get_model();
 			var ls = tlm.get_model();
 			
 			for(var i = 0; i < ls.get_n_items();i++) {
