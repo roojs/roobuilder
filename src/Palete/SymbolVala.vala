@@ -279,9 +279,9 @@ namespace Palete {
 			
 			this.rev = this.file.version;
 			
-			//foreach(var k in children_map.keys) {
-			 //	GLib.debug("check children %s != %s", k, this.type_name);
-			//}
+			 foreach(var k in children_map.keys) {
+			  	GLib.debug("check children %d:%d %s != %s", (int)this.parent_id, (int)this.id,  k, this.type_name);
+			 }
 			
 			if (!children_map.has_key(this.type_name)) {
  
