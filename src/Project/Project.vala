@@ -1088,7 +1088,7 @@ namespace Project {
 			// loop trhoug paths - see if files are open, if so... update right tree?
 			foreach(var p in paths) {
 				this.symbol_manager.factory_by_path(p).refreshSymbolsFromDB();
-				this.getByPaht(p).symbol_tree_updated();
+				this.getByPath(p).symbol_tree_updated();
 			}
 		
 		}
