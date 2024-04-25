@@ -252,13 +252,11 @@ namespace Palete {
 		 	foreach(var p in sig.get_parameters()) {
 				 new new_parameter(builder, this, p, n++);
 			}
-			
-				
+			 	
 		}
 	 	public void setParent(Symbol? parent) 
 		{
-			  
-			
+			   
 			if (parent != null && parent.file.id != this.file.id) {
 				if (parent.stype != Lsp.SymbolKind.Namespace)  {
 					GLib.error("parent is from differnt file, and its' type is %s", 
