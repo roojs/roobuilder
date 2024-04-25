@@ -1311,6 +1311,11 @@
                 "\t ",
                 "}"
                ],
+               "| PaleteSymbol? symbolAtLine" : [
+                "() {",
+                "",
+                "}"
+               ],
                "| int getRowFromSymbol" : [
                 "(Palete.Symbol sym) {",
                 "// is this used as we have setdata???",

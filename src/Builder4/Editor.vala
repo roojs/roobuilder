@@ -2359,6 +2359,9 @@ public class Editor : Object
 			}
 		   	return -1;
 		}
+		public PaleteSymbol? symbolAtLine () {
+		
+		}
 		public Palete.Symbol? getSymbolAt (uint row) {
 		
 		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
