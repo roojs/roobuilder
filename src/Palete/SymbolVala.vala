@@ -13,12 +13,14 @@ namespace Palete {
 			this.end_col = s.source_reference.end.column;
 			this.deprecated  = s.version.deprecated;
 			
-			
-			
-			
-			
+			  
 		}
-		
+		public string linesig {
+			get {
+				return "%d:%d:%d:%s".printf(this.begin_line, this.begin_col, this.end_line, this.end_col);
+			}
+			set {}
+		}
 	
 		public SymbolVala.new_namespace(ValaSymbolBuilder builder, Symbol? parent, Vala.Namespace ns)
 		{
