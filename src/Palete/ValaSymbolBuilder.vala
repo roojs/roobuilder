@@ -46,7 +46,13 @@ namespace Palete {
 			this.changed = new Gee.ArrayList<string>();
  
 		}
+		public void updateTreeFromFile(JsRender file)
+		{
+			var mod = this.scan_project.firstBuildModuleWith(file);
+			this.updateTree(mod);
+			
 		
+		}
 		
 		// main entrance point.. 
 		// starts the process of updating the tree..
