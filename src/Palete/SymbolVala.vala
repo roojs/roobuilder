@@ -285,7 +285,6 @@ namespace Palete {
 			 //	GLib.debug("check children %s != %s", k, this.type_name);
 			//}
 			
-			
 			if (!children_map.has_key(this.type_name)) {
  
 				var q = this.fillQuery(null);
