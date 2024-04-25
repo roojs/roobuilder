@@ -86,7 +86,7 @@ namespace Palete {
  		public abstract async void shutdown () throws GLib.Error;
 		public abstract async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error;
  		public abstract async Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error;
-		public abstract void queueDocumentSymbols (JsRender.JsRender file); 
+		//public abstract void queueDocumentSymbols (JsRender.JsRender file); 
  		public abstract async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error;	
 		public abstract async Gee.ArrayList<Lsp.SignatureInformation> signatureHelp (JsRender.JsRender file, int line, int offset) throws GLib.Error;
 		public abstract async Gee.ArrayList<Lsp.SymbolInformation> symbol (string sym) throws GLib.Error;
