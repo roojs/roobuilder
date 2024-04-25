@@ -226,6 +226,14 @@ namespace Palete {
 				 
 			 	foreach(var k in cols.keys) {
 
+
+	 				if (k == "id") {
+		 				var  newv = GLib.Value ( typeof (int64) );
+	 					newv.set_int64(var val = stmt.column_int64(cols.get(k)));
+	 					id = val;
+	 					row.set_property(k, newv);
+ 						continue;
+					}
 			 		var type = this.types.get(k);
 			 		
  				 	var  newv = GLib.Value ( type );				
@@ -238,9 +246,7 @@ namespace Palete {
 							break;
 			 			case GLib.Type.INT64:
 			 				var val = stmt.column_int64(cols.get(k));
-			 				if (k == "id") {
-			 					id = val;
-		 					}
+			 				 
 		 					if (k == "parent_id") {
 		 						parent_id = val;
 		 						continue;
