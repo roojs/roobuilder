@@ -111,10 +111,14 @@ namespace Palete {
 			}
 		}
 		public int64 rev = 0;
-		
+
+		contruct {
+					GLib.debug("symbol construct");
+		}
 		
 		public Symbol()
 		{
+			GLib.debug("symbol new");
 			base();
 			this.inherits   = new Gee.ArrayList<string>();
   			this.implements  = new Gee.ArrayList<string>(); 	
