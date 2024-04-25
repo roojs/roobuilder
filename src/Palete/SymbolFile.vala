@@ -128,9 +128,10 @@ namespace Palete {
 	 	{
 	 		var q = (new Symbol()).fillQuery(null);
 			var newar = new Gee.HashMap<int,Symbol>();
-		 	q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
-		 		" order by parent_id ASC, id ASC", newar);
 			var pids = new Gee.HashMap<int, int>();
+		 	q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
+		 		" order by parent_id ASC, id ASC", newar, pids);
+			 
 		 	var addsymbols = new Gee.ArrayList<Symbol>();
 			//this.symbols_all 
 			
@@ -146,10 +147,9 @@ namespace Palete {
 					// update..
 					var os = this.symbol_map.get(id);	
 					
-					if (os.parent_id != s.parent_id) {
+					if (pids.get((int)id) != (int)os.parent_id) {
 						var pid = s.parent_id;
-						
-						pids.set((int)s.id, (int)s.parent_id);
+						 
 						this.removeSymbol(os);
 						var ns = new Symbol();
 						ns.copyFrom(s);
@@ -167,9 +167,7 @@ namespace Palete {
 				var ns = new Symbol();
 				ns.copyFrom(s);
 				ns.file = this;
-				if (s.parent_id > 0) {
-					pids.set((int)s.id, (int)s.parent_id);
-				} else {
+				if (pids.get((int)id) < 1) {
 					this.children.append(ns);
 					this.children_map.set(s.type_name, s);
 				}
@@ -212,9 +210,10 @@ namespace Palete {
 			this.symbol_map.clear(); //??? should be fresh load?
 			var q = (new Symbol()).fillQuery(null);
 			var ids = new Gee.HashMap<int,Symbol>();
+ 				var pids = new Gee.HashMap<int, int>();
 		 	q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() +
-		 		" order by parent_id ASC, id ASC", ids);
-			var pids = new Gee.HashMap<int, int>();
+		 		" order by parent_id ASC, id ASC", ids, pids);
+
 			var newsymbols = new Gee.ArrayList<Symbol>();
 			foreach(var id in ids.keys) {
 
@@ -228,9 +227,7 @@ namespace Palete {
 				this.symbol_map.set((int)s.id, s);
 				
 				newsymbols.add(s);
-				if (s.parent_id > 0) {
-					pids.set((int)s.id, (int)s.parent_id);
-				} else {
+				if (pids.sget((ints.id) < 0) 
 					this.children.append(s);
 					GLib.debug("file add parent : %s", s.type_name);
 					this.children_map.set(s.type_name, s);
