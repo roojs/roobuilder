@@ -2063,11 +2063,11 @@ public class Editor : Object
 				_this.paned.el.position  = 
 					_this.paned.el.get_width() - 200;
 			}
-			
-			var old = _this.navigationsort.el.get_model().get_model();
+			var tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();
+			var old = tlm.get_model();
 			
 			if (ls.get_n_items() < 1) {
-				_this.navigationsort.el.get_model().get_model().remove_all();
+				 old.remove_all();
 				return;
 			}
 			// update.. 
