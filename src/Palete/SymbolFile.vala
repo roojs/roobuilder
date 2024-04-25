@@ -227,7 +227,7 @@ namespace Palete {
 				this.symbol_map.set((int)s.id, s);
 				
 				newsymbols.add(s);
-				if (pids.get(ints.id) < 1) 
+				if (pids.get(ints.id) < 1) {
 					this.children.append(s);
 					GLib.debug("file add parent : %s", s.type_name);
 					this.children_map.set(s.type_name, s);
