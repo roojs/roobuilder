@@ -1,4 +1,6 @@
 namespace Palete {
+	 
+
 
 	public class SymbolVala : Symbol {
 	
