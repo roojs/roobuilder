@@ -1791,7 +1791,7 @@
     "        this.view.load(  file.toSource() );",
     "        this.updateErrorMarks();",
     "        this.close_btn.el.hide();",
-    "        var pr = (Project.Gtk)file.project;",
+    " ",
     "       ",
     "\t    var sf = file.symbol_file();",
     "\t    sf.loadSymbols();",

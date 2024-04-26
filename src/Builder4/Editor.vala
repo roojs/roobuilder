@@ -164,7 +164,7 @@ public class Editor : Object
 	        this.view.load(  file.toSource() );
 	        this.updateErrorMarks();
 	        this.close_btn.el.hide();
-	        var pr = (Project.Gtk)file.project;
+	 
 	       
 		    var sf = file.symbol_file();
 		    sf.loadSymbols();
