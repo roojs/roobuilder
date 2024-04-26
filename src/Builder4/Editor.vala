@@ -2070,7 +2070,7 @@ public class Editor : Object
 			for(var i = 0; i < ls.get_n_items();i++) {
 				var ni = (Palete.Symbol)ls.get_item(i);
 				if (i >= old.get_n_items()) {
-					old.add(ni);
+					old.append(ni);
 					continue;
 				}
 				var oi = (Palete.Symbol)old.get_item(i);
