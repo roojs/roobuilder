@@ -97,6 +97,14 @@ namespace Palete {
 			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Enum;
+			
+			foreach(var e in cls.get_values()) {
+				this.updateLastLine(c);
+			}
+			foreach(var e in cls.get_methods()) {
+				this.updateLastLine(c);
+			}
+			
 			this.setParent(parent);
 			foreach(var e in cls.get_values()) {
 				new new_enummember(builder, this, e);
