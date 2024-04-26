@@ -1492,7 +1492,7 @@
             "\tfor(var i = 0; i < ls.get_n_items();i++) {",
             "\t\tvar ni = (Palete.Symbol)ls.get_item(i);",
             "\t\tif (i >= old.get_n_items()) {",
-            "\t\t\told.append(ni);",
+            "\t\t\told.add(ni);",
             "\t\t\tcontinue;",
             "\t\t}",
             "\t\tvar oi = (Palete.Symbol)old.get_item(i);",
