@@ -129,6 +129,15 @@ namespace Palete {
 					this.implements.add(p.type_symbol.get_full_name());
 				} 
 			}
+			
+			
+			var ar = cls.file.get_nodes().iterator();
+			while(ar.next()) {
+				var co = ar.get();
+				GLib.debug("node %d:%s", co.type_name , co.source_reference.begin.line);
+			}
+			
+			
 			this.setParent(parent);
 			
 	 		//this.is_static =  cls.binding != Vala.MemberBinding.INSTANCE;
