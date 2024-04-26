@@ -131,7 +131,7 @@ namespace JsRender {
 		}
 
 		//public signal void changed (Node? node, string source);  (not used?)
-		public GLib.ListStore symbol_tree; // part of project/symbolmanager
+		 
 		public signal void symbol_tree_updated( );
 		public void update_symbol_tree()
 		{
@@ -141,6 +141,10 @@ namespace JsRender {
 				pr.symbol_builder.updateTreeFromFile(this);
 			}
 		
+		}
+		public Palete.SymbolFile symbol_file()
+		{
+			return this.project.symbol_manager.factory_by_path(this.path);
 		}
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
