@@ -2058,7 +2058,7 @@ public class Editor : Object
 		 }
 		public void show () {
 			
-			var ls = _this.file.symbol_tree;
+			var ls = _this.file.symbol_file().children;
 			if (!_this.navigation_holder.el.visible && ls.get_n_items() > 0) {
 				_this.navigation_holder.el.show();
 				_this.paned.el.position  = 
@@ -2068,7 +2068,7 @@ public class Editor : Object
 			var old = (GLib.ListStore)tlm.get_model();
 			
 			if (ls.get_n_items() < 1) {
-				 old.remove_all();
+				old.remove_all();
 				return;
 			}
 			// update.. 

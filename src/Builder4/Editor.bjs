@@ -1482,7 +1482,7 @@
            "| void show" : [
             "() {",
             "\t",
-            "\tvar ls = _this.file.symbol_tree;",
+            "\tvar ls = _this.file.symbol_file().children;",
             "\tif (!_this.navigation_holder.el.visible && ls.get_n_items() > 0) {",
             "\t\t_this.navigation_holder.el.show();",
             "\t\t_this.paned.el.position  = ",
@@ -1492,7 +1492,7 @@
             "\tvar old = (GLib.ListStore)tlm.get_model();",
             "\t",
             "\tif (ls.get_n_items() < 1) {",
-            "\t\t old.remove_all();",
+            "\t\told.remove_all();",
             "\t\treturn;",
             "\t}",
             "\t// update.. ",
