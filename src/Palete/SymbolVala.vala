@@ -17,7 +17,7 @@ namespace Palete {
 			
 			  
 		}
-		void updateLastLine(Symbol s) {
+		void updateLastLine(Vala.Symbol s) {
 			if (s.source_reference.end.line < this.end_line) {
 				return;
 			}
