@@ -326,7 +326,7 @@ namespace Palete {
 		public bool contains (Lsp.Position pos) {
         	
             var ret =  start.compare_to (pos) <= 0 && pos.compare_to (end) <= 0;
-           // GLib.debug( "range contains %d  (%d-%d) %s", (int)pos.line, (int)start.line, (int)end.line, ret ? "Y" : "N");
+             GLib.debug( "range contains %d  (%d-%d) %s", (int)pos.line, (int)start.line, (int)end.line, ret ? "Y" : "N");
             return ret;
         }
 		
