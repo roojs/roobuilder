@@ -2068,14 +2068,14 @@ public class Editor : Object
 			// update..
 			
 			for(var i = 0; i < ls.get_n_items();i++) {
-				var ni = (Palate.Symbol)ls.get_item(i);
+				var ni = (Palete.Symbol)ls.get_item(i);
 				if (i >= old.get_n_items()) {
 					old.append(ni);
 					continue;
 				}
-				var oi = (Palate.Symbol)old.get_item(i);
+				var oi = (Palete.Symbol)old.get_item(i);
 				if (ni.id == oi.id) {
-					continue
+					continue;
 				}
 				// not same..
 				old.remove(i);
