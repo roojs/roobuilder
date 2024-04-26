@@ -2584,8 +2584,8 @@ public class Editor : Object
 			              }
 			            },
 			        */
-			     GLib.debug("goto line %d",   (int)sym.range.start.line); 
-			   // _this.scroll_to_line((int)sym.range.start.line);
+			     GLib.debug("goto line %d",   (int)sym.begin_line); 
+			    _this.scroll_to_line((int)sym.begin_line);
 			    Gtk.TextIter iter;
 			    _this.buffer.el.get_iter_at_line_offset(out iter, 
 			    	(int)sym.begin_line,
