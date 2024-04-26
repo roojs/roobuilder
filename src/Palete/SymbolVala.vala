@@ -136,8 +136,7 @@ namespace Palete {
 				var co = ar.get();
 				GLib.debug("node %d:%d:%s",co.source_reference.begin.line, co.source_reference.end.line, co.type_name );
 			}
-			
-			
+			 
 			this.setParent(parent);
 			
 	 		//this.is_static =  cls.binding != Vala.MemberBinding.INSTANCE;
