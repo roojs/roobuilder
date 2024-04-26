@@ -17,13 +17,51 @@ namespace Palete {
 			
 			  
 		}
+		void updateLastLine(Symbol s) {
+			if (s.source_reference.end.line < this.end_line) {
+				return;
+			}
+			if (s.source_reference.end.line == this.end_line) {			
+				this.end_col = int.max(s.source_reference.end.col,this.end_col);
+				return;
+			}
+			
+			this.end_line = int.max(s.source_reference.end.line,this.end_line);
+			this.end_col = s.source_reference.end.column;
 		
+		}
 	
 		public SymbolVala.new_namespace(ValaSymbolBuilder builder, Symbol? parent, Vala.Namespace ns)
 		{
 			this(builder, ns);
 			this.name = ns.name;
 			this.stype = Lsp.SymbolKind.Namespace;
+
+			// klunklylast liner
+			foreach(var c in ns.get_classes()) {
+				this.updateLastLine(c);
+			}
+			foreach(var c in ns.get_enums()) {
+				this.updateLastLine(c);
+			}
+			foreach(var c in ns.get_interfaces()) {
+				this.updateLastLine(c);
+
+			}
+			foreach(var c in ns.get_namespaces()) {
+				this.updateLastLine(c);
+			}
+			foreach(var c in ns.get_methods()) {
+				this.updateLastLine(c);
+			}
+			
+			foreach(var c in ns.get_structs()) {
+				this.updateLastLine(c);
+			}
+			foreach(var c in ns.get_delegates()) {
+				this.updateLastLine(c);
+			}
+			
 			
 			this.setParent(parent);	
 			foreach(var c in ns.get_classes()) {
