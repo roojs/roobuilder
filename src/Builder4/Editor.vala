@@ -2065,17 +2065,25 @@ public class Editor : Object
 				old.remove_all();
 				return;
 			}
-			// update.. 
-			if (old.get_n_items() > 0) {
-				var first = (Palete.Symbol)old.get_item(0);
-				if (first.file.path == _this.file.path) {
-					// file has not changed..
-					// no need to update.. - it's done automatically?
-					return;
-				}
-			}
+			// update..
 			
-			this.setModel(ls);
+			for(var i = 0; i < ls.get_n_items();i++) {
+				var ni = (Palate.Symbol)ls.get_item(i);
+				if (i >= old.get_n_items()) {
+					old.append(ni);
+					continue;
+				}
+				var oi = (Palate.Symbol)old.get_item(i);
+				if (ni.id == oi.id) {
+					continue
+				}
+				// not same..
+				old.remove(i);
+				old.insert(ni, i);
+			}
+			while (old.get_n_items() > ls.get_n_items()) {
+				old.remove(old.get_n_items()-1);
+			}
 		    
 		    // this happens on first load? - not afterwards?
 		    
