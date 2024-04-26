@@ -134,7 +134,7 @@ namespace Palete {
 			var ar = cls.source_reference.file.get_nodes().iterator();
 			while(ar.next()) {
 				var co = ar.get();
-				GLib.debug("node %d:%s",co.source_reference.begin.line,  co.type_name );
+				GLib.debug("node %d:%s:%s",co.source_reference.begin.line, co.source_reference.end.line co.type_name );
 			}
 			
 			
