@@ -15,19 +15,21 @@ namespace Palete {
 			this.end_col = s.source_reference.end.column;
 			this.deprecated  = s.version.deprecated;
 			
+			
+			
 			  
 		}
 		void updateLastLine(Vala.Symbol s) {
-			if (s.source_reference.end.line < this.end_line) {
-				return;
-			}
-			if (s.source_reference.end.line == this.end_line) {			
-				this.end_col = int.max(s.source_reference.end.col,this.end_col);
-				return;
-			}
+			// scanner ->			 s.source_reference.file
+			// seek symbol position
+			// look for '{' ... look for '{' or '}' ... then end..?
+			// class : must
+			/// method : abstracts - no?
 			
-			this.end_line = int.max(s.source_reference.end.line,this.end_line);
-			this.end_col = s.source_reference.end.column;
+			
+			// methods?? have blocks? << can we get anything from this?
+			
+			
 		
 		}
 	
@@ -41,7 +43,7 @@ namespace Palete {
 			this.setParent(parent);	
 			 
 			foreach(var c in ns.get_classes()) {
-				new new_class(builder, this,c, do_update);
+				new new_class(builder, this,c);
 			}
 			foreach(var c in ns.get_enums()) {
 				new new_enum(builder, this, c);
