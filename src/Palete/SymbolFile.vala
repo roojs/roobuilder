@@ -227,7 +227,7 @@ namespace Palete {
 			foreach(var id in order) {
 
 				var s = ids.get(id);
-				GLib.debug ("%d: %d  : %s : %s",pids.get(id), (int) id, s.type_name, s.fqn);;
+				//GLib.debug ("%d: %d  : %s : %s",pids.get(id), (int) id, s.type_name, s.fqn);;
 				s.file = this;
 				if (s.fqn != "") {
 					this.fqn_map.set(s.fqn, s); // gir only
@@ -247,9 +247,9 @@ namespace Palete {
 			}
 			this.linkNewSymbols(pids, newsymbols);
 			
-			foreach(var s in this.children_map.values) {
-				GLib.debug("add to top: %s", s.type_name);
-			} 
+			//foreach(var s in this.children_map.values) {
+			//	GLib.debug("add to top: %s", s.type_name);
+			// 
 		}
 		
 		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> newsymbols )
