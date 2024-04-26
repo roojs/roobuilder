@@ -42,8 +42,9 @@ namespace Palete {
 		 		this.end_line = fake.end_line;
 		 		this.end_col = fake.end_col;
 	 		}
-			
-			this.setParent(parent);	
+			if (do_update) {
+				this.setParent(parent);	
+			}
 			foreach(var c in ns.get_classes()) {
 				new new_class(builder, this,c, do_update);
 			}
