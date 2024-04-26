@@ -2568,7 +2568,7 @@ public class Editor : Object
 			    }
 				GLib.debug("got click on %s", row.get_type().name());    
 			    //Lsp.DocumentSymbol
-			    var sym =  row.get_data<Lsp.DocumentSymbol>("symbol");
+			    var sym =  row.get_data<Palete.Symbol>("symbol");
 			    if (sym == null) {
 			    	return;
 				}
@@ -2585,11 +2585,11 @@ public class Editor : Object
 			            },
 			        */
 			     GLib.debug("goto line %d",   (int)sym.range.start.line); 
-			    _this.scroll_to_line((int)sym.range.start.line);
+			   // _this.scroll_to_line((int)sym.range.start.line);
 			    Gtk.TextIter iter;
 			    _this.buffer.el.get_iter_at_line_offset(out iter, 
-			    	(int)sym.range.start.line,
-			    	(int)sym.range.start.character
+			    	(int)sym.begin_line,
+			    	(int)sym.begin_col
 				);
 			    _this.buffer.el.place_cursor(iter);
 				
