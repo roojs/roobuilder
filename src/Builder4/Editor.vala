@@ -168,7 +168,7 @@ public class Editor : Object
 	       
 		    var sf = file.symbol_file();
 		    sf.loadSymbols();
-	        file.symbol_tree = sf.children;
+	         
 	        // trigger a scan
 			_this.file.update_symbol_tree();
 	

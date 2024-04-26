@@ -1795,7 +1795,7 @@
     "       ",
     "\t    var sf = file.symbol_file();",
     "\t    sf.loadSymbols();",
-    "        file.symbol_tree = sf.children;",
+    "         ",
     "        // trigger a scan",
     "\t\t_this.file.update_symbol_tree();",
     "",
