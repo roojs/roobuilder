@@ -130,7 +130,7 @@ namespace Palete {
 				} 
 			}
 			
-			
+			GLib.debug("dumping nodes?");
 			var ar = cls.source_reference.file.get_nodes().iterator();
 			while(ar.next()) {
 				var co = ar.get();
