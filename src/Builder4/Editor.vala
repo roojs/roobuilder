@@ -2009,13 +2009,6 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public void setModel (GLib.ListStore ls) {
-		 	_this.navigationsort.el.set_model(
-		 		new Gtk.TreeListModel( ls, false, true, (item) => {
-					return ((Palete.Symbol)item).children;
-				} )
-			);
-		}
 		public Gtk.Widget? getRowWidgetAt (double x,  double  y, out string pos) {
 		
 			pos = "";
@@ -2064,6 +2057,7 @@ public class Editor : Object
 				_this.paned.el.position  = 
 					_this.paned.el.get_width() - 200;
 			}
+			
 			var tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();
 			var old = (GLib.ListStore)tlm.get_model();
 			

@@ -1470,15 +1470,6 @@
             "\treturn rn;",
             " }"
            ],
-           "| void setModel" : [
-            "(GLib.ListStore ls) {",
-            " \t_this.navigationsort.el.set_model(",
-            " \t\tnew Gtk.TreeListModel( ls, false, true, (item) => {",
-            "\t\t\treturn ((Palete.Symbol)item).children;",
-            "\t\t} )",
-            "\t);",
-            "}"
-           ],
            "| void show" : [
             "() {",
             "\t",
@@ -1488,6 +1479,7 @@
             "\t\t_this.paned.el.position  = ",
             "\t\t\t_this.paned.el.get_width() - 200;",
             "\t}",
+            "\t",
             "\tvar tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();",
             "\tvar old = (GLib.ListStore)tlm.get_model();",
             "\t",
