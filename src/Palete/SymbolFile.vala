@@ -155,7 +155,7 @@ namespace Palete {
 					var os = this.symbol_map.get(id);	
 					
 					if (pids.get((int)id) != (int)os.parent_id) {
-						var pid = s.parent_id;
+ 
 						 
 						this.removeSymbol(os);
 						var ns = new Symbol();
@@ -171,15 +171,14 @@ namespace Palete {
 					 
 					continue;
 				}
-				var ns = new Symbol();
-				ns.copyFrom(s);
-				ns.file = this;
+ 
+				s.file = this;
 				if (pids.get((int)id) < 1) {
-					this.children.append(ns);
+					this.children.append(s);
 					this.children_map.set(s.type_name, s);
 				}
 				
-				addsymbols.add(ns);
+				addsymbols.add(s);
 			 
 			}
 			 

@@ -21,9 +21,12 @@
 
 namespace Palete {
 	 
+	 
+	 static bool thread_enabled = true; // disable for debugging as GDB doesnt really like threaded apps.
+	 
 	 public errordomain ValaSymbolBuilderError {
 		PARSE_FAILED 
-	}
+	 }
 	 
  
 	public class ValaSymbolBuilder  : Vala.CodeVisitor {
@@ -126,7 +129,6 @@ namespace Palete {
 				return;
 			}
 			if (sf.children.get_n_items() < 1) {
-			
 				GLib.debug("Load Symbols %s", sf.path);
 				sf.loadSymbols(  );
 			}
@@ -168,7 +170,11 @@ namespace Palete {
 			if (sf.parsed_symbols.contains(this.line_sig(element))) {
 				return;
 			}
-			  		
+			if (sf.children.get_n_items() < 1) {
+				GLib.debug("Load Symbols %s", sf.path);
+				sf.loadSymbols(  );
+			}
+ 		
 			new SymbolVala.new_namespace(this, null, element);
 			//element.accept_children(this); // catch sub namespaces..
 		}
@@ -188,7 +194,11 @@ namespace Palete {
 				GLib.debug("SKIP  Class %s (db uptodate)", element.source_reference.file.filename);
 				return;
 			}
-			 
+ 			if (sf.children.get_n_items() < 1) {
+				GLib.debug("Load Symbols %s", sf.path);
+				sf.loadSymbols(  );
+			}
+
 			
 			element.accept_children(this);
 			if (sf.parsed_symbols.contains(this.line_sig(element))) {
@@ -388,9 +398,12 @@ namespace Palete {
 			this.threaded_callback = this.create_valac_tree.callback;
 			 
 			string[] output = {};
-			 
-			this.threaded_parse();
-			//new Thread<void>("thread-update-tree",  this.threaded_parse);
+			if (thread_enabled) { 
+				new Thread<void>("thread-update-tree",  this.threaded_parse);
+			} else {
+				this.threaded_parse();
+			}
+			//
 
 			// Wait for background thread to schedule our callback
 			yield;

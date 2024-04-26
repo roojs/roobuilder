@@ -2431,7 +2431,7 @@ public class Editor : Object
 			_this = _owner;
 			var child_1 = new Xcls_ListStore36( _this );
 			child_1.ref();
-			this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
+			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
  
 	return ((Palete.Symbol)item).children;
 }
@@ -2585,10 +2585,10 @@ public class Editor : Object
 			            },
 			        */
 			     GLib.debug("goto line %d",   (int)sym.begin_line); 
-			    _this.scroll_to_line((int)sym.begin_line);
+			    _this.scroll_to_line((int)sym.begin_line - 1);
 			    Gtk.TextIter iter;
 			    _this.buffer.el.get_iter_at_line_offset(out iter, 
-			    	(int)sym.begin_line,
+			    	(int)sym.begin_line - 1,
 			    	(int)sym.begin_col
 				);
 			    _this.buffer.el.place_cursor(iter);

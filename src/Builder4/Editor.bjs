@@ -1226,7 +1226,7 @@
                  ],
                  "$ xns" : "Gtk",
                  "* prop" : "model",
-                 "bool autoexpand" : true,
+                 "bool autoexpand" : false,
                  "bool passthrough" : false,
                  "items" : [
                   {
@@ -1364,10 +1364,10 @@
                "            },",
                "        */",
                "     GLib.debug(\"goto line %d\",   (int)sym.begin_line); ",
-               "    _this.scroll_to_line((int)sym.begin_line);",
+               "    _this.scroll_to_line((int)sym.begin_line - 1);",
                "    Gtk.TextIter iter;",
                "    _this.buffer.el.get_iter_at_line_offset(out iter, ",
-               "    \t(int)sym.begin_line,",
+               "    \t(int)sym.begin_line - 1,",
                "    \t(int)sym.begin_col",
                "\t);",
                "    _this.buffer.el.place_cursor(iter);",

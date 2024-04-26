@@ -283,14 +283,14 @@ namespace Palete {
 			this.fqn = this.to_fqn();
 			
 			this.rev = this.file.version;
-			
-			if (this.fqn == "Math") {
+			/*
+			if (this.fqn == "Lsp") {
 				GLib.debug("oops");
 			}
-			 //foreach(var k in children_map.keys) {
-			//  	GLib.debug("check children %d:%d %s != %s", (int)this.parent_id, (int)this.id,  k, this.type_name);
-			// }
-			
+			 foreach(var k in children_map.keys) {
+			  	GLib.debug("check children %d:%d %s != %s", (int)this.parent_id, (int)this.id,  k, this.type_name);
+			  }
+			*/
 			if (!children_map.has_key(this.type_name)) {
  
 				var q = this.fillQuery(null);
