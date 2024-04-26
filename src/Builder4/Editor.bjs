@@ -1501,7 +1501,7 @@
             "\t\t}",
             "\t\t// not same..",
             "\t\told.remove(i);",
-            "\t\told.insert(ni, i);",
+            "\t\told.insert(i, ni);",
             "\t}",
             "\twhile (old.get_n_items() > ls.get_n_items()) {",
             "\t\told.remove(old.get_n_items()-1);",

@@ -2079,7 +2079,7 @@ public class Editor : Object
 				}
 				// not same..
 				old.remove(i);
-				old.insert(ni, i);
+				old.insert(i, ni);
 			}
 			while (old.get_n_items() > ls.get_n_items()) {
 				old.remove(old.get_n_items()-1);
