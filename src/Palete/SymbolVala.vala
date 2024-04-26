@@ -31,41 +31,21 @@ namespace Palete {
 		
 		}
 	
-		public SymbolVala.new_namespace(ValaSymbolBuilder builder, Symbol? parent, Vala.Namespace ns)
+		public SymbolVala.new_namespace(ValaSymbolBuilder builder, Symbol? parent, Vala.Namespace ns, do_update = true)
 		{
 			this(builder, ns);
 			this.name = ns.name;
 			this.stype = Lsp.SymbolKind.Namespace;
 
-			// klunklylast liner
-			foreach(var c in ns.get_classes()) {
-				this.updateLastLine(c);
-			}
-			foreach(var c in ns.get_enums()) {
-				this.updateLastLine(c);
-			}
-			foreach(var c in ns.get_interfaces()) {
-				this.updateLastLine(c);
-
-			}
-			foreach(var c in ns.get_namespaces()) {
-				this.updateLastLine(c);
-			}
-			foreach(var c in ns.get_methods()) {
-				this.updateLastLine(c);
-			}
-			
-			foreach(var c in ns.get_structs()) {
-				this.updateLastLine(c);
-			}
-			foreach(var c in ns.get_delegates()) {
-				this.updateLastLine(c);
-			}
-			
+		 	if (do_update == true) {
+		 		var fake = new_namespace(builder, parent, ns, false);
+		 		this.end_line = fake.end_line;
+		 		this.end_col = fake.end_col;
+	 		}
 			
 			this.setParent(parent);	
 			foreach(var c in ns.get_classes()) {
-				new new_class(builder, this,c);
+				new new_class(builder, this,c, do_update);
 			}
 			foreach(var c in ns.get_enums()) {
 				new new_enum(builder, this, c);
