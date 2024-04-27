@@ -596,7 +596,7 @@
 				var ar = sb.updateBackground.end(r);
 				
 				if (BuilderApplication.opt_symbol_dump_file != null) {
-					var fc = new Palete.SymbolFileCollection(cur_project);
+					var fc = new Palete.SymbolFileCollection();
 					var sf= fc.new_by_path(BuilderApplication.opt_symbol_dump_file);
 					sf.loadSymols();
 					sf.dump();
