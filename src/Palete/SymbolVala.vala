@@ -32,11 +32,7 @@ namespace Palete {
 			
 			  
 		}
-		void updateLastLine(Vala.Symbol s) {
-			
-			
-		
-		}
+		 
 	
 		public SymbolVala.new_namespace(ValaSymbolBuilder builder, Symbol? parent, Vala.Namespace ns)
 		{
@@ -81,13 +77,7 @@ namespace Palete {
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Enum;
 			
-			foreach(var e in cls.get_values()) {
-				this.updateLastLine(c);
-			}
-			foreach(var e in cls.get_methods()) {
-				this.updateLastLine(c);
-			}
-			
+			 
 			this.setParent(parent);
 			foreach(var e in cls.get_values()) {
 				new new_enummember(builder, this, e);
