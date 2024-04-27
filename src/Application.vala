@@ -593,9 +593,9 @@
 			sb.updateBackground.begin(BuilderApplication.opt_symbol_test, (o,r )  => {
 				var ar = sb.updateBackground.end(r);
 				
-				if (BuilderApplication.opt_symbol_file != null) {
+				if (BuilderApplication.opt_symbol_dump_file != null) {
 					var fc = new Palete.SymbolFileCollection(project);
-					var sf= fs.new_by_path(BuilderApplication.opt_symbol_file);
+					var sf= fs.new_by_path(BuilderApplication.opt_symbol_dump_file);
 					sf.loadSymols();
 					sf.dump();
 				}
