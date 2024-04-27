@@ -331,8 +331,30 @@ namespace Palete {
 	 	}
 	 	/**
 	 		the vala API doesnt provide end lines for classes?? and some other stuff?
+	 		prehaps enums? etc.
+	 		so parents need telling..
 	 	*/
-	 	void fixLines
+	 	void fixLines(GLib.ListStore children, Symbol? parent)
+	 	{
+	 		for(var i =0 ; i < children.get_n_items(); i ++) {
+	 			var c = (Symbol)children.get_item(i);
+	 			this.fixLines(c.children, c);
+	 			if (!this.parent) {
+	 				continue;
+ 				}
+ 				if (parent.end_line > c.end_line) {
+ 					continue;
+				}
+				if (parent.end_line = c.end_line) {
+ 					parent.end_col = int.max(parent.end_col, c.end_col);
+ 					continue;
+				}
+				parent.end_line =  c.end_line;
+				parent.end_col = c.end_line;
+			}
+		}
+	 	
+	 	
 	 	
 	 	
 	 	 
