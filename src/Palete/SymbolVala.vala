@@ -27,7 +27,7 @@ namespace Palete {
 			
 			var sr = (Vala.Subroutine) s;
 			if (s != null) {
-				Glib.debug("sourceref; %s",  sr.body.source_reference.to_string());
+				GLib.debug("sourceref; %s",  sr.body.source_reference.to_string());
 			}
 			
 			  
