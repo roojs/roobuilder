@@ -2,9 +2,17 @@ namespace Palete {
 	
 	
 	public class SymbolFile {
-	
-		 
-		 
+		/**
+		which collection does this file belong to
+		collections contain information about what type of data to load
+		- eg. 
+			* parsing collections- need to load/save all data
+		 	* navigation tree colections need to exclude ? function properties?
+		 	
+		*/
+		public SymbolFile collection; // 
+		
+		
 	
 		public int64 id = -1;
 		public string path = ""; 
@@ -62,7 +70,7 @@ namespace Palete {
 			this.children = new GLib.ListStore(typeof(Symbol));
 			this.children_map = new Gee.HashMap<string,Symbol>();
 			this.fqn_map = new Gee.HashMap<string,Symbol>(); // used by gir loading
-			this. parsed_symbols = new Gee.ArrayList<string>((a , b) => { return a == b; });
+			this.parsed_symbols = new Gee.ArrayList<string>((a , b) => { return a == b; });
 			 
 		}
 		
