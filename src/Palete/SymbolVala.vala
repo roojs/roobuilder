@@ -100,7 +100,7 @@ namespace Palete {
 			 
 		}
 		public SymbolVala.new_interface(ValaSymbolBuilder builder, Symbol? parent, Vala.Interface cls)	
-		{--
+		{
 			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Interface;
