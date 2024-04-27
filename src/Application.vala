@@ -601,10 +601,7 @@
 					sf.loadSymols();
 					sf.dump();
 				}
-			}
-				
-				
-
+			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
 		 	});
 			 
