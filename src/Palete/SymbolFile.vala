@@ -194,7 +194,7 @@ namespace Palete {
 				}
 				this.removeSymbol(this.symbol_map.get(id));
 			}
-
+			this.fixLines(this.children, null);
 			 
 	 	}
 	 	
