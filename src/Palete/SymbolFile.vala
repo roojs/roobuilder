@@ -339,7 +339,7 @@ namespace Palete {
 	 		for(var i =0 ; i < children.get_n_items(); i ++) {
 	 			var c = (Symbol)children.get_item(i);
 	 			this.fixLines(c.children, c);
-	 			if (!this.parent) {
+	 			if (parent == null) {
 	 				continue;
  				}
  				if (parent.end_line > c.end_line) {
@@ -355,11 +355,6 @@ namespace Palete {
 		}
 	 	
 	 	
-	 	
-	 	
-	 	 
-	 	
-		
 		 
 		 
 	}
