@@ -355,7 +355,7 @@
                "\t\t\tout iter, this.el.cursor_position);",
                "",
                "\t_this.navigation.updateSelectedLine(",
-               "\t\t\t(uint)iter.get_line(),",
+               "\t\t\t(uint)iter.get_line() +1,",
                "\t\t\t(uint)iter.get_line_offset()",
                "\t\t);",
                "\tthis.showHelp(iter);",

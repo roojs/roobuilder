@@ -1026,7 +1026,7 @@ public class Editor : Object
 						out iter, this.el.cursor_position);
 			
 				_this.navigation.updateSelectedLine(
-						(uint)iter.get_line(),
+						(uint)iter.get_line() +1,
 						(uint)iter.get_line_offset()
 					);
 				this.showHelp(iter);
