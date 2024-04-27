@@ -25,7 +25,6 @@ namespace Palete {
 			
 			// methods?? have blocks? << can we get anything from this?
 			
-			
 			var sr = (Vala.Subroutine) s;
 			if (s != null) {
 				Glib.debug("sourceref; %s",  sr.body.source_reference.to_string());
