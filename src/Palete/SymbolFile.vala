@@ -247,7 +247,7 @@ namespace Palete {
 			}
 			this.linkNewSymbols(pids, newsymbols);
 			
-			this.fixLines(this.children);
+			this.fixLines(this.children, null);
 			//foreach(var s in this.children_map.values) {
 			//	GLib.debug("add to top: %s", s.type_name);
 			// 
