@@ -598,6 +598,7 @@
 					var sf= fs.new_by_path(BuilderApplication.opt_symbol_file);
 					sf.loadSymols();
 					sf.dump();
+				}
 			}
 				
 				
