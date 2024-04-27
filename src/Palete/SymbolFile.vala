@@ -345,7 +345,7 @@ namespace Palete {
  				if (parent.end_line > c.end_line) {
  					continue;
 				}
-				if (parent.end_line = c.end_line) {
+				if (parent.end_line == c.end_line) {
  					parent.end_col = int.max(parent.end_col, c.end_col);
  					continue;
 				}
