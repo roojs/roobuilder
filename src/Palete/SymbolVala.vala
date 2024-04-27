@@ -27,7 +27,8 @@ namespace Palete {
 			
 			var sr = (s is Vala.Subroutine) ?  (Vala.Subroutine) s : null;
 			if (sr != null) {
-				GLib.debug("sourceref; %s",  sr.body.source_reference.to_string());
+				this.end_line = sr.source_reference.end.line;
+				this.end_col = sr.source_reference.end.column;
 			}
 						  
 		}
