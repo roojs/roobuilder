@@ -15,11 +15,7 @@ namespace Palete {
 			this.end_col = s.source_reference.end.column;
 			this.deprecated  = s.version.deprecated;
 			
-			
-			
-			  
-		}
-		void updateLastLine(Vala.Symbol s) {
+			// end line is not very good ... see if we can use other data?
 			// scanner ->			 s.source_reference.file
 			// seek symbol position
 			// look for '{' ... look for '{' or '}' ... then end..?
@@ -28,6 +24,16 @@ namespace Palete {
 			
 			
 			// methods?? have blocks? << can we get anything from this?
+			
+			
+			var sr = (Vala.Subroutine) s;
+			if (s != null) {
+				Glib.debug("sourceref; %s",  sr.body.source_reference.to_string());
+			}
+			
+			  
+		}
+		void updateLastLine(Vala.Symbol s) {
 			
 			
 		
