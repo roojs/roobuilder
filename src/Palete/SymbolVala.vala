@@ -26,7 +26,7 @@ namespace Palete {
 			// methods?? have blocks? << can we get anything from this?
 			
 			var sr = (s is Vala.Subroutine) ?  (Vala.Subroutine) s : null;
-			if (sr != null) {
+			if (sr != null && sr.body != null) {
 				this.end_line = sr.body.source_reference.end.line;
 				this.end_col = sr.body.source_reference.end.column;
 			}
