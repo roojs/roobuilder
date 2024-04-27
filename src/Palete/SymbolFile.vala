@@ -247,6 +247,7 @@ namespace Palete {
 			}
 			this.linkNewSymbols(pids, newsymbols);
 			
+			this.fixLines(this.children);
 			//foreach(var s in this.children_map.values) {
 			//	GLib.debug("add to top: %s", s.type_name);
 			// 
@@ -328,6 +329,10 @@ namespace Palete {
 			
 
 	 	}
+	 	/**
+	 		the vala API doesnt provide end lines for classes?? and some other stuff?
+	 	*/
+	 	void fixLines
 	 	
 	 	
 	 	 
