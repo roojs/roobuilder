@@ -126,7 +126,9 @@ namespace Palete {
 			 
 		 	return ret;
 	 	}
-	 	// called from symbol builders..
+	 	// called from symbol builders.. - to refresh live view.
+	  
+	 	
 	 	public void refreshSymbolsFromDB()
 	 	{
 	 		var q = (new Symbol()).fillQuery(null);
