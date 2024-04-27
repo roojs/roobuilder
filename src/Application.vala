@@ -598,7 +598,7 @@
 				if (BuilderApplication.opt_symbol_dump_file != null) {
 					var fc = new Palete.SymbolFileCollection();
 					var sf= fc.factory_by_path(BuilderApplication.opt_symbol_dump_file);
-					sf.loadSymols();
+					sf.loadSymbols();
 					sf.dump();
 				}
 			
