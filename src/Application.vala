@@ -587,20 +587,22 @@
 			//Posix.sleep( 30 );
 			var done = false;
 			var loop = new MainLoop();
-			GLib.Timeout.add_seconds(1, () => {
-			 	if (done) {
-	 				GLib.Process.exit(Posix.EXIT_SUCCESS);
-			 		return true;
-		 		}
-				
-				return false;
-				
-			});
+			 
 			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 			
 			sb.updateBackground.begin(BuilderApplication.opt_symbol_test, (o,r )  => {
 				var ar = sb.updateBackground.end(r);
-				done = true;
+				
+				if (BuilderApplication.opt_symbol_file != null) {
+					var fc = new Palete.SymbolFileCollection(project);
+					var sf= fs.new_by_path(BuilderApplication.opt_symbol_file);
+					sf.loadSymols();
+					sf.dump();
+			}
+				
+				
+
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
 		 	});
 			 
 			loop.run();
