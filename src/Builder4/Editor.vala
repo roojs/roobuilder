@@ -2365,7 +2365,7 @@ public class Editor : Object
 			 			tr.expanded = false;
 			 			break;
 					default:
-						//tr.expanded = true;
+						tr.expanded = true;
 						break;
 				}
 			}

@@ -1319,7 +1319,7 @@
                 "\t \t\t\ttr.expanded = false;",
                 "\t \t\t\tbreak;",
                 "\t\t\tdefault:",
-                "\t\t\t\t//tr.expanded = true;",
+                "\t\t\t\ttr.expanded = true;",
                 "\t\t\t\tbreak;",
                 "\t\t}",
                 "\t}",
