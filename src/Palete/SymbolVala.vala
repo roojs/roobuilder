@@ -27,8 +27,8 @@ namespace Palete {
 			
 			var sr = (s is Vala.Subroutine) ?  (Vala.Subroutine) s : null;
 			if (sr != null) {
-				this.end_line = sr.source_reference.end.line;
-				this.end_col = sr.source_reference.end.column;
+				this.end_line = sr.body.source_reference.end.line;
+				this.end_col = sr.body.source_reference.end.column;
 			}
 						  
 		}
