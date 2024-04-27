@@ -25,7 +25,7 @@ namespace Palete {
 			
 			// methods?? have blocks? << can we get anything from this?
 			
-			var sr = (Vala.Subroutine) s;
+			var sr = s is Vala.Subroutine ?  (Vala.Subroutine) s : null;
 			if (s != null) {
 				GLib.debug("sourceref; %s",  sr.body.source_reference.to_string());
 			}
@@ -100,7 +100,7 @@ namespace Palete {
 			 
 		}
 		public SymbolVala.new_interface(ValaSymbolBuilder builder, Symbol? parent, Vala.Interface cls)	
-		{
+		{--
 			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Interface;
