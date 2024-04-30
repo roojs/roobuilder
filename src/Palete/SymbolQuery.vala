@@ -194,7 +194,7 @@ namespace Palete {
 		// select using 'col data?'
 		public void select(Sqlite.Database db, string where, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
 		{
-			Sqlite.Statement stmt;
+
 			
  
 			var cols = new Gee.HashMap<string,int>();
@@ -223,6 +223,7 @@ namespace Palete {
 		
 		public void selectQuery(Sqlite.Database db, string q, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
 		{	
+			Sqlite.Statement stmt;
 			GLib.debug("Query %s", q);
 			db.prepare_v2 (q, q.length, out stmt);
 
