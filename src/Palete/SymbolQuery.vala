@@ -218,6 +218,9 @@ namespace Palete {
 			this.selectQuery(db, q, ret, pids, order);
 			
 		}
+		
+		// generic select Query... - 
+		
 		public void selectQuery(Sqlite.Database db, string q, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
 		{	
 			GLib.debug("Query %s", q);
