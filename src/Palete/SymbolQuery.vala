@@ -284,7 +284,7 @@ namespace Palete {
 		
 		T fetchRow(Sqlite.Statement stmt)
 		{
-			var row =  (T) Object.new (typeof(T));	
+			var row =   Object.new (typeof(T));	
 			int cols = stmt.column_count ();
 			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
 			for (int i = 0; i < cols; i++) {
