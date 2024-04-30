@@ -227,7 +227,7 @@ namespace Palete {
 					if (parent_id > -1) {
 						pids.set((int)id, (int)parent_id);
 					}
-					order.add((int)row.id);
+					order.add((int)id);
 				} else {
 					GLib.debug("missing id for row");
 				}
