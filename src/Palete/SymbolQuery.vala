@@ -304,7 +304,7 @@ namespace Palete {
 			}
 			return row;
 		}
-		void setObjectProperty(Sqlite.Statement stmt, T row, int pos, string col_name, int stype, Type gtype) 
+		void setObjectProperty(Sqlite.Statement stmt, Object row, int pos, string col_name, int stype, Type gtype) 
 		{
 			var  newv = GLib.Value ( gtype );	
 			switch (gtype) {
