@@ -220,57 +220,13 @@ namespace Palete {
 			assert (typeof(T).is_object());
 			
 			while (stmt.step() == Sqlite.ROW) {
-		 		var row =  Object.new (typeof(T));	
-				id = 0;
-				parent_id = 0;
-				 
-			 	foreach(var k in cols.keys) {
-
-
-	 				if (k == "id") {
-		 				var  newv = GLib.Value ( typeof (int64) );
-		 				var val = stmt.column_int64(cols.get(k));
-	 					newv.set_int64(val);
-	 					id = val;
-	 					row.set_property(k, newv);
- 						continue;
-					}
-			 		var type = this.types.get(k);
-			 		
- 				 	var  newv = GLib.Value ( type );				
-			 		switch(type) {
-			 			case GLib.Type.BOOLEAN:
-							newv.set_boolean(stmt.column_int(cols.get(k)) == 1);
-							break;
-						case GLib.Type.INT:
-							newv.set_int(stmt.column_int(cols.get(k)));
-							break;
-			 			case GLib.Type.INT64:
-			 				var val = stmt.column_int64(cols.get(k));
-			 				 
-		 					if (k == "parent_id") {
-		 						parent_id = val;
-		 						continue;
-	 						}
-	 						if (k == "file_id") { // ?? how to falg..?
-		 						continue;
-	 						}
-							newv.set_int64(val);;
-							break;
-						case GLib.Type.STRING:
-							var str = stmt.column_text(cols.get(k));
-							newv.set_string(str == null? "": str);
-							break;
-
-					}
-					row.set_property(k, newv);
-					
-				}
-				
-				if (id > 0) {
-					ret.set((int)id, row);
-					pids.set((int)id, (int)parent_id);
-					order.add((int)id);
+		 		var row =  fetchRow(stmt); 
+		 		  
+			 	  
+				if (row.id > 0) {
+					ret.set((int)row.id, row);
+					pids.set((int)row.id, (int)row.parent_id);
+					order.add((int)row.id);
 				} else {
 					GLib.debug("missing id for row");
 				}
