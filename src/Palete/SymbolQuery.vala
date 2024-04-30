@@ -239,8 +239,10 @@ namespace Palete {
 					
 		}
 		
-		T fetchRow(Sqlite.Statement stmt)
+		T fetchRow(Sqlite.Statement stmt, out int64 id, out int64 parent_id)
 		{
+			id = -1;
+			paretnt_id = -1;
 			var row =   Object.new (typeof(T));	
 			int cols = stmt.column_count ();
 			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
@@ -256,6 +258,12 @@ namespace Palete {
 				if (ps == null) {
 					GLib.debug("could not find property %s in object interface", col_name);
 					continue;
+				}
+				if (colname == "id") {
+					id = stmt.column_int64(i);
+				}
+				if (colname == "parent_id") {
+					parent_id = stmt.column_int64(i);
 				}
 				this.setObjectProperty(stmt, row, i, col_name, type_id, ps.value_type);
 			}
