@@ -215,10 +215,16 @@ namespace Palete {
 			}
 			
 			var q = "SELECT id," +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
+			this.selectQuery(db, q, ret, pids, order);
+			
+		}
+		public void selectQuery(Sqlite.Database db, string q, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
+		{	
 			GLib.debug("Query %s", q);
 			db.prepare_v2 (q, q.length, out stmt);
 			assert (typeof(T).is_object());
-			
+			int64 id = 0;
+			int64 parent_id = 0;
 			while (stmt.step() == Sqlite.ROW) {
 		 		var row =  this.fetchRow(stmt, out id , out parent_id); 
 		 	 	  
