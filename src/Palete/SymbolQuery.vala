@@ -297,7 +297,7 @@ namespace Palete {
 				// Sqlite.INTEGER, Sqlite.FLOAT, Sqlite.TEXT,Sqlite.BLOB, or Sqlite.NULL. 
 				var ps = ocl.find_property( col_name );
 				if (ps == null) {
-					GLIb.debug("could not find property %s in object interface", col_name);
+					GLib.debug("could not find property %s in object interface", col_name);
 					continue;
 				}
 				this.setObjectProperty(stmt, row, i, col_name, type_id, ps.value_type);
