@@ -282,7 +282,7 @@ namespace Palete {
 					
 		}
 		
-		void T fetchRow(Sqlite.Statement stmt)
+		T fetchRow(Sqlite.Statement stmt)
 		{
 			var row =  (T) Object.new (typeof(T));	
 			int cols = stmt.column_count ();
@@ -304,7 +304,7 @@ namespace Palete {
 			}
 			return row;
 		}
-		void setObjectProperty(Sqlite.Statement stmt, Object row, int pos, string col_name, int stype, Type gtype) 
+		void setObjectProperty(Sqlite.Statement stmt, T row, int pos, string col_name, int stype, Type gtype) 
 		{
 			var  newv = GLib.Value ( gtype );	
 			switch (gtype) {
