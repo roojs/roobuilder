@@ -96,11 +96,15 @@ namespace Palete {
 		}
 		// FIXME!!!!
 		public Symbol? parent = null;
+		public int64 loaded_parent_id = 0;
 		public int64 parent_id {
 			get {
-				return this.parent == null? 0 :  this.parent.id;
+				
+				return this.parent == null? this.loaded_parent_id :  this.parent.id;
 			}
-			private set {}
+			private set {
+				this.loaded_parent_id = value;
+			}
 			
 		}
 		public int64 file_id {
