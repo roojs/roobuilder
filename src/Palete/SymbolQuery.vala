@@ -329,11 +329,7 @@ namespace Palete {
 		
 		
 		}
-		
-		
-		
-		
-		
+		 
 		 
 		
 	}
