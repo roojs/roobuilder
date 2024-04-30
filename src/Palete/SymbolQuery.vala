@@ -271,10 +271,10 @@ namespace Palete {
 					GLib.debug("could not find property %s in object interface", col_name);
 					continue;
 				}
-				if (colname == "id") {
+				if (col_name == "id") {
 					id = stmt.column_int64(i);
 				}
-				if (colname == "parent_id") {
+				if (col_name == "parent_id") {
 					parent_id = stmt.column_int64(i);
 				}
 				this.setObjectProperty(stmt, row, i, col_name, type_id, ps.value_type);
