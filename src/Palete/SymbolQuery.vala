@@ -197,20 +197,21 @@ namespace Palete {
 
 			
  
-			var cols = new Gee.HashMap<string,int>();
+ 
 			string[] keys = {};
 			int64 id = 0;
 			int64 parent_id = 0;
-			cols.set("id", 0);
+			//cols.set("id", 0);
+			keys += "id"; /// ??? needed?
 			var i = 1;
 			foreach(var k in this.ints.keys) {
 				keys += k;
-				cols.set(k, i);
+				 
 				i++;
 			}
 			foreach(var k in this.strings.keys) {
 				keys += k;
-				cols.set(k, i);
+				 
 				i++;
 			}
 			
