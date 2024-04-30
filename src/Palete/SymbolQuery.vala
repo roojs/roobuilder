@@ -220,7 +220,7 @@ namespace Palete {
 			assert (typeof(T).is_object());
 			
 			while (stmt.step() == Sqlite.ROW) {
-		 		var row =  (T) this.fetchRow(stmt); 
+		 		var row =  this.fetchRow(stmt); 
 		 		  
 			 	  
 				if (row.id > 0) {
@@ -238,7 +238,7 @@ namespace Palete {
 					
 		}
 		
-		Object fetchRow(Sqlite.Statement stmt)
+		T fetchRow(Sqlite.Statement stmt)
 		{
 			var row =   Object.new (typeof(T));	
 			int cols = stmt.column_count ();
