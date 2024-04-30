@@ -225,7 +225,7 @@ namespace Palete {
 		{	
 			GLib.debug("Query %s", q);
 			db.prepare_v2 (q, q.length, out stmt);
-			assert (typeof(T).is_object());
+
 			int64 id = 0;
 			int64 parent_id = 0;
 			while (stmt.step() == Sqlite.ROW) {
@@ -251,7 +251,8 @@ namespace Palete {
 		T fetchRow(Sqlite.Statement stmt, out int64 id, out int64 parent_id)
 		{
 			id = -1;
-			paretnt_id = -1;
+			parent_id = -1;
+			assert (typeof(T).is_object());
 			var row =   Object.new (typeof(T));	
 			int cols = stmt.column_count ();
 			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
