@@ -300,9 +300,47 @@ namespace Palete {
 					GLIb.debug("could not find property %s in object interface", col_name);
 					continue;
 				}
-				this.setObjectProperty(row, col_name, type_id, ps.value_type);
+				this.setObjectProperty(stmt, row, i, col_name, type_id, ps.value_type);
 			}
 			return row;
+		}
+		void setObjectProperty(Sqlite.Statement stmt, Object row, int pos, string col_name, int stype, Type gtype) 
+		{
+			var  newv = GLib.Value ( gtype );	
+			switch (gtype) {
+				case GLib.Type.BOOLEAN:
+ 				 	if (stype == Sqlite.INTEGER) {			 	
+						newv.set_boolean(stmt.column_int( i) == 1);
+						break;
+					}
+					GLib.debug("invalid bool setting for col_name %s", col_name);
+					return;
+					
+				case GLib.Type.INT64:
+					if (stype == Sqlite.INTEGER) {	
+		 				newv.set_int64( stmt.column_int64(i) ); // we will have to let symbol sort out parent_id storage?
+		 				break;
+	 				}
+	 				GLib.debug("invalid bool setting for col_name %s", col_name);
+					return;
+	 				
+			 	case GLib.Type.INT:
+					if (stype == Sqlite.INTEGER) {	
+		 				newv.set_int( stmt.column_int(i) ); // we will have to let symbol sort out parent_id storage?
+		 				break;
+	 				}
+	 				GLib.debug("invalid bool setting for col_name %s", col_name);
+					return;
+	 						
+					
+					
+				
+			}
+			row.set_property(col_name, newv);
+		
+		
+		
+		
 		}
 		
 		
