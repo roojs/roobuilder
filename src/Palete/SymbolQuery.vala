@@ -288,7 +288,7 @@ namespace Palete {
 			int cols = stmt.column_count ();
 			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
 			for (int i = 0; i < cols; i++) {
-				var col_name = stmt.column_name (i)l
+				var col_name = stmt.column_name (i);
 				if (col_name == null) {
 					GLib.debug("Skip col %d = no column name?", i);
 					continue;
