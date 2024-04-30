@@ -220,12 +220,13 @@ namespace Palete {
 			assert (typeof(T).is_object());
 			
 			while (stmt.step() == Sqlite.ROW) {
-		 		var row =  this.fetchRow(stmt); 
-		 		  
-			 	  
-				if (row.id > 0) {
-					ret.set((int)row.id, row);
-					pids.set((int)row.id, (int)row.parent_id);
+		 		var row =  this.fetchRow(stmt, out id , out parent_id); 
+		 	 	  
+				if (id > 0) {
+					ret.set((int)id, row);
+					if (parent_id > -1) {
+						pids.set((int)id, (int)parent_id);
+					}
 					order.add((int)row.id);
 				} else {
 					GLib.debug("missing id for row");
