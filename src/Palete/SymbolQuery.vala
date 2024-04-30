@@ -321,7 +321,7 @@ namespace Palete {
 		 				newv.set_int64( stmt.column_int64(i) ); // we will have to let symbol sort out parent_id storage?
 		 				break;
 	 				}
-	 				GLib.debug("invalid bool setting for col_name %s", col_name);
+	 				GLib.debug("invalid int setting for col_name %s", col_name);
 					return;
 	 				
 			 	case GLib.Type.INT:
@@ -329,11 +329,21 @@ namespace Palete {
 		 				newv.set_int( stmt.column_int(i) ); // we will have to let symbol sort out parent_id storage?
 		 				break;
 	 				}
-	 				GLib.debug("invalid bool setting for col_name %s", col_name);
+	 				GLib.debug("invalid int setting for col_name %s", col_name);
 					return;
 	 						
-					
-					
+				case GLib.Type.STRING:
+					if (stype == Sqlite.TEXT) {	
+						var str = stmt.column_text(cols.get(k));
+						newv.set_string(str == null? "": str);
+						break;	
+					}
+					GLib.debug("invalid string setting for col_name %s", col_name);
+					return;
+				
+				default:
+					GLib.debug("unsupported type for col %s : %s", col_name, gtype.to_string());
+					return;
 				
 			}
 			row.set_property(col_name, newv);
