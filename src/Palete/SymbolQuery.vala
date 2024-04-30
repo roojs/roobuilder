@@ -220,7 +220,7 @@ namespace Palete {
 			assert (typeof(T).is_object());
 			
 			while (stmt.step() == Sqlite.ROW) {
-		 		var row =  this.fetchRow(stmt); 
+		 		var row =  (T) this.fetchRow(stmt); 
 		 		  
 			 	  
 				if (row.id > 0) {
