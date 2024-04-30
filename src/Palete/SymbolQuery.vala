@@ -282,7 +282,7 @@ namespace Palete {
 					
 		}
 		
-		T fetchRow(Sqlite.Statement stmt)
+		Object fetchRow(Sqlite.Statement stmt)
 		{
 			var row =   Object.new (typeof(T));	
 			int cols = stmt.column_count ();
