@@ -203,16 +203,11 @@ namespace Palete {
 			int64 parent_id = 0;
 			//cols.set("id", 0);
 			keys += "id"; /// ??? needed?
-			var i = 1;
 			foreach(var k in this.ints.keys) {
 				keys += k;
-				 
-				i++;
 			}
 			foreach(var k in this.strings.keys) {
 				keys += k;
-				 
-				i++;
 			}
 			
 			var q = "SELECT id," +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
