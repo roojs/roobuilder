@@ -111,7 +111,7 @@ namespace Palete {
 		public int64 loaded_file_id = 0;	
 		public int64 file_id {
 			get {
-				return this.file == null? this.laoded_file_id :  this.file.id;
+				return this.file == null? this.loaded_file_id :  this.file.id;
 			}
 			set {
 				this.loaded_file_id  = value;
