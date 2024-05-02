@@ -42,7 +42,7 @@ namespace Palete {
  		
  		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
-		
+  		public Gee.ArrayList<Symbol> param_ar { get; set; default = new Gee.ArrayList<Symbol>(); }		
 		public string inherits_str { 
 			owned get {
 				if (this.inherits.size < 1) {
