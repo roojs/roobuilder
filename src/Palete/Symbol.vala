@@ -103,16 +103,20 @@ namespace Palete {
 				
 				return this.parent == null? this.loaded_parent_id :  this.parent.id;
 			}
-			private set {
+			set {
 				this.loaded_parent_id = value;
 			}
 			
 		}
+		public int64 loaded_file_id = 0;	
 		public int64 file_id {
 			get {
-				return this.file == null? 0 :  this.file.id;
+				return this.file == null? this.laoded_file_id :  this.file.id;
 			}
-			private set {}
+			set {
+				this.loaded_file_id  = value;
+				
+			}
 			
 		}
 		public string type_name {
