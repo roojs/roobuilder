@@ -297,12 +297,12 @@ namespace Palete {
 	 				
 			 	case GLib.Type.INT:
 			 	case GLib.Type.ENUM: // persumtive?
-					if (stype == Sqlite.INTEGER) {	
+					//if (stype == Sqlite.INTEGER) {	
 		 				newv.set_int( stmt.column_int(pos ) ); // we will have to let symbol sort out parent_id storage?
 		 				break;
-	 				}
-	 				GLib.debug("invalid int setting for col_name %s", col_name);
-					return;
+	 				//}
+	 				//GLib.debug("invalid int setting for col_name %s", col_name);
+					//return;
 	 						
 				case GLib.Type.STRING:
 					if (stype == Sqlite.TEXT || stype == Sqlite.NULL) {	
