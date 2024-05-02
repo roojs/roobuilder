@@ -275,6 +275,11 @@ namespace Palete {
 					GLib.debug("Can not find parent %d of id= %d", parent_id , (int)child.id);
 					continue;
 				}
+				
+				if (child.stype == Lsp.SymbolKind.Parameter) {
+					parent.param_ar.add(child); // in order?
+				}
+				
 				child.parent = parent;
 				parent.children.append(child); 
  				parent.children_map.set(child.type_name, child);
