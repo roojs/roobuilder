@@ -265,7 +265,7 @@ namespace Palete {
 		{
 			//GLib.debug("new Method %s", sig.name);
 			this(builder, sig);
-			this.name = sig.name;
+			this.name = sig.name == ".new" ? parent.name : sig.name;
 			this.stype = Lsp.SymbolKind.Method;
 			if (sig is Vala.CreationMethod) {
 				this.is_ctor = true;
