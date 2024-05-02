@@ -211,12 +211,14 @@ namespace Palete {
 			 		
 		 	this.rtype = sig.return_type == null || sig.return_type.type_symbol == null ? "": 
 		 		sig.return_type.type_symbol.get_full_name();
+	 		foreach(var p in sig.get_parameters()) {
+				this.param_ar.add(new new_parameter(builder, this, p, n++));
+			}
+			
 			this.setParent(parent);		 		
 		 	var n  = 0;
 
-		 	foreach(var p in sig.get_parameters()) {
-				this.param_ar.add(new new_parameter(builder, this, p, n++));
-			}
+		 	
 			
 
 		}
