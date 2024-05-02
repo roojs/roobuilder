@@ -445,7 +445,7 @@ namespace Palete {
 			// check context:
 			this.context.check ();
 			if (this.context.report.get_errors () > 0) {
-				GLib.debug("failed check VAPIS, so we can not write file correctly");
+				GLib.debug("context got errros so we could not update symbol db.");
  
  
 				Vala.CodeContext.pop ();
