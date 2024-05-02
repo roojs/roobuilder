@@ -209,7 +209,7 @@ namespace Palete {
 				keys += k;
 			}
 			
-			var q = "SELECT id," +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
+			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
 			this.selectQuery(db, q, ret, pids, order);
 			
 		}
