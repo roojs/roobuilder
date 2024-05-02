@@ -42,7 +42,8 @@ namespace Palete {
  		
  		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
-  		public Gee.ArrayList<Symbol> param_ar { get; set; default = new Gee.ArrayList<Symbol>(); }		
+  		public Gee.ArrayList<Symbol> param_ar { get; set; default = new Gee.ArrayList<Symbol>(); }
+  		
 		public string inherits_str { 
 			owned get {
 				if (this.inherits.size < 1) {
@@ -191,13 +192,17 @@ namespace Palete {
 			this.is_gir=s.is_gir;
 			this.inherits.clear();;
 			this.implements.clear();
+			this.param_ar.clear();
+			
 			foreach(var k in s.inherits) {
 				this.inherits.add(k);
 			}
 			foreach(var k in s.implements) {
 				this.implements.add(k);
 			}
-		
+			foreach(var k in s.param_ar) {
+				this.param_ar.add(k);
+			}
 
 			//?? soft copy children?
 		}
