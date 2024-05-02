@@ -304,7 +304,7 @@ namespace Palete {
 					return;
 	 						
 				case GLib.Type.STRING:
-					if (stype == Sqlite.TEXT || style == Sqlite.NULL) {	
+					if (stype == Sqlite.TEXT || stype == Sqlite.NULL) {	
 						var str = stmt.column_text(pos);
 						newv.set_string(str == null? "": str);
 						break;	
