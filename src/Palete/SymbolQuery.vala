@@ -282,7 +282,7 @@ namespace Palete {
 			if (gtype == typeof(Lsp.SymbolKind)) {
 				var val  = stmt.column_int(pos ) ;
 				if (val > 0 ) {
-					newv.set_int( stmt.column_int(pos ) ); 	
+					newv.set_int( val) ); 	
 					row.set_property(col_name, newv);
 				}
 				return;
