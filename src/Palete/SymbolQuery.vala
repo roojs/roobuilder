@@ -279,7 +279,7 @@ namespace Palete {
 		{
 			var  newv = GLib.Value ( gtype );
 			
-			if (gtype == typeof(Lsp.SymbolType)) {
+			if (gtype == typeof(Lsp.SymbolKind)) {
 				newv.set_int( stmt.column_int(pos ) ); 	
 				row.set_property(col_name, newv);
 				return;
