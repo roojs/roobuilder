@@ -277,7 +277,14 @@ namespace Palete {
 		}
 		void setObjectProperty(Sqlite.Statement stmt, Object row, int pos, string col_name, int stype, Type gtype) 
 		{
-			var  newv = GLib.Value ( gtype );	
+			var  newv = GLib.Value ( gtype );
+			
+			if (gtype == typeof(Lsp.SymbolType)) {
+				newv.set_int( stmt.column_int(pos ) ); 	
+				row.set_property(col_name, newv);
+				return;
+			}
+			
 			switch (gtype) {
 				case GLib.Type.BOOLEAN:
  				 	if (stype == Sqlite.INTEGER) {			 	
@@ -296,13 +303,13 @@ namespace Palete {
 					return;
 	 				
 			 	case GLib.Type.INT:
-			 	case GLib.Type.ENUM: // persumtive?
-					//if (stype == Sqlite.INTEGER) {	
+
+					if (stype == Sqlite.INTEGER) {	
 		 				newv.set_int( stmt.column_int(pos ) ); // we will have to let symbol sort out parent_id storage?
 		 				break;
-	 				//}
-	 				//GLib.debug("invalid int setting for col_name %s", col_name);
-					//return;
+	 				}
+	 				GLib.debug("invalid int setting for col_name %s", col_name);
+					return;
 	 						
 				case GLib.Type.STRING:
 					if (stype == Sqlite.TEXT || stype == Sqlite.NULL) {	
