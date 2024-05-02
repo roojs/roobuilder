@@ -316,7 +316,7 @@ namespace Palete {
 					//GLib.debug("got notification %s : %s",  method , Json.to_string (Json.gvariant_serialize (return_value), true));
 					 
 					GLib.Idle.add(() => {
-						this.onDiagnostic(return_value);
+					//	this.onDiagnostic(return_value);
 						return false;
 					});
 					return;
