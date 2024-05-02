@@ -215,8 +215,9 @@ namespace Palete {
 		 	var n  = 0;
 
 		 	foreach(var p in sig.get_parameters()) {
-				new new_parameter(builder, this, p, n++);
+				this.param_ar.add(new new_parameter(builder, this, p, n++));
 			}
+			
 
 		}
 		public SymbolVala.new_parameter(ValaSymbolBuilder builder, Symbol? parent, Vala.Parameter pam, int seq)	
