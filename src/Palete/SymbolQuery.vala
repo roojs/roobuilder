@@ -296,6 +296,7 @@ namespace Palete {
 					return;
 	 				
 			 	case GLib.Type.INT:
+			 	case GLib.Type.ENUM: // persumtive?
 					if (stype == Sqlite.INTEGER) {	
 		 				newv.set_int( stmt.column_int(pos ) ); // we will have to let symbol sort out parent_id storage?
 		 				break;
@@ -311,7 +312,7 @@ namespace Palete {
 					}
 					GLib.debug("invalid string setting for col_name %s", col_name);
 					return;
-				
+				case typeof(:
 				default:
 					GLib.debug("unsupported type for col %s : %s", col_name, gtype.to_string());
 					return;
