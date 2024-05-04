@@ -279,18 +279,7 @@ namespace Palete {
 		{
 			var  newv = GLib.Value ( gtype );
 			
-			if (gtype == typeof(Lsp.SymbolKind)) {
-				var val  = stmt.column_int(pos ) ;
-				if (gtype == GLib.Type.ENUM) {
-					GLib.debug("its' an enum");
-				}
-				if (val > 0 ) {
-					newv.set_enum( val ); 	
-					row.set_property(col_name, newv);
-				}
-				return;
-			}
-			
+			 
 			switch (gtype) {
 				case GLib.Type.BOOLEAN:
  				 	if (stype == Sqlite.INTEGER) {			 	
@@ -307,7 +296,15 @@ namespace Palete {
 	 				}
 	 				GLib.debug("invalid int setting for col_name %s", col_name);
 					return;
-	 				
+ 			 	case GLib.Type.ENUM:
+
+					if (stype == Sqlite.INTEGER) {	
+		 				newv.set_enum( stmt.column_int(pos ) ); // we will have to let symbol sort out parent_id storage?
+		 				break;
+	 				}
+	 				GLib.debug("invalid enum setting for col_name %s", col_name);
+					return;	
+					
 			 	case GLib.Type.INT:
 
 					if (stype == Sqlite.INTEGER) {	
