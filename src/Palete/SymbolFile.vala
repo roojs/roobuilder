@@ -228,17 +228,14 @@ namespace Palete {
 			//this.symbols.clear();
 			this.symbol_map.clear(); //??? should be fresh load?
 			var q = (new Symbol()).fillQuery(null);
-			var ids = new Gee.HashMap<int,Symbol>();
-			var pids = new Gee.HashMap<int, int>();
-			var order = new  Gee.ArrayList<int>();
-		 	q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() +
-		 		" order by parent_id ASC, id ASC", ids, pids, order);
+			 
+		 	var newer = q.select( "WHERE file_id = " + this.id.to_string() +
+		 		" order by parent_id ASC, id ASC");
 
 			var newsymbols = new Gee.ArrayList<Symbol>();
 			// order does not help!!!
-			foreach(var id in order) {
+			foreach(var s in newer) {
 
-				var s = ids.get(id);
 				//GLib.debug ("%d: %d  : %s : %s",pids.get(id), (int) id, s.type_name, s.fqn);;
 				s.file = this;
 				if (s.fqn != "") {
@@ -248,16 +245,16 @@ namespace Palete {
  
 				
 				
-				if (pids.get(id) < 1) {
+				if (s.loadeD_parent_id < 1) {
 					this.children.append(s);
 					GLib.debug("file add parent : %s", s.type_name);
 					this.children_map.set(s.type_name, s);
-					this.symbol_map.set(id, s);
+					this.symbol_map.set((int)s.id, s);
 					continue;
 				}
 				newsymbols.add(s);
 			}
-			this.linkNewSymbols(pids, newsymbols);
+			this.linkNewSymbols(newsymbols);
 			
 			this.fixLines(this.children, null);
 			//foreach(var s in this.children_map.values) {
