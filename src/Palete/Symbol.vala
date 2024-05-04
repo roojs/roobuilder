@@ -155,7 +155,7 @@ namespace Palete {
 			
 			print("%s %d>%d : %s : %s  (%s)\n", indent, 
 				this.begin_line, this.end_line,
-				this.stype == 0 ? : "??" : this.stype.n to_string().substring( 16, -1 ), 
+				this.stype == 0 ?  "??" : this.stype.n to_string().substring( 16, -1 ), 
 				this.to_fqn(), 
 				this.rtype);
 			if (this.doc != "") {
