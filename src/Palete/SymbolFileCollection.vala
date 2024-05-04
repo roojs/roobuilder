@@ -8,6 +8,7 @@ namespace Palete {
 		public  SymbolFileCollection()
 		{
 			this.files = new Gee.HashMap<string, SymbolFile>();
+			this.symbol_cache = new Gee.HashMap<string,Symbol>();
 		}
 		 
 		public  SymbolFile factory(JsRender.JsRender file) 
@@ -53,6 +54,24 @@ namespace Palete {
 				ret.files.set(k, this.files.get(k).copy());
 			}
 			return ret;
+		}
+		
+		private Gee.HashMap<string,Symbol> symbol_cache;
+		
+		public Symbol getByFqn(string fqn)
+		{
+			if (this.symbol_cache.has_key(fqn)) {
+				return this.symbol_cache.get(fqn);
+			}
+			string[] file_ids = {};
+			foreach(var f in this.files.values) {
+				file_ids += f.file_id.to_string();
+			}
+			//var sq = new SymbolQuery<Symbol>
+			
+			
+			
+		
 		}
 		
 	}
