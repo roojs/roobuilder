@@ -260,7 +260,31 @@ namespace Palete {
 			return ret;
 					
 		}
-		
+		T fetchRowNext(Sqlite.Statement stmt)
+		{
+			 
+			assert (typeof(T).is_object());
+			var row =   Object.new (typeof(T));	
+			int cols = stmt.column_count ();
+			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
+			for (int i = 0; i < cols; i++) {
+				var col_name = stmt.column_name (i);
+				if (col_name == null) {
+					GLib.debug("Skip col %d = no column name?", i);
+					continue;
+				}
+				var type_id = stmt.column_type (i);
+				// Sqlite.INTEGER, Sqlite.FLOAT, Sqlite.TEXT,Sqlite.BLOB, or Sqlite.NULL. 
+				var ps = ocl.find_property( col_name );
+				if (ps == null) {
+					GLib.debug("could not find property %s in object interface", col_name);
+					continue;
+				}
+				 
+				this.setObjectProperty(stmt, row, i, col_name, type_id, ps.value_type);
+			}
+			return row;
+		}
 		T fetchRow(Sqlite.Statement stmt, out int64 id, out int64 parent_id)
 		{
 			id = -1;
