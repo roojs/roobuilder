@@ -272,7 +272,7 @@ namespace Palete {
 			SymbolDatabase.db.prepare_v2 (q, q.length, out stmt);
  
 			while (stmt.step() == Sqlite.ROW) {
-		 		ret.add( this.fetchRowNext(stmt) );
+		 		ret.add( this.fetchRow(stmt) );
 		 		
 			}
 			 
@@ -280,7 +280,7 @@ namespace Palete {
 			return ret;
 					
 		}
-		T fetchRowNext(Sqlite.Statement stmt)
+		T fetchRow(Sqlite.Statement stmt)
 		{
 			 
 			assert (typeof(T).is_object());
@@ -305,7 +305,7 @@ namespace Palete {
 			}
 			return row;
 		}
-		T fetchRow(Sqlite.Statement stmt, out int64 id, out int64 parent_id)
+		T fetchRowOld(Sqlite.Statement stmt, out int64 id, out int64 parent_id)
 		{
 			id = -1;
 			parent_id = -1;
