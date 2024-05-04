@@ -329,7 +329,7 @@ namespace Palete {
 					return;
 				
 				default:
-					GLib.debug("unsupported type for col %s : %s", col_name, gtype.to_string());
+					GLib.erro("unsupported type for col %s : %s", col_name, gtype.to_string());
 					return;
 				
 			}
