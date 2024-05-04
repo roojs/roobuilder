@@ -256,7 +256,7 @@ namespace Palete {
 		 		
 			}
 			 
-		    GLib.debug("select got %d rows / last errr  %s", ret.values.size, db.errmsg());
+		    GLib.debug("select got %d rows / last errr  %s", ret.size, db.errmsg());
 			return ret;
 					
 		}
