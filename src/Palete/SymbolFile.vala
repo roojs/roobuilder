@@ -166,7 +166,7 @@ namespace Palete {
 					// update..
 					var os = this.symbol_map.get(((int)s.id);	
 					
-					if (ps.loaded_parent_id != os.parent_id) {
+					if (s.loaded_parent_id != os.parent_id) {
  
 						 
 						this.removeSymbol(os);
