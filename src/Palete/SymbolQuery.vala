@@ -280,7 +280,7 @@ namespace Palete {
 			var  newv = GLib.Value ( gtype );
 			
 			 
-			switch (gtype.get_fundamental()) {
+			switch (gtype) {
 				case GLib.Type.BOOLEAN:
  				 	if (stype == Sqlite.INTEGER) {			 	
 						newv.set_boolean(stmt.column_int( pos) == 1);
