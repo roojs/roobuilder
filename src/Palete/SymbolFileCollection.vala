@@ -58,7 +58,7 @@ namespace Palete {
 		
 		private Gee.HashMap<string,Symbol> symbol_cache;
 		
-		public Symbol getByFqn(string fqn)
+		public Symbol? getByFqn(string fqn)
 		{
 			if (this.symbol_cache.has_key(fqn)) {
 				return this.symbol_cache.get(fqn);
@@ -68,7 +68,7 @@ namespace Palete {
 				file_ids += f.file_id.to_string();
 			}
 			//var sq = new SymbolQuery<Symbol>
-			
+			return null;
 			
 			
 		
