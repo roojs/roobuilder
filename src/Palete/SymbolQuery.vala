@@ -265,7 +265,7 @@ namespace Palete {
 					
 		}
 		
-		public void Gee.ArrayList<T>  selectQuery(string q, Gee.ArrayList<<T>> ret )
+		public void G   selectQuery(string q, Gee.ArrayList<<T> ret )
 		{	
 			Sqlite.Statement stmt;
 			GLib.debug("Query %s", q);
