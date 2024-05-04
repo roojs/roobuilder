@@ -1814,7 +1814,7 @@
    "| void updateErrorMarks" : [
     "() {",
     "\t",
-    " ",
+    " \treturn;",
     "",
     "\tvar buf = _this.buffer.el;",
     "\tGtk.TextIter start;",
@@ -1883,6 +1883,9 @@
     "\t\t}",
     "\t",
     "\t}",
+    "\t",
+    "\t// this does not work - it removes the marks to much and kills the UI experience",
+    "\t",
     "\tbuf.remove_source_marks (start, end, \"ERR\");",
     "\tbuf.remove_source_marks (start, end, \"WARN\");",
     "\tbuf.remove_source_marks (start, end, \"DEPR\");",

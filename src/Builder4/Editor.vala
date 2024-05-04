@@ -272,7 +272,7 @@ public class Editor : Object
 	}
 	public void updateErrorMarks () {
 		
-	 
+	 	return;
 	
 		var buf = _this.buffer.el;
 		Gtk.TextIter start;
@@ -341,6 +341,9 @@ public class Editor : Object
 			}
 		
 		}
+		
+		// this does not work - it removes the marks to much and kills the UI experience
+		
 		buf.remove_source_marks (start, end, "ERR");
 		buf.remove_source_marks (start, end, "WARN");
 		buf.remove_source_marks (start, end, "DEPR");
