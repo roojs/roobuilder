@@ -246,7 +246,7 @@ namespace Palete {
 			int64 id = 0;
 			int64 parent_id = 0;
 			while (stmt.step() == Sqlite.ROW) {
-		 		var row =  this.fetchRow(stmt, out id , out parent_id); 
+		 		var row =  this.fetchRowOld(stmt, out id , out parent_id); 
 		 	 	  
 				if (id > 0) {
 					ret.set((int)id, row);
