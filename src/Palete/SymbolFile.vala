@@ -141,10 +141,12 @@ namespace Palete {
 	 	{
 	 		var q = (new Symbol()).fillQuery(null);
 			var newar = new Gee.HashMap<int,Symbol>();
-			var pids = new Gee.HashMap<int, int>();
-			var order = new  Gee.ArrayList<int>();
-		 	q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
-		 		" order by parent_id ASC, id ASC", newar, pids ,order);
+			//var pids = new Gee.HashMap<int, int>();
+			//var order = new  Gee.ArrayList<int>();
+		 	var newer = q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
+		 		" order by parent_id ASC, id ASC");
+			 //q.selectOld(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
+		 	//	" order by parent_id ASC, id ASC", newar, pids ,order);
 			 
 		 	var addsymbols = new Gee.ArrayList<Symbol>();
 			//this.symbols_all 
@@ -154,25 +156,25 @@ namespace Palete {
 			foreach(var id in this.symbol_map.keys) {
 				original_ids.add(id);
 			}
+			 
 			
+			var new_ids = new Gee.ArrayList<int>();
 			
-			
-			
-			foreach(var id in order) {
-				var s = newar.get(id);
-				if (this.symbol_map.has_key(id)) {
+			foreach(var s in newer) {
+				new_ids.add((int)s.id);
+				if (this.symbol_map.has_key(s.id)) {
 					// update..
-					var os = this.symbol_map.get(id);	
+					var os = this.symbol_map.get(s.id);	
 					
-					if (pids.get((int)id) != (int)os.parent_id) {
+					if (ps.loaded_parent_id != os.parent_id) {
  
 						 
 						this.removeSymbol(os);
-						var ns = new Symbol();
-						ns.copyFrom(s);
-						ns.id = s.id;
-						ns.file = this;
-						addsymbols.add(ns);
+						//var ns = new Symbol();
+						//ns.copyFrom(s);
+						//ns.id = s.id;
+						s.file = this;
+						addsymbols.add(s);
 						
 						continue;
 					}
@@ -183,7 +185,7 @@ namespace Palete {
 				}
  
 				s.file = this;
-				if (pids.get((int)id) < 1) {
+				if (s.loaded_parent_id < 1) {
 					this.children.append(s);
 					this.children_map.set(s.type_name, s);
 				}
@@ -196,10 +198,10 @@ namespace Palete {
 			 
 			
 
-			this.linkNewSymbols(pids, addsymbols);
+			this.linkNewSymbols(addsymbols);
 			// deleted
 			foreach(var id in original_ids) {
-				if (newar.has_key(id)) {
+				if (new_ids.contains(id)) {
 					continue;
 				}
 				this.removeSymbol(this.symbol_map.get(id));
@@ -263,11 +265,11 @@ namespace Palete {
 			// 
 		}
 		
-		void linkNewSymbols(Gee.HashMap<int,int> pids, Gee.ArrayList<Symbol> newsymbols )
+		void linkNewSymbols( Gee.ArrayList<Symbol> newsymbols )
 		{
 			foreach(var child in newsymbols) {
 
-				var parent_id = pids.get((int)child.id);
+				var parent_id = child.loaded_parent_id;
 				 
 				var parent = this.symbol_map.get((int)parent_id);
 				if(parent == null) {
