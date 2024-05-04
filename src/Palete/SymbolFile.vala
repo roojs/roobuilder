@@ -164,7 +164,7 @@ namespace Palete {
 				new_ids.add((int)s.id);
 				if (this.symbol_map.has_key((int)s.id)) {
 					// update..
-					var os = this.symbol_map.get(((int)s.id);	
+					var os = this.symbol_map.get((int)s.id);	
 					
 					if (s.loaded_parent_id != os.parent_id) {
  
