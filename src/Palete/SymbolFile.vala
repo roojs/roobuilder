@@ -228,7 +228,7 @@ namespace Palete {
 			//this.symbols.clear();
 			this.symbol_map.clear(); //??? should be fresh load?
 			var q = (new Symbol()).fillQuery(null);
-			 var newer = new Gee.ArrayList<Symbol>();
+			var newer = new Gee.ArrayList<Symbol>();
 		 	q.select( "WHERE file_id = " + this.id.to_string() +
 		 		" order by parent_id ASC, id ASC", newer);
 
@@ -245,7 +245,7 @@ namespace Palete {
  
 				
 				
-				if (s.loadeD_parent_id < 1) {
+				if (s.loaded_parent_id < 1) {
 					this.children.append(s);
 					GLib.debug("file add parent : %s", s.type_name);
 					this.children_map.set(s.type_name, s);
