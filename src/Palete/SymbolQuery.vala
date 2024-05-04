@@ -195,8 +195,6 @@ namespace Palete {
 		public void select( string where,  Gee.ArrayList<T> ret )
 		{
 			
- 
- 
 			string[] keys = {};
 		 
 			//cols.set("id", 0);
@@ -213,57 +211,7 @@ namespace Palete {
 			
 		}
 		
-		public void selectOld(Sqlite.Database db, string where, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
-		{
-
-			
- 
- 
-			string[] keys = {};
-		 
-			//cols.set("id", 0);
-			keys += "id"; /// ??? needed?
-			foreach(var k in this.ints.keys) {
-				keys += k;
-			}
-			foreach(var k in this.strings.keys) {
-				keys += k;
-			}
-			
-			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
-			this.selectQueryOld(db, q, ret, pids, order);
-			
-		}
-		
-		// generic select Query... - 
-		
-		public void selectQueryOld(Sqlite.Database db, string q, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
-		{	
-			Sqlite.Statement stmt;
-			GLib.debug("Query %s", q);
-			db.prepare_v2 (q, q.length, out stmt);
-
-			int64 id = 0;
-			int64 parent_id = 0;
-			while (stmt.step() == Sqlite.ROW) {
-		 		var row =  this.fetchRowOld(stmt, out id , out parent_id); 
-		 	 	  
-				if (id > 0) {
-					ret.set((int)id, row);
-					if (parent_id > -1) {
-						pids.set((int)id, (int)parent_id);
-					}
-					order.add((int)id);
-				} else {
-					GLib.debug("missing id for row");
-				}
-				
-			}
-			 
-		    GLib.debug("select got %d rows / last errr  %s", ret.values.size, db.errmsg());
-			
-					
-		}
+	 
 		
 		public void selectQuery(string q, Gee.ArrayList<T> ret )
 		{	
@@ -304,37 +252,7 @@ namespace Palete {
 			}
 			return row;
 		}
-		T fetchRowOld(Sqlite.Statement stmt, out int64 id, out int64 parent_id)
-		{
-			id = -1;
-			parent_id = -1;
-			assert (typeof(T).is_object());
-			var row =   Object.new (typeof(T));	
-			int cols = stmt.column_count ();
-			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
-			for (int i = 0; i < cols; i++) {
-				var col_name = stmt.column_name (i);
-				if (col_name == null) {
-					GLib.debug("Skip col %d = no column name?", i);
-					continue;
-				}
-				var type_id = stmt.column_type (i);
-				// Sqlite.INTEGER, Sqlite.FLOAT, Sqlite.TEXT,Sqlite.BLOB, or Sqlite.NULL. 
-				var ps = ocl.find_property( col_name );
-				if (ps == null) {
-					GLib.debug("could not find property %s in object interface", col_name);
-					continue;
-				}
-				if (col_name == "id") {
-					id = stmt.column_int64(i);
-				}
-				if (col_name == "parent_id") {
-					parent_id = stmt.column_int64(i);
-				}
-				this.setObjectProperty(stmt, row, i, col_name, type_id, ps.value_type);
-			}
-			return row;
-		}
+		 
 		void setObjectProperty(Sqlite.Statement stmt, Object row, int pos, string col_name, int stype, Type gtype) 
 		{
 			var  newv = GLib.Value ( gtype );
