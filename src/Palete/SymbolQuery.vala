@@ -192,7 +192,7 @@ namespace Palete {
 
 		}
 		// select using 'col data?'
-		public void select(Sqlite.Database db, string where, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
+		public void selectOld(Sqlite.Database db, string where, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
 		{
 
 			
@@ -210,7 +210,7 @@ namespace Palete {
 			}
 			
 			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
-			this.selectQuery(db, q, ret, pids, order);
+			this.selectQueryOld(db, q, ret, pids, order);
 			
 		}
 		
