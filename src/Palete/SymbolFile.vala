@@ -271,7 +271,7 @@ namespace Palete {
 				var parent = this.symbol_map.get((int)parent_id);
 				if(parent == null) {
 					
-					GLib.debug("Can not find parent %d of id= %d", parent_id , (int)child.id);
+					GLib.debug("Can not find parent %d of id= %d", (int)parent_id , (int)child.id);
 					continue;
 				}
 				
