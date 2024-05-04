@@ -330,7 +330,7 @@ namespace Palete {
 				
 				default:
 					GLib.error("unsupported type for col %s : %s", col_name, gtype.to_string());
-					return;
+					//return;
 				
 			}
 			row.set_property(col_name, newv);
