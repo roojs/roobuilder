@@ -192,7 +192,7 @@ namespace Palete {
 
 		}
 		// select using 'col data?'
-		public void select( string where,  Gee.ArrayList<<T> ret )
+		public void select( string where,  Gee.ArrayList<T> ret )
 		{
 			
  
@@ -265,7 +265,7 @@ namespace Palete {
 					
 		}
 		
-		public void G   selectQuery(string q, Gee.ArrayList<<T> ret )
+		public void G   selectQuery(string q, Gee.ArrayList<T> ret )
 		{	
 			Sqlite.Statement stmt;
 			GLib.debug("Query %s", q);
