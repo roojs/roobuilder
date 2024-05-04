@@ -143,7 +143,7 @@ namespace Palete {
 			var newar = new Gee.HashMap<int,Symbol>();
 			//var pids = new Gee.HashMap<int, int>();
 			//var order = new  Gee.ArrayList<int>();
-		 	var newer = q.select(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
+		 	var newer = q.select("WHERE file_id = " + this.id.to_string() + 
 		 		" order by parent_id ASC, id ASC");
 			 //q.selectOld(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
 		 	//	" order by parent_id ASC, id ASC", newar, pids ,order);
