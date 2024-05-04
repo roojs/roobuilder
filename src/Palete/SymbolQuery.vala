@@ -210,7 +210,7 @@ namespace Palete {
 			}
 			
 			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
-			return this.selectQuery(db, q);
+			return this.selectQuery(q);
 			
 		}
 		
