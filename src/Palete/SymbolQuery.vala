@@ -216,7 +216,7 @@ namespace Palete {
 		
 		// generic select Query... - 
 		
-		public void selectQuery(Sqlite.Database db, string q, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
+		public void selectQueryOld(Sqlite.Database db, string q, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
 		{	
 			Sqlite.Statement stmt;
 			GLib.debug("Query %s", q);
@@ -244,7 +244,7 @@ namespace Palete {
 					
 		}
 		
-		public Gee.ArrayList<T>  selectQueryNext(string q)
+		public Gee.ArrayList<T>  selectQuery(string q)
 		{	
 			Sqlite.Statement stmt;
 			var ret = new Gee.ArrayList<T>();
