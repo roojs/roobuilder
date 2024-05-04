@@ -216,7 +216,7 @@ namespace Palete {
 		
 		// generic select Query... - 
 		
-		public void selectQuery(Sqlite.Database db, string q, Gee.HashMap<int,T> ret, Gee.ArrayList<int> order)
+		public void selectQuery(Sqlite.Database db, string q, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
 		{	
 			Sqlite.Statement stmt;
 			GLib.debug("Query %s", q);
@@ -241,6 +241,23 @@ namespace Palete {
 			 
 		    GLib.debug("select got %d rows / last errr  %s", ret.values.size, db.errmsg());
 			
+					
+		}
+		
+		public Gee.ArrayList<T>  selectQueryNext(string q)
+		{	
+			Sqlite.Statement stmt;
+			var ret = new Gee.ArrayList<T>();
+			GLib.debug("Query %s", q);
+			db.prepare_v2 (q, q.length, out stmt);
+ 
+			while (stmt.step() == Sqlite.ROW) {
+		 		ret.add( this.fetchRow(stmt) )
+		 		
+			}
+			 
+		    GLib.debug("select got %d rows / last errr  %s", ret.values.size, db.errmsg());
+			return ret;
 					
 		}
 		
