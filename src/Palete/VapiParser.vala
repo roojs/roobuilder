@@ -9,7 +9,7 @@ namespace Palete {
 	}
 	 
  
-	public class XVapiParser : Vala.CodeVisitor {
+	public class VapiParser : Vala.CodeVisitor {
 		
 		Vala.CodeContext context;
 		 
