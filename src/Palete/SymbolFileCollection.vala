@@ -66,7 +66,7 @@ namespace Palete {
 			}
 			string[] file_ids = {};
 			foreach(var f in this.files.values) {
-				file_ids += f.file_id.to_string();
+				file_ids += f.id.to_string();
 			}
 			//var sq = new SymbolQuery<Symbol>
 			return null;
