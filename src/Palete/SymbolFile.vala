@@ -162,9 +162,9 @@ namespace Palete {
 			
 			foreach(var s in newer) {
 				new_ids.add((int)s.id);
-				if (this.symbol_map.has_key(s.id)) {
+				if (this.symbol_map.has_key((int)s.id)) {
 					// update..
-					var os = this.symbol_map.get(s.id);	
+					var os = this.symbol_map.get(((int)s.id);	
 					
 					if (ps.loaded_parent_id != os.parent_id) {
  
