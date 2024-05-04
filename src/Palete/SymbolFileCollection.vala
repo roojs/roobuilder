@@ -55,6 +55,7 @@ namespace Palete {
 			}
 			return ret;
 		}
+		// replace old Gir code...
 		
 		private Gee.HashMap<string,Symbol> symbol_cache;
 		
