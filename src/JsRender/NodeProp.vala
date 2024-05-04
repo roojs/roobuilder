@@ -286,6 +286,9 @@ public class JsRender.NodeProp : Object {
 		}
 		this.last_ptype_check = this.name;
 		
+		
+		//var sym = this.project.symbol_manager.getByFQN(this.parent.fqn());
+		
 		var cls = Palete.Gir.factoryFqn(project, this.parent.fqn());
 		if (cls == null) {
 			this.is_invalid_ptype = false;
