@@ -281,6 +281,9 @@ namespace Palete {
 			
 			if (gtype == typeof(Lsp.SymbolKind)) {
 				var val  = stmt.column_int(pos ) ;
+				if (gtype == GLib.Type.ENUM) {
+					GLib.debug("its' an enum");
+				}
 				if (val > 0 ) {
 					newv.set_int( val ); 	
 					row.set_property(col_name, newv);
