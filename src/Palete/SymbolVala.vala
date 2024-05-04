@@ -183,7 +183,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_property(ValaSymbolBuilder builder, Symbol? parent, Vala.Property prop)	
 		{
-			//GLib.debug("new Property  %s", prop.name);
+			GLib.debug("new Property  %s", prop.name);
 			this(builder, prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
@@ -195,7 +195,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_field(ValaSymbolBuilder builder, Symbol? parent, Vala.Field prop)	
 		{
-			//GLib.debug("new Field  %s", prop.name);
+			GLib.debug("new Field  %s", prop.name);
 			this(builder, prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Field;
