@@ -4,7 +4,7 @@
 
 namespace Palete {
 	 
-	 public errordomain XVapiParserError {
+	 public errordomain VapiParserError {
 		PARSE_FAILED 
 	}
 	 
