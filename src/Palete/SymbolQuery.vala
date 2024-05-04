@@ -192,7 +192,7 @@ namespace Palete {
 
 		}
 		// select using 'col data?'
-		public select( string where,  Gee.ArrayList<<T>>  ret )
+		public void select( string where,  Gee.ArrayList<<T>>  ret )
 		{
 
 			
