@@ -252,7 +252,7 @@ namespace Palete {
 			SymbolDatabase.db.prepare_v2 (q, q.length, out stmt);
  
 			while (stmt.step() == Sqlite.ROW) {
-		 		ret.add( this.fetchRowNext(stmt) )
+		 		ret.add( this.fetchRowNext(stmt) );
 		 		
 			}
 			 
