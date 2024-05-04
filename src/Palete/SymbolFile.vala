@@ -140,11 +140,11 @@ namespace Palete {
 	 	public void refreshSymbolsFromDB()
 	 	{
 	 		var q = (new Symbol()).fillQuery(null);
-			var newar = new Gee.HashMap<int,Symbol>();
+			var newar = new Gee.ArrayList<Symbol>();
 			//var pids = new Gee.HashMap<int, int>();
 			//var order = new  Gee.ArrayList<int>();
-		 	var newer = q.select("WHERE file_id = " + this.id.to_string() + 
-		 		" order by parent_id ASC, id ASC");
+		 	q.select("WHERE file_id = " + this.id.to_string() + 
+		 		" order by parent_id ASC, id ASC", newer);
 			 //q.selectOld(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
 		 	//	" order by parent_id ASC, id ASC", newar, pids ,order);
 			 
