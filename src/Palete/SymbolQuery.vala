@@ -285,7 +285,7 @@ namespace Palete {
 					GLib.debug("its' an enum");
 				}
 				if (val > 0 ) {
-					newv.set_int( val ); 	
+					newv.set_enum( val ); 	
 					row.set_property(col_name, newv);
 				}
 				return;
