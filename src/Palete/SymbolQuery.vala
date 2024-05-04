@@ -299,7 +299,7 @@ namespace Palete {
  			 	case GLib.Type.ENUM:
 
 					if (stype == Sqlite.INTEGER) {	
-		 				newv.set_enum( stmt.column_int64(pos ) ); // we will have to let symbol sort out parent_id storage?
+		 				newv.set_enum( stmt.column_int(pos ) ); // we will have to let symbol sort out parent_id storage?
 		 				break;
 	 				}
 	 				GLib.debug("invalid enum setting for col_name %s", col_name);
