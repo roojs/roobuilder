@@ -277,7 +277,6 @@ namespace Palete {
 			}
 			 
 		    GLib.debug("select got %d rows / last errr  %s", ret.size, SymbolDatabase.db.errmsg());
-			return ret;
 					
 		}
 		T fetchRow(Sqlite.Statement stmt)
