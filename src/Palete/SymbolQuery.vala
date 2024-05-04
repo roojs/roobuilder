@@ -192,6 +192,28 @@ namespace Palete {
 
 		}
 		// select using 'col data?'
+		public Gee.ArrayList<T> select( string where )
+		{
+
+			
+ 
+ 
+			string[] keys = {};
+		 
+			//cols.set("id", 0);
+			keys += "id"; /// ??? needed?
+			foreach(var k in this.ints.keys) {
+				keys += k;
+			}
+			foreach(var k in this.strings.keys) {
+				keys += k;
+			}
+			
+			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
+			return this.selectQuery(db, q);
+			
+		}
+		
 		public void selectOld(Sqlite.Database db, string where, Gee.HashMap<int,T> ret, Gee.HashMap<int, int> pids, Gee.ArrayList<int> order)
 		{
 
