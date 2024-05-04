@@ -279,7 +279,8 @@ namespace Palete {
 		{
 			var  newv = GLib.Value ( gtype );
 			
-			 
+			gtype = gtype.is_enum()  ? GLib.Type.ENUM : gtype;
+			
 			switch (gtype) {
 				case GLib.Type.BOOLEAN:
  				 	if (stype == Sqlite.INTEGER) {			 	
