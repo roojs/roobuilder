@@ -140,7 +140,7 @@ namespace Palete {
 	 	public void refreshSymbolsFromDB()
 	 	{
 	 		var q = (new Symbol()).fillQuery(null);
-			var newar = new Gee.ArrayList<Symbol>();
+			var newer = new Gee.ArrayList<Symbol>();
 			//var pids = new Gee.HashMap<int, int>();
 			//var order = new  Gee.ArrayList<int>();
 		 	q.select("WHERE file_id = " + this.id.to_string() + 
@@ -228,9 +228,9 @@ namespace Palete {
 			//this.symbols.clear();
 			this.symbol_map.clear(); //??? should be fresh load?
 			var q = (new Symbol()).fillQuery(null);
-			 
-		 	var newer = q.select( "WHERE file_id = " + this.id.to_string() +
-		 		" order by parent_id ASC, id ASC");
+			 var newer = new Gee.ArrayList<Symbol>();
+		 	q.select( "WHERE file_id = " + this.id.to_string() +
+		 		" order by parent_id ASC, id ASC", newer);
 
 			var newsymbols = new Gee.ArrayList<Symbol>();
 			// order does not help!!!
