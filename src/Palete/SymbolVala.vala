@@ -165,13 +165,17 @@ namespace Palete {
 		 	foreach(var c in cls.get_classes()) {
 				new new_class(builder, this,c);
 			}
-		 	foreach(var p in cls.get_fields()) {
-				new new_field(builder, this, p);
-			}
+		 	var props = new Gee.ArrayList<string>();
 		 	foreach(var p in cls.get_properties()) {
+		 		props.add(p.name);
 				new new_property(builder, this, p);
 			}
-
+			foreach(var p in cls.get_fields()) {
+				if (p.name.has_prefix("_") && props.contains(p.name.substring(1))) {
+					continue;
+				}
+				new new_field(builder, this, p);
+			}
 			foreach(var p in cls.get_signals()) {
 				new new_signal(builder, this, p);
 			}
