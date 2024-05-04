@@ -152,9 +152,12 @@ namespace Palete {
 		
 		public void dump(string indent)
 		{
+			
 			print("%s %d>%d : %s : %s  (%s)\n", indent, 
 				this.begin_line, this.end_line,
-				this.stype.to_string().substring( 16, -1 ), this.to_fqn(), this.rtype);
+				this.stype == 0 ? : "??" : this.stype.n to_string().substring( 16, -1 ), 
+				this.to_fqn(), 
+				this.rtype);
 			if (this.doc != "") {
 			    print("%s-->%s\n",indent, this.doc.split("\n")[0]);
 			}
