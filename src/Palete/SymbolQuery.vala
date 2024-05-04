@@ -192,7 +192,7 @@ namespace Palete {
 
 		}
 		// select using 'col data?'
-		public Gee.ArrayList<<T>> select( string where )
+		public select( string where,  Gee.ArrayList<<T>>  ret )
 		{
 
 			
@@ -210,7 +210,7 @@ namespace Palete {
 			}
 			
 			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
-			return this.selectQuery(q);
+			this.selectQuery(q, ret);
 			
 		}
 		
@@ -266,10 +266,9 @@ namespace Palete {
 					
 		}
 		
-		public Gee.ArrayList<T>  selectQuery(string q)
+		public void Gee.ArrayList<T>  selectQuery(string q, Gee.ArrayList<<T>> ret )
 		{	
 			Sqlite.Statement stmt;
-			var ret = new Gee.ArrayList<T>();
 			GLib.debug("Query %s", q);
 			SymbolDatabase.db.prepare_v2 (q, q.length, out stmt);
  
