@@ -31,15 +31,15 @@ namespace SQ {
 			if (setter.length < 1) {
 				return;
 			}
-			var id = this.getInt64(old, "id");
+			var id = this.getInt(old, "id");
 			Sqlite.Statement stmt;
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) + " WHERE id = " + id.to_string();
 			foreach(var n in types) {
 				switch(types.get(n)) {
 					case "INTEGER":
-						stmt.bind_int (stmt.bind_parameter_index ("$"+ k), ints.get(k));
+						stmt.bind_int (stmt.bind_parameter_index ("$"+ n), this.getInt(newer, n));
 					case "TEXT":
-					
+						stmt.bind_text (stmt.bind_parameter_index ("$"+ n), this.getText(newer, n));
 					case "INT2":
 					
 			
