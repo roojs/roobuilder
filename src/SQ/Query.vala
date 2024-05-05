@@ -34,30 +34,24 @@ namespace SQ {
 			var id = this.getInt(old, "id");
 			Sqlite.Statement stmt;
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) + " WHERE id = " + id.to_string();
+			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var n in types) {
 				switch(types.get(n)) {
 					case "INTEGER":
+					case "INT2":
 						stmt.bind_int (stmt.bind_parameter_index ("$"+ n), this.getInt(newer, n));
+					 	break;
 					case "TEXT":
 						stmt.bind_text (stmt.bind_parameter_index ("$"+ n), this.getText(newer, n));
-					case "INT2":
-					
+						break;
+					default:
+					    GLib.error("Unhandled SQlite type : %s", types.geT(n));
+				}
 			
 			}
-			
-			if (!this.shouldUpdate()) {
-				return;
-			}
-			
-			db.prepare_v2 (q, q.length, out stmt);
-			foreach(var k in this.ints.keys) {
-				stmt.bind_int (stmt.bind_parameter_index ("$"+ k), ints.get(k));
-			}
-			foreach(var k in this.strings.keys) {
-				stmt.bind_text (stmt.bind_parameter_index ("$"+ k), strings.get(k));
-			}
-			if (Sqlite.OK != stmt.step ()) {
-			    GLib.debug("SymbolUpdate: %s", db.errmsg());
+			 
+ 			if (Sqlite.OK != stmt.step ()) {
+			    GLib.error("Update: %s", db.errmsg());
 			}
 			
 
