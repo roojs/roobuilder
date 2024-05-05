@@ -79,7 +79,7 @@ namespace SQ {
 		
 		
 		
-		public static SymbolFile? lookupFile(string path)
+		public static Palete.SymbolFile? lookupFile(string path)
 		{
 			var stmt =  prepare("SELECT id, version, relversion FROM files where path = $path");
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), path);	 
