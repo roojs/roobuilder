@@ -8,7 +8,7 @@ namespace SQ {
 		static Gee.HashMap<string,Gee.ArrayList<Schema>> cache;
 		
 		static construct {
-			 cache =  new Gee.HashMap<string,Gee.ArrayList<Schema>> cache();
+			 cache =  new Gee.HashMap<string,Gee.ArrayList<Schema>>();
 		}
 		
 		static Gee.ArrayList<Schema> load(string name) {
