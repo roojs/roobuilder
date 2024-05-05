@@ -84,17 +84,10 @@ namespace SQ {
 			
 			switch(gtype) {
 				case GLib.Type.BOOLEAN: 	return 	newv.get_boolean() == oldv.get_boolean();
-					
 				case GLib.Type.INT64:    return 	newv.get_int64() == oldv.get_int64();	
-				
 				case GLib.Type.INT:  return 	newv.get_int() == oldv.get_int();
-
- 				case GLib.Type.STRING:  return 	newv.get_string() == oldv.get_string();
-	 						 
- 			 	case GLib.Type.ENUM:  return 	newv.get_enum() == oldv.get_enum();
-				 
-					
-			 	
+				case GLib.Type.STRING:  return 	newv.get_string() == oldv.get_string();
+	 			case GLib.Type.ENUM:  return 	newv.get_enum() == oldv.get_enum();
 				default:
 					GLib.error("unsupported type for col %s : %s", prop, gtype.to_string());
 					//return;
