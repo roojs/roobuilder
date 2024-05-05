@@ -81,7 +81,8 @@
                 "src/Palete/ValaSymbolGirBuilder.vala",
                 "src/Palete/SymbolGir.vala",
                 "src/Palete/SymbolQuery.vala",
-                "src/Palete/SymbolFileCollection.vala"
+                "src/Palete/SymbolFileCollection.vala",
+                "src/Palete/Schema.vala"
             ]
         }
     ],
