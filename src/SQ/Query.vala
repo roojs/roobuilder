@@ -72,10 +72,10 @@ namespace SQ {
 
 		}
 		
-		public bool compareProperty(Object old, Object newer, string prop)
+		public bool compareProperty(Object old, Object newer, string prop, GType gtype)
 		{
 
-			var  newv = GLib.Value (typeof (int));				
+			var  newv = GLib.Value (gtype);				
 			this.newer.get_property(col, ref newv);
 		
 		
