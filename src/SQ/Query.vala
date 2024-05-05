@@ -4,30 +4,65 @@
 
 */
 
-namespace Palete {
-	public class SymbolQuery < T > {
+namespace SQ {
+	public class Query < T > {
 	
 		string table;
-		string[] setter = {};		
-		Gee.HashMap<string,int> ints;
-		Gee.HashMap<string,string> strings;	
-		Gee.HashMap<string,GLib.Type> types;
-		Object? old;
-		Object newer;
-		int64 id;
-		
-		public SymbolQuery(string table, int64 id, Object? old, Object newer ) 
+		  
+		public SymbolQuery(string table  ) 
 		{
 			this.table = table;
-			this.id = id;
- 
-			this.ints = new Gee.HashMap<string,int>();
-			this.strings = new Gee.HashMap<string,string>();	
-			this.types = new Gee.HashMap<string,GLib.Type>();
-			this.old = old;
-			this.newer = newer;
 
 		}
+		
+		public void update(T old, T newer)
+		{
+			
+			var sc = Schema.load(this.table);
+			
+			string[] setter = {};
+			var types = new Gee.HashMap<string,string> ();
+			for(var s in sc) {
+				if (!this.compareProperty(old, newer, sc.name)) {
+					setter += "$" + sc.name;
+					types.set(sc.name,sc.type)
+				}
+			}
+			if (setter.length < 1) {
+				return;
+			}
+			var id = this.getInt64(old, "id");
+			Sqlite.Statement stmt;
+			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) + " WHERE id = " + id.to_string();
+			foreach(var n in types) {
+				switch(types.get(n)) {
+					case "INTEGER":
+						stmt.bind_int (stmt.bind_parameter_index ("$"+ k), ints.get(k));
+					case "TEXT":
+					
+					case "INT2":
+					
+			
+			}
+			
+			if (!this.shouldUpdate()) {
+				return;
+			}
+			
+			db.prepare_v2 (q, q.length, out stmt);
+			foreach(var k in this.ints.keys) {
+				stmt.bind_int (stmt.bind_parameter_index ("$"+ k), ints.get(k));
+			}
+			foreach(var k in this.strings.keys) {
+				stmt.bind_text (stmt.bind_parameter_index ("$"+ k), strings.get(k));
+			}
+			if (Sqlite.OK != stmt.step ()) {
+			    GLib.debug("SymbolUpdate: %s", db.errmsg());
+			}
+			
+
+		}
+		
 		
 		public void setInts( string[] cols) 
 		{
@@ -125,27 +160,7 @@ namespace Palete {
 			return this.ints.size +   this.strings.size > 0;
 		}
 		
-		public void update(Sqlite.Database db)
-		{
-			if (!this.shouldUpdate()) {
-				return;
-			}
-			Sqlite.Statement stmt;
-			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", this.setter) + " WHERE id = " + this.id.to_string();
-			
-			db.prepare_v2 (q, q.length, out stmt);
-			foreach(var k in this.ints.keys) {
-				stmt.bind_int (stmt.bind_parameter_index ("$"+ k), ints.get(k));
-			}
-			foreach(var k in this.strings.keys) {
-				stmt.bind_text (stmt.bind_parameter_index ("$"+ k), strings.get(k));
-			}
-			if (Sqlite.OK != stmt.step ()) {
-			    GLib.debug("SymbolUpdate: %s", db.errmsg());
-			}
-			
-
-		}
+		
 		
 		public int64 insert(Sqlite.Database db)
 		{	
