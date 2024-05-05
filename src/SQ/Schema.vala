@@ -15,7 +15,7 @@ namespace SQ {
 			if (cache.has_key(name)) {
 				return cache.get(name);
 			}
-			var sq = new SymbolQuery<Schema>("");
+			var sq = new Query<Schema>("");
 			var ret = Gee.ArrayList<Schema>();
 			sq.select("PRAGMA table_info('" + name + ")", ret);
 			 
@@ -32,7 +32,7 @@ namespace SQ {
 		string type  { get; set; default = "" ;}
 		bool notnull  { get; set; default = false; }
 		string dflt_value  { get; set; default = "" ;}
-		bool pk  { get; set; default = -1; }
+		bool pk  { get; set; default = false; }
 
 		
 		
