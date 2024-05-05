@@ -5,25 +5,22 @@ namespace SQ {
 	class Schema : Object
 	{
 		
-		static Gee.HashMap<string,Gee.HashMap<string,Schema>> cache;
+		static Gee.HashMap<string,Gee.ArrayList<Schema>> cache;
 		
 		static construct {
-			 cache =  new Gee.HashMap<string,Gee.HashMap<string,Schema>> cache();
+			 cache =  new Gee.HashMap<string,Gee.ArrayList<Schema>> cache();
 		}
 		
-		static Gee.HashMap<string,Schema> load(string name) {
+		static Gee.ArrayList<Schema> load(string name) {
 			if (cache.has_key(name)) {
 				return cache.get(name);
 			}
 			var sq = new SymbolQuery<Schema>("");
 			var ret = Gee.ArrayList<Schema>();
 			sq.select("PRAGMA table_info('" + name + ")", ret);
-			var add = new Gee.HashMap<string,Schema>();
-			foreach(var s in r) {
-				add.set(r.name, r);
-			}
-			cache.set(name,add);
-			return add;
+			 
+			cache.set(name,ret);
+			return ret;
 			
 			
 		
