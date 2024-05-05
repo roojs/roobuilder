@@ -15,6 +15,15 @@ namespace SQ {
 			if (cache.has_key(name)) {
 				return cache.get(name);
 			}
+			var sq = new SymbolQuery<Schema>("");
+			var ret = Gee.ArrayList<Schema>();
+			sq.select("PRAGMA table_info('" + name + ")", ret);
+			var add = new Gee.HashMap<string,Schema>();
+			foreach(var s in r) {
+				add.set(r.name, r);
+			}
+			cache.set(name,add);
+			return add;
 			
 			
 		
