@@ -27,9 +27,9 @@ namespace SQ {
 			string[] setter = {};
 			var types = new Gee.HashMap<string,string> ();
 			for(var s in sc) {
-				var ps = ocl.find_property( col_name );
+				var ps = ocl.find_property( sc.name );
 				if (ps == null) {
-					GLib.debug("could not find property %s in object interface", col_name);
+					GLib.debug("could not find property %s in object interface",  sc.name);
 					continue;
 				}
 				
@@ -46,9 +46,9 @@ namespace SQ {
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) + " WHERE id = " + id.to_string();
 			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var n in types) {
-				var ps = ocl.find_property( col_name );
+				var ps = ocl.find_property( n );
 				if (ps == null) {
-					GLib.debug("could not find property %s in object interface", col_name);
+					GLib.debug("could not find property %s in object interface", n);
 					continue;
 				}
 				switch(types.get(n)) {
