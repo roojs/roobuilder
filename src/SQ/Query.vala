@@ -20,10 +20,20 @@ namespace SQ {
 			
 			var sc = Schema.load(this.table);
 			
+			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
+			   
+				
+			
 			string[] setter = {};
 			var types = new Gee.HashMap<string,string> ();
 			for(var s in sc) {
-				if (!this.compareProperty(old, newer, sc.name)) {
+				var ps = ocl.find_property( col_name );
+				if (ps == null) {
+					GLib.debug("could not find property %s in object interface", col_name);
+					continue;
+				}
+				
+				if (!this.compareProperty(old, newer, sc.name, ps.value_type)) {
 					setter += "$" + sc.name;
 					types.set(sc.name,sc.type)
 				}
@@ -36,13 +46,18 @@ namespace SQ {
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) + " WHERE id = " + id.to_string();
 			db.prepare_v2 (q, q.length, out stmt);
 			foreach(var n in types) {
+				var ps = ocl.find_property( col_name );
+				if (ps == null) {
+					GLib.debug("could not find property %s in object interface", col_name);
+					continue;
+				}
 				switch(types.get(n)) {
 					case "INTEGER":
 					case "INT2":
-						stmt.bind_int (stmt.bind_parameter_index ("$"+ n), this.getInt(newer, n));
+						stmt.bind_int (stmt.bind_parameter_index ("$"+ n), this.getInt(newer, n,ps.value_type));
 					 	break;
 					case "TEXT":
-						stmt.bind_text (stmt.bind_parameter_index ("$"+ n), this.getText(newer, n));
+						stmt.bind_text (stmt.bind_parameter_index ("$"+ n), this.getText(newer, n, ps.value_type));
 						break;
 					default:
 					    GLib.error("Unhandled SQlite type : %s", types.geT(n));
@@ -55,6 +70,15 @@ namespace SQ {
 			}
 			
 
+		}
+		
+		public bool compareProperty(Object old, Object newer, string prop)
+		{
+
+			var  newv = GLib.Value (typeof (int));				
+			this.newer.get_property(col, ref newv);
+		
+		
 		}
 		
 		
@@ -236,6 +260,7 @@ namespace SQ {
 		    GLib.debug("select got %d rows / last errr  %s", ret.size, SymbolDatabase.db.errmsg());
 					
 		}
+		
 		T fetchRow(Sqlite.Statement stmt)
 		{
 			 
