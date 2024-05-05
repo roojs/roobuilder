@@ -99,7 +99,7 @@ namespace SQ {
 					GLib.error("unsupported type for col %s : %s", prop, gtype.to_string());
 					//return;
 			
-			return  
+			}
 		
 		}
 		
