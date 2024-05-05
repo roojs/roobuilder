@@ -14,10 +14,10 @@
 	
 
 */
-namespace Palete {
+namespace SQ {
 	
 	
-	public class SymbolDatabase {
+	public class SQ {
 		static Sqlite.Database? _db = null;
 		public static Sqlite.Database db {
 			get {
@@ -77,12 +77,14 @@ namespace Palete {
 			
 		}
 		
+		
+		
 		public static SymbolFile? lookupFile(string path)
 		{
 			var stmt =  prepare("SELECT id, version, relversion FROM files where path = $path");
 			stmt.bind_text (stmt.bind_parameter_index ("$path"), path);	 
 			if (stmt.step() == Sqlite.ROW) { 
-				var file = new SymbolFile(path, (int)stmt.column_int64(1));
+				var file = new Palete.SymbolFile(path, (int)stmt.column_int64(1));
 				file.id = stmt.column_int(0);
 				 
 				file.relversion = stmt.column_text(2);
@@ -94,7 +96,7 @@ namespace Palete {
 		}
 		
 		 
-		public static void initFile(SymbolFile file)
+		public static void initFile(Palete.SymbolFile file)
 		{
 			if (file.id > 0) {
 				return;
@@ -125,7 +127,7 @@ namespace Palete {
 		}
 		static Sqlite.Statement? write_file_sql = null;
 		
-		public static void writeFile(SymbolFile file)
+		public static void writeFile(Palete.SymbolFile file)
 		{
 			 
 			if (write_file_sql == null) {
@@ -183,7 +185,7 @@ namespace Palete {
 		*/
 		static Sqlite.Statement? write_symbol_sql = null;
 		
-		public static void writeSymbol(Symbol  s)
+		public static void writeSymbol(Palete.Symbol  s)
 		{
 			// we dont care about gir data that is not doc..
 			
@@ -197,7 +199,7 @@ namespace Palete {
  		
 		}
 		
-		public static void loadFileHasSymbols(SymbolFile file)
+		public static void loadFileHasSymbols(Palete.SymbolFile file)
 		{
 			var stmt = prepare(
 				"SELECT
