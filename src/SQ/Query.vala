@@ -17,7 +17,7 @@ namespace SQ {
 		
 		public void update(T old, T newer)
 		{
-			
+			assert(this.table != "");
 			var sc = Schema.load(this.table);
 			
 			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
