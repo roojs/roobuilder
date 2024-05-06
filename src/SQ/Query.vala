@@ -124,6 +124,10 @@ namespace SQ {
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) +
 				" WHERE id = " + id.to_string();
 			SQ.Database.db.prepare_v2 (q, q.length, out stmt);
+			if (stmt == null) {
+			    GLib.error("Update: %s %s", q, SQ.Database.db.errmsg());
+			}
+			
 			foreach(var n in types.keys) {
 				var ps = ocl.find_property( n );
 				if (ps == null) {
@@ -145,7 +149,7 @@ namespace SQ {
 			}
 			 
  			if (Sqlite.DONE != stmt.step ()) {
-			    GLib.error("Update: %s %s", qm SQ.Database.db.errmsg());
+			    GLib.error("Update: %s %s", q, SQ.Database.db.errmsg());
 			}
 			
 
