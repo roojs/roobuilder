@@ -248,45 +248,7 @@ namespace Palete {
 		
 		}
 		
-		public  SymbolQuery fillQuery(Symbol? old)
-		{
-			
-			var q = new SymbolQuery<Symbol>("symbol", old == null ? 0 : old.id, old, this);
-			q.setInt64s( {
-				"file_id", 
-				"parent_id"
-			});
-			q.setInts({
-				"stype",
-				"begin_line",
-				"begin_col",
-				"end_line",
-				"end_col",
-				"sequence"
-			});
-			q.setStrings({
-				"name",
-				"rtype",
-				"direction",
-				"parent_name",
-				"doc",
-				"fqn",
-				"implements_str",
-				"inherits_str"
-
-			});	
-			q.setBools({
-				"deprecated",
-				"is_abstract",
-				"is_sealed",
-		 		"is_readable",
-				"is_writable",
-		 		"is_ctor",
-				"is_static",
-				"is_gir"
-			});
-			return q;
-		}
+		 
 		
 		
 		public void removeOldSymbols()
