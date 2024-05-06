@@ -260,7 +260,7 @@ namespace SQ {
 			var  stmt = this.selectPrepare(q);
  			this.selectExecute(stmt, ret);
 			 
-		    GLib.debug("select got %d rows / last errr  %s", ret.size,  Database.db.errmsg());
+ 
 					
 		}
 		
