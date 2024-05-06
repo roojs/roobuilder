@@ -44,7 +44,7 @@ namespace SQ {
 			var id = this.getInt(old, "id");
 			Sqlite.Statement stmt;
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) + " WHERE id = " + id.to_string();
-			db.prepare_v2 (q, q.length, out stmt);
+			SQL.Database.db.prepare_v2 (q, q.length, out stmt);
 			foreach(var n in types) {
 				var ps = ocl.find_property( n );
 				if (ps == null) {
