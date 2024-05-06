@@ -207,7 +207,7 @@ namespace SQ {
 		{
 			
 			string[] keys = {};
-		 
+		 	assert(this.table != "");
 			var sc = Schema.load(this.table);
 			 
 			foreach(var s in sc) {
@@ -224,6 +224,10 @@ namespace SQ {
 			Sqlite.Statement stmt;
 			GLib.debug("Query %s", q);
 			Database.db.prepare_v2 (q, q.length, out stmt);
+			if (stmt == null) {
+			    GLib.error("%s from query   %s",   Database.db.errmsg(), q);
+			
+			}
  			return stmt;
  		}
  		public void selectExecute(Sqlite.Statement stmt, Gee.ArrayList<T> ret )
