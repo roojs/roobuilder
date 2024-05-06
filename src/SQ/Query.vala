@@ -110,7 +110,7 @@ namespace SQ {
 					GLib.error("unsupported getInt  for prop %s : %s", prop, gtype.to_string());
 	 		}
 		}
-		public int getText(T obj, string prop, GLib.Type gtype)
+		public string getText(T obj, string prop, GLib.Type gtype)
 		{
 			assert (typeof(T).is_object());
 			var  newv = GLib.Value (gtype);	
