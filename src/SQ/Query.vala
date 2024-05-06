@@ -230,7 +230,9 @@ namespace SQ {
  		public void selectExecute(Sqlite.Statement stmt, Gee.ArrayList<T> ret )
  		{
 			while (stmt.step() == Sqlite.ROW) {
-		 		ret.add( this.fetchRow(stmt) );
+		 		var row =   Object.new (typeof(T));
+				this.fetchRow(stmt, row); 
+		 		ret.add( row););
 		 		
 			}
 			 
@@ -240,17 +242,9 @@ namespace SQ {
 		
 		public void selectQuery(string q, Gee.ArrayList<T> ret )
 		{	
-				assert (typeof(T).is_object());
-			Sqlite.Statement stmt;
-			GLib.debug("Query %s", q);
-			Database.db.prepare_v2 (q, q.length, out stmt);
- 
-			while (stmt.step() == Sqlite.ROW) {
-				var row =   Object.new (typeof(T));
-				this.fetchRow(stmt, row); 
-		 		ret.add( row);
-		 		
-			}
+			assert (typeof(T).is_object());
+			var  stmt = this.selectPerpare(q);
+ 			this.selectExecute(stmt, ret);
 			 
 		    GLib.debug("select got %d rows / last errr  %s", ret.size,  Database.db.errmsg());
 					
