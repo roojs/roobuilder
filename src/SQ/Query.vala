@@ -257,7 +257,7 @@ namespace SQ {
 		public void selectQuery(string q, Gee.ArrayList<T> ret )
 		{	
 			assert (typeof(T).is_object());
-			var  stmt = this.selectPerpare(q);
+			var  stmt = this.selectPrepare(q);
  			this.selectExecute(stmt, ret);
 			 
 		    GLib.debug("select got %d rows / last errr  %s", ret.size,  Database.db.errmsg());
