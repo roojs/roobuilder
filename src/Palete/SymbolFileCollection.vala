@@ -24,7 +24,7 @@ namespace Palete {
 			var f = new SymbolFile.new_file(file)
 			this.files.set(path,f);
 			
-			this.files_ids.set(int)f.id, f);
+			this.files_ids.set((int)f.id, f);
 			return f;	
 		 
 		}
