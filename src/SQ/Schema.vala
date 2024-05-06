@@ -2,7 +2,7 @@
 namespace SQ {
 
 
-	class Schema : Object
+	public class Schema : Object
 	{
 		
 		static Gee.HashMap<string,Gee.ArrayList<Schema>> cache;
