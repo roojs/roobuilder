@@ -199,10 +199,7 @@ namespace SQ {
 		}
 		
 		 
-		
 		 
-		
-		
 		// select using 'col data?'
 		public void select( string where,  Gee.ArrayList<T> ret )
 		{
