@@ -20,7 +20,7 @@ namespace Palete {
 		static async void updateGirBackground() {
 			
 			SourceFunc callback = updateGirBackground.callback;
-			SymbolDatabase.initDB();  // connect out of thread..
+			SQ.Database.initDB();  // connect out of thread..
 
 			new Thread<bool>("thread-update-gir", () => {
 				// Perform a dummy slow calculation.
@@ -47,7 +47,7 @@ namespace Palete {
 			for(var i = 0; i <  gir_directories.length; i++) {
 				this.scanGirDir( gir_directories[i] + "/gir-1.0" );
 			}
-			SymbolDatabase.backupDB();
+			SQ.Database.backupDB();
 		}
 		public void scanGirDir(string dir)
 		{
