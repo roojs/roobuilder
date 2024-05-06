@@ -58,7 +58,7 @@ namespace Palete {
 					sqf.update(null,this);
 					
 					var sq = new SQ.Query<Symbol>();
-					var ret = Gee.ArrayList<Symbol>()
+					var ret = Gee.ArrayList<Symbol>();
 					sq.selectQuery("select id from symbol where file_id = " + this.id.to_string() + " LIMIT 1", ret);
 					this.database_has_symbols = ret.size > 0;
 					
