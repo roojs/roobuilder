@@ -345,12 +345,9 @@ namespace Palete {
 
 			var old = children_map.get(this.type_name);
 			this.id = old.id;
-			var q = this.fillQuery(old);
-			if (!q.shouldUpdate()) {
-				GLib.debug("DB UPDATE no change %d:%d, %s",(int)this.parent_id,  (int)this.id, this.fqn);			
-				return; // no need to update..
-			}
-			q.update(SymbolDatabase.db);
+			var q = new SQ.Query<Symbol>("symbol");
+			
+			q.update(old, this);
 			GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
 			// should nto need to update file symbols.
 		}
