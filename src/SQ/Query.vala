@@ -78,7 +78,7 @@ namespace SQ {
 			var  oldv = GLib.Value (gtype);				
 			((Object)older).get_property(prop, ref oldv);
 			var  newv = GLib.Value (gtype);				
-			newer.get_property(prop, ref newv);
+			((Object)newer).get_property(prop, ref newv);
 			
 			gtype = gtype.is_enum()  ? GLib.Type.ENUM : gtype;
 			
