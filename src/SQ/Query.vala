@@ -114,7 +114,7 @@ namespace SQ {
 				}
 				
 				if (old ==null || !this.compareProperty(old, newer, s.name, ps.value_type)) {
-					setter += (s.name " = $" + s.name);
+					setter += (s.name +  " = $" + s.name);
 					types.set(s.name,s.ctype);
 				}
 			}
