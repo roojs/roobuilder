@@ -465,7 +465,7 @@ namespace Palete {
 			foreach(var sf in this.changed) {
 				this.filemanager.factory_by_path(sf).removeOldSymbols();
 			}
- 			SymbolDatabase.backupDB();
+ 			SQ.Database.backupDB();
 				 
 			Idle.add(this.threaded_callback);
 			 
