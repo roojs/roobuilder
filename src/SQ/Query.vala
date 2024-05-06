@@ -87,7 +87,7 @@ namespace SQ {
 		}
 		
 		
-		public void update(T old, T newer)
+		public void update(T? old, T newer)
 		{
 			assert(this.table != "");
 			var sc = Schema.load(this.table);
@@ -103,7 +103,7 @@ namespace SQ {
 					continue;
 				}
 				
-				if (!this.compareProperty(old, newer, s.name, ps.value_type)) {
+				if (old ==null || !this.compareProperty(old, newer, s.name, ps.value_type)) {
 					setter += "$" + s.name;
 					types.set(s.name,s.type);
 				}
@@ -136,7 +136,7 @@ namespace SQ {
 			
 			}
 			 
- 			if (Sqlite.OK != stmt.step ()) {
+ 			if (Sqlite.DONE != stmt.step ()) {
 			    GLib.error("Update: %s", SQ.Database.db.errmsg());
 			}
 			
@@ -220,7 +220,23 @@ namespace SQ {
 			
 		}
 		
-	 
+	 	public Sqlite.Statement selectPrepare(string q  )
+		{	
+			Sqlite.Statement stmt;
+			GLib.debug("Query %s", q);
+			Database.db.prepare_v2 (q, q.length, out stmt);
+ 			return stmt;
+ 		}
+ 		public void selectExecute(Sqlite.Statement stmt, Gee.ArrayList<T> ret )
+ 		{
+			while (stmt.step() == Sqlite.ROW) {
+		 		ret.add( this.fetchRow(stmt) );
+		 		
+			}
+			 
+		    GLib.debug("select got %d rows / last errr  %s", ret.size,  Database.db.errmsg());
+					
+		}
 		
 		public void selectQuery(string q, Gee.ArrayList<T> ret )
 		{	
