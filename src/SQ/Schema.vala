@@ -11,7 +11,7 @@ namespace SQ {
 			 cache =  new Gee.HashMap<string,Gee.ArrayList<Schema>>();
 		}
 		
-		static Gee.ArrayList<Schema> load(string name) {
+		public static Gee.ArrayList<Schema> load(string name) {
 			if (cache.has_key(name)) {
 				return cache.get(name);
 			}
