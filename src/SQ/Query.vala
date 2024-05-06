@@ -180,6 +180,8 @@ namespace SQ {
 			assert (typeof(T).is_object());
 			var  newv = GLib.Value (gtype);	
 			((Object)obj).get_property(prop, ref newv);
+			gtype = gtype.is_enum()  ? GLib.Type.ENUM : gtype;
+			
 			switch(gtype) {
 				case GLib.Type.BOOLEAN: 	return 	newv.get_boolean() ? 1 : 0;
 				case GLib.Type.INT64:    return (int)	newv.get_int64();
