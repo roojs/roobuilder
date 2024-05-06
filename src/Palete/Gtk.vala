@@ -89,7 +89,7 @@ namespace Palete {
 		}
 		
 		
-		public override Symbol? getClassSymbol(ename)
+		public   Symbol? getClassSymbol(ename)
 		{
 			var ret =  this.symbol_manager.getSymbolByFqn(ename);
 			return ret.stype == Lsp.SymbolKind.CLASS ? ret : null;
