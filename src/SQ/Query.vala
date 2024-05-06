@@ -287,9 +287,10 @@ namespace SQ {
 				
 				var type_id = stmt.column_type (i);
 				// Sqlite.INTEGER, Sqlite.FLOAT, Sqlite.TEXT,Sqlite.BLOB, or Sqlite.NULL. 
-				var ps = ocl.find_property( col_name );
+				var prop = col_name == "type" ? "ctype" : col_name; 
+				var ps = ocl.find_property( prop );
 				if (ps == null) {
-					GLib.debug("could not find property %s in object interface", col_name);
+					GLib.debug("could not find property %s in object interface", prop);
 					continue;
 				}
 				 
