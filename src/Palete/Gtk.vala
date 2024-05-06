@@ -89,7 +89,7 @@ namespace Palete {
 		}
 		
 		
-		public   Symbol? getClassSymbol(ename)
+		public   Symbol? getClassSymbol(string ename)
 		{
 			var ret =  this.project.symbol_manager.getSymbolByFqn(ename);
 			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
