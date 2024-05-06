@@ -193,8 +193,8 @@ namespace SQ {
 				return;
 			}
 			
-			var q = s.fillQuery(null); 		
-			s.id = q.insert(db);
+			var q = new SQ.Query<Symbol>("symbol");
+			q.insert(this);
  
  		
 		}
