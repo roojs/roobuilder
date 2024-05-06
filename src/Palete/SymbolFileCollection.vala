@@ -76,7 +76,7 @@ namespace Palete {
 					FROM 
 						symbol 
 					WHERE 
-						file_id IN (" + string.joinv("," file_ids) + ")
+						file_id IN (" + string.joinv("," , file_ids) + ")
 					AND
 						fqn = $fqn
 					LIMIT 1;
