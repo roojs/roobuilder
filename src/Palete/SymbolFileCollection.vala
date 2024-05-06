@@ -70,7 +70,7 @@ namespace Palete {
 			}
 			var sq = new SQ.Query<Symbol>("symbol");
 			var res = new Symbol();
-			var  stmt = sql.selectPrepare("
+			var stmt = sql.selectPrepare("
 					SELECT 
 						* 
 					FROM 
