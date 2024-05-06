@@ -112,7 +112,8 @@ namespace SQ {
 				return;
 			}
 
-			var id = this.getInt(old == null ? newer, "id",ocl.find_property("id").value_type);
+			var id = this.getInt(old == null ? newer : old, "id",
+				ocl.find_property("id").value_type);
 			Sqlite.Statement stmt;
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) +
 				" WHERE id = " + id.to_string();
