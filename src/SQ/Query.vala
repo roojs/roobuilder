@@ -91,9 +91,40 @@ namespace SQ {
 				default:
 					GLib.error("unsupported type for col %s : %s", prop, gtype.to_string());
 					//return;
-			
 			}
 		
+		}
+		
+		
+		public int getInt(T obj, string prop, GLib.Type gtype)
+		{
+			assert (typeof(T).is_object());
+			var  newv = GLib.Value (gtype);	
+			((Object)obj).get_property(prop, ref newv);
+			switch(gtype) {
+				case GLib.Type.BOOLEAN: 	return 	newv.get_boolean() ? 1 : 0;
+				case GLib.Type.INT64:    return (int)	newv.get_int64();
+				case GLib.Type.INT:  return 	newv.get_int();
+	 			case GLib.Type.ENUM:  return 	(int) newv.get_enum() ;
+				case GLib.Type.STRING:  
+				default:
+					GLib.error("unsupported getInt  for prop %s : %s", prop, gtype.to_string());
+	 		}
+		}
+		public int getText(T obj, string prop, GLib.Type gtype)
+		{
+			assert (typeof(T).is_object());
+			var  newv = GLib.Value (gtype);	
+			((Object)obj).get_property(prop, ref newv);
+			switch(gtype) {
+				case GLib.Type.STRING:  return 	newv.get_string();
+				case GLib.Type.BOOLEAN:
+				case GLib.Type.INT64:  
+				case GLib.Type.INT:  
+				
+				default:
+					GLib.error("unsupported getText  for prop %s : %s", prop, gtype.to_string());
+	 		}
 		}
 		
 		
