@@ -73,7 +73,7 @@ namespace SQ {
 						break;
 					default:
 					    GLib.error("Column %s : %s has Unhandled SQlite type : %s", 
-					    		this.table, s.name,  types.get(s.name));
+					    		this.table, s.name,  s.ctype);
 				}
 				 			
 				 
