@@ -172,9 +172,11 @@ namespace Palete {
 			if (this.doc == "") {
 				return;
 			}
+			var q = new SQ.Query<Symbol>("symbol");
 			if (!this.file.fqn_map.has_key(this.fqn)) {
-				var q = this.fillQuery(null);
-				this.id = q.insert(SymbolDatabase.db);
+				
+				q.insert(this);
+				  
  				return;
 			}
 			 
@@ -182,11 +184,9 @@ namespace Palete {
 			
 			var old = this.file.fqn_map.get(this.fqn);
 			
-			var q = this.fillQuery(old);
-			if (!q.shouldUpdate()) {
-				return; // no need to update..
-			}
-			q.update(SymbolDatabase.db);
+
+			q.update(old,this); 
+
 			// should nto need to update file symbols.
 		}
 		 
