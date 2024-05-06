@@ -145,7 +145,7 @@ namespace SQ {
 			}
 			 
  			if (Sqlite.DONE != stmt.step ()) {
-			    GLib.error("Update: %s", SQ.Database.db.errmsg());
+			    GLib.error("Update: %s %s", qm SQ.Database.db.errmsg());
 			}
 			
 
