@@ -58,7 +58,7 @@ namespace SQ {
 					GLib.debug("could not find property %s in object interface", s.name);
 					continue;
 				}
-				switch(s.type) {
+				switch(s.ctype) {
 					case "INTEGER":
 					case "INT2":
 						stmt.bind_int (stmt.bind_parameter_index ("$"+ s.name), this.getInt(newer, s.name,ps.value_type));
@@ -105,7 +105,7 @@ namespace SQ {
 				
 				if (old ==null || !this.compareProperty(old, newer, s.name, ps.value_type)) {
 					setter += "$" + s.name;
-					types.set(s.name,s.type);
+					types.set(s.name,s.ctype);
 				}
 			}
 			if (setter.length < 1) {
