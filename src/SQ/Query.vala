@@ -232,7 +232,7 @@ namespace SQ {
 			while (stmt.step() == Sqlite.ROW) {
 		 		var row =   Object.new (typeof(T));
 				this.fetchRow(stmt, row); 
-		 		ret.add( row););
+		 		ret.add( row);
 		 		
 			}
 			 
