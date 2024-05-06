@@ -65,7 +65,7 @@ namespace Palete {
 		
 		
 	  
-		
+		// where is this used?
 		public string doc(string what) 
 		{
     		var ns = what.split(".")[0];
@@ -86,6 +86,13 @@ namespace Palete {
 			}
 			return gir;
 			
+		}
+		
+		
+		public override Symbol? getClassSymbol(ename)
+		{
+			this.symbol_manager.getClass(ename);
+		
 		}
 
 			// does not handle implements...
