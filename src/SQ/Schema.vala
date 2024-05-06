@@ -5,13 +5,14 @@ namespace SQ {
 	public class Schema : Object
 	{
 		
-		static Gee.HashMap<string,Gee.ArrayList<Schema>> cache;
+		static Gee.HashMap<string,Gee.ArrayList<Schema>>? cache = null;
 		
-		static construct {
-			 cache =  new Gee.HashMap<string,Gee.ArrayList<Schema>>();
-		}
+		 
 		
 		public static Gee.ArrayList<Schema> load(string name) {
+			if (cache == null) {
+				cache =  new Gee.HashMap<string,Gee.ArrayList<Schema>>();
+			}
 			if (cache.has_key(name)) {
 				return cache.get(name);
 			}
