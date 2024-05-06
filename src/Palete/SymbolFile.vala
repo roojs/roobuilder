@@ -54,9 +54,14 @@ namespace Palete {
 					}
 					this.version = this.cur_mod_time();
 					//GLib.debug("is_parsed %s : %d", this.path, (int)this.version);
-					SymbolDatabase.writeFile(this);
-					//SymbolDatabase.writeSymbols(this);
-					SymbolDatabase.loadFileHasSymbols(this);	
+					var sqf = new SQ.Query<SymbolFile>();
+					sqf.update(null,this);
+					
+					var sq = new SQ.Query<Symbol>();
+					var ret = Gee.ArrayList<Symbol>()
+					sq.selectQuery("select id from symbol where file_id = " + this.id.to_string() + " LIMIT 1", ret);
+					this.database_has_symbols = ret.size > 0;
+					
 					
 				}
 			}
