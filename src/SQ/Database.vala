@@ -17,7 +17,7 @@
 namespace SQ {
 	
 	
-	public class SQ {
+	public class Database {
 		static Sqlite.Database? _db = null;
 		public static Sqlite.Database db {
 			get {
