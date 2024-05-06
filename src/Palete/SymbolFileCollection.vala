@@ -68,7 +68,7 @@ namespace Palete {
 			foreach(var f in this.files.values) {
 				file_ids += f.id.to_string();
 			}
-			var sq = new SymbolQuery<Symbol>("symbol");
+			var sq = new SQ.Query<Symbol>("symbol");
 			var res = new Symbol();
 			var  stmt = sql.selectPrepare("
 					SELECT 
