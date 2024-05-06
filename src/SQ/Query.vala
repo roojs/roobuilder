@@ -76,7 +76,7 @@ namespace SQ {
 		{
 			assert (typeof(T).is_object());
 			var  oldv = GLib.Value (gtype);				
-			older.get_property(prop, ref oldv);
+			((Object)older).get_property(prop, ref oldv);
 			var  newv = GLib.Value (gtype);				
 			newer.get_property(prop, ref newv);
 			
