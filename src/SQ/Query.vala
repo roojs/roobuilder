@@ -210,9 +210,7 @@ namespace SQ {
 			string[] keys = {};
 		 
 			var sc = Schema.load(this.table);
-			
-			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
-			    
+			 
 			foreach(var s in sc) {
 				keys += s.name
 		 	}
