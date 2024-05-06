@@ -79,7 +79,7 @@ namespace SQ {
 			var id = db.last_insert_rowid();
 			var  newv = GLib.Value ( typeof(int64) );
 			newv.set_int64(id);
-			newer.set_property("id", newv);
+			((Object)newer).set_property("id", newv);
 			//GLib.debug("got id=%d", (int)id);
 			return id;
 
