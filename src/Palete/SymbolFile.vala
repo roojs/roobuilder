@@ -54,12 +54,11 @@ namespace Palete {
 					}
 					this.version = this.cur_mod_time();
 					//GLib.debug("is_parsed %s : %d", this.path, (int)this.version);
-					var sqf = new SQ.Query<SymbolFile>();
+					var sqf = new SQ.Query<SymbolFile>("files");
 					sqf.update(null,this);
 					
-					var sq = new SQ.Query<Symbol>();
-					var ret = new Gee.ArrayList<Symbol>();
-					sq.selectQuery("select id from symbol where file_id = " + this.id.to_string() + " LIMIT 1", ret);
+					var sq = new SQ.Query<Symbol>("symbol");
+					 sq.selectQuery("select id from symbol where file_id = " + this.id.to_string() + " LIMIT 1", ret);
 					this.database_has_symbols = ret.size > 0;
 					
 					
@@ -102,12 +101,26 @@ namespace Palete {
 		
 		void initDB()
 		{
-		
-			SymbolDatabase.initFile(this);
-			SymbolDatabase.loadFileHasSymbols(this);
+			if (this.id < 0) {
+				var sqf = new SQ.Query<SymbolFile>("files");				
+				var stmt = sqf.selectPrepare("SELECT id, version FROM files where path = $path");
+				stmt.bind_text (stmt.bind_parameter_index ("$path"),this.path);
+				var ret = new Gee.ArrayList<Symbol>();
+				if (!sqf.selectExecuteInto(stmt, this)) {
+					sqf.insert(this);
+				}
+			}
+			this.updateHasSymbolsFromDB();
+			 
 
 		
 		}
+		void updateHasSymbolsFromDB()
+		{
+			var sq = new SQ.Query<Symbol>("symbol");
+			 sq.selectQuery("select id from symbol where file_id = " + this.id.to_string() + " LIMIT 1", ret);
+			this.database_has_symbols = ret.size > 0;
+		}		
 		/*
 		public void initSymbolMap()
 		{
