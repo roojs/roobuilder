@@ -3,11 +3,13 @@ namespace Palete {
 	
 	public class SymbolFileCollection {
 		public Gee.HashMap<string, SymbolFile>? files = null;
+		public Gee.HashMap<int, SymbolFile>? files_ids = null;
 		
 		
 		public  SymbolFileCollection()
 		{
 			this.files = new Gee.HashMap<string, SymbolFile>();
+			this.files_ids = new Gee.HashMap<int, SymbolFile>();
 			this.symbol_cache = new Gee.HashMap<string,Symbol>();
 		}
 		 
@@ -19,9 +21,11 @@ namespace Palete {
 				
 				return this.files.get(path);
 			}
+			var f = new SymbolFile.new_file(file)
+			this.files.set(path,f);
 			
-			this.files.set(path, new SymbolFile.new_file(file));
-			return this.files.get(path);	
+			this.files_ids.set(int)f.id, f);
+			return f;	
 		 
 		}
 			
@@ -33,6 +37,10 @@ namespace Palete {
 				
 				return this.files.get(path);
 			}
+			var f = new SymbolFile.new_from_path(path,-1));
+			this.files.set(path,f);
+			this.files_ids.set((int)f.id, f);
+			return f;	
 			
 
 			this.files.set(path, new SymbolFile.new_from_path(path,-1));
@@ -55,11 +63,13 @@ namespace Palete {
 			}
 			return ret;
 		}
+
+		
 		// replace old Gir code...
 		
 		private Gee.HashMap<string,Symbol> symbol_cache;
 		
-		public Symbol? getByFqn(string fqn)
+		public Symbol? getSymbolByFqn(string fqn)
 		{
 			if (this.symbol_cache.has_key(fqn)) {
 				return this.symbol_cache.get(fqn);
@@ -85,7 +95,7 @@ namespace Palete {
 			if (!sq.selectExecuteInto(stmt,res)) {
 				return null;
 			}
-			res.file = this.files.get((int)res.file_id);
+			res.file = this.files_ids.get((int)res.file_id);
 						
 			
 			return res;
