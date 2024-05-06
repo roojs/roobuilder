@@ -331,8 +331,8 @@ namespace Palete {
 			*/
 			if (!children_map.has_key(this.type_name)) {
  
-				var q = this.fillQuery(null);
-				this.id = q.insert(SymbolDatabase.db);
+				var q = new SQ.Query<Symbol>("symbol");
+				q.insert(this);
 				GLib.debug("DB INSERT added %d:%d, %s", (int)this.parent_id, (int)this.id, this.fqn);
  				children.append(this);
 				children_map.set(this.type_name, this);
