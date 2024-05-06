@@ -26,7 +26,7 @@ namespace SQ {
 			
 			string[] setter = {};
 			var types = new Gee.HashMap<string,string> ();
-			for(var s in sc) {
+			foreach(var s in sc) {
 				var ps = ocl.find_property( sc.name );
 				if (ps == null) {
 					GLib.debug("could not find property %s in object interface",  sc.name);
