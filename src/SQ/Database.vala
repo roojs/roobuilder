@@ -183,8 +183,7 @@ namespace SQ {
 			return ret;
 		}
 		*/
-		static Sqlite.Statement? write_symbol_sql = null;
-		
+		/*
 		public static void writeSymbol(Palete.Symbol  s)
 		{
 			// we dont care about gir data that is not doc..
@@ -199,6 +198,7 @@ namespace SQ {
  		
 		}
 		
+		*/
 		public static void loadFileHasSymbols(Palete.SymbolFile file)
 		{
 			var stmt = prepare(
