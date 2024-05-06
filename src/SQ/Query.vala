@@ -279,6 +279,7 @@ namespace SQ {
 					GLib.debug("Skip col %d = no column name?", i);
 					continue;
 				}
+				
 				var type_id = stmt.column_type (i);
 				// Sqlite.INTEGER, Sqlite.FLOAT, Sqlite.TEXT,Sqlite.BLOB, or Sqlite.NULL. 
 				var ps = ocl.find_property( col_name );
@@ -350,7 +351,9 @@ namespace SQ {
 					//return;
 				
 			}
-			row.set_property(col_name, newv);
+			// as we cant use 'type' as a vala object property..
+			var prop = col_name == "type" ? "ctype" : col_name; 
+			row.set_property(prop, newv);
 		
 		
 		
