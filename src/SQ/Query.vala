@@ -112,9 +112,10 @@ namespace SQ {
 				return;
 			}
 
-			var id = this.getInt(old, "id",ocl.find_property("id").value_type);
+			var id = this.getInt(old == null ? newer, "id",ocl.find_property("id").value_type);
 			Sqlite.Statement stmt;
-			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) + " WHERE id = " + id.to_string();
+			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) +
+				" WHERE id = " + id.to_string();
 			SQ.Database.db.prepare_v2 (q, q.length, out stmt);
 			foreach(var n in types.keys) {
 				var ps = ocl.find_property( n );
