@@ -15,7 +15,7 @@ namespace Palete {
 		
 	
 		public int64 id { set ; get ; default = -1; }
-		public string { set ; get ; default =ath = ""; }
+		public string path { set ; get ; default =  ""; }
 		public int64 version  { set ; get ; default = -1; } // utime?
 		public string relversion  { set ; get ; default = ""; }  // version eg. 1.0 (mathcing gir to vapis?)
 		//public Gee.ArrayList<Symbol> symbols_all ;
