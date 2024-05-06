@@ -267,7 +267,7 @@ namespace SQ {
 		
 		
 		
-		viod fetchRow(Sqlite.Statement stmt, T row)
+		void fetchRow(Sqlite.Statement stmt, T row)
 		{
 			 
 			assert (typeof(T).is_object());
