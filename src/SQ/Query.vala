@@ -27,15 +27,15 @@ namespace SQ {
 			string[] setter = {};
 			var types = new Gee.HashMap<string,string> ();
 			foreach(var s in sc) {
-				var ps = ocl.find_property( sc.name );
+				var ps = ocl.find_property( s.name );
 				if (ps == null) {
-					GLib.debug("could not find property %s in object interface",  sc.name);
+					GLib.debug("could not find property %s in object interface",  s.name);
 					continue;
 				}
 				
-				if (!this.compareProperty(old, newer, sc.name, ps.value_type)) {
-					setter += "$" + sc.name;
-					types.set(sc.name,sc.type)
+				if (!this.compareProperty(old, newer, s.name, ps.value_type)) {
+					setter += "$" + s.name;
+					types.set(s.name,s.type)
 				}
 			}
 			if (setter.length < 1) {
@@ -72,9 +72,9 @@ namespace SQ {
 
 		}
 		
-		public bool compareProperty(Object older, Object newer, string prop, GLib.Type gtype)
+		public bool compareProperty(T older, T newer, string prop, GLib.Type gtype)
 		{
-
+			assert (typeof(T).is_object());
 			var  oldv = GLib.Value (gtype);				
 			older.get_property(prop, ref oldv);
 			var  newv = GLib.Value (gtype);				
