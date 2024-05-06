@@ -15,7 +15,7 @@ namespace Palete {
 		 
 		Project.Gtk project;
 		
-  		public VapiParser(Project.Gtk project) {
+  		public XVapiParser(Project.Gtk project) {
 			base();
 			this.project = project;
 			// should not really happen..
