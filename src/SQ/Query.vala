@@ -44,7 +44,7 @@ namespace SQ {
 			Sqlite.Statement stmt;
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) + " WHERE id = " + id.to_string();
 			SQ.Database.db.prepare_v2 (q, q.length, out stmt);
-			foreach(var n in types) {
+			foreach(var n in types.keys) {
 				var ps = ocl.find_property( n );
 				if (ps == null) {
 					GLib.debug("could not find property %s in object interface", n);
