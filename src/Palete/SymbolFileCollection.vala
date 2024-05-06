@@ -91,7 +91,7 @@ namespace Palete {
 						fqn = $fqn
 					LIMIT 1;
 			");
-			stmt.bind_text("$fqn", fqn);
+			stmt.bind_text(stmt.bind_parameter_index ("$fqn"), fqn);
 			if (!sq.selectExecuteInto(stmt,res)) {
 				return null;
 			}
