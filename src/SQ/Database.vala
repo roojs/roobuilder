@@ -60,13 +60,15 @@ namespace SQ {
 			//GLib.debug("error %s", _db.errmsg());
 	 		b.step(-1);
 		}
-		
+		/*
 		static Sqlite.Statement prepare(string q) 
 		{
 			Sqlite.Statement stmt;
 			db.prepare_v2 (q, q.length, out stmt);
 			return stmt;
 		}
+		*/
+		
 		static void  exec(string q) 
 		{
 			GLib.debug("EXEC %s", q);
@@ -76,7 +78,7 @@ namespace SQ {
 			}
 			
 		}
-		
+		/*
 		
 		
 		public static Palete.SymbolFile? lookupFile(string path)
@@ -150,7 +152,7 @@ namespace SQ {
 			stmt.reset();
 
 		}
-		/*
+		 
 		public static void writeSymbols(SymbolFile  file)
 		{
 			
@@ -182,8 +184,7 @@ namespace SQ {
 			}
 			return ret;
 		}
-		*/
-		/*
+		 
 		public static void writeSymbol(Palete.Symbol  s)
 		{
 			// we dont care about gir data that is not doc..
@@ -198,7 +199,7 @@ namespace SQ {
  		
 		}
 		
-		*/
+		
 		public static void loadFileHasSymbols(Palete.SymbolFile file)
 		{
 			var stmt = prepare(
@@ -213,7 +214,7 @@ namespace SQ {
 				file.database_has_symbols = true;
 			}
 		}
-		/*
+		 
 		public static void loadFileSymbols(SymbolFile file)
 		{
 			file.symbol_map.clear(); //??? should be fresh load?
