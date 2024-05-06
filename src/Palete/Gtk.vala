@@ -91,7 +91,7 @@ namespace Palete {
 		
 		public   Symbol? getClassSymbol(ename)
 		{
-			var ret =  this.symbolmanager.getSymbolByFqn(ename);
+			var ret =  this.project.symbol_manager.getSymbolByFqn(ename);
 			return ret.stype == Lsp.SymbolKind.CLASS ? ret : null;
 		
 		}
