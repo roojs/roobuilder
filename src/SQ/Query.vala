@@ -65,6 +65,7 @@ namespace SQ {
 						stmt.bind_int (stmt.bind_parameter_index ("$"+ s.name), this.getInt(newer, s.name,ps.value_type));
 					 	break;
 					case "INT64":
+						// might be better to have getInt64
 						stmt.bind_int64 (stmt.bind_parameter_index ("$"+ s.name), (int64) this.getInt(newer, s.name,ps.value_type));
 					 	break;
 					case "TEXT":
