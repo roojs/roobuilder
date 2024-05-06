@@ -201,14 +201,14 @@ namespace SQ {
 		{	
 			Sqlite.Statement stmt;
 			GLib.debug("Query %s", q);
-			SymbolDatabase.db.prepare_v2 (q, q.length, out stmt);
+			Database.db.prepare_v2 (q, q.length, out stmt);
  
 			while (stmt.step() == Sqlite.ROW) {
 		 		ret.add( this.fetchRow(stmt) );
 		 		
 			}
 			 
-		    GLib.debug("select got %d rows / last errr  %s", ret.size, SymbolDatabase.db.errmsg());
+		    GLib.debug("select got %d rows / last errr  %s", ret.size,  Database.db.errmsg());
 					
 		}
 		
