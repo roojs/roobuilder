@@ -143,6 +143,10 @@ namespace SQ {
 					case "INT2":
 						stmt.bind_int (stmt.bind_parameter_index ("$"+ n), this.getInt(newer, n,ps.value_type));
 					 	break;
+					case "INT64":
+						stmt.bind_int64 (stmt.bind_parameter_index ("$"+ n), (int64) this.getInt(newer, n,ps.value_type));
+						break;
+					
 					case "TEXT":
 						stmt.bind_text (stmt.bind_parameter_index ("$"+ n), this.getText(newer, n, ps.value_type));
 						break;
