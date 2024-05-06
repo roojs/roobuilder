@@ -33,7 +33,7 @@ namespace SQ {
 				
 				if (!this.compareProperty(old, newer, s.name, ps.value_type)) {
 					setter += "$" + s.name;
-					types.set(s.name,s.type)
+					types.set(s.name,s.type);
 				}
 			}
 			if (setter.length < 1) {
