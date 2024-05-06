@@ -239,6 +239,20 @@ namespace SQ {
 		    GLib.debug("select got %d rows / last errr  %s", ret.size,  Database.db.errmsg());
 					
 		}
+		public bool selectExecuteInto(Sqlite.Statement stmt,  T row )
+ 		{
+			if (stmt.step() == Sqlite.ROW) {
+		 		var row =   Object.new (typeof(T));
+				this.fetchRow(stmt, row); 
+		 		return true;
+		 		
+			}
+//		    GLib.debug("select got %d rows / last errr  %s", ret.size,  Database.db.errmsg());
+			return false;
+			 
+
+					
+		}
 		
 		public void selectQuery(string q, Gee.ArrayList<T> ret )
 		{	
