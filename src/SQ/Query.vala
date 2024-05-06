@@ -59,7 +59,7 @@ namespace SQ {
 						stmt.bind_text (stmt.bind_parameter_index ("$"+ n), this.getText(newer, n, ps.value_type));
 						break;
 					default:
-					    GLib.error("Unhandled SQlite type : %s", types.geT(n));
+					    GLib.error("Unhandled SQlite type : %s", types.get(n));
 				}
 			
 			}
