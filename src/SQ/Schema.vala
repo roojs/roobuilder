@@ -18,7 +18,7 @@ namespace SQ {
 			}
 			var sq = new Query<Schema>("");
 			var ret = new Gee.ArrayList<Schema>();
-			sq.select("PRAGMA table_info('" + name + ")", ret);
+			sq.selectQuery("PRAGMA table_info('" + name + ")", ret);
 			 
 			cache.set(name,ret);
 			return ret;
