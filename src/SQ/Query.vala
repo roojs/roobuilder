@@ -15,6 +15,77 @@ namespace SQ {
 
 		}
 		
+		
+		public int64 insert(T newer)
+		{	
+		 	assert(this.table != "");
+			var sc = Schema.load(this.table);
+			
+			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
+			
+			
+			string[] keys = {};
+			string[] values = {};
+			var types = new Gee.HashMap<string,string> ();
+			foreach(var s in sc) {
+				if (s.name == "id" ){
+					continue;
+				}
+
+				keys +=  s.name;
+				values += "$" + s.name;				
+				 
+			}
+			
+			Sqlite.Statement stmt;
+			 
+			
+			var q = "INSERT INTO " + this.table + " ( " +
+				string.joinv(",", keys) + " ) VALUES ( " + 
+				string.joinv(",", values) +   " );";
+			
+			//GLib.debug("Query %s", q);
+			Database.db.prepare_v2 (q, q.length, out stmt);
+			
+
+			foreach(var s in sc) {
+				if (s.name == "id" ){
+					continue;
+				}
+				var ps = ocl.find_property( s.name );
+				if (ps == null) {
+					GLib.debug("could not find property %s in object interface", s.name);
+					continue;
+				}
+				switch(s.type) {
+					case "INTEGER":
+					case "INT2":
+						stmt.bind_int (stmt.bind_parameter_index ("$"+ s.name), this.getInt(newer, s.name,ps.value_type));
+					 	break;
+					case "TEXT":
+						stmt.bind_text (stmt.bind_parameter_index ("$"+ s.name), this.getText(newer, s.name, ps.value_type));
+						break;
+					default:
+					    GLib.error("Unhandled SQlite type : %s", types.get(n));
+				}
+				 			
+				 
+			}
+ 
+			if (Sqlite.DONE != stmt.step ()) {
+			    GLib.debug("SYmbol insert: %s", db.errmsg());
+			}
+			stmt.reset(); //not really needed.
+			var id = db.last_insert_rowid();
+			var  newv = GLib.Value ( typeof(int64) );
+			newv.set_int64(id);
+			newer.set_property("id", newv);
+			//GLib.debug("got id=%d", (int)id);
+			return id;
+
+		}
+		
+		
 		public void update(T old, T newer)
 		{
 			assert(this.table != "");
@@ -131,50 +202,6 @@ namespace SQ {
 		 
 		
 		
-		public int64 insert(Sqlite.Database db)
-		{	
-			 
-			Sqlite.Statement stmt;
-			string[] keys = {};
-			string[] values = {};
-			foreach(var k in this.ints.keys) {
-				keys += k;
-				values += ("$" + k);
-			}
-			foreach(var k in this.strings.keys) {
-				if (strings.get(k) == "") {
-					continue;
-				}
-				keys += k;			
-				values += ("$" + k);
-			}
-			
-			var q = "INSERT INTO " + this.table + " ( " +
-				string.joinv(",", keys) + " ) VALUES ( " + 
-				string.joinv(",", values) +   " );";
-			
-			//GLib.debug("Query %s", q);
-			db.prepare_v2 (q, q.length, out stmt);
-			foreach(var k in this.ints.keys) {
-				stmt.bind_int (stmt.bind_parameter_index ("$" +k), ints.get(k));
-			//	GLib.debug("set %s=%d", k, ints.get(k));
-			}
-			foreach(var k in this.strings.keys) {
-				if (strings.get(k) == "") {
-					continue;
-				}
-				stmt.bind_text (stmt.bind_parameter_index ("$" +k), strings.get(k));
-				//GLib.debug("set %s=%s", k, strings.get(k));
-			}
-			if (Sqlite.DONE != stmt.step ()) {
-			    GLib.debug("SYmbol insert: %s", db.errmsg());
-			}
-			stmt.reset(); //not really needed.
-			var id = db.last_insert_rowid();
-			//GLib.debug("got id=%d", (int)id);
-			return id;
-
-		}
 		// select using 'col data?'
 		public void select( string where,  Gee.ArrayList<T> ret )
 		{
