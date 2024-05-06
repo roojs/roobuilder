@@ -212,7 +212,7 @@ namespace SQ {
 			var sc = Schema.load(this.table);
 			 
 			foreach(var s in sc) {
-				keys += s.name
+				keys += s.name;
 		 	}
 			
 			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
