@@ -19,6 +19,7 @@ namespace SQ {
 		public int64 insert(T newer)
 		{	
 		 	assert(this.table != "");
+			assert (typeof(T).is_object());
 			var sc = Schema.load(this.table);
 			
 			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
@@ -208,14 +209,13 @@ namespace SQ {
 			
 			string[] keys = {};
 		 
-			//cols.set("id", 0);
-			keys += "id"; /// ??? needed?
-			foreach(var k in this.ints.keys) {
-				keys += k;
-			}
-			foreach(var k in this.strings.keys) {
-				keys += k;
-			}
+			var sc = Schema.load(this.table);
+			
+			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
+			    
+			foreach(var s in sc) {
+				keys += s.name
+		 	}
 			
 			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
 			this.selectQuery(q, ret);
