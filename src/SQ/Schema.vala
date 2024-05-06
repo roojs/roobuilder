@@ -27,12 +27,12 @@ namespace SQ {
 		}
 		
 		
-		int cid { get; set; default = -1 ;}
-		string name  { get; set; default = ""; }
-		string type  { get; set; default = "" ;}
-		bool notnull  { get; set; default = false; }
-		string dflt_value  { get; set; default = "" ;}
-		bool pk  { get; set; default = false; }
+		public int cid { get; set; default = -1 ;}
+		public string name  { get; set; default = ""; }
+		public string type  { get; set; default = "" ;}
+		public bool notnull  { get; set; default = false; }
+		public string dflt_value  { get; set; default = "" ;}
+		public bool pk  { get; set; default = false; }
 
 		
 		
