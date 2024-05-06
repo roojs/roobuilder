@@ -68,11 +68,29 @@ namespace Palete {
 			foreach(var f in this.files.values) {
 				file_ids += f.id.to_string();
 			}
-			//var sq = new SymbolQuery<Symbol>
-			return null;
+			var sq = new SymbolQuery<Symbol>("symbol");
+			var res = new Symbol();
+			var  stmt = sql.selectPrepare("
+					SELECT 
+						* 
+					FROM 
+						symbol 
+					WHERE 
+						file_id IN (" + string.joinv("," file_ids) + ")
+					AND
+						fqn = $fqn
+					LIMIT 1;
+			");
+			stmt.bind_text("fqn", fqn);
+			if (!sq.selectExecuteInto(stmt,res)) {
+				return null;
+			}
+			res.file = this.files.get(res.file_id);
+						
+			
+			return res;
 			
 			
-		
 		}
 		
 	}
