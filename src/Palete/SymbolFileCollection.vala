@@ -21,7 +21,7 @@ namespace Palete {
 				
 				return this.files.get(path);
 			}
-			var f = new SymbolFile.new_file(file)
+			var f = new SymbolFile.new_file(file);
 			this.files.set(path,f);
 			
 			this.files_ids.set((int)f.id, f);
@@ -37,7 +37,7 @@ namespace Palete {
 				
 				return this.files.get(path);
 			}
-			var f = new SymbolFile.new_from_path(path,-1));
+			var f = new SymbolFile.new_from_path(path,-1);
 			this.files.set(path,f);
 			this.files_ids.set((int)f.id, f);
 			return f;	
