@@ -9,7 +9,7 @@ namespace SQ {
 	
 		string table;
 		  
-		public SymbolQuery(string table  ) 
+		public Query(string table  ) 
 		{
 			this.table = table;
 
