@@ -1,7 +1,7 @@
 namespace Palete {
 	
 	
-	public class SymbolFile {
+	public class SymbolFile : Object{
 		/**
 		which collection does this file belong to
 		collections contain information about what type of data to load
@@ -14,10 +14,10 @@ namespace Palete {
 		
 		
 	
-		public int64 id = -1;
-		public string path = ""; 
-		public int64 version  = -1;  // utime?
-		public string relversion  = "";  // version eg. 1.0 (mathcing gir to vapis?)
+		public int64 id { set ; get ; default = -1; }
+		public string { set ; get ; default =ath = ""; }
+		public int64 version  { set ; get ; default = -1; } // utime?
+		public string relversion  { set ; get ; default = ""; }  // version eg. 1.0 (mathcing gir to vapis?)
 		//public Gee.ArrayList<Symbol> symbols_all ;
  		public Gee.HashMap<int,Symbol> symbol_map;
  		public Gee.HashMap<string,Symbol> fqn_map;
