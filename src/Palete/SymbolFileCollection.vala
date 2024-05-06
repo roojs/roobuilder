@@ -85,7 +85,7 @@ namespace Palete {
 			if (!sq.selectExecuteInto(stmt,res)) {
 				return null;
 			}
-			res.file = this.files.get(res.file_id);
+			res.file = this.files.get((int)res.file_id);
 						
 			
 			return res;
