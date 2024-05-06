@@ -240,12 +240,15 @@ namespace SQ {
 		
 		public void selectQuery(string q, Gee.ArrayList<T> ret )
 		{	
+				assert (typeof(T).is_object());
 			Sqlite.Statement stmt;
 			GLib.debug("Query %s", q);
 			Database.db.prepare_v2 (q, q.length, out stmt);
  
 			while (stmt.step() == Sqlite.ROW) {
-		 		ret.add( this.fetchRow(stmt) );
+				var row =   Object.new (typeof(T));
+				this.fetchRow(stmt, row); 
+		 		ret.add( row);
 		 		
 			}
 			 
@@ -253,11 +256,14 @@ namespace SQ {
 					
 		}
 		
-		T fetchRow(Sqlite.Statement stmt)
+		
+		
+		
+		viod fetchRow(Sqlite.Statement stmt, T row)
 		{
 			 
 			assert (typeof(T).is_object());
-			var row =   Object.new (typeof(T));	
+ 
 			int cols = stmt.column_count ();
 			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
 			for (int i = 0; i < cols; i++) {
