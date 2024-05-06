@@ -66,7 +66,7 @@ namespace SQ {
 						stmt.bind_text (stmt.bind_parameter_index ("$"+ s.name), this.getText(newer, s.name, ps.value_type));
 						break;
 					default:
-					    GLib.error("Unhandled SQlite type : %s", types.get(n));
+					    GLib.error("Unhandled SQlite type : %s", types.get(s.name));
 				}
 				 			
 				 
@@ -76,7 +76,7 @@ namespace SQ {
 			    GLib.debug("SYmbol insert: %s", Database.db.errmsg());
 			}
 			stmt.reset(); //not really needed.
-			var id = db.last_insert_rowid();
+			var id = Database.db.last_insert_rowid();
 			var  newv = GLib.Value ( typeof(int64) );
 			newv.set_int64(id);
 			((Object)newer).set_property("id", newv);
