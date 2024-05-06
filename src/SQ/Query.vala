@@ -292,10 +292,10 @@ namespace SQ {
 			return row;
 		}
 		
-		void setObjectProperty(Sqlite.Statement stmt, Object row, int pos, string col_name, int stype, Type gtype) 
+		void setObjectProperty(Sqlite.Statement stmt, T in_row, int pos, string col_name, int stype, Type gtype) 
 		{
 			var  newv = GLib.Value ( gtype );
-			
+			var row = (Object) in_row;
 			gtype = gtype.is_enum()  ? GLib.Type.ENUM : gtype;
 			
 			switch (gtype) {
