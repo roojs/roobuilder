@@ -9,13 +9,13 @@ namespace Palete {
 	}
 	 
  
-	public class XVapiParser : Vala.CodeVisitor {
+	public class  VapiParser : Vala.CodeVisitor {
 		
 		Vala.CodeContext context;
 		 
 		Project.Gtk project;
 		
-  		public XVapiParser(Project.Gtk project) {
+  		public  VapiParser(Project.Gtk project) {
 			base();
 			this.project = project;
 			// should not really happen..
