@@ -289,7 +289,7 @@ namespace SQ {
 				 
 				this.setObjectProperty(stmt, row, i, col_name, type_id, ps.value_type);
 			}
-			return row;
+			 
 		}
 		
 		void setObjectProperty(Sqlite.Statement stmt, T in_row, int pos, string col_name, int stype, Type gtype) 
