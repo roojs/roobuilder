@@ -329,9 +329,10 @@ namespace Palete {
 			  	GLib.debug("check children %d:%d %s != %s", (int)this.parent_id, (int)this.id,  k, this.type_name);
 			  }
 			*/
+			var q = new SQ.Query<Symbol>("symbol");
 			if (!children_map.has_key(this.type_name)) {
  
-				var q = new SQ.Query<Symbol>("symbol");
+				
 				q.insert(this);
 				GLib.debug("DB INSERT added %d:%d, %s", (int)this.parent_id, (int)this.id, this.fqn);
  				children.append(this);
@@ -345,7 +346,7 @@ namespace Palete {
 
 			var old = children_map.get(this.type_name);
 			this.id = old.id;
-			var q = new SQ.Query<Symbol>("symbol");
+ 
 			
 			q.update(old, this);
 			GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
