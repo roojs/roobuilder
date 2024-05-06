@@ -22,8 +22,6 @@ namespace SQ {
 			
 			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
 			   
-				
-			
 			string[] setter = {};
 			var types = new Gee.HashMap<string,string> ();
 			foreach(var s in sc) {
@@ -41,10 +39,11 @@ namespace SQ {
 			if (setter.length < 1) {
 				return;
 			}
-			var id = this.getInt(old, "id");
+
+			var id = this.getInt(old, "id",ocl.find_property("id").value_type);
 			Sqlite.Statement stmt;
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) + " WHERE id = " + id.to_string();
-			SQL.Database.db.prepare_v2 (q, q.length, out stmt);
+			SQ.Database.db.prepare_v2 (q, q.length, out stmt);
 			foreach(var n in types) {
 				var ps = ocl.find_property( n );
 				if (ps == null) {
@@ -127,103 +126,9 @@ namespace SQ {
 	 		}
 		}
 		
+		 
 		
-		public void setInts( string[] cols) 
-		{
-			for(var i = 0;i < cols.length; i++) {
-				var col = cols[i];
-				this.types.set(col, typeof(int));
-				var  newv = GLib.Value (typeof (int));				
-				this.newer.get_property(col, ref newv);
-				
-				if (this.old != null) {
-					var  oldv = GLib.Value (typeof (int));
-					this.old.get_property(col, ref oldv);
-					if (oldv.get_int() == newv.get_int()) {
-						continue;
-					}
-					this.old.set_property(col, newv);
-				}
-				this.setter += (col + " = $" +col);
-				this.ints.set(col, newv.get_int());
-				// not the same..
-			}
-		}
-		public void setInt64s( string[] cols) 
-		{
-			for(var i = 0;i < cols.length; i++) {
-				var col = cols[i];
-				this.types.set(col, typeof(int64));
-				var  newv = GLib.Value (typeof (int64));				
-				this.newer.get_property(col, ref newv);
-
-				if (this.old != null) {
-					var  oldv = GLib.Value (typeof (int64));
-					this.old.get_property(col, ref oldv);
-					if (oldv.get_int64() == newv.get_int64()) {
-						continue;
-					}
-					this.old.set_property(col, newv);
-				}	
-			
-
-				this.setter += (col + " = $" +col);
-				this.ints.set(col, (int)newv.get_int64());
-				// not the same..
-			}
-		}
-		public void setStrings(string[] cols) 
-		{
-			for(var i = 0;i < cols.length; i++) {
-				var col = cols[i];
-				var  newv = GLib.Value (typeof (string));	
-				this.types.set(col, typeof(string));
-				this.newer.get_property(col, ref newv);
-
-				if (this.old != null) {
-					var  oldv = GLib.Value (typeof (string));
-					this.old.get_property(col, ref oldv);
-					if (oldv.get_string() == newv.get_string()) {
-						continue;
-					}
-					this.old.set_property(col, newv);					
-				}
-				this.setter +=  (col + " = $" +col);
-				
-				this.strings.set(col, newv.get_string());
-				// not the same..
-			}
-		}
-		
-		public void setBools(string[] cols) 
-		{
-			for(var i = 0;i < cols.length; i++) {
-				var col = cols[i];
-				this.types.set(col, typeof(bool));
-				var  newv = GLib.Value (typeof (bool));				
-				this.newer.get_property(col, ref newv);
-				
-				if (this.old != null) {
-					var  oldv = GLib.Value (typeof (bool));
-					this.old.get_property(col, ref oldv);
-				
-					if (oldv.get_boolean() == newv.get_boolean()) {
-						continue;
-					}
-					this.old.set_property(col, newv);									
-				}
-				this.setter +=  (col + " = $" + col);
-				this.ints.set(col, newv.get_boolean() ? 1 : 0);
-
-				// not the same..
-			}
-		}
-		
-		public bool shouldUpdate()
-		{
-			return this.ints.size +   this.strings.size > 0;
-		}
-		
+		 
 		
 		
 		public int64 insert(Sqlite.Database db)
