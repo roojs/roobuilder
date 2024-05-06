@@ -241,7 +241,7 @@ namespace SQ {
 		public bool selectExecuteInto(Sqlite.Statement stmt,  T row )
  		{
 			if (stmt.step() == Sqlite.ROW) {
-		 		var row =   Object.new (typeof(T));
+		 		 
 				this.fetchRow(stmt, row); 
 		 		return true;
 		 		
