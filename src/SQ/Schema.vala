@@ -29,7 +29,7 @@ namespace SQ {
 		
 		public int cid { get; set; default = -1 ;}
 		public string name  { get; set; default = ""; }
-		public string type  { get; set; default = "" ;}
+		public string ctype  { get; set; default = "" ;}
 		public bool notnull  { get; set; default = false; }
 		public string dflt_value  { get; set; default = "" ;}
 		public bool pk  { get; set; default = false; }
