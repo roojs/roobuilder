@@ -56,17 +56,17 @@ namespace Palete
 		}
 		public override void err (Vala.SourceReference? source, string message) {
 		    
-		        add_message (source, message,  Lsp.DiagnosticSeverity.Error);
+		        this.add_message (source, message,  Lsp.DiagnosticSeverity.Error);
 		      
 		}
 		public override void note (Vala.SourceReference? source, string message) {
 		    
-		        add_message (source, message,  Lsp.DiagnosticSeverity.Information);
+		        this.add_message (source, message,  Lsp.DiagnosticSeverity.Information);
 		      
 		}
 		public override void warn (Vala.SourceReference? source, string message) {
 		     
-		        add_message (source, message,  Lsp.DiagnosticSeverity.Warning);
+		        this.add_message (source, message,  Lsp.DiagnosticSeverity.Warning);
 		      
 		}
 	}
