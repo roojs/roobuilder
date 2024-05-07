@@ -33,7 +33,7 @@ namespace Palete
 		public ValaErrorReporter ( ) {
 		    this.messages  =  new ArrayList<Lsp.Diagnostic> ();
 		}
-sp.
+
 		public void add_message (Vala.SourceReference? source, string message, Lsp.DiagnosticSeverity severity) {
 		    // mitigate potential infinite loop bugs in Vala parser
 		     
