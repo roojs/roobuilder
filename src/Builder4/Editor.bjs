@@ -301,7 +301,7 @@
            "indent_width" : 4,
            "items" : [
             {
-             "# Gee.ArrayList<Lsp.Diag> errors" : "",
+             "# Gee.ArrayList<Lsp.Diagnostic> errors" : "",
              "$ Gee.HashMap<int,string>? xmarks" : "null",
              "$ xns" : "GtkSource",
              "$ xtype" : "Buffer",
