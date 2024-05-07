@@ -125,6 +125,7 @@ namespace Palete {
 			foreach(var s in this.changed) {
 				ar.add(s);
 			}
+			// copy the errors so the thread can't use them anymore...
 			this.errors = this.report.errors;
 			this.report = null;
 			this.running = false;		
