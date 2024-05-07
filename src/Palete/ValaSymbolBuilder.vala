@@ -74,7 +74,7 @@ namespace Palete {
 					foreach(var path in this.files) {
 						var f = this.scan_project.getByPath(path);
 						if (f == null) {
-							GLib.debug("skip file - path not found %s", path)
+							GLib.debug("skip file - path not found %s", path);
 							continue;
 						}
 						//GLib.debug("got Diagnostics for %s - %d errors", f.path, 
