@@ -1104,7 +1104,7 @@ namespace Project {
 		public abstract void initialize(); // for new projects (make dirs?);
 		public abstract void loadJson(Json.Object obj); 
 		public abstract void saveJson(Json.Object obj);
-		public abstract Palete.SymbolFileCollection symbolManager(JsRender.JsRender file);
+		public abstract Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file);
 	}
 }
  
