@@ -88,10 +88,13 @@ namespace Palete {
 			
 		}
 		
-		
-		public   Symbol? getClassSymbol(string ename)
+		/*
+			NEW?? symbol based fetch?
+			
+		*/
+		public   Symbol? getClassSymbol(JsRender.JsRender file, string ename)
 		{
-			var ret =  this.project.symbol_manager.getSymbolByFqn(ename);
+			var ret =  file.symbol_manager().getSymbolByFqn(ename);
 			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
 		
 		}
