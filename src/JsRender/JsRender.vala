@@ -146,7 +146,7 @@ namespace JsRender {
 		{
 			return this.symbol_manager().factory_by_path(this.path);
 		}
-		public Palete.SymbolFileCollection symbol_manager()
+		public Palete.SymbolFileCollection? symbol_manager()
 		{
 			return this.project.symbolManager(this);
 		}
