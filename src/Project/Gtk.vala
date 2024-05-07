@@ -256,7 +256,15 @@ namespace Project
  		}
 		 
 		 
-		 
+		public override Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file)
+		{
+			var cgn = this.firstBuildModuleWith(file);
+			if (cgn == "") {
+				return null;
+			}
+			return this.compilegroups.get(cgn).symbolManager();
+			
+		} 
 		 
 		 
 		 
@@ -426,7 +434,7 @@ build/
 	}
 			
 		
-		 public override void   initDatabase()
+		public override void   initDatabase()
 		{
 		     // nOOP
 		}
