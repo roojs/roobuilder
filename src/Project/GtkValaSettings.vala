@@ -103,7 +103,7 @@ namespace Project
 			return ret;
 		}
 		// ?? needed?
-		Palete.SymbolFileCollection symbolManager()
+		public Palete.SymbolFileCollection symbolManager()
 		{
 			return this.symbol_manager;
 		}
