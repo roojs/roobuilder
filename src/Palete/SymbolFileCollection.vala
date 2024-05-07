@@ -43,9 +43,7 @@ namespace Palete {
 			return f;	
 			
 
-			this.files.set(path, new SymbolFile.new_from_path(path,-1));
-			return this.files.get(path);	
-		 
+ 
 		}
 		
 		public   void dumpAll()
