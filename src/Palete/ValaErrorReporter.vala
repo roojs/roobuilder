@@ -38,7 +38,7 @@ namespace Palete
 		    // mitigate potential infinite loop bugs in Vala parser
 		     
 		    this.messages.add (new Lsp.Diagnostic ( 
-		    	range: new Range.from_sourceref  (source) , 
+		    	range: new Lsp.Range.from_sourceref  (source) , 
 		    	severity: severity,
 		    	message : message
 	    	));
