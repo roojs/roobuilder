@@ -37,9 +37,12 @@ namespace Palete {
 		Vala.CodeContext context;
 	 
 		Gee.ArrayList<string> changed;
+		Gee.ArrayList<Lsp.Diagnostic>? errors = null; 
 		
 		Project.Gtk scan_project;
 		public SymbolFileCollection  filemanager;
+		
+		ValaErrorReporter report; 
 		
 		public ValaSymbolBuilder(Project.Gtk project)
 		{
@@ -47,7 +50,7 @@ namespace Palete {
 			this.scan_project = project;
 			this.filemanager = new SymbolFileCollection();
 			this.changed = new Gee.ArrayList<string>();
- 
+ 			
 		}
 		public void updateTreeFromFile(JsRender.JsRender file)
 		{
@@ -68,6 +71,7 @@ namespace Palete {
 				var ar = updateBackground.end(r);
 				if (ar != null) {
 					this.scan_project.onTreeChanged(ar);
+					this.scan_project.update
 				}
 				
 			});
@@ -113,6 +117,8 @@ namespace Palete {
 			foreach(var s in this.changed) {
 				ar.add(s);
 			}
+			this.errors = this.report.messages;
+			this.report = null;
 			this.running = false;		
 			return ar;
     
@@ -306,8 +312,8 @@ namespace Palete {
 			//context.thread = true; 
 			
 			
-			//this.report = new ValaSourceReport(this.file);
-			//context.report = this.report;
+			this.report = new ValaErrorReporter(this.file);
+			context.report = this.report;
 			
 			
 			context.basedir = "/tmp"; //Posix.realpath (".");
