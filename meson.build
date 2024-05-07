@@ -169,6 +169,7 @@ roobuilder_src = files([
    'src/SQ/Database.vala',
    'src/SQ/Query.vala',
    'src/SQ/Schema.vala',
+   'src/Palete/ValaErrorReporter.vala',
 ])
 
 
