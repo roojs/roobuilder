@@ -106,7 +106,7 @@ namespace Palete {
 				var sqf = new SQ.Query<SymbolFile>("files");				
 				var stmt = sqf.selectPrepare("SELECT id, version FROM files where path = $path");
 				stmt.bind_text (stmt.bind_parameter_index ("$path"),this.path);
-				var ret = new Gee.ArrayList<Symbol>();
+
 				if (!sqf.selectExecuteInto(stmt, this)) {
 					sqf.insert(this);
 				}
