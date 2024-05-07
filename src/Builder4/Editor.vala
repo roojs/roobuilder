@@ -983,6 +983,7 @@ public class Editor : Object
 
 
 			// my vars (def)
+		public Gee.ArrayList<Lsp.Diag> errors;
 		public int error_line;
 		public Gee.HashMap<int,string>? xmarks;
 		public bool check_queued;
