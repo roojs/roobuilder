@@ -1024,11 +1024,6 @@ public class Editor : Object
 			buf.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
 			buf.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
 			buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
-			
-			
-			buf.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "pink");
-			buf.create_tag ("WARN", "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
-			buf.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
 
 			//listeners
 			this.el.cursor_moved.connect( ( ) => {
