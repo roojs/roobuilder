@@ -45,7 +45,7 @@ namespace Project
 		   }
 			// sources and packages.
 			this.sources = this.filterFiles(this.project.readArray(el.get_array_member("sources")));
-			
+			this.symbol_manager = new Palete.SymbolFileCollection();
 
 		}
 		
