@@ -17,7 +17,7 @@ namespace Palete {
 		{
 			
 
-			global::Gtk.TextIter begin, end ,  pos;
+			global::Gtk.TextIter begin, end  ;
 
 			if (!context.get_bounds(out begin, out end)) {
 				return true;
