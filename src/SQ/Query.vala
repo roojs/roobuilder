@@ -27,7 +27,7 @@ namespace SQ {
 			
 			string[] keys = {};
 			string[] values = {};
-			var types = new Gee.HashMap<string,string> ();
+ 
 			foreach(var s in sc) {
 				if (s.name == "id" ){
 					continue;
