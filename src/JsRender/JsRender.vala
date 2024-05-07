@@ -144,7 +144,11 @@ namespace JsRender {
 		}
 		public Palete.SymbolFile symbol_file()
 		{
-			return this.project.symbol_manager.factory_by_path(this.path);
+			return this.symbol_manager().factory_by_path(this.path);
+		}
+		public Palete.SymbolFileCollection symbol_manager()
+		{
+			return this.project.symbolManager(this);
 		}
 		 
 		public signal void compile_notice(string type, string file, int line, string message);
