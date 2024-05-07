@@ -300,8 +300,8 @@ namespace Palete {
 				}
 				GLib.debug("parent namespace is not in same file %s:%s", parent.name, this.name);
 				return; // should we skip this!?!?
-				this.parent_name = parent.name;
-				parent = null;
+				//this.parent_name = parent.name;
+				//parent = null;
 			}
 			this.file.parsed_symbols.add(this.line_sig);
 			
