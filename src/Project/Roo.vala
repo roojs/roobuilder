@@ -13,7 +13,9 @@ public class Project.Roo : Project {
 	public string DBTYPE = "";
 	public string DBNAME = "";
 	public string DBUSERNAME = "";  // should be stored in settings somehwere - not in roo file!
-	public string DBPASSWORD = "";	 
+	public string DBPASSWORD = "";	
+	
+	Palate.SymbolFileCollection symbol_manager;
     public Roo(string path) {
 
 		
