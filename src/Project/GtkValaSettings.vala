@@ -28,6 +28,8 @@ namespace Project
 			this.symbol_manager = new Palete.SymbolFileCollection();
 				
 		}
+		
+		
 		 
 		public GtkValaSettings.from_json(Gtk project, Json.Object el) {
 
@@ -100,6 +102,12 @@ namespace Project
 			}
 			return ret;
 		}
+		// ?? needed?
+		Palete.SymbolFileCollection symbolManager()
+		{
+			return this.symbol_manager;
+		}
+		
 		
 		public string writeMesonExe(string resources)
 		{
