@@ -1089,8 +1089,9 @@ namespace Project {
 		public void onTreeChanged(Gee.ArrayList<string> paths) {
 			// loop trhoug paths - see if files are open, if so... update right tree?
 			foreach(var p in paths) {
-				this.symbol_manager.factory_by_path(p).refreshSymbolsFromDB();
-				this.getByPath(p).symbol_tree_updated();
+				var f = this.getByPath(p);
+				this.symbolManager(f).factory_by_path(p).refreshSymbolsFromDB();
+				f.symbol_tree_updated();
 			}
 		
 		}
@@ -1103,7 +1104,7 @@ namespace Project {
 		public abstract void initialize(); // for new projects (make dirs?);
 		public abstract void loadJson(Json.Object obj); 
 		public abstract void saveJson(Json.Object obj);
-		public abstract SymbolFileCollection symbolManager(JsRender.JsRender file);
+		public abstract Palate.SymbolFileCollection symbolManager(JsRender.JsRender file);
 	}
 }
  
