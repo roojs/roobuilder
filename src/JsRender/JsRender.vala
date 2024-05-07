@@ -850,13 +850,13 @@ namespace JsRender {
 		
 		}
 		 
-		public void updateErrors(Gee.ArrayList<Lsp.Diagnostic> new_errors) 
+		public void updateErrors(Gee.ArrayList<Lsp.Diagnostic>? new_errors) 
 		{
 			var oc = this.error_counter;
 			var skip = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
 			var rem = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
 			foreach(var old in this.errors) {
-				if (new_errors.contains(old)) {
+				if (new_errors != null && new_errors.contains(old)) {
 					skip.add(old);
 					continue;
 				}
@@ -866,11 +866,13 @@ namespace JsRender {
 			foreach(var old in  rem) {
 				this.removeError(old);
 			}
-			foreach(var err in new_errors) {
-				if (skip.contains(err)) {
-					continue;
+			if (new_errors != null) {
+				foreach(var err in new_errors) {
+					if (skip.contains(err)) {
+						continue;
+					}
+					this.addError(err);
 				}
-				this.addError(err);
 			}
 			if (oc != this.error_counter) {
 				BuilderApplication.updateCompileResults();
