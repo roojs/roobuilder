@@ -22,9 +22,9 @@ namespace Palete {
 		int countdown = 0;
 		Gee.ArrayList<JsRender.JsRender> open_files;
 		private JsRender.JsRender? _change_queue_file = null;
-		int doc_countdown = 0;
+		 
 		private string change_queue_file_source = "";
-		private JsRender.JsRender? doc_queue_file = null;
+ 
 
 		
 		JsRender.JsRender? change_queue_file {
@@ -104,7 +104,7 @@ namespace Palete {
 			yield;
 			return cnt;
 		}
-		static int doc_queue_id = 0;
+	 
 		
 	 
 		
