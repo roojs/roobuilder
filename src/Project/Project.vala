@@ -1090,8 +1090,11 @@ namespace Project {
 			// loop trhoug paths - see if files are open, if so... update right tree?
 			foreach(var p in paths) {
 				var f = this.getByPath(p);
-				f.symbol_file().refreshSymbolsFromDB();
-				f.symbol_tree_updated();
+				var sf = f.symbol_file();
+				if (sf != null) {
+					f.symbol_file().refreshSymbolsFromDB();
+					f.symbol_tree_updated();
+				}
 			}
 		
 		}
