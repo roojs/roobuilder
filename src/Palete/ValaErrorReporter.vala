@@ -28,19 +28,22 @@ namespace Palete
 
 	class  ValaErrorReporter : Vala.Report 
 	{
-		public Gee.ArrayList<Lsp.Diagnostic> messages; 
+		public Gee.HashMap<string,Gee.ArrayList<Lsp.Diagnostic>> errors; 
 		 
 		public ValaErrorReporter ( ) {
-		    this.messages  =  new Gee.ArrayList<Lsp.Diagnostic> ();
+		    this.messages  =  new Gee.HashMap<string,Gee.ArrayList<Lsp.Diagnostic>> ();
 		}
 
 		public void add_message (Vala.SourceReference? source, string message, Lsp.DiagnosticSeverity severity) {
 		    // mitigate potential infinite loop bugs in Vala parser
-			 var add = new  Lsp.Diagnostic ();
-			 add.range = new Lsp.Range.from_sourceref  (source); 
+		    if (!this.errors.has_key(source.file.filename)) {
+		    this.errors.set(source.file.filename, new Gee.ArrayList<Lsp.Diagnostic>());
+		    var to = this.errors.get(this.errors.set(source.file.filename));
+			var add = new  Lsp.Diagnostic ();
+			add.range = new Lsp.Range.from_sourceref  (source); 
 			add.severity = severity;
 			add.message  = message;
-			this.messages.add (add);
+			to.add (add);
 		    	
 	    	 
 		}
