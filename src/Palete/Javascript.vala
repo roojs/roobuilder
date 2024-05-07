@@ -84,7 +84,7 @@ namespace Palete {
 			}
 			this.packer_running = true;
 		    
-		    owned ThreadFunc<bool> run = () => {
+		    ThreadFunc<bool> run = () => {
 
 			// standard error format:  file %s, line %s, Error 
 			  
