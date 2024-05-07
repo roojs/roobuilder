@@ -57,6 +57,7 @@
         public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
 		public static bool opt_debug_critical = false;
+		public static bool opt_disable_threads = false;
 		public static bool opt_list_projects = false;
 		public static bool opt_list_files = false;
 		public static bool opt_pull_resources = false;
