@@ -35,7 +35,7 @@ namespace Palete {
 		int queue_id = 0;
 		
 		Vala.CodeContext context;
-	 
+		Gee.ArrayList<string> files; 
 		Gee.ArrayList<string> changed;
 		Gee.ArrayList<Lsp.Diagnostic>? errors = null; 
 		
