@@ -415,7 +415,7 @@ namespace Palete {
 			this.threaded_callback = this.create_valac_tree.callback;
 			 
 			//string[] output = {};
-			if (thread_enabled) { 
+			if (!BuilderApplication.opt_disable_threads) { 
 				new Thread<void>("thread-update-tree",  this.threaded_parse);
 			} else {
 				this.threaded_parse();
