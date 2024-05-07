@@ -587,13 +587,13 @@
 			
 			//GLib.debug("started server - sleep 30 secs so you can gdb attach");
 			//Posix.sleep( 30 );
-			var done = false;
+			 
 			var loop = new MainLoop();
 			 
 			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 			
 			sb.updateBackground.begin(BuilderApplication.opt_symbol_test, (o,r )  => {
-				var ar = sb.updateBackground.end(r);
+				  sb.updateBackground.end(r);
 				
 				if (BuilderApplication.opt_symbol_dump_file != null) {
 					var fc = new Palete.SymbolFileCollection();
