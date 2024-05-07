@@ -274,7 +274,9 @@ public class Editor : Object
 	}
 	public void updateErrorMarks () {
 		
-	 	return;
+	   if (this.errors == null) {
+		   	this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+	   	}
 	
 		var buf = _this.buffer.el;
 		Gtk.TextIter start;
@@ -312,6 +314,7 @@ public class Editor : Object
 			buf.remove_tag_by_name ("WARN", start, end);
 			buf.remove_tag_by_name ("DEPR", start, end);
 			this.last_error_counter = file.error_counter ;
+			this.errors.clear();
 			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
 			return;
 		}
@@ -345,15 +348,13 @@ public class Editor : Object
 		}
 		
 		// this does not work - it removes the marks to much and kills the UI experience
+		 
+		foreach(var diag in ar) {
 		
-		buf.remove_source_marks (start, end, "ERR");
-		buf.remove_source_marks (start, end, "WARN");
-		buf.remove_source_marks (start, end, "DEPR");
-		buf.remove_tag_by_name ("ERR", start, end);
-		buf.remove_tag_by_name ("WARN", start, end);
-		buf.remove_tag_by_name ("DEPR", start, end);
+			if (this.errors.contains(diag)) {
+				continue;
+			}
 		
-		foreach(var diag in ar) { 
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
 		    var eline = (int)diag.range.start.line - offset;
@@ -369,7 +370,8 @@ public class Editor : Object
 		    
 		    buf.get_iter_at_line( out iter, eline);
 		   	var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
-		    buf.create_source_mark( msg, diag.category, iter);
+		    var mark = buf.create_source_mark( msg, diag.category, iter);
+		    diag.set_data("mark", mark);
 		    
 	 	    var spos = (int)diag.range.start.character - hoffset;
 	 	    if (spos < 0) { spos =0 ; }
@@ -390,8 +392,13 @@ public class Editor : Object
 	 	    	
 		    buf.apply_tag_by_name(diag.category, start, end);
 		    
+		    this.errors.add(diag);
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
+		}
+		foreach(var e as this.errors) {
+		
+		
 		}
 		this.last_error_counter = file.error_counter ;
 	
