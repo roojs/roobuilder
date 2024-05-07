@@ -559,7 +559,9 @@
 				
 				ls.documentSymbols.begin(file, (o,res) => {
 					GLib.debug("Got doc symbols return");
-					ls.documentSymbols.end(res);
+					try {
+						ls.documentSymbols.end(res);
+					} catch (GLib.Error e) {}
 				});
 				
 				return false;
