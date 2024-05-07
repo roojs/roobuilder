@@ -36,12 +36,13 @@ namespace Palete
 
 		public void add_message (Vala.SourceReference? source, string message, Lsp.DiagnosticSeverity severity) {
 		    // mitigate potential infinite loop bugs in Vala parser
-		     
-		    this.messages.add (new Lsp.Diagnostic ( 
-		    	range: new Lsp.Range.from_sourceref  (source) , 
-		    	severity: severity,
-		    	message : message
-	    	));
+			 var add = new  Lsp.Diagnostic ();
+			 add.range = new Lsp.Range.from_sourceref  (source); 
+			add.severity = severity;
+			add.message  = message;
+			this.messages.add (add);
+		    	
+	    	 
 		}
 
 		public override void depr (Vala.SourceReference? source, string message) {
