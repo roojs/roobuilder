@@ -15,7 +15,7 @@ public class Project.Roo : Project {
 	public string DBUSERNAME = "";  // should be stored in settings somehwere - not in roo file!
 	public string DBPASSWORD = "";	
 	
-	Palate.SymbolFileCollection symbol_manager;
+	Palete.SymbolFileCollection symbol_manager;
     public Roo(string path) {
 
 		
@@ -25,7 +25,7 @@ public class Project.Roo : Project {
         // various loader methods..
         //this.id = "project-roo-%d".printf(rid++);
 		this.initDatabase();
-		this.symbol_manager  = new Palate.SymbolFileCollection();
+		this.symbol_manager  = new Palete.SymbolFileCollection();
 		
         
     }
@@ -113,8 +113,7 @@ public class Project.Roo : Project {
 	}
 	public override Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file)
 	{
-		 
-		return this.symbol_manager;
+		 return this.symbol_manager;
 		
 	} 
 		 
