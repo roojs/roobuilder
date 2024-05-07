@@ -31,7 +31,7 @@ namespace Palete
 		public Gee.HashMap<string,Gee.ArrayList<Lsp.Diagnostic>> errors; 
 		 
 		public ValaErrorReporter ( ) {
-		    this.messages  =  new Gee.HashMap<string,Gee.ArrayList<Lsp.Diagnostic>> ();
+		    this.errors  =  new Gee.HashMap<string,Gee.ArrayList<Lsp.Diagnostic>> ();
 		}
 
 		public void add_message (Vala.SourceReference? source, string message, Lsp.DiagnosticSeverity severity) {
