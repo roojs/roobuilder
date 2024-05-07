@@ -76,9 +76,9 @@ namespace Palete {
 			if (this.countdown < -1) {
 				return;
 			}
-			if (this.getting_diagnostics) {
-				return;
-			}
+			//if (this.getting_diagnostics) {
+			//	return;
+			//}
 			this.countdown--;
 
 		
