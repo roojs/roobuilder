@@ -38,7 +38,7 @@ namespace Palete
 		    // mitigate potential infinite loop bugs in Vala parser
 		    if (!this.errors.has_key(source.file.filename)) {
 		    this.errors.set(source.file.filename, new Gee.ArrayList<Lsp.Diagnostic>());
-		    var to = this.errors.get(this.errors.set(source.file.filename));
+		    var to = this.errors.get(source.file.filename);
 			var add = new  Lsp.Diagnostic ();
 			add.range = new Lsp.Range.from_sourceref  (source); 
 			add.severity = severity;
