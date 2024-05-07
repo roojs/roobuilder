@@ -54,7 +54,7 @@ namespace Palete {
 				return true;
 			}
 			GLib.debug("populate hover Word: %s" ,begin.get_text(end));
-			return false;
+			return true; //?? was false?
 			
 			
 		}
