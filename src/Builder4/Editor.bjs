@@ -3,6 +3,7 @@
  "gen_extended" : false,
  "items" : [
   {
+   "# Gee.ArrayList<Lsp.Diagnostic>? errors" : "null",
    "# GtkSource.SearchContext searchcontext" : "null",
    "# JsRender.JsRender? file" : "null",
    "# JsRender.Node node" : "null",
@@ -301,7 +302,6 @@
            "indent_width" : 4,
            "items" : [
             {
-             "# Gee.ArrayList<Lsp.Diagnostic>? errors" : "null",
              "$ Gee.HashMap<int,string>? xmarks" : "null",
              "$ xns" : "GtkSource",
              "$ xtype" : "Buffer",
