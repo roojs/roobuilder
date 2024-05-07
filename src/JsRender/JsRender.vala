@@ -145,7 +145,11 @@ namespace JsRender {
 		public Palete.SymbolFile? symbol_file()
 		{
 			var sm =  this.symbol_manager();
-			return sm == null? sm : sm.factory_by_path(this.path);
+			if (sm == null) {
+				return null;
+			}
+				
+			return  sm.factory_by_path(this.path);
 		}
 		public Palete.SymbolFileCollection? symbol_manager()
 		{
