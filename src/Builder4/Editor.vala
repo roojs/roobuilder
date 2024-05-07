@@ -1228,7 +1228,8 @@ public class Editor : Object
 				_this.file.getLanguageServer().document_change(_this.file);
 				_this.file.update_symbol_tree();
 			//	_this.file.getLanguageServer().queueDocumentSymbols(_this.file);
-				_this.file.setSource(oldcode);
+				// why revert??
+				//_this.file.setSource(oldcode);
 				
 				 
 				return true;
