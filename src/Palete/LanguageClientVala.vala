@@ -328,7 +328,7 @@ namespace Palete {
 			
 		}
 		
-		bool getting_diagnostics = false;
+		//bool getting_diagnostics = false;
 		/***
 		
 		*/
@@ -345,7 +345,7 @@ namespace Palete {
 				return;
 			
 			}
-			this.getting_diagnostics =true;
+			//this.getting_diagnostics =true;
 			var f = this.project.getByPath(dg.filename);
 			if (f == null) {
 				//GLib.debug("no file %s", dg.uri);
