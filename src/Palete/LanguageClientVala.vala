@@ -340,7 +340,7 @@ namespace Palete {
 			GLib.debug("got diag for %s", dg.filename);
 			this.log(LanguageClientAction.DIAG, dg.filename);
 			if (this.project.path == dg.filename) {
-				this.getting_diagnostics = false;
+				//this.getting_diagnostics = false;
 				this.log(LanguageClientAction.DIAG_END, "diagnostics done");
 				return;
 			
