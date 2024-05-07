@@ -309,12 +309,16 @@ public class Editor : Object
 		}
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
+		
+		
 			buf.remove_source_marks (docstart, docend, "ERR");
 			buf.remove_source_marks (docstart, docend, "WARN");
 			buf.remove_source_marks (docstart, docend, "DEPR");
-			buf.remove_tag_by_name ("ERR", start, end);
-			buf.remove_tag_by_name ("WARN", start, end);
-			buf.remove_tag_by_name ("DEPR", start, end);
+			foreach(var diag in this.errors) {
+				var tag = diag.get_data<string>("tag");
+				buf.remove_tag_by_name ("DEPR", docstart, docend);
+			}
+			
 			this.last_error_counter = file.error_counter ;
 			this.errors.clear();
 			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
