@@ -37,7 +37,8 @@ namespace Palete {
 		Vala.CodeContext context;
 		Gee.ArrayList<string> files; 
 		Gee.ArrayList<string> changed;
-		Gee.ArrayList<Lsp.Diagnostic>? errors = null; 
+		// only set after compile has completed..
+		Gee.HashMap<string,Gee.ArrayList<Lsp.Diagnostic>>? errors = null; 
 		
 		Project.Gtk scan_project;
 		public SymbolFileCollection  filemanager;
