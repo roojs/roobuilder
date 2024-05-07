@@ -71,7 +71,7 @@ namespace Palete {
 				var ar = updateBackground.end(r);
 				if (ar != null) {
 					this.scan_project.onTreeChanged(ar);
-					this.scan_project.update
+					//this.scan_project.update
 				}
 				
 			});
