@@ -885,7 +885,7 @@ namespace JsRender {
 			this.error_counter++;
 			this.on_add_error(diag);
 		}
-		 public signal void on_remove_error(Lsp.Diagnostic diag);
+		public signal void on_remove_error(Lsp.Diagnostic diag);
 		public void removeError(Lsp.Diagnostic diag) 
 		{
 			//GLib.debug("REMOVE Error %s", diag.to_string());
