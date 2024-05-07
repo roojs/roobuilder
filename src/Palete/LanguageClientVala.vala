@@ -224,7 +224,7 @@ namespace Palete {
 					return a.path == b.path;
 				});
 				this.initialized = true;
-				this.getting_diagnostics = false;
+				//this.getting_diagnostics = false;
 				return;
 			} catch (GLib.Error e) {
 				GLib.debug ("LS replied with error %s", e.message);
@@ -240,7 +240,7 @@ namespace Palete {
  			if (this.launcher == null) {
  				return;
 			}
-			this.getting_diagnostics = false;
+			//this.getting_diagnostics = false;
  			this.in_close = true;
 	 		GLib.debug("onClose called");
 	 		
