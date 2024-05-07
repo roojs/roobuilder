@@ -43,6 +43,7 @@ public class Editor : Object
 	public bool pos;
 	public int last_error_counter;
 	public GtkSource.SearchContext searchcontext;
+	public int tag_counter;
 	public int last_search_end;
 	public signal void save ();
 	public JsRender.JsRender? file;
@@ -63,6 +64,7 @@ public class Editor : Object
 		this.pos = false;
 		this.last_error_counter = 0;
 		this.searchcontext = null;
+		this.tag_counter = 0;
 		this.last_search_end = 0;
 		this.file = null;
 		this.node = null;
@@ -319,7 +321,6 @@ public class Editor : Object
 			return;
 		}
 		
-	
 	 // basicaly check if there is no change, then we do not do any update..
 	 // we can do this by just using an error counter?
 	 // if that's changed then we will do an update, otherwise dont bother.
@@ -371,7 +372,7 @@ public class Editor : Object
 		    buf.get_iter_at_line( out iter, eline);
 		   	var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
 		    var mark = buf.create_source_mark( msg, diag.category, iter);
-		    diag.set_data("mark", mark);
+		    diag.set_data<GtkSource.Mark>("mark", mark);
 		    
 	 	    var spos = (int)diag.range.start.character - hoffset;
 	 	    if (spos < 0) { spos =0 ; }
@@ -389,9 +390,25 @@ public class Editor : Object
 	 	    buf.get_iter_at_line_offset( out start, eline, spos); 
 	 	   
 	 	    buf.get_iter_at_line_offset( out end, eline_to,epos); 
-	 	    	
-		    buf.apply_tag_by_name(diag.category, start, end);
-		    
+	 	    this.tag_counter++;
+	 	    switch(diag.category) {
+	 	    	case "ERR":
+					buf.create_tag ("ERR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "pink");
+					break;
+				case "WARN":
+					buf.create_tag ("WARN" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
+					break;
+				case "DEPR":
+					buf.create_tag ("DEPR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
+					break;
+				default:
+					continue;
+	 	    
+	 	    }
+	 	    
+	 	    
+		    buf.apply_tag_by_name(diag.category  +  this.tag_counter.to_string(), start, end);
+	    	diag.set_data<string>("tag", diag.category  +  this.tag_counter.to_string());
 		    this.errors.add(diag);
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
