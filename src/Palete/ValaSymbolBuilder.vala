@@ -367,6 +367,7 @@ namespace Palete {
 			}	
 			var pr = this.scan_project;
 			var cg =  this.scan_project.compilegroups.get(build_module);
+			this.files= new Gee.ArrayList<string>();
 			for (var i = 0; i < cg.sources.size; i++) {
 				var path = cg.sources.get(i);
 				
