@@ -125,7 +125,7 @@ namespace Palete {
 			foreach(var s in this.changed) {
 				ar.add(s);
 			}
-			this.errors = this.report.messages;
+			this.errors = this.report.errors;
 			this.report = null;
 			this.running = false;		
 			return ar;
