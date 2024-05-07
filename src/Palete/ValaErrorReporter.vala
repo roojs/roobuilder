@@ -31,13 +31,13 @@ namespace Palete
 		public ArrayList<Lsp.Diagnostic> messages; 
 		 
 		public ValaErrorReporter ( ) {
-		    this.messages  = = new ArrayList<Lsp.Diagnostic> ();
+		    this.messages  =  new ArrayList<Lsp.Diagnostic> ();
 		}
 
 		public void add_message (Vala.SourceReference? source, string message, DiagnosticSeverity severity) {
 		    // mitigate potential infinite loop bugs in Vala parser
 		     
-		    messages.add (new Lsp.Diagnostic ( 
+		    this.messages.add (new Lsp.Diagnostic ( 
 		    	range: new Range.from_sourceref  (source) , 
 		    	severity: severity,
 		    	message : message
