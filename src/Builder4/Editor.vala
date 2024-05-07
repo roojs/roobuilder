@@ -281,9 +281,9 @@ public class Editor : Object
 	   	}
 	
 		var buf = _this.buffer.el;
-		Gtk.TextIter start;
-		Gtk.TextIter end;     
-		buf.get_bounds (out start, out end);
+		Gtk.TextIter docstart;
+		Gtk.TextIter docend;     
+		buf.get_bounds (out docstart, out docend);
 	
 		
 	
@@ -309,9 +309,9 @@ public class Editor : Object
 		}
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
-			buf.remove_source_marks (start, end, "ERR");
-			buf.remove_source_marks (start, end, "WARN");
-			buf.remove_source_marks (start, end, "DEPR");
+			buf.remove_source_marks (docstart, docend, "ERR");
+			buf.remove_source_marks (docstart, docend, "WARN");
+			buf.remove_source_marks (docstart, docend, "DEPR");
 			buf.remove_tag_by_name ("ERR", start, end);
 			buf.remove_tag_by_name ("WARN", start, end);
 			buf.remove_tag_by_name ("DEPR", start, end);
@@ -347,6 +347,8 @@ public class Editor : Object
 			}
 		
 		}
+		Gtk.TextIter start;
+		Gtk.TextIter end;     
 		
 		// this does not work - it removes the marks to much and kills the UI experience
 		 
@@ -413,10 +415,22 @@ public class Editor : Object
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
-		foreach(var e as this.errors) {
-		
+		var del = new Gee.ArrayList<Lsp.Diagnostic>(); // no compare neeed...
+		foreach(var diag in this.errors) {
+			if (ar.contains(diag)) {
+				continue;
+			}
+			var tag = diag.get_data<string>("tag");
+			buf.remove_tag_by_name ("DEPR", docstart, docend);
+			var mark = diag.get_data<GtkSource.Mark>("mark");
+			buf.delete_mark(mark);
+			del.add(diag);
 		
 		}
+		foreach(var diag in del) {
+			this.errors.remove(diag);
+		}
+		
 		this.last_error_counter = file.error_counter ;
 	
 	
