@@ -71,6 +71,14 @@ namespace Palete {
 				var ar = updateBackground.end(r);
 				if (ar != null) {
 					this.scan_project.onTreeChanged(ar);
+					foreach(var f in this.files) {
+						var f = this.project.getByPath(f);
+						if (f == null) {
+							 contine;
+						}
+						//GLib.debug("got Diagnostics for %s", f.path);
+						f.updateErrors( this.errors.has_key(f) ? null : this.errors.get(f));
+					 }
 					//this.scan_project.update
 				}
 				
