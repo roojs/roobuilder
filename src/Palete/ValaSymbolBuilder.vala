@@ -71,8 +71,8 @@ namespace Palete {
 				var ar = updateBackground.end(r);
 				if (ar != null) {
 					this.scan_project.onTreeChanged(ar);
-					foreach(var f in this.files) {
-						var f = this.project.getByPath(f);
+					foreach(var path in this.files) {
+						var f = this.project.getByPath(path);
 						if (f == null) {
 							 continue;
 						}
