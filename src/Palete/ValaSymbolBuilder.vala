@@ -20,9 +20,7 @@
  */
 
 namespace Palete {
-	 
-	 
-	 static bool thread_enabled = true; // disable for debugging as GDB doesnt really like threaded apps.
+	
 	 
 	 public errordomain ValaSymbolBuilderError {
 		PARSE_FAILED 
