@@ -320,7 +320,7 @@ namespace Palete {
 			//context.thread = true; 
 			
 			
-			this.report = new ValaErrorReporter(this.file);
+			this.report = new ValaErrorReporter();
 			context.report = this.report;
 			
 			
