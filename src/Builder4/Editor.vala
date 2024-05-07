@@ -316,7 +316,7 @@ public class Editor : Object
 			buf.remove_source_marks (docstart, docend, "DEPR");
 			foreach(var diag in this.errors) {
 				var tag = diag.get_data<string>("tag");
-				buf.remove_tag_by_name ("DEPR", docstart, docend);
+				buf.remove_tag_by_name (tag, docstart, docend);
 			}
 			
 			this.last_error_counter = file.error_counter ;
@@ -425,7 +425,7 @@ public class Editor : Object
 				continue;
 			}
 			var tag = diag.get_data<string>("tag");
-			buf.remove_tag_by_name ("DEPR", docstart, docend);
+			buf.remove_tag_by_name (tag, docstart, docend);
 			var mark = diag.get_data<GtkSource.Mark>("mark");
 			buf.delete_mark(mark);
 			del.add(diag);
