@@ -28,10 +28,10 @@ namespace Palete
 
 	class  ValaErrorReporter : Vala.Report 
 	{
-		public ArrayList<Lsp.Diagnostic> messages; 
+		public Gee.ArrayList<Lsp.Diagnostic> messages; 
 		 
 		public ValaErrorReporter ( ) {
-		    this.messages  =  new ArrayList<Lsp.Diagnostic> ();
+		    this.messages  =  new Gee.ArrayList<Lsp.Diagnostic> ();
 		}
 
 		public void add_message (Vala.SourceReference? source, string message, Lsp.DiagnosticSeverity severity) {
