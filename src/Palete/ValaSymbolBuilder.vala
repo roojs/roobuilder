@@ -74,7 +74,7 @@ namespace Palete {
 					foreach(var f in this.files) {
 						var f = this.project.getByPath(f);
 						if (f == null) {
-							 contine;
+							 continue;
 						}
 						//GLib.debug("got Diagnostics for %s", f.path);
 						f.updateErrors( this.errors.has_key(f) ? null : this.errors.get(f));
