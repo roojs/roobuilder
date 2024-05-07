@@ -142,9 +142,10 @@ namespace JsRender {
 			}
 		
 		}
-		public Palete.SymbolFile symbol_file()
+		public Palete.SymbolFile? symbol_file()
 		{
-			return this.symbol_manager().factory_by_path(this.path);
+			var sm =  this.symbol_manager();
+			return sm == null? sm : sm.factory_by_path(this.path);
 		}
 		public Palete.SymbolFileCollection? symbol_manager()
 		{
