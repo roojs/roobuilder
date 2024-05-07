@@ -78,7 +78,7 @@ namespace Palete {
 						}
 						//GLib.debug("got Diagnostics for %s", f.path);
 						f.updateErrors( this.errors.has_key(path) ? null : this.errors.get(path));
-					 }
+				 	}
 					//this.scan_project.update
 				}
 				
