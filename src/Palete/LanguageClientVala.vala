@@ -334,6 +334,7 @@ namespace Palete {
 		*/
 		public void onDiagnostic(Variant? return_value) 
 		{
+			return;
 			//GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var dg = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
 			GLib.debug("got diag for %s", dg.filename);
