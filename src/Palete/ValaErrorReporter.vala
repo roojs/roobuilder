@@ -35,10 +35,10 @@ namespace Palete
 		}
 
 		public void add_message (Vala.SourceReference? source, string message, Lsp.DiagnosticSeverity severity) {
-		    // mitigate potential infinite loop bugs in Vala parser
+		    GLib.debug("%s : %s", source.file.filename, message);
 		    if (!this.errors.has_key(source.file.filename)) {
 		 	   this.errors.set(source.file.filename, new Gee.ArrayList<Lsp.Diagnostic>());
-	 	   }
+	 	    }
 		    var to = this.errors.get(source.file.filename);
 			var add = new  Lsp.Diagnostic ();
 			add.range = new Lsp.Range.from_sourceref  (source); 
