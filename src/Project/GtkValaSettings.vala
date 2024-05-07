@@ -15,6 +15,8 @@ namespace Project
 		public bool loading_ui = true;
 		public bool is_library = false;
 		
+		Palete.SymbolFileCollection symbol_manager;
+		
 		public GtkValaSettings(Gtk project, string name) 
 		{
 			this.name = name;
@@ -23,6 +25,7 @@ namespace Project
 		 
 			this.sources = new Gee.ArrayList<string>();
 			this.execute_args = "";
+			this.symbol_manager = new Palete.SymbolFileCollection();
 				
 		}
 		 
