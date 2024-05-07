@@ -23,6 +23,8 @@ public class Project.Roo : Project {
         // various loader methods..
         //this.id = "project-roo-%d".printf(rid++);
 		this.initDatabase();
+		this.symbol_manager  = new Palate.SymbolFileCollection();
+		
         
     }
 	public override void   initDatabase()
@@ -107,7 +109,13 @@ public class Project.Roo : Project {
 		}
 		return this.language_servers.get(lang);
 	}
-
+	public override Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file)
+	{
+		 
+		return this.symbol_manager;
+		
+	} 
+		 
 }
  
  
