@@ -89,7 +89,9 @@ namespace Project {
 		//public Palete.ValaCompileRequest last_request = null; // depricated?
 		public Gee.HashMap<string,GLib.ListStore>? errorsByType = null;
  		public bool loading = false; // flag this to block saving (normally when loading ui that might trigger save..
-		public Palete.SymbolFileCollection symbol_manager;
+		
+		
+		//public Palete.SymbolFileCollection symbol_manager;
 		
 		protected Gee.HashMap<string,Palete.LanguageClient> language_servers;
 		
@@ -107,7 +109,7 @@ namespace Project {
 	 		this.language_servers = new Gee.HashMap<string,Palete.LanguageClient>();
 	 		this.language_servers.set("dummy", new Palete.LanguageClientDummy(this));
 			this.errorsByType = new  Gee.HashMap<string,GLib.ListStore>();
-			this.symbol_manager = new Palete.SymbolFileCollection();
+			//this.symbol_manager = new Palete.SymbolFileCollection();
 			
 		}
 		 
