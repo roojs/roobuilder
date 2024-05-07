@@ -48,8 +48,7 @@ namespace Palete
 		public override void err (Vala.SourceReference? source, string message) {
 		    
 		        add_message (source, message,  Lsp.DiagnosticSeverity.Error);
-		        
-		    }
+		      
 		}
 		public override void note (Vala.SourceReference? source, string message) {
 		    
