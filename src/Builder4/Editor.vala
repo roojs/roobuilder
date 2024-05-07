@@ -983,7 +983,7 @@ public class Editor : Object
 
 
 			// my vars (def)
-		public Gee.ArrayList<Lsp.Diagnostic> errors;
+		public Gee.ArrayList<Lsp.Diagnostic>? errors;
 		public int error_line;
 		public Gee.HashMap<int,string>? xmarks;
 		public bool check_queued;
@@ -996,6 +996,7 @@ public class Editor : Object
 			this.el = new GtkSource.Buffer( null );
 
 			// my vars (dec)
+			this.errors = null;
 			this.error_line = -1;
 			this.xmarks = null;
 			this.check_queued = false;
