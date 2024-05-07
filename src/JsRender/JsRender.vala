@@ -875,7 +875,7 @@ namespace JsRender {
 		{
 			return this.errors;
 		}
-		public signal void on_add_error(Lsp.Diagnostic diag);
+		 
 		private void addError(Lsp.Diagnostic diag)
 		{
 			
@@ -883,16 +883,16 @@ namespace JsRender {
 			this.errors.add(diag);
 			this.project.addError(this, diag);
 			this.error_counter++;
-			this.on_add_error(diag);
+			 
 		}
-		public signal void on_remove_error(Lsp.Diagnostic diag);
+ 
 		public void removeError(Lsp.Diagnostic diag) 
 		{
 			//GLib.debug("REMOVE Error %s", diag.to_string());
 			this.errors.remove(diag);
 			this.project.removeError(this, diag);
 			this.error_counter++;
-			this.on_remove_error(diag);
+		 
 		}
 		public int getErrorsTotal(string category) 
 		{
