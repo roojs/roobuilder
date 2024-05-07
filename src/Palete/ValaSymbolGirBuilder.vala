@@ -242,15 +242,14 @@ namespace Palete {
 				case "record": // struct?
 					return;
 				 
-							
-					return;
+							 
 				case "prerequisite": // ignore?
 					return;
 				case "union": // ignore?
 					return;
 				default:
 					GLib.error("UNHANDLED Gir file element: " + element->name +"\n");
-					return;
+ 
 		    }
 		     
 		    for (Xml.Node* iter = element->children; iter != null; iter = iter->next) {
