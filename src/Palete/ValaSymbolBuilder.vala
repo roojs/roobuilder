@@ -70,13 +70,17 @@ namespace Palete {
 				var ar = updateBackground.end(r);
 				if (ar != null) {
 					this.scan_project.onTreeChanged(ar);
+					GLib.debug("updating errors %d files", this.files.size);
 					foreach(var path in this.files) {
 						var f = this.scan_project.getByPath(path);
 						if (f == null) {
-							 continue;
+							GLib.debug("skip file - path not found %s", path)
+							continue;
 						}
-						//GLib.debug("got Diagnostics for %s", f.path);
-						f.updateErrors( this.errors.has_key(path) ? null : this.errors.get(path));
+						//GLib.debug("got Diagnostics for %s - %d errors", f.path, 
+						//	!this.errors.has_key(path) ? 0 : this.errors.get(path).size
+						//);
+						f.updateErrors( !this.errors.has_key(path) ? null : this.errors.get(path));
 				 	}
 					//this.scan_project.update
 				}
