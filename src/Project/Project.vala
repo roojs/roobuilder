@@ -1090,7 +1090,7 @@ namespace Project {
 			// loop trhoug paths - see if files are open, if so... update right tree?
 			foreach(var p in paths) {
 				var f = this.getByPath(p);
-				this.symbolManager(f).factory_by_path(p).refreshSymbolsFromDB();
+				f.symbol_file().refreshSymbolsFromDB();
 				f.symbol_tree_updated();
 			}
 		
@@ -1104,7 +1104,7 @@ namespace Project {
 		public abstract void initialize(); // for new projects (make dirs?);
 		public abstract void loadJson(Json.Object obj); 
 		public abstract void saveJson(Json.Object obj);
-		public abstract Palate.SymbolFileCollection symbolManager(JsRender.JsRender file);
+		public abstract Palete.SymbolFileCollection symbolManager(JsRender.JsRender file);
 	}
 }
  
