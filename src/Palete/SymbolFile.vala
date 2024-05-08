@@ -332,7 +332,7 @@ namespace Palete {
 				}
  				 
 			}
-			var sq = new SymbolQuery<Symbol>("symbol");
+			var sq = new SQ.Query<Symbol>("symbol");
 			
 			uint pos;
 			foreach(var s in rem) {
