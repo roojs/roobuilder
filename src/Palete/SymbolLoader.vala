@@ -29,7 +29,7 @@ namespace Palete
 					FROM 
 						symbol 
 					WHERE 
-						file_id IN (" + string.joinv("," , this.manager.file_ids) + ")
+						file_id IN (" +   this.manager.file_ids   + ")
 					AND
 						fqn = $fqn
 					LIMIT 1;
