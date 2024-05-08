@@ -5,7 +5,7 @@ namespace Palete {
 		public Gee.HashMap<string, SymbolFile>? files = null;
 		public Gee.HashMap<int, SymbolFile>? files_ids = null;
 		public string  file_ids {
-			get {
+			owned get {
 				string[] ret = {};
 				foreach(var f in this.files.values) {
 					ret += f.id.to_string();
