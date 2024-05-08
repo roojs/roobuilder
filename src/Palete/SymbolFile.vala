@@ -330,6 +330,7 @@ namespace Palete {
 				if (this.updated_ids.contains((int)s.id)) {
 					continue;
 				}
+				rem.add(s);
  				 
 			}
 			var sq = new SQ.Query<Symbol>("symbol");
@@ -354,26 +355,7 @@ namespace Palete {
 			}
 
 			
-			/*
-			
-			for(var i = 0; i < this.children.get_n_items(); i++) {
-				var s = (Symbol) this.children.get_item(i);
-
-				if (s.rev != s.file.version) {
-					this.children_map.unset(s.type_name);				
-					this.children.remove(i);
-					i--;
-					continue;
-				}
-				s.removeOldSymbols();
-			}
 			 
-			 foreach(var s in this.symbols) {
- 				if (s.rev != s.file.version) {
-					this.symbols.remove(s);
-				}
-			}
-			 */
 			
 
 	 	}
