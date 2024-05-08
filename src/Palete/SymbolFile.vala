@@ -19,7 +19,10 @@ namespace Palete {
 		public int64 version  { set ; get ; default = -1; } // utime?
 		public string relversion  { set ; get ; default = ""; }  // version eg. 1.0 (mathcing gir to vapis?)
 		
-		public string contents; // this is used by the compile queue..
+		public string contents { // this is used by the compile queue..
+			get;
+			private set;
+		}
 		
 		//public Gee.ArrayList<Symbol> symbols_all ;
  		public Gee.HashMap<int,Symbol> symbol_map;
@@ -32,6 +35,8 @@ namespace Palete {
 		public bool database_has_symbols = false;
 		
 		public JsRender.JsRender? file= null;
+		
+		
 		public int64 cur_mod_time() {
 			try {
 				if (file != null) {
@@ -86,6 +91,8 @@ namespace Palete {
 
 			this(file.targetName(), -1);		
 			this.file = file;
+			this.contents = file.toSourceCode();
+
 			this.initDB();
 			
 		}
