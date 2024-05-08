@@ -60,7 +60,14 @@ namespace Palete
 			return null;
 		}
 		
-		
+		public Gee.ArrayList<Symbol>? classSn(Symbol cls) 
+		{		
+			return null;
+		} 
+			public Gee.ArrayList<Symbol>? classSnXSymbol cls) 
+		{		
+			return null;
+		} 
 		
 	}	
 }
