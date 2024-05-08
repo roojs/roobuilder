@@ -133,6 +133,7 @@ namespace Palete {
 			var ar = new Gee.ArrayList<string>();
 			foreach(var s in this.changed) {
 				ar.add(s);
+				this.filemanager.factory_by_path(s).dump();
 			}
 			// copy the errors so the thread can't use them anymore...
 			this.errors = this.report.errors;
