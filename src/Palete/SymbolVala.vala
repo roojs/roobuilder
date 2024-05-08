@@ -339,6 +339,7 @@ namespace Palete {
 				children_map.set(this.type_name, this);
 				//this.file.symbols.add(this);
 				this.file.symbol_map.set((int)this.id, this);
+				this.file.updated_ids.add((int)this.id);
 				return;
 				
 			}
@@ -346,7 +347,7 @@ namespace Palete {
 
 			var old = children_map.get(this.type_name);
 			this.id = old.id;
- 
+			this.file.updated_ids.add((int)this.id);
 			
 			q.update(old, this);
 			GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
