@@ -129,6 +129,7 @@ namespace Palete {
 			}
 			this.running = true;
 			this.changed.clear();
+			this.filemanager = new SymbolFileCollection();
  			yield this.create_valac_tree( build_module);
 			var ar = new Gee.ArrayList<string>();
 			foreach(var s in this.changed) {
