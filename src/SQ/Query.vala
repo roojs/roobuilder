@@ -384,6 +384,20 @@ namespace SQ {
 		
 		
 		}
+		
+		public void deleteId(int64 id) 
+		{
+			var q= "DELETE from " + this.table + " WHERE id = $id";
+			GLib.debug("Query %s", q);
+			var stmt = this.selectPrepare( q );
+			stmt.bind_int64 (stmt.bind_parameter_index ("$id"), id);
+			if (Sqlite.DONE != stmt.step ()) {
+			    GLib.error("Delete %d:   %s", (int)id,   SQ.Database.db.errmsg());
+			}
+				 
+			
+		
+		}
 		 
 		 
 		
