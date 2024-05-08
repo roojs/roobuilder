@@ -308,13 +308,14 @@ public class Editor : Object
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
 		
-		
-			buf.remove_source_marks (docstart, docend, "ERR");
-			buf.remove_source_marks (docstart, docend, "WARN");
-			buf.remove_source_marks (docstart, docend, "DEPR");
+		 
 			foreach(var diag in this.errors) {
-				var tag = diag.get_data<string>("tag");
-				buf.remove_tag_by_name (tag, docstart, docend);
+				var tag = diag.steal_data<Gtk.TextTag>("tag");
+				buf.tag_table.remove(tag);
+	
+				var mark = diag.steal_data<GtkSource.Mark>("mark");
+				buf.delete_mark(mark);
+				 
 			}
 			
 			this.last_error_counter = file.error_counter ;
@@ -423,11 +424,11 @@ public class Editor : Object
 			if (ar.contains(diag)) {
 				continue;
 			}
-			var tag = diag.get_data<Gtk.TextTag>("tag");
+			var tag = diag.steal_data<Gtk.TextTag>("tag");
 			buf.tag_table.remove(tag);
 			
 	 
-			var mark = diag.get_data<GtkSource.Mark>("mark");
+			var mark = diag.steal_data<GtkSource.Mark>("mark");
 			buf.delete_mark(mark);
 			del.add(diag);
 		
