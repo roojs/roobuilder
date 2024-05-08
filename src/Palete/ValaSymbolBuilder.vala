@@ -49,8 +49,12 @@ namespace Palete {
 			this.scan_project = project;
 			this.filemanager = new SymbolFileCollection();
 			this.changed = new Gee.ArrayList<string>();
- 			
+			this.queued_changes = new Gee.ArrayList<string,SymbolFile>();
 		}
+		
+		Gee.ArrayList<string,SymbolFile> queued_changes;
+		
+		
 		public void updateTreeFromFile(JsRender.JsRender file)
 		{
 			var mod = this.scan_project.firstBuildModuleWith(file);
