@@ -18,8 +18,8 @@ namespace Palete {
 		public  SymbolFileCollection()
 		{
 			this.files = new Gee.HashMap<string, SymbolFile>();
-			this.files_ids = new Gee.HashMap<int, SymbolFile>();
-			this.symbol_cache = new Gee.HashMap<string,Symbol>();
+			this.id_to_file = new Gee.HashMap<int, SymbolFile>();
+ 
 		}
 		 
 		public  SymbolFile factory(JsRender.JsRender file) 
