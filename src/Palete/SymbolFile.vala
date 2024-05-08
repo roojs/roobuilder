@@ -327,14 +327,16 @@ namespace Palete {
  		 	 
  		 	foreach(var k in this.symbol_map.keys) {
 				var s = this.symbol_map.get(k);
-
- 				if (s.rev != s.file.version) {
-					rem.add(s);
-
+				if (this.updated_ids.contains((int)k.id)) {
+					continue;
 				}
+ 				 
 			}
+			var sq = new SymbolQuery<Symbol>("symbol");
+			
 			uint pos;
 			foreach(var s in rem) {
+				sq.deleteId(s.id);
 				this.symbol_map.unset((int)s.id);
 				if (s.parent == null) {
 					this.children_map.unset(s.type_name);
