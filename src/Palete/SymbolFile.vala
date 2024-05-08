@@ -19,7 +19,7 @@ namespace Palete {
 		public int64 version  { set ; get ; default = -1; } // utime?
 		public string relversion  { set ; get ; default = ""; }  // version eg. 1.0 (mathcing gir to vapis?)
 		
-		public string contents { // this is used by the compile queue..
+		public string contents { // this is used by the compile queue..  new_file(file);
 			get;
 			private set;
 		}
