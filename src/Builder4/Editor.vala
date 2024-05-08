@@ -1262,7 +1262,7 @@ public class Editor : Object
 		     
 		    return true; // at present allow saving - even if it's invalid..
 		}
-		public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
+		public bool XhighlightErrors ( Gee.HashMap<int,string> validate_res) {
 		         
 			this.error_line = validate_res.size;
 		
