@@ -2129,10 +2129,15 @@ public class Editor : Object
 				old.remove(i);
 				old.insert(i, ni);
 			}
+			GLib.debug("after update  old = %d, new = %d",
+				 (int)old.get_n_items(), (int)ls.get_n_items()
+			);
 			while (old.get_n_items() > ls.get_n_items()) {
 				old.remove(old.get_n_items()-1);
 			}
-		    
+		    GLib.debug("all done update  old = %d, new = %d",
+				 (int)old.get_n_items(), (int)ls.get_n_items()
+			);
 		    // this happens on first load? - not afterwards?
 		    
 			this.last_selected_line = -1;
