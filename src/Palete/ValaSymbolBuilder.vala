@@ -402,8 +402,8 @@ namespace Palete {
 				//sf.context = context;
 				var cont = jfile.toSourceCode();
 				GLib.debug("File %s content = %d", jfile.path, cont.length);
-				var sf = this.filemanager.factory(jfile); // make sure it's initialized.
-				sf.updated_ids.clear();
+				var f = this.filemanager.factory(jfile); // make sure it's initialized.
+				f.updated_ids.clear();
 				var sf = new Vala.SourceFile (
 					context, // needs replacing when you use it...
 					Vala.SourceFileType.SOURCE, 
