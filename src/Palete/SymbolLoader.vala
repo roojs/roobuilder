@@ -17,7 +17,9 @@ namespace Palete
 		}
 		
 	
-	
+		/**
+		* see if this is documented
+		*/
 	
 		public Symbol? singleByFqn(string fqn)
 		{
