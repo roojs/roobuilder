@@ -284,9 +284,7 @@ public class Editor : Object
 		Gtk.TextIter docstart;
 		Gtk.TextIter docend;     
 		buf.get_bounds (out docstart, out docend);
-	
-		
-	
+	 
 	 
 		//GLib.debug("highlight errors");		 
 	
@@ -300,7 +298,7 @@ public class Editor : Object
 			
 			return;
 		} 
-	
+	 
 		 
 		if (_this.file == null) {
 			GLib.debug("file is null?");
@@ -397,15 +395,16 @@ public class Editor : Object
 	 	   
 	 	    buf.get_iter_at_line_offset( out end, eline_to,epos); 
 	 	    this.tag_counter++;
+	 	    Gtk.TextTag tag;
 	 	    switch(diag.category) {
 	 	    	case "ERR":
-					buf.create_tag ("ERR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "pink");
+					tag = buf.create_tag ("ERR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "pink");
 					break;
 				case "WARN":
-					buf.create_tag ("WARN" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
+					tag = buf.create_tag ("WARN" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
 					break;
 				case "DEPR":
-					buf.create_tag ("DEPR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
+					tag = buf.create_tag ("DEPR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
 					break;
 				default:
 					continue;
@@ -414,7 +413,7 @@ public class Editor : Object
 	 	    
 	 	    
 		    buf.apply_tag_by_name(diag.category  +  this.tag_counter.to_string(), start, end);
-	    	diag.set_data<string>("tag", diag.category  +  this.tag_counter.to_string());
+	    	diag.set_data<Gtk.TextTag>("tag", tag);
 		    this.errors.add(diag);
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
@@ -424,8 +423,10 @@ public class Editor : Object
 			if (ar.contains(diag)) {
 				continue;
 			}
-			var tag = diag.get_data<string>("tag");
-			buf.remove_tag_by_name (tag, docstart, docend);
+			var tag = diag.get_data<Gtk.TextTag>("tag");
+			buf.tag_table.remove(tag);
+			
+	 
 			var mark = diag.get_data<GtkSource.Mark>("mark");
 			buf.delete_mark(mark);
 			del.add(diag);
@@ -1222,7 +1223,7 @@ public class Editor : Object
 			if (_this.file.xtype == "PlainFile") {
 		
 				// assume it's gtk...
-				 var  oldcode =_this.file.toSource();
+				 
 				_this.file.setSource(str);
 				BuilderApplication.showSpinner("appointment soon","document change pending");
 				_this.file.getLanguageServer().document_change(_this.file);
@@ -2110,6 +2111,9 @@ public class Editor : Object
 			}
 			// update..
 			
+			GLib.debug("Update tree - old len = %d, new len = %d",
+				 (int)old.get_n_items(), (int)ls.get_n_items()
+			);
 			for(var i = 0; i < ls.get_n_items();i++) {
 				var ni = (Palete.Symbol)ls.get_item(i);
 				if (i >= old.get_n_items()) {

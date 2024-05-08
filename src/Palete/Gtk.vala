@@ -94,9 +94,8 @@ namespace Palete {
 		*/
 		public   Symbol? getClassSymbol(JsRender.JsRender file, string ename)
 		{
-			var ret =  file.symbol_manager().getSymbolByFqn(ename);
+			var ret =  file.symbol_manager().loader.singleByFqn(ename);
 			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
-		
 		}
 
 			// does not handle implements...

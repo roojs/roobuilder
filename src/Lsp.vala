@@ -93,7 +93,7 @@ namespace Lsp {
         public bool equals(Position o) {
         	return o.line == this.line && o.character == this.character;
     	}
-		
+
         public string to_string () {
             return @"$line:$character";
         }

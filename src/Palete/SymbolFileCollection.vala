@@ -4,6 +4,8 @@ namespace Palete {
 	public class SymbolFileCollection {
 		public Gee.HashMap<string, SymbolFile>? files = null;
 		public Gee.HashMap<int, SymbolFile>? id_to_file = null;
+		public SymbolLoader loader;
+		
 		public string  file_ids {
 			owned get {
 				string[] ret = {};
@@ -19,7 +21,7 @@ namespace Palete {
 		{
 			this.files = new Gee.HashMap<string, SymbolFile>();
 			this.id_to_file = new Gee.HashMap<int, SymbolFile>();
- 
+ 			this.loader = new SymbolLoader(this);
 		}
 		 
 		public  SymbolFile factory(JsRender.JsRender file) 
