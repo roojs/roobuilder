@@ -1,0 +1,8 @@
+namespace Palete
+{
+	class SymbolLoader 
+	{
+	
+	
+	}
+}
