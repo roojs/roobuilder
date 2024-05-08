@@ -327,7 +327,7 @@ namespace Palete {
  		 	 
  		 	foreach(var k in this.symbol_map.keys) {
 				var s = this.symbol_map.get(k);
-				if (this.updated_ids.contains((int)k.id)) {
+				if (this.updated_ids.contains((int)s.id)) {
 					continue;
 				}
  				 
