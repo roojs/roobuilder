@@ -47,7 +47,10 @@ namespace Palete
 			
 			
 		}
-		public Symbol? loadWithChildren(string fqn)
+		/*
+			load class? with prpopert
+		*/
+		public Symbol? loadClassWithChildren(string fqn)
 		{
 			return null;
 		}
