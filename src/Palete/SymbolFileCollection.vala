@@ -3,7 +3,7 @@ namespace Palete {
 	
 	public class SymbolFileCollection {
 		public Gee.HashMap<string, SymbolFile>? files = null;
-		public Gee.HashMap<int, SymbolFile>? files_ids = null;
+		public Gee.HashMap<int, SymbolFile>? id_to_file = null;
 		public string  file_ids {
 			owned get {
 				string[] ret = {};
@@ -72,44 +72,7 @@ namespace Palete {
 		}
 
 		
-		
-		// replace old Gir code...
-		
-		private Gee.HashMap<string,Symbol> symbol_cache;
-		
-		public Symbol? getSymbolByFqn(string fqn)
-		{
-			if (this.symbol_cache.has_key(fqn)) {
-				return this.symbol_cache.get(fqn);
-			}
-			string[] file_ids = {};
-			foreach(var f in this.files.values) {
-				file_ids += f.id.to_string();
-			}
-			var sq = new SQ.Query<Symbol>("symbol");
-			var res = new Symbol();
-			var stmt = sq.selectPrepare("
-					SELECT 
-						* 
-					FROM 
-						symbol 
-					WHERE 
-						file_id IN (" + string.joinv("," , file_ids) + ")
-					AND
-						fqn = $fqn
-					LIMIT 1;
-			");
-			stmt.bind_text(stmt.bind_parameter_index ("$fqn"), fqn);
-			if (!sq.selectExecuteInto(stmt,res)) {
-				return null;
-			}
-			res.file = this.files_ids.get((int)res.file_id);
-						
-			
-			return res;
-			
-			
-		}
+		 
 		
 	}
 	
