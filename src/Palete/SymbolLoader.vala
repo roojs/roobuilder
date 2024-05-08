@@ -9,8 +9,11 @@ namespace Palete
 	public class SymbolLoader : Object
 	{
 		SymbolFileCollection manager;
+		SQ.Query<Symbol> sq; 
+		
 		public SymbolLoader(SymbolFileCollection manager) {
 			this.manager = manager;
+			this.sq  =  new SQ.Query<Symbol>("symbol");
 		}
 		
 	
@@ -18,9 +21,9 @@ namespace Palete
 	
 		public Symbol? singleByFqn(string fqn)
 		{
-			var sq = new SQ.Query<Symbol>("symbol");
+			 
 			var res = new Symbol();
-			var stmt = sq.selectPrepare("
+			var stmt = this.sq.selectPrepare("
 					SELECT 
 						* 
 					FROM 
@@ -32,10 +35,10 @@ namespace Palete
 					LIMIT 1;
 			");
 			stmt.bind_text(stmt.bind_parameter_index ("$fqn"), fqn);
-			if (!sq.selectExecuteInto(stmt,res)) {
+			if (!this.sq.selectExecuteInto(stmt,res)) {
 				return null;
 			}
-			res.file = this.files_ids.get((int)res.file_id);
+			res.file = this.manager.id_to_file.get((int)res.file_id);
 						
 			
 			return res;
