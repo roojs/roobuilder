@@ -1473,7 +1473,7 @@
            ],
            "| void show" : [
             "() {",
-            "\t",
+            "\tGLib.debug(\"show tree\");",
             "\tvar ls = _this.file.symbol_file().children;",
             "\tif (!_this.navigation_holder.el.visible && ls.get_n_items() > 0) {",
             "\t\t_this.navigation_holder.el.show();",
@@ -1485,6 +1485,7 @@
             "\tvar old = (GLib.ListStore)tlm.get_model();",
             "\t",
             "\tif (ls.get_n_items() < 1) {",
+            "\t\tGLib.debug(\"empty - remove all\");",
             "\t\told.remove_all();",
             "\t\treturn;",
             "\t}",
