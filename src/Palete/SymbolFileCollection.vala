@@ -33,7 +33,7 @@ namespace Palete {
 			var f = new SymbolFile.new_file(file);
 			this.files.set(path,f);
 			
-			this.files_ids.set((int)f.id, f);
+			this.id_to_file.set((int)f.id, f);
 			return f;	
 		 
 		}
@@ -48,7 +48,7 @@ namespace Palete {
 			}
 			var f = new SymbolFile.new_from_path(path,-1);
 			this.files.set(path,f);
-			this.files_ids.set((int)f.id, f);
+			this.id_to_file.set((int)f.id, f);
 			return f;	
 			
 
