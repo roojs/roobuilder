@@ -54,9 +54,17 @@ namespace Palete
 		{
 			return null;
 		}
+		
 		public Gee.ArrayList<Symbol>? classProperties(Symbol cls) 
 		{		
 			return null;
 		}
+		
+		public Gee.ArrayList<Symbol>? classSn
+		s(Symbol cls) 
+		{		
+			return null;
+		} 
+		
 	}	
 }
