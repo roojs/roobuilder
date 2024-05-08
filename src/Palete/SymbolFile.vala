@@ -322,6 +322,11 @@ namespace Palete {
 	 	
 	 	public void removeOldSymbols()
 	 	{
+ 		 	if (this.updated_ids.size < 1) {
+ 		 		return; //errro occured with new tree, use old one.
+	 		}
+ 		 		
+ 		 	
  		 	GLib.debug("symbol map size %d", this.symbol_map.keys.size);
 			var rem = new Gee.ArrayList<Symbol>();
  		 	 
