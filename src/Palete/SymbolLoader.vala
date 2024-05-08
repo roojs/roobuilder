@@ -47,5 +47,9 @@ namespace Palete
 			
 			
 		}
+		public Symbol? loadWithChildren(string fqn)
+		{
+			return null;
+		}
 	}	
 }
