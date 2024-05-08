@@ -30,7 +30,7 @@ namespace Palete {
  		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
 		public Gee.ArrayList<string> parsed_symbols; //  line:start:end
-		
+		public Gee.ArrayList<int> updated_ids; //  line:start:end	
 
 		public bool database_has_symbols = false;
 		
@@ -84,7 +84,7 @@ namespace Palete {
 			this.children_map = new Gee.HashMap<string,Symbol>();
 			this.fqn_map = new Gee.HashMap<string,Symbol>(); // used by gir loading
 			this.parsed_symbols = new Gee.ArrayList<string>((a , b) => { return a == b; });
-			 
+			this.updated_ids = new Gee.ArrayList<int> (); 
 		}
 		
 		public SymbolFile.new_file (JsRender.JsRender file) {
