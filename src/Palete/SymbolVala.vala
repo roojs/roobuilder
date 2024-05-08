@@ -136,7 +136,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_class(ValaSymbolBuilder builder, Symbol? parent, Vala.Class cls)	
 		{
-			//GLib.debug("new Class %s", cls.name);
+			GLib.debug("new Class %s", cls.name);
 			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Class;
@@ -268,7 +268,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_method(ValaSymbolBuilder builder, Symbol? parent, Vala.Method sig)	
 		{
-			//GLib.debug("new Method %s", sig.name);
+			GLib.debug("new Method %s", sig.name);
 			this(builder, sig);
 			this.name = sig.name == ".new" ? parent.name : sig.name; // ctor's are called .new.
 			this.stype = Lsp.SymbolKind.Method;
