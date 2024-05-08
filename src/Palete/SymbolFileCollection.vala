@@ -4,7 +4,16 @@ namespace Palete {
 	public class SymbolFileCollection {
 		public Gee.HashMap<string, SymbolFile>? files = null;
 		public Gee.HashMap<int, SymbolFile>? files_ids = null;
-		
+		public string  file_ids {
+			get {
+				string[] ret = {};
+				foreach(var f in this.files.values) {
+					ret += f.id.to_string();
+				}
+				return string.joinv("," ,  ret);
+			}
+			set {}
+		}
 		
 		public  SymbolFileCollection()
 		{
@@ -62,6 +71,7 @@ namespace Palete {
 			return ret;
 		}
 
+		
 		
 		// replace old Gir code...
 		
