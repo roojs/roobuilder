@@ -192,6 +192,7 @@ namespace Palete {
 			
 			foreach(var s in newer) {
 				new_ids.add((int)s.id);
+				GLib.debug("New  %d : %s", (int)s.id, s.fqn);
 				if (this.symbol_map.has_key((int)s.id)) {
 					// update..
 					var os = this.symbol_map.get((int)s.id);	
@@ -205,7 +206,7 @@ namespace Palete {
 						//ns.id = s.id;
 						s.file = this;
 						addsymbols.add(s);
-						
+						GLib.debug("Queue Add Sybol %s", s.fqn);
 						continue;
 					}
 					
@@ -219,7 +220,7 @@ namespace Palete {
 					this.children.append(s);
 					this.children_map.set(s.type_name, s);
 				}
-				
+				GLib.debug("Queue Add Sybol %s", s.fqn);
 				addsymbols.add(s);
 			 
 			}
@@ -234,7 +235,9 @@ namespace Palete {
 				if (new_ids.contains(id)) {
 					continue;
 				}
-				this.removeSymbol(this.symbol_map.get(id));
+				var s = this.symbol_map.get(id)
+				GLib.debug("Old remove  %d : %s", (int)s.id, s.fqn);
+				this.removeSymbol(s);
 			}
 			this.fixLines(this.children, null);
 			 
@@ -242,6 +245,8 @@ namespace Palete {
 	 	
 	 	void removeSymbol(Symbol s)
 	 	{
+	 		
+	 		GLib.debug("Remove Sybol %s", s.fqn);
 	 		var c = s.parent_id == 0 ? this.children : this.symbol_map.get((int)s.parent_id).children;
 	 		uint pos;
 			c.find_with_equal_func(s, (a, b) => {
