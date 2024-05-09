@@ -59,9 +59,9 @@ namespace Palete
 		{		
 			return null;
 		}
-		public Gee.ArrayList<Symbol> inherits(Symbol cls)
+		public Gee.ArrayList<Symbol>? inherits(Symbol cls)
 		{
-		
+			return null;
 		
 		}
 		
