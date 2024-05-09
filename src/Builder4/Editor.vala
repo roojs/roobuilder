@@ -313,8 +313,10 @@ public class Editor : Object
 				var tag = diag.steal_data<Gtk.TextTag>("tag");
 				buf.tag_table.remove(tag);
 	
-				var mark = diag.steal_data<GtkSource.Mark>("mark");
-				buf.delete_mark(mark);
+				GtkSource.Mark mark = diag.steal_data<GtkSource.Mark>("mark");
+				if (mark != null) {
+					buf.delete_mark(mark);
+				}
 				 
 			}
 			
@@ -428,7 +430,7 @@ public class Editor : Object
 			buf.tag_table.remove(tag);
 			
 	 
-			var mark = diag.steal_data<GtkSource.Mark>("mark");
+			GtkSource.Mark mark = diag.steal_data<GtkSource.Mark>("mark");
 			if (mark != null) {
 				buf.delete_mark(mark);
 				del.add(diag);
