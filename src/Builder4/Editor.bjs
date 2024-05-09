@@ -1375,7 +1375,7 @@
             "\t",
             "\tif (this.symbolfile != null && this.symbolfile.id = new_symbolfile_id) {",
             "\t\treturn;",
-            "\t}  ",
+            "\t}",
             "\told.remove_all();",
             "\tthis.symbolfile = new_symbolfile;",
             "\tvar ls = new_symbolfile.children;",
