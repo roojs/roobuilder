@@ -249,10 +249,14 @@ namespace Palete {
 	 		GLib.debug("Remove Sybol %d, %s", s.id , s.fqn);
 	 		var c = s.parent_id == 0 ? this.children : this.symbol_map.get((int)s.parent_id).children;
 	 		uint pos;
-			c.find_with_equal_func(s, (a, b) => {
+			if (c.find_with_equal_func(s, (a, b) => {
 				return ((Symbol)a).id == ((Symbol)b).id;
-			}, out pos);
-			c.remove(pos);
+			}, out pos)) {
+				c.remove(pos);
+				 
+			}
+			
+			
 			s.parent = null;
 			s.file = null;
 		}
