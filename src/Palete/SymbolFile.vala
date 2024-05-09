@@ -317,6 +317,8 @@ namespace Palete {
 				}
 				
 				child.parent = parent;
+				// this should trigger tree update on right
+				GLib.debug("add%s to %s", child.fqn, parent.fqn);
 				parent.children.append(child); 
  				parent.children_map.set(child.type_name, child);
  				this.symbol_map.set((int)child.id, child);
