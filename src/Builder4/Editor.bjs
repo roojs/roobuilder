@@ -1361,7 +1361,7 @@
            "| void show" : [
             "() {",
             "\tGLib.debug(\"show tree\");",
-            "\tvar new_symbolfile= _this.file.symbol_file().children;",
+            "\tvar new_symbolfile= _this.file.symbol_file();",
             "\t",
             "\t// shoudl tree for first time only?",
             "\tif (!_this.navigation_holder.el.visible && new_symbolfile.children.get_n_items() > 0) {",

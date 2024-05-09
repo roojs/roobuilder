@@ -1987,7 +1987,7 @@ public class Editor : Object
 		 }
 		public void show () {
 			GLib.debug("show tree");
-			var new_symbolfile= _this.file.symbol_file().children;
+			var new_symbolfile= _this.file.symbol_file();
 			
 			// shoudl tree for first time only?
 			if (!_this.navigation_holder.el.visible && new_symbolfile.children.get_n_items() > 0) {
