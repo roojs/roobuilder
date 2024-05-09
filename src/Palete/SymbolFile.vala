@@ -255,7 +255,7 @@ namespace Palete {
 				c.remove(pos);
 				 
 			}
-			
+			this.symbol_map.remove((int)s.id);
 			
 			s.parent = null;
 			s.file = null;
