@@ -50,7 +50,7 @@ namespace Palete
 		/*
 			load class? with prpopert
 		*/
-		public Symbol? loadClassWithChildren(string fqn)
+		public Symbol? classWithChildren(string fqn)
 		{
 			return null;
 		}
