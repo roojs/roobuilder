@@ -235,7 +235,7 @@ namespace Palete {
 				if (new_ids.contains(id)) {
 					continue;
 				}
-				var s = this.symbol_map.get(id)
+				var s = this.symbol_map.get(id);
 				GLib.debug("Old remove  %d : %s", (int)s.id, s.fqn);
 				this.removeSymbol(s);
 			}
