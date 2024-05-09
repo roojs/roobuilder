@@ -1373,7 +1373,7 @@
             "\tvar tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();",
             "\tvar old = (GLib.ListStore)tlm.get_model();",
             "\t",
-            "\tif (this.symbolfile != null && this.symbolfile.id = new_symbolfile_id) {",
+            "\tif (this.symbolfile != null && this.symbolfile.id = new_symbolfile.id) {",
             "\t\treturn;",
             "\t}",
             "\told.remove_all();",
