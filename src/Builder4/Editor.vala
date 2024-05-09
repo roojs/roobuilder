@@ -1987,8 +1987,10 @@ public class Editor : Object
 		 }
 		public void show () {
 			GLib.debug("show tree");
-			var ls = _this.file.symbol_file().children;
-			if (!_this.navigation_holder.el.visible && ls.get_n_items() > 0) {
+			var new_symbolfile= _this.file.symbol_file().children;
+			
+			// shoudl tree for first time only?
+			if (!_this.navigation_holder.el.visible && new_symbolfile.children.get_n_items() > 0) {
 				_this.navigation_holder.el.show();
 				_this.paned.el.position  = 
 					_this.paned.el.get_width() - 200;
@@ -1997,33 +1999,18 @@ public class Editor : Object
 			var tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();
 			var old = (GLib.ListStore)tlm.get_model();
 			
-			
-			
-			
-			if (ls.get_n_items() < 1) {
-				GLib.debug("empty - remove all");
-				old.remove_all();
+			if (this.symbolfile != null && this.symbolfile.id = new_symbolfile_id) {
 				return;
 			}
-			// update..
-			
-			GLib.debug("Update tree - old len = %d, new len = %d",
-				 (int)old.get_n_items(), (int)ls.get_n_items()
-			);
+			old.remove_all();
+			this.symbolfile = new_symbolfile;
+			var ls = new_symbolfile.children;
+			 
 			for(var i = 0; i < ls.get_n_items();i++) {
 				var ni = (Palete.Symbol)ls.get_item(i);
-				if (i >= old.get_n_items()) {
-					old.append(ni);
-					continue;
-				}
-				var oi = (Palete.Symbol)old.get_item(i);
-				if (ni.id == oi.id) {
-					continue;
-				}
-				// not same..
-				old.remove(i);
-				old.insert(i, ni);
+				old.append(ni);
 			}
+			new_symbolfile.children = old;
 			GLib.debug("after update  old = %d, new = %d",
 				 (int)old.get_n_items(), (int)ls.get_n_items()
 			);
