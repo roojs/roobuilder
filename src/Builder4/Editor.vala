@@ -1999,7 +1999,7 @@ public class Editor : Object
 			var tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();
 			var old = (GLib.ListStore)tlm.get_model();
 			
-			if (this.symbolfile != null && this.symbolfile.id = new_symbolfile.id) {
+			if (this.symbolfile != null && this.symbolfile.id == new_symbolfile.id) {
 				return;
 			}
 			old.remove_all();
