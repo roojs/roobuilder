@@ -429,8 +429,10 @@ public class Editor : Object
 			
 	 
 			var mark = diag.steal_data<GtkSource.Mark>("mark");
-			buf.delete_mark(mark);
-			del.add(diag);
+			if (mark != null) {
+				buf.delete_mark(mark);
+				del.add(diag);
+			}
 		
 		}
 		foreach(var diag in del) {
