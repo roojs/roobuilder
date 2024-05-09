@@ -2001,7 +2001,7 @@ public class Editor : Object
 			
 			if (this.symbolfile != null && this.symbolfile.id = new_symbolfile_id) {
 				return;
-			}
+			}  
 			old.remove_all();
 			this.symbolfile = new_symbolfile;
 			var ls = new_symbolfile.children;
@@ -2011,6 +2011,7 @@ public class Editor : Object
 				old.append(ni);
 			}
 		 	this.last_selected_line = -1;
+		 	// first load
 			GLib.Idle.add(() => {
 				_this.navigationsort.collapseOnLoad();
 				Gtk.TextIter iter;
