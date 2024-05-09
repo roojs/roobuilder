@@ -2010,19 +2010,7 @@ public class Editor : Object
 				var ni = (Palete.Symbol)ls.get_item(i);
 				old.append(ni);
 			}
-			new_symbolfile.children = old;
-			GLib.debug("after update  old = %d, new = %d",
-				 (int)old.get_n_items(), (int)ls.get_n_items()
-			);
-			while (old.get_n_items() > ls.get_n_items()) {
-				old.remove(old.get_n_items()-1);
-			}
-		    GLib.debug("all done update  old = %d, new = %d",
-				 (int)old.get_n_items(), (int)ls.get_n_items()
-			);
-		    // this happens on first load? - not afterwards?
-		    
-			this.last_selected_line = -1;
+		 	this.last_selected_line = -1;
 			GLib.Idle.add(() => {
 				_this.navigationsort.collapseOnLoad();
 				Gtk.TextIter iter;
