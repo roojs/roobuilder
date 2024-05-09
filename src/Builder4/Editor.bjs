@@ -998,6 +998,7 @@
          "id" : "navigationwindow",
          "items" : [
           {
+           "# Palete.SymbolFile? symbolfile" : "null",
            "# int last_selected_line" : "-1",
            "$ Gtk.Widget? selected_row" : "null",
            "$ xns" : "Gtk",
@@ -1369,6 +1370,9 @@
             "\t",
             "\tvar tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();",
             "\tvar old = (GLib.ListStore)tlm.get_model();",
+            "\t",
+            "\t",
+            "\t",
             "\t",
             "\tif (ls.get_n_items() < 1) {",
             "\t\tGLib.debug(\"empty - remove all\");",

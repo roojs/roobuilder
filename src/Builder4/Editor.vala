@@ -1918,6 +1918,7 @@ public class Editor : Object
 
 			// my vars (def)
 		public int last_selected_line;
+		public Palete.SymbolFile? symbolfile;
 		public Gtk.Widget? selected_row;
 
 		// ctor
@@ -1930,6 +1931,7 @@ public class Editor : Object
 
 			// my vars (dec)
 			this.last_selected_line = -1;
+			this.symbolfile = null;
 			this.selected_row = null;
 
 			// set gobject values
@@ -1994,6 +1996,9 @@ public class Editor : Object
 			
 			var tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();
 			var old = (GLib.ListStore)tlm.get_model();
+			
+			
+			
 			
 			if (ls.get_n_items() < 1) {
 				GLib.debug("empty - remove all");
