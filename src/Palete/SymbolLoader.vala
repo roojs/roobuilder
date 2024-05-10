@@ -2,6 +2,22 @@
 	load stuff from SQlite 
 	 - dont cache as that's really sqlites job.
 
+  USES:
+  	Palete : 
+  		properties?
+  	public Gee.HashMap<string,GirObject> classes;
+  		abstract:
+	  Gee.HashMap<string,GirObject> Palate.getPropertiesFor(string ename, JsRender.NodePropType ptype);
+  	 GirObject? getClass(string ename); ?/?< usage?
+
+	Palete.Gtk
+		doc :  --> makes calls
+		
+		 GirObject? loadGir (string ename)  ? 
+		public override GirObject? getClass(string ename)
+		public  GirObject? getDelegate(string ename) 
+		public  GirObject? getClassOrEnum(string ename)
+		 
 */
 
 namespace Palete
