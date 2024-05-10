@@ -182,7 +182,7 @@ namespace Palete {
 		     
 		}
 		// get rid of objecst from props list..
-		public Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
+		private Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
 		{
 			// we shold probably cache this??
 			
@@ -636,7 +636,7 @@ namespace Palete {
 		 
 		
 		
-		void add_classes_from_method(GirObject cls, string method , Gee.ArrayList<string> ret)
+		private void add_classes_from_method(GirObject cls, string method , Gee.ArrayList<string> ret)
 		{
 			
 			//GLib.debug("add_classes_from_method %s, %s", cls.fqn(), method);
@@ -670,7 +670,7 @@ namespace Palete {
 			 
 		}
 		
-		void addRealClasses(Gee.ArrayList<string>  ret, string cn, bool allow_root = false)
+		private void addRealClasses(Gee.ArrayList<string>  ret, string cn, bool allow_root = false)
 		{
 			if (!cn.contains(".")) {
 				return;
@@ -804,7 +804,7 @@ namespace Palete {
         	
     	}
     	
-    	public void buildChildListForDroppingProject()
+    	private void buildChildListForDroppingProject()
     	{
 
 			this.load();
@@ -823,7 +823,7 @@ namespace Palete {
 			}    	
 		}
 
-		public void buildChildListForDropping(string pkg, Gee.HashMap<string,GirObject> classes)
+		private void buildChildListForDropping(string pkg, Gee.HashMap<string,GirObject> classes)
 		{
 			
 
