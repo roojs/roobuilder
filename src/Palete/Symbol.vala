@@ -39,6 +39,7 @@ namespace Palete {
  		public bool is_ctor  { get; set; default = false; } 
  		public bool is_static  { get; set; default = false; } 
  		public bool is_gir  { get; set; default = false; } 
+ 		public bool is_ctor_only { get; set; default = false; }  // FIXME!!!
  		
  		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
