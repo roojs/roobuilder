@@ -99,7 +99,7 @@ namespace Palete {
 		}
 
 			// does not handle implements...
-		public override GirObject? getClass(string ename)
+		private override GirObject? getClass(string ename)
 		{
 			var es = ename.split(".");
 			var gir = this.loadGir(ename);
