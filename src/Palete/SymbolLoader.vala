@@ -75,9 +75,13 @@ namespace Palete
 			Palate.getProperties for
 		*/
 		
-		public Gee.HashMap<string,Symbol>? getPropertiesFor(string ename, Lsp.SymbolKind kind)
+		public Gee.HashMap<string,Symbol>  getPropertiesFor(string ename, Lsp.SymbolKind kind)
 		{
+			var ret = new Gee.HashMap<string,Symbol>();
 			var sym = this.singleFqn(ename);
+			if (sym == null) {
+				return ret;
+			}
 			var pids = this.getParents(sym);
 			
 			
@@ -107,7 +111,7 @@ namespace Palete
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
 			
-			var ret = new Gee.HashMap<string,Symbol>();
+
 			foreach(var s in els) {
 				var k = s.name;
 				if (kind ==  Lsp.SymbolKind.Property) {
