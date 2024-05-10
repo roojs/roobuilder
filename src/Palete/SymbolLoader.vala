@@ -72,7 +72,7 @@ namespace Palete
 			
 		}
 		/*
-			load class? with prpopert
+			Palate.getProperties for
 		*/
 		
 		public Gee.HashMap<string,Symbol>? getPropertiesFor(string ename, Lsp.SymbolKind kind)
@@ -98,20 +98,34 @@ namespace Palete
 						is_static = 0
 					AND
 						is_sealed = 0
-						
+					AND 
+						deprecated = 0
+
 					LIMIT 1;
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)kind);
 			var els = new Gee.ArrayList<Symbol>();
-			this.sql.selectExecute(stmt, els);
+			this.sq.selectExecute(stmt, els);
 			
 			var ret = new Gee.HashMap<string,Symbol>();
 			foreach(var s in els) {
+				switch (kind) {
+					case Lsp.SymbolKind.Property:
+					
+						if (!s.is_writable && !s.is_ctor_only) {
+							continue;
+						}
+						if (s.rtype == "GLib.Object") {
+						 	continue;
+						}
+						// old code also validates that type is a valid type?
+						break;
+					 }
+					 
 				ret.set(s.name, s);
 			}
 			
-			
-		
+			 
 			return ret;
 		
 		}
