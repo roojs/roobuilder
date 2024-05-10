@@ -82,7 +82,7 @@ namespace Palete
 			if (sym == null) {
 				return ret;
 			}
-			var pids = this.getParents(sym);
+			var pids = this.getParentIds(sym);
 			
 			
 			var stmt = this.sq.selectPrepare("
