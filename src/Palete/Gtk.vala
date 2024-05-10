@@ -107,7 +107,7 @@ namespace Palete {
 		
 		}
 		 
-		public  GirObject? getDelegate(string ename) 
+		private  GirObject? getDelegate(string ename) 
 		{
 			var es = ename.split(".");
 			var gir = this.loadGir(ename);
