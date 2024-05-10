@@ -78,6 +78,9 @@ namespace Palete
 		public Gee.HashMap<string,Symbol>? getPropertiesFor(string ename, Lsp.SymbolKind kind)
 		{
 			var sym = this.singleFqn(ename);
+			var pids = this.getParents(sym);
+			
+			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						* 
@@ -86,7 +89,7 @@ namespace Palete
 					WHERE 
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
-						parent_id IN (" + parent_ids + ") 
+						parent_id IN (" + string.joinv(",", pids) + ") 
 					AND
 						style = $stype
 					AND
@@ -98,9 +101,18 @@ namespace Palete
 						
 					LIMIT 1;
 			");
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)kind);
+			var els = new Gee.ArrayList<Symbol>();
+			this.sql.selectExecute(stmt, els);
+			
+			var ret = new Gee.HashMap<string,Symbol>();
+			foreach(var s in els) {
+				ret.set(s.name, s);
+			}
+			
+			
 		
-		
-			return null;
+			return ret;
 		
 		}
 		
