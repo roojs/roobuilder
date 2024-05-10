@@ -142,9 +142,17 @@ namespace Palete
 			return ret;
 		
 		}
-		public string[] getParentIds(Symbol s)
+		public void getParentIds(Symbol s, string[] ret)
 		{
-			string[] ret = {};
+			
+			if (s.inherits_str == "") {
+				return;
+			}
+			var par = this.singleByFqn(s.inherits_str); // gobject doesnt support multiple - we might need to change this for js?
+			if (par == null) {
+				return;
+			}
+			ret += par.id.to_string();
 			
 		
 		}
