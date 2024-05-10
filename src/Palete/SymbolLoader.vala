@@ -9,10 +9,12 @@
   		abstract:
 	  Gee.HashMap<string,GirObject> Palate.getPropertiesFor(string ename, JsRender.NodePropType ptype);
   	 GirObject? getClass(string ename); ?/?< usage?
-  	 
-  	 		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props) << makes use of gir..
-  	 
-
+  	 // makes some use..
+	public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props) << makes use of gir..
+	public override Gee.ArrayList<string> getDropList(string rval)
+		public override JsRender.Node fqnToNode(string fqn) 
+		
+		
 	Palete.Gtk
 		doc :  --> makes calls
 		
