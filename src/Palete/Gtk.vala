@@ -837,7 +837,7 @@ namespace Palete {
 		
 		 
     	
-    	public void buildDropList(string parent, Gee.ArrayList<string> children) 
+    	private void buildDropList(string parent, Gee.ArrayList<string> children) 
     	{
     		
     		var pr = (Project.Gtk) this.project;
