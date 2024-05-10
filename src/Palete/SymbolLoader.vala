@@ -109,18 +109,27 @@ namespace Palete
 			
 			var ret = new Gee.HashMap<string,Symbol>();
 			foreach(var s in els) {
-				switch (kind) {
-					case Lsp.SymbolKind.Property:
-					
-						if (!s.is_writable && !s.is_ctor_only) {
-							continue;
-						}
-						if (s.rtype == "GLib.Object") {
-						 	continue;
-						}
-						// old code also validates that type is a valid type?
-						break;
-					 }
+				var k = s.name;
+				if (kind ==  Lsp.SymbolKind.Property) {
+					if (
+						k == "___" ||
+						k == "parent" ||
+						k == "default_widget" ||
+						k == "root" ||
+						k == "layout_manager" || // ??
+						k == "widget"  // gestures..
+					) {
+						continue;
+					}
+					if (!s.is_writable && !s.is_ctor_only) {
+						continue;
+					}
+					if (s.rtype == "GLib.Object") { /// this is practually everything? ?? 
+					 	continue;
+					}
+					// old code also validates that type is a valid type?
+
+				 }
 					 
 				ret.set(s.name, s);
 			}
