@@ -285,7 +285,7 @@ namespace Palete {
 		
 		
 				// get rid of depricated from signal list..
-		public Gee.HashMap<string,GirObject>  filterSignals(Gee.HashMap<string,GirObject> props)
+		private Gee.HashMap<string,GirObject>  filterSignals(Gee.HashMap<string,GirObject> props)
 		{
 			// we shold probably cache this??
 			
@@ -309,24 +309,9 @@ namespace Palete {
 		
 		
 		}
-		
-		public string[] getInheritsFor(string ename)
-		{
-			string[] ret = {};
-			 
-			var cls = this.getClass(ename);
-			 
-			if (cls == null || cls.nodetype != "Class") {
-				print("getInheritsFor:could not find cls: %s\n", ename);
-				return ret;
-			}
-			
-			return cls.inheritsToStringArray();
-			
-
-		}
-		Gee.HashMap<string,Gee.HashMap<string,JsRender.NodeProp>> node_defaults;
-		Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
+		 
+		private Gee.HashMap<string,Gee.HashMap<string,JsRender.NodeProp>> node_defaults;
+		private Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
 		
 		private void init_node_defaults()
 		{
