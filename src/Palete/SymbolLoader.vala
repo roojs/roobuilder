@@ -144,7 +144,8 @@ namespace Palete
 		}
 		public string[] getParentIds(Symbol s)
 		{
-		
+			string[] ret = {};
+			
 		
 		}
 		
