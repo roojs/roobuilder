@@ -107,10 +107,11 @@ namespace SQ {
 					is_writable INT2,
 			 		is_ctor INT2,
 					is_static INT2,
+					is_ctor_only INT2,
 					
 					parent_name TEXT,
 					doc TEXT,
-					is_gir INTEGER,
+					is_gir INT2,
 					fqn TEXT,
 					implements_str TEXT,
 					inherits_str TEXT
