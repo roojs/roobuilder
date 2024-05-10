@@ -198,6 +198,8 @@ namespace Palete {
 			this.is_ctor=s.is_ctor;
 			this.is_static=s.is_static;
 			this.is_gir=s.is_gir;
+			this.is_ctor_only=s.is_ctor_only;
+			
 			this.inherits.clear();;
 			this.implements.clear();
 			this.param_ar.clear();
