@@ -83,7 +83,7 @@ namespace Palete
 				return ret;
 			}
 			string[] pids = { sym.id.to_string() };
-			this.getParentIds(sym, pids);
+			this.getParentIds(sym, ref pids);
 			
 			
 			var stmt = this.sq.selectPrepare("
@@ -143,7 +143,7 @@ namespace Palete
 			return ret;
 		
 		}
-		public void getParentIds(Symbol s, string[] ret)
+		public void getParentIds(Symbol s, ref string[] ret)
 		{
 			
 			if (s.inherits_str == "") {
@@ -153,7 +153,8 @@ namespace Palete
 			if (par == null) {
 				return;
 			}
-			ret += par.id.to_string();
+			var add = par.id.to_string();
+			ret += add;
 			
 		
 		}
