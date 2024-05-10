@@ -337,7 +337,7 @@ namespace Palete {
 		}
 		
 		
-		static string create_table =   "CREATE TABLE symbol (
+		public static string create_table =   "CREATE TABLE symbol (
 				    id INTEGER PRIMARY KEY,
 					file_id INTEGER ,
 					parent_id INTEGER,
