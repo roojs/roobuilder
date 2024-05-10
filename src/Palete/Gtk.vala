@@ -114,7 +114,7 @@ namespace Palete {
 			return gir  == null ? null : gir.delegates.get(es[1]);
 		}
 		
-		public  GirObject? getClassOrEnum(string ename)
+		private  GirObject? getClassOrEnum(string ename)
 		{
 			var es = ename.split(".");
 			var gir = this.loadGir(ename);
