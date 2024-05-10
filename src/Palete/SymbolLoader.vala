@@ -17,6 +17,7 @@
 		public override GirObject? getClass(string ename)
 		public  GirObject? getDelegate(string ename) 
 		public  GirObject? getClassOrEnum(string ename)
+		public override bool  typeOptions(string fqn, string key, string type, out string[] opts)  << makes reference..
 		 
 */
 
