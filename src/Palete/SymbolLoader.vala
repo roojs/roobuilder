@@ -4,16 +4,16 @@
 
   USES:
   	Palete : 
-  		properties?
-  	public Gee.HashMap<string,GirObject> classes;
-  		abstract:
-	  Gee.HashMap<string,GirObject> Palate.getPropertiesFor(string ename, JsRender.NodePropType ptype);
-  	 GirObject? getClass(string ename); ?/?< usage?
-  	 // makes some use..
-	public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props) << makes use of gir..
-	public override Gee.ArrayList<string> getDropList(string rval)
+		properties?
+		public Gee.HashMap<string,GirObject> classes;
+		abstract:
+		Gee.HashMap<string,GirObject> Palate.getPropertiesFor(string ename, JsRender.NodePropType ptype);
+		GirObject? getClass(string ename); ?/?< usage?
+		// makes some use..
+		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props) << makes use of gir..
+		public override Gee.ArrayList<string> getDropList(string rval)
 		public override JsRender.Node fqnToNode(string fqn) 
-		
+
 		
 	Palete.Gtk
 		doc :  --> makes calls
@@ -74,6 +74,37 @@ namespace Palete
 		/*
 			load class? with prpopert
 		*/
+		
+		public Gee.HashMap<string,Symbol>? getPropertiesFor(string ename, Lsp.SymbolKind kind)
+		{
+			var sym = this.singleFqn(ename);
+			var stmt = this.sq.selectPrepare("
+					SELECT 
+						* 
+					FROM 
+						symbol 
+					WHERE 
+						file_id IN (" +   this.manager.file_ids   + ")
+					AND
+						parent_id IN (" + parent_ids + ") 
+					AND
+						style = $stype
+					AND
+						is_abstract = 0 
+					AND
+						is_static = 0
+					AND
+						is_sealed = 0
+						
+					LIMIT 1;
+			");
+		
+		
+			return null;
+		
+		}
+		
+		
 		public Symbol? classWithChildren(string fqn)
 		{
 			return null;
