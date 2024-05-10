@@ -142,7 +142,11 @@ namespace Palete
 			return ret;
 		
 		}
+		public string[] getParentIds(Symbol s)
+		{
 		
+		
+		}
 		
 		public Symbol? classWithChildren(string fqn)
 		{
