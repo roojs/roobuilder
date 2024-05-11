@@ -143,19 +143,31 @@ namespace Palete
 			return ret;
 		
 		}
-		public void getParentIds(Symbol s, ref string[] ret)
+		public void getParentIds(Symbol s, ref string[] ret, Gee.ArrayList<string>? imp = null)
 		{
-			
+			var top = imp == null;
+			imp = top ? new Gee.ArrayList<string>() : imp;
+		 	if (s.implements_str != "" && !imp.contains(s.implements_str) {
+		 		imp.add(s.implements_str);
+	 		}
 			if (s.inherits_str == "") {
+				if (top) {
+					this.addImplementIds(imp, ref ret);
+				}
 				return;
 			}
-			var par = this.singleByFqn(s.inherits_str); // gobject doesnt support multiple - we might need to change this for js?
+			var par = this.singleByFqn(s.inherits_str, img); // gobject doesnt support multiple - we might need to change this for js?
 			if (par == null) {
+				if (top) {
+					this.addImplementIds(imp, ref ret);
+				}
 				return;
 			}
 			var add = par.id.to_string();
 			ret += add;
-			
+			if (top) {
+				this.addImplementIds(imp, ref ret);
+			}
 		
 		}
 		
