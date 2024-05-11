@@ -143,7 +143,7 @@ namespace Palete
 			return ret;
 		
 		}
-		public void getParentIds(Symbol s, ref string[] ret, Gee.ArrayList<string>? imp = null)
+		private void getParentIds(Symbol s, ref string[] ret, Gee.ArrayList<string>? imp = null)
 		{
 			var top = imp == null;
 			imp = top ? new Gee.ArrayList<string>() : imp;
@@ -168,6 +168,9 @@ namespace Palete
 			if (top) {
 				this.addImplementIds(imp, ref ret);
 			}
+		
+		}
+		private void addImplementIds( Gee.ArrayList<string>? imp,ref string[] ret) {
 		
 		}
 		
