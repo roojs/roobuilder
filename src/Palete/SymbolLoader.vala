@@ -170,7 +170,7 @@ namespace Palete
 			var add = par.id.to_string();
 			if (!ret.contains(add)) {
 				this.getParentIds(par, ret, imp);
-				ret.append(add);
+				ret.add(add);
 			}
 			if (top) {
 				this.addImplementIds(imp, ret);
