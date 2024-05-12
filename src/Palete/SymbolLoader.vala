@@ -177,7 +177,47 @@ namespace Palete
 			}
 		
 		}
-		private void addImplementIds( Gee.ArrayList<string>? imp,Gee.ArrayList<string> ret) {
+		private void addImplementIds( Gee.ArrayList<string>? imp,Gee.ArrayList<string> ret)
+		{
+			string[] ph = {};
+			for((var i = 0; i < imp.size; i++) {
+				ph += ("$v" + i.to_string());
+			}
+			
+			
+			var stmt = this.sq.selectPrepare("
+					SELECT 
+						id  
+					FROM 
+						symbol 
+					WHERE 
+						file_id IN (" +   this.manager.file_ids   + ")
+					AND
+						fql IN (" + string.joinv(",", ph) + ") 
+					AND
+						style = $stype
+					AND
+						is_abstract = 0 
+					AND
+						is_static = 0
+					AND
+						is_sealed = 0
+					AND 
+						deprecated = 0
+
+					LIMIT 1;
+			");
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymboKind.Interface);
+			for((var i = 0; i < imp.size; i++) {
+				stmt.bind_text(stmt.bind_parameter_index ("$v" + i.to_string()), imp.get(i));
+			}
+			var els = new Gee.ArrayList<Symbol>();
+			this.sq.selectExecute(stmt, els);
+			for(var c in cls) {
+				ret.add(c.id);
+			}
+			
+			
 			
 		}
 		
