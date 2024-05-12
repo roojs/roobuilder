@@ -180,7 +180,7 @@ namespace Palete
 		private void addImplementIds( Gee.ArrayList<string>? imp,Gee.ArrayList<string> ret)
 		{
 			string[] ph = {};
-			for((var i = 0; i < imp.size; i++) {
+			for(var i = 0; i < imp.size; i++) {
 				ph += ("$v" + i.to_string());
 			}
 			
@@ -208,7 +208,7 @@ namespace Palete
 					LIMIT 1;
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Interface);
-			for((var i = 0; i < imp.size; i++) {
+			for(var i = 0; i < imp.size; i++) {
 				stmt.bind_text(stmt.bind_parameter_index ("$v" + i.to_string()), imp.get(i));
 			}
 			var els = new Gee.ArrayList<Symbol>();
