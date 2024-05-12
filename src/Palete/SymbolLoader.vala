@@ -214,7 +214,7 @@ namespace Palete
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
 			foreach(var c in els) {
-				ret.add((int)c.id);
+				ret.add(c.id.to_string());
 			}
 			
 			
