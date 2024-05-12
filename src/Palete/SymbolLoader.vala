@@ -207,13 +207,13 @@ namespace Palete
 
 					LIMIT 1;
 			");
-			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymboKind.Interface);
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Interface);
 			for((var i = 0; i < imp.size; i++) {
 				stmt.bind_text(stmt.bind_parameter_index ("$v" + i.to_string()), imp.get(i));
 			}
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
-			for(var c in cls) {
+			foreach(var c in cls) {
 				ret.add(c.id);
 			}
 			
