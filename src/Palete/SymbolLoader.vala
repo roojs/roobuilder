@@ -82,8 +82,9 @@ namespace Palete
 			if (sym == null) {
 				return ret;
 			}
-			string[] pids = { sym.id.to_string() };
-			this.getParentIds(sym, ref pids);
+			var pids = new Gee.ArrayList<string>();
+			pids.append( sym.id.to_string() );
+			this.getParentIds(sym,  pids);
 			
 			
 			var stmt = this.sq.selectPrepare("
@@ -169,7 +170,7 @@ namespace Palete
 				ret.append(add);
 			}
 			if (top) {
-				this.addImplementIds(imp, ref ret);
+				this.addImplementIds(imp, ret);
 			}
 		
 		}
