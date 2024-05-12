@@ -83,9 +83,12 @@ namespace Palete
 				return ret;
 			}
 			var pids = new Gee.ArrayList<string>();
-			pids.append( sym.id.to_string() );
+			pids.add( sym.id.to_string() );
 			this.getParentIds(sym,  pids);
-			
+			string[] pidss = {};
+			foreach(var pid in pids) {
+				pidss += pid;
+			}
 			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -95,7 +98,7 @@ namespace Palete
 					WHERE 
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
-						parent_id IN (" + string.joinv(",", pids) + ") 
+						parent_id IN (" + string.joinv(",", pidss) + ") 
 					AND
 						style = $stype
 					AND
@@ -174,8 +177,8 @@ namespace Palete
 			}
 		
 		}
-		private void addImplementIds( Gee.ArrayList<string>? imp,ref string[] ret) {
-		
+		private void addImplementIds( Gee.ArrayList<string>? imp,Gee.ArrayList<string> ret) {
+			
 		}
 		
 		public Symbol? classWithChildren(string fqn)
