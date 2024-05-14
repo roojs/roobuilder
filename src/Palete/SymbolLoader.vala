@@ -139,12 +139,12 @@ namespace Palete
 					// old code also validates that type is a valid type?
 
 				}
-				if (ret.has_key(s.name))&& s.stype == Lsp.SymbolKind.Interface) {
+				if (ret.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
 					continue;
 		 		}
 				 
 					 
-				 ret.set(s.name, s);
+				ret.set(s.name, s);
 			}
 			
 			 
