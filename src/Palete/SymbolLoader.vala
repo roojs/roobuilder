@@ -110,7 +110,6 @@ namespace Palete
 					AND 
 						deprecated = 0
 
-					LIMIT 1;
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)kind);
 			var els = new Gee.ArrayList<Symbol>();
