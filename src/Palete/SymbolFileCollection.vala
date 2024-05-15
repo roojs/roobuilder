@@ -73,7 +73,7 @@ namespace Palete {
 			return ret;
 		}
 
-		void loadAllFiles(GtkValaSettings cg)
+		void loadAllFiles(Project.GtkValaSettings cg)
 		{
 			foreach(var path in cg.sources) {
 
