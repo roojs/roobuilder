@@ -194,7 +194,8 @@ namespace Palete {
 			this.rtype  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
 			this.is_static =  prop.binding != Vala.MemberBinding.INSTANCE;
 		 	this.is_readable = prop.get_accessor != null ?  prop.get_accessor.readable : false;
-			this.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable ||  prop.set_accessor.construction : false;	 
+			this.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable : false;	 
+			this.is_ctor_only = prop.set_accessor != null ?   prop.set_accessor.construction : false;	 
 			this.setParent(parent);
 		}
 		public SymbolVala.new_field(ValaSymbolBuilder builder, Symbol? parent, Vala.Field prop)	

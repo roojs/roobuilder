@@ -112,7 +112,10 @@ namespace Project
 		{
 			return this.symbol_manager;
 		}
-		
+		public Palete.SymbolLoader symbolLoader()
+		{
+			return this.symbol_loader;
+		}
 		
 		public string writeMesonExe(string resources)
 		{

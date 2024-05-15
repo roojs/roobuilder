@@ -1099,6 +1099,8 @@ namespace Project {
 		
 		}
 		
+		public abstract Palete.SymbolLoader getSymbolLoader (string cgname); 
+		
 		public abstract Palete.LanguageClient  getLanguageServer(string lang);
 		
 		
@@ -1108,6 +1110,7 @@ namespace Project {
 		public abstract void loadJson(Json.Object obj); 
 		public abstract void saveJson(Json.Object obj);
 		public abstract Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file);
+		
 	}
 }
  

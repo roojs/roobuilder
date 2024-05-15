@@ -155,7 +155,12 @@ namespace Palete
 			var top = imp == null;
 			imp = top ? new Gee.ArrayList<string>() : imp;
 		 	if (s.implements_str != "" && !imp.contains(s.implements_str)) {
-		 		imp.add(s.implements_str);
+		 		var ar = s.implements_str.split("\n");
+		 		for(var i = 0; i < ar.length; i++) {
+		 			if (ar[i].length > 0 && !imp.contains(ar[i])) {
+		 				imp.add(ar[i]);
+	 				}
+ 				}
 	 		}
 			if (s.inherits_str == "") {
 				if (top) {

@@ -16,6 +16,7 @@ public class Project.Roo : Project {
 	public string DBPASSWORD = "";	
 	
 	Palete.SymbolFileCollection symbol_manager;
+	Palete.SymbolLoader symbol_loader;
     public Roo(string path) {
 
 		
@@ -26,8 +27,8 @@ public class Project.Roo : Project {
         //this.id = "project-roo-%d".printf(rid++);
 		this.initDatabase();
 		this.symbol_manager  = new Palete.SymbolFileCollection();
+		this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
 		
-        
     }
 	public override void   initDatabase()
 	{
@@ -114,8 +115,10 @@ public class Project.Roo : Project {
 	public override Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file)
 	{
 		 return this.symbol_manager;
-		
 	} 
+	public override Palete.SymbolLoader getSymbolLoader (string cgname) {
+		return this.symbol_loader;
+	}
 		 
 }
  
