@@ -142,7 +142,7 @@
 			var cur_project = this.compileProject();
 			this.testFqn(cur_project); // --drop-list
 			this.testlanguageServer(cur_project); // --language-server
-			this.testSymbolBuilder(cur_project); // -vapi/vala parser
+			this.testSymbolBuilder(cur_project); // symbol builder tests
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
  
