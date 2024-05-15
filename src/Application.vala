@@ -33,10 +33,10 @@
             { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
-            { "language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
-            { "symbol-db-test", 0, 0, OptionArg.STRING, ref opt_symbol_test, "run symbol database test on this compile group", null },
-            { "symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_symbol_dump_file, "symbol database dump file after loading", null },
-            { "drop-list", 0, 0, OptionArg.STRING, ref opt_drop_list, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
+            { "test-language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
+            { "test-symbol-db", 0, 0, OptionArg.STRING, ref opt_symbol_test, "run symbol database test on this compile group", null },
+            { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_symbol_dump_file, "symbol database dump file after loading", null },
+            { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
             
 			{ null }
@@ -49,7 +49,7 @@
 		public static string opt_bjs_compile;
 		public static string opt_bjs_compile_target;
 		public static string opt_test;  
-		public static string opt_drop_list;
+		public static string opt_test_fqn;
 		public static string opt_language_server;
 		public static string opt_symbol_test;
 		public static string opt_symbol_dump_file;
@@ -275,39 +275,24 @@
 		void dropList(Project.Project? cur_project) {
 
 
-			if (cur_project== null || BuilderApplication.opt_drop_list == null) {
+			if (cur_project== null || BuilderApplication.test_fqn == null) {
 				return;
 			}
+			var fqn = BuilderApplication.test_fqn;
 			
 			if (BuilderApplication.opt_compile_project == null) {
 				GLib.error("need a project %s, to use --drop-list",BuilderApplication.opt_compile_project);
 			 }
-			  if (cur_project.xtype != "Gtk") {
-			 	 var rp = (Palete.Roo) cur_project.palete;
-			   	print("\n\nDropList:\n%s", geeArrayToString(rp.getDropList(BuilderApplication.opt_drop_list)));
-	 			 print("\n\nChildList:\n%s", geeArrayToString(rp.getChildList(BuilderApplication.opt_drop_list, false)));
-	 			 print("\n\nChildList \n(with props): %s", geeArrayToString(rp.getChildList(BuilderApplication.opt_drop_list, true))); 	
-	 			 
-	 			 
-	 			 print("\n\nPropsList: %s", this.girArrayToString(rp.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.PROP)));
-	  			 print("\n\nSignalList: %s", this.girArrayToString(rp.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.LISTENER)));
-	 			 
-	 			 // ctor.
-	 			  print("\n\nCtor Values: %s", rp.fqnToNode(BuilderApplication.opt_drop_list).toJsonString());
-	 			 GLib.Process.exit(Posix.EXIT_SUCCESS);
 			  
-			  
-			 
-			 }
-			 var p = (Palete.Gtk) cur_project.palete;
+			 var p = cur_project.palete;
 			
-			 print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(BuilderApplication.opt_drop_list)));
- 			 print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, false)));
- 			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, true))); 	
+			 print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(fqn)));
+ 			 print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(fqn, false)));
+ 			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(fqn true))); 	
  			 
  			 
- 			 print("\n\nPropsList: %s", this.girArrayToString(p.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.PROP)));
-  			 print("\n\nSignalList: %s", this.girArrayToString(p.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.LISTENER)));
+ 			 print("\n\nPropsList: %s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.PROP)));
+  			 print("\n\nSignalList: %s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.LISTENER)));
  			 
  			 // ctor.
  			  print("\n\nCtor Values: %s", p.fqnToNode(BuilderApplication.opt_drop_list).toJsonString());
