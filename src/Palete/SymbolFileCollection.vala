@@ -75,8 +75,8 @@ namespace Palete {
 
 		void loadAllFiles(Palete.GtkValaSettings cg)
 		{
-			for (var i = 0; i < cg.sources.size; i++) {
-				var path = cg.sources.get(i);
+			foreach(var path in cg.sources) {
+
 				
 				var jfile = pr.getByRelPath(path);
 				if (jfile == null) {
@@ -96,8 +96,12 @@ namespace Palete {
 				 
 			   
 			}
+			var vp = cg.project.vapiPaths();
+			foreach(var path in vp) {	
+				this.factory_by_path(path);	
+			}
 			
-			// vapis?
+
 		}
 		 
 		
