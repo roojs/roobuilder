@@ -612,7 +612,7 @@
 				var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
 				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
 					var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
-		 			print("\n\nPropsList: %s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Property)));
+		 			print("\n\nPropsList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Property)));
 				
 				}
 			
