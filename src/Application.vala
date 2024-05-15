@@ -32,7 +32,6 @@
             { "bjs-glade", 0, 0, OptionArg.NONE, ref opt_bjs_compile_glade, "output glade", null },
             { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
-            { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
             { "test-language-server", 0, 0, OptionArg.STRING, ref opt_test_language_server, "run language server on this file", null },
             { "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group", null },
             { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_file, "symbol database dump file after loading", null },
@@ -49,7 +48,7 @@
 		public static string opt_compile_output;
 		public static string opt_bjs_compile;
 		public static string opt_bjs_compile_target;
-		public static string opt_test;  
+ 
 		public static string opt_test_fqn;
 		public static string opt_test_language_server;
 		public static string opt_test_symbol_target;
@@ -135,7 +134,7 @@
 				 
 			}
 			this.initDebug();
-			this.runTests();			
+
 			this.pullResources();
 			
 	        Project.Project.loadAll();
@@ -637,46 +636,7 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 		
-		
-		void runTests()
-		{
-			if (opt_test == null) {
-				return;
-			}
-			switch(opt_test) {
-				case "help":
-					print("""
-help             - list available tests
-flutter-project  -  was try and read flutter data (but desnt work.)
-""");		
-					break;
-				case "flutter-project":
-			        Project.Project.loadAll();
-					//var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
-					/*var pa = p.palete as Palete.Flutter;
-					pa.dumpusage();
-					 var ar = pa.getChildList("material.Scaffold");
-					GLib.debug("childlist for material.Scaffold is %s", 
-						string.joinv( "\n-- ", ar)
-					);
-					ar = pa.getDropList("material.MaterialApp");
-					GLib.debug("droplist for material.MaterialApp is %s", 
-						string.joinv( "\n-- ", ar)
-					);
-					*/
-					break;
-					
-				 
-					
-					
-				default:
-					print("Invalid test\n");
-					break;
-
-
-			}
-			GLib.Process.exit(Posix.EXIT_SUCCESS);		
-		}
+		 
 		
 		
 		// move to 'window colletction?
