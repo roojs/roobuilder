@@ -322,7 +322,11 @@
 		string symbolArrayToString(Gee.HashMap<string,Palete.Symbol> map) 
 		{
 			var ret = "";
-			foreach(var gi in map.values) {
+			var keys = new Gee.ArrayList<string>();
+			keys.add_all(map.keys);
+			keys.sort();
+			foreach(var k in keys) {
+				var gi = map.get(k);
 				 ret += "%s %s (%s)\n".printf(gi.stype.to_string(), gi.name, gi.fqn.substring(0, gi.fqn.length - gi.name.length));
 			}
 			return ret;
