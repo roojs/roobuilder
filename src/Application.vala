@@ -34,7 +34,7 @@
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
             { "test-language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
-            { "test-symbol-db", 0, 0, OptionArg.STRING, ref opt_symbol_test, "run symbol database test on this compile group", null },
+            { "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group", null },
             { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_symbol_dump_file, "symbol database dump file after loading", null },
             { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
@@ -51,7 +51,7 @@
 		public static string opt_test;  
 		public static string opt_test_fqn;
 		public static string opt_language_server;
-		public static string opt_symbol_test;
+		public static string opt_test_symbol_target;
 		public static string opt_symbol_dump_file;
 		
         public static bool opt_skip_linking = false;
@@ -139,7 +139,7 @@
 	        Project.Project.loadAll();
 			this.listProjects();
 			var cur_project = this.compileProject();
-			this.dropList(cur_project); // --drop-list
+			this.test_fqn(cur_project); // --drop-list
 			this.languageServer(cur_project); // --language-server
 			this.symbolBuilderTest(cur_project); // -vapi/vala parser
 			this.listFiles(cur_project);
@@ -272,7 +272,7 @@
 		
 		}
 		
-		void dropList(Project.Project? cur_project) {
+		void test_fqn(Project.Project? cur_project) {
 
 
 			if (cur_project== null || BuilderApplication.opt_test_fqn == null) {
@@ -288,14 +288,14 @@
 			
 			 print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(fqn)));
  			 print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(fqn, false)));
- 			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(fqn true))); 	
+ 			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(fqn, true))); 	
  			 
  			 
  			 print("\n\nPropsList: %s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.PROP)));
   			 print("\n\nSignalList: %s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.LISTENER)));
  			 
  			 // ctor.
- 			  print("\n\nCtor Values: %s", p.fqnToNode(BuilderApplication.opt_drop_list).toJsonString());
+ 			  print("\n\nCtor Values: %s", p.fqnToNode(fqn).toJsonString());
  			 
  			  GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
@@ -563,7 +563,7 @@
 		*/
 		void symbolBuilderTest(Project.Project? cur_project)
 		{
-			if (BuilderApplication.opt_symbol_test == null) {
+			if (BuilderApplication.opt_test_symbol_target == null) {
 				return;
 			}
 			if (cur_project == null) {
@@ -582,7 +582,7 @@
 			 
 			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 			
-			sb.updateBackground.begin(BuilderApplication.opt_symbol_test, (o,r )  => {
+			sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, (o,r )  => {
 				  sb.updateBackground.end(r);
 				
 				if (BuilderApplication.opt_symbol_dump_file != null) {
