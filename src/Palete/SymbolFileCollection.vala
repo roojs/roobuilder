@@ -96,6 +96,8 @@ namespace Palete {
 				 
 			   
 			}
+			
+			// vapis?
 		}
 		 
 		
