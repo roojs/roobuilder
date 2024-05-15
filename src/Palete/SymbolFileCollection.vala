@@ -92,7 +92,7 @@ namespace Palete {
 					//context.add_c_source_file(path);
 					continue;
 				}
-				this.factory_by_path(jfile.targetName());	
+				this.factory_by_path(tn);	
 				 
 			   
 			}
