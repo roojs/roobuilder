@@ -265,6 +265,56 @@ namespace Project
 			return this.compilegroups.get(cgn).symbolManager();
 			
 		} 
+		
+		
+		
+#if VALA_0_56
+		int vala_version=56;
+#elif VALA_0_36
+		int vala_version=36;
+#endif		
+		Gee.ArrayList<string> vapiPaths( )
+		{
+			var ret = new Gee.ArrayList<string>();
+			foreach(var k in this.packages) {
+				 
+				var path = this.packageToPath(k);
+				if (path == "" || ret.contains(path)) {
+					continue;
+				}
+				ret.add(path);
+				 
+			}
+
+
+			return ret;
+		}
+		
+		string packageToPath(string n) 
+		{
+			// only try two? = we are ignoreing our configDirectory?
+
+			var fn =  "/usr/share/vala-0.%d/vapi/%s.vapi".printf(this.vala_version, n);
+			if (FileUtils.test (fn, FileTest.EXISTS)) {
+				return fn;
+			}
+			 
+			fn =  "/usr/share/vala/vapi/%s.vapi".printf( n);
+			if (!FileUtils.test (fn, FileTest.EXISTS)) {
+				return fn;
+			}
+			var vd = this.vapidirs();
+			for(var i = 0 ; i < vd.length; i++ ) {
+				fn = vd[i] + "/%s.vapi".printf( n);
+				if (!FileUtils.test (fn, FileTest.EXISTS)) {
+					return fn;
+				}
+			}
+			return "";
+			
+		}
+ 
+		
 		 
 		 
 		 
@@ -329,6 +379,10 @@ namespace Project
 			
 			
 		}
+		
+		
+		
+		
 		
 		
 		void makeTemplatedFile(string name, string[] str, string replace) 
