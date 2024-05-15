@@ -316,7 +316,7 @@
 			var keys = new Gee.ArrayList<string>();
 			keys.add_all(map.keys);
 			keys.sort();
-			foreach(var gi in keys) {
+			foreach(var k in keys) {
 				var gi = map.get(k);
 				 ret += "%s %s (%s)\n".printf(gi.type, gi.name, gi.propertyof);
 			
