@@ -73,7 +73,30 @@ namespace Palete {
 			return ret;
 		}
 
-		
+		void loadAllFiles(Palete.GtkValaSettings cg)
+		{
+			for (var i = 0; i < cg.sources.size; i++) {
+				var path = cg.sources.get(i);
+				
+				var jfile = pr.getByRelPath(path);
+				if (jfile == null) {
+					GLib.debug("Can't  add file %s", path);
+					continue;
+				}
+				var tn = jfile.targetName();
+				if (!tn.has_suffix(".vala") && tn.has_suffix(".c") ) {
+					continue;
+				}
+				
+				if ( tn.has_suffix(".c")) {
+					//context.add_c_source_file(path);
+					continue;
+				}
+				this.factory_by_path(jfile.targetName());	
+				 
+			   
+			}
+		}
 		 
 		
 	}
