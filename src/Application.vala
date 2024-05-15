@@ -36,6 +36,7 @@
             { "test-language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
             { "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group", null },
             { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_symbol_dump_file, "symbol database dump file after loading", null },
+            { "test-symbol-fqn", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_fqn, "show droplists / children from a fqn using new Symbol code", null },
             { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
             
@@ -52,8 +53,9 @@
 		public static string opt_test_fqn;
 		public static string opt_language_server;
 		public static string opt_test_symbol_target;
-		public static string opt_symbol_dump_file;
-		
+		public static string opt_test_symbol_dump_file;
+		public static string opt_test_symbol_dump_fqn
+		;		
         public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
 		public static bool opt_debug_critical = false;
@@ -585,11 +587,15 @@
 			sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, (o,r )  => {
 				  sb.updateBackground.end(r);
 				
-				if (BuilderApplication.opt_symbol_dump_file != null) {
+				if (BuilderApplication.opt_test_symbol_dump_file != null) {
 					var fc = new Palete.SymbolFileCollection();
-					var sf= fc.factory_by_path(BuilderApplication.opt_symbol_dump_file);
+					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_dump_file);
 					sf.loadSymbols();
 					sf.dump();
+				}
+				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
+				
+				
 				}
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
