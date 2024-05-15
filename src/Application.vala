@@ -292,11 +292,11 @@
  			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(fqn, true))); 	
  			 
  			 
- 			 print("\n\nPropsList: %s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.PROP)));
-  			 print("\n\nSignalList: %s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.LISTENER)));
+ 			 print("\n\nPropsList: \n%s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.PROP)));
+  			 print("\n\nSignalList:\n%s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.LISTENER)));
  			 
  			 // ctor.
- 			  print("\n\nCtor Values: %s", p.fqnToNode(fqn).toJsonString());
+ 			  print("\n\nCtor Values:\n %s", p.fqnToNode(fqn).toJsonString());
  			 
  			  GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
@@ -318,7 +318,7 @@
 			keys.sort();
 			foreach(var k in keys) {
 				var gi = map.get(k);
-				 ret += "%s %s (%s)\n".printf(gi.type, gi.name, gi.propertyof);
+				 ret += "     %s %s (%s)\n".printf(gi.type, gi.name, gi.propertyof);
 			
 			}
 			return ret;
@@ -332,7 +332,7 @@
 			keys.sort();
 			foreach(var k in keys) {
 				var gi = map.get(k);
-				 ret += "%s %s (%s)\n".printf(gi.rtype, gi.name, gi.fqn.substring(0, gi.fqn.length - 1 - gi.name.length));
+				 ret += "    %s %s (%s)\n".printf(gi.rtype, gi.name, gi.fqn.substring(0, gi.fqn.length - 1 - gi.name.length));
 			}
 			return ret;
 		
