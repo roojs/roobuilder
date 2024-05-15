@@ -496,7 +496,7 @@
 			
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
-		void testLlanguageServer(Project.Project? cur_project)
+		void testLanguageServer(Project.Project? cur_project)
 		{
 			if (BuilderApplication.opt_test_language_server == null) {
 				return;
