@@ -5,7 +5,10 @@ namespace Project
 		public string name { get; set; }
  
 		
-		Gtk project;
+		public Gtk project {
+			get;
+			private set;
+		}
 
 		public Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
  
@@ -16,6 +19,7 @@ namespace Project
 		public bool is_library = false;
 		
 		Palete.SymbolFileCollection symbol_manager;
+		Palete.SymbolLoader symbol_loader;
 		
 		public GtkValaSettings(Gtk project, string name) 
 		{
@@ -26,7 +30,7 @@ namespace Project
 			this.sources = new Gee.ArrayList<string>();
 			this.execute_args = "";
 			this.symbol_manager = new Palete.SymbolFileCollection();
-				
+			this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
 		}
 		
 		
@@ -46,7 +50,8 @@ namespace Project
 			// sources and packages.
 			this.sources = this.filterFiles(this.project.readArray(el.get_array_member("sources")));
 			this.symbol_manager = new Palete.SymbolFileCollection();
-
+			this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
+			this.symbol_manager.loadAllFiles(this);
 		}
 		
 		// why not array of strings?
@@ -153,6 +158,9 @@ pkg.generate( $(cgname)_lib,
 
 		
 		}
+		
+		
+		
 		
 	}
  }
