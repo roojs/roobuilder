@@ -78,7 +78,7 @@ namespace Palete {
 			foreach(var path in cg.sources) {
 
 				
-				var jfile = pr.getByRelPath(path);
+				var jfile = cg.project.getByRelPath(path);
 				if (jfile == null) {
 					GLib.debug("Can't  add file %s", path);
 					continue;
