@@ -33,9 +33,9 @@
             { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
-            { "test-language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
+            { "test-language-server", 0, 0, OptionArg.STRING, ref opt_test_language_server, "run language server on this file", null },
             { "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group", null },
-            { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_symbol_dump_file, "symbol database dump file after loading", null },
+            { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_file, "symbol database dump file after loading", null },
             { "test-symbol-fqn", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_fqn, "show droplists / children from a fqn using new Symbol code", null },
             { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
@@ -51,7 +51,7 @@
 		public static string opt_bjs_compile_target;
 		public static string opt_test;  
 		public static string opt_test_fqn;
-		public static string opt_language_server;
+		public static string opt_test_language_server;
 		public static string opt_test_symbol_target;
 		public static string opt_test_symbol_dump_file;
 		public static string opt_test_symbol_dump_fqn
@@ -141,12 +141,12 @@
 	        Project.Project.loadAll();
 			this.listProjects();
 			var cur_project = this.compileProject();
-			this.test_fqn(cur_project); // --drop-list
-			this.languageServer(cur_project); // --language-server
+			this.testFqn(cur_project); // --drop-list
+			this.testlanguageServer(cur_project); // --language-server
 			this.symbolBuilderTest(cur_project); // -vapi/vala parser
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
-			this.languageServer(cur_project);
+ 
 			this.compileBjs(cur_project);
 			//this.compileVala();
 			
@@ -274,7 +274,7 @@
 		
 		}
 		
-		void test_fqn(Project.Project? cur_project) {
+		void testFqn(Project.Project? cur_project) {
 
 
 			if (cur_project== null || BuilderApplication.opt_test_fqn == null) {
@@ -496,24 +496,24 @@
 			
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
-		void languageServer(Project.Project? cur_project)
+		void testLlanguageServer(Project.Project? cur_project)
 		{
-			if (BuilderApplication.opt_language_server == null) {
+			if (BuilderApplication.opt_test_language_server == null) {
 				return;
 			}
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
-			var file = cur_project.getByRelPath(BuilderApplication.opt_language_server);
+			var file = cur_project.getByRelPath(BuilderApplication.opt_test_language_server);
 			if (file == null) {
 				// then compile them all, and compare them...
 
-	 			if (!GLib.FileUtils.test(BuilderApplication.opt_language_server, FileTest.EXISTS)) {
-					GLib.error("missing file %s in project %s", BuilderApplication.opt_language_server, cur_project.name);
+	 			if (!GLib.FileUtils.test(BuilderApplication.opt_test_language_server, FileTest.EXISTS)) {
+					GLib.error("missing file %s in project %s", BuilderApplication.opt_test_language_server, cur_project.name);
 
 	 			}
 	 			// in theory we can test a vapi?
- 				file = new JsRender.PlainFile(cur_project,BuilderApplication.opt_language_server);
+ 				file = new JsRender.PlainFile(cur_project,BuilderApplication.opt_test_language_server);
 			}
 			
 			var ls = file.getLanguageServer();
