@@ -275,10 +275,10 @@
 		void dropList(Project.Project? cur_project) {
 
 
-			if (cur_project== null || BuilderApplication.test_fqn == null) {
+			if (cur_project== null || BuilderApplication.opt_test_fqn == null) {
 				return;
 			}
-			var fqn = BuilderApplication.test_fqn;
+			var fqn = BuilderApplication.opt_test_fqn;
 			
 			if (BuilderApplication.opt_compile_project == null) {
 				GLib.error("need a project %s, to use --drop-list",BuilderApplication.opt_compile_project);
