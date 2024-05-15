@@ -273,7 +273,7 @@ namespace Project
 #elif VALA_0_36
 		int vala_version=36;
 #endif		
-		Gee.ArrayList<string> vapiPaths( )
+		public Gee.ArrayList<string> vapiPaths( )
 		{
 			var ret = new Gee.ArrayList<string>();
 			foreach(var k in this.packages) {
