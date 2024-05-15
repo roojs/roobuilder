@@ -327,7 +327,7 @@
 			keys.sort();
 			foreach(var k in keys) {
 				var gi = map.get(k);
-				 ret += "%s %s (%s)\n".printf(gi.stype.to_string(), gi.name, gi.fqn.substring(0, gi.fqn.length - gi.name.length));
+				 ret += "%s %s (%s)\n".printf(gi.rtype, gi.name, gi.fqn.substring(0, gi.fqn.length - 1 - gi.name.length));
 			}
 			return ret;
 		
