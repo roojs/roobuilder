@@ -100,7 +100,7 @@ namespace Palete
 					AND
 						parent_id IN (" + string.joinv(",", pidss) + ") 
 					AND
-						style = $stype
+						stype = $stype
 					AND
 						is_abstract = 0 
 					AND
@@ -201,9 +201,9 @@ namespace Palete
 					WHERE 
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
-						fql IN (" + string.joinv(",", ph) + ") 
+						fqn IN (" + string.joinv(",", ph) + ") 
 					AND
-						style = $stype
+						stype = $stype
 					AND
 						is_abstract = 0 
 					AND
