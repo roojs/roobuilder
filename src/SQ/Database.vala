@@ -83,7 +83,10 @@ namespace SQ {
 				   relversion TEXT NOT NULL DEFAULT ''
 				);
 			");
-			exec(Palete.Symbol.create_table());	
+			var ar = Palete.Symbol.create_table();
+			for(var i = 0; i < ar.length; i++) {
+				exec(ar[i]);	
+			}
 		}
 		
 		
