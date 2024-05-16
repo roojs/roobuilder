@@ -338,7 +338,7 @@ namespace Palete {
 		
 		
 		public static string create_table() {
-				var ret = 	"
+				return "
 					CREATE TABLE symbol (
 					id INTEGER PRIMARY KEY,
 					file_id INTEGER ,
@@ -372,7 +372,7 @@ namespace Palete {
 					inherits_str TEXT
 				);
 			";
-			return ret;
+			 
 		}
  
 		
