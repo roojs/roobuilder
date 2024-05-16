@@ -184,13 +184,11 @@ namespace Palete {
 			this.is_gir=s.is_gir;
 			this.is_ctor_only=s.is_ctor_only;
 			
-			this.inherits.clear();;
+			 
 			this.implements.clear();
 			this.param_ar.clear();
 			
-			foreach(var k in s.inherits) {
-				this.inherits.add(k);
-			}
+			this.inherits_str = s.inherits_str;
 			foreach(var k in s.implements) {
 				this.implements.add(k);
 			}
