@@ -864,6 +864,7 @@ namespace Palete {
         		return ret; 
         	}
         	/*
+        	this is needed for drag drop?
         	foreach(var pn in cls.props.values) {
 
         		if (!pn.is_writable ) {
