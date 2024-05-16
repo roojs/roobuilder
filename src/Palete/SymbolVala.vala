@@ -251,7 +251,8 @@ namespace Palete {
 					this.direction = "ref";
 					break;
 			}
-			//this.setParent(parent);
+
+
  		}
  		public SymbolVala.new_signal(ValaSymbolBuilder builder, Symbol? parent, Vala.Signal sig)	
 		{
@@ -357,7 +358,46 @@ namespace Palete {
 			// should nto need to update file symbols.
 		}
 			 
-		
+		public void setParamParent(Symbol? parent) 
+		{
+			  
+			 
+			this.file.parsed_symbols.add(this.line_sig);
+			
+
+			this.parent = parent;
+			 
+			  	 
+			this.fqn = this.to_fqn();
+			
+			this.rev = this.file.version;
+			 
+			var q = new SQ.Query<Symbol>("symbol");
+			var old = this.param_ar.get(this.sequence);
+			if (null == old) {
+ 
+				
+				q.insert(this);
+				GLib.debug("DB INSERT added %d:%d, %s", (int)this.parent_id, (int)this.id, this.fqn);
+ 				this.param_ar.set(this.sequence, this);
+				 
+				//this.file.symbols.add(this);
+				this.file.symbol_map.set((int)this.id, this);
+				this.file.updated_ids.add((int)this.id);
+				return;
+				
+			}
+			// update..
+
+ 
+			this.id = old.id;
+			this.file.updated_ids.add((int)this.id);
+			
+			q.update(old, this);
+			GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
+			// should nto need to update file symbols.
+		}
+			 
 		 
 	
 	}
