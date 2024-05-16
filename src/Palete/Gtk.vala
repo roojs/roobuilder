@@ -803,11 +803,11 @@ namespace Palete {
         	
         	
     	}
-    	
-    	public Gee.ArrayList<string> getChildListFromSymbols(string in_rval, bool with_props)
+    	 
+		public Gee.ArrayList<string> getChildListFromSymbols(Palete.SymbolLoader sl, string in_rval, bool with_props)
         {
-        	
-        	GLib.debug("getChildListFromSymbols %s %s", in_rval, with_props ? "(with props)" : "");
+        	 
+        	GLib.debug("getChildList %s %s", in_rval, with_props ? "(with props)" : "");
         	
         	//return this.original_getChildList(  in_rval, with_props);
         	 
@@ -818,47 +818,52 @@ namespace Palete {
         	if (in_rval == "*top") {
         		// everythign that's not depricated and extends Gtk.Widget
         		// even a gtk window and about dialog are widgets
-        		this.addRealClasses(ret, "Gtk.Widget", true);
+        		ret.add("Gtk.Widget");
+        		ret.add_all( sl.implementations("Gtk.Widget", Lsp.SymbolKind.Class));
         		
         		return ret;
         		
         	
         	
         	}
-        	var cls = this.getClass(in_rval);
-        	if (cls == null) {
-        		GLib.debug("could not get class for %s", in_rval);
-	    		return ret;
-			}
         	
-        	// look through methods of in_rval
-        	// set_X << ignore
-        	// probably methods:
-        	this.add_classes_from_method(cls, "add_controller", ret);
-        	this.add_classes_from_method(cls, "add_shortcut", ret);
-        	this.add_classes_from_method(cls, "add_tick_callback", ret); // wtf does this do.
-        	this.add_classes_from_method(cls, "append", ret);
-        	this.add_classes_from_method(cls, "append_column", ret); // columnview column
-        	this.add_classes_from_method(cls, "append_item", ret); // GLib.Menu 
-        	//this.add_classes_from_method(cls, "append_submenu", ret); // GLib.Menu - complicated to support
-        	this.add_classes_from_method(cls, "attach", ret); // grid column        	
-        	this.add_classes_from_method(cls, "pack_start", ret); // headerbar (also has pack end?)
-        	
-        	  // add_controller 1st arge = ??
-        	  // add_menomic_label ??? << no ???
-        	  // add_shortcut? 
-        	 // add_tick_callback ?
-        	 // append << core one to add stuff..
-        	 
         	if (in_rval == "Gtk.Notebook") {
         		ret.add( "Gtk.NotebookPage" );
         	}
         	 
-        	if (!with_props) {
-        		
-	        	pr.child_list_cache.set(in_rval, ret);
+        	 
+        	var methods = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Method);
+        	foreach(var method in methods.values) {
+        		switch (method.name) {
+        			case "add_controller":
+        			case "add_shortcut":
+        			case "add_tick_callback":
+        			case "append":
+        			case "append_column":
+        			case "append_item":
+        			case "attach":
+        			case "pack_start":
+        				// look for proerties that are objects..
+        				sl.methodParams(method);
+        				if (method.param_ar.size < 0) {
+        					continue;
+        				}
+        				var ty = method.param_ar.get(0).rtype;
+        				if (!ty.contains(".") || ret.contains(ty)) {
+        					continue;
+    					}
+    					ret.add(ty);
+    					ret.add_all(sl.implementations(ty, Lsp.SymbolKind.Class));
+						break;
+					default:
+						break;
+				}
+        				
+        	}
+        	if (!with_props) 
         		return ret; 
         	}
+        	
         	foreach(var pn in cls.props.values) {
 
         		if (!pn.is_writable ) {
@@ -877,7 +882,7 @@ namespace Palete {
         	
         	
     	}
-    	
+		
     	
     	
     	private void buildChildListForDroppingProject()
