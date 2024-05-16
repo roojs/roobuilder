@@ -47,7 +47,7 @@ namespace Palete
 	
 		public Symbol? singleByFqn(string fqn)
 		{
-			 
+			GLib.debug("singleByFqn get %s",fqn); 
 			var res = new Symbol();
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -152,6 +152,7 @@ namespace Palete
 		}
 		private void getParentIds(Symbol s, Gee.ArrayList<string> ret, Gee.ArrayList<string>? imp = null)
 		{
+				GLib.debug("getParentIds   %s",s.fqn); 
 			var top = imp == null;
 			imp = top ? new Gee.ArrayList<string>() : imp;
 		 	if (s.implements_str != "" && !imp.contains(s.implements_str)) {
@@ -168,6 +169,13 @@ namespace Palete
 				}
 				return;
 			}
+			 
+			var ar = s.implements_str.split("\n");
+		 		for(var i = 0; i < ar.length; i++) {
+		 			if (ar[i].length > 0 && !imp.contains(ar[i])) {
+		 				imp.add(ar[i]);
+	 				}
+ 				}
 			var par = this.singleByFqn(s.inherits_str); // gobject doesnt support multiple - we might need to change this for js?
 			if (par == null) {
 				if (top) {
