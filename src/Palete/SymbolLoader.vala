@@ -274,7 +274,7 @@ namespace Palete
 			
 		}
 		
-		public Symbol? classWithChildren(string fqn, )
+		public Symbol? classWithChildren(string fqn )
 		{
 			return null;
 		}
