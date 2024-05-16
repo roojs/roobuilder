@@ -610,10 +610,14 @@
 					sf.dump();
 				}
 				var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
+ 
 				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
 					var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
 		 			print("\n\nPropsList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Property)));
 	  				print("\n\nSignalList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Signal)));
+	 				print("\n\nChildList:\n%s", this.geeArrayToString(
+	 					cur_project.getChildListFromSymbols(
+	 						BuilderApplication.opt_test_symbol_target, fqn, false)));	  				
 				}
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
