@@ -613,7 +613,7 @@
 				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
 					var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
 		 			print("\n\nPropsList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Property)));
-				
+	  				print("\n\nSignalList:\n%s", this.girArrayToString(p.getPropertiesFor( fqn, Lsp.SymbolKind.Signal)));
 				}
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
