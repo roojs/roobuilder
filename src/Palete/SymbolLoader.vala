@@ -231,7 +231,32 @@ namespace Palete
 		
 		public string implementations(string fqn, Lsp.SymbolKind.stype)
 		{
-			
+			var stmt = this.sq.selectPrepare("
+					SELECT 
+						fqn  
+					FROM 
+						symbol 
+					WHERE 
+						file_id IN (" +   this.manager.file_ids   + ")
+					AND
+						fqn NOT IN (" + string.joinv(",", ph) + ") 
+					AND
+						stype = $stype
+					AND
+						is_abstract = 0 
+					AND
+						is_static = 0
+					AND
+						is_sealed = 0
+					AND 
+						deprecated = 0
+					AND
+						inherits_str = $fqn
+					OR 
+						implements_str LIKE '%s\n' || $fqn || '\n%s'
+
+					LIMIT 1;
+			");
 		
 		
 		}
