@@ -192,9 +192,7 @@ namespace Palete {
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
 			this.rtype  = prop.property_type.type_symbol == null ? prop.property_type.to_string() : prop.property_type.type_symbol.get_full_name();
-			if (rtype == "") {
-				GLib.debug("type_symbol is null on %s", prop.name
-			}
+			 
 			this.is_static =  prop.binding != Vala.MemberBinding.INSTANCE;
 		 	this.is_readable = prop.get_accessor != null ?  prop.get_accessor.readable : false;
 			this.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable : false;	 
