@@ -170,12 +170,6 @@ namespace Palete
 				return;
 			}
 			 
-			var ar = s.implements_str.split("\n");
-		 		for(var i = 0; i < ar.length; i++) {
-		 			if (ar[i].length > 0 && !imp.contains(ar[i])) {
-		 				imp.add(ar[i]);
-	 				}
- 				}
 			var par = this.singleByFqn(s.inherits_str); // gobject doesnt support multiple - we might need to change this for js?
 			if (par == null) {
 				if (top) {
