@@ -804,7 +804,7 @@ namespace Palete {
         	
     	}
     	 
-		public Gee.ArrayList<string> getChildListFromSymbols(Palete.SymbolLoader sl, string in_rval, bool with_props)
+		public override Gee.ArrayList<string> getChildListFromSymbols(Palete.SymbolLoader sl, string in_rval, bool with_props)
         {
         	 
         	GLib.debug("getChildList %s %s", in_rval, with_props ? "(with props)" : "");
