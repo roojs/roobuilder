@@ -152,7 +152,7 @@ namespace Palete
 		}
 		private void getParentIds(Symbol s, Gee.ArrayList<string> ret, Gee.ArrayList<string>? imp = null)
 		{
-				GLib.debug("getParentIds   %s",s.fqn); 
+			GLib.debug("getParentIds   %s",s.fqn); 
 			var top = imp == null;
 			imp = top ? new Gee.ArrayList<string>() : imp;
 		 	if (s.implements_str != "" && !imp.contains(s.implements_str)) {
