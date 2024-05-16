@@ -113,7 +113,7 @@ namespace Palete {
 		public int64 rev = 0;
 
 		construct {
-			this.inherits   = new Gee.ArrayList<string>();
+ 
   			this.implements  = new Gee.ArrayList<string>(); 	
 			this.children = new GLib.ListStore(typeof(Symbol));
 			this.children_map = new Gee.HashMap<string,Symbol>(); 
