@@ -247,6 +247,8 @@ namespace Palete {
 					return;
 				case "union": // ignore?
 					return;
+				case "function-inline": // ignore?
+					return;
 				default:
 					GLib.error("UNHANDLED Gir file element: " + element->name +"\n");
  
