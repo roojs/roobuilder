@@ -664,11 +664,14 @@ public class Xcls_WindowRooView : Object
 			
 			     // FIXME - base url of script..
 			     // we need it so some of the database features work.
+			    // needs to occur after we are loaded?
+			    /*
 			    this.el.load_html( "Render not ready" , 
 			            //fixme - should be a config option!
 			            // or should we catch stuff and fix it up..
 			            "http://localhost/app.Builder/"
 			    );
+			    */
 			   
 			        
 			   //this.el.open('file:///' + __script_path__ + '/../builder.html');
