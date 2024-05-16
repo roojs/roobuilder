@@ -229,7 +229,14 @@ namespace Palete
 			
 		}
 		
-		public Symbol? classWithChildren(string fqn)
+		public string implementations(string fqn, Lsp.SymbolKind.stype)
+		{
+			
+		
+		
+		}
+		
+		public Symbol? classWithChildren(string fqn, )
 		{
 			return null;
 		}
