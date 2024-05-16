@@ -259,9 +259,8 @@ namespace Palete {
 			this.name = sig.name;
 			this.stype = Lsp.SymbolKind.Signal;
 	 		//this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
-		 	this.rtype = sig.return_type == null ? "" : (
-		 		sig.return_type.type_symbol == null ? sig.return_type.to_string() :  sig.return_type.type_symbol.get_full_name()
-	 		);
+		 	this.rtype = sig.return_type == null ? "" || sig.return_type.type_symbol == null ? "void" :  sig.return_type.type_symbol.get_full_name()
+	 		
 	 		this.setParent(parent);
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
