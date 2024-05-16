@@ -804,6 +804,82 @@ namespace Palete {
         	
     	}
     	
+    	public Gee.ArrayList<string> getChildListFromSymbols(string in_rval, bool with_props)
+        {
+        	
+        	GLib.debug("getChildListFromSymbols %s %s", in_rval, with_props ? "(with props)" : "");
+        	
+        	//return this.original_getChildList(  in_rval, with_props);
+        	 
+        	
+        	// CACHE ?	
+        	var ret = new Gee.ArrayList<string>();
+        	
+        	if (in_rval == "*top") {
+        		// everythign that's not depricated and extends Gtk.Widget
+        		// even a gtk window and about dialog are widgets
+        		this.addRealClasses(ret, "Gtk.Widget", true);
+        		
+        		return ret;
+        		
+        	
+        	
+        	}
+        	var cls = this.getClass(in_rval);
+        	if (cls == null) {
+        		GLib.debug("could not get class for %s", in_rval);
+	    		return ret;
+			}
+        	
+        	// look through methods of in_rval
+        	// set_X << ignore
+        	// probably methods:
+        	this.add_classes_from_method(cls, "add_controller", ret);
+        	this.add_classes_from_method(cls, "add_shortcut", ret);
+        	this.add_classes_from_method(cls, "add_tick_callback", ret); // wtf does this do.
+        	this.add_classes_from_method(cls, "append", ret);
+        	this.add_classes_from_method(cls, "append_column", ret); // columnview column
+        	this.add_classes_from_method(cls, "append_item", ret); // GLib.Menu 
+        	//this.add_classes_from_method(cls, "append_submenu", ret); // GLib.Menu - complicated to support
+        	this.add_classes_from_method(cls, "attach", ret); // grid column        	
+        	this.add_classes_from_method(cls, "pack_start", ret); // headerbar (also has pack end?)
+        	
+        	  // add_controller 1st arge = ??
+        	  // add_menomic_label ??? << no ???
+        	  // add_shortcut? 
+        	 // add_tick_callback ?
+        	 // append << core one to add stuff..
+        	 
+        	if (in_rval == "Gtk.Notebook") {
+        		ret.add( "Gtk.NotebookPage" );
+        	}
+        	 
+        	if (!with_props) {
+        		
+	        	pr.child_list_cache.set(in_rval, ret);
+        		return ret; 
+        	}
+        	foreach(var pn in cls.props.values) {
+
+        		if (!pn.is_writable ) {
+	        		GLib.debug("Skip (not write)  %s : (%s) %s", cls.fqn(), pn.type , pn.name);
+        			continue;
+    			}
+    			// if (&& !pn.ctor_only << we add these?
+    			// are they really available ?
+        		GLib.debug("Add %s : (%s) %s", cls.fqn(), pn.type , pn.name);        		
+        		this.addRealClasses(ret, pn.type);
+    		}
+        	
+        	pr.child_list_cache_props.set(in_rval, ret);        	
+        	
+        	return ret;
+        	
+        	
+    	}
+    	
+    	
+    	
     	private void buildChildListForDroppingProject()
     	{
 
