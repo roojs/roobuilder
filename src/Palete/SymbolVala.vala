@@ -251,7 +251,7 @@ namespace Palete {
 					this.direction = "ref";
 					break;
 			}
-			this.setParamParent(this);
+			this.setParamParent(parent);
 
  		}
  		public SymbolVala.new_signal(ValaSymbolBuilder builder, Symbol? parent, Vala.Signal sig)	
