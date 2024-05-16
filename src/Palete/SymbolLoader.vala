@@ -229,8 +229,10 @@ namespace Palete
 			
 		}
 		
-		public string implementations(string fqn, Lsp.SymbolKind.stype)
+		public Gee.ArrayList<string> implementations(string fqn, Lsp.SymbolKind.stype)
 		{
+			var ret = new Gee.ArrayList<string>;
+			var res = new Gee.ArrayList<Symbol>;
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						fqn  
@@ -238,8 +240,6 @@ namespace Palete
 						symbol 
 					WHERE 
 						file_id IN (" +   this.manager.file_ids   + ")
-					AND
-						fqn NOT IN (" + string.joinv(",", ph) + ") 
 					AND
 						stype = $stype
 					AND
@@ -251,14 +251,27 @@ namespace Palete
 					AND 
 						deprecated = 0
 					AND
+					(
 						inherits_str = $fqn
 					OR 
 						implements_str LIKE '%s\n' || $fqn || '\n%s'
-
+					)
 					LIMIT 1;
 			");
-		
-		
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Interface);
+			stmt.bind_text(stmt.bind_parameter_index ("$fqn"), fqn);
+			var els = new Gee.ArrayList<Symbol>();
+			this.sq.selectExecute(stmt, els);
+			if (els.size < 1) {
+				return ret;
+			}
+			foreach(var c in els) {
+				ret.add(c.fqn);
+				ret.add_all(this.implemtations(c.fqn, stype));
+			}
+			return ret;
+			
+			
 		}
 		
 		public Symbol? classWithChildren(string fqn, )
