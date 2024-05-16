@@ -255,7 +255,7 @@ namespace Palete
 					(
 						inherits_str = $fqn
 					OR 
-						implements_str LIKE '%s\n' || $fqn || '\n%s'
+						implements_str LIKE '%\n' || $fqn || '\n%'
 					) ;
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)stype);
