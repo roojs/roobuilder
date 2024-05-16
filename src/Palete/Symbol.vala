@@ -337,38 +337,42 @@ namespace Palete {
 		}
 		
 		
-		public static string create_table =   "CREATE TABLE symbol (
-		    id INTEGER PRIMARY KEY,
-			file_id INTEGER ,
-			parent_id INTEGER,
-			stype INTEGER,
-			
-			begin_line INTEGER,
-			begin_col INTEGER,
-			end_line INTEGER,
-			end_col INTEGER,
-			sequence INTEGER,
-			
-			name TEXT,
-			rtype TEXT,
-			direction TEXT,
-			
-			deprecated INT2,
-			is_abstract INT2,
-			is_sealed INT2,
-	 		is_readable INT2,
-			is_writable INT2,
-	 		is_ctor INT2,
-			is_static INT2,
-			is_ctor_only INT2,
-			
-			parent_name TEXT,
-			doc TEXT,
-			is_gir INT2,
-			fqn TEXT,
-			implements_str TEXT,
-			inherits_str TEXT
-		);";
+		public static string create_table() {
+				return	"
+					CREATE TABLE symbol (
+					id INTEGER PRIMARY KEY,
+					file_id INTEGER ,
+					parent_id INTEGER,
+					stype INTEGER,
+					
+					begin_line INTEGER,
+					begin_col INTEGER,
+					end_line INTEGER,
+					end_col INTEGER,
+					sequence INTEGER,
+					
+					name TEXT,
+					rtype TEXT,
+					direction TEXT,
+					
+					deprecated INT2,
+					is_abstract INT2,
+					is_sealed INT2,
+			 		is_readable INT2,
+					is_writable INT2,
+			 		is_ctor INT2,
+					is_static INT2,
+					is_ctor_only INT2,
+					
+					parent_name TEXT,
+					doc TEXT,
+					is_gir INT2,
+					fqn TEXT,
+					implements_str TEXT,
+					inherits_str TEXT
+				);
+			";
+		}
  
 		
 		
