@@ -246,7 +246,7 @@ namespace Palete {
 	 	void removeSymbol(Symbol s)
 	 	{
 	 		GLib.debug("Remove Sybol %d, %s",(int) s.id , s.fqn);
-	 		if (s.stype == Lsp.SymbolKind.Param) {
+	 		if (s.stype == Lsp.SymbolKind.Parameter) {
 	 		    for(var i  = 0; i <   s.parent.param_ar.size; i++ ) {
 	 		        if (s.parent.param_ar.get(i).id == s.id) {
 	 		            s.parent.param_ar.remove(i);
