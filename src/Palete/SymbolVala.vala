@@ -262,6 +262,7 @@ namespace Palete {
 		 	this.rtype = (sig.return_type == null  || sig.return_type.type_symbol == null) ? 
 		 		"void" :  sig.return_type.type_symbol.get_full_name();
 	 		
+	 		 
 	 		this.setParent(parent);
 		 	var n  = 0;
 		 	foreach(var p in sig.get_parameters()) {
