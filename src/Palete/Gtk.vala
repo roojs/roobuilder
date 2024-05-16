@@ -863,7 +863,7 @@ namespace Palete {
         	if (!with_props) 
         		return ret; 
         	}
-        	
+        	/*
         	foreach(var pn in cls.props.values) {
 
         		if (!pn.is_writable ) {
@@ -875,8 +875,8 @@ namespace Palete {
         		GLib.debug("Add %s : (%s) %s", cls.fqn(), pn.type , pn.name);        		
         		this.addRealClasses(ret, pn.type);
     		}
-        	
-        	pr.child_list_cache_props.set(in_rval, ret);        	
+        	*/
+        	         	
         	
         	return ret;
         	
