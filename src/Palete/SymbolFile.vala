@@ -245,16 +245,25 @@ namespace Palete {
 	 	
 	 	void removeSymbol(Symbol s)
 	 	{
-	 		
 	 		GLib.debug("Remove Sybol %d, %s",(int) s.id , s.fqn);
-	 		var c = s.parent_id == 0 ? this.children : this.symbol_map.get((int)s.parent_id).children;
-	 		uint pos;
-			if (c.find_with_equal_func(s, (a, b) => {
-				return ((Symbol)a).id == ((Symbol)b).id;
-			}, out pos)) {
-				c.remove(pos);
-				 
-			}
+	 		if (s.stype == Lsp.SymbolKind.Param) {
+	 		    for(var i  = 0; i <   parent.param_ar.size; i++ ) {
+	 		        if (parent.param_ar.get(i).id == s.id) {
+	 		            parent.param_ar.remove(i);
+	 		            break;
+ 		            }
+	            }
+	 		
+	 		} else {
+	     		
+	     		var c = s.parent_id == 0 ? this.children : this.symbol_map.get((int)s.parent_id).children;
+	     		uint pos;
+			    if (c.find_with_equal_func(s, (a, b) => {
+				    return ((Symbol)a).id == ((Symbol)b).id;
+			    }, out pos)) {
+				    c.remove(pos);
+			    }
+		    }
 			this.symbol_map.unset((int)s.id);
 			
 			s.parent = null;
