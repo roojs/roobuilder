@@ -267,7 +267,7 @@ namespace Palete
 			}
 			foreach(var c in els) {
 				ret.add(c.fqn);
-				ret.add_all(this.implemtations(c.fqn, stype));
+				ret.add_all(this.implementations(c.fqn, stype));
 			}
 			return ret;
 			
