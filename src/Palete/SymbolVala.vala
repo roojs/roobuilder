@@ -373,7 +373,7 @@ namespace Palete {
 			this.rev = this.file.version;
 			 
 			var q = new SQ.Query<Symbol>("symbol");
-			var old = this.param_ar.get(this.sequence);
+			var old = parent.param_ar.get(this.sequence);
 			if (null == old) {
  
 				
