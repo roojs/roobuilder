@@ -315,7 +315,7 @@ namespace Palete {
 				}
 				
 				if (child.stype == Lsp.SymbolKind.Parameter) {
-					parent.param_ar.add(child); // in order?
+					parent.param_ar.set(child.sequence, child); // in order?
 	 				this.symbol_map.set((int)child.id, child);	
 	 				return;
 				}
