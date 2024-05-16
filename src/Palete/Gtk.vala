@@ -845,7 +845,7 @@ namespace Palete {
         			case "pack_start":
         				// look for proerties that are objects..
         				sl.methodParams(method);
-        				if (method.param_ar.size < 0) {
+        				if (method.param_ar.size < 1) {
         					continue;
         				}
         				var ty = method.param_ar.get(0).rtype;
