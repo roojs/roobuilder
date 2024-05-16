@@ -258,7 +258,7 @@ namespace Palete
 					)
 					LIMIT 1;
 			");
-			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Interface);
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)stype);
 			stmt.bind_text(stmt.bind_parameter_index ("$fqn"), fqn);
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
