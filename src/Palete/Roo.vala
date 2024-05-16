@@ -379,7 +379,11 @@ namespace Palete {
 			 
 		}
 		 
-		
+		public override Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader sl, string in_rval, bool with_props)
+        {
+			var ret = new Gee.ArrayList<string>();
+			return ret;
+		}
 		
 		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_prop)
         {
