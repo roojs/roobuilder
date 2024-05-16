@@ -617,7 +617,7 @@
 		 			print("\n\nPropsList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Property)));
 	  				print("\n\nSignalList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Signal)));
 	  				print("\n\nMethods:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Method)));
-	  				print("\n\nImplementations:\n%s", string.joinv("\n   ", sl.implementations( fqn)));
+	  				print("\n\nImplementations:\n%s", this.geeArrayToString( sl.implementations( fqn,Lsp.SymbolKind.Class)));
 	  				print("\n\nChildList:\n%s", this.geeArrayToString(
 	 					cur_project.palete.getChildListFromSymbols(sl , fqn, false)));	  				
 				}
