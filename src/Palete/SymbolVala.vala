@@ -373,13 +373,13 @@ namespace Palete {
 			this.rev = this.file.version;
 			 
 			var q = new SQ.Query<Symbol>("symbol");
-			var old = parent.param_ar.get(this.sequence);
-			if (null == old) {
+			
+			if (parent.param_ar.size >= this.sequence) {
  
 				
 				q.insert(this);
 				GLib.debug("DB INSERT added %d:%d, %s", (int)this.parent_id, (int)this.id, this.fqn);
- 				this.param_ar.set(this.sequence, this);
+ 				parent.param_ar.set(this.sequence, this);
 				 
 				//this.file.symbols.add(this);
 				this.file.symbol_map.set((int)this.id, this);
@@ -388,7 +388,7 @@ namespace Palete {
 				
 			}
 			// update..
-
+			var old = parent.param_ar.get(this.sequence);
  
 			this.id = old.id;
 			this.file.updated_ids.add((int)this.id);
