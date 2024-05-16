@@ -54,7 +54,7 @@ namespace Palete {
 				foreach(var s in this.inherits) {
 					r += s;
 				}
-				return string.joinv("\n", r);
+				return "\n" + string.joinv("\n", r) + "\n";
 			}
 			set {
 				var bits = value.split("\n");
@@ -73,7 +73,7 @@ namespace Palete {
 				foreach(var s in this.implements) {
 					r += s;
 				}
-				return string.joinv("\n", r);
+				return  "\n" + string.joinv("\n", r) + "\n";
 			}
 			set {
 				var bits = value.split("\n");
