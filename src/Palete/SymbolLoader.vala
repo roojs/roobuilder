@@ -232,7 +232,7 @@ namespace Palete
 		public Gee.ArrayList<string> implementations(string fqn, Lsp.SymbolKind stype)
 		{
 			var ret = new Gee.ArrayList<string>();
-			var res = new Gee.ArrayList<Symbol>();
+ 
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						fqn  
