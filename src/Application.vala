@@ -609,6 +609,7 @@
 					sf.loadSymbols();
 					sf.dump();
 				}
+				
 				var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
  
 				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
@@ -616,8 +617,7 @@
 		 			print("\n\nPropsList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Property)));
 	  				print("\n\nSignalList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Signal)));
 	 				print("\n\nChildList:\n%s", this.geeArrayToString(
-	 					cur_project.getChildListFromSymbols(
-	 						BuilderApplication.opt_test_symbol_target, fqn, false)));	  				
+	 					cur_project.palete.getChildListFromSymbols(sl , fqn, false)));	  				
 				}
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
