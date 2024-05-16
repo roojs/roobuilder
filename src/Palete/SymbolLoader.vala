@@ -212,8 +212,7 @@ namespace Palete
 						is_sealed = 0
 					AND 
 						deprecated = 0
-
-					LIMIT 1;
+ 					;
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Interface);
 			for(var i = 0; i < imp.size; i++) {
@@ -255,8 +254,7 @@ namespace Palete
 						inherits_str = $fqn
 					OR 
 						implements_str LIKE '%s\n' || $fqn || '\n%s'
-					)
-					LIMIT 1;
+					) ;
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)stype);
 			stmt.bind_text(stmt.bind_parameter_index ("$fqn"), fqn);
@@ -288,7 +286,23 @@ namespace Palete
 			return null;
 		
 		}
+		public Gee.ArrayList<Symbol> methodParams(Symbol method)
+		{
+			var ret = new Gee.ArrayList<string>();
+ 
+			var stmt = this.sq.selectPrepare("
+					SELECT 
+						fqn  
+					FROM 
+						symbol 
+					WHERE 
+						parent_id  = $pid
+					AND
+						stype = $stype
+			");
+			returnret;
 		
+		}
 		 
 		
 	}	
