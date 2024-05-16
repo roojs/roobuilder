@@ -60,7 +60,9 @@ namespace Palete {
 				var bits = value.split("\n");
 				this.inherits.clear();
 				for (var i =0;i < bits.length;i++) {
-					this.inherits.add(bits[i]);
+					if (bits[i].length > 0) {
+						this.inherits.add(bits[i]);
+					}
 				}
 			}
 		}
@@ -79,7 +81,9 @@ namespace Palete {
 				var bits = value.split("\n");
 				this.implements.clear();
 				for (var i =0;i < bits.length;i++) {
-					this.implements.add(bits[i]);
+					if (bits[i].length > 0) {
+						this.implements.add(bits[i]);
+					}
 				}
 			}
 		}	
