@@ -634,9 +634,9 @@ public class Xcls_WindowRooView : Object
 			this.pendingRedraw = false;
 			this.redraws = 0;
 			this.refreshRequired = false;
-			this.runjs = "";
-			this.runhtml = "";
-			this.renderedData = "";
+			this.runjs = "\"\"";
+			this.runhtml = "\"\"";
+			this.renderedData = "\"\"";
 			this.lastRedraw = null;
 
 			// set gobject values
@@ -664,15 +664,15 @@ public class Xcls_WindowRooView : Object
 			
 			     // FIXME - base url of script..
 			     // we need it so some of the database features work.
-			    // needs to occur after we are loaded?
-			    /*
+			     
+			     /* cant do this untlie 'show is called'
+			     /*
 			    this.el.load_html( "Render not ready" , 
 			            //fixme - should be a config option!
 			            // or should we catch stuff and fix it up..
 			            "http://localhost/app.Builder/"
 			    );
-			    */
-			   
+			   */
 			        
 			   //this.el.open('file:///' + __script_path__ + '/../builder.html');
 			    /*
@@ -1091,7 +1091,7 @@ public class Xcls_WindowRooView : Object
 			this.editable_start_pos = -1;
 			this.loading = true;
 			this.button_is_pressed = false;
-			this.prop_selected = "";
+			this.prop_selected = "\"\"";
 			this.css = null;
 			this.key_is_pressed = false;
 			this.node_selected = null;
