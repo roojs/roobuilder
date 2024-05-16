@@ -860,7 +860,7 @@ namespace Palete {
 				}
         				
         	}
-        	if (!with_props) 
+        	if (!with_props) {
         		return ret; 
         	}
         	/*
