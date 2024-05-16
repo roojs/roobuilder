@@ -41,31 +41,11 @@ namespace Palete {
  		public bool is_gir  { get; set; default = false; } 
  		public bool is_ctor_only { get; set; default = false; }  // FIXME!!!
  		
- 		public Gee.ArrayList<string> inherits { get; set; default = new Gee.ArrayList<string>(); }
+ 		public string inherits_str { get; set; default = ""; }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
   		public Gee.ArrayList<Symbol> param_ar { get; set; default = new Gee.ArrayList<Symbol>(); }
   		
-		public string inherits_str { 
-			owned get {
-				if (this.inherits.size < 1) {
-					return "";
-				}
-				string[] r = {};
-				foreach(var s in this.inherits) {
-					r += s;
-				}
-				return "\n" + string.joinv("\n", r) + "\n";
-			}
-			set {
-				var bits = value.split("\n");
-				this.inherits.clear();
-				for (var i =0;i < bits.length;i++) {
-					if (bits[i].length > 0) {
-						this.inherits.add(bits[i]);
-					}
-				}
-			}
-		}
+		 
   		public string implements_str { 
 			owned get {
 				if (this.implements.size < 1) {
@@ -220,40 +200,7 @@ namespace Palete {
 
 			//?? soft copy children?
 		}
-		public void XcopyChildrenFrom( GLib.ListStore newer) 
-		{
-			/*
-			// this should use the map?
-			for(var i = 0; i < newer.get_n_items(); i++) {
-				var s = (Symbol)newer.get_item(i);
-				if ( i >= (this.children.get_n_items() -1)) {
-					this.children.append(s);
-					s.parent = this;
-					 
-					continue;
-				}
-				var os = (Symbol)this.children.get_item(i);
-				if (os.simpleEquals(s)) {
-					os.copyFrom(s);
-					os.copyChildrenFrom(s.children);
-					continue;
-				}
-				 
-				this.children.remove(i);
-				this.children.insert(i,s);
-				s.parent = this;
-				 
-			}
-			var nl = newer.get_n_items();
-			while (this.children.get_n_items() > nl) {
-				//var os = (Symbol)this.children.get_item(nl);		
-				this.children.remove(nl);
-				 
-			}
-			*/
-		
-		
-		}
+		 
 		
 		 
 		
