@@ -288,7 +288,7 @@ namespace Palete
 		}
 		public Gee.ArrayList<Symbol> methodParams(Symbol method)
 		{
-			var ret = new Gee.ArrayList<string>();
+ 
  
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -299,8 +299,15 @@ namespace Palete
 						parent_id  = $pid
 					AND
 						stype = $stype
+					ORDER BY 
+						sequence ASC
 			");
-			returnret;
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Parameter);
+			stmt.bind_int64(stmt.bind_parameter_index ("$pid"), method.id);
+			var els = new Gee.ArrayList<Symbol>();
+			this.sq.selectExecute(stmt, els);
+			
+			return els;
 		
 		}
 		 
