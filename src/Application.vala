@@ -616,7 +616,8 @@
 					var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
 		 			print("\n\nPropsList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Property)));
 	  				print("\n\nSignalList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Signal)));
-	 				print("\n\nChildList:\n%s", this.geeArrayToString(
+	  				print("\n\nMethods:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Method)));
+	  				print("\n\nChildList:\n%s", this.geeArrayToString(
 	 					cur_project.palete.getChildListFromSymbols(sl , fqn, false)));	  				
 				}
 			
