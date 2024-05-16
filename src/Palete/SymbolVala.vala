@@ -143,7 +143,7 @@ namespace Palete {
 			this.is_abstract = cls.is_abstract;
 			this.is_sealed = cls.is_sealed;	
 			if (cls.base_class != null) {
-				this.inherits.add(cls.base_class.get_full_name());
+				this.inherits_str = cls.base_class.get_full_name();
 			}
 			 
 		 	foreach(var p in cls.get_base_types()) {
