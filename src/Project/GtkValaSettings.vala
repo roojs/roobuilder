@@ -117,6 +117,88 @@ namespace Project
 			return this.symbol_loader;
 		}
 		
+		
+		public Gee.ArrayList<string> getChildList(string in_rval, bool with_props)
+        {
+        	
+        	GLib.debug("getChildList %s %s", in_rval, with_props ? "(with props)" : "");
+        	
+        	//return this.original_getChildList(  in_rval, with_props);
+        	 
+        	
+        	// CACHE ?	
+        	var ret = new Gee.ArrayList<string>();
+        	
+        	if (in_rval == "*top") {
+        		// everythign that's not depricated and extends Gtk.Widget
+        		// even a gtk window and about dialog are widgets
+        		ret.add("Gtk.Widget");
+        		ret.add_all( this.symbol_loader.implementations("Gtk.Widget", Lsp.SymbolKind.Class));
+        		
+        		return ret;
+        		
+        	
+        	
+        	}
+        	
+        	if (in_rval == "Gtk.Notebook") {
+        		ret.add( "Gtk.NotebookPage" );
+        	}
+        	 
+        	 
+        	var methods = this.symbol_loader.getPropertiesFor(in_rval, Lsp.SymbolKind.Method);
+        	foreach(var method in methods.values) {
+        		switch (method.name) {
+        			case "add_controller":
+        			case "add_shortcut":
+        			case "add_tick_callback":
+        			case "append":
+        			case "append_column":
+        			case "append_item":
+        			case "attach":
+        			case "pack_start":
+        				// look for proerties that are objects..
+        				this.symbol_loader.loadParams(method);
+        				if (method.params.size < 0) {
+        					continue;
+        				}
+        				var ty = method.params.get(0).rtype;
+        				if (!ty.contains(".") || ret.contains(ty)) {
+        					continue;
+    					}
+    					ret.add(ty);
+    					ret.add_all(this.symbol_loader.implementations(ty, Lsp.SymbolKind.Class));
+						break;
+					default:
+						break;
+				}
+        				
+        	}
+        	if (!with_props) 
+        		return ret; 
+        	}
+        	
+        	foreach(var pn in cls.props.values) {
+
+        		if (!pn.is_writable ) {
+	        		GLib.debug("Skip (not write)  %s : (%s) %s", cls.fqn(), pn.type , pn.name);
+        			continue;
+    			}
+    			// if (&& !pn.ctor_only << we add these?
+    			// are they really available ?
+        		GLib.debug("Add %s : (%s) %s", cls.fqn(), pn.type , pn.name);        		
+        		this.addRealClasses(ret, pn.type);
+    		}
+        	
+        	pr.child_list_cache_props.set(in_rval, ret);        	
+        	
+        	return ret;
+        	
+        	
+    	}
+		
+		
+		
 		public string writeMesonExe(string resources)
 		{
 		
