@@ -183,11 +183,11 @@ namespace Palete
 				ret.add(add);
 			}
 			if (top) {
-				this.addImplementIds(imp, ret);
+				this.addImplementIds(imp, "id", ret);
 			}
 		
 		}
-		private void fillImplements( Gee.ArrayList<string>? imp, Gee.ArrayList<string> ret. string prop)
+		private void fillImplements( Gee.ArrayList<string>? imp, string prop,Gee.ArrayList<string> ret.)
 		{
 			string[] ph = {};
 			for(var i = 0; i < imp.size; i++) {
