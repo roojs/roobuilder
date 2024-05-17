@@ -187,7 +187,7 @@ namespace Palete
 			}
 		
 		}
-		private void fillImplements( Gee.ArrayList<string>? imp, string prop,Gee.ArrayList<string> ret)
+		public void fillImplements( Gee.ArrayList<string>? imp, string prop,Gee.ArrayList<string> ret)
 		{
 			string[] ph = {};
 			for(var i = 0; i < imp.size; i++) {
