@@ -243,12 +243,10 @@ namespace Palete
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
 						stype = $stype
-					AND
-						is_abstract = 0 
+					 
 					AND
 						is_static = 0
-					AND
-						is_sealed = 0
+					 
 					AND 
 						deprecated = 0
 					AND
