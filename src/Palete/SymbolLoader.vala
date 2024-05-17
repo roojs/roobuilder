@@ -187,7 +187,7 @@ namespace Palete
 			}
 		
 		}
-		private void addImplementIds( Gee.ArrayList<string>? imp,Gee.ArrayList<string> ret)
+		private void fillImplements( Gee.ArrayList<string>? imp, Gee.ArrayList<string> ret. string prop)
 		{
 			string[] ph = {};
 			for(var i = 0; i < imp.size; i++) {
@@ -197,7 +197,7 @@ namespace Palete
 			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						id  
+						" + prop " + 
 					FROM 
 						symbol 
 					WHERE 
@@ -220,10 +220,18 @@ namespace Palete
 			for(var i = 0; i < imp.size; i++) {
 				stmt.bind_text(stmt.bind_parameter_index ("$v" + i.to_string()), imp.get(i));
 			}
+			// should probably do a more direct fetch...
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
 			foreach(var c in els) {
-				ret.add(c.id.to_string());
+				switch(prop) {
+					case "id":
+						ret.add(c.id.to_string());
+					case "fqn":
+						ret.add(c.fqn);
+					default:
+						GLib.error("invalid property fetch");
+				}
 			}
 			
 			
