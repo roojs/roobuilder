@@ -619,7 +619,9 @@
 	  				print("\n\nMethods:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Method)));
 	  				print("\n\nImplementations:\n%s", this.geeArrayToString( sl.implementations( fqn,Lsp.SymbolKind.Class)));
 	  				print("\n\nChildList:\n%s", this.geeArrayToString(
-	 					cur_project.palete.getChildListFromSymbols(sl , fqn, false)));	  				
+	 					cur_project.palete.getChildListFromSymbols(sl , fqn, false)));	
+ 					print("\n\nChildList (with props):\n%s", this.geeArrayToString(
+	 					cur_project.palete.getChildListFromSymbols(sl , fqn, true)));	
 				}
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
