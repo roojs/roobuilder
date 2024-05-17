@@ -165,7 +165,7 @@ namespace Palete
 	 		}
 			if (s.inherits_str == "") {
 				if (top) {
-					this.addImplementIds(imp, ret);
+					this.addImplementIds(imp, "id", ret);
 				}
 				return;
 			}
@@ -173,7 +173,7 @@ namespace Palete
 			var par = this.singleByFqn(s.inherits_str); // gobject doesnt support multiple - we might need to change this for js?
 			if (par == null) {
 				if (top) {
-					this.addImplementIds(imp, ret);
+					this.addImplementIds(imp, "id", ret);
 				}
 				return;
 			}
@@ -187,7 +187,7 @@ namespace Palete
 			}
 		
 		}
-		private void fillImplements( Gee.ArrayList<string>? imp, string prop,Gee.ArrayList<string> ret.)
+		private void fillImplements( Gee.ArrayList<string>? imp, string prop,Gee.ArrayList<string> ret)
 		{
 			string[] ph = {};
 			for(var i = 0; i < imp.size; i++) {
