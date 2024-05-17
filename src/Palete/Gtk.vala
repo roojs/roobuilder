@@ -889,7 +889,7 @@ namespace Palete {
         	 
         	         	
         	var fret = new Gee.ArrayList<string>();
-			sl.fillImplements(ret, "fqn", fret);
+			sl.fillImplements(ret, "fqn", Lsp.SymbolKind.Class, fret);
 			return fret;
         	
         	
