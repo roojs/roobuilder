@@ -290,7 +290,7 @@ namespace Palete
 		}
 		public Gee.ArrayList<Symbol> methodParams(Symbol method)
 		{
-  
+  			GLib.debug("Get methods params for %s", method.fqn);
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						*  
