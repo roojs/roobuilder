@@ -837,7 +837,7 @@ namespace Palete {
         		switch (method.name) {
         			case "add_controller":
         			case "add_shortcut":
-        			case "add_tick_callback":
+        			//case "add_tick_callback":// ??? really?
         			case "append":
         			case "append_column":
         			case "append_item":
