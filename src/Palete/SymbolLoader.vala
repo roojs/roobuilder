@@ -165,7 +165,7 @@ namespace Palete
 	 		}
 			if (s.inherits_str == "") {
 				if (top) {
-					this.fillImplements(imp, "id", ret);
+					this.fillImplements(imp, "id",Lsp.SymbolKind.Interface, ret);
 				}
 				return;
 			}
@@ -173,7 +173,7 @@ namespace Palete
 			var par = this.singleByFqn(s.inherits_str); // gobject doesnt support multiple - we might need to change this for js?
 			if (par == null) {
 				if (top) {
-					this.fillImplements(imp, "id", ret);
+					this.fillImplements(imp, "id", Lsp.SymbolKind.Interface, ret);
 				}
 				return;
 			}
@@ -183,11 +183,11 @@ namespace Palete
 				ret.add(add);
 			}
 			if (top) {
-				this.fillImplements(imp, "id", ret);
+				this.fillImplements(imp, "id", Lsp.SymbolKind.Interface,ret);
 			}
 		
 		}
-		public void fillImplements( Gee.ArrayList<string>? imp, string prop,Gee.ArrayList<string> ret)
+		public void fillImplements( Gee.ArrayList<string>? imp, string prop, Lsp.SymbolKind stype, Gee.ArrayList<string> ret)
 		{
 			string[] ph = {};
 			for(var i = 0; i < imp.size; i++) {
@@ -216,7 +216,7 @@ namespace Palete
 						deprecated = 0
  					;
 			");
-			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Interface);
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)styple);
 			for(var i = 0; i < imp.size; i++) {
 				stmt.bind_text(stmt.bind_parameter_index ("$v" + i.to_string()), imp.get(i));
 			}
