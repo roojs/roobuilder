@@ -862,7 +862,10 @@ namespace Palete {
         				
         	}
         	if (!with_props) {
-        		return ret; 
+				var fret = new Gee.ArrayList<string>();
+				sl.fillImplements(ret, "fqn", fret);
+				return fret;
+    
         	}
         	var props = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Property);
         	 
@@ -885,8 +888,9 @@ namespace Palete {
     		}
         	 
         	         	
-        	
-        	return ret;
+        	var fret = new Gee.ArrayList<string>();
+			sl.fillImplements(ret, "fqn", fret);
+			return fret;
         	
         	
     	}
