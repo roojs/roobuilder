@@ -165,7 +165,7 @@ namespace Palete
 	 		}
 			if (s.inherits_str == "") {
 				if (top) {
-					this.addImplementIds(imp, "id", ret);
+					this.fillImplements(imp, "id", ret);
 				}
 				return;
 			}
@@ -173,7 +173,7 @@ namespace Palete
 			var par = this.singleByFqn(s.inherits_str); // gobject doesnt support multiple - we might need to change this for js?
 			if (par == null) {
 				if (top) {
-					this.addImplementIds(imp, "id", ret);
+					this.fillImplements(imp, "id", ret);
 				}
 				return;
 			}
@@ -183,7 +183,7 @@ namespace Palete
 				ret.add(add);
 			}
 			if (top) {
-				this.addImplementIds(imp, "id", ret);
+				this.fillImplements(imp, "id", ret);
 			}
 		
 		}
@@ -197,7 +197,7 @@ namespace Palete
 			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						" + prop " + 
+						" + prop + " 
 					FROM 
 						symbol 
 					WHERE 
