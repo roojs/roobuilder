@@ -866,7 +866,7 @@ namespace Palete {
         	}
         	var props = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Property);
         	 
-        	this is needed for drag drop?
+        	//this is needed for drag drop?
         	foreach(var pn in props.values) {
 
         		if (!pn.is_writable ) {
