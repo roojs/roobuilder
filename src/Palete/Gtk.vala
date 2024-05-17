@@ -870,12 +870,12 @@ namespace Palete {
         	foreach(var pn in props.values) {
 
         		if (!pn.is_writable ) {
-	        		GLib.debug("Skip (not write)  %s : (%s) %s", cls.fqn, pn.rtype , pn.name);
+	        		GLib.debug("Skip (not write)  %s : (%s) %s", pn.fqn, pn.rtype , pn.name);
         			continue;
     			}
     			// if (&& !pn.ctor_only << we add these?
     			// are they really available ?
-        		GLib.debug("Add %s : (%s) %s", cls.fqn(), pn.type , pn.name); 
+        		GLib.debug("Add %s : (%s) %s", pn.fqn, pn.rtype , pn.name); 
         		var ty = pn.rtype;
         		if (!ty.contains(".") || ret.contains(ty)) {
 					continue;
