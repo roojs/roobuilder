@@ -216,7 +216,7 @@ namespace Palete
 						deprecated = 0
  					;
 			");
-			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)styple);
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)stype);
 			for(var i = 0; i < imp.size; i++) {
 				stmt.bind_text(stmt.bind_parameter_index ("$v" + i.to_string()), imp.get(i));
 			}
