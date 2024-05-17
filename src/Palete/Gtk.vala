@@ -864,20 +864,26 @@ namespace Palete {
         	if (!with_props) {
         		return ret; 
         	}
-        	/*
+        	var props = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Property);
+        	 
         	this is needed for drag drop?
-        	foreach(var pn in cls.props.values) {
+        	foreach(var pn in props.values) {
 
         		if (!pn.is_writable ) {
-	        		GLib.debug("Skip (not write)  %s : (%s) %s", cls.fqn(), pn.type , pn.name);
+	        		GLib.debug("Skip (not write)  %s : (%s) %s", cls.fqn, pn.rtype , pn.name);
         			continue;
     			}
     			// if (&& !pn.ctor_only << we add these?
     			// are they really available ?
-        		GLib.debug("Add %s : (%s) %s", cls.fqn(), pn.type , pn.name);        		
-        		this.addRealClasses(ret, pn.type);
+        		GLib.debug("Add %s : (%s) %s", cls.fqn(), pn.type , pn.name); 
+        		var ty = pn.rtype;
+        		if (!ty.contains(".") || ret.contains(ty)) {
+					continue;
+				}
+        		ret.add(ty);
+				ret.add_all(sl.implementations(ty, Lsp.SymbolKind.Class));
     		}
-        	*/
+        	 
         	         	
         	
         	return ret;
