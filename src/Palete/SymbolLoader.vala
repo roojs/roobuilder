@@ -290,11 +290,10 @@ namespace Palete
 		}
 		public Gee.ArrayList<Symbol> methodParams(Symbol method)
 		{
- 
- 
+  
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						fqn  
+						*  
 					FROM 
 						symbol 
 					WHERE 
