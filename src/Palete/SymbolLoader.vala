@@ -227,8 +227,10 @@ namespace Palete
 				switch(prop) {
 					case "id":
 						ret.add(c.id.to_string());
+						break;
 					case "fqn":
 						ret.add(c.fqn);
+						break;
 					default:
 						GLib.error("invalid property fetch");
 				}
