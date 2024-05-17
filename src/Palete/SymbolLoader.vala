@@ -288,7 +288,7 @@ namespace Palete
 			return null;
 		
 		}
-		public Gee.ArrayList<Symbol> methodParams(Symbol method)
+		public void loadMethodParams(Symbol method)
 		{
   			GLib.debug("Get methods params for %s", method.fqn);
 			var stmt = this.sq.selectPrepare("
@@ -307,8 +307,8 @@ namespace Palete
 			stmt.bind_int64(stmt.bind_parameter_index ("$pid"), method.id);
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
-			
-			return els;
+			method.param_ar = els;
+
 		
 		}
 		 

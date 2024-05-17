@@ -844,7 +844,7 @@ namespace Palete {
         			case "attach":
         			case "pack_start":
         				// look for proerties that are objects..
-        				sl.methodParams(method);
+        				sl.loadMethodParams(method);
         				if (method.param_ar.size < 1) {
         					continue;
         				}
