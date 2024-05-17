@@ -273,6 +273,7 @@ public class Xcls_MainWindow : Object
 			this.el.tooltip_text = "Manage Windows (Ctrl-O)";
 			this.el.has_tooltip = true;
 			var child_1 = new Xcls_ButtonContent4( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -303,7 +304,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "preferences-system-windows";
+			this.el.icon_name = "network-workgroup";
 			this.el.label = " Files";
 		}
 
@@ -496,6 +497,7 @@ public class Xcls_MainWindow : Object
 			new Xcls_leftpane( _this );
 			this.el.start_child = _this.leftpane.el;
 			var child_2 = new Xcls_Box14( _this );
+			child_2.ref();
 			this.el.end_child = child_2.el;
 
 			//listeners
@@ -1638,6 +1640,7 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.hexpand = true;
 			var child_1 = new Xcls_Box40( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1743,6 +1746,7 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.hexpand = true;
 			var child_1 = new Xcls_Box44( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 
 			//listeners
@@ -1849,6 +1853,7 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.vexpand = true;
 			var child_1 = new Xcls_ScrolledWindow48( _this );
+			child_1.ref();
 			this.el.start_child = child_1.el;
 			new Xcls_treescroll( _this );
 			this.el.end_child = _this.treescroll.el;
@@ -1875,6 +1880,7 @@ public class Xcls_MainWindow : Object
 			// set gobject values
 			this.el.has_frame = true;
 			var child_1 = new Xcls_ColumnView49( _this );
+			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
