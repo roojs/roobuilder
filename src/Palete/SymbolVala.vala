@@ -151,9 +151,9 @@ namespace Palete {
 					this.implements.add(p.type_symbol.get_full_name());
 				} 
 			}
-			if (cls.name == "GestureClick") {
-				GLib.debug("base class is %s", this.inherits_str);
-			}
+			//if (cls.name == "GestureClick") {
+			//	GLib.debug("base class is %s", this.inherits_str);
+			//}
 			
 			//GLib.debug("dumping nodes?");
 			//var ar = cls.source_reference.file.get_nodes().iterator();
