@@ -151,7 +151,7 @@ namespace Palete {
 					this.implements.add(p.type_symbol.get_full_name());
 				} 
 			}
-			if (this.fqn == "Gtk.GestureClick") {
+			if (cls.name == "GestureClick") {
 				GLib.debug("base class is %s", this.inherits_str);
 			}
 			
