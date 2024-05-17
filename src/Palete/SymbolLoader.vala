@@ -234,6 +234,8 @@ namespace Palete
 		{
 			var ret = new Gee.ArrayList<string>();
  
+ 			// we allow is_sealed and is_abstract here..
+ 
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						fqn  
