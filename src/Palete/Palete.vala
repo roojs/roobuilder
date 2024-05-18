@@ -131,6 +131,7 @@ namespace Palete
 		public abstract Gee.ArrayList<string> getDropList(string rval);		
 		public abstract JsRender.Node fqnToNode(string fqn);
 		public abstract Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader? sl, string in_rval, bool with_props);
+		public abstract Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string rval)
 	}
 
 
