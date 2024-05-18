@@ -265,7 +265,7 @@ namespace Palete
 			
 		}
 		
-		public Gee.ArrayList<string> implements(string fqn)
+		public Gee.ArrayList<string> all_implements(string fqn)
 		{
 			this.loadClassCache();
 			return this.classCache.get(e).all_implements;
