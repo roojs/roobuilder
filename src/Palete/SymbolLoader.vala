@@ -342,6 +342,10 @@ namespace Palete
 			foreach(var e in els) {
 				if (e.inherits_str != "") {
 					var ih = this.classCache.get(e.inherits_str);
+					if (ih == null) {
+						GLib.debug("Error could not find class %s", impl);
+						continue;
+					}
 					if (!ih.child_classes.contains(e.fqn)) {
 						ih.child_classes.add(e.fqn);
 					}
