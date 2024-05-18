@@ -387,6 +387,7 @@ namespace Palete {
 		
 		public  Gee.ArrayList<string> getChildList(string in_rval, bool with_prop)
         {
+        	// fixme - use database..
         	if (this.top_classes.size < 1) {
         		this.load();
         	}
