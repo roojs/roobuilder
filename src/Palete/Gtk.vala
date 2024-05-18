@@ -840,7 +840,7 @@ namespace Palete {
         	 
         	var methods = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Method);
         	foreach(var method in methods.values) {
-        		if (GLib.strv_contains(methods_to_check, method)) {
+        		if (GLib.strv_contains(methods_to_check, method.name)) {
     		 
     				// look for proerties that are objects..
     				sl.loadMethodParams(method);
