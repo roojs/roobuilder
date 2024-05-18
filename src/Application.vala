@@ -288,8 +288,8 @@
 			 var p = cur_project.palete;
 			
 			 print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(fqn)));
- 			 print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(fqn, false)));
- 			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(fqn, true))); 	
+ 			// print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(fqn, false)));
+ 			// print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(fqn, true))); 	
  			 
  			 
  			 print("\n\nPropsList: \n%s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.PROP)));
