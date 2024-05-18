@@ -232,7 +232,7 @@ namespace Palete
 				ret.add_all(this.sq.fetchAllString(stmt));
 				return;
 			}
-			var ids = this.sq.fetchAllInt64(stmt)
+			var ids = this.sq.fetchAllInt64(stmt);
 			foreach(var c in ids) {
 				ret.add(c.to_string());
 
