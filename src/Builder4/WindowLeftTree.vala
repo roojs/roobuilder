@@ -575,7 +575,7 @@ public class Xcls_WindowLeftTree : Object
 			    
 			    //this.el.set_state(Gtk.EventSequenceState.CLAIMED);
 			
-			var ws =  _this.main_window.windowstate.;
+				var ws =  _this.main_window.windowstate;
 			    
 			    _this.view.button_is_pressed = true;
 			      
