@@ -971,6 +971,18 @@ namespace Palete {
 
 			
 		}
+		
+		static string[] methods_to_check = {
+			 "add_controller":
+			 "add_shortcut":
+			//case "add_tick_callback":// ??? really?
+			 "append":
+			 "append_column":
+			 "append_item":
+			 "attach":
+			 "pack_start":
+		
+		};
 		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string fqn)
 		{
 			
@@ -985,6 +997,7 @@ namespace Palete {
 			if (all_imp.contains("Gtk.Widget")) {
 				ret.add("*top");
 			}
+			
 			// then look for 
 			//    * if Widget is there, then .*top
 			//    rtype matches first argument of the listed methods and parent is in iface/subclass list.
