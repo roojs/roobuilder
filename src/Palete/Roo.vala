@@ -421,7 +421,7 @@ namespace Palete {
         	//return this.original_getChildList(  in_rval);
     	}
     	
-		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader sl, string rval) {
+		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string rval) {
 			return this.getDropList(rval);
 		}
     	
