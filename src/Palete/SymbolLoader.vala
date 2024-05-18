@@ -437,6 +437,9 @@ namespace Palete
 			for(var i = 0;i < with_methods.length; i++) {
 				stmt.bind_text(stmt.bind_parameter_index ("$mt" + i.to_string()), with_methods[i[);
 			}
+			this.sq.fetchAllString(stmt);
+
+			
 		}
 		
 	}	
