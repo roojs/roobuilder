@@ -854,7 +854,7 @@ namespace Palete {
         				if (method.param_ar.size < 1) {
         					continue;
         				}
-        				method.param_ar.get(0).dump("  ");
+        				//method.param_ar.get(0).dump("  ");
         				var ty = method.param_ar.get(0).rtype;
         				if (!ty.contains(".") || ret.contains(ty)) {
         					continue;
