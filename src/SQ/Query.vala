@@ -274,6 +274,17 @@ namespace SQ {
 			return ret;		
 		}
 		
+		public Gee.ArrayList<int> fetchAllInt64(Sqlite.Statement stmt )
+ 		{
+			var ret = new Gee.ArrayList<int>();
+			while (stmt.step() == Sqlite.ROW) {
+		 		 ret.add(( int)stmt.column_int64(0));
+			}
+			 
+		    GLib.debug("fetchAllString got %d rows / last errr  %s", ret.size,  Database.db.errmsg());
+			return ret;		
+		}
+		
 		public bool selectExecuteInto(Sqlite.Statement stmt,  T row )
  		{
 			if (stmt.step() == Sqlite.ROW) {
