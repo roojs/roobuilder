@@ -165,7 +165,7 @@
            "\t\tws.leftTreeBeforeChange();",
            "\t\t//_this.view.el.get_selection().select_path(res);",
            "\t\tGLib.debug(\"Button Pressed - start show window\");",
-           "\t\tws_this.main_window.windowstate.showAddObject(_this.view.el, node);",
+           "\t\tws.showAddObject(_this.view.el, node);",
            "\t\tGLib.debug(\"Button Pressed - finsihed show window\");",
            "\t \treturn ;",
            "\t}",
