@@ -265,6 +265,13 @@ namespace Palete
 			
 		}
 		
+		public Gee.ArrayList<string> implements(string fqn)
+		{
+			this.loadClassCache();
+			return this.classCache.get(e).child_classes;
+		
+		}
+		
 		
 		
 		Gee.HashMap<string,Symbol> classCache;
