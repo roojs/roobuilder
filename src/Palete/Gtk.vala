@@ -976,11 +976,15 @@ namespace Palete {
 			
 			// what can rval be dropped onto.
 			// a) netop?"ed to find all interfaces and parents.
+			
+			var ret = new Gee.ArrayList<string>();
 			var all_imp = new Gee.ArrayList<string>();
 			all_imp.add(fqn);
 			all_imp.add_all(sl.all_implements(fqn));
 			
-			if (
+			if (all_imp.contains("Gtk.Widget")) {
+				ret.add("*top");
+			}
 			// then look for 
 			//    * if Widget is there, then .*top
 			//    rtype matches first argument of the listed methods and parent is in iface/subclass list.
@@ -994,7 +998,7 @@ namespace Palete {
 		 	GLib.debug("returning %d items in drop list  %s", pr.dropList.get(rval).size, rval);			
 			return  pr.dropList.get(rval);
 			*/
-			return new  Gee.ArrayList<string>();
+			return ret;
 
 			
 		} 
