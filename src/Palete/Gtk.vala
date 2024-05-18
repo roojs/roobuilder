@@ -990,8 +990,8 @@ namespace Palete {
 				ret.add("*top");
 			}
 			ret.add_all(sl.dropSearchMethods(
-				all_impl,
-				methods_to_search
+				all_imp,
+				methods_to_check
 			));
 			
 			// then look for 
