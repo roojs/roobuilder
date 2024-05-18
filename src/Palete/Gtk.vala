@@ -971,7 +971,20 @@ namespace Palete {
 
 			
 		}
-		 
+		public override Gee.ArrayList<string> getDropListFromSymbols(string rval)
+		{
+			/*this.buildChildListForDroppingProject();
+			var pr = (Project.Gtk) this.project;
+			if (!pr.dropList.has_key(rval)) {
+			 	GLib.debug("returning empty drop list for  %s", rval);
+				return new Gee.ArrayList<string>();
+			}
+		 	GLib.debug("returning %d items in drop list  %s", pr.dropList.get(rval).size, rval);			
+			return  pr.dropList.get(rval);
+			*/
+
+			
+		} 
 		 
 		public override JsRender.Node fqnToNode(string fqn) 
 		{
