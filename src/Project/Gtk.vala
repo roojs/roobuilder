@@ -265,7 +265,7 @@ namespace Project
 			return this.compilegroups.get(cgn).symbolManager();
 			
 		} 
-		// is this needed?
+		// is this needed? (by test code only?)
  		public override Palete.SymbolLoader getSymbolLoader (string cgn) {
  			  
  			return this.compilegroups.get(cgn).symbolLoader();
