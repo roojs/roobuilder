@@ -982,7 +982,7 @@ namespace Palete {
 		 	GLib.debug("returning %d items in drop list  %s", pr.dropList.get(rval).size, rval);			
 			return  pr.dropList.get(rval);
 			*/
-			return new new Gee.ArrayList<string>();
+			return new  Gee.ArrayList<string>();
 
 			
 		} 
