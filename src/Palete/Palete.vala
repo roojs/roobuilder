@@ -127,7 +127,7 @@ namespace Palete
 		public abstract GirObject? getClass(string ename);
 	
 		public abstract bool typeOptions(string fqn, string key, string type, out string[] opts);
-		public abstract Gee.ArrayList<string> getChildList(string in_rval, bool with_prop);
+		//public abstract Gee.ArrayList<string> getChildList(string in_rval, bool with_prop);
 		public abstract Gee.ArrayList<string> getDropList(string rval);		
 		public abstract JsRender.Node fqnToNode(string fqn);
 		public abstract Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader sl, string in_rval, bool with_props);
