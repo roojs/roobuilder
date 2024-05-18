@@ -245,8 +245,6 @@ namespace Palete
 				}
 			}
 			
-			
-			
 		}
 		Gee.HashMap<string,Gee.ArrayList<string>> implementationsCache;
 		public Gee.ArrayList<string> implementations(string fqn, Lsp.SymbolKind stype)
@@ -299,6 +297,35 @@ namespace Palete
 			
 			
 		}
+		
+		// if we load all classes and build an map:
+		// ?? just load symbol
+		public void loadClassCache()
+		{
+			var stmt = this.sq.selectPrepare("
+					SELECT 
+						*
+					FROM 
+						symbol 
+					WHERE 
+						file_id IN (" +   this.manager.file_ids   + ")
+					AND
+						stype IN ( $cls, $interface )
+					AND
+						is_static = 0
+					AND 
+						deprecated = 0
+					
+			");
+			stmt.bind_int(stmt.bind_parameter_index ("$cls"), (int)Lsp.SymbolKind.Class);
+			stmt.bind_int(stmt.bind_parameter_index ("$cls"), (int)Lsp.SymbolKind.Interface);
+			var els = new Gee.ArrayList<Symbol>();
+			foreach(var e in els) {
+				this.classCache.set(e.fqn, e);
+			}
+		}
+		
+		
 		
 		public Symbol? classWithChildren(string fqn )
 		{
