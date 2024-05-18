@@ -156,7 +156,7 @@ namespace JsRender {
 			return this.project.symbolManager(this);
 		}
 		public Palete.SymbolLoader getSymbolLoader() {
-			this.project.getSymbolLoaderForFile(this);
+			return this.project.getSymbolLoaderForFile(this);
 		}
 		
 		public signal void compile_notice(string type, string file, int line, string message);
