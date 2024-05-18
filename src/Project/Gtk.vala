@@ -311,7 +311,7 @@ namespace Project
 			}
 			 
 			fn =  "/usr/share/vala/vapi/%s.vapi".printf( n);
-			if (!FileUtils.test (fn, FileTest.EXISTS)) {
+			if (FileUtils.test (fn, FileTest.EXISTS)) {
 				return fn;
 			}
 			var vd = this.vapidirs();
