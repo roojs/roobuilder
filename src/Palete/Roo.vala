@@ -381,11 +381,11 @@ namespace Palete {
 		 
 		public override Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader sl, string in_rval, bool with_props)
         {
-			var ret = new Gee.ArrayList<string>();
-			return ret;
+			return this.getChildList(in_rval, with_prop);
+			
 		}
 		
-		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_prop)
+		public  Gee.ArrayList<string> getChildList(string in_rval, bool with_prop)
         {
         	if (this.top_classes.size < 1) {
         		this.load();
