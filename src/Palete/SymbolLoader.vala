@@ -41,7 +41,7 @@ namespace Palete
 		public SymbolLoader(SymbolFileCollection manager) {
 			this.manager = manager;
 			this.sq  =  new SQ.Query<Symbol>("symbol");
-			this.implementationsCache = new Gee.HashMap<string,Gee.ArrayList<string>> ();
+ 
 			this.classCache  = new Gee.HashMap<string,Symbol>();	
 		}
 		
@@ -246,7 +246,7 @@ namespace Palete
 			}
 			
 		}
-		Gee.HashMap<string,Gee.ArrayList<string>> implementationsCache;
+ 
 		public Gee.ArrayList<string> implementations(string fqn, Lsp.SymbolKind stype)
 		{
 			this.loadClassCache();
@@ -261,54 +261,12 @@ namespace Palete
 				}
 			}
 			return ret;
-			/*
-			var cachekey = fqn + ":" + stype.to_string();
-			if (this.implementationsCache.has_key(cachekey)) {
-				return this.implementationsCache.get(cachekey);
-			}
-			var ret = new Gee.ArrayList<string>();
- 
- 			// we allow is_sealed and is_abstract here..
- 			// as they may be part of the tree..
- 			
- 
-			var stmt = this.sq.selectPrepare("
-					SELECT 
-						fqn  
-					FROM 
-						symbol 
-					WHERE 
-						file_id IN (" +   this.manager.file_ids   + ")
-					AND
-						stype = $stype
-					AND
-						is_static = 0
-					AND 
-						deprecated = 0
-					AND
-					(
-						inherits_str = $fqn
-					OR 
-						implements_str LIKE '%\n' || $fqn || '\n%'
-					) ;
-			");
-			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)stype);
-			stmt.bind_text(stmt.bind_parameter_index ("$fqn"), fqn);
-			var els = new Gee.ArrayList<Symbol>();
-			this.sq.selectExecute(stmt, els);
-			if (els.size < 1) {
-				this.implementationsCache.set(cachekey, ret);
-				return ret;
-			}
-			foreach(var c in els) {
-				ret.add(c.fqn);
-				ret.add_all(this.implementations(c.fqn, stype));
-			}
-			this.implementationsCache.set(cachekey, ret);
-			return  ret;
-			*/
+			 
 			
 		}
+		
+		
+		
 		Gee.HashMap<string,Symbol> classCache;
 		// if we load all classes and build an map:
 		// ?? just load symbol
