@@ -973,14 +973,14 @@ namespace Palete {
 		}
 		
 		static string[] methods_to_check = {
-			 "add_controller":
-			 "add_shortcut":
+			 "add_controller",
+			 "add_shortcut",
 			//case "add_tick_callback":// ??? really?
-			 "append":
-			 "append_column":
-			 "append_item":
-			 "attach":
-			 "pack_start":
+			 "append",
+			 "append_column",
+			 "append_item",
+			 "attach",
+			 "pack_start"
 		
 		};
 		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string fqn)
