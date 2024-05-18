@@ -361,7 +361,7 @@ namespace Palete
 			}
 			var s = this.classCache.get(fqn);
 			foreach(var cn in s.child_classes) {
-				this.fillImplements(cn, full_ar);
+				this.fillImplementsFromCache(cn, full_ar);
 			}
 			full_ar.add(fqn);
 
