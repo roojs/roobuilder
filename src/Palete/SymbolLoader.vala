@@ -425,7 +425,7 @@ namespace Palete
 						AND 
 							sequence = 0
 						AND
-						rtype IN (" + string.joinv(",", v_looking_for_types) + ")
+							rtype IN (" + string.joinv(",", v_looking_for_types) + ")
 					)
 				 		
 			");
