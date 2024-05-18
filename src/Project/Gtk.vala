@@ -268,7 +268,13 @@ namespace Project
  		public override Palete.SymbolLoader getSymbolLoader (string cgn) {
  			return this.compilegroups.get(cgn).symbolLoader();
  		}
-		
+		public override Palete.SymbolLoader? getSymbolLoaderForFile (JsRender.JsRender file) {
+			var cgn = this.firstBuildModuleWith(file);
+			if (cgn == "") {
+				return null;
+			}
+			return this.getSymbolLoader(cgn);
+		}
 		
 		
 #if VALA_0_56
