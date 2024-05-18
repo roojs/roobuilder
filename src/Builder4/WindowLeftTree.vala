@@ -571,46 +571,46 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.pressed.connect( (n_press, x, y) => {
 			 
-			    //console.log("button press?");
-			    
-			    //this.el.set_state(Gtk.EventSequenceState.CLAIMED);
+				//console.log("button press?");
+				
+				//this.el.set_state(Gtk.EventSequenceState.CLAIMED);
 			
 				var ws =  _this.main_window.windowstate;
-			    
-			    _this.view.button_is_pressed = true;
-			      
-			    _this.view.lastEventSource = "tree";
-			    if (! _this.before_node_change() ) {
-			    	GLib.debug("before_node_change return false");
-			       return ;
-			    }
-			    
+				
+				_this.view.button_is_pressed = true;
+				  
+				_this.view.lastEventSource = "tree";
+				if (! _this.before_node_change() ) {
+					GLib.debug("before_node_change return false");
+				   return ;
+				}
+				
 				 // nothing there -show dialog
-			    if (_this.model.el.get_n_items() < 1) {
-				    ws.showAddObject(_this.view.el, null);
-			        GLib.debug("no items");
-				    return ;
-			    }
-			    string pos;
-			    var row_widget = _this.view.getRowWidgetAt(x,y, out pos );
-			    if (row_widget == null) {
-				    GLib.debug("no row selected items");
-				    return;
-			    }
-			    
-			    var node =   row_widget.get_data<JsRender.Node>("node");
-			    if (node == null) {
-			    	GLib.warning("No node found bound to widget");
-			    	return;
+				if (_this.model.el.get_n_items() < 1) {
+					ws.showAddObject(_this.view.el, null);
+				    GLib.debug("no items");
+					return ;
+				}
+				string pos;
+				var row_widget = _this.view.getRowWidgetAt(x,y, out pos );
+				if (row_widget == null) {
+					GLib.debug("no row selected items");
+					return;
+				}
+				
+				var node =   row_widget.get_data<JsRender.Node>("node");
+				if (node == null) {
+					GLib.warning("No node found bound to widget");
+					return;
 				}
 			
-			     
-			     
-			    if (_this.view.getColAt(x,y) > 0 ) {
-				    GLib.debug("add colum clicked.");
-			        var fqn = node.fqn();
+				 
+				 
+				if (_this.view.getColAt(x,y) > 0 ) {
+					GLib.debug("add colum clicked.");
+				    var fqn = node.fqn();
 			
-			        var pal = ws.project.palete;
+				    var pal = ws.project.palete;
 				 	var sl = ws.file.getSymbolLoader();
 					var cn = pal.getChildListFromSymbols(sl, fqn, false);
 			
@@ -623,11 +623,11 @@ public class Xcls_WindowLeftTree : Object
 					GLib.debug("Button Pressed - start show window");
 					ws_this.main_window.windowstate.showAddObject(_this.view.el, node);
 					GLib.debug("Button Pressed - finsihed show window");
-			     	return ;
+				 	return ;
 				}
-			    
+				
 				 
-			     
+				 
 			});
 		}
 
