@@ -24,7 +24,10 @@
 		public  GirObject? getClassOrEnum(string ename)
 		public override bool  typeOptions(string fqn, string key, string type, out string[] opts)  << makes reference..
 		
-		
+	ISSUES:
+		* normal load time for a file  is about 10 seconds (quite a few queires.)
+			* this is just for the child class array.
+			?? should we just pre-calc this for the tree? - 
 		
 */
 
@@ -225,6 +228,10 @@ namespace Palete
 			// should probably do a more direct fetch...
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
+			
+			
+			
+			
 			foreach(var c in els) {
 				switch(prop) {
 					case "id":
@@ -309,6 +316,7 @@ namespace Palete
 		}
 		public void loadMethodParams(Symbol method)
 		{
+  			
   			GLib.debug("Get methods params for %s", method.fqn);
 			var stmt = this.sq.selectPrepare("
 					SELECT 
