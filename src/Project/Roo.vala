@@ -116,7 +116,7 @@ public class Project.Roo : Project {
 	{
 		 return this.symbol_manager;
 	} 
-	public override Palete.SymbolLoader? getSymbolLoader (string cgname) {
+	public override Palete.SymbolLoader getSymbolLoader (string cgname) {
 		return this.symbol_loader;
 	}
 	public override Palete.SymbolLoader? getSymbolLoaderForFile (JsRender.JsRender file) {
