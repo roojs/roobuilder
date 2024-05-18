@@ -254,7 +254,14 @@ namespace Palete
 			var full_ar = new Gee.ArrayList<string>();
 			this.fillImplementsFromCache(fqn, full_ar);
 			
-			
+			var ret = new Gee.ArrayList<string>();
+			foreach(var e in full_ar) {
+				if (this.classCache.get(e).stype == stype) {
+					ret.add(e);
+				}
+			}
+			return ret;
+			/*
 			var cachekey = fqn + ":" + stype.to_string();
 			if (this.implementationsCache.has_key(cachekey)) {
 				return this.implementationsCache.get(cachekey);
@@ -299,7 +306,7 @@ namespace Palete
 			}
 			this.implementationsCache.set(cachekey, ret);
 			return  ret;
-			
+			*/
 			
 		}
 		Gee.HashMap<string,Symbol> classCache;
