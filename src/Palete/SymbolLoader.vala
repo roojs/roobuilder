@@ -302,6 +302,9 @@ namespace Palete
 		// ?? just load symbol
 		public void loadClassCache()
 		{
+			if (this.classCache.values.size > 0 ) {
+				return;
+			}
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						*
