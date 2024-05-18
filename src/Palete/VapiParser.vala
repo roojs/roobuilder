@@ -772,7 +772,7 @@ namespace Palete {
 			
 			
 			
-			print("ALL OK?\n");
+			GLib.debug("ALL OK?");
 		 
 		}
 	//
