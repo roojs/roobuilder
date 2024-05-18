@@ -38,6 +38,8 @@ namespace Palete
 		public SymbolLoader(SymbolFileCollection manager) {
 			this.manager = manager;
 			this.sq  =  new SQ.Query<Symbol>("symbol");
+			this.implementationsCache = new Gee.HashMap<string,Gee.ArrayList<string>> ();
+			
 		}
 		
 	
@@ -239,9 +241,11 @@ namespace Palete
 			
 			
 		}
-		
+		Gee.HashMap<string,Gee.ArrayList<string>> implementationsCache;
 		public Gee.ArrayList<string> implementations(string fqn, Lsp.SymbolKind stype)
 		{
+			
+			
 			var ret = new Gee.ArrayList<string>();
  
  			// we allow is_sealed and is_abstract here..
