@@ -575,7 +575,7 @@ public class Xcls_WindowLeftTree : Object
 			    
 			    //this.el.set_state(Gtk.EventSequenceState.CLAIMED);
 			
-			
+			var ws =  _this.main_window.windowstate.;
 			    
 			    _this.view.button_is_pressed = true;
 			      
@@ -587,7 +587,7 @@ public class Xcls_WindowLeftTree : Object
 			    
 				 // nothing there -show dialog
 			    if (_this.model.el.get_n_items() < 1) {
-				    _this.main_window.windowstate.showAddObject(_this.view.el, null);
+				    ws.showAddObject(_this.view.el, null);
 			        GLib.debug("no items");
 				    return ;
 			    }
@@ -609,6 +609,7 @@ public class Xcls_WindowLeftTree : Object
 			    if (_this.view.getColAt(x,y) > 0 ) {
 				    GLib.debug("add colum clicked.");
 			        var fqn = node.fqn();
+			
 			        var pal = ws.project.palete;
 				 	var sl = ws.file.getSymbolLoader();
 					var cn = pal.getChildListFromSymbols(sl, fqn, false);
@@ -617,10 +618,10 @@ public class Xcls_WindowLeftTree : Object
 			  			return ;
 					}
 			
-					_this.main_window.windowstate.leftTreeBeforeChange();
+					ws.leftTreeBeforeChange();
 					//_this.view.el.get_selection().select_path(res);
 					GLib.debug("Button Pressed - start show window");
-					_this.main_window.windowstate.showAddObject(_this.view.el, node);
+					ws_this.main_window.windowstate.showAddObject(_this.view.el, node);
 					GLib.debug("Button Pressed - finsihed show window");
 			     	return ;
 				}
