@@ -971,7 +971,7 @@ namespace Palete {
 
 			
 		}
-		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader sl, string rval)
+		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string rval)
 		{
 			/*this.buildChildListForDroppingProject();
 			var pr = (Project.Gtk) this.project;
