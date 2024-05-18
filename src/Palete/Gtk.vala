@@ -814,10 +814,10 @@ namespace Palete {
         	
         	// CACHE ?	
         	var ret = new Gee.ArrayList<string>();
+        	 
+        	if (sl == null) {
         		return ret;
     		}
-        	if (sl == null) {
-        	
         	if (in_rval == "*top") {
         		// everythign that's not depricated and extends Gtk.Widget
         		// even a gtk window and about dialog are widgets
