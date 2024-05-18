@@ -260,7 +260,7 @@ namespace Palete
 		public Gee.ArrayList<string> all_implements(string fqn)
 		{
 			this.loadClassCache();
-			return this.classCache.get(e).all_implements;
+			return this.classCache.get(fqn).all_implements;
 		
 		}
 		
