@@ -989,7 +989,7 @@ namespace Palete {
 			if (all_imp.contains("Gtk.Widget")) {
 				ret.add("*top");
 			}
-			ret.add_all(sl.dropSearch(
+			ret.add_all(sl.dropSearchMethods(
 				all_impl,
 				methods_to_search
 			));
