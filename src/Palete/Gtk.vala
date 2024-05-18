@@ -58,7 +58,6 @@ namespace Palete {
 		    this.init_child_defaults();  
 		    
 		    this.loaded = true;
-			 
 			
 		}
 		
