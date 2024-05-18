@@ -227,22 +227,15 @@ namespace Palete
 			}
 			// should probably do a more direct fetch...
 			var els = new Gee.ArrayList<Symbol>();
-			this.sq.selectExecute(stmt, els);
-			
-			
-			
-			
-			foreach(var c in els) {
-				switch(prop) {
-					case "id":
-						ret.add(c.id.to_string());
-						break;
-					case "fqn":
-						ret.add(c.fqn);
-						break;
-					default:
-						GLib.error("invalid property fetch");
-				}
+
+			if (prop == "fqn") {
+				ret.add_all(this.sq.fetchAllString(stmt));
+				return;
+			}
+			var ids = this.sq.fetchAllInt64(stmt)
+			foreach(var c in ids) {
+				ret.add(c.id	.to_string());
+
 			}
 			
 		}
