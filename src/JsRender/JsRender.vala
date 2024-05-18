@@ -155,7 +155,8 @@ namespace JsRender {
 		{
 			return this.project.symbolManager(this);
 		}
-		 
+		public abstract Palete.SymbolLoader getSymbolLoader(); 
+		
 		public signal void compile_notice(string type, string file, int line, string message);
 		
 		private  GLib.Icon? _icon = null;
