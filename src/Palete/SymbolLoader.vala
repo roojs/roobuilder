@@ -226,7 +226,7 @@ namespace Palete
 				stmt.bind_text(stmt.bind_parameter_index ("$v" + i.to_string()), imp.get(i));
 			}
 			// should probably do a more direct fetch...
-			var els = new Gee.ArrayList<Symbol>();
+
 
 			if (prop == "fqn") {
 				ret.add_all(this.sq.fetchAllString(stmt));
@@ -234,7 +234,7 @@ namespace Palete
 			}
 			var ids = this.sq.fetchAllInt64(stmt)
 			foreach(var c in ids) {
-				ret.add(c.id	.to_string());
+				ret.add(c.id.to_string());
 
 			}
 			
