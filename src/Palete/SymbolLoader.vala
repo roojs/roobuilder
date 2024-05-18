@@ -369,7 +369,7 @@ namespace Palete
 				return;
 			}
 			var s = this.classCache.get(fqn);
-			if (ih == null) {
+			if (s == null) {
 				GLib.debug("Error could not find class %s", fqn);
 				return;
 			}
