@@ -249,6 +249,10 @@ namespace Palete
 		Gee.HashMap<string,Gee.ArrayList<string>> implementationsCache;
 		public Gee.ArrayList<string> implementations(string fqn, Lsp.SymbolKind stype)
 		{
+			this.loadClassCache();
+			
+			
+			
 			
 			var cachekey = fqn + ":" + stype.to_string();
 			if (this.implementationsCache.has_key(cachekey)) {
@@ -326,6 +330,21 @@ namespace Palete
 			foreach(var e in els) {
 				this.classCache.set(e.fqn, e);
 			}
+			foreach(var e in els) {
+				if (e.inherits_str != "") {
+					var ih = this.classCache.get(e.inherits_str);
+					if (!ih.child_classes.contains(e.fqn)) {
+						ih.child_classes.add(e.fqn);
+					}
+				}
+				for(var impl in e.implements) {
+					var ih = this.classCache.get(impl);
+					if (!ih.child_classes.contains(e.fqn)) {
+						ih.child_classes.add(e.fqn);
+					}
+				}
+			}
+			
 		}
 		
 		
