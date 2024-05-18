@@ -387,6 +387,15 @@ namespace Palete
 		public dropSearchMethods(Gee.ArrayList<string> looking_for_types, string[] with_methods)
 		{
 		
+			string[] v_methods = {};
+			string[] v_looking_for_types = {};
+			for(var i = 0;i < looking_for_types.size; i++) {
+				v_looking_for_types += ("$lt" + i.to_string());
+			}
+			for(var i = 0;i < with_methods.length; i++) {
+				v_methods += ("$mt" + i.to_string());
+			}
+			
 			var stmt = this.sq.selectPrepare("
 				SELECT 
 					fqn
@@ -411,18 +420,23 @@ namespace Palete
 								AND
 									stype = $s_method
 								AND
-									name IN (" + v_methods + ")
+									name IN (" + string.joinv(",", v_methods) + ")
 							)
 						AND 
 							sequence = 0
 						AND
-						rtype IN (" + v_looking_for_types + ")
+						rtype IN (" + string.joinv(",", v_looking_for_types) + ")
 					)
 				 		
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$s_method"), (int)Lsp.SymbolKind.Method);
 			stmt.bind_int(stmt.bind_parameter_index ("$s_param"), (int)Lsp.SymbolKind.Parameter);
-		
+			for(var i = 0;i < looking_for_types.size; i++) {
+				stmt.bind_text(stmt.bind_parameter_index ("$lt" + i.to_string()), looking_for_types.get(i));
+			}
+			for(var i = 0;i < with_methods.length; i++) {
+				stmt.bind_text(stmt.bind_parameter_index ("$mt" + i.to_string()), with_methods[i[);
+			}
 		}
 		
 	}	
