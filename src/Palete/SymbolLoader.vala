@@ -42,7 +42,7 @@ namespace Palete
 			this.manager = manager;
 			this.sq  =  new SQ.Query<Symbol>("symbol");
 			this.implementationsCache = new Gee.HashMap<string,Gee.ArrayList<string>> ();
-			
+			this.classCache  = new Gee.HashMap<string,Symbol>();	
 		}
 		
 	
@@ -297,7 +297,7 @@ namespace Palete
 			
 			
 		}
-		
+		Gee.HashMap<string,Symbol> classCache;
 		// if we load all classes and build an map:
 		// ?? just load symbol
 		public void loadClassCache()
