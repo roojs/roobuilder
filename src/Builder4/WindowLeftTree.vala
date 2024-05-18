@@ -1891,8 +1891,11 @@ public class Xcls_WindowLeftTree : Object
 				 );
 				 
 			 	var fqn = node.fqn();
-			    var cn = _this.main_window.windowstate.project.palete.getChildList(fqn, false);
-			
+			 	var ws = _this.main_window.windowstate;
+			 	var pal = ws.project.palete;
+			 	var sl = ws.windowstate.file.getSymbolLoader();
+			    var cn = pal.getChildListFromSymbols(sl, fqn, false);
+			    
 				img.set_visible(cn.size > 0 ? true : false);
 			 	 
 			});
