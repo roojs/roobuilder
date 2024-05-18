@@ -491,7 +491,7 @@
     "(Palete.Palete pal, string cls,  Gtk.Widget onbtn) {",
     "",
     "     ",
-    "\tvar sl = this.mainwindow.file.getSymbolLoader();",
+    "\tvar sl = this.mainwindow.windowstate.file.getSymbolLoader();",
     "    var tr = pal.getChildListFromSymbols(sl, cls, false);",
     "    var m = (GLib.ListStore) _this.model.el.model;",
     "\tm.remove_all();",
