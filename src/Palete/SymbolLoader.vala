@@ -245,7 +245,10 @@ namespace Palete
 		public Gee.ArrayList<string> implementations(string fqn, Lsp.SymbolKind stype)
 		{
 			
-			
+			var cachekey = fqn + ":" + stype.to_string();
+			if (this.implementationsCache.has_key(cachekey)) {
+				return this.implementationsCache.get(cachekey);
+			}
 			var ret = new Gee.ArrayList<string>();
  
  			// we allow is_sealed and is_abstract here..
@@ -277,13 +280,14 @@ namespace Palete
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
 			if (els.size < 1) {
+				this.implementationsCache.set(cachekey, ret);
 				return ret;
 			}
 			foreach(var c in els) {
 				ret.add(c.fqn);
 				ret.add_all(this.implementations(c.fqn, stype));
 			}
-			 
+			this.implementationsCache.set(cachekey, ret);
 			return  ret;
 			
 			
