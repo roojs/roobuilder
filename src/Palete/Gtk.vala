@@ -723,6 +723,7 @@ namespace Palete {
 		  @param in_rval "*top" || "Gtk.Widget"
 		  
 		*/
+		/*
 		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props)
         {
         	
@@ -802,7 +803,7 @@ namespace Palete {
         	
         	
     	}
-    	 
+    	 */
 		public override Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader sl, string in_rval, bool with_props)
         {
         	 
