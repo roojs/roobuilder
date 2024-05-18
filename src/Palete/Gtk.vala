@@ -814,7 +814,7 @@ namespace Palete {
         	 	return this.childListCache.get(cachekey);
         	}
         	
-        	// CACHE ?	
+ 
         	var ret = new Gee.ArrayList<string>();
         	 
         	if (sl == null) {
@@ -825,7 +825,7 @@ namespace Palete {
         		// even a gtk window and about dialog are widgets
         		ret.add("Gtk.Widget");
         		ret.add_all( sl.implementations("Gtk.Widget", Lsp.SymbolKind.Class));
-        		
+        		this.childListCache.set(cachekey,ret);
         		return ret;
         		
         	
@@ -869,6 +869,7 @@ namespace Palete {
         	if (!with_props) {
 				var fret = new Gee.ArrayList<string>();
 				sl.fillImplements(ret, "fqn", Lsp.SymbolKind.Class, fret);
+				this.childListCache.set(cachekey,fret);
 				return fret;
     
         	}
@@ -895,6 +896,7 @@ namespace Palete {
         	         	
         	var fret = new Gee.ArrayList<string>();
 			sl.fillImplements(ret, "fqn", Lsp.SymbolKind.Class, fret);
+			this.childListCache.set(cachekey,fret);
 			return fret;
         	
         	
