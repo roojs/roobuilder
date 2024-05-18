@@ -809,9 +809,10 @@ namespace Palete {
         {
         	 
         	GLib.debug("getChildList %s %s", in_rval, with_props ? "(with props)" : "");
-        	
-        	//return this.original_getChildList(  in_rval, with_props);
-        	 
+        	var cachekey  =in_rval + ":" + (with_props ? "Y" : "N";
+        	if (this.childListCache.has_key(cachekey)) {
+        	 	return this.childListCache.get(cachekey);
+        	}
         	
         	// CACHE ?	
         	var ret = new Gee.ArrayList<string>();
