@@ -56,7 +56,7 @@ public class Xcls_PopoverAddObject : Object
 	
 	     
 		var sl = this.mainwindow.file.getSymbolLoader();
-	    var tr = pal.getChildList(cls, false);
+	    var tr = pal.getChildListFromSymbols(sl, cls, false);
 	    var m = (GLib.ListStore) _this.model.el.model;
 		m.remove_all();
 	
