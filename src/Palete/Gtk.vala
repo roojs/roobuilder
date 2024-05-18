@@ -33,7 +33,7 @@ namespace Palete {
 		    this.package_cache.add_all(
 			    this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
 		    );
-		     
+		    this.childListCache = new  Gee.HashMap<string,Gee.ArrayList<string>>();
 		   
 		    
 		}
@@ -803,7 +803,8 @@ namespace Palete {
         	
         	
     	}
-    	 
+    	Gee.HashMap<string,Gee.ArrayList<string>> childListCache;
+    	
 		public override Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader? sl, string in_rval, bool with_props)
         {
         	 
