@@ -335,6 +335,7 @@ namespace Palete
 			stmt.bind_int(stmt.bind_parameter_index ("$cls"), (int)Lsp.SymbolKind.Class);
 			stmt.bind_int(stmt.bind_parameter_index ("$interface"), (int)Lsp.SymbolKind.Interface);
 			var els = new Gee.ArrayList<Symbol>();
+			this.sq.selectExecute(stmt, els);
 			foreach(var e in els) {
 				this.classCache.set(e.fqn, e);
 			}
