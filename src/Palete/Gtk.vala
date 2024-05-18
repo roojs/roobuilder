@@ -804,7 +804,7 @@ namespace Palete {
         	
     	}
     	 
-		public override Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader sl, string in_rval, bool with_props)
+		public override Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader? sl, string in_rval, bool with_props)
         {
         	 
         	GLib.debug("getChildList %s %s", in_rval, with_props ? "(with props)" : "");
@@ -814,6 +814,9 @@ namespace Palete {
         	
         	// CACHE ?	
         	var ret = new Gee.ArrayList<string>();
+        		return ret;
+    		}
+        	if (sl == null) {
         	
         	if (in_rval == "*top") {
         		// everythign that's not depricated and extends Gtk.Widget
