@@ -337,7 +337,7 @@ namespace Palete
 						ih.child_classes.add(e.fqn);
 					}
 				}
-				for(var impl in e.implements) {
+				foreach(var impl in e.implements) {
 					var ih = this.classCache.get(impl);
 					if (!ih.child_classes.contains(e.fqn)) {
 						ih.child_classes.add(e.fqn);
