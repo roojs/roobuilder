@@ -55,7 +55,7 @@ public class Xcls_PopoverAddObject : Object
 	public void show (Palete.Palete pal, string cls,  Gtk.Widget onbtn) {
 	
 	     
-	
+		var sl = this.mainwindow.file.getSymbolLoader();
 	    var tr = pal.getChildList(cls, false);
 	    var m = (GLib.ListStore) _this.model.el.model;
 		m.remove_all();
