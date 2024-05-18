@@ -384,7 +384,12 @@ namespace Palete
 
 		
 		}
-		 
+		public dropSearch(Gee.ArrayList<string> looking_for, string[] with_methods)
+		{
+		
+		
+		
+		}
 		
 	}	
 }
