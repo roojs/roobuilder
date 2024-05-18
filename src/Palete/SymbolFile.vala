@@ -219,8 +219,9 @@ namespace Palete {
 				if (s.loaded_parent_id < 1)  !=
 					if (s.stype  != Lsp.SymbolKind.Paramenter) {
 						this.children.append(s);
+						this.children_map.set(s.type_name, s);
 					}
-					this.children_map.set(s.type_name, s);
+					
 				}
 				GLib.debug("Queue Add Sybol %s", s.fqn);
 				addsymbols.add(s);
@@ -298,9 +299,10 @@ namespace Palete {
 				if (s.loaded_parent_id < 1) {
 					if (s.stype != Lsp.SymbolKind.Parameter) {
 						this.children.append(s);
+						this.children_map.set(s.type_name, s);
 					}
 					GLib.debug("file add parent : %s", s.type_name);
-					this.children_map.set(s.type_name, s);
+					
 					this.symbol_map.set((int)s.id, s);
 					continue;
 				}
