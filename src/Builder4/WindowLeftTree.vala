@@ -610,7 +610,7 @@ public class Xcls_WindowLeftTree : Object
 				    GLib.debug("add colum clicked.");
 			        var fqn = node.fqn();
 			        var pal = ws.project.palete;
-				 	var sl = ws.windowstate.file.getSymbolLoader();
+				 	var sl = ws.file.getSymbolLoader();
 					var cn = pal.getChildListFromSymbols(sl, fqn, false);
 			
 			  		if (cn.size < 1) {

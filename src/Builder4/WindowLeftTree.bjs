@@ -154,7 +154,7 @@
            "\t    GLib.debug(\"add colum clicked.\");",
            "        var fqn = node.fqn();",
            "        var pal = ws.project.palete;",
-           "\t \tvar sl = ws.windowstate.file.getSymbolLoader();",
+           "\t \tvar sl = ws.file.getSymbolLoader();",
            "\t\tvar cn = pal.getChildListFromSymbols(sl, fqn, false);",
            "",
            "  \t\tif (cn.size < 1) {",
