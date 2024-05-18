@@ -235,7 +235,6 @@ namespace Palete
 			var ids = this.sq.fetchAllInt64(stmt);
 			foreach(var c in ids) {
 				ret.add(c.to_string());
-
 			}
 			
 		}
