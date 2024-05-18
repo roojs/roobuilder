@@ -840,30 +840,22 @@ namespace Palete {
         	 
         	var methods = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Method);
         	foreach(var method in methods.values) {
-        		switch (method.name) {
-        			case "add_controller":
-        			case "add_shortcut":
-        			//case "add_tick_callback":// ??? really?
-        			case "append":
-        			case "append_column":
-        			case "append_item":
-        			case "attach":
-        			case "pack_start":
-        				// look for proerties that are objects..
-        				sl.loadMethodParams(method);
-        				if (method.param_ar.size < 1) {
-        					continue;
-        				}
-        				//method.param_ar.get(0).dump("  ");
-        				var ty = method.param_ar.get(0).rtype;
-        				if (!ty.contains(".") || ret.contains(ty)) {
-        					continue;
-    					}
-    					ret.add(ty);
-    					ret.add_all(sl.implementations(ty, Lsp.SymbolKind.Class));
-						break;
-					default:
-						break;
+        		if (GLib.strv_contains(methods_to_check, method)) {
+    		 
+    				// look for proerties that are objects..
+    				sl.loadMethodParams(method);
+    				if (method.param_ar.size < 1) {
+    					continue;
+    				}
+    				//method.param_ar.get(0).dump("  ");
+    				var ty = method.param_ar.get(0).rtype;
+    				if (!ty.contains(".") || ret.contains(ty)) {
+    					continue;
+					}
+					ret.add(ty);
+					ret.add_all(sl.implementations(ty, Lsp.SymbolKind.Class));
+
+					 
 				}
         				
         	}
