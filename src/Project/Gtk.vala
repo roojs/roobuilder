@@ -265,7 +265,9 @@ namespace Project
 			return this.compilegroups.get(cgn).symbolManager();
 			
 		} 
- 		public override Palete.SymbolLoader? getSymbolLoader (string cgn) {
+		// is this needed?
+ 		public override Palete.SymbolLoader getSymbolLoader (string cgn) {
+ 			  
  			return this.compilegroups.get(cgn).symbolLoader();
  		}
 		public override Palete.SymbolLoader? getSymbolLoaderForFile (JsRender.JsRender file) {
