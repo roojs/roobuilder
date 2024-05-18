@@ -1312,7 +1312,7 @@
              " \tvar fqn = node.fqn();",
              " \tvar ws = _this.main_window.windowstate;",
              " \tvar pal = ws.project.palete;",
-             " \tvar sl = ws.windowstate.file.getSymbolLoader();",
+             " \tvar sl = ws.file.getSymbolLoader();",
              "    var cn = pal.getChildListFromSymbols(sl, fqn, false);",
              "    ",
              "\timg.set_visible(cn.size > 0 ? true : false);",
