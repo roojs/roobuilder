@@ -384,7 +384,7 @@ namespace Palete
 
 		
 		}
-		public dropSearchMethods(Gee.ArrayList<string> looking_for_types, string[] with_methods)
+		public Gee.ArrayList<string> dropSearchMethods(Gee.ArrayList<string> looking_for_types, string[] with_methods)
 		{
 		
 			string[] v_methods = {};
