@@ -971,8 +971,20 @@ namespace Palete {
 
 			
 		}
-		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string rval)
+		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string fqn)
 		{
+			
+			// what can rval be dropped onto.
+			// a) netop?"ed to find all interfaces and parents.
+			var all_imp = new Gee.ArrayList<string>();
+			all_imp.add(fqn);
+			all_imp.add_all(sl.all_implements(fqn));
+			
+			if (
+			// then look for 
+			//    * if Widget is there, then .*top
+			//    rtype matches first argument of the listed methods and parent is in iface/subclass list.
+			
 			/*this.buildChildListForDroppingProject();
 			var pr = (Project.Gtk) this.project;
 			if (!pr.dropList.has_key(rval)) {
