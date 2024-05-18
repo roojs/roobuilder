@@ -251,7 +251,8 @@ namespace Palete
 		{
 			this.loadClassCache();
 			
-			
+			var full_ar = new Gee.ArrayList<string>();
+			this.fillImplementsFromCache(fqn, full_ar);
 			
 			
 			var cachekey = fqn + ":" + stype.to_string();
@@ -346,7 +347,18 @@ namespace Palete
 			}
 			
 		}
-		
+		void fillImplementsFromCache(string fqn, Gee.ArrayList<string> full_ar) {
+			
+			if (full_ar.contains(fqn)) {
+				return;
+			}
+			var s = this.classCache.get(fqn);
+			foreach(var cn in s.child_classes) {
+				this.fillImplements(cn, full_ar);
+			}
+			full_ar.add(fqn);
+
+		}
 		
 		
 		public Symbol? classWithChildren(string fqn )
