@@ -384,10 +384,44 @@ namespace Palete
 
 		
 		}
-		public dropSearch(Gee.ArrayList<string> looking_for, string[] with_methods)
+		public dropSearchMethods(Gee.ArrayList<string> looking_for_types, string[] with_methods)
 		{
 		
-		
+			var stmt = this.sq.selectPrepare("
+				SELECT 
+					fqn
+				FROM
+					symbols
+				WHERE 
+					id IN (
+						SELECT 
+							DISTINCT(parent_id)
+						FROM
+							symbol
+						WHERE 
+							stype = $s_param
+						AND
+							parent_id IN (
+								SELECT 
+									id  
+								FROM 
+									symbol 
+								WHERE 
+									file_id IN (" +   this.manager.file_ids   + ")  
+								AND
+									stype = $s_method
+								AND
+									name IN (" + v_methods + ")
+							)
+						AND 
+							sequence = 0
+						AND
+						rtype IN (" + v_looking_for_types + ")
+					)
+				 		
+			");
+			stmt.bind_int(stmt.bind_parameter_index ("$s_method"), (int)Lsp.SymbolKind.Method);
+			stmt.bind_int(stmt.bind_parameter_index ("$s_param"), (int)Lsp.SymbolKind.Parameter);
 		
 		}
 		
