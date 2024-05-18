@@ -216,8 +216,8 @@ namespace Palete {
 				}
  
 				s.file = this;
-				if (s.loaded_parent_id < 1)  
-					if (s.stype  != Lsp.SymbolKind.Paramenter) {
+				if (s.loaded_parent_id < 1)  {
+					if (s.stype  != Lsp.SymbolKind.Parameter) {
 						this.children.append(s);
 						this.children_map.set(s.type_name, s);
 					}
