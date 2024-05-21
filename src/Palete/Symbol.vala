@@ -47,6 +47,7 @@ namespace Palete {
   		
   		// filled by symbol loader
   		public Gee.ArrayList<string> all_implements { get; set; default = new Gee.ArrayList<string>(); }
+  		public Gee.ArrayList<string> implementation_of { get; set; default = new Gee.ArrayList<string>(); }  		
 		 
   		public string implements_str { 
 			owned get {
@@ -120,6 +121,7 @@ namespace Palete {
 			this.children = new GLib.ListStore(typeof(Symbol));
 			this.children_map = new Gee.HashMap<string,Symbol>(); 
   			this.all_implements  = new Gee.ArrayList<string>(); 	
+  			this.implementation_of = new Gee.ArrayList<string>(); 	
 		}
 		
 		public Symbol()

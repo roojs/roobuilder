@@ -425,7 +425,10 @@ public class Xcls_PopoverAddObject : Object
 			 	
 			    var paintable = new Gtk.WidgetPaintable(widget);
 			    this.el.set_icon(paintable, 0,0);
-			    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now.      
+			    GLib.Idle.add(() => {
+				    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
+				    return false;
+			    });
 			 
 			});
 			this.el.drag_end.connect( (drag, delete_data) => {

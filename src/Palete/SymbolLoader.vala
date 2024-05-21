@@ -80,7 +80,7 @@ namespace Palete
 			Palate.getProperties for
 		*/
 		
-		public Gee.HashMap<string,Symbol>  getPropertiesFor(string ename, Lsp.SymbolKind kind)
+		public Gee.HashMap<string,Symbol>  getPropertiesFor(string ename, Lsp.SymbolKind kind, string[]? ignore_list )
 		{
 			var ret = new Gee.HashMap<string,Symbol>();
 			var sym = this.singleByFqn(ename);
@@ -123,21 +123,15 @@ namespace Palete
 
 			foreach(var s in els) {
 				var k = s.name;
+				if (ignore_list != null && GLib.strv_contains(ignore_list, k)) {
+					continue;
+				}
 				if (kind ==  Lsp.SymbolKind.Property) {
-					if (
-						k == "___" ||
-						k == "parent" ||
-						k == "default_widget" ||
-						k == "root" ||
-						k == "layout_manager" || // ??
-						k == "widget"  // gestures..
-					) {
-						continue;
-					}
+					
 					if (!s.is_writable && !s.is_ctor_only) {
 						continue;
 					}
-					if (s.rtype == "GLib.Object") { /// this is practually everything? ?? 
+					if (s.rtype == "GLib.Object") { // ?? confgurable
 					 	continue;
 					}
 					// old code also validates that type is a valid type?
@@ -261,8 +255,8 @@ namespace Palete
 		{
 			this.loadClassCache();
 			return this.classCache.get(fqn).all_implements;
-		
 		}
+		
 		
 		
 		
@@ -337,6 +331,44 @@ namespace Palete
 
 		}
 		
+		public Gee.ArrayList<string> implementationOf(string fqn)
+		{
+				this.loadClassCache();
+			var sym= this.classCache.get(fqn);
+			this.fillImplementationOfFromCache(sym);
+			return sym.implementation_of;
+		}
+		
+		void fillImplementationOfFromCache(Symbol sym) 
+		{
+			 if (sym.inherits_str != "" && !sym.implementation_of.contains(sym.inherits_str)) {
+				sym.implementation_of.add(sym.inherits_str);
+ 
+				var ih = this.classCache.get(sym.inherits_str);
+				this.fillImplementationOfFromCache(ih);
+				foreach(var s in ih.implementation_of) {
+					if (!sym.implementation_of.contains(s)) {
+						 sym.implementation_of.add(s);
+					 }
+				 }
+			 }
+			foreach(var impl in sym.implements) {
+				if ( !sym.implementation_of.contains(impl)) {
+					sym.implementation_of.add(impl);
+					var ih = this.classCache.get(impl);
+					this.fillImplementationOfFromCache(ih);
+					foreach(var s in ih.implementation_of) {
+						if (!sym.implementation_of.contains(s)) {
+							 sym.implementation_of.add(s);
+						 }
+					}
+				}
+			}
+
+		}
+		
+		
+		
 		
 		public Symbol? classWithChildren(string fqn )
 		{
@@ -376,9 +408,12 @@ namespace Palete
 
 		
 		}
+		
+		// for drop
+		// return a list of interfaces or classes that have methods that could be dropped onto
+		
 		public Gee.ArrayList<string> dropSearchMethods(Gee.ArrayList<string> looking_for_types, string[] with_methods)
 		{
-		
 			string[] v_methods = {};
 			string[] v_looking_for_types = {};
 			for(var i = 0;i < looking_for_types.size; i++) {
@@ -392,7 +427,7 @@ namespace Palete
 				SELECT 
 					fqn
 				FROM
-					symbols
+					symbol
 				WHERE 
 					id IN (
 						SELECT 
@@ -401,6 +436,10 @@ namespace Palete
 							symbol
 						WHERE 
 							stype = $s_param
+						AND 
+							sequence = 0
+						AND
+							rtype IN (" + string.joinv(",", v_looking_for_types) + ")
 						AND
 							parent_id IN (
 								SELECT 
@@ -414,25 +453,78 @@ namespace Palete
 								AND
 									name IN (" + string.joinv(",", v_methods) + ")
 							)
-						AND 
-							sequence = 0
-						AND
-							rtype IN (" + string.joinv(",", v_looking_for_types) + ")
+						
 					)
 				 		
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$s_method"), (int)Lsp.SymbolKind.Method);
 			stmt.bind_int(stmt.bind_parameter_index ("$s_param"), (int)Lsp.SymbolKind.Parameter);
+			
 			for(var i = 0;i < looking_for_types.size; i++) {
 				stmt.bind_text(stmt.bind_parameter_index ("$lt" + i.to_string()), looking_for_types.get(i));
 			}
 			for(var i = 0;i < with_methods.length; i++) {
 				stmt.bind_text(stmt.bind_parameter_index ("$mt" + i.to_string()), with_methods[i]);
 			}
+			GLib.debug("SQL: %s", stmt.expanded_sql());
 			return this.sq.fetchAllString(stmt);
-
 			
 		}
 		
+		// for drop
+		// return a list of interfaces or classes that have methods that could be dropped onto
+		
+		public Gee.ArrayList<string> dropSearchProps(Gee.ArrayList<string> looking_for_types, string[] ignore_props)
+		{
+			string[] v_looking_for_types = {};
+			for(var i = 0;i < looking_for_types.size; i++) {
+				v_looking_for_types += ("$lt" + i.to_string());
+			}
+			string[] v_props= {};
+			for(var i = 0;i < ignore_props.length; i++) {
+				v_props += ("$mt" + i.to_string());
+			}
+			
+			var stmt = this.sq.selectPrepare("
+				SELECT 
+					fqn
+				FROM
+					symbol
+				WHERE 
+					id IN (
+						SELECT 
+							DISTINCT(parent_id)
+						FROM
+							symbol
+						WHERE 
+							stype = $s_property
+						AND
+							rtype IN (" + string.joinv(",", v_looking_for_types) + ")
+						AND 
+							file_id IN (" +   this.manager.file_ids   + ")  
+						AND
+							NAME NOT IN (" + string.joinv(",", v_props)   + ") 
+						
+					)
+				 		
+			");
+			stmt.bind_int(stmt.bind_parameter_index ("$s_class"), (int)Lsp.SymbolKind.Class);
+			stmt.bind_int(stmt.bind_parameter_index ("$s_property"), (int)Lsp.SymbolKind.Property);
+			for(var i = 0;i < looking_for_types.size; i++) {
+				stmt.bind_text(stmt.bind_parameter_index ("$lt" + i.to_string()), looking_for_types.get(i));
+			}
+			for(var i = 0;i < ignore_props.length; i++) {
+				stmt.bind_text(stmt.bind_parameter_index ("$mt" + i.to_string()), ignore_props[i]);
+			}
+			GLib.debug("SQL: %s", stmt.expanded_sql());
+			return this.sq.fetchAllString(stmt);
+		
+		}
+		
+		
+		
 	}	
+	
+	
+	
 }

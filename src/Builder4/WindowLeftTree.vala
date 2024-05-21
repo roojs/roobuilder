@@ -1116,9 +1116,12 @@ public class Xcls_WindowLeftTree : Object
 					this.lastDragNode.loadFromJsonString(v.get_string(), 1);
 				}
 			    
-			
-				var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(
-							this.lastDragNode.fqn());
+				var file = _this.main_window.windowstate.file;
+				var palete =  file.palete();
+				var ls = file.getSymbolLoader();
+				var drop_on_to = palete.getDropListFromSymbols(ls, this.lastDragNode.fqn());
+			   
+			 
 			     
 			     string[] str = {};
 			     foreach(var dp in drop_on_to) {
@@ -1238,8 +1241,10 @@ public class Xcls_WindowLeftTree : Object
 				dropNode.loadFromJsonString(v.get_string(), 2);
 				GLib.debug("dropped node %s", dropNode.toJsonString());
 				
-				
-				var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(dropNode.fqn());
+				var file = _this.main_window.windowstate.file;
+				var palete =  file.palete();
+				var ls = file.getSymbolLoader();
+				var drop_on_to = palete.getDropListFromSymbols(ls, dropNode.fqn());
 			   
 			    // if there are not items in the tree.. the we have to set isOver to true for anything..
 			 
