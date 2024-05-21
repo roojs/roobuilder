@@ -191,14 +191,8 @@ namespace Palete {
 				var val = props.get(k);
 //				GLib.debug("FilterProp: %s", k);
 				// properties that dont make any sense to display.
-				if (
-					k == "___" ||
-					k == "parent" ||
-					k == "default_widget" ||
-					k == "root" ||
-					k == "layout_manager" || // ??
-					k == "widget"  // gestures..
-				) {
+
+				if (GLib.strv_contains(properties_to_ignore, k)) {
 					continue;
 				}
 				
@@ -838,7 +832,7 @@ namespace Palete {
         	}
         	 
         	 
-        	var methods = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Method);
+        	var methods = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Method, null);
         	foreach(var method in methods.values) {
         		if (GLib.strv_contains(methods_to_check, method.name)) {
     		 
@@ -866,7 +860,7 @@ namespace Palete {
 				return fret;
     
         	}
-        	var props = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Property);
+        	var props = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Property, properties_to_ignore);
         	 
         	//this is needed for drag drop?
         	foreach(var pn in props.values) {
@@ -950,7 +944,7 @@ namespace Palete {
     	
     	}
     	
-		public override Gee.ArrayList<string> getDropList(string rval)
+		public override Gee.ArrayList<string> XgetDropList(string rval)
 		{
 			this.buildChildListForDroppingProject();
 			var pr = (Project.Gtk) this.project;
@@ -973,40 +967,48 @@ namespace Palete {
 			 "append_item",
 			 "attach",
 			 "pack_start"
-		
 		};
+		public static string[] properties_to_ignore = {
+			"___",
+			"parent",
+			"default_widget",
+			 "root",
+			"layout_manager",
+			"widget" 
+		};
+		
 		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string fqn)
 		{
 			
 			// what can rval be dropped onto.
 			// a) netop?"ed to find all interfaces and parents.
 			
-			var ret = new Gee.ArrayList<string>();
+ 			var ret = new Gee.ArrayList<string>();
 			var all_imp = new Gee.ArrayList<string>();
 			all_imp.add(fqn);
-			all_imp.add_all(sl.all_implements(fqn));
+			all_imp.add_all(sl.implementationOf(fqn));
 			
 			if (all_imp.contains("Gtk.Widget")) {
 				ret.add("*top");
 			}
-			ret.add_all(sl.dropSearchMethods(
-				all_imp,
-				methods_to_check
-			));
+			var matches =  sl.dropSearchMethods(all_imp, methods_to_check );
 			
-			// then look for 
-			//    * if Widget is there, then .*top
-			//    rtype matches first argument of the listed methods and parent is in iface/subclass list.
-			
-			/*this.buildChildListForDroppingProject();
-			var pr = (Project.Gtk) this.project;
-			if (!pr.dropList.has_key(rval)) {
-			 	GLib.debug("returning empty drop list for  %s", rval);
-				return new Gee.ArrayList<string>();
+			matches.add_all(sl.dropSearchProps(all_imp, properties_to_ignore));
+
+			foreach(var k in matches) {
+				if (ret.contains(k)) {
+					continue;
+				}
+				var ar = sl.implementations(k, Lsp.SymbolKind.Class);
+				foreach(var sk in ar) {
+					if (ret.contains(sk)) {
+						continue;
+					}
+					ret.add(sk);
+				}
 			}
-		 	GLib.debug("returning %d items in drop list  %s", pr.dropList.get(rval).size, rval);			
-			return  pr.dropList.get(rval);
-			*/
+			
+			 
 			return ret;
 
 			
