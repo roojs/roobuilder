@@ -287,7 +287,7 @@
 			  
 			 var p = cur_project.palete;
 			
-			 print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(fqn)));
+			 //print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(fqn)));
  			// print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(fqn, false)));
  			// print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(fqn, true))); 	
  			 
@@ -614,14 +614,16 @@
  
 				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
 					var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
-		 			print("\n\nPropsList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Property)));
-	  				print("\n\nSignalList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Signal)));
-	  				print("\n\nMethods:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Method)));
+		 			print("\n\nPropsList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Property, Palete.Gtk.properties_to_ignore)));
+	  				print("\n\nSignalList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Signal, null)));
+	  				print("\n\nMethods:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Method, null)));
 	  				print("\n\nImplementations:\n%s", this.geeArrayToString( sl.implementations( fqn,Lsp.SymbolKind.Class)));
 	  				print("\n\nChildList:\n%s", this.geeArrayToString(
 	 					cur_project.palete.getChildListFromSymbols(sl , fqn, false)));	
  					print("\n\nChildList (with props):\n%s", this.geeArrayToString(
 	 					cur_project.palete.getChildListFromSymbols(sl , fqn, true)));	
+	 				print("\n\nDroplist :\n%s", this.geeArrayToString(
+	 					cur_project.palete.getDropListFromSymbols(sl , fqn)));	
 				}
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
