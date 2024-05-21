@@ -944,7 +944,7 @@ namespace Palete {
     	
     	}
     	
-		public override Gee.ArrayList<string> XgetDropList(string rval)
+		public   Gee.ArrayList<string> XgetDropList(string rval)
 		{
 			this.buildChildListForDroppingProject();
 			var pr = (Project.Gtk) this.project;
