@@ -425,36 +425,43 @@ namespace Palete
 			
 			var stmt = this.sq.selectPrepare("
 				SELECT 
-					fqn
-				FROM
+					fqn 
+				FROM 
 					symbol
-				WHERE 
+				WHERE
 					id IN (
 						SELECT 
 							DISTINCT(parent_id)
 						FROM
 							symbol
 						WHERE 
-							stype = $s_param
-						AND 
-							sequence = 0
-						AND
-							rtype IN (" + string.joinv(",", v_looking_for_types) + ")
-						AND
-							parent_id IN (
+							id IN (
 								SELECT 
-									id  
-								FROM 
-									symbol 
+									DISTINCT(parent_id)
+								FROM
+									symbol
 								WHERE 
-									file_id IN (" +   this.manager.file_ids   + ")  
+									stype = $s_param
+								AND 
+									sequence = 0
 								AND
-									stype = $s_method
+									rtype IN (" + string.joinv(",", v_looking_for_types) + ")
 								AND
-									name IN (" + string.joinv(",", v_methods) + ")
+									parent_id IN (
+										SELECT 
+											id  
+										FROM 
+											symbol 
+										WHERE 
+											file_id IN (" +   this.manager.file_ids   + ")  
+										AND
+											stype = $s_method
+										AND
+											name IN (" + string.joinv(",", v_methods) + ")
+									)
+								
 							)
-						
-					)
+						)
 				 		
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$s_method"), (int)Lsp.SymbolKind.Method);
