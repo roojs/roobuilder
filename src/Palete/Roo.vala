@@ -425,7 +425,7 @@ namespace Palete {
 			return this.getDropList(rval);
 		}
     	
-		public override Gee.ArrayList<string> getDropList(string rval)
+		public   Gee.ArrayList<string> getDropList(string rval)
 		{
 			
 			if (this.dropCache.has_key(rval)) {
