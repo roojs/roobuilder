@@ -329,9 +329,138 @@ public class JsRender.NodeProp : Object {
 		this.ptype = ptype;
 		this.rtype = rtype;
 		this.val = val;
-		this.childstore = new GLib.ListStore( typeof(NodeProp));
+		this.childstore = new GLib.ListStore( typeof(NodeProp)); 
+	}
+	public NodeProp.new_from_symbol(Palete.Symbol s, Palete.SymbolLoader sl, string parent_fqn) 
+	{
+		
+		this(s.name, NodePropType.LISTENER, s.rtype, s.sig);
+		this.propertyof = s.property_of();
+		
+		if (s.stype == Lsp.SymbolKind.Signal) { // gtk is Signal, roo is signal??
+			// when we add properties, they are actually listeners attached to signals
+			// was a listener overrident?? why?
+			 
+			 // notify[xxxx] << for all the properties of the symbol.
+			//if (s.name == "notify" && pal.name == "Gtk") {
+			//	this.nodePropAddNotify(r, par_xtype, pal);
+			//}
+			
+			return;
+		}
+			
+			// does not handle Enums... - no need to handle anything else.
+		var def = this.rtype.contains(".") ?  "" :  guessDefaultValueForType(thisr.type);
+		if (this.rtype.contains(".") || this.rtype.contains("|") || this.rtype.contains("/")) {
+			this.ptype = NodePropType.PROP;
+			this.val - def;
+			
+			this.nodePropAddChildren(sl, s, s.rtype);
+			
+			if (this.childstore.n_items == 1) {
+				var np = (NodeProp) this.childstore.get_item(0);
+				this.add_node = np.add_node;
+				this.childstore.remove_all();
+			}
+			
+			
+			return;
+		}
+		this.val = def;
+		this.ptype = NodePropType.RAW;		
+		switch(s.rtype.down()) {
+			case "function": 
+				this.ptype = NodePropType.RAW;
+				this.val = "function()\n{\n\n}";
+				return;			
+			case "array":
+				this.val =  "[\n\n]";
+				return;			
+			case "object" :
+				this.val =  "{\n\n}";
+				return;			
+
+			default:
+				this.ptype = NodePropType.PROP;
+				return;
+			
+		}
 		 
 	}
+	
+	
+	public void nodePropAddChildren(Palete.Palete pal, Palete.SymbolLoader sl, Palete.Symbol s, string str)
+	{
+		
+		if (str.contains("|")) {
+			var ar = str.split("|");
+			for(var i = 0; i < ar.length; i++) {
+				this.nodePropAddChildren(pal, sl, s, ar[i]);
+			}
+			return;
+		}
+		if (str.contains("/")) {
+			var ar = str.split("/");
+			for(var i = 0; i < ar.length; i++) {
+				this.nodePropAddChildren(pal, sl, s, ar[i]);
+			}
+			return;
+		}
+		var cls = pal.getClass(sl, str);
+		// it's an object..
+		// if node does not have any children and the object type only has 1 type.. then we dont add anything...
+		// note all classes are expected to have '.' seperators
+		if (cls == null || !str.contains(".")) {
+			GLib.debug("nodepropaddchildren: check class %s - not found in classes", str);
+			this.childstore.append( new NodeProp.prop(s.name, str,  guessDefaultValueForType(str)));
+			return;
+		}
+		//GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
+		if (cls.stype == Lsp.SymbolKind.Enum) {			
+			var add = new NodeProp.raw(s.name, str, "");
+			this.childstore.append( add);
+			return ;
+		}
+		
+		 
+		if (cls.stype != Lsp.SymbolKind.Class) {		
+			var add = new NodeProp.raw(s.name, str, "");
+			// no propertyof ?
+			
+			
+			add.add_node = pal.fqnToNode(str);
+			add.add_node.add_prop(new NodeProp.special("prop", s.name));
+			this.childstore.append( add);
+		}
+
+
+		var imps = sl.implementations(cls.fqn, Lsp.SymbolKind.Class);
+		if (imps.size < 1) {
+			GLib.debug("nodepropaddchildren: check class %s - no implementations", str);
+			return;
+		}
+		
+		GLib.debug("nodepropaddchildren: check class %s", str);			
+		
+		foreach (var cname in imps) {
+
+			 
+		 
+			var add = new NodeProp.raw(s.name, cname, "");
+			// no propertyof ?
+			add.add_node = pal.fqnToNode(cname);
+			add.add_node.add_prop(new NodeProp.special("prop", s.name));
+			this.childstore.append( add);
+
+		
+		}
+		
+		
+		
+		
+	}
+	
+	
 	public string ptype_as_string {
 		get { return this.ptype.to_string(); }
 		private set {}
@@ -794,6 +923,7 @@ public class JsRender.NodeProp : Object {
 	
 	}
 	
+
 	
 	
 	

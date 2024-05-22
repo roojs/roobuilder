@@ -91,21 +91,15 @@ namespace Palete {
 			NEW?? symbol based fetch?
 			
 		*/
-		public   Symbol? getClassSymbol(JsRender.JsRender file, string ename)
+		public   Symbol? getClassS(SymbolLoader? sl, string ename)
 		{
-			var ret =  file.symbol_manager().loader.singleByFqn(ename);
+			var ret =  sl.singleByFqn(ename);
 			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
 		}
 
 			// does not handle implements...
-		public override GirObject? getClass(string ename)
-		{
-			var es = ename.split(".");
-			var gir = this.loadGir(ename);
-			return gir  == null ? null : gir.classes.get(es[1]);
-		
-		}
-		 
+	 
+		 /*
 		private  GirObject? getDelegate(string ename) 
 		{
 			var es = ename.split(".");
@@ -121,9 +115,33 @@ namespace Palete {
 					(gir.classes.has_key(es[1]) ?  gir.classes.get(es[1]) : gir.consts.get(es[1]) );
 		 
 		}
+		*/
+		public override Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl,  string fqn, JsRender.NodePropType ptype) 
+		{
+			switch  (ptype) {
+				case JsRender.NodePropType.PROP:
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Property, properties_to_ignore);
+ 
+				case JsRender.NodePropType.LISTENER:
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Signal, null);				
+ 
+				case JsRender.NodePropType.METHOD:
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method, null);
+					
+				//case JsRender.NodePropType.CTOR:  // needed to query the arguments of a ctor.
+				//	return cls.ctors;
+				default:
+					GLib.error( "getPropertiesFor called with: " + ptype.to_string());
+					//var ret = new Gee.HashMap<string,GirObject>();
+					//return ret;
+				
+			}
+			
+		
+		}
+		
 
-
-		public override Gee.HashMap<string,GirObject> getPropertiesFor( string ename, JsRender.NodePropType ptype) 
+		public   Gee.HashMap<string,GirObject> getPropertiesForGir( string ename, JsRender.NodePropType ptype) 
 		{
 			//print("Loading for " + ename);
 		    
@@ -797,7 +815,7 @@ namespace Palete {
         	
         	
     	}
-    	Gee.HashMap<string,Gee.ArrayList<string>> childListCache;
+    	//Gee.HashMap<string,Gee.ArrayList<string>> childListCache;
     	
 		public override Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader? sl, string in_rval, bool with_props)
         {

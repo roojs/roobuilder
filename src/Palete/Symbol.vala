@@ -48,7 +48,17 @@ namespace Palete {
   		// filled by symbol loader
   		public Gee.ArrayList<string> all_implements { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implementation_of { get; set; default = new Gee.ArrayList<string>(); }  		
-		 
+		
+		// filled by Roo Palete loader
+		
+		public Gee.HashMap<string,Symbol> props { get; set; default = new Gee.HashMap<string,Symbol>(); }
+		public Gee.HashMap<string,Symbol> signals { get; set; default = new Gee.HashMap<string,Symbol>(); }		
+		public Gee.HashMap<string,Symbol> methods { get; set; default = new Gee.HashMap<string,Symbol>(); }				
+		public string sig = "";  
+		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
+		public Gee.ArrayList<string> valid_cn  { get; set; default = new Gee.ArrayList<string>(); }
+		public Gee.ArrayList<string> can_drop_onto  { get; set; default = new Gee.ArrayList<string>(); }
+		
   		public string implements_str { 
 			owned get {
 				if (this.implements.size < 1) {
@@ -128,6 +138,15 @@ namespace Palete {
 		{
 			base();
 			
+		}
+		
+		public Symbol.new_simple(Lsp.SymbolKind kind, string fqn) {
+			this.stype = kind;
+			this.fqn = fqn;
+			//?? name??
+			
+		
+		
 		}
 		
 		public string to_fqn()

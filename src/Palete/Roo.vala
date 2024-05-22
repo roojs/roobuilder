@@ -21,41 +21,34 @@ namespace Palete {
 
 */
     public class Roo : Palete {
-		
+		public Gee.HashMap<string,Symbol> classes; // used in roo.. 
 		Gee.ArrayList<string> top_classes;
-		public static Gee.HashMap<string,GirObject>? classes_cache = null;
+		public static Gee.HashMap<string,Symbol>? classes_cache = null;
 		public static Gee.ArrayList<string>? top_classes_cache = null;
  
         public Roo(Project.Project project)
         {
-
-
-            
-            aconstruct(project);
-            this.name = "Roo";
+			aconstruct(project);
+			this.name = "Roo";
 			this.top_classes =  new Gee.ArrayList<string>();
- 
-			
+			this.classes = null;
 			this.load(); // ? initialize the roodata?
 
         }
 
-		Gee.HashMap<string,GirObject> propsFromJSONArray(string type, Json.Array ar, GirObject cls)
+		Gee.HashMap<string,Symbol> propsFromJSONArray(Lsp.SymbolKind kind, Json.Array ar, Symbol cls)
 		{
 
-			var ret = new Gee.HashMap<string,GirObject>();
+			var ret = new Gee.HashMap<string,Symbol>();
 			
 			for (var i =0 ; i < ar.get_length(); i++) {
 				var o = ar.get_object_element(i);
 				var name = o.get_string_member("name"); 
-				var prop = new GirObject(type, name );  
+				var prop = new Symbol.new_simple(kind, name );  
 				 
-				prop.type        = o.get_string_member("type");
-				prop.doctxt  = o.get_string_member("desc");
-				prop.propertyof = o.has_member("memberOf") ? o.get_string_member("memberOf") : "";
-				if (prop.propertyof.length < 1)  {
-					prop.propertyof = cls.name;
-				}
+				prop.rtype        = o.get_string_member("type");
+				prop.doc  = o.get_string_member("desc");
+				prop.fqn = (o.has_member("memberOf") ? o.get_string_member("memberOf") : cls.name) + "." + name;
 				
 				// this is the function default.
 				prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
@@ -89,7 +82,7 @@ namespace Palete {
 			
 			
  
-			this.classes = new Gee.HashMap<string,GirObject>();
+			this.classes = new Gee.HashMap<string,Symbol>();
 			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
 			
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/resources/roodata.json");
@@ -113,18 +106,20 @@ namespace Palete {
 			clist.foreach_member((o , key, value) => {
 				//print("cls:" + key+"\n");
 			 
-				var cls = new GirObject("class", key);  
-				cls.props = this.propsFromJSONArray("prop", value.get_object().get_array_member("props"),cls);
-				cls.signals = this.propsFromJSONArray("signal", value.get_object().get_array_member("events"),cls);
+				var cls = new Symbol.new_simple(Lsp.SymbolKind.Class, key);  
+				
+				cls.props = this.propsFromJSONArray(Lsp.SymbolKind.Property, value.get_object().get_array_member("props"),cls);
+				cls.signals = this.propsFromJSONArray(Lsp.SymbolKind.Signal, value.get_object().get_array_member("events"),cls);
 				
 				
 				if (value.get_object().has_member("methods")) {
-					cls.methods = this.propsFromJSONArray("method", value.get_object().get_array_member("methods"),cls);
+					cls.methods = this.propsFromJSONArray(Lsp.SymbolKind.Method, value.get_object().get_array_member("methods"),cls);
 				}
 				if (value.get_object().has_member("implementations")) {
 					var vcn = value.get_object().get_array_member("implementations");
 					for (var i =0 ; i < vcn.get_length(); i++) {
-						cls.implementations.add(vcn.get_string_element(i));
+					// not sure if this is correct - this was implementations
+						cls.all_implements.add(vcn.get_string_element(i));
 						//break; << why!?!
 		 			}	 			
 				}
@@ -174,7 +169,7 @@ namespace Palete {
 			
 			foreach(var cls in this.classes.values) {
 				foreach(var gir_obj in cls.props.values) {
-					var types = gir_obj.type.split("|");
+					var types = gir_obj.rtype.split("|");
 					for(var i =0; i < types.length; i++) {
 						var type = types[i];
 					
@@ -185,7 +180,8 @@ namespace Palete {
 							// Roo.bootstrap.panel.Content:east
 							// also means that  Roo.bootstrap.panel.Grid:east works
 							var prop_type = classes.get(type);
-							foreach(var imp_str in prop_type.implementations) {
+							// was all_implements
+							foreach(var imp_str in prop_type.all_implements) {
 								//GLib.debug("addChild for %s - child=  %s:%s", cls.name, imp_str, gir_obj.name);
 								cls.valid_cn.add(imp_str + ":" +    gir_obj.name);
 								if (!add_to.has_key(imp_str)) {
@@ -234,16 +230,35 @@ namespace Palete {
 		}
 
 		// does not handle implements...
-		public override GirObject? getClass(string ename)
+		public override Symbol? getClass(string ename)
 		{
 			this.load();
 			return this.classes.get(ename);
 			
 		}
 		
-		 
+	 	public override Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl,  string fqn, JsRender.NodePropType ptype) 
+		{
+			this.load();
+			switch  (ptype) {
+				case JsRender.NodePropType.PROP:
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Property, null);
+				case JsRender.NodePropType.LISTENER:
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Signal, null);				
+ 
+				case JsRender.NodePropType.METHOD:
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method, null);
+					
+ 				default:
+					GLib.error( "getPropertiesFor called with: " + ptype.to_string());
+					//var ret = new Gee.HashMap<string,GirObject>();
+					//return ret;
+				
+			}
+		}
+		/*
 		
-		public override Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype)
+		public   Gee.HashMap<string,GirObject> getPropertiesForGir(string ename, JsRender.NodePropType ptype)
 		{
 			//print("Loading for " + ename);
 			
@@ -264,13 +279,7 @@ namespace Palete {
 				//throw new Error.INVALID_VALUE( "Could not find class: " + ename);
 		
 			}
-
-			//cls.parseProps();
-			//cls.parseSignals(); // ?? needed for add handler..
-			//cls.parseMethods(); // ?? needed for ??..
-			//cls.parseConstructors(); // ?? needed for ??..
-
-			//cls.overlayParent();
+ 
 
 			switch  (ptype) {
 				
@@ -297,6 +306,7 @@ namespace Palete {
 			 
 		}
 		
+		
 		// removes all the properties where the type contains '.' ?? << disabled now..
 		
 		public Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
@@ -321,7 +331,7 @@ namespace Palete {
 		
 		
 		}
-		
+		 
 		
 		public string[] getInheritsFor(string ename)
 		{
@@ -337,7 +347,7 @@ namespace Palete {
 			
 
 		}
-	
+	*/
  		Gee.HashMap<string,string> typeOptionsCache { get ;set ; default = new Gee.HashMap<string,string>(); }
 		/*
 		 *  Pulldown options for type
@@ -356,7 +366,7 @@ namespace Palete {
 			 	return opts.length < 1 ? false : true;
 		 	}
 			 
-			 var props = this.getPropertiesFor(fqn, JsRender.NodePropType.PROP);
+			 var props = this.getPropertiesFor(null, fqn, JsRender.NodePropType.PROP);
 			 if (!props.has_key(key)) {
 				 this.typeOptionsCache.set(cacheKey, "");
 				 print("prop %s does not have key %s\n", fqn, key);

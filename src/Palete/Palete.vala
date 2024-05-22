@@ -19,7 +19,7 @@ namespace Palete
 
 		//public Gee.ArrayList<Usage> map;
 
-		public Gee.HashMap<string,GirObject> classes; // used in roo.. 
+		
 		public Gee.HashMap<string,Gee.ArrayList<string>> dropCache;
 		public Project.Project project;
 	
@@ -28,7 +28,7 @@ namespace Palete
 				// nothing?
 			this.project = project;
 			//this.map = null;
-			this.classes = null;
+		
 			this.dropCache = new Gee.HashMap<string,Gee.ArrayList<string>>() ;
         }
         
@@ -123,8 +123,9 @@ namespace Palete
 		      
 		//public abstract void on_child_added(JsRender.Node? parent,JsRender.Node child);
 		public abstract void load();
-		public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype);
-		public abstract GirObject? getClass(string ename);
+		//public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype);
+		public abstract Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl, string fqn, JsRender.NodePropType ptype);
+		public abstract Symbol? getClass(SymbolLoader? sl, string ename);
 	
 		public abstract bool typeOptions(string fqn, string key, string type, out string[] opts);
 		//public abstract Gee.ArrayList<string> getChildList(string in_rval, bool with_prop);

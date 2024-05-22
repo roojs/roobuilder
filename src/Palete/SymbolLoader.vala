@@ -80,10 +80,10 @@ namespace Palete
 			Palate.getProperties for
 		*/
 		
-		public Gee.HashMap<string,Symbol>  getPropertiesFor(string ename, Lsp.SymbolKind kind, string[]? ignore_list )
+		public Gee.HashMap<string,Symbol>  getPropertiesFor(string fqn, Lsp.SymbolKind kind, string[]? ignore_list )
 		{
 			var ret = new Gee.HashMap<string,Symbol>();
-			var sym = this.singleByFqn(ename);
+			var sym = this.singleByFqn(fqn);
 			if (sym == null) {
 				return ret;
 			}
@@ -370,20 +370,7 @@ namespace Palete
 		
 		
 		
-		public Symbol? classWithChildren(string fqn )
-		{
-			return null;
-		}
-		
-		public Gee.ArrayList<Symbol>? classProperties(Symbol cls) 
-		{		
-			return null;
-		}
-		public Gee.ArrayList<Symbol>? inherits(Symbol cls)
-		{
-			return null;
-		
-		}
+		 
 		public void loadMethodParams(Symbol method)
 		{
   			

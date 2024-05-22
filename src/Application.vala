@@ -36,7 +36,7 @@
             { "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group (use 'none' with Roo)", null },
             { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_file, "symbol database dump file after loading", null },
             { "test-symbol-fqn", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_fqn, "show droplists / children from a fqn using new Symbol code", null },
-            { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
+           // { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             
             
 			{ null }
@@ -49,7 +49,7 @@
 		public static string opt_bjs_compile;
 		public static string opt_bjs_compile_target;
  
-		public static string opt_test_fqn;
+	//	public static string opt_test_fqn;
 		public static string opt_test_language_server;
 		public static string opt_test_symbol_target;
 		public static string opt_test_symbol_dump_file;
@@ -140,7 +140,7 @@
 	        Project.Project.loadAll();
 			this.listProjects();
 			var cur_project = this.compileProject();
-			this.testFqn(cur_project); // --drop-list
+			//this.testFqn(cur_project); // --drop-list
 			this.testLanguageServer(cur_project); // --language-server
 			this.testSymbolBuilder(cur_project); // symbol builder tests
 			this.listFiles(cur_project);
@@ -272,7 +272,7 @@
 			return cur_project;
 		
 		}
-		
+		/*
 		void testFqn(Project.Project? cur_project) {
 
 
@@ -301,6 +301,7 @@
  			  GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
 		}
+		*/
 		string geeArrayToString(Gee.ArrayList<string> ar) 
 		{
 			var ret = "";
