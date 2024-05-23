@@ -96,7 +96,11 @@ namespace Palete {
 			var ret =  sl.singleByFqn(ename);
 			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
 		}
-
+		public   Symbol? getAny(SymbolLoader? sl, string ename)
+		{
+			var ret =  sl.singleByFqn(ename);
+			return ret;
+		}
 			// does not handle implements...
 	 
 		 /*
