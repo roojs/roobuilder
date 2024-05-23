@@ -91,18 +91,21 @@ namespace Palete {
 			NEW?? symbol based fetch?
 			
 		*/
-		public   Symbol? getClass(SymbolLoader? sl, string ename)
+		public  override Symbol? getClass(SymbolLoader? sl, string ename)
 		{
 			var ret =  sl.singleByFqn(ename);
 			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
 		}
-		public   Symbol? getAny(SymbolLoader? sl, string ename)
+		public  override Symbol? getAny(SymbolLoader? sl, string ename)
 		{
 			var ret =  sl.singleByFqn(ename);
 			return ret;
 		}
 			// does not handle implements...
-	 
+	 	public  override Gee.ArrayList<string> getImplementions(SymbolLoader? sl, string fqn)
+		{
+			sl.implementations(fqn, null);
+		}
 		 /*
 		private  GirObject? getDelegate(string ename) 
 		{
