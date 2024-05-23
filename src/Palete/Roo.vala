@@ -230,13 +230,18 @@ namespace Palete {
 		}
 
 		// does not handle implements...
-		public override Symbol? getClass(string ename)
+		public override Symbol? getClass(SymbolLoader? sl, string ename)
+		{
+			var ret=  this.getAny(sl, ename);
+			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
+			
+		}
+		public override Symbol? getAnySymbolLoader? sl, (string ename)
 		{
 			this.load();
 			return this.classes.get(ename);
 			
 		}
-		
 	 	public override Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl,  string fqn, JsRender.NodePropType ptype) 
 		{
 			this.load();
