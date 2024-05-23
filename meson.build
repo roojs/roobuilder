@@ -171,6 +171,7 @@ roobuilder_src = files([
    'src/SQ/Schema.vala',
    'src/Palete/ValaErrorReporter.vala',
    'src/Palete/SymbolLoader.vala',
+   'src/JsRender/NodePropType.vala',
 ])
 
 

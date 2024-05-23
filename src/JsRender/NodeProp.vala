@@ -35,7 +35,7 @@ namespace JsRender
 					this.parent.updated_count++;
 				}
 			}
-		 }  // can not be updated... ?? you have to remove / replace?
+		}  // can not be updated... ?? you have to remove / replace?
 		private NodePropType  _ptype;
 		 
 		public NodePropType  ptype {		
