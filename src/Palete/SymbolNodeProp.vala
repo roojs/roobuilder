@@ -19,11 +19,11 @@ namespace Palete {
 				 var r = new JsRender.NodeProp.listener(s.name,   s.sig); 
 				 r.propertyof = s.property_of();
 				 // notify[xxxx] << for all the properties of the symbol.
-				 if (s.name == "notify" && pal.name == "Gtk") {
+				 if (s.name == "notify" && this.palete.name == "Gtk") {
 				 	this.nodePropAddNotify(r, add_to_fqn, pal);
 				//}
 				
-				return;
+				return r;
 			}
 			
 			if (s.stype ==  == "signal") { // gtk is Signal, roo is signal??
