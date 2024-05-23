@@ -56,7 +56,10 @@ namespace Palete {
 				r.propertyof = s.property_of();
 				return  r;			
 			}
-			
+			// plain property.. no children..
+			var r = new JsRender.NodeProp.prop(s.name, s.rtype, def); // signature?
+			r.propertyof = s.property_of();
+			return  r;
 		
 		}
 	}
