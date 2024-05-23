@@ -835,10 +835,10 @@ namespace Palete {
         	 
         	GLib.debug("getChildList %s %s", in_rval, with_props ? "(with props)" : "");
         	// cachekey should include sl info?
-        	var cachekey  =in_rval + ":" + (with_props ? "Y" : "N");
-        	if (this.childListCache.has_key(cachekey)) {
-        	 	return this.childListCache.get(cachekey);
-        	}
+        	//var cachekey  =in_rval + ":" + (with_props ? "Y" : "N");
+        	//if (this.childListCache.has_key(cachekey)) {
+        	// 	return this.childListCache.get(cachekey);
+        	//}
         	
  
         	var ret = new Gee.ArrayList<string>();
@@ -851,7 +851,7 @@ namespace Palete {
         		// even a gtk window and about dialog are widgets
         		ret.add("Gtk.Widget");
         		ret.add_all( sl.implementations("Gtk.Widget", Lsp.SymbolKind.Class));
-        		this.childListCache.set(cachekey,ret);
+        		//this.childListCache.set(cachekey,ret);
         		return ret;
         		
         	
@@ -887,7 +887,7 @@ namespace Palete {
         	if (!with_props) {
 				var fret = new Gee.ArrayList<string>();
 				sl.fillImplements(ret, "fqn", Lsp.SymbolKind.Class, fret);
-				this.childListCache.set(cachekey,fret);
+				//this.childListCache.set(cachekey,fret);
 				return fret;
     
         	}
@@ -914,7 +914,7 @@ namespace Palete {
         	         	
         	var fret = new Gee.ArrayList<string>();
 			sl.fillImplements(ret, "fqn", Lsp.SymbolKind.Class, fret);
-			this.childListCache.set(cachekey,fret);
+			//this.childListCache.set(cachekey,fret);
 			return fret;
         	
         	
