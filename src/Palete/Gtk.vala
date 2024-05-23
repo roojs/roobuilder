@@ -629,14 +629,10 @@ namespace Palete {
 				opts = { "true", "false" };
 				return true;
 			}
- 
-			var gir= Gir.factoryFqn(this.project,type) ;  // not get class as we are finding Enums.
-			if (gir == null) {
-				GLib.debug("could not find Gir data for %s\n", key);
-				return false;
-			}
+ 			var sy = sl.getAny(type);
+			 
 			//print ("Got type %s", gir.asJSONString());
-			if (gir.nodetype != "Enum") {
+			if (sy == null || sy.stype != Lsp.SymbolKind.Enum) {
 				return false;
 			}
 			string[] ret = {};
