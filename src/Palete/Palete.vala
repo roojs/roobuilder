@@ -126,7 +126,7 @@ namespace Palete
 		//public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype);
 		public abstract Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl, string fqn, JsRender.NodePropType ptype);
 		public abstract Symbol? getClass(SymbolLoader? sl, string ename);
-	
+		public abstract Symbol? getAny(SymbolLoader? sl, string ename);
 		public abstract bool typeOptions(string fqn, string key, string type, out string[] opts);
 		//public abstract Gee.ArrayList<string> getChildList(string in_rval, bool with_prop);
 		//public abstract Gee.ArrayList<string> getDropList(string rval);		
