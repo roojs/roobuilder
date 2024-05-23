@@ -14,7 +14,7 @@ namespace Palete {
 		public JsRender.NodeProp create(Symbol s)
 		{
 			
-			
+			return new JsRender.NodeProp();
 		
 		}
 	}
