@@ -159,6 +159,11 @@ namespace Palete {
 		
 		}
 		
+		public string property_of()
+		{
+			return this.fqn.substring(0, this.fqn.length - this.name.length - 1);
+		}
+		
 		public void dump(string indent)
 		{
 			
