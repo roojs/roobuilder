@@ -46,7 +46,11 @@ namespace Palete {
 				r.propertyof = this.property_of();
 				return  r;			
 			}
-			
+			if (s.rtype.down() == "array"  ) {
+				var  r = new JsRender.NodeProp.raw(s.name, s.rtype, "[\n\n]");
+				r.propertyof = this.property_of();
+				return  r;			
+			}
 			
 			
 		
