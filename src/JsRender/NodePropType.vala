@@ -1,6 +1,6 @@
 namespace JsRender
 {
-	public  NodePropType 
+	public  enum NodePropType 
 	{
 		
 		NONE, // fake value - used in popoveraddprop.
