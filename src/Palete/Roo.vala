@@ -244,7 +244,12 @@ namespace Palete {
 		}
 		public  override Gee.ArrayList<string> getImplementions(SymbolLoader? sl, string fqn)
 		{
-			 
+			this.load();
+			var c = this.classes.get(ename);
+			if (c == null) {
+				return new  Gee.ArrayList<string>();
+			}
+			return c.all_implementations;
 		}
 		
 	 	public override Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl,  string fqn, JsRender.NodePropType ptype) 
