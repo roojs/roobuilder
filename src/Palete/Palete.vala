@@ -116,9 +116,7 @@ namespace Palete
 			return ret;
 		}
 
- 
-		 
-		
+  
 		
 		      
 		//public abstract void on_child_added(JsRender.Node? parent,JsRender.Node child);
@@ -129,7 +127,7 @@ namespace Palete
 		public abstract Symbol? getAny(SymbolLoader? sl, string ename);
 		public abstract Gee.ArrayList<string> getImplementations(SymbolLoader? sl, string fqn);
 		
-		public abstract bool typeOptions(string fqn, string key, string type, out string[] opts);
+		public abstract bool typeOptions(SymbolLoader? sl,string fqn, string key, string type, out string[] opts);
 		//public abstract Gee.ArrayList<string> getChildList(string in_rval, bool with_prop);
 		//public abstract Gee.ArrayList<string> getDropList(string rval);		
 		public abstract JsRender.Node fqnToNode(string fqn);
