@@ -281,6 +281,7 @@ namespace Palete {
 			this.name = sig.name == ".new" ? parent.name : sig.name; // ctor's are called .new.
 			this.stype = Lsp.SymbolKind.Method;
 			if (sig is Vala.CreationMethod) {
+				this.stype = Lsp.SymbolKind.Constructor;
 				this.is_ctor = true;
 			}
 			this.is_static =  sig.binding != Vala.MemberBinding.INSTANCE;
