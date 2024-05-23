@@ -26,18 +26,21 @@ namespace Palete {
 				return r;
 			}
 			
-			if (s.stype ==  == "signal") { // gtk is Signal, roo is signal??
-				// when we add properties, they are actually listeners attached to signals
-				// was a listener overrident?? why?
-				var r = new JsRender.NodeProp.listener(this.name,   this.sig);  
-				r.propertyof = this.propertyof;
-				if (this.name == "notify" && pal.name == "Gtk") {
-					this.nodePropAddNotify(r, par_xtype, pal);
+			// does not handle Enums... - no need to handle anything else.
+			var def = s.rtype.contains(".") ?  "" :  this.guessDefaultValueForType(s.rtype);
+			if (this.rtype.contains(".") || this.rtype.contains("|") || this.rtype.contains("/")) {
+				var ret = new JsRender.NodeProp.prop(s.name, s.rtype, def);  ///< was raw..?
+				ret.propertyof = s.property_of();
+				this.nodePropAddChildren(ret, this.type, pal);
+				if (ret.childstore.n_items == 1) {
+					var np = (JsRender.NodeProp) ret.childstore.get_item(0);
+					ret.add_node = np.add_node;
+					ret.childstore.remove_all();
 				}
 				
-				return r;
+				
+				return ret;
 			}
-			return new JsRender.NodeProp();
 		
 		}
 	}
