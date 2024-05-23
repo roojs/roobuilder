@@ -629,7 +629,7 @@ namespace Palete {
 				opts = { "true", "false" };
 				return true;
 			}
- 			var sy = sl.getAny(type);
+ 			var sy = this.getAny(sl, type);
 			 
 			//print ("Got type %s", gir.asJSONString());
 			if (sy == null || sy.stype != Lsp.SymbolKind.Enum) {
