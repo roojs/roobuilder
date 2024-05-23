@@ -233,13 +233,15 @@ namespace Palete
 			
 		}
  
-		public Gee.ArrayList<string> implementations(string fqn, Lsp.SymbolKind stype)
+		public Gee.ArrayList<string> implementations(string fqn, Lsp.SymbolKind? stype)
 		{
 			this.loadClassCache();
 			
 			var full_ar = new Gee.ArrayList<string>();
 			this.fillImplementsFromCache(fqn, full_ar);
-			
+			if (stype == null ) {
+				return full_ar;
+			}
 			var ret = new Gee.ArrayList<string>();
 			foreach(var e in full_ar) {
 				if (this.classCache.get(e).stype == stype) {
