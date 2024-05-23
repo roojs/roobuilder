@@ -635,7 +635,7 @@ namespace Palete {
 			if (sy == null || sy.stype != Lsp.SymbolKind.Enum) {
 				return false;
 			}
-			var enums = sl.getPropertiesFor(type, Lsp.SymbolKind.EnumValues);
+			var enums = sl.getPropertiesFor(type, Lsp.SymbolKind.EnumMember);
 			
 			string[] ret = {};
 			var iter = gir.consts.map_iterator();
