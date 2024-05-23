@@ -81,7 +81,7 @@ namespace Palete {
 				}
 				return;
 			}
-			var cls = pal.getClass(str);
+			var cls = this.palete.getClass(this.sl, str);
 			// it's an object..
 			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
 			// note all classes are expected to have '.' seperators
