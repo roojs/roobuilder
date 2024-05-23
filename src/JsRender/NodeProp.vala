@@ -195,62 +195,7 @@ namespace JsRender
 		}
 		
 		
-		public NodeProp.new_from_symbol(Palete.Symbol s, Palete.SymbolLoader sl, string parent_fqn) 
-		{
-			
-			this(s.name, NodePropType.LISTENER, s.rtype, s.sig);
-			this.propertyof = s.property_of();
-			
-			if (s.stype == Lsp.SymbolKind.Signal) { // gtk is Signal, roo is signal??
-				// when we add properties, they are actually listeners attached to signals
-				// was a listener overrident?? why?
-				 
-				 // notify[xxxx] << for all the properties of the symbol.
-				//if (s.name == "notify" && pal.name == "Gtk") {
-				//	this.nodePropAddNotify(r, par_xtype, pal);
-				//}
-				
-				return;
-			}
-				
-				// does not handle Enums... - no need to handle anything else.
-			var def = this.rtype.contains(".") ?  "" :  guessDefaultValueForType(thisr.type);
-			if (this.rtype.contains(".") || this.rtype.contains("|") || this.rtype.contains("/")) {
-				this.ptype = NodePropType.PROP;
-				this.val - def;
-				
-				this.nodePropAddChildren(sl, s, s.rtype);
-				
-				if (this.childstore.n_items == 1) {
-					var np = (NodeProp) this.childstore.get_item(0);
-					this.add_node = np.add_node;
-					this.childstore.remove_all();
-				}
-				
-				
-				return;
-			}
-			this.val = def;
-			this.ptype = NodePropType.RAW;		
-			switch(s.rtype.down()) {
-				case "function": 
-					this.ptype = NodePropType.RAW;
-					this.val = "function()\n{\n\n}";
-					return;			
-				case "array":
-					this.val =  "[\n\n]";
-					return;			
-				case "object" :
-					this.val =  "{\n\n}";
-					return;			
-
-				default:
-					this.ptype = NodePropType.PROP;
-					return;
-				
-			}
-			 
-		}
+		 
 		
 		
 		public void nodePropAddChildren(Palete.Palete pal, Palete.SymbolLoader sl, Palete.Symbol s, string str)
