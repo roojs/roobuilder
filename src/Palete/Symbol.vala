@@ -36,7 +36,7 @@ namespace Palete {
 		public bool is_sealed  { get; set; default = false; } 
  		public bool is_readable  { get; set; default = false; } 
 		public bool is_writable { get; set; default = false; } 
- 		public bool is_ctor  { get; set; default = false; } 
+ 		//public bool is_ctor  { get; set; default = false; } (use Lsp.SymbolKind.Constructor)
  		public bool is_static  { get; set; default = false; } 
  		public bool is_gir  { get; set; default = false; } 
  		public bool is_ctor_only { get; set; default = false; }  // FIXME!!!
