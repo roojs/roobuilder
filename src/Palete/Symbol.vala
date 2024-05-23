@@ -46,7 +46,7 @@ namespace Palete {
   		public Gee.ArrayList<Symbol> param_ar { get; set; default = new Gee.ArrayList<Symbol>(); }
   		
   		// filled by symbol loader
-  		public Gee.ArrayList<string> all_implements { get; set; default = new Gee.ArrayList<string>(); }
+  		public Gee.ArrayList<string> all_implementations { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implementation_of { get; set; default = new Gee.ArrayList<string>(); }  		
 		
 		// filled by Roo Palete loader
