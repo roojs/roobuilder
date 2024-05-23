@@ -70,14 +70,14 @@ namespace Palete {
 			if (str.contains("|")) {
 				var ar = str.split("|");
 				for(var i = 0; i < ar.length; i++) {
-					this.nodePropAddChildren(par, ar[i], pal);
+					this.nodePropAddChildren(par, ar[i]);
 				}
 				return;
 			}
 			if (str.contains("/")) {
 				var ar = str.split("/");
 				for(var i = 0; i < ar.length; i++) {
-					this.nodePropAddChildren(par, ar[i], pal);
+					this.nodePropAddChildren(par, ar[i]);
 				}
 				return;
 			}
