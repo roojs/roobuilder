@@ -62,6 +62,87 @@ namespace Palete {
 			return  r;
 		
 		}
+		
+		public void nodePropAddChildren(JsRender.NodeProp par, string str)
+		{
+			
+			
+			if (str.contains("|")) {
+				var ar = str.split("|");
+				for(var i = 0; i < ar.length; i++) {
+					this.nodePropAddChildren(par, ar[i], pal);
+				}
+				return;
+			}
+			if (str.contains("/")) {
+				var ar = str.split("/");
+				for(var i = 0; i < ar.length; i++) {
+					this.nodePropAddChildren(par, ar[i], pal);
+				}
+				return;
+			}
+			var cls = pal.getClass(str);
+			// it's an object..
+			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
+			// note all classes are expected to have '.' seperators
+			if (cls == null || !str.contains(".")) {
+				GLib.debug("nodepropaddchildren: check class %s - not found in classes", str);
+				par.childstore.append( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
+				return;
+			}
+			GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
+			if (cls.nodetype.down() == "enum") {			
+				var add = new JsRender.NodeProp.raw(this.name, str, "");
+				par.childstore.append( add);
+				return ;
+			}
+			
+			 
+			if (cls.nodetype.down() == "class") {
+				var add = new JsRender.NodeProp.raw(this.name, str, "");
+				// no propertyof ?
+				
+				
+				add.add_node = pal.fqnToNode(str);
+				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
+				par.childstore.append( add);
+			}
+
+
+			
+			if (cls.implementations.size < 1) {
+				GLib.debug("nodepropaddchildren: check class %s - no implementations", str);
+				return;
+			}
+			
+			GLib.debug("nodepropaddchildren: check class %s", str);			
+			
+			foreach (var cname in cls.implementations) {
+
+				
+				var subcls = pal.getClass(cname);
+				
+				GLib.debug("nodepropaddchildren: check class %s add %s type %s", str, cname, subcls == null ? "NO?" :subcls.nodetype );
+				if (subcls.nodetype.down() != "class") {
+
+					continue;
+				}
+			 
+				var add = new JsRender.NodeProp.raw(this.name, cname, "");
+				// no propertyof ?
+				add.add_node = pal.fqnToNode(cname);
+				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
+				par.childstore.append( add);
+ 
+			
+			}
+			
+			
+			
+			
+		}
+		
+		
 	}
 }
 		
