@@ -21,7 +21,7 @@ namespace Palete {
 				 // notify[xxxx] << for all the properties of the symbol.
 				 if (s.name == "notify" && this.palete.name == "Gtk") {
 				 	this.nodePropAddNotify(r, add_to_fqn);
-				//}
+				 }
 				
 				return r;
 			}
