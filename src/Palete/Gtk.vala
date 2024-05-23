@@ -21,6 +21,10 @@ namespace Palete {
 	public class Gtk : Palete {
 		
 		public Gee.ArrayList<string> package_cache;
+		// this is loaded from loader ? = should it be on the symbolloader..?
+		// or the project->cmpile group?
+		
+		//public Gee.HashMap<string,Gee.ArrayList<string>> childListCache;
 		
 		public Gtk(Project.Project project)
 		{
@@ -102,7 +106,7 @@ namespace Palete {
 			return ret;
 		}
 			// does not handle implements...
-	 	public  override Gee.ArrayList<string> getImplementions(SymbolLoader? sl, string fqn)
+	 	public  override Gee.ArrayList<string> getImplementations(SymbolLoader? sl, string fqn)
 		{
 			return sl.implementations(fqn, null);
 		}
@@ -147,7 +151,7 @@ namespace Palete {
 		
 		}
 		
-
+/*
 		public   Gee.HashMap<string,GirObject> getPropertiesForGir( string ename, JsRender.NodePropType ptype) 
 		{
 			//print("Loading for " + ename);
@@ -205,6 +209,7 @@ namespace Palete {
 		     
 		     
 		}
+		/*
 		// get rid of objecst from props list..
 		private Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
 		{
@@ -252,6 +257,7 @@ namespace Palete {
 		
 		
 		}
+		*/
 		
 		private void add_props_from_ctors(GirObject cls, Gee.HashMap<string,GirObject> props)
 		{
@@ -300,7 +306,7 @@ namespace Palete {
 		    }
 		}
 		
-		
+		/*
 		
 				// get rid of depricated from signal list..
 		private Gee.HashMap<string,GirObject>  filterSignals(Gee.HashMap<string,GirObject> props)
@@ -327,7 +333,7 @@ namespace Palete {
 		
 		
 		}
-		 
+		 */
 		private Gee.HashMap<string,Gee.HashMap<string,JsRender.NodeProp>> node_defaults;
 		private Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
 		
@@ -553,7 +559,7 @@ namespace Palete {
 			
 			
 			this.child_defaults.get(cls).add( new JsRender.NodeProp.prop(propname, type, val));
-		
+		 
 		}
 		 
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)

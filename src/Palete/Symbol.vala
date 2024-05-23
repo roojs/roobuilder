@@ -130,7 +130,7 @@ namespace Palete {
   			this.implements  = new Gee.ArrayList<string>(); 	
 			this.children = new GLib.ListStore(typeof(Symbol));
 			this.children_map = new Gee.HashMap<string,Symbol>(); 
-  			this.all_implements  = new Gee.ArrayList<string>(); 	
+  			this.all_implementations  = new Gee.ArrayList<string>(); 	
   			this.implementation_of = new Gee.ArrayList<string>(); 	
 		}
 		

@@ -242,10 +242,10 @@ namespace Palete {
 			return this.classes.get(ename);
 			
 		}
-		public  override Gee.ArrayList<string> getImplementions(SymbolLoader? sl, string fqn)
+		public  override Gee.ArrayList<string> getImplementations(SymbolLoader? sl, string fqn)
 		{
 			this.load();
-			var c = this.classes.get(ename);
+			var c = this.classes.get(fqn);
 			if (c == null) {
 				return new  Gee.ArrayList<string>();
 			}

@@ -6,12 +6,12 @@ namespace Palete {
 		Palete palete;
 		SymbolLoader? sl;
 	
-		public SymbolNodeProp (Palete palete, SymbolLoader? sl, string add_to_fqn) {
+		public SymbolNodeProp (Palete palete, SymbolLoader? sl) {
 			this.palete = palete;
 			this.sl = sl;
 		}
 		
-		public JsRender.NodeProp create(Symbol s)
+		public JsRender.NodeProp convert(Symbol s, string add_to_fqn)
 		{
 			if (s.stype == Lsp.SymbolKind.Signal) { // gtk is Signal, roo is signal??
 				// when we add properties, they are actually listeners attached to signals
@@ -103,7 +103,7 @@ namespace Palete {
 				// no propertyof ?
 				
 				
-				add.add_node = this.fqnToNode(str);
+				add.add_node = this.palete.fqnToNode(str);
 				add.add_node.add_prop(new JsRender.NodeProp.special("prop", s.name));
 				par.childstore.append(add);
 			}
@@ -124,17 +124,11 @@ namespace Palete {
 			foreach (var cname in implementations) {
 				//?? would imlementations include anything other than classes?
 				
-				var subcls = pal.getClass(cname);
-				
-				GLib.debug("nodepropaddchildren: check class %s add %s type %s", str, cname, subcls == null ? "NO?" :subcls.nodetype );
-				if (subcls.nodetype.down() != "class") {
-
-					continue;
-				}
+				 
 			 
 				var add = new JsRender.NodeProp.raw(s.name, cname, "");
 				// no propertyof ?
-				add.add_node = pal.fqnToNode(cname);
+				add.add_node = this.palete.fqnToNode(cname);
 				add.add_node.add_prop(new JsRender.NodeProp.special("prop", s.name));
 				par.childstore.append( add);
  
@@ -145,7 +139,40 @@ namespace Palete {
 			
 			
 		}
+		public void  nodePropAddNotify(JsRender.NodeProp par, string par_fqn)
+		{
+			var els = this.palete.getPropertiesFor( this.sl, par_fqn, JsRender.NodePropType.PROP);
+			foreach(var el in els.values) {
+				 var add = new JsRender.NodeProp.listener("notify[\"" + el.name  +"\"]" ,  "() => {\n }");  
+				add.propertyof = el.property_of();
+				par.childstore.append( add);
+			}
 		
+		}
+		public   string guessDefaultValueForType(string type) {
+			//print("guessDefaultValueForType: %s\n", type);
+			if (type.length < 1 || type.contains(".")) {
+				return "null";
+			}
+			switch(type.down()) {
+				case "boolean":
+				case "bool":
+				case "gboolean":
+					return "true";
+				case "int":					
+				case "guint":
+					return "0";
+				case "gdouble":
+					return "0f";
+				case "utf8":
+				case "string":
+					return "\"\"";
+				default:
+					return "?"+  type + "?";
+			}
+
+		}
+
 		
 	}
 }

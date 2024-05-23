@@ -161,7 +161,7 @@ namespace Palete {
 
 				var is_last = i == parts.length -1;	
 				// look up all the properties of the type...
-				var cls = this.project.palete.getClass(curtype);
+				var cls = this.project.palete.getClass(file.getSymbolLoader(), curtype);
 				if (cls == null) {
 					GLib.debug("could not get class of curtype '%s'\n", curtype);
 					return ret;
@@ -173,9 +173,9 @@ namespace Palete {
 					if (cur_instance) {
 						if (cls.props.has_key(parts[i])) {
 							var prop = cls.props.get(parts[i]);
-							if (prop.type.index_of(".",0) > -1) {
+							if (prop.rtype.index_of(".",0) > -1) {
 								// type is another roo object..
-								curtype = prop.type;
+								curtype = prop.rtype;
 								prevbits += parts[i] + ".";
 								continue;
 							}
@@ -190,7 +190,8 @@ namespace Palete {
 				
 					// not a instance..
 					//look for child classes.
-					var citer = this.project.palete.classes.map_iterator();
+					var pal = (Roo) this.project.palete;
+					var citer = pal.classes.map_iterator();
 					var foundit = false;
 					while (citer.next()) {
 						var scls = citer.get_key();
@@ -219,7 +220,8 @@ namespace Palete {
 				if (!cur_instance) {
 					GLib.debug("matching instance");
 					// it's a static reference..
-					var citer = this.project.palete.classes.map_iterator();
+					var pal = (Roo) this.project.palete;
+					var citer = pal.classes.map_iterator();
 					while (citer.next()) {
 						var scls = citer.get_key();
 						var look = prevbits + parts[i];
@@ -247,7 +249,7 @@ namespace Palete {
 					// got a matching property...
 					// return type?
 					
-					var sci =  new Lsp.CompletionItem.keyword( prop.name + "(", prop.name + "(" , prop.doctxt );
+					var sci =  new Lsp.CompletionItem.keyword( prop.name + "(", prop.name + "(" , prop.doc );
 					ret.items.add(sci);
 
 				 
@@ -264,7 +266,7 @@ namespace Palete {
 					//	continue;
 					//}
 					
-					var sci =  new Lsp.CompletionItem.keyword( prop.name, prop.name , prop.doctxt );
+					var sci =  new Lsp.CompletionItem.keyword( prop.name, prop.name , prop.doc );
 					ret.items.add(sci);
  
 				

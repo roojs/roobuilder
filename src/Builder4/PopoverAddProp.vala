@@ -58,15 +58,14 @@ public class Xcls_PopoverAddProp : Object
 		this.node = node;
 		
 		var xtype = node.fqn();
-		
-		// 
+		 
 		
 	    this.ptype = ptype;
 	    
 	 	 var m = (GLib.ListStore) _this.model.el.model;
 		 m.remove_all();
 	 
-	    var sl = this.mainwindow.windowstate.file.symbol_loader();
+	    var sl = this.mainwindow.windowstate.file.getSymbolLoader();
 	 
 	    ///Gee.HashMap<string,GirObject>
 	    var elementList = pal.getPropertiesFor( sl, xtype, ptype);
@@ -74,10 +73,11 @@ public class Xcls_PopoverAddProp : Object
 	    //print ("GOT " + elementList.length + " items for " + fullpath + "|" + type);
 	           // console.dump(elementList);
 	    
+	    var sn = new Palete.SymbolNodeProp(pal, sl);
 	    
-	    foreach(var p in elements.values) {
+	    foreach(var p in elementList.values) {
 	        
-			var prop = new JsRender.new_from_symbol(p, pal, xtype);
+			var prop = sn.convert(p, xtype);
 			if (prop == null) {
 				continue;
 			}

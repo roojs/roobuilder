@@ -572,12 +572,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 					: "" ) + " );");
 			return;  
 		}
-		var childcls =  this.file.project.palete.getClass(child.fqn()); // very trusting..
+		var childcls =  this.file.project.palete.getClass(this.file.getSymbolLoader(), child.fqn()); // very trusting..
 		if (childcls == null) {
 		  return;
 		}
 		// GTK4
-		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
+		var is_event = childcls.implementation_of.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
 		if (is_event) {
 		    this.addLine(this.ipad + this.this_el + "add_controller(  %s.el );".printf(childname) );
 		    return;

@@ -1,0 +1,55 @@
+"default" : {
+    "Gtk.ComboBox" : {
+        "has_entry" : false
+    },
+    "Gtk.Expander" : {
+        "label" : "Label"
+    },
+    "Gtk.Grid" : {
+        "int columns " : 2
+    },
+    "Gtk.HeaderBar" : {
+        "title" : "Window Title"
+    },
+    "Gtk.Label" : {
+        "label" : "Label"
+    },
+    
+
+    "Gtk.ToggleButton" : {
+        "label" : "Label"
+    },
+    "Gtk.MenuItem" : {
+        "label" : "Label"
+    },
+    "Gtk.CheckItem" : {
+        "label" : "Label"
+    },
+    "Gtk.RadioMenuItem" : {
+        "label" : "Label"
+    },
+    "Gtk.TearoffMenuItem" : {
+        "label" : "Label"
+    }
+
+}
+    
+
+
+"child" : {
+    "Gtk.Fixed" : {
+        "int x" : 0,
+        "int y" : 0
+    },
+    "Gtk.Layout" : {
+        "int x" : 0,
+        "int y" : 0
+    },
+    "Gtk.Grid" : {
+        "int colspan" : 1
+    },
+    "Gtk.Stack" : {
+        "string stack_name" : "name",
+        "string stack_ittle" : "title",        
+    }
+}

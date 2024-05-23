@@ -443,7 +443,7 @@ namespace Palete {
 
 			
 		}
-		
+		/*
 		
 		public JsRender.NodeProp toNodeProp( Palete pal, string par_xtype)
 		{
@@ -585,7 +585,7 @@ namespace Palete {
 		
 		}
 		
-		
+		*/
 		 
 	}
 	    

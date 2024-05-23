@@ -256,7 +256,7 @@ namespace Palete
 		public Gee.ArrayList<string> all_implements(string fqn)
 		{
 			this.loadClassCache();
-			return this.classCache.get(fqn).all_implements;
+			return this.classCache.get(fqn).all_implementations;
 		}
 		
 		
@@ -299,8 +299,8 @@ namespace Palete
 						GLib.debug("Error could not find class %s", e.inherits_str);
 						continue;
 					}
-					if (!ih.all_implements.contains(e.fqn)) {
-						ih.all_implements.add(e.fqn);
+					if (!ih.all_implementations.contains(e.fqn)) {
+						ih.all_implementations.add(e.fqn);
 					}
 				}
 				foreach(var impl in e.implements) {
@@ -309,8 +309,8 @@ namespace Palete
 						GLib.debug("Error could not find class %s", impl);
 						continue;
 					}
-					if (!ih.all_implements.contains(e.fqn)) {
-						ih.all_implements.add(e.fqn);
+					if (!ih.all_implementations.contains(e.fqn)) {
+						ih.all_implementations.add(e.fqn);
 					}
 				}
 			}
@@ -326,7 +326,7 @@ namespace Palete
 				GLib.debug("Error could not find class %s", fqn);
 				return;
 			}
-			foreach(var cn in s.all_implements) {
+			foreach(var cn in s.all_implementations) {
 				this.fillImplementsFromCache(cn, full_ar);
 			}
 			full_ar.add(fqn);
