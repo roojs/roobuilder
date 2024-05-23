@@ -208,7 +208,7 @@ namespace Palete {
 			this.is_sealed=s.is_sealed;
 			this.is_readable=s.is_readable;
 			this.is_writable=s.is_writable;
-			this.is_ctor=s.is_ctor;
+			//this.is_ctor=s.is_ctor;
 			this.is_static=s.is_static;
 			this.is_gir=s.is_gir;
 			this.is_ctor_only=s.is_ctor_only;
