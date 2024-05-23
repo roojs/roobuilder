@@ -236,7 +236,7 @@ namespace Palete {
 			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
 			
 		}
-		public override Symbol? getAnySymbolLoader? sl, (string ename)
+		public override Symbol? getAny(SymbolLoader? sl,  string ename)
 		{
 			this.load();
 			return this.classes.get(ename);
