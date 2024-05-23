@@ -1042,7 +1042,7 @@ namespace Palete {
 			
 		} 
 		 
-		public override JsRender.Node fqnToNode(string fqn) 
+		public override JsRender.Node fqnToNode(SymbolLoader? sl, string fqn) 
 		{
 			this.load();	
 			var ret = new JsRender.Node();
