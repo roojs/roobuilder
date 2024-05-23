@@ -4,9 +4,9 @@
 namespace Palete {
 	public class SymbolNodeProp {
 		Palete palete;
-		SymbolLoader sl;
+		SymbolLoader? sl;
 	
-		public SymbolNodeProp (Palete palete, SymbolLoader sl, string add_to_fqn) {
+		public SymbolNodeProp (Palete palete, SymbolLoader? sl, string add_to_fqn) {
 			this.palete = palete;
 			this.sl = sl;
 		}
