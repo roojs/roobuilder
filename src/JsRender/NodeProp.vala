@@ -6,787 +6,789 @@ events and properties
  
 */ 
  
+namespace JsRender
+{
 
 
 
-public class JsRender.NodeProp : Object {
+	public class  NodeProp : Object {
 
 
 
 
 
 
-	private string _name = "";
-	public string name { 
-		get {
-			return this._name;  
-		}
-		set {
-			if (this._name == value) {
-				return;
+		private string _name = "";
+		public string name { 
+			get {
+				return this._name;  
 			}
-			this._name = value;
+			set {
+				if (this._name == value) {
+					return;
+				}
+				this._name = value;
+			 
+				this.updated_count++;
+				if (this.parent != null) {
+					// causes props/ listeners array to get updated.
+					this.parent.updated_count++;
+				}
+			}
+		 }  // can not be updated... ?? you have to remove / replace?
+		private NodePropType  _ptype;
 		 
-			this.updated_count++;
-			if (this.parent != null) {
-				// causes props/ listeners array to get updated.
-				this.parent.updated_count++;
+		public NodePropType  ptype {		
+			get {
+				return this._ptype;  
+			}
+			set {
+				if (this._ptype == value) {
+					return;
+				}
+				this._ptype = value;
+				if (this.parent != null) {
+					// causes props/ listeners array to get updated.
+					this.parent.updated_count++;
+				}
 			}
 		}
-	 }  // can not be updated... ?? you have to remove / replace?
-	private NodePropType  _ptype;
+		private string _rtype = "";
+		public string rtype { 
+			get { 
+				return this._rtype; 
+			}
+		 	set { 
+		 		if (this._rtype == value) {
+		 			return;
+	 			}
+		 		this._rtype = value; 
+				if (this.parent != null) {
+					this.parent.updated_count++;
+				}
+				 
+				this.updated_count++;
+	 		}
+		 } // return or type
+		
+		private string _val = "";
+		public string val { 
+			get {
+				return this._val;
+			}
+			set {
+				if (this._val == value) {
+					return;
+				}
+				this._val = value;
+				
+				if (this.parent != null) {
+					this.parent.updated_count++;
+				}
+				this.updated_count++;
+			}
+		}
+
+
+		private int _updated_count = 0;
+		public int updated_count { 
+			get {
+				return this._updated_count; 
+			}
+			set  {
 	 
-	public NodePropType  ptype {		
-		get {
-			return this._ptype;  
+	 			// set things that are used to display values.
+	 			this.to_display_name_prop = value.to_string();
+				this.to_tooltip_name_prop = value.to_string();
+						
+				this.val_short =  value.to_string();
+				this.val_tooltip =  value.to_string();	
+				this._updated_count = value;
+			}
+	 
+		} // changes to this trigger updates on the tree..
+		
+		public string sort_name {
+			owned get {
+				if (this.add_node == null) {
+					return this.name;
+				}
+				return this.name + " " + this.add_node.fqn();
+			}
+			set {}
+		
 		}
-		set {
-			if (this._ptype == value) {
+		
+		private  string last_ptype_check = "";
+		public bool is_invalid_ptype {
+			  get;
+			  private set ;
+			  default = false;
+	 	}
+		
+		public bool update_is_valid_ptype(Project.Project project) 
+		{
+			 
+			if (this.parent == null) {
+				return false;
+			}
+			// what types are we interested in checking?
+			// raw/ prop / user
+			if (this.ptype != NodePropType.PROP && this.ptype != NodePropType.USER) {
+				return false;
+			}
+			if (this.name == "xtype" || this.name == "xns"  || this.name == "id" ) { // flaky..
+				return false;
+			}
+			if (this.name == this.last_ptype_check) {
+				return this.is_invalid_ptype;
+			}
+			if (project.xtype != "Gtk") { // js not handled?
+				return false;
+			}
+			this.last_ptype_check = this.name;
+			
+			
+			//var sym = this.project.symbol_manager.getByFQN(this.parent.fqn());
+			
+			var cls = Palete.Gir.factoryFqn(project, this.parent.fqn());
+			if (cls == null) {
+				this.is_invalid_ptype = false;
+				return false;
+			}
+			var is_native = cls.props.has_key(this.name);
+			if ( is_native && this.ptype == NodePropType.PROP ) {
+				this.is_invalid_ptype = false;
+				return false;
+			}
+			if ( !is_native && this.ptype == NodePropType.USER ) {
+				this.is_invalid_ptype = false;
+				return false;
+			}
+
+			this.is_invalid_ptype = true;
+			return true;
+			
+			 
+		
+		}
+		
+		public Node? parent; // the parent node.
+
+		
+		public int start_line = 0;
+		public int end_line = 0;
+		
+		// used by display list..
+		public GLib.ListStore  childstore; // WILL BE USED FOR properties with mutliple types 
+		public Node? add_node = null; // used when we list potentional nodes for properties in add list.
+
+		public string propertyof { get;   set; }
+		
+		
+		public NodeProp(string name, NodePropType ptype, string rtype, string val) {
+			this.name = name;
+			this.ptype = ptype;
+			this.rtype = rtype;
+			this.val = val;
+			this.childstore = new GLib.ListStore( typeof(NodeProp)); 
+		}
+		public NodeProp.new_from_symbol(Palete.Symbol s, Palete.SymbolLoader sl, string parent_fqn) 
+		{
+			
+			this(s.name, NodePropType.LISTENER, s.rtype, s.sig);
+			this.propertyof = s.property_of();
+			
+			if (s.stype == Lsp.SymbolKind.Signal) { // gtk is Signal, roo is signal??
+				// when we add properties, they are actually listeners attached to signals
+				// was a listener overrident?? why?
+				 
+				 // notify[xxxx] << for all the properties of the symbol.
+				//if (s.name == "notify" && pal.name == "Gtk") {
+				//	this.nodePropAddNotify(r, par_xtype, pal);
+				//}
+				
 				return;
 			}
-			this._ptype = value;
-			if (this.parent != null) {
-				// causes props/ listeners array to get updated.
-				this.parent.updated_count++;
-			}
-		}
-	}
-	private string _rtype = "";
-	public string rtype { 
-		get { 
-			return this._rtype; 
-		}
-	 	set { 
-	 		if (this._rtype == value) {
-	 			return;
- 			}
-	 		this._rtype = value; 
-			if (this.parent != null) {
-				this.parent.updated_count++;
-			}
-			 
-			this.updated_count++;
- 		}
-	 } // return or type
-	
-	private string _val = "";
-	public string val { 
-		get {
-			return this._val;
-		}
-		set {
-			if (this._val == value) {
-				return;
-			}
-			this._val = value;
-			
-			if (this.parent != null) {
-				this.parent.updated_count++;
-			}
-			this.updated_count++;
-		}
-	}
-
-
-	private int _updated_count = 0;
-	public int updated_count { 
-		get {
-			return this._updated_count; 
-		}
-		set  {
- 
- 			// set things that are used to display values.
- 			this.to_display_name_prop = value.to_string();
-			this.to_tooltip_name_prop = value.to_string();
-					
-			this.val_short =  value.to_string();
-			this.val_tooltip =  value.to_string();	
-			this._updated_count = value;
-		}
- 
-	} // changes to this trigger updates on the tree..
-	
-	public string sort_name {
-		owned get {
-			if (this.add_node == null) {
-				return this.name;
-			}
-			return this.name + " " + this.add_node.fqn();
-		}
-		set {}
-	
-	}
-	
-	private  string last_ptype_check = "";
-	public bool is_invalid_ptype {
-		  get;
-		  private set ;
-		  default = false;
- 	}
-	
-	public bool update_is_valid_ptype(Project.Project project) 
-	{
-		 
-		if (this.parent == null) {
-			return false;
-		}
-		// what types are we interested in checking?
-		// raw/ prop / user
-		if (this.ptype != NodePropType.PROP && this.ptype != NodePropType.USER) {
-			return false;
-		}
-		if (this.name == "xtype" || this.name == "xns"  || this.name == "id" ) { // flaky..
-			return false;
-		}
-		if (this.name == this.last_ptype_check) {
-			return this.is_invalid_ptype;
-		}
-		if (project.xtype != "Gtk") { // js not handled?
-			return false;
-		}
-		this.last_ptype_check = this.name;
-		
-		
-		//var sym = this.project.symbol_manager.getByFQN(this.parent.fqn());
-		
-		var cls = Palete.Gir.factoryFqn(project, this.parent.fqn());
-		if (cls == null) {
-			this.is_invalid_ptype = false;
-			return false;
-		}
-		var is_native = cls.props.has_key(this.name);
-		if ( is_native && this.ptype == NodePropType.PROP ) {
-			this.is_invalid_ptype = false;
-			return false;
-		}
-		if ( !is_native && this.ptype == NodePropType.USER ) {
-			this.is_invalid_ptype = false;
-			return false;
-		}
-
-		this.is_invalid_ptype = true;
-		return true;
-		
-		 
-	
-	}
-	
-	public Node? parent; // the parent node.
-
-	
-	public int start_line = 0;
-	public int end_line = 0;
-	
-	// used by display list..
-	public GLib.ListStore  childstore; // WILL BE USED FOR properties with mutliple types 
-	public Node? add_node = null; // used when we list potentional nodes for properties in add list.
-
-	public string propertyof { get;   set; }
-	
-	
-	public NodeProp(string name, NodePropType ptype, string rtype, string val) {
-		this.name = name;
-		this.ptype = ptype;
-		this.rtype = rtype;
-		this.val = val;
-		this.childstore = new GLib.ListStore( typeof(NodeProp)); 
-	}
-	public NodeProp.new_from_symbol(Palete.Symbol s, Palete.SymbolLoader sl, string parent_fqn) 
-	{
-		
-		this(s.name, NodePropType.LISTENER, s.rtype, s.sig);
-		this.propertyof = s.property_of();
-		
-		if (s.stype == Lsp.SymbolKind.Signal) { // gtk is Signal, roo is signal??
-			// when we add properties, they are actually listeners attached to signals
-			// was a listener overrident?? why?
-			 
-			 // notify[xxxx] << for all the properties of the symbol.
-			//if (s.name == "notify" && pal.name == "Gtk") {
-			//	this.nodePropAddNotify(r, par_xtype, pal);
-			//}
-			
-			return;
-		}
-			
-			// does not handle Enums... - no need to handle anything else.
-		var def = this.rtype.contains(".") ?  "" :  guessDefaultValueForType(thisr.type);
-		if (this.rtype.contains(".") || this.rtype.contains("|") || this.rtype.contains("/")) {
-			this.ptype = NodePropType.PROP;
-			this.val - def;
-			
-			this.nodePropAddChildren(sl, s, s.rtype);
-			
-			if (this.childstore.n_items == 1) {
-				var np = (NodeProp) this.childstore.get_item(0);
-				this.add_node = np.add_node;
-				this.childstore.remove_all();
-			}
-			
-			
-			return;
-		}
-		this.val = def;
-		this.ptype = NodePropType.RAW;		
-		switch(s.rtype.down()) {
-			case "function": 
-				this.ptype = NodePropType.RAW;
-				this.val = "function()\n{\n\n}";
-				return;			
-			case "array":
-				this.val =  "[\n\n]";
-				return;			
-			case "object" :
-				this.val =  "{\n\n}";
-				return;			
-
-			default:
+				
+				// does not handle Enums... - no need to handle anything else.
+			var def = this.rtype.contains(".") ?  "" :  guessDefaultValueForType(thisr.type);
+			if (this.rtype.contains(".") || this.rtype.contains("|") || this.rtype.contains("/")) {
 				this.ptype = NodePropType.PROP;
+				this.val - def;
+				
+				this.nodePropAddChildren(sl, s, s.rtype);
+				
+				if (this.childstore.n_items == 1) {
+					var np = (NodeProp) this.childstore.get_item(0);
+					this.add_node = np.add_node;
+					this.childstore.remove_all();
+				}
+				
+				
 				return;
-			
-		}
-		 
-	}
-	
-	
-	public void nodePropAddChildren(Palete.Palete pal, Palete.SymbolLoader sl, Palete.Symbol s, string str)
-	{
-		
-		if (str.contains("|")) {
-			var ar = str.split("|");
-			for(var i = 0; i < ar.length; i++) {
-				this.nodePropAddChildren(pal, sl, s, ar[i]);
 			}
-			return;
-		}
-		if (str.contains("/")) {
-			var ar = str.split("/");
-			for(var i = 0; i < ar.length; i++) {
-				this.nodePropAddChildren(pal, sl, s, ar[i]);
-			}
-			return;
-		}
-		var cls = pal.getClass(sl, str);
-		// it's an object..
-		// if node does not have any children and the object type only has 1 type.. then we dont add anything...
-		// note all classes are expected to have '.' seperators
-		if (cls == null || !str.contains(".")) {
-			GLib.debug("nodepropaddchildren: check class %s - not found in classes", str);
-			this.childstore.append( new NodeProp.prop(s.name, str,  guessDefaultValueForType(str)));
-			return;
-		}
-		//GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
-		if (cls.stype == Lsp.SymbolKind.Enum) {			
-			var add = new NodeProp.raw(s.name, str, "");
-			this.childstore.append( add);
-			return ;
-		}
-		
-		 
-		if (cls.stype != Lsp.SymbolKind.Class) {		
-			var add = new NodeProp.raw(s.name, str, "");
-			// no propertyof ?
-			
-			
-			add.add_node = pal.fqnToNode(str);
-			add.add_node.add_prop(new NodeProp.special("prop", s.name));
-			this.childstore.append( add);
-		}
+			this.val = def;
+			this.ptype = NodePropType.RAW;		
+			switch(s.rtype.down()) {
+				case "function": 
+					this.ptype = NodePropType.RAW;
+					this.val = "function()\n{\n\n}";
+					return;			
+				case "array":
+					this.val =  "[\n\n]";
+					return;			
+				case "object" :
+					this.val =  "{\n\n}";
+					return;			
 
-
-		var imps = sl.implementations(cls.fqn, Lsp.SymbolKind.Class);
-		if (imps.size < 1) {
-			GLib.debug("nodepropaddchildren: check class %s - no implementations", str);
-			return;
-		}
-		
-		GLib.debug("nodepropaddchildren: check class %s", str);			
-		
-		foreach (var cname in imps) {
-
-			 
-		 
-			var add = new NodeProp.raw(s.name, cname, "");
-			// no propertyof ?
-			add.add_node = pal.fqnToNode(cname);
-			add.add_node.add_prop(new NodeProp.special("prop", s.name));
-			this.childstore.append( add);
-
-		
-		}
-		
-		
-		
-		
-	}
-	
-	
-	public string ptype_as_string {
-		get { return this.ptype.to_string(); }
-		private set {}
-	}
-	
-	
-	public bool equals(NodeProp p) 
-	{
-		return this.name == p.name 
-				&& 
-				this.ptype == p.ptype 
-				&& 
-				this.rtype == p.rtype 
-				&& 
-				this.val == p.val;
-	}
-	
-	public NodeProp dupe()
-	{
-		return new NodeProp(this.name, this.ptype, this.rtype,  this.val);
-	}
-	
-	
-	public NodeProp.from_json(string key, string inval)
-	{
-		this.val = inval;
-		var kkv = key.strip().split(" ");
-		string[] kk = {};
-		for (var i = 0; i < kkv.length; i++) {
-			if (kkv[i].length > 0 ) {
-				kk += kkv[i];
-			}
-		}
-		
-		switch(kk.length) {
-			case 1: 
-				this.name = kk[0];
-				this.ptype = NodePropType.PROP;
-				this.rtype = "";		
-				return;
-			case 2: 
-				this.name = kk[1];
-				if (kk[0].length > 1) {
-					// void fred (no type)
-					this.rtype = kk[0];
+				default:
 					this.ptype = NodePropType.PROP;
-				} else {
-					// has a ptype.
-					
-					this.rtype = ""; // no return type, only a ptype indicator.
-					this.ptype = NodePropType.from_string(kk[0]);
+					return;
+				
+			}
+			 
+		}
+		
+		
+		public void nodePropAddChildren(Palete.Palete pal, Palete.SymbolLoader sl, Palete.Symbol s, string str)
+		{
+			
+			if (str.contains("|")) {
+				var ar = str.split("|");
+				for(var i = 0; i < ar.length; i++) {
+					this.nodePropAddChildren(pal, sl, s, ar[i]);
 				}
 				return;
-			default: // 3 or more... (ignores spaces..)
-			case 3:
-				this.name =  kk[2];
-				this.ptype = NodePropType.from_string(kk[0]);
-				this.rtype = kk[1];
+			}
+			if (str.contains("/")) {
+				var ar = str.split("/");
+				for(var i = 0; i < ar.length; i++) {
+					this.nodePropAddChildren(pal, sl, s, ar[i]);
+				}
 				return;
+			}
+			var cls = pal.getClass(sl, str);
+			// it's an object..
+			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
+			// note all classes are expected to have '.' seperators
+			if (cls == null || !str.contains(".")) {
+				GLib.debug("nodepropaddchildren: check class %s - not found in classes", str);
+				this.childstore.append( new NodeProp.prop(s.name, str,  guessDefaultValueForType(str)));
+				return;
+			}
+			//GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
+			if (cls.stype == Lsp.SymbolKind.Enum) {			
+				var add = new NodeProp.raw(s.name, str, "");
+				this.childstore.append( add);
+				return ;
+			}
+			
+			 
+			if (cls.stype != Lsp.SymbolKind.Class) {		
+				var add = new NodeProp.raw(s.name, str, "");
+				// no propertyof ?
+				
+				
+				add.add_node = pal.fqnToNode(str);
+				add.add_node.add_prop(new NodeProp.special("prop", s.name));
+				this.childstore.append( add);
+			}
+
+
+			var imps = sl.implementations(cls.fqn, Lsp.SymbolKind.Class);
+			if (imps.size < 1) {
+				GLib.debug("nodepropaddchildren: check class %s - no implementations", str);
+				return;
+			}
+			
+			GLib.debug("nodepropaddchildren: check class %s", str);			
+			
+			foreach (var cname in imps) {
+
+				 
+			 
+				var add = new NodeProp.raw(s.name, cname, "");
+				// no propertyof ?
+				add.add_node = pal.fqnToNode(cname);
+				add.add_node.add_prop(new NodeProp.special("prop", s.name));
+				this.childstore.append( add);
+
+			
+			}
+			
+			
+			
 			
 		}
 		
-	}
-	public string  to_json_key()
-	{
 		
-		if (this.rtype == null) { // not sure why this happens.!?
-			this.rtype = "";
+		public string ptype_as_string {
+			get { return this.ptype.to_string(); }
+			private set {}
 		}
-		var ortype = this.rtype +  (this.rtype.length > 0 ? " " : "");
-		var oabbr = NodePropType.to_abbr(this.ptype);
-		if (oabbr.length > 0) {
-			oabbr += " ";
+		
+		
+		public bool equals(NodeProp p) 
+		{
+			return this.name == p.name 
+					&& 
+					this.ptype == p.ptype 
+					&& 
+					this.rtype == p.rtype 
+					&& 
+					this.val == p.val;
 		}
-		switch(this.ptype) {
+		
+		public NodeProp dupe()
+		{
+			return new NodeProp(this.name, this.ptype, this.rtype,  this.val);
+		}
+		
+		
+		public NodeProp.from_json(string key, string inval)
+		{
+			this.val = inval;
+			var kkv = key.strip().split(" ");
+			string[] kk = {};
+			for (var i = 0; i < kkv.length; i++) {
+				if (kkv[i].length > 0 ) {
+					kk += kkv[i];
+				}
+			}
 			
-
-			case NodePropType.LISTENER : 
-				return this.name; 
+			switch(kk.length) {
+				case 1: 
+					this.name = kk[0];
+					this.ptype = NodePropType.PROP;
+					this.rtype = "";		
+					return;
+				case 2: 
+					this.name = kk[1];
+					if (kk[0].length > 1) {
+						// void fred (no type)
+						this.rtype = kk[0];
+						this.ptype = NodePropType.PROP;
+					} else {
+						// has a ptype.
+						
+						this.rtype = ""; // no return type, only a ptype indicator.
+						this.ptype = NodePropType.from_string(kk[0]);
+					}
+					return;
+				default: // 3 or more... (ignores spaces..)
+				case 3:
+					this.name =  kk[2];
+					this.ptype = NodePropType.from_string(kk[0]);
+					this.rtype = kk[1];
+					return;
 				
-			case NodePropType.PROP:
-				return ortype + this.name;			
+			}
 			
-			case NodePropType.RAW:
-			case NodePropType.METHOD:
-			case NodePropType.SIGNAL:			
-			case NodePropType.USER : 			
-				return oabbr + ortype + this.name;			
+		}
+		public string  to_json_key()
+		{
+			
+			if (this.rtype == null) { // not sure why this happens.!?
+				this.rtype = "";
+			}
+			var ortype = this.rtype +  (this.rtype.length > 0 ? " " : "");
+			var oabbr = NodePropType.to_abbr(this.ptype);
+			if (oabbr.length > 0) {
+				oabbr += " ";
+			}
+			switch(this.ptype) {
 				
 
+				case NodePropType.LISTENER : 
+					return this.name; 
+					
+				case NodePropType.PROP:
+					return ortype + this.name;			
+				
+				case NodePropType.RAW:
+				case NodePropType.METHOD:
+				case NodePropType.SIGNAL:			
+				case NodePropType.USER : 			
+					return oabbr + ortype + this.name;			
+					
 
-			case NodePropType.SPECIAL: 			
-				return oabbr +   this.name;
-	 		case NodePropType.NONE: // not used
-			case NodePropType.CTOR:
-				 return "";
+
+				case NodePropType.SPECIAL: 			
+					return oabbr +   this.name;
+		 		case NodePropType.NONE: // not used
+				case NodePropType.CTOR:
+					 return "";
+				 
+			}
+			return this.name;
+		}
+		 
+		
+		public string  to_index_key()
+		{
+			switch(this.ptype) {
+				case NodePropType.PROP:
+				case NodePropType.RAW:
+				case NodePropType.METHOD :
+				case NodePropType.SIGNAL :
+				case NodePropType.USER : 
+					return this.name;
+				
+				case NodePropType.SPECIAL : 
+					return "* " + this.name;
+					
+				// in seperate list..
+				case NodePropType.LISTENER : 
+					return  this.name;
+					
+		 		case NodePropType.NONE: // not used
+				case NodePropType.CTOR:
+					 return "";
+
+					
+			}
+			return this.name;
+		
+		}
+		// how it appears on the property list. -
+		
+		
+	 
+	 	public string val_short { 
+			set {
+				// NOOp ??? should 
+			}
+			owned get {
+				
+				 if (this._val.index_of("\n") < 0) {
+				 	return  GLib.Markup.escape_text(this._val);
+			 	 }
+			 	 var vals = this._val.split("\n");
+			 	 return GLib.Markup.escape_text(vals[0]  + (vals.length > 1 ? " ..." : ""));
+			} 
+		}
+	 
+		public string val_tooltip { 
+			set {
+				// NOOp ??? should 
+			}
+			owned get {
+				
+				 	return "<tt>" + GLib.Markup.escape_text(this.val) + "</tt>";
+			} 
+		
+		
+		}
+		
+		public string to_display_name_prop { 
+			set {
+				// NOOp ??? should 
+			}
+			owned get {
+				 return  this.to_display_name();
+			} 
+		}
+		
+		
+		
+		public string to_display_name()
+		{
+			var bg = this.is_invalid_ptype ? "  bgcolor=\"red\"" : "";
+			var nm =  GLib.Markup.escape_text(this.name);
+			var rt =  GLib.Markup.escape_text(this.rtype);
+			//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+			// before we showed "@" for signals
+			switch(this.ptype) {
+				case NodePropType.PROP:
+					return  @"<span$bg>$nm</span>";
+					
+				case NodePropType.RAW:
+					return @"<span style=\"italic\">$nm</span>";
+					
+				case NodePropType.METHOD :
+					return @"<i>$rt</i> <span color=\"#008000\" font_weight=\"bold\">$nm</span>";
+				 	
+				case NodePropType.SIGNAL : // purpley
+					return @"<span color=\"#ea00d6\" font_weight=\"bold\">$nm</span>";
+					
+				case NodePropType.USER : 
+					return  @"<i>$rt</i> <span$bg font_weight=\"bold\">$nm</span>";
+				
+				case NodePropType.SPECIAL : 
+					return @"<span color=\"#0000CC\" font_weight=\"bold\">$nm</span>";       
+					
+				// in seperate list..
+				case NodePropType.LISTENER : 
+					return  @"<b>$nm</b>";
+					
+		 		case NodePropType.NONE: // not used
+				case NodePropType.CTOR:
+					 return "";
+			
+					
+			}
+			return this.name;
+	 	}
+	 	
+	 	public string to_tooltip_name_prop { 
+			set {
+				// NOOp ??? should 
+			}
+			owned get {
+				 return  this.to_tooltip_name();
+			} 
+		}
+	 	
+		public string to_tooltip_name()
+		{
+			
+			//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+			// before we showed "@" for signals
+			switch(this.ptype) {
+				case NodePropType.PROP:
+				case NodePropType.SIGNAL:
+				case NodePropType.RAW:
+				case NodePropType.SPECIAL : 
+				case NodePropType.LISTENER :
+					return GLib.Markup.escape_text(this.name) ;
+					
+				case NodePropType.METHOD :
+				case NodePropType.USER : 			
+					return  GLib.Markup.escape_text(this.rtype)  + " " + GLib.Markup.escape_text( this.name) ;
+				 	
+				
+					
+		 		case NodePropType.NONE: // not used
+				case NodePropType.CTOR:
+					 return "";
+			
+					
+			}
+			return this.name;
+	 	}
+	 	// used ot sort the dispaly list of properties.
+	 	public string to_sort_key()
+		{
+			var n = this.name;
+			 
+			//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+			// before we showed "@" for signals
+			switch(this.ptype) {
+				case NodePropType.PROP:
+					return "5" +  n;
+					
+				case NodePropType.RAW:
+					return "5" +  n;
+					
+				case NodePropType.METHOD :
+					return "2" +  n;
+				 	
+				case NodePropType.SIGNAL :
+					return "3" +  n;
+					
+				case NodePropType.USER : 
+					return "4" +  n;
+				
+				case NodePropType.SPECIAL : 
+					return "1" +  n;
+					
+				// in seperate list..
+				case NodePropType.LISTENER : 
+					return  "0" + this.name;
+				
+				case NodePropType.NONE: // not used
+				case NodePropType.CTOR:
+					 return "";
+					
+			}
+			return this.name;
+	 	}
+		// this is really only used for stuct ctors at present 	
+		// which are only props (although RAW might be valid)
+	 	public string value_to_code()
+	 	{
+	 		switch (this.ptype) {
+				case NodePropType.PROP:
+					break;
+					
+				case NodePropType.METHOD : 			 
+				case NodePropType.RAW:
+				case NodePropType.SIGNAL :			
+				case NodePropType.USER : 
+				case NodePropType.SPECIAL : 
+				case NodePropType.LISTENER : 
+				case NodePropType.NONE: // not used
+				case NodePropType.CTOR:			
+					return this.val;
+			}
+			if (this.rtype.contains(".")) {
+				// probalby an enum
+				return this.val;
+			}
+			
+			
+			switch (this.rtype) {
+				case "string":
+					return "\"" + this.rtype.escape() + "\"";
+				case "bool":
+					return this.val.down();
+				case "float":
+				case "double":
+				default:
+					break;
+					
+				
+			
+			}
+			return this.val;
+	 	}
+	 	
+	 	
+	 	
+		public string to_tooltip()
+		{
+			 
+			switch(this.ptype) {
+				case NodePropType.PROP:
+					return this.rtype + " " + this.name + " = \"" + this.val + "\"";
+				case NodePropType.LISTENER : 
+					// thsi might look a bit odd on javascript?
+					return "on " + this.name + " " + this.val;
+					
+				case NodePropType.RAW:
+					return  this.rtype + " " + this.name + " = " + this.val;
+				case NodePropType.METHOD :
+					// functions - js    FRED  function () { }  <<< could probably be cleaner..
+					// functions - vala    FRED () { }
+					return  this.rtype + " " + this.name  + " "  + this.val;
+				case NodePropType.SIGNAL :
+					return  "signal: "  + this.rtype + " " + this.name  +  " " + this.val;
+				case NodePropType.USER : 
+					return  "user defined: "  + this.rtype + " " + this.name  + " = "  + this.val;
+				
+				case NodePropType.SPECIAL: 			
+					return  "special property: "  + this.rtype + " " + this.name  + " = " +   this.val;			
+
+				case NodePropType.NONE: // not used
+				case NodePropType.CTOR:
+					 return "";
+			}
+			return this.name;
 			 
 		}
-		return this.name;
-	}
-	 
-	
-	public string  to_index_key()
-	{
-		switch(this.ptype) {
-			case NodePropType.PROP:
-			case NodePropType.RAW:
-			case NodePropType.METHOD :
-			case NodePropType.SIGNAL :
-			case NodePropType.USER : 
-				return this.name;
-			
-			case NodePropType.SPECIAL : 
-				return "* " + this.name;
-				
-			// in seperate list..
-			case NodePropType.LISTENER : 
-				return  this.name;
-				
-	 		case NodePropType.NONE: // not used
-			case NodePropType.CTOR:
-				 return "";
-
-				
-		}
-		return this.name;
-	
-	}
-	// how it appears on the property list. -
-	
-	
- 
- 	public string val_short { 
-		set {
-			// NOOp ??? should 
-		}
-		owned get {
-			
-			 if (this._val.index_of("\n") < 0) {
-			 	return  GLib.Markup.escape_text(this._val);
-		 	 }
-		 	 var vals = this._val.split("\n");
-		 	 return GLib.Markup.escape_text(vals[0]  + (vals.length > 1 ? " ..." : ""));
-		} 
-	}
- 
-    public string val_tooltip { 
-    	set {
-			// NOOp ??? should 
-		}
-		owned get {
-			
-			 	return "<tt>" + GLib.Markup.escape_text(this.val) + "</tt>";
-		} 
-    
-    
-    }
-    
-    public string to_display_name_prop { 
-		set {
-			// NOOp ??? should 
-		}
-		owned get {
-			 return  this.to_display_name();
-		} 
-	}
-	
-	
-    
-	public string to_display_name()
-	{
-		var bg = this.is_invalid_ptype ? "  bgcolor=\"red\"" : "";
-		var nm =  GLib.Markup.escape_text(this.name);
-		var rt =  GLib.Markup.escape_text(this.rtype);
-		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
-		// before we showed "@" for signals
-		switch(this.ptype) {
-			case NodePropType.PROP:
-				return  @"<span$bg>$nm</span>";
-				
-			case NodePropType.RAW:
-				return @"<span style=\"italic\">$nm</span>";
-				
-			case NodePropType.METHOD :
-				return @"<i>$rt</i> <span color=\"#008000\" font_weight=\"bold\">$nm</span>";
-			 	
-			case NodePropType.SIGNAL : // purpley
-				return @"<span color=\"#ea00d6\" font_weight=\"bold\">$nm</span>";
-				
-			case NodePropType.USER : 
-				return  @"<i>$rt</i> <span$bg font_weight=\"bold\">$nm</span>";
-			
-			case NodePropType.SPECIAL : 
-				return @"<span color=\"#0000CC\" font_weight=\"bold\">$nm</span>";       
-				
-			// in seperate list..
-			case NodePropType.LISTENER : 
-				return  @"<b>$nm</b>";
-				
-	 		case NodePropType.NONE: // not used
-			case NodePropType.CTOR:
-				 return "";
 		
-				
-		}
-		return this.name;
- 	}
- 	
- 	public string to_tooltip_name_prop { 
-		set {
-			// NOOp ??? should 
-		}
-		owned get {
-			 return  this.to_tooltip_name();
-		} 
-	}
- 	
-	public string to_tooltip_name()
-	{
-		
-		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
-		// before we showed "@" for signals
-		switch(this.ptype) {
-			case NodePropType.PROP:
-			case NodePropType.SIGNAL:
-			case NodePropType.RAW:
-			case NodePropType.SPECIAL : 
-			case NodePropType.LISTENER :
-				return GLib.Markup.escape_text(this.name) ;
-				
-			case NodePropType.METHOD :
-			case NodePropType.USER : 			
-				return  GLib.Markup.escape_text(this.rtype)  + " " + GLib.Markup.escape_text( this.name) ;
-			 	
-			
-				
-	 		case NodePropType.NONE: // not used
-			case NodePropType.CTOR:
-				 return "";
-		
-				
-		}
-		return this.name;
- 	}
- 	// used ot sort the dispaly list of properties.
- 	public string to_sort_key()
-	{
-		var n = this.name;
 		 
-		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
-		// before we showed "@" for signals
-		switch(this.ptype) {
-			case NodePropType.PROP:
-				return "5" +  n;
-				
-			case NodePropType.RAW:
-				return "5" +  n;
-				
-			case NodePropType.METHOD :
-				return "2" +  n;
-			 	
-			case NodePropType.SIGNAL :
-				return "3" +  n;
-				
-			case NodePropType.USER : 
-				return "4" +  n;
-			
-			case NodePropType.SPECIAL : 
-				return "1" +  n;
-				
-			// in seperate list..
-			case NodePropType.LISTENER : 
-				return  "0" + this.name;
-			
-			case NodePropType.NONE: // not used
-			case NodePropType.CTOR:
-				 return "";
-				
+		public string to_property_option_markup(bool isbold)
+		{
+			return isbold ?  "<b>" + this.name + "</b>" : this.name;
 		}
-		return this.name;
- 	}
-	// this is really only used for stuct ctors at present 	
-	// which are only props (although RAW might be valid)
- 	public string value_to_code()
- 	{
- 		switch (this.ptype) {
-			case NodePropType.PROP:
-				break;
-				
-			case NodePropType.METHOD : 			 
-			case NodePropType.RAW:
-			case NodePropType.SIGNAL :			
-			case NodePropType.USER : 
-			case NodePropType.SPECIAL : 
-			case NodePropType.LISTENER : 
-			case NodePropType.NONE: // not used
-			case NodePropType.CTOR:			
-				return this.val;
-		}
-		if (this.rtype.contains(".")) {
-			// probalby an enum
-			return this.val;
+		
+		public string to_property_option_tooltip()
+		{
+			return this.to_property_option_markup( false ); // fixme will probaly want help info (possibly by havinga  reference to the GirObject that its created from
 		}
 		
 		
-		switch (this.rtype) {
-			case "string":
-				return "\"" + this.rtype.escape() + "\"";
-			case "bool":
-				return this.val.down();
-			case "float":
-			case "double":
-			default:
-				break;
-				
-			
+		public bool is(NodeProp comp) {
+			if (comp.ptype == NodePropType.LISTENER || this.ptype == NodePropType.LISTENER ) { 
+				return comp.ptype == this.ptype && comp.name == this.name;
+			}
+			return comp.to_index_key() == this.to_index_key();
 		
 		}
-		return this.val;
- 	}
- 	
- 	
- 	
-	public string to_tooltip()
-	{
+		
+		
+		/*
+		public NodeProp.listenerfromjson(string str, string inval)
+		{
+			this.val = inval;
+			this.name = str;
+			this.ptype = NodePropType.LISTENER;
+			this.rtype = "";
+			
+		}
+		*/
+		// regular addition - should work for properties  
+		public NodeProp.prop(string name, string rtype = "", string val = "")
+		{
+			this(name, NodePropType.PROP, rtype, val);
+		}
+		public NodeProp.raw(string name, string rtype = "", string val = "")
+		{
+			this(name, NodePropType.RAW, rtype, val);
+		}
+		
+		public NodeProp.valamethod(string name, string rtype = "void", string val = "() {\n\n}")
+		{
+			this(name, NodePropType.METHOD, rtype, val);
+		}
+		public NodeProp.jsmethod(string name,  string val = "function() {\n\n}")
+		{
+			this(name, NodePropType.METHOD, "", val);
+		}
+		
+		// vala (and js) specials.. props etc.. - they only have name/value (not type) - type is in xns/xtype
+		public NodeProp.special(string name, string val = "")
+		{
+			this(name, NodePropType.SPECIAL, "", val);
+		}
 		 
-		switch(this.ptype) {
-			case NodePropType.PROP:
-				return this.rtype + " " + this.name + " = \"" + this.val + "\"";
-			case NodePropType.LISTENER : 
-				// thsi might look a bit odd on javascript?
-				return "on " + this.name + " " + this.val;
-				
-			case NodePropType.RAW:
-				return  this.rtype + " " + this.name + " = " + this.val;
-			case NodePropType.METHOD :
-				// functions - js    FRED  function () { }  <<< could probably be cleaner..
-				// functions - vala    FRED () { }
-				return  this.rtype + " " + this.name  + " "  + this.val;
-			case NodePropType.SIGNAL :
-				return  "signal: "  + this.rtype + " " + this.name  +  " " + this.val;
-			case NodePropType.USER : 
-				return  "user defined: "  + this.rtype + " " + this.name  + " = "  + this.val;
-			
-			case NodePropType.SPECIAL: 			
-				return  "special property: "  + this.rtype + " " + this.name  + " = " +   this.val;			
-
-			case NodePropType.NONE: // not used
-			case NodePropType.CTOR:
-				 return "";
+		public NodeProp.listener(string name,   string val = "")
+		{
+			this(name, NodePropType.LISTENER, "", val);
 		}
-		return this.name;
 		 
-	}
-	
-	 
-	public string to_property_option_markup(bool isbold)
-	{
-		return isbold ?  "<b>" + this.name + "</b>" : this.name;
-	}
-	
-	public string to_property_option_tooltip()
-	{
-		return this.to_property_option_markup( false ); // fixme will probaly want help info (possibly by havinga  reference to the GirObject that its created from
-	}
-	
-	
-	public bool is(NodeProp comp) {
-		if (comp.ptype == NodePropType.LISTENER || this.ptype == NodePropType.LISTENER ) { 
-			return comp.ptype == this.ptype && comp.name == this.name;
+		public NodeProp.user(string name, string rtype = "", string val = "")
+		{
+			this(name, NodePropType.USER, rtype, val);
 		}
-		return comp.to_index_key() == this.to_index_key();
-	
-	}
-	
-	
-	/*
-	public NodeProp.listenerfromjson(string str, string inval)
-	{
-		this.val = inval;
-		this.name = str;
-		this.ptype = NodePropType.LISTENER;
-		this.rtype = "";
-		
-	}
-	*/
-	// regular addition - should work for properties  
-	public NodeProp.prop(string name, string rtype = "", string val = "")
-	{
-		this(name, NodePropType.PROP, rtype, val);
-	}
-	public NodeProp.raw(string name, string rtype = "", string val = "")
-	{
-		this(name, NodePropType.RAW, rtype, val);
-	}
-	
-	public NodeProp.valamethod(string name, string rtype = "void", string val = "() {\n\n}")
-	{
-		this(name, NodePropType.METHOD, rtype, val);
-	}
-	public NodeProp.jsmethod(string name,  string val = "function() {\n\n}")
-	{
-		this(name, NodePropType.METHOD, "", val);
-	}
-	
-	// vala (and js) specials.. props etc.. - they only have name/value (not type) - type is in xns/xtype
-	public NodeProp.special(string name, string val = "")
-	{
-		this(name, NodePropType.SPECIAL, "", val);
-	}
-	 
-	public NodeProp.listener(string name,   string val = "")
-	{
-		this(name, NodePropType.LISTENER, "", val);
-	}
-	 
-	public NodeProp.user(string name, string rtype = "", string val = "")
-	{
-		this(name, NodePropType.USER, rtype, val);
-	}
-	public NodeProp.sig(string name, string rtype = "void", string val = "()")
-	{
-		this(name, NodePropType.SIGNAL, rtype, val);
-	}
-	public void appendChild(NodeProp child)
-	{
-		this.childstore.append(child);
+		public NodeProp.sig(string name, string rtype = "void", string val = "()")
+		{
+			this(name, NodePropType.SIGNAL, rtype, val);
+		}
+		public void appendChild(NodeProp child)
+		{
+			this.childstore.append(child);
 
-	}
-	 
-	
-	/**
-	could use enums.. but basically.
-	0 - > inline text editor
-	1  -> pulldown
-	2  -> full editor
-	*/
-	public bool useTextArea()
-	{
-	
-		var use_textarea = false;
-
-		//------------ things that require the text editor...
+		}
+		 
 		
-		if (this.ptype == NodePropType.LISTENER) {
-		    use_textarea = true;
-		}
-		if (this.ptype == NodePropType.METHOD) { 
-		    use_textarea = true;
-		}
-		    
-		if ( this.name == "init" && this.ptype == NodePropType.SPECIAL) {
-		    use_textarea = true;
-		}
-		if (this.val.length > 40 || this.val.index_of("\n") > -1) { // long value...
-		    use_textarea = true;
+		/**
+		could use enums.. but basically.
+		0 - > inline text editor
+		1  -> pulldown
+		2  -> full editor
+		*/
+		public bool useTextArea()
+		{
+		
+			var use_textarea = false;
+
+			//------------ things that require the text editor...
+			
+			if (this.ptype == NodePropType.LISTENER) {
+				use_textarea = true;
+			}
+			if (this.ptype == NodePropType.METHOD) { 
+				use_textarea = true;
+			}
+				
+			if ( this.name == "init" && this.ptype == NodePropType.SPECIAL) {
+				use_textarea = true;
+			}
+			if (this.val.length > 40 || this.val.index_of("\n") > -1) { // long value...
+				use_textarea = true;
+			}
+			
+			return use_textarea;
+		
 		}
 		
-		return use_textarea;
-	
-	}
-	
 
-	
-	
-	
+		
+		
+		
+	}
+		
 }
-	
-	
