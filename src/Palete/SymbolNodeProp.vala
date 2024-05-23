@@ -41,6 +41,11 @@ namespace Palete {
 				
 				return ret;
 			}
+			if (s.rtype.down() == "function"  ) {
+				var  r =   new JsRender.NodeProp.raw(s.name, s.rtype, "function()\n{\n\n}");
+				r.propertyof = this.property_of();
+				return  r;			
+			}
 			
 			
 			
