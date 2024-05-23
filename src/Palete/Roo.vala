@@ -367,7 +367,7 @@ namespace Palete {
 		/*
 		 *  Pulldown options for type
 		 */
-		public override bool typeOptions(string fqn, string key, string type, out string[] opts) 
+		public override bool typeOptions(SymbolLoader? sl,string fqn, string key, string type, out string[] opts) 
 		{
 			opts = {};
 			GLib.debug("get typeOptions %s (%s)%s", fqn, type, key);
