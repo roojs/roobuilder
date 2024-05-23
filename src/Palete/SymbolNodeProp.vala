@@ -28,7 +28,7 @@ namespace Palete {
 			
 			// does not handle Enums... - no need to handle anything else.
 			var def = s.rtype.contains(".") ?  "" :  this.guessDefaultValueForType(s.rtype);
-			if (this.rtype.contains(".") || this.rtype.contains("|") || this.rtype.contains("/")) {
+			if (s.rtype.contains(".") || s.rtype.contains("|") || s.rtype.contains("/")) {
 				var ret = new JsRender.NodeProp.prop(s.name, s.rtype, def);  ///< was raw..?
 				ret.propertyof = s.property_of();
 				this.nodePropAddChildren(ret, this.type, pal);
