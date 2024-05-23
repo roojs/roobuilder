@@ -2367,8 +2367,7 @@ public class Xcls_LeftProps : Object
 				//GLib.debug("prop.key = %s", prop.to_display_name());
 				 
 			    var use_textarea =  prop.useTextArea();
-			    
-			    
+			     
 			    var pal = _this.file.project.palete;
 			        
 			    string[] opts = {};
