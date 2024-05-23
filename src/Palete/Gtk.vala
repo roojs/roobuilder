@@ -618,7 +618,7 @@ namespace Palete {
 			
 			 
 		}
-		public override bool  typeOptions(string fqn, string key, string type, out string[] opts) 
+		public override bool  typeOptions(SymbolLoader sl, string fqn, string key, string type, out string[] opts) 
 		{
 			opts = {};
 			if (type == ""  ) { // empty type   dont try and fill in options
