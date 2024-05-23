@@ -119,7 +119,7 @@ namespace Palete {
 					var vcn = value.get_object().get_array_member("implementations");
 					for (var i =0 ; i < vcn.get_length(); i++) {
 					// not sure if this is correct - this was implementations
-						cls.all_implements.add(vcn.get_string_element(i));
+						cls.all_implementations.add(vcn.get_string_element(i));
 						//break; << why!?!
 		 			}	 			
 				}
@@ -181,7 +181,7 @@ namespace Palete {
 							// also means that  Roo.bootstrap.panel.Grid:east works
 							var prop_type = classes.get(type);
 							// was all_implements
-							foreach(var imp_str in prop_type.all_implements) {
+							foreach(var imp_str in prop_type.all_implementations) {
 								//GLib.debug("addChild for %s - child=  %s:%s", cls.name, imp_str, gir_obj.name);
 								cls.valid_cn.add(imp_str + ":" +    gir_obj.name);
 								if (!add_to.has_key(imp_str)) {
