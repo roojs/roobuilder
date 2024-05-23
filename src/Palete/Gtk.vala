@@ -257,7 +257,7 @@ namespace Palete {
 		
 		}
 		*/
-		
+		/*
 		private void add_props_from_ctors(GirObject cls, Gee.HashMap<string,GirObject> props)
 		{
 			if (cls.ctors.has_key("new")) {
@@ -383,7 +383,7 @@ namespace Palete {
 		}
 		
 		
-		
+		/*
 		
 		private void add_node_default_from_ctor_all()
     	{
@@ -915,7 +915,7 @@ namespace Palete {
         	
         	
     	}
-		
+		/*
     	
     	
     	private void buildChildListForDroppingProject()
@@ -984,6 +984,7 @@ namespace Palete {
 
 			
 		}
+		*/
 		
 		static string[] methods_to_check = {
 			 "add_controller",
