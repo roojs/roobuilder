@@ -91,7 +91,7 @@ namespace Palete {
 			NEW?? symbol based fetch?
 			
 		*/
-		public   Symbol? getClassS(SymbolLoader? sl, string ename)
+		public   Symbol? getClass(SymbolLoader? sl, string ename)
 		{
 			var ret =  sl.singleByFqn(ename);
 			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
