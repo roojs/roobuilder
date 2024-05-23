@@ -193,6 +193,8 @@ namespace JsRender
 			this.val = val;
 			this.childstore = new GLib.ListStore( typeof(NodeProp)); 
 		}
+		
+		
 		public NodeProp.new_from_symbol(Palete.Symbol s, Palete.SymbolLoader sl, string parent_fqn) 
 		{
 			
