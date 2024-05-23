@@ -31,7 +31,7 @@ namespace Palete {
 			if (s.rtype.contains(".") || s.rtype.contains("|") || s.rtype.contains("/")) {
 				var ret = new JsRender.NodeProp.prop(s.name, s.rtype, def);  ///< was raw..?
 				ret.propertyof = s.property_of();
-				this.nodePropAddChildren(ret, s.rtype);
+				this.nodePropAddChildren(ret, s, s.rtype);
 				if (ret.childstore.n_items == 1) {
 					var np = (JsRender.NodeProp) ret.childstore.get_item(0);
 					ret.add_node = np.add_node;
@@ -70,18 +70,18 @@ namespace Palete {
 			if (str.contains("|")) {
 				var ar = str.split("|");
 				for(var i = 0; i < ar.length; i++) {
-					this.nodePropAddChildren(par, ar[i]);
+					this.nodePropAddChildren(par, s,  ar[i]);
 				}
 				return;
 			}
 			if (str.contains("/")) {
 				var ar = str.split("/");
 				for(var i = 0; i < ar.length; i++) {
-					this.nodePropAddChildren(par, ar[i]);
+					this.nodePropAddChildren(par, s, ar[i]);
 				}
 				return;
 			}
-			var cls = this.palete.getClass(this.sl, str);
+			var cls = this.palete.getAny(this.sl, str);
 			// it's an object..
 			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
 			// note all classes are expected to have '.' seperators
@@ -90,35 +90,39 @@ namespace Palete {
 				par.childstore.append( new JsRender.NodeProp.prop(s.name, str,  this.guessDefaultValueForType(str)));
 				return;
 			}
-			GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
-			if (cls.nodetype.down() == "enum") {			
-				var add = new JsRender.NodeProp.raw(this.name, str, "");
+			//GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
+			if (cls.stype == Lsp.SymbolKind.Enum) {			
+				var add = new JsRender.NodeProp.raw(s.name, str, "");
 				par.childstore.append( add);
 				return ;
 			}
 			
 			 
-			if (cls.nodetype.down() == "class") {
-				var add = new JsRender.NodeProp.raw(this.name, str, "");
+			if (cls.stype == Lsp.SymbolKind.Class) {
+				var add = new JsRender.NodeProp.raw(s.name, str, "");
 				// no propertyof ?
 				
 				
-				add.add_node = pal.fqnToNode(str);
-				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
-				par.childstore.append( add);
+				add.add_node = this.fqnToNode(str);
+				add.add_node.add_prop(new JsRender.NodeProp.special("prop", s.name));
+				par.childstore.append(add);
 			}
 
-
+			if (cls.stype != Lsp.SymbolKind.Interface) {
+				return;
 			
-			if (cls.implementations.size < 1) {
+			}
+			var implementations = this.palete.getImplementations(sl, cls.fqn);
+			
+			if (implementations.size < 1) {
 				GLib.debug("nodepropaddchildren: check class %s - no implementations", str);
 				return;
 			}
 			
 			GLib.debug("nodepropaddchildren: check class %s", str);			
 			
-			foreach (var cname in cls.implementations) {
-
+			foreach (var cname in implementations) {
+				//?? would imlementations include anything other than classes?
 				
 				var subcls = pal.getClass(cname);
 				
@@ -128,10 +132,10 @@ namespace Palete {
 					continue;
 				}
 			 
-				var add = new JsRender.NodeProp.raw(this.name, cname, "");
+				var add = new JsRender.NodeProp.raw(s.name, cname, "");
 				// no propertyof ?
 				add.add_node = pal.fqnToNode(cname);
-				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
+				add.add_node.add_prop(new JsRender.NodeProp.special("prop", s.name));
 				par.childstore.append( add);
  
 			
