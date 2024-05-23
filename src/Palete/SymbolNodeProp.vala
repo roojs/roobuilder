@@ -20,7 +20,7 @@ namespace Palete {
 				 r.propertyof = s.property_of();
 				 // notify[xxxx] << for all the properties of the symbol.
 				 if (s.name == "notify" && this.palete.name == "Gtk") {
-				 	this.nodePropAddNotify(r, add_to_fqn, pal);
+				 	this.nodePropAddNotify(r, add_to_fqn);
 				//}
 				
 				return r;
@@ -31,7 +31,7 @@ namespace Palete {
 			if (s.rtype.contains(".") || s.rtype.contains("|") || s.rtype.contains("/")) {
 				var ret = new JsRender.NodeProp.prop(s.name, s.rtype, def);  ///< was raw..?
 				ret.propertyof = s.property_of();
-				this.nodePropAddChildren(ret, this.type, pal);
+				this.nodePropAddChildren(ret, s.rtype);
 				if (ret.childstore.n_items == 1) {
 					var np = (JsRender.NodeProp) ret.childstore.get_item(0);
 					ret.add_node = np.add_node;
