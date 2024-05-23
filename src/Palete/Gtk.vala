@@ -29,17 +29,16 @@ namespace Palete {
 		public Gtk(Project.Project project)
 		{
 
-		    aconstruct(project);
-		    this.name = "Gtk";
-		    var context = new Vala.CodeContext ();
-			 
-		    this.package_cache = this.loadPackages(Path.get_dirname (context.get_vapi_path("glib-2.0")));
-		    this.package_cache.add_all(
-			    this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
-		    );
-		    this.childListCache = new  Gee.HashMap<string,Gee.ArrayList<string>>();
-		   
-		    
+			aconstruct(project);
+			this.name = "Gtk";
+			var context = new Vala.CodeContext ();
+
+			this.package_cache = this.loadPackages(Path.get_dirname (context.get_vapi_path("glib-2.0")));
+			this.package_cache.add_all(
+			this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
+			);
+			//this.childListCache = new  Gee.HashMap<string,Gee.ArrayList<string>>();
+		
 		}
 		
 		
