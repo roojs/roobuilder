@@ -1044,9 +1044,16 @@ namespace Palete {
 		 
 		public override JsRender.Node fqnToNode(SymbolLoader? sl, string fqn) 
 		{
-			this.load();	
+			//this.load();	
 			var ret = new JsRender.Node();
 			ret.setFqn(fqn);
+			
+			if (null = this.getClass(sl, fqn)) {
+				return ret;
+			}
+			var ar = this.getPropertiesFor(sl, fqn, Lsp.SymbolKind.Constructor, null);
+			foreach(ar as
+			
 			if (!this.node_defaults.has_key(fqn)) {
 				return ret;
 			}
