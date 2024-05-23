@@ -2374,7 +2374,7 @@ public class Xcls_LeftProps : Object
 			    string[] opts = {};
 			  
 			    var has_opts = prop.ptype.can_have_opt_list() ? 
-			    	pal.typeOptions(_this.node.fqn(), prop.name, prop.rtype, out opts)
+			    	pal.typeOptions(this.file.getSymbolLoader(), _this.node.fqn(), prop.name, prop.rtype, out opts)
 			    	: false;
 			    
 			    if (!has_opts && prop.ptype == JsRender.NodePropType.RAW) {
