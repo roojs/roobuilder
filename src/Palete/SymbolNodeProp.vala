@@ -63,7 +63,7 @@ namespace Palete {
 		
 		}
 		
-		public void nodePropAddChildren(JsRender.NodeProp par, string str)
+		public void nodePropAddChildren(JsRender.NodeProp par, Symbol s, string str)
 		{
 			
 			
@@ -87,7 +87,7 @@ namespace Palete {
 			// note all classes are expected to have '.' seperators
 			if (cls == null || !str.contains(".")) {
 				GLib.debug("nodepropaddchildren: check class %s - not found in classes", str);
-				par.childstore.append( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
+				par.childstore.append( new JsRender.NodeProp.prop(s.name, str,  this.guessDefaultValueForType(str)));
 				return;
 			}
 			GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
