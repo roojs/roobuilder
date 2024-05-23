@@ -104,7 +104,7 @@ namespace Palete {
 			// does not handle implements...
 	 	public  override Gee.ArrayList<string> getImplementions(SymbolLoader? sl, string fqn)
 		{
-			sl.implementations(fqn, null);
+			return sl.implementations(fqn, null);
 		}
 		 /*
 		private  GirObject? getDelegate(string ename) 
