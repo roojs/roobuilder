@@ -890,7 +890,7 @@
              "  ",
              "    var has_opts = prop.ptype.can_have_opt_list() ? ",
              "    \tpal.typeOptions(",
-             "    \t\tthis.file.getSymbolLoader(), ",
+             "    \t\t_this.file.getSymbolLoader(), ",
              "    \t\t_this.node.fqn(), prop.name, prop.rtype, out opts",
              "\t\t) : false;",
              "    ",
