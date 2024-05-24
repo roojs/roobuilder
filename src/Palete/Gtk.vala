@@ -20,7 +20,7 @@ namespace Palete {
 
 	public class Gtk : Palete {
 		
-		 private Gee.ArrayList<string>? package_cache = null; // used by list of vapis available.
+		 //private Gee.ArrayList<string>? package_cache = null; // used by list of vapis available.
 		 
 		// this is loaded from loader ? = should it be on the symbolloader..?
 		// or the project->cmpile group?
@@ -567,14 +567,7 @@ namespace Palete {
 		*/
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
-			if (this.package_cache == null) {
-				var context = new Vala.CodeContext ();
-				this.package_cache = new Gee.ArrayList<string>();
-				var dirname = Path.get_dirname (context.get_vapi_path("glib-2.0")));
-				this.package_cache.add_all(
-					this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
-				);
-			}
+			 
 			var vapidirs = gproject.vapidirs();
 			var ret =  new Gee.ArrayList<string>();
 			ret.add_all(this.package_cache);
