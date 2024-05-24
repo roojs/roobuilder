@@ -1070,7 +1070,7 @@ namespace Palete {
 				}
 				snp.convert(p, cls.fqn);
 			}
-					
+			// manually set... - based on JSON defaults file?	
 
 
 			
