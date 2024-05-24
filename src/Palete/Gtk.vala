@@ -150,8 +150,7 @@ namespace Palete {
 			
 		
 		}
-		
-
+		 
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
 			if (this.package_cache == null) {
