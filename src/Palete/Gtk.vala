@@ -157,7 +157,7 @@ namespace Palete {
 			if (this.package_cache == null) {
 				var context = new Vala.CodeContext ();
 				this.package_cache = new Gee.ArrayList<string>();
-				var dirname = Path.get_dirname (context.get_vapi_path("glib-2.0")));
+				var dirname = Path.get_dirname (context.get_vapi_path("glib-2.0"));
 				this.package_cache.add_all(
 					this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
 				);
