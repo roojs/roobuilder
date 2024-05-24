@@ -1060,10 +1060,17 @@ namespace Palete {
 			if (ar.has_key(cls.name)) {
 				var props = sl.getParametersFor(cls);
 				foreach(var p in props) {
-				 		snp.convert(s, cls.fqn);
+			 		snp.convert(s, cls.fqn);
 				}
 			}
-			
+			var props = this.getPropertiesFor(fqn, JsRender.NodePropType.PROP);
+			for(var p in props) {
+				if (!p.is_ctor_only || ret.has(p.name)) {
+					continue;
+				}
+				snp.convert(p, cls.fqn);
+			}
+					
 
 
 			
