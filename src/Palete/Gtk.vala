@@ -574,6 +574,7 @@ namespace Palete {
 				this.package_cache.add_all(
 					this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
 				);
+			}
 			var vapidirs = gproject.vapidirs();
 			var ret =  new Gee.ArrayList<string>();
 			ret.add_all(this.package_cache);
