@@ -630,7 +630,7 @@ namespace Palete {
 			
 			 
 		}
-		 /
+		  
 		public override bool  typeOptions(SymbolLoader? sl, string fqn, string key, string type, out string[] opts) 
 		{
 			opts = {};
