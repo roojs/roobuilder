@@ -1055,15 +1055,15 @@ namespace Palete {
 			if (null == cls)) {
 				return ret;
 			}
+			var snp = new SymbolNodeProp (this,  sl) {
 			var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor, null);
 			if (ar.has_key(cls.name)) {
-				 var props = sl.getParametersFor(cls);
-				 foreach(var p in props) {
-				 	ret
-				 
-				 }
-			
+				var props = sl.getParametersFor(cls);
+				foreach(var p in props) {
+				 		snp.convert(s, cls.fqn);
+				}
 			}
+			
 
 
 			
