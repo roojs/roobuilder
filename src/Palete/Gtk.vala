@@ -31,7 +31,7 @@ namespace Palete {
 
 			aconstruct(project);
 			this.name = "Gtk";
-			var context = new Vala.CodeContext ();
+			//var context = new Vala.CodeContext ();
 
 			this.package_cache = this.loadPackages(Path.get_dirname (context.get_vapi_path("glib-2.0")));
 			this.package_cache.add_all(
