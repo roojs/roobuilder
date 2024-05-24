@@ -32,12 +32,7 @@ namespace Palete {
 
 			aconstruct(project);
 			this.name = "Gtk";
-			//var context = new Vala.CodeContext ();
-
-			//this.package_cache = this.loadPackages(Path.get_dirname (context.get_vapi_path("glib-2.0")));
-			//this.package_cache.add_all(
-			//	this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
-			//);
+			
 			//this.childListCache = new  Gee.HashMap<string,Gee.ArrayList<string>>();
 		
 		}
@@ -572,6 +567,13 @@ namespace Palete {
 		*/
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
+			if (this.package_cache == null) {
+				var context = new Vala.CodeContext ();
+				this.package_cache = new Gee.ArrayList<string>();
+				var dirname = Path.get_dirname (context.get_vapi_path("glib-2.0")));
+				this.package_cache.add_all(
+					this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
+				);
 			var vapidirs = gproject.vapidirs();
 			var ret =  new Gee.ArrayList<string>();
 			ret.add_all(this.package_cache);
@@ -590,9 +592,9 @@ namespace Palete {
 		}
 		// get a list of available vapi files...
 		
-		public  Gee.ArrayList<string>  loadPackages(string dirname)
+		private Gee.ArrayList<string>  loadPackages(string dirname)
 		{
-
+			
 			var ret = new  Gee.ArrayList<string>();
 			//this.package_cache = new Gee.ArrayList<string>();
  			
