@@ -1051,7 +1051,7 @@ namespace Palete {
 			var ret = new JsRender.Node();
 			ret.setFqn(fqn);
 			
-			if (null = this.getClass(sl, fqn)) {
+			if (null == this.getClass(sl, fqn)) {
 				return ret;
 			}
 			var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor, null);
