@@ -137,6 +137,9 @@ namespace Palete {
  
 				case JsRender.NodePropType.METHOD:
 					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method, null);
+				
+				case JsRender.NodePropType.CTOR:
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method, null);
 					
 				//case JsRender.NodePropType.CTOR:  // needed to query the arguments of a ctor.
 				//	return cls.ctors;
@@ -1051,7 +1054,8 @@ namespace Palete {
 			if (null = this.getClass(sl, fqn)) {
 				return ret;
 			}
-			var ar = this.getPropertiesFor(sl, fqn, Lsp.SymbolKind.Constructor);
+			var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor, null);
+
 			foreach(ar as
 			
 			if (!this.node_defaults.has_key(fqn)) {
