@@ -1066,7 +1066,7 @@ namespace Palete {
 			if (ar.has_key(cls.name)) {
 				var props = sl.getParametersFor(cls);
 				foreach(var p in props) {
-			 		snp.convert(s, cls.fqn);
+			 		snp.convert(p, cls.fqn);
 				}
 			}
 			var props = this.getPropertiesFor(fqn, JsRender.NodePropType.PROP);
