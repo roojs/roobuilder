@@ -128,7 +128,7 @@ namespace Palete {
 			 
 				var add = new JsRender.NodeProp.raw(s.name, cname, "");
 				// no propertyof ?
-				add.add_node = this.palete.fqnToNode(cname);
+				add.add_node = this.palete.fqnToNode(this.sl, cname);
 				add.add_node.add_prop(new JsRender.NodeProp.special("prop", s.name));
 				par.childstore.append( add);
  
