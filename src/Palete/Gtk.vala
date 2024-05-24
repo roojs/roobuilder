@@ -54,11 +54,15 @@ namespace Palete {
 			if (this.loaded) {
 				return;
 			}
-			Gir.factory(this.project, "Gtk"); // triggers a load...
+			//Gir.factory(this.project, "Gtk"); // triggers a load...
 			 
-			this.init_node_defaults();
-			this.add_node_default_from_ctor_all();
-		    this.init_child_defaults();  
+			//this.init_node_defaults();
+			//this.add_node_default_from_ctor_all();
+		    //this.init_child_defaults();  
+		    
+		    
+		    
+		    
 		    
 		    this.loaded = true;
 			
