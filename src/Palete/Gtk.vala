@@ -1069,7 +1069,7 @@ namespace Palete {
 			 		snp.convert(p, cls.fqn);
 				}
 			}
-			var props = this.getPropertiesFor(fqn, JsRender.NodePropType.PROP);
+			var props = this.getPropertiesFor(sl, fqn, JsRender.NodePropType.PROP);
 			foreach(var p in props.values) {
 				if (!p.is_ctor_only || ret.has(p.name)) {
 					continue;
