@@ -626,6 +626,7 @@ namespace Palete {
 			
 			 
 		}
+		*/
 		public override bool  typeOptions(SymbolLoader? sl, string fqn, string key, string type, out string[] opts) 
 		{
 			opts = {};
@@ -662,7 +663,7 @@ namespace Palete {
 		}
 		
 		 
-		
+		/*
 		
 		private void add_classes_from_method(GirObject cls, string method , Gee.ArrayList<string> ret)
 		{
