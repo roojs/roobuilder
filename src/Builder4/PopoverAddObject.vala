@@ -70,7 +70,7 @@ public class Xcls_PopoverAddObject : Object
 			 
 	
 			GLib.debug("add to model: %s", dname);		
-			m.append(pal.fqnToNode(dname));
+			m.append(pal.fqnToNode(sl, dname));
 		}
 		 m.sort( (a, b) => {
 	

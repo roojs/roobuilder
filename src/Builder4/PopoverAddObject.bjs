@@ -509,7 +509,7 @@
     "\t\t ",
     "",
     "\t\tGLib.debug(\"add to model: %s\", dname);\t\t",
-    "\t\tm.append(pal.fqnToNode(dname));",
+    "\t\tm.append(pal.fqnToNode(sl, dname));",
     "\t}",
     "\t m.sort( (a, b) => {",
     "",
