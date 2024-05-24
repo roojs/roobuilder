@@ -149,6 +149,40 @@ namespace Palete
 			return ret;
 		
 		}
+		
+		ublic Gee.HashMap<string,Symbol>  getParameterFor(Symbol sym)
+		{
+			var ret = new Gee.ArrayList<Symbol>();
+			var stmt = this.sq.selectPrepare("
+					SELECT 
+						* 
+					FROM 
+						symbol 
+					WHERE 
+						file_id IN (" +   this.manager.file_ids   + ")
+					AND
+						parent_id = $pid
+					AND
+						stype = $stype
+					AND
+						is_abstract = 0 
+					AND
+						is_static = 0
+					AND
+						is_sealed = 0
+					AND 
+						deprecated = 0
+
+			");
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Parameter);
+			stmt.bind_int64(stmt.bind_parameter_index ("$pid"), sym.id);
+			
+			this.sq.selectExecute(stmt, els);
+			return els;
+			  
+		
+		}
+		
 		private void getParentIds(Symbol s, Gee.ArrayList<string> ret, Gee.ArrayList<string>? imp = null)
 		{
 			GLib.debug("getParentIds   %s",s.fqn); 
