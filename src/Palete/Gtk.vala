@@ -569,7 +569,7 @@ namespace Palete {
 			this.child_defaults.get(cls).add( new JsRender.NodeProp.prop(propname, type, val));
 		 
 		}
-		 
+		*/
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
 			var vapidirs = gproject.vapidirs();
@@ -627,7 +627,7 @@ namespace Palete {
 			
 			 
 		}
-		*/
+		 /
 		public override bool  typeOptions(SymbolLoader? sl, string fqn, string key, string type, out string[] opts) 
 		{
 			opts = {};
