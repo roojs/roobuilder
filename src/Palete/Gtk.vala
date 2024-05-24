@@ -20,7 +20,7 @@ namespace Palete {
 
 	public class Gtk : Palete {
 		
-		public Gee.ArrayList<string> package_cache;
+		//public Gee.ArrayList<string> package_cache;
 		// this is loaded from loader ? = should it be on the symbolloader..?
 		// or the project->cmpile group?
 		
@@ -33,10 +33,10 @@ namespace Palete {
 			this.name = "Gtk";
 			//var context = new Vala.CodeContext ();
 
-			this.package_cache = this.loadPackages(Path.get_dirname (context.get_vapi_path("glib-2.0")));
-			this.package_cache.add_all(
-				this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
-			);
+			//this.package_cache = this.loadPackages(Path.get_dirname (context.get_vapi_path("glib-2.0")));
+			//this.package_cache.add_all(
+			//	this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
+			//);
 			//this.childListCache = new  Gee.HashMap<string,Gee.ArrayList<string>>();
 		
 		}
