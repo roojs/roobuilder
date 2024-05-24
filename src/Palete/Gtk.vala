@@ -20,7 +20,7 @@ namespace Palete {
 
 	public class Gtk : Palete {
 		
-		 public Gee.ArrayList<string> package_cache; // used by list of vapis available.
+		 private Gee.ArrayList<string>? package_cache = null; // used by list of vapis available.
 		 
 		// this is loaded from loader ? = should it be on the symbolloader..?
 		// or the project->cmpile group?
