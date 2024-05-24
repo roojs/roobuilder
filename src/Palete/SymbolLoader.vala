@@ -150,7 +150,7 @@ namespace Palete
 		
 		}
 		
-		public Gee.HashMap<string,Symbol>  getParametersFor(Symbol sym)
+		public Gee.ArrayList<Symbol>  getParametersFor(Symbol sym)
 		{
 			var ret = new Gee.ArrayList<Symbol>();
 			var stmt = this.sq.selectPrepare("
