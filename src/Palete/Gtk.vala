@@ -1051,7 +1051,7 @@ namespace Palete {
 			if (null = this.getClass(sl, fqn)) {
 				return ret;
 			}
-			var ar = this.getPropertiesFor(sl, fqn, Lsp.SymbolKind.Constructor, null);
+			var ar = this.getPropertiesFor(sl, fqn, Lsp.SymbolKind.Constructor);
 			foreach(ar as
 			
 			if (!this.node_defaults.has_key(fqn)) {
