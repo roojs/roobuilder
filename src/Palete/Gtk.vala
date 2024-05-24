@@ -570,7 +570,7 @@ namespace Palete {
 			 
 			var vapidirs = gproject.vapidirs();
 			var ret =  new Gee.ArrayList<string>();
-			ret.add_all(this.package_cache);
+			//ret.add_all(this.package_cache); << why?
 			for(var i = 0; i < vapidirs.length;i++) {
 				var add = this.loadPackages(vapidirs[i]);
 				for (var j=0; j < add.size; j++) {
