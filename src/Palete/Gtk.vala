@@ -1058,7 +1058,7 @@ namespace Palete {
 			ret.setFqn(fqn);
 			
 			var cls = this.getClass(sl, fqn);
-			if (null == cls)) {
+			if (null == cls)  {
 				return ret;
 			}
 			var snp = new SymbolNodeProp (this,  sl) {
