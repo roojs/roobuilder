@@ -150,7 +150,7 @@ namespace Palete
 		
 		}
 		
-		ublic Gee.HashMap<string,Symbol>  getParameterFor(Symbol sym)
+		public Gee.HashMap<string,Symbol>  getParametersFor(Symbol sym)
 		{
 			var ret = new Gee.ArrayList<Symbol>();
 			var stmt = this.sq.selectPrepare("
