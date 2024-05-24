@@ -1070,7 +1070,7 @@ namespace Palete {
 				}
 			}
 			var props = this.getPropertiesFor(fqn, JsRender.NodePropType.PROP);
-			for(var p in props.values) {
+			foreach(var p in props.values) {
 				if (!p.is_ctor_only || ret.has(p.name)) {
 					continue;
 				}
