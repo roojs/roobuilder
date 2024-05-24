@@ -74,9 +74,9 @@ public class Xcls_PopoverAddObject : Object
 		}
 		 m.sort( (a, b) => {
 	
-				return Posix.strcmp( ((JsRender.Node)a).fqn(),  ((JsRender.Node)b).fqn());
-				
-			});
+			return Posix.strcmp( ((JsRender.Node)a).fqn(),  ((JsRender.Node)b).fqn());
+			
+		});
 		 
 	    
 	    var win = this.mainwindow.el;
