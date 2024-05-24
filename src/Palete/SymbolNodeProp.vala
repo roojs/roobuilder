@@ -103,7 +103,7 @@ namespace Palete {
 				// no propertyof ?
 				
 				
-				add.add_node = this.palete.fqnToNode(str);
+				add.add_node = this.palete.fqnToNode(this.sl, str);
 				add.add_node.add_prop(new JsRender.NodeProp.special("prop", s.name));
 				par.childstore.append(add);
 			}
