@@ -336,6 +336,7 @@ namespace Palete {
 		
 		}
 		 */
+		 /*
 		private Gee.HashMap<string,Gee.HashMap<string,JsRender.NodeProp>> node_defaults;
 		private Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
 		
