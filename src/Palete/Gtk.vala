@@ -1051,12 +1051,21 @@ namespace Palete {
 			var ret = new JsRender.Node();
 			ret.setFqn(fqn);
 			
-			if (null == this.getClass(sl, fqn)) {
+			var cls = this.getClass(sl, fqn);
+			if (null == cls)) {
 				return ret;
 			}
 			var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor, null);
+			if (ar.has_key(cls.name)) {
+				 var props = sl.getParametersFor(cls);
+				 foreach(var p in props) {
+				 	ret
+				 
+				 }
+			
+			}
 
-			foreach(ar as
+
 			
 			if (!this.node_defaults.has_key(fqn)) {
 				return ret;
