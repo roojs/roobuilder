@@ -124,7 +124,7 @@ namespace Palete
 				this.sq.selectExecute(stmt, els);
 				sym.property_cache.set(kind, els);
 			}
-			var els = sym.property_cache.set(kind, els);
+			var els = sym.property_cache.get(kind);
 			foreach(var s in els) {
 				var k = s.name;
 				if (ignore_list != null && GLib.strv_contains(ignore_list, k)) {
