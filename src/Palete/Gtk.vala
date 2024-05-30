@@ -81,11 +81,10 @@ namespace Palete {
 		
 	  
 		// where is this used?
-		public string doc(string what) 
+		public string doc(SymbolLoader sl, string what) 
 		{
-    		var ns = what.split(".")[0];
-    		var gir =  Gir.factory(this.project,ns);
-			return  ((Gir) gir).doc(what);
+    		var sy = this.getAny(sl, what);
+			return  sy.doc
 			
 		    //return typeof(this.comments[ns][what]) == 'undefined' ?  '' : this.comments[ns][what];
 		}
