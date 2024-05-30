@@ -94,11 +94,11 @@ namespace Palete
 				if (sym.parent_ids == null) {
 					pids.add( sym.id.to_string() );
 					this.getParentIds(sym,  pids);
-					string[] pids  = {};
+					string[] spids  = {};
 					foreach(var pid in pids) {
-						pids  += pid;
+						spids  += pid;
 					}
-					sym.parent_ids = pids;
+					sym.parent_ids = spids;
 				}
 				
 				var stmt = this.sq.selectPrepare("
