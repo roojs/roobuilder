@@ -991,7 +991,7 @@ public class JsRender.Node : GLib.Object
 
 	
 	
-	public void loadProps(GLib.ListStore model, Project.Project project) 
+	public void loadProps(GLib.ListStore model, JsRender file) 
 	{
 	
 		// fixme sorting?? - no need to loop twice .. just use sorting.!
@@ -999,7 +999,7 @@ public class JsRender.Node : GLib.Object
 		this.propstore = model;
 		for(var i =  0; i < oldstore.n_items; i++ ) {
 			var it = (NodeProp) oldstore.get_item(i);
-			it.update_is_valid_ptype(project);
+			it.update_is_valid_ptype(file);
 		    model.append(it);
 			
 		}

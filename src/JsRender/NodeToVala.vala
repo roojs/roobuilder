@@ -142,15 +142,17 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		this.addLine(this.ipad + "// my vars (def)");
 			
 
+		var sl =  this.file.getSymbolLoader();
+		var pal = this.file.project.palete;
+		var cls = pal.getClass(sl, this.node.fqn());
  
-		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		   
 		if (cls == null) {
 			GLib.debug("Gir factory failed to find class %s", this.node.fqn());
 			
 			//return;
 		}
-	  
+ 
 		
 			// Key = TYPE:name
 		foreach(var prop in this.node.props.values) {
@@ -309,7 +311,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	
 	protected  void addWrappedProperties()
 	{
-		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		
+		var sl =  this.file.getSymbolLoader();
+		var pal = this.file.project.palete;
+		var cls = pal.getClass(sl, this.node.fqn());
+ 
+ 
 		if (cls == null) {
 			GLib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
 			return;
@@ -321,9 +328,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			// what are the properties of this class???
 		this.addLine();
 		this.addLine(this.ipad + "// set gobject values");
-		
-		foreach(var p in cls.props.keys) { 
-		 	var val = cls.props.get(p);
+		var props = pal.getPropertiesFor(sl, this.node.fqn(), NodePropType.PROP);
+		foreach(var p in props.keys) { 
+		 	var val = props.get(p);
 			//print("Check Write %s\n", p);
 			if (!this.node.has(p)) {
 				continue;
@@ -348,13 +355,13 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			var is_raw = prop.ptype == NodePropType.RAW;
 			
 			// what's the type.. - if it's a string.. then we quote it..
-			if (val.type == "string" && !is_raw) {
+			if (val.rtype == "string" && !is_raw) {
 				 v = "\"" +  v.escape("") + "\"";
 			}
 			if (v == "TRUE" || v == "FALSE") {
 				v = v.down();
 			}
-			if (val.type == "float" && v[v.length-1] != 'f') {
+			if (val.rtype == "float" && v[v.length-1] != 'f') {
 				v += "f";
 			}
 			

@@ -164,6 +164,7 @@
   </gresource>
   <gresource prefix="/data">
     <file>roodata.json</file>
+    <file>object.defaults.json</file>
   </gresource>
   <gresource prefix="/css">
     <file>roobuilder.css</file>

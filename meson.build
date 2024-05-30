@@ -112,8 +112,6 @@ roobuilder_src = files([
    'src/Builder4/WindowLeftProps.vala',
    'src/Builder4/WindowRooView.vala',
    'src/Builder4/WindowState.vala',
-   'src/Palete/GirObject.vala',
-   'src/Palete/Gir.vala',
    'src/JsRender/Dir.vala',
    'src/JsRender/Gtk.vala',
    'src/JsRender/JsonGen.vala',

@@ -32,8 +32,7 @@ namespace Palete {
 			}
 						  
 		}
-		 
-		 
+		  
 	
 		public SymbolVala.new_namespace(ValaSymbolBuilder builder, Symbol? parent, Vala.Namespace ns)
 		{

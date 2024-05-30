@@ -1,12 +1,12 @@
 "default" : {
     "Gtk.ComboBox" : {
-        "has_entry" : false
+        "has_entry" : "false"
     },
     "Gtk.Expander" : {
         "label" : "Label"
     },
     "Gtk.Grid" : {
-        "int columns " : 2
+        "int columns " : "2"
     },
     "Gtk.HeaderBar" : {
         "title" : "Window Title"
@@ -33,8 +33,6 @@
     }
 
 }
-    
-
 
 "child" : {
     "Gtk.Fixed" : {
@@ -50,6 +48,6 @@
     },
     "Gtk.Stack" : {
         "string stack_name" : "name",
-        "string stack_ittle" : "title",        
+        "string stack_title" : "title"
     }
 }

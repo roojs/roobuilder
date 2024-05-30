@@ -126,7 +126,7 @@ namespace JsRender
 			  default = false;
 	 	}
 		
-		public bool update_is_valid_ptype(Project.Project project) 
+		public bool update_is_valid_ptype(JsRender file) 
 		{
 			 
 			if (this.parent == null) {
@@ -143,20 +143,20 @@ namespace JsRender
 			if (this.name == this.last_ptype_check) {
 				return this.is_invalid_ptype;
 			}
-			if (project.xtype != "Gtk") { // js not handled?
-				return false;
-			}
+			
+			 
 			this.last_ptype_check = this.name;
 			
-			
+			var sl = file.getSymbolLoader();
 			//var sym = this.project.symbol_manager.getByFQN(this.parent.fqn());
 			
-			var cls = Palete.Gir.factoryFqn(project, this.parent.fqn());
+			var cls = file.project.palete.getClass(sl, this.parent.fqn());
 			if (cls == null) {
 				this.is_invalid_ptype = false;
 				return false;
 			}
-			var is_native = cls.props.has_key(this.name);
+			var props = file.project.palete.getPropertiesFor(sl, this.parent.fqn(), NodePropType.PROP);
+			var is_native = props.has_key(this.name);
 			if ( is_native && this.ptype == NodePropType.PROP ) {
 				this.is_invalid_ptype = false;
 				return false;
@@ -168,7 +168,6 @@ namespace JsRender
 
 			this.is_invalid_ptype = true;
 			return true;
-			
 			 
 		
 		}

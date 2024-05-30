@@ -26,8 +26,6 @@
                 "src/Builder4/WindowLeftProps.bjs",
                 "src/Builder4/WindowRooView.bjs",
                 "src/Builder4/WindowState.vala",
-                "src/Palete/GirObject.vala",
-                "src/Palete/Gir.vala",
                 "src/JsRender/Dir.vala",
                 "src/JsRender/Gtk.vala",
                 "src/JsRender/JsonGen.vala",

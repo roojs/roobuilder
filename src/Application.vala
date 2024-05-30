@@ -310,21 +310,7 @@
 		 	 }
 		 	 return ret;
 		}
-		string girArrayToString(Gee.HashMap<string,Palete.GirObject> map) 
-		{
-
-			var ret = "";
-			var keys = new Gee.ArrayList<string>();
-			keys.add_all(map.keys);
-			keys.sort();
-			foreach(var k in keys) {
-				var gi = map.get(k);
-				 ret += "     %s %s (%s)\n".printf(gi.type, gi.name, gi.propertyof);
-			
-			}
-			return ret;
-		
-		}
+		 
 		string symbolArrayToString(Gee.HashMap<string,Palete.Symbol> map) 
 		{
 			var ret = "";
