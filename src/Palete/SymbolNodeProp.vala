@@ -123,7 +123,9 @@ namespace Palete {
 			
 			foreach (var cname in implementations) {
 				//?? would imlementations include anything other than classes?
-				
+				if (cname == str) {
+					continue;
+				}
 				 
 			 
 				var add = new JsRender.NodeProp.raw(s.name, cname, "");
