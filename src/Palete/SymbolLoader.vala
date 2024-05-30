@@ -91,11 +91,13 @@ namespace Palete
 				 
 				
 				var pids = new Gee.ArrayList<string>();
-				pids.add( sym.id.to_string() );
-				this.getParentIds(sym,  pids);
-				string[] pidss = {};
-				foreach(var pid in pids) {
-					pidss += pid;
+				if (sym.parent_ids == null) {
+					pids.add( sym.id.to_string() );
+					this.getParentIds(sym,  pids);
+					sym.parent_ids  = {};
+					foreach(var pid in pids) {
+						sym.parent_ids  += pid;
+					}
 				}
 				
 				var stmt = this.sq.selectPrepare("
@@ -106,7 +108,7 @@ namespace Palete
 						WHERE 
 							file_id IN (" +   this.manager.file_ids   + ")
 						AND
-							parent_id IN (" + string.joinv(",", pidss) + ") 
+							parent_id IN (" + string.joinv(",", sym.parent_ids ) + ") 
 						AND
 							stype = $stype
 						AND
@@ -190,6 +192,8 @@ namespace Palete
 		
 		private void getParentIds(Symbol s, Gee.ArrayList<string> ret, Gee.ArrayList<string>? imp = null)
 		{
+			
+			
 			GLib.debug("getParentIds   %s",s.fqn); 
 			var top = imp == null;
 			imp = top ? new Gee.ArrayList<string>() : imp;
