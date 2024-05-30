@@ -340,6 +340,7 @@ namespace Palete
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
 			foreach(var e in els) {
+				e.file = this.manager.id_to_file.get((int)e.file_id);
 				this.classCache.set(e.fqn, e);
 			}
 			foreach(var e in els) {
