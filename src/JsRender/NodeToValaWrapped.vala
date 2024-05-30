@@ -208,18 +208,9 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 
 	void addWrappedCtor()
 	{
-		// wrapped ctor..
-		// this may need to look up properties to fill in the arguments..
-		// introspection does not workk..... - as things like gtkmessagedialog
-		/*
-		if (cls == 'Gtk.Table') {
-
-		var methods = this.palete.getPropertiesFor(cls, 'methods');
-
-		print(JSON.stringify(this.palete.proplist[cls], null,4));
-		Seed.quit();
-		}
-		*/
+		 var sl =  this.file.getSymbolLoader();
+		var pal = this.file.project.palete;
+ 
 		
 		// ctor can still override.
 		if (this.node.has("* ctor")) {
@@ -235,7 +226,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		// used to hold label and child...
 		 
 		// is the wrapped element a struct?		
-		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		var ncls =pal.getClass(sl, this.node.fqn());
 		if (ncls != null && ncls.nodetype == "Struct") {
 			// we can use regular setters to apply the values.
 			this.addLine(this.ipad + "this.el = " + this.node.fqn() + "();");
