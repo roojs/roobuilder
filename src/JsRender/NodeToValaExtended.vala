@@ -131,7 +131,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		
 		var sl =  this.file.getSymbolLoader();
 		var pal = this.file.project.palete;
-		var ncls = this.file.project.palete.getClass(sl, this.node.fqn());
+		var ncls = pal.getClass(sl, this.node.fqn());
 		if (ncls == null) { 
 			this.addLine(this.ipad + "** classname is invalid - can not make ctor "  + this.node.fqn());
 			return;
