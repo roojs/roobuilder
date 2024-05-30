@@ -226,8 +226,8 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		// used to hold label and child...
 		 
 		// is the wrapped element a struct?		
-		var ncls =pal.getClass(sl, this.node.fqn());
-		if (ncls != null && ncls.nodetype == "Struct") {
+		var ncls = pal.getAny(sl, this.node.fqn());
+		if (ncls != null && ncls.stype == Lsp.SymbolKind.Struct) {
 			// we can use regular setters to apply the values.
 			this.addLine(this.ipad + "this.el = " + this.node.fqn() + "();");
 			return;
@@ -284,14 +284,15 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			default:
 				break;
 		}
-		var default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);		
+		var default_ctor = pal.getAny(sl, this.node.fqn() + ctor);
+ 
 		 
 		
 		// use the default ctor - with arguments (from properties)
 		
-		if (default_ctor != null && default_ctor.paramset != null && default_ctor.paramset.params.size > 0) {
+		if (default_ctor != null  && default_ctor.param_ar.size > 0) {
 			string[] args  = {};
-			foreach(var param in default_ctor.paramset.params) {
+			foreach(var param in default_ctor.param_ar) {
 				 
 				var n = param.name;
 			    GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
@@ -306,7 +307,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 					
 					var v = this.node.get(n);
 
-					if (param.type == "string") {
+					if (param.rtype == "string") {
 						v = "\"" +  v.escape("") + "\"";
 					}
 					if (v == "TRUE" || v == "FALSE") {
@@ -338,15 +339,15 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 					
 					
 				 
-				if (param.type.contains("int")) {
+				if (param.rtype.contains("int")) {
 					args += "0";
 					continue;
 				}
-				if (param.type.contains("float")) {
+				if (param.rtype.contains("float")) {
 					args += "0f";
 					continue;
 				}
-				if (param.type.contains("bool")) {
+				if (param.rtype.contains("bool")) {
 					args += "true"; // always default to true?
 					continue;
 				}
