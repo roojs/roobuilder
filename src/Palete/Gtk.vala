@@ -12,8 +12,7 @@ This basically provides all the data needed to add stuff to gtk objects
 
 namespace Palete {
 
-	 
-	 
+	  
 
 	public class Gtk : Palete {
 		
