@@ -85,7 +85,7 @@ namespace Project {
 		public Palete.Palete palete;
 		 
 		private bool is_scanned = false; 
-		public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir ??? is this used by Roo?
+ 
 		//public Palete.ValaCompileRequest last_request = null; // depricated?
 		public Gee.HashMap<string,GLib.ListStore>? errorsByType = null;
  		public bool loading = false; // flag this to block saving (normally when loading ui that might trigger save..
