@@ -84,7 +84,7 @@ namespace Palete {
 		public string doc(SymbolLoader sl, string what) 
 		{
     		var sy = this.getAny(sl, what);
-			return  sy.doc
+			return  sy.doc;
 			
 		    //return typeof(this.comments[ns][what]) == 'undefined' ?  '' : this.comments[ns][what];
 		}
