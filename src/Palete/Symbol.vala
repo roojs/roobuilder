@@ -58,6 +58,7 @@ namespace Palete {
 		public Gee.HashMap<Lsp.SymbolKind,Gee.ArrayList<Symbol>> property_cache { 
 			get; set; default = new Gee.HashMap<Lsp.SymbolKind,Gee.ArrayList<Symbol>>(); 
 		}
+		public string[]? parent_ids =null;
 		
 		public string sig = "";  
 		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
