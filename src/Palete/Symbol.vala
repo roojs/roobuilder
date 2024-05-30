@@ -53,7 +53,12 @@ namespace Palete {
 		
 		public Gee.HashMap<string,Symbol> props { get; set; default = new Gee.HashMap<string,Symbol>(); }
 		public Gee.HashMap<string,Symbol> signals { get; set; default = new Gee.HashMap<string,Symbol>(); }		
-		public Gee.HashMap<string,Symbol> methods { get; set; default = new Gee.HashMap<string,Symbol>(); }				
+		public Gee.HashMap<string,Symbol> methods { get; set; default = new Gee.HashMap<string,Symbol>(); }	
+		
+		public Gee.HashMap<Lsp.SymbolKind,Gee.ArrayList<Symbol>> property_cache { 
+			get; set; default = new Gee.HashMap<Lsp.SymbolKind,Gee.ArrayList<Symbol>>(); 
+		}
+		
 		public string sig = "";  
 		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> valid_cn  { get; set; default = new Gee.ArrayList<string>(); }
