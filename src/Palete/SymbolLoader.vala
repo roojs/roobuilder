@@ -87,40 +87,44 @@ namespace Palete
 			if (sym == null) {
 				return ret;
 			}
-			var pids = new Gee.ArrayList<string>();
-			pids.add( sym.id.to_string() );
-			this.getParentIds(sym,  pids);
-			string[] pidss = {};
-			foreach(var pid in pids) {
-				pidss += pid;
+			if (!sym.property_cache.has_key(kind)) {
+				 
+				
+				var pids = new Gee.ArrayList<string>();
+				pids.add( sym.id.to_string() );
+				this.getParentIds(sym,  pids);
+				string[] pidss = {};
+				foreach(var pid in pids) {
+					pidss += pid;
+				}
+				
+				var stmt = this.sq.selectPrepare("
+						SELECT 
+							* 
+						FROM 
+							symbol 
+						WHERE 
+							file_id IN (" +   this.manager.file_ids   + ")
+						AND
+							parent_id IN (" + string.joinv(",", pidss) + ") 
+						AND
+							stype = $stype
+						AND
+							is_abstract = 0 
+						AND
+							is_static = 0
+						AND
+							is_sealed = 0
+						AND 
+							deprecated = 0
+
+				");
+				stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)kind);
+				var els = new Gee.ArrayList<Symbol>();
+				this.sq.selectExecute(stmt, els);
+				sym.property_cache.set(kind, els);
 			}
-			
-			var stmt = this.sq.selectPrepare("
-					SELECT 
-						* 
-					FROM 
-						symbol 
-					WHERE 
-						file_id IN (" +   this.manager.file_ids   + ")
-					AND
-						parent_id IN (" + string.joinv(",", pidss) + ") 
-					AND
-						stype = $stype
-					AND
-						is_abstract = 0 
-					AND
-						is_static = 0
-					AND
-						is_sealed = 0
-					AND 
-						deprecated = 0
-
-			");
-			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)kind);
-			var els = new Gee.ArrayList<Symbol>();
-			this.sq.selectExecute(stmt, els);
-			
-
+			var els = sym.property_cache.set(kind, els);
 			foreach(var s in els) {
 				var k = s.name;
 				if (ignore_list != null && GLib.strv_contains(ignore_list, k)) {
@@ -144,7 +148,7 @@ namespace Palete
 					 
 				ret.set(s.name, s);
 			}
-			
+
 			 
 			return ret;
 		
