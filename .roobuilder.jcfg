@@ -43,7 +43,6 @@
                 "src/Palete/Gtk.vala",
                 "src/Palete/Palete.vala",
                 "src/Palete/Roo.vala",
-                "src/Palete/VapiParser.vala",
                 "src/Builder4/WindowLeftTree.bjs",
                 "src/Builder4/PopoverAddProp.bjs",
                 "src/Builder4/PopoverFileDetails.bjs",

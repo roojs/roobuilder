@@ -1447,7 +1447,7 @@
     "        return ;",
     "    }",
     "",
-    "    node.loadProps(this.model.el, _this.main_window.windowstate.project); ",
+    "    node.loadProps(this.model.el, file); ",
     "    ",
     "    ",
     "   //GLib.debug(\"clear selection\\n\");",
