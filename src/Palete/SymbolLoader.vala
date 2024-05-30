@@ -53,6 +53,12 @@ namespace Palete
 		public Symbol? singleByFqn(string fqn)
 		{
 			GLib.debug("singleByFqn get %s",fqn); 
+			this.loadClassCache();
+			if (this.classCache.has_key(fqn)) {
+				return this.classCache.get(fqn);
+			}
+			return null;
+			/*
 			var res = new Symbol();
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -73,7 +79,7 @@ namespace Palete
 						
 			
 			return res;
-			
+			*/
 			
 		}
 		/*
