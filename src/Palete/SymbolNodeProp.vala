@@ -99,6 +99,7 @@ namespace Palete {
 			
 			 
 			if (cls.stype == Lsp.SymbolKind.Class) {
+				return; // ?? we cant add properties that are classes really..
 				var add = new JsRender.NodeProp.raw(s.name, str, "");
 				// no propertyof ?
 				
