@@ -613,7 +613,7 @@
 	 					cur_project.palete.getDropListFromSymbols(sl , fqn)));	
 	 					
  					var dn = cur_project.palete.fqnToNode(sl, fqn);
- 					print("\n\DropNode :\n%s", dn.toJsonString());
+ 					print("\n\nDropNode :\n%s", dn.toJsonString());
 				}
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
