@@ -344,7 +344,6 @@ namespace Palete {
 					is_sealed INT2,
 			 		is_readable INT2,
 					is_writable INT2,
-			 		is_ctor INT2,
 					is_static INT2,
 					is_ctor_only INT2,
 					
