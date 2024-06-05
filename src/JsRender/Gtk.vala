@@ -172,7 +172,7 @@ namespace JsRender {
 					: 0;
 					
 				GLib.debug("toSource Time check targettime=%d, sourcetime = %d this.vtime = %d",
-					ttime, stime, this.vtime
+					(int)ttime, (int)stime, (int)this.vtime
 				);
 				if (ttime >= stime && this.vtime < ttime) {
 					GLib.debug("toSource %s from existing vala file", this.path);
