@@ -433,6 +433,7 @@ namespace Palete {
 			}
 			*/
 			// manually set... - based on JSON defaults file?	
+			this.load(); // make sure it's available..
 
 			if (!this.node_defaults.has_member("defaults")) {
 				return ret ;
