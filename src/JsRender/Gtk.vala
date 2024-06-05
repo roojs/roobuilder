@@ -170,8 +170,12 @@ namespace JsRender {
 					GLib.File.new_for_path(this.targetName()).query_info( 
 						FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix()
 					: 0;
+					
+				GLib.debug("toSource Time check targettime=%d, sourcetime = %d this.vtime = %d",
+					ttime, stime, this.vtime
+				);
 				if (ttime >= stime && this.vtime < ttime) {
-				GLib.debug("toSource %s from existing vala file", this.path);
+					GLib.debug("toSource %s from existing vala file", this.path);
 					this.vtime = ttime;
 					string ret;
 					GLib.FileUtils.get_contents(this.targetName(), out ret);
