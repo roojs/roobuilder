@@ -94,10 +94,10 @@ namespace Palete
 			foreach(var pid in pids) {
 				pidss += pid;
 			}
-			//var cols = this.getColumnsExcept("doc");
+			var cols = this.sq.getColsExcept({ "doc" });
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						* 
+						" + cols + "
 					FROM 
 						symbol 
 					WHERE 
