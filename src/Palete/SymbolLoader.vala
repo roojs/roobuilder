@@ -53,12 +53,6 @@ namespace Palete
 		public Symbol? singleByFqn(string fqn)
 		{
 			GLib.debug("singleByFqn get %s",fqn); 
-			this.loadClassCache();
-			if (this.classCache.has_key(fqn)) {
-				return this.classCache.get(fqn);
-			}
-			return null;
-			/*
 			var res = new Symbol();
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -79,7 +73,7 @@ namespace Palete
 						
 			
 			return res;
-			*/
+			
 			
 		}
 		/*
@@ -93,47 +87,40 @@ namespace Palete
 			if (sym == null) {
 				return ret;
 			}
-			if (!sym.property_cache.has_key(kind)) {
-				 
-				
-				var pids = new Gee.ArrayList<string>();
-				if (sym.parent_ids == null) {
-					pids.add( sym.id.to_string() );
-					this.getParentIds(sym,  pids);
-					string[] spids  = {};
-					foreach(var pid in pids) {
-						spids  += pid;
-					}
-					sym.parent_ids = spids;
-				}
-				
-				var stmt = this.sq.selectPrepare("
-						SELECT 
-							* 
-						FROM 
-							symbol 
-						WHERE 
-							file_id IN (" +   this.manager.file_ids   + ")
-						AND
-							parent_id IN (" + string.joinv(",", sym.parent_ids ) + ") 
-						AND
-							stype = $stype
-						AND
-							is_abstract = 0 
-						AND
-							is_static = 0
-						AND
-							is_sealed = 0
-						AND 
-							deprecated = 0
-
-				");
-				stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)kind);
-				var els = new Gee.ArrayList<Symbol>();
-				this.sq.selectExecute(stmt, els);
-				sym.property_cache.set(kind, els);
+			var pids = new Gee.ArrayList<string>();
+			pids.add( sym.id.to_string() );
+			this.getParentIds(sym,  pids);
+			string[] pidss = {};
+			foreach(var pid in pids) {
+				pidss += pid;
 			}
-			var els = sym.property_cache.get(kind);
+			//var cols = this.getColumnsExcept("doc");
+			var stmt = this.sq.selectPrepare("
+					SELECT 
+						* 
+					FROM 
+						symbol 
+					WHERE 
+						file_id IN (" +   this.manager.file_ids   + ")
+					AND
+						parent_id IN (" + string.joinv(",", pidss) + ") 
+					AND
+						stype = $stype
+					AND
+						is_abstract = 0 
+					AND
+						is_static = 0
+					AND
+						is_sealed = 0
+					AND 
+						deprecated = 0
+
+			");
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)kind);
+			var els = new Gee.ArrayList<Symbol>();
+			this.sq.selectExecute(stmt, els);
+			
+
 			foreach(var s in els) {
 				var k = s.name;
 				if (ignore_list != null && GLib.strv_contains(ignore_list, k)) {
@@ -157,7 +144,7 @@ namespace Palete
 					 
 				ret.set(s.name, s);
 			}
-
+			
 			 
 			return ret;
 		
@@ -199,8 +186,6 @@ namespace Palete
 		
 		private void getParentIds(Symbol s, Gee.ArrayList<string> ret, Gee.ArrayList<string>? imp = null)
 		{
-			
-			
 			GLib.debug("getParentIds   %s",s.fqn); 
 			var top = imp == null;
 			imp = top ? new Gee.ArrayList<string>() : imp;
@@ -340,7 +325,6 @@ namespace Palete
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
 			foreach(var e in els) {
-				e.file = this.manager.id_to_file.get((int)e.file_id);
 				this.classCache.set(e.fqn, e);
 			}
 			foreach(var e in els) {
