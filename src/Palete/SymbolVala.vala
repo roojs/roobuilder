@@ -10,9 +10,9 @@ namespace Palete {
 			this.file = builder.filemanager.factory_by_path(s.source_reference.file.filename);
 			if (this.file.path.has_suffix(".vapi")) {
 				this.gir_version = s.source_reference.file.gir_version;
-				GLib.debug("SET GIR VErsion:%s  %s", this.file.path, 
-					s.source_reference.file.gir_version
-				);
+				//GLib.debug("SET GIR VErsion:%s  %s", this.file.path, 
+				//	s.source_reference.file.gir_version
+				//);
 			}
 			
 			this.begin_line = s.source_reference.begin.line;
