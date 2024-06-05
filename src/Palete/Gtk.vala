@@ -420,6 +420,9 @@ namespace Palete {
 			 		snp.convert(p, cls.fqn);
 				}
 			}
+			/*
+			CTOR properties are not really that usefull to add by the looks of it.
+			
 			var props = this.getPropertiesFor(sl, fqn, JsRender.NodePropType.PROP);
 			foreach(var p in props.values) {
 				if (!p.is_ctor_only || ret.has(p.name)) {
@@ -427,6 +430,7 @@ namespace Palete {
 				}
 				ret.add_prop(snp.convert(p, cls.fqn));
 			}
+			*/
 			// manually set... - based on JSON defaults file?	
 
 			if (!this.node_defaults.has_member("defaults")) {
