@@ -220,20 +220,28 @@ namespace SQ {
 	 		}
 		}
 		
-		 
+		public string[] getColsExcept(string[]? except)
+		{
+		 	assert(this.table != "");
+			var sc = Schema.load(this.table);
+			string[] keys = {};			
+			foreach(var s in sc) {
+				if (except != null && GLib.strv_contains(except, s.name)) {
+					continue;
+				}
+				keys += s.name;
+		 	}
+		 	return keys;
+	 	}
+		
 		 
 		// select using 'col data?'
 		public void select( string where,  Gee.ArrayList<T> ret )
 		{
 			
-			string[] keys = {};
+
 		 	assert(this.table != "");
-			var sc = Schema.load(this.table);
-			 
-			foreach(var s in sc) {
-				keys += s.name;
-		 	}
-			
+			var keys = this.getColsExcept(null);
 			var q = "SELECT " +  string.joinv(",", keys) + " FROM  " + this.table + "  " + where;
 			this.selectQuery(q, ret);
 			
