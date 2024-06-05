@@ -17,7 +17,9 @@ namespace Palete {
 		public int64 id   { get; set; default = -1; }
 		public Lsp.SymbolKind stype { get; set; }
 		public SymbolFile? 	file = null;
-		 
+		// actually from file gir.. but we keep it here to do quick lookups on gir doc data.
+		public string gir_version = { get; set; default = ""; }; 
+		
 		public int begin_line { get; set; }
 		public int begin_col { get; set; }
 		public int end_line { get; set; }
@@ -53,13 +55,7 @@ namespace Palete {
 		
 		public Gee.HashMap<string,Symbol> props { get; set; default = new Gee.HashMap<string,Symbol>(); }
 		public Gee.HashMap<string,Symbol> signals { get; set; default = new Gee.HashMap<string,Symbol>(); }		
-		public Gee.HashMap<string,Symbol> methods { get; set; default = new Gee.HashMap<string,Symbol>(); }	
-		
-		public Gee.HashMap<Lsp.SymbolKind,Gee.ArrayList<Symbol>> property_cache { 
-			get; set; default = new Gee.HashMap<Lsp.SymbolKind,Gee.ArrayList<Symbol>>(); 
-		}
-		public string[]? parent_ids =null;
-		
+		public Gee.HashMap<string,Symbol> methods { get; set; default = new Gee.HashMap<string,Symbol>(); }				
 		public string sig = "";  
 		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> valid_cn  { get; set; default = new Gee.ArrayList<string>(); }
@@ -218,7 +214,7 @@ namespace Palete {
 			this.is_static=s.is_static;
 			this.is_gir=s.is_gir;
 			this.is_ctor_only=s.is_ctor_only;
-			
+			this.gir_version=s.gir_version;
 			 
 			this.implements.clear();
 			this.param_ar.clear();
@@ -326,6 +322,7 @@ namespace Palete {
 					CREATE TABLE symbol (
 					id INTEGER PRIMARY KEY,
 					file_id INTEGER ,
+					gir_version TEXT,
 					parent_id INTEGER,
 					stype INTEGER,
 					
@@ -344,6 +341,7 @@ namespace Palete {
 					is_sealed INT2,
 			 		is_readable INT2,
 					is_writable INT2,
+			 		is_ctor INT2,
 					is_static INT2,
 					is_ctor_only INT2,
 					
