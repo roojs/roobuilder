@@ -33,7 +33,7 @@
             "label" : "Label"
         }
 
-    }
+    },
 
     "child" : {
         "Gtk.Fixed" : {
