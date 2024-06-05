@@ -18,7 +18,7 @@ namespace Palete {
 		public Lsp.SymbolKind stype { get; set; }
 		public SymbolFile? 	file = null;
 		// actually from file gir.. but we keep it here to do quick lookups on gir doc data.
-		public string gir_version  { get; set; default = ""; }; 
+		public string gir_version  { get; set; default = ""; }
 		
 		public int begin_line { get; set; }
 		public int begin_col { get; set; }
