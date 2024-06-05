@@ -575,7 +575,7 @@
 				GLib.error("missing project, use --project to select which project");
 			}
 			GLib.debug("running girparser");
-			//new Palete.ValaSymbolGirBuilder();
+			 new Palete.ValaSymbolGirBuilder();
 			
   			GLib.debug("running vapiparser");
    
@@ -611,9 +611,6 @@
 	 					cur_project.palete.getChildListFromSymbols(sl , fqn, true)));	
 	 				print("\n\nDroplist :\n%s", this.geeArrayToString(
 	 					cur_project.palete.getDropListFromSymbols(sl , fqn)));	
-	 					
- 					var dn = cur_project.palete.fqnToNode(sl, fqn);
- 					print("\n\nDropNode :\n%s", dn.toJsonString());
 				}
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
