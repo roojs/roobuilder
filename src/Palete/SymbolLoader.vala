@@ -97,7 +97,7 @@ namespace Palete
 			var cols = this.sq.getColsExcept({ "doc" });
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						" + cols + "
+						" + string.joinv(",",cols) + "
 					FROM 
 						symbol 
 					WHERE 
