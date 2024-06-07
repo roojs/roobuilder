@@ -255,7 +255,7 @@ namespace Palete {
 	 	public override Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl,  string fqn, JsRender.NodePropType ptype) 
 		{
 			this.load();
-			var cls = this.classes.get(key);
+			var cls = this.classes.get(fqn);
 			if (cls == null) {
 				return new Gee.HashMap<string,Symbol>();
 			}
