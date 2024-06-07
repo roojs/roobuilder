@@ -255,14 +255,20 @@ namespace Palete {
 	 	public override Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl,  string fqn, JsRender.NodePropType ptype) 
 		{
 			this.load();
+			var cls = this.classes.get(key);
+			if (cls == null) {
+				return new Gee.HashMap<string,Symbol>();
+			}
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
-					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Property, null);
+					return cls.props;
+
 				case JsRender.NodePropType.LISTENER:
-					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Signal, null);				
+					return cls.signals;
+
  
 				case JsRender.NodePropType.METHOD:
-					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method, null);
+					return new Gee.HashMap<string,Symbol>();				
 					
  				default:
 					GLib.error( "getPropertiesFor called with: " + ptype.to_string());
