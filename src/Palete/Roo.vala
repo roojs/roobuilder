@@ -45,10 +45,10 @@ namespace Palete {
 				var o = ar.get_object_element(i);
 				var name = o.get_string_member("name"); 
 				var prop = new Symbol.new_simple(kind, name );  
-				 
+
 				prop.rtype        = o.get_string_member("type");
 				prop.doc  = o.get_string_member("desc");
-				prop.fqn = (o.has_member("memberOf") ? o.get_string_member("memberOf") : cls.name) + "." + name;
+				prop.fqn = (o.has_member("memberOf") ? o.get_string_member("memberOf") : cls.fqn) + "." + name;
 				
 				// this is the function default.
 				prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
