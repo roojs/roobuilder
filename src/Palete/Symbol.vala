@@ -145,6 +145,8 @@ namespace Palete {
 		public Symbol.new_simple(Lsp.SymbolKind kind, string fqn) {
 			this.stype = kind;
 			this.fqn = fqn;
+			var bits = fqn.split(".");
+			this.name = bits[bits.length-1];
 			//?? name??
 			
 		
