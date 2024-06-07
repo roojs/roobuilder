@@ -62,7 +62,7 @@ namespace Palete {
 					
 				}	
 				
-				GLib.debug("%s : %s  (%s)", cls.name,  name , type);
+				GLib.debug("add Prop : FQN=%s : NAME=%s  (RTYPE= %s)", prop.fqn,  prop.name ,prop.rtype);
 				ret.set(name,prop);
 			}
 			return ret;
