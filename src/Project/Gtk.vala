@@ -266,9 +266,11 @@ namespace Project
 			
 		} 
 		// is this needed? (by test code only?)
- 		public override Palete.SymbolLoader getSymbolLoader (string cgn) {
- 			  
- 			return this.compilegroups.get(cgn).symbolLoader();
+ 		public override Palete.SymbolLoader getSymbolLoader (string? cgn) {
+ 			 if (cgn == null) {
+ 			 	Glib.error("Gtk needs a compile group");
+		 	}
+ 			return this.bcompilegroups.get(cgn).symbolLoader();
  		}
 		public override Palete.SymbolLoader? getSymbolLoaderForFile (JsRender.JsRender file) {
 			var cgn = this.firstBuildModuleWith(file);
