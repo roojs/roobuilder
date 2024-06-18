@@ -574,7 +574,7 @@
 			}
 			if (cur_project.xtype == "Roo") {
 				 if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
-					this.dumpSymbol();
+					this.dumpSymbol(cur_project);
 					GLib.Process.exit(Posix.EXIT_SUCCESS);
 				}
 				return;
@@ -610,7 +610,7 @@
 
  
 				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
-					this.dumpSymbol();
+					this.dumpSymbol(cur_project);
 				}
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
@@ -623,7 +623,7 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 		
-		void dumpSymbol()
+		void dumpSymbol(Project.Project? cur_project)
 		{
 			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
 
