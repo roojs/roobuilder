@@ -631,7 +631,7 @@
  			print("\n\nPropsList:\n%s", this.symbolArrayToString(
  				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP)));
 			print("\n\nSignalList:\n%s",  this.symbolArrayToString(
-				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.SIGNAL)));
+				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.LISTENER)));
 			
 			print("\n\nMethods:\n%s", this.symbolArrayToString(
 				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.METHOD)));
