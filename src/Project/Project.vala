@@ -1099,7 +1099,7 @@ namespace Project {
 		
 		}
 		
-		public abstract Palete.SymbolLoader getSymbolLoader (string cgname); 
+		public abstract Palete.SymbolLoader getSymbolLoader (string? cgname); 
 		public abstract Palete.SymbolLoader? getSymbolLoaderForFile (JsRender.JsRender file); 		
 		public abstract Palete.LanguageClient  getLanguageServer(string lang);
 		
