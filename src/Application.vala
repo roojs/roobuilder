@@ -638,7 +638,7 @@
 
 			print("\n\nImplementations:\n%s", this.geeArrayToString( 
 				pal.getImplementations(sl, fqn)
-			); 
+			)); 
 			print("\n\nChildList:\n%s", this.geeArrayToString(
 				pal.getChildListFromSymbols(sl , fqn, false)));	
 			print("\n\nChildList (with props):\n%s", this.geeArrayToString(
