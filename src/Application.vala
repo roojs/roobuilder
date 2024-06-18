@@ -637,7 +637,7 @@
 				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.METHOD)));
 
 			print("\n\nImplementations:\n%s", this.geeArrayToString( 
-				getImplementations(sl, fqn)
+				pal.getImplementations(sl, fqn)
 			); 
 			print("\n\nChildList:\n%s", this.geeArrayToString(
 				pal.getChildListFromSymbols(sl , fqn, false)));	
