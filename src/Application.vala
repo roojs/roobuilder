@@ -630,15 +630,21 @@
 			var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
  			print("\n\nPropsList:\n%s", this.symbolArrayToString(
  				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP)));
-			print("\n\nSignalList:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Signal, null)));
-			print("\n\nMethods:\n%s", this.symbolArrayToString(sl.getPropertiesFor( fqn, Lsp.SymbolKind.Method, null)));
-			print("\n\nImplementations:\n%s", this.geeArrayToString( sl.implementations( fqn,Lsp.SymbolKind.Class)));
+			print("\n\nSignalList:\n%s",  this.symbolArrayToString(
+				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.SIGNAL)));
+			
+			print("\n\nMethods:\n%s", this.symbolArrayToString(
+				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.METHOD)));
+
+			print("\n\nImplementations:\n%s", this.geeArrayToString( 
+				getImplementations(sl, fqn)
+			); 
 			print("\n\nChildList:\n%s", this.geeArrayToString(
-				cur_project.palete.getChildListFromSymbols(sl , fqn, false)));	
+				pal.getChildListFromSymbols(sl , fqn, false)));	
 			print("\n\nChildList (with props):\n%s", this.geeArrayToString(
-				cur_project.palete.getChildListFromSymbols(sl , fqn, true)));	
+				pal.getChildListFromSymbols(sl , fqn, true)));	
 			print("\n\nDroplist :\n%s", this.geeArrayToString(
-				cur_project.palete.getDropListFromSymbols(sl , fqn)));	
+				pal.getDropListFromSymbols(sl , fqn)));	
 			
 		}
 			
