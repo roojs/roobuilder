@@ -269,8 +269,8 @@ namespace Palete {
 
  
 				case JsRender.NodePropType.METHOD:
-					return new Gee.HashMap<string,Symbol>();				
-					
+					return cls.methods;
+					 
  				default:
 					GLib.error( "getPropertiesFor called with: " + ptype.to_string());
 					//var ret = new Gee.HashMap<string,GirObject>();
