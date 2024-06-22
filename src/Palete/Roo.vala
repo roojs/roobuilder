@@ -136,8 +136,8 @@ namespace Palete {
 						if (!add_to.has_key(ad_c)) {
 							add_to.set(ad_c, new Gee.ArrayList<string>());
 						}
-						if (!add_to.get(ad_c).contains(cls.name)) {
-							add_to.get(ad_c).add(cls.name);
+						if (!add_to.get(ad_c).contains(cls.fqn)) {
+							add_to.get(ad_c).add(cls.fqn);
 						}
 					}
 				}
@@ -152,9 +152,9 @@ namespace Palete {
 					for (var i =0 ; i < vcn.get_length(); i++) {
 				 		if ("builder" == vcn.get_string_element(i)) {
 				 			// this class can be added to the top level.
-				 			GLib.debug("Add %s to *top", cls.name);
+				 			GLib.debug("Add %s to *top", cls.fqn);
 				 			
-							this.top_classes.add(cls.name);
+							this.top_classes.add(cls.fqn);
 							break;
 			 			}
 			 			
