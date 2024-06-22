@@ -570,7 +570,7 @@
 		{
 			
 			if (cur_project == null) {
-				GLib.error("missing project, use --project to select which project");
+				return;
 			}
 			if (cur_project.xtype == "Roo") {
 				 if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
