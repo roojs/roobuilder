@@ -177,7 +177,7 @@ namespace Palete {
 						if (/^Roo\./.match(type) && classes.has_key(type)) {
 							
 							 
-							cls.valid_cn.add(type + ":" +   gir_obj.fqn );
+							cls.valid_cn.add(type + ":" +   gir_obj.name );
 							// Roo.bootstrap.panel.Content:east
 							// also means that  Roo.bootstrap.panel.Grid:east works
 							var prop_type = classes.get(type);
