@@ -177,19 +177,19 @@ namespace Palete {
 						if (/^Roo\./.match(type) && classes.has_key(type)) {
 							
 							 
-							cls.valid_cn.add(type + ":" +   gir_obj.name );
+							cls.valid_cn.add(type + ":" +   gir_obj.fqn );
 							// Roo.bootstrap.panel.Content:east
 							// also means that  Roo.bootstrap.panel.Grid:east works
 							var prop_type = classes.get(type);
 							// was all_implements
 							foreach(var imp_str in prop_type.all_implementations) {
 								//GLib.debug("addChild for %s - child=  %s:%s", cls.name, imp_str, gir_obj.name);
-								cls.valid_cn.add(imp_str + ":" +    gir_obj.name);
+								cls.valid_cn.add(imp_str + ":" +    gir_obj.fqn);
 								if (!add_to.has_key(imp_str)) {
 									add_to.set( imp_str, new Gee.ArrayList<string>());
 								}
-								if (!add_to.get( imp_str).contains(cls.name)) {
-									add_to.get( imp_str ).add(cls.name );
+								if (!add_to.get( imp_str).contains(cls.fqn)) {
+									add_to.get( imp_str ).add(cls.fqn );
 								}
 								
 							}
@@ -198,8 +198,8 @@ namespace Palete {
 							if (!add_to.has_key( type)) {
 								add_to.set( type, new Gee.ArrayList<string>());
 							}
-							if (!add_to.get(type).contains(cls.name)) {
-								add_to.get( type ).add(cls.name );
+							if (!add_to.get(type).contains(cls.fqn)) {
+								add_to.get( type ).add(cls.fqn );
 							}
 						}
 					}
