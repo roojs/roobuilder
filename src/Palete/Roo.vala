@@ -371,7 +371,7 @@ namespace Palete {
 		{
 			
 			if (this.dropCache.has_key(rval)) {
-				GLib.debug("getting droplist from cache  %s has %d can_drop_onto", rrval, this.dropCache.get(rval).size);
+				GLib.debug("getting droplist from cache  %s has %d can_drop_onto", rval, this.dropCache.get(rval).size);
 				return this.dropCache.get(rval);
 			}
 			// we might be dragging  Roo.bootstrap.layout.Region:center
@@ -390,7 +390,7 @@ namespace Palete {
 				return ret; //nothing..
 			}
 			// copies a array?
-			GLib.debug("clss %s has %d can_drop_onto", rrval, cls.can_drop_onto.size);
+			GLib.debug("clss %s has %d can_drop_onto", rval, cls.can_drop_onto.size);
 			foreach(var str in cls.can_drop_onto) {
 				ret.add(str);
 			}
