@@ -966,7 +966,9 @@ public class Xcls_WindowRooView : Object
 		    
 		     var rootURL = project.rootURL;
 		
-		    
+		    if (!this.el.get_realized()) {
+		    	return;
+			}
 		    
 		    this.el.load_html( html , 
 		        //fixme - should be a config option!
