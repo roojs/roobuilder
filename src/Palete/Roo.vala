@@ -207,8 +207,9 @@ namespace Palete {
 				 
 			}
 			foreach(var cls in this.classes.values) {
-				if (add_to.has_key(cls.name)) {
-					cls.can_drop_onto = add_to.get(cls.name);
+				if (add_to.has_key(cls.fqn)) {
+					
+					cls.can_drop_onto = add_to.get(cls.fqn);
 				}
 			}
 			Roo.classes_cache = this.classes;
