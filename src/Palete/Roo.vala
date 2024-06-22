@@ -184,7 +184,7 @@ namespace Palete {
 							// was all_implements
 							foreach(var imp_str in prop_type.all_implementations) {
 								//GLib.debug("addChild for %s - child=  %s:%s", cls.name, imp_str, gir_obj.name);
-								cls.valid_cn.add(imp_str + ":" +    gir_obj.fqn);
+								cls.valid_cn.add(imp_str + ":" +    gir_obj.name);
 								if (!add_to.has_key(imp_str)) {
 									add_to.set( imp_str, new Gee.ArrayList<string>());
 								}
