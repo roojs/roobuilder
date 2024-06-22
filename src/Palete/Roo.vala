@@ -341,6 +341,7 @@ namespace Palete {
           		   // some of these children will be eg: Roo.bootstrap.layout.Region:center
         			ar = this.classes.get(in_rval).valid_cn;
         		} else {
+        			GLib.debug("could not find class %s", in_rval);
         			ar = new Gee.ArrayList<string>();
     			}
         	}
@@ -370,6 +371,7 @@ namespace Palete {
 		{
 			
 			if (this.dropCache.has_key(rval)) {
+				GLib.debug("getting droplist from cache  %s has %d can_drop_onto", rrval, this.dropCache.get(rval).size);
 				return this.dropCache.get(rval);
 			}
 			// we might be dragging  Roo.bootstrap.layout.Region:center
@@ -384,9 +386,11 @@ namespace Palete {
 				cls = this.classes.get(rr);
 		    }
 			if (cls == null) {
+				GLib.debug("getDropList no class found for %s", rval);
 				return ret; //nothing..
 			}
-			
+			// copies a array?
+			GLib.debug("clss %s has %d can_drop_onto", rrval, cls.can_drop_onto.size);
 			foreach(var str in cls.can_drop_onto) {
 				ret.add(str);
 			}
