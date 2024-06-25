@@ -970,11 +970,11 @@ public class Xcls_WindowRooView : Object
 		    	return;
 			}
 		    // disabled as it keeps crashing here?
-		   // this.el.load_html( html , 
+		    this.el.load_html( html , 
 		        //fixme - should be a config option!
-		    //    (rootURL.length > 0 ? rootURL : "xhttp://localhost/roobuilder/")
-		    //);
-		   //   this.initInspector();   
+		       (rootURL.length > 0 ? rootURL : "xhttp://localhost/roobuilder/")
+		    );
+		    this.initInspector();   
 		    // force the inspector...        
 		       //   this.initInspector();
 		        
