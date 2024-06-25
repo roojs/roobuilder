@@ -969,7 +969,7 @@ public class Xcls_WindowRooView : Object
 		    if (!this.el.get_realized()) {
 		    	return;
 			}
-		    
+		    // disabled as it keeps crashing here?
 		   // this.el.load_html( html , 
 		        //fixme - should be a config option!
 		    //    (rootURL.length > 0 ? rootURL : "xhttp://localhost/roobuilder/")
