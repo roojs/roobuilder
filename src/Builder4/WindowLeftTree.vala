@@ -1163,6 +1163,10 @@ public class Xcls_WindowLeftTree : Object
 				this.addHighlight(null,"");
 			
 			});
+			this.el.enter.connect( (x, y) => {
+			
+				return Gdk.DragAction;
+			});
 			this.el.drop.connect( (v, x, y) => {
 				
 				// must get the pos before we clear the hightlihg.

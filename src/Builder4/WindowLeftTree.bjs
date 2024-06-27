@@ -673,6 +673,13 @@
            "}",
            " "
           ],
+          "enter" : [
+           "(x, y) => {",
+           "",
+           "\treturn Gdk.DragAction;",
+           "}",
+           ""
+          ],
           "leave" : [
            "( ) => {",
            "\tthis.addHighlight(null,\"\");",
