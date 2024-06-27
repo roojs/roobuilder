@@ -32,7 +32,7 @@ namespace Palete {
 			if (s.rtype.contains(".") || s.rtype.contains("|") || s.rtype.contains("/")) {
 				var ret = new JsRender.NodeProp.prop(s.name, s.rtype, def);  ///< was raw..?
 				ret.propertyof = s.property_of();
-				r.doc = s.doc;
+				ret.doc = s.doc;
 				this.nodePropAddChildren(ret, s, s.rtype);
 				if (ret.childstore.n_items == 1) {
 					var np = (JsRender.NodeProp) ret.childstore.get_item(0);

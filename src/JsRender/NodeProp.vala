@@ -184,7 +184,7 @@ namespace JsRender
 
 		public string propertyof { get;   set; }
 		
-		public string doc { get;   set; default = ""}
+		public string doc { get;   set; default = ""; }
 		public NodeProp(string name, NodePropType ptype, string rtype, string val) {
 			this.name = name;
 			this.ptype = ptype;
@@ -560,7 +560,8 @@ namespace JsRender
 		
 		public string to_property_option_tooltip()
 		{
-			return this.to_property_option_markup( false ); // fixme will probaly want help info (possibly by havinga  reference to the GirObject that its created from
+			return GLib.Markup.escape_text(this.doc);
+			//return this.to_property_option_markup( false ); // fixme will probaly want help info (possibly by havinga  reference to the GirObject that its created from
 		}
 		
 		
