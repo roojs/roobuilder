@@ -18,6 +18,7 @@ namespace Palete {
 				// was a listener overrident?? why?
 				 var r = new JsRender.NodeProp.listener(s.name,   s.sig); 
 				 r.propertyof = s.property_of();
+				 r.doc = s.doc;
 				 // notify[xxxx] << for all the properties of the symbol.
 				 if (s.name == "notify" && this.palete.name == "Gtk") {
 				 	this.nodePropAddNotify(r, add_to_fqn);
@@ -31,6 +32,7 @@ namespace Palete {
 			if (s.rtype.contains(".") || s.rtype.contains("|") || s.rtype.contains("/")) {
 				var ret = new JsRender.NodeProp.prop(s.name, s.rtype, def);  ///< was raw..?
 				ret.propertyof = s.property_of();
+				r.doc = s.doc;
 				this.nodePropAddChildren(ret, s, s.rtype);
 				if (ret.childstore.n_items == 1) {
 					var np = (JsRender.NodeProp) ret.childstore.get_item(0);
@@ -48,16 +50,19 @@ namespace Palete {
 			}
 			if (s.rtype.down() == "array"  ) {
 				var  r = new JsRender.NodeProp.raw(s.name, s.rtype, "[\n\n]");
+				 r.doc = s.doc;
 				r.propertyof = s.property_of();
 				return  r;			
 			}
 			if (s.rtype.down() == "object"  ) {
 				var  r =  new JsRender.NodeProp.raw(s.name, s.rtype, "{\n\n}");
+				 r.doc = s.doc;
 				r.propertyof = s.property_of();
 				return  r;			
 			}
 			// plain property.. no children..
 			var r = new JsRender.NodeProp.prop(s.name, s.rtype, def); // signature?
+			 r.doc = s.doc;
 			r.propertyof = s.property_of();
 			return  r;
 		
