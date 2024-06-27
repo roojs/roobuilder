@@ -90,6 +90,9 @@ public class Xcls_PopoverAddObject : Object
 		// max hieght ...
 	    this.el.set_size_request( 350, h); // full height?
 	
+		if (this.el.parent != null) {
+			this.el.unparent();
+		}
 	      this.el.set_parent(onbtn);
 	
 	    //if (this.el.relative_to == null) {
