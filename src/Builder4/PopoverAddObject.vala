@@ -428,6 +428,10 @@ public class Xcls_PopoverAddObject : Object
 			 	
 			    var paintable = new Gtk.WidgetPaintable(widget);
 			    this.el.set_icon(paintable, 0,0);
+			    
+			      drag.action = Gdk.DragAction.COPY;
+			      drag.selected_action = Gdk.DragAction.COPY;
+			    
 			  //  GLib.Idle.add(() => {
 			//	    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
 			//	    return false;
