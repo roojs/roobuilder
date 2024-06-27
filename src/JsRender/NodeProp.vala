@@ -184,7 +184,7 @@ namespace JsRender
 
 		public string propertyof { get;   set; }
 		
-		
+		public string doc { get;   set; }
 		public NodeProp(string name, NodePropType ptype, string rtype, string val) {
 			this.name = name;
 			this.ptype = ptype;
