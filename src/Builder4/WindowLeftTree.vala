@@ -315,62 +315,7 @@ public class Xcls_WindowLeftTree : Object
 			// init method
 
 			{
-			 /*
-			  this.css = new Gtk.CssProvider();
-			//	try {
-					this.css.load_from_string("
-			#left-tree-view { font-size: 12px;}	
-			.drag-over  { background-color:#88a3bc; }
-			.drag-below  {   
-			 border-bottom-width: 5px; 
-			 border-bottom-style: solid;
-			 border-bottom-color: #88a3bc;
-			}
-			.drag-above  {
-			 border-top-width: 5px;
-			 border-top-style: solid;
-			 border-top-color: #88a3bc;
-			}
-			.node-err  {
-			 border-top-width: 5px;
-			 border-top-style: solid;
-			 border-top-color: red;
-			 border-bottom-width: 5px; 
-			 border-bottom-style: solid;
-			 border-bottom-color: red;
-			}
-			.node-warn  {
-			 border-top-width: 5px;
-			 border-top-style: solid;
-			 border-top-color: #ABF4EB;
-			 border-bottom-width: 5px; 
-			 border-bottom-style: solid;
-			 border-bottom-color: #ABF4EB;
-			}
-			.node-depr  {
-			 border-top-width: 5px;
-			 border-top-style: solid;
-			 border-top-color: #EEA9FF;
-			 border-bottom-width: 5px; 
-			 border-bottom-style: solid;
-			 border-bottom-color: #EEA9FF;
-			}
-			
-			#left-tree-view indent {
-			-gtk-icon-size : 2px;
-			}
-			#left-tree-view indent:nth-last-child(2)  {
-			min-width: 24px;
-			}
-			");
-			
-				Gtk.StyleContext.add_provider_for_display(
-					this.el.get_display(),
-					this.css,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-				);
-				*/
-				  
+			   
 			}
 		}
 
