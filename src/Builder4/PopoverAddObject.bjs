@@ -59,7 +59,7 @@
            "    ",
            "  ",
            "    ",
-           "    GLib.Idle.add(() => {",
+           "    GLib.Timeout.add(100, () => {",
            " \t    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. ",
            " \t    return false;",
            "    });",

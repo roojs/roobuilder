@@ -431,7 +431,7 @@ public class Xcls_PopoverAddObject : Object
 			    
 			  
 			    
-			    GLib.Idle.add(() => {
+			    GLib.Timeout.add(100, () => {
 			 	    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
 			 	    return false;
 			    });
