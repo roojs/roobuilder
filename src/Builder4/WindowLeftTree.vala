@@ -1164,8 +1164,8 @@ public class Xcls_WindowLeftTree : Object
 			
 			});
 			this.el.enter.connect( (x, y) => {
-			
-				return Gdk.DragAction;
+				GLib.debug("droptarget - got enter");
+				return Gdk.DragAction.COPY;
 			});
 			this.el.drop.connect( (v, x, y) => {
 				

@@ -675,8 +675,8 @@
           ],
           "enter" : [
            "(x, y) => {",
-           "",
-           "\treturn Gdk.DragAction;",
+           "\tGLib.debug(\"droptarget - got enter\");",
+           "\treturn Gdk.DragAction.COPY;",
            "}",
            ""
           ],
