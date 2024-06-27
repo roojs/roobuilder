@@ -431,10 +431,10 @@ public class Xcls_PopoverAddObject : Object
 			    
 			  
 			    
-			  //  GLib.Idle.add(() => {
-			//	    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
-			//	    return false;
-			 //   });
+			    GLib.Idle.add(() => {
+			 	    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
+			 	    return false;
+			    });
 			 
 			});
 			this.el.drag_end.connect( (drag, delete_data) => {
