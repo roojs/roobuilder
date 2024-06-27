@@ -728,7 +728,8 @@ public class Xcls_WindowLeftTree : Object
 			 	
 			    var paintable = new Gtk.WidgetPaintable(widget);
 			    this.el.set_icon(paintable, 0,0);
-			            
+			      
+			
 			 
 			});
 			this.el.drag_end.connect( (drag, delete_data) => {
