@@ -1039,7 +1039,7 @@ public class Xcls_WindowLeftTree : Object
 				//GLib.debug("shift is    %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
 				string pos; // over / before / after..
 			
-			    //GLib.debug("got drag motion");
+			    GLib.debug("got drag motion");
 			
 			    GLib.Value v = GLib.Value(typeof(string));
 			   	//var str = drop.read_text( [ "text/plain" ] 0);

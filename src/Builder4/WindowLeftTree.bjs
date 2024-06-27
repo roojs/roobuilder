@@ -687,7 +687,7 @@
            "\t//GLib.debug(\"shift is    %s\", _this.keystate.is_shift > 0 ? \"SHIFT\" : \"-\");",
            "\tstring pos; // over / before / after..",
            "",
-           "    //GLib.debug(\"got drag motion\");",
+           "    GLib.debug(\"got drag motion\");",
            "",
            "    GLib.Value v = GLib.Value(typeof(string));",
            "   \t//var str = drop.read_text( [ \"text/plain\" ] 0);",
