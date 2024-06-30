@@ -357,14 +357,17 @@
 				var ar = cur_project.sortedFiles();
 				foreach(var file in ar) {
 					string oldstr;
-
+					if (file.xtype == "PlainFile") {
+						continue;
+					}
+					
 					file.loadItems();
 					GLib.FileUtils.get_contents(file.path, out oldstr);				
 					var outstr = file.toJsonString();
 					if (outstr != oldstr) { 
 						
-						GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
-						print("meld  %s /tmp/%s\n", file.path,  file.name);
+						GLib.FileUtils.set_contents("/tmp/" + file.name + ".vala",   outstr);
+						print("Files differ : use\n meld  %s /tmp/%s\n", file.path,  file.name);
 						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 					}
 					print("# Files match %s\n", file.name);

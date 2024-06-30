@@ -287,7 +287,8 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		var default_ctor = pal.getAny(sl, this.node.fqn() + ctor);
  
 		 
-		
+		GLib.debug("Got CTOR %s/%s/%s with n params %d", this.node.fqn() + ctor,
+			default_ctor.name,default_ctor.fqn, default_ctor.param_ar.size); 
 		// use the default ctor - with arguments (from properties)
 		
 		if (default_ctor != null  && default_ctor.param_ar.size > 0) {

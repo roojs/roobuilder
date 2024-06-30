@@ -70,7 +70,9 @@ namespace Palete
 				return null;
 			}
 			res.file = this.manager.id_to_file.get((int)res.file_id);
-						
+			if (res.stype == Lsp.SymbolKind.Method || res.stype == Lsp.SymbolKind.Constructor) {
+				this.loadMethodParams(res);
+			}
 			
 			return res;
 			
