@@ -34,26 +34,33 @@ public class Xcls_WindowRooView : Object
 	public Xcls_multiline multiline;
 
 		// my vars (def)
+	public bool hexpand;
 	public Gtk.Widget lastObj;
 	public Xcls_MainWindow main_window;
+	public Gtk.Orientation orientation;
 	public int last_error_counter;
 	public int last_search_end;
 	public GtkSource.SearchContext searchcontext;
+	public bool vexpand;
 	public JsRender.JsRender file;
 
 	// ctor
 	public Xcls_WindowRooView()
 	{
 		_this = this;
-		this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+		this.el = new Gtk.Box();
 
 		// my vars (dec)
+		this.hexpand = true;
 		this.lastObj = null;
+		this.orientation = Gtk.Orientation.VERTICAL;
 		this.last_error_counter = 0;
 		this.last_search_end = 0;
+		this.vexpand = true;
 		this.file = null;
 
 		// set gobject values
+		this.el.orientation = Gtk.Orientation.VERTICAL;
 		this.el.hexpand = true;
 		this.el.vexpand = true;
 		new Xcls_notebook( _this );
@@ -358,6 +365,7 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public bool vexpand;
 
 		// ctor
 		public Xcls_notebook(Xcls_WindowRooView _owner )
@@ -367,6 +375,7 @@ public class Xcls_WindowRooView : Object
 			this.el = new Gtk.Notebook();
 
 			// my vars (dec)
+			this.vexpand = true;
 
 			// set gobject values
 			this.el.vexpand = true;
@@ -388,17 +397,20 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public utf8 label;
 
 		// ctor
 		public Xcls_label_preview(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			_this.label_preview = this;
-			this.el = new Gtk.Label( "Preview" );
+			this.el = new Gtk.Label();
 
 			// my vars (dec)
+			this.label = Preview;
 
 			// set gobject values
+			this.el.label = "Preview";
 		}
 
 		// user defined functions
@@ -411,17 +423,20 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public utf8 label;
 
 		// ctor
 		public Xcls_label_code(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			_this.label_code = this;
-			this.el = new Gtk.Label( "Preview Generated Code" );
+			this.el = new Gtk.Label();
 
 			// my vars (dec)
+			this.label = Preview Generated Code;
 
 			// set gobject values
+			this.el.label = "Preview Generated Code";
 		}
 
 		// user defined functions
@@ -434,17 +449,22 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public Gtk.Orientation orientation;
+		public bool vexpand;
 
 		// ctor
 		public Xcls_paned(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			_this.paned = this;
-			this.el = new Gtk.Paned( Gtk.Orientation.VERTICAL );
+			this.el = new Gtk.Paned();
 
 			// my vars (dec)
+			this.orientation = Gtk.Orientation.VERTICAL;
+			this.vexpand = true;
 
 			// set gobject values
+			this.el.orientation = Gtk.Orientation.VERTICAL;
 			this.el.vexpand = true;
 			new Xcls_viewbox( _this );
 			this.el.set_start_child ( _this.viewbox.el  );
@@ -461,18 +481,23 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public Gtk.Orientation orientation;
+		public bool vexpand;
 
 		// ctor
 		public Xcls_viewbox(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			_this.viewbox = this;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
+			this.orientation = Gtk.Orientation.VERTICAL;
+			this.vexpand = true;
 
 			// set gobject values
 			this.el.homogeneous = false;
+			this.el.orientation = Gtk.Orientation.VERTICAL;
 			this.el.vexpand = true;
 			var child_1 = new Xcls_Box6( _this );
 			child_1.ref();
@@ -490,18 +515,21 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public Gtk.Orientation orientation;
 
 		// ctor
 		public Xcls_Box6(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
+			this.orientation = Gtk.Orientation.HORIZONTAL;
 
 			// set gobject values
 			this.el.homogeneous = true;
 			this.el.height_request = 20;
+			this.el.orientation = Gtk.Orientation.HORIZONTAL;
 			this.el.vexpand = false;
 			var child_1 = new Xcls_Button7( _this );
 			child_1.ref();
@@ -619,6 +647,7 @@ public class Xcls_WindowRooView : Object
 		public int redraws;
 		public bool refreshRequired;
 		public string runjs;
+		public bool vexpand;
 		public string runhtml;
 		public string renderedData;
 		public GLib.DateTime lastRedraw;
@@ -635,6 +664,7 @@ public class Xcls_WindowRooView : Object
 			this.redraws = 0;
 			this.refreshRequired = false;
 			this.runjs = "\"\"";
+			this.vexpand = true;
 			this.runhtml = "\"\"";
 			this.renderedData = "\"\"";
 			this.lastRedraw = null;
@@ -997,17 +1027,22 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public Gtk.Orientation orientation;
+		public bool vexpand;
 
 		// ctor
 		public Xcls_inspectorcontainer(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			_this.inspectorcontainer = this;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
+			this.orientation = Gtk.Orientation.VERTICAL;
+			this.vexpand = true;
 
 			// set gobject values
+			this.el.orientation = Gtk.Orientation.VERTICAL;
 			this.el.vexpand = true;
 		}
 
@@ -1022,17 +1057,25 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public int spacing;
+		public Gtk.Orientation orientation;
+		public bool vexpand;
 
 		// ctor
 		public Xcls_Box12(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
+			this.spacing = 0;
+			this.orientation = Gtk.Orientation.VERTICAL;
+			this.vexpand = true;
 
 			// set gobject values
+			this.el.orientation = Gtk.Orientation.VERTICAL;
 			this.el.vexpand = true;
+			this.el.spacing = 0;
 			new Xcls_sourceviewscroll( _this );
 			this.el.append( _this.sourceviewscroll.el );
 			var child_2 = new Xcls_Box18( _this );
@@ -1049,6 +1092,7 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public bool vexpand;
 
 		// ctor
 		public Xcls_sourceviewscroll(Xcls_WindowRooView _owner )
@@ -1058,6 +1102,7 @@ public class Xcls_WindowRooView : Object
 			this.el = new Gtk.ScrolledWindow();
 
 			// my vars (dec)
+			this.vexpand = true;
 
 			// set gobject values
 			this.el.vexpand = true;
@@ -1078,9 +1123,13 @@ public class Xcls_WindowRooView : Object
 		public bool loading;
 		public bool button_is_pressed;
 		public string prop_selected;
+		public bool show_line_numbers;
 		public Gtk.CssProvider? css;
 		public bool key_is_pressed;
+		public bool show_line_marks;
+		public bool editable;
 		public JsRender.Node? node_selected;
+		public string name;
 
 		// ctor
 		public Xcls_sourceview(Xcls_WindowRooView _owner )
@@ -1094,9 +1143,13 @@ public class Xcls_WindowRooView : Object
 			this.loading = true;
 			this.button_is_pressed = false;
 			this.prop_selected = "\"\"";
+			this.show_line_numbers = true;
 			this.css = null;
 			this.key_is_pressed = false;
+			this.show_line_marks = true;
+			this.editable = false;
 			this.node_selected = null;
+			this.name = "roo-view";
 
 			// set gobject values
 			this.el.name = "roo-view";
@@ -1504,7 +1557,7 @@ public class Xcls_WindowRooView : Object
 		{
 			_this = _owner;
 			_this.buffer = this;
-			this.el = new GtkSource.Buffer( null );
+			this.el = new GtkSource.Buffer();
 
 			// my vars (dec)
 			this.error_line = -1;
@@ -1717,17 +1770,20 @@ public class Xcls_WindowRooView : Object
 
 			// my vars (def)
 		public double distance;
+		public Gtk.EventControllerScrollFlags flags;
 
 		// ctor
 		public Xcls_EventControllerScroll17(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
+			this.el = new Gtk.EventControllerScroll();
 
 			// my vars (dec)
 			this.distance = 0.0f;
+			this.flags = Gtk.EventControllerScrollFlags.VERTICAL;
 
 			// set gobject values
+			this.el.flags = Gtk.EventControllerScrollFlags.VERTICAL;
 
 			//listeners
 			this.el.scroll.connect( (dx, dy) => {
@@ -1763,18 +1819,28 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public bool homogeneous;
+		public int spacing;
+		public Gtk.Orientation orientation;
+		public bool vexpand;
 
 		// ctor
 		public Xcls_Box18(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
+			this.homogeneous = false;
+			this.spacing = 0;
+			this.orientation = Gtk.Orientation.HORIZONTAL;
+			this.vexpand = false;
 
 			// set gobject values
 			this.el.homogeneous = false;
+			this.el.orientation = Gtk.Orientation.HORIZONTAL;
 			this.el.vexpand = false;
+			this.el.spacing = 0;
 			new Xcls_search_entry( _this );
 			this.el.append( _this.search_entry.el );
 			new Xcls_search_results( _this );
@@ -1797,6 +1863,9 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public bool hexpand;
+		public string placeholder_text;
+		public string name;
 
 		// ctor
 		public Xcls_search_entry(Xcls_WindowRooView _owner )
@@ -1806,6 +1875,9 @@ public class Xcls_WindowRooView : Object
 			this.el = new Gtk.SearchEntry();
 
 			// my vars (dec)
+			this.hexpand = true;
+			this.placeholder_text = "Press enter to search";
+			this.name = "roo-search-entry";
 
 			// set gobject values
 			this.el.name = "roo-search-entry";
@@ -1908,19 +1980,26 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public string label;
+		public int margin_end;
+		public int margin_start;
 
 		// ctor
 		public Xcls_search_results(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			_this.search_results = this;
-			this.el = new Gtk.Label( "No Results" );
+			this.el = new Gtk.Label();
 
 			// my vars (dec)
+			this.label = "No Results";
+			this.margin_end = 4;
+			this.margin_start = 4;
 
 			// set gobject values
 			this.el.margin_end = 4;
 			this.el.margin_start = 4;
+			this.el.label = "No Results";
 		}
 
 		// user defined functions
@@ -1955,6 +2034,8 @@ public class Xcls_WindowRooView : Object
 
 			// my vars (def)
 		public bool always_show_image;
+		public string icon_name;
+		public bool sensitive;
 
 		// ctor
 		public Xcls_nextBtn(Xcls_WindowRooView _owner )
@@ -1965,6 +2046,8 @@ public class Xcls_WindowRooView : Object
 
 			// my vars (dec)
 			this.always_show_image = true;
+			this.icon_name = "go-down";
+			this.sensitive = false;
 
 			// set gobject values
 			this.el.icon_name = "go-down";
@@ -1989,6 +2072,8 @@ public class Xcls_WindowRooView : Object
 
 			// my vars (def)
 		public bool always_show_image;
+		public string icon_name;
+		public bool sensitive;
 
 		// ctor
 		public Xcls_backBtn(Xcls_WindowRooView _owner )
@@ -1999,6 +2084,8 @@ public class Xcls_WindowRooView : Object
 
 			// my vars (dec)
 			this.always_show_image = true;
+			this.icon_name = "go-up";
+			this.sensitive = false;
 
 			// set gobject values
 			this.el.icon_name = "go-up";
@@ -2024,6 +2111,7 @@ public class Xcls_WindowRooView : Object
 
 			// my vars (def)
 		public bool always_show_image;
+		public string icon_name;
 
 		// ctor
 		public Xcls_MenuButton24(Xcls_WindowRooView _owner )
@@ -2033,6 +2121,7 @@ public class Xcls_WindowRooView : Object
 
 			// my vars (dec)
 			this.always_show_image = true;
+			this.icon_name = "emblem-system";
 
 			// set gobject values
 			this.el.icon_name = "emblem-system";
@@ -2074,16 +2163,22 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public int spacing;
+		public Gtk.Orientation orientation;
 
 		// ctor
 		public Xcls_Box26(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
+			this.spacing = 0;
+			this.orientation = Gtk.Orientation.VERTICAL;
 
 			// set gobject values
+			this.el.orientation = Gtk.Orientation.VERTICAL;
+			this.el.spacing = 0;
 			new Xcls_case_sensitive( _this );
 			this.el.append( _this.case_sensitive.el );
 			new Xcls_regex( _this );
@@ -2101,6 +2196,7 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public string label;
 
 		// ctor
 		public Xcls_case_sensitive(Xcls_WindowRooView _owner )
@@ -2110,6 +2206,7 @@ public class Xcls_WindowRooView : Object
 			this.el = new Gtk.CheckButton();
 
 			// my vars (dec)
+			this.label = "Case Sensitive";
 
 			// set gobject values
 			this.el.label = "Case Sensitive";
@@ -2131,6 +2228,7 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public string label;
 
 		// ctor
 		public Xcls_regex(Xcls_WindowRooView _owner )
@@ -2140,6 +2238,7 @@ public class Xcls_WindowRooView : Object
 			this.el = new Gtk.CheckButton();
 
 			// my vars (dec)
+			this.label = "Regex";
 
 			// set gobject values
 			this.el.label = "Regex";
@@ -2161,6 +2260,7 @@ public class Xcls_WindowRooView : Object
 
 
 			// my vars (def)
+		public string label;
 
 		// ctor
 		public Xcls_multiline(Xcls_WindowRooView _owner )
@@ -2170,6 +2270,7 @@ public class Xcls_WindowRooView : Object
 			this.el = new Gtk.CheckButton();
 
 			// my vars (dec)
+			this.label = "Multi-line (add \\n)";
 
 			// set gobject values
 			this.el.label = "Multi-line (add \\n)";
