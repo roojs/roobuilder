@@ -188,7 +188,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				isUser= true;
 			}
 			// is it a class property.. - if so we dont add it here..
-			if (null != cls.props.get(prop.name) && !isUser) {
+			var pp = cls.props.get(prop.name) ;
+			if (null != pp && !isUser) {
 				
 				GLib.debug("class has prop - %s", pp ==null ? "NULL" : pp.name);
 				continue;
