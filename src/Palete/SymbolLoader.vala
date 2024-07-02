@@ -86,7 +86,15 @@ namespace Palete
 			cls.props = this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Property, null);
 		
 		}
+		public void loadSignals(Symbol cls)
+		{
+			if cls.props.keys.size > 1) {
+				return;
+			}
+			cls.signals = this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Signal, null);
 		
+		}
+		// methods???
 		
 		
 		/*
