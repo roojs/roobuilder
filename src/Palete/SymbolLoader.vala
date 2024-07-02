@@ -180,12 +180,13 @@ namespace Palete
 						is_abstract = 0 
 					AND
 						is_static = 0
-					AND
-						is_sealed = 0
+					
 					AND 
 						deprecated = 0
 
 			");
+			
+			// used to include is_sealed  - but those are needed by the Nodetovala?
 			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)kind);
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
