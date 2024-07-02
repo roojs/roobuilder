@@ -88,7 +88,7 @@ namespace Palete
 		}
 		public void loadSignals(Symbol cls)
 		{
-			if (cls.props.keys.size > 1) {
+			if (cls.signals.keys.size > 1) {
 				return;
 			}
 			cls.signals = this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Signal, null);
