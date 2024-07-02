@@ -288,7 +288,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		sl.loadCtors(ncls);
 		var default_ctor = ncls.ctors.get(ctor.substring(1, ctor.length));
 		if (default_ctor == null) {
-			GLib.error("Could not find ctor '%s'",ctor.substring(1, ctor.length));
+			GLib.error("Could not find ctor '%s', '%s'",ctor, ctor.substring(1, ctor.length));
 		}
 		//var default_ctor = pal.getAny(sl, this.node.fqn() + ctor);
  
