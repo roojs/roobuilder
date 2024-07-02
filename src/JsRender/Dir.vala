@@ -33,7 +33,7 @@ namespace JsRender {
 	    public override void save() {}
 		public override void saveHTML(string html) {}
 		public override string toSource() { return ""; }
-		public override string toSourceCode() {return "";} // used by commandline tester..
+		public override string toSourceCode((bool force=false) {return "";} // used by commandline tester..
 		public override void setSource(string str) {}
 		public override string toSourcePreview()   {return "";}
 		public override void removeFiles() {}
