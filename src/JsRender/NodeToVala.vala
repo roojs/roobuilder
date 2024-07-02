@@ -187,9 +187,11 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			if (this.node.fqn() == "Gtk.NotebookPage") {
 				isUser= true;
 			}
-			// is it a class property...
-			if (cls.props.has_key(prop.name) && !isUser) {
-				var pp = cls.props.get(prop.name);
+			// is it a class property..
+			var pp = cls.props.get(prop.name);.
+			if (pp == null && !isUser) {
+				
+				
 				GLib.debug("prop - %s", pp ==null ? "NULL" : pp.name);
 				continue;
 			}
