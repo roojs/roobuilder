@@ -442,7 +442,7 @@ namespace Palete
 			if (full_ar.contains(fqn)) {
 				return;
 			}
-			var s = this.singleByFqn(impl);
+			var s = this.singleByFqn(fqn);
 			if (s == null) {
 				GLib.debug("Error could not find class %s", fqn);
 				return;
@@ -457,7 +457,7 @@ namespace Palete
 		public Gee.ArrayList<string> implementationOf(string fqn)
 		{
 			this.loadClassCache();
-			var sym= this.classCache.get(fqn);
+			var sym= this.singleByFqn(fqn);
 			this.fillImplementationOfFromCache(sym);
 			return sym.implementation_of;
 		}
