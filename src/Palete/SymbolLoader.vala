@@ -155,10 +155,11 @@ namespace Palete
 			// we dont need parent constructors!?
 			if (kind != Lsp.SymbolKind.Constructor) {
 				this.getParentIds(sym,  pids);
-				string[] pidss = {};
-				foreach(var pid in pids) {
-					pidss += pid;
-				}
+				
+			}
+			string[] pidss = {};
+			foreach(var pid in pids) {
+				pidss += pid;
 			}
 			var cols = this.sq.getColsExcept({ "doc" });
 			var stmt = this.sq.selectPrepare("
