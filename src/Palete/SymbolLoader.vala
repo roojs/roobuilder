@@ -208,7 +208,7 @@ namespace Palete
 				if (ret.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
 					continue;
 		 		}
-				if (kind == Lsp.Kind.Constructor) {
+				if (kind == Lsp.SymbolKind.Constructor) {
 					this.loadMethodParams(s);
 				}
 					 
