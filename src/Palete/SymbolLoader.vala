@@ -214,7 +214,8 @@ namespace Palete
 				if (kind == Lsp.SymbolKind.Constructor) {
 					this.loadMethodParams(s);
 				}
-				GLib.debug("add %s %s", fqn, s.name);	 
+				GLib.debug("add %s %s", fqn, s.name);
+				 
 				ret.set(s.name, s);
 			}
 			switch(kind) {
