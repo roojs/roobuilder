@@ -197,7 +197,18 @@ namespace Palete
 					 
 				ret.set(s.name, s);
 			}
-			
+			switch(kind) {
+				case Lsp.SymbolKind.Property:
+				 	sym.props = ret;
+					break;
+				case Lsp.SymbolKind.Signal:
+					sym.signals = ret;
+					break;
+				default: 
+					break;
+					
+					
+			}
 			 
 			return ret;
 		
