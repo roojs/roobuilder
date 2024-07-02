@@ -84,6 +84,16 @@ namespace Palete
 			
 			
 		}
+		public void loadCtors(Symbol cls)
+		{
+			if (cls.ctors.keys.size > 1) {
+				return;
+			}
+			cls.props = this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Constructor, null);
+		
+		}
+		
+		
 		public void loadProps(Symbol cls)
 		{
 			if (cls.props.keys.size > 1) {
@@ -127,6 +137,11 @@ namespace Palete
 				case Lsp.SymbolKind.Signal:
 					if (sym.signals.keys.size > 1) {
 						return sym.signals;
+					}
+					break;
+				case Lsp.SymbolKind.Constructor:
+					if (sym.ctors.keys.size > 1) {
+						return sym.ctors;
 					}
 					break;
 				default: 
@@ -203,6 +218,9 @@ namespace Palete
 					break;
 				case Lsp.SymbolKind.Signal:
 					sym.signals = ret;
+					break;
+				case Lsp.SymbolKind.Constructor:
+					sym.ctors = ret;
 					break;
 				default: 
 					break;
@@ -475,7 +493,7 @@ namespace Palete
 		 
 		public void loadMethodParams(Symbol method)
 		{
-  			
+  			 
   			GLib.debug("Get methods params for %s", method.fqn);
 			var stmt = this.sq.selectPrepare("
 					SELECT 
