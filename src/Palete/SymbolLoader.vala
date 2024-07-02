@@ -92,7 +92,7 @@ namespace Palete
 			if (cls.ctors.keys.size > 1) {
 				return;
 			}
-			cls.props = this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Constructor, null);
+			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Constructor, null);
 		
 		}
 		
@@ -102,7 +102,7 @@ namespace Palete
 			if (cls.props.keys.size > 1) {
 				return;
 			}
-			cls.props = this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Property, null);
+			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Property, null);
 		
 		}
 		public void loadSignals(Symbol cls)
@@ -110,7 +110,7 @@ namespace Palete
 			if (cls.signals.keys.size > 1) {
 				return;
 			}
-			cls.signals = this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Signal, null);
+			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Signal, null);
 		
 		}
 		// methods???
@@ -198,9 +198,9 @@ namespace Palete
 				}
 				if (kind ==  Lsp.SymbolKind.Property) {
 					
-					//if (!s.is_writable && !s.is_ctor_only) {
-					//	continue;
-					//}
+					if (!s.is_writable && !s.is_ctor_only) {
+						continue;
+					
 					if (s.rtype == "GLib.Object") { // ?? confgurable
 					 	continue;
 					}
@@ -214,7 +214,7 @@ namespace Palete
 				if (kind == Lsp.SymbolKind.Constructor) {
 					this.loadMethodParams(s);
 				}
-				GLib.debug("add %s %s", fqn, s.name);
+				//GLib.debug("add %s %s", fqn, s.name);
 				
 				ret.set(s.name, s);
 			}
