@@ -194,6 +194,11 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				GLib.debug("class has prop - %s", pp ==null ? "NULL" : pp.name);
 				continue;
 			}
+			if (cls.fqn == "Gtk.Button" && prop.name == "icon_name") {
+				foreach(var kk in cls.props.keys) {
+					GLib.debug("Button hsas %s", kk);
+				}
+			}
 			
 			this.myvars.add(prop.name);
 			prop.start_line = this.cur_line;
