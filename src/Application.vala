@@ -362,8 +362,9 @@
 					}
 					
 					file.loadItems();
-					GLib.FileUtils.get_contents(file.path, out oldstr);				
-					var outstr = file.toJsonString();
+					GLib.FileUtils.get_contents(file.targetName(), out oldstr);	
+					file.version = file.last_source_version+1; // force compile..
+					var outstr = file.toSource();
 					if (outstr != oldstr) { 
 						
 						GLib.FileUtils.set_contents("/tmp/" + file.name + ".vala",   outstr);
