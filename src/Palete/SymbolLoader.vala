@@ -436,7 +436,7 @@ namespace Palete
 			}
 			
 		}
-		/
+		
 		void fillImplementsFromCache(string fqn, Gee.ArrayList<string> full_ar) {
 			
 			if (full_ar.contains(fqn)) {
