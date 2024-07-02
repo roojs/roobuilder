@@ -250,7 +250,7 @@ namespace SQ {
 	 	public Sqlite.Statement selectPrepare(string q  )
 		{	
 			Sqlite.Statement stmt;
-			GLib.debug("Query %s", q);
+
 			Database.db.prepare_v2 (q, q.length, out stmt);
 			if (stmt == null) {
 			    GLib.error("%s from query   %s",   Database.db.errmsg(), q);
@@ -260,6 +260,7 @@ namespace SQ {
  		}
  		public void selectExecute(Sqlite.Statement stmt, Gee.ArrayList<T> ret )
  		{
+			GLib.debug("Execute %s", stmt.expanded_sql());	
 			while (stmt.step() == Sqlite.ROW) {
 		 		var row =   Object.new (typeof(T));
 				this.fetchRow(stmt, row); 
