@@ -148,7 +148,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
  
 		   
 		if (cls == null) {
-			GLib.debug("Gir factory failed to find class %s", this.node.fqn());
+			GLib.debug("Symbol loader  failed to find class %s", this.node.fqn());
 			
 			//return;
 		}
