@@ -153,9 +153,9 @@ namespace JsRender {
 	    
 	    int last_source_version = -2;
 	    string last_source;
-	    public override string toSourceCode() // no seed support currently.
+	    public override string toSourceCode((bool force=false) // no seed support currently.
 	    {
-		    if (this.version == this.last_source_version) {
+		    if (!force  && this.version == this.last_source_version) {
 		    	GLib.debug("toSource - using Cache");
  				
 		    	return this.last_source;
