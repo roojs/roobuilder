@@ -114,7 +114,7 @@ namespace JsRender {
             
             
         }
-		 public override string toSourceCode()
+		 public override string toSourceCode((bool force=false)
         {
  			if (!this.loaded) {
  				this.loadItems();
