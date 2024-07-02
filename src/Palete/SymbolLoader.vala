@@ -152,10 +152,13 @@ namespace Palete
 			
 			var pids = new Gee.ArrayList<string>();
 			pids.add( sym.id.to_string() );
-			this.getParentIds(sym,  pids);
-			string[] pidss = {};
-			foreach(var pid in pids) {
-				pidss += pid;
+			// we dont need parent constructors!?
+			if (kind != Lsp.SymbolKind.Constructor) {
+				this.getParentIds(sym,  pids);
+				string[] pidss = {};
+				foreach(var pid in pids) {
+					pidss += pid;
+				}
 			}
 			var cols = this.sq.getColsExcept({ "doc" });
 			var stmt = this.sq.selectPrepare("
