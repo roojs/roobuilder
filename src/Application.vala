@@ -368,7 +368,7 @@
 					if (outstr != oldstr) { 
 						
 						GLib.FileUtils.set_contents("/tmp/" + file.name + ".out",   outstr);
-						print("Files differ : use\n meld  %s /tmp/%s.out\n", file.path,  file.name);
+						print("Files differ : use\n meld  %s /tmp/%s.out\n", file.targetName(),  file.name);
 						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 					}
 					print("# Files match %s\n", file.name);
