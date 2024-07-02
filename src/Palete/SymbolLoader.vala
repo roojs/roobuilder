@@ -367,7 +367,7 @@ namespace Palete
 			}
 			var ret = new Gee.ArrayList<string>();
 			foreach(var e in full_ar) {
-				var ecls = this.singleByFqn(impl);
+				var ecls = this.singleByFqn(e);
 				if (ecls.stype == stype) {
 					ret.add(e);
 				}
