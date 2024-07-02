@@ -459,7 +459,7 @@ namespace JsRender {
          * 
          * 
          */
-        public override string toSourceCode((bool force=false) 
+        public override string toSourceCode(bool force=false) 
         {
 			this.transStrings = new Gee.HashMap<string,string>();
 			this.namedStrings = new Gee.HashMap<string,string>();
