@@ -364,10 +364,10 @@
 					file.loadItems();
 					GLib.FileUtils.get_contents(file.targetName(), out oldstr);	
 					 
-					var outstr = file.toSourceForce();
+					var outstr = file.toSourceCode(true); // force it.
 					if (outstr != oldstr) { 
 						
-						GLib.FileUtils.set_contents("/tmp/" + file.name + ".vala",   outstr);
+						GLib.FileUtils.set_contents("/tmp/" + file.name + ".out",   outstr);
 						print("Files differ : use\n meld  %s /tmp/%s\n", file.path,  file.name);
 						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 					}
