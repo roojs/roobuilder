@@ -200,7 +200,7 @@ namespace Palete
 					
 					if (!s.is_writable && !s.is_ctor_only) {
 						continue;
-					
+					}
 					if (s.rtype == "GLib.Object") { // ?? confgurable
 					 	continue;
 					}
