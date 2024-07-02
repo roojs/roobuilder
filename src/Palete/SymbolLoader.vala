@@ -52,6 +52,8 @@ namespace Palete
 	
 		public Symbol? singleByFqn(string fqn)
 		{
+			
+			this.loadClassCache();
 			if (this.classCache.has_key(fqn)) {
 				return this.classCache.get(fqn);
 			}
@@ -77,6 +79,7 @@ namespace Palete
 			if (res.stype == Lsp.SymbolKind.Method || res.stype == Lsp.SymbolKind.Constructor) {
 				this.loadMethodParams(res);
 			}
+			// in theory should not happen!!!!
 			if (res.stype == Lsp.SymbolKind.Class) { // ?? and is a vapi?
 				this.classCache.set(fqn,res);
 			}
