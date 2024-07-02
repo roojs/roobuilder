@@ -78,6 +78,17 @@ namespace Palete
 			
 			
 		}
+		public void loadProps(Symbol cls)
+		{
+			if cls.props.keys.size > 1) {
+				return;
+			}
+			cls.props = this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Property, null);
+		
+		}
+		
+		
+		
 		/*
 			Palate.getProperties for
 		*/
@@ -410,7 +421,6 @@ namespace Palete
 			}
 
 		}
-		
 		
 		
 		
