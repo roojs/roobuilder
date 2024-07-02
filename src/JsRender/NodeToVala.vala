@@ -188,7 +188,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				isUser= true;
 			}
 			// is it a class property..
-			var pp = cls.props.get(prop.name);.
+			var pp = cls.props.get(prop.name);
 			if (pp == null && !isUser) {
 				
 				
