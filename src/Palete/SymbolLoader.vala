@@ -109,11 +109,32 @@ namespace Palete
 		
 		public Gee.HashMap<string,Symbol>  getPropertiesFor(string fqn, Lsp.SymbolKind kind, string[]? ignore_list )
 		{
+			
+			
+			
 			var ret = new Gee.HashMap<string,Symbol>();
 			var sym = this.singleByFqn(fqn);
 			if (sym == null) {
 				return ret;
 			}
+			
+			switch(kind) {
+				case Lsp.SymbolKind.Property:
+					if (sym.props.keys.size > 1) {
+						return sym.props;
+					}
+					break;
+				case Lsp.SymbolKind.Signal:
+					if (sym.signals.keys.size > 1) {
+						return sym.symbols;
+					}
+					break;
+				default: 
+					break;
+					
+					
+			}
+			
 			var pids = new Gee.ArrayList<string>();
 			pids.add( sym.id.to_string() );
 			this.getParentIds(sym,  pids);
@@ -218,6 +239,8 @@ namespace Palete
 		
 		private void getParentIds(Symbol s, Gee.ArrayList<string> ret, Gee.ArrayList<string>? imp = null)
 		{
+			
+			
 			GLib.debug("getParentIds   %s",s.fqn); 
 			var top = imp == null;
 			imp = top ? new Gee.ArrayList<string>() : imp;
