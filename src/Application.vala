@@ -363,8 +363,8 @@
 					
 					file.loadItems();
 					GLib.FileUtils.get_contents(file.targetName(), out oldstr);	
-					file.version = file.last_source_version+1; // force compile..
-					var outstr = file.toSource();
+					 
+					var outstr = file.toSourceForce();
 					if (outstr != oldstr) { 
 						
 						GLib.FileUtils.set_contents("/tmp/" + file.name + ".vala",   outstr);
