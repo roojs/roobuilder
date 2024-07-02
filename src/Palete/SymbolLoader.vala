@@ -215,22 +215,23 @@ namespace Palete
 					this.loadMethodParams(s);
 				}
 				GLib.debug("add %s %s", fqn, s.name);
-				 
+				
 				ret.set(s.name, s);
 			}
-			switch(kind) {
-				case Lsp.SymbolKind.Property:
-				 	sym.props = ret;
-					break;
-				case Lsp.SymbolKind.Signal:
-					sym.signals = ret;
-					break;
-				case Lsp.SymbolKind.Constructor:
-					sym.ctors = ret;
-					break;
-				default: 
-					break;
-					
+			if (ignore_list == null) {
+				switch(kind) {
+					case Lsp.SymbolKind.Property:
+					 	sym.props = ret;
+						break;
+					case Lsp.SymbolKind.Signal:
+						sym.signals = ret;
+						break;
+					case Lsp.SymbolKind.Constructor:
+						sym.ctors = ret;
+						break;
+					default: 
+						break;
+				}
 					
 			}
 			 
