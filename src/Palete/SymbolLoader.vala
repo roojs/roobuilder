@@ -198,7 +198,7 @@ namespace Palete
 				}
 				if (kind ==  Lsp.SymbolKind.Property) {
 					
-					//if (!s.is_writable || s.is_ctor_only) {
+					//if (!s.is_writable && !s.is_ctor_only) {
 					//	continue;
 					//}
 					if (s.rtype == "GLib.Object") { // ?? confgurable
