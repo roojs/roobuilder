@@ -126,7 +126,7 @@ namespace Palete
 					break;
 				case Lsp.SymbolKind.Signal:
 					if (sym.signals.keys.size > 1) {
-						return sym.symbols;
+						return sym.signals;
 					}
 					break;
 				default: 
