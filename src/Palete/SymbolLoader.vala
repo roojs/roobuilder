@@ -52,6 +52,10 @@ namespace Palete
 	
 		public Symbol? singleByFqn(string fqn)
 		{
+			if (this.classCache.has_key(fqn)) {
+				return this.classCache.get(fqn);
+			}
+			
 			GLib.debug("singleByFqn get %s",fqn); 
 			var res = new Symbol();
 			var stmt = this.sq.selectPrepare("
@@ -73,7 +77,9 @@ namespace Palete
 			if (res.stype == Lsp.SymbolKind.Method || res.stype == Lsp.SymbolKind.Constructor) {
 				this.loadMethodParams(res);
 			}
-			
+			if (res.stype == Lsp.SymbolKind.Class) { // ?? and is a vapi?
+				this.classCache.set(fqn,res);
+			}
 			return res;
 			
 			
