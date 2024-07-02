@@ -436,6 +436,7 @@ namespace Palete
 			}
 			
 		}
+		/
 		void fillImplementsFromCache(string fqn, Gee.ArrayList<string> full_ar) {
 			
 			if (full_ar.contains(fqn)) {
@@ -477,7 +478,10 @@ namespace Palete
 			foreach(var impl in sym.implements) {
 				if ( !sym.implementation_of.contains(impl)) {
 					sym.implementation_of.add(impl);
-					var ih = this.classCache.get(impl);
+					var ih = this.singleByFqn(impl);
+					if (ih == null) {
+						continue;
+					}
 					this.fillImplementationOfFromCache(ih);
 					foreach(var s in ih.implementation_of) {
 						if (!sym.implementation_of.contains(s)) {
