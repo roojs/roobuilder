@@ -177,7 +177,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				continue;
 			}
 			
-			GLib.debug("Got myvars: %s", prop.name.strip());
+			GLib.debug("Got myvars: '%s' :  %s", cls.fqn, prop.name.strip());
 			
 			if (prop.rtype.strip().length < 1) {
 				continue;
