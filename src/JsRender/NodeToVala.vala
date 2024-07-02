@@ -152,7 +152,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			
 			//return;
 		}
- 
+ 		sl.loadProps(cls);
 		
 			// Key = TYPE:name
 		foreach(var prop in this.node.props.values) {
