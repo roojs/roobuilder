@@ -196,7 +196,7 @@ namespace Palete {
 				if (c.stype != Lsp.SymbolKind.Constructor) {
 					continue;
 				}
-				// got constructor.
+				this.add_fake_properties(builder, this, c);
 				foreach(var p in c.param_ar) {
 					new fake_ctor_property(builder, this, p);
 				
@@ -206,6 +206,13 @@ namespace Palete {
 			 
 			
 			
+		}
+		
+		public void add_fake_properties(ValaSymbolBuilder builder, Symbol? parent, Symbol c)
+		{
+			foreach(var p in c.param_ar) {
+					new fake_ctor_property(builder, this, p) 
+			}
 		}
 		public SymbolVala.new_property(ValaSymbolBuilder builder, Symbol? parent, Vala.Property prop)	
 		{
