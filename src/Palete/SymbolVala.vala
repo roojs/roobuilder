@@ -198,9 +198,7 @@ namespace Palete {
 				}
 				// got constructor.
 				foreach(var p in c.param_ar) {
-					 
 					new fake_ctor_property(builder, this, p);
-					 
 				
 				}
 			
@@ -226,7 +224,7 @@ namespace Palete {
 		public SymbolVala.fake_ctor_property(ValaSymbolBuilder builder, Symbol? parent, Symbol prop)	
 		{
 
-			if (!parent.children_map.has_key(p.name)) {
+			if (!parent.children_map.has_key(prop.name)) {
 				return;
 			}
 			GLib.debug("new Fake Property  %s", prop.name);			
