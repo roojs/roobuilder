@@ -197,11 +197,7 @@ namespace Palete {
 					continue;
 				}
 				this.add_fake_properties(builder, this, c);
-				foreach(var p in c.param_ar) {
-					new fake_ctor_property(builder, this, p);
-				
-				}
-			
+				  
 			}
 			 
 			
