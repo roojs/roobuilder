@@ -589,12 +589,12 @@
 			}
 			
 			if (cur_project.xtype == "Gtk") { 
-			GLib.debug("running girparser");
-			 new Palete.ValaSymbolGirBuilder();
+			//GLib.debug("running girparser");
+			// new Palete.ValaSymbolGirBuilder();
 			
-  			GLib.debug("running vapiparser");
+
    			}
-			
+  			GLib.debug("running vapiparser");	
 			//GLib.debug("started server - sleep 30 secs so you can gdb attach");
 			//Posix.sleep( 30 );
 			 
