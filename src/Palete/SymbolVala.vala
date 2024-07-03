@@ -192,7 +192,7 @@ namespace Palete {
 			}
 			
 			for(var i = 0; i < this.children.get_n_items(); i++) {
-				var c = this.children.get_item(i);
+				var c = this.children.get_item(i) as Symbol;
 				if (c.stype != Lsp.SymbolKind.Constructor) {
 					continue;
 				}
