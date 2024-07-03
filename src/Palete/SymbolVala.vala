@@ -191,8 +191,8 @@ namespace Palete {
 				new new_method(builder, this, p);
 			}
 			
-			 
-			foreach(var c in this.children_map.values) {
+			for(var i = 0; i < this.children.get_n_items(); i++) {
+				var c = this.children.get_item(i);
 				if (c.stype != Lsp.SymbolKind.Constructor) {
 					continue;
 				}
