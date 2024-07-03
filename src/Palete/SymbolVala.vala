@@ -224,7 +224,7 @@ namespace Palete {
 		public SymbolVala.fake_ctor_property(ValaSymbolBuilder builder, Symbol? parent, Symbol prop)	
 		{
 
-			if (!parent.children_map.has_key(prop.name)) {
+			if (parent.children_map.has_key(prop.name)) {
 				return;
 			}
 			GLib.debug("new Fake Property  %s", prop.name);			
