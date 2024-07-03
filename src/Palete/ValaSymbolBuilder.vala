@@ -424,7 +424,7 @@ namespace Palete {
 			
 			//this.runParser
 			
-			
+			GLib.debug("Running compile thread");
 			
 			this.threaded_callback = this.create_valac_tree.callback;
 			 
