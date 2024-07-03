@@ -191,12 +191,13 @@ namespace Palete {
 				new new_method(builder, this, p);
 			}
 			
-			foreach(var c in this.children) {
-				if (c.stype != Lsp.SymbolType.Constructor) {
+			
+			foreach(var c in this.children_map.values) {
+				if (c.stype != Lsp.SymbolKind.Constructor) {
 					continue;
 				}
 				// got constructor.
-				foreach(var p in c.params_ar) {
+				foreach(var p in c.param_ar) {
 					if (!this.children_map.has_key(p.name)) {
 						new fake_ctor_property(builder, this, c);
 					}
