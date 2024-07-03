@@ -400,12 +400,17 @@ namespace Palete {
 					context.add_c_source_file(path);
 					continue;
 				}
+			
 				this.files.add(jfile.targetName());	
 				//var sf = jfile.vala_source_file(context,ns_ref);
 				//sf.context = context;
-				var cont = jfile.toSourceCode();
-				GLib.debug("File %s content = %d", jfile.path, cont.length);
-				var f = this.filemanager.factory(jfile); // make sure it's initialized.
+				
+				//var cont = jfile.toSourceCode(); << caller should be responsible for converting it into srouce?
+				
+				//GLib.debug("File %s content = %d", jfile.path, cont.length);
+				var f = this.filemanager.factory(jfile); // make sure it's initialized.if 
+				 
+				
 				f.updated_ids.clear();
 				var sf = new Vala.SourceFile (
 					context, // needs replacing when you use it...
