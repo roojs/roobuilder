@@ -191,6 +191,21 @@ namespace Palete {
 				new new_method(builder, this, p);
 			}
 			
+			foreach(var c in this.children) {
+				if (c.stype != Lsp.SymbolType.Constructor) {
+					continue;
+				}
+				// got constructor.
+				foreach(var p in c.params_ar) {
+					if (!this.children_map.has_key(p.name)) {
+						new fake_ctor_property(builder, this, c);
+					}
+				
+				}
+			
+			}
+			
+			
 			
 		}
 		public SymbolVala.new_property(ValaSymbolBuilder builder, Symbol? parent, Vala.Property prop)	
@@ -207,6 +222,32 @@ namespace Palete {
 			this.is_ctor_only = prop.set_accessor != null ?   prop.set_accessor.construction : false;	 
 			this.setParent(parent);
 		}
+		public SymbolVala.fake_ctor_property(ValaSymbolBuilder builder, Symbol? parent, Symbol prop)	
+		{
+			GLib.debug("new Property  %s", prop.name);
+			
+			
+			base();
+			this.file = prop.file
+			
+			this.begin_line = prop.begin_line;
+			this.begin_col = prop.begin_col;
+			this.end_line = prop.end_line;
+			this.end_col = prop.end_col;
+			this.deprecated  = prop.deprecated;
+			
+			this.name = prop.name;
+			this.stype = Lsp.SymbolKind.Property;
+			this.rtype  = prop.rtype;
+			 
+			this.is_static =  false;
+		 	this.is_readable = false;
+			this.is_writable = false;
+			this.is_ctor_only = true;
+			this.setParent(parent);
+		}
+		
+		
 		public SymbolVala.new_field(ValaSymbolBuilder builder, Symbol? parent, Vala.Field prop)	
 		{
 			GLib.debug("new Field  %s", prop.name);
