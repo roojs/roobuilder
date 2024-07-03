@@ -207,7 +207,7 @@ namespace Palete {
 		public void add_fake_properties(ValaSymbolBuilder builder, Symbol? parent, Symbol c)
 		{
 			foreach(var p in c.param_ar) {
-					new fake_ctor_property(builder, this, p) 
+					new fake_ctor_property(builder, this, p) ;
 			}
 		}
 		public SymbolVala.new_property(ValaSymbolBuilder builder, Symbol? parent, Vala.Property prop)	
