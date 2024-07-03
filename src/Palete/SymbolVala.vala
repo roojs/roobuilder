@@ -229,7 +229,7 @@ namespace Palete {
 			
 			
 			base();
-			this.file = prop.file
+			this.file = prop.file;
 			
 			this.begin_line = prop.begin_line;
 			this.begin_col = prop.begin_col;
