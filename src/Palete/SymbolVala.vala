@@ -199,7 +199,7 @@ namespace Palete {
 				// got constructor.
 				foreach(var p in c.param_ar) {
 					 
-					new fake_ctor_property(builder, this, c);
+					new fake_ctor_property(builder, this, p);
 					 
 				
 				}
