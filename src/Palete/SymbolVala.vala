@@ -191,7 +191,7 @@ namespace Palete {
 				new new_method(builder, this, p);
 			}
 			
-			/*
+			 
 			foreach(var c in this.children_map.values) {
 				if (c.stype != Lsp.SymbolKind.Constructor) {
 					continue;
@@ -203,7 +203,7 @@ namespace Palete {
 				}
 			
 			}
-			*/
+			 
 			
 			
 		}
