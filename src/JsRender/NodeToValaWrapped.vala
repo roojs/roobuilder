@@ -302,6 +302,11 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			foreach(var param in default_ctor.param_ar) {
 				 
 				var n = param.name;
+				
+				//weird shit. new Label(str) << str is actually property label
+				if (ncls.fqn == "Gtk.Label" && n == "str") {
+					n = "label";
+				}
 			   // GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
 				if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;
