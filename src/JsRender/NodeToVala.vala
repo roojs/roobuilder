@@ -589,9 +589,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		if (childcls == null) {
 		  return;
 		}
-		var evc = pal.getImplementations(sl, "Gtk.EventController");
-		// GTK4
-		var is_event = evc.conatins(childcls.fqn);
+		var evc =  pal.getClass(sl, "Gtk.EventController");
+		// GTK4"Gtk.EventController"
+		var is_event = evc.all_implimentations.contains(childcls.fqn);
 		//childcls.implementation_of.contains("Gtk.EventController") 
 						//|| childcls.implements.contains("Gtk.EventController");
 		if (is_event) {
