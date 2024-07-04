@@ -597,6 +597,11 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			foreach(var cn in evc.all_implementations) {
 				GLib.debug("implentatoin of %s is %s", evc.fqn, cn);
 			}
+			foreach(var cn in childcls.implementation_of) {
+				GLib.debug("  %s implements %s", childcls.fqn, cn);
+			}
+			
+			
 			GLib.error("implemneation lookup failed");
 		
 		}
