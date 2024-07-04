@@ -590,8 +590,16 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		  return;
 		}
 		var evc =  pal.getClass(sl, "Gtk.EventController");
+		
 		// GTK4"Gtk.EventController"
 		var is_event = evc.all_implementations.contains(childcls.fqn);
+		if (childcls.fqn == "Gtk.GestureClick" && !is_event) {
+			foreach(var cn in evc.all_implementations) {
+				GLib.debug("implentatoin of %s is %s", evc.fqn, cn);
+			}
+			GLib.error("implemneation lookup failed");
+		
+		}
 		//childcls.implementation_of.contains("Gtk.EventController") 
 						//|| childcls.implements.contains("Gtk.EventController");
 		if (is_event) {
