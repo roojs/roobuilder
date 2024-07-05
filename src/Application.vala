@@ -29,10 +29,10 @@
             // some testing code.
             { "list-projects", 0, 0,  OptionArg.NONE, ref opt_list_projects, "List Projects", null },
             { "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
-            { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file (use all to convert all of them and compare output)", null },
+            { "test-bjs-compile", 0, 0, OptionArg.STRING, ref opt_test_bjs_compile, "convert bjs file (use all to convert all of them and compare output)", null },
             { "bjs-glade", 0, 0, OptionArg.NONE, ref opt_bjs_compile_glade, "output glade", null },
-            { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
-            { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
+//            { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
+//            { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test-language-server", 0, 0, OptionArg.STRING, ref opt_test_language_server, "run language server on this file", null },
             { "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group (use 'none' with Roo)", null },
             { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_file, "symbol database dump file after loading", null },
@@ -47,7 +47,7 @@
 		public static string opt_compile_skip;
 		public static string opt_compile_add;
 		public static string opt_compile_output;
-		public static string opt_bjs_compile;
+		public static string opt_test_bjs_compile;
 		public static string opt_bjs_compile_target;
  
 	//	public static string opt_test_fqn;
@@ -64,7 +64,7 @@
 		public static bool opt_list_files = false;
 		public static bool opt_pull_resources = false;
 		public static bool opt_bjs_compile_glade = false;
-        public static bool opt_bjs_test = false; 		
+       // public static bool opt_bjs_test = false; 		
 		public static string _self;
 		
 		public enum Target {
@@ -145,7 +145,7 @@
 			this.testLanguageServer(cur_project); // --language-server
 			this.testSymbolBuilder(cur_project); // symbol builder tests
 			this.listFiles(cur_project);
-			this.testBjs(cur_project);
+			//this.testBjs(cur_project);
  
 			this.testCompileBjs(cur_project);
 			//this.compileVala();
@@ -409,7 +409,7 @@
 		// wrapped so we build symbosl before calling it.
 		void testCompileBjsReal(Project.Project? cur_project)
 		{
-			if (BuilderApplication.opt_bjs_compile == "all") {
+			if (BuilderApplication.opt_test_bjs_compile == "all") {
 				try { 
 					var ar = cur_project.sortedFiles();
 					
