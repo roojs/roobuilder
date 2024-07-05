@@ -388,7 +388,7 @@
 		*/
 		void testCompileBjs(Project.Project? cur_project)
 		{
-			if (BuilderApplication.opt_bjs_compile == null) {
+			if (BuilderApplication.opt_test_bjs_compile == null) {
 				return;
 			}
 			if (cur_project == null) {
