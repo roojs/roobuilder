@@ -288,7 +288,8 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		sl.loadCtors(ncls);
 		var default_ctor = ncls.ctors.get(ctor.substring(1, ctor.length-1));
 		if (default_ctor == null) {
-			GLib.error("Could not find ctor '%s', '%s'",ctor, ctor.substring(1, ctor.length-1));
+			GLib.message("Could not find ctor '%s', '%s'",ctor, ctor.substring(1, ctor.length-1));
+			return;
 		}
 		//var default_ctor = pal.getAny(sl, this.node.fqn() + ctor);
  
@@ -303,10 +304,11 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 				 
 				var n = param.name;
 				
-				//weird shit. new Label(str) << str is actually property label
+				 //weird shit. new Label(str) << str is actually property label
 				if (ncls.fqn == "Gtk.Label" && n == "str") {
 					n = "label";
 				}
+				
 			   // GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
 				if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;

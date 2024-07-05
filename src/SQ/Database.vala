@@ -26,7 +26,7 @@ namespace SQ {
 		 		}
 		 		Sqlite.Database filedb;
 		 		Sqlite.config(Sqlite.Config.SERIALIZED);
-		 		var fdb = BuilderApplication.configDirectory() + "/symbols.db";
+		 		var fdb = symbol_filename();
 		 		var exists = GLib.FileUtils.test(fdb, GLib.FileTest.EXISTS);
 		 		Posix.Stat buf;
 		 		Posix.stat (fdb, out  buf);
@@ -45,6 +45,10 @@ namespace SQ {
 			}
 			
 		}
+		public static string symbol_filename()
+		{
+			return BuilderApplication.configDirectory() + "/symbols-" + BuilderApplication._version + ".db";
+		}
 		
 		public static void backupDB()
 		{
@@ -53,7 +57,7 @@ namespace SQ {
 	 			return;
 	 		}
 	 		Sqlite.Database filedb;
-			Sqlite.Database.open (BuilderApplication.configDirectory() + "/symbols.db", out filedb);
+			Sqlite.Database.open (symbol_filename(), out filedb);
 			//GLib.debug("error %s", filedb.errmsg());
 			var b = new Sqlite.Backup(filedb, "main", _db, "main");
 			//GLib.debug("error %s", filedb.errmsg());

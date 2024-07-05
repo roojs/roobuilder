@@ -139,7 +139,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		GLib.debug("calling  addMyVars");
 		
 		this.addLine();
-		this.addLine(this.pad + "// my vars (def)");
+		this.addLine(this.ipad + "// my vars (def)");
 			
 
 		var sl =  this.file.getSymbolLoader();
@@ -583,33 +583,13 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 					: "" ) + " );");
 			return;  
 		}
-		var pal = this.file.project.palete;
-		var sl  = this.file.getSymbolLoader();
-		var childcls =  pal.getClass(sl, child.fqn()); // very trusting..
+		var childcls =  this.file.project.palete.getClass(this.file.getSymbolLoader(), child.fqn()); // very trusting..
 		if (childcls == null) {
 		  return;
 		}
+		// GTK4
 		var imps = sl.implementationOf(childcls.fqn);
-		//var evc =  pal.getClass(sl, "Gtk.EventController");
-		
-		// GTK4"Gtk.EventController"
 		var is_event = imps.contains("Gtk.EventController");
-		/*if (childcls.fqn == "Gtk.GestureClick" && !is_event) {
-			foreach(var cn in evc.all_implementations) {
-				GLib.debug("implentatoin of %s is %s", evc.fqn, cn);
-			}
-			
-			foreach(var cn in imps) {
-				GLib.debug("  %s implements %s", childcls.fqn, cn);
-			}
-			
-			
-			GLib.error("implemneation lookup failed");
-		
-		}
-		*/
-		//childcls.implementation_of.contains("Gtk.EventController") 
-						//|| childcls.implements.contains("Gtk.EventController");
 		if (is_event) {
 		    this.addLine(this.ipad + this.this_el + "add_controller(  %s.el );".printf(childname) );
 		    return;

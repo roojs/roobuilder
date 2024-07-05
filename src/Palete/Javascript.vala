@@ -94,10 +94,9 @@ namespace Palete {
 				cfg.opt_dump_tokens = false;			
 				cfg.opt_clean_cache = false;
 				
-
-			 	var p = new JSDOC.Packer(cfg);
 				 
-			  
+			 	var p = new JSDOC.Packer(cfg);
+			 	  
 				p.packFile(code, fn,"");
 				 
 	 			ret = p.result;

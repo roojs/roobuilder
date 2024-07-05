@@ -65,7 +65,11 @@
 		public static bool opt_pull_resources = false;
 		public static bool opt_test_bjs_compile_glade = false;
        // public static bool opt_bjs_test = false; 		
+       
+       
+       
 		public static string _self;
+		public static string _version = "0000";
 		
 		public enum Target {
 		    INT32,
@@ -98,18 +102,18 @@
 				// this should nto happen!!?
 				GLib.error("could not read /proc/self/exe");
 			}
-			GLib.debug("SELF = %s", _self);
-			var f =  File.new_for_path(_self);
-			var dt = "0000";
+		 	var f =  File.new_for_path(_self);
+			 
 			try {
 				var fi = f.query_info("*",0);
-				dt = fi.get_creation_date_time().to_unix().to_string();
+				_version = fi.get_creation_date_time().to_unix().to_string();
 			} catch (GLib.Error e) {
 				// skip.
 			}
+			 
 			
 			Object(
-				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self),dt),
+				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self), _version),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
@@ -143,15 +147,18 @@
 			var cur_project = this.compileProject();
 			//this.testFqn(cur_project); // --drop-list
 			this.testLanguageServer(cur_project); // --language-server
+			this.testCompileBjs(cur_project);
 			this.testSymbolBuilder(cur_project); // symbol builder tests
 			this.listFiles(cur_project);
 			//this.testBjs(cur_project);
  
-			this.testCompileBjs(cur_project);
+			
 			//this.compileVala();
 			
 			Palete.ValaSymbolGirBuilder.updateGirs();  // done in background thread.
 		}
+		
+	 
 
 		public static Settings settings;
 
@@ -391,6 +398,7 @@
 			if (BuilderApplication.opt_test_bjs_compile == null) {
 				return;
 			}
+			GLib.debug("Run --test-bjs-compile");
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
@@ -400,15 +408,22 @@
 				}
 				// 
 				var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
+				var loop = new MainLoop();
 			
 				sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, (o,r )  => {
+					sb.updateBackground.end(r);
 					this.testCompileBjsReal(cur_project);
 				});
+				loop.run();
+				return;
 			}
+			this.testCompileBjsReal(cur_project);
+			
 		}
 		// wrapped so we build symbosl before calling it.
 		void testCompileBjsReal(Project.Project? cur_project)
 		{
+			GLib.debug("Run --test-bjs-compile (real)");
 			if (BuilderApplication.opt_test_bjs_compile == "all") {
 				try { 
 					var ar = cur_project.sortedFiles();
@@ -420,11 +435,14 @@
 						}
     			
 
-						file.loadItems();
+						
 						var oldfn = file.targetName();
-						
-						print("\n\n\n\nFile : %s\n", oldfn);
-						
+			 			if (!GLib.FileUtils.test(oldfn, FileTest.EXISTS)) {
+			 				GLib.message("Skip %s - target does not exist", oldfn);
+			 				continue;
+		 				}
+						GLib.message("Compiling : %s", oldfn);
+						file.loadItems();
 										
 						var outstr = file.toSourceCode();
 						
@@ -453,7 +471,8 @@
 						if (outstr != oldstr) { 
 							
 							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
-							print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
+							GLib.message("Files do not match - test with:\nmeld   %s /tmp/%s\n",
+								oldfn,  file.name + ".out");
 							//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 						}						
 						//print("# Files match %s\n", file.name);
@@ -589,7 +608,7 @@
 		*/
 		void testSymbolBuilder(Project.Project? cur_project)
 		{
-			
+			GLib.debug("Run --test-symbol-builder-compile");
 			if (cur_project == null) {
 				return;
 			}
