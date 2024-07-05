@@ -63,7 +63,7 @@
 		public static bool opt_list_projects = false;
 		public static bool opt_list_files = false;
 		public static bool opt_pull_resources = false;
-		public static bool opt_bjs_compile_glade = false;
+		public static bool opt_test_bjs_compile_glade = false;
        // public static bool opt_bjs_test = false; 		
 		public static string _self;
 		
@@ -470,13 +470,13 @@
 			
 			
 			
-			var file = cur_project.getByRelPath(BuilderApplication.opt_bjs_compile);
+			var file = cur_project.getByRelPath(BuilderApplication.opt_test_bjs_compile);
 			if (file == null) {
 				// then compile them all, and compare them...
 				
 			 
 			
-				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
+				GLib.error("missing file %s in project %s", BuilderApplication.opt_test_bjs_compile, cur_project.name);
 			}
 			try {
 				file.loadItems();
@@ -484,7 +484,7 @@
 				GLib.debug("Load items failed");
 			}
 					
-			if (BuilderApplication.opt_bjs_compile_glade) {
+			if (BuilderApplication.opt_test_bjs_compile_glade) {
 				var str = file.toGlade();
 				print("%s", str);
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
