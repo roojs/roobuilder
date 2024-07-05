@@ -150,7 +150,7 @@
 			Palete.ValaSymbolGirBuilder.updateGirs();  // done in background thread.
 		}
 		
-	 	public string exe_version()
+	 	public static string exe_version()
 	 	{
 	 		string v= "0000";
 	 		try {
