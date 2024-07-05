@@ -102,18 +102,10 @@
 				// this should nto happen!!?
 				GLib.error("could not read /proc/self/exe");
 			}
-		 	var f =  File.new_for_path(_self);
-			 
-			try {
-				var fi = f.query_info("*",0);
-				_version = fi.get_creation_date_time().to_unix().to_string();
-			} catch (GLib.Error e) {
-				// skip.
-			}
-			 
+		 	 
 			
 			Object(
-				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self), _version),
+				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self), version()),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
