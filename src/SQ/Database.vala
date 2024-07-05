@@ -47,7 +47,7 @@ namespace SQ {
 		}
 		public static string symbol_filename()
 		{
-			return BuilderApplication.configDirectory() + "/symbols-" + BuilderApplication._version + ".db";
+			return BuilderApplication.configDirectory() + "/symbols-" + BuilderApplication.version() + ".db";
 		}
 		
 		public static void backupDB()
