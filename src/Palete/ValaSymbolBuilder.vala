@@ -106,7 +106,7 @@ namespace Palete {
 			yield;
 			return cnt;
 		}
-
+		int compile_pass = 0;
 		
 		public async Gee.ArrayList<string>? updateBackground(  string build_module) {
 			
@@ -130,7 +130,11 @@ namespace Palete {
 			this.running = true;
 			this.changed.clear();
 			this.filemanager = new SymbolFileCollection();
- 			yield this.create_valac_tree( build_module);
+			if (this.compile_pass < 1) {
+	 			yield this.create_valac_tree( build_module , false);
+	 			this.compile_pass++;
+ 			}
+ 			yield this.create_valac_tree( build_module , true); 			
 			var ar = new Gee.ArrayList<string>();
 			foreach(var s in this.changed) {
 				ar.add(s);
