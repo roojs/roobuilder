@@ -139,7 +139,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		GLib.debug("calling  addMyVars");
 		
 		this.addLine();
-		this.addLine(this.ipad + "// my vars (def)");
+		this.addLine(this.pad + "// my vars (def)");
 			
 
 		var sl =  this.file.getSymbolLoader();
