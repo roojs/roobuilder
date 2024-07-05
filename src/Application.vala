@@ -147,7 +147,7 @@
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
  
-			this.compileBjs(cur_project);
+			this.testCompileBjs(cur_project);
 			//this.compileVala();
 			
 			Palete.ValaSymbolGirBuilder.updateGirs();  // done in background thread.
@@ -343,7 +343,7 @@
 		 Test to see if the internal BJS reader/writer still outputs the same files.
 		 -- probably need this for the generator as well.
 		*/
-		
+		/*
 		void testBjs(Project.Project? cur_project)
 		{
 			if (!BuilderApplication.opt_bjs_test) {
@@ -352,6 +352,8 @@
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
+			
+			
 			print("Checking files\n");
 			try { 
 				var ar = cur_project.sortedFiles();
@@ -383,8 +385,8 @@
 			print("All files pass");
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
-		
-		void compileBjs(Project.Project? cur_project)
+		*/
+		void testCompileBjs(Project.Project? cur_project)
 		{
 			if (BuilderApplication.opt_bjs_compile == null) {
 				return;
@@ -392,7 +394,21 @@
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
+			if (cur_project.xtype == "Gtk" ) {
+				if (opt_test_symbol_target == null) {
+					GLib.error("you must specify a compile target using --test-symbol-target when testing Gtk bjs generation");			
+				}
+				// 
+				var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 			
+				sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, (o,r )  => {
+					this.testCompileBjsReal(cur_project);
+				});
+			}
+		}
+		// wrapped so we build symbosl before calling it.
+		void testCompileBjsReal(Project.Project? cur_project)
+		{
 			if (BuilderApplication.opt_bjs_compile == "all") {
 				try { 
 					var ar = cur_project.sortedFiles();
