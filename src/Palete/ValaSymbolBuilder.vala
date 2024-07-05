@@ -383,7 +383,7 @@ namespace Palete {
 			var pr = this.scan_project;
 			var cg =  this.scan_project.compilegroups.get(build_module);
 			this.files= new Gee.ArrayList<string>();
-			for (var i = 0; i < with_code ? cg.sources.size : 0; i++) {
+			for (var i = 0; i < ( with_code ? cg.sources.size : 0); i++) {
 				var path = cg.sources.get(i);
 				
 				var jfile = pr.getByRelPath(path);
@@ -405,12 +405,8 @@ namespace Palete {
 				//var sf = jfile.vala_source_file(context,ns_ref);
 				//sf.context = context;
 				var f = this.filemanager.factory(jfile); // make sure it's initialized.if 
-				var cont = "";
-				if (f.is_parsed) {
-					cont = jfile.toSourceCode();  
-				} else {
-					cont = null; //GLib.FileUtils.get_contents(jfile.targetName(), out cont);	
-				}
+				var  cont = jfile.toSourceCode();  
+				 
 				//GLib.debug("File %s content = %d", jfile.path, cont.length);
 
 				 
