@@ -43,6 +43,9 @@ namespace Palete {
 		
 		ValaErrorReporter report; 
 		
+		
+		Gee.ArrayList<string> done_first_compile;
+		
 		public ValaSymbolBuilder(Project.Gtk project)
 		{
 			base();
@@ -50,6 +53,7 @@ namespace Palete {
 			this.filemanager = new SymbolFileCollection();
 			this.changed = new Gee.ArrayList<string>();
 			this.queued_changes = new Gee.HashMap<string,SymbolFile>();
+			this.done_first_compile = new Gee.ArrayList<string>();
 		}
 		
 		Gee.HashMap<string,SymbolFile> queued_changes;
@@ -106,7 +110,7 @@ namespace Palete {
 			yield;
 			return cnt;
 		}
-		int compile_pass = 0;
+ 
 		
 		public async Gee.ArrayList<string>? updateBackground(  string build_module) {
 			
@@ -130,9 +134,9 @@ namespace Palete {
 			this.running = true;
 			this.changed.clear();
 			this.filemanager = new SymbolFileCollection();
-			if (this.compile_pass < 1) {
+			if (this.done_first_compile.contains(build_module)) {
 	 			yield this.create_valac_tree( build_module , false);
-	 			this.compile_pass++;
+	 			this.done_first_compile.add(build_module);
  			}
  			yield this.create_valac_tree( build_module , true); 			
 			var ar = new Gee.ArrayList<string>();
