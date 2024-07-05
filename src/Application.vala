@@ -30,7 +30,7 @@
             { "list-projects", 0, 0,  OptionArg.NONE, ref opt_list_projects, "List Projects", null },
             { "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
             { "test-bjs-compile", 0, 0, OptionArg.STRING, ref opt_test_bjs_compile, "convert bjs file (use all to convert all of them and compare output)", null },
-            { "bjs-glade", 0, 0, OptionArg.NONE, ref opt_bjs_compile_glade, "output glade", null },
+            { "test-bjs-glade", 0, 0, OptionArg.NONE, ref opt_test_bjs_compile_glade, "output glade", null },
 //            { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
 //            { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test-language-server", 0, 0, OptionArg.STRING, ref opt_test_language_server, "run language server on this file", null },
@@ -48,7 +48,7 @@
 		public static string opt_compile_add;
 		public static string opt_compile_output;
 		public static string opt_test_bjs_compile;
-		public static string opt_bjs_compile_target;
+		public static string opt_test_bjs_compile_target;
  
 	//	public static string opt_test_fqn;
 		public static string opt_test_language_server;
