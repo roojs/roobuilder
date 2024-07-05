@@ -583,7 +583,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 					: "" ) + " );");
 			return;  
 		}
-		var childcls =  this.file.project.palete.getClass(this.file.getSymbolLoader(), child.fqn()); // very trusting..
+		var pal = this.file.project.palete;
+		var sl  = this.file.getSymbolLoader();
+		var childcls =  pal.getClass(sl, child.fqn()); // very trusting..
+ 
 		if (childcls == null) {
 		  return;
 		}
