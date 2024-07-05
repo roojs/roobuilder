@@ -299,7 +299,7 @@ namespace Palete {
 		}
  
 		
-		async void create_valac_tree( string  build_module)
+		async void create_valac_tree( string  build_module, bool with_code)
 		{
 			// init context:
 			context = new Vala.CodeContext ();
@@ -383,7 +383,7 @@ namespace Palete {
 			var pr = this.scan_project;
 			var cg =  this.scan_project.compilegroups.get(build_module);
 			this.files= new Gee.ArrayList<string>();
-			for (var i = 0; i < cg.sources.size; i++) {
+			for (var i = 0; i < with_code ? cg.sources.size : 0; i++) {
 				var path = cg.sources.get(i);
 				
 				var jfile = pr.getByRelPath(path);
@@ -409,7 +409,7 @@ namespace Palete {
 				if (f.is_parsed) {
 					cont = jfile.toSourceCode();  
 				} else {
-					GLib.FileUtils.get_contents(jfile.targetName(), out cont);	
+					cont = null; //GLib.FileUtils.get_contents(jfile.targetName(), out cont);	
 				}
 				//GLib.debug("File %s content = %d", jfile.path, cont.length);
 
