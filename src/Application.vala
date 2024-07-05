@@ -105,7 +105,7 @@
 		 	 
 			
 			Object(
-				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self), version()),
+				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self), exe_version()),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
@@ -150,7 +150,7 @@
 			Palete.ValaSymbolGirBuilder.updateGirs();  // done in background thread.
 		}
 		
-	 	public string version()
+	 	public string exe_version()
 	 	{
 	 		string v= "0000";
 	 		try {
