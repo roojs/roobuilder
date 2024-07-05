@@ -158,7 +158,25 @@
 			Palete.ValaSymbolGirBuilder.updateGirs();  // done in background thread.
 		}
 		
-	 
+	 	public string version()
+	 	{
+	 		string v= "0000";
+	 		try {
+				_self = FileUtils.read_link("/proc/self/exe");
+			} catch (Error e) {
+				// this should nto happen!!?
+				GLib.error("could not read /proc/self/exe");
+			}
+		 	var f =  File.new_for_path(_self);
+			 
+			try {
+				var fi = f.query_info("*",0);
+				v = fi.get_creation_date_time().to_unix().to_string();
+			} catch (GLib.Error e) {
+				// skip.
+			}
+			return v;
+		 }
 
 		public static Settings settings;
 
