@@ -89,9 +89,7 @@ namespace Palete
 		}
 		public void loadCtors(Symbol cls)
 		{
-			if (cls.ctors.keys.size > 1) {
-				return;
-			}
+		 
 			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Constructor, null);
 		
 		}
@@ -99,17 +97,13 @@ namespace Palete
 		
 		public void loadProps(Symbol cls)
 		{
-			if (cls.props.keys.size > 1) {
-				return;
-			}
+		 
 			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Property, null);
 		
 		}
 		public void loadSignals(Symbol cls)
 		{
-			if (cls.signals.keys.size > 1) {
-				return;
-			}
+			 
 			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Signal, null);
 		
 		}
@@ -133,17 +127,17 @@ namespace Palete
 			
 			switch(kind) {
 				case Lsp.SymbolKind.Property:
-					if (sym.props.keys.size > 1) {
+					if (sym.props.keys.size > 0) {
 						return sym.props;
 					}
 					break;
 				case Lsp.SymbolKind.Signal:
-					if (sym.signals.keys.size > 1) {
+					if (sym.signals.keys.size > 0) {
 						return sym.signals;
 					}
 					break;
 				case Lsp.SymbolKind.Constructor:
-					if (sym.ctors.keys.size > 1) {
+					if (sym.ctors.keys.size > 0) {
 						return sym.ctors;
 					}
 					break;
@@ -503,7 +497,7 @@ namespace Palete
 		
 		 
 		public void loadMethodParams(Symbol method)
-		{
+		{ 
   			if (method.param_ar_loaded) {
   				return;
 			}
