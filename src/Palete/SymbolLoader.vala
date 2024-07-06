@@ -139,7 +139,7 @@ namespace Palete
 				case Lsp.SymbolKind.Constructor:
 					if (sym.ctors.keys.size > 0) {
 						return sym.ctors;
-					}
+					}0
 					break;
 				default: 
 					break;
