@@ -430,6 +430,11 @@
               "}",
               ""
              ],
+             "| async void queuer" : [
+              "() {",
+              "",
+              "}"
+             ],
              "| bool XhighlightErrors" : [
               "( Gee.HashMap<int,string> validate_res) {",
               "         ",
