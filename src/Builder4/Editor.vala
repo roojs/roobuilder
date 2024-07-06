@@ -1039,6 +1039,7 @@ public class Editor : Object
 
 		// my vars (def)
 		public int error_line;
+		public int check_syntax_counter;
 		public Gee.HashMap<int,string>? xmarks;
 		public bool check_queued;
 
@@ -1051,6 +1052,7 @@ public class Editor : Object
 
 			// my vars (dec)
 			this.error_line = -1;
+			this.check_syntax_counter = 0;
 			this.xmarks = null;
 			this.check_queued = false;
 
@@ -1102,8 +1104,16 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public async void queuer () {
-		
+		public async void queuer (int cnt) {
+			SourceFunc cb = this.queuer.callback;
+			  
+				GLib.Timeout.add(500, () => {
+			 		 GLib.Idle.add((owned) cb);
+			 		 return false;
+				});
+				
+				yield;
+				return cnt;
 		}
 		public bool XhighlightErrors ( Gee.HashMap<int,string> validate_res) {
 		         
