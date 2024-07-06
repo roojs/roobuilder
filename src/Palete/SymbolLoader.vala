@@ -504,7 +504,7 @@ namespace Palete
 		 
 		public void loadMethodParams(Symbol method)
 		{
-  			if (method.params_ar_loaded) {
+  			if (method.param_ar_loaded) {
   				return;
 			}
   			GLib.debug("Get methods params for %s", method.fqn);
