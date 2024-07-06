@@ -90,9 +90,9 @@ public class Editor : Object
 		 
 		 
 		 var str = _this.buffer.toString();
-		 
-		 _this.buffer.checkSyntaxAsync.begin((obj,res) => {
-		 _this.buffer.checkSyntaxAsync.end(res);
+		 var pal = _this.file.palete();
+		 pal.checkSyntax.begin(_this, (obj,res) => {
+		 	pal.checkSyntax.end(res);
 		 
 		 });
 		 
