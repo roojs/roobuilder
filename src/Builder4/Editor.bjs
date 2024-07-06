@@ -1472,7 +1472,7 @@
     "\t var str = _this.buffer.toString();",
     "\t ",
     "\t _this.buffer.checkSyntaxAsync.begin(obj,res) {",
-    "\t _this.buffer.checkSyntaxAsync..end(res);",
+    "\t _this.buffer.checkSyntaxAsync.end(res);",
     "\t ",
     "\t });",
     "\t ",
