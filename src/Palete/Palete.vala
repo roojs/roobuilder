@@ -115,8 +115,90 @@ namespace Palete
 		
 			return ret;
 		}
+		int check_syntax_counter = 0;
+		
 
-  
+		async int queuer (int cnt) {
+			SourceFunc cb = this.queuer.callback;
+		  
+			GLib.Timeout.add(500, () => {
+		 		 GLib.Idle.add((owned) cb);
+		 		 return false;
+			});
+			
+			yield;
+			return cnt;
+		}
+
+		async void checkSyntax(Editor editor) {
+		 
+			this.check_syntax_counter++;
+			var call_id = yield this.queuer(this.check_syntax_counter);
+			if (call_id != this.check_syntax_counter) {
+
+				return ;
+			}
+			
+			var str = editor.buffer.toString();
+			
+			// needed???
+			/*if (this.error_line > 0) {
+				 Gtk.TextIter start;
+				 Gtk.TextIter end;     
+				this.el.get_bounds (out start, out end);
+
+				this.el.remove_source_marks (start, end, null);
+			}
+			*/
+			if (str.length < 1) {
+				print("checkSyntax - empty string?\n");
+				return ;
+			}
+			
+			// bit presumptiona
+			if (editor.file.xtype == "PlainFile") {
+
+				// assume it's gtk...
+				 
+				editor.file.setSource(str);
+				BuilderApplication.showSpinner("appointment soon","document change pending");
+				editor.file.getLanguageServer().document_change(editor.file);
+				editor.file.update_symbol_tree();
+			//	_this.file.getLanguageServer().queueDocumentSymbols(_this.file);
+				// why revert??
+				//_this.file.setSource(oldcode);
+				
+				 
+				return ;
+
+			}
+		   if (editor.file == null) {
+			   return ;
+		   }
+		 
+			
+
+			  
+			 
+			GLib.debug("calling validate");    
+			// clear the buttons.
+		 	if (editor.prop.name == "xns" || editor.prop.name == "xtype") {
+				return  ;
+			}
+			var oldcode  = editor.prop.val;
+			
+			//_this.prop.val = str;
+			editor.node.updated_count++;
+			editor.file.getLanguageServer().document_change(_this.file);
+			editor.node.updated_count++;
+			//_this.prop.val = oldcode;
+			
+			
+			//print("done mark line\n");
+			 
+			return ; // at present allow saving - even if it's invalid..
+		}
+
 		
 		      
 		//public abstract void on_child_added(JsRender.Node? parent,JsRender.Node child);
