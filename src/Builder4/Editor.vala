@@ -1189,7 +1189,7 @@ public class Editor : Object
 		}
 		public async void checkSyntaxAsync () {
 		 
-		 		this.check_syntax_counter++
+		 		this.check_syntax_counter++;
 		 			var call_id = yield this.queuer(this.check_syntax_counter);
 					if (call_id != this.check_syntax_counter) {
 		
