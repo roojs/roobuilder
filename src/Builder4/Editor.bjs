@@ -370,7 +370,12 @@
              "| async void checkSyntaxAsync" : [
               " () {",
               " ",
-              "    ",
+              " \t\tthis.check_syntax_counter++",
+              " \t\t\tvar call_id = yield this.queuer(this.check_syntax_counter);",
+              "\t\t\tif (call_id != this.check_syntax_counter) {",
+              "",
+              "\t\t\t\treturn ;",
+              "\t\t\t}",
               "    var str = this.toString();",
               "    ",
               "    // needed???",
