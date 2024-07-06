@@ -46,7 +46,7 @@ namespace Palete {
  		public string inherits_str { get; set; default = ""; }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
   		public Gee.ArrayList<Symbol> param_ar { get; set; default = new Gee.ArrayList<Symbol>(); }
-  		
+  		public bool param_ar_loaded = false;
   		// filled by symbol loader
   		public Gee.ArrayList<string> all_implementations { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implementation_of { get; set; default = new Gee.ArrayList<string>(); }  		
