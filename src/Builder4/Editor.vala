@@ -1104,7 +1104,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public async void queuer (int cnt) {
+		public async int queuer (int cnt) {
 			SourceFunc cb = this.queuer.callback;
 			  
 				GLib.Timeout.add(500, () => {

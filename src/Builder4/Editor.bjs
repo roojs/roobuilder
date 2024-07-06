@@ -367,6 +367,19 @@
                ""
               ]
              },
+             "| async int queuer" : [
+              "(int cnt) {",
+              "\tSourceFunc cb = this.queuer.callback;",
+              "\t  ",
+              "\t\tGLib.Timeout.add(500, () => {",
+              "\t \t\t GLib.Idle.add((owned) cb);",
+              "\t \t\t return false;",
+              "\t\t});",
+              "\t\t",
+              "\t\tyield;",
+              "\t\treturn cnt;",
+              "}"
+             ],
              "| async void checkSyntaxAsync" : [
               " () {",
               " ",
@@ -435,19 +448,6 @@
               "    return ; // at present allow saving - even if it's invalid..",
               "}",
               ""
-             ],
-             "| async void queuer" : [
-              "(int cnt) {",
-              "\tSourceFunc cb = this.queuer.callback;",
-              "\t  ",
-              "\t\tGLib.Timeout.add(500, () => {",
-              "\t \t\t GLib.Idle.add((owned) cb);",
-              "\t \t\t return false;",
-              "\t\t});",
-              "\t\t",
-              "\t\tyield;",
-              "\t\treturn cnt;",
-              "}"
              ],
              "| bool XhighlightErrors" : [
               "( Gee.HashMap<int,string> validate_res) {",
