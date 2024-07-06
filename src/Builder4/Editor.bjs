@@ -196,7 +196,7 @@
             "clicked" : [
              " () => { ",
              "    _this.saveContents();",
-             "    _this.window.windowstate.switchState(WindowState.State.PREVIEW);",
+             "    _this.window.windowstate.switchState(WindowState.State.PREVIEW)",
              "}",
              "  "
             ]
