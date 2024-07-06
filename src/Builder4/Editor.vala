@@ -1104,17 +1104,6 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public async int queuer (int cnt) {
-			SourceFunc cb = this.queuer.callback;
-			  
-				GLib.Timeout.add(500, () => {
-			 		 GLib.Idle.add((owned) cb);
-			 		 return false;
-				});
-				
-				yield;
-				return cnt;
-		}
 		public bool XhighlightErrors ( Gee.HashMap<int,string> validate_res) {
 		         
 			this.error_line = validate_res.size;
@@ -1186,73 +1175,6 @@ public class Editor : Object
 						// noop..
 					}
 				});
-		}
-		public async void checkSyntaxAsync () {
-		 
-			this.check_syntax_counter++;
-			var call_id = yield this.queuer(this.check_syntax_counter);
-			if (call_id != this.check_syntax_counter) {
-		
-				return ;
-			}
-			
-		    var str = this.toString();
-		    
-		    // needed???
-		    if (this.error_line > 0) {
-		         Gtk.TextIter start;
-		         Gtk.TextIter end;     
-		        this.el.get_bounds (out start, out end);
-		
-		        this.el.remove_source_marks (start, end, null);
-		    }
-		    if (str.length < 1) {
-		        print("checkSyntax - empty string?\n");
-		        return ;
-		    }
-		    
-		    // bit presumptiona
-			if (_this.file.xtype == "PlainFile") {
-		
-				// assume it's gtk...
-				 
-				_this.file.setSource(str);
-				BuilderApplication.showSpinner("appointment soon","document change pending");
-				_this.file.getLanguageServer().document_change(_this.file);
-				_this.file.update_symbol_tree();
-			//	_this.file.getLanguageServer().queueDocumentSymbols(_this.file);
-				// why revert??
-				//_this.file.setSource(oldcode);
-				
-				 
-				return ;
-		
-			}
-		   if (_this.file == null) {
-		       return ;
-		   }
-		 
-		    
-		
-		      
-		     
-		    GLib.debug("calling validate");    
-		    // clear the buttons.
-		 	if (_this.prop.name == "xns" || _this.prop.name == "xtype") {
-				return  ;
-			}
-			var oldcode  = _this.prop.val;
-			
-			//_this.prop.val = str;
-			_this.node.updated_count++;
-		    _this.file.getLanguageServer().document_change(_this.file);
-		    _this.node.updated_count++;
-		    //_this.prop.val = oldcode;
-		    
-		    
-		    //print("done mark line\n");
-		     
-		    return ; // at present allow saving - even if it's invalid..
 		}
 	}
 
