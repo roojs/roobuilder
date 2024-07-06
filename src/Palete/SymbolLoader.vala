@@ -504,7 +504,9 @@ namespace Palete
 		 
 		public void loadMethodParams(Symbol method)
 		{
-  			 
+  			if (method.params_ar_loaded) {
+  				return;
+			}
   			GLib.debug("Get methods params for %s", method.fqn);
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -523,7 +525,7 @@ namespace Palete
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
 			method.param_ar = els;
-
+			method.param_ar_loaded = true;
 		
 		}
 		
