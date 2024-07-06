@@ -130,7 +130,7 @@ namespace Palete
 			return cnt;
 		}
 
-		async void checkSyntax(Editor editor) {
+		public async void checkSyntax(Editor editor) {
 		 
 			this.check_syntax_counter++;
 			var call_id = yield this.queuer(this.check_syntax_counter);
