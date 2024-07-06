@@ -1092,8 +1092,9 @@ public class Editor : Object
 			    // ??needed..??
 			    _this.save_button.el.sensitive = true;
 			    print("EDITOR CHANGED");
-			    this.checkSyntaxAsync.begin(  ( obj,res ) => {
-			    	this.checkSyntaxAsync.end(res);
+			    var pal = _this.file.palete();
+			    pal.checkSyntax.begin( _this,  ( obj,res ) => {
+			    	pal.checkSyntax.end(res);
 			   });
 			   
 			    _this.dirty = true;
