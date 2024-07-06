@@ -380,7 +380,7 @@
               "\t\treturn cnt;",
               "}"
              ],
-             "| async void" : [
+             "| async void checkSyntaxAsync" : [
               " () {",
               " ",
               " \t\tthis.check_syntax_counter++;",
