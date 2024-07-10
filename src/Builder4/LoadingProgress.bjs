@@ -1,6 +1,11 @@
 {
  "build_module" : "roobuilder",
  "gen_extended" : false,
- "items" : [],
+ "items" : [
+  {
+   "$ xns" : "Adw",
+   "xtype" : "Dialog"
+  }
+ ],
  "name" : "LoadingProgress"
 }
