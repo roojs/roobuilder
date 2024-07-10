@@ -424,7 +424,7 @@ namespace Palete {
 				return ret;
 			}
 			var snp = new SymbolNodeProp (this,  sl);
-			var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor, null);
+			var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor);
 			if (ar.has_key(cls.name)) {
 				var props = sl.getParametersFor(cls);
 				foreach(var p in props) {
