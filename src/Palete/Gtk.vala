@@ -141,13 +141,13 @@ namespace Palete {
 						
  
 				case JsRender.NodePropType.LISTENER:
-					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Signal, null);				
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Signal);				
  
 				case JsRender.NodePropType.METHOD:
-					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method, null);
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method);
 				
 				case JsRender.NodePropType.CTOR:
-					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method, null);
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method);
 					
 				//case JsRender.NodePropType.CTOR:  // needed to query the arguments of a ctor.
 				//	return cls.ctors;
