@@ -2,7 +2,7 @@ static LoadingProgress  _LoadingProgress;
 
 public class LoadingProgress : Object
 {
-	public Adw.Dialog el;
+	public Adw.AboutDialog el;
 	private LoadingProgress  _this;
 
 	public static LoadingProgress singleton()
@@ -19,7 +19,7 @@ public class LoadingProgress : Object
 	public LoadingProgress()
 	{
 		_this = this;
-		this.el = new Adw.Dialog();
+		this.el = new Adw.AboutDialog();
 
 		// my vars (dec)
 
