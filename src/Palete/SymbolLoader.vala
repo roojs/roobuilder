@@ -193,9 +193,9 @@ namespace Palete
 
 			foreach(var s in els) {
 				var k = s.name;
-				if (ignore_list != null && GLib.strv_contains(ignore_list, k)) {
-					continue;
-				}
+			//	if (ignore_list != null && GLib.strv_contains(ignore_list, k)) {
+			//		continue;
+			//	}
 				if (kind ==  Lsp.SymbolKind.Property) {
 					
 					//if (!s.is_writable && !s.is_ctor_only) {
@@ -218,27 +218,27 @@ namespace Palete
 				
 				ret.set(s.name, s);
 			}
-			if (ignore_list == null) {
-				switch(kind) {
-					case Lsp.SymbolKind.Property:
-					 	sym.props = ret;
-						sym.props_loaded = true;
-						break;
-					case Lsp.SymbolKind.Signal:
-						sym.signals = ret;
-						sym.signals_loaded = true;
-						break;
-					case Lsp.SymbolKind.Constructor:
-						sym.ctors = ret;
-						sym.ctors_loaded = true;
-						break;
-					case Lsp.SymbolKind.Method:
-						sym.methods = ret;
-						sym.methods_loaded = true;
-						break;
-					default: 
-						break;
-				}
+			 
+			switch(kind) {
+				case Lsp.SymbolKind.Property:
+				 	sym.props = ret;
+					sym.props_loaded = true;
+					break;
+				case Lsp.SymbolKind.Signal:
+					sym.signals = ret;
+					sym.signals_loaded = true;
+					break;
+				case Lsp.SymbolKind.Constructor:
+					sym.ctors = ret;
+					sym.ctors_loaded = true;
+					break;
+				case Lsp.SymbolKind.Method:
+					sym.methods = ret;
+					sym.methods_loaded = true;
+					break;
+				default: 
+					break;
+			
 					
 			}
 			 
