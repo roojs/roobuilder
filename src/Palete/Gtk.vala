@@ -130,7 +130,7 @@ namespace Palete {
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
 					var ret = new Gee.HashMap<string,Symbol>();
-					var ps =  sl.getPropertiesFor(fqn, Lsp.SymbolKind.Property, properties_to_ignore);
+					var ps =  sl.getPropertiesFor(fqn, Lsp.SymbolKind.Property);
 					foreach(var k in ps.keys) {
 						if ((GLib.strv_contains(properties_to_ignore, k)) {
 							continue;
