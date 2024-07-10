@@ -7,7 +7,6 @@
    "$ modal" : true,
    "$ use_markup" : true,
    "$ xns" : "Gtk",
-   "Gtk.MessageType message_type" : "Gtk.MessageType.QUESTION",
    "Gtk.MessageType type" : "Gtk.MessageType.QUESTION",
    "flags" : "Gtk.DialogFlags.MODAL",
    "listeners" : {
@@ -16,7 +15,6 @@
      "   this.el.response(Gtk.ResponseType.CANCEL);",
      "    this.el.hide();",
      "    return true;",
-     "",
      "}",
      ""
     ]

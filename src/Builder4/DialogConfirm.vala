@@ -26,7 +26,6 @@ public class DialogConfirm : Object
 		// set gobject values
 		this.el.title = "Please Confirm ";
 		this.el.name = "DialogConfirm";
-		this.el.message_type = Gtk.MessageType.QUESTION;
 		this.el.text = "Test";
 		this.el.modal = true;
 		this.el.use_markup = true;
@@ -36,7 +35,6 @@ public class DialogConfirm : Object
 		   this.el.response(Gtk.ResponseType.CANCEL);
 		    this.el.hide();
 		    return true;
-		
 		});
 	}
 
