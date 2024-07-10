@@ -244,7 +244,7 @@ namespace Palete {
 				return false;
 			}
 			string[] ret = {};
-			var enums = sl.getPropertiesFor(type, Lsp.SymbolKind.EnumMember, null);
+			var enums = sl.getPropertiesFor(type, Lsp.SymbolKind.EnumMember);
 			foreach(var ty in enums.values) {
 				ret  += ty.fqn;
 			}
@@ -297,7 +297,7 @@ namespace Palete {
         	}
         	 
         	 
-        	var methods = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Method, null);
+        	var methods = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Method);
         	foreach(var method in methods.values) {
         		if (GLib.strv_contains(methods_to_check, method.name)) {
     		 
@@ -325,7 +325,9 @@ namespace Palete {
 				return fret;
     
         	}
-        	var props = sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Property, properties_to_ignore);
+        	var props = this.getPropertiesFor(sl, in_rval, JsRender.NodePropType.PROP);
+        	//sl.getPropertiesFor(in_rval, Lsp.SymbolKind.Property, properties_to_ignore);
+        	 
         	 
         	//this is needed for drag drop?
         	foreach(var pn in props.values) {
