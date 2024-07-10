@@ -8,6 +8,7 @@
    "$ use_markup" : true,
    "$ xns" : "Gtk",
    "Gtk.MessageType message_type" : "Gtk.MessageType.QUESTION",
+   "Gtk.MessageType type" : "Gtk.MessageType.QUESTION",
    "flags" : "Gtk.DialogFlags.MODAL",
    "listeners" : {
     "close_request" : [
