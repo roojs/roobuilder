@@ -369,9 +369,10 @@ namespace Palete {
 		};
 		public static string[] properties_to_ignore = {
 			"___",
+			"...",
 			"parent",
 			"default_widget",
-			 "root",
+			"root",
 			"layout_manager",
 			"widget" 
 		};
