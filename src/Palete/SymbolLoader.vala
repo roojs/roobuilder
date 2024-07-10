@@ -141,6 +141,11 @@ namespace Palete
 						return sym.ctors;
 					}
 					break;
+				case Lsp.SymbolKind.Method:
+					if (sym.methods_loaded) {
+						return sym.methods;
+					}
+					break;
 				default: 
 					break;
 					
@@ -226,6 +231,10 @@ namespace Palete
 					case Lsp.SymbolKind.Constructor:
 						sym.ctors = ret;
 						sym.ctors_loaded = true;
+						break;
+					case Lsp.SymbolKind.Method:
+						sym.methods = ret;
+						sym.methods_loaded = true;
 						break;
 					default: 
 						break;
