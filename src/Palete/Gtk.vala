@@ -132,7 +132,7 @@ namespace Palete {
 					var ret = new Gee.HashMap<string,Symbol>();
 					var ps =  sl.getPropertiesFor(fqn, Lsp.SymbolKind.Property);
 					foreach(var k in ps.keys) {
-						if ((GLib.strv_contains(properties_to_ignore, k)) {
+						if (GLib.strv_contains(properties_to_ignore, k)) {
 							continue;
 						}
 						ret.set(k,ps.get(k));
