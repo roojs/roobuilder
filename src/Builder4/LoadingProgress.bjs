@@ -1,0 +1,6 @@
+{
+ "build_module" : "roobuilder",
+ "gen_extended" : false,
+ "items" : [],
+ "name" : "LoadingProgress"
+}
