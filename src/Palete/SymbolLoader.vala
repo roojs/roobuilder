@@ -127,17 +127,17 @@ namespace Palete
 			
 			switch(kind) {
 				case Lsp.SymbolKind.Property:
-					if (sym.props.keys.size > 0) {
+					if (sym.props_loaded) {
 						return sym.props;
 					}
 					break;
 				case Lsp.SymbolKind.Signal:
-					if (sym.signals.keys.size > 0) {
+					if (sym.signals_loaded) {
 						return sym.signals;
 					}
 					break;
 				case Lsp.SymbolKind.Constructor:
-					if (sym.ctors.keys.size > 0) {
+					if (sym.ctors_loaded) {
 						return sym.ctors;
 					}
 					break;
@@ -217,12 +217,15 @@ namespace Palete
 				switch(kind) {
 					case Lsp.SymbolKind.Property:
 					 	sym.props = ret;
+						sym.props_loaded = true;
 						break;
 					case Lsp.SymbolKind.Signal:
 						sym.signals = ret;
+						sym.signals_loaded = true;
 						break;
 					case Lsp.SymbolKind.Constructor:
 						sym.ctors = ret;
+						sym.ctors_loaded = true;
 						break;
 					default: 
 						break;
