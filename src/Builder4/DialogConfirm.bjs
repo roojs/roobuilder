@@ -4,7 +4,6 @@
  "items" : [
   {
    "$ buttons" : "Gtk.ButtonsType.YES_NO",
-   "$ message_type" : "Gtk.MessageType.QUESTION",
    "$ modal" : true,
    "$ use_markup" : true,
    "$ xns" : "Gtk",
@@ -20,6 +19,7 @@
      ""
     ]
    },
+   "message_type" : "Gtk.MessageType.QUESTION",
    "name" : "DialogConfirm",
    "text" : "Test",
    "title" : "Please Confirm ",
