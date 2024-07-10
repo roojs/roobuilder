@@ -4,6 +4,7 @@
  "items" : [
   {
    "$ xns" : "Adw",
+   "Gtk.Widget child" : "",
    "xtype" : "Dialog"
   }
  ],
