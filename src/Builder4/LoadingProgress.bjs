@@ -1,6 +1,11 @@
 {
  "build_module" : "roobuilder",
  "gen_extended" : false,
- "items" : [],
+ "items" : [
+  {
+   "$ xns" : "Gtk",
+   "xtype" : "Window"
+  }
+ ],
  "name" : "LoadingProgress"
 }

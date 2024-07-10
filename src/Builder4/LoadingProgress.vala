@@ -2,7 +2,7 @@ static LoadingProgress  _LoadingProgress;
 
 public class LoadingProgress : Object
 {
-	public Adw.AboutDialog el;
+	public Gtk.Window el;
 	private LoadingProgress  _this;
 
 	public static LoadingProgress singleton()
@@ -19,7 +19,7 @@ public class LoadingProgress : Object
 	public LoadingProgress()
 	{
 		_this = this;
-		this.el = new Adw.AboutDialog();
+		this.el = new Gtk.Window();
 
 		// my vars (dec)
 
