@@ -90,7 +90,7 @@ namespace Palete
 		public void loadCtors(Symbol cls)
 		{
 		 
-			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Constructor, null);
+			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Constructor);
 		
 		}
 		
@@ -98,13 +98,13 @@ namespace Palete
 		public void loadProps(Symbol cls)
 		{
 		 
-			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Property, null);
+			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Property);
 		
 		}
 		public void loadSignals(Symbol cls)
 		{
 			 
-			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Signal, null);
+			this.getPropertiesFor(cls.fqn, Lsp.SymbolKind.Signal);
 		
 		}
 		// methods???
