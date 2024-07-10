@@ -114,7 +114,7 @@ namespace Palete
 			Palate.getProperties for
 		*/
 		
-		public Gee.HashMap<string,Symbol>  getPropertiesFor(string fqn, Lsp.SymbolKind kind, string[]? ignore_list )
+		public Gee.HashMap<string,Symbol>  getPropertiesFor(string fqn, Lsp.SymbolKind kind )
 		{
 			
 			
