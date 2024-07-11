@@ -2,7 +2,7 @@ static LoadingProgress  _LoadingProgress;
 
 public class LoadingProgress : Object
 {
-	public Adw.Dialog el;
+	public Gtk.Window el;
 	private LoadingProgress  _this;
 
 	public static LoadingProgress singleton()
@@ -20,17 +20,74 @@ public class LoadingProgress : Object
 	public LoadingProgress()
 	{
 		_this = this;
-		this.el = new Adw.Dialog();
+		this.el = new Gtk.Window();
 
 		// my vars (dec)
 
 		// set gobject values
 		this.el.title = "Loading";
-		new Xcls_bar( _this );
-		this.el.child = _this.bar.el;
+		this.el.default_width = 300;
+		var child_1 = new Xcls_Box1442( _this );
+		child_1.ref();
+		this.el.child = child_1.el;
+
+		// init method
+
+		{
+			this.el.application =  BuilderApplication.singleton(null); 
+		}
 	}
 
 	// user defined functions
+	public class Xcls_Box1442 : Object
+	{
+		public Gtk.Box el;
+		private LoadingProgress  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box1442(LoadingProgress _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Image1635( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			new Xcls_bar( _this );
+			this.el.append( _this.bar.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Image1635 : Object
+	{
+		public Gtk.Image el;
+		private LoadingProgress  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Image1635(LoadingProgress _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.resource = "/images/roobuilder.png";
+		}
+
+		// user defined functions
+	}
+
 	public class Xcls_bar : Object
 	{
 		public Gtk.ProgressBar el;
@@ -50,9 +107,11 @@ public class LoadingProgress : Object
 
 			// set gobject values
 			this.el.fraction = 0;
+			this.el.visible = true;
 		}
 
 		// user defined functions
 	}
+
 
 }

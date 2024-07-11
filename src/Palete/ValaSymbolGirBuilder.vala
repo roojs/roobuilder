@@ -40,32 +40,54 @@ namespace Palete {
 		
 		public   ValaSymbolGirBuilder(bool with_dialog = false)
 		{
-			
-			var lp = new LoadingProgress();
-			lp.el.show();
-			
+			LoadingProgress? lp = null;
+			if (with_dialog) {
+				 
+				lp = new LoadingProgress();
+				lp.el.present();
+				lp.el.title = "Reading GIR files";
+				while(GLib.MainContext.default().pending()) {
+					GLib.MainContext.default().iteration(true);
+				}
+			}
 			this.filemanager = new SymbolFileCollection();
 			// cant find a better way to work out where these dir's are..
 			// probably need to config this somehow..
 			string[] gir_directories = { "/usr/share" ,"/usr/local/share/" };
 			
 			
-			
+			this.files = new Gee.ArrayList<string> ();
 			
 			for(var i = 0; i <  gir_directories.length; i++) {
 				this.scanGirDir( gir_directories[i] + "/gir-1.0" );
 			}
-			lp.bar.el.fraction = 0.0f;
+			if (lp != null) {
+				lp.bar.el.fraction = 0.0f;
+				while(GLib.MainContext.default().pending()) {
+					GLib.MainContext.default().iteration(true);
+				}
+			}
 			var n =0;
 			foreach(var f in this.files) {
-				lp.bar.el.fraction = ++n/this.files.size;
+				if (lp != null) {
+
+					lp.bar.el.fraction = (++n * 1.0f)/(this.files.size * 1.0f);
+					while(GLib.MainContext.default().pending()) {
+						GLib.MainContext.default().iteration(true);
+					}
+				}
 				this.readGir(f);
 			}
 			
 			SQ.Database.backupDB();
-			lp.el.hide();
+			if (lp != null) {
+				lp.el.hide();
+				while(GLib.MainContext.default().pending()) {
+					GLib.MainContext.default().iteration(true);
+				}
+			}
 		}
-		Gee.ArrayList<string> files;
+		private Gee.ArrayList<string> files;
 		
 		public void scanGirDir(string dir)
 		{

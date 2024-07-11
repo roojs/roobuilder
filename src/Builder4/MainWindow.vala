@@ -50,7 +50,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_name name;
 	public Xcls_keystate keystate;
 
-		// my vars (def)
+	// my vars (def)
 	public WindowState windowstate;
 	public bool winloading;
 	public Project.Project project;
@@ -201,7 +201,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool show_close_button;
 
 		// ctor
@@ -228,7 +228,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box2(Xcls_MainWindow _owner )
@@ -258,7 +258,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button3(Xcls_MainWindow _owner )
@@ -293,7 +293,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ButtonContent4(Xcls_MainWindow _owner )
@@ -318,7 +318,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button5(Xcls_MainWindow _owner )
@@ -366,7 +366,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button6(Xcls_MainWindow _owner )
@@ -416,7 +416,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_splitview(Xcls_MainWindow _owner )
@@ -429,8 +429,8 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.collapsed = true;
-			this.el.sidebar_width_fraction = 0.400000;
 			this.el.show_sidebar = false;
+			this.el.sidebar_width_fraction = 0.400000;
 			new Xcls_vbox( _this );
 			this.el.content = _this.vbox.el;
 			new Xcls_sidebar( _this );
@@ -447,7 +447,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_vbox(Xcls_MainWindow _owner )
@@ -477,7 +477,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int lastWidth;
 
 		// ctor
@@ -515,7 +515,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_leftpane(Xcls_MainWindow _owner )
@@ -541,7 +541,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_editpane(Xcls_MainWindow _owner )
@@ -577,7 +577,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_tree(Xcls_MainWindow _owner )
@@ -602,7 +602,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_props(Xcls_MainWindow _owner )
@@ -629,7 +629,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box14(Xcls_MainWindow _owner )
@@ -656,7 +656,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_rooviewbox(Xcls_MainWindow _owner )
@@ -681,7 +681,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_codeeditviewbox(Xcls_MainWindow _owner )
@@ -708,7 +708,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box17(Xcls_MainWindow _owner )
@@ -752,7 +752,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -787,7 +787,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -830,7 +830,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -857,7 +857,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_topbarmenu(Xcls_MainWindow _owner )
@@ -888,7 +888,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box22(Xcls_MainWindow _owner )
@@ -915,7 +915,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button23(Xcls_MainWindow _owner )
@@ -943,7 +943,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button24(Xcls_MainWindow _owner )
@@ -974,7 +974,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label25(Xcls_MainWindow _owner )
@@ -997,7 +997,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public ulong handler_id;
 
 		// ctor
@@ -1041,7 +1041,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box27(Xcls_MainWindow _owner )
@@ -1072,7 +1072,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_statusbar_compilestatus_label(Xcls_MainWindow _owner )
@@ -1097,7 +1097,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Xcls_ValaCompileErrors popup;
 
 		// ctor
@@ -1159,7 +1159,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Xcls_ValaCompileErrors popup;
 
 		// ctor
@@ -1220,7 +1220,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Xcls_ValaCompileErrors popup;
 		public GLib.ListStore notices;
 
@@ -1283,7 +1283,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Xcls_ValaCompileErrors popup;
 		public Palete.ValaCompileRequest? last_request;
 
@@ -1354,7 +1354,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_statusbar_compile_spinner(Xcls_MainWindow _owner )
@@ -1402,7 +1402,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_statusbar_compile_icon(Xcls_MainWindow _owner )
@@ -1430,7 +1430,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_sidebar(Xcls_MainWindow _owner )
@@ -1482,7 +1482,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_filesearch(Xcls_MainWindow _owner )
@@ -1523,7 +1523,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_EventControllerKey37(Xcls_MainWindow _owner )
@@ -1599,7 +1599,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box38(Xcls_MainWindow _owner )
@@ -1626,7 +1626,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_open_projects_btn(Xcls_MainWindow _owner )
@@ -1658,7 +1658,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box40(Xcls_MainWindow _owner )
@@ -1685,7 +1685,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Image41(Xcls_MainWindow _owner )
@@ -1709,7 +1709,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label42(Xcls_MainWindow _owner )
@@ -1733,7 +1733,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button43(Xcls_MainWindow _owner )
@@ -1764,7 +1764,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box44(Xcls_MainWindow _owner )
@@ -1791,7 +1791,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Image45(Xcls_MainWindow _owner )
@@ -1815,7 +1815,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label46(Xcls_MainWindow _owner )
@@ -1840,7 +1840,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Paned47(Xcls_MainWindow _owner )
@@ -1867,7 +1867,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ScrolledWindow48(Xcls_MainWindow _owner )
@@ -1892,7 +1892,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnView49(Xcls_MainWindow _owner )
@@ -1918,7 +1918,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool selecting;
 
 		// ctor
@@ -1977,7 +1977,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SortListModel51(Xcls_MainWindow _owner )
@@ -2001,7 +2001,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_winfilter(Xcls_MainWindow _owner )
@@ -2025,7 +2025,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_windowsearch(Xcls_MainWindow _owner )
@@ -2049,7 +2049,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_PropertyExpression54(Xcls_MainWindow _owner )
@@ -2072,7 +2072,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_winmodel(Xcls_MainWindow _owner )
@@ -2096,7 +2096,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_StringSorter56(Xcls_MainWindow _owner )
@@ -2120,7 +2120,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_PropertyExpression57(Xcls_MainWindow _owner )
@@ -2145,7 +2145,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_projcol(Xcls_MainWindow _owner )
@@ -2172,7 +2172,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory59(Xcls_MainWindow _owner )
@@ -2232,7 +2232,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_filecol(Xcls_MainWindow _owner )
@@ -2259,7 +2259,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory61(Xcls_MainWindow _owner )
@@ -2322,7 +2322,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treescroll(Xcls_MainWindow _owner )
@@ -2351,7 +2351,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treeview(Xcls_MainWindow _owner )
@@ -2381,7 +2381,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick64(Xcls_MainWindow _owner )
@@ -2429,7 +2429,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treeselmodel(Xcls_MainWindow _owner )
@@ -2455,7 +2455,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_FilterListModel66(Xcls_MainWindow _owner )
@@ -2478,7 +2478,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treelistsort(Xcls_MainWindow _owner )
@@ -2504,7 +2504,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treelistmodel(Xcls_MainWindow _owner )
@@ -2530,7 +2530,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treemodel(Xcls_MainWindow _owner )
@@ -2554,7 +2554,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_TreeListRowSorter70(Xcls_MainWindow _owner )
@@ -2577,7 +2577,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_StringSorter71(Xcls_MainWindow _owner )
@@ -2601,7 +2601,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_PropertyExpression72(Xcls_MainWindow _owner )
@@ -2626,7 +2626,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treefilter(Xcls_MainWindow _owner )
@@ -2696,7 +2696,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_name(Xcls_MainWindow _owner )
@@ -2732,7 +2732,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory75(Xcls_MainWindow _owner )
@@ -2829,7 +2829,7 @@ public class Xcls_MainWindow : Object
 		private Xcls_MainWindow  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int is_shift;
 
 		// ctor

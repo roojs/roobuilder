@@ -3,18 +3,38 @@
  "gen_extended" : false,
  "items" : [
   {
-   "$ xns" : "Adw",
+   "$ xns" : "Gtk",
+   "* init" : [
+    "{",
+    "\tthis.el.application =  BuilderApplication.singleton(null); ",
+    "}",
+    ""
+   ],
+   "int default_width" : 300,
    "items" : [
     {
      "$ xns" : "Gtk",
      "* prop" : "child",
-     "double fraction" : 0,
-     "id" : "bar",
-     "xtype" : "ProgressBar"
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "string resource" : "/images/roobuilder.png",
+       "xtype" : "Image"
+      },
+      {
+       "$ xns" : "Gtk",
+       "bool visible" : true,
+       "double fraction" : 0,
+       "id" : "bar",
+       "xtype" : "ProgressBar"
+      }
+     ],
+     "xtype" : "Box"
     }
    ],
    "string title" : "Loading",
-   "xtype" : "Dialog"
+   "xtype" : "Window"
   }
  ],
  "name" : "LoadingProgress"

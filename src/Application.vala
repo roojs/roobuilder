@@ -147,7 +147,7 @@
 			
 			//this.compileVala();
 			
-			Palete.ValaSymbolGirBuilder.updateGirs();  // done in background thread.
+			 // done in background thread.
 		}
 		
 	 	public static string exe_version()
@@ -184,6 +184,9 @@
 			);
 			BuilderApplication.settings = new Settings();
 		
+			var gb = new Palete.ValaSymbolGirBuilder(true);
+			gb.ref();
+		
 			var w = new Xcls_MainWindow();
 		    w.initChildren();
 			BuilderApplication.addWindow(w);
@@ -191,7 +194,11 @@
 			// it looks like showall after children causes segfault on ubuntu 14.4
 			w.windowstate.init();
 		//	w.windowstate.showPopoverFiles(w.open_projects_btn.el, null, false);
+		
+			
 			w.show();
+
+
 		
 		}
 		
