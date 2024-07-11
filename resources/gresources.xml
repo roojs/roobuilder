@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gresources>  <gresource prefix="/glade-icons">
+<gresources>  <gresource prefix="/images">
+    <file>roobuilder.png</file>
+  </gresource>
+  <gresource prefix="/glade-icons">
     <file>widget-gtk-aboutdialog.png</file>
     <file>widget-gtk-accelgroup.png</file>
     <file>widget-gtk-accellabel.png</file>
