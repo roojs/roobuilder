@@ -104,17 +104,17 @@ namespace Palete {
 			
 			 
 			if (cls.stype == Lsp.SymbolKind.Class) {
-				return; // ?? we cant add properties that are classes really..
+				 
 				var add = new JsRender.NodeProp.raw(s.name, str, "");
 				// no propertyof ?
 				
 				// this results in recursion.?
-				//add.add_node = this.palete.fqnToNode(this.sl, cls.name);
-				//add.add_node.add_prop(new JsRender.NodeProp.special("prop", s.name));
+				add.add_node = this.palete.fqnToNode(this.sl, cls.name);
+				add.add_node.add_prop(new JsRender.NodeProp.special("prop", s.name));
 				par.childstore.append(add);
 			}
 
-			if (cls.stype != Lsp.SymbolKind.Interface) {
+			if (cls.stype != Lsp.SymbolKind.Interface && cls.stype != Lsp.SymbolKind.Class) {
 				return;
 			
 			}
