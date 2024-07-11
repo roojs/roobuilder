@@ -38,7 +38,7 @@ namespace Palete {
 		
 		}
 		
-		public   ValaSymbolGirBuilder(with_dialog = false)
+		public   ValaSymbolGirBuilder(bool with_dialog = false)
 		{
 			
 			var lp = new LoadingProgress();
