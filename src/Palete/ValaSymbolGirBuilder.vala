@@ -38,17 +38,35 @@ namespace Palete {
 		
 		}
 		
-		public   ValaSymbolGirBuilder()
+		public   ValaSymbolGirBuilder(with_dialog = false)
 		{
+			
+			var lp = new LoadingProgress();
+			lp.show();
+			
 			this.filemanager = new SymbolFileCollection();
 			// cant find a better way to work out where these dir's are..
 			// probably need to config this somehow..
 			string[] gir_directories = { "/usr/share" ,"/usr/local/share/" };
+			
+			
+			
+			
 			for(var i = 0; i <  gir_directories.length; i++) {
 				this.scanGirDir( gir_directories[i] + "/gir-1.0" );
 			}
+			lp.bar.fraction = 0.0f;
+			var n =0;
+			foreach(var f in this.files) {
+				lp.bar.fraction = ++n/this.files.size;
+				this.readGir(f);
+			}
+			
 			SQ.Database.backupDB();
+			lp.hide();
 		}
+		Gee.ArrayList<string> files;
+		
 		public void scanGirDir(string dir)
 		{
 			var f = File.new_for_path(dir);
@@ -63,7 +81,8 @@ namespace Palete {
 					if (!fn.has_suffix(".gir")) {
 						continue;
 					}
-					this.readGir(dir + "/" + fn);
+					this.files.add(dir + "/" + fn);
+//					this.readGir(dir + "/" + fn);
 				}
 			} catch (GLib.Error e) { }
 		
