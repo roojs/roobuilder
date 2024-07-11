@@ -4,6 +4,13 @@
  "items" : [
   {
    "$ xns" : "Gtk",
+   "items" : [
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "child",
+     "xtype" : "ProgressBar"
+    }
+   ],
    "xtype" : "Window"
   }
  ],
