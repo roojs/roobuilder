@@ -116,7 +116,10 @@ namespace JsRender {
 		 	if (obj.has_member("gen_extended")) { // should check type really..
 				this.gen_extended = obj.get_boolean_member("gen_extended");
 			}
-			
+			var pr = (Project.Gtk)this.project;
+			if (pr != null) {
+				pr.symbol_builder.doVapiBuildForFile(this);
+			}
 			//?? at this point?
 			// get the palete and trigger a load of the vapi data..
 			

@@ -38,6 +38,9 @@ namespace Palete {
 		// only set after compile has completed..
 		Gee.HashMap<string,Gee.ArrayList<Lsp.Diagnostic>>? errors = null; 
 		
+		LoadingProgress? lp = null;
+		
+		
 		Project.Gtk scan_project;
 		public SymbolFileCollection  filemanager;
 		
@@ -72,12 +75,40 @@ namespace Palete {
 		public void doVapiBuildForFile(JsRender.JsRender file)
 		{
 			// this is done with the progress dialog.
+			
+
+			lp = new LoadingProgress();
+			
+			lp.el.present();
+			lp.el.title = "Reading VAPI files";
+			lp.bar.el.fraction = 0.0f;
+			while(GLib.MainContext.default().pending()) {
+				GLib.MainContext.default().iteration(true);
+			}
 			var sl = new SymbolFile.new_file(file);
 			var mod = this.scan_project.firstBuildModuleWith(file);
 			this.initializeTreeBuild(mod, false);
 			Vala.CodeContext.push (this.context);
 			Vala.Parser parser = new Vala.Parser ();
 			parser.parse (this.context);
+			var ar = new Gee.ArrayList<string>();
+			foreach(var s in this.changed) {
+				ar.add(s);
+				//this.filemanager.factory_by_path(s).dump();
+			}
+			// copy the errors so the thread can't use them anymore...
+			this.errors = this.report.errors;
+			this.report = null;
+			this.running = false;		
+			
+			this.scan_project.onTreeChanged(ar);
+			
+			
+			lp.el.hide();
+			while(GLib.MainContext.default().pending()) {
+				GLib.MainContext.default().iteration(true);
+			}
+			this.lp = null;
 		}
 		// main entrance point.. 
 		// starts the process of updating the tree..
@@ -166,6 +197,17 @@ namespace Palete {
 		public override void visit_source_file(Vala.SourceFile sfile)
 		{
 			// visit classes and namespaces..?
+			if (this.lp != null) {
+				var pos = this.context.get_packages().index_of(sfile.filename) * 1.0f;
+				var sz = this.context.get_packages().size * 1.0f;
+				lp.bar.el.fraction = pos/sz;
+				lp.bar.el.text= "Reading " + sfile.filename;		
+				while(GLib.MainContext.default().pending()) {
+					GLib.MainContext.default().iteration(true);
+				}
+			
+			}
+			
 			var sf = this.filemanager.factory_by_path(sfile.filename);
 			 
 			if (sf.is_parsed) {

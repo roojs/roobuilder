@@ -46,6 +46,7 @@ namespace Palete {
 				lp = new LoadingProgress();
 				lp.el.present();
 				lp.el.title = "Reading GIR files";
+				lp.bar.el.fraction = 0.0f;
 				while(GLib.MainContext.default().pending()) {
 					GLib.MainContext.default().iteration(true);
 				}
@@ -61,17 +62,13 @@ namespace Palete {
 			for(var i = 0; i <  gir_directories.length; i++) {
 				this.scanGirDir( gir_directories[i] + "/gir-1.0" );
 			}
-			if (lp != null) {
-				lp.bar.el.fraction = 0.0f;
-				while(GLib.MainContext.default().pending()) {
-					GLib.MainContext.default().iteration(true);
-				}
-			}
+			 
 			var n =0;
 			foreach(var f in this.files) {
 				if (lp != null) {
 
 					lp.bar.el.fraction = (++n * 1.0f)/(this.files.size * 1.0f);
+					lp.bar.el.text= "Reading " +f;
 					while(GLib.MainContext.default().pending()) {
 						GLib.MainContext.default().iteration(true);
 					}

@@ -108,7 +108,9 @@ public class LoadingProgress : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.show_text = true;
 			this.el.fraction = 0;
+			this.el.text = "Parsing";
 			this.el.visible = true;
 		}
 

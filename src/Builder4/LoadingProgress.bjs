@@ -26,9 +26,11 @@
       },
       {
        "$ xns" : "Gtk",
+       "bool show_text" : true,
        "bool visible" : true,
        "double fraction" : 0,
        "id" : "bar",
+       "string text" : "Parsing",
        "xtype" : "ProgressBar"
       }
      ],
