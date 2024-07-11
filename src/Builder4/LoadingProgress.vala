@@ -24,7 +24,33 @@ public class LoadingProgress : Object
 		// my vars (dec)
 
 		// set gobject values
+		this.el.title = "Loading";
+		var child_1 = new Xcls_ProgressBar906( _this );
+		child_1.ref();
+		this.el.child = child_1.el;
 	}
 
 	// user defined functions
+	public class Xcls_ProgressBar906 : Object
+	{
+		public Gtk.ProgressBar el;
+		private LoadingProgress  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_ProgressBar906(LoadingProgress _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ProgressBar();
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 }

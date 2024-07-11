@@ -11,6 +11,7 @@
      "xtype" : "ProgressBar"
     }
    ],
+   "string title" : "Loading",
    "xtype" : "Dialog"
   }
  ],
