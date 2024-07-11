@@ -12,6 +12,7 @@ public class LoadingProgress : Object
 		}
 		return _LoadingProgress;
 	}
+	public Xcls_bar bar;
 
 	// my vars (def)
 
@@ -25,13 +26,12 @@ public class LoadingProgress : Object
 
 		// set gobject values
 		this.el.title = "Loading";
-		var child_1 = new Xcls_ProgressBar906( _this );
-		child_1.ref();
-		this.el.child = child_1.el;
+		new Xcls_bar( _this );
+		this.el.child = _this.bar.el;
 	}
 
 	// user defined functions
-	public class Xcls_ProgressBar906 : Object
+	public class Xcls_bar : Object
 	{
 		public Gtk.ProgressBar el;
 		private LoadingProgress  _this;
@@ -40,9 +40,10 @@ public class LoadingProgress : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ProgressBar906(LoadingProgress _owner )
+		public Xcls_bar(LoadingProgress _owner )
 		{
 			_this = _owner;
+			_this.bar = this;
 			this.el = new Gtk.ProgressBar();
 
 			// my vars (dec)

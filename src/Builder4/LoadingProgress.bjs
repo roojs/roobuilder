@@ -9,6 +9,7 @@
      "$ xns" : "Gtk",
      "* prop" : "child",
      "double fraction" : 0,
+     "id" : "bar",
      "xtype" : "ProgressBar"
     }
    ],
