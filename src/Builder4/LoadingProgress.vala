@@ -83,6 +83,7 @@ public class LoadingProgress : Object
 
 			// set gobject values
 			this.el.width_request = 300;
+			this.el.height_request = 300;
 			this.el.resource = "/images/roobuilder.png";
 		}
 
