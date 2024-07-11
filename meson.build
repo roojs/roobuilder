@@ -170,6 +170,7 @@ roobuilder_src = files([
    'src/Palete/SymbolLoader.vala',
    'src/JsRender/NodePropType.vala',
    'src/Palete/SymbolNodeProp.vala',
+   'src/Builder4/LoadingProgress.vala',
 ])
 
 
