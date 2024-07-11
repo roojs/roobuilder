@@ -69,6 +69,16 @@ namespace Palete {
 		
 		}
 		
+		public void doVapiBuildForFile(JsRender.JsRender file)
+		{
+			// this is done with the progress dialog.
+			var sl = new SymbolFile.new_file(file);
+			var mod = this.scan_project.firstBuildModuleWith(file);
+			this.initializeTreeBuild(mod, false);
+			Vala.CodeContext.push (this.context);
+			Vala.Parser parser = new Vala.Parser ();
+			parser.parse (this.context);
+		}
 		// main entrance point.. 
 		// starts the process of updating the tree..
 		public void updateTree(string buildmodule) 
@@ -306,27 +316,17 @@ namespace Palete {
 			
 		}
  
-		
-		async void create_valac_tree( string  build_module, bool with_code)
-		{
-			// init context:
-			context = new Vala.CodeContext ();
+ 
+ 		void initializeTreeBuild(string  build_module, bool with_code)
+ 		{
+ 		
+ 		// init context:
+			this.context = new Vala.CodeContext ();
 			
 		
 			context.experimental = false;
 			context.experimental_non_null = false;
  
-			
-			//for (int i = 2; i <= ver; i += 2) {
-			//	context.add_define ("VALA_0_%d".printf (i));
-			//}
-			
-			 
-			//var vapidirs = ((Project.Gtk)this.file.project).vapidirs();
-			// what's the current version of vala???
-			
- 			
-			//vapidirs +=  Path.get_dirname (context.get_vapi_path("glib-2.0")) ;
 			 
 			var vapidirs = context.vapi_directories;
 			
@@ -435,6 +435,11 @@ namespace Palete {
 			   
 			}
 			
+ 		}
+		
+		async void create_valac_tree( string  build_module, bool with_code)
+		{
+			this.initializeTreeBuild(build_module, with_code);
 			//this.runParser
 			
 			GLib.debug("Running compile thread");
@@ -467,7 +472,7 @@ namespace Palete {
 		{
 			// Perform a dummy slow calculation.
 			// (Insert real-life time-consuming algorithm here.)
-			Vala.CodeContext.push (context);
+			Vala.CodeContext.push (this.context);
 			Vala.Parser parser = new Vala.Parser ();
 			parser.parse (this.context);
 			//gir_parser.parse (context);

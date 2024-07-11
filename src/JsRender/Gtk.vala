@@ -117,7 +117,10 @@ namespace JsRender {
 				this.gen_extended = obj.get_boolean_member("gen_extended");
 			}
 			
-			 
+			//?? at this point?
+			// get the palete and trigger a load of the vapi data..
+			
+		///this.palete();
 			
 			// load items[0] ??? into tree...
 			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
