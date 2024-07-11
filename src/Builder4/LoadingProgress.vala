@@ -48,6 +48,7 @@ public class LoadingProgress : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.fraction = 0;
 		}
 
 		// user defined functions
