@@ -42,7 +42,7 @@ namespace Palete {
 		{
 			
 			var lp = new LoadingProgress();
-			lp.show();
+			lp.el.show();
 			
 			this.filemanager = new SymbolFileCollection();
 			// cant find a better way to work out where these dir's are..
@@ -55,15 +55,15 @@ namespace Palete {
 			for(var i = 0; i <  gir_directories.length; i++) {
 				this.scanGirDir( gir_directories[i] + "/gir-1.0" );
 			}
-			lp.bar.fraction = 0.0f;
+			lp.bar.el.fraction = 0.0f;
 			var n =0;
 			foreach(var f in this.files) {
-				lp.bar.fraction = ++n/this.files.size;
+				lp.bar.el.fraction = ++n/this.files.size;
 				this.readGir(f);
 			}
 			
 			SQ.Database.backupDB();
-			lp.hide();
+			lp.el.hide();
 		}
 		Gee.ArrayList<string> files;
 		
