@@ -27,7 +27,7 @@ public class LoadingProgress : Object
 		// set gobject values
 		this.el.title = "Loading";
 		this.el.default_width = 300;
-		var child_1 = new Xcls_Box1442( _this );
+		var child_1 = new Xcls_Box1( _this );
 		child_1.ref();
 		this.el.child = child_1.el;
 
@@ -39,7 +39,7 @@ public class LoadingProgress : Object
 	}
 
 	// user defined functions
-	public class Xcls_Box1442 : Object
+	public class Xcls_Box1 : Object
 	{
 		public Gtk.Box el;
 		private LoadingProgress  _this;
@@ -48,7 +48,7 @@ public class LoadingProgress : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box1442(LoadingProgress _owner )
+		public Xcls_Box1(LoadingProgress _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -56,7 +56,7 @@ public class LoadingProgress : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Image1635( _this );
+			var child_1 = new Xcls_Image2( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_bar( _this );
@@ -65,7 +65,7 @@ public class LoadingProgress : Object
 
 		// user defined functions
 	}
-	public class Xcls_Image1635 : Object
+	public class Xcls_Image2 : Object
 	{
 		public Gtk.Image el;
 		private LoadingProgress  _this;
@@ -74,7 +74,7 @@ public class LoadingProgress : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Image1635(LoadingProgress _owner )
+		public Xcls_Image2(LoadingProgress _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Image();
@@ -82,6 +82,7 @@ public class LoadingProgress : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.width_request = 300;
 			this.el.resource = "/images/roobuilder.png";
 		}
 

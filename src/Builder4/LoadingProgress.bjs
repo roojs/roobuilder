@@ -19,6 +19,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "int width_request" : 300,
        "string resource" : "/images/roobuilder.png",
        "xtype" : "Image"
       },
