@@ -38,12 +38,6 @@ public class LoadingProgress : Object
 		{
 			this.el.application =  BuilderApplication.singleton(null); 
 		}
-
-		//listeners
-		this.el.realize.connect( () => {
-			this.el.get_display().get_name ()
-		
-		});
 	}
 
 	// user defined functions

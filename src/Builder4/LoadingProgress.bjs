@@ -39,14 +39,6 @@
      "xtype" : "Box"
     }
    ],
-   "listeners" : {
-    "realize" : [
-     "() => {",
-     "\tthis.el.get_display().get_name ()",
-     "",
-     "}"
-    ]
-   },
    "string title" : "Loading",
    "xtype" : "Window"
   }
