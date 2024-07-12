@@ -199,111 +199,14 @@ namespace Palete {
 		
 		}
 		 
-		public override void visit_source_file(Vala.SourceFile sfile)
-		{
-			// visit classes and namespaces..?
-			if (this.lp != null) {
-				var pos = this.context.get_packages().index_of(sfile.filename) * 1.0f;
-				var sz = this.context.get_packages().size * 1.0f;
-				lp.bar.el.fraction = pos/sz;
-				lp.bar.el.text= "Reading " + sfile.filename;		
-				while(GLib.MainContext.default().pending()) {
-					GLib.MainContext.default().iteration(true);
-				}
-			
-			}
-			
-			var sf = this.filemanager.factory_by_path(sfile.filename);
-			 
-			if (sf.is_parsed) {
-				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
-				return;
-			}
-			if (sf.children.get_n_items() < 1) {
-				GLib.debug("Load Symbols %s", sf.path);
-				sf.loadSymbols(  );
-			}
-			
-			GLib.debug("visit source file %s nodes? %d", sfile.filename, sfile.get_nodes().size);
-			// parse it...
-			
-	        sfile.accept_children (this);
-			GLib.debug("flag as parsed %s", sfile.filename);
-			if (sf.children.get_n_items() < 1 ) { // failed to read - dont flag it as parsed.
-				return;
-			}
-			sf.is_parsed = true; // should trigger save..
-			this.changed.add( sf.path );
-			//?? do we need to accept children?
 		
-		}
 		
 		public string line_sig(Vala.Symbol s) {
 			var sr = s.source_reference;
 			
 			return sr == null ? "?" :  "%d:%d:%d:%d".printf(sr.begin.line, sr.begin.column, sr.end.line, sr.end.column);
 		 }
-		public override void visit_namespace (Vala.Namespace element) 
-		{
-
-			if (element == null) {
-				return;
-			}
-			
-		    GLib.debug("parsing namespace %s", element.name);
-			if (element.name == null) {
-				element.accept_children(this); // catch sub namespaces..
-				return;
-			}
-			//GLib.debug("NS from file : %s", element.source_reference.file.filename);
-			var sf = this.filemanager.factory_by_path(element.source_reference.file.filename);
-			if (sf.is_parsed) {
-				GLib.debug("SKIP  NS %s (db uptodate)", element.source_reference.file.filename);
-				return;
-			}
-			if (sf.parsed_symbols.contains(this.line_sig(element))) {
-				return;
-			}
-			if (sf.children.get_n_items() < 1) {
-				GLib.debug("Load Symbols %s", sf.path);
-				sf.loadSymbols(  );
-			}
- 		
-			new SymbolVala.new_namespace(this, null, element);
-			//element.accept_children(this); // catch sub namespaces..
-		}
 		 
-	  	public override void visit_class (Vala.Class element) 
-		{
-			
-			//debug("Got Class %s", element.name); 
-
-			if (element.parent_symbol != null && element.parent_symbol.name != null) {
-				//debug("skip Class (has parent?)  '%s' ",  element.parent_symbol.name);
-				return;
-			}
-			
-			var sf = this.filemanager.factory_by_path(element.source_reference.file.filename);
-			if (sf.is_parsed) {
-				GLib.debug("SKIP  Class %s (db uptodate)", element.source_reference.file.filename);
-				return;
-			}
- 			if (sf.children.get_n_items() < 1) {
-				GLib.debug("Load Symbols %s", sf.path);
-				sf.loadSymbols(  );
-			}
-
-			
-			element.accept_children(this);
-			if (sf.parsed_symbols.contains(this.line_sig(element))) {
-				return;
-			}
-			  
-			
-			new SymbolVala.new_class(this,null, element);
-			//?? childre???
-			
-		} 
 		
 		 
 		 
@@ -519,8 +422,7 @@ namespace Palete {
 		{
 			this.parse(); 
 			Idle.add( this.threaded_callback);
-			 
-			 
+			  
 		}
 		
 		void parse()
@@ -591,8 +493,105 @@ namespace Palete {
 			return false;
 			
 		}
+		public override void visit_source_file(Vala.SourceFile sfile)
+		{
+			// visit classes and namespaces..?
+			if (this.lp != null) {
+				var pos = this.context.get_packages().index_of(sfile.filename) * 1.0f;
+				var sz = this.context.get_packages().size * 1.0f;
+				lp.bar.el.fraction = pos/sz;
+				lp.bar.el.text= "Reading " + sfile.filename;		
+				while(GLib.MainContext.default().pending()) {
+					GLib.MainContext.default().iteration(true);
+				}
+			
+			}
+			
+			var sf = this.filemanager.factory_by_path(sfile.filename);
+			 
+			if (sf.is_parsed) {
+				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
+				return;
+			}
+			if (sf.children.get_n_items() < 1) {
+				GLib.debug("Load Symbols %s", sf.path);
+				sf.loadSymbols(  );
+			}
+			
+			GLib.debug("visit source file %s nodes? %d", sfile.filename, sfile.get_nodes().size);
+			// parse it...
+			
+	        sfile.accept_children (this);
+			GLib.debug("flag as parsed %s", sfile.filename);
+			if (sf.children.get_n_items() < 1 ) { // failed to read - dont flag it as parsed.
+				return;
+			}
+			sf.is_parsed = true; // should trigger save..
+			this.changed.add( sf.path );
+			//?? do we need to accept children?
 		
+		}
+		public override void visit_namespace (Vala.Namespace element) 
+		{
+
+			if (element == null) {
+				return;
+			}
+			
+		    GLib.debug("parsing namespace %s", element.name);
+			if (element.name == null) {
+				element.accept_children(this); // catch sub namespaces..
+				return;
+			}
+			//GLib.debug("NS from file : %s", element.source_reference.file.filename);
+			var sf = this.filemanager.factory_by_path(element.source_reference.file.filename);
+			if (sf.is_parsed) {
+				GLib.debug("SKIP  NS %s (db uptodate)", element.source_reference.file.filename);
+				return;
+			}
+			if (sf.parsed_symbols.contains(this.line_sig(element))) {
+				return;
+			}
+			if (sf.children.get_n_items() < 1) {
+				GLib.debug("Load Symbols %s", sf.path);
+				sf.loadSymbols(  );
+			}
+ 		
+			new SymbolVala.new_namespace(this, null, element);
+			//element.accept_children(this); // catch sub namespaces..
+		}
 		 
+	  	public override void visit_class (Vala.Class element) 
+		{
+			
+			//debug("Got Class %s", element.name); 
+
+			if (element.parent_symbol != null && element.parent_symbol.name != null) {
+				//debug("skip Class (has parent?)  '%s' ",  element.parent_symbol.name);
+				return;
+			}
+			
+			var sf = this.filemanager.factory_by_path(element.source_reference.file.filename);
+			if (sf.is_parsed) {
+				GLib.debug("SKIP  Class %s (db uptodate)", element.source_reference.file.filename);
+				return;
+			}
+ 			if (sf.children.get_n_items() < 1) {
+				GLib.debug("Load Symbols %s", sf.path);
+				sf.loadSymbols(  );
+			}
+
+			
+			element.accept_children(this);
+			if (sf.parsed_symbols.contains(this.line_sig(element))) {
+				return;
+			}
+			  
+			
+			new SymbolVala.new_class(this,null, element);
+			//?? childre???
+			
+		}		 
 		
 		
 	}
