@@ -532,6 +532,10 @@ namespace Palete {
 				switch(cn.type_name) {
 					case "ValaMethod":
 						new SymbolVala.new_method(this, null, cn as Vala.Method);
+						break;
+					default:
+//						new SymbolVala.new_method(this, null, cn as Vala.Method);					
+break;
 				
 				}
 				GLib.debug("file %s code node %s:%s", sfile.filename, cn.type_nane, cn.to_string());
