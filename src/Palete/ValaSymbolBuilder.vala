@@ -76,7 +76,7 @@ namespace Palete {
 		{
 			// this is done with the progress dialog.
 			var mod = this.scan_project.firstBuildModuleWith(file);
-			if (!this.done_first_compile.contains(mod)) {
+			if (this.done_first_compile.contains(mod)) {
 				return;
 			}
 
