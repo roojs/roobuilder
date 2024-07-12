@@ -525,9 +525,9 @@ namespace Palete {
 			GLib.debug("flag as parsed %s", sfile.filename);
 			
 			var ar = sfile.get_nodes();
-			for(var i = 0; i < ar.length;i++) {
+			for(var i = 0; i < ar.size;i++) {
 				var cn = ar.get(i);
-				GLib.debug("file %s code node %s", sfile.filename, cn.get_type().to_string());
+				GLib.debug("file %s code node %s", sfile.filename, cn.type_name);
 			}
 			
 			
