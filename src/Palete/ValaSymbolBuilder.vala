@@ -14,9 +14,7 @@
  // we can have one of these for each 'project'...
  // after parsing - we have a tree in filemanager.
  // we need to updated the database based on that..
- 
- 
- 
+  
  */
 
 namespace Palete {
