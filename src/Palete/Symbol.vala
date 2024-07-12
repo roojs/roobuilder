@@ -45,7 +45,7 @@ namespace Palete {
  		
  		public string inherits_str { get; set; default = ""; }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
-  		public Gee.ArrayList<Symbol> param_ar { get; set; default = new Gee.ArrayList<Symbol>(); }
+  		public Gee.HashMap<int,Symbol> param_ar { get; set; default = new Gee.HashMap<int,Symbol>(); }
   		public bool param_ar_loaded = false;
   		// filled by symbol loader
   		public Gee.ArrayList<string> all_implementations { get; set; default = new Gee.ArrayList<string>(); }
@@ -232,8 +232,10 @@ namespace Palete {
 			foreach(var k in s.implements) {
 				this.implements.add(k);
 			}
-			foreach(var k in s.param_ar) {
-				this.param_ar.add(k);
+			foreach(var k in s.param_ar.keys) {
+				var pc = new Symbol();
+				pc.copyFrom( s.param_ar.get(k));
+				this.param_ar.set(k, pc);
 			}
 
 			//?? soft copy children?

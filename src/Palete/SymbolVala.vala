@@ -4,7 +4,7 @@ namespace Palete {
 
 	public class SymbolVala : Symbol {
 	
-		public SymbolVala(ValaSymbolBuilder builder, Vala.Symbol s)
+		public SymbolVala(ValaSymbolBuilder builder, Vala.CodeNode s)
 		{
 			base();
 			this.file = builder.filemanager.factory_by_path(s.source_reference.file.filename);
@@ -19,7 +19,8 @@ namespace Palete {
 			this.begin_col = s.source_reference.begin.column;
 			this.end_line = s.source_reference.end.line;
 			this.end_col = s.source_reference.end.column;
-			this.deprecated  = s.version.deprecated;
+			var sy = s as Vala.Symbol;
+			this.deprecated  = sy == null ? false : sy.version.deprecated;
 			
 			// end line is not very good ... see if we can use other data?
 			// scanner ->			 s.source_reference.file
@@ -197,16 +198,7 @@ namespace Palete {
 					this.implements.add(p.type_symbol.get_full_name());
 				} 
 			}
-			//if (cls.name == "GestureClick") {
-			//	GLib.debug("base class is %s", this.inherits_str);
-			//}
-			
-			//GLib.debug("dumping nodes?");
-			//var ar = cls.source_reference.file.get_nodes().iterator();
-			//while(ar.next()) {
-			//	var co = ar.get();
-				//GLib.debug("node %d:%d:%s",co.source_reference.begin.line, co.source_reference.end.line, co.type_name );
-			//}
+			 
 			 
 			this.setParent(parent);
 			
@@ -240,9 +232,7 @@ namespace Palete {
 				this.add_fake_properties(builder, this, c);
 				  
 			}
-			 
-			
-			
+			  
 		}
 		
 		public void add_fake_properties(ValaSymbolBuilder builder, Symbol? parent, Symbol c)
@@ -319,10 +309,7 @@ namespace Palete {
 			
 			this.setParent(parent);		 		
 		 	
-
-		 	
-			
-
+ 
 		}
 		public SymbolVala.new_parameter(ValaSymbolBuilder builder, Symbol? parent, Vala.Parameter pam, int seq)	
 		{
@@ -390,6 +377,15 @@ namespace Palete {
 		 	foreach(var p in sig.get_parameters()) {
 				 new new_parameter(builder, this, p, n++);
 			}
+			foreach(var s in sig.body.get_statements()) {
+  				//this.readStatement(builder, s);
+				GLib.debug("file %s statement node %s:%s", s.source_reference.file.filename, s.type_name,
+				
+				 ((string)s.source_reference.begin.pos).substring(0,(long)(s.source_reference.end.pos -  s.source_reference.begin.pos)).dup()
+			 );
+			}
+			
+			
 			 	
 		}
 	 	public void setParent(Symbol? parent) 
@@ -497,6 +493,54 @@ namespace Palete {
 		}
 			 
 		 
+	 
+		void readStatement(ValaSymbolBuilder builder, Vala.Statement s) {
+
+			switch(s.type_name) {
+
+				case "ContinueStatement":
+				case "BreakStatement":
+					new new_codenode(builder, this, s);
+					return;
+				
+				case "Block":
+				case "DeclarationStatement":
+				case "DeleteStatement":
+				case "DoStatement":
+				case "EmptyStatement":
+				case "ExpressionStatement":
+				case "ForStatement":
+				case "IfStatement":
+				case "LockStatement":
+				case "LoopStatement":
+				case "ReturnStatement":
+				case "StatementList":
+				case "SwitchStatement":
+				case "ThrowStatement":
+				case "TryStatement":
+				case "UnlockStatement":
+				case "WhileStatement":
+				case "YieldStatement":
+				
+				default:
+					return;
+			}
+		}
 	
+		public SymbolVala.new_codenode(ValaSymbolBuilder builder, Symbol? parent, Vala.CodeNode c)	
+		{
+			
+			this(builder, c);
+
+
+			this.name = ((string)c.source_reference.begin.pos).substring(0,(long)(c.source_reference.end.pos -  c.source_reference.begin.pos)).dup();
+			GLib.debug("new Codenode  %s", this.name);
+			this.stype = Lsp.SymbolKind.Node;
+			this.setParent(parent);
+		}
+		
+		
 	}
+	
+	
 }

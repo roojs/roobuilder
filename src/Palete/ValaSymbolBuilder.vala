@@ -532,17 +532,24 @@ namespace Palete {
 				switch(cn.type_name) {
 					case "ValaMethod":
 						new SymbolVala.new_method(this, null, cn as Vala.Method);
+						continue;
 						break;
 					case "ValaErrorDomain":
 						new SymbolVala.new_error_domain(this, null, cn as Vala.ErrorDomain);
+						continue;
 						break;
 					case "ValaConstant":
 						new SymbolVala.new_constant(this, null, cn as Vala.Constant);
+						continue;
 						break;	
 					case "ValaStruct":
 						new SymbolVala.new_struct(this, null, cn as Vala.Struct);
+						continue;
 						break;	
-					
+					case "ValaField":
+						new SymbolVala.new_field(this, null, cn as Vala.Field);
+						continue;
+						break;	
 					default:
 //						new SymbolVala.new_method(this, null, cn as Vala.Method);					
 						break;

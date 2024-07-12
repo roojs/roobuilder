@@ -300,7 +300,10 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		
 		if (default_ctor != null  && default_ctor.param_ar.size > 0) {
 			string[] args  = {};
-			foreach(var param in default_ctor.param_ar) {
+			var pos = 0;
+			while (default_ctor.param_ar.has_key(pos)) {
+				var param = default_ctor.param_ar.get(pos);
+				pos++;
 				 
 				var n = param.name;
 				

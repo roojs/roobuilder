@@ -150,8 +150,11 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		// now we can skip ctor arguments if we have actually set them?
 		string[] args  = {};
 		
-		if (  default_ctor.param_ar.size > 0)  {
-			foreach(var param in default_ctor.param_ar) {
+		if (  default_ctor.param_ar.keys.size > 0)  {
+			var pos = 0;
+			while (default_ctor.param_ar.has_key(pos)) {
+			 	var param = default_ctor.param_ar.get(pos);
+				pos++;
 					 
 				var n = param.name;
 				//GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
@@ -193,12 +196,15 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		this.addUnderThis(); // set up '_this = _owner or _this = this;
 		
 		// if there are no ctor args, then we do not need to call object // or create props.
-		if (default_ctor.param_ar.size < 1)  {
+		if (default_ctor.param_ar.keys.size < 1)  {
 	 	 	return;
  	 	}
 		// .vala props.. 
  		var obj_args = new Gee.HashMap<string,string>();
-	 	foreach(var param in default_ctor.param_ar) {
+	 	var pos = 0;
+		while (default_ctor.param_ar.has_key(pos)) {
+			var param = default_ctor.param_ar.get(pos);
+			pos++;
 			var n = param.name;
 			if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;

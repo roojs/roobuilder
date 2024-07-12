@@ -530,7 +530,10 @@ namespace Palete
 			stmt.bind_int64(stmt.bind_parameter_index ("$pid"), method.id);
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
-			method.param_ar = els;
+			method.param_ar.clear();
+			foreach(var e in els) {
+				method.param_ar.set(e.sequence, e);
+			}
 			method.param_ar_loaded = true;
 		
 		}

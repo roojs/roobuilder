@@ -175,8 +175,7 @@ namespace Palete {
 			//var order = new  Gee.ArrayList<int>();
 		 	q.select("WHERE file_id = " + this.id.to_string() + 
 		 		" order by sequence ASC, parent_id ASC, id ASC", newer);
-			 //q.selectOld(SymbolDatabase.db, "WHERE file_id = " + this.id.to_string() + 
-		 	//	" order by parent_id ASC, id ASC", newar, pids ,order);
+			  
 			 
 		 	var addsymbols = new Gee.ArrayList<Symbol>();
 			//this.symbols_all 
@@ -250,12 +249,7 @@ namespace Palete {
 	 	{
 	 		GLib.debug("Remove Sybol %d, %s",(int) s.id , s.fqn);
 	 		if (s.stype == Lsp.SymbolKind.Parameter) {
-	 		    for(var i  = 0; i <   s.parent.param_ar.size; i++ ) {
-	 		        if (s.parent.param_ar.get(i).id == s.id) {
-	 		            s.parent.param_ar.remove_at(i);
-	 		            break;
- 		            }
-	            }
+		 		s.parent.param_ar.unset(s.sequence);
 	 		
 	 		} else {
 	     		
@@ -330,11 +324,7 @@ namespace Palete {
 				}
 				
 				if (child.stype == Lsp.SymbolKind.Parameter) {
-				    if (child.sequence >= parent.param_ar.size) {
-					    parent.param_ar.add(child); // in order?
-					} else {
-					    parent.param_ar.set(child.sequence, child); // in order?
-					}   
+					parent.param_ar.set(child.sequence,child); // in order?
 	 				this.symbol_map.set((int)child.id, child);	
 	 				return;
 				}
