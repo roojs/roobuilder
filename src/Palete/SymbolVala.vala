@@ -498,29 +498,29 @@ namespace Palete {
 
 			switch(s.type_name) {
 
-				case "ContinueStatement":
-				case "BreakStatement":
+				case "ValaContinueStatement":
+				case "ValaBreakStatement":
 					new new_codenode(builder, this, s);
 					return;
 				
-				case "Block":
-				case "DeclarationStatement":
-				case "DeleteStatement":
-				case "DoStatement":
-				case "EmptyStatement":
-				case "ExpressionStatement":
-				case "ForStatement":
-				case "IfStatement":
-				case "LockStatement":
-				case "LoopStatement":
-				case "ReturnStatement":
-				case "StatementList":
-				case "SwitchStatement":
-				case "ThrowStatement":
-				case "TryStatement":
-				case "UnlockStatement":
-				case "WhileStatement":
-				case "YieldStatement":
+				case "ValaBlock":
+				case "ValaDeclarationStatement":
+				case "ValaDeleteStatement":
+				case "ValaDoStatement":
+				case "ValaEmptyStatement":
+				case "ValaExpressionStatement":
+				case "ValaForStatement":
+				case "ValaIfStatement":
+				case "ValaLockStatement":
+				case "ValaLoopStatement":
+				case "ValaReturnStatement":
+				case "ValaStatementList":
+				case "ValaSwitchStatement":
+				case "ValaThrowStatement":
+				case "ValaTryStatement":
+				case "ValaUnlockStatement":
+				case "ValaWhileStatement":
+				case "ValaYieldStatement":
 				
 				default:
 					return;
