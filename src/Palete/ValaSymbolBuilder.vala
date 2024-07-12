@@ -200,7 +200,7 @@ namespace Palete {
 		 
 		
 		
-		public string line_sig(Vala.Symbol s) {
+		public string line_sig(Vala.CodeNode s) {
 			var sr = s.source_reference;
 			
 			return sr == null ? "?" :  "%d:%d:%d:%d".printf(sr.begin.line, sr.begin.column, sr.end.line, sr.end.column);
