@@ -94,6 +94,25 @@ namespace Palete {
 			//?? constants?
 			
 		}
+		
+		public SymbolVala.new_error_domain(ValaSymbolBuilder builder, Symbol? parent, Vala.ErrorDomain cls)
+		{
+			this(builder, cls);
+			this.name = cls.name;
+			this.stype = Lsp.SymbolKind.Enum; // not really... but we will do for now.
+			
+			 
+			this.setParent(parent);
+			foreach(var e in cls.get_codes()) {
+				new new_error_domain_code(builder, this, e);
+			}
+			foreach(var e in cls.get_methods()) {
+				new new_method(builder, this, e);
+			}
+			//?? constants?
+			
+		}
+		
 		public SymbolVala.new_enummember(ValaSymbolBuilder builder, Symbol? parent, Vala.EnumValue cls)	
 		{
 			this(builder, cls);
@@ -102,6 +121,16 @@ namespace Palete {
 				
 			this.rtype  = cls.type_reference == null ||  cls.type_reference.type_symbol == null ? "" : 
 					cls.type_reference.type_symbol.get_full_name();			
+			this.setParent(parent);
+			 
+		}
+		public SymbolVala.new_error_domain_code(ValaSymbolBuilder builder, Symbol? parent, Vala.ErrorCode cls)	
+		{
+			this(builder, cls);
+			this.name = cls.name;
+			this.stype = Lsp.SymbolKind.EnumMember;
+				
+			this.rtype  = "";
 			this.setParent(parent);
 			 
 		}
@@ -206,8 +235,8 @@ namespace Palete {
 		
 		public void add_fake_properties(ValaSymbolBuilder builder, Symbol? parent, Symbol c)
 		{
-			foreach(var p in c.param_ar) {
-					new fake_ctor_property(builder, this, p) ;
+			foreach(var p in c.param_ar.values) {
+				new fake_ctor_property(builder, this, p) ;
 			}
 		}
 		public SymbolVala.new_property(ValaSymbolBuilder builder, Symbol? parent, Vala.Property prop)	
@@ -272,7 +301,8 @@ namespace Palete {
 		 		sig.return_type.type_symbol.get_full_name();
 	 		var n  = 0;
 	 		foreach(var p in sig.get_parameters()) {
-				this.param_ar.add(new new_parameter(builder, this, p, n++));
+				this.param_ar.set(n, new new_parameter(builder, this, p, n));
+				n++;
 			}
 			
 			this.setParent(parent);		 		
@@ -430,12 +460,12 @@ namespace Palete {
 			 
 			var q = new SQ.Query<Symbol>("symbol");
 			
-			if (parent.param_ar.size >= this.sequence) {
+			if (!parent.param_ar.has_key(this.sequence)) {
  
 				
 				q.insert(this);
 				GLib.debug("DB INSERT added %d:%d, %s", (int)this.parent_id, (int)this.id, this.fqn);
- 				parent.param_ar.add(this);
+ 				parent.param_ar.set(this.sequence,this);
 				 
 				//this.file.symbols.add(this);
 				this.file.symbol_map.set((int)this.id, this);
