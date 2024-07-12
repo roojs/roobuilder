@@ -134,6 +134,19 @@ namespace Palete {
 			this.setParent(parent);
 			 
 		}
+		
+		public SymbolVala.new_constant(ValaSymbolBuilder builder, Symbol? parent, Vala.Constant cls)	
+		{
+			this(builder, cls);
+			this.name = cls.name;
+			this.stype = Lsp.SymbolKind.EnumMember;
+				
+			this.rtype  = cls.type_reference == null ||  cls.type_reference.type_symbol == null ? "" : 
+					cls.type_reference.type_symbol.get_full_name();		
+			this.setParent(parent);
+			 
+		}
+		
 		public SymbolVala.new_interface(ValaSymbolBuilder builder, Symbol? parent, Vala.Interface cls)	
 		{
 			this(builder, cls);
