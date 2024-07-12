@@ -533,9 +533,13 @@ namespace Palete {
 					case "ValaMethod":
 						new SymbolVala.new_method(this, null, cn as Vala.Method);
 						break;
+					case "ValaErrorDomain":
+						new SymbolVala.new_error_domain(this, null, cn as Vala.ErrorDomain);
+						break;
+						
 					default:
 //						new SymbolVala.new_method(this, null, cn as Vala.Method);					
-break;
+						break;
 				
 				}
 				GLib.debug("file %s code node %s:%s", sfile.filename, cn.type_name, cn.to_string());
