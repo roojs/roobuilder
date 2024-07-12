@@ -27,6 +27,7 @@ public class LoadingProgress : Object
 		// set gobject values
 		this.el.title = "Loading";
 		this.el.default_width = 300;
+		this.el.modal = true;
 		var child_1 = new Xcls_Box1( _this );
 		child_1.ref();
 		this.el.child = child_1.el;

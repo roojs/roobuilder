@@ -10,6 +10,7 @@
     "}",
     ""
    ],
+   "bool modal" : true,
    "int default_width" : 300,
    "items" : [
     {
