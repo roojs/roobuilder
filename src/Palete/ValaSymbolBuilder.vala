@@ -520,6 +520,14 @@ namespace Palete {
 		
 		public void threaded_parse ()
 		{
+			this.parse(); 
+			Idle.add( this.threaded_callback);
+			 
+			 
+		}
+		
+		void parse()
+		{
 			// Perform a dummy slow calculation.
 			// (Insert real-life time-consuming algorithm here.)
 			Vala.CodeContext.push (this.context);
@@ -535,7 +543,7 @@ namespace Palete {
 				Vala.CodeContext.pop ();
 
 				this.context = null;
- 				Idle.add( this.threaded_callback);
+ 				 
 				return; ;
 			}
 
@@ -550,7 +558,7 @@ namespace Palete {
 				Vala.CodeContext.pop ();
 				this.context= null;
 				//return;
-				Idle.add(  this.threaded_callback);
+				 
 				return;
 				
 			}
@@ -566,9 +574,9 @@ namespace Palete {
 			}
  			SQ.Database.backupDB();
 				 
-			Idle.add(this.threaded_callback);
 			 
 		}
+		
 		
 		
 	//
