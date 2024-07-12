@@ -99,8 +99,12 @@ namespace Palete {
 			// copy the errors so the thread can't use them anymore...
 			this.errors = this.report.errors;
 			this.report = null;
-			this.running = false;		
+			this.running = false;	
+			lp.bar.el.text= "Updating Database";
 			
+			while(GLib.MainContext.default().pending()) {
+				GLib.MainContext.default().iteration(true);
+			}
 			this.scan_project.onTreeChanged(ar);
 			
 			
