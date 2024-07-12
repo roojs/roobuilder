@@ -75,7 +75,10 @@ namespace Palete {
 		public void doVapiBuildForFile(JsRender.JsRender file)
 		{
 			// this is done with the progress dialog.
-			
+			var mod = this.scan_project.firstBuildModuleWith(file);
+			if (!this.done_first_compile.contains(mod)) {
+				return;
+			}
 
 			lp = new LoadingProgress();
 			
@@ -86,7 +89,7 @@ namespace Palete {
 				GLib.MainContext.default().iteration(true);
 			}
 			var sl = new SymbolFile.new_file(file);
-			var mod = this.scan_project.firstBuildModuleWith(file);
+			
 			this.initializeTreeBuild(mod, false);
 			Vala.CodeContext.push (this.context);
 			Vala.Parser parser = new Vala.Parser ();
@@ -113,6 +116,7 @@ namespace Palete {
 				GLib.MainContext.default().iteration(true);
 			}
 			this.lp = null;
+			this.done_first_compile.add(mod);
 		}
 		// main entrance point.. 
 		// starts the process of updating the tree..
