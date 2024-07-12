@@ -539,7 +539,7 @@ namespace Palete {
 			//?? do we need to accept children?
 		
 		}
-		
+		 
 		public override void visit_namespace (Vala.Namespace element) 
 		{
 
