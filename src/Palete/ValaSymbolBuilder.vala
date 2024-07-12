@@ -523,6 +523,15 @@ namespace Palete {
 			
 	        sfile.accept_children (this);
 			GLib.debug("flag as parsed %s", sfile.filename);
+			
+			var ar = sfile.get_nodes();
+			for(var i = 0; i < ar.length;i++) {
+				var cn = ar.get(i);
+				GLib.debug("file %s code node %s", sfile.filename, cn.get_type().to_string());
+			}
+			
+			
+			
 			if (sf.children.get_n_items() < 1 ) { // failed to read - dont flag it as parsed.
 				return;
 			}
