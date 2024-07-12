@@ -39,6 +39,9 @@
      "xtype" : "Box"
     }
    ],
+   "listeners" : {
+    "realize" : ""
+   },
    "string title" : "Loading",
    "xtype" : "Window"
   }
