@@ -526,7 +526,9 @@ namespace Palete {
 			var ar = sfile.get_nodes();
 			for(var i = 0; i < ar.size;i++) {
 				var cn = ar.get(i);
-				GLib.debug("file %s code node %s", sfile.filename, cn.type_name);
+				GLib.debug("file %s code node %s p: %s", sfile.filename, cn.type_name,
+					cn.parent_node != null ? cn.parent_node.type_name : "--");
+
 			}
 			
 			
