@@ -538,7 +538,7 @@ namespace Palete {
 break;
 				
 				}
-				GLib.debug("file %s code node %s:%s", sfile.filename, cn.type_nane, cn.to_string());
+				GLib.debug("file %s code node %s:%s", sfile.filename, cn.type_name, cn.to_string());
 
 			}
 			
