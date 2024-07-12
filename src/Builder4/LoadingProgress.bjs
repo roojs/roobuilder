@@ -40,7 +40,12 @@
     }
    ],
    "listeners" : {
-    "show" : ""
+    "show" : [
+     "() => {",
+     "",
+     "",
+     "}"
+    ]
    },
    "string title" : "Loading",
    "xtype" : "Window"
