@@ -531,8 +531,7 @@ namespace Palete {
 
 			}
 			
-			
-			
+			 
 			if (sf.children.get_n_items() < 1 ) { // failed to read - dont flag it as parsed.
 				return;
 			}
