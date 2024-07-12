@@ -132,7 +132,6 @@ namespace Palete {
 				
 			this.rtype  = "";
 			this.setParent(parent);
-			 
 		}
 		
 		public SymbolVala.new_constant(ValaSymbolBuilder builder, Symbol? parent, Vala.Constant cls)	
