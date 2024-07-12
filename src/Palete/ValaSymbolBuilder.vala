@@ -91,9 +91,8 @@ namespace Palete {
 			var sl = new SymbolFile.new_file(file);
 			
 			this.initializeTreeBuild(mod, false);
-			Vala.CodeContext.push (this.context);
-			Vala.Parser parser = new Vala.Parser ();
-			parser.parse (this.context);
+			this.parse();
+			
 			var ar = new Gee.ArrayList<string>();
 			foreach(var s in this.changed) {
 				ar.add(s);
