@@ -11,6 +11,7 @@
     ""
    ],
    "bool modal" : true,
+   "bool resizable" : false,
    "int default_width" : 300,
    "items" : [
     {
