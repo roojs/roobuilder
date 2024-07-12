@@ -536,7 +536,13 @@ namespace Palete {
 					case "ValaErrorDomain":
 						new SymbolVala.new_error_domain(this, null, cn as Vala.ErrorDomain);
 						break;
-						
+					case "ValaConstant":
+						new SymbolVala.new_constant(this, null, cn as Vala.Constant);
+						break;	
+					case "ValaStruct":
+						new SymbolVala.new_struct(this, null, cn as Vala.Struct);
+						break;	
+					
 					default:
 //						new SymbolVala.new_method(this, null, cn as Vala.Method);					
 						break;
