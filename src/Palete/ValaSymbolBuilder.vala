@@ -86,8 +86,7 @@ namespace Palete {
 			while(GLib.MainContext.default().pending()) {
 				GLib.MainContext.default().iteration(true);
 			}
-			var sl = new SymbolFile.new_file(file);
-			
+			 
 			this.initializeTreeBuild(mod, false);
 			this.parse();
 			
