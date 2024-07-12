@@ -529,7 +529,12 @@ namespace Palete {
 				if (sf.parsed_symbols.contains(this.line_sig(cn))) {
 					return;
 				}
-				GLib.debug("file %s code node %s", sfile.filename, cn.to_string());
+				switch(cn.type_name) {
+					case "ValaMethod":
+						new SymbolVala.new_method(this, null, cn as Vala.Method);
+				
+				}
+				GLib.debug("file %s code node %s:%s", sfile.filename, cn.type_nane, cn.to_string());
 
 			}
 			
