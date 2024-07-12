@@ -40,7 +40,7 @@ public class LoadingProgress : Object
 		}
 
 		//listeners
-		this.el.realize.connect( );
+		this.el.show.connect( );
 	}
 
 	// user defined functions

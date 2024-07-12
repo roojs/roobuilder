@@ -40,7 +40,7 @@
     }
    ],
    "listeners" : {
-    "realize" : ""
+    "show" : ""
    },
    "string title" : "Loading",
    "xtype" : "Window"
