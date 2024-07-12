@@ -109,7 +109,7 @@ namespace Palete {
 				// no propertyof ?
 				
 				// this results in recursion.?
-				add.add_node = this.palete.fqnToNode(this.sl, cls.name);
+				add.add_node = this.palete.fqnToNode(this.sl, cls.fqn);
 				add.add_node.add_prop(new JsRender.NodeProp.special("prop", s.name));
 				par.childstore.append(add);
 			}
