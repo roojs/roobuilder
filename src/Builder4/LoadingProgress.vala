@@ -41,7 +41,7 @@ public class LoadingProgress : Object
 
 		//listeners
 		this.el.realize.connect( () => {
-		
+			this.el.get_display().get_name ()
 		
 		});
 	}
