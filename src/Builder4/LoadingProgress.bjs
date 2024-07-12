@@ -40,7 +40,7 @@
     }
    ],
    "listeners" : {
-    "show" : [
+    "realize" : [
      "() => {",
      "",
      "",
