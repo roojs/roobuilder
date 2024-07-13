@@ -570,7 +570,9 @@ namespace Lsp {
         Parameter = 28, // ?? not standard.
         Signal = 29, // ?? not standard.
      	Return = 30, // ?? not standard.
-        Node = 31; // ?? not standard  = generaic symbol
+        MemberAccess = 31; // ?? not standard  = generaic symbol
+        // member access
+        // keyword?
         
         public string icon () { 
 	   		return "lang-" + this.to_string().replace( "LSP_SYMBOL_KIND_", "" ).down() + "-symbolic"; 
