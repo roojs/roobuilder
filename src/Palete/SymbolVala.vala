@@ -640,7 +640,7 @@ namespace Palete {
 		{
 			this(builder, c);
 			 
-			this.name = this.codeNodeString(c);
+			this.name = this.codeNodeToString(c);
 			this.rtype ="";
 			GLib.debug("type %s new objecttype  %s (%s)", c.source_reference.to_string(), 
 				this.name, this.rtype  );
