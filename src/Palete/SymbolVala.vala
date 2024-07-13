@@ -597,7 +597,7 @@ namespace Palete {
 					
 				case "ValaMethodCall":
 					this.debugHandle(s);
-					this.readCodeNode(builder, s.call);
+					this.readCodeNode(builder, (s as Vala.MethodCall).call);
 					break;
 				
 				default:
@@ -610,7 +610,7 @@ namespace Palete {
 		void debugHandle(Vala.CodeNode s) {
 		
 			GLib.debug("handling type %s: %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
-			}	
+		}	
 
 		/*
 		public SymbolVala.new_codenode(ValaSymbolBuilder builder, Symbol? parent, Vala.CodeNode c)	
