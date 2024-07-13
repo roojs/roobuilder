@@ -626,7 +626,7 @@ namespace Palete {
 			this.name = c.member_name;
 			this.rtype = c.value_type == null ? "": c.value_type.type_symbol.get_full_name();
 			GLib.debug("type %s new memberaccess  %s (%s)", c.source_reference.to_string(), this.name, this.rtype  );
-			this.stype = Lsp.SymbolKind.MemberAccess;
+			this.stype = ss.inner == null ? Lsp.SymbolKind.Varialbe : Lsp.SymbolKind.MemberAccess;
 
 			this.setParent(parent);
 		}
