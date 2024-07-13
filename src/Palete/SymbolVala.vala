@@ -654,7 +654,7 @@ namespace Palete {
 				return;
 			}
 			this.name = c.member_name;
-			this.rtype = c.value_type == null ? "": c.value_type.type_symbol.get_full_name();
+			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
 			if (this.name == "setParent") { // testing member fucntions.
 				this.rtype = c.value_type.symbol.get_full_name();
 			
