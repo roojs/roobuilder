@@ -586,7 +586,7 @@ namespace Palete {
 		}
 		
 
-	
+		/*
 		public SymbolVala.new_codenode(ValaSymbolBuilder builder, Symbol? parent, Vala.CodeNode c)	
 		{
 			
@@ -598,6 +598,7 @@ namespace Palete {
 			this.stype = Lsp.SymbolKind.Node;
 			this.setParent(parent);
 		}
+		*/
 		public SymbolVala.new_variable(ValaSymbolBuilder builder, Symbol? parent, Vala.Variable c)	
 		{
 			this(builder, c);
@@ -625,7 +626,7 @@ namespace Palete {
 			this.name = c.member_name;
 			this.rtype = c.value_type == null ? "": c.value_type.type_symbol.get_full_name();
 			GLib.debug("type %s new memberaccess  %s (%s)", c.source_reference.to_string(), this.name, this.rtype  );
-			this.stype = Lsp.SymbolKind.Variable;
+			this.stype = Lsp.SymbolKind.MemberAccess;
 
 			this.setParent(parent);
 		}
