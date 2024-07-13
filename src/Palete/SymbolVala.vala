@@ -533,7 +533,7 @@ namespace Palete {
 					break;
 				case "ValaLocalVariable":
 				
-					var ss = s as Vala.Variable;
+					var ss = s as Vala.LocalVariable;
 					GLib.debug("handled type %s %s - %s captured=%d init=%d is_result=%d", s.source_reference.to_string(),
 						s.type_name, this.codeNodeToString(s),
 						ss.captured ? 1 :0 , ss.init ? 1: 0 , ss.is_result ? 1 : 0);
