@@ -521,17 +521,10 @@ namespace Palete {
 					break;
 					
 				case "ValaDeclarationStatement":
-					GLib.debug("handled type %s %s - %s", s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
+					GLib.debug("handled type %s %s - %s %d", s.source_reference.to_string(), s.type_name, 
+						this.codeNodeToString(s), ss.declaration == null ? "(nul)" : "(DEC)");
 					var ss =  s as Vala.DeclarationStatement;
 					this.readCodeNode(builder, ss.declaration as Vala.LocalVariable);
-					
-					
-					/*foreach(var v in ss.get_defined_variables()) {
-						this.readVariable(builder, v);
-					}
-					foreach(var v in ss.get_used_variables()) {
-						this.readVariable(builder, v);
-					}	*/	
 					break;
 				case "ValaVariable":	
 				case "ValaLocalVariable":
