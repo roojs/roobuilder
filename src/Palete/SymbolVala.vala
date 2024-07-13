@@ -598,7 +598,7 @@ namespace Palete {
 				case "ValaMethodCall":
 					this.debugHandle(s);
 					this.readCodeNode(builder, s.call);
-				
+					break;
 				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
