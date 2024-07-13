@@ -504,7 +504,6 @@ namespace Palete {
 				case "ValaBlock":
 					var sb = (s as Vala.Block);;
 					
-					
 					foreach(var ss in sb.get_local_constants()) {
 						this.readCodeNode(builder, ss);
 					}
