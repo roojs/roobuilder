@@ -574,14 +574,14 @@ namespace Palete {
 					break;
 				case "ValaMemberAccess":
 					var ss = s as Vala.MemberAccess;
-					/*GLib.debug("handling type %s: %s -[%s] (%s) %s ",
+					GLib.debug("handling type %s: %s -[%s] (%s) %s ",
 							s.source_reference.to_string(),
 							s.type_name,
 							ss.member_name,
 							ss.symbol_reference == null ? "null" : 
 							ss.value_type.type_symbol.get_full_name(),
 							this.codeNodeToString(s));
-							*/
+							
 					new new_memberaccess(builder, this, ss);
 					this.readCodeNode(builder, ss.inner);
 				 	//foreach(var a in ss.get_type_arguments()) {
@@ -655,7 +655,7 @@ namespace Palete {
 			}
 			this.name = c.member_name;
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
-			if (this.rtype == "") { // testing member fucntions
+			if (this.r1type == "") { // testing member fucntions
 				GLib.debug("missing rtype");
 				//this.rtype = c.value_type.symbol.get_full_name();
 			
