@@ -570,7 +570,8 @@ namespace Lsp {
         Parameter = 28, // ?? not standard.
         Signal = 29, // ?? not standard.
      	Return = 30, // ?? not standard.
-        MemberAccess = 31; // ?? not standard  = generaic symbol
+        MemberAccess = 31,
+        ObjectType = 32; // ?? not standard  = generaic symbol
         // member access
         // keyword?
         
