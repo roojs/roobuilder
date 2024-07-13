@@ -525,7 +525,7 @@ namespace Palete {
 					GLib.debug("handled type %s %s - %s %s", s.source_reference.to_string(), s.type_name, 
 						this.codeNodeToString(s), ss.declaration == null ? 
 							("PAR=" +this.codeNodeToString(ss.parent_node))
-						"(nul)" : "(DEC)");
+						 : "(DEC)");
 					
 					this.readCodeNode(builder, ss.declaration as Vala.LocalVariable);
 					break;
