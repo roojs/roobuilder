@@ -530,7 +530,7 @@ namespace Palete {
 				case "ValaLocalVariable":
 				case "ValaVariable":
 					var ss = s as Vala.Variable;
-					this.readCodeNode(builder, ss.expression as Vala.Expression);
+					this.readCodeNode(builder, ss.initializer as Vala.Expression);
 					break;
 					
 				case "Vala.Expression":
