@@ -568,7 +568,8 @@ namespace Palete {
 							ss.member_name,
 							ss.symbol_reference == null ? "null" : ss.value_type.type_symbol.get_full_name(),
 							this.codeNodeToString(s));
-					new new_variable(builder, this, ss);
+					new new_memberaccess(builder, this, ss);
+					this.readCodeNode(builder, ss.inner);
 				 	//foreach(var a in ss.get_type_arguments()) {
 				 	// ?? needed?
 				 	//	this.readCodeNode(builder, a);
@@ -610,7 +611,20 @@ namespace Palete {
 
 			this.setParent(parent);
 		}
-		 
+		 public SymbolVala.new_memberaccess(ValaSymbolBuilder builder, Symbol? parent, Vala.MemberAccess c)	
+		{
+			this(builder, c);
+			// dont' dupelicate add or '.' vars?
+			if (c.member_name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
+				return;
+			}
+			this.name = c.member_name;
+			this.rtype = c.variable_type == null ? "": c.variable_type.type_symbol.get_full_name();
+			GLib.debug("type %s new Variable  %s (%s)", c.source_reference.to_string(), this.name, this.rtype  );
+			this.stype = Lsp.SymbolKind.Variable;
+
+			this.setParent(parent);
+		}
 		string codeNodeToString(Vala.CodeNode c) {
 			return  ((string)c.source_reference.begin.pos).substring(0,
 					(long)(c.source_reference.end.pos -  c.source_reference.begin.pos)
