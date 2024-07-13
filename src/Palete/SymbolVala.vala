@@ -562,7 +562,7 @@ namespace Palete {
 					break;
 				case "ValaMemberAccess":
 					var ss = s as Vala.MemberAccess;
-					GLib.debug("handling type %s: %s -[%s] ($s) %s ",
+					GLib.debug("handling type %s: %s -[%s] (%s) %s ",
 							s.source_reference.to_string(),
 							s.type_name,
 							ss.member_name,
