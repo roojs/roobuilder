@@ -566,7 +566,8 @@ namespace Palete {
 							s.source_reference.to_string(),
 							s.type_name,
 							ss.member_name,
-							ss.symbol_reference == null ? "null" : ss.value_type.type_symbol.get_full_name(),
+							ss.symbol_reference == null ? "null" : 
+							ss.value_type.type_symbol.get_full_name(),
 							this.codeNodeToString(s));
 					new new_memberaccess(builder, this, ss);
 					this.readCodeNode(builder, ss.inner);
@@ -619,8 +620,8 @@ namespace Palete {
 				return;
 			}
 			this.name = c.member_name;
-			this.rtype = c.variable_type == null ? "": c.variable_type.type_symbol.get_full_name();
-			GLib.debug("type %s new Variable  %s (%s)", c.source_reference.to_string(), this.name, this.rtype  );
+			this.rtype = c.value_type == null ? "": c.value_type.type_symbol.get_full_name();
+			GLib.debug("type %s new memberaccess  %s (%s)", c.source_reference.to_string(), this.name, this.rtype  );
 			this.stype = Lsp.SymbolKind.Variable;
 
 			this.setParent(parent);
