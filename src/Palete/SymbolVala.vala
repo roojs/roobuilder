@@ -544,7 +544,7 @@ namespace Palete {
 					GLib.debug("handled type %s %s - %s [%s] %s", 
 						s.source_reference.to_string(),
 						s.type_name, ss.name, this.codeNodeToString(s), 
-						ss.initializer == null ? ("PAR=" +this.codeNodeToString(ss.parent_node)): "(INIT)");
+						ss.initializer == null ? "(null): "(INIT)");
 					
 					this.readCodeNode(builder, ss.initializer as Vala.Expression);
 					break;
