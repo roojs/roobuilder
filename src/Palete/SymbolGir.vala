@@ -73,7 +73,7 @@ namespace Palete {
 			this(f, parent);
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Class;
-	 		GLib.debug("new Class %s", this.to_fqn());			 
+	 		//GLib.debug("new Class %s", this.to_fqn());			 
 	 	 
 		 	 
 			 
