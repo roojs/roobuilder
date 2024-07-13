@@ -605,7 +605,9 @@ namespace Palete {
 					break;
 				
 				default:
-					GLib.debug("Unhandled type %s: %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
+					GLib.debug("Unhandled type %s: %s - %s",
+						s.source_reference == null ? "??" : s.source_reference.to_string(), 
+							s.type_name, this.codeNodeToString(s));
 					return;
 					
 				 
