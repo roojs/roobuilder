@@ -615,7 +615,9 @@ namespace Palete {
 		 public SymbolVala.new_memberaccess(ValaSymbolBuilder builder, Symbol? parent, Vala.MemberAccess c)	
 		{
 			this(builder, c);
-			this.begin_col = this.end_col - c.member_name.length; // fix the starting pos.
+			// not sure if this is needed, we should do a search on code using the 'smallest' match to the range
+			
+			//this.begin_col = this.end_col - c.member_name.length; // fix the starting pos.
 			// dont' dupelicate add or '.' vars?
 			if (c.member_name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
 				return;
