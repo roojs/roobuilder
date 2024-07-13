@@ -570,6 +570,7 @@ namespace Palete {
 				 	foreach(var a in ss.get_type_arguments()) {
 				 		this.readCodeNode(builder, a);
 			 		}
+			 		break;
 				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
