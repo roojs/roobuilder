@@ -577,6 +577,9 @@ namespace Palete {
 				 	//	this.readCodeNode(builder, a);
 			 		//}
 			 		break;
+				case "ValaObjectType":
+				
+					
 				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
