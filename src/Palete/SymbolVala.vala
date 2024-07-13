@@ -603,7 +603,7 @@ namespace Palete {
 		{
 			
 			this(builder, c);
-			// dont' dupelicate add
+			// dont' dupelicate add or '.' vars?
 			if (c.name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
