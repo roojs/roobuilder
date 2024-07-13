@@ -544,12 +544,13 @@ namespace Palete {
 					if (ss.initializer == null ) {
 						break;
 					}
-					GLib.debug("handled type %s %s - %s", 
+				/*	GLib.debug("handled type %s %s - %s", 
 						s.source_reference.to_string(),
 						s.type_name,   this.codeNodeToString(s));
-					
-					new new_codenode(builder, this, ss);
+					*/
+					new new_variable(builder, this, ss);
 					this.readCodeNode(builder, ss.initializer);
+					 
 					break;
 				case "ValaCastExpression":
 					var ss = s as Vala.CastExpression;
@@ -595,6 +596,20 @@ namespace Palete {
 			this.stype = Lsp.SymbolKind.Node;
 			this.setParent(parent);
 		}
+		public SymbolVala.new_variable(ValaSymbolBuilder builder, Symbol? parent, Vala.Variable c)	
+		{
+			
+			this(builder, c);
+
+
+			this.name = this.name;
+			this.rtype = this.variable_type == null ? "": this.variable_type.name;
+			GLib.debug("new Variable  %s (%s)", this.name, this.rtype  );
+			this.stype = Lsp.SymbolKind.Variable;
+			this.rtype = 
+			this.setParent(parent);
+		}
+		
 		string codeNodeToString(Vala.CodeNode c) {
 			return  ((string)c.source_reference.begin.pos).substring(0,
 					(long)(c.source_reference.end.pos -  c.source_reference.begin.pos)
