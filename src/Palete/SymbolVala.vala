@@ -578,9 +578,9 @@ namespace Palete {
 			 		//}
 			 		break;
 				case "ValaObjectType":
-				
-					
-				
+					var ss = s as Vala.ObjectType;
+						new new_objecttype(builder, this, ss);	
+					break;
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
 					return;
@@ -617,7 +617,7 @@ namespace Palete {
 
 			this.setParent(parent);
 		}
-		 public SymbolVala.new_memberaccess(ValaSymbolBuilder builder, Symbol? parent, Vala.MemberAccess c)	
+		public SymbolVala.new_memberaccess(ValaSymbolBuilder builder, Symbol? parent, Vala.MemberAccess c)	
 		{
 			this(builder, c);
 			// not sure if this is needed, we should do a search on code using the 'smallest' match to the range
@@ -636,6 +636,19 @@ namespace Palete {
 
 			this.setParent(parent);
 		}
+		public SymbolVala.new_objecttype(ValaSymbolBuilder builder, Symbol? parent, Vala.ObjectType c)	
+		{
+			this(builder, c);
+			 
+			this.name = this.codeNodeString(c);
+			this.rtype ="";
+			GLib.debug("type %s new objecttype  %s (%s)", c.source_reference.to_string(), 
+				this.name, this.rtype  );
+			this.stype =   Lsp.SymbolKind.ObjectType;
+
+			this.setParent(parent);
+		}
+		
 		string codeNodeToString(Vala.CodeNode c) {
 			return  ((string)c.source_reference.begin.pos).substring(0,
 					(long)(c.source_reference.end.pos -  c.source_reference.begin.pos)
