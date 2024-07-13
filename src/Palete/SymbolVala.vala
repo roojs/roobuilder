@@ -656,7 +656,7 @@ namespace Palete {
 			this.name = c.member_name;
 			this.rtype = c.value_type == null ? "": c.value_type.type_symbol.get_full_name();
 			if (this.name == "setParent") { // testing member fucntions.
-				this.rtype - c.value_type.symbol.get_full_name();
+				this.rtype = c.value_type.symbol.get_full_name();
 			
 			}
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
