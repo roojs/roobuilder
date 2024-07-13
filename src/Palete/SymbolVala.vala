@@ -568,9 +568,11 @@ namespace Palete {
 							ss.member_name,
 							ss.symbol_reference == null ? "null" : ss.value_type.type_symbol.get_full_name(),
 							this.codeNodeToString(s));
-				 	foreach(var a in ss.get_type_arguments()) {
-				 		this.readCodeNode(builder, a);
-			 		}
+					new new_variable(builder, this, ss);
+				 	//foreach(var a in ss.get_type_arguments()) {
+				 	// ?? needed?
+				 	//	this.readCodeNode(builder, a);
+			 		//}
 			 		break;
 				
 				default:
@@ -596,7 +598,6 @@ namespace Palete {
 		}
 		public SymbolVala.new_variable(ValaSymbolBuilder builder, Symbol? parent, Vala.Variable c)	
 		{
-			
 			this(builder, c);
 			// dont' dupelicate add or '.' vars?
 			if (c.name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
@@ -609,7 +610,7 @@ namespace Palete {
 
 			this.setParent(parent);
 		}
-		
+		 
 		string codeNodeToString(Vala.CodeNode c) {
 			return  ((string)c.source_reference.begin.pos).substring(0,
 					(long)(c.source_reference.end.pos -  c.source_reference.begin.pos)
