@@ -497,7 +497,7 @@ namespace Palete {
 		 
 	 
 		void readCodeNode(ValaSymbolBuilder builder, Vala.CodeNode? s) {
-			if (s == null) {
+			if (s == null || s.source_reference == null || s.source_reference.file.filename != this.file.path) {
 				return;
 			}
 			switch(s.type_name) {
