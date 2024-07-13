@@ -560,23 +560,16 @@ namespace Palete {
 					this.readCodeNode(builder, ss.inner);
 					this.readCodeNode(builder, ss.type_reference);
 					break;
-				
-				case "ValaDeleteStatement":
-				case "ValaDoStatement":
-				case "ValaEmptyStatement":
-				case "ValaExpressionStatement":
-				case "ValaForStatement":
-				case "ValaIfStatement":
-				case "ValaLockStatement":
-				case "ValaLoopStatement":
-				case "ValaReturnStatement":
-				case "ValaStatementList":
-				case "ValaSwitchStatement":
-				case "ValaThrowStatement":
-				case "ValaTryStatement":
-				case "ValaUnlockStatement":
-				case "ValaWhileStatement":
-				case "ValaYieldStatement":
+				case "ValaMemberAccess":
+					var ss = s as Vala.MemberAccess;
+					GLib.debug("handling type %s: %s -[%s] %s ",
+							s.source_reference.to_string(),
+							s.type_name,
+							ss.member_name,
+							this.codeNodeToString(s));
+				 	foreach(var a in ss.get_type_arguments()) {
+				 		this.readCodeNode(builder, a);
+			 		}
 				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
