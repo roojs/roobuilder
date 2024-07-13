@@ -604,7 +604,7 @@ namespace Palete {
 			
 			this(builder, c);
 			// dont' dupelicate add
-			if (this.file.parsed_symbols.contains(this.line_sig)) {
+			if (c.name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
 			this.name = c.name;
