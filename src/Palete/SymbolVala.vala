@@ -183,7 +183,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_class(ValaSymbolBuilder builder, Symbol? parent, Vala.Class cls)	
 		{
-			GLib.debug("new Class %s", cls.name);
+			//GLib.debug("new Class %s", cls.name);
 			this(builder, cls);
 			this.name = cls.name;
 			this.stype = Lsp.SymbolKind.Class;
@@ -243,7 +243,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_property(ValaSymbolBuilder builder, Symbol? parent, Vala.Property prop)	
 		{
-			GLib.debug("new Property  %s", prop.name);
+			//GLib.debug("new Property  %s", prop.name);
 			this(builder, prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Property;
@@ -261,7 +261,7 @@ namespace Palete {
 			if (parent.children_map.has_key(prop.name)) {
 				return;
 			}
-			GLib.debug("new Fake Property  %s", prop.name);			
+			//GLib.debug("new Fake Property  %s", prop.name);			
 			base();
 			this.file = prop.file;
 			
@@ -285,7 +285,7 @@ namespace Palete {
 		
 		public SymbolVala.new_field(ValaSymbolBuilder builder, Symbol? parent, Vala.Field prop)	
 		{
-			GLib.debug("new Field  %s", prop.name);
+			//GLib.debug("new Field  %s", prop.name);
 			this(builder, prop);
 			this.name = prop.name;
 			this.stype = Lsp.SymbolKind.Field;
@@ -355,7 +355,7 @@ namespace Palete {
 		}
 		public SymbolVala.new_method(ValaSymbolBuilder builder, Symbol? parent, Vala.Method sig)	
 		{
-			GLib.debug("new Method %s", sig.name);
+			//GLib.debug("new Method %s", sig.name);
 			this(builder, sig);
 			//this.name = sig.name == ".new" ? parent.name : sig.name; // ctor's are called .new.
 			this.name = sig.name == ".new" ? "new" : sig.name; // ctor's are called .new.
@@ -428,7 +428,7 @@ namespace Palete {
  
 				
 				q.insert(this);
-				GLib.debug("DB INSERT added %d:%d, %s", (int)this.parent_id, (int)this.id, this.fqn);
+				//GLib.debug("DB INSERT added %d:%d, %s", (int)this.parent_id, (int)this.id, this.fqn);
  				children.append(this);
 				children_map.set(this.type_name, this);
 				//this.file.symbols.add(this);
@@ -444,7 +444,7 @@ namespace Palete {
 			this.file.updated_ids.add((int)this.id);
 			
 			q.update(old, this);
-			GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
+		//	GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
 			// should nto need to update file symbols.
 		}
 			 
