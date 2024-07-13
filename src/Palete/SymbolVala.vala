@@ -492,8 +492,10 @@ namespace Palete {
 
 		 
 	 
-		void readCodeNode(ValaSymbolBuilder builder, Vala.CodeNode s) {
-			
+		void readCodeNode(ValaSymbolBuilder builder, Vala.CodeNode? s) {
+			if (s == null) {
+				return;
+			}
 			switch(s.type_name) {
 
 				case "ValaContinueStatement":
@@ -537,6 +539,7 @@ namespace Palete {
 					var ss = s as Vala.Variable;
 					GLib.debug("handled type %s %s - %s %s", s.source_reference.to_string(),
 						s.type_name, this.codeNodeToString(s), ss.initializer == null ? "(null)": "(INIT)");
+					
 					this.readCodeNode(builder, ss.initializer as Vala.Expression);
 					break;
 
