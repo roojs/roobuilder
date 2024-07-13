@@ -493,7 +493,7 @@ namespace Palete {
 		 
 	 
 		void readCodeNode(ValaSymbolBuilder builder, Vala.CodeNode s) {
-
+			
 			switch(s.type_name) {
 
 				case "ValaContinueStatement":
@@ -513,6 +513,7 @@ namespace Palete {
 					break;
 					
 				case "ValaDeclarationStatement":
+					GLib.debug("handled type %s %s - %s", s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
 					var ss =  s as Vala.DeclarationStatement;
 					GLib.debug("ValaDeclarationStatement: dec = %s", 
 						this.codeNodeToString( ss.declaration ) 
@@ -530,6 +531,7 @@ namespace Palete {
 				case "ValaLocalVariable":
 				case "ValaVariable":
 					var ss = s as Vala.Variable;
+					GLib.debug("handled type %s %s - %s", s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
 					this.readCodeNode(builder, ss.initializer as Vala.Expression);
 					break;
 					
@@ -554,7 +556,7 @@ namespace Palete {
 				case "ValaYieldStatement":
 				
 				default:
-					GLib.debug("Unhandled type %s - %s", s.type_name, this.codeNodeToString(s));
+					GLib.debug("Unhandled type %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
 					return;
 					
 				 
