@@ -551,7 +551,7 @@ namespace Palete {
 					new new_codenode(builder, this, ss);
 					this.readCodeNode(builder, ss.initializer);
 					break;
-				case "Vala.CastExpression":
+				case "ValaCastExpression":
 					var ss = s as Vala.CastExpression;
 					this.readCodeNode(builder, ss.inner);
 					this.readCodeNode(builder, ss.type_reference);
