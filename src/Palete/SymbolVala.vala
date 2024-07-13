@@ -521,9 +521,10 @@ namespace Palete {
 					break;
 					
 				case "ValaDeclarationStatement":
+					var ss =  s as Vala.DeclarationStatement;
 					GLib.debug("handled type %s %s - %s %s", s.source_reference.to_string(), s.type_name, 
 						this.codeNodeToString(s), ss.declaration == null ? "(nul)" : "(DEC)");
-					var ss =  s as Vala.DeclarationStatement;
+
 					this.readCodeNode(builder, ss.declaration as Vala.LocalVariable);
 					break;
 				case "ValaVariable":	
