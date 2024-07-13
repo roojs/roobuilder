@@ -596,8 +596,12 @@ namespace Palete {
 					
 					
 				case "ValaMethodCall":
+					var ss = s as Vala.MethodCall;
 					this.debugHandle(s);
-					this.readCodeNode(builder, (s as Vala.MethodCall).call);
+					this.readCodeNode(builder, ss.call);
+					foreach(var a in ss.get_argument_list()) {
+						this.readCodeNode(builder, a);
+					}
 					break;
 				
 				default:
