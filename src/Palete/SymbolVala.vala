@@ -655,10 +655,7 @@ namespace Palete {
 			}
 			this.name = c.member_name;
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
-			if (this.rtype == "") { // testing member fucntions
-				GLib.debug("missing rtype");
-				//this.rtype = c.value_type.symbol.get_full_name();
-			}
+			 
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
 					c.inner == null ? "variable" : "memberaccess",
 				this.name, this.rtype  );
