@@ -468,7 +468,7 @@ namespace Palete {
  
 				
 				q.insert(this);
-				GLib.debug("DB INSERT added %d:%d, %s", (int)this.parent_id, (int)this.id, this.fqn);
+				//GLib.debug("DB INSERT added %d:%d, %s", (int)this.parent_id, (int)this.id, this.fqn);
  				parent.param_ar.set(this.sequence,this);
 				 
 				//this.file.symbols.add(this);
