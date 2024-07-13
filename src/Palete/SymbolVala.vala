@@ -500,19 +500,6 @@ namespace Palete {
 				return;
 			}
 			switch(s.type_name) {
-
-				case "ValaContinueStatement":
-				case "ValaBreakStatement":
-
-					// no examples?? - 
-					//new new_codenode(builder, this, s);
-					break;
-					
-					// known ignore.
-				case "ValaIntegerLiteral":
-					break;
-
-
 				case "ValaBlock":
 					var sb = (s as Vala.Block);;
 					
@@ -526,9 +513,23 @@ namespace Palete {
 					foreach(var ss in sb.get_statements()) {
 						this.readCodeNode(builder, ss);
 					}
+					// // we might want to register these for scopes?
 					
 
 					break;
+				case "ValaContinueStatement":
+				case "ValaBreakStatement":
+
+					// no examples?? - 
+					//new new_codenode(builder, this, s);
+					break;
+					
+					// known ignore.
+				case "ValaIntegerLiteral":
+					break;
+
+
+				
 					
 				case "ValaDeclarationStatement":
 					var ss =  s as Vala.DeclarationStatement;
@@ -592,6 +593,13 @@ namespace Palete {
 					var ss = s as Vala.ObjectType;
 						new new_objecttype(builder, this, ss);	
 					break;
+					
+					
+				case "ValaMethodCall":
+				
+				
+				
+				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
 					return;
