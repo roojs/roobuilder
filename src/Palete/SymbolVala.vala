@@ -562,10 +562,11 @@ namespace Palete {
 					break;
 				case "ValaMemberAccess":
 					var ss = s as Vala.MemberAccess;
-					GLib.debug("handling type %s: %s -[%s] %s ",
+					GLib.debug("handling type %s: %s -[%s] ($s) %s ",
 							s.source_reference.to_string(),
 							s.type_name,
 							ss.member_name,
+							ss.symbol_reference == null ? "null" : ss.symbol_reference.get_full_name(),
 							this.codeNodeToString(s));
 				 	foreach(var a in ss.get_type_arguments()) {
 				 		this.readCodeNode(builder, a);
