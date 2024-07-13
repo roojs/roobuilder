@@ -397,7 +397,10 @@ namespace Palete {
 				//this.parent_name = parent.name;
 				//parent = null;
 			}
+			 	
+			
 			this.file.parsed_symbols.add(this.line_sig);
+			
 			
 
 			this.parent = parent;
@@ -600,8 +603,10 @@ namespace Palete {
 		{
 			
 			this(builder, c);
-
-
+			// dont' dupelicate add
+			if (this.file.parsed_symbols.contains(this.line_sig)) {
+				return;
+			}
 			this.name = c.name;
 			this.rtype = c.variable_type == null ? "": c.variable_type.type_symbol.get_full_name();
 			GLib.debug("type %s new Variable  %s (%s)", c.source_reference.to_string(), this.name, this.rtype  );
