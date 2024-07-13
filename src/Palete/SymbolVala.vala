@@ -603,7 +603,7 @@ namespace Palete {
 
 
 			this.name = c.name;
-			this.rtype = c.variable_type == null ? "": c.variable_type.type_symbol.name;
+			this.rtype = c.variable_type == null ? "": c.variable_type.type_symbol.get_full_name();
 			GLib.debug("type %s new Variable  %s (%s)", c.source_reference.to_string(), this.name, this.rtype  );
 			this.stype = Lsp.SymbolKind.Variable;
 
