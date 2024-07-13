@@ -548,6 +548,7 @@ namespace Palete {
 						s.source_reference.to_string(),
 						s.type_name,   this.codeNodeToString(s));
 					
+					new new_codenode(ss);
 					this.readCodeNode(builder, ss.initializer as Vala.Expression);
 					break;
 
