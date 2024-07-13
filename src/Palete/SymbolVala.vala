@@ -602,8 +602,8 @@ namespace Palete {
 			this(builder, c);
 
 
-			this.name = this.name;
-			this.rtype = this.variable_type == null ? "": this.variable_type.name;
+			this.name = c.name;
+			this.rtype = c.variable_type == null ? "": c.variable_type.name;
 			GLib.debug("new Variable  %s (%s)", this.name, this.rtype  );
 			this.stype = Lsp.SymbolKind.Variable;
 
