@@ -544,10 +544,10 @@ namespace Palete {
 					if (ss.initializer == null ) {
 						break;
 					}
-				/*	GLib.debug("handled type %s %s - %s", 
+					GLib.debug("handled type %s %s - %s", 
 						s.source_reference.to_string(),
 						s.type_name,   this.codeNodeToString(s));
-					*/
+					
 					new new_variable(builder, this, ss);
 					this.readCodeNode(builder, ss.initializer);
 					 
