@@ -628,7 +628,7 @@ namespace Palete {
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
 					c.inner == null ? "variable" : "memberaccess",
 				this.name, this.rtype  );
-			this.stype = c.inner == null ? Lsp.SymbolKind.Varialbe : Lsp.SymbolKind.MemberAccess;
+			this.stype = c.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;
 
 			this.setParent(parent);
 		}
