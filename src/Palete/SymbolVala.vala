@@ -377,16 +377,12 @@ namespace Palete {
 		 	foreach(var p in sig.get_parameters()) {
 				 new new_parameter(builder, this, p, n++);
 			}
-			foreach(var s in sig.body.get_statements()) {
-  				//this.readStatement(builder, s);
-				GLib.debug("file %s statement node %s:%s", s.source_reference.file.filename, s.type_name,
-				
-				 ((string)s.source_reference.begin.pos).substring(0,(long)(s.source_reference.end.pos -  s.source_reference.begin.pos)).dup()
-			 );
+
+			if (sig.body != null  ) {
+				this.readCodeNode(builder, sig.body);
 			}
 			
-			
-			 	
+			 
 		}
 	 	public void setParent(Symbol? parent) 
 		{
@@ -491,20 +487,55 @@ namespace Palete {
 			GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
 			// should nto need to update file symbols.
 		}
-			 
+		
+		
+
 		 
 	 
-		void readStatement(ValaSymbolBuilder builder, Vala.Statement s) {
+		void readCodeNode(ValaSymbolBuilder builder, Vala.CodeNode s) {
 
 			switch(s.type_name) {
 
 				case "ValaContinueStatement":
 				case "ValaBreakStatement":
-					new new_codenode(builder, this, s);
-					return;
-				
+					// no examples?? - 
+					//new new_codenode(builder, this, s);
+					break;
+					
 				case "ValaBlock":
+					var ar = (s as Vala.Block).get_statements();
+					if (ar != null) {
+						foreach(var ss in ar) {
+							this.readCodeNode(builder, ss);
+						}
+					}
+
+					break;
+					
 				case "ValaDeclarationStatement":
+					var ss =  s as Vala.DeclarationStatement;
+					GLib.debug("ValaDeclarationStatement: dec = %s", 
+						this.codeNodeToString( ss.declaration ) 
+					);
+					this.readCodeNode(builder, ss.declaration as Vala.LocalVariable);
+					
+					
+					/*foreach(var v in ss.get_defined_variables()) {
+						this.readVariable(builder, v);
+					}
+					foreach(var v in ss.get_used_variables()) {
+						this.readVariable(builder, v);
+					}	*/	
+					break;
+				case "ValaLocalVariable":
+				case "ValaVariable":
+					var ss = s as Vala.Variable;
+					this.readCodeNode(builder, ss.expression as Vala.Expression);
+					break;
+					
+				case "Vala.Expression":
+					
+				
 				case "ValaDeleteStatement":
 				case "ValaDoStatement":
 				case "ValaEmptyStatement":
@@ -523,9 +554,14 @@ namespace Palete {
 				case "ValaYieldStatement":
 				
 				default:
+					GLib.debug("Unhandled type %s - %s", s.type_name, this.codeNodeToString(s));
 					return;
+					
+				 
 			}
 		}
+		
+
 	
 		public SymbolVala.new_codenode(ValaSymbolBuilder builder, Symbol? parent, Vala.CodeNode c)	
 		{
@@ -533,12 +569,16 @@ namespace Palete {
 			this(builder, c);
 
 
-			this.name = ((string)c.source_reference.begin.pos).substring(0,(long)(c.source_reference.end.pos -  c.source_reference.begin.pos)).dup();
+			this.name = this.codeNodeToString(c);
 			GLib.debug("new Codenode  %s", this.name);
 			this.stype = Lsp.SymbolKind.Node;
 			this.setParent(parent);
 		}
-		
+		string codeNodeToString(Vala.CodeNode c) {
+			return  ((string)c.source_reference.begin.pos).substring(0,
+					(long)(c.source_reference.end.pos -  c.source_reference.begin.pos)
+				).dup();
+		}
 		
 	}
 	
