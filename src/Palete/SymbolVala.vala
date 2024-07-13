@@ -498,10 +498,16 @@ namespace Palete {
 
 				case "ValaContinueStatement":
 				case "ValaBreakStatement":
+
 					// no examples?? - 
 					//new new_codenode(builder, this, s);
 					break;
 					
+					// known ignore.
+				case "ValaIntegerLiteral":
+					break;
+
+
 				case "ValaBlock":
 					var ar = (s as Vala.Block).get_statements();
 					if (ar != null) {
@@ -515,9 +521,6 @@ namespace Palete {
 				case "ValaDeclarationStatement":
 					GLib.debug("handled type %s %s - %s", s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
 					var ss =  s as Vala.DeclarationStatement;
-					GLib.debug("ValaDeclarationStatement: dec = %s", 
-						this.codeNodeToString( ss.declaration ) 
-					);
 					this.readCodeNode(builder, ss.declaration as Vala.LocalVariable);
 					
 					
