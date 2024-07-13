@@ -7,6 +7,7 @@ namespace Palete {
 		public SymbolVala(ValaSymbolBuilder builder, Vala.CodeNode s)
 		{
 			base();
+			 
 			this.file = builder.filemanager.factory_by_path(s.source_reference.file.filename);
 			if (this.file.path.has_suffix(".vapi")) {
 				this.gir_version = s.source_reference.file.gir_version;
@@ -679,6 +680,9 @@ namespace Palete {
 		}
 		
 		string codeNodeToString(Vala.CodeNode c) {
+			if (c.source_reference == null) {
+				return "????";
+			}
 			return  ((string)c.source_reference.begin.pos).substring(0,
 					(long)(c.source_reference.end.pos -  c.source_reference.begin.pos)
 				).dup();
