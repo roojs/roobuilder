@@ -661,14 +661,15 @@ namespace Palete {
 			
 			this.name = c.member_name;
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
-			
+			this.stype = c.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;	
 			if (this.rtype == "") {
 				if (c.symbol_reference.type_name == "ValaMethod") {
 					this.rtype = c.symbol_reference.get_full_name();
+					this.stype = c.Lsp.SymbolKind.MethodCall;
 				}
 			}
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
-					c.inner == null ? "variable" : "memberaccess",
+					c.stype.to_string(),
 				this.name, this.rtype  );
 				
 			
@@ -681,7 +682,7 @@ namespace Palete {
 				this.debugValue(c, "target_value.value_type ", c.target_value == null? null : c.target_value.value_type );
 				this.debugValue(c, "value_type ", c.value_type );		
 			}
-			this.stype = c.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;
+
 
 			this.setParent(parent);
 		}
