@@ -574,7 +574,7 @@ namespace Palete {
 					break;
 				case "ValaMemberAccess":
 				case "ValaBaseAccess": 
-					var ss = s as Vala.Expressiion;
+					var ss = s as Vala.Expression;
 					/*GLib.debug("handling type %s: %s -[%s] (%s) %s ",
 							s.source_reference.to_string(),
 							s.type_name,
