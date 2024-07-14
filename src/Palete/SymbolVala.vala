@@ -573,7 +573,8 @@ namespace Palete {
 					this.readCodeNode(builder, ss.type_reference);
 					break;
 				case "ValaMemberAccess":
-					var ss = s as Vala.MemberAccess;
+				case "ValaBaseAccess": 
+					var ss = s as Vala.Expressiion;
 					/*GLib.debug("handling type %s: %s -[%s] (%s) %s ",
 							s.source_reference.to_string(),
 							s.type_name,
@@ -591,7 +592,7 @@ namespace Palete {
 			 		break;
 				case "ValaObjectType":
 					var ss = s as Vala.ObjectType;
-						new new_objecttype(builder, this, ss);	
+					new new_objecttype(builder, this, ss);	
 					break;
 					
 					
@@ -603,6 +604,7 @@ namespace Palete {
 						this.readCodeNode(builder, a);
 					}
 					break;
+				 
 				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
@@ -645,7 +647,7 @@ namespace Palete {
 
 			this.setParent(parent);
 		}
-		public SymbolVala.new_memberaccess(ValaSymbolBuilder builder, Symbol? parent, Vala.MemberAccess c)	
+		public SymbolVala.new_memberaccess(ValaSymbolBuilder builder, Symbol? parent, Vala.Expression c)	
 		{
 			this(builder, c);
 			// not sure if this is needed, we should do a search on code using the 'smallest' match to the range
