@@ -607,7 +607,19 @@ namespace Palete {
 						this.readCodeNode(builder, a);
 					}
 					break;
-				 
+				case "ValaIfStatement":
+					var ss = s as Vala.IfStatement;
+					this.readCodeNode(builder, ss.condition);
+					this.readCodeNode(builder, ss.true_statement);
+					this.readCodeNode(builder, ss.false_statement);
+			 		//skip the 'if' bit?
+			 		break;
+				case "ValaAssignment":
+					var ss = s as Vala.Assignment;
+					this.readCodeNode(builder, ss.left);
+					this.readCodeNode(builder, ss.right);
+					// skip operatore?
+					break;
 				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
