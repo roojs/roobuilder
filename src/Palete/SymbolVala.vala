@@ -665,13 +665,14 @@ namespace Palete {
 			
 			 	
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
-			this.stype = ma == null || ma.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;	
+			this.stype = ma != null && ma.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;	
 			if (this.rtype == "") {
 				if (c.symbol_reference.type_name == "ValaMethod") {
 					this.rtype = c.symbol_reference.get_full_name();
 					this.stype = Lsp.SymbolKind.MethodCall;
 				}
 			}
+			 
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
 					this.stype.to_string(),
 				this.name, this.rtype  );
