@@ -709,7 +709,7 @@ namespace Palete {
 				this.codeNodeToString(x)
 			);
 		
-		)
+		}
 				
 		
 	}
