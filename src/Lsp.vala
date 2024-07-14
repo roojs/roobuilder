@@ -572,7 +572,7 @@ namespace Lsp {
      	Return = 30, // ?? not standard.
         MemberAccess = 31,
         ObjectType = 32,
-        MemberCall = 33; // ?? not standard  = generaic symbol
+        MethodCall = 33; // ?? not standard  = generaic symbol
         // member access
         // keyword?
         
