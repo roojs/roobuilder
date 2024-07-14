@@ -575,6 +575,7 @@ namespace Palete {
 				case "ValaMemberAccess":
 				case "ValaBaseAccess": 
 					var ss = s as Vala.Expression;
+					var ma = s as ValaMemberAccess;
 					/*GLib.debug("handling type %s: %s -[%s] (%s) %s ",
 							s.source_reference.to_string(),
 							s.type_name,
@@ -584,7 +585,9 @@ namespace Palete {
 							this.codeNodeToString(s));
 						*/	
 					new new_memberaccess(builder, this, ss);
-					this.readCodeNode(builder, ss.inner);
+					if (ma != null) {
+						this.readCodeNode(builder, ma.inner);
+					}
 				 	//foreach(var a in ss.get_type_arguments()) {
 				 	// ?? needed?
 				 	//	this.readCodeNode(builder, a);
@@ -675,7 +678,7 @@ namespace Palete {
 				
 			
 			if (this.rtype == "") {
-				this.debugValue(c, "formal_target_type", c.formal_target_type);
+				this.debu(s as ValaMemberAccess)gValue(c, "formal_target_type", c.formal_target_type);
 				this.debugValue(c, "formal_value_type", c.formal_value_type);	
 				this.debugValue(c, "symbol_reference", c.symbol_reference);		
 				this.debugValue(c, "target_type", c.target_type);
