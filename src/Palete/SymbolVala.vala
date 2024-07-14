@@ -655,6 +655,17 @@ namespace Palete {
 			if (c.member_name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
+			
+			this.debugValue(c, "formal_target_type", c.formal_target_type);
+			this.debugValue(c, "formal_value_type", c.formal_value_type);	
+			this.debugValue(c, "symbol_reference", c.symbol_reference);		
+			this.debugValue(c, "target_type", c.target_type);
+			this.debugValue(c, "target_value.actual_value_type ", c.target_value == null? null : c.target_value.actual_value_type );
+			this.debugValue(c, "target_value.value_type ", c.target_value == null? null : c.target_value.value_type );
+			this.debugValue(c, "value_type ", c.value_type );		
+			 	
+			
+			
 			this.name = c.member_name;
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
 			 
@@ -678,14 +689,24 @@ namespace Palete {
 			this.setParent(parent);
 		}
 		
-		string codeNodeToString(Vala.CodeNode c) {
-			if (c.source_reference == null) {
-				return "????";
+		string codeNodeToString(Vala.CodeNode? c) {
+			if (c == null || c.source_reference == null) {
+				return "null";
 			}
 			return  ((string)c.source_reference.begin.pos).substring(0,
 					(long)(c.source_reference.end.pos -  c.source_reference.begin.pos)
 				).dup();
 		}
+		void debugValue(Vala.CodeNode c, string n, Vala.CodeNode? x) {
+ 
+			GLib.debug("type %s new %s = %s [%s]", 
+				c.source_reference.to_string(), 
+				n, 
+				x == null ? "NULL" : x.type_name,
+				this.codeNodeToString(x);
+		}
+			)
+				
 		
 	}
 	
