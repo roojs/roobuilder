@@ -655,7 +655,7 @@ namespace Palete {
 			//this.begin_col = this.end_col - c.member_name.length; // fix the starting pos.
 			// dont' dupelicate add or '.' vars?
 			var ma = c as Vala.MemberAccess;
-			this.name = ma == null? "base" :  c.member_name;
+			this.name = ma == null? "base" :  ma.member_name;
 			if (this.name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
