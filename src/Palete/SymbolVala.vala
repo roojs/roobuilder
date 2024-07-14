@@ -654,14 +654,13 @@ namespace Palete {
 			
 			//this.begin_col = this.end_col - c.member_name.length; // fix the starting pos.
 			// dont' dupelicate add or '.' vars?
-			if (c.member_name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
+			var ma = c as Vala.MemberAccess;
+			this.name = ma == null? "base" :  c.member_name;
+			if (this.name == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
 			
 			 	
-			
-			
-			this.name = c.member_name;
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
 			this.stype = c.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;	
 			if (this.rtype == "") {
