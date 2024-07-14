@@ -672,6 +672,9 @@ namespace Palete {
 					this.stype = Lsp.SymbolKind.MethodCall;
 				}
 			}
+			if (this.name == "base") {
+				this.rtype += ".new";
+			}
 			 
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
 					this.stype.to_string(),
