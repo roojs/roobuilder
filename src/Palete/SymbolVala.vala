@@ -670,7 +670,7 @@ namespace Palete {
 				}
 			}
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
-					c.stype.to_string(),
+					this.stype.to_string(),
 				this.name, this.rtype  );
 				
 			
