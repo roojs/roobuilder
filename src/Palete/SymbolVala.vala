@@ -656,13 +656,6 @@ namespace Palete {
 				return;
 			}
 			
-			this.debugValue(c, "formal_target_type", c.formal_target_type);
-			this.debugValue(c, "formal_value_type", c.formal_value_type);	
-			this.debugValue(c, "symbol_reference", c.symbol_reference);		
-			this.debugValue(c, "target_type", c.target_type);
-			this.debugValue(c, "target_value.actual_value_type ", c.target_value == null? null : c.target_value.actual_value_type );
-			this.debugValue(c, "target_value.value_type ", c.target_value == null? null : c.target_value.value_type );
-			this.debugValue(c, "value_type ", c.value_type );		
 			 	
 			
 			
@@ -672,6 +665,16 @@ namespace Palete {
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
 					c.inner == null ? "variable" : "memberaccess",
 				this.name, this.rtype  );
+				
+			if (this.rtype == "") {
+				this.debugValue(c, "formal_target_type", c.formal_target_type);
+				this.debugValue(c, "formal_value_type", c.formal_value_type);	
+				this.debugValue(c, "symbol_reference", c.symbol_reference);		
+				this.debugValue(c, "target_type", c.target_type);
+				this.debugValue(c, "target_value.actual_value_type ", c.target_value == null? null : c.target_value.actual_value_type );
+				this.debugValue(c, "target_value.value_type ", c.target_value == null? null : c.target_value.value_type );
+				this.debugValue(c, "value_type ", c.value_type );		
+			}
 			this.stype = c.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;
 
 			this.setParent(parent);
