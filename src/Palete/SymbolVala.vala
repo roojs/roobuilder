@@ -661,11 +661,17 @@ namespace Palete {
 			
 			this.name = c.member_name;
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
-			 
+			
+			if (this.rtype == "") {
+				if (c.symbol_reference.type_name == "ValaMethod") {
+					this.rtype = c.symbol_reference.get_full_name();
+				}
+			}
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
 					c.inner == null ? "variable" : "memberaccess",
 				this.name, this.rtype  );
 				
+			
 			if (this.rtype == "") {
 				this.debugValue(c, "formal_target_type", c.formal_target_type);
 				this.debugValue(c, "formal_value_type", c.formal_value_type);	
