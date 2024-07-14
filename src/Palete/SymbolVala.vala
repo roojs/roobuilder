@@ -706,9 +706,10 @@ namespace Palete {
 				c.source_reference.to_string(), 
 				n, 
 				x == null ? "NULL" : x.type_name,
-				this.codeNodeToString(x);
-		}
-			)
+				this.codeNodeToString(x)
+			);
+		
+		)
 				
 		
 	}
