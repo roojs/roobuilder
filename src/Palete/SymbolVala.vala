@@ -656,17 +656,17 @@ namespace Palete {
 			// dont' dupelicate add or '.' vars?
 			var ma = c as Vala.MemberAccess;
 			this.name = ma == null? "base" :  c.member_name;
-			if (this.name == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
+			if (this.name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
 			
 			 	
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
-			this.stype = c.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;	
+			this.stype = ma == null || ma.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;	
 			if (this.rtype == "") {
 				if (c.symbol_reference.type_name == "ValaMethod") {
 					this.rtype = c.symbol_reference.get_full_name();
-					this.stype = c.Lsp.SymbolKind.MethodCall;
+					this.stype = Lsp.SymbolKind.MethodCall;
 				}
 			}
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
