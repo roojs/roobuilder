@@ -620,6 +620,10 @@ namespace Palete {
 					this.readCodeNode(builder, ss.right);
 					// skip operatore?
 					break;
+				case "ValaReferenceTransferExpression":
+					this.debugHandle(s);
+					this.readCodeNode(builder, (s as Vala.ReferenceTransferExpression).inner;
+					break;
 				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
