@@ -622,7 +622,7 @@ namespace Palete {
 					break;
 				case "ValaReferenceTransferExpression":
 					this.debugHandle(s);
-					this.readCodeNode(builder, (s as Vala.ReferenceTransferExpression).inner;
+					this.readCodeNode(builder, (s as Vala.ReferenceTransferExpression).inner);
 					break;
 				
 				default:
