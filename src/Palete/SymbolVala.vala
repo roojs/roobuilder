@@ -631,6 +631,7 @@ namespace Palete {
 					this.readCodeNode(builder, ss.false_statement);
 			 		//skip the 'if' bit?
 			 		break;
+			 		
 				case "ValaAssignment":
 					var ss = s as Vala.Assignment;
 					this.readCodeNode(builder, ss.left);
