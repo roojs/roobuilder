@@ -642,9 +642,9 @@ namespace Palete {
 				case "ValaBinaryExpression":
 					//this.debugHandle(s);
 					var ss = s as Vala.BinaryExpression;
-					this.debugHandle(ss.left);
+					//this.debugHandle(ss.left);
 					this.readCodeNode(builder, ss.left);
-					this.debugHandle(ss.right);
+					//this.debugHandle(ss.right);
 					this.readCodeNode(builder, ss.right);
 					// skip operatore?
 					break;	
@@ -779,7 +779,11 @@ namespace Palete {
 			this.stype = Lsp.SymbolKind.Variable;			
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), this.stype.to_string(), this.name, this.rtype  );
 
-
+			this.debugValue(c, "element_variable", c.element_variable);
+			this.debugValue(c, "collection_variable", c.collection_variable);	
+			this.debugValue(c, "iterator_variable", c.iterator_variable);		
+		 	
+		
 			this.setParent(parent);
 		}
 		public SymbolVala.new_memberaccess(ValaSymbolBuilder builder, Symbol? parent, Vala.Expression c)	
