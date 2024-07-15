@@ -540,11 +540,7 @@ namespace Palete {
 				case "ValaCharacterLiteral":
 					break;
 
-				case "ValaIntegerType":
-					this.debugHandle(s);
-					new new_objecttype(builder, this, s);	
-					break;
-					
+				
 				case "ValaDeclarationStatement":
 					var ss =  s as Vala.DeclarationStatement;
 				/*	GLib.debug("handled type %s %s - %s %s", s.source_reference.to_string(), 
@@ -614,7 +610,8 @@ namespace Palete {
 			 		//}
 			 		break;
 				case "ValaObjectType":
-					var ss = s as Vala.ObjectType;
+				case "ValaIntegerType":
+					var ss = s as Vala.ValueType;
 					new new_objecttype(builder, this, ss);	
 					break;
 					
