@@ -673,13 +673,13 @@ namespace Palete {
 					break;
 				case "ValaSwitchStatement":
 					 this.debugHandle(s);								
-					var ss = s as Vala.ReturnStatement;
+					var ss = s as Vala.SwitchStatement;
 					this.readCodeNode(builder, ss.expression);
 					foreach(var se in ss.get_sections()) {
 						this.readCodeNode(builder, se);
 					
 					}
-					break
+					break;
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
 						s.source_reference == null ? "??" : s.source_reference.to_string(), 
