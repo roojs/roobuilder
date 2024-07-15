@@ -503,7 +503,7 @@ namespace Palete {
 			switch(s.type_name) {
 				case "ValaBlock":
 				case "ValaSwitchSection":				
-					var sb = (s as Vala.Block);;
+					var sb = (s as Vala.Block);
 					/*
 					// // we might want to register these for scopes?					
 					--  think this is so we can sort out scope.
