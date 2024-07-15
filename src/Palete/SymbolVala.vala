@@ -756,7 +756,7 @@ namespace Palete {
 				this.stype = Lsp.SymbolKind.MethodCall;
 			}
 			if (this.rtype == "" && c.symbol_reference.type_name == "ValaEnum") {
-				this.rtype = c.symbol_reference.get_full_name();
+				this.rtype = c.symbol_reference.get_full_name() + "." + this.name;
 				this.stype = Lsp.SymbolKind.MemberAccess;
 			}
 			if (this.rtype == "" && c.target_type.type_name == "ValaPointerType") {
