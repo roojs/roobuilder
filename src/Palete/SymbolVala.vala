@@ -767,7 +767,7 @@ namespace Palete {
 				this.rtype =  this.name; // ?? nested names?
 			}
 			if (this.rtype == "" && c.symbol_reference.type_name == "ValaCreationMethod") {
-				this.rtype =  (c.symbol_reference as Vala.CreationMethod).class_name + "." + this.name;
+				this.rtype =  (c.symbol_reference as Vala.CreationMethod).get_full_name();
 				this.stype = Lsp.SymbolKind.MethodCall;
 			}
 			if (this.rtype == "" && c.target_type.type_name == "ValaPointerType") {
