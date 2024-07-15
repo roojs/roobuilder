@@ -775,7 +775,7 @@ namespace Palete {
 			this.stype =   Lsp.SymbolKind.ObjectType;
 			
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
-				this.name, this.style.to_stirng(), this.rtype  );
+				this.name, this.stype.to_string(), this.rtype  );
 
 
 			this.setParent(parent);
