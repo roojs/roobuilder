@@ -580,14 +580,15 @@ namespace Palete {
 						s.type_name,   this.codeNodeToString(s));
 					*/
 					new new_variable(builder, this, ss);
-					this.readCodeNode(builder, ss.initializer);
-					 
+					this.readCodeNode(builder, ss.initializer); 
 					break;
+					
 				case "ValaCastExpression":
 					var ss = s as Vala.CastExpression;
 					this.readCodeNode(builder, ss.inner);
 					this.readCodeNode(builder, ss.type_reference);
 					break;
+					
 				case "ValaMemberAccess":
 				case "ValaBaseAccess": 
 					var ss = s as Vala.Expression;
