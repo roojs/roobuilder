@@ -640,7 +640,7 @@ namespace Palete {
 					// skip operatore?
 					break;
 				case "ValaBinaryExpression":
-					this.debugHandle(s);
+					//this.debugHandle(s);
 					var ss = s as Vala.BinaryExpression;
 					this.debugHandle(ss.left);
 					this.readCodeNode(builder, ss.left);
@@ -708,7 +708,7 @@ namespace Palete {
 					break;
 					
 				case "ValaUnaryExpression":
-					this.debugHandle(s);
+					//this.debugHandle(s);
 					var ss = s as Vala.UnaryExpression;
 					this.debugHandle(ss.inner);
 					this.readCodeNode(builder, ss.inner);
