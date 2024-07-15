@@ -657,9 +657,13 @@ namespace Palete {
 					// skip operatore?
 					break;
 				case "ValaForeachStatement":
-					//this.debugHandle(s);
+					this.debugHandle(s);
 					var ss = s as Vala.ForeachStatement;
 					this.readCodeNode(builder, ss.body);
+					this.debugHandle(ss.collection);
+					this.debugHandle(ss.collection_variable);
+					this.debugHandle(ss.element_variable);
+					this.debugHandle(ss.iterator_variable);
 					this.readCodeNode(builder, ss.collection );
 					this.readCodeNode(builder, ss.collection_variable );
 					this.readCodeNode(builder, ss.element_variable );
