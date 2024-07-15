@@ -642,7 +642,7 @@ namespace Palete {
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).method.body);
 					break;
 				case "ValaTypeCheck":
-					this.debugHandle(s);								
+					//this.debugHandle(s);								
 					var ss = s as Vala.TypeCheck;
 					this.readCodeNode(builder, ss.expression);
 					this.readCodeNode(builder, ss.type_reference );
