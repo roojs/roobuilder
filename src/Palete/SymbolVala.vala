@@ -639,7 +639,12 @@ namespace Palete {
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).statement_body);
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).method.body);
 					break;
-				 
+				case "ValaTypeCheck":
+					var ss = s as Vala.TypeCheck;
+					this.readCodeNode(builder, ss.expression);
+					this.readCodeNode(builder, ss.type_reference );
+					// skip operatore?
+					break;
 				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
