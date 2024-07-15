@@ -519,7 +519,7 @@ namespace Palete {
 					}
 
 					if (s is Vala.SwitchSection) {
-						foreach(var se in (s is Vala.SwitchSection).get_labels()) {
+						foreach(var se in (s as Vala.SwitchSection).get_labels()) {
 							this.readCodeNode(builder, se.expression);
 						}
 					}
