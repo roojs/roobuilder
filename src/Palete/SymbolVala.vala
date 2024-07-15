@@ -526,6 +526,8 @@ namespace Palete {
 					
 					// known ignore.
 				case "ValaIntegerLiteral":
+				case "ValaStringLiteral":
+				vase "ValaBooleanLiteral":
 					break;
 
 
@@ -620,6 +622,13 @@ namespace Palete {
 					this.readCodeNode(builder, ss.right);
 					// skip operatore?
 					break;
+				case "ValaBinaryExpression":
+					var ss = s as Vala.BinaryExpression;
+					this.readCodeNode(builder, ss.left);
+					this.readCodeNode(builder, ss.right);
+					// skip operatore?
+					break;	
+					// checking..
 				case "ValaReferenceTransferExpression":
 					this.debugHandle(s);
 					this.readCodeNode(builder, (s as Vala.ReferenceTransferExpression).inner);
@@ -630,6 +639,8 @@ namespace Palete {
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).statement_body);
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).method.body);
 					break;
+				 
+				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
 						s.source_reference == null ? "??" : s.source_reference.to_string(), 
