@@ -657,7 +657,7 @@ namespace Palete {
 					// skip operatore?
 					break;
 				case "ValaForeachStatement":
-					 this.debugHandle(s);								
+					//this.debugHandle(s);								
 					var ss = s as Vala.ForeachStatement;
 					this.readCodeNode(builder, ss.body);
 					this.readCodeNode(builder, ss.collection );
@@ -738,12 +738,16 @@ namespace Palete {
 			 	
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
 			this.stype = ma != null && ma.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;	
-			if (this.rtype == "") {
-				if (c.symbol_reference.type_name == "ValaMethod") {
-					this.rtype = c.symbol_reference.get_full_name();
-					this.stype = Lsp.SymbolKind.MethodCall;
-				}
+			if (this.rtype == "" && c.symbol_reference.type_name == "ValaMethod") {
+				this.rtype = c.symbol_reference.get_full_name();
+				this.stype = Lsp.SymbolKind.MethodCall;
 			}
+			if (this.rtype == "" && c.target_type == "ValaPointerType") {
+				this.rtype = this.codeNodeToString(c.value_type);
+				this.stype = Lsp.SymbolKind.MemberAccess;
+			}
+			
+			
 			if (this.name == "base") {
 				this.rtype += ".new";
 			}
