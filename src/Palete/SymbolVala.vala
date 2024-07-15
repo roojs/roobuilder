@@ -537,11 +537,13 @@ namespace Palete {
 				case "ValaStringLiteral":
 				case "ValaBooleanLiteral":
 				case "ValaNullLiteral":
-				
+				case "ValaCharacterLiteral":
 					break;
 
-
-				
+				case "ValaIntegerType":
+					this.debugHandle(s);
+					new new_objecttype(builder, this, s);	
+					break;
 					
 				case "ValaDeclarationStatement":
 					var ss =  s as Vala.DeclarationStatement;
@@ -710,10 +712,13 @@ namespace Palete {
 					break;
 					
 				case "ValaObjectCreationExpression":
-					this.debugHandle(s);
+					//this.debugHandle(s);
 					var ss = s as Vala.ObjectCreationExpression;
 					this.readCodeNode(builder, ss.call);
 					this.readCodeNode(builder, ss.type_reference);
+					foreach(var a in ss.get_argument_list()) {
+						this.readCodeNode(builder, a);
+					}
 					break;
 				
 				default:
