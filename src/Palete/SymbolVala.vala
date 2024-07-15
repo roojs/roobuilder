@@ -685,8 +685,9 @@ namespace Palete {
 			}
 			this.name = c.name;
 			this.rtype = c.variable_type == null || c.variable_type.type_symbol == null ? "": c.variable_type.type_symbol.get_full_name();
-			GLib.debug("type %s new Variable  %s (%s)", c.source_reference.to_string(), this.name, this.rtype  );
-			this.stype = Lsp.SymbolKind.Variable;
+			this.stype = Lsp.SymbolKind.Variable;			
+			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), this.stype.to_string(), this.name, this.rtype  );
+
 
 			this.setParent(parent);
 		}
@@ -740,9 +741,11 @@ namespace Palete {
 			 
 			this.name = this.codeNodeToString(c);
 			this.rtype ="";
-			GLib.debug("type %s new objecttype  %s (%s)", c.source_reference.to_string(), 
-				this.name, this.rtype  );
 			this.stype =   Lsp.SymbolKind.ObjectType;
+			
+			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
+				this.name, this.style.to_stirng(), this.rtype  );
+
 
 			this.setParent(parent);
 		}
