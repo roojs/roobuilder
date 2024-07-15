@@ -625,10 +625,11 @@ namespace Palete {
 					this.readCodeNode(builder, (s as Vala.ReferenceTransferExpression).inner);
 					break;
 				case "ValaLambdaExpression":
+					this.debugHandle(s);				
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).expression_body);
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).statement_body);
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).method.body);
-				
+					break;
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
 						s.source_reference == null ? "??" : s.source_reference.to_string(), 
