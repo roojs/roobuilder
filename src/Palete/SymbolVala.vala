@@ -705,6 +705,7 @@ namespace Palete {
 				case "ValaUnaryExpression":
 					this.debugHandle(s);
 					var ss = s as Vala.UnaryExpression;
+					this.debugHandle(s.inner);
 					this.readCodeNode(builder, ss.inner);
 					break;
 					
