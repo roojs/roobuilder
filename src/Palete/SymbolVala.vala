@@ -694,12 +694,12 @@ namespace Palete {
 				
 				
 				case "ValaReturnStatement":
-					 this.debugHandle(s);
+					// this.debugHandle(s);
 					var ss = s as Vala.ReturnStatement;
 					this.readCodeNode(builder, ss.return_expression);
 					break;
 				case "ValaSwitchStatement":
-					this.debugHandle(s);
+					//this.debugHandle(s);
 					var ss = s as Vala.SwitchStatement;
 					this.readCodeNode(builder, ss.expression);
 					foreach(var se in ss.get_sections()) {
