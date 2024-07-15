@@ -527,7 +527,9 @@ namespace Palete {
 					// known ignore.
 				case "ValaIntegerLiteral":
 				case "ValaStringLiteral":
-				vase "ValaBooleanLiteral":
+				case "ValaBooleanLiteral":
+				case "ValaNullLiteral":
+				
 					break;
 
 
