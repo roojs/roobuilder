@@ -675,8 +675,8 @@ namespace Palete {
 					//this.debugHandle(ss.collection_variable);
 					//this.debugHandle(ss.element_variable);
 					//this.debugHandle(ss.iterator_variable);
-					this.readCodeNode(builder, ss.collection );
-					this.readCodeNode(builder, ss.collection_variable );
+					//this.readCodeNode(builder, ss.collection );
+					//this.readCodeNode(builder, ss.collection_variable );
 					//this.readCodeNode(builder, ss.element_variable );
 					//this.readCodeNode(builder, ss.iterator_variable );
 					break;
@@ -685,11 +685,11 @@ namespace Palete {
 				
 					this.debugHandle(s);
 					var ss = s as Vala.Loop;
-					this.readCodeNode(builder, ss.body);
+					
 					this.debugHandle(ss.condition);
 					 
 					this.readCodeNode(builder, ss.condition );
-					 
+					this.readCodeNode(builder, ss.body); 
 					break;
 				
 				
@@ -698,6 +698,7 @@ namespace Palete {
 					var ss = s as Vala.ReturnStatement;
 					this.readCodeNode(builder, ss.return_expression);
 					break;
+					
 				case "ValaSwitchStatement":
 					//this.debugHandle(s);
 					var ss = s as Vala.SwitchStatement;
@@ -780,6 +781,7 @@ namespace Palete {
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), this.stype.to_string(), this.name, this.rtype  );
 
 			this.debugValue(c, "element_variable", c.element_variable);
+			this.debugValue(c, "collection ", c.collection );	
 			this.debugValue(c, "collection_variable", c.collection_variable);	
 			this.debugValue(c, "iterator_variable", c.iterator_variable);		
 		 	
