@@ -675,7 +675,7 @@ namespace Palete {
 
 					
 					foreach(var lv in ss.body.get_local_variables()) {
-							this.readCodeNode(builder, lv);
+							this.debugHandle(lv);
 					}
 					this.readCodeNode(builder, ss.body);					
 					//this.debugHandle(ss.collection);
@@ -746,7 +746,10 @@ namespace Palete {
 		}
 		void debugHandle(Vala.CodeNode s) {
 		
-			GLib.debug("handling type %s: %s - %s",s.source_reference.to_string(), s.type_name, this.codeNodeToString(s));
+			GLib.debug("handling type %s: %s - %s name=%s",
+				s.source_reference.to_string(), s.type_name, this.codeNodeToString(s),
+				s is Vala.Symbol ? s.name : ""
+				);
 		}	
 
 		/*
