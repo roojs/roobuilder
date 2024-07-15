@@ -669,15 +669,16 @@ namespace Palete {
 				case "ValaForeachStatement":
 					this.debugHandle(s);
 					var ss = s as Vala.ForeachStatement;
+					 new new_variable_from_foreach(builder, this, ss);
 					this.readCodeNode(builder, ss.body);
-					this.debugHandle(ss.collection);
-					this.debugHandle(ss.collection_variable);
-					this.debugHandle(ss.element_variable);
-					this.debugHandle(ss.iterator_variable);
+					//this.debugHandle(ss.collection);
+					//this.debugHandle(ss.collection_variable);
+					//this.debugHandle(ss.element_variable);
+					//this.debugHandle(ss.iterator_variable);
 					this.readCodeNode(builder, ss.collection );
 					this.readCodeNode(builder, ss.collection_variable );
-					this.readCodeNode(builder, ss.element_variable );
-					this.readCodeNode(builder, ss.iterator_variable );
+					//this.readCodeNode(builder, ss.element_variable );
+					//this.readCodeNode(builder, ss.iterator_variable );
 					break;
 				case "ValaLoop":	
 				case "ValaLoopStatement":
