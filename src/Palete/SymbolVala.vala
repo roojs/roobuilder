@@ -657,7 +657,7 @@ namespace Palete {
 					// skip operatore?
 					break;
 				case "ValaForeachStatement":
-					//this.debugHandle(s);								
+					//this.debugHandle(s);
 					var ss = s as Vala.ForeachStatement;
 					this.readCodeNode(builder, ss.body);
 					this.readCodeNode(builder, ss.collection );
@@ -667,19 +667,32 @@ namespace Palete {
 					break;
 				
 				case "ValaReturnStatement":
-					 this.debugHandle(s);								
+					 this.debugHandle(s);
 					var ss = s as Vala.ReturnStatement;
 					this.readCodeNode(builder, ss.return_expression);
 					break;
 				case "ValaSwitchStatement":
-					 this.debugHandle(s);								
+					this.debugHandle(s);
 					var ss = s as Vala.SwitchStatement;
 					this.readCodeNode(builder, ss.expression);
 					foreach(var se in ss.get_sections()) {
 						this.readCodeNode(builder, se);
-					
 					}
 					break;
+					
+				case "ValaUnaryExpression":
+					this.debugHandle(s);
+					var ss = s as Vala.UnaryExpression;
+					this.readCodeNode(builder, ss.inner);
+					break;
+					
+				case "ValaObjectCreationExpression":
+					this.debugHandle(s);
+					var ss = s as Vala.ObjectCreationExpression;
+					this.readCodeNode(builder, ss.call);
+					this.readCodeNode(builder, ss.type_reference);
+					break;
+				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
 						s.source_reference == null ? "??" : s.source_reference.to_string(), 
