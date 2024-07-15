@@ -669,13 +669,20 @@ namespace Palete {
 				case "ValaForeachStatement":
 					this.debugHandle(s);
 					var ss = s as Vala.ForeachStatement;
-					 new new_variable_from_foreach(builder, this, ss);
-					this.readCodeNode(builder, ss.body);
+					new new_variable_from_foreach(builder, this, ss);
+					this.readCodeNode(builder, ss.collection ); 
+					 
+
+					
+					foreach(var lv in ss.body.get_local_variables()) {
+							this.readCodeNode(builder, lv);
+					}
+					this.readCodeNode(builder, ss.body);					
 					//this.debugHandle(ss.collection);
 					//this.debugHandle(ss.collection_variable);
 					//this.debugHandle(ss.element_variable);
 					//this.debugHandle(ss.iterator_variable);
-					//this.readCodeNode(builder, ss.collection );
+					
 					//this.readCodeNode(builder, ss.collection_variable );
 					//this.readCodeNode(builder, ss.element_variable );
 					//this.readCodeNode(builder, ss.iterator_variable );
@@ -689,7 +696,10 @@ namespace Palete {
 					this.debugHandle(ss.condition);
 					 
 					this.readCodeNode(builder, ss.condition );
-					this.readCodeNode(builder, ss.body); 
+					this.readCodeNode(builder, ss.body);
+					
+					
+					
 					break;
 				
 				
