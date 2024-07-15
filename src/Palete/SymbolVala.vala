@@ -648,6 +648,17 @@ namespace Palete {
 					this.readCodeNode(builder, ss.type_reference );
 					// skip operatore?
 					break;
+				case "ValaForeachStatement":
+					 this.debugHandle(s);								
+					var ss = s as Vala.ForeachStatement;
+					this.readCodeNode(builder, ss.body);
+					this.readCodeNode(builder, ss.collection );
+					this.readCodeNode(builder, ss.collection_variable );
+					this.readCodeNode(builder, ss.element_variable );
+					this.readCodeNode(builder, ss.iterator_variable );
+					break;
+				
+				
 				
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
