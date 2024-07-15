@@ -822,7 +822,7 @@ namespace Palete {
 
 			this.setParent(parent);
 		}
-		public SymbolVala.new_objecttype(ValaSymbolBuilder builder, Symbol? parent, Vala.ObjectType c)	
+		public SymbolVala.new_objecttype(ValaSymbolBuilder builder, Symbol? parent, Vala.ValueType c)	
 		{
 			this(builder, c);
 			 
