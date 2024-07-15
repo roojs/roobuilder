@@ -502,19 +502,27 @@ namespace Palete {
 			}
 			switch(s.type_name) {
 				case "ValaBlock":
+				case "ValaSwitchSection":				
 					var sb = (s as Vala.Block);;
-					
+					/*
+					// // we might want to register these for scopes?					
+					--  think this is so we can sort out scope.
 					foreach(var ss in sb.get_local_constants()) {
 						this.readCodeNode(builder, ss);
 					}
 					foreach(var ss in sb.get_local_variables()) {
 						this.readCodeNode(builder, ss);
 					}
+					*/
 					foreach(var ss in sb.get_statements()) {
 						this.readCodeNode(builder, ss);
 					}
-					// // we might want to register these for scopes?
-					
+
+					if (s is Vala.SwitchSection) {
+						foreach(var se in (s is Vala.SwitchSection).get_labels()) {
+							this.readCodeNode(builder, se.expression);
+						}
+					}
 
 					break;
 				case "ValaContinueStatement":
@@ -658,8 +666,20 @@ namespace Palete {
 					this.readCodeNode(builder, ss.iterator_variable );
 					break;
 				
-				
-				
+				case "ValaReturnStatement":
+					 this.debugHandle(s);								
+					var ss = s as Vala.ReturnStatement;
+					this.readCodeNode(builder, ss.return_expression);
+					break;
+				case "ValaSwitchStatement":
+					 this.debugHandle(s);								
+					var ss = s as Vala.ReturnStatement;
+					this.readCodeNode(builder, ss.expression);
+					foreach(var se in ss.get_sections()) {
+						this.readCodeNode(builder, se);
+					
+					}
+					break
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
 						s.source_reference == null ? "??" : s.source_reference.to_string(), 
