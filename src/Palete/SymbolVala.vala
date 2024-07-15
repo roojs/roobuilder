@@ -765,6 +765,22 @@ namespace Palete {
 
 			this.setParent(parent);
 		}
+		public SymbolVala.new_variable_from_foreach(ValaSymbolBuilder builder, Symbol? parent, Vala.ForeachStatement c)	
+		{
+			this(builder, c);
+			// dont' dupelicate add or '.' vars?
+			var fe = this.codeNodeToString(c).index_of(" " + c.variable_name);
+ 
+			this.begin_col += fe + 1;
+			this.end_col = this.begin_col + c.variable_name.length;
+			this.name = c.variable_name ;
+			this.rtype = c.type_reference.symbol.get_full_name();
+			this.stype = Lsp.SymbolKind.Variable;			
+			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), this.stype.to_string(), this.name, this.rtype  );
+
+
+			this.setParent(parent);
+		}
 		public SymbolVala.new_memberaccess(ValaSymbolBuilder builder, Symbol? parent, Vala.Expression c)	
 		{
 			this(builder, c);
