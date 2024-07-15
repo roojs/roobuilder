@@ -565,7 +565,7 @@ namespace Palete {
 					
 				case "ValaPostfixExpression":
 					var ss = s as Vala.PostfixExpression;
-					this.debugHandle(s);	
+					//this.debugHandle(s);	
 					this.readCodeNode(builder, ss.inner);
 					break;
 				case "ValaVariable":	
