@@ -639,8 +639,11 @@ namespace Palete {
 					// skip operatore?
 					break;
 				case "ValaBinaryExpression":
+					this.debugHandle(s);
 					var ss = s as Vala.BinaryExpression;
+					this.debugHandle(ss.left);
 					this.readCodeNode(builder, ss.left);
+					this.debugHandle(ss.right);
 					this.readCodeNode(builder, ss.right);
 					// skip operatore?
 					break;	
