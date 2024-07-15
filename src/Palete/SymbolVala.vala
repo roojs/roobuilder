@@ -564,6 +564,12 @@ namespace Palete {
 					*/
 					this.readCodeNode(builder, ss.expression);
 					break;
+					
+				case "ValaPostfixExpression":
+					var ss = s as Vala.PostfixExpression;
+					this.debugHandle(s);	
+					this.readCodeNode(builder, ss.inner);
+					break;
 				case "ValaVariable":	
 				case "ValaLocalVariable":
 				
@@ -669,6 +675,18 @@ namespace Palete {
 					this.readCodeNode(builder, ss.element_variable );
 					this.readCodeNode(builder, ss.iterator_variable );
 					break;
+				case "ValaLoop":	
+				case "ValaLoopStatement":
+				
+					this.debugHandle(s);
+					var ss = s as Vala.Loop;
+					this.readCodeNode(builder, ss.body);
+					this.debugHandle(ss.condition);
+					 
+					this.readCodeNode(builder, ss.condition );
+					 
+					break
+				
 				
 				case "ValaReturnStatement":
 					 this.debugHandle(s);
