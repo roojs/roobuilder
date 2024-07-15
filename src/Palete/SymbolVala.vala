@@ -685,7 +685,7 @@ namespace Palete {
 					 
 					this.readCodeNode(builder, ss.condition );
 					 
-					break
+					break;
 				
 				
 				case "ValaReturnStatement":
