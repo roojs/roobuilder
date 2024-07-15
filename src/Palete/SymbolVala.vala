@@ -781,7 +781,7 @@ namespace Palete {
 				this.name, this.rtype  );
 				
 			
-			if (this.rtype == "" || this.name[0] == "_") {
+			if (this.rtype == "" || this.name[0] == '_') { 
 				this.debugValue(c, "formal_target_type", c.formal_target_type);
 				this.debugValue(c, "formal_value_type", c.formal_value_type);	
 				this.debugValue(c, "symbol_reference", c.symbol_reference);		
