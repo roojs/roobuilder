@@ -748,7 +748,7 @@ namespace Palete {
 		
 			GLib.debug("handling type %s: %s - %s name=%s",
 				s.source_reference.to_string(), s.type_name, this.codeNodeToString(s),
-				s is Vala.Symbol ? s.name : ""
+				s is Vala.Symbol ? (s as Vala.Symbol).name : ""
 				);
 		}	
 
