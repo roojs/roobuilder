@@ -29,7 +29,6 @@ namespace Palete {
 			  
 			var path = file.targetName();
 			if (this.files.has_key(path)) { // && files.get(path).version == version) {
-				
 				return this.files.get(path);
 			}
 			var f = new SymbolFile.new_file(file);
@@ -92,12 +91,18 @@ namespace Palete {
 					//context.add_c_source_file(path);
 					continue;
 				}
+				if (this.files.has_key(tn) {
+					continue;
+				}
 				this.factory_by_path(tn);	
 				 
 			   
 			}
 			var vp = cg.project.vapiPaths();
-			foreach(var path in vp) {	
+			foreach(var path in vp) {
+				if (this.files.has_key(path) {
+					continue;
+				}
 				this.factory_by_path(path);	
 			}
 			
