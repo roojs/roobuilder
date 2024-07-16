@@ -655,6 +655,7 @@ namespace Palete {
 		 	if (sy == null) {
 		 		return retv;
 	 		}
+	 		GLib.debug("Set contents to %s", sy.rtype + " " + sy.name + " (" + sy.stype.to_string() + ")");
 		 	retv.contents.add(new Lsp.MarkedString("",
 		 		sy.rtype + " " + sy.name + " (" + sy.stype.to_string() + ")"
 	 		));
