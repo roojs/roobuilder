@@ -535,10 +535,18 @@ namespace Palete {
 				case "ValaNullLiteral":
 				case "ValaCharacterLiteral":
 				case "ValaRealLiteral":
+				case "ValaEmptyStatement":
+				case "ValaRegexLiteral":
+				case "ValaYieldStatement":
 				
 					break;
 				case "ValaArrayCreationExpression":   // probably ignore..
 					break;
+				case "ValaNamedArgument":  // ingores the 'name...
+					var ss =  s as Vala.NamedArgument;
+					this.readCodeNode(builder, ss.inner);
+					break;
+				
 				
 				case "ValaDeclarationStatement":
 					var ss =  s as Vala.DeclarationStatement;
@@ -617,15 +625,17 @@ namespace Palete {
 			 	
 				case "ValaObjectType":
 				case "ValaIntegerType":
-
+				case "ValaStructValueType":
 					var ss = s as Vala.ValueType;
 					new new_objecttype(builder, this, ss);	
 					break;
+					
 				case "ValaErrorType":	
 					var ss = s as Vala.ErrorType;
 					this.readCodeNode(builder, ss.error_domain);
 					this.readCodeNode(builder, ss.error_code);
 					break;
+					
 				case "ValaMethodCall":
 					var ss = s as Vala.MethodCall;
 					//this.debugHandle(s);
