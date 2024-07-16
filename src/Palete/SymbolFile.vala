@@ -77,7 +77,9 @@ namespace Palete {
 			}
 		}
 		
-		public SymbolFile(string path, int version) {
+		public SymbolFile(string path, int version) 
+		{
+			GLib.debug("new file %s",  path);
 			this.path = path;
 			this.version = version;
 			//this.symbols_all = new Gee.ArrayList<Symbol>((a,b) => { return a.id == b.id ; });
@@ -90,7 +92,8 @@ namespace Palete {
 		}
 		
 		public SymbolFile.new_file (JsRender.JsRender file) {
-
+			
+			GLib.debug("new file %s",  file.targetName());
 			this(file.targetName(), -1);		
 			this.file = file;
 			this.contents = file.toSourceCode();
@@ -101,7 +104,9 @@ namespace Palete {
 		
 		
 		
-		public SymbolFile.new_from_path (string path, int version) {
+		public SymbolFile.new_from_path (string path, int version) 
+		{
+			GLib.debug("new file %s",  path);
 			this(path,version); 
 			if (this.path.has_suffix(".gir")) {
 				var bits = GLib.Path.get_basename(this.path).replace(".gir","").split("-");
