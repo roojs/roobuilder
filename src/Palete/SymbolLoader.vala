@@ -657,9 +657,39 @@ namespace Palete
 		
 		}
 		
-		
-		
-	}	
+		public Symbol? getSymbolAt(JsRender.file, int line, int offset)
+		{
+			
+			var f = this.manager.factory_by_path(file.targetName());
+			var stmt = this.sq.selectPrepare("
+				SELECT 
+					fqn
+				FROM
+					symbol
+				WHERE 
+					file = $fid
+					AND
+					begin_line = $line
+					AND 
+					$offset >= begin_col 
+					AND
+					end_col >= $offset
+					ORDER BY
+					end_col - begin_col ASC
+				LIMIT 1
+			");
+			
+			stmt.bind_int(stmt.bind_parameter_index ("$fid"), f.id);
+			stmt.bind_int(stmt.bind_parameter_index ("$line"),line);
+			stmt.bind_int(stmt.bind_parameter_index ("$offset"),offset);	
+			
+			var els = new Gee.ArrayList<Symbol>();
+			this.sq.selectExecute(stmt, els);
+			return els.size < 1 ? null : els.get(0);
+					
+		}	
+	
+	
 	
 	
 	
