@@ -617,11 +617,15 @@ namespace Palete {
 			 	
 				case "ValaObjectType":
 				case "ValaIntegerType":
+
 					var ss = s as Vala.ValueType;
 					new new_objecttype(builder, this, ss);	
 					break;
-					
-					
+				case "ValaErrorType":	
+					var ss = s as Vala.ErrorType;
+					this.readCodeNode(builder, ss.error_domain);
+					this.readCodeNode(builder, ss.error_code);
+					break;
 				case "ValaMethodCall":
 					var ss = s as Vala.MethodCall;
 					//this.debugHandle(s);
@@ -753,6 +757,10 @@ namespace Palete {
 						this.readCodeNode(builder, a);
 					}
 					break;
+					
+				
+					
+					
 				case "ValaContinueStatement":
 				case "ValaBreakStatement":
 
