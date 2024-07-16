@@ -679,7 +679,7 @@ namespace Palete
 				LIMIT 1
 			");
 			
-			stmt.bind_int(stmt.bind_parameter_index ("$fid"), f.id);
+			stmt.bind_int(stmt.bind_parameter_index ("$fid"), (int)f.id);
 			stmt.bind_int(stmt.bind_parameter_index ("$line"),line);
 			stmt.bind_int(stmt.bind_parameter_index ("$offset"),offset);	
 			
