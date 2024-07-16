@@ -649,6 +649,10 @@ namespace Palete {
 		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
  		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error 
 	 	{
+		 	
+		 	var sy = file.getSymbolLoader().getSymbolAt(file,line,offset);
+		 	
+		 	
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		 	//GLib.debug("get hover %s %d %d", file.relpath, (int)line, (int)offset);
 			var ret = new Lsp.Hover();	
