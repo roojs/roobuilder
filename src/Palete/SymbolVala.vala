@@ -669,7 +669,8 @@ namespace Palete {
 				case "ValaForeachStatement":
 					this.debugHandle(s);
 					var ss = s as Vala.ForeachStatement;
-					new new_variable_from_foreach(builder, this, ss);
+					// it's a bit compelxt soritng out this.. so ignored for the time being
+					//new new_variable_from_foreach(builder, this, ss);
 					this.readCodeNode(builder, ss.collection ); 
 					 
 
@@ -678,14 +679,7 @@ namespace Palete {
 							this.debugHandle(lv);
 					}
 					this.readCodeNode(builder, ss.body);					
-					//this.debugHandle(ss.collection);
-					//this.debugHandle(ss.collection_variable);
-					//this.debugHandle(ss.element_variable);
-					//this.debugHandle(ss.iterator_variable);
 					
-					//this.readCodeNode(builder, ss.collection_variable );
-					//this.readCodeNode(builder, ss.element_variable );
-					//this.readCodeNode(builder, ss.iterator_variable );
 					break;
 				case "ValaLoop":	
 				case "ValaLoopStatement":
@@ -780,6 +774,7 @@ namespace Palete {
 
 			this.setParent(parent);
 		}
+		/*
 		public SymbolVala.new_variable_from_foreach(ValaSymbolBuilder builder, Symbol? parent, Vala.ForeachStatement c)	
 		{
 			this(builder, c);
@@ -801,6 +796,7 @@ namespace Palete {
 		
 			this.setParent(parent);
 		}
+		*/
 		public SymbolVala.new_memberaccess(ValaSymbolBuilder builder, Symbol? parent, Vala.Expression c)	
 		{
 			this(builder, c);
