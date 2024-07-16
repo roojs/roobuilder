@@ -541,6 +541,7 @@ namespace Palete {
 				
 					break;
 				case "ValaArrayCreationExpression":   // probably ignore..
+				case "GenericType": //??
 					break;
 				case "ValaNamedArgument":  // ingores the 'name...
 					var ss =  s as Vala.NamedArgument;
@@ -626,6 +627,7 @@ namespace Palete {
 				case "ValaObjectType":
 				case "ValaIntegerType":
 				case "ValaStructValueType":
+				case "ValaEnumValueType":
 					var ss = s as Vala.ValueType;
 					new new_objecttype(builder, this, ss);	
 					break;
