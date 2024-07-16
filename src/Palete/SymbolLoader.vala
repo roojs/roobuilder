@@ -667,7 +667,7 @@ namespace Palete
 				FROM
 					symbol
 				WHERE 
-					file = $fid
+					file_id = $fid
 					AND
 					begin_line = $line
 					AND 
