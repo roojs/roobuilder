@@ -636,10 +636,11 @@ namespace Palete {
 					this.readCodeNode(builder, ss.error_code);
 					break;
 				case "ValaErrorDomain":
+				case "ValaErrorCode":				
 					var ss = s as Vala.TypeSymbol;				
 					new new_objecttype_ts(builder, this, ss);	
 					break;
-				
+
 				case "ValaMethodCall":
 					var ss = s as Vala.MethodCall;
 					//this.debugHandle(s);
