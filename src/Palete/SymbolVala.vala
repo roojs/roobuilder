@@ -534,6 +534,8 @@ namespace Palete {
 				case "ValaBooleanLiteral":
 				case "ValaNullLiteral":
 				case "ValaCharacterLiteral":
+				case "ValaRealLiteral":
+				
 					break;
 				case "ValaArrayCreationExpression":   // probably ignore..
 					break;
@@ -607,6 +609,12 @@ namespace Palete {
 				 	//	this.readCodeNode(builder, a);
 			 		//}
 			 		break;
+			 	case "ValaElementAccess": 
+					var ss = s as Vala.ElementAccess;
+					this.readCodeNode(builder, ss.container);
+					
+			 		break;
+			 	
 				case "ValaObjectType":
 				case "ValaIntegerType":
 					var ss = s as Vala.ValueType;
