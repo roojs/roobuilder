@@ -680,7 +680,7 @@ namespace Palete
 			");
 			
 			stmt.bind_int64(stmt.bind_parameter_index ("$fid"), f.id);
-			stmt.bind_int(stmt.bind_parameter_index ("$line"),line);
+			stmt.bind_int(stmt.bind_parameter_index ("$line"),line + 1);
 			stmt.bind_int(stmt.bind_parameter_index ("$offset"),offset);	
 			
 			var els = new Gee.ArrayList<Symbol>();
