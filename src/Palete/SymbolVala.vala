@@ -547,8 +547,10 @@ namespace Palete {
 					var ss =  s as Vala.NamedArgument;
 					this.readCodeNode(builder, ss.inner);
 					break;
-				
-
+				case "ValaSizeofExpression":
+					var ss =  s as Vala.SizeofExpression;
+					this.readCodeNode(builder, ss.type_reference);
+					break;
 				
 				case "ValaDeclarationStatement":
 					var ss =  s as Vala.DeclarationStatement;
