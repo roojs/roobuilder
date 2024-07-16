@@ -541,7 +541,7 @@ namespace Palete {
 				
 					break;
 				case "ValaArrayCreationExpression":   // probably ignore..
-				case "GenericType": //??
+				case "ValaGenericType": //??
 					break;
 				case "ValaNamedArgument":  // ingores the 'name...
 					var ss =  s as Vala.NamedArgument;
