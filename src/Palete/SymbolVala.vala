@@ -378,8 +378,8 @@ namespace Palete {
 		 	foreach(var p in sig.get_parameters()) {
 				 new new_parameter(builder, this, p, n++);
 			}
-
-			if (sig.body != null  ) {
+			
+			if (sig.body != null && this.file.path.has_suffix(".vala") ) {
 				this.readCodeNode(builder, sig.body);
 			}
 			
