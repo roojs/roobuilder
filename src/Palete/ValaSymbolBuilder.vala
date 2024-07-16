@@ -73,6 +73,10 @@ namespace Palete {
 		public void doVapiBuildForFile(JsRender.JsRender file)
 		{
 			// this is done with the progress dialog.
+			if (this.running) {
+				return;
+			}
+			this.running = true;
 			var mod = this.scan_project.firstBuildModuleWith(file);
 			if (this.done_first_compile.contains(mod)) {
 				return;
@@ -98,7 +102,7 @@ namespace Palete {
 			// copy the errors so the thread can't use them anymore...
 			this.errors = this.report.errors;
 			this.report = null;
-			this.running = false;	
+		
 			lp.bar.el.text= "Updating Database";
 			
 			while(GLib.MainContext.default().pending()) {
@@ -113,6 +117,7 @@ namespace Palete {
 			}
 			this.lp = null;
 			this.done_first_compile.add(mod);
+			this.running = false;	
 		}
 		// main entrance point.. 
 		// starts the process of updating the tree..
