@@ -630,7 +630,9 @@ public class Editor : Object
 				GLib.debug("got uri %s", uri);
 				var ls = _this.file.getLanguageServer();
 				ls.symbol.begin(uri, (a,b) => {
-					ls.symbol.end(b);
+					try { 
+						ls.symbol.end(b);
+					} catch (GLib.Error e) {}
 				});
 				
 				return true;
