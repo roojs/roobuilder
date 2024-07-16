@@ -526,12 +526,7 @@ namespace Palete {
 					}
 
 					break;
-				case "ValaContinueStatement":
-				case "ValaBreakStatement":
-
-					// no examples?? - 
-					//new new_codenode(builder, this, s);
-					break;
+				
 					
 					// known ignore.
 				case "ValaIntegerLiteral":
@@ -698,7 +693,21 @@ namespace Palete {
 					
 					
 					break;
-				
+				case "ValaTryStatement":
+					// this.debugHandle(s);
+					var ss = s as Vala.TryStatement;
+					this.readCodeNode(builder, ss.body);
+					this.readCodeNode(builder, ss.finally_body);					
+					break;
+				case "ValaThrowStatement":
+					// this.debugHandle(s);
+					var ss = s as Vala.ThrowStatement;
+					this.readCodeNode(builder, ss.error_expression );
+					break;
+				case "ValaTypeofExpression":
+					var ss = s as Vala.TypeofExpression;
+					this.readCodeNode(builder, ss.type_reference ); // ??? might not work.
+					break;
 				
 				case "ValaReturnStatement":
 					// this.debugHandle(s);
@@ -731,7 +740,12 @@ namespace Palete {
 						this.readCodeNode(builder, a);
 					}
 					break;
-				
+				case "ValaContinueStatement":
+				case "ValaBreakStatement":
+
+					// no examples?? - 
+					//new new_codenode(builder, this, s);
+					break;
 				default:
 					GLib.debug("Unhandled type %s: %s - %s",
 						s.source_reference == null ? "??" : s.source_reference.to_string(), 
