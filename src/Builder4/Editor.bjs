@@ -109,6 +109,7 @@
             "\t ",
             "\tvar sig = help.contents.get(0).value.split(\" \");",
             "\tstring[] str = {};",
+            "\tGLib.debug(\"setHelp %s\", help.contents.get(0).value);",
             "\tfor(var i =0; i < sig.length; i++) {",
             "\t",
             "\t\tswitch(sig[i]) {",

@@ -650,6 +650,7 @@ public class Editor : Object
 			 
 			var sig = help.contents.get(0).value.split(" ");
 			string[] str = {};
+			GLib.debug("setHelp %s", help.contents.get(0).value);
 			for(var i =0; i < sig.length; i++) {
 			
 				switch(sig[i]) {
