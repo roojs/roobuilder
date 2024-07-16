@@ -183,7 +183,7 @@ namespace Palete {
 			}
 			this.running = true;
 			this.changed.clear();
-			this.filemanager = new SymbolFileCollection();
+			//this.filemanager = new SymbolFileCollection();
 			if (!this.done_first_compile.contains(build_module)) {
 	 			yield this.create_valac_tree( build_module , false);
 	 			this.done_first_compile.add(build_module);
