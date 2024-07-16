@@ -652,10 +652,13 @@ namespace Palete {
 		 	
 		 	var sy = file.getSymbolLoader().getSymbolAt(file,line,offset);
 		 	var ret = new Lsp.Hover();
+		 	if (sy == null) {
+		 		return ret;
+	 		}
 		 	ret.contents.add(new Lsp.MarkedString("",
 		 		sy.rtype + " " + sy.name + " (" + sy.stype.to_string() + ")"
 	 		));
-	 		
+	 		return ret;
 		 	
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		 	//GLib.debug("get hover %s %d %d", file.relpath, (int)line, (int)offset);
