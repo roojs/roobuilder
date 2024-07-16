@@ -657,7 +657,7 @@ namespace Palete
 		
 		}
 		
-		public Symbol? getSymbolAt(JsRender.file, int line, int offset)
+		public Symbol? getSymbolAt(JsRender.JsRender file, int line, int offset)
 		{
 			
 			var f = this.manager.factory_by_path(file.targetName());
