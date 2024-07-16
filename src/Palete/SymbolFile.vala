@@ -24,6 +24,7 @@ namespace Palete {
 			private set;
 		}
 		
+		
 		//public Gee.ArrayList<Symbol> symbols_all ;
  		public Gee.HashMap<int,Symbol> symbol_map;
  		public Gee.HashMap<string,Symbol> fqn_map;
@@ -42,6 +43,7 @@ namespace Palete {
 				if (file != null) {
 					return file.vtime;
 				}
+				
 				return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
 			} catch (GLib.Error e) {
 				return -2;
@@ -56,12 +58,12 @@ namespace Palete {
 			}
 			set {
 				if (value) {
-					if (this.version == this.cur_mod_time() && !this.database_has_symbols && this.symbol_map.keys.size < 1){ 
+					if (this.version != -1 && this.version == this.cur_mod_time() && !this.database_has_symbols && this.symbol_map.keys.size < 1){ 
 						// version the same, no new symbols
 						return;
 					}
 					this.version = this.cur_mod_time();
-					//GLib.debug("is_parsed %s : %d", this.path, (int)this.version);
+					GLib.debug("version set %s : %d", this.path, (int)this.version);
 					var sqf = new SQ.Query<SymbolFile>("files");
 					sqf.update(null,this);
 					
