@@ -663,7 +663,7 @@ namespace Palete
 			var f = this.manager.factory_by_path(file.targetName());
 			var stmt = this.sq.selectPrepare("
 				SELECT 
-					fqn
+					*
 				FROM
 					symbol
 				WHERE 
