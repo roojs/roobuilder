@@ -31,9 +31,7 @@ namespace Palete {
 			if (this.files.has_key(path)) { // && files.get(path).version == version) {
 				return this.files.get(path);
 			}
-			foreach(var k in this.files.keys) {
-				GLib.debug("%s != %s", k, path);
-			}
+			
 			var f = new SymbolFile.new_file(file);
 			this.files.set(path,f);
 			
@@ -50,9 +48,7 @@ namespace Palete {
 				
 				return this.files.get(path);
 			}
-			foreach(var k in this.files.keys) {
-				GLib.debug("%s != %s", k, path);
-			}
+			
 			var f = new SymbolFile.new_from_path(path,-1);
 			this.files.set(path,f);
 			this.id_to_file.set((int)f.id, f);
