@@ -859,14 +859,16 @@ namespace Palete {
 			this(builder, c);
 			// not sure if this is needed, we should do a search on code using the 'smallest' match to the range
 			
-			//this.begin_col = this.end_col - c.member_name.length; // fix the starting pos.
+			
 			// dont' dupelicate add or '.' vars?
 			var ma = c as Vala.MemberAccess;
 			this.name = ma == null? "base" :  ma.member_name;
 			if (this.name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
-			
+			if (this.end_col - this.begin_col != this.name.length) {
+				this.begin_col = this.end_col - this.name.length; // fix the starting pos.
+			}
 			 	
 			this.rtype = c.value_type == null || c.value_type.type_symbol == null ? "": c.value_type.type_symbol.get_full_name();
 			this.stype = ma != null && ma.inner == null ? Lsp.SymbolKind.Variable : Lsp.SymbolKind.MemberAccess;	
