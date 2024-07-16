@@ -255,6 +255,11 @@ namespace Palete {
 			this.is_writable = prop.set_accessor != null ?  prop.set_accessor.writable : false;	 
 			this.is_ctor_only = prop.set_accessor != null ?   prop.set_accessor.construction : false;	 
 			this.setParent(parent);
+			if (this.file.path.has_suffix(".vala") ) {
+				this.readCodeNode(builder, prop.get_accessor.body);
+				this.readCodeNode(builder, prop.set_accessor.body);
+			}
+			
 		}
 		public SymbolVala.fake_ctor_property(ValaSymbolBuilder builder, Symbol? parent, Symbol prop)	
 		{
@@ -379,7 +384,7 @@ namespace Palete {
 				 new new_parameter(builder, this, p, n++);
 			}
 			
-			if (sig.body != null && this.file.path.has_suffix(".vala") ) {
+			if (this.file.path.has_suffix(".vala") ) {
 				this.readCodeNode(builder, sig.body);
 			}
 			
