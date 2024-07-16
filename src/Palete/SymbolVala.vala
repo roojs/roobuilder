@@ -535,7 +535,8 @@ namespace Palete {
 				case "ValaNullLiteral":
 				case "ValaCharacterLiteral":
 					break;
-
+				case "ValaArrayCreationExpression":   // probably ignore..
+					break;
 				
 				case "ValaDeclarationStatement":
 					var ss =  s as Vala.DeclarationStatement;
@@ -664,6 +665,10 @@ namespace Palete {
 					this.readCodeNode(builder, ss.type_reference );
 					// skip operatore?
 					break;
+					
+				
+					
+				
 				case "ValaForeachStatement":
 					//this.debugHandle(s);
 					var ss = s as Vala.ForeachStatement;
