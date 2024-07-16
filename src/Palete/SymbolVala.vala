@@ -547,6 +547,7 @@ namespace Palete {
 					this.readCodeNode(builder, ss.inner);
 					break;
 				
+
 				
 				case "ValaDeclarationStatement":
 					var ss =  s as Vala.DeclarationStatement;
@@ -619,8 +620,7 @@ namespace Palete {
 			 		break;
 			 	case "ValaElementAccess": 
 					var ss = s as Vala.ElementAccess;
-					this.readCodeNode(builder, ss.container);
-					
+					this.readCodeNode(builder, ss.container);	
 			 		break;
 			 	
 				case "ValaObjectType":
@@ -635,7 +635,11 @@ namespace Palete {
 					this.readCodeNode(builder, ss.error_domain);
 					this.readCodeNode(builder, ss.error_code);
 					break;
-					
+				case "ValaErrorDomain":
+					var ss = s as Vala.TypeSymbol;				
+					new new_objecttype_ts(builder, this, ss);	
+					break;
+				
 				case "ValaMethodCall":
 					var ss = s as Vala.MethodCall;
 					//this.debugHandle(s);
@@ -918,7 +922,20 @@ namespace Palete {
 
 			this.setParent(parent);
 		}
-		
+		public SymbolVala.new_objecttype_ts(ValaSymbolBuilder builder, Symbol? parent, Vala.TypeSymbol c)	
+		{
+			this(builder, c);
+			 
+			this.name = c.name;
+			this.rtype ="";
+			this.stype =   Lsp.SymbolKind.ObjectType; // ?? Errortype?
+			
+			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
+				this.stype.to_string(), this.name,  this.rtype  );
+
+
+			this.setParent(parent);
+		}
 		string codeNodeToString(Vala.CodeNode? c) {
 			if (c == null || c.source_reference == null) {
 				return "null";
