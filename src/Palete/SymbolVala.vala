@@ -650,11 +650,11 @@ namespace Palete {
 					break;	
 					// checking..
 				case "ValaReferenceTransferExpression":
-					this.debugHandle(s);
+					//this.debugHandle(s);
 					this.readCodeNode(builder, (s as Vala.ReferenceTransferExpression).inner);
 					break;
 				case "ValaLambdaExpression":
-					this.debugHandle(s);				
+					//this.debugHandle(s);				
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).expression_body);
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).statement_body);
 					this.readCodeNode(builder, (s as Vala.LambdaExpression).method.body);
@@ -667,7 +667,7 @@ namespace Palete {
 					// skip operatore?
 					break;
 				case "ValaForeachStatement":
-					this.debugHandle(s);
+					//this.debugHandle(s);
 					var ss = s as Vala.ForeachStatement;
 					// it's a bit compelxt soritng out this.. so ignored for the time being
 					//new new_variable_from_foreach(builder, this, ss);
@@ -684,7 +684,7 @@ namespace Palete {
 				case "ValaLoop":	
 				case "ValaLoopStatement":
 				
-					this.debugHandle(s);
+					//this.debugHandle(s);
 					var ss = s as Vala.Loop;
 					
 					this.debugHandle(ss.condition);
