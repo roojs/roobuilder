@@ -646,6 +646,8 @@ public class Editor : Object
 				this.el.set_text("");
 				return;
 			}
+			
+			 
 			var sig = help.contents.get(0).value.split(" ");
 			string[] str = {};
 			for(var i =0; i < sig.length; i++) {
@@ -661,7 +663,7 @@ public class Editor : Object
 					case "(":
 					case ")":
 					
-						str += sig[i];
+						str += sig[i] + " ";
 						continue;
 						
 						
