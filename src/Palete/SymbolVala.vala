@@ -519,7 +519,8 @@ namespace Palete {
 					}
 
 					if (s is Vala.SwitchSection) {
-						foreach(var se in (s as Vala.SwitchSection).get_labels()) {
+						var ss  = s as Vala.SwitchSection;
+						foreach(var se in ss.get_labels()) {
 							this.readCodeNode(builder, se.expression);
 						}
 					}
@@ -651,13 +652,15 @@ namespace Palete {
 					// checking..
 				case "ValaReferenceTransferExpression":
 					//this.debugHandle(s);
-					this.readCodeNode(builder, (s as Vala.ReferenceTransferExpression).inner);
+					var ss = s as Vala.ReferenceTransferExpression;
+					this.readCodeNode(builder, ss.inner);
 					break;
 				case "ValaLambdaExpression":
-					//this.debugHandle(s);				
-					this.readCodeNode(builder, (s as Vala.LambdaExpression).expression_body);
-					this.readCodeNode(builder, (s as Vala.LambdaExpression).statement_body);
-					this.readCodeNode(builder, (s as Vala.LambdaExpression).method.body);
+					//this.debugHandle(s);		
+					var ss = s as Vala.LambdaExpression;
+					this.readCodeNode(builder, ss.expression_body);
+					this.readCodeNode(builder, ss.statement_body);
+					this.readCodeNode(builder, ss.method.body);
 					break;
 				case "ValaTypeCheck":
 					//this.debugHandle(s);								
