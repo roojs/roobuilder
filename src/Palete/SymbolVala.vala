@@ -923,7 +923,7 @@ namespace Palete {
 				this.debugValue(c, "value_type ", c.value_type );		
 			}
 
-
+			this.sequence = parent.sequence_count++;
 			this.setParent(parent);
 		}
 		public SymbolVala.new_objecttype(ValaSymbolBuilder builder, Symbol? parent, Vala.ValueType c)	
@@ -937,7 +937,7 @@ namespace Palete {
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
 				this.stype.to_string(), this.name,  this.rtype  );
 
-
+			this.sequence = parent.sequence_count++;
 			this.setParent(parent);
 		}
 		public SymbolVala.new_objecttype_ts(ValaSymbolBuilder builder, Symbol? parent, Vala.TypeSymbol c)	
@@ -951,7 +951,7 @@ namespace Palete {
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), 
 				this.stype.to_string(), this.name,  this.rtype  );
 
-
+			this.sequence = parent.sequence_count++;
 			this.setParent(parent);
 		}
 		string codeNodeToString(Vala.CodeNode? c) {
