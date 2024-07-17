@@ -131,9 +131,9 @@ namespace Palete {
 		public string type_name {
 			set {}
 			owned get {
-				var posid = 0;
-				if (this.parent.
-				return ((int)this.stype).to_string() + ":" + this.name + ":" + ;
+ 
+
+				return ((int)this.stype).to_string() + ":" + this.name + ":" + this.sequence.to_string();
 			}
 		}
 		public int64 rev = 0;
