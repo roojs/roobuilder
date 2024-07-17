@@ -4,6 +4,8 @@ namespace Palete {
 
 	public class SymbolVala : Symbol {
 	
+		public int sequence_count = 0;
+	
 		public SymbolVala(ValaSymbolBuilder builder, Vala.CodeNode s)
 		{
 			base();
@@ -432,6 +434,9 @@ namespace Palete {
 			  	GLib.debug("check children %d:%d %s != %s", (int)this.parent_id, (int)this.id,  k, this.type_name);
 			  }
 			*/
+			
+			
+			
 			var q = new SQ.Query<Symbol>("symbol");
 			if (!children_map.has_key(this.type_name)) {
  
@@ -833,7 +838,7 @@ namespace Palete {
 			this.rtype = c.variable_type == null || c.variable_type.type_symbol == null ? "": c.variable_type.type_symbol.get_full_name();
 			this.stype = Lsp.SymbolKind.Variable;			
 			GLib.debug("type %s new %s  %s (%s)", c.source_reference.to_string(), this.stype.to_string(), this.name, this.rtype  );
-
+			this.sequence = parent.sequence_count++;
 
 			this.setParent(parent);
 		}
