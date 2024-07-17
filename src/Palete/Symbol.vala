@@ -67,6 +67,8 @@ namespace Palete {
 		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> valid_cn  { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> can_drop_onto  { get; set; default = new Gee.ArrayList<string>(); }
+
+		public int sequence_count = 0; // used by symbolvala - to label symbols.
 		
   		public string implements_str { 
 			owned get {
@@ -129,7 +131,9 @@ namespace Palete {
 		public string type_name {
 			set {}
 			owned get {
-				return ((int)this.stype).to_string() + ":" + this.name;
+				var posid = 0;
+				if (this.parent.
+				return ((int)this.stype).to_string() + ":" + this.name + ":" + ;
 			}
 		}
 		public int64 rev = 0;
