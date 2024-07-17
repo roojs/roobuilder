@@ -4,7 +4,7 @@ namespace Palete {
 
 	public class SymbolVala : Symbol {
 	
-		public int sequence_count = 0;
+		
 	
 		public SymbolVala(ValaSymbolBuilder builder, Vala.CodeNode s)
 		{
