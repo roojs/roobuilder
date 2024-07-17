@@ -49,7 +49,7 @@ namespace Palete {
 				return -2;
 			}
 		}
-		
+	 
 		public bool is_parsed {
 			get {
 				GLib.debug("check parsed %s : %d, %d (no sym: %d)", this.path, (int)this.version,  (int)this.cur_mod_time(), this.database_has_symbols ? 999 : 0);
@@ -62,7 +62,7 @@ namespace Palete {
 						// version the same, no new symbols
 						return;
 					}
-					this.version = this.cur_mod_time();
+					this.version =  (new DateTime.now_local()).to_unix();
 					GLib.debug("version set %s : %d", this.path, (int)this.version);
 					var sqf = new SQ.Query<SymbolFile>("files");
 					sqf.update(null,this);
