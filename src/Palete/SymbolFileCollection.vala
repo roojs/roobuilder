@@ -29,6 +29,9 @@ namespace Palete {
 			  
 			var path = file.targetName();
 			if (this.files.has_key(path)) { // && files.get(path).version == version) {
+				if (this.files.file == null) {
+					this.files.file = file;
+				}
 				return this.files.get(path);
 			}
 			
