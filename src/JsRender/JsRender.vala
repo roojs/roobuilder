@@ -937,10 +937,7 @@ namespace JsRender {
 		}
 		
 		
-		public void updateVtime()
-		{
-			this.vtime = (new DateTime.now_local()).to_unix();
-		}
+		 
 		
 		
 		public abstract string language_id();
