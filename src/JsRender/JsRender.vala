@@ -937,6 +937,11 @@ namespace JsRender {
 		}
 		
 		
+		public void updateVtime()
+		{
+		
+		}
+		
 		
 		public abstract string language_id();
 		public abstract void save();
