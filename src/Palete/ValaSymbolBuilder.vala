@@ -526,7 +526,7 @@ namespace Palete {
 			// parse it...
 			
 	        sfile.accept_children (this);
-			GLib.debug("flag as parsed %s", sfile.filename);
+
 			
 			var ar = sfile.get_nodes();
 			for(var i = 0; i < ar.size;i++) {
@@ -566,8 +566,10 @@ namespace Palete {
 			
 			 
 			if (sf.children.get_n_items() < 1 ) { // failed to read - dont flag it as parsed.
+				GLib.debug("flag as  NOT parsed (no children?) %s", sfile.filename);
 				return;
 			}
+			GLib.debug("flag as parsed %s", sfile.filename);
 			sf.is_parsed = true; // should trigger save..
 			this.changed.add( sf.path );
 			//?? do we need to accept children?
