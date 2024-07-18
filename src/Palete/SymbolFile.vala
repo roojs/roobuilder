@@ -54,7 +54,7 @@ namespace Palete {
 			get {
 				GLib.debug("check parsed %s : ver=%d, modtime=%d (no sym: %d)", this.path, (int)this.version,  (int)this.cur_mod_time(), this.database_has_symbols ? 999 : 0);
 				
-				return this.version ==  this.cur_mod_time() && this.database_has_symbols;
+				return this.version ==  this.cur_mod_time(); // && this.database_has_symbols;
 			}
 			set {
 				if (value) {
