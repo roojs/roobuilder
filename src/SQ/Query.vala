@@ -155,7 +155,7 @@ namespace SQ {
 				}
 			
 			}
-			 
+			GLib.debug("Execute %s", stmt.expanded_sql());	 
  			if (Sqlite.DONE != stmt.step ()) {
 			    GLib.error("Update:   %s",   SQ.Database.db.errmsg());
 			}
