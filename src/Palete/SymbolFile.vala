@@ -62,7 +62,7 @@ namespace Palete {
 						// version the same, no new symbols
 						return;
 					}
-					this.version =  (new DateTime.now_local()).to_unix();
+					this.version =   this.cur_mod_time(); // should be current time..
 					GLib.debug("version set %s : %d", this.path, (int)this.version);
 					var sqf = new SQ.Query<SymbolFile>("files");
 					sqf.update(null,this);
