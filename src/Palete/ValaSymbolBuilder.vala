@@ -512,7 +512,7 @@ namespace Palete {
 			}
 			
 			var sf = this.filemanager.factory_by_path(sfile.filename);
-			 
+			sf.parsed_symbols.clear(); // reset the parsed symbols?
 			if (sf.is_parsed) {
 				GLib.debug("SKIP %s (db uptodate)", sfile.filename);
 				return;
