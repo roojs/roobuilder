@@ -556,6 +556,7 @@ namespace Palete {
 						continue;
 						break;	
 					default:
+						GLib.debug("unknown child node %s", cn.type_name);
 //						new SymbolVala.new_method(this, null, cn as Vala.Method);					
 						break;
 				
