@@ -532,7 +532,7 @@ namespace Palete {
 			for(var i = 0; i < ar.size;i++) {
 				var cn = ar.get(i);
 				if (sf.parsed_symbols.contains(this.line_sig(cn))) {
-					return;
+					continue;
 				}
 				switch(cn.type_name) {
 					case "ValaMethod":
