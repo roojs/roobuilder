@@ -58,10 +58,10 @@ namespace Palete {
 			}
 			set {
 				if (value) {
-					if (this.version != -1 && this.version == this.cur_mod_time() && !this.database_has_symbols && this.symbol_map.keys.size < 1){ 
+					//if (this.version != -1 && this.version == this.cur_mod_time() && !this.database_has_symbols && this.symbol_map.keys.size < 1){ 
 						// version the same, no new symbols
-						return;
-					}
+					//	return;
+					//}
 					this.version =   this.cur_mod_time(); // should be current time..
 					GLib.debug("version set %s : %d", this.path, (int)this.version);
 					var sqf = new SQ.Query<SymbolFile>("files");
