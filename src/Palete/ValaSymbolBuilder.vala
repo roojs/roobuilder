@@ -53,16 +53,16 @@ namespace Palete {
 			this.scan_project = project;
 			this.filemanager = new SymbolFileCollection();
 			this.changed = new Gee.ArrayList<string>();
-			this.queued_changes = new Gee.HashMap<string,SymbolFile>();
+			//this.queued_changes = new Gee.HashMap<string,SymbolFile>();
 			this.done_first_compile = new Gee.ArrayList<string>();
 		}
 		
-		Gee.HashMap<string,SymbolFile> queued_changes;
+		//Gee.HashMap<string,SymbolFile> queued_changes;
 		
 		
 		public void updateTreeFromFile(JsRender.JsRender file)
 		{
-			this.queued_changes.set(file.targetName(), new SymbolFile.new_file(file));
+			//this.queued_changes.set(file.targetName(), new SymbolFile.new_file(file));
 			
 			var mod = this.scan_project.firstBuildModuleWith(file);
 			this.updateTree(mod);
