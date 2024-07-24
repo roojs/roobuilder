@@ -874,7 +874,7 @@ namespace Palete {
 			// dont' dupelicate add or '.' vars?
 			var ma = c as Vala.MemberAccess;
 			this.name = ma == null? "base" :  ma.member_name;
-			if (this.name[0] == '.' || this.file.parsed_symbols.contains(this.line_sig)) {
+			if (this.name[0] == '.' || this.name[0] == '_' || this.file.parsed_symbols.contains(this.line_sig)) {
 				return;
 			}
 			if (this.end_col - this.begin_col != this.name.length) {
