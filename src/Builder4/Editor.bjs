@@ -1059,7 +1059,7 @@
                   ""
                  ],
                  "$ xns" : "Gtk",
-                 "* prop" : "model",
+                 "* prop" : "modelx",
                  "bool autoexpand" : false,
                  "bool passthrough" : false,
                  "items" : [
