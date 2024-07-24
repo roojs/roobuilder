@@ -264,13 +264,13 @@ namespace Palete {
 	     			(this.symbol_map.get((int)s.parent_id) != null ? 
 	    	     		this.symbol_map.get((int)s.parent_id).children : null
     	     		);
-	     		int pos = -1;
+	     		uint pos = -1;
 			    if (c != null && c.find_with_equal_func(s, (a, b) => {
 				    return ((Symbol)a).id == ((Symbol)b).id;
 			    }, out pos)) {
-				    if (pos > 0) {
-				     	c.remove(pos); 
-			     	}
+
+				     c.remove(pos); 
+			     	
 			    }
 		    }
 			this.symbol_map.unset((int)s.id);
