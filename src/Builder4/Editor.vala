@@ -2315,7 +2315,9 @@ public class Editor : Object
 			_this = _owner;
 			var child_1 = new Xcls_TreeListModel138( _this );
 			child_1.ref();
-			this.el = new Gtk.FilterListModel( child_1.el, null );
+			var child_2 = new Xcls_CustomFilter128( _this );
+			child_2.ref();
+			this.el = new Gtk.FilterListModel( child_1.el, child_2.el );
 
 			// my vars (dec)
 
@@ -2373,6 +2375,73 @@ public class Editor : Object
 		// user defined functions
 	}
 
+
+	public class Xcls_CustomFilter128 : Object
+	{
+		public Gtk.CustomFilter el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_CustomFilter128(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.CustomFilter( (item) => { 
+	var tr = ((Gtk.TreeListRow)item).get_item();
+	//GLib.debug("filter %s", tr.get_type().name());
+	var j =  (JsRender.JsRender) tr;
+	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
+		return false;
+	}
+	var str = _this.searchbox.el.text.down();	
+	if (j.xtype == "Dir") {
+	
+		
+		for (var i =0 ; i < j.childfiles.n_items; i++) {
+			var f = (JsRender.JsRender) j.childfiles.get_item(i);
+			if (f.xtype != "PlainFile") {
+				continue;
+			}
+			if (f.content_type.contains("image")) {
+				continue;
+			}
+			if (str.length < 1) {
+				return true;
+			}
+			if (f.name.down().contains(str)) {
+				return true;
+			}
+			
+		}
+		 
+		return false;
+	}
+	if (j.xtype != "PlainFile") {
+		return false;
+	}
+ 	if (j.content_type.contains("image")) {
+		return false;
+	}
+			 
+	if (str.length < 1) { // no search.
+		return true;
+	}
+	if (j.name.down().contains(str)) {
+		return true;
+	}
+	return false; 
+
+} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 	public class Xcls_TreeListRowSorter37 : Object
