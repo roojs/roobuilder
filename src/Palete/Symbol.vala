@@ -172,11 +172,11 @@ namespace Palete {
 			}
 			switch (this.stype) {
 				case Lsp.SymbolKind.Variable:
-				case Lsp.SymbolKind.Variable:
-				case Lsp.SymbolKind.Variable:
-				case Lsp.SymbolKind.Variable:
-				case Lsp.SymbolKind.Variable:
-				case Lsp.SymbolKind.Variable:
+				case Lsp.SymbolKind.MethodCall:
+				case Lsp.SymbolKind.ObjectType:
+				case Lsp.SymbolKind.MemberAccess:
+				case Lsp.SymbolKind.Return:
+				case Lsp.SymbolKind.Parameter:
 				
 					return this.name;
 			
