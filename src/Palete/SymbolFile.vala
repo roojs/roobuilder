@@ -198,7 +198,7 @@ namespace Palete {
 			
 			foreach(var s in newer) {
 				new_ids.add((int)s.id);
-				GLib.debug("New  %d : %s", (int)s.id, s.fqn);
+				//GLib.debug("New  %d : %s", (int)s.id, s.fqn);
 				if (this.symbol_map.has_key((int)s.id)) {
 					// update..
 					var os = this.symbol_map.get((int)s.id);	
@@ -212,7 +212,7 @@ namespace Palete {
 						//ns.id = s.id;
 						s.file = this;
 						addsymbols.add(s);
-						GLib.debug("Queue Add Sybol %s", s.fqn);
+						//GLib.debug("Queue Add Sybol %s", s.fqn);
 						continue;
 					}
 					
@@ -229,7 +229,7 @@ namespace Palete {
 					}
 					
 				}
-				GLib.debug("Queue Add Sybol %s", s.fqn);
+				//GLib.debug("Queue Add Sybol %s", s.fqn);
 				addsymbols.add(s);
 			 
 			}
