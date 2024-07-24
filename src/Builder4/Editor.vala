@@ -2228,9 +2228,10 @@ public class Editor : Object
 		public Xcls_FilterListModel427(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_CustomFilter428( _this );
-			child_1.ref();
-			this.el = new Gtk.FilterListModel( null, child_1.el );
+			new Xcls_navigationsort( _this );
+			var child_2 = new Xcls_CustomFilter428( _this );
+			child_2.ref();
+			this.el = new Gtk.FilterListModel( _this.navigationsort.el, child_2.el );
 
 			// my vars (dec)
 
@@ -2289,57 +2290,6 @@ public class Editor : Object
 		// user defined functions
 	}
 
-
-	public class Xcls_TreeListModel155 : Object
-	{
-		public Gtk.TreeListModel el;
-		private Editor  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_TreeListModel155(Editor _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_ListStore156( _this );
-			child_1.ref();
-			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
- 
-	return ((Palete.Symbol)item).children;
-}
- );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-	public class Xcls_ListStore156 : Object
-	{
-		public GLib.ListStore el;
-		private Editor  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_ListStore156(Editor _owner )
-		{
-			_this = _owner;
-			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
 	public class Xcls_navigationsort : Object
 	{
 		public Gtk.SortListModel el;
@@ -2353,7 +2303,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationsort = this;
-			var child_1 = new Xcls_TreeListRowSorter37( _this );
+			var child_1 = new Xcls_TreeListRowSorter548( _this );
 			child_1.ref();
 			this.el = new Gtk.SortListModel( null, child_1.el );
 
@@ -2424,7 +2374,7 @@ public class Editor : Object
 			 
 		}
 	}
-	public class Xcls_TreeListRowSorter37 : Object
+	public class Xcls_TreeListRowSorter548 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Editor  _this;
@@ -2433,10 +2383,10 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter37(Editor _owner )
+		public Xcls_TreeListRowSorter548(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter38( _this );
+			var child_1 = new Xcls_StringSorter549( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -2447,7 +2397,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter38 : Object
+	public class Xcls_StringSorter549 : Object
 	{
 		public Gtk.StringSorter el;
 		private Editor  _this;
@@ -2456,10 +2406,10 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter38(Editor _owner )
+		public Xcls_StringSorter549(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression39( _this );
+			var child_1 = new Xcls_PropertyExpression550( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -2470,7 +2420,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression39 : Object
+	public class Xcls_PropertyExpression550 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Editor  _this;
@@ -2479,7 +2429,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression39(Editor _owner )
+		public Xcls_PropertyExpression550(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Palete.Symbol), null, "sort_key" );
@@ -2493,6 +2443,57 @@ public class Editor : Object
 	}
 
 
+
+
+
+	public class Xcls_TreeListModel155 : Object
+	{
+		public Gtk.TreeListModel el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_TreeListModel155(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_ListStore156( _this );
+			child_1.ref();
+			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
+ 
+	return ((Palete.Symbol)item).children;
+}
+ );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ListStore156 : Object
+	{
+		public GLib.ListStore el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_ListStore156(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 
