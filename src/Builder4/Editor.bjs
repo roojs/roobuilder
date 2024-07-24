@@ -1083,7 +1083,7 @@
                     "\t//GLib.debug(\"filter %s\", tr.get_type().name());",
                     "\tvar j =  (Palete.Symbol) tr;",
                     "\t",
-                    "\tswitch( tr.stype) {",
+                    "\tswitch( j.stype) {",
                     "\t",
                     "\t\tcase Lsp.SymbolKind.Namespace:",
                     "\t\tcase Lsp.SymbolKind.Class:",

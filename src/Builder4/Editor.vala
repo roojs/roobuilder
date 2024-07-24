@@ -2393,7 +2393,7 @@ public class Editor : Object
 	//GLib.debug("filter %s", tr.get_type().name());
 	var j =  (Palete.Symbol) tr;
 	
-	switch( tr.stype) {
+	switch( j.stype) {
 	
 		case Lsp.SymbolKind.Namespace:
 		case Lsp.SymbolKind.Class:
