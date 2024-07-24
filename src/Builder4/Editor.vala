@@ -2228,16 +2228,15 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationsort = this;
-			var child_1 = new Xcls_TreeListRowSorter37( _this );
+			var child_1 = new Xcls_TreeListModel35( _this );
 			child_1.ref();
-			this.el = new Gtk.SortListModel( null, child_1.el );
+			var child_2 = new Xcls_TreeListRowSorter37( _this );
+			child_2.ref();
+			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
 			// my vars (dec)
 
 			// set gobject values
-			var child_2 = new Xcls_TreeListModel35( _this );
-			child_2.ref();
-			this.el.modelx = child_2.el;
 		}
 
 		// user defined functions
