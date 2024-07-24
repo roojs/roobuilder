@@ -40,7 +40,7 @@ public class DialogFiles : Object
 	public Xcls_btn_addfile btn_addfile;
 	public Xcls_btn_delfile btn_delfile;
 
-		// my vars (def)
+	// my vars (def)
 	public Xcls_MainWindow win;
 	public string lastfilter;
 	public bool in_onprojectselected;
@@ -239,7 +239,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool expand;
 
 		// ctor
@@ -272,7 +272,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box2(DialogFiles _owner )
@@ -295,7 +295,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool homogeneous;
 		public int spacing;
 
@@ -331,7 +331,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool expand;
 
 		// ctor
@@ -365,7 +365,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Gtk.CssProvider css;
 
 		// ctor
@@ -393,7 +393,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_projectselection(DialogFiles _owner )
@@ -453,7 +453,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_projectsort(DialogFiles _owner )
@@ -479,7 +479,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_projectmodel(DialogFiles _owner )
@@ -514,7 +514,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_StringSorter9(DialogFiles _owner )
@@ -537,7 +537,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_PropertyExpression10(DialogFiles _owner )
@@ -562,7 +562,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnViewColumn11(DialogFiles _owner )
@@ -586,7 +586,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory12(DialogFiles _owner )
@@ -636,7 +636,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_filepane(DialogFiles _owner )
@@ -665,7 +665,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box14(DialogFiles _owner )
@@ -693,7 +693,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box15(DialogFiles _owner )
@@ -717,7 +717,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Gtk.CssProvider css;
 
 		// ctor
@@ -765,7 +765,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_iconscroll(DialogFiles _owner )
@@ -796,7 +796,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_gridview(DialogFiles _owner )
@@ -824,7 +824,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick19(DialogFiles _owner )
@@ -869,7 +869,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_iconsel(DialogFiles _owner )
@@ -918,7 +918,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_FilterListModel21(DialogFiles _owner )
@@ -941,7 +941,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_gridsort(DialogFiles _owner )
@@ -966,7 +966,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_gridmodel(DialogFiles _owner )
@@ -1000,7 +1000,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_StringSorter24(DialogFiles _owner )
@@ -1024,7 +1024,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_PropertyExpression25(DialogFiles _owner )
@@ -1048,7 +1048,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_iconsearch(DialogFiles _owner )
@@ -1074,7 +1074,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_PropertyExpression27(DialogFiles _owner )
@@ -1099,7 +1099,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory28(DialogFiles _owner )
@@ -1178,7 +1178,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treescroll(DialogFiles _owner )
@@ -1211,7 +1211,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Gtk.CssProvider css;
 
 		// ctor
@@ -1265,7 +1265,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick31(DialogFiles _owner )
@@ -1311,7 +1311,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treeselmodel(DialogFiles _owner )
@@ -1368,7 +1368,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_FilterListModel33(DialogFiles _owner )
@@ -1391,7 +1391,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treelistsort(DialogFiles _owner )
@@ -1417,7 +1417,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treelistmodel(DialogFiles _owner )
@@ -1443,7 +1443,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treemodel(DialogFiles _owner )
@@ -1467,7 +1467,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_TreeListRowSorter37(DialogFiles _owner )
@@ -1490,7 +1490,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_StringSorter38(DialogFiles _owner )
@@ -1514,7 +1514,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_PropertyExpression39(DialogFiles _owner )
@@ -1539,7 +1539,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treefilter(DialogFiles _owner )
@@ -1609,7 +1609,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_name(DialogFiles _owner )
@@ -1645,7 +1645,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory42(DialogFiles _owner )
@@ -1741,7 +1741,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_EventControllerKey43(DialogFiles _owner )
@@ -1788,7 +1788,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_HeaderBar44(DialogFiles _owner )
@@ -1823,7 +1823,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button45(DialogFiles _owner )
@@ -1866,7 +1866,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_btn_newproj(DialogFiles _owner )
@@ -1917,7 +1917,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box47(DialogFiles _owner )
@@ -1944,7 +1944,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Image48(DialogFiles _owner )
@@ -1969,7 +1969,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label49(DialogFiles _owner )
@@ -1994,7 +1994,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_btn_projprop(DialogFiles _owner )
@@ -2028,7 +2028,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box51(DialogFiles _owner )
@@ -2055,7 +2055,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Image52(DialogFiles _owner )
@@ -2079,7 +2079,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label53(DialogFiles _owner )
@@ -2103,7 +2103,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public DialogConfirm confirm;
 
 		// ctor
@@ -2159,7 +2159,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box55(DialogFiles _owner )
@@ -2186,7 +2186,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Image56(DialogFiles _owner )
@@ -2209,7 +2209,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label57(DialogFiles _owner )
@@ -2233,7 +2233,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_btn_addfile(DialogFiles _owner )
@@ -2273,7 +2273,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box59(DialogFiles _owner )
@@ -2300,7 +2300,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Image60(DialogFiles _owner )
@@ -2324,7 +2324,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label61(DialogFiles _owner )
@@ -2348,7 +2348,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public DialogConfirm confirm;
 
 		// ctor
@@ -2428,7 +2428,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box63(DialogFiles _owner )
@@ -2455,7 +2455,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Image64(DialogFiles _owner )
@@ -2478,7 +2478,7 @@ public class DialogFiles : Object
 		private DialogFiles  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label65(DialogFiles _owner )
