@@ -438,7 +438,7 @@ namespace Palete {
 			
 			
 			var q = new SQ.Query<Symbol>("symbol");
-			if (children != null && !children_map.has_key(this.type_name)) {
+			if ( !children_map.has_key(this.type_name)) {
  
 				
 				q.insert(this);
