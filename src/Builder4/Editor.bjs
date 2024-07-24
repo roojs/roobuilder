@@ -1060,12 +1060,19 @@
                  ],
                  "$ xns" : "Gtk",
                  "* prop" : "model",
-                 "bool autoexpand" : false,
                  "bool passthrough" : false,
                  "items" : [
                   {
+                   "$ Gtk.TreeListModelCreateModelFunc create_func" : [
+                    "(item) => {",
+                    " ",
+                    "\treturn ((Palete.Symbol)item).children;",
+                    "}",
+                    ""
+                   ],
                    "$ xns" : "Gtk",
                    "* prop" : "model",
+                   "bool autoexpand" : false,
                    "items" : [
                     {
                      "$ GLib.Type item_type" : "typeof(Palete.Symbol)",
