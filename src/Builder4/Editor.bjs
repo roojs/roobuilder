@@ -1075,6 +1075,11 @@
                     }
                    ],
                    "xtype" : "TreeListModel"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "filter",
+                   "xtype" : "CustomFilter"
                   }
                  ],
                  "xtype" : "FilterListModel"
