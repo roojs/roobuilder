@@ -168,10 +168,17 @@ namespace Palete {
 		{
 
 			if (this.parent == null) {
-				return this.name;;
+				return this.name;
 			}
 			switch (this.stype) {
-			
+				case Lsp.SymbolKind.Variable:
+				case Lsp.SymbolKind.Variable:
+				case Lsp.SymbolKind.Variable:
+				case Lsp.SymbolKind.Variable:
+				case Lsp.SymbolKind.Variable:
+				case Lsp.SymbolKind.Variable:
+				
+					return this.name;
 			
 			
 				default:
