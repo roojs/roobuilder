@@ -2395,12 +2395,17 @@ public class Editor : Object
 	
 	switch( tr.stype) {
 	
-		case Lsp.SymbolKind.Variable:
-		case Lsp.SymbolKind.MethodCall:
-		case Lsp.SymbolKind.ObjectType:
-		case Lsp.SymbolKind.MemberAccess:
-		case Lsp.SymbolKind.Return:
-		case Lsp.SymbolKind.Parameter:
+		case Lsp.SymbolKind.Namespace:
+		case Lsp.SymbolKind.Class:
+		case Lsp.SymbolKind.Method:
+		case Lsp.SymbolKind.Property:
+		// case Lsp.SymbolKind.Field:  //???
+		case Lsp.SymbolKind.Constructor:
+		case Lsp.SymbolKind.Interface:
+		case Lsp.SymbolKind.Enum:
+		case Lsp.SymbolKind.Constant:
+		case Lsp.SymbolKind.EnumMember:
+		case Lsp.SymbolKind.Struct:
 			return true;
 			
 		default : 
