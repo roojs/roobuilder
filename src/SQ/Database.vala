@@ -47,7 +47,9 @@ namespace SQ {
 		}
 		public static string symbol_filename()
 		{
-			return BuilderApplication.configDirectory() + "/symbols-" + BuilderApplication.exe_version() + ".db";
+			// perhasp we dont need to rename this all the time
+			return BuilderApplication.configDirectory() + "/symbols.db";
+			//return BuilderApplication.configDirectory() + "/symbols-" + BuilderApplication.exe_version() + ".db";
 		}
 		
 		public static void backupDB()
