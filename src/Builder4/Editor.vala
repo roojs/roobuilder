@@ -2390,7 +2390,7 @@ public class Editor : Object
 			_this = _owner;
 			this.el = new Gtk.CustomFilter( (item) => { 
 	var tr = ((Gtk.TreeListRow)item).get_item();
-   GLib.debug("filter%s =>  %s", item.get_type.name(), 
+   GLib.debug("filter%s =>  %s", item.get_type().name(), 
    tr.get_type().name()
    );
 	var j =  (Palete.Symbol) tr;
