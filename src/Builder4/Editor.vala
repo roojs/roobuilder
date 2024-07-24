@@ -2391,47 +2391,22 @@ public class Editor : Object
 			this.el = new Gtk.CustomFilter( (item) => { 
 	var tr = ((Gtk.TreeListRow)item).get_item();
 	//GLib.debug("filter %s", tr.get_type().name());
-	var j =  (JsRender.JsRender) tr;
-	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
-		return false;
-	}
-	var str = _this.searchbox.el.text.down();	
-	if (j.xtype == "Dir") {
+	var j =  (Palete.Symbol) tr;
 	
-		
-		for (var i =0 ; i < j.childfiles.n_items; i++) {
-			var f = (JsRender.JsRender) j.childfiles.get_item(i);
-			if (f.xtype != "PlainFile") {
-				continue;
-			}
-			if (f.content_type.contains("image")) {
-				continue;
-			}
-			if (str.length < 1) {
-				return true;
-			}
-			if (f.name.down().contains(str)) {
-				return true;
-			}
+	switch( tr.stype) {
+	
+		case Lsp.SymbolKind.Variable:
+		case Lsp.SymbolKind.MethodCall:
+		case Lsp.SymbolKind.ObjectType:
+		case Lsp.SymbolKind.MemberAccess:
+		case Lsp.SymbolKind.Return:
+		case Lsp.SymbolKind.Parameter:
+			return true;
 			
-		}
-		 
-		return false;
+		default : 
+			return false;
+	
 	}
-	if (j.xtype != "PlainFile") {
-		return false;
-	}
- 	if (j.content_type.contains("image")) {
-		return false;
-	}
-			 
-	if (str.length < 1) { // no search.
-		return true;
-	}
-	if (j.name.down().contains(str)) {
-		return true;
-	}
-	return false; 
 
 } );
 
