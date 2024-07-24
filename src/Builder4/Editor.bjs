@@ -1060,7 +1060,6 @@
                  ],
                  "$ xns" : "Gtk",
                  "* prop" : "model",
-                 "bool passthrough" : false,
                  "items" : [
                   {
                    "$ Gtk.TreeListModelCreateModelFunc create_func" : [
@@ -1073,6 +1072,7 @@
                    "$ xns" : "Gtk",
                    "* prop" : "model",
                    "bool autoexpand" : false,
+                   "bool passthrough" : false,
                    "items" : [
                     {
                      "$ GLib.Type item_type" : "typeof(Palete.Symbol)",

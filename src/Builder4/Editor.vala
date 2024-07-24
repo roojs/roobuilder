@@ -2308,7 +2308,6 @@ public class Editor : Object
 
 
 		// my vars (def)
-		public bool passthrough;
 		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
@@ -2320,7 +2319,6 @@ public class Editor : Object
 			this.el = new Gtk.FilterListModel( child_1.el, null );
 
 			// my vars (dec)
-			this.passthrough = false;
 			this.create_func = (item) => {
  
 	return ((Palete.Symbol)item).children;
@@ -2345,7 +2343,7 @@ public class Editor : Object
 			_this = _owner;
 			var child_1 = new Xcls_ListStore154( _this );
 			child_1.ref();
-			this.el = new Gtk.TreeListModel( child_1.el, true, false, (item) => {
+			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
  
 	return ((Palete.Symbol)item).children;
 }
