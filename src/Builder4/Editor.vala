@@ -2205,7 +2205,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			var child_1 = new Xcls_TreeListModel155( _this );
+			var child_1 = new Xcls_FilterListModel427( _this );
 			child_1.ref();
 			this.el = new Gtk.NoSelection( child_1.el );
 
@@ -2216,6 +2216,80 @@ public class Editor : Object
 
 		// user defined functions
 	}
+	public class Xcls_FilterListModel427 : Object
+	{
+		public Gtk.FilterListModel el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_FilterListModel427(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_CustomFilter428( _this );
+			child_1.ref();
+			this.el = new Gtk.FilterListModel( null, child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_CustomFilter428 : Object
+	{
+		public Gtk.CustomFilter el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_CustomFilter428(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.CustomFilter( (item) => { 
+	var tr = ((Gtk.TreeListRow)item).get_item();
+   GLib.debug("filter%s =>  %s", item.get_type().name(), 
+   tr.get_type().name()
+   );
+	var j =  (Palete.Symbol) tr;
+	
+	switch( j.stype) {
+	
+		case Lsp.SymbolKind.Namespace:
+		case Lsp.SymbolKind.Class:
+		case Lsp.SymbolKind.Method:
+		case Lsp.SymbolKind.Property:
+		// case Lsp.SymbolKind.Field:  //???
+		case Lsp.SymbolKind.Constructor:
+		case Lsp.SymbolKind.Interface:
+		case Lsp.SymbolKind.Enum:
+		case Lsp.SymbolKind.Constant:
+		case Lsp.SymbolKind.EnumMember:
+		case Lsp.SymbolKind.Struct:
+			return true;
+			
+		default : 
+			GLib.debug("hide %s", j.stype.to_string());
+			return false;
+	
+	}
+
+} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
 	public class Xcls_TreeListModel155 : Object
 	{
 		public Gtk.TreeListModel el;
@@ -2279,11 +2353,9 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationsort = this;
-			var child_1 = new Xcls_FilterListModel35( _this );
+			var child_1 = new Xcls_TreeListRowSorter37( _this );
 			child_1.ref();
-			var child_2 = new Xcls_TreeListRowSorter37( _this );
-			child_2.ref();
-			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
+			this.el = new Gtk.SortListModel( null, child_1.el );
 
 			// my vars (dec)
 
@@ -2352,80 +2424,6 @@ public class Editor : Object
 			 
 		}
 	}
-	public class Xcls_FilterListModel35 : Object
-	{
-		public Gtk.FilterListModel el;
-		private Editor  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_FilterListModel35(Editor _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_CustomFilter128( _this );
-			child_1.ref();
-			this.el = new Gtk.FilterListModel( null, child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-	public class Xcls_CustomFilter128 : Object
-	{
-		public Gtk.CustomFilter el;
-		private Editor  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_CustomFilter128(Editor _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.CustomFilter( (item) => { 
-	var tr = ((Gtk.TreeListRow)item).get_item();
-   GLib.debug("filter%s =>  %s", item.get_type().name(), 
-   tr.get_type().name()
-   );
-	var j =  (Palete.Symbol) tr;
-	
-	switch( j.stype) {
-	
-		case Lsp.SymbolKind.Namespace:
-		case Lsp.SymbolKind.Class:
-		case Lsp.SymbolKind.Method:
-		case Lsp.SymbolKind.Property:
-		// case Lsp.SymbolKind.Field:  //???
-		case Lsp.SymbolKind.Constructor:
-		case Lsp.SymbolKind.Interface:
-		case Lsp.SymbolKind.Enum:
-		case Lsp.SymbolKind.Constant:
-		case Lsp.SymbolKind.EnumMember:
-		case Lsp.SymbolKind.Struct:
-			return true;
-			
-		default : 
-			GLib.debug("hide %s", j.stype.to_string());
-			return false;
-	
-	}
-
-} );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
 	public class Xcls_TreeListRowSorter37 : Object
 	{
 		public Gtk.TreeListRowSorter el;

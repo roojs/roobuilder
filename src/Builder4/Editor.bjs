@@ -1046,6 +1046,49 @@
              "id" : "navigationselmodel",
              "items" : [
               {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "items" : [
+                {
+                 "$ Gtk.CustomFilterFunc match_func" : [
+                  "(item) => { ",
+                  "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
+                  "   GLib.debug(\"filter%s =>  %s\", item.get_type().name(), ",
+                  "   tr.get_type().name()",
+                  "   );",
+                  "\tvar j =  (Palete.Symbol) tr;",
+                  "\t",
+                  "\tswitch( j.stype) {",
+                  "\t",
+                  "\t\tcase Lsp.SymbolKind.Namespace:",
+                  "\t\tcase Lsp.SymbolKind.Class:",
+                  "\t\tcase Lsp.SymbolKind.Method:",
+                  "\t\tcase Lsp.SymbolKind.Property:",
+                  "\t\t// case Lsp.SymbolKind.Field:  //???",
+                  "\t\tcase Lsp.SymbolKind.Constructor:",
+                  "\t\tcase Lsp.SymbolKind.Interface:",
+                  "\t\tcase Lsp.SymbolKind.Enum:",
+                  "\t\tcase Lsp.SymbolKind.Constant:",
+                  "\t\tcase Lsp.SymbolKind.EnumMember:",
+                  "\t\tcase Lsp.SymbolKind.Struct:",
+                  "\t\t\treturn true;",
+                  "\t\t\t",
+                  "\t\tdefault : ",
+                  "\t\t\tGLib.debug(\"hide %s\", j.stype.to_string());",
+                  "\t\t\treturn false;",
+                  "\t",
+                  "\t}",
+                  "",
+                  "}"
+                 ],
+                 "$ xns" : "Gtk",
+                 "* prop" : "filter",
+                 "xtype" : "CustomFilter"
+                }
+               ],
+               "xtype" : "FilterListModel"
+              },
+              {
                "$ Gtk.TreeListModelCreateModelFunc create_func" : [
                 "(item) => {",
                 " ",
@@ -1072,49 +1115,6 @@
                "* prop" : "model",
                "id" : "navigationsort",
                "items" : [
-                {
-                 "$ xns" : "Gtk",
-                 "* prop" : "model",
-                 "items" : [
-                  {
-                   "$ Gtk.CustomFilterFunc match_func" : [
-                    "(item) => { ",
-                    "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
-                    "   GLib.debug(\"filter%s =>  %s\", item.get_type().name(), ",
-                    "   tr.get_type().name()",
-                    "   );",
-                    "\tvar j =  (Palete.Symbol) tr;",
-                    "\t",
-                    "\tswitch( j.stype) {",
-                    "\t",
-                    "\t\tcase Lsp.SymbolKind.Namespace:",
-                    "\t\tcase Lsp.SymbolKind.Class:",
-                    "\t\tcase Lsp.SymbolKind.Method:",
-                    "\t\tcase Lsp.SymbolKind.Property:",
-                    "\t\t// case Lsp.SymbolKind.Field:  //???",
-                    "\t\tcase Lsp.SymbolKind.Constructor:",
-                    "\t\tcase Lsp.SymbolKind.Interface:",
-                    "\t\tcase Lsp.SymbolKind.Enum:",
-                    "\t\tcase Lsp.SymbolKind.Constant:",
-                    "\t\tcase Lsp.SymbolKind.EnumMember:",
-                    "\t\tcase Lsp.SymbolKind.Struct:",
-                    "\t\t\treturn true;",
-                    "\t\t\t",
-                    "\t\tdefault : ",
-                    "\t\t\tGLib.debug(\"hide %s\", j.stype.to_string());",
-                    "\t\t\treturn false;",
-                    "\t",
-                    "\t}",
-                    "",
-                    "}"
-                   ],
-                   "$ xns" : "Gtk",
-                   "* prop" : "filter",
-                   "xtype" : "CustomFilter"
-                  }
-                 ],
-                 "xtype" : "FilterListModel"
-                },
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "sorter",
