@@ -170,7 +170,13 @@ namespace Palete {
 			if (this.parent == null) {
 				return this.name;;
 			}
-			return this.parent.to_fqn() + "." + this.name; 
+			switch (this.stype) {
+			
+			
+			
+				default:
+					return this.parent.to_fqn() + "." + this.name; 
+			}
 		
 		}
 		
