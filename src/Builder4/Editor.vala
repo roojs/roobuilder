@@ -2329,35 +2329,10 @@ public class Editor : Object
 };
 
 			// set gobject values
-			var child_2 = new Xcls_ListStore36( _this );
-			child_2.ref();
-			this.el.root = child_2.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ListStore36 : Object
-	{
-		public GLib.ListStore el;
-		private Editor  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_ListStore36(Editor _owner )
-		{
-			_this = _owner;
-			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
 	public class Xcls_TreeListModel138 : Object
 	{
 		public Gtk.TreeListModel el;
@@ -2370,7 +2345,9 @@ public class Editor : Object
 		public Xcls_TreeListModel138(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.TreeListModel( null, true, true, null );
+			var child_1 = new Xcls_ListStore154( _this );
+			child_1.ref();
+			this.el = new Gtk.TreeListModel( child_1.el, true, true, null );
 
 			// my vars (dec)
 
@@ -2379,6 +2356,28 @@ public class Editor : Object
 
 		// user defined functions
 	}
+	public class Xcls_ListStore154 : Object
+	{
+		public GLib.ListStore el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_ListStore154(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 	public class Xcls_TreeListRowSorter37 : Object

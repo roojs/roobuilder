@@ -1064,14 +1064,16 @@
                  "bool passthrough" : false,
                  "items" : [
                   {
-                   "$ GLib.Type item_type" : "typeof(Palete.Symbol)",
-                   "$ xns" : "GLib",
-                   "* prop" : "root",
-                   "xtype" : "ListStore"
-                  },
-                  {
                    "$ xns" : "Gtk",
                    "* prop" : "model",
+                   "items" : [
+                    {
+                     "$ GLib.Type item_type" : "typeof(Palete.Symbol)",
+                     "$ xns" : "GLib",
+                     "* prop" : "root",
+                     "xtype" : "ListStore"
+                    }
+                   ],
                    "xtype" : "TreeListModel"
                   }
                  ],
