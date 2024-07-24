@@ -1110,6 +1110,28 @@
                     }
                    ],
                    "xtype" : "TreeListRowSorter"
+                  },
+                  {
+                   "$ Gtk.TreeListModelCreateModelFunc create_func" : [
+                    "(item) => {",
+                    " ",
+                    "\treturn ((Palete.Symbol)item).children;",
+                    "}",
+                    ""
+                   ],
+                   "$ xns" : "Gtk",
+                   "* prop" : "model",
+                   "bool autoexpand" : false,
+                   "bool passthrough" : false,
+                   "items" : [
+                    {
+                     "$ GLib.Type item_type" : "typeof(Palete.Symbol)",
+                     "$ xns" : "GLib",
+                     "* prop" : "root",
+                     "xtype" : "ListStore"
+                    }
+                   ],
+                   "xtype" : "TreeListModel"
                   }
                  ],
                  "xtype" : "SortListModel",
@@ -1184,28 +1206,6 @@
                 }
                ],
                "xtype" : "FilterListModel"
-              },
-              {
-               "$ Gtk.TreeListModelCreateModelFunc create_func" : [
-                "(item) => {",
-                " ",
-                "\treturn ((Palete.Symbol)item).children;",
-                "}",
-                ""
-               ],
-               "$ xns" : "Gtk",
-               "* prop" : "model",
-               "bool autoexpand" : false,
-               "bool passthrough" : false,
-               "items" : [
-                {
-                 "$ GLib.Type item_type" : "typeof(Palete.Symbol)",
-                 "$ xns" : "GLib",
-                 "* prop" : "root",
-                 "xtype" : "ListStore"
-                }
-               ],
-               "xtype" : "TreeListModel"
               }
              ],
              "xtype" : "NoSelection"
