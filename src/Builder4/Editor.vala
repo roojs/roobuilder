@@ -2265,7 +2265,7 @@ public class Editor : Object
 		case Lsp.SymbolKind.Class:
 		case Lsp.SymbolKind.Method:
 		case Lsp.SymbolKind.Property:
-		// case Lsp.SymbolKind.Field:  //???
+		 case Lsp.SymbolKind.Field:  //???
 		case Lsp.SymbolKind.Constructor:
 		case Lsp.SymbolKind.Interface:
 		case Lsp.SymbolKind.Enum:

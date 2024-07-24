@@ -1064,7 +1064,7 @@
                   "\t\tcase Lsp.SymbolKind.Class:",
                   "\t\tcase Lsp.SymbolKind.Method:",
                   "\t\tcase Lsp.SymbolKind.Property:",
-                  "\t\t// case Lsp.SymbolKind.Field:  //???",
+                  "\t\t case Lsp.SymbolKind.Field:  //???",
                   "\t\tcase Lsp.SymbolKind.Constructor:",
                   "\t\tcase Lsp.SymbolKind.Interface:",
                   "\t\tcase Lsp.SymbolKind.Enum:",
