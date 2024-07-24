@@ -2308,7 +2308,6 @@ public class Editor : Object
 
 
 		// my vars (def)
-		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
 		public Xcls_FilterListModel35(Editor _owner )
@@ -2316,13 +2315,11 @@ public class Editor : Object
 			_this = _owner;
 			var child_1 = new Xcls_TreeListModel138( _this );
 			child_1.ref();
-			this.el = new Gtk.FilterListModel( child_1.el, null );
+			var child_2 = new Xcls_Filter255( _this );
+			child_2.ref();
+			this.el = new Gtk.FilterListModel( child_1.el, child_2.el );
 
 			// my vars (dec)
-			this.create_func = (item) => {
- 
-	return ((Palete.Symbol)item).children;
-};
 
 			// set gobject values
 		}
@@ -2378,6 +2375,28 @@ public class Editor : Object
 		// user defined functions
 	}
 
+
+	public class Xcls_Filter255 : Object
+	{
+		public Gtk.Filter el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Filter255(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Filter();
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 	public class Xcls_TreeListRowSorter37 : Object

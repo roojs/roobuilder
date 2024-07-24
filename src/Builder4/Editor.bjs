@@ -1051,13 +1051,6 @@
                "id" : "navigationsort",
                "items" : [
                 {
-                 "$ Gtk.TreeListModelCreateModelFunc create_func" : [
-                  "(item) => {",
-                  " ",
-                  "\treturn ((Palete.Symbol)item).children;",
-                  "}",
-                  ""
-                 ],
                  "$ xns" : "Gtk",
                  "* prop" : "model",
                  "items" : [
@@ -1082,6 +1075,11 @@
                     }
                    ],
                    "xtype" : "TreeListModel"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "filter",
+                   "xtype" : "Filter"
                   }
                  ],
                  "xtype" : "FilterListModel"
