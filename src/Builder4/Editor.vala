@@ -2228,7 +2228,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationsort = this;
-			var child_1 = new Xcls_TreeListModel35( _this );
+			var child_1 = new Xcls_FilterListModel35( _this );
 			child_1.ref();
 			var child_2 = new Xcls_TreeListRowSorter37( _this );
 			child_2.ref();
@@ -2301,29 +2301,37 @@ public class Editor : Object
 			 
 		}
 	}
-	public class Xcls_TreeListModel35 : Object
+	public class Xcls_FilterListModel35 : Object
 	{
-		public Gtk.TreeListModel el;
+		public Gtk.FilterListModel el;
 		private Editor  _this;
 
 
 		// my vars (def)
+		public bool autoexpand;
+		public bool passthrough;
+		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
-		public Xcls_TreeListModel35(Editor _owner )
+		public Xcls_FilterListModel35(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_ListStore36( _this );
+			var child_1 = new Xcls_TreeListModel138( _this );
 			child_1.ref();
-			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
- 
-	return ((Palete.Symbol)item).children;
-}
- );
+			this.el = new Gtk.FilterListModel( child_1.el, null );
 
 			// my vars (dec)
+			this.autoexpand = false;
+			this.passthrough = false;
+			this.create_func = (item) => {
+ 
+	return ((Palete.Symbol)item).children;
+};
 
 			// set gobject values
+			var child_2 = new Xcls_ListStore36( _this );
+			child_2.ref();
+			this.el.root = child_2.el;
 		}
 
 		// user defined functions
@@ -2341,6 +2349,28 @@ public class Editor : Object
 		{
 			_this = _owner;
 			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_TreeListModel138 : Object
+	{
+		public Gtk.TreeListModel el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_TreeListModel138(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.TreeListModel( null, true, true, null );
 
 			// my vars (dec)
 

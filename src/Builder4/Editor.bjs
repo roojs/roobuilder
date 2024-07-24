@@ -1068,9 +1068,14 @@
                    "$ xns" : "GLib",
                    "* prop" : "root",
                    "xtype" : "ListStore"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "model",
+                   "xtype" : "TreeListModel"
                   }
                  ],
-                 "xtype" : "TreeListModel"
+                 "xtype" : "FilterListModel"
                 },
                 {
                  "$ xns" : "Gtk",
