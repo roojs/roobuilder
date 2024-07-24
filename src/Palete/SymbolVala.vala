@@ -418,7 +418,7 @@ namespace Palete {
 				return; // no insert?
 			}
 			
-			if (this.parent != null && this.parent_id > -1) {
+			if (this.parent != null && this.parent_id > -1 && this.file.symbol_map.get((int)this.parent_id) != null) {
 				//GLib.debug("parentid ? %d", (int)this.parent_id);
 				children_map = this.file.symbol_map.get((int)this.parent_id).children_map;
 				children =  this.file.symbol_map.get((int)this.parent_id).children;
@@ -438,7 +438,7 @@ namespace Palete {
 			
 			
 			var q = new SQ.Query<Symbol>("symbol");
-			if (!children_map.has_key(this.type_name)) {
+			if (children != null && !children_map.has_key(this.type_name)) {
  
 				
 				q.insert(this);
