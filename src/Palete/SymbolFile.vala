@@ -260,9 +260,12 @@ namespace Palete {
 	 		
 	 		} else {
 	     		
-	     		var c = s.parent_id == 0 ? this.children : this.symbol_map.get((int)s.parent_id).children;
+	     		var c = s.parent_id == 0 ? this.children : 
+	     			(this.symbol_map.get((int)s.parent_id) != null ? 
+	    	     		this.symbol_map.get((int)s.parent_id).children; : null
+    	     		)
 	     		uint pos;
-			    if (c.find_with_equal_func(s, (a, b) => {
+			    if (c != null && c.find_with_equal_func(s, (a, b) => {
 				    return ((Symbol)a).id == ((Symbol)b).id;
 			    }, out pos)) {
 				    c.remove(pos);
