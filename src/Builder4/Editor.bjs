@@ -1080,7 +1080,9 @@
                    "$ Gtk.CustomFilterFunc match_func" : [
                     "(item) => { ",
                     "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
-                    "   GLib.debug(\"filter%s =>  %s\", item.get_type.name(), tr.get_type().name());",
+                    "   GLib.debug(\"filter%s =>  %s\", item.get_type.name(), ",
+                    "   tr.get_type().name()",
+                    "   );",
                     "\tvar j =  (Palete.Symbol) tr;",
                     "\t",
                     "\tswitch( j.stype) {",
