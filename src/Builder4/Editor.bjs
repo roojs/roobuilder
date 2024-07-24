@@ -1099,7 +1099,7 @@
                     "\t\t\treturn true;",
                     "\t\t\t",
                     "\t\tdefault : ",
-                    "\t\t\tGLib.debug(\"hide %s\", js.stype.to_string());",
+                    "\t\t\tGLib.debug(\"hide %s\", j.stype.to_string());",
                     "\t\t\treturn false;",
                     "\t",
                     "\t}",

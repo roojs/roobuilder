@@ -2409,7 +2409,7 @@ public class Editor : Object
 			return true;
 			
 		default : 
-			GLib.debug("hide %s", js.stype.to_string());
+			GLib.debug("hide %s", j.stype.to_string());
 			return false;
 	
 	}
