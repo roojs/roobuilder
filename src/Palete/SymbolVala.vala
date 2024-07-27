@@ -640,7 +640,7 @@ namespace Palete {
 				case "ValaIntegerType":
 				case "ValaStructValueType":
 				case "ValaEnumValueType":
-					var ss = s as Vala.ValueType;
+					var ss = s as Vala.DataType;
 					new new_objecttype(builder, this, ss);	
 					break;
 					
@@ -926,7 +926,7 @@ namespace Palete {
 			this.sequence = parent.sequence_count++;
 			this.setParent(parent);
 		}
-		public SymbolVala.new_objecttype(ValaSymbolBuilder builder, Symbol? parent, Vala.ValueType c)	
+		public SymbolVala.new_objecttype(ValaSymbolBuilder builder, Symbol? parent, Vala.DataType c)	
 		{
 			this(builder, c);
 			 
