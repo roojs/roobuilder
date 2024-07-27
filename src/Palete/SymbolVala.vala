@@ -898,7 +898,7 @@ namespace Palete {
 				this.rtype =  ((Vala.CreationMethod)c.symbol_reference).get_full_name();
 				this.stype = Lsp.SymbolKind.MethodCall;
 			}
-			if (this.rtype == "" && c.target_type.type_name == "ValaPointerType") {
+			if (this.rtype == "" && c.target_type != null && c.target_type.type_name == "ValaPointerType") {
 				this.rtype = this.codeNodeToString(c.target_type);
 				this.stype = Lsp.SymbolKind.MemberAccess;
 			}
