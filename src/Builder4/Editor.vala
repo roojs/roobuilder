@@ -1899,7 +1899,7 @@ public class Editor : Object
 			var child_2 = new Xcls_ColumnViewColumn31( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
-			var child_3 = new Xcls_GestureClick40( _this );
+			var child_3 = new Xcls_GestureClick42( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
@@ -2205,7 +2205,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			var child_1 = new Xcls_FilterListModel427( _this );
+			var child_1 = new Xcls_FilterListModel34( _this );
 			child_1.ref();
 			this.el = new Gtk.NoSelection( child_1.el );
 
@@ -2216,7 +2216,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_FilterListModel427 : Object
+	public class Xcls_FilterListModel34 : Object
 	{
 		public Gtk.FilterListModel el;
 		private Editor  _this;
@@ -2225,11 +2225,11 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel427(Editor _owner )
+		public Xcls_FilterListModel34(Editor _owner )
 		{
 			_this = _owner;
 			new Xcls_navigationsort( _this );
-			var child_2 = new Xcls_CustomFilter428( _this );
+			var child_2 = new Xcls_CustomFilter35( _this );
 			child_2.ref();
 			this.el = new Gtk.FilterListModel( _this.navigationsort.el, child_2.el );
 
@@ -2240,7 +2240,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_CustomFilter428 : Object
+	public class Xcls_CustomFilter35 : Object
 	{
 		public Gtk.CustomFilter el;
 		private Editor  _this;
@@ -2249,7 +2249,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_CustomFilter428(Editor _owner )
+		public Xcls_CustomFilter35(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.CustomFilter( (item) => { 
@@ -2303,9 +2303,9 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationsort = this;
-			var child_1 = new Xcls_TreeListModel571( _this );
+			var child_1 = new Xcls_TreeListModel40( _this );
 			child_1.ref();
-			var child_2 = new Xcls_TreeListRowSorter548( _this );
+			var child_2 = new Xcls_TreeListRowSorter37( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
@@ -2376,7 +2376,7 @@ public class Editor : Object
 			 
 		}
 	}
-	public class Xcls_TreeListRowSorter548 : Object
+	public class Xcls_TreeListRowSorter37 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Editor  _this;
@@ -2385,10 +2385,10 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter548(Editor _owner )
+		public Xcls_TreeListRowSorter37(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter549( _this );
+			var child_1 = new Xcls_StringSorter38( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -2399,7 +2399,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter549 : Object
+	public class Xcls_StringSorter38 : Object
 	{
 		public Gtk.StringSorter el;
 		private Editor  _this;
@@ -2408,10 +2408,10 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter549(Editor _owner )
+		public Xcls_StringSorter38(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression550( _this );
+			var child_1 = new Xcls_PropertyExpression39( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -2422,7 +2422,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression550 : Object
+	public class Xcls_PropertyExpression39 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Editor  _this;
@@ -2431,7 +2431,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression550(Editor _owner )
+		public Xcls_PropertyExpression39(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Palete.Symbol), null, "sort_key" );
@@ -2446,7 +2446,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_TreeListModel571 : Object
+	public class Xcls_TreeListModel40 : Object
 	{
 		public Gtk.TreeListModel el;
 		private Editor  _this;
@@ -2455,10 +2455,10 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_TreeListModel571(Editor _owner )
+		public Xcls_TreeListModel40(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_ListStore572( _this );
+			var child_1 = new Xcls_ListStore41( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
  
@@ -2473,7 +2473,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_ListStore572 : Object
+	public class Xcls_ListStore41 : Object
 	{
 		public GLib.ListStore el;
 		private Editor  _this;
@@ -2482,7 +2482,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ListStore572(Editor _owner )
+		public Xcls_ListStore41(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
@@ -2499,7 +2499,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_GestureClick40 : Object
+	public class Xcls_GestureClick42 : Object
 	{
 		public Gtk.GestureClick el;
 		private Editor  _this;
@@ -2508,7 +2508,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick40(Editor _owner )
+		public Xcls_GestureClick42(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
