@@ -258,8 +258,8 @@ namespace Palete {
 			this.is_ctor_only = prop.set_accessor != null ?   prop.set_accessor.construction : false;	 
 			this.setParent(parent);
 			if (this.file.path.has_suffix(".vala") ) {
-				this.readCodeNode(builder, prop.get_accessor.body);
-				this.readCodeNode(builder, prop.set_accessor.body);
+				this.readCodeNode(builder,  prop.get_accessor != null ? prop.get_accessor.body : null);
+				this.readCodeNode(builder, prop.set_accessor !=null ? prop.set_accessor.body : null);
 			}
 			
 		}
@@ -649,6 +649,7 @@ namespace Palete {
 					this.readCodeNode(builder, ss.error_domain);
 					this.readCodeNode(builder, ss.error_code);
 					break;
+					
 				case "ValaErrorDomain":
 				case "ValaErrorCode":				
 					var ss = s as Vala.TypeSymbol;				
