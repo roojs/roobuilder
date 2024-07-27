@@ -300,6 +300,7 @@ namespace Palete {
 				//GLib.debug ("%d: %d  : %s : %s",pids.get(id), (int) id, s.type_name, s.fqn);;
 				s.file = this;
 				if (s.fqn != "") {
+					// restrict to class/  method / property?
 					this.fqn_map.set(s.fqn, s); // gir only
 				}
 				//this.symbols.add(s);
@@ -316,6 +317,7 @@ namespace Palete {
 					this.symbol_map.set((int)s.id, s);
 					continue;
 				}
+ 				this.symbol_map.set((int)s.id, s);
 				newsymbols.add(s);
 			}
 			this.linkNewSymbols(newsymbols);
