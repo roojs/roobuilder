@@ -206,7 +206,7 @@ namespace Palete {
 			var si = indent + "  ";
 			this.children.sort((a,b) => { 
 				return ((Symbol)a).begin_line == ((Symbol)b).begin_line ? 0 : (
-					((Symbol)a).begin_line >((Symbol)b).begin_line
+					(((Symbol)a).begin_line >((Symbol)b).begin_line) ? 1 : -1
 				);
 			});
 			
