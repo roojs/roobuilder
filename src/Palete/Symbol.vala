@@ -204,6 +204,12 @@ namespace Palete {
 			    print("%s-->%s\n",indent, this.doc.split("\n")[0]);
 			}
 			var si = indent + "  ";
+			this.children.sort((a,b) => { 
+				return (Symbol)a.line == (Symbol)b.line ? 0 : (
+					(Symbol)a.line >(Symbol)b.line
+				);
+			});
+			
 			for(var i = 0; i < this.children.get_n_items();i++) {
 				var c = (Symbol) this.children.get_item(i);
 				c.dump(si);
