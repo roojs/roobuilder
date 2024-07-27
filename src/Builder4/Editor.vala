@@ -318,10 +318,12 @@ public class Editor : Object
 				if (tag != null) {
 					buf.tag_table.remove(tag);
 				}
+				
 				GtkSource.Mark mark = diag.steal_data<GtkSource.Mark>("mark");
 				if (mark != null) {
 					buf.delete_mark(mark);
 				}
+				 
 				 
 			}
 			
