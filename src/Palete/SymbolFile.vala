@@ -53,6 +53,7 @@ namespace Palete {
 		public bool is_parsed {
 			get {
 				GLib.debug("check parsed %s : ver=%d, modtime=%d (no sym: %d)", this.path, (int)this.version,  (int)this.cur_mod_time(), this.database_has_symbols ? 999 : 0);
+				// if we are testing a specific file - then always read it.
 				if (BuilderApplication.opt_test_symbol_dump_fqn != null &&
 					.BuilderApplicationopt_test_symbol_dump_fqn == this.path) {
 					return false;
