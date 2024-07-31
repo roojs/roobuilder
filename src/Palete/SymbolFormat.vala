@@ -27,6 +27,13 @@ namespace Palete {
 				case Lsp.SymbolKind.Property:
 					return "Property: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.rtype + "</a>";				
 				
+				case Lsp.SymbolKind.Field:
+					return "Field: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.rtype + "</a>";				
+				
+				
+				case Lsp.SymbolKind.Constructor:
+					return "Field: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.rtype + "</a>";				
+				
 				//Field = 8,
 				/*
 				Constructor = 9,
@@ -60,7 +67,7 @@ namespace Palete {
  				default: 
 					return 
 						"<a href=\"" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a>" + 
-							s.name + " (" + s.stype.to_string() + ")";
+							GLib.Markup.escape_text(s.name) + " (" + s.stype.to_string() + ")";
 				
 				
 			}
