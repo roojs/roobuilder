@@ -12,27 +12,31 @@ namespace Palete {
  				//File = 1,
 				//Module = 2,
 				case Lsp.SymbolKind.Namespace:
-					return "Namespace: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.rtype + "</a>";
+					return "Namespace: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.fqn + "</a>";
 					
 				//Package = 4,
 					
 				case Lsp.SymbolKind.Class:
-					return "Class: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.rtype + "</a>";
+					return "Class: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.fqn + "</a>" ;
 					
 				case Lsp.SymbolKind.Method:
-					return "Method: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.rtype + "</a>";				
+					return "Method: " + 
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> "
+						"<a href=\"" + ((int)Lsp.SymbolKind.Class).to_string() + " :" + GLib.Markup.escape_text(s.property_of()) + "\">" + s.property_of() + "</a> " + GLib.Markup.escape_text(s.name);
 				
 				
 				 
 				case Lsp.SymbolKind.Property:
-					return "Property: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.rtype + "</a>";				
+					return "Property: " 
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
+						"<a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.property_of()) + "\">" +  GLib.Markup.escape_text(s.property_of()) + "</a>"  + GLib.Markup.escape_text(s.name);
 				
 				case Lsp.SymbolKind.Field:
-					return "Field: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.rtype + "</a>";				
+					return "Field: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + GLib.Markup.escape_text(s.property_of())+ "</a>" + GLib.Markup.escape_text(s.name)
 				
 				
 				case Lsp.SymbolKind.Constructor:
-					return "Field: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.rtype + "</a>";				
+					return "Field: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.property_of()) + "</a>";				
 				
 				//Field = 8,
 				/*
