@@ -106,7 +106,8 @@
             "\t\treturn;",
             "\t}",
             "\t",
-            "\t ",
+            "\tthis.el.set_markup(help.contents.get(0).value);",
+            "\t /*",
             "\tvar sig = help.contents.get(0).value.split(\" \");",
             "\tstring[] str = {};",
             "\tGLib.debug(\"setHelp %s\", help.contents.get(0).value);",
@@ -141,6 +142,7 @@
             "\t\tthis.el.tooltip_markup = GLib.Markup.escape_text(help.contents.get(0).value);",
             "\t}",
             "\tthis.el.set_markup(string.joinv(\" \",str));",
+            "\t*/",
             "\t",
             "}"
            ]

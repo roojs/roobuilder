@@ -649,7 +649,8 @@ public class Editor : Object
 				return;
 			}
 			
-			 
+			this.el.set_markup(help.contents.get(0).value);
+			 /*
 			var sig = help.contents.get(0).value.split(" ");
 			string[] str = {};
 			GLib.debug("setHelp %s", help.contents.get(0).value);
@@ -684,6 +685,7 @@ public class Editor : Object
 				this.el.tooltip_markup = GLib.Markup.escape_text(help.contents.get(0).value);
 			}
 			this.el.set_markup(string.joinv(" ",str));
+			*/
 			
 		}
 	}

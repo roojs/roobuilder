@@ -26,7 +26,7 @@ namespace Palete {
 		
 		
 		//public Gee.ArrayList<Symbol> symbols_all ;
- 		public Gee.HashMap<int,Symbol> symbol_map;
+ 		public Gee.HashMap<int,Symbol> symbol_map; 
  		public Gee.HashMap<string,Symbol> fqn_map;
  		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
@@ -260,7 +260,9 @@ namespace Palete {
 	 	{
 	 		GLib.debug("Remove Sybol %d, %s",(int) s.id , s.fqn);
 	 		if (s.stype == Lsp.SymbolKind.Parameter) {
-		 		s.parent.param_ar.unset(s.sequence);
+	 			if (s.parent != null) {
+			 		s.parent.param_ar.unset(s.sequence);
+		 		}
 	 		
 	 		} else {
 	     		
