@@ -74,9 +74,9 @@ namespace Palete {
 				//MethodCall = 33; /
  
  				default: 
-					return 
+					return s.stype.to_string() + " " +
 						"<a href=\"" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a>" + 
-							GLib.Markup.escape_text(s.name) + " (" + s.stype.to_string() + ")";
+							GLib.Markup.escape_text(s.name);
 				
 				
 			}
