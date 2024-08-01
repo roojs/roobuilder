@@ -46,6 +46,7 @@ namespace Palete {
 				//Interface = 11,
 				//Function = 12,
 				case Lsp.SymbolKind.Variable:
+				case Lsp.SymbolKind.Parameter:
 					return "Variable: " + 
 						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
 						 	GLib.Markup.escape_text(s.name);
@@ -61,6 +62,9 @@ namespace Palete {
 				//TypeParameter = 26,
 				//Delegate = 27,// ?? not standard.
 				//Parameter = 28, // ?? not standard.
+				
+				
+				
 				//Signal = 29, // ?? not standard.
 			 	//Return = 30, // ?? not standard.
 				//MemberAccess = 31,
