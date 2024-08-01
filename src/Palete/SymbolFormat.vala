@@ -65,18 +65,16 @@ namespace Palete {
 			 	//Return = 30, // ?? not standard.
 				//MemberAccess = 31,
 				case Lsp.SymbolKind.MemberAccess:
-					// do we look up the member?
 					return "MemberAccess: " + 
-						"<a href=\"" + ((int)Lsp.SymbolKind.MemberAccess).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
-						 ;
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
+						"<a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.fqn)  + "</a>";
 				
 				
 				//ObjectType = 32,
  
  				case Lsp.SymbolKind.MethodCall:
 					return "MethodCall: " + 
-						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
-						"<a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.fqn)  + "</a>";
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " ;
 			
  				default: 
 					return s.stype.to_string() + " " +
