@@ -65,6 +65,7 @@ namespace Palete {
 			 	//Return = 30, // ?? not standard.
 				//MemberAccess = 31,
 				case Lsp.SymbolKind.MemberAccess:
+					// do we look up the member?
 					return "MemberAccess: " + 
 						"<a href=\"" + ((int)Lsp.SymbolKind.MemberAccess).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
 						 ;
