@@ -65,6 +65,9 @@ namespace Palete {
 			 	//Return = 30, // ?? not standard.
 				//MemberAccess = 31,
 				case Lsp.SymbolKind.MemberAccess:
+				
+					// look like it needs to know what it's getting access to...
+					//(fqn is not getting set)
 					return "MemberAccess: " + 
 						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
 						"<a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.fqn)  + "</a>";
