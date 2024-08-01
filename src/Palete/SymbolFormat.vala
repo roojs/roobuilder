@@ -67,7 +67,7 @@ namespace Palete {
 				case Lsp.SymbolKind.MemberAccess:
 					return "MemberAccess: " + 
 						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
-						"<a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.fqn)) + "</a>";
+						"<a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.fqn)  + "</a>";
 				
 				
 				//ObjectType = 32,
@@ -80,7 +80,7 @@ namespace Palete {
 				
 				
 			}
-			return "";
+			return "??";
 		}
 	}
 }
