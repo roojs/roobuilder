@@ -80,6 +80,7 @@ namespace Palete {
 				
 				
 			}
+			return "";
 		}
 	}
 }
