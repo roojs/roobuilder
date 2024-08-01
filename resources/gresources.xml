@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gresources>  <gresource prefix="/Editors">
-  </gresource>
-  <gresource prefix="/css">
-    <file>roobuilder.css</file>
-  </gresource>
-  <gresource prefix="/data">
-    <file>roodata.json</file>
-    <file>object.defaults.json</file>
+<gresources>  <gresource prefix="/images">
+    <file>roobuilder.png</file>
   </gresource>
   <gresource prefix="/glade-icons">
     <file>widget-gtk-aboutdialog.png</file>
@@ -171,7 +165,13 @@
     <file>roo.builder.html</file>
     <file>roo.builder.js</file>
   </gresource>
-  <gresource prefix="/images">
-    <file>roobuilder.png</file>
+  <gresource prefix="/data">
+    <file>roodata.json</file>
+    <file>object.defaults.json</file>
+  </gresource>
+  <gresource prefix="/css">
+    <file>roobuilder.css</file>
+  </gresource>
+  <gresource prefix="/Editors">
   </gresource>
 </gresources>
