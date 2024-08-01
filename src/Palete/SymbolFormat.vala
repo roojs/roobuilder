@@ -19,7 +19,7 @@ namespace Palete {
 				case Lsp.SymbolKind.Class:
 					return "Class: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.fqn + "</a>" ;
 					
-				case Lsp.SymbolKind.Method:
+				case Lsp.SymbolKind.Method: // start/end pos is not getting set very well..
 					return "Method: " + 
 						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
 						"<a href=\"" + ((int)Lsp.SymbolKind.Class).to_string() + " :" + GLib.Markup.escape_text(s.property_of()) + "\">" + s.property_of() + "</a> " + GLib.Markup.escape_text(s.name);
