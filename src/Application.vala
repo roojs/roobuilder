@@ -288,7 +288,7 @@
 
 			
 			if (cur_project == null) {
-				GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
+				GLib.error("invalid project %s",BuilderApplication.opt_compile_project);
 			}
 			cur_project.load();
 
