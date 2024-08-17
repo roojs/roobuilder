@@ -81,16 +81,16 @@ namespace Palete {
 			if (this.done_first_compile.contains(mod)) {
 				return;
 			}
-
-			lp = new LoadingProgress();
-			
-			lp.el.present();
-			lp.el.title = "Reading VAPI files";
-			lp.bar.el.fraction = 0.0f;
-			while(GLib.MainContext.default().pending()) {
-				GLib.MainContext.default().iteration(true);
+			if (BuilderApplication.opt_compile_project == null) {
+				lp = new LoadingProgress();
+				
+				lp.el.present();
+				lp.el.title = "Reading VAPI files";
+				lp.bar.el.fraction = 0.0f;
+				while(GLib.MainContext.default().pending()) {
+					GLib.MainContext.default().iteration(true);
+				}
 			}
-			 
 			this.initializeTreeBuild(mod, false);
 			this.parse();
 			
@@ -102,18 +102,20 @@ namespace Palete {
 			// copy the errors so the thread can't use them anymore...
 			this.errors = this.report.errors;
 			this.report = null;
-		
-			lp.bar.el.text= "Updating Database";
+			if (lp != null) {
+				lp.bar.el.text= "Updating Database";
 			
-			while(GLib.MainContext.default().pending()) {
-				GLib.MainContext.default().iteration(true);
+				while(GLib.MainContext.default().pending()) {
+					GLib.MainContext.default().iteration(true);
+				}
 			}
 			this.scan_project.onTreeChanged(ar);
 			
-			
-			lp.el.hide();
-			while(GLib.MainContext.default().pending()) {
-				GLib.MainContext.default().iteration(true);
+			if (lp != null) {
+				lp.el.hide();
+				while(GLib.MainContext.default().pending()) {
+					GLib.MainContext.default().iteration(true);
+				}
 			}
 			this.lp = null;
 			this.done_first_compile.add(mod);
