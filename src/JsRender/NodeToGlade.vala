@@ -95,7 +95,9 @@ public class JsRender.NodeToGlade : Object {
 		var sl = file.getSymbolLoader();
 		
 		var gdata = file.project.palete.getClass(sl,   this.node.fqn());
-		if (gdata == null || (!gdata.all_implementations.contains("Gtk.Buildable") && gdata.all_implementations.contains("Gtk.Native"))) {
+		if (gdata == null || 
+			(!gdata.implements.contains("Gtk.Buildable") && 
+				gdata.implements.contains("Gtk.Native"))) {
 			switch(cls) {
 			//exception to the rule.. (must be buildable to work with glade?
 				
@@ -113,7 +115,7 @@ public class JsRender.NodeToGlade : Object {
 					return null;
 			}
 		}
- 		if (gdata.all_implementations.contains("Gtk.Native")&& !is_top) {
+ 		if (gdata.implements.contains("Gtk.Native")&& !is_top) {
 			return null;
 		}
 		// what namespaces are supported
@@ -142,7 +144,7 @@ public class JsRender.NodeToGlade : Object {
 		var obj = this.create_element("object");
 		//var id = this.node.uid();
 		var skip_props = false;
-		if (gdata.all_implementations.contains("Gtk.Native")) {
+		if (gdata.implements.contains("Gtk.Native")) {
 			 
 			obj->set_prop("class", "GtkFrame");
 			skip_props = true;
