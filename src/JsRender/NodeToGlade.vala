@@ -179,6 +179,9 @@ public class JsRender.NodeToGlade : Object {
 			}
 			var k = pviter.get_key();	
 			var prop = props.get(k);
+			if (prop.stype == Lsp.SymbolKind.Delegate) {
+				continue;
+			}
 			var val = this.node.get(pviter.get_key()).strip();	
 			// for Enums - we change it to lowercase, and remove all the previous bits.. hopefully might work.
 			if (prop.rtype.contains(".") && val.contains(".")) {
