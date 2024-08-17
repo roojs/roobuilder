@@ -95,7 +95,7 @@ public class JsRender.NodeToGlade : Object {
 		var sl = file.getSymbolLoader();
 		
 		var gdata = file.project.palete.getClass(sl,   this.node.fqn());
-		if (gdata == null || !gdata.all_implementations.contains("Gtk.Buildable")) {
+		if (gdata == null || (!gdata.all_implementations.contains("Gtk.Buildable") && gdata.all_implementations.contains("Gtk.Native"))) {
 			switch(cls) {
 			//exception to the rule.. (must be buildable to work with glade?
 				
@@ -283,4 +283,4 @@ public class JsRender.NodeToGlade : Object {
 
 
 		
-}
+} 
