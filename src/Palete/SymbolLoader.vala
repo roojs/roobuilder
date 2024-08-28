@@ -45,7 +45,46 @@ namespace Palete
 			this.classCache  = new Gee.HashMap<string,Symbol>();	
 		}
 		
-	
+	public Symbol? singleById(int64 id)
+		{
+			
+			this.loadClassCache();
+			// should work most of the time..
+			if (this.classCache.has_key(fqn)) {
+				foreach(var v in this.classCache.values) {
+					if (v.id == id) {
+						return v;
+					}
+				}
+			}
+			
+			GLib.debug("singleById get %s",id.to_string()); 
+			var res = new Symbol();
+			var stmt = this.sq.selectPrepare("
+					SELECT 
+						* 
+					FROM 
+						symbol 
+					WHERE 
+						 
+						id = $id
+					LIMIT 1;
+			");
+			stmt.bind_int64(stmt.bind_parameter_index ("$id"), id);
+			if (!this.sq.selectExecuteInto(stmt,res)) {
+				return null;
+			}
+			res.file = this.manager.id_to_file.get((int)res.file_id);
+			if (res.stype == Lsp.SymbolKind.Method || res.stype == Lsp.SymbolKind.Constructor) {
+				this.loadMethodParams(res);
+			}
+			// in theory should not happen!!!!
+			if (res.stype == Lsp.SymbolKind.Class) { // ?? and is a vapi?
+				this.classCache.set(fqn,res);
+			}
+			return res;
+			
+		}
 		/**
 		* see if this is documented
 		*/
@@ -117,48 +156,23 @@ namespace Palete
 		public Gee.HashMap<string,Symbol>  getPropertiesFor(string fqn, Lsp.SymbolKind kind )
 		{
 			
-			
-			
 			var ret = new Gee.HashMap<string,Symbol>();
 			var sym = this.singleByFqn(fqn);
 			if (sym == null) {
-				return ret;
+				return new Gee.HashMap<string,Symbol>();
 			}
-			
-			switch(kind) {
-				case Lsp.SymbolKind.Property:
-					if (sym.props_loaded) {
-						return sym.props;
-					}
-					break;
-				case Lsp.SymbolKind.Signal:
-					if (sym.signals_loaded) {
-						return sym.signals;
-					}
-					break;
-				case Lsp.SymbolKind.Constructor:
-					if (sym.ctors_loaded) {
-						return sym.ctors;
-					}
-					break;
-				case Lsp.SymbolKind.Method:
-					if (sym.methods_loaded) {
-						return sym.methods;
-					}
-					break;
-				default: 
-					break;
-					
-					
+			if (sym.children_loaded) {
+				return sym.childrenOfType(kind);
+
 			}
 			
 			var pids = new Gee.ArrayList<string>();
 			pids.add( sym.id.to_string() );
 			// we dont need parent constructors!?
-			if (kind != Lsp.SymbolKind.Constructor) {
-				this.getParentIds(sym,  pids);
+			 
+			this.getParentIds(sym,  pids);
 				
-			}
+			
 			string[] pidss = {};
 			foreach(var pid in pids) {
 				pidss += pid;
@@ -173,76 +187,71 @@ namespace Palete
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
 						parent_id IN (" + string.joinv(",", pidss) + ") 
-					AND
-						stype = $stype
+					
 					AND
 						is_abstract = 0 
 					AND
 						is_static = 0
 					
 					AND 
-						deprecated = 0
+						deprecated = 0 
+					)
+						
+						
 
 			");
-			
-			// used to include is_sealed  - but those are needed by the Nodetovala?
-			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)kind);
+			 
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
-			
+	
+			sym.props   = new Gee.HashMap<string,Symbol>();
+			sym.signals = new Gee.HashMap<string,Symbol>();	
+			sym.methods   = new Gee.HashMap<string,Symbol>();			
+			sym.ctors  = new Gee.HashMap<string,Symbol>();	
+		 	sym.children =  new GLib.ListStore(typeof(Symbol));
 
 			foreach(var s in els) {
-				var k = s.name;
-			//	if (ignore_list != null && GLib.strv_contains(ignore_list, k)) {
-			//		continue;
-			//	}
-				if (kind ==  Lsp.SymbolKind.Property) {
-					
-					//if (!s.is_writable && !s.is_ctor_only) {
-					//	continue;
-					//}
-					if (s.rtype == "GLib.Object") { // ?? confgurable
-					 	continue;
-					}
-					// old code also validates that type is a valid type?
-
-				}
-				// dont overwrite property with name 
+				 // dont overwrite property with name 
+				 // does this make sense ? should the owner class be an interface?
 				if (ret.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
 					continue;
 		 		}
-				if (kind == Lsp.SymbolKind.Constructor) {
-					this.loadMethodParams(s);
+				 
+				switch(s.stype) {
+					case Lsp.SymbolKind.Property:
+						if (s.rtype == "GLib.Object") { // ?? confgurable
+						 	continue;
+						}
+					 	sym.props.set(s.name, s);
+						break;
+					case Lsp.SymbolKind.Signal:
+						sym.signals.set(s.name, s);
+						break;
+					case Lsp.SymbolKind.Constructor:
+						if (s.parent_id == sym.id) {
+							sym.ctors.set(s.name, s);
+						} else {
+							continue;
+						}
+						break;
+					case Lsp.SymbolKind.Method:
+						sym.methods.set(s.name, s);
+						break;
+						
+					default:
+						break;
 				}
-				//GLib.debug("add %s %s", fqn, s.name);
+				 
+			 
+				GLib.debug("add %s %s", fqn, s.name);
 				
-				ret.set(s.name, s);
+				sym.children_map.set(s.name, s);
+				sym.children.append(s);
 			}
+			sym.children_loaded = true;
+			return sym.childrenOfType(kind);
 			 
-			switch(kind) {
-				case Lsp.SymbolKind.Property:
-				 	sym.props = ret;
-					sym.props_loaded = true;
-					break;
-				case Lsp.SymbolKind.Signal:
-					sym.signals = ret;
-					sym.signals_loaded = true;
-					break;
-				case Lsp.SymbolKind.Constructor:
-					sym.ctors = ret;
-					sym.ctors_loaded = true;
-					break;
-				case Lsp.SymbolKind.Method:
-					sym.methods = ret;
-					sym.methods_loaded = true;
-					break;
-				default: 
-					break;
-			
-					
-			}
-			 
-			return ret;
+			  
 		
 		}
 		

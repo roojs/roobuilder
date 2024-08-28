@@ -941,6 +941,7 @@
          ""
         ]
        },
+       "string icon_name" : "window-close-symbolic",
        "string label" : "Close / Cancel",
        "xtype" : "Button"
       },

@@ -1834,6 +1834,7 @@ public class DialogFiles : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.icon_name = "window-close-symbolic";
 			this.el.label = "Close / Cancel";
 
 			//listeners

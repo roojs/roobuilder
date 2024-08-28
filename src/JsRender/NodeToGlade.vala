@@ -179,16 +179,29 @@ public class JsRender.NodeToGlade : Object {
 			}
 			var k = pviter.get_key();	
 			var prop = props.get(k);
-			if (prop.stype == Lsp.SymbolKind.Delegate) {
+			
+			if (prop.stype == Lsp.SymbolKind.Parameter) {
 				continue;
 			}
+			if (prop.is_ctor_only) { // gtk.propertyexpression - property_name <??< is not liked?
+				continue;
+			}
+			
 			var val = this.node.get(pviter.get_key()).strip();	
 			// for Enums - we change it to lowercase, and remove all the previous bits.. hopefully might work.
 			if (prop.rtype.contains(".") && val.contains(".")) {
 				var typ =  file.project.palete.getAny(sl, prop.rtype);
-				if (typ.stype == Lsp.SymbolKind.Enum) {
-					 var bits = val.split(".");
-					 val = bits[bits.length-1].down();
+				switch(typ.stype) {
+					case Lsp.SymbolKind.Struct:
+					case Lsp.SymbolKind.Delegate:
+						continue;
+				
+					case  Lsp.SymbolKind.Enum:
+						 var bits = val.split(".");
+						 val = bits[bits.length-1].down();
+						 break;
+					 default:
+						 break;
 				}
 			}
 			
@@ -221,23 +234,25 @@ public class JsRender.NodeToGlade : Object {
 			}
 		}
 		var items = this.node.readItems();
+		var is_native = gdata.implements.contains("Gtk.Native");
 		for (var i = 0; i < items.size; i++ ) {
 			var cn = items.get(i);
 			
 			var childname = "child";
 			var pname = "";
-			if (cn.has("* prop")) { // && cn.get_prop("* prop").val == "child") {
+			if (!is_native && cn.has("* prop")) { // && cn.get_prop("* prop").val == "child") {
 				childname = "property";
 				pname = cn.get_prop("* prop").val;
 			}
-			
+			 
 			var child  = this.create_element(childname);
-			if (pname != "") {
+			if (!is_native && pname != "") {
 				child->set_prop("name", pname);
 			}
 			
+			
 			if ((cls == "GtkWindow" || cls == "GtkApplicationWindow") && cn.fqn() == "Gtk.HeaderBar") {
-				child->set_prop("type", "label");
+			//	child->set_prop("type", "label");
 			}
 			
 			

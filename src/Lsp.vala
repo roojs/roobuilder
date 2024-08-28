@@ -540,6 +540,7 @@ namespace Lsp {
 
     [CCode (default_value = "LSP_SYMBOL_KIND_Variable")]
     public enum SymbolKind {
+    	Any = 0,
         File = 1,
         Module = 2,
         Namespace = 3,
