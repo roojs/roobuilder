@@ -345,7 +345,7 @@
            "| void loadClass" : [
             "(Palete.Symbol sy) {",
             "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
-            "\tsy.getPropertiesFor(sy.fqn, Lsp.SymbolKind.All);",
+            "\tsl.getPropertiesFor(sy.fqn, Lsp.SymbolKind.All);",
             "\t",
             "\tvar tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();",
             "\tvar old = (GLib.ListStore)tlm.get_model();",
