@@ -92,9 +92,6 @@ namespace Palete {
 			}
 		}	
 		
-		
-		
-		
 		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
 		
