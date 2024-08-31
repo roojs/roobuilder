@@ -414,7 +414,7 @@ public class CodeInfo : Object
 		// user defined functions
 		public void loadClass (Palete.Symbol sy) {
 			var sl = _this.win.windowstate.file.getSymbolLoader();
-			sl.getPropertiesFor(sy.fqn, Lsp.SymbolKind.All);
+			sl.getPropertiesFor(sy.fqn, Lsp.SymbolKind.Any);
 			
 			var tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();
 			var old = (GLib.ListStore)tlm.get_model();
