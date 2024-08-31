@@ -194,10 +194,9 @@ namespace Palete
 						is_abstract = 0 
 					AND
 						is_static = 0
-					
 					AND 
 						deprecated = 0 
-					)
+					
 						
 						
 
