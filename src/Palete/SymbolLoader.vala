@@ -420,7 +420,26 @@ namespace Palete
 			// we want to load up all of these types
 			// build a tree - so we don't have to do any other queiers later.
 			// as it takes far to long to do stuff...
-			
+			int[] stypes = {
+				Lsp.SymbolKind.Namespace ,
+				Lsp.SymbolKind.Class ,
+				Lsp.SymbolKind.Method ,
+				Lsp.SymbolKind.Property,
+				Lsp.SymbolKind.Field ,
+				Lsp.SymbolKind.Constructor,
+				Lsp.SymbolKind.Enum,
+				Lsp.SymbolKind.Interface,
+				Lsp.SymbolKind.Function,
+				Lsp.SymbolKind.EnumMember,
+				Lsp.SymbolKind.Struct,
+				Lsp.SymbolKind.Delegate,// ?? not standard.
+				Lsp.SymbolKind.Parameter, // ?? not standard.
+				Lsp.SymbolKind.Signal, // ?? not standard.
+			};
+			string[] stypestr= {};
+			foreach(var k in stypes) {
+				stypestr += k.to_string();
+			}
 			
 			
 			var stmt = this.sq.selectPrepare("
