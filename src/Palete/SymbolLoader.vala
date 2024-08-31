@@ -45,18 +45,20 @@ namespace Palete
 			this.classCache  = new Gee.HashMap<string,Symbol>();	
 		}
 		
-	public Symbol? singleById(int64 id)
+		// really only for classes?
+		public Symbol? singleById(int64 id)
 		{
 			
 			this.loadClassCache();
+			 
 			// should work most of the time..
-			if (this.classCache.has_key(fqn)) {
-				foreach(var v in this.classCache.values) {
-					if (v.id == id) {
-						return v;
-					}
+			
+			foreach(var v in this.classCache.values) {
+				if (v.id == id) {
+					return v;
 				}
 			}
+			
 			
 			GLib.debug("singleById get %s",id.to_string()); 
 			var res = new Symbol();
@@ -80,7 +82,7 @@ namespace Palete
 			}
 			// in theory should not happen!!!!
 			if (res.stype == Lsp.SymbolKind.Class) { // ?? and is a vapi?
-				this.classCache.set(fqn,res);
+				this.classCache.set(res.fqn,res);
 			}
 			return res;
 			
