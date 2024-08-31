@@ -74,13 +74,16 @@
             "activate_link" : [
              "(uri) => {",
              "\tGLib.debug(\"got uri %s\", uri);",
+             "\t",
+             "\t_this.win.windowstate.popover_codeinfo.show(this.el, url);",
+             "\t/*",
              "\tvar ls = _this.file.getLanguageServer();",
              "\tls.symbol.begin(uri, (a,b) => {",
              "\t\ttry { ",
              "\t\t\tls.symbol.end(b);",
              "\t\t} catch (GLib.Error e) {}",
              "\t});",
-             "\t",
+             "\t*/",
              "\treturn true;",
              "}",
              ""

@@ -55,7 +55,7 @@ public class Editor : Object
 	public Editor()
 	{
 		_this = this;
-		this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+		this.el = new Gtk.Box();
 
 		// my vars (dec)
 		this.errors = null;
@@ -73,6 +73,7 @@ public class Editor : Object
 
 		// set gobject values
 		this.el.homogeneous = false;
+		this.el.orientation = Gtk.Orientation.VERTICAL;
 		this.el.hexpand = true;
 		this.el.vexpand = true;
 		new Xcls_paned( _this );
@@ -484,11 +485,12 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.paned = this;
-			this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
+			this.el = new Gtk.Paned();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.orientation = Gtk.Orientation.HORIZONTAL;
 			this.el.resize_start_child = false;
 			this.el.shrink_end_child = false;
 			this.el.resize_end_child = false;
@@ -514,12 +516,14 @@ public class Editor : Object
 		public Xcls_Box2(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.orientation = Gtk.Orientation.VERTICAL;
 			this.el.hexpand = true;
+			this.el.spacing = 0;
 			var child_1 = new Xcls_Box3( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
@@ -544,12 +548,13 @@ public class Editor : Object
 		public Xcls_Box3(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.homogeneous = false;
+			this.el.orientation = Gtk.Orientation.HORIZONTAL;
 			this.el.hexpand = false;
 			this.el.vexpand = false;
 			new Xcls_save_button( _this );
@@ -608,7 +613,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.helper = this;
-			this.el = new Gtk.Label( null );
+			this.el = new Gtk.Label();
 
 			// my vars (dec)
 
@@ -630,13 +635,16 @@ public class Editor : Object
 			});
 			this.el.activate_link.connect( (uri) => {
 				GLib.debug("got uri %s", uri);
+				
+				_this.win.windowstate.popover_codeinfo.show(this.el, url);
+				/*
 				var ls = _this.file.getLanguageServer();
 				ls.symbol.begin(uri, (a,b) => {
 					try { 
 						ls.symbol.end(b);
 					} catch (GLib.Error e) {}
 				});
-				
+				*/
 				return true;
 			});
 		}
@@ -1059,7 +1067,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.buffer = this;
-			this.el = new GtkSource.Buffer( null );
+			this.el = new GtkSource.Buffer();
 
 			// my vars (dec)
 			this.error_line = -1;
@@ -1281,12 +1289,13 @@ public class Editor : Object
 		public Xcls_EventControllerScroll13(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
+			this.el = new Gtk.EventControllerScroll();
 
 			// my vars (dec)
 			this.distance = 0.0f;
 
 			// set gobject values
+			this.el.flags = Gtk.EventControllerScrollFlags.VERTICAL;
 
 			//listeners
 			this.el.scroll.connect( (dx, dy) => {
@@ -1376,13 +1385,15 @@ public class Editor : Object
 		public Xcls_Box15(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.homogeneous = false;
+			this.el.orientation = Gtk.Orientation.HORIZONTAL;
 			this.el.vexpand = false;
+			this.el.spacing = 0;
 			new Xcls_search_entry( _this );
 			this.el.append( _this.search_entry.el );
 			new Xcls_search_results( _this );
@@ -1524,13 +1535,14 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.search_results = this;
-			this.el = new Gtk.Label( "No Results" );
+			this.el = new Gtk.Label();
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.margin_end = 4;
 			this.el.margin_start = 4;
+			this.el.label = "No Results";
 		}
 
 		// user defined functions
@@ -1690,11 +1702,13 @@ public class Editor : Object
 		public Xcls_Box23(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.orientation = Gtk.Orientation.VERTICAL;
+			this.el.spacing = 0;
 			new Xcls_case_sensitive( _this );
 			this.el.append( _this.case_sensitive.el );
 			new Xcls_regex( _this );
@@ -1807,15 +1821,17 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigation_holder = this;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.width_request = 120;
+			this.el.orientation = Gtk.Orientation.VERTICAL;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			this.el.visible = false;
+			this.el.spacing = 0;
 			var child_1 = new Xcls_Box28( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
@@ -1837,11 +1853,13 @@ public class Editor : Object
 		public Xcls_Box28(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+			this.el = new Gtk.Box();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.orientation = Gtk.Orientation.HORIZONTAL;
+			this.el.spacing = 0;
 		}
 
 		// user defined functions
@@ -1890,8 +1908,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigation = this;
-			new Xcls_navigationselmodel( _this );
-			this.el = new Gtk.ColumnView( _this.navigationselmodel.el );
+			this.el = new Gtk.ColumnView();
 
 			// my vars (dec)
 			this.last_selected_line = -1;
@@ -1900,9 +1917,11 @@ public class Editor : Object
 
 			// set gobject values
 			this.el.name = "editor-navigation";
-			var child_2 = new Xcls_ColumnViewColumn31( _this );
-			child_2.ref();
-			this.el.append_column( child_2.el );
+			var child_1 = new Xcls_ColumnViewColumn31( _this );
+			child_1.ref();
+			this.el.append_column( child_1.el );
+			new Xcls_navigationselmodel( _this );
+			this.el.model = _this.navigationselmodel.el;
 			var child_3 = new Xcls_GestureClick42( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
@@ -2091,14 +2110,16 @@ public class Editor : Object
 		public Xcls_ColumnViewColumn31(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory32( _this );
-			child_1.ref();
-			this.el = new Gtk.ColumnViewColumn( "Code Navigation", child_1.el );
+			this.el = new Gtk.ColumnViewColumn();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.title = "Code Navigation";
 			this.el.expand = true;
+			var child_1 = new Xcls_SignalListItemFactory32( _this );
+			child_1.ref();
+			this.el.factory = child_1.el;
 		}
 
 		// user defined functions
@@ -2209,13 +2230,14 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			var child_1 = new Xcls_FilterListModel34( _this );
-			child_1.ref();
-			this.el = new Gtk.NoSelection( child_1.el );
+			this.el = new Gtk.NoSelection();
 
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_FilterListModel34( _this );
+			child_1.ref();
+			this.el.model = child_1.el;
 		}
 
 		// user defined functions
@@ -2232,14 +2254,16 @@ public class Editor : Object
 		public Xcls_FilterListModel34(Editor _owner )
 		{
 			_this = _owner;
-			new Xcls_navigationsort( _this );
-			var child_2 = new Xcls_CustomFilter35( _this );
-			child_2.ref();
-			this.el = new Gtk.FilterListModel( _this.navigationsort.el, child_2.el );
+			this.el = new Gtk.FilterListModel();
 
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_CustomFilter35( _this );
+			child_1.ref();
+			this.el.filter = child_1.el;
+			new Xcls_navigationsort( _this );
+			this.el.model = _this.navigationsort.el;
 		}
 
 		// user defined functions
@@ -2256,7 +2280,12 @@ public class Editor : Object
 		public Xcls_CustomFilter35(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.CustomFilter( (item) => { 
+			this.el = new Gtk.CustomFilter();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.match_func = (item) => { 
 	var tr = ((Gtk.TreeListRow)item).get_item();
    GLib.debug("filter%s =>  %s", item.get_type().name(), 
    tr.get_type().name()
@@ -2284,11 +2313,7 @@ public class Editor : Object
 	
 	}
 
-} );
-
-			// my vars (dec)
-
-			// set gobject values
+};
 		}
 
 		// user defined functions
@@ -2307,15 +2332,17 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationsort = this;
-			var child_1 = new Xcls_TreeListModel40( _this );
-			child_1.ref();
-			var child_2 = new Xcls_TreeListRowSorter37( _this );
-			child_2.ref();
-			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
+			this.el = new Gtk.SortListModel();
 
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_TreeListRowSorter37( _this );
+			child_1.ref();
+			this.el.sorter = child_1.el;
+			var child_2 = new Xcls_TreeListModel40( _this );
+			child_2.ref();
+			this.el.model = child_2.el;
 		}
 
 		// user defined functions
@@ -2392,13 +2419,14 @@ public class Editor : Object
 		public Xcls_TreeListRowSorter37(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter38( _this );
-			child_1.ref();
-			this.el = new Gtk.TreeListRowSorter( child_1.el );
+			this.el = new Gtk.TreeListRowSorter();
 
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_StringSorter38( _this );
+			child_1.ref();
+			this.el.sorter = child_1.el;
 		}
 
 		// user defined functions
@@ -2415,13 +2443,14 @@ public class Editor : Object
 		public Xcls_StringSorter38(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression39( _this );
-			child_1.ref();
-			this.el = new Gtk.StringSorter( child_1.el );
+			this.el = new Gtk.StringSorter();
 
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_PropertyExpression39( _this );
+			child_1.ref();
+			this.el.expression = child_1.el;
 		}
 
 		// user defined functions
@@ -2438,11 +2467,13 @@ public class Editor : Object
 		public Xcls_PropertyExpression39(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(Palete.Symbol), null, "sort_key" );
+			this.el = new Gtk.PropertyExpression();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.property_name = "sort_key";
+			this.el.this_type = typeof(Palete.Symbol);
 		}
 
 		// user defined functions
@@ -2462,17 +2493,21 @@ public class Editor : Object
 		public Xcls_TreeListModel40(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_ListStore41( _this );
-			child_1.ref();
-			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
- 
-	return ((Palete.Symbol)item).children;
-}
- );
+			this.el = new Gtk.TreeListModel();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.autoexpand = false;
+			this.el.passthrough = false;
+			this.el.create_func = (item) => {
+ 
+	return ((Palete.Symbol)item).children;
+}
+;
+			var child_1 = new Xcls_ListStore41( _this );
+			child_1.ref();
+			this.el.root = child_1.el;
 		}
 
 		// user defined functions
@@ -2489,11 +2524,12 @@ public class Editor : Object
 		public Xcls_ListStore41(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
+			this.el = new GLib.ListStore();
 
 			// my vars (dec)
 
 			// set gobject values
+			this.el.item_type = typeof(Palete.Symbol);
 		}
 
 		// user defined functions
