@@ -37,12 +37,16 @@ namespace Palete
 	{
 		SymbolFileCollection manager;
 		SQ.Query<Symbol> sq; 
+		Gee.HashMap<string,Symbol> classCache;
+		Gee.HashMap<int,Symbol> idCache;
+		
 		
 		public SymbolLoader(SymbolFileCollection manager) {
 			this.manager = manager;
 			this.sq  =  new SQ.Query<Symbol>("symbol");
  
 			this.classCache  = new Gee.HashMap<string,Symbol>();	
+			this.idCache  = new Gee.HashMap<int,Symbol>();	
 		}
 		
 		// really only for classes?
@@ -404,7 +408,7 @@ namespace Palete
 		
 		
 		
-		Gee.HashMap<string,Symbol> classCache;
+
 		// if we load all classes and build an map:
 		// ?? just load symbol
 		public void loadClassCache()
@@ -412,6 +416,13 @@ namespace Palete
 			if (this.classCache.values.size > 0 ) {
 				return;
 			}
+			
+			// we want to load up all of these types
+			// build a tree - so we don't have to do any other queiers later.
+			// as it takes far to long to do stuff...
+			
+			
+			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						*
