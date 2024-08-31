@@ -406,9 +406,9 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_2 = new Xcls_SignalListItemFactory14( _this );
+			var child_2 = new Xcls_ColumnViewColumn154( _this );
 			child_2.ref();
-			this.el.factory = child_2.el;
+			this.el.append_column( child_2.el );
 		}
 
 		// user defined functions
@@ -425,7 +425,30 @@ public class CodeInfo : Object
 		
 		}
 	}
-	public class Xcls_SignalListItemFactory14 : Object
+	public class Xcls_ColumnViewColumn154 : Object
+	{
+		public Gtk.ColumnViewColumn el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_ColumnViewColumn154(CodeInfo _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_SignalListItemFactory159( _this );
+			child_1.ref();
+			this.el = new Gtk.ColumnViewColumn( null, child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_SignalListItemFactory159 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private CodeInfo  _this;
@@ -434,7 +457,7 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory14(CodeInfo _owner )
+		public Xcls_SignalListItemFactory159(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -516,6 +539,7 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
+
 
 	public class Xcls_navigationselmodel : Object
 	{
