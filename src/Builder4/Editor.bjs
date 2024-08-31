@@ -75,7 +75,7 @@
              "(uri) => {",
              "\tGLib.debug(\"got uri %s\", uri);",
              "\t",
-             "\t_this.win.windowstate.popover_codeinfo.show(this.el, url);",
+             "\t_this.window.windowstate.popover_codeinfo.show(this.el, url);",
              "\t/*",
              "\tvar ls = _this.file.getLanguageServer();",
              "\tls.symbol.begin(uri, (a,b) => {",
