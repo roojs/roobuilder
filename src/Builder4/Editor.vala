@@ -629,6 +629,9 @@ public class Editor : Object
 				return true;
 			});
 			this.el.activate_link.connect( (uri) => {
+			
+			
+			/*
 				GLib.debug("got uri %s", uri);
 				var ls = _this.file.getLanguageServer();
 				ls.symbol.begin(uri, (a,b) => {
@@ -636,6 +639,9 @@ public class Editor : Object
 						ls.symbol.end(b);
 					} catch (GLib.Error e) {}
 				});
+				
+				return true;
+				*/
 				
 				return true;
 			});

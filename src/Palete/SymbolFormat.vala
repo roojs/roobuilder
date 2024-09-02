@@ -18,11 +18,21 @@ namespace Palete {
 					
 				case Lsp.SymbolKind.Class:
 					return "Class: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.fqn + "</a>" ;
+					// ?? show -> parent? / interfaces -> link to find that?
+					
+
+					
+					
 					
 				case Lsp.SymbolKind.Method: // start/end pos is not getting set very well..
+				
+					var rtype = s.rtype == "void" : "void" : "<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a>" +
 					return "Method: " + 
-						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
-						"<a href=\"" + ((int)Lsp.SymbolKind.Class).to_string() + " :" + GLib.Markup.escape_text(s.property_of()) + "\">" + s.property_of() + "</a> " + GLib.Markup.escape_text(s.name);
+						rtype + " " + s.property_of()   + "." +  GLib.Markup.escape_text(s.name);
+					// link to proprty type 
+					// ?? implements ? overrides// ?
+					// show we bother showing params - as it's pretty obvious.. - they can be clicked on..
+					
 				
 				
 				 

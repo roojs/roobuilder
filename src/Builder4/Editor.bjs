@@ -73,6 +73,9 @@
            "listeners" : {
             "activate_link" : [
              "(uri) => {",
+             "",
+             "",
+             "/*",
              "\tGLib.debug(\"got uri %s\", uri);",
              "\tvar ls = _this.file.getLanguageServer();",
              "\tls.symbol.begin(uri, (a,b) => {",
@@ -80,6 +83,9 @@
              "\t\t\tls.symbol.end(b);",
              "\t\t} catch (GLib.Error e) {}",
              "\t});",
+             "\t",
+             "\treturn true;",
+             "\t*/",
              "\t",
              "\treturn true;",
              "}",
