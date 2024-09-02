@@ -3,32 +3,17 @@
  "gen_extended" : false,
  "items" : [
   {
+   "# Xcls_MainWindow? win" : "null",
    "$ xns" : "Gtk",
+   "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",
+   "bool autohide" : false,
    "items" : [
     {
      "$ xns" : "Gtk",
      "* prop" : "child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool wide_handle" : true,
      "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* prop" : "end_child",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "items" : [
-          {
-           "$ xns" : "WebKit",
-           "* prop" : "child",
-           "xtype" : "WebView"
-          }
-         ],
-         "string tab_label" : "Documentation",
-         "xtype" : "NotebookPage"
-        }
-       ],
-       "xtype" : "Notebook"
-      },
       {
        "$ xns" : "Gtk",
        "* prop" : "start_child",
@@ -37,6 +22,48 @@
        "bool vexpand" : true,
        "int spacing" : 0,
        "items" : [
+        {
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "go-previous-symbolic",
+           "string tooltip_text" : "Back (previous class)",
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "go-next-symbolic",
+           "string tooltip_text" : "next class",
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "bool hexpand" : true,
+           "xtype" : "Label"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "format-justify-left-symbolic",
+           "string tooltip_text" : "Method",
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "format-text-italic-symbolic",
+           "string tooltip_text" : "Properties",
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "alarm-symbolic",
+           "string tooltip_text" : "Signal",
+           "xtype" : "Button"
+          }
+         ],
+         "xtype" : "Box"
+        },
         {
          "$ xns" : "Gtk",
          "bool hexpand" : true,
@@ -60,10 +87,10 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "child",
+           "id" : "tree",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "bool expand" : true,
              "items" : [
               {
                "$ xns" : "Gtk",
@@ -71,6 +98,7 @@
                "listeners" : {
                 "bind" : [
                  "(listitem) => {",
+                 "\t ",
                  "\t// GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
                  "\t",
                  "\t//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();",
@@ -84,22 +112,30 @@
                  "\tvar lbl = (Gtk.Label) img.get_next_sibling();",
                  "\t",
                  "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
-                 "\tvar node = (JsRender.Node) lr.get_item();",
-                 "\tif (node == null || node.fqn() == \"\") {",
-                 "\t\treturn;",
-                 "\t}",
-                 "   ",
-                 "    expand.set_hide_expander( !node.hasChildren() );",
+                 "\tvar sym = (Palete.Symbol) lr.get_item();",
+                 "\t",
+                 "\tsym.set_data<Gtk.Widget>(\"widget\", expand.get_parent());",
+                 "\texpand.get_parent().get_parent().set_data<Palete.Symbol>(\"symbol\", sym);",
+                 "\t",
+                 "\t  ",
+                 "    expand.set_hide_expander( sym.children.get_n_items()  < 1);",
                  " \texpand.set_list_row(lr);",
+                 " \t//this.in_bind = true;",
+                 " \t// default is to expand",
+                 " ",
+                 " \t//this.in_bind = false;",
                  " \t",
-                 " \tnode.bind_property(\"iconResourceName\",",
-                 "                    img, \"resource\",",
+                 " \tsym.bind_property(\"symbol_icon\",",
+                 "                    img, \"icon_name\",",
                  "                   GLib.BindingFlags.SYNC_CREATE);",
                  " \t",
-                 " \tnode.bind_property(\"nodeTitleProp\",",
+                 " \thbox.css_classes = { sym.symbol_icon };",
+                 " \t",
+                 " \tsym.bind_property(\"name\",",
                  "                    lbl, \"label\",",
                  "                   GLib.BindingFlags.SYNC_CREATE);",
-                 " \tnode.bind_property(\"nodeTipProp\",",
+                 " \t// should be better?- --line no?",
+                 " \tsym.bind_property(\"tooltip\",",
                  "                    lbl, \"tooltip_markup\",",
                  "                   GLib.BindingFlags.SYNC_CREATE);",
                  " \t// bind image...",
@@ -138,43 +174,265 @@
                "xtype" : "SignalListItemFactory"
               }
              ],
-             "string title" : "Object Navigation",
              "xtype" : "ColumnViewColumn"
             },
             {
              "$ xns" : "Gtk",
              "* prop" : "model",
+             "id" : "navigationselmodel",
              "items" : [
               {
-               "$ Gtk.TreeListModelCreateModelFunc create_func" : [
-                "(item) => {",
-                "\t//fixme...",
-                "\treturn ((JsRender.Node)item).childstore;",
-                "}",
-                ""
-               ],
                "$ xns" : "Gtk",
                "* prop" : "model",
-               "bool autoexpand" : true,
-               "bool passthrough" : false,
                "items" : [
                 {
-                 "$ GLib.Type item_type" : "typeof(JsRender.Node)",
-                 "$ xns" : "GLib",
-                 "* prop" : "root",
-                 "xtype" : "ListStore"
+                 "$ Gtk.CustomFilterFunc match_func" : [
+                  "(item) => { ",
+                  "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
+                  "   GLib.debug(\"filter%s =>  %s\", item.get_type().name(), ",
+                  "   tr.get_type().name()",
+                  "   );",
+                  "\tvar j =  (Palete.Symbol) tr;",
+                  "\t",
+                  "\tswitch( j.stype) {",
+                  "\t",
+                  "\t\tcase Lsp.SymbolKind.Namespace:",
+                  "\t\tcase Lsp.SymbolKind.Class:",
+                  "\t\tcase Lsp.SymbolKind.Method:",
+                  "\t\tcase Lsp.SymbolKind.Property:",
+                  "\t\t case Lsp.SymbolKind.Field:  //???",
+                  "\t\tcase Lsp.SymbolKind.Constructor:",
+                  "\t\tcase Lsp.SymbolKind.Interface:",
+                  "\t\tcase Lsp.SymbolKind.Enum:",
+                  "\t\tcase Lsp.SymbolKind.Constant:",
+                  "\t\tcase Lsp.SymbolKind.EnumMember:",
+                  "\t\tcase Lsp.SymbolKind.Struct:",
+                  "\t\t\treturn true;",
+                  "\t\t\t",
+                  "\t\tdefault : ",
+                  "\t\t\tGLib.debug(\"hide %s\", j.stype.to_string());",
+                  "\t\t\treturn false;",
+                  "\t",
+                  "\t}",
+                  "",
+                  "}"
+                 ],
+                 "$ xns" : "Gtk",
+                 "* prop" : "filter",
+                 "xtype" : "CustomFilter"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "model",
+                 "id" : "navigationsort",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "sorter",
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "sorter",
+                     "items" : [
+                      {
+                       "$ GLib.Type this_type" : "typeof(Palete.Symbol)",
+                       "$ xns" : "Gtk",
+                       "* prop" : "expression",
+                       "string property_name" : "sort_key",
+                       "xtype" : "PropertyExpression"
+                      }
+                     ],
+                     "xtype" : "StringSorter"
+                    }
+                   ],
+                   "xtype" : "TreeListRowSorter"
+                  },
+                  {
+                   "$ Gtk.TreeListModelCreateModelFunc create_func" : [
+                    "(item) => {",
+                    " ",
+                    "\treturn ((Palete.Symbol)item).children;",
+                    "}",
+                    ""
+                   ],
+                   "$ xns" : "Gtk",
+                   "* prop" : "model",
+                   "bool autoexpand" : false,
+                   "bool passthrough" : false,
+                   "items" : [
+                    {
+                     "$ GLib.Type item_type" : "typeof(Palete.Symbol)",
+                     "$ xns" : "GLib",
+                     "* prop" : "root",
+                     "xtype" : "ListStore"
+                    }
+                   ],
+                   "xtype" : "TreeListModel"
+                  }
+                 ],
+                 "xtype" : "SortListModel",
+                 "| Palete.Symbol? getSymbolAt" : [
+                  "(uint row) {",
+                  "",
+                  "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",
+                  "   ",
+                  "  // var a = tr.get_item();;   ",
+                  "  // GLib.debug(\"get_item (2) = %s\", a.get_type().name());",
+                  "  \t",
+                  "   ",
+                  "   return (Palete.Symbol)tr.get_item();",
+                  "\t ",
+                  "}"
+                 ],
+                 "| Palete.Symbol? symbolAtLine" : [
+                  "(uint line, uint chr) {",
+                  " ",
+                  "\tvar tlm = (Gtk.TreeListModel)this.el.get_model();",
+                  "\tvar ls = tlm.get_model();",
+                  "\t",
+                  "\tfor(var i = 0; i < ls.get_n_items();i++) {",
+                  "\t\tvar el = (Palete.Symbol)ls.get_item(i);",
+                  "\t\t//GLib.debug(\"Check sym %s : %d-%d\",",
+                  "\t\t//\tel.name , (int)el.range.start.line,",
+                  "\t\t//\t(int)el.range.end.line",
+                  "\t\t//);",
+                  "\t\tvar ret = el.containsLine(line,chr);",
+                  "\t\tif (ret != null) {",
+                  "\t\t\treturn ret;",
+                  "\t\t}",
+                  "\t\t",
+                  "\t}",
+                  "\t",
+                  "\treturn null;",
+                  "}"
+                 ],
+                 "| int getRowFromSymbol" : [
+                  "(Palete.Symbol sym) {",
+                  "// is this used as we have setdata???",
+                  "\tfor (var i=0;i < this.el.get_n_items(); i++) {",
+                  "\t\tvar tr = (Gtk.TreeListRow)this.el.get_item(i);",
+                  "\t\tvar trs = (Palete.Symbol)tr.get_item();",
+                  "\t\tif (sym.id ==  trs.id) {",
+                  "\t\t\treturn i;",
+                  "\t\t}",
+                  "\t}",
+                  "   \treturn -1;",
+                  "}"
+                 ],
+                 "| void collapseOnLoad" : [
+                  "() {",
+                  "/*\tfor (var i=0;i < this.el.get_n_items(); i++) {",
+                  "\t\tvar tr = (Gtk.TreeListRow)this.el.get_item(i);",
+                  "\t\tvar sym =  (Palete.Symbol)tr.get_item();",
+                  "\t\tswitch (sym.stype) {",
+                  "\t \t\tcase Lsp.SymbolKind.Enum: ",
+                  "\t \t\t\ttr.expanded = false;",
+                  "\t \t\t\tbreak;",
+                  "\t\t\tdefault:",
+                  "\t\t\t\ttr.expanded = true;",
+                  "\t\t\t\tbreak;",
+                  "\t\t}",
+                  "\t}",
+                  " */",
+                  "\t",
+                  "",
+                  "",
+                  "}"
+                 ]
                 }
                ],
-               "xtype" : "TreeListModel"
+               "xtype" : "FilterListModel"
               }
              ],
-             "xtype" : "SingleSelection"
+             "xtype" : "NoSelection"
             }
            ],
-           "xtype" : "ColumnView"
+           "xtype" : "ColumnView",
+           "| void loadClass" : [
+            "(Palete.Symbol sy) {",
+            "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
+            "\tsl.getPropertiesFor(sy.fqn, Lsp.SymbolKind.Any);",
+            "\t",
+            "\tvar tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();",
+            "\tvar old = (GLib.ListStore)tlm.get_model();",
+            "\told.remove_all();",
+            "\told.append(sy);",
+            "}"
+           ],
+           "| void select" : [
+            "(Palete.Symbol sym) {",
+            "",
+            "}"
+           ]
           }
          ],
          "xtype" : "ScrolledWindow"
+        }
+       ],
+       "xtype" : "Box"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "end_child",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "bool hexpand" : true,
+           "id" : "combo",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "id" : "dir_model",
+             "strings" : "{}",
+             "xtype" : "StringList"
+            }
+           ],
+           "xtype" : "DropDown",
+           "| void loadClass" : [
+            "(Palete.Symbol sy) {",
+            "",
+            "}"
+           ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "listeners" : {
+            "clicked" : [
+             "() => {",
+             "\t_this.el.hide();",
+             "}"
+            ]
+           },
+           "string icon_name" : "window-close-symbolic",
+           "string tooltip_text" : "Close",
+           "xtype" : "Button"
+          }
+         ],
+         "xtype" : "Box"
+        },
+        {
+         "$ xns" : "Gtk",
+         "bool vexpand" : true,
+         "id" : "content",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "buffer",
+           "xtype" : "TextBuffer"
+          }
+         ],
+         "xtype" : "TextView",
+         "| void loadSymbol" : [
+          "(Palete.Symbol sy) {",
+          "",
+          "}"
+         ]
         }
        ],
        "xtype" : "Box"
@@ -185,9 +443,33 @@
    ],
    "xtype" : "Popover",
    "| void show" : [
-    "(Gtk.Widget onbtn) {",
-    "   this.el.set_parent(onbtn);",
+    "(Gtk.Widget onbtn, string sname) {",
+    "",
+    "\tif (this.el.parent != null) {",
+    "\t\tthis.el.set_parent(null);",
+    "\t}",
+    "   \tthis.el.set_parent(onbtn);",
     "\tthis.el.popup();",
+    "\t",
+    "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
+    "\tvar sy = sl.singleByFqn(sname);",
+    "\tswitch(sy.stype) {",
+    "\t\tcase Lsp.SymbolKind.Class:",
+    "\t\t\t_this.tree.loadClass(sy);",
+    "\t\t\t_this.combo.loadClass(sy);",
+    "\t\t\t_this.content.loadSymbol(sy);",
+    "\t\t\tbreak;",
+    "\t\tcase Lsp.SymbolKind.Method:",
+    "\t\t\tvar cls = sl.singleById(sy.parent_id);",
+    "\t\t\t_this.tree.loadClass(cls);",
+    "\t\t\t_this.tree.select(sy);",
+    "\t\t\t_this.combo.loadClass(cls);",
+    "\t\t\t_this.content.loadSymbol(cls);",
+    "\t\t\tbreak;",
+    "\t\tdefault:\t",
+    "\t\t\tbreak;",
+    "\t}",
+    "\t",
     "}"
    ]
   }

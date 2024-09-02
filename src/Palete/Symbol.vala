@@ -58,7 +58,7 @@ namespace Palete {
 		public Gee.HashMap<string,Symbol> methods { get; set; default = new Gee.HashMap<string,Symbol>(); }				
 		public Gee.HashMap<string,Symbol> ctors { get; set; default = new Gee.HashMap<string,Symbol>(); }	
 		
-		public bool props_loaded = false;
+		public bool children_loaded = false;
 		public bool signals_loaded = false;
 		public bool methods_loaded = false;
 		public bool ctors_loaded = false;
@@ -91,9 +91,6 @@ namespace Palete {
 				}
 			}
 		}	
-		
-		
-		
 		
 		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
@@ -347,6 +344,31 @@ namespace Palete {
 		public string sort_key {
    			owned get { 
    				return this.stype.sort_key().to_string() + "=" + this.name;
+			}
+		}
+		
+		public Gee.HashMap<string,Symbol> childrenOfType(Lsp.SymbolKind kind) {
+			if (!this.children_loaded) {
+				GLib.error("children called before they were loaded");
+			}
+			switch(kind) {
+				case Lsp.SymbolKind.Property:
+				 	return this.props;
+					 
+				case Lsp.SymbolKind.Signal:
+					return this.signals;
+					 
+				case Lsp.SymbolKind.Constructor:
+					return this.ctors;
+					 
+				case Lsp.SymbolKind.Method:
+					return this.methods;
+					 
+				case Lsp.SymbolKind.Any:
+					return this.children_map;
+				
+				default:
+					return new Gee.HashMap<string,Symbol>();;
 			}
 		}
 		
