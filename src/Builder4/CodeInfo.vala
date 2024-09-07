@@ -48,7 +48,7 @@ public class CodeInfo : Object
 	   	this.el.set_parent(onbtn);
 		this.el.popup();
 		
-		
+	
 		var sl = _this.win.windowstate.file.getSymbolLoader();
 		var sy = sl.singleByFqn(sname);
 		switch(sy.stype) {

@@ -451,7 +451,7 @@
     "   \tthis.el.set_parent(onbtn);",
     "\tthis.el.popup();",
     "\t",
-    "\t",
+    "",
     "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
     "\tvar sy = sl.singleByFqn(sname);",
     "\tswitch(sy.stype) {",
