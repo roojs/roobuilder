@@ -184,6 +184,7 @@ namespace Palete
 				pidss += pid;
 			}
 			var cols = this.sq.getColsExcept({ "doc" });
+			// this is loading everyng!? how about filtering it?
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						" + string.joinv(",",cols) + " 	
@@ -242,7 +243,9 @@ namespace Palete
 					case Lsp.SymbolKind.Method:
 						sym.methods.set(s.name, s);
 						break;
+					case Lsp.SymbolKind.Parameter:
 						
+					
 					default:
 						break;
 				}
@@ -450,17 +453,18 @@ namespace Palete
 					WHERE 
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
-						stype IN ( $cls, $interface )
+						stype IN ( " + string.joinv("," , stypestr) + " )
 					AND
 						is_static = 0
 					AND 
 						deprecated = 0
 					
 			");
-			stmt.bind_int(stmt.bind_parameter_index ("$cls"), (int)Lsp.SymbolKind.Class);
-			stmt.bind_int(stmt.bind_parameter_index ("$interface"), (int)Lsp.SymbolKind.Interface);
+ 
+ 
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
+			
 			foreach(var e in els) {
 				this.classCache.set(e.fqn, e);
 			}
