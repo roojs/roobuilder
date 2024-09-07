@@ -219,7 +219,7 @@ namespace Palete {
 				return "";
 			}
 			string [] args = {};
-			foreach(this.param_ar.values as v) {
+			foreach(var v in this.param_ar.values) {
 				args += ( v.rtype  " " + v.name);
 			}
 			return "(" + Sting.joinv(args,", ") + ")";
