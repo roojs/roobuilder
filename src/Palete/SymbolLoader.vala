@@ -306,6 +306,10 @@ namespace Palete
 				
 		
 		}
+		public Gee.ArrayList<Symbol>  getParametersFor(Symbol sym)
+		{
+			return sym.param_ar.values;
+		}
 		/*
 		public Gee.ArrayList<Symbol>  getParametersFor(Symbol sym)
 		{
