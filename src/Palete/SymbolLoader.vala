@@ -301,7 +301,7 @@ namespace Palete
 				mids.get((int)e.parent_id).param_ar.set(e.sequence, e);
 			}
 			foreach(var m in mids.values) {
-				m.param_ar_loaded = true;
+				m.param_ar_loaded = true; // ?? needed?
 			}
 				
 		
