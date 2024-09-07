@@ -215,7 +215,7 @@ namespace Palete
 			sym.methods   = new Gee.HashMap<string,Symbol>();			
 			sym.ctors  = new Gee.HashMap<string,Symbol>();	
 		 	sym.children =  new GLib.ListStore(typeof(Symbol));
-
+			var mids = new Gee.HashMap<int,Symbol>();
 			foreach(var s in els) {
 				 // dont overwrite property with name 
 				 // does this make sense ? should the owner class be an interface?
@@ -239,9 +239,12 @@ namespace Palete
 						} else {
 							continue;
 						}
+						mids.set((int)s.id, s);
+						 
 						break;
 					case Lsp.SymbolKind.Method:
 						sym.methods.set(s.name, s);
+						mids.set((int)s.id, s);
 						break;
 					case Lsp.SymbolKind.Parameter:
 						
@@ -249,20 +252,62 @@ namespace Palete
 					default:
 						break;
 				}
-				 
+				
 			 
 				GLib.debug("add %s %s", fqn, s.name);
 				
 				sym.children_map.set(s.name, s);
 				sym.children.append(s);
 			}
+			this.loadParamsForMethods(mids);
+			
 			sym.children_loaded = true;
 			return sym.childrenOfType(kind);
 			 
 			  
 		
 		}
+		public void loadParametersForMethods(Gee.HashMap<int,Symbol> mids) 
+		{
+			string[] ids = {};
+			foreach(var i in mids.keys) {
+				ids += i.to_string();
+			}
+			if (ids.length < 1) {
+				return;
+			}
+			var stmt = this.sq.selectPrepare("
+					SELECT 
+						* 
+					FROM 
+						symbol 
+					WHERE 
+						file_id IN (" +   this.manager.file_ids   + ")
+					AND
+						parent_id IN ( " + string.joinv(",", ids) + ")
+					AND
+						stype = $stype
+					 
+					AND 
+						deprecated = 0
+					ORDER BY 
+						sequence ASC
+
+			");
+			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Parameter);
+			stmt.bind_int64(stmt.bind_parameter_index ("$pid"), sym.id);
+			var els = new Gee.ArrayList<Symbol>();
+			this.sq.selectExecute(stmt, els);
+			foreach(var e in els) {
+				mids.get((int)e.parent_id).param_ar.set(sequence, e);
+			}
+			foreach(var m in mids.values) {
+				m.params_loaded = true;
+			}
+				
 		
+		}
+		/*
 		public Gee.ArrayList<Symbol>  getParametersFor(Symbol sym)
 		{
  
@@ -295,6 +340,7 @@ namespace Palete
 			  
 		
 		}
+		*/
 		
 		private void getParentIds(Symbol s, Gee.ArrayList<string> ret, Gee.ArrayList<string>? imp = null)
 		{
@@ -453,18 +499,17 @@ namespace Palete
 					WHERE 
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
-						stype IN ( " + string.joinv("," , stypestr) + " )
+						stype IN ( $cls, $interface )
 					AND
 						is_static = 0
 					AND 
 						deprecated = 0
 					
 			");
- 
- 
+			stmt.bind_int(stmt.bind_parameter_index ("$cls"), (int)Lsp.SymbolKind.Class);
+			stmt.bind_int(stmt.bind_parameter_index ("$interface"), (int)Lsp.SymbolKind.Interface);
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
-			
 			foreach(var e in els) {
 				this.classCache.set(e.fqn, e);
 			}
