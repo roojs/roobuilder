@@ -267,7 +267,7 @@ namespace Palete
 			  
 		
 		}
-		public void loadParametersForMethods(Gee.HashMap<int,Symbol> mids) 
+		public void loadParamsForMethods(Gee.HashMap<int,Symbol> mids) 
 		{
 			string[] ids = {};
 			foreach(var i in mids.keys) {
