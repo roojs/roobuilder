@@ -222,7 +222,7 @@ namespace Palete {
 			foreach(var v in this.param_ar.values) {
 				args += ( v.rtype +  " " + v.name);
 			}
-			return "(" + string.joinv(args,", ") + ")";
+			return "(" + string.joinv(", ", args) + ")";
 		}
 		
 		
