@@ -295,11 +295,10 @@ namespace Palete
 
 			");
 			stmt.bind_int(stmt.bind_parameter_index ("$stype"), (int)Lsp.SymbolKind.Parameter);
-			stmt.bind_int64(stmt.bind_parameter_index ("$pid"), sym.id);
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
 			foreach(var e in els) {
-				mids.get((int)e.parent_id).param_ar.set(sequence, e);
+				mids.get((int)e.parent_id).param_ar.set(e.sequence, e);
 			}
 			foreach(var m in mids.values) {
 				m.params_loaded = true;
