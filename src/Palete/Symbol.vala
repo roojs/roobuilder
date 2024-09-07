@@ -192,10 +192,11 @@ namespace Palete {
 		public void dump(string indent)
 		{
 			
-			print("%s %d>%d : %s : %s  (%s)\n", indent, 
+			print("%s %d>%d : %s : %s%s [%s]\n", indent, 
 				this.begin_line, this.end_line,
 				this.stype == 0 ?  "??" : this.stype.to_string().substring( 16, -1 ), 
 				this.to_fqn(), 
+				this.dumpArgs(), 
 				this.rtype);
 			if (this.doc != "") {
 			    print("%s-->%s\n",indent, this.doc.split("\n")[0]);
@@ -212,7 +213,17 @@ namespace Palete {
 				c.dump(si);
 			}
 		}
-		 
+		public string dumpArgs()
+		{
+			if (this.stype != Lsp.SymbolKind.Method && this.stype != Lsp.SymbolKind.Constructor) {
+				return "";
+			}
+			string [] args = {};
+			foreach(this.param_ar.values as v) {
+				args += ( v.rtype  " " + v.name);
+			}
+			return "(" + Sting.joinv(args,", ") + ")";
+		}
 		
 		
 		public bool simpleEquals(Symbol s) 
