@@ -56,6 +56,7 @@ public class CodeInfo : Object
 		if (sy == null) {
 			GLib.debug("could not find symbol %s", sname);
 			this.el.hide();
+			return;
 		}
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:

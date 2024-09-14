@@ -459,6 +459,7 @@
     "\tif (sy == null) {",
     "\t\tGLib.debug(\"could not find symbol %s\", sname);",
     "\t\tthis.el.hide();",
+    "\t\treturn;",
     "\t}",
     "\tswitch(sy.stype) {",
     "\t\tcase Lsp.SymbolKind.Class:",
