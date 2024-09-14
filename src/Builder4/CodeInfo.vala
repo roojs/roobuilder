@@ -53,6 +53,10 @@ public class CodeInfo : Object
 	
 		var sl = _this.win.windowstate.file.getSymbolLoader();
 		var sy = sl.singleByFqn(sname);
+		if (sy == null) {
+			GLib.debug("could not find symbol %s", sname);
+			this.el.hide();
+		}
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:
 				_this.tree.loadClass(sy);
