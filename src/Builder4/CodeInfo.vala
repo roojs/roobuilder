@@ -32,7 +32,7 @@ public class CodeInfo : Object
 		this.win = null;
 
 		// set gobject values
-		this.el.autohide = false;
+		this.el.autohide = true;
 		this.el.position = Gtk.PositionType.BOTTOM;
 		var child_1 = new Xcls_Paned1( _this );
 		child_1.ref();

@@ -6,7 +6,7 @@
    "# Xcls_MainWindow? win" : "null",
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",
-   "bool autohide" : false,
+   "bool autohide" : true,
    "items" : [
     {
      "$ xns" : "Gtk",
