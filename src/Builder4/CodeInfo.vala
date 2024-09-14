@@ -47,7 +47,9 @@ public class CodeInfo : Object
 		}
 	   	this.el.set_parent(onbtn);
 		this.el.popup();
-		
+		var win = this.win.el;
+		this.el.set_size_request( win.get_width() - 50;, win.get_height() - 50;);
+	    
 	
 		var sl = _this.win.windowstate.file.getSymbolLoader();
 		var sy = sl.singleByFqn(sname);
