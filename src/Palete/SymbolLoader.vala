@@ -100,6 +100,7 @@ namespace Palete
 			
 			this.loadClassCache();
 			if (this.classCache.has_key(fqn)) {
+				GLib.debug("single cache has key %s", fqn);
 				return this.classCache.get(fqn);
 			}
 			
