@@ -296,6 +296,7 @@ namespace SQ {
 		
 		public bool selectExecuteInto(Sqlite.Statement stmt,  T row )
  		{
+			GLib.debug("Execute INTO %s", stmt.expanded_sql());	
 			if (stmt.step() == Sqlite.ROW) {
 		 		 
 				this.fetchRow(stmt, row); 
