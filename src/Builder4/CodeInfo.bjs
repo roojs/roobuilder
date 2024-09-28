@@ -443,8 +443,10 @@
    ],
    "xtype" : "Popover",
    "| void show" : [
-    "(Gtk.Widget onbtn, string sname) {",
+    "(Gtk.Widget onbtn, string stype_and_name) {",
     "",
+    "\t",
+    "\tvar sname = stype_and_name.split(\":\")[1];",
     "\tif (this.el.parent != null) {",
     "\t\tthis.el.set_parent(null);",
     "\t}",
