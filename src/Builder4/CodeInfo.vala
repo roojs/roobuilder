@@ -60,6 +60,7 @@ public class CodeInfo : Object
 			this.el.hide();
 			return;
 		}
+		GLib.debug("Show symbol %s", sy.fqn);
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:
 				_this.tree.loadClass(sy);

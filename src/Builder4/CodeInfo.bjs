@@ -463,6 +463,7 @@
     "\t\tthis.el.hide();",
     "\t\treturn;",
     "\t}",
+    "\tGLib.debug(\"Show symbol %s\", sy.fqn);",
     "\tswitch(sy.stype) {",
     "\t\tcase Lsp.SymbolKind.Class:",
     "\t\t\t_this.tree.loadClass(sy);",
