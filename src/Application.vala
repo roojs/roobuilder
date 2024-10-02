@@ -344,7 +344,7 @@
 			keys.sort();
 			foreach(var k in keys) {
 				var gi = map.get(k);
-				 ret += "    %s %s (%s)\n".printf(gi.rtype, gi.name, gi.fqn.substring(0, gi.fqn.length - 1 - gi.name.length));
+				 ret += "    %s %s%s [%s]\n".printf(gi.rtype, gi.name, gi.dumpArgs(), gi.fqn.substring(0, gi.fqn.length - 1 - gi.name.length));
 			}
 			return ret;
 		
@@ -690,6 +690,9 @@
 			print("\n\nSignalList:\n%s",  this.symbolArrayToString(
 				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.LISTENER)));
 			
+			print("\n\nConstructors:\n%s", this.symbolArrayToString(
+				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.CTOR)));
+	
 			print("\n\nMethods:\n%s", this.symbolArrayToString(
 				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.METHOD)));
 

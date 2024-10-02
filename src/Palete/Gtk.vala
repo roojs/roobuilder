@@ -147,8 +147,9 @@ namespace Palete {
 					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method);
 				
 				case JsRender.NodePropType.CTOR:
-					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Method);
-					
+					return sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor);
+			 
+				
 				//case JsRender.NodePropType.CTOR:  // needed to query the arguments of a ctor.
 				//	return cls.ctors;
 				default:
@@ -427,7 +428,8 @@ namespace Palete {
 			var snp = new SymbolNodeProp (this,  sl);
 			var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor);
 			if (ar.has_key(cls.name)) {
-				var props = sl.getParametersFor(cls);
+				//var props = sl.getParametersFor(cls);
+				var props = cls.param_ar.values; //?? in order?
 				foreach(var p in props) {
 			 		snp.convert(p, cls.fqn);
 				}

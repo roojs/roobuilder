@@ -634,7 +634,7 @@ public class Editor : Object
 			/*
 				GLib.debug("got uri %s", uri);
 				
-				_this.window.windowstate.popover_codeinfo.show(this.el, url);
+				_this.window.windowstate.popover_codeinfo.show(this.el, uri);
 				/*
 				var ls = _this.file.getLanguageServer();
 				ls.symbol.begin(uri, (a,b) => {

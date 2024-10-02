@@ -12,44 +12,35 @@ namespace Palete {
  				//File = 1,
 				//Module = 2,
 				case Lsp.SymbolKind.Namespace:
-					return "Namespace: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.fqn + "</a>";
+					return "Namespace: <a href=\"" + ((int)s.stype).to_string() + ":" + GLib.Markup.escape_text(s.fqn) + "\">" + s.fqn + "</a>";
 					
 				//Package = 4,
 					
 				case Lsp.SymbolKind.Class:
-					return "Class: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" + s.fqn + "</a>" ;
-					// ?? show -> parent? / interfaces -> link to find that?
-					
-
-					
-					
+					return "Class: <a href=\"" + ((int)s.stype).to_string() + ":" + GLib.Markup.escape_text(s.fqn) + "\">" + s.fqn + "</a>" ;
 					
 				case Lsp.SymbolKind.Method: // start/end pos is not getting set very well..
 				
 					var rtype = s.rtype == "void" : "void" : "<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a>" +
 					return "Method: " + 
-						rtype + " " + s.property_of()   + "." +  GLib.Markup.escape_text(s.name);
-					// link to proprty type 
-					// ?? implements ? overrides// ?
-					// show we bother showing params - as it's pretty obvious.. - they can be clicked on..
-					
-				
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + ":" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
+						"<a href=\"" + ((int)Lsp.SymbolKind.Class).to_string() + ":" + GLib.Markup.escape_text(s.property_of()) + "\">" + s.property_of() + "</a> " + GLib.Markup.escape_text(s.name);
 				
 				 
 				case Lsp.SymbolKind.Property:
 					return "Property: " +
-						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
-						"<a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.property_of()) + "\">" +  GLib.Markup.escape_text(s.property_of()) + "</a>."  + GLib.Markup.escape_text(s.name);
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + ":" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
+						"<a href=\"" + ((int)s.stype).to_string() + ":" + GLib.Markup.escape_text(s.property_of()) + "\">" +  GLib.Markup.escape_text(s.property_of()) + "</a>."  + GLib.Markup.escape_text(s.name);
 				
 				case Lsp.SymbolKind.Field:
 					return "Field: " + 
-						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
-						"<a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.property_of()) + "\">" +  GLib.Markup.escape_text(s.property_of()) + "</a>."  + GLib.Markup.escape_text(s.name);
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + ":" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
+						"<a href=\"" + ((int)s.stype).to_string() + ":" + GLib.Markup.escape_text(s.property_of()) + "\">" +  GLib.Markup.escape_text(s.property_of()) + "</a>."  + GLib.Markup.escape_text(s.name);
 				
 				
 				
 				//case Lsp.SymbolKind.Constructor:
-					//return "Field: <a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.property_of()) + "</a>";				
+					//return "Field: <a href=\"" + ((int)s.stype).to_string() + ":" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.property_of()) + "</a>";				
 				
 
 				//Enum = 10,
@@ -58,7 +49,7 @@ namespace Palete {
 				case Lsp.SymbolKind.Variable:
 				case Lsp.SymbolKind.Parameter:
 					return "Variable: " + 
-						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + ":" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
 						 	GLib.Markup.escape_text(s.name);
 				
 				//Constant = 14,
@@ -83,15 +74,15 @@ namespace Palete {
 					// look like it needs to know what it's getting access to...
 					//(fqn is not getting set)
 					return "MemberAccess: " + 
-						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
-						"<a href=\"" + ((int)s.stype).to_string() + " :" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.fqn)  + "</a>";
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + ":" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
+						"<a href=\"" + ((int)s.stype).to_string() + ":" + GLib.Markup.escape_text(s.fqn) + "\">" +  GLib.Markup.escape_text(s.fqn)  + "</a>";
 				
 				
 				//ObjectType = 32,
  
  				case Lsp.SymbolKind.MethodCall:
 					return "MethodCall: " + 
-						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " ;
+						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + ":" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " ;
 			
  				default: 
 					return s.stype.to_string() + " " +
