@@ -40,8 +40,10 @@ public class CodeInfo : Object
 	}
 
 	// user defined functions
-	public void show (Gtk.Widget onbtn, string sname) {
+	public void show (Gtk.Widget onbtn, string stype_and_name) {
 	
+		
+		var sname = stype_and_name.split(":")[1];
 		if (this.el.parent != null) {
 			this.el.set_parent(null);
 		}
@@ -58,6 +60,7 @@ public class CodeInfo : Object
 			this.el.hide();
 			return;
 		}
+		GLib.debug("Show symbol %s", sy.fqn);
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:
 				_this.tree.loadClass(sy);
