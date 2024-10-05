@@ -42,15 +42,7 @@
            },
            "string icon_name" : "go-previous-symbolic",
            "string tooltip_text" : "Back (previous class)",
-           "xtype" : "Button",
-           "| void update" : [
-            "() {",
-            "\tif (this.history_pos < 1) {",
-            "\t\tthis.el",
-            "\t",
-            "\t}",
-            "}\t"
-           ]
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",

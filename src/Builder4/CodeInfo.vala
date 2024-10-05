@@ -228,12 +228,6 @@ public class CodeInfo : Object
 		}
 
 		// user defined functions
-		public void update () {
-			if (this.history_pos < 1) {
-				this.el
-			
-			}
-		}
 	}
 
 	public class Xcls_back_button : Object
