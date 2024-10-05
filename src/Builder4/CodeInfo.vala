@@ -43,14 +43,15 @@ public class CodeInfo : Object
 
 	// user defined functions
 	public void showSymbol (Symbol sy) {
-	 	var sl = _this.win.windowstate.file.getSymbolLoader();
+	
+		var sl = _this.win.windowstate.file.getSymbolLoader();
 		
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:
 				_this.tree.loadClass(sy);
 				_this.combo.loadClass(sy);
 				_this.content.loadSymbol(sy);
-				this.history.add(sy);
+	
 				break;
 			case Lsp.SymbolKind.Method:
 				var cls = sl.singleById(sy.parent_id);
@@ -87,7 +88,7 @@ public class CodeInfo : Object
 	 
 		
 		this.showSymbol(sy);
-		 
+		this.history.add(sy);
 	}
 	public class Xcls_Paned1 : Object
 	{
