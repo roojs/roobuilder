@@ -228,6 +228,9 @@ public class CodeInfo : Object
 		}
 
 		// user defined functions
+		public void update () {
+		
+		}
 	}
 
 	public class Xcls_back_button : Object
