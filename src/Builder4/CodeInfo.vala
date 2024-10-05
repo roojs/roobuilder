@@ -33,7 +33,7 @@ public class CodeInfo : Object
 		// my vars (dec)
 		this.win = null;
 		this.history = new Gee.ArrayList<Symbol>();
-		this.history_pos = 0;
+		this.history_pos = -1;
 
 		// set gobject values
 		this.el.autohide = true;
