@@ -32,7 +32,13 @@
            "$ xns" : "Gtk",
            "id" : "next_button",
            "listeners" : {
-            "clicked" : ""
+            "clicked" : [
+             "() => {",
+             "\t_this.history_pos--;",
+             "\t_this.showSymbol(this.history.get(_this.history_pos));",
+             "",
+             "}"
+            ]
            },
            "string icon_name" : "go-previous-symbolic",
            "string tooltip_text" : "Back (previous class)",

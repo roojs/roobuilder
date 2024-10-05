@@ -217,7 +217,11 @@ public class CodeInfo : Object
 			this.el.tooltip_text = "Back (previous class)";
 
 			//listeners
-			this.el.clicked.connect( );
+			this.el.clicked.connect( () => {
+				_this.history_pos--;
+				_this.showSymbol(this.history.get(_this.history_pos));
+			
+			});
 		}
 
 		// user defined functions
