@@ -467,8 +467,8 @@
     " ",
     "\t",
     "\tthis.showSymbol(sy);",
-    "\tthis.history.add(sy);",
-    "\tthis.history_pos = this.history.size -1;",
+    "\tthis.history_pos++; ",
+    "\tthis.history.set(this.history_pos, sy);",
     "}"
    ],
    "| void showSymbol" : [

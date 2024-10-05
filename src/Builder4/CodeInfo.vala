@@ -88,8 +88,8 @@ public class CodeInfo : Object
 	 
 		
 		this.showSymbol(sy);
-		this.history.add(sy);
-		this.history_pos = this.history.size -1;
+		this.history_pos++; 
+		this.history.set(this.history_pos, sy);
 	}
 	public class Xcls_Paned1 : Object
 	{
