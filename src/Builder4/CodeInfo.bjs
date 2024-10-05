@@ -478,11 +478,11 @@
     "\t}",
     " ",
     "\t",
-    "\tthis.showSymbol(sy);",
+    "\t",
     "\tthis.history_pos++; ",
     "\tthis.history.set(this.history_pos, sy);",
-    "\t_this.back_button.update();",
-    "\t_this.next_button.update();",
+    "\tthis.showSymbol(sy);",
+    "",
     "\t",
     "}"
    ],
@@ -509,6 +509,9 @@
     "\t\tdefault:\t",
     "\t\t\tbreak;",
     "\t}",
+    "\t_this.back_button.update();",
+    "\t_this.next_button.update();",
+    "\t",
     "}"
    ]
   }

@@ -68,6 +68,9 @@ public class CodeInfo : Object
 			default:	
 				break;
 		}
+		_this.back_button.update();
+		_this.next_button.update();
+		
 	}
 	public void show (Gtk.Widget onbtn, string stype_and_name) {
 	
@@ -91,11 +94,11 @@ public class CodeInfo : Object
 		}
 	 
 		
-		this.showSymbol(sy);
+		
 		this.history_pos++; 
 		this.history.set(this.history_pos, sy);
-		_this.back_button.update();
-		_this.next_button.update();
+		this.showSymbol(sy);
+	
 		
 	}
 	public class Xcls_Paned1 : Object
