@@ -4,6 +4,7 @@
  "items" : [
   {
    "# Xcls_MainWindow? win" : "null",
+   "# int history_pos" : 0,
    "$ Gee.ArrayList<Symbol>? history" : "new Gee.ArrayList<Symbol>()",
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",

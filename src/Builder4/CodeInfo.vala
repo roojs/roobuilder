@@ -22,6 +22,7 @@ public class CodeInfo : Object
 	// my vars (def)
 	public Xcls_MainWindow? win;
 	public Gee.ArrayList<Symbol>? history;
+	public int history_pos;
 
 	// ctor
 	public CodeInfo()
@@ -32,6 +33,7 @@ public class CodeInfo : Object
 		// my vars (dec)
 		this.win = null;
 		this.history = new Gee.ArrayList<Symbol>();
+		this.history_pos = 0;
 
 		// set gobject values
 		this.el.autohide = true;
