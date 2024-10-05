@@ -3,6 +3,7 @@
  "gen_extended" : false,
  "items" : [
   {
+   "# Gee.ArrayList<Symbol>? history" : "null",
    "# Xcls_MainWindow? win" : "null",
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",
