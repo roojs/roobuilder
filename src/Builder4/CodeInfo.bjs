@@ -497,7 +497,7 @@
     "}"
    ],
    "| void showSymbol" : [
-    "(Symbol sy) {",
+    "(Palete.Symbol sy) {",
     "\t// doesnt deal with history... - caller should do that.",
     "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
     "\t",

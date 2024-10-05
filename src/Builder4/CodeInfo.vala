@@ -46,7 +46,7 @@ public class CodeInfo : Object
 	}
 
 	// user defined functions
-	public void showSymbol (Symbol sy) {
+	public void showSymbol (Palete.Symbol sy) {
 		// doesnt deal with history... - caller should do that.
 		var sl = _this.win.windowstate.file.getSymbolLoader();
 		
