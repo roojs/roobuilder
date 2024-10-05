@@ -45,8 +45,11 @@
            "xtype" : "Button",
            "| void update" : [
             "() {",
-            "",
-            "}"
+            "\tif (this.history_pos < 1) {",
+            "\t\tthis.el",
+            "\t",
+            "\t}",
+            "}\t"
            ]
           },
           {
