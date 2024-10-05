@@ -92,8 +92,8 @@ public class CodeInfo : Object
 		this.showSymbol(sy);
 		this.history_pos++; 
 		this.history.set(this.history_pos, sy);
-		this.backButton.update();
-		this.nextButton.update();
+		this.back_button.update();
+		this.next_button.update();
 		
 	}
 	public class Xcls_Paned1 : Object
