@@ -5,7 +5,7 @@
   {
    "# Xcls_MainWindow? win" : "null",
    "# int history_pos" : "-1",
-   "$ Gee.ArrayList<Symbol>? history" : "new Gee.ArrayList<Symbol>()",
+   "$ Gee.ArrayList<Palete.Symbol>? history" : "new Gee.ArrayList<Palete.Symbol>()",
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",
    "bool autohide" : true,
