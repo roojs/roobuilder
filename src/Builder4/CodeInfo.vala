@@ -84,28 +84,10 @@ public class CodeInfo : Object
 			this.el.hide();
 			return;
 		}
-		GLib.debug("Show symbol %s", sy.fqn);
+	 
 		
-		
-		switch(sy.stype) {
-			case Lsp.SymbolKind.Class:
-				_this.tree.loadClass(sy);
-				_this.combo.loadClass(sy);
-				_this.content.loadSymbol(sy);
-				this.history.add(sy);
-				break;
-			case Lsp.SymbolKind.Method:
-				var cls = sl.singleById(sy.parent_id);
-				_this.tree.loadClass(cls);
-				_this.tree.select(sy);
-				_this.combo.loadClass(cls);
-				_this.content.loadSymbol(cls);
-				this.history.add(sy);
-				break;
-			default:	
-				break;
-		}
-		
+		this.showSymbol(sy);
+		 
 	}
 	public class Xcls_Paned1 : Object
 	{
