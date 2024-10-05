@@ -68,8 +68,8 @@ public class CodeInfo : Object
 			default:	
 				break;
 		}
-		_this.back_button.update();
-		_this.next_button.update();
+		_this.back_button.el.sensitive = this.history_pos > 0;
+		_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);
 		
 	}
 	public void show (Gtk.Widget onbtn, string stype_and_name) {

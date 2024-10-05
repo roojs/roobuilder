@@ -509,8 +509,8 @@
     "\t\tdefault:\t",
     "\t\t\tbreak;",
     "\t}",
-    "\t_this.back_button.update();",
-    "\t_this.next_button.update();",
+    "\t_this.back_button.el.sensitive = this.history_pos > 0;",
+    "\t_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);",
     "\t",
     "}"
    ]
