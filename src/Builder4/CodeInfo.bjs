@@ -369,6 +369,7 @@
              "xtype" : "NoSelection"
             }
            ],
+           "string name" : "codeinfo-tree",
            "xtype" : "ColumnView",
            "| void loadClass" : [
             "(Palete.Symbol sy) {",

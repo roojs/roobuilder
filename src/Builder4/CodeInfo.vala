@@ -453,6 +453,7 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.name = "codeinfo-tree";
 			var child_2 = new Xcls_ColumnViewColumn14( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
