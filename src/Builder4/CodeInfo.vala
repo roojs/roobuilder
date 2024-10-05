@@ -252,7 +252,9 @@ public class CodeInfo : Object
 			this.el.tooltip_text = "next class";
 
 			//listeners
-			this.el.clicked.connect( );
+			this.el.clicked.connect( () => {
+			
+			});
 		}
 
 		// user defined functions
