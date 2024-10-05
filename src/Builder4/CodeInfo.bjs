@@ -470,6 +470,9 @@
     "\tthis.showSymbol(sy);",
     "\tthis.history_pos++; ",
     "\tthis.history.set(this.history_pos, sy);",
+    "\tthis.backButtonUpdate();",
+    "\tthis.nextButtonUpdate();",
+    "\t",
     "}"
    ],
    "| void showSymbol" : [
