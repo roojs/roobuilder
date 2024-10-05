@@ -222,7 +222,7 @@ public class CodeInfo : Object
 			//listeners
 			this.el.clicked.connect( () => {
 				_this.history_pos--;
-				_this.showSymbol(this.history.get(_this.history_pos));
+				_this.showSymbol(_this.history.get(_this.history_pos));
 				
 			});
 		}
