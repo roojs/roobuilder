@@ -43,7 +43,7 @@ public class CodeInfo : Object
 
 	// user defined functions
 	public void showSymbol (Symbol sy) {
-	 
+	 	var sl = _this.win.windowstate.file.getSymbolLoader();
 		
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:

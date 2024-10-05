@@ -490,7 +490,7 @@
    ],
    "| void showSymbol" : [
     "(Symbol sy) {",
-    " ",
+    " \tvar sl = _this.win.windowstate.file.getSymbolLoader();",
     "\t",
     "\tswitch(sy.stype) {",
     "\t\tcase Lsp.SymbolKind.Class:",
