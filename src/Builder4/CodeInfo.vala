@@ -250,6 +250,9 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.icon_name = "go-next-symbolic";
 			this.el.tooltip_text = "next class";
+
+			//listeners
+			this.el.clicked.connect( );
 		}
 
 		// user defined functions

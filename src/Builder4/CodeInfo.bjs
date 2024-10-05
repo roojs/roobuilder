@@ -47,6 +47,9 @@
           {
            "$ xns" : "Gtk",
            "id" : "back_button",
+           "listeners" : {
+            "clicked" : ""
+           },
            "string icon_name" : "go-next-symbolic",
            "string tooltip_text" : "next class",
            "xtype" : "Button"
