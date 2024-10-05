@@ -472,7 +472,7 @@
    ],
    "| void showSymbol" : [
     "(Symbol sy) {",
-    "",
+    "\t// doesnt deal with history... - caller should do that.",
     "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
     "\t",
     "\tswitch(sy.stype) {",
