@@ -30,12 +30,14 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "id" : "next_button",
            "string icon_name" : "go-previous-symbolic",
            "string tooltip_text" : "Back (previous class)",
            "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
+           "id" : "back_button",
            "string icon_name" : "go-next-symbolic",
            "string tooltip_text" : "next class",
            "xtype" : "Button"
@@ -470,8 +472,8 @@
     "\tthis.showSymbol(sy);",
     "\tthis.history_pos++; ",
     "\tthis.history.set(this.history_pos, sy);",
-    "\tthis.back_button.update();",
-    "\tthis.next_button.update();",
+    "\t_this.back_button.update();",
+    "\t_this.next_button.update();",
     "\t",
     "}"
    ],

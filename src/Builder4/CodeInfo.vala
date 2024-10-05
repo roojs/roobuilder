@@ -12,6 +12,8 @@ public class CodeInfo : Object
 		}
 		return _CodeInfo;
 	}
+	public Xcls_next_button next_button;
+	public Xcls_back_button back_button;
 	public Xcls_tree tree;
 	public Xcls_navigationselmodel navigationselmodel;
 	public Xcls_navigationsort navigationsort;
@@ -92,8 +94,8 @@ public class CodeInfo : Object
 		this.showSymbol(sy);
 		this.history_pos++; 
 		this.history.set(this.history_pos, sy);
-		this.back_button.update();
-		this.next_button.update();
+		_this.back_button.update();
+		_this.next_button.update();
 		
 	}
 	public class Xcls_Paned1 : Object
@@ -173,12 +175,10 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button4( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
-			var child_2 = new Xcls_Button5( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
+			new Xcls_next_button( _this );
+			this.el.append( _this.next_button.el );
+			new Xcls_back_button( _this );
+			this.el.append( _this.back_button.el );
 			var child_3 = new Xcls_Label6( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
@@ -195,7 +195,7 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
-	public class Xcls_Button4 : Object
+	public class Xcls_next_button : Object
 	{
 		public Gtk.Button el;
 		private CodeInfo  _this;
@@ -204,9 +204,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button4(CodeInfo _owner )
+		public Xcls_next_button(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.next_button = this;
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
@@ -219,7 +220,7 @@ public class CodeInfo : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button5 : Object
+	public class Xcls_back_button : Object
 	{
 		public Gtk.Button el;
 		private CodeInfo  _this;
@@ -228,9 +229,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button5(CodeInfo _owner )
+		public Xcls_back_button(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.back_button = this;
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
