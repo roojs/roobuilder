@@ -489,8 +489,27 @@
     "}"
    ],
    "| void showSymbol" : [
-    "() {",
-    "",
+    "(Symbol sy) {",
+    " ",
+    "\t",
+    "\tswitch(sy.stype) {",
+    "\t\tcase Lsp.SymbolKind.Class:",
+    "\t\t\t_this.tree.loadClass(sy);",
+    "\t\t\t_this.combo.loadClass(sy);",
+    "\t\t\t_this.content.loadSymbol(sy);",
+    "\t\t\tthis.history.add(sy);",
+    "\t\t\tbreak;",
+    "\t\tcase Lsp.SymbolKind.Method:",
+    "\t\t\tvar cls = sl.singleById(sy.parent_id);",
+    "\t\t\t_this.tree.loadClass(cls);",
+    "\t\t\t_this.tree.select(sy);",
+    "\t\t\t_this.combo.loadClass(cls);",
+    "\t\t\t_this.content.loadSymbol(cls);",
+    "\t\t\tthis.history.add(sy);",
+    "\t\t\tbreak;",
+    "\t\tdefault:\t",
+    "\t\t\tbreak;",
+    "\t}",
     "}"
    ]
   }
