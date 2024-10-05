@@ -42,6 +42,9 @@ public class CodeInfo : Object
 	}
 
 	// user defined functions
+	public void showSymbol () {
+	
+	}
 	public void show (Gtk.Widget onbtn, string stype_and_name) {
 	
 		
@@ -63,11 +66,14 @@ public class CodeInfo : Object
 			return;
 		}
 		GLib.debug("Show symbol %s", sy.fqn);
+		
+		
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:
 				_this.tree.loadClass(sy);
 				_this.combo.loadClass(sy);
 				_this.content.loadSymbol(sy);
+				this.history.add(sy);
 				break;
 			case Lsp.SymbolKind.Method:
 				var cls = sl.singleById(sy.parent_id);
@@ -75,6 +81,7 @@ public class CodeInfo : Object
 				_this.tree.select(sy);
 				_this.combo.loadClass(cls);
 				_this.content.loadSymbol(cls);
+				this.history.add(sy);
 				break;
 			default:	
 				break;
