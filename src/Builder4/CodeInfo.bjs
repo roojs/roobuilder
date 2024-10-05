@@ -50,7 +50,9 @@
            "listeners" : {
             "clicked" : [
              "() => {",
-             "",
+             "\t_this.history_pos++;",
+             "\t_this.showSymbol(this.history.get(_this.history_pos));",
+             "\t",
              "}"
             ]
            },
