@@ -215,6 +215,9 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.icon_name = "go-previous-symbolic";
 			this.el.tooltip_text = "Back (previous class)";
+
+			//listeners
+			this.el.clicked.connect( );
 		}
 
 		// user defined functions

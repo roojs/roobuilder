@@ -31,6 +31,9 @@
           {
            "$ xns" : "Gtk",
            "id" : "next_button",
+           "listeners" : {
+            "clicked" : ""
+           },
            "string icon_name" : "go-previous-symbolic",
            "string tooltip_text" : "Back (previous class)",
            "xtype" : "Button"
