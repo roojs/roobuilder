@@ -94,6 +94,7 @@ namespace Palete {
 			return "??";
 		}
 		
+		// formating for the codeinfo tree.
 		
 		public static string codeinfo(Symbol s)
 		{
