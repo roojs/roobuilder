@@ -880,7 +880,7 @@ public class CodeInfo : Object
 			_this = _owner;
 			var child_1 = new Xcls_ListStore24( _this );
 			child_1.ref();
-			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
+			this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
  
 	return ((Palete.Symbol)item).children;
 }

@@ -298,7 +298,7 @@
                    ],
                    "$ xns" : "Gtk",
                    "* prop" : "model",
-                   "bool autoexpand" : false,
+                   "bool autoexpand" : true,
                    "bool passthrough" : false,
                    "items" : [
                     {
