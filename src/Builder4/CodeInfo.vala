@@ -662,8 +662,10 @@ public class CodeInfo : Object
 			this.el = new Gtk.CustomFilter( (item) => { 
 	var tr = ((Gtk.TreeListRow)item).get_item();
    GLib.debug("filter%s =>  %s", item.get_type().name(), 
-   tr.get_type().name()
+ 		  tr.get_type().name()
    );
+   
+   
 	var j =  (Palete.Symbol) tr;
 	
 	switch( j.stype) {
