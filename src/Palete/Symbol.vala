@@ -433,7 +433,13 @@ namespace Palete {
 	}
 	// this assumes you are testing two trees..
 	
-		  
+	string codeinfo_name {
+		get 
+		{
+			return SymbolFormat.codeinfo(this);
+		}
+		private set;
+	}
 		 
   
 	
