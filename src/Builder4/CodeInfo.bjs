@@ -103,7 +103,7 @@
              " if (_this.current_filter == null) {",
              " \treturn;",
              "\t}",
-             "\t_this.current_filter.el.changed(Gtk.FilterChanged.DIFFERENT);",
+             "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
              "}"
             ]
            },
