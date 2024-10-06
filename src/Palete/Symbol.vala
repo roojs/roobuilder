@@ -428,18 +428,16 @@ namespace Palete {
 			return ret;
 		}
  
-		
-		
+		string codeinfo_name {
+			public get 
+			{
+				return SymbolFormat.codeinfo(this);
+			}
+			private set;
+		}	
+			
 	}
-	// this assumes you are testing two trees..
-	
-	string codeinfo_name {
-		public get 
-		{
-			return SymbolFormat.codeinfo(this);
-		}
-		private set;
-	}
+	 
 		 
   
 	
