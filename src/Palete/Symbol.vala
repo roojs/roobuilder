@@ -428,7 +428,7 @@ namespace Palete {
 			return ret;
 		}
  
-		string codeinfo_name {
+		public string codeinfo_name {
 			public owned get 
 			{
 				return SymbolFormat.codeinfo(this);
