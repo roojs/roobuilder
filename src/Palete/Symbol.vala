@@ -428,12 +428,13 @@ namespace Palete {
 			return ret;
 		}
  
-		public string codeinfo_name {
-			public owned get 
-			{
-				return SymbolFormat.codeinfo(this);
-			}
-			private set {}
+	  	string codeinfo_name {
+				public owned get 
+				{
+					return SymbolFormat.codeinfo(this);
+				}
+				private set {}
+				 default = "";
 		}	
 			
 	}
