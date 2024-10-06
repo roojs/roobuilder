@@ -411,7 +411,7 @@ public class CodeInfo : Object
 			 if (_this.current_filter == null) {
 			 	return;
 				}
-			_this.current_filter.el.changed(Gtk.FilterChanged.DIFFERENT);
+				_this.current_filter.el.changed(Gtk.FilterChanged.DIFFERENT);
 			}
 			`);
 		}
