@@ -541,6 +541,7 @@
     "\t\t\tbreak;",
     "\t}",
     "\t_this.back_button.el.sensitive = this.history_pos > 0;",
+    "\tGLib.debug(\"hp=%d, hps = %d\", this.history_pos, this.history.size);",
     "\t_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);",
     "\t",
     "}"

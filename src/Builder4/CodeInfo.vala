@@ -71,6 +71,7 @@ public class CodeInfo : Object
 				break;
 		}
 		_this.back_button.el.sensitive = this.history_pos > 0;
+		GLib.debug("hp=%d, hps = %d", this.history_pos, this.history.size);
 		_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);
 		
 	}
