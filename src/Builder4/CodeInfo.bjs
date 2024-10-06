@@ -96,6 +96,7 @@
            "* prop" : "child",
            "bool activates_default" : true,
            "bool hexpand" : true,
+           "id" : "tree_search",
            "listeners" : {
             "search_changed" : [
              "( ) => {",

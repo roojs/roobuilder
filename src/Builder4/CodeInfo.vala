@@ -14,6 +14,7 @@ public class CodeInfo : Object
 	}
 	public Xcls_next_button next_button;
 	public Xcls_back_button back_button;
+	public Xcls_tree_search tree_search;
 	public Xcls_tree tree;
 	public Xcls_navigationselmodel navigationselmodel;
 	public Xcls_current_filter current_filter;
@@ -378,14 +379,13 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.search_mode_enabled = true;
-			var child_1 = new Xcls_SearchEntry11( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
+			new Xcls_tree_search( _this );
+			this.el.child = _this.tree_search.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SearchEntry11 : Object
+	public class Xcls_tree_search : Object
 	{
 		public Gtk.SearchEntry el;
 		private CodeInfo  _this;
@@ -394,9 +394,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SearchEntry11(CodeInfo _owner )
+		public Xcls_tree_search(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.tree_search = this;
 			this.el = new Gtk.SearchEntry();
 
 			// my vars (dec)
