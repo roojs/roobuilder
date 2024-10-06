@@ -51,7 +51,7 @@ public class CodeInfo : Object
 	public void showSymbol (Palete.Symbol sy) {
 		// doesnt deal with history... - caller should do that.
 		var sl = _this.win.windowstate.file.getSymbolLoader();
-		
+		GLib.debug("showing symbol %s", sy.fqn);
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:
 				_this.tree.loadClass(sy);
