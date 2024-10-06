@@ -505,7 +505,7 @@
     "\t}",
     " ",
     "\t",
-    "\t",
+    "\tGLib.debug(\"setting history and showing symbol\");",
     "\tthis.history_pos++; ",
     "\tthis.history.set(this.history_pos, sy);",
     "\tthis.showSymbol(sy);",

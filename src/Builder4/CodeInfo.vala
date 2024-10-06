@@ -96,7 +96,7 @@ public class CodeInfo : Object
 		}
 	 
 		
-		
+		GLib.debug("setting history and showing symbol");
 		this.history_pos++; 
 		this.history.set(this.history_pos, sy);
 		this.showSymbol(sy);
