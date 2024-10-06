@@ -116,6 +116,8 @@
          "$ xns" : "Gtk",
          "bool hexpand" : true,
          "bool vexpand" : true,
+         "int height_request" : 500,
+         "int width_request" : 200,
          "items" : [
           {
            "$ xns" : "Gtk",

@@ -441,6 +441,8 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.width_request = 200;
+			this.el.height_request = 500;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			new Xcls_tree( _this );
