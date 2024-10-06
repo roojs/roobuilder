@@ -410,7 +410,8 @@ public class CodeInfo : Object
 			 	return;
 				}
 			_this.current_filter.el.set_search(this.el.get_text());
-			});
+			}
+			`);
 		}
 
 		// user defined functions

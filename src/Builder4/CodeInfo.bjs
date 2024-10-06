@@ -104,7 +104,7 @@
              "\t}",
              "_this.current_filter.el.set_search(this.el.get_text());",
              "}",
-             ""
+             "`"
             ]
            },
            "xtype" : "SearchEntry"
