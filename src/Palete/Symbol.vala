@@ -429,7 +429,7 @@ namespace Palete {
 		}
  
 		string codeinfo_name {
-			owned public get 
+			public owned get 
 			{
 				return SymbolFormat.codeinfo(this);
 			}
