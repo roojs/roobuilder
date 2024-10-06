@@ -666,8 +666,11 @@ public class CodeInfo : Object
  		  tr.get_type().name()
    );
    
-   
 	var j =  (Palete.Symbol) tr;
+	var txt = _this.tree_search.el.get_text();
+   if (txt != "" && !j.name.conatins(txt)) {
+   		return false;
+	}
 	
 	switch( j.stype) {
 	
