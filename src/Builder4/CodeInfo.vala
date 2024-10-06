@@ -98,7 +98,11 @@ public class CodeInfo : Object
 		
 		GLib.debug("setting history and showing symbol");
 		this.history_pos++; 
-		this.history.set(this.history_pos, sy);
+		if (this.history_pos == this.history.size) {
+			this.history.set(this.history_pos, sy);
+		} else {
+			this.history.set(this.history_pos, sy);
+		}
 		this.showSymbol(sy);
 	
 		
