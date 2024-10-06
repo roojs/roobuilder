@@ -591,7 +591,7 @@ public class CodeInfo : Object
 			 	
 			 	hbox.css_classes = { sym.symbol_icon };
 			 	
-			 	sym.bind_property("name",
+			 	sym.bind_property("codeinfo_name",
 			                    lbl, "label",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	// should be better?- --line no?

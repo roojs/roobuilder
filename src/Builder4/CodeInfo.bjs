@@ -166,7 +166,7 @@
                  " \t",
                  " \thbox.css_classes = { sym.symbol_icon };",
                  " \t",
-                 " \tsym.bind_property(\"name\",",
+                 " \tsym.bind_property(\"codeinfo_name\",",
                  "                    lbl, \"label\",",
                  "                   GLib.BindingFlags.SYNC_CREATE);",
                  " \t// should be better?- --line no?",
