@@ -96,6 +96,17 @@
            "* prop" : "child",
            "bool activates_default" : true,
            "bool hexpand" : true,
+           "listeners" : {
+            "search_changed" : [
+             "( ) => {",
+             " if (_this.current_filter == null) {",
+             " \treturn;",
+             "\t}",
+             "_this.current_filter.el.set_search(this.el.get_text());",
+             "}",
+             ""
+            ]
+           },
            "xtype" : "SearchEntry"
           }
          ],

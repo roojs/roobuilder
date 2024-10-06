@@ -403,6 +403,14 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.activates_default = true;
+
+			//listeners
+			this.el.search_changed.connect( ( ) => {
+			 if (_this.current_filter == null) {
+			 	return;
+				}
+			_this.current_filter.el.set_search(this.el.get_text());
+			});
 		}
 
 		// user defined functions
