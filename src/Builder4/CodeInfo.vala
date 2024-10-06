@@ -16,6 +16,7 @@ public class CodeInfo : Object
 	public Xcls_back_button back_button;
 	public Xcls_tree tree;
 	public Xcls_navigationselmodel navigationselmodel;
+	public Xcls_current_filter current_filter;
 	public Xcls_navigationsort navigationsort;
 	public Xcls_combo combo;
 	public Xcls_dir_model dir_model;
@@ -635,9 +636,8 @@ public class CodeInfo : Object
 		{
 			_this = _owner;
 			new Xcls_navigationsort( _this );
-			var child_2 = new Xcls_CustomFilter18( _this );
-			child_2.ref();
-			this.el = new Gtk.FilterListModel( _this.navigationsort.el, child_2.el );
+			new Xcls_current_filter( _this );
+			this.el = new Gtk.FilterListModel( _this.navigationsort.el, _this.current_filter.el );
 
 			// my vars (dec)
 
@@ -646,7 +646,7 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
-	public class Xcls_CustomFilter18 : Object
+	public class Xcls_current_filter : Object
 	{
 		public Gtk.CustomFilter el;
 		private CodeInfo  _this;
@@ -655,9 +655,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_CustomFilter18(CodeInfo _owner )
+		public Xcls_current_filter(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.current_filter = this;
 			this.el = new Gtk.CustomFilter( (item) => { 
 	var tr = ((Gtk.TreeListRow)item).get_item();
    GLib.debug("filter%s =>  %s", item.get_type().name(), 

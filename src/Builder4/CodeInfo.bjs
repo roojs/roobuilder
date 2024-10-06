@@ -252,6 +252,7 @@
                  ],
                  "$ xns" : "Gtk",
                  "* prop" : "filter",
+                 "id" : "current_filter",
                  "xtype" : "CustomFilter"
                 },
                 {
