@@ -74,8 +74,7 @@
             "activate_link" : [
              "(uri) => {",
              "",
-             "",
-             "/*",
+             " ",
              "\tGLib.debug(\"got uri %s\", uri);",
              "\t",
              "\t_this.window.windowstate.popover_codeinfo.show(this.el, uri);",
@@ -88,7 +87,7 @@
              "\t});",
              "\t*/",
              "\treturn true;",
-             "\t*/",
+             "\t ",
              "\t",
              "\treturn true;",
              "}",
