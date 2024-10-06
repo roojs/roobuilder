@@ -508,7 +508,7 @@
     "\tGLib.debug(\"setting history and showing symbol\");",
     "\tthis.history_pos++; ",
     "\tif (this.history_pos == this.history.size) {",
-    "\t\tthis.history.set(this.history_pos, sy);",
+    "\t\tthis.history.add(sy);",
     "\t} else {",
     "\t\tthis.history.set(this.history_pos, sy);",
     "\t}",

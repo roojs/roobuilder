@@ -99,7 +99,7 @@ public class CodeInfo : Object
 		GLib.debug("setting history and showing symbol");
 		this.history_pos++; 
 		if (this.history_pos == this.history.size) {
-			this.history.set(this.history_pos, sy);
+			this.history.add(sy);
 		} else {
 			this.history.set(this.history_pos, sy);
 		}
