@@ -30,7 +30,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "id" : "next_button",
+           "id" : "back_button",
            "listeners" : {
             "clicked" : [
              "() => {",
@@ -46,7 +46,7 @@
           },
           {
            "$ xns" : "Gtk",
-           "id" : "back_button",
+           "id" : "next_button",
            "listeners" : {
             "clicked" : [
              "() => {",
