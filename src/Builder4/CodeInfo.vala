@@ -667,7 +667,7 @@ public class CodeInfo : Object
    
 	var j =  (Palete.Symbol) tr;
 	var txt = _this.tree_search.el.get_text();
-   if (txt != "" && !j.name.conatins(txt)) {
+   if (txt != "" && !j.name.contains(txt)) {
    		return false;
 	}
 	
