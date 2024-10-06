@@ -644,8 +644,7 @@ public class Editor : Object
 				*/
 				return true;
 				 
-				
-				return true;
+				 
 			});
 		}
 

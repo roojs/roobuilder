@@ -88,8 +88,7 @@
              "\t*/",
              "\treturn true;",
              "\t ",
-             "\t",
-             "\treturn true;",
+             "\t ",
              "}",
              ""
             ],
