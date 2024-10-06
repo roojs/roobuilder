@@ -433,7 +433,7 @@ namespace Palete {
 			{
 				return SymbolFormat.codeinfo(this);
 			}
-			private set {};
+			private set {}
 		}	
 			
 	}
