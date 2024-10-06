@@ -485,6 +485,7 @@ public class CodeInfo : Object
 			var old = (GLib.ListStore)tlm.get_model();
 			old.remove_all();
 			old.append(sy);
+			tlm.get_row(0).set_expanded(true);
 		}
 		public void select (Palete.Symbol sym) {
 		

@@ -399,6 +399,7 @@
             "\tvar old = (GLib.ListStore)tlm.get_model();",
             "\told.remove_all();",
             "\told.append(sy);",
+            "\ttlm.get_row(0).set_expanded(true);",
             "}"
            ],
            "| void select" : [
