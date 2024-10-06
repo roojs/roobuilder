@@ -412,8 +412,7 @@ public class CodeInfo : Object
 			 	return;
 				}
 				_this.current_filter.el.changed(Gtk.FilterChanged.DIFFERENT);
-			}
-			`);
+			});
 		}
 
 		// user defined functions

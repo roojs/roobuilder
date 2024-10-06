@@ -104,8 +104,7 @@
              " \treturn;",
              "\t}",
              "\t_this.current_filter.el.changed(Gtk.FilterChanged.DIFFERENT);",
-             "}",
-             "`"
+             "}"
             ]
            },
            "xtype" : "SearchEntry"
