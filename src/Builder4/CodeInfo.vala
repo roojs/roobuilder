@@ -410,7 +410,7 @@ public class CodeInfo : Object
 			 if (_this.current_filter == null) {
 			 	return;
 				}
-			_this.current_filter.el.set_search(this.el.get_text());
+			_this.current_filter.el.changed(Gtk.FilterChanged.DIFFERENT0;
 			}
 			`);
 		}
