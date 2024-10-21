@@ -2401,6 +2401,9 @@ public class Xcls_MainWindow : Object
 					return;
 				}
 				var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
+				if (tr == null) {
+					return;
+				}
 				GLib.debug("SELECTED = %s", tr.item.get_type().name());
 				var f = (JsRender.JsRender) tr.item;
 				GLib.debug("Click %s", f.name);

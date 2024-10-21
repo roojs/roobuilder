@@ -22,6 +22,7 @@ namespace Palete {
 				case Lsp.SymbolKind.Method: // start/end pos is not getting set very well..
 				
 		  	
+					var rtype = s.rtype == "void" ? "void" : "<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a>";
 					return "Method: " + 
 						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + ":" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
 						"<a href=\"" + ((int)Lsp.SymbolKind.Class).to_string() + ":" + GLib.Markup.escape_text(s.property_of()) + "\">" + s.property_of() + "</a> " + GLib.Markup.escape_text(s.name);
@@ -92,6 +93,30 @@ namespace Palete {
 				
 			}
 			return "??";
+		}
+		
+		// formating for the codeinfo tree.
+		
+		public static string codeinfo(Symbol s)
+		{
+			
+ 			switch (s.stype) {
+ 				//File = 1,
+				 	
+				case Lsp.SymbolKind.Method: // start/end pos is not getting set very well..
+				case Lsp.SymbolKind.Property:	
+				case Lsp.SymbolKind.Field:
+					return 
+						GLib.Markup.escape_text(s.name) + 
+						" : " + 
+						(s.rtype == "void" ? "void" :   GLib.Markup.escape_text(s.rtype)) +
+						" [ " + 
+						GLib.Markup.escape_text(s.property_of()) + "["; 
+				 
+				default :
+					return GLib.Markup.escape_text(s.name); 
+			}
+ 
 		}
 	}
 }

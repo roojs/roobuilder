@@ -4,6 +4,8 @@
  "items" : [
   {
    "# Xcls_MainWindow? win" : "null",
+   "# int history_pos" : "-1",
+   "$ Gee.ArrayList<Palete.Symbol>? history" : "new Gee.ArrayList<Palete.Symbol>()",
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",
    "bool autohide" : true,
@@ -28,12 +30,32 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "id" : "back_button",
+           "listeners" : {
+            "clicked" : [
+             "() => {",
+             "\t_this.history_pos--;",
+             "\t_this.showSymbol(_this.history.get(_this.history_pos));",
+             "\t",
+             "}"
+            ]
+           },
            "string icon_name" : "go-previous-symbolic",
            "string tooltip_text" : "Back (previous class)",
            "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
+           "id" : "next_button",
+           "listeners" : {
+            "clicked" : [
+             "() => {",
+             "\t_this.history_pos++;",
+             "\t_this.showSymbol(_this.history.get(_this.history_pos));",
+             "\t",
+             "}"
+            ]
+           },
            "string icon_name" : "go-next-symbolic",
            "string tooltip_text" : "next class",
            "xtype" : "Button"
@@ -74,6 +96,17 @@
            "* prop" : "child",
            "bool activates_default" : true,
            "bool hexpand" : true,
+           "id" : "tree_search",
+           "listeners" : {
+            "search_changed" : [
+             "( ) => {",
+             " if (_this.current_filter == null) {",
+             " \treturn;",
+             "\t}",
+             "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
+             "}"
+            ]
+           },
            "xtype" : "SearchEntry"
           }
          ],
@@ -83,6 +116,8 @@
          "$ xns" : "Gtk",
          "bool hexpand" : true,
          "bool vexpand" : true,
+         "int height_request" : 500,
+         "int width_request" : 200,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -131,7 +166,7 @@
                  " \t",
                  " \thbox.css_classes = { sym.symbol_icon };",
                  " \t",
-                 " \tsym.bind_property(\"name\",",
+                 " \tsym.bind_property(\"codeinfo_name\",",
                  "                    lbl, \"label\",",
                  "                   GLib.BindingFlags.SYNC_CREATE);",
                  " \t// should be better?- --line no?",
@@ -190,9 +225,14 @@
                   "(item) => { ",
                   "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
                   "   GLib.debug(\"filter%s =>  %s\", item.get_type().name(), ",
-                  "   tr.get_type().name()",
+                  " \t\t  tr.get_type().name()",
                   "   );",
+                  "   ",
                   "\tvar j =  (Palete.Symbol) tr;",
+                  "\tvar txt = _this.tree_search.el.get_text();",
+                  "   if (txt != \"\" && !j.name.contains(txt)) {",
+                  "   \t\treturn false;",
+                  "\t}",
                   "\t",
                   "\tswitch( j.stype) {",
                   "\t",
@@ -219,6 +259,7 @@
                  ],
                  "$ xns" : "Gtk",
                  "* prop" : "filter",
+                 "id" : "current_filter",
                  "xtype" : "CustomFilter"
                 },
                 {
@@ -257,7 +298,7 @@
                    ],
                    "$ xns" : "Gtk",
                    "* prop" : "model",
-                   "bool autoexpand" : false,
+                   "bool autoexpand" : true,
                    "bool passthrough" : false,
                    "items" : [
                     {
@@ -347,6 +388,7 @@
              "xtype" : "NoSelection"
             }
            ],
+           "string name" : "codeinfo-tree",
            "xtype" : "ColumnView",
            "| void loadClass" : [
             "(Palete.Symbol sy) {",
@@ -357,6 +399,7 @@
             "\tvar old = (GLib.ListStore)tlm.get_model();",
             "\told.remove_all();",
             "\told.append(sy);",
+            "\t//tlm.get_row(0).set_expanded(true);",
             "}"
            ],
            "| void select" : [
@@ -463,12 +506,31 @@
     "\t\tthis.el.hide();",
     "\t\treturn;",
     "\t}",
-    "\tGLib.debug(\"Show symbol %s\", sy.fqn);",
+    " ",
+    "\t",
+    "\tGLib.debug(\"setting history and showing symbol\");",
+    "\tthis.history_pos++; ",
+    "\tif (this.history_pos == this.history.size) {",
+    "\t\tthis.history.add(sy);",
+    "\t} else {",
+    "\t\tthis.history.set(this.history_pos, sy);",
+    "\t}",
+    "\tthis.showSymbol(sy);",
+    "",
+    "\t",
+    "}"
+   ],
+   "| void showSymbol" : [
+    "(Palete.Symbol sy) {",
+    "\t// doesnt deal with history... - caller should do that.",
+    "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
+    "\tGLib.debug(\"showing symbol %s\", sy.fqn);",
     "\tswitch(sy.stype) {",
     "\t\tcase Lsp.SymbolKind.Class:",
     "\t\t\t_this.tree.loadClass(sy);",
     "\t\t\t_this.combo.loadClass(sy);",
     "\t\t\t_this.content.loadSymbol(sy);",
+    "",
     "\t\t\tbreak;",
     "\t\tcase Lsp.SymbolKind.Method:",
     "\t\t\tvar cls = sl.singleById(sy.parent_id);",
@@ -476,10 +538,14 @@
     "\t\t\t_this.tree.select(sy);",
     "\t\t\t_this.combo.loadClass(cls);",
     "\t\t\t_this.content.loadSymbol(cls);",
+    "\t\t\tthis.history.add(sy);",
     "\t\t\tbreak;",
     "\t\tdefault:\t",
     "\t\t\tbreak;",
     "\t}",
+    "\t_this.back_button.el.sensitive = this.history_pos > 0;",
+    "\tGLib.debug(\"hp=%d, hps = %d\", this.history_pos, this.history.size);",
+    "\t_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);",
     "\t",
     "}"
    ]

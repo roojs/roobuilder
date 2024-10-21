@@ -1,3 +1,4 @@
+#codeinfo-tree ,
 #left-tree-view { 
     font-size: 12px;
 }	
@@ -40,7 +41,8 @@
      border-bottom-color: #EEA9FF;
 }
 
-
+#codeinfo-tree indent,
+#codeinfo-tree expander,
 #left-tree-view indent,
 #left-tree-view expander
 {
@@ -48,7 +50,7 @@
      min-width: 6px;
 }
 
-
+#codeinfo-tree cell,
 #left-tree-view cell {
 	padding-top: 3px;
 	padding-bottom: 3px;

@@ -630,8 +630,7 @@ public class Editor : Object
 			});
 			this.el.activate_link.connect( (uri) => {
 			
-			
-			/*
+			 
 				GLib.debug("got uri %s", uri);
 				
 				_this.window.windowstate.popover_codeinfo.show(this.el, uri);

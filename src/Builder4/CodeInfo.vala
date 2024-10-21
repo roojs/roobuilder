@@ -12,8 +12,12 @@ public class CodeInfo : Object
 		}
 		return _CodeInfo;
 	}
+	public Xcls_back_button back_button;
+	public Xcls_next_button next_button;
+	public Xcls_tree_search tree_search;
 	public Xcls_tree tree;
 	public Xcls_navigationselmodel navigationselmodel;
+	public Xcls_current_filter current_filter;
 	public Xcls_navigationsort navigationsort;
 	public Xcls_combo combo;
 	public Xcls_dir_model dir_model;
@@ -21,6 +25,8 @@ public class CodeInfo : Object
 
 	// my vars (def)
 	public Xcls_MainWindow? win;
+	public Gee.ArrayList<Palete.Symbol>? history;
+	public int history_pos;
 
 	// ctor
 	public CodeInfo()
@@ -30,6 +36,8 @@ public class CodeInfo : Object
 
 		// my vars (dec)
 		this.win = null;
+		this.history = new Gee.ArrayList<Palete.Symbol>();
+		this.history_pos = -1;
 
 		// set gobject values
 		this.el.autohide = true;
@@ -40,6 +48,33 @@ public class CodeInfo : Object
 	}
 
 	// user defined functions
+	public void showSymbol (Palete.Symbol sy) {
+		// doesnt deal with history... - caller should do that.
+		var sl = _this.win.windowstate.file.getSymbolLoader();
+		GLib.debug("showing symbol %s", sy.fqn);
+		switch(sy.stype) {
+			case Lsp.SymbolKind.Class:
+				_this.tree.loadClass(sy);
+				_this.combo.loadClass(sy);
+				_this.content.loadSymbol(sy);
+	
+				break;
+			case Lsp.SymbolKind.Method:
+				var cls = sl.singleById(sy.parent_id);
+				_this.tree.loadClass(cls);
+				_this.tree.select(sy);
+				_this.combo.loadClass(cls);
+				_this.content.loadSymbol(cls);
+				this.history.add(sy);
+				break;
+			default:	
+				break;
+		}
+		_this.back_button.el.sensitive = this.history_pos > 0;
+		GLib.debug("hp=%d, hps = %d", this.history_pos, this.history.size);
+		_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);
+		
+	}
 	public void show (Gtk.Widget onbtn, string stype_and_name) {
 	
 		
@@ -60,23 +95,17 @@ public class CodeInfo : Object
 			this.el.hide();
 			return;
 		}
-		GLib.debug("Show symbol %s", sy.fqn);
-		switch(sy.stype) {
-			case Lsp.SymbolKind.Class:
-				_this.tree.loadClass(sy);
-				_this.combo.loadClass(sy);
-				_this.content.loadSymbol(sy);
-				break;
-			case Lsp.SymbolKind.Method:
-				var cls = sl.singleById(sy.parent_id);
-				_this.tree.loadClass(cls);
-				_this.tree.select(sy);
-				_this.combo.loadClass(cls);
-				_this.content.loadSymbol(cls);
-				break;
-			default:	
-				break;
+	 
+		
+		GLib.debug("setting history and showing symbol");
+		this.history_pos++; 
+		if (this.history_pos == this.history.size) {
+			this.history.add(sy);
+		} else {
+			this.history.set(this.history_pos, sy);
 		}
+		this.showSymbol(sy);
+	
 		
 	}
 	public class Xcls_Paned1 : Object
@@ -156,12 +185,10 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button4( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
-			var child_2 = new Xcls_Button5( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
+			new Xcls_back_button( _this );
+			this.el.append( _this.back_button.el );
+			new Xcls_next_button( _this );
+			this.el.append( _this.next_button.el );
 			var child_3 = new Xcls_Label6( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
@@ -178,7 +205,7 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
-	public class Xcls_Button4 : Object
+	public class Xcls_back_button : Object
 	{
 		public Gtk.Button el;
 		private CodeInfo  _this;
@@ -187,9 +214,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button4(CodeInfo _owner )
+		public Xcls_back_button(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.back_button = this;
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
@@ -197,12 +225,19 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.icon_name = "go-previous-symbolic";
 			this.el.tooltip_text = "Back (previous class)";
+
+			//listeners
+			this.el.clicked.connect( () => {
+				_this.history_pos--;
+				_this.showSymbol(_this.history.get(_this.history_pos));
+				
+			});
 		}
 
 		// user defined functions
 	}
 
-	public class Xcls_Button5 : Object
+	public class Xcls_next_button : Object
 	{
 		public Gtk.Button el;
 		private CodeInfo  _this;
@@ -211,9 +246,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button5(CodeInfo _owner )
+		public Xcls_next_button(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.next_button = this;
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
@@ -221,6 +257,13 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.icon_name = "go-next-symbolic";
 			this.el.tooltip_text = "next class";
+
+			//listeners
+			this.el.clicked.connect( () => {
+				_this.history_pos++;
+				_this.showSymbol(_this.history.get(_this.history_pos));
+				
+			});
 		}
 
 		// user defined functions
@@ -341,14 +384,13 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.search_mode_enabled = true;
-			var child_1 = new Xcls_SearchEntry11( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
+			new Xcls_tree_search( _this );
+			this.el.child = _this.tree_search.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SearchEntry11 : Object
+	public class Xcls_tree_search : Object
 	{
 		public Gtk.SearchEntry el;
 		private CodeInfo  _this;
@@ -357,9 +399,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SearchEntry11(CodeInfo _owner )
+		public Xcls_tree_search(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.tree_search = this;
 			this.el = new Gtk.SearchEntry();
 
 			// my vars (dec)
@@ -367,6 +410,14 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.activates_default = true;
+
+			//listeners
+			this.el.search_changed.connect( ( ) => {
+			 if (_this.current_filter == null) {
+			 	return;
+				}
+				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
+			});
 		}
 
 		// user defined functions
@@ -390,6 +441,8 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.width_request = 200;
+			this.el.height_request = 500;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			new Xcls_tree( _this );
@@ -417,6 +470,7 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.name = "codeinfo-tree";
 			var child_2 = new Xcls_ColumnViewColumn14( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
@@ -431,6 +485,7 @@ public class CodeInfo : Object
 			var old = (GLib.ListStore)tlm.get_model();
 			old.remove_all();
 			old.append(sy);
+			//tlm.get_row(0).set_expanded(true);
 		}
 		public void select (Palete.Symbol sym) {
 		
@@ -536,7 +591,7 @@ public class CodeInfo : Object
 			 	
 			 	hbox.css_classes = { sym.symbol_icon };
 			 	
-			 	sym.bind_property("name",
+			 	sym.bind_property("codeinfo_name",
 			                    lbl, "label",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	// should be better?- --line no?
@@ -589,9 +644,8 @@ public class CodeInfo : Object
 		{
 			_this = _owner;
 			new Xcls_navigationsort( _this );
-			var child_2 = new Xcls_CustomFilter18( _this );
-			child_2.ref();
-			this.el = new Gtk.FilterListModel( _this.navigationsort.el, child_2.el );
+			new Xcls_current_filter( _this );
+			this.el = new Gtk.FilterListModel( _this.navigationsort.el, _this.current_filter.el );
 
 			// my vars (dec)
 
@@ -600,7 +654,7 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
-	public class Xcls_CustomFilter18 : Object
+	public class Xcls_current_filter : Object
 	{
 		public Gtk.CustomFilter el;
 		private CodeInfo  _this;
@@ -609,15 +663,21 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_CustomFilter18(CodeInfo _owner )
+		public Xcls_current_filter(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.current_filter = this;
 			this.el = new Gtk.CustomFilter( (item) => { 
 	var tr = ((Gtk.TreeListRow)item).get_item();
    GLib.debug("filter%s =>  %s", item.get_type().name(), 
-   tr.get_type().name()
+ 		  tr.get_type().name()
    );
+   
 	var j =  (Palete.Symbol) tr;
+	var txt = _this.tree_search.el.get_text();
+   if (txt != "" && !j.name.contains(txt)) {
+   		return false;
+	}
 	
 	switch( j.stype) {
 	
@@ -820,7 +880,7 @@ public class CodeInfo : Object
 			_this = _owner;
 			var child_1 = new Xcls_ListStore24( _this );
 			child_1.ref();
-			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
+			this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
  
 	return ((Palete.Symbol)item).children;
 }

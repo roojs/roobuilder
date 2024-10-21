@@ -91,6 +91,13 @@ namespace Palete {
 				}
 			}
 		}	
+		public string codeinfo_name {
+				owned get 
+				{
+					return SymbolFormat.codeinfo(this);
+				}
+				private set {}
+		}	
 		
 		public GLib.ListStore children;
 		public Gee.HashMap<string,Symbol> children_map;
@@ -428,12 +435,10 @@ namespace Palete {
 			return ret;
 		}
  
-		
-		
+	  	
+			
 	}
-	// this assumes you are testing two trees..
-	
-		  
+	 
 		 
   
 	
