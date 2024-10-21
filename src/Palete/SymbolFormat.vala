@@ -21,7 +21,7 @@ namespace Palete {
 					
 				case Lsp.SymbolKind.Method: // start/end pos is not getting set very well..
 				
-					var rtype = s.rtype == "void" ? "void" : "<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + " :" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a>" +
+		  	
 					return "Method: " + 
 						"<a href=\"" + ((int)Lsp.SymbolKind.ObjectType).to_string() + ":" + GLib.Markup.escape_text(s.rtype) + "\">" + s.rtype + "</a> " +
 						"<a href=\"" + ((int)Lsp.SymbolKind.Class).to_string() + ":" + GLib.Markup.escape_text(s.property_of()) + "\">" + s.property_of() + "</a> " + GLib.Markup.escape_text(s.name);
