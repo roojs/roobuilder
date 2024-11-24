@@ -311,6 +311,7 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.icon_name = "format-justify-left-symbolic";
 			this.el.tooltip_text = "Method";
+			this.el.sensitive = true;
 		}
 
 		// user defined functions
