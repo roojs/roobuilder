@@ -620,7 +620,7 @@ public class CodeInfo : Object
 			                    img, "icon_name",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
-			 	var at_sym = _this.history.get(_this.history_pos)
+			 	var at_sym = _this.history.get(_this.history_pos);
 			 	
 			 	hbox.css_classes = { sym.symbol_icon , 
 			 		sym.property_of() == at_sym.fqn ? "active-symbol" : "in-active-symbol"

@@ -200,7 +200,7 @@
                  "                    img, \"icon_name\",",
                  "                   GLib.BindingFlags.SYNC_CREATE);",
                  " \t",
-                 " \tvar at_sym = _this.history.get(_this.history_pos)",
+                 " \tvar at_sym = _this.history.get(_this.history_pos);",
                  " \t",
                  " \thbox.css_classes = { sym.symbol_icon , ",
                  " \t\tsym.property_of() == at_sym.fqn ? \"active-symbol\" : \"in-active-symbol\"",
