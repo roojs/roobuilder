@@ -314,7 +314,9 @@ public class CodeInfo : Object
 			this.el.tooltip_text = "Method";
 
 			//listeners
-			this.el.toggled.connect( );
+			this.el.toggled.connect( () => {
+				
+			});
 		}
 
 		// user defined functions

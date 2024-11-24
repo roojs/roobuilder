@@ -69,7 +69,11 @@
            "$ xns" : "Gtk",
            "bool active" : true,
            "listeners" : {
-            "toggled" : ""
+            "toggled" : [
+             "() => {",
+             "\t",
+             "}"
+            ]
            },
            "string icon_name" : "format-justify-left-symbolic",
            "string tooltip_text" : "Method",
