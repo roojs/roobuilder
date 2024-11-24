@@ -192,13 +192,13 @@ public class CodeInfo : Object
 			var child_3 = new Xcls_Label6( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
-			var child_4 = new Xcls_Button7( _this );
+			var child_4 = new Xcls_ToggleButton7( _this );
 			child_4.ref();
 			this.el.append( child_4.el );
-			var child_5 = new Xcls_Button8( _this );
+			var child_5 = new Xcls_ToggleButton8( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
-			var child_6 = new Xcls_Button9( _this );
+			var child_6 = new Xcls_ToggleButton9( _this );
 			child_6.ref();
 			this.el.append( child_6.el );
 		}
@@ -292,19 +292,19 @@ public class CodeInfo : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button7 : Object
+	public class Xcls_ToggleButton7 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.ToggleButton el;
 		private CodeInfo  _this;
 
 
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button7(CodeInfo _owner )
+		public Xcls_ToggleButton7(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
 
@@ -317,19 +317,19 @@ public class CodeInfo : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button8 : Object
+	public class Xcls_ToggleButton8 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.ToggleButton el;
 		private CodeInfo  _this;
 
 
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button8(CodeInfo _owner )
+		public Xcls_ToggleButton8(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
 
@@ -341,19 +341,19 @@ public class CodeInfo : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button9 : Object
+	public class Xcls_ToggleButton9 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.ToggleButton el;
 		private CodeInfo  _this;
 
 
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button9(CodeInfo _owner )
+		public Xcls_ToggleButton9(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
 

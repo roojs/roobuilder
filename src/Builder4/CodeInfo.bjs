@@ -70,19 +70,19 @@
            "bool sensitive" : true,
            "string icon_name" : "format-justify-left-symbolic",
            "string tooltip_text" : "Method",
-           "xtype" : "Button"
+           "xtype" : "ToggleButton"
           },
           {
            "$ xns" : "Gtk",
            "string icon_name" : "format-text-italic-symbolic",
            "string tooltip_text" : "Properties",
-           "xtype" : "Button"
+           "xtype" : "ToggleButton"
           },
           {
            "$ xns" : "Gtk",
            "string icon_name" : "alarm-symbolic",
            "string tooltip_text" : "Signal",
-           "xtype" : "Button"
+           "xtype" : "ToggleButton"
           }
          ],
          "xtype" : "Box"
