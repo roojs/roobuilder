@@ -738,7 +738,8 @@ public class CodeInfo : Object
 		case Lsp.SymbolKind.Constant:
 		case Lsp.SymbolKind.EnumMember:
 		case Lsp.SymbolKind.Struct:
-			return true;
+		case Lsp.SymbolKind.Signal:
+				return true;
 			
 		default : 
 			GLib.debug("hide %s", j.stype.to_string());
