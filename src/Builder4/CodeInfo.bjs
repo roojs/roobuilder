@@ -68,6 +68,7 @@
           {
            "$ xns" : "Gtk",
            "bool active" : true,
+           "id" : "toggle_method",
            "listeners" : {
             "toggled" : [
              "() => {",
