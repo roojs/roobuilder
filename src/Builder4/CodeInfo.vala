@@ -315,7 +315,10 @@ public class CodeInfo : Object
 
 			//listeners
 			this.el.toggled.connect( () => {
-				
+				 if (_this.current_filter == null) {
+			 	return;
+				}
+				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
 			});
 		}
 
