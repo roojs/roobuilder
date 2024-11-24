@@ -378,6 +378,14 @@ public class CodeInfo : Object
 			this.el.icon_name = "alarm-symbolic";
 			this.el.active = true;
 			this.el.tooltip_text = "Signal";
+
+			//listeners
+			this.el.toggled.connect( () => {
+			if (_this.current_filter == null) {
+			 	return;
+				}
+				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
+			});
 		}
 
 		// user defined functions
