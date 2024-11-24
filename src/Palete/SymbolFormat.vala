@@ -110,8 +110,8 @@ namespace Palete {
 						GLib.Markup.escape_text(s.name) + 
 						" : " + 
 						(s.rtype == "void" ? "void" :   GLib.Markup.escape_text(s.rtype)) +
-						" [ " + 
-						GLib.Markup.escape_text(s.property_of()) + "["; 
+						" [" + 
+						GLib.Markup.escape_text(s.property_of()) + "]"; 
 				 
 				default :
 					return GLib.Markup.escape_text(s.name); 
