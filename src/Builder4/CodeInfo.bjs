@@ -85,6 +85,14 @@
           {
            "$ xns" : "Gtk",
            "bool active" : true,
+           "listeners" : {
+            "toggled" : [
+             " if (_this.current_filter == null) {",
+             " \treturn;",
+             "\t}",
+             "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);"
+            ]
+           },
            "string icon_name" : "format-text-italic-symbolic",
            "string tooltip_text" : "Properties",
            "xtype" : "ToggleButton"
