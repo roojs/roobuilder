@@ -86,6 +86,7 @@
           {
            "$ xns" : "Gtk",
            "bool active" : true,
+           "id" : "toggle_prop",
            "listeners" : {
             "toggled" : [
              "() => {",
@@ -103,6 +104,7 @@
           {
            "$ xns" : "Gtk",
            "bool active" : true,
+           "id" : "toggle_signal",
            "listeners" : {
             "toggled" : [
              "() => {",

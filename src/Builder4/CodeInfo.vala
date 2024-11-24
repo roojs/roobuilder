@@ -15,6 +15,8 @@ public class CodeInfo : Object
 	public Xcls_back_button back_button;
 	public Xcls_next_button next_button;
 	public Xcls_toggle_method toggle_method;
+	public Xcls_toggle_prop toggle_prop;
+	public Xcls_toggle_signal toggle_signal;
 	public Xcls_tree_search tree_search;
 	public Xcls_tree tree;
 	public Xcls_navigationselmodel navigationselmodel;
@@ -195,12 +197,10 @@ public class CodeInfo : Object
 			this.el.append( child_3.el );
 			new Xcls_toggle_method( _this );
 			this.el.append( _this.toggle_method.el );
-			var child_5 = new Xcls_ToggleButton8( _this );
-			child_5.ref();
-			this.el.append( child_5.el );
-			var child_6 = new Xcls_ToggleButton9( _this );
-			child_6.ref();
-			this.el.append( child_6.el );
+			new Xcls_toggle_prop( _this );
+			this.el.append( _this.toggle_prop.el );
+			new Xcls_toggle_signal( _this );
+			this.el.append( _this.toggle_signal.el );
 		}
 
 		// user defined functions
@@ -326,7 +326,7 @@ public class CodeInfo : Object
 		// user defined functions
 	}
 
-	public class Xcls_ToggleButton8 : Object
+	public class Xcls_toggle_prop : Object
 	{
 		public Gtk.ToggleButton el;
 		private CodeInfo  _this;
@@ -335,9 +335,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ToggleButton8(CodeInfo _owner )
+		public Xcls_toggle_prop(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.toggle_prop = this;
 			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
@@ -359,7 +360,7 @@ public class CodeInfo : Object
 		// user defined functions
 	}
 
-	public class Xcls_ToggleButton9 : Object
+	public class Xcls_toggle_signal : Object
 	{
 		public Gtk.ToggleButton el;
 		private CodeInfo  _this;
@@ -368,9 +369,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ToggleButton9(CodeInfo _owner )
+		public Xcls_toggle_signal(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.toggle_signal = this;
 			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
