@@ -347,10 +347,12 @@ public class CodeInfo : Object
 			this.el.tooltip_text = "Properties";
 
 			//listeners
-			this.el.toggled.connect( if (_this.current_filter == null) {
+			this.el.toggled.connect( () => {
+			if (_this.current_filter == null) {
 			 	return;
 				}
-				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT););
+				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
+			});
 		}
 
 		// user defined functions
