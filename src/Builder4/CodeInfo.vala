@@ -710,18 +710,18 @@ public class CodeInfo : Object
 	}
 	
 	if (!_this.toggle_method.el.active && 
-		j.stype == case Lsp.SymbolKind.Method
+		j.stype ==  Lsp.SymbolKind.Method
 		) {
 		return false;
 	}
 	if (!_this.toggle_prop.el.active && 
-		(j.stype == case Lsp.SymbolKind.Property ||
-		j.stype == case Lsp.SymbolKind.Field 
+		(j.stype == Lsp.SymbolKind.Property ||
+		j.stype == Lsp.SymbolKind.Field 
 		)) {
 		return false;
 	}
 	if (!_this.toggle_signal.el.active && 
-		j.stype == case Lsp.SymbolKind.Signal 
+		j.stype == Lsp.SymbolKind.Signal 
 		) {
 		return false;
 	}
