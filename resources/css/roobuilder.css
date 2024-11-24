@@ -143,8 +143,8 @@
 .lang-method-symbolic.in-active-symbol,
 .lang-property-symbolic.in-active-symbol,
 .lang-field-symbolic.in-active-symbol,
-.lang-enummember-symbolic.in-active-symbol {
- {
+.lang-enummember-symbolic.in-active-symbol
+{
 	font-weight: normal;
 	font-style : italic;
 }
