@@ -106,6 +106,7 @@ namespace Palete {
 				case Lsp.SymbolKind.Method: // start/end pos is not getting set very well..
 				case Lsp.SymbolKind.Property:	
 				case Lsp.SymbolKind.Field:
+				case Lsp.SymbolKind.Signal:				
 					return 
 						GLib.Markup.escape_text(s.name) + 
 						" : " + 
