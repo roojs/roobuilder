@@ -706,6 +706,22 @@ public class CodeInfo : Object
    		return false;
 	}
 	
+	if (!_this.toggleMethod.el.active && 
+		j.stype == case Lsp.SymbolKind.Method
+		) {
+		return false;
+	}
+	if (!_this.toggleProp.el.active && 
+		(j.stype == case Lsp.SymbolKind.Property ||
+		j.stype == case Lsp.SymbolKind.Field 
+		)) {
+		return false;
+	}
+	if (!_this.toggleSignal.el.active && 
+		j.stype == case Lsp.SymbolKind.Signal 
+		) {
+		return false;
+	}
 	switch( j.stype) {
 	
 		case Lsp.SymbolKind.Namespace:
