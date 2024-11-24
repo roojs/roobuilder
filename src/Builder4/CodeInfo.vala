@@ -312,6 +312,9 @@ public class CodeInfo : Object
 			this.el.icon_name = "format-justify-left-symbolic";
 			this.el.active = true;
 			this.el.tooltip_text = "Method";
+
+			//listeners
+			this.el.toggled.connect( );
 		}
 
 		// user defined functions
