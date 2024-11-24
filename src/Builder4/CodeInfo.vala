@@ -709,18 +709,18 @@ public class CodeInfo : Object
    		return false;
 	}
 	
-	if (!_this.toggleMethod.el.active && 
+	if (!_this.toggle_method.el.active && 
 		j.stype == case Lsp.SymbolKind.Method
 		) {
 		return false;
 	}
-	if (!_this.toggleProp.el.active && 
+	if (!_this.toggle_prop.el.active && 
 		(j.stype == case Lsp.SymbolKind.Property ||
 		j.stype == case Lsp.SymbolKind.Field 
 		)) {
 		return false;
 	}
-	if (!_this.toggleSignal.el.active && 
+	if (!_this.toggle_signal.el.active && 
 		j.stype == case Lsp.SymbolKind.Signal 
 		) {
 		return false;
