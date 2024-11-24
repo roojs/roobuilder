@@ -619,7 +619,10 @@ public class CodeInfo : Object
 			                    img, "icon_name",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			 	
-			 	hbox.css_classes = { sym.symbol_icon };
+			 	hbox.css_classes = { sym.symbol_icon , 
+			 		sym.property_of() == 
+			 		
+			 	};
 			 	
 			 	sym.bind_property("codeinfo_name",
 			                    lbl, "label",
