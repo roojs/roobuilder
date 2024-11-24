@@ -74,12 +74,14 @@
           },
           {
            "$ xns" : "Gtk",
+           "bool active" : true,
            "string icon_name" : "format-text-italic-symbolic",
            "string tooltip_text" : "Properties",
            "xtype" : "ToggleButton"
           },
           {
            "$ xns" : "Gtk",
+           "bool active" : true,
            "string icon_name" : "alarm-symbolic",
            "string tooltip_text" : "Signal",
            "xtype" : "ToggleButton"

@@ -335,6 +335,7 @@ public class CodeInfo : Object
 
 			// set gobject values
 			this.el.icon_name = "format-text-italic-symbolic";
+			this.el.active = true;
 			this.el.tooltip_text = "Properties";
 		}
 
@@ -359,6 +360,7 @@ public class CodeInfo : Object
 
 			// set gobject values
 			this.el.icon_name = "alarm-symbolic";
+			this.el.active = true;
 			this.el.tooltip_text = "Signal";
 		}
 
