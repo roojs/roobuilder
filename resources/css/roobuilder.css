@@ -127,7 +127,6 @@
 .lang-method-symbolic {
 	color : #029f2b;
 	font-weight: bold;
-
 }
 
 .lang-property-symbolic,
@@ -138,6 +137,19 @@
 	color : #666;
 
 }
+
+.lang-class-symbolic.in-active-symbol ,
+.lang-constructor-symbolic.in-active-symbol,
+.lang-method-symbolic.in-active-symbol,
+.lang-property-symbolic.in-active-symbol,,
+.lang-field-symbolic.in-active-symbol,
+.lang-enummember-symbolic.in-active-symbol {
+ {
+	font-weight: normal;
+	font-style : italic;
+}
+ 
+
 tooltip {
     padding: 1px;
     margin: 0px 0px 0px 0px;
