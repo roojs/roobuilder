@@ -55,9 +55,10 @@
 		public static string opt_test_language_server;
 		public static string opt_test_symbol_target;
 		public static string opt_test_symbol_dump_file;
-		public static string opt_test_symbol_dump_fqn
-		;		
-        public static bool opt_skip_linking = false;
+		public static string opt_test_symbol_dump_fqn;
+		public static string opt_test_symbol_json;
+				
+		public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
 		public static bool opt_debug_critical = false;
 		public static bool opt_disable_threads = false;
