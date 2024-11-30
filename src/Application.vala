@@ -671,6 +671,10 @@
 				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
 					this.dumpSymbol(cur_project);
 				}
+				if (BuilderApplication.opt_test_symbol_dump_json != null) {
+					this.dumpSymbolJSON(cur_project);
+				}
+				
 			
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
 		 	});
