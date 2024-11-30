@@ -713,6 +713,14 @@
 				pal.getDropListFromSymbols(sl , fqn)));	
 			
 		}
+		void dumpSymbolJSON(Project.Project? cur_project)
+		{
+			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
+			var pal  = cur_project.palete;
+			var fqn = BuilderApplication.opt_test_symbol_json;
+ 		}
+		
+		
 			
 	/*	
 		void compileVala()
