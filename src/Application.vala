@@ -718,6 +718,16 @@
 			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
 			var pal  = cur_project.palete;
 			var fqn = BuilderApplication.opt_test_symbol_json;
+			// write to /home/xxx/.Buider/docs/{name}.json ?? 
+			var sy = pal.getObject(fqn);
+			var js = sy.toJSON();
+			var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
+			if (!fd.query_exists()) {
+				fd.make_directory();
+			}
+			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/" + fqn + ".json");
+			
+			
  		}
 		
 		
