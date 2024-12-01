@@ -36,6 +36,13 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 
 	public virtual Json.Node serialize_property (string property_name, Value @value, ParamSpec pspec)
 	{
+		switch (property_name) {
+			case "implements":
+				return null;
+			default: 
+				break;
+		}
+		
 		if (@value.type ().is_a (typeof (Json.Object)))
 		{
 			var obj = @value as Json.Object;
