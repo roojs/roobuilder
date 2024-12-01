@@ -727,7 +727,7 @@
 			}
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/" + fqn + ".json");
 			
-			var js = sy.toJSON(sl);
+			var js = Json.gobject_serialize (sy) ;
 			var  generator = new Json.Generator ();
 			var  root = new Json.Node(Json.NodeType.OBJECT);
 			root.init_object(js);
