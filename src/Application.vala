@@ -729,9 +729,8 @@
 			
 			var js = Json.gobject_serialize (sy) ;
 			var  generator = new Json.Generator ();
-			var  root = new Json.Node(Json.NodeType.OBJECT);
-			root.init_object(js);
-			generator.set_root (root);
+			
+			generator.set_root (js);
 			generator.pretty = true;
 			generator.indent = 4;
 
