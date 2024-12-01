@@ -38,6 +38,13 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 	{
 		switch (property_name) {
 			case "implements":
+			case "param-ar":
+			case "methods":
+			case "ctors":
+			case "optvalues":
+			case "valid-cn":
+			case "can-drop-onto":
+			
 				return (Json.Node)null;
 			default: 
 				break;
