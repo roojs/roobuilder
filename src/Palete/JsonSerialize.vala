@@ -38,7 +38,7 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 	{
 		switch (property_name) {
 			case "implements":
-				return null;
+				return (Json.Node)null;
 			default: 
 				break;
 		}
