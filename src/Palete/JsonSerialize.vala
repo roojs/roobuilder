@@ -42,7 +42,7 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 			default: 
 				break;
 		}
-		
+		/*
 		if (@value.type ().is_a (typeof (Json.Object)))
 		{
 			var obj = @value as Json.Object;
@@ -88,12 +88,11 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 				return node;
 			}
 		}
+		*/
+		GLib.debug("serialize %s", property_name); 
 
 		return default_serialize_property (property_name, @value, pspec);
 	}
 
-	public virtual bool deserialize_property (string property_name, out Value @value, ParamSpec pspec, Json.Node property_node)
-	{
-		return default_deserialize_property (property_name, out @value, pspec, property_node);
-	}
+	 
 }
