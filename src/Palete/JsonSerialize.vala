@@ -32,6 +32,7 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 		
 		return ((ObjectClass) get_type ().class_ref ()).find_property (name);
 	}
+	 
 
 	public virtual Json.Node serialize_property (string property_name, Value @value, ParamSpec pspec)
 	{
