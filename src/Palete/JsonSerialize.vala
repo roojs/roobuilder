@@ -26,7 +26,7 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 {
 	public Json.Object? meta { get; construct set; default = null; }
 
-	public unowned ParamSpec? find_property (string name)
+	public virutal unowned ParamSpec? find_property (string name)
 	{
 		print("find property %s\n",name);
 		
