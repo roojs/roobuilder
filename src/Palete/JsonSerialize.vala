@@ -44,6 +44,10 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 			case "optvalues":
 			case "valid-cn":
 			case "can-drop-onto":
+			case "implementation-of":
+			case "props":
+			case "signals":
+			case "all-implementations":
 			 
 				return (Json.Node)null;
 			default: 
