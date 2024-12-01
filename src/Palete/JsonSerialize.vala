@@ -28,7 +28,7 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 
 	public unowned ParamSpec? find_property (string name)
 	{
-		GLib.debug("find property %s\n",name);
+		print("find property %s\n",name);
 		
 		return ((ObjectClass) get_type ().class_ref ()).find_property (name);
 	}
