@@ -719,14 +719,29 @@
 			var pal  = cur_project.palete;
 			var fqn = BuilderApplication.opt_test_symbol_json;
 			// write to /home/xxx/.Buider/docs/{name}.json ?? 
-			var sy = pal.getObject(fqn);
-			var js = sy.toJSON();
+			var sy = sl.singleByFqn(fqn);
+			
 			var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
 			if (!fd.query_exists()) {
 				fd.make_directory();
 			}
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/" + fqn + ".json");
 			
+			var js = sy.toJSON();
+			var  generator = new Json.Generator ();
+			var  root = new Json.Node(Json.NodeType.OBJECT);
+			root.init_object(js);
+			generator.set_root (root);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			var data = generator.to_data (null);
+			var data_out = new GLib.DataOutputStream(
+              f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+ 	       );
+			data_out.put_string(contents, null);
+			data_out.close(null);
+
 			
  		}
 		
