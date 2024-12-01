@@ -85,7 +85,8 @@
                 "src/JsRender/NodePropType.vala",
                 "src/Palete/SymbolNodeProp.vala",
                 "src/Builder4/LoadingProgress.bjs",
-                "src/Palete/SymbolFormat.vala"
+                "src/Palete/SymbolFormat.vala",
+                "src/Palete/JsonSerialize.vala"
             ]
         }
     ],
