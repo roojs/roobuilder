@@ -740,7 +740,7 @@
 			var data_out = new GLib.DataOutputStream(
               f.replace(null, false, GLib.FileCreateFlags.NONE, null)
  	       );
-			data_out.put_string(contents, null);
+			data_out.put_string(data, null);
 			data_out.close(null);
 
 			
