@@ -39,7 +39,7 @@
             { "test-symbol-fqn", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_fqn, "show droplists / children from a fqn using new Symbol code", null },
            // { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             { "test-symbol-json", 0, 0, OptionArg.STRING, ref opt_test_symbol_json, "dump Symbols to JSON (for testing Doc UI)", null },
-           /
+           
             
 			{ null }
 		};
@@ -727,7 +727,7 @@
 			}
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/" + fqn + ".json");
 			
-			var js = sy.toJSON();
+			var js = sy.toJSON(sl);
 			var  generator = new Json.Generator ();
 			var  root = new Json.Node(Json.NodeType.OBJECT);
 			root.init_object(js);
