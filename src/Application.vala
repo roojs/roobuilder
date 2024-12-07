@@ -720,6 +720,8 @@
 			var fqn = BuilderApplication.opt_test_symbol_json;
 			// write to /home/xxx/.Buider/docs/{name}.json ?? 
 			var sy = sl.singleByFqn(fqn);
+			pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP);
+			
 			
 			var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
 			if (!fd.query_exists()) {
