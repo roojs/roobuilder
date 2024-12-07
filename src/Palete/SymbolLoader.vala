@@ -188,23 +188,19 @@ namespace Palete
 			// this is loading everyng!? how about filtering it?
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						" + string.joinv(",",cols) + "
-						(
+						" + string.joinv(",",cols) + ",
+						COALESCE((
 							SELECT 
 								doc
 							FROM 
 								symbol sd
-							LEFT JOIN
-								files
-							ON 
-								files.id = sd.file_id
 							WHERE
 								sd.fqn = symbol.fqn
 							AND
-								files.relversion = symbol.gir_version
+								sd.gir_verison = symbol.gir_version
 							AND
 								is_gir = 1
-							
+						), '')  as doc
 						
 					FROM 
 						symbol 
