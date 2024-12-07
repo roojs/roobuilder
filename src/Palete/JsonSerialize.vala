@@ -75,7 +75,7 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 				node.set_object (ret);
 				return node;
 			 	
-				return (Json.Node)null;
+				 
 			default: 
 				break;
 		}
