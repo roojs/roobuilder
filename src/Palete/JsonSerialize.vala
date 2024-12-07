@@ -36,19 +36,45 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 
 	public virtual Json.Node serialize_property (string property_name, Value @value, ParamSpec pspec)
 	{
+		
+		if (@value.type ().is_a (typeof (Gee.HashMap)))
+		{
+			
+			
+			foreach(var k in 
+			if (obj != null)
+			{
+				var node = new Json.Node (Json.NodeType.OBJECT);
+				node.set_object (obj);
+				return node;
+			}
+		}
+		
 		switch (property_name) {
 			case "implements":
 			case "param-ar":
-			case "methods":
-			case "ctors":
+			
+				case "all-implementations":	
 			case "optvalues":
 			case "valid-cn":
 			case "can-drop-onto":
 			case "implementation-of":
+				return (Json.Node)null;
+			case "ctors":
 			case "props":
 			case "signals":
-			case "all-implementations":
-			 
+			case "methods":
+			 	var ret = new JSon.Object();
+			 	var kv = @value as Gee.HashMap<string,Symbol>;
+			 	foreach(var k in kv.keys()) {
+			 		ret.set_element(k,Json.gobject_serialize(kv.get(k))); 
+			 	
+			 	}
+			 	
+			 	var node = new Json.Node (Json.NodeType.OBJECT);
+				node.set_object (ret);
+				return node;
+			 	
 				return (Json.Node)null;
 			default: 
 				break;
