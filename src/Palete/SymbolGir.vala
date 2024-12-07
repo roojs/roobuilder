@@ -10,6 +10,7 @@ namespace Palete {
 			base();
 			this.file = f;
 			this.is_gir = true;
+			this.gir_version = f.relversion;
 			this.parent = parent;
 
 			
