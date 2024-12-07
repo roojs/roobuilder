@@ -66,7 +66,7 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 			case "methods":
 			 	var ret = new JSon.Object();
 			 	var kv = @value as Gee.HashMap<string,Symbol>;
-			 	foreach(var k in kv.keys()) {
+			 	foreach(var k in kv.keys) {
 			 		ret.set_element(k,Json.gobject_serialize(kv.get(k))); 
 			 	
 			 	}
