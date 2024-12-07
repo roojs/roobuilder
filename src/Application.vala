@@ -720,6 +720,7 @@
 			var fqn = BuilderApplication.opt_test_symbol_json;
 			// write to /home/xxx/.Buider/docs/{name}.json ?? 
 			var sy = sl.singleByFqn(fqn);
+			// in theory this loads up all of the types..
 			pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP);
 			
 			
