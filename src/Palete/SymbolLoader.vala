@@ -106,9 +106,22 @@ namespace Palete
 			
 			GLib.debug("singleByFqn get %s",fqn); 
 			var res = new Symbol();
+			var cols = this.sq.getColsExcept({ "doc" });
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						* 
+						" + cols + " 
+						,COALESCE((
+							SELECT 
+								doc
+							FROM 
+								symbol sd
+							WHERE
+								sd.fqn = symbol.fqn
+							AND
+								sd.gir_version = symbol.gir_version
+							AND
+								is_gir = 1
+						), '')  as doc
 					FROM 
 						symbol 
 					WHERE 
