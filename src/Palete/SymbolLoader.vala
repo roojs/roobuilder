@@ -197,7 +197,7 @@ namespace Palete
 							WHERE
 								sd.fqn = symbol.fqn
 							AND
-								sd.gir_verison = symbol.gir_version
+								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
 						), '')  as doc
