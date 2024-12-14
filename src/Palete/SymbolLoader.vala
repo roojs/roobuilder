@@ -66,9 +66,22 @@ namespace Palete
 			
 			GLib.debug("singleById get %s",id.to_string()); 
 			var res = new Symbol();
+			var cols = this.sq.getColsExcept({ "doc" });
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						* 
+						" + string.joinv(",",cols) + " 
+						,COALESCE((
+							SELECT 
+								doc
+							FROM 
+								symbol sd
+							WHERE
+								sd.fqn = symbol.fqn
+							AND
+								sd.gir_version = symbol.gir_version
+							AND
+								is_gir = 1
+						), '')  as doc 
 					FROM 
 						symbol 
 					WHERE 
@@ -516,11 +529,23 @@ namespace Palete
 			foreach(var k in stypes) {
 				stypestr += k.to_string();
 			}
-			
+			var cols = this.sq.getColsExcept({ "doc" });
 			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						*
+						" + string.joinv(",",cols) + ",
+						COALESCE((
+							SELECT 
+								doc
+							FROM 
+								symbol sd
+							WHERE
+								sd.fqn = symbol.fqn
+							AND
+								sd.gir_version = symbol.gir_version
+							AND
+								is_gir = 1
+						), '')  as doc
 					FROM 
 						symbol 
 					WHERE 
