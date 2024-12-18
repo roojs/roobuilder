@@ -490,7 +490,7 @@ namespace Palete {
 					break;
 			}
 			 
-			GLib.debug("serialize %s %s", this.fqn(), property_name); 
+			GLib.debug("serialize %s %s", this.fqn, property_name); 
 
 			return default_serialize_property (property_name, @value, pspec);
 		}
