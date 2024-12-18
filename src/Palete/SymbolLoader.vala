@@ -272,6 +272,7 @@ namespace Palete
 						break;
 					case Lsp.SymbolKind.Signal:
 						sym.signals.set(s.name, s);
+						mids.set((int)s.id, s);
 						break;
 					case Lsp.SymbolKind.Constructor:
 						if (s.parent_id == sym.id) {
