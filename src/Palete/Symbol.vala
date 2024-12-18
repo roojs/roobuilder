@@ -12,7 +12,7 @@
 */
 namespace Palete {
 		
-	public class Symbol : JsonSerialize {
+	public class Symbol :  GLib.Object, Json.Serializable {
 	
 		public int64 id   { get; set; default = -1; }
 		public Lsp.SymbolKind stype { get; set; }
@@ -438,7 +438,65 @@ namespace Palete {
 	  	
 			
 	}
-	 
+	  
+
+	public virtual Json.Node serialize_property (string property_name, Value @value, ParamSpec pspec)
+	{
+		
+		 
+		
+		switch (property_name) {
+			case "implements":
+			 
+			case "all-implementations":	
+			case "optvalues":
+			case "valid-cn":
+			case "can-drop-onto":
+			case "implementation-of":
+				return (Json.Node)null;
+			case "ctors":
+			case "props":
+			case "signals":
+			case "methods":
+			 	var ret = new Json.Object();
+			 	var kv = @value as Gee.HashMap<string,Symbol>;
+			 	if (kv.size < 1) {
+			 		return (Json.Node)null;
+			 	}
+			 	foreach(var k in kv.keys) {
+			 		ret.set_member(k,Json.gobject_serialize(kv.get(k))); 
+			 	
+			 	}
+			 	
+			 	var node = new Json.Node (Json.NodeType.OBJECT);
+				node.set_object (ret);
+				return node;
+			 	
+			case "param-ar":
+			
+				var ret = new Json.Array();
+			 	var kv = @value as Gee.HashMap<int,Symbol>;
+			 	if (kv.size < 1) {
+			 		return (Json.Node)null;
+			 	}
+			 	foreach(var k in kv.keys) {
+			 		ret.add_element(Json.gobject_serialize(kv.get(k))); 
+			 	
+			 	}
+			 	
+			 	var node = new Json.Node (Json.NodeType.ARRAY);
+				node.set_array (ret);
+				return node;
+			
+			default: 
+				break;
+		}
+		 
+		GLib.debug("serialize %s %s", this.fqn(), property_name); 
+
+		return default_serialize_property (property_name, @value, pspec);
+	}
+
 		 
   
 	
