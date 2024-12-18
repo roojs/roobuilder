@@ -43,7 +43,7 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 			case "implements":
 			case "param-ar":
 			
-				case "all-implementations":	
+			case "all-implementations":	
 			case "optvalues":
 			case "valid-cn":
 			case "can-drop-onto":
@@ -67,7 +67,22 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 				node.set_object (ret);
 				return node;
 			 	
-				 
+			case "param-ar":
+			
+				var ret = new Json.Array();
+			 	var kv = @value as Gee.HashMap<int,Symbol>;
+			 	if (kv.size < 1) {
+			 		return (Json.Node)null;
+			 	}
+			 	foreach(var k in kv.keys) {
+			 		ret.add_element(Json.gobject_serialize(kv.get(k))); 
+			 	
+			 	}
+			 	
+			 	var node = new Json.Node (Json.NodeType.ARRAY);
+				node.set_array (ret);
+				return node;
+			
 			default: 
 				break;
 		}
