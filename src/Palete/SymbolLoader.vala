@@ -316,9 +316,24 @@ namespace Palete
 			if (ids.length < 1) {
 				return;
 			}
+			var cols = this.sq.getColsExcept({ "doc" });
+			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
-						* 
+						" + string.joinv(",",cols) + ",
+						COALESCE((
+							SELECT 
+								doc
+							FROM 
+								symbol sd
+							WHERE
+								sd.fqn = symbol.fqn
+							AND
+								sd.gir_version = symbol.gir_version
+							AND
+								is_gir = 1
+						), '')  as doc
+						 
 					FROM 
 						symbol 
 					WHERE 
