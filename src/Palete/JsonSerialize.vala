@@ -132,7 +132,7 @@ public abstract class Palete.JsonSerialize : GLib.Object, Json.Serializable
 			}
 		}
 		*/
-		GLib.debug("serialize %s", property_name); 
+		GLib.debug("serialize %s %s", this.fqn, property_name); 
 
 		return default_serialize_property (property_name, @value, pspec);
 	}
