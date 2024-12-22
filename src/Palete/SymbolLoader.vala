@@ -66,7 +66,7 @@ namespace Palete
 			
 			GLib.debug("singleById get %s",id.to_string()); 
 			var res = new Symbol();
-			var cols = this.sq.getColsExcept({ "doc" });
+			var cols = this.sq.getColsExcept({ "doc", "parent_name" });
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						" + string.joinv(",",cols) + " 
@@ -81,7 +81,15 @@ namespace Palete
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
-						), '')  as doc 
+						), '')  as doc,
+						COALESCE((
+							SELECT 
+								fqn
+							FROM 
+								symbol sp
+							WHERE
+								sp.id = symbol.parent_id
+						), '')  as parent_name
 					FROM 
 						symbol 
 					WHERE 
@@ -119,7 +127,7 @@ namespace Palete
 			
 			GLib.debug("singleByFqn get %s",fqn); 
 			var res = new Symbol();
-			var cols = this.sq.getColsExcept({ "doc" });
+			var cols = this.sq.getColsExcept({ "doc" , "parent_name"});
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						" + string.joinv(",",cols) + " 
@@ -134,7 +142,15 @@ namespace Palete
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
-						), '')  as doc
+						), '')  as doc,
+						COALESCE((
+							SELECT 
+								fqn
+							FROM 
+								symbol sp
+							WHERE
+								sp.id = symbol.parent_id
+						), '')  as parent_name
 					FROM 
 						symbol 
 					WHERE 
@@ -210,7 +226,7 @@ namespace Palete
 			foreach(var pid in pids) {
 				pidss += pid;
 			}
-			var cols = this.sq.getColsExcept({ "doc" });
+			var cols = this.sq.getColsExcept({ "doc", "parent_name" });
 			// this is loading everyng!? how about filtering it?
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -226,8 +242,15 @@ namespace Palete
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
-						), '')  as doc
-						
+						), '')  as doc,
+						COALESCE((
+							SELECT 
+								fqn
+							FROM 
+								symbol sp
+							WHERE
+								sp.id = symbol.parent_id
+						), '')  as parent_name
 					FROM 
 						symbol 
 					WHERE 
@@ -545,7 +568,7 @@ namespace Palete
 			foreach(var k in stypes) {
 				stypestr += k.to_string();
 			}
-			var cols = this.sq.getColsExcept({ "doc" });
+			var cols = this.sq.getColsExcept({ "doc" , "parent_name"});
 			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -561,7 +584,15 @@ namespace Palete
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
-						), '')  as doc
+						), '')  as doc,
+						COALESCE((
+							SELECT 
+								fqn
+							FROM 
+								symbol sp
+							WHERE
+								sp.id = symbol.parent_id
+						), '')  as parent_name
 					FROM 
 						symbol 
 					WHERE 
