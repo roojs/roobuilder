@@ -519,7 +519,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "append",
-         "Gtk.PolicyType hscrollbar_policy" : "",
+         "Gtk.PolicyType hscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
          "Gtk.PolicyType vscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
          "bool hexpand" : true,
          "bool vexpand" : true,
