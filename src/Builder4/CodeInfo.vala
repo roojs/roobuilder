@@ -1186,43 +1186,6 @@ public class CodeInfo : Object
 			    
 			    
 			}
-
-			//listeners
-			this.el.script_dialog.connect( (dialog) => {
-			 
-			    if (this.el == null) {
-			        return true;
-			    }
-			    
-			     var msg = dialog.get_message();
-			     if (msg.length < 4) {
-			        return false;
-			     }
-			     if (msg.substring(0,4) != "IPC:") {
-			         return false;
-			     }
-			     var ar = msg.split(":", 3);
-			    if (ar.length < 3) {
-			        return false;
-			    }
-			    print("CMD: %s\n",ar[1]);
-			    print("ARGS: %s\n",ar[2]);
-			    switch(ar[1]) {
-			    
-			        case "SAVEHTML":
-			            // print("%sw",ar[2]);
-			            //  _this.file.saveHTML(ar[2]);
-			            return true;
-			            
-			        case "OUT":
-			            _this.result_json = ar[2];
-			            return true;
-			            
-			        default:
-			            return true;
-			    }
-			    
-			});
 		}
 
 		// user defined functions
