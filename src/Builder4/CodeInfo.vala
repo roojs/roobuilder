@@ -24,6 +24,7 @@ public class CodeInfo : Object
 	public Xcls_navigationsort navigationsort;
 	public Xcls_combo combo;
 	public Xcls_dir_model dir_model;
+	public Xcls_content content;
 	public Xcls_webview webview;
 
 	// my vars (def)
@@ -994,9 +995,8 @@ public class CodeInfo : Object
 			var child_1 = new Xcls_Box26( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_ScrolledWindow99( _this );
-			child_2.ref();
-			this.el.append ( child_2.el  );
+			new Xcls_content( _this );
+			this.el.append ( _this.content.el  );
 		}
 
 		// user defined functions
@@ -1108,7 +1108,7 @@ public class CodeInfo : Object
 	}
 
 
-	public class Xcls_ScrolledWindow99 : Object
+	public class Xcls_content : Object
 	{
 		public Gtk.ScrolledWindow el;
 		private CodeInfo  _this;
@@ -1117,9 +1117,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ScrolledWindow99(CodeInfo _owner )
+		public Xcls_content(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.content = this;
 			this.el = new Gtk.ScrolledWindow();
 
 			// my vars (dec)

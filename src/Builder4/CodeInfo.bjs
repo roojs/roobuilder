@@ -526,6 +526,7 @@
          "* pack" : "append",
          "bool hexpand" : true,
          "bool vexpand" : true,
+         "id" : "content",
          "items" : [
           {
            "$ xns" : "WebKit",
