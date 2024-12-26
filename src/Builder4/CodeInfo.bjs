@@ -606,7 +606,7 @@
     "\t\tthis.history.set(this.history_pos, sy);",
     "\t}",
     "\tthis.showSymbol(sy);",
-    "\tthis.webview.el.load_uri(\"http://localhost/roojs1/docs/?gtk=1#Gtk.Widget\");",
+    "",
     "",
     "\t",
     "}"
