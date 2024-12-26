@@ -61,15 +61,16 @@ public class CodeInfo : Object
 			case Lsp.SymbolKind.Class:
 				_this.tree.loadClass(sy);
 				_this.combo.loadClass(sy);
-				_this.content.loadSymbol(sy);
-	
+			//	_this.content.loadSymbol(sy);
+		this.webview.el.load_uri("http://localhost/roojs1/docs/?gtk=1#Gtk.Widget");
 				break;
 			case Lsp.SymbolKind.Method:
 				var cls = sl.singleById(sy.parent_id);
 				_this.tree.loadClass(cls);
 				_this.tree.select(sy);
 				_this.combo.loadClass(cls);
-				_this.content.loadSymbol(cls);
+				this.webview.el.load_uri("http://localhost/roojs1/docs/?gtk=1#Gtk.Widget");
+			//	_this.content.loadSymbol(cls);
 				this.history.add(sy);
 				break;
 			default:	
