@@ -1126,6 +1126,7 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			new Xcls_webview( _this );

@@ -524,6 +524,7 @@
           ""
          ],
          "* pack" : "append",
+         "Gtk.PolicyType vscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
          "bool hexpand" : true,
          "bool vexpand" : true,
          "id" : "content",
