@@ -518,11 +518,6 @@
         },
         {
          "$ xns" : "Gtk",
-         "* init" : [
-          "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-          " ",
-          ""
-         ],
          "* pack" : "append",
          "Gtk.PolicyType hscrollbar_policy" : "",
          "Gtk.PolicyType vscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",

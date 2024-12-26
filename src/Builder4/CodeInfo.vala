@@ -1132,10 +1132,6 @@ public class CodeInfo : Object
 			this.el.hscrollbar_policy = ;
 			new Xcls_webview( _this );
 			this.el.set_child ( _this.webview.el  );
-
-			// init method
-
-			this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
 		}
 
 		// user defined functions
