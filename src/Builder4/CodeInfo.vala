@@ -1129,6 +1129,7 @@ public class CodeInfo : Object
 			this.el.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
+			this.el.hscrollbar_policy = ;
 			new Xcls_webview( _this );
 			this.el.set_child ( _this.webview.el  );
 
