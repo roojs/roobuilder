@@ -110,6 +110,7 @@ public class CodeInfo : Object
 			this.history.set(this.history_pos, sy);
 		}
 		this.showSymbol(sy);
+		this.webview.el.load_uri("http://localhost/roojs1/docs/?gtk=1#Gtk.Widget");
 	
 		
 	}
