@@ -1240,7 +1240,8 @@ public class CodeInfo : Object
 			    this.el.load_html( "Render not ready" , 
 			            //fixme - should be a config option!
 			            // or should we catch stuff and fix it up..
-			            "http://localhost/roojs1/docs/?gtk=1#Gtk.Widget"
+			          //  "http://localhost/roojs1/docs/?gtk=1#Gtk.Widget"
+			            "http://localhost/roojs1/docs/"
 			    );
 			        
 			        
