@@ -25,7 +25,6 @@ public class CodeInfo : Object
 	public Xcls_combo combo;
 	public Xcls_dir_model dir_model;
 	public Xcls_webview webview;
-	public Xcls_content content;
 
 	// my vars (def)
 	public Xcls_MainWindow? win;
@@ -995,8 +994,9 @@ public class CodeInfo : Object
 			var child_1 = new Xcls_Box26( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			new Xcls_content( _this );
-			this.el.append( _this.content.el );
+			var child_2 = new Xcls_ScrolledWindow99( _this );
+			child_2.ref();
+			this.el.append ( child_2.el  );
 		}
 
 		// user defined functions
@@ -1023,9 +1023,6 @@ public class CodeInfo : Object
 			var child_2 = new Xcls_Button29( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
-			var child_3 = new Xcls_ScrolledWindow45( _this );
-			child_3.ref();
-			this.el.append ( child_3.el  );
 		}
 
 		// user defined functions
@@ -1110,7 +1107,8 @@ public class CodeInfo : Object
 		// user defined functions
 	}
 
-	public class Xcls_ScrolledWindow45 : Object
+
+	public class Xcls_ScrolledWindow99 : Object
 	{
 		public Gtk.ScrolledWindow el;
 		private CodeInfo  _this;
@@ -1119,7 +1117,7 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ScrolledWindow45(CodeInfo _owner )
+		public Xcls_ScrolledWindow99(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.ScrolledWindow();
@@ -1225,59 +1223,6 @@ public class CodeInfo : Object
 			    }
 			    
 			});
-		}
-
-		// user defined functions
-	}
-
-
-
-	public class Xcls_content : Object
-	{
-		public Gtk.TextView el;
-		private CodeInfo  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_content(CodeInfo _owner )
-		{
-			_this = _owner;
-			_this.content = this;
-			this.el = new Gtk.TextView();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.vexpand = true;
-			var child_1 = new Xcls_TextBuffer31( _this );
-			child_1.ref();
-			this.el.buffer = child_1.el;
-		}
-
-		// user defined functions
-		public void loadSymbol (Palete.Symbol sy) {
-		
-		}
-	}
-	public class Xcls_TextBuffer31 : Object
-	{
-		public Gtk.TextBuffer el;
-		private CodeInfo  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_TextBuffer31(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.TextBuffer( null );
-
-			// my vars (dec)
-
-			// set gobject values
 		}
 
 		// user defined functions
