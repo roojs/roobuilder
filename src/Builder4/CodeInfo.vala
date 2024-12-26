@@ -1189,6 +1189,7 @@ public class CodeInfo : Object
 
 			//listeners
 			this.el.script_dialog.connect( (dialog) => {
+			 
 			    if (this.el == null) {
 			        return true;
 			    }
