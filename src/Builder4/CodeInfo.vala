@@ -24,6 +24,7 @@ public class CodeInfo : Object
 	public Xcls_navigationsort navigationsort;
 	public Xcls_combo combo;
 	public Xcls_dir_model dir_model;
+	public Xcls_webview webview;
 	public Xcls_content content;
 
 	// my vars (def)
@@ -1022,6 +1023,9 @@ public class CodeInfo : Object
 			var child_2 = new Xcls_Button29( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
+			var child_3 = new Xcls_ScrolledWindow45( _this );
+			child_3.ref();
+			this.el.append ( child_3.el  );
 		}
 
 		// user defined functions
@@ -1105,6 +1109,127 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
+
+	public class Xcls_ScrolledWindow45 : Object
+	{
+		public Gtk.ScrolledWindow el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_ScrolledWindow45(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ScrolledWindow();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.hexpand = true;
+			this.el.vexpand = true;
+			new Xcls_webview( _this );
+			this.el.set_child ( _this.webview.el  );
+
+			// init method
+
+			this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+		}
+
+		// user defined functions
+	}
+	public class Xcls_webview : Object
+	{
+		public WebKit.WebView el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_webview(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.webview = this;
+			this.el = new WebKit.WebView();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			// init method
+
+			{
+			    // this may not work!?
+			    var settings =  this.el.get_settings();
+			    settings.enable_write_console_messages_to_stdout = true;
+			     
+			    var fs= new FakeServer(this.el);
+			    fs.ref();
+			    // this was an attempt to change the url perms.. did not work..
+			    // settings.enable_file_access_from_file_uris = true;
+			    // settings.enable_offline_web_application_cache - true;
+			    // settings.enable_universal_access_from_file_uris = true;
+			   
+			     
+			    
+			    
+			    
+			
+			     // FIXME - base url of script..
+			     // we need it so some of the database features work.
+			    this.el.load_html( "Render not ready" , 
+			            //fixme - should be a config option!
+			            // or should we catch stuff and fix it up..
+			            "xhttp://localhost/roobuilder/"
+			    );
+			        
+			        
+			    
+			    
+			}
+
+			//listeners
+			this.el.script_dialog.connect( (dialog) => {
+			    if (this.el == null) {
+			        return true;
+			    }
+			    
+			     var msg = dialog.get_message();
+			     if (msg.length < 4) {
+			        return false;
+			     }
+			     if (msg.substring(0,4) != "IPC:") {
+			         return false;
+			     }
+			     var ar = msg.split(":", 3);
+			    if (ar.length < 3) {
+			        return false;
+			    }
+			    print("CMD: %s\n",ar[1]);
+			    print("ARGS: %s\n",ar[2]);
+			    switch(ar[1]) {
+			    
+			        case "SAVEHTML":
+			            // print("%sw",ar[2]);
+			            //  _this.file.saveHTML(ar[2]);
+			            return true;
+			            
+			        case "OUT":
+			            _this.result_json = ar[2];
+			            return true;
+			            
+			        default:
+			            return true;
+			    }
+			    
+			});
+		}
+
+		// user defined functions
+	}
+
 
 
 	public class Xcls_content : Object
