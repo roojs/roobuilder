@@ -875,7 +875,22 @@ namespace Palete
 			this.sq.selectExecute(stmt, els);
 			return els.size < 1 ? null : els.get(0);
 					
-		}	
+		}
+		
+		public JSON.Array classCacheToJSON()
+		{
+			this.loadClassCache();
+			var ret = new JSON.Array();
+			foreach(var cls in this.classCache.keys) {
+			
+				var add = new JSON.Object();
+				add.set_string_property("name", cls);
+				//add.set_array_property("cn", new JSON.Array());
+				add.set_boolean_property("is_class", true);
+				ret.add_object_element(add);
+			}
+			return ret;
+		}
 	
 	
 	}
