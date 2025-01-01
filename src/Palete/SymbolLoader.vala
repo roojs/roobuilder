@@ -877,13 +877,13 @@ namespace Palete
 					
 		}
 		
-		public JSON.Array classCacheToJSON()
+		public Json.Array classCacheToJSON()
 		{
 			this.loadClassCache();
-			var ret = new JSON.Array();
+			var ret = new Json.Array();
 			foreach(var cls in this.classCache.keys) {
 			
-				var add = new JSON.Object();
+				var add = new Json.Object();
 				add.set_string_property("name", cls);
 				//add.set_array_property("cn", new JSON.Array());
 				add.set_boolean_property("is_class", true);
