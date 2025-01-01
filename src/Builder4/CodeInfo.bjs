@@ -533,7 +533,7 @@
             "    var settings =  this.el.get_settings();",
             "    settings.enable_write_console_messages_to_stdout = true;",
             "     ",
-            "    var fs= new FakeServer(this.el);",
+            "    var fs= new FakeServer(_this.win.windowstate);",
             "    fs.ref();",
             "    // this was an attempt to change the url perms.. did not work..",
             "    // settings.enable_file_access_from_file_uris = true;",
