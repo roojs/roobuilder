@@ -512,6 +512,19 @@
            "string icon_name" : "window-close-symbolic",
            "string tooltip_text" : "Close",
            "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "listeners" : {
+            "clicked" : [
+             "() => {",
+             "\t_this.el.hide();",
+             "}"
+            ]
+           },
+           "string icon_name" : "window-close-symbolic",
+           "string tooltip_text" : "Close",
+           "xtype" : "Button"
           }
          ],
          "xtype" : "Box"

@@ -1025,6 +1025,9 @@ public class CodeInfo : Object
 			var child_2 = new Xcls_Button29( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
+			var child_3 = new Xcls_Button45( _this );
+			child_3.ref();
+			this.el.append( child_3.el );
 		}
 
 		// user defined functions
@@ -1090,6 +1093,35 @@ public class CodeInfo : Object
 
 		// ctor
 		public Xcls_Button29(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "window-close-symbolic";
+			this.el.tooltip_text = "Close";
+
+			//listeners
+			this.el.clicked.connect( () => {
+				_this.el.hide();
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Button45 : Object
+	{
+		public Gtk.Button el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Button45(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
