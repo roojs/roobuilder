@@ -110,6 +110,7 @@ public class FakeServerCache : Object
 	public FakeServerCache.from_doc( FakeServer  server, string fname )
 	{
 		this.server = server;
+		GLib.debug("serve doc: %s", fname);
 		// testing - look in 
 		var tname = GLib.Environment.get_home_dir() + "/.Builder/test-docs/" + fname;
 		var  file = GLib.File.new_for_path ( tname);
@@ -121,13 +122,13 @@ public class FakeServerCache : Object
 		 
 		// serves up a number of things.
 		// aa.. symbol/xxxxx.json - 
-		if (fname.has_prefix("symbol/") ) {
+		//if (fname.has_prefix("symbol/") ) {
 			
-		 	this.data = "".data;
-			this.content_type = "";
-			this.size = 0;
+		 	this.data = "Not found".data;
+			this.content_type = "text/plain";
+			this.size = this.data.length;
 			return;
-		}
+		//}
 		
 	}
 	
