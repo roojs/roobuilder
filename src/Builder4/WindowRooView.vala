@@ -650,7 +650,7 @@ public class Xcls_WindowRooView : Object
 			    settings.enable_developer_extras = true;
 			    
 			    
-			    var fs= new FakeServer(_this.win.windowstate);
+			    var fs= new FakeServer(_this.main_window.windowstate);
 			    fs.ref();
 			    // this was an attempt to change the url perms.. did not work..
 			    // settings.enable_file_access_from_file_uris = true;
