@@ -112,7 +112,18 @@ public class FakeServerCache : Object
 		this.server = server;
 		GLib.debug("serve doc: %s", fname);
 		
+		if (fname == "/tree.json") {
+			var sl = server.state.file.getSymbolLoader();
+			var json = sl.classCacheToJSON();
+			var  generator = new Json.Generator ();
+			
+			generator.set_root (js);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			var data = generator.to_data (null);
 		
+		}
 		
 		
 		// testing - look in 
