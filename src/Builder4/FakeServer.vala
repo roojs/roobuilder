@@ -262,7 +262,7 @@ public class FakeServer : Object
     { 
 		// request is URISchemeRequest
 			 
-		print("REQ: %s\n",request.get_path());
+		print("REQ: %s   %s\n", request.get_scheme(,)request.get_path());
 		var cdata = FakeServerCache.factory(this, request.get_path() , request.get_scheme());
 	
  		if (cdata.size < 1 ) {
