@@ -212,14 +212,18 @@ public class FakeServer : Object
 	//WebKit.WebView view;
 	
 	static WebKit.WebContext cx = null;
-	public FakeServer(WebKit.WebView wkview)
+	
+	public WindowState state;
+	
+	public FakeServer(WindowState state)
 	{
 		//this.view = wkview;
+		this.state = state;
 		if (cx != null) {
 			return;
 		}
 		 
-		 cx = WebKit.WebContext.get_default();
+		cx = WebKit.WebContext.get_default();
 		//var cx = this.view.get_context();
 		cx.register_uri_scheme("xhttp",  serve);
 		cx.register_uri_scheme("resources",  serve);
