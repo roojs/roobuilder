@@ -1116,6 +1116,8 @@ public class CodeInfo : Object
 
 			//listeners
 			this.el.clicked.connect( () => {
+			
+			FakeServerCache.clear(); // force refresh
 			_this.webview.el.load_uri("doc://localhost/gtk.html#Gtk.Widget");
 			//for testing.
 			});
