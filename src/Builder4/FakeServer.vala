@@ -117,8 +117,10 @@ public class FakeServerCache : Object
 			
 			var json = sl.classCacheToJSON();
 			var  generator = new Json.Generator ();
-			
-			generator.set_root (json);
+			var  root = new Json.Node(Json.NodeType.OBJECT);
+   			root.init_object(json);
+    
+			generator.set_root (root);
 			generator.pretty = true;
 			generator.indent = 4;
 
