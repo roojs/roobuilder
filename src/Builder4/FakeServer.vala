@@ -33,17 +33,17 @@ public class FakeServerCache : Object
 	public static FakeServerCache factory(FakeServer server, string fname, string scheme)
 	{
 		
-		this.server = server;
+		 
 		if (cache == null) {
 			cache = new Gee.HashMap<string,FakeServerCache>();
 		}
 		
 	   // print ("CACHE look for ==%s==\n", fname);
 	    if (scheme == "resources") {
-			return new FakeServerCache.from_resource(fname);
+			return new FakeServerCache.from_resource(server,fname);
 		}
 	    if (scheme == "doc") {
-			return new FakeServerCache.from_doc(fname);
+			return new FakeServerCache.from_doc(server, fname);
 		}
 	    if (cache.has_key(fname)) {
 			print ("CACHE got  %s\n", fname);
@@ -51,7 +51,7 @@ public class FakeServerCache : Object
 		}
 	    print ("CACHE create %s\n", fname);
 	    
-	    var el = new  FakeServerCache(fname);
+	    var el = new  FakeServerCache(server,fname);
  
  	    cache.set(fname, el);
 	    return el;
@@ -81,7 +81,9 @@ public class FakeServerCache : Object
 		cache.clear();
 	}
     
-	public static FakeServerCache factory_with_data(string data) {
+	public static FakeServerCache factory_with_data(FakeServer  server, string data) 
+	{
+		this.server = server;
 		if (cache == null) {
 			cache = new Gee.HashMap<string,FakeServerCache>();
 		}
@@ -94,8 +96,9 @@ public class FakeServerCache : Object
     
     
     
-	public FakeServerCache.with_data( string data )
+	public FakeServerCache.with_data( FakeServer  server, string data )
 	{
+		this.server = server;
 		this.fname = "/" + GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, data, data.length) + ".js";
 		this.data = data.data;
 		this.content_type = "text/javascript;charset=UTF-8";
@@ -104,8 +107,9 @@ public class FakeServerCache : Object
 	  
 	}
 	
-	public FakeServerCache.from_doc( string fname )
+	public FakeServerCache.from_doc( FakeServer  server, string fname )
 	{
+		this.server = server;
 		// testing - look in 
 		var tname = GLib.Environment.get_home_dir() + "/.Builder/test-docs/" + fname;
 		var  file = GLib.File.new_for_path ( tname);
@@ -128,9 +132,9 @@ public class FakeServerCache : Object
 	}
 	
 	
-	public FakeServerCache.from_resource( string fname )
+	public FakeServerCache.from_resource( FakeServer  server, string fname )
 	{
-		
+		this.server = server;
 		this.fname = fname;
 		
 		var  file = File.new_for_path ( BuilderApplication.configDirectory() + "/resources/" + fname);
