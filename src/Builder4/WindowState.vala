@@ -112,6 +112,7 @@ public class WindowState : Object
  
  		this.popover_codeinfo = new CodeInfo();
  		this.popover_codeinfo.win = this.win;
+ 		FakeServer.server(this);
 	}
 
  
