@@ -222,6 +222,7 @@ public class FakeServer : Object
 		if (cx != null) {
 			return;
 		}
+		// first call will register  - after that all will use the same handlers.
 		 
 		cx = WebKit.WebContext.get_default();
 		//var cx = this.view.get_context();
