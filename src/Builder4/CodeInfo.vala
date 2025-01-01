@@ -1260,7 +1260,7 @@ public class CodeInfo : Object
 			    // this may not work!?
 			    var settings =  this.el.get_settings();
 			    settings.enable_write_console_messages_to_stdout = true;
-			       
+			    settings.enable_page_cache = false;
 			    
 			    
 			
