@@ -885,7 +885,7 @@ namespace Palete
 			
 				var add = new Json.Object();
 				add.set_string_member("name", cls);
-				//add.set_array_property("cn", new JSON.Array());
+				add.set_array_member("cn", new JSON.Array());
 				add.set_boolean_member("is_class", true);
 				ret.add_object_element(add);
 			}
