@@ -440,7 +440,7 @@
             "    //this.runjs = js_src;",
             "    ",
             "    var fc =    FakeServerCache.factory_with_data(   ",
-            "    \t\tFakeServer.server(_this.win.windowstate),",
+            "    \t\tFakeServer.server(_this.main_window.windowstate),",
             "    \t\tjs_src);",
             "    \t\t",
             "    \t\t",

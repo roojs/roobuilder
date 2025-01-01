@@ -952,7 +952,7 @@ public class Xcls_WindowRooView : Object
 		    //this.runjs = js_src;
 		    
 		    var fc =    FakeServerCache.factory_with_data(   
-		    		FakeServer.server(_this.win.windowstate),
+		    		FakeServer.server(_this.main_window.windowstate),
 		    		js_src);
 		    		
 		    		
