@@ -12,6 +12,7 @@ public class CodeInfo : Object
 		}
 		return _CodeInfo;
 	}
+	public Xcls_pane pane;
 	public Xcls_back_button back_button;
 	public Xcls_next_button next_button;
 	public Xcls_toggle_method toggle_method;
@@ -46,9 +47,8 @@ public class CodeInfo : Object
 		// set gobject values
 		this.el.autohide = true;
 		this.el.position = Gtk.PositionType.BOTTOM;
-		var child_1 = new Xcls_Paned1( _this );
-		child_1.ref();
-		this.el.child = child_1.el;
+		new Xcls_pane( _this );
+		this.el.child = _this.pane.el;
 	}
 
 	// user defined functions
@@ -91,7 +91,7 @@ public class CodeInfo : Object
 	   	this.el.set_parent(onbtn);
 		this.el.popup();
 		var win = this.win.el;
-		this.el.set_size_request( win.get_width() - 50, win.get_height() - 50);
+		this.el.set_size_request( win.get_width() - 50, win.get_height() - 200);
 	    
 	
 		var sl = _this.win.windowstate.file.getSymbolLoader();
@@ -115,7 +115,7 @@ public class CodeInfo : Object
 	
 		
 	}
-	public class Xcls_Paned1 : Object
+	public class Xcls_pane : Object
 	{
 		public Gtk.Paned el;
 		private CodeInfo  _this;
@@ -124,9 +124,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Paned1(CodeInfo _owner )
+		public Xcls_pane(CodeInfo _owner )
 		{
 			_this = _owner;
+			_this.pane = this;
 			this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
 
 			// my vars (dec)

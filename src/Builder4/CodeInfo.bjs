@@ -15,6 +15,7 @@
      "* prop" : "child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "bool wide_handle" : true,
+     "id" : "pane",
      "items" : [
       {
        "$ xns" : "Gtk",
@@ -591,7 +592,7 @@
     "   \tthis.el.set_parent(onbtn);",
     "\tthis.el.popup();",
     "\tvar win = this.win.el;",
-    "\tthis.el.set_size_request( win.get_width() - 50, win.get_height() - 50);",
+    "\tthis.el.set_size_request( win.get_width() - 50, win.get_height() - 200);",
     "    ",
     "",
     "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
