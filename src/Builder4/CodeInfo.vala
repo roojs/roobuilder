@@ -1020,18 +1020,50 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
+			var child_1 = new Xcls_Button64( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
 			new Xcls_combo( _this );
 			this.el.append( _this.combo.el );
-			var child_2 = new Xcls_Button29( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
-			var child_3 = new Xcls_Button45( _this );
+			var child_3 = new Xcls_Button29( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
+			var child_4 = new Xcls_Button45( _this );
+			child_4.ref();
+			this.el.append( child_4.el );
 		}
 
 		// user defined functions
 	}
+	public class Xcls_Button64 : Object
+	{
+		public Gtk.Button el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Button64(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "window-close-symbolic";
+			this.el.tooltip_text = "Close";
+
+			//listeners
+			this.el.clicked.connect( () => {
+				_this.el.hide();
+			});
+		}
+
+		// user defined functions
+	}
+
 	public class Xcls_combo : Object
 	{
 		public Gtk.DropDown el;
