@@ -124,8 +124,8 @@ public class FakeServerCache : Object
 			generator.pretty = true;
 			generator.indent = 4;
 			
-			GLib.debug("wrinte %s", BuilderApplication.configDirectory() + "/docs/" + fqn + ".json");
-			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/" + fqn + ".json");
+			GLib.debug("wrinte %s", BuilderApplication.configDirectory() + "/docs/tree.json");
+			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/tree.json");
 			
  			var data = generator.to_data (null);
  			var data_out = new GLib.DataOutputStream(
