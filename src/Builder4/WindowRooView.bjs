@@ -556,7 +556,6 @@
               "\tbuf.create_tag (\"property\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#BC1F51\");",
               "\tbuf.create_tag (\"variable\", \"weight\", Pango.Weight.BOLD, \"foreground\", \"#A518B5\");",
               "",
-              "",
               "\tbuf.create_tag (\"ERR\", \"weight\", Pango.Weight.BOLD, \"background\", \"pink\");",
               "\tbuf.create_tag (\"WARN\", \"weight\", Pango.Weight.BOLD, \"background\", \"#ABF4EB\");",
               "\tbuf.create_tag (\"DEPR\", \"weight\", Pango.Weight.BOLD, \"background\", \"#EEA9FF\");",
