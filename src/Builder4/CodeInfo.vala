@@ -1054,7 +1054,7 @@ public class CodeInfo : Object
 
 			//listeners
 			this.el.clicked.connect( () => {
-			this.webview.el.load_uri("doc://localhost/gtk.html#Gtk.Widget");
+			_this.webview.el.load_uri("doc://localhost/gtk.html#Gtk.Widget");
 			//for testing.
 			});
 		}
