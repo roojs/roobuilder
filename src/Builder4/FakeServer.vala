@@ -140,7 +140,7 @@ public class FakeServerCache : Object
 			return;
 		}
 		
-		if (fname.has_prefix("/symbol/")) {
+		if (fname.has_prefix("/symbols/")) {
 			///symbols/Gtk.Widget.json
 			var fqn = fname.replace("/symbols/","");
 			fqn = fqn.substring(0,fqn.length-5);
