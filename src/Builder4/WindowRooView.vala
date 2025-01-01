@@ -1471,7 +1471,7 @@ public class Xcls_WindowRooView : Object
 		{
 			_this = _owner;
 			_this.buffer = this;
-			this.el = new GtkSource.Buffer(  null );
+			this.el = new GtkSource.Buffer(   );
 
 			// my vars (dec)
 			this.error_line = -1;
