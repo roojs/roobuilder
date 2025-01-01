@@ -119,7 +119,7 @@
             "    settings.enable_developer_extras = true;",
             "    ",
             "    ",
-            "    var fs= new FakeServer(this.el);",
+            "    var fs= new FakeServer(_this.win.windowstate);",
             "    fs.ref();",
             "    // this was an attempt to change the url perms.. did not work..",
             "    // settings.enable_file_access_from_file_uris = true;",
