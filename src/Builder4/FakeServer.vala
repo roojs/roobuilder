@@ -220,7 +220,19 @@ public class FakeServer : Object
 	
 	public WindowState state;
 	
-	public FakeServer(WindowState state)
+	static FakeServer server_instance = null;
+	public FakeServer server(WindowState state)
+	{
+		if (server_instance != null) {
+			return server_instance;
+		}
+		server_instance = new FakeServer(state);
+		return server_instance;
+	
+	}
+	
+	
+	private FakeServer(WindowState state)
 	{
 		//this.view = wkview;
 		this.state = state;
