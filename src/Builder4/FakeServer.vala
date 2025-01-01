@@ -111,32 +111,53 @@ public class FakeServerCache : Object
 	{
 		this.server = server;
 		GLib.debug("serve doc: %s", fname);
+		
+		
+		
+		
 		// testing - look in 
-		var tname = GLib.Environment.get_home_dir() + "/.Builder/test-docs/" + fname;
+		var tname = GLib.Environment.get_home_dir() + "/.Builder/test-docs" + fname;
 		var  file = GLib.File.new_for_path ( tname);
 		if (file.query_exists()) {
 			this.initWithFile(file);
 			GLib.debug("Serve from   %s", tname);
 		}
 		
-		 
+		var f = GLib. File.new_for_uri("resource://doc"+ fname);	
+		if (!f.query_exists()) {
+			this.initWithFile(f);
+			GLib.debug("Serve from   resource://doc%s", fname);
+			return;
+		}
 		// serves up a number of things.
 		// aa.. symbol/xxxxx.json - 
 		//if (fname.has_prefix("symbol/") ) {
 			
 		 	this.data = "Not found".data;
-			this.content_type = "text/plain";
+			var f = GLib. File.new_for_uri("resource://"+ fname);	
+		if (!f.query_exists()) {
+			this.initWithFile(f);
+			return;
+		}this.content_type = "text/plain";
 			this.size = this.data.length;
 			return;
 		//}
 		
 	}
 	
+	// this is  downloaded resource
 	
 	public FakeServerCache.from_resource( FakeServer  server, string fname )
 	{
 		this.server = server;
 		this.fname = fname;
+		
+		var f = GLib. File.new_for_uri("resource://"+ fname);	
+		if (!f.query_exists()) {
+			this.initWithFile(f);
+			return;
+		}
+		
 		
 		var  file = File.new_for_path ( BuilderApplication.configDirectory() + "/resources/" + fname);
 		if (!file.query_exists()) {
