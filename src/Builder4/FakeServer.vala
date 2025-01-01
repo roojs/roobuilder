@@ -149,7 +149,7 @@ public class FakeServerCache : Object
 
 	  
 	}
-	public FakeServerCache( string fname ) {
+	public FakeServerCache( FakeServer  server, string fname ) {
 	       
 		this.fname = fname;
 		
