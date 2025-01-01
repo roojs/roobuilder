@@ -33,7 +33,7 @@ public class Xcls_WindowRooView : Object
 	public Xcls_regex regex;
 	public Xcls_multiline multiline;
 
-		// my vars (def)
+	// my vars (def)
 	public Gtk.Widget lastObj;
 	public Xcls_MainWindow main_window;
 	public int last_error_counter;
@@ -357,7 +357,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_notebook(Xcls_WindowRooView _owner )
@@ -387,7 +387,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_label_preview(Xcls_WindowRooView _owner )
@@ -410,7 +410,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_label_code(Xcls_WindowRooView _owner )
@@ -433,7 +433,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_paned(Xcls_WindowRooView _owner )
@@ -460,7 +460,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_viewbox(Xcls_WindowRooView _owner )
@@ -489,7 +489,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box6(Xcls_WindowRooView _owner )
@@ -521,7 +521,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button7(Xcls_WindowRooView _owner )
@@ -549,7 +549,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_AutoRedraw(Xcls_WindowRooView _owner )
@@ -579,7 +579,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button9(Xcls_WindowRooView _owner )
@@ -613,7 +613,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public WebKit.WebInspector inspector;
 		public bool pendingRedraw;
 		public int redraws;
@@ -996,7 +996,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_inspectorcontainer(Xcls_WindowRooView _owner )
@@ -1021,7 +1021,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box12(Xcls_WindowRooView _owner )
@@ -1048,7 +1048,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_sourceviewscroll(Xcls_WindowRooView _owner )
@@ -1073,7 +1073,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int editable_start_pos;
 		public bool loading;
 		public bool button_is_pressed;
@@ -1493,7 +1493,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int error_line;
 		public bool in_cursor_change;
 		public bool dirty;
@@ -1656,7 +1656,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool is_control;
 
 		// ctor
@@ -1715,7 +1715,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public double distance;
 
 		// ctor
@@ -1762,7 +1762,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box18(Xcls_WindowRooView _owner )
@@ -1796,7 +1796,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_entry(Xcls_WindowRooView _owner )
@@ -1862,7 +1862,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_EventControllerKey20(Xcls_WindowRooView _owner )
@@ -1907,7 +1907,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_results(Xcls_WindowRooView _owner )
@@ -1953,7 +1953,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -1987,7 +1987,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -2022,7 +2022,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -2048,7 +2048,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_settings(Xcls_WindowRooView _owner )
@@ -2073,7 +2073,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box26(Xcls_WindowRooView _owner )
@@ -2100,7 +2100,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_case_sensitive(Xcls_WindowRooView _owner )
@@ -2130,7 +2130,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_regex(Xcls_WindowRooView _owner )
@@ -2160,7 +2160,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_multiline(Xcls_WindowRooView _owner )
