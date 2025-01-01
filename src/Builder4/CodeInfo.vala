@@ -62,14 +62,14 @@ public class CodeInfo : Object
 				_this.tree.loadClass(sy);
 				_this.combo.loadClass(sy);
 			//	_this.content.loadSymbol(sy);
-				this.webview.el.load_uri("doc://localhost/gtk.html#Gtk.Widget");
+				this.webview.el.load_uri("doc://localhost/gtk.html#" + sy.fqn);
 				break;
 			case Lsp.SymbolKind.Method:
 				var cls = sl.singleById(sy.parent_id);
 				_this.tree.loadClass(cls);
 				_this.tree.select(sy);
 				_this.combo.loadClass(cls);
-				this.webview.el.load_uri("doc://localhost/gtk.html#Gtk.Widget");
+				this.webview.el.load_uri("doc://localhost/gtk.html#" + cls.fqn);
 			//	_this.content.loadSymbol(cls);
 				this.history.add(sy);
 				break;
