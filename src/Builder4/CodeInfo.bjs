@@ -485,11 +485,11 @@
            "listeners" : {
             "clicked" : [
              "() => {",
-             "\t_this.el.hide();",
+             "\t//_this.el.hide();",
              "}"
             ]
            },
-           "string icon_name" : "window-close-sy  mbolic",
+           "string icon_name" : "view-refresh-symbolic",
            "string tooltip_text" : "Close",
            "xtype" : "Button"
           },
