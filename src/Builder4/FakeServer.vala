@@ -221,7 +221,7 @@ public class FakeServer : Object
 	public WindowState state;
 	
 	static FakeServer server_instance = null;
-	public FakeServer server(WindowState state)
+	public static FakeServer server(WindowState state)
 	{
 		if (server_instance != null) {
 			return server_instance;
