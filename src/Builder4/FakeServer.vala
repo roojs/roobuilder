@@ -130,6 +130,10 @@ public class FakeServerCache : Object
 		}
 		
 		if (fname.has_prefix("/symbol/")) {
+			///symbols/Gtk.Widget.json
+			var fqn = fname.replace("/symbols/","");
+			fqn = fqn.substring(0,fqn.length-5);
+			GLib.debug("loading symbol data for %s", fqn);
 			var sy = sl.singleByFqn(fqn);
 			// in theory this loads up all of the types..
 			pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP);
