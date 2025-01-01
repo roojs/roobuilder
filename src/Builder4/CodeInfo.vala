@@ -1052,7 +1052,7 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "window-close-symbolic";
+			this.el.icon_name = "window-close-sy  mbolic";
 			this.el.tooltip_text = "Close";
 
 			//listeners

@@ -489,7 +489,7 @@
              "}"
             ]
            },
-           "string icon_name" : "window-close-symbolic",
+           "string icon_name" : "window-close-sy  mbolic",
            "string tooltip_text" : "Close",
            "xtype" : "Button"
           },
