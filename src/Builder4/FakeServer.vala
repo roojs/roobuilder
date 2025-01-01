@@ -121,18 +121,19 @@ public class FakeServerCache : Object
 		if (file.query_exists()) {
 			this.initWithFile(file);
 			GLib.debug("Serve from   %s", tname);
+			return;
 		}
 		
-		var f = GLib. File.new_for_uri("resource://doc"+ fname);	
-		if (!f.query_exists()) {
+		var f = GLib. File.new_for_uri("resource:///doc"+ fname);	
+		if (f.query_exists()) {
 			this.initWithFile(f);
-			GLib.debug("Serve from   resource://doc%s", fname);
+			GLib.debug("Serve from   resource:///doc%s", fname);
 			return;
 		}
 		// serves up a number of things.
 		// aa.. symbol/xxxxx.json - 
 		//if (fname.has_prefix("symbol/") ) {
-			
+		GLib.debug("Could not find %s in .Builder/test-docs or resource ", fname);	
 		 	this.data = "Not found".data;
 		 	this.content_type = "text/plain";
 			this.size = this.data.length;
