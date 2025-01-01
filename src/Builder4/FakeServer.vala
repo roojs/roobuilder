@@ -122,7 +122,10 @@ public class FakeServerCache : Object
 			generator.indent = 4;
 
  			var data = generator.to_data (null);
-		
+			this.data = data.data;
+		 	this.content_type = "application/json";
+			this.size = data.length;
+			return;
 		}
 		
 		
