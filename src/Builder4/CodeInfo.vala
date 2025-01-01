@@ -699,7 +699,6 @@ public class CodeInfo : Object
 
 
 		// my vars (def)
-		public Gtk.CustomFilterFunc match_func;
 
 		// ctor
 		public Xcls_current_filter(CodeInfo _owner )
@@ -759,57 +758,6 @@ public class CodeInfo : Object
 } );
 
 			// my vars (dec)
-			this.match_func = (item) => { 
-	var tr = ((Gtk.TreeListRow)item).get_item();
-   GLib.debug("filter%s =>  %s", item.get_type().name(), 
- 		  tr.get_type().name()
-   );
-   
-	var j =  (Palete.Symbol) tr;
-	var txt = _this.tree_search.el.get_text();
-   if (txt != "" && !j.name.contains(txt)) {
-   		return false;
-	}
-	
-	if (!_this.toggle_method.el.active && 
-		j.stype ==  Lsp.SymbolKind.Method
-		) {
-		return false;
-	}
-	if (!_this.toggle_prop.el.active && 
-		(j.stype == Lsp.SymbolKind.Property ||
-		j.stype == Lsp.SymbolKind.Field 
-		)) {
-		return false;
-	}
-	if (!_this.toggle_signal.el.active && 
-		j.stype == Lsp.SymbolKind.Signal 
-		) {
-		return false;
-	}
-	switch( j.stype) {
-	
-		case Lsp.SymbolKind.Namespace:
-		case Lsp.SymbolKind.Class:
-		case Lsp.SymbolKind.Method:
-		case Lsp.SymbolKind.Property:
-		 case Lsp.SymbolKind.Field:  //???
-		case Lsp.SymbolKind.Constructor:
-		case Lsp.SymbolKind.Interface:
-		case Lsp.SymbolKind.Enum:
-		case Lsp.SymbolKind.Constant:
-		case Lsp.SymbolKind.EnumMember:
-		case Lsp.SymbolKind.Struct:
-		case Lsp.SymbolKind.Signal:
-				return true;
-			
-		default : 
-			GLib.debug("hide %s", j.stype.to_string());
-			return false;
-	
-	}
-
-};
 
 			// set gobject values
 		}
@@ -956,8 +904,6 @@ public class CodeInfo : Object
 
 
 		// my vars (def)
-		public string property_name;
-		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression22(CodeInfo _owner )
@@ -966,8 +912,6 @@ public class CodeInfo : Object
 			this.el = new Gtk.PropertyExpression( typeof(Palete.Symbol), null, "sort_key" );
 
 			// my vars (dec)
-			this.property_name = "sort_key";
-			this.this_type = typeof(Palete.Symbol);
 
 			// set gobject values
 		}
@@ -984,7 +928,6 @@ public class CodeInfo : Object
 
 
 		// my vars (def)
-		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
 		public Xcls_TreeListModel23(CodeInfo _owner )
@@ -999,10 +942,6 @@ public class CodeInfo : Object
  );
 
 			// my vars (dec)
-			this.create_func = (item) => {
- 
-	return ((Palete.Symbol)item).children;
-};
 
 			// set gobject values
 		}
@@ -1224,16 +1163,7 @@ public class CodeInfo : Object
 			    // this may not work!?
 			    var settings =  this.el.get_settings();
 			    settings.enable_write_console_messages_to_stdout = true;
-			     
-			    FakeServer.server(_this.win.windowstate);
-			    
-			    // this was an attempt to change the url perms.. did not work..
-			    // settings.enable_file_access_from_file_uris = true;
-			    // settings.enable_offline_web_application_cache - true;
-			    // settings.enable_universal_access_from_file_uris = true;
-			   
-			     
-			    
+			       
 			    
 			    
 			
@@ -1243,7 +1173,7 @@ public class CodeInfo : Object
 			            //fixme - should be a config option!
 			            // or should we catch stuff and fix it up..
 			          //  "http://localhost/roojs1/docs/?gtk=1#Gtk.Widget"
-			            "http://localhost/roojs1/docs/"
+			            "doc://localhost/"
 			    );
 			        
 			        
