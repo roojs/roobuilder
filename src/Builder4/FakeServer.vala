@@ -111,9 +111,10 @@ public class FakeServerCache : Object
 	{
 		this.server = server;
 		GLib.debug("serve doc: %s", fname);
-		
+		var sl = server.state.file.getSymbolLoader();
+		var pal = server.state.project.palete;
 		if (fname == "/tree.json") {
-			var sl = server.state.file.getSymbolLoader();
+			
 			var json = sl.classCacheToJSON();
 			var  generator = new Json.Generator ();
 			
@@ -126,6 +127,26 @@ public class FakeServerCache : Object
 		 	this.content_type = "application/json";
 			this.size = data.length;
 			return;
+		}
+		
+		if (fname.has_prefix("/symbol/")) {
+			var sy = sl.singleByFqn(fqn);
+			// in theory this loads up all of the types..
+			pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP);
+			var js = Json.gobject_serialize (sy) ;
+			var  generator = new Json.Generator ();
+			
+			generator.set_root (js);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			var data = generator.to_data (null);
+			this.data = data.data;
+		 	this.content_type = "application/json";
+			this.size = data.length;
+			return;
+			
+		
 		}
 		
 		
