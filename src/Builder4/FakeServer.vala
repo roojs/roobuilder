@@ -134,11 +134,7 @@ public class FakeServerCache : Object
 		//if (fname.has_prefix("symbol/") ) {
 			
 		 	this.data = "Not found".data;
-			var f = GLib. File.new_for_uri("resource://"+ fname);	
-		if (!f.query_exists()) {
-			this.initWithFile(f);
-			return;
-		}this.content_type = "text/plain";
+		 	this.content_type = "text/plain";
 			this.size = this.data.length;
 			return;
 		//}
