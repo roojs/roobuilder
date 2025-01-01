@@ -699,6 +699,7 @@ public class CodeInfo : Object
 
 
 		// my vars (def)
+		public Gtk.CustomFilterFunc match_func;
 
 		// ctor
 		public Xcls_current_filter(CodeInfo _owner )
@@ -758,6 +759,57 @@ public class CodeInfo : Object
 } );
 
 			// my vars (dec)
+			this.match_func = (item) => { 
+	var tr = ((Gtk.TreeListRow)item).get_item();
+   GLib.debug("filter%s =>  %s", item.get_type().name(), 
+ 		  tr.get_type().name()
+   );
+   
+	var j =  (Palete.Symbol) tr;
+	var txt = _this.tree_search.el.get_text();
+   if (txt != "" && !j.name.contains(txt)) {
+   		return false;
+	}
+	
+	if (!_this.toggle_method.el.active && 
+		j.stype ==  Lsp.SymbolKind.Method
+		) {
+		return false;
+	}
+	if (!_this.toggle_prop.el.active && 
+		(j.stype == Lsp.SymbolKind.Property ||
+		j.stype == Lsp.SymbolKind.Field 
+		)) {
+		return false;
+	}
+	if (!_this.toggle_signal.el.active && 
+		j.stype == Lsp.SymbolKind.Signal 
+		) {
+		return false;
+	}
+	switch( j.stype) {
+	
+		case Lsp.SymbolKind.Namespace:
+		case Lsp.SymbolKind.Class:
+		case Lsp.SymbolKind.Method:
+		case Lsp.SymbolKind.Property:
+		 case Lsp.SymbolKind.Field:  //???
+		case Lsp.SymbolKind.Constructor:
+		case Lsp.SymbolKind.Interface:
+		case Lsp.SymbolKind.Enum:
+		case Lsp.SymbolKind.Constant:
+		case Lsp.SymbolKind.EnumMember:
+		case Lsp.SymbolKind.Struct:
+		case Lsp.SymbolKind.Signal:
+				return true;
+			
+		default : 
+			GLib.debug("hide %s", j.stype.to_string());
+			return false;
+	
+	}
+
+};
 
 			// set gobject values
 		}
@@ -904,6 +956,8 @@ public class CodeInfo : Object
 
 
 		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression22(CodeInfo _owner )
@@ -912,6 +966,8 @@ public class CodeInfo : Object
 			this.el = new Gtk.PropertyExpression( typeof(Palete.Symbol), null, "sort_key" );
 
 			// my vars (dec)
+			this.property_name = "sort_key";
+			this.this_type = typeof(Palete.Symbol);
 
 			// set gobject values
 		}
@@ -928,6 +984,7 @@ public class CodeInfo : Object
 
 
 		// my vars (def)
+		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
 		public Xcls_TreeListModel23(CodeInfo _owner )
@@ -942,6 +999,10 @@ public class CodeInfo : Object
  );
 
 			// my vars (dec)
+			this.create_func = (item) => {
+ 
+	return ((Palete.Symbol)item).children;
+};
 
 			// set gobject values
 		}
@@ -1020,19 +1081,19 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button64( _this );
+			var child_1 = new Xcls_Button27( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_combo( _this );
 			this.el.append( _this.combo.el );
-			var child_3 = new Xcls_Button45( _this );
+			var child_3 = new Xcls_Button30( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button64 : Object
+	public class Xcls_Button27 : Object
 	{
 		public Gtk.Button el;
 		private CodeInfo  _this;
@@ -1041,7 +1102,7 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button64(CodeInfo _owner )
+		public Xcls_Button27(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -1113,7 +1174,7 @@ public class CodeInfo : Object
 	}
 
 
-	public class Xcls_Button45 : Object
+	public class Xcls_Button30 : Object
 	{
 		public Gtk.Button el;
 		private CodeInfo  _this;
@@ -1122,7 +1183,7 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button45(CodeInfo _owner )
+		public Xcls_Button30(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
