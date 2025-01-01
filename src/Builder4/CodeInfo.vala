@@ -92,7 +92,7 @@ public class CodeInfo : Object
 		this.el.popup();
 		var win = this.win.el;
 		this.el.set_size_request( win.get_width() - 50, win.get_height() - 200);
-	    
+	    _this.pane.el.set_position(200); // adjust later?
 	
 		var sl = _this.win.windowstate.file.getSymbolLoader();
 		var sy = sl.singleByFqn(sname);
