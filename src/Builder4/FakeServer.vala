@@ -149,8 +149,9 @@ public class FakeServerCache : Object
 
 	  
 	}
-	public FakeServerCache( FakeServer  server, string fname ) {
-	       
+	public FakeServerCache( FakeServer  server, string fname ) 
+	{
+	    this.server = server;   
 		this.fname = fname;
 		
 		var  file = File.new_for_path ( GLib.Environment.get_home_dir() + "/gitlive" + fname);
