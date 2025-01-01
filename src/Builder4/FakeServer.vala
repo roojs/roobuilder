@@ -227,6 +227,7 @@ public class FakeServer : Object
 			return server_instance;
 		}
 		server_instance = new FakeServer(state);
+		// don't need to ref  = as it's static?
 		return server_instance;
 	
 	}
