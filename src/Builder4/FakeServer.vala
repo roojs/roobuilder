@@ -84,13 +84,13 @@ public class FakeServerCache : Object
 		cache.clear();
 	}
     
-	public static FakeServerCache factory_with_data(FakeServer  server, string data) 
+	public static FakeServerCache factory_with_data( string data) 
 	{
 		 
 		if (cache == null) {
 			cache = new Gee.HashMap<string,FakeServerCache>();
 		}
-		var el = new  FakeServerCache.with_data(server, data);
+		var el = new  FakeServerCache.with_data( data);
 		print("CACHE - store %s\n", el.fname);
 		cache.set(el.fname, el);
 		return el;
