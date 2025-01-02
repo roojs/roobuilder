@@ -913,9 +913,7 @@ public class Xcls_WindowRooView : Object
 		
 		    //this.runjs = js_src;
 		    
-		    var fc =    FakeServerCache.factory_with_data(   
-		    		FakeServer.server(_this.main_window.windowstate),
-		    		js_src);
+		    var fc =    FakeServerCache.factory_with_data( js_src);
 		    		
 		    		
 		    this.runjs = fc.fname;
@@ -1471,7 +1469,7 @@ public class Xcls_WindowRooView : Object
 		{
 			_this = _owner;
 			_this.buffer = this;
-			this.el = new GtkSource.Buffer( null   );
+			this.el = new GtkSource.Buffer( null );
 
 			// my vars (dec)
 			this.error_line = -1;
