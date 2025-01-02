@@ -768,7 +768,7 @@
 			if (!opt_pull_resources) {
 				return;
 			}
-			var loop = new MainLoop();
+			var loop = new GLib.MainLoop();
 			Resources.singleton().updateProgress.connect((p,t) => {
 				print("Got %d/%d", (int) p,(int)t);
 				if (p == t) {
