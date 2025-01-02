@@ -293,12 +293,12 @@ public class FakeServer : Object
 	 
 	
 	static FakeServer server_instance = null;
-	public static FakeServer server(WindowState state)
+	public static FakeServer server()
 	{
 		if (server_instance != null) {
 			return server_instance;
 		}
-		server_instance = new FakeServer(state);
+		server_instance = new FakeServer();
 		// don't need to ref  = as it's static?
 		return server_instance;
 	
