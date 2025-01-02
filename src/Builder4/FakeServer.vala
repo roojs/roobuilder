@@ -30,9 +30,11 @@ public class FakeServerCache : Object
 	 
 	public static Gee.HashMap<string,FakeServerCache> cache;
 	
-	public static FakeServerCache factory(FakeServer server, string fname, string scheme)
+	public static FakeServerCache factory(FakeServer server, WebKit.URISchemeRequest request) 
 	{
-		
+		var fname  = request.get_path();
+		var scheme = request.get_scheme();
+		var wk = request.get
 		 
 		if (cache == null) {
 			cache = new Gee.HashMap<string,FakeServerCache>();
@@ -287,7 +289,7 @@ public class FakeServer : Object
 	
 	static WebKit.WebContext cx = null;
 	
-	public WindowState state;
+	 
 	
 	static FakeServer server_instance = null;
 	public static FakeServer server(WindowState state)
@@ -302,10 +304,10 @@ public class FakeServer : Object
 	}
 	
 	
-	private FakeServer(WindowState state)
+	private FakeServer()
 	{
 		//this.view = wkview;
-		this.state = state;
+	 
 		if (cx != null) {
 			return;
 		}
@@ -332,7 +334,7 @@ public class FakeServer : Object
 		// request is URISchemeRequest
 			 
 		print("REQ: %s   %s\n", request.get_scheme(),request.get_path());
-		var cdata = FakeServerCache.factory(this, request.get_path() , request.get_scheme());
+		var cdata = FakeServerCache.factory(this, request); //request.get_path() , request.get_scheme());
 	
  		if (cdata.size < 1 ) {
 			print("Skip file missing = %s/gitlive%s\n", GLib.Environment.get_home_dir() , request.get_path());
