@@ -99,9 +99,9 @@ public class FakeServerCache : Object
     
     
     
-	public FakeServerCache.with_data( FakeServer  server, string data )
+	public FakeServerCache.with_data(  string data )
 	{
-		this.server = server;
+		 
 		this.fname = "/" + GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, data, data.length) + ".js";
 		this.data = data.data;
 		this.content_type = "text/javascript;charset=UTF-8";
@@ -110,12 +110,12 @@ public class FakeServerCache : Object
 	  
 	}
 	
-	public FakeServerCache.from_doc( FakeServer  server, string fname )
+	public FakeServerCache.from_doc( WindowState state, string fname )
 	{
-		this.server = server;
+		 
 		GLib.debug("serve doc: %s", fname);
-		var sl = server.state.file.getSymbolLoader();
-		var pal = server.state.project.palete;
+		var sl = state.file.getSymbolLoader();
+		var pal = state.project.palete;
 		if (fname == "/tree.json") {
 			
 			var json = sl.classCacheToJSON();
@@ -197,9 +197,9 @@ public class FakeServerCache : Object
 	
 	// this is  downloaded resource
 	
-	public FakeServerCache.from_resource( FakeServer  server, string fname )
+	public FakeServerCache.from_resource(   string fname )
 	{
-		this.server = server;
+	 
 		this.fname = fname;
 		
 		var f = GLib. File.new_for_uri("resource://"+ fname);	
@@ -221,9 +221,9 @@ public class FakeServerCache : Object
 
 	  
 	}
-	public FakeServerCache( FakeServer  server, string fname ) 
+	public FakeServerCache(  string fname ) 
 	{
-	    this.server = server;   
+	    
 		this.fname = fname;
 		
 		var  file = File.new_for_path ( GLib.Environment.get_home_dir() + "/gitlive" + fname);
@@ -335,7 +335,7 @@ public class FakeServer : Object
 		// request is URISchemeRequest
 			 
 		print("REQ: %s   %s\n", request.get_scheme(),request.get_path());
-		var cdata = FakeServerCache.factory(this, request); //request.get_path() , request.get_scheme());
+		var cdata = FakeServerCache.factory(request); //request.get_path() , request.get_scheme());
 	
  		if (cdata.size < 1 ) {
 			print("Skip file missing = %s/gitlive%s\n", GLib.Environment.get_home_dir() , request.get_path());
