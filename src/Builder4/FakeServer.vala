@@ -22,7 +22,7 @@ public errordomain FakeServerError {
 
 public class FakeServerCache : Object
 {
-	public FakeServer server;
+	//public FakeServer server;
 	public string fname;
 	public uint8[] data;
 	public string content_type;
@@ -30,11 +30,11 @@ public class FakeServerCache : Object
 	 
 	public static Gee.HashMap<string,FakeServerCache> cache;
 	
-	public static FakeServerCache factory(FakeServer server, WebKit.URISchemeRequest request) 
+	public static FakeServerCache factory(WebKit.URISchemeRequest request) 
 	{
 		var fname  = request.get_path();
 		var scheme = request.get_scheme();
-		var wk = request.get_webview();
+		var wk = request.get_web_view();
 		 
 		if (cache == null) {
 			cache = new Gee.HashMap<string,FakeServerCache>();
@@ -42,10 +42,11 @@ public class FakeServerCache : Object
 		
 	   // print ("CACHE look for ==%s==\n", fname);
 	    if (scheme == "resources") {
-			return new FakeServerCache.from_resource(server,fname);
+			return new FakeServerCache.from_resource(fname);
 		}
 	    if (scheme == "doc") {
-			return new FakeServerCache.from_doc(server, fname);
+	    		var state = wk.get_data<WindowState>("windowstate");
+			return new FakeServerCache.from_doc(state, fname);
 		}
 	    if (cache.has_key(fname)) {
 			print ("CACHE got  %s\n", fname);
@@ -53,7 +54,7 @@ public class FakeServerCache : Object
 		}
 	    print ("CACHE create %s\n", fname);
 	    
-	    var el = new  FakeServerCache(server,fname);
+	    var el = new  FakeServerCache(fname);
  
  	    cache.set(fname, el);
 	    return el;
