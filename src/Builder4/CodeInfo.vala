@@ -56,12 +56,16 @@ public class CodeInfo : Object
 		// doesnt deal with history... - caller should do that.
 		var sl = _this.win.windowstate.file.getSymbolLoader();
 		
+		// can set this multiple times?
+		this.webview.el.set_data("windowstate", _this.win.windowstate);
+		
 		GLib.debug("showing symbol %s", sy.fqn);
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:
 				_this.tree.loadClass(sy);
 				_this.combo.loadClass(sy);
 			//	_this.content.loadSymbol(sy);
+				
 				this.webview.el.load_uri("doc://localhost/gtk.html#" + sy.fqn);
 				break;
 			case Lsp.SymbolKind.Method:
