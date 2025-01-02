@@ -34,7 +34,7 @@ public class FakeServerCache : Object
 	{
 		var fname  = request.get_path();
 		var scheme = request.get_scheme();
-		var wk = request.get
+		var wk = request.get_webview();
 		 
 		if (cache == null) {
 			cache = new Gee.HashMap<string,FakeServerCache>();
