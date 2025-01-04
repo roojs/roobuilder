@@ -598,6 +598,7 @@
              "\t\t",
              "\t\t_this.win.windowstate.fileViewOpen(",
              "\t\t\t\tf, true,  -1);",
+             "\t\t_this.el.hide();",
              "\t} catch (GLib.Error e) {",
              "\t",
              "\t\tGLib.debug(\"parsing alert failed\");",

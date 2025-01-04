@@ -1323,6 +1323,7 @@ public class CodeInfo : Object
 					
 					_this.win.windowstate.fileViewOpen(
 							f, true,  -1);
+					_this.el.hide();
 				} catch (GLib.Error e) {
 				
 					GLib.debug("parsing alert failed");
