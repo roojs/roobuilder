@@ -592,9 +592,16 @@ namespace Palete
 								symbol sp
 							WHERE
 								sp.id = symbol.parent_id
-						), '')  as parent_name
+						), '')  as parent_name,
+						files.path as source_file
+							
+						
 					FROM 
 						symbol 
+					LEFT JOIN
+						files
+					ON
+						files.id = symbol.file_id
 					WHERE 
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
