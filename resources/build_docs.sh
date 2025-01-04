@@ -28,8 +28,6 @@ cp ../../roojs1/css-bootstrap4/roojs-bootstrap.css doc/css-bootstrap4/
 cp ../../roojs1/fonts/font-awesome.css doc/css-bootstrap/
 cp ../../roojs1/fonts/font-awesome/*.woff2 doc/css-bootstrap/font-awesome
 
-
-
 #css for docs
 cp ../../roojs1/docs/docs.css doc/
 
