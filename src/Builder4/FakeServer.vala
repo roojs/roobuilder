@@ -246,14 +246,14 @@ public class FakeServerCache : Object
 	public void initWithFile(GLib.File file)
 	{
 		try { 
-		    var info = file.query_info(
-				     "standard::*",
-				    FileQueryInfoFlags.NONE
-		    );
-		    this.content_type = info.get_content_type();
-		    this.size = info.get_size();
-		    uint8[] data;
-		    string etag_out;
+			var info = file.query_info(
+				"standard::*",
+				FileQueryInfoFlags.NONE
+			);
+			this.content_type = info.get_content_type();
+			this.size = info.get_size();
+			uint8[] data;
+			string etag_out;
 			file.load_contents (null, out data, out etag_out);
 			this.data = data;
 		} catch (Error e) {
