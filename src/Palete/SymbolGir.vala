@@ -21,6 +21,9 @@ namespace Palete {
 			
 			switch (name) {
 				case "G": 
+				case "GObject":
+				case "Gio":
+				case "GioUnix":				
 					 name = "GLib";
 					break;
 				default:
@@ -73,7 +76,7 @@ namespace Palete {
 
 			this(f, parent);
 			this.name = name;
-			this.stype = Lsp.SymbolKind.Class;
+			this.stype = Lsp.SyolKind.Class;
 	 		//GLib.debug("new Class %s", this.to_fqn());			 
 	 	 
 		 	 
