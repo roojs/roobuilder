@@ -89,7 +89,21 @@ public class CodeInfo : Object
 		
 	}
 	public void navigateTo (Palete.Symbol sy, bool load_page = true)) {
-	
+		
+		if (this.history_pos > -1) {
+			var cur = this.history.get(this.history_pos);
+			if (sy.fqn == cur.fqn) {
+				return; // same url
+			}
+		}
+		GLib.debug("setting history and showing symbol");
+		this.history_pos++; 
+		if (this.history_pos == this.history.size) {
+			this.history.add(sy);
+		} else {
+			this.history.set(this.history_pos, sy);
+		}
+		this.showSymbol(sy,load_page);
 	}
 	public void show (Gtk.Widget onbtn, string stype_and_name) {
 	
