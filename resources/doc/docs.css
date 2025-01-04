@@ -1,0 +1,912 @@
+/* fonts and font effects */
+
+body,
+.tooltip,
+.popover {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family:  "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 900;
+ } 
+
+.general-content-body .navbar .nav-item, 
+.general-content-body h2,
+.general-content-body h3,
+.general-content-body h5,
+.header-column h1 {
+    font-weight: 500;
+    font-size: 24px;
+             
+}
+.header-column h1 {
+    text-align: center;
+}
+.general-content-body h5 {
+    font-size: 12px;
+}
+.news-page .general-content-body h5 {
+    font-size: 20px;
+    font-weight: bold;
+}
+.news-page .general-content-body .btn-link.active  {
+    font-weight:  bold;
+}
+
+.general-content-body .navbar .nav-item {
+    font-size: 18px;
+}
+
+.left-menu-sidebar {
+    font-size:16px;
+
+}
+.left-menu-sidebar-options
+{
+    text-transform: uppercase;
+    
+}
+
+.left-menu-sidebar.sidebar .sidebar-menu.active  {
+    font-weight: bold;
+}
+
+.left-menu-sidebar.sidebar .sidebar-menu > li > a  {
+    color: #16114C;
+    padding: 12px 5px 12px 20px;
+}
+
+
+ 
+
+.left-menu-sidebar.sidebar .sidebar-menu>li>a,
+.sidebar .sidebar-menu li.open li.treeview-menu > a {
+ /*   color: #16114C; */
+}
+
+.left-menu-sidebar.sidebar .left-menu-sidebar-options {
+    padding-left: 8px;
+}
+
+.left-menu-sidebar.sidebar .sidebar-menu > li > a i {
+    color: #999;
+}
+
+
+.mobile-header-menu ul > li.active > a,
+.left-menu-sidebar.sidebar .sidebar-menu > li.active > a  {
+    font-weight: bold;
+}
+
+.left-menu-sidebar.sidebar .sidebar-menu .treeview-menu > li.active {
+ /*  background-color: #fff;
+    border-color: #eee; */
+}
+
+.left-menu-sidebar.sidebar .sidebar-menu .treeview-menu > li.active > a  {
+    font-weight: bold;
+}
+
+.left-menu-sidebar.sidebar .left-menu-sidebar-options .languages li a:hover {
+    color: #16114C;
+    font-weight: bold;
+}
+
+.left-menu-sidebar.sidebar .left-menu-sidebar-options .socials li a:hover > i {
+    background-color: #16114C;
+}
+
+.left-menu-sidebar.sidebar .sidebar-menu > li .treeview-menu a:hover,
+.left-menu-sidebar.sidebar .sidebar-menu > li a:hover {
+   /* color: #666; */
+    font-weight: bold;
+}
+.left-menu-sidebar.sidebar .sidebar-menu>li.active>a, 
+.sidebar .sidebar-menu li.open li.treeview-menu.active>a
+{
+    color: #fff;
+}
+
+
+/* block the broken bit from sidbar... */
+.sidebar .sidebar-menu li.open li.treeview-menu>a  {
+    display: none;
+}
+ 
+/**-----subsubsub menuds... **/
+.left-menu-sidebar.sidebar .sidebar-menu .treeview-menu.dropdown-toggle > a.dropdown-item,
+.left-menu-sidebar.sidebar .sidebar-menu .treeview-menu.dropdown-toggle > li.treeview-menu,
+.left-menu-sidebar.sidebar .sidebar-menu ul.treeview-menu ul.treeview-menu 
+{
+    display: none;
+}
+
+.left-menu-sidebar.sidebar .sidebar-menu ul.treeview-menu > li.treeview-menu.dropdown-toggle > a.dropdown-item,
+.left-menu-sidebar.sidebar .sidebar-menu ul.treeview-menu > li.treeview-menu.dropdown-toggle >  li.treeview-menu
+{
+    display: none;
+}
+
+
+.left-menu-sidebar.sidebar .sidebar-menu  ul.treeview-menu.show, /* the actuall menu that is shown */
+.left-menu-sidebar.sidebar .sidebar-menu ul.treeview-menu.show ul.treeview-menu,
+.left-menu-sidebar.sidebar .sidebar-menu  ul.treeview-menu.show > li.treeview-menu > a.dropdown-item, /* the actuall menu that is shown */
+  
+/* expanded non-menu item */
+
+.left-menu-sidebar.sidebar .sidebar-menu ul.treeview-menu.show > li.treeview-menu.dropdown-toggle > a.dropdown-item,
+.left-menu-sidebar.sidebar .sidebar-menu ul.treeview-menu.show > li.treeview-menu.dropdown-toggle >  li.treeview-menu
+{
+    display: block;
+}
+/* expanded sub menu item */
+.left-menu-sidebar.sidebar .sidebar-menu ul.treeview-menu.show    > li.treeview-menu.dropdown-toggle >   li.treeview-menu
+            > li.treeview-menu.dropdown-toggle > a.dropdown-item 
+ {
+    display: block;
+}
+
+/* ------------------logo */
+
+.logo {
+    display:block;
+    width:225px;
+    height:62px;
+    /* might need to make this base 64, so that it works with other browsers? */
+    background-repeat: no-repeat;
+    
+    background-origin: content-box;
+    background-size: contain;
+}
+
+.left-menu-sidebar.sidebar .sidebar-menu > li > a.logo
+{
+    margin: 15px 0 0 18px;
+    padding: 0;
+}
+
+
+ .logo,
+ .mobile-header-menu .navbar-header a.navbar-brand {
+    background-image: url("../images/roojsorg_logo-100.png");
+}
+ 
+ 
+.sidebar-menu .nav-item .logo {
+    padding: 15px;
+}
+
+
+.sidebar .sidebar-menu > li, .sidebar .sidebar-menu li.active li.treeview-menu {
+    margin: 0;
+   
+    padding: 0;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+ 
+.sidebar .sidebar-menu li.open ul {
+    margin-left: 14px;
+}
+
+.left-menu-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0px;
+    margin-top: 80px;
+    height: auto;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    
+    width: 250px; /*320px;*/
+    
+    z-index: 999;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.left-menu-sidebar .left-menu-sidebar-options  {
+    position: fixed;
+    width: 250px; /*320px;*/
+    bottom: 10;
+    left: 0;
+    z-index: 999;
+    background: #fff;
+}
+
+.left-menu-sidebar .left-menu-sidebar-options ul.languages,
+.left-menu-sidebar .left-menu-sidebar-options ul.socials,
+.mobile-header-menu .mobile-header-menu-options ul.languages,
+.mobile-header-menu .mobile-header-menu-options ul.socials,
+.mobile-footer ul.socials {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+.left-menu-sidebar .left-menu-sidebar-options ul.languages > li,
+.mobile-header-menu .mobile-header-menu-options ul.languages > li {
+    float: left;
+    padding: 0 15px;
+    border-right: 1px solid #000;
+}
+
+.left-menu-sidebar .left-menu-sidebar-options ul.languages > li:last-child,
+.mobile-header-menu .mobile-header-menu-options ul.languages > li:last-child {
+    border-right: none;
+}
+
+.left-menu-sidebar .left-menu-sidebar-options ul.languages > li > a {
+    color: #000;
+}
+
+.mobile-header-menu .mobile-header-menu-options ul.languages > li > a {
+    color: #777;
+}
+
+.left-menu-sidebar .left-menu-sidebar-options ul.socials > li:first-child,
+.mobile-header-menu .mobile-
+header-menu-options ul.socials > li:first-child,
+.mobile-footer ul.socials > li:first-child {
+    padding-left: 15px;
+}
+
+.left-menu-sidebar .left-menu-sidebar-options ul.socials > li
+{
+    float: left;
+    padding: 0 1px;
+}
+.mobile-header-menu .mobile-header-menu-options ul.socials > li,
+.mobile-footer ul.socials > li {
+    float: left;
+    padding: 0 3px;
+}
+
+.left-menu-sidebar .left-menu-sidebar-options ul.socials > li i {
+    width: 30px;
+    height: 30px;
+    background-color: #666;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 14px;
+}
+
+.mobile-header-menu .mobile-header-menu-options ul.socials > li i,
+.mobile-footer ul.socials > li i {
+    width: 35px;
+    height: 35px;
+    background-color: #777;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 14px;
+}
+
+.main-content,
+.general-content-head,
+.about-us-head {
+    margin-right: 10px;
+    margin-left:10px; 
+    margin-top: 60px;
+}
+/* articles need footer padding really */
+.main-content {
+    margin-right: 10px;
+    margin-bottom: 100px;
+}
+.home .main-content,
+.services .main-content,
+.main-content-projects.main-content {
+    margin-bottom: 0px;
+}
+
+/* head is diplay none by default - but shown on bigger screens */
+.home .main-content,
+.general-content-head {
+    display: none;
+}
+
+.mobile-general-content-head {
+    display: block;
+    margin-top: 60px;
+}
+
+.mobile-general-content-head {
+    /*padding-right: 10px;*/
+}
+ 
+.mobile-footer {
+    display: block;
+}
+
+
+.home .mobile-main-content {
+    display: block;
+    /*margin-bottom: 100px;*/
+    margin-top: 50px;
+}
+
+.mobile-header-menu {
+    display: block;
+}
+ 
+
+.main-content-projects-container label {
+    display: none;
+}
+ 
+.main-content-projects-container {
+    margin-top:0px;
+    width:100%;
+    padding: 0px;
+}
+
+.left-menu-sidebar .languages,
+.mobile-header-menu .languages {
+    font-weight: normal;
+}
+
+.left-menu-sidebar .languages .active,
+.mobile-header-menu .languages .active {
+    font-weight: bold;
+}
+ 
+
+.general-content-body {
+    margin-top: 7px;
+}
+
+ 
+ 
+ 
+ 
+ 
+.main-content-projects-container form {
+    margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+    
+     
+    
+    .left-menu-sidebar {
+        display: block;
+    }
+
+    .mobile-header-menu {
+        display: none;
+    }
+    
+    .main-content,
+    .general-content-head,
+    .about-us-head {
+        margin-left:260px; 
+        margin-top: 10px;
+    }
+
+    .general-content-head {
+        display: block;
+    }
+    
+    .mobile-general-content-head {
+        display: none;
+    }
+    
+    .mobile-footer {
+        display: none;
+    }
+
+    .general-content-body,
+    .slide-container {
+        margin-left: 260px;
+    }
+    
+    .project-detail .general-content-body,
+    .project-detail .slide-container {
+        margin-right: 40px;
+    }
+    
+    .home .main-content {
+        display: block;
+    }
+    
+    .home .mobile-main-content {
+        display: none;
+    }
+    
+     
+    .main-content .header-column h1 {
+        text-align: center;
+        padding-bottom: 11px;
+    
+    }
+    
+    
+}
+
+@media (min-width: 992px) {
+    .awards-item-image + .awards-item-image {
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+    
+    
+    
+}
+@media (min-width: 1170px) {
+    .main-content,
+    .general-content-body,
+    .slide-container {
+        margin-left: 260px;
+        margin-right: 10px;
+    }
+    
+    .project-detail .general-content-body,
+    .project-detail .slide-container {
+        margin-left: 370px; 
+        margin-right: 100px;
+    }
+}
+ /* -- mobile -- */
+ 
+.news-page .input-group {
+    display:inline-table;
+}
+@media (max-width: 768px) {
+    .general-content-body > .container,
+    .general-content-body > .container > .column
+    {
+        margin: 0;
+        padding: 10px;
+       
+    }
+    .general-content-intro > .container,
+    .general-content-body > .container > .column
+    {
+        padding: 0;
+    }
+    .general-content-body  > h1
+    {
+        margin: 10px;
+        margin-top: 50px;
+       
+    }
+    roo-select2-container
+    .services .main-content {
+        margin-top: 40px;
+    }
+    .news-page .form-group .roo-select2-container {
+        display:inline-block;
+    }
+    .news-page .form-group  {
+        display:inline-block;
+    }
+    
+    .main-content-projects .x-combo-noedit {
+        border: 0;
+        border-color: white !important;
+        border-radius: 0;
+        font-size: 10px;
+        box-shadow: none;
+        text-transform: uppercase;
+
+    }
+ 
+    
+    .navbar-header .navbar-toggle  {
+        border: none;
+    }
+    .main-content-projects-container form {
+        margin-bottom: 0;
+            margin-top: -10px;
+    }
+    .navbar-default,
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        background: white;
+    }
+    
+   
+    .general-content-body .navbar .navbar-nav .nav-item {
+        width: 32%;
+            float: left;
+    }
+    .general-content-body .navbar .navbar-nav {
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    .general-content-body .navbar {
+        margin-bottom: 0;
+    }
+    
+    /** home page tiles text larger */
+    
+    body.home .masonry-brick-title {
+        font-size: 19px;
+    }
+        
+    .services .masonry-brick-image.masonry-center-title > .masonry-brick-paragraph .masonry-brick-title {
+        font-size: 28px;
+    }
+    
+}
+
+ .dropdown-menu b,
+ .masonry-brick-paragraph .masonry-brick-title,
+ .roo-select2-container input
+ {
+        font-size:14px;
+        font-weight: normal;
+   }
+
+
+ /* .masonry-brick-paragraph .masonry-brick-title, */
+ .roo-select2-container input
+ {
+         text-transform: uppercase;
+   }
+
+ 
+.mobile-header-menu .navbar-header a.navbar-brand {
+    display:block;
+    width: 200px;
+    height: 34px;
+    background-repeat: no-repeat;
+    margin: 10px 10px 2px;
+        background-size: contain;
+    
+}
+ 
+
+
+.mobile-header-menu .navbar-header a.navbar-brand {
+    text-transform: uppercase;
+}
+
+.mobile-header-menu .navbar-nav li > a
+{
+    font-weight: normal;
+}
+
+.mobile-header-menu .mobile-header-menu-options,
+.roo-combobox-touch-view .roo-combobox-list-group-item-value,
+.roo-combobox-touch-view .modal-header,
+.roo-combobox-touch-view .btn
+{
+    text-transform: uppercase;
+    font-weight: normal;
+}
+.roo-combobox-touch-view .modal-content,
+.roo-combobox-touch-view .list-group-item
+{
+    border: none;
+    border-radius: 0;
+}
+
+
+.roo-combobox-touch-view .list-group-item {
+    padding: 10px 0;
+}
+
+.roo-combobox-touch-view .selected .roo-combobox-list-group-item-value {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.roo-combobox-touch-view .roo-combobox-list-group-item-box {
+    display:none;
+}
+.roo-combobox-touch-view .btn {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.roo-touchview-combobox .dropdown-toggle {
+    display: none;
+}
+
+ 
+
+.enable-overflow {
+    overflow : auto;
+}
+
+.mobile-footer {
+    background-color: #333;
+    color: #9e9e9e;
+    padding: 25px 15px;
+    font-size: 12px;
+  /*  text-transform: uppercase;  */
+}
+
+.mobile-footer .title {
+    color: #fff;
+    letter-spacing: 1.5px;
+    font-size: 100%;
+}
+
+.mobile-footer a {
+    color: #9e9e9e;
+}
+ 
+
+.roo-required-indicator.left-indicator {
+    display: none;
+}
+/*
+.-hpa > .panel-heading {
+    background-color: #16114C;
+    color: white;
+}
+*/
+
+/** - share this.. lighten... */
+.st-btn {
+    background: #666 !important;
+}
+.st-btn:hover {
+    background: #16114C !important;
+}
+
+.st-right {
+    top: 15px !important;
+}
+ 
+ 
+ 
+.dont-break-out {
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+ 
+ 
+.doc-table-container .card-body  {
+    padding: 0
+}
+.doc-table-container .table {
+    margin-bottom: 0;
+}
+ /** --------- from original --------*/
+td.attributes,
+.fixedFont
+{
+	line-height: 15px;
+/*	color: #002EBE; */
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+ }
+td>.fixedFont {
+    cursor: pointer;
+}
+.itemname
+{
+    color: #002EBE; 
+}
+.doc-table-container .table>tbody>tr>td {
+    padding: 2px 14px 0px 4px;
+}
+
+.doc-table-container .short,
+.doc-table-container .long
+{
+    vertical-align: top;
+    padding: 5px 10px;
+    font-size: 13px; 
+}
+.doc-table-container .long {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+.doc-table-container .short {
+    color: #666;
+}
+.doc-table-container tfoot {
+    display: none;
+}
+
+.doc-table-container td.short {
+    display : block;
+}
+.doc-table-container td.expanded .short {
+    display : none;
+}
+.doc-table-container td .long {
+    display : none;
+}
+.doc-table-container td.expanded .long {
+    display : block;
+    margin-bottom: 10px;
+}
+
+.doc-table-container td.expanded>.fixedFont::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: "\f068";
+        margin-right: 10px;
+    font-size: 10px;
+    color: #002EBE;
+}
+
+.doc-table-container td>.fixedFont::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: "\f067";
+        margin-right: 10px;
+    font-size: 10px;
+    color: #002EBE;
+}
+
+
+.detailList {
+    margin-left: 20px; 
+    padding-top: 10px;
+    line-height: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    display: block;
+    clear: both;
+}
+.detailList dt,
+.detailList dd
+{ 
+    margin-left: 20px;
+    display: block;
+    float:left;
+    padding-bottom: 10px;
+}
+.detailList dt {
+    clear: both;
+}
+.detailList .heading
+{
+    font-weight: bold;
+    padding-bottom: 6px;
+    margin-left: 0;
+    display: block;
+    clear:both;
+    
+}
+.long pre, .description pre {
+    background: #F8F8F8 none repeat scroll 0% 0%;
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px 1px 1px 5px;
+    font-size: 12px !important;
+    line-height: 14px !important;
+    margin: 10px 10px 10px 0px;
+    padding: 10px;
+}
+.doc-augments .card-body 
+{
+    padding: 0;
+}
+.doc-augments .dard-body pre {
+    margin: 0;
+}
+pre code {
+    color: #000;
+    font-family: monospace; /** default font is too soft.. */
+  
+}
+pre {
+      background-color: #eee;
+      padding: 4px;
+}
+.doc-not-member {
+    background-color:  #fcf8e3;
+    
+}
+ code.jsdoc-pretty {
+    background-color: #fff;
+}
+
+/* optoional */
+.detailList dt i {
+    margin-left: 20px;
+    font-size: 10px;
+    font-weight: 100;
+}
+
+
+a.dropdown-toggle::before {
+    display: inline-block;
+    margin-right: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+.doc-implementors .card-body {
+    max-height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-left: 0;
+}
+
+.doc-implementors .inheritance,
+.doc-implementors .inheritance ul,
+.doc-implementors .inheritance ul ul
+{
+    list-style: none;
+    padding-left: 5px;
+}
+.doc-implementors .inheritance li
+{
+    background: url('../images/default/tree/elbow-end.gif')  no-repeat left 2px;
+    padding-left: 20px;
+}
+.doc-children ul {
+    padding-left: 10px;
+
+}
+.doc-desc {
+    max-height: 400px;
+    overflow:hidden;
+}
+.doc-desc.active {
+    max-height: fit-content;
+}
+
+.card-header {
+    padding: 4px 8px;
+
+    font-size : 14px;
+    font-weight: bold;
+}
+.card p {
+    display: inline-block;  /* override markdown <p> */
+    margin: 0;
+}
+ 
+.card-body {
+   padding: 0 ;
+}
+.doc-augments .card-body,
+.doc-implementors .card-body
+{
+    padding: 4px;
+}
+table th.x-hcol-1 {
+    padding: 6px 0;
+}
