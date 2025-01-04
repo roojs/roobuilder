@@ -220,7 +220,7 @@ namespace SQ {
 	 		}
 		}
 		
-		public string[] getColsExcept(string[]? except, prefix = "")
+		public string[] getColsExcept(string[]? except, string prefix = "")
 		{
 		 	assert(this.table != "");
 			var sc = Schema.load(this.table);
