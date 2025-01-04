@@ -17,7 +17,7 @@ namespace Palete {
 		public int64 id   { get; set; default = -1; }
 		public Lsp.SymbolKind stype { get; set; }
 		public SymbolFile? 	file = null;
-		public string file_path; // used by doc tool
+		public string file_path = ""; // used by doc tool
 		// actually from file gir.. but we keep it here to do quick lookups on gir doc data.
 		public string gir_version  { get; set; default = ""; }
 		
