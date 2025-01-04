@@ -88,7 +88,7 @@ public class CodeInfo : Object
 		_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);
 		
 	}
-	public void navigateTo () {
+	public void navigateTo (Palete.Symbol sy, bool load_page = true)) {
 	
 	}
 	public void show (Gtk.Widget onbtn, string stype_and_name) {
@@ -114,14 +114,7 @@ public class CodeInfo : Object
 	 
 	 	this.navigateTo(sy);
 		
-		GLib.debug("setting history and showing symbol");
-		this.history_pos++; 
-		if (this.history_pos == this.history.size) {
-			this.history.add(sy);
-		} else {
-			this.history.set(this.history_pos, sy);
-		}
-		this.showSymbol(sy);
+		
 	
 	
 		
