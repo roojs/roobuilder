@@ -88,6 +88,9 @@ public class CodeInfo : Object
 		_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);
 		
 	}
+	public void navigateTo () {
+	
+	}
 	public void show (Gtk.Widget onbtn, string stype_and_name) {
 	
 		
@@ -109,6 +112,7 @@ public class CodeInfo : Object
 			return;
 		}
 	 
+	 	this.navigateTo(sy);
 		
 		GLib.debug("setting history and showing symbol");
 		this.history_pos++; 
