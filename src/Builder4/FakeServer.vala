@@ -162,7 +162,7 @@ public class FakeServerCache : Object
 			this.data = data.data;
 		 	this.content_type = "application/json";
 			this.size = data.length;
-			state.codeinfo.showSymbol(sy, false);
+			state.codeinfo.navigateTo(sy, false);
 			return;
 			
 		
