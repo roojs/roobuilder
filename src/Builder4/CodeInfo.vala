@@ -1327,6 +1327,7 @@ public class CodeInfo : Object
 				
 					GLib.debug("parsing alert failed");
 				}
+				return false;
 			
 			});
 		}
