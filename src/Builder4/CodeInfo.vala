@@ -1310,7 +1310,7 @@ public class CodeInfo : Object
 					var r = p.get_root();
 					if (r.get_node_type() != Json.NodeType.ARRAY) {
 						GLib.debug("alert got something that was nto an array");
-					}
+					}rn
 					var ar = r.get_array();
 					if (ar.get_string_element(0) != "click") {
 						GLib.debug("node is not an element");

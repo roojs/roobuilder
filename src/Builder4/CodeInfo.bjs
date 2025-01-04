@@ -585,7 +585,7 @@
              "\t\tvar r = p.get_root();",
              "\t\tif (r.get_node_type() != Json.NodeType.ARRAY) {",
              "\t\t\tGLib.debug(\"alert got something that was nto an array\");",
-             "\t\t}",
+             "\t\t}rn",
              "\t\tvar ar = r.get_array();",
              "\t\tif (ar.get_string_element(0) != \"click\") {",
              "\t\t\tGLib.debug(\"node is not an element\");",
