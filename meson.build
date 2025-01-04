@@ -33,7 +33,6 @@ deps = [
    dependency('libadwaita-1'),
    dependency('roojspack-1.5'),
    dependency('sqlite3'),
-   dependency('javascriptcoregtk-6.0'),
 
 ]
  
@@ -92,6 +91,15 @@ install_data(
 )
 
 
+tester_src = files([
+])
+
+
+tester = executable('tester',
+    dependencies: deps,
+    sources: [  tester_src , roobuilder_resources ],
+    install: true
+)
 roobuilder_src = files([
    'src/Builder4/About.vala',
    'src/Builder4/DialogConfirm.vala',
