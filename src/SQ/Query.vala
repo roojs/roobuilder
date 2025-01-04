@@ -229,7 +229,12 @@ namespace SQ {
 				if (except != null && GLib.strv_contains(except, s.name)) {
 					continue;
 				}
-				keys += (prefix +  s.name);
+				if (prefix != "") {
+					keys += (prefix + s.name + " as " + s.name);
+					continue;
+				}
+				
+				keys += ( +  s.name);
 		 	}
 		 	return keys;
 	 	}
