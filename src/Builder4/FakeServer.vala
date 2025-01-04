@@ -253,10 +253,9 @@ public class FakeServerCache : Object
 		    this.content_type = info.get_content_type();
 		    this.size = info.get_size();
 		    uint8[] data;
- 
-	
-		    GLib.FileUtils.get_data(file.get_path(), out data);
-		    this.data = data;
+		    string etag_out;
+			file.load_contents (null, out data, out etag_out);
+			this.data = data;
 		} catch (Error e) {
 			this.data = "".data;
 			this.size = 0;
