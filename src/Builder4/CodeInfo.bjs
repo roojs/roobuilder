@@ -487,9 +487,13 @@
             "clicked" : [
              "() => {",
              "",
-             "FakeServerCache.clear(); // force refresh",
-             "_this.webview.el.load_uri(\"doc://localhost/gtk.html#Gtk.Widget\");",
-             "//for testing.",
+             "\tFakeServerCache.clear(); // force refresh",
+             "\tif (history_pos > -1) {",
+             "\t\tvar sy  = this.history.get(history_pos);",
+             "\t\t",
+             "\t\t_this.webview.el.load_uri(",
+             "\t\t\t\"doc://localhost/gtk.html#\" + sy.fqn);",
+             "\t}",
              "}"
             ]
            },
