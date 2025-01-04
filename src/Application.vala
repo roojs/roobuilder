@@ -15,7 +15,7 @@
 		
 			
 			{ "project", 0, 0, OptionArg.STRING, ref opt_compile_project, "select a project", null },
-			{ "target", 0, 0, OptionArg.STRING, ref opt_compile_target, "Target to build", null },
+		//	{ "target", 0, 0, OptionArg.STRING, ref opt_compile_target, "Target to build", null },
 			{ "skip-linking", 0, 0, OptionArg.NONE, ref opt_skip_linking, "Do not link the files and make a binary - used to do syntax checking", null },
 			{ "skip-file", 0, 0, OptionArg.STRING, ref opt_compile_skip ,"For test compiles do not add this (usually used in conjunction with add-file ", null },
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
@@ -37,6 +37,7 @@
             { "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group (use 'none' with Roo)", null },
             { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_file, "symbol database dump file after loading (needs full path)", null },
             { "test-symbol-fqn", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_fqn, "show droplists / children from a fqn using new Symbol code", null },
+             { "test-meson", 0, 0, OptionArg.NONE, ref opt_test_meson, "Test wriging meson and resources files - needs project and test-symbol-target", null },
            // { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             { "test-symbol-json", 0, 0, OptionArg.STRING, ref opt_test_symbol_json, "dump Symbols to JSON (for testing Doc UI)", null },
            
@@ -44,7 +45,7 @@
 			{ null }
 		};
 		public static string opt_compile_project;
-		public static string opt_compile_target;
+		//public static string opt_compile_target;
 		public static string opt_compile_skip;
 		public static string opt_compile_add;
 		public static string opt_compile_output;
@@ -66,6 +67,7 @@
 		public static bool opt_list_files = false;
 		public static bool opt_pull_resources = false;
 		public static bool opt_test_bjs_compile_glade = false;
+		public static bool opt_test_meson = false;
        // public static bool opt_bjs_test = false; 		
        
        
@@ -648,6 +650,14 @@
 			
 
    			}
+   			
+   			if (BuilderApplication.opt_test_meson) {
+   				((Project.Gtk)cur_project).meson.save();
+   				GLib.debug("meson file updated and saved");
+   				return;
+   			
+   			}
+   			
   			GLib.debug("running vapiparser");	
 			//GLib.debug("started server - sleep 30 secs so you can gdb attach");
 			//Posix.sleep( 30 );
