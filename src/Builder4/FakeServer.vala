@@ -270,7 +270,7 @@ public class FakeServerCache : Object
 	public void run(WebKit.URISchemeRequest request, Cancellable? cancellable) 
 	{
 		var stream =  new GLib.MemoryInputStream.from_data (this.data,  GLib.free);
-		print("SEND %s\nwe", this.size.to_string()); 
+		print("SEND %s\n", this.size.to_string()); 
 
 		request.finish(stream,
 					 this.size,
