@@ -1136,7 +1136,7 @@ public class CodeInfo : Object
 			this.el.clicked.connect( () => {
 			
 				FakeServerCache.clear(); // force refresh
-				if (+this.history_pos > -1) {
+				if (_this.history_pos > -1) {
 					var sy  = _this.history.get(_this.history_pos);
 					
 					_this.webview.el.load_uri(

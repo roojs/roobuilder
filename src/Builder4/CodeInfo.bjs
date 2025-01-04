@@ -488,7 +488,7 @@
              "() => {",
              "",
              "\tFakeServerCache.clear(); // force refresh",
-             "\tif (+this.history_pos > -1) {",
+             "\tif (_this.history_pos > -1) {",
              "\t\tvar sy  = _this.history.get(_this.history_pos);",
              "\t\t",
              "\t\t_this.webview.el.load_uri(",
