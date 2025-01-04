@@ -88,7 +88,7 @@ public class CodeInfo : Object
 		_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);
 		
 	}
-	public void navigateTo (Palete.Symbol sy, bool load_page = true)) {
+	public void navigateTo (Palete.Symbol sy, bool load_page = true) {
 		
 		if (this.history_pos > -1) {
 			var cur = this.history.get(this.history_pos);

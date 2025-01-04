@@ -584,7 +584,7 @@
    ],
    "xtype" : "Popover",
    "| void navigateTo" : [
-    "(Palete.Symbol sy, bool load_page = true)) {",
+    "(Palete.Symbol sy, bool load_page = true) {",
     "\t",
     "\tif (this.history_pos > -1) {",
     "\t\tvar cur = this.history.get(this.history_pos);",
