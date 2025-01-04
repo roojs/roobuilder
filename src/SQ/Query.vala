@@ -220,7 +220,7 @@ namespace SQ {
 	 		}
 		}
 		
-		public string[] getColsExcept(string[]? except)
+		public string[] getColsExcept(string[]? except, prefix = "")
 		{
 		 	assert(this.table != "");
 			var sc = Schema.load(this.table);
@@ -229,7 +229,7 @@ namespace SQ {
 				if (except != null && GLib.strv_contains(except, s.name)) {
 					continue;
 				}
-				keys += s.name;
+				keys += (prefix +  s.name);
 		 	}
 		 	return keys;
 	 	}
