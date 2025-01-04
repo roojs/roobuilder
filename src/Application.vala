@@ -654,7 +654,7 @@
    			if (BuilderApplication.opt_test_meson) {
    				((Project.Gtk)cur_project).meson.save();
    				GLib.debug("meson file updated and saved");
-   				return;
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
    			
    			}
    			

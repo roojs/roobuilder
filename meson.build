@@ -80,7 +80,7 @@ gnome.post_install(gtk_update_icon_cache : true)
 
 roobuilder_resources = gnome.compile_resources(
 	'roobuilder-resources', 'resources/gresources.xml',
-	source_dir: [ 'resources/Editors', 'resources/css', 'resources/data', 'resources/glade-icons', 'resources/html', 'resources/images' ],
+	source_dir: [ 'resources/Editors', 'resources/css', 'resources/data', 'resources/glade-icons', 'resources/html', 'resources/images', 'resources/doc', 'resources/doc/css-bootstrap4', 'resources/doc/css-bootstrap', 'resources/doc/css-bootstrap/font-awesome' ],
 	c_name: 'roobuilder_resources' 
 )
 
@@ -91,15 +91,6 @@ install_data(
 )
 
 
-tester_src = files([
-])
-
-
-tester = executable('tester',
-    dependencies: deps,
-    sources: [  tester_src , roobuilder_resources ],
-    install: true
-)
 roobuilder_src = files([
    'src/Builder4/About.vala',
    'src/Builder4/DialogConfirm.vala',
