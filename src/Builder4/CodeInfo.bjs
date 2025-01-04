@@ -602,7 +602,7 @@
              "\t",
              "\t\tGLib.debug(\"parsing alert failed\");",
              "\t}",
-             "\treturn false;",
+             "\treturn true;",
              "",
              "}"
             ]
