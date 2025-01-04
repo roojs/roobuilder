@@ -23,15 +23,15 @@ Roo.docs.template  = {
         var iblock_indent = 0;
          data.augments.reverse().map(
             function($) {  
-            output += iblock_indent ? ('<img src="../images/default/s.gif" height="1" width="' + 
-                iblock_indent + '"/><img src="../images/default/tree/elbow-end.gif" class="elbow"/>') : '';
+            output += iblock_indent ? ('<span style="display:inline-block;width:' + 
+                iblock_indent + 'px">&nbsp</span><i class="fas fa-chevron-right"></i>') : '';
             output += linkSymbol($) + "\n"; 
             iblock_indent += 20;
             }
         );
          
-        return output +  '<img src="../images/default/s.gif" height="1"  width="' +  iblock_indent +'"/>' +
-            '<img class="elbow" src="../images/default/tree/elbow-end.gif"/>'+data.name+
+        return output +  '<span style="display:inline-block;width:' +  iblock_indent + 'px">&nbsp</span>' +
+            '<i class="fas fa-chevron-right"></i>'+data.name+
         
                '</pre></div>';
            
