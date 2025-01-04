@@ -234,7 +234,7 @@ namespace SQ {
 					continue;
 				}
 				
-				keys += ( +  s.name);
+				keys +=   s.name;
 		 	}
 		 	return keys;
 	 	}
