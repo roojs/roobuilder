@@ -593,7 +593,7 @@ namespace Palete
 							WHERE
 								sp.id = symbol.parent_id
 						), '')  as parent_name,
-						files.path as source_file
+						files.path as file_path
 							
 						
 					FROM 
