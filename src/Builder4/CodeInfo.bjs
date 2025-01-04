@@ -574,6 +574,9 @@
            ],
            "* pack" : "set_child",
            "id" : "webview",
+           "listeners" : {
+            "script_dialog" : ""
+           },
            "xtype" : "WebView"
           }
          ],

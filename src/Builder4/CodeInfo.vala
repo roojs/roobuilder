@@ -1299,6 +1299,9 @@ public class CodeInfo : Object
 			    
 			    
 			}
+
+			//listeners
+			this.el.script_dialog.connect( );
 		}
 
 		// user defined functions
