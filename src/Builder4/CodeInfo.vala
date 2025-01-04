@@ -1301,7 +1301,34 @@ public class CodeInfo : Object
 			}
 
 			//listeners
-			this.el.script_dialog.connect( );
+			this.el.script_dialog.connect( (dlg) => {
+				var msg = dlg.get_message();
+				try {
+					var p = new Json.Parser();
+					p.load_from_data(msg);
+					
+					var r = p.get_root();
+					if (r.get_node_type() != Json.NodeType.ARRAY) {
+						GLib.debug("alert got something that was nto an array");
+					}
+					var ar = r.get_array();
+					if (ar.get_string_element(0) != "click") {
+						GLib.debug("node is not an element");
+					}
+					var cls = ar.get_string_element(1);
+					 var f = _this.win.windowstate.project.getByPath(cls);
+					if (f == null) {
+						GLib.debug("Cant open file %s", cls);
+					}
+					
+					_this.win.windowstate.fileViewOpen(
+							f, true,  -1);
+				} catch (GLib.Error e) {
+				
+					GLib.debug("parsing alert failed");
+				}
+			
+			});
 		}
 
 		// user defined functions

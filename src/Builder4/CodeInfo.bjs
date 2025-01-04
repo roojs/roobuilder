@@ -575,7 +575,36 @@
            "* pack" : "set_child",
            "id" : "webview",
            "listeners" : {
-            "script_dialog" : ""
+            "script_dialog" : [
+             "(dlg) => {",
+             "\tvar msg = dlg.get_message();",
+             "\ttry {",
+             "\t\tvar p = new Json.Parser();",
+             "\t\tp.load_from_data(msg);",
+             "\t\t",
+             "\t\tvar r = p.get_root();",
+             "\t\tif (r.get_node_type() != Json.NodeType.ARRAY) {",
+             "\t\t\tGLib.debug(\"alert got something that was nto an array\");",
+             "\t\t}",
+             "\t\tvar ar = r.get_array();",
+             "\t\tif (ar.get_string_element(0) != \"click\") {",
+             "\t\t\tGLib.debug(\"node is not an element\");",
+             "\t\t}",
+             "\t\tvar cls = ar.get_string_element(1);",
+             "\t\t var f = _this.win.windowstate.project.getByPath(cls);",
+             "\t\tif (f == null) {",
+             "\t\t\tGLib.debug(\"Cant open file %s\", cls);",
+             "\t\t}",
+             "\t\t",
+             "\t\t_this.win.windowstate.fileViewOpen(",
+             "\t\t\t\tf, true,  -1);",
+             "\t} catch (GLib.Error e) {",
+             "\t",
+             "\t\tGLib.debug(\"parsing alert failed\");",
+             "\t}",
+             "",
+             "}"
+            ]
            },
            "xtype" : "WebView"
           }
