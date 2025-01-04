@@ -568,7 +568,7 @@ namespace Palete
 			foreach(var k in stypes) {
 				stypestr += k.to_string();
 			}
-			var cols = this.sq.getColsExcept({ "doc" , "parent_name"});
+			var cols = this.sq.getColsExcept({ "doc" , "parent_name"}, "symbol.");
 			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
