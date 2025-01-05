@@ -310,6 +310,12 @@ namespace Palete
 						sym.methods.set(s.name, s);
 						mids.set((int)s.id, s);
 						break;
+						
+					case Lsp.SymbolKind.EnumMember:
+						sym.enums.set(s.name, s);
+						mids.set((int)s.id, s);
+						break;	
+						
 					case Lsp.SymbolKind.Parameter:
 						
 					
@@ -605,15 +611,19 @@ namespace Palete
 					WHERE 
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
-						stype IN ( $cls, $interface )
+						stype IN ( $cls, $interface , $enum, $struct)
 					AND
 						is_static = 0
 					AND 
 						deprecated = 0
 					
 			");
-			stmt.bind_int(stmt.bind_parameter_index ("$cls"), (int)Lsp.SymbolKind.Class);
-			stmt.bind_int(stmt.bind_parameter_index ("$interface"), (int)Lsp.SymbolKind.Interface);
+			stmt.bind_int(stmt.bind_parameter_index("$cls"), (int)Lsp.SymbolKind.Class);
+			stmt.bind_int(stmt.bind_parameter_index("$interface"), (int)Lsp.SymbolKind.Interface);
+			stmt.bind_int(stmt.bind_parameter_index("$enum"), (int)Lsp.SymbolKind.Enum);
+			stmt.bind_int(stmt.bind_parameter_index("$struct"), (int)Lsp.SymbolKind.Struct);
+			
+			
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
 			foreach(var e in els) {
