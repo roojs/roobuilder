@@ -34,7 +34,7 @@ namespace Palete {
 		            }
 			    
 			    }
-			    this.doc = string.joinv( ar, "\n");
+			    this.doc = string.joinv("\n",  ar);
 			
 			}
 			 
