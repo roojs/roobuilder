@@ -25,6 +25,7 @@ namespace Palete {
 			var sy = s as Vala.Symbol;
 			this.deprecated  = sy == null ? false : sy.version.deprecated;
 			
+			this.doc = sy.comment.content;
 			// end line is not very good ... see if we can use other data?
 			// scanner ->			 s.source_reference.file
 			// seek symbol position
