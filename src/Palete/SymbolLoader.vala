@@ -142,7 +142,7 @@ namespace Palete
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
-						), '')  as doc,
+						), symbol.doc)  as doc,
 						COALESCE((
 							SELECT 
 								fqn
@@ -242,7 +242,8 @@ namespace Palete
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
-						), '')  as doc,
+						), symbol.doc)  
+						as doc,
 						COALESCE((
 							SELECT 
 								fqn
@@ -250,7 +251,7 @@ namespace Palete
 								symbol sp
 							WHERE
 								sp.id = symbol.parent_id
-						), '')  as parent_name
+						), symbol.doc)  as parent_name
 					FROM 
 						symbol 
 					WHERE 
@@ -362,7 +363,7 @@ namespace Palete
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
-						), '')  as doc
+						), symbol.doc)  as doc
 						 
 					FROM 
 						symbol 
@@ -590,7 +591,7 @@ namespace Palete
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
-						), '')  as doc,
+						), symbol.doc)  as doc,
 						COALESCE((
 							SELECT 
 								fqn
