@@ -52,17 +52,18 @@ namespace Palete {
   		public Gee.ArrayList<string> all_implementations { get; set; default = new Gee.ArrayList<string>(); }
   		public Gee.ArrayList<string> implementation_of { get; set; default = new Gee.ArrayList<string>(); }  		
 		
-		// filled by Roo Palete loader
+		// filled by Roo Palete loader / symbolloader
 		
 		public Gee.HashMap<string,Symbol> props { get; set; default = new Gee.HashMap<string,Symbol>(); }
 		public Gee.HashMap<string,Symbol> signals { get; set; default = new Gee.HashMap<string,Symbol>(); }		
 		public Gee.HashMap<string,Symbol> methods { get; set; default = new Gee.HashMap<string,Symbol>(); }				
 		public Gee.HashMap<string,Symbol> ctors { get; set; default = new Gee.HashMap<string,Symbol>(); }	
-		
+		public Gee.HashMap<string,Symbol> enums { get; set; default = new Gee.HashMap<string,Symbol>();
+		}			
 		public bool children_loaded = false;
-		public bool signals_loaded = false;
-		public bool methods_loaded = false;
-		public bool ctors_loaded = false;
+		//public bool signals_loaded = false;
+		//public bool methods_loaded = false;
+		//public bool ctors_loaded = false;
 		
 		public string sig = "";  
 		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
