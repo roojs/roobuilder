@@ -76,7 +76,7 @@ namespace Palete {
 
 			this(f, parent);
 			this.name = name;
-			this.stype = Lsp.SyolKind.Class;
+			this.stype = Lsp.SymolKind.Class;
 	 		//GLib.debug("new Class %s", this.to_fqn());			 
 	 	 
 		 	 
