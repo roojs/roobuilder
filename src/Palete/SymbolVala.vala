@@ -28,7 +28,7 @@ namespace Palete {
 			    var ar = sy.comment.content.split("\n");
 			    
 			    for(var i =0;i<ar.length;i++) {
-			        ar[i] = strip(ar);
+			        ar[i] = ar[i].strip();
 			        if (ar[i][0] = '*') {
 			            ar[i] = ar[i].substring(1);
 		            }
