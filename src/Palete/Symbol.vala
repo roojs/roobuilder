@@ -458,6 +458,7 @@ namespace Palete {
 				case "props":
 				case "signals":
 				case "methods":
+				case "enums":
 				 	var ret = new Json.Object();
 				 	var kv = @value as Gee.HashMap<string,Symbol>;
 				 	if (kv.size < 1) {
