@@ -19,7 +19,7 @@ namespace Palete {
 			}
 			
 			this.begin_line = s.source_reference.begin.line;
-			this.begin_col = s.source_reference.begincolumn;
+			this.begin_col = s.source_reference.begin.column;
 			this.end_line = s.source_reference.end.line;
 			this.end_col = s.source_reference.end.column;
 			var sy = s as Vala.Symbol;
