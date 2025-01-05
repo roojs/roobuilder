@@ -29,7 +29,7 @@ namespace Palete {
 			    
 			    for(var i =0;i<ar.length;i++) {
 			        ar[i] = ar[i].strip();
-			        if (ar[i][0] = '*') {
+			        if (ar[i].get_char(0) = '*') {
 			            ar[i] = ar[i].substring(1);
 		            }
 			    
