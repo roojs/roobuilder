@@ -19,13 +19,25 @@ namespace Palete {
 			}
 			
 			this.begin_line = s.source_reference.begin.line;
-			this.begin_col = s.source_reference.begin.column;
+			this.begin_col = s.source_reference.begincolumn;
 			this.end_line = s.source_reference.end.line;
 			this.end_col = s.source_reference.end.column;
 			var sy = s as Vala.Symbol;
 			this.deprecated  = sy == null ? false : sy.version.deprecated;
+			if ( sy != null && sy.comment != null) {
+			    var ar = sy.comment.content.split("\n");
+			    
+			    for(var i =0;i<ar.length;i++) {
+			        ar[i] = strip(ar);
+			        if (ar[i][0] = '*') {
+			            ar[i] = ar[i].substring(1);
+		            }
+			    
+			    }
+			    this.doc . ar.join("\n");
 			
-			this.doc = sy != null && sy.comment != null ? sy.comment.content : "";
+			}
+			 
 			// end line is not very good ... see if we can use other data?
 			// scanner ->			 s.source_reference.file
 			// seek symbol position
