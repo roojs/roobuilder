@@ -228,6 +228,7 @@ namespace Palete
 			}
 			var cols = this.sq.getColsExcept({ "doc", "parent_name", "rtype" });
 			// this is loading everyng!? how about filtering it?
+			// rtype is taken from girs for enum (?? constants as well?)
 			var stmt = this.sq.selectPrepare("
 					SELECT 
 						" + string.joinv(",",cols) + ",
