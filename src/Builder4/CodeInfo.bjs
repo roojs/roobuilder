@@ -691,7 +691,7 @@
     "\t\t\tbreak;",
     "\t\t\t",
     "\t\tcase Lsp.SymbolKind.Method:",
-    "\t\tcase Lsp.SymbolKind.EnumValue:",
+    "\t\tcase Lsp.SymbolKind.EnumMember:",
     "\t\t\tvar cls = sl.singleById(sy.parent_id);",
     "\t\t\t_this.tree.loadClass(cls);",
     "\t\t\t_this.tree.select(sy);",

@@ -72,7 +72,7 @@ public class CodeInfo : Object
 				break;
 				
 			case Lsp.SymbolKind.Method:
-			case Lsp.SymbolKind.EnumValue:
+			case Lsp.SymbolKind.EnumMember:
 				var cls = sl.singleById(sy.parent_id);
 				_this.tree.loadClass(cls);
 				_this.tree.select(sy);
