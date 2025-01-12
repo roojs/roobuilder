@@ -212,19 +212,6 @@ Roo.docs = new Roo.XComponent({
          ]
         }
        ]
-      },
-      {
-       xtype : 'Card',
-       cls : 'left-menu-sidebar-options',
-       xns : Roo.bootstrap,
-       '|xns' : 'Roo.bootstrap',
-       items  : [
-        {
-         xtype : 'Row',
-         xns : Roo.bootstrap,
-         '|xns' : 'Roo.bootstrap'
-        }
-       ]
       }
      ]
     },

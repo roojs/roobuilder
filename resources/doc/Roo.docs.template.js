@@ -97,8 +97,11 @@ Roo.docs.template  = {
     {
        
         var output = '<a name="'+dtag.memberOf+'-cfg-'+dtag.name+'"></a>';
-        output += '<div class="fixedFont"><b  class="itemname"> ' + dtag.name + '</b> : ' +
-            (dtag.type.length ? this.linkSymbol(dtag.type) : "" ) + '</div>';
+        var name = (dtag.is_enum ? dtag.memberOf  + '.' : '') + dtag.name;
+        
+        var type = dtag.is_enum ? dtag.type : this.linkSymbol(dtag.type);
+        output += '<div class="fixedFont"><b  class="itemname"> ' + name + '</b> : ' +
+                 type+ '</div>';
               
         output += '<div class="mdesc"><div class="short">'+this.resolveLinks(this.summarize(dtag.desc))+'</div></div>';
             
@@ -515,6 +518,9 @@ Roo.docs.template  = {
     },
     linkSymbol : function(str)
     {
+        if (!str.length) {
+            return "";
+        }
         //Roo.log(str);
         var ar = str.split('<');
         var out = '';

@@ -348,7 +348,8 @@ Roo.docs.init = {
                 var d = Roo.decode(res.responseText);
                 if (typeof(d['file-id']) != 'undefined'){
                     // Gtk Doc..
-                    this.gtkToRoo(d);  
+                    this.gtkToRoo(d);
+                    Roo.log(d);
                 }
                 
                 if (typeof(d.augments) == 'undefined') {
@@ -449,9 +450,12 @@ Roo.docs.init = {
         d.config  = typeof(d.props) == 'undefined'  ? [] : Object.values(d.props).map(this.gtkToRoo, this);
         d.methods = typeof(d.methods) == 'undefined'  ? [] : Object.values(d.methods).map(this.gtkToRoo, this);
         d.events =typeof(d.signals) == 'undefined'  ? [] :  Object.values(d.signals).map(this.gtkToRoo, this);
-        d.isEnum = d.stype == this.SymbolKind.Enum;
+        d.is_enum = (d.stype == this.SymbolKind.Enum || d.stype == this.SymbolKind.EnumMember);
+        if (d.stype == this.SymbolKind.Enum) {
+            d.config = Object.values(d.enums).map(this.gtkToRoo, this);
+        }
         d.isAbstract  = d['is-abstract'];
-        d.augments = [ d['inherits-str'] ]; // ??
+        d.augments = [ d['inherits-str'] ].filter(function(v) { return v != ''; }); // ??
         d.example = '';
         d.type = d.rtype;
         d.source_file = d['file-name'];
@@ -468,6 +472,8 @@ Roo.docs.init = {
         //d.isOptional d.defaultValue
             d.params  = d['param-ar'].map(this.gtkToRoo, this); 
         }
+        
+        
         return d;
     },
     
@@ -490,7 +496,7 @@ Roo.docs.init = {
         
         Roo.docs.classType.el.dom.firstChild.textContent  = 'Class ';
         if (d.isAbstract) {
-            Roo.docs.classType.el.dom.firstChild.textContent  = 'abstract class ';
+            Roo.docs.classType.el.dom.firstChild.textContent  = 'interface '; // slightly better?
         }
         if (d.is_enum) {
             Roo.docs.classType.el.dom.firstChild.textContent  = 'enum ';
@@ -667,7 +673,7 @@ Roo.docs.init = {
                var ctreei = {
                     header : treeii.name,
                     xtype : 'Card',
-                    header_weight : 'primary',
+                    header_weight : 'info',
                     xns : Roo.bootstrap,
                   
                     items : [

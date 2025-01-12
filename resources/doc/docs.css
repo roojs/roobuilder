@@ -815,13 +815,7 @@ td>.fixedFont {
     margin: 10px 10px 10px 0px;
     padding: 10px;
 }
-.doc-augments .card-body 
-{
-    padding: 0;
-}
-.doc-augments .dard-body pre {
-    margin: 0;
-}
+
 pre code {
     color: #000;
     font-family: monospace; /** default font is too soft.. */
@@ -900,13 +894,47 @@ a.dropdown-toggle::before {
 }
  
 .card-body {
-   padding: 0 ;
+   padding: 5px 12px ;
 }
-.doc-augments .card-body,
-.doc-implementors .card-body
+.doc-augments .card-body 
 {
-    padding: 4px;
+    padding: 0;
 }
+.doc-augments .card-body pre {
+    margin: 0;
+    padding: 6px;
+}
+.doc-augments .card-body .inheritance,
+.doc-implementors .card-body .doc-children-list
+{
+    padding: 0px;
+}
+
 table th.x-hcol-1 {
     padding: 6px 0;
+}
+.doc-children {
+ padding-top: 10px;
+}
+
+.doc-children  ul {
+  list-style: none;
+}
+.inheritance .fas {
+ margin-right:3px;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+   color: #fff;
+   background-color: #007bff ;
+}
+body {
+ font-size: 14px;
+}
+
+.roo-card-body-ctr .card {
+ margin-top: 10px;
+}
+.doc-header-container .card-body {
+  padding: 5px 0;
 }
