@@ -650,13 +650,11 @@
 				 print("Done Gir Builder\n");
 				 GLib.Process.exit(Posix.EXIT_SUCCESS);	
 			 }
-			new Palete.ValaSymbolGirBuilder(false, false);	// no dialog + dont force
+
 			
 			if (cur_project.xtype == "Gtk") { 
-			//GLib.debug("running girparser");
-			// new Palete.ValaSymbolGirBuilder();
-			
-
+				GLib.debug("running girparser");
+				new Palete.ValaSymbolGirBuilder(false, false);	// no dialog + dont forc
    			}
    			
    			if (BuilderApplication.opt_test_meson) {
