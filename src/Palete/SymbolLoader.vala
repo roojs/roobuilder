@@ -256,7 +256,8 @@ namespace Palete
 						
 						CASE 
 							WHEN
-								stype = " + Lsp.SymbolKind.EnumMember.to_string() + "
+								stype = " + Lsp.SymbolKind.EnumMember.to_string() + " OR
+								stype = " + Lsp.SymbolKind.Constant.to_string() + "
 							THEN
 								COALESCE((
 									SELECT 
