@@ -265,12 +265,14 @@ namespace Palete {
 					//break;
 				case "bitfield":
 				case "enumeration":
+
 					child  = new  SymbolGir.new_enum( f, parent, n);
 					 
 					break;
 				
 				case "member":
-					child  = new  SymbolGir.new_enummember( f, parent, n);
+					var val = element->get_prop("value");
+					child  = new  SymbolGir.new_enummember( f, parent, n, val == null? "": val);
 					break; // cant see any docs.
 				
 				
