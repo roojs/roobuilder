@@ -108,8 +108,7 @@ namespace Palete {
 			foreach(var e in cls.get_methods()) {
 				new new_method(builder, this, e);
 			}
-			//?? constants?
-			
+			 
 		}
 		
 		public SymbolVala.new_error_domain(ValaSymbolBuilder builder, Symbol? parent, Vala.ErrorDomain cls)
