@@ -256,9 +256,8 @@ namespace Palete
 						
 						CASE 
 							WHEN
-								stype = " + Lsp.SymbolKind.EnumMember.to_string() + " 
-								OR
-								stype = " + Lsp.SymbolKind.Constant.to_string() + "
+								stype = " + ((int)Lsp.SymbolKind.EnumMember).to_string() + " 
+								 
 							THEN
 								COALESCE((
 									SELECT 
@@ -627,7 +626,7 @@ namespace Palete
 						files.path as file_path,
 						CASE 
 							WHEN
-								stype = " + Lsp.SymbolKind.Constant.to_string() + "
+								stype = " + ((int)Lsp.SymbolKind.Constant).to_string() + "
 							THEN
 								COALESCE((
 									SELECT 
