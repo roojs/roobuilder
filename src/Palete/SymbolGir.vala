@@ -47,7 +47,7 @@ namespace Palete {
 		public SymbolGir.new_enummember(SymbolFile f, Symbol? parent,   string name)
 		{
 			this(f, parent);
-			this.name = name.upper();
+			this.name = name.up();
 			this.stype = Lsp.SymbolKind.EnumMember;
 		 
 			 
