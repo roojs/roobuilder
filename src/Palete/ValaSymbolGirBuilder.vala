@@ -38,7 +38,7 @@ namespace Palete {
 		
 		}
 		
-		public   ValaSymbolGirBuilder(bool with_dialog = false, force_parse = false)
+		public   ValaSymbolGirBuilder(bool with_dialog = false, bool force_parse = false)
 		{
 			LoadingProgress? lp = null;
 			if (with_dialog) {
@@ -109,7 +109,7 @@ namespace Palete {
 		
 		
 		
-		public void readGir(string fn, force_parse = false)
+		public void readGir(string fn, bool force_parse = false)
 		{
 			var file =   this.filemanager.factory_by_path(fn);
  			if (file.is_parsed && !force_parse) {
