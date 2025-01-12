@@ -655,7 +655,7 @@ namespace Palete
 					WHERE 
 						file_id IN (" +   this.manager.file_ids   + ")
 					AND
-						stype IN ( $cls, $interface , $enum, $struct)
+						stype IN ( $cls, $interface , $enum, $struct, $constant)
 					AND
 						is_static = 0
 					AND 
@@ -666,7 +666,8 @@ namespace Palete
 			stmt.bind_int(stmt.bind_parameter_index("$interface"), (int)Lsp.SymbolKind.Interface);
 			stmt.bind_int(stmt.bind_parameter_index("$enum"), (int)Lsp.SymbolKind.Enum);
 			stmt.bind_int(stmt.bind_parameter_index("$struct"), (int)Lsp.SymbolKind.Struct);
-			
+			// later we might support docs on this?
+			stmt.bind_int(stmt.bind_parameter_index("$constant"), (int)Lsp.SymbolKind.Constant);			
 			
 			var els = new Gee.ArrayList<Symbol>();
 			this.sq.selectExecute(stmt, els);
