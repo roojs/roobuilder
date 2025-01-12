@@ -139,7 +139,7 @@ namespace Palete {
 			this.rtype  = cls.type_reference == null ||  cls.type_reference.type_symbol == null ? "" : 
 					cls.type_reference.type_symbol.get_full_name();			
 			this.setParent(parent);
-			GLib.debug("member value %s : %s", this.to_fqn(), cls.value.target_value.to_string());
+			GLib.debug("member value %s : %s", this.to_fqn(), cls.value.target_value.toString());
 			 
 		}
 		public SymbolVala.new_error_domain_code(ValaSymbolBuilder builder, Symbol? parent, Vala.ErrorCode cls)	
