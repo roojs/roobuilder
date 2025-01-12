@@ -226,7 +226,7 @@ namespace Palete
 			foreach(var pid in pids) {
 				pidss += pid;
 			}
-			var cols = this.sq.getColsExcept({ "doc", "parent_name" });
+			var cols = this.sq.getColsExcept({ "doc", "parent_name", "rtype" });
 			// this is loading everyng!? how about filtering it?
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -251,7 +251,28 @@ namespace Palete
 								symbol sp
 							WHERE
 								sp.id = symbol.parent_id
-						), symbol.doc)  as parent_name
+						), symbol.doc)  as parent_name,
+						
+						CASE 
+							WHEN
+								stype = " + Lsp.SymbolType.EnumMember.to_string() + "
+							THEN
+								COALESCE((
+									SELECT 
+										rtype
+									FROM 
+										symbol sd
+									WHERE
+										sd.fqn = symbol.fqn
+									AND
+										sd.gir_version = symbol.gir_version
+									AND
+										is_gir = 1
+								), '')
+							ELSE
+								symbol.rtype
+						END as rtype 
+						
 					FROM 
 						symbol 
 					WHERE 
