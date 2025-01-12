@@ -42,7 +42,7 @@ namespace Palete {
 			this.name =  name;
 			this.stype = Lsp.SymbolKind.Enum;
 			this.fqn = this.to_fqn();
-			//GLib.debug("new Enum  %s (%s, %s)", this.fqn, this.parent.fqn, this.name); 
+			GLib.debug("new Enum  %s (%s, %s", this.fqn); 
 			 
 		}
 		public SymbolGir.new_enummember(SymbolFile f, Symbol? parent,   string name)
