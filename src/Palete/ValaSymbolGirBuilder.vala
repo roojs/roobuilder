@@ -272,7 +272,7 @@ namespace Palete {
 				
 				case "member":
 					var val = element->get_prop("value");
-					child  = new  SymbolGir.new_enummember( f, parent, n, val == null? "": val);
+					child  = new  SymbolGir.new_enummember(f, parent, n, val == null? "": val);
 					break; // cant see any docs.
 				
 				
