@@ -646,7 +646,7 @@
 			}
 			
 			if (opt_test_gir_parser) {
-				 new Palete.ValaSymbolGirBuilder();
+				 new Palete.ValaSymbolGirBuilder(false, true); //no dialog+  for compile
 				 print("Done Gir Builder\n");
 				 GLib.Process.exit(Posix.EXIT_SUCCESS);	
 			 }
