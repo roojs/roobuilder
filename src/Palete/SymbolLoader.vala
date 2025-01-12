@@ -599,7 +599,7 @@ namespace Palete
 			foreach(var k in stypes) {
 				stypestr += k.to_string();
 			}
-			var cols = this.sq.getColsExcept({ "doc" , "parent_name"}, "symbol.");
+			var cols = this.sq.getColsExcept({ "doc" , "parent_name", "rtype"}, "symbol.");
 			
 			var stmt = this.sq.selectPrepare("
 					SELECT 
@@ -624,7 +624,26 @@ namespace Palete
 							WHERE
 								sp.id = symbol.parent_id
 						), '')  as parent_name,
-						files.path as file_path
+						files.path as file_path,
+						CASE 
+							WHEN
+								stype = " + Lsp.SymbolKind.Constant.to_string() + "
+							THEN
+								COALESCE((
+									SELECT 
+										rtype
+									FROM 
+										symbol sd
+									WHERE
+										sd.fqn = symbol.fqn
+									AND
+										sd.gir_version = symbol.gir_version
+									AND
+										is_gir = 1
+								), '')
+							ELSE
+								symbol.rtype
+						END as rtype 
 							
 						
 					FROM 
