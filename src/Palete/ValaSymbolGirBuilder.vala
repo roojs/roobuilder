@@ -38,7 +38,7 @@ namespace Palete {
 		
 		}
 		
-		public   ValaSymbolGirBuilder(bool with_dialog = false)
+		public   ValaSymbolGirBuilder(bool with_dialog = false, force_parse = false)
 		{
 			LoadingProgress? lp = null;
 			if (with_dialog) {
@@ -73,7 +73,7 @@ namespace Palete {
 						GLib.MainContext.default().iteration(true);
 					}
 				}
-				this.readGir(f);
+				this.readGir(f, force_parse);
 			}
 			
 			SQ.Database.backupDB();
@@ -109,10 +109,10 @@ namespace Palete {
 		
 		
 		
-		public void readGir(string fn)
+		public void readGir(string fn, force_parse = false)
 		{
 			var file =   this.filemanager.factory_by_path(fn);
- 			if (file.is_parsed) {
+ 			if (file.is_parsed && !force_parse) {
  				GLib.debug("file %s is parsed", fn);
 				return;
 			}
