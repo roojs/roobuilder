@@ -41,7 +41,7 @@ namespace Palete {
 			this(f, null);
 			this.name =  name;
 			this.stype = Lsp.SymbolKind.Enum;
-			 
+			GLib.debug("new Enum  %s", this.fqn); 
 			 
 		}
 		public SymbolGir.new_enummember(SymbolFile f, Symbol? parent,   string name)
