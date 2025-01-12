@@ -12,6 +12,7 @@ namespace Palete {
 			this.is_gir = true;
 			this.gir_version = f.relversion;
 			this.parent = parent;
+			
 
 			
 		}
@@ -32,8 +33,7 @@ namespace Palete {
 			}
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Namespace; 
-		 
-			
+			this.fqn = this.to_fqn();
 		}
 		
 	 	public SymbolGir.new_enum(SymbolFile f, Symbol? parent,   string name)
@@ -41,6 +41,7 @@ namespace Palete {
 			this(f, null);
 			this.name =  name;
 			this.stype = Lsp.SymbolKind.Enum;
+			this.fqn = this.to_fqn();
 			GLib.debug("new Enum  %s (%s, %s)", this.fqn, this.parent.fqn, this.name); 
 			 
 		}
@@ -49,6 +50,7 @@ namespace Palete {
 			this(f, parent);
 			this.name = name.up();
 			this.stype = Lsp.SymbolKind.EnumMember;
+			this.fqn = this.to_fqn();
 			GLib.debug("new Enum Member  %s (%s, %s)", this.fqn, this.parent.fqn, this.name); 
 		 
 			 
@@ -59,7 +61,7 @@ namespace Palete {
 			this(f, parent);
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Interface;
-				
+			this.fqn = this.to_fqn();	
 			 
 		}
 		public SymbolGir.new_struct(SymbolFile f, Symbol? parent,   string name)
@@ -67,7 +69,7 @@ namespace Palete {
 			this(f, parent);
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Struct;
-				
+			this.fqn = this.to_fqn();	
 			 
 			 
 		}
@@ -78,6 +80,8 @@ namespace Palete {
 			this(f, parent);
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Class;
+			this.fqn = this.to_fqn();
+			
 	 		//GLib.debug("new Class %s", this.to_fqn());			 
 	 	 
 		 	 
@@ -91,6 +95,7 @@ namespace Palete {
 			this(f, parent);
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Property;
+			this.fqn = this.to_fqn();
  
 		}
 		public SymbolGir.new_field(SymbolFile f, Symbol? parent,   string name)
@@ -99,7 +104,7 @@ namespace Palete {
 			this(f, parent);
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Field;
- 
+			this.fqn = this.to_fqn();
 		}
 		
 		public SymbolGir.new_delegate(SymbolFile f, Symbol? parent,   string name)
@@ -107,7 +112,7 @@ namespace Palete {
 	 		this(f, parent);
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Delegate;
-			 		
+		 	this.fqn = this.to_fqn();		
 		 	 
 		 	 
 		}
@@ -116,7 +121,7 @@ namespace Palete {
 			this(f, parent);
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Parameter;
-			  
+			this.fqn = this.to_fqn();  
 			
  		}
 		public SymbolGir.new_signal(SymbolFile f, Symbol? parent,   string name)
@@ -124,7 +129,7 @@ namespace Palete {
 			this(f, parent);
 			this.name = name;
 			this.stype = Lsp.SymbolKind.Signal;
-	  
+	  		this.fqn = this.to_fqn();
 		 	 
 
 		}
@@ -134,6 +139,7 @@ namespace Palete {
 			this(f, parent);
 			this.name =  name;
 			this.stype = Lsp.SymbolKind.Method;
+			this.fqn = this.to_fqn();
 			 
 
 		}
@@ -143,6 +149,7 @@ namespace Palete {
 			this(f, parent);
 			this.name =  name;
 			this.stype = Lsp.SymbolKind.Function;
+			this.fqn = this.to_fqn();
 			 
 
 		}
@@ -153,6 +160,7 @@ namespace Palete {
 			this(f, parent);
 			this.name =  "return-value";
 			this.stype = Lsp.SymbolKind.Return;
+			this.fqn = this.to_fqn();
 			 
 
 		}
@@ -162,6 +170,7 @@ namespace Palete {
 			this(f, parent);
 			this.name =  name;
 			this.stype = Lsp.SymbolKind.Constant;
+			this.fqn = this.to_fqn();
 			 
 
 		}
