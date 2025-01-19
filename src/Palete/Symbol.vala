@@ -498,24 +498,7 @@ namespace Palete {
 			return default_serialize_property (property_name, @value, pspec);
 		}
 		
-		public Json.Object toTreeeJSON()
-		{
-			var ret = new Json.Object();
-			ret.set_string_member("name", this.fqn);
-			ret.set_array_member("cn", new Json.Array());
-			ret.set_boolean_member("is_class", this.stype == Lsp.SymbolKind.Class);
-			ret.set_boolean_member("is_enum", this.stype == Lsp.SymbolKind.Enum);
-			var inherits = new Json.Array();
-			ret.set_array_member("inherits", inherits);
-			if (this.stype == Lsp.SymbolKind.Enum) {
-				return ret;
-		 	}
-		 	foreach(var str in this.implements) {
-		 		inherits.add_string_element(str);
-	 		}
-			return ret;
-		
-		}
+		 
 
 		 
   }
