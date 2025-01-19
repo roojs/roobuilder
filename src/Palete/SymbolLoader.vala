@@ -955,7 +955,7 @@ namespace Palete
 			
 				 
 				if (!tree.has_key(cls.fqn)) {
-					this.createTreeParents(tree,cls.fqn);
+					this.createTreeParents(tree, cls.fqn);
 					
 				}
 				 
