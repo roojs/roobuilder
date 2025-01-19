@@ -953,24 +953,18 @@ namespace Palete
 			tree.set("", top);
 			foreach(var cls in this.classCache.values) {
 			
-				var parent = cls.property_of();
-				if (!tree.has_key(parent)) {
-					this.createTreeParents(tree,parent);
+				 
+				if (!tree.has_key(cls.fqn)) {
+					this.createTreeParents(tree,cls.fqn);
 					
 				}
 				 
-				var par_ar = tree.get(parent);
 				
+				var 	add = tree.get(cls.fqn);
+				 
+				add.set_string_member("name", cls.fqn);
+				add.set_array_member("cn", new Json.Array());
 				
-				
-				var add = new Json.Object();
-				if (tree.has_key(cls.fqn)) {
-					add = tree.get(cls.fqn);
-				
-				} else {
-					add.set_string_member("name", cls.fqn);
-					add.set_array_member("cn", new Json.Array());
-				}
 				add.set_string_member("name", cls.fqn);
 				add.set_array_member("cn", new Json.Array());
 				add.set_boolean_member("is_class",  cls.stype == Lsp.SymbolKind.Class);
@@ -983,8 +977,8 @@ namespace Palete
 				 		inherits.add_string_element(str);
 			 		}
 		 		}
-		 		tree.set(cls.fqn, add);
-		 		par_ar.get_array_member("cn").add_object_element(add);
+
+
 			}
 			 
 			
