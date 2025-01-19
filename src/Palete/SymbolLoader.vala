@@ -947,7 +947,7 @@ namespace Palete
 			this.loadClassCache();
 			var ret = new Json.Array();
 			
-			var tree = new Gee.HashMap<string,Json.Array>();
+			var tree = new Gee.HashMap<string,Json.Object>();
 			var top = new Json.Object();
 			top.set_array_member("cn", new Json.Array());
 			
