@@ -37,11 +37,15 @@ namespace Palete
 	{
 		SymbolFileCollection manager;
 		SQ.Query<Symbol> sq; 
-		Gee.HashMap<string,Symbol> classCache;
+		public Gee.HashMap<string,Symbol> classCache {
+			public get;
+			private set;
+		}
 		Gee.HashMap<int,Symbol> idCache;
 		
 		
-		public SymbolLoader(SymbolFileCollection manager) {
+		public SymbolLoader(SymbolFileCollection manager) 
+		{
 			this.manager = manager;
 			this.sq  =  new SQ.Query<Symbol>("symbol");
  
