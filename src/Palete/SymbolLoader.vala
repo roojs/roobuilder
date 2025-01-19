@@ -1002,7 +1002,7 @@ namespace Palete
 				} else {
 					top = tree.get(str + ar[i]);
 				}
-				str =  str +  name + ".";
+				str =  str +  ar[i] + ".";
 			}
 				 	
 				
