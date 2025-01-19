@@ -950,7 +950,7 @@ namespace Palete
 			var tree = new Gee.HashMap<string,Json.Object>();
 			var top = new Json.Object();
 			top.set_array_member("cn", new Json.Array());
-			
+			tree.set("", top);
 			foreach(var cls in this.classCache.values) {
 			
 				var parent = cls.property_of();
