@@ -996,6 +996,7 @@ namespace Palete
 					var add = new Json.Object();
 					add.set_string_member("name", str + ar[i]);
 					add.set_array_member("cn", new Json.Array());
+					GLib.debug("Add node %s", str+ar[i]);
 					tree.set(str+ar[i], add);
 					top.get_array_member("cn").add_object_element(add);
 					top = add;
