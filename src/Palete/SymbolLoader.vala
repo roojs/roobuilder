@@ -942,9 +942,9 @@ namespace Palete
 					
 		}
 		
-		public Json.Array classCacheToJSON()
+		public Json.Array toTreeJson()
 		{
-			this.loadClassCache();
+
 			var ret = new Json.Array();
 			foreach(var cls in this.classCache.keys) {
 			
