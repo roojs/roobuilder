@@ -946,10 +946,10 @@ namespace Palete
 		{
 			this.loadClassCache();
 			var ret = new Json.Array();
-			foreach(var cls in this.classCache.keys) {
+			foreach(var cls in this.classCache.values) {
 			
 				var add = new Json.Object();
-				add.set_string_member("name", cls);
+				add.set_string_member("name", cls.fqn);
 				add.set_array_member("cn", new Json.Array());
 				add.set_boolean_member("is_class",  cls.stype == Lsp.SymbolKind.Class);
 				add.set_boolean_member("is_enum", cls.stype == Lsp.SymbolKind.Enum);
