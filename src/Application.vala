@@ -767,6 +767,45 @@
 			print("Wrote : %s\n", f.get_path());
 			
  		}
+ 		
+ 		void dumpSymbolJSONTree(Project.Project? cur_project)
+		{
+			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
+			var pal  = cur_project.palete;
+			var fqn = BuilderApplication.opt_test_symbol_json;
+			// write to /home/xxx/.Buider/docs/{name}.json ?? 
+			sl.loadClassCcache();
+			// in theory this loads up all of the types..
+ 
+			var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
+			if (!fd.query_exists()) {
+				fd.make_directory();
+			}
+			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/_tree_.json");
+			
+			var ar = new Json.Array();
+			foreach(var cls in sl.classCache.values) {
+				ar.add_object_element(cls.toTreeJSON());
+			
+			}
+			var js = Json.gobject_serialize (sy) ;
+			var  generator = new Json.Generator ();
+			
+			generator.set_root (js);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			var data = generator.to_data (null);
+ 			//print("%s\n", data);
+ 			//return;
+			var data_out = new GLib.DataOutputStream(
+              f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+ 	       );
+			data_out.put_string(data, null);
+			data_out.close(null);
+			print("Wrote : %s\n", f.get_path());
+			
+ 		}
 		
 		
 			
