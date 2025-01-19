@@ -959,7 +959,7 @@ namespace Palete
 					
 				}
 				 
-				
+				GLib.debug("getCls : %s", cls.fqn);
 				var 	add = tree.get(cls.fqn);
 				 
 				add.set_string_member("name", cls.fqn);
