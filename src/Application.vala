@@ -774,7 +774,7 @@
 			var pal  = cur_project.palete;
 			var fqn = BuilderApplication.opt_test_symbol_json;
 			// write to /home/xxx/.Buider/docs/{name}.json ?? 
-			sl.loadClassCcache();
+			sl.loadClassCache();
 			// in theory this loads up all of the types..
  
 			var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
