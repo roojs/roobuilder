@@ -999,7 +999,7 @@ namespace Palete
 					add.set_string_member("name", str + ar[i]);
 					add.set_array_member("cn", new Json.Array());
 					tree.set(str+ar[i], add);
-					top.get_array_member("cn").add_object_member(add);
+					top.get_array_member("cn").add_object_element(add);
 					top = add;
 				} else {
 					top = tree.get(str + ar[i]);
