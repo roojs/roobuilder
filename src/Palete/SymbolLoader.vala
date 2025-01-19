@@ -954,10 +954,9 @@ namespace Palete
 			foreach(var cls in this.classCache.values) {
 			
 				 
-				if (!tree.has_key(cls.fqn)) {
-					this.createTreeParents(tree, cls.fqn);
-					
-				}
+				 
+				this.createTreeParents(tree, cls.fqn);
+				
 				 
 				GLib.debug("getCls : %s", cls.fqn);
 				var 	add = tree.get(cls.fqn);
