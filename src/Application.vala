@@ -774,7 +774,7 @@
 			var pal  = cur_project.palete;
 			var fqn = BuilderApplication.opt_test_symbol_json;
 			// write to /home/xxx/.Buider/docs/{name}.json ?? 
-			sl.loadClassCache();
+			var ar = sl.classCacheToJSON();
 			// in theory this loads up all of the types..
  
 			var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
@@ -783,10 +783,7 @@
 			}
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/_tree_.json");
 			
-			var ar = new Json.Array();
-			foreach(var cls in sl.classCache.values) {
-				ar.add_object_element(cls.toTreeJSON());
-			}
+			 
 
 			var  generator = new Json.Generator ();
 			
