@@ -788,10 +788,10 @@
 				ar.add_object_element(cls.toTreeJSON());
 			
 			}
-			var js = Json.gobject_serialize (sy) ;
+
 			var  generator = new Json.Generator ();
 			
-			generator.set_root (js);
+			generator.set_root (ar);
 			generator.pretty = true;
 			generator.indent = 4;
 
