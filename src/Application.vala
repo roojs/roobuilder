@@ -691,7 +691,7 @@
 				if (BuilderApplication.opt_test_symbol_json != null) {
 					this.dumpSymbolJSON(cur_project);
 				}
-				if (BuilderApplication.opt_test_symbol_json_tree != null) {
+				if (BuilderApplication.opt_test_symbol_json_tree) {
 					this.dumpSymbolJSONTree(cur_project);
 				}
 			
