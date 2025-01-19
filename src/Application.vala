@@ -786,7 +786,6 @@
 			var ar = new Json.Array();
 			foreach(var cls in sl.classCache.values) {
 				ar.add_object_element(cls.toTreeJSON());
-			
 			}
 
 			var  generator = new Json.Generator ();
