@@ -990,7 +990,24 @@ namespace Palete
 		}
 		void createTreeParents(Gee.HashMap<string,Json.Array> tree, string name) 
 		{
-		
+			var top = tree.get("");
+			var ar = name.split(".");
+			var str = "";
+			for (var i = 0; i < ar.length;i++) {
+				if (!tree.has_key(str + ar[i])) {
+					var add = new Json.Object();
+					add.set_string_member("name", str + ar[i]);
+					add.set_array_member("cn", new Json.Array());
+					tree.set(str+ar[i], add);
+					top.get_array_member("cn", add_object_member(add);
+					top = add;
+				} else {
+					top = tree.get(str + ar[i]);
+				}
+				str =  str +  name + ".";
+			}
+				 	
+				
 		}
 	
 	}
