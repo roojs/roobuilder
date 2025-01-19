@@ -942,16 +942,25 @@ namespace Palete
 					
 		}
 		
-		public Json.Array toTreeJson()
+		public Json.Array classCacheToJSON()
 		{
-
+			this.loadClassCache();
 			var ret = new Json.Array();
 			foreach(var cls in this.classCache.keys) {
 			
 				var add = new Json.Object();
 				add.set_string_member("name", cls);
 				add.set_array_member("cn", new Json.Array());
-				add.set_boolean_member("is_class", true);
+				add.set_boolean_member("is_class",  cls.stype == Lsp.SymbolKind.Class);
+				add.set_boolean_member("is_enum", cls.stype == Lsp.SymbolKind.Enum);
+				var inherits = new Json.Array();
+				add.set_array_member("inherits", inherits);
+				if (cls.stype != Lsp.SymbolKind.Enum) {
+				 
+				 	foreach(var str in cls.implements) {
+				 		inherits.add_string_element(str);
+			 		}
+		 		}
 				ret.add_object_element(add);
 			}
 			return ret;
