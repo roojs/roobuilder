@@ -946,9 +946,31 @@ namespace Palete
 		{
 			this.loadClassCache();
 			var ret = new Json.Array();
+			
+			var tree = new Gee.HashMap<string,Json.Array>();
+			var top = new Json.Object();
+			top.set_array_member("cn", new Json.Array());
+			
 			foreach(var cls in this.classCache.values) {
 			
+				var parent = cls.property_of();
+				if (!tree.has_key(parent)) {
+					this.createTreeParents(tree,parent);
+					
+				}
+				 
+				var par_ar = tree.get(parent);
+				
+				
+				
 				var add = new Json.Object();
+				if (tree.has_key(cls.fqn)) {
+					add = tree.get(cls.fqn);
+				
+				} else {
+					add.set_string_member("name", cls.fqn);
+					add.set_array_member("cn", new Json.Array());
+				}
 				add.set_string_member("name", cls.fqn);
 				add.set_array_member("cn", new Json.Array());
 				add.set_boolean_member("is_class",  cls.stype == Lsp.SymbolKind.Class);
@@ -961,11 +983,15 @@ namespace Palete
 				 		inherits.add_string_element(str);
 			 		}
 		 		}
-				ret.add_object_element(add);
+		 		tree.set(cls.fqn, add);
+		 		par_ar.get_array_member("cn").add_object_element(add);
 			}
 			return ret;
 		}
-	
+		void createTreeParents(Gee.HashMap<string,Json.Array> tree, string name) 
+		{
+		
+		}
 	
 	}
 	
