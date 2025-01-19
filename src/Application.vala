@@ -782,11 +782,12 @@
 			}
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/_tree_.json");
 			
-			 
+			 var node = new Json.Node (Json.NodeType.ARRAY);
+					node.set_array (ar);
 
 			var  generator = new Json.Generator ();
 			
-			generator.set_root (ar);
+			generator.set_root (node);
 			generator.pretty = true;
 			generator.indent = 4;
 
