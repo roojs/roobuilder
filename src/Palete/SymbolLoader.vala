@@ -945,7 +945,7 @@ namespace Palete
 		public Json.Array classCacheToJSON()
 		{
 			this.loadClassCache();
-			var ret = new Json.Array();
+
 			
 			var tree = new Gee.HashMap<string,Json.Object>();
 			var top = new Json.Object();
@@ -986,7 +986,11 @@ namespace Palete
 		 		tree.set(cls.fqn, add);
 		 		par_ar.get_array_member("cn").add_object_element(add);
 			}
-			return ret;
+			 
+			
+			
+			
+			return top.get_array_member("cn");;
 		}
 		void createTreeParents(Gee.HashMap<string,Json.Object> tree, string name) 
 		{
