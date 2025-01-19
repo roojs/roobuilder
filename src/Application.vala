@@ -41,7 +41,7 @@
              { "test-meson", 0, 0, OptionArg.NONE, ref opt_test_meson, "Test wriging meson and resources files - needs project and test-symbol-target", null },
            // { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
             { "test-symbol-json", 0, 0, OptionArg.STRING, ref opt_test_symbol_json, "dump Symbols to JSON (for testing Doc UI)", null },
-            { "test-symbol-json-tree", 0, 0, OptionArg.STRING, ref opt_test_symbol_json_tree, "dump Symbol Tree to JSON (for testing Doc UI)", null }, 
+            { "test-symbol-json-tree", 0, 0, OptionArg.NONE, ref opt_test_symbol_json_tree, "dump Symbol Tree to JSON (for testing Doc UI)", null }, 
             
 			{ null }
 		};
@@ -59,7 +59,7 @@
 		public static string opt_test_symbol_dump_file;
 		public static string opt_test_symbol_dump_fqn;
 		public static string opt_test_symbol_json;
-		public static string opt_test_symbol_json_tree;
+		public static bool opt_test_symbol_json_tree;
 		
 		public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
@@ -772,7 +772,6 @@
 		{
 			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
 			var pal  = cur_project.palete;
-			var fqn = BuilderApplication.opt_test_symbol_json;
 			// write to /home/xxx/.Buider/docs/{name}.json ?? 
 			var ar = sl.classCacheToJSON();
 			// in theory this loads up all of the types..
