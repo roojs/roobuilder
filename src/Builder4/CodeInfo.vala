@@ -63,8 +63,8 @@ public class CodeInfo : Object
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:
 			case Lsp.SymbolKind.Enum:
-				_this.tree.loadClass(sy);
-				_this.combo.loadClass(sy);
+				//_this.tree.loadClass(sy);
+			//	_this.combo.loadClass(sy);
 			//	_this.content.loadSymbol(sy);
 				if (load_page) {
 					this.webview.el.load_uri("doc://localhost/gtk.html#" + sy.fqn);
@@ -74,9 +74,9 @@ public class CodeInfo : Object
 			case Lsp.SymbolKind.Method:
 			case Lsp.SymbolKind.EnumMember:
 				var cls = sl.singleById(sy.parent_id);
-				_this.tree.loadClass(cls);
-				_this.tree.select(sy);
-				_this.combo.loadClass(cls);
+			//	_this.tree.loadClass(cls);
+		//		_this.tree.select(sy);
+		//		_this.combo.loadClass(cls);
 				if (load_page) {
 					this.webview.el.load_uri("doc://localhost/gtk.html#" + cls.fqn);
 				}
