@@ -56,7 +56,16 @@ Roo.docs.init = {
         Roo.XComponent.on('buildcomplete', function() {
             
             //Roo.XComponent.modules[0].el.fireEvent('render');
-            this.loadTree();
+            var t = this;
+            this.loadTree(function() {
+                
+                if (location.hash.length) {
+                    t.loadHash();
+                    return;
+                }
+                
+                t.loadIntro();
+            });
             if (window.location.pathname.match(/gtk.html$/)) {
                 // testing in browser..
                 Roo.docs.roo_title.el.dom.innerHTML = "Gtk Documentation";
@@ -65,6 +74,8 @@ Roo.docs.init = {
             
             
         }, this);
+        
+        
         if (window.location.pathname.match(/gtk.html$/)) {
             this.prefix = window.location.pathname + "/../gtk/";
         }
@@ -78,8 +89,12 @@ Roo.docs.init = {
         
     },
     
-    loadTree: function()
+    loadTree: function(done)
     {
+        if (this.classes !== false) {
+            done();
+        }
+        
         Roo.log("protocol: " + window.location.protocol);
         
         if (window.location.protocol == 'doc:'  ) {
@@ -138,13 +153,8 @@ Roo.docs.init = {
 
                     roo.show(roo.triggerEl, '?', false);
                 }
+                done();
                 
-                if (location.hash.length) {
-                    this.loadHash();
-                    return;
-                }
-                
-                this.loadIntro();
                 
                 
             },
@@ -673,10 +683,14 @@ Roo.docs.init = {
     
     onHashChange : function()
     {
-        if (this.hash == location.hash) {
-            return;
-        }
-        this.loadHash();
+        var t= this;
+        this.loadTree(function() {
+            if (t.hash == location.hash) {
+                return;
+            }
+            t.loadHash();
+        });
+       
         
     },
     loadHash : function()
