@@ -19,6 +19,7 @@ public class CodeInfo : Object
 	public Xcls_toggle_method toggle_method;
 	public Xcls_toggle_prop toggle_prop;
 	public Xcls_toggle_signal toggle_signal;
+	public Xcls_tree_search tree_search;
 	public Xcls_combo combo;
 	public Xcls_dir_model dir_model;
 	public Xcls_content content;
@@ -296,14 +297,17 @@ public class CodeInfo : Object
 			var child_1 = new Xcls_Box558( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Button27( _this );
+			var child_2 = new Xcls_SearchBar649( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
+			var child_3 = new Xcls_Button27( _this );
+			child_3.ref();
+			this.el.append( child_3.el );
 			new Xcls_combo( _this );
 			this.el.append( _this.combo.el );
-			var child_4 = new Xcls_Button30( _this );
-			child_4.ref();
-			this.el.append( child_4.el );
+			var child_5 = new Xcls_Button30( _this );
+			child_5.ref();
+			this.el.append( child_5.el );
 		}
 
 		// user defined functions
@@ -522,6 +526,65 @@ public class CodeInfo : Object
 			//listeners
 			this.el.toggled.connect( () => {
 			if (_this.current_filter == null) {
+			 	return;
+				}
+				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
+			});
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_SearchBar649 : Object
+	{
+		public Gtk.SearchBar el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_SearchBar649(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.SearchBar();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.hexpand = true;
+			this.el.search_mode_enabled = true;
+			new Xcls_tree_search( _this );
+			this.el.child = _this.tree_search.el;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_tree_search : Object
+	{
+		public Gtk.SearchEntry el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_tree_search(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.tree_search = this;
+			this.el = new Gtk.SearchEntry();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.hexpand = true;
+			this.el.activates_default = true;
+
+			//listeners
+			this.el.search_changed.connect( ( ) => {
+			 if (_this.current_filter == null) {
 			 	return;
 				}
 				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
