@@ -190,6 +190,12 @@ Roo.docs.init = {
         this.classesAr.push(e);
         
          if (window.location.protocol == 'doc:'  ) {
+            // load the children..
+            e.cn.forEach(function(cn) {
+                this.addTreeItem(e, cn, null, null );
+            }, this);
+            
+            
             return;
          }
         // add a node..
