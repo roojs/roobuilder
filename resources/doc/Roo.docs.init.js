@@ -278,9 +278,16 @@ Roo.docs.init = {
     {
         
         
-        if(typeof(this.classes[name]) != 'undefined' && this.classes[name].is_class ) {
-            this.loadDoc(this.classes[name]);
+        if(typeof(this.classes[name]) != 'undefined') {
+            Roo.log("Class " + name + " no in this.classes");
+            return;
         }
+        if (!this.classes[name].is_class ) {
+            Roo.log("Class " + name + " is not a class (from this.classes)");
+            return;
+        }
+        this.loadDoc(this.classes[name]);   
+        
         
         
         
@@ -309,11 +316,14 @@ Roo.docs.init = {
     
     loadDoc : function(cls)
     {
+        Roo.log("loadDoc: " + cls);
+
         if (this.currentClass == cls.name) {
+            Roo.log("loadDoc: (same as current)");
+
             return;
         }
         //Roo.docs.mobileNavGroup.hide();
-       // Roo.log("loadDoc?");
         
         Roo.docs.doc_desc.el.removeClass('active');
         Roo.docs.read_more_btn.setActive(false);
@@ -672,7 +682,7 @@ Roo.docs.init = {
     loadHash : function()
     {
         
-        Roo.log("hash:" + location.hash);
+        Roo.log("load hash:" + location.hash);
         
         if (location.hash.length < 2) {
             this.loadDoc(false);
