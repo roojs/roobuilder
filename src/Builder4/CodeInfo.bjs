@@ -27,104 +27,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "id" : "back_button",
-           "listeners" : {
-            "clicked" : [
-             "() => {",
-             "\t_this.history_pos--;",
-             "\t_this.showSymbol(_this.history.get(_this.history_pos));",
-             "\t",
-             "}"
-            ]
-           },
-           "string icon_name" : "go-previous-symbolic",
-           "string tooltip_text" : "Back (previous class)",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "id" : "next_button",
-           "listeners" : {
-            "clicked" : [
-             "() => {",
-             "\t_this.history_pos++;",
-             "\t_this.showSymbol(_this.history.get(_this.history_pos));",
-             "\t",
-             "}"
-            ]
-           },
-           "string icon_name" : "go-next-symbolic",
-           "string tooltip_text" : "next class",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "bool hexpand" : true,
-           "xtype" : "Label"
-          },
-          {
-           "$ xns" : "Gtk",
-           "bool active" : true,
-           "id" : "toggle_method",
-           "listeners" : {
-            "toggled" : [
-             "() => {",
-             "\t if (_this.current_filter == null) {",
-             " \treturn;",
-             "\t}",
-             "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
-             "}"
-            ]
-           },
-           "string icon_name" : "format-justify-left-symbolic",
-           "string tooltip_text" : "Method",
-           "xtype" : "ToggleButton"
-          },
-          {
-           "$ xns" : "Gtk",
-           "bool active" : true,
-           "id" : "toggle_prop",
-           "listeners" : {
-            "toggled" : [
-             "() => {",
-             "if (_this.current_filter == null) {",
-             " \treturn;",
-             "\t}",
-             "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
-             "}"
-            ]
-           },
-           "string icon_name" : "format-text-italic-symbolic",
-           "string tooltip_text" : "Properties",
-           "xtype" : "ToggleButton"
-          },
-          {
-           "$ xns" : "Gtk",
-           "bool active" : true,
-           "id" : "toggle_signal",
-           "listeners" : {
-            "toggled" : [
-             "() => {",
-             "if (_this.current_filter == null) {",
-             " \treturn;",
-             "\t}",
-             "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
-             "}"
-            ]
-           },
-           "string icon_name" : "alarm-symbolic",
-           "string tooltip_text" : "Signal",
-           "xtype" : "ToggleButton"
-          }
-         ],
-         "xtype" : "Box"
-        },
-        {
-         "$ xns" : "Gtk",
          "bool hexpand" : true,
          "bool search_mode_enabled" : true,
          "items" : [
@@ -161,59 +63,6 @@
          "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "items" : [
-          {
-           "$ xns" : "Gtk",
-           "listeners" : {
-            "clicked" : [
-             "() => {",
-             "",
-             "\tFakeServerCache.clear(); // force refresh",
-             "\tif (_this.history_pos > -1) {",
-             "\t\tvar sy  = _this.history.get(_this.history_pos);",
-             "\t\t",
-             "\t\t_this.webview.el.load_uri(",
-             "\t\t\t\"doc://localhost/gtk.html#\" + sy.fqn);",
-             "\t}",
-             "}"
-            ]
-           },
-           "string icon_name" : "view-refresh-symbolic",
-           "string tooltip_text" : "Close",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "bool hexpand" : true,
-           "id" : "combo",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* prop" : "model",
-             "id" : "dir_model",
-             "strings" : "{}",
-             "xtype" : "StringList"
-            }
-           ],
-           "xtype" : "DropDown",
-           "| void loadClass" : [
-            "(Palete.Symbol sy) {",
-            "",
-            "}"
-           ]
-          },
-          {
-           "$ xns" : "Gtk",
-           "listeners" : {
-            "clicked" : [
-             "() => {",
-             "\t_this.el.hide();",
-             "}"
-            ]
-           },
-           "string icon_name" : "window-close-symbolic",
-           "string tooltip_text" : "Close",
-           "xtype" : "Button"
-          },
           {
            "$ xns" : "Gtk",
            "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
@@ -311,6 +160,59 @@
             }
            ],
            "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "listeners" : {
+            "clicked" : [
+             "() => {",
+             "",
+             "\tFakeServerCache.clear(); // force refresh",
+             "\tif (_this.history_pos > -1) {",
+             "\t\tvar sy  = _this.history.get(_this.history_pos);",
+             "\t\t",
+             "\t\t_this.webview.el.load_uri(",
+             "\t\t\t\"doc://localhost/gtk.html#\" + sy.fqn);",
+             "\t}",
+             "}"
+            ]
+           },
+           "string icon_name" : "view-refresh-symbolic",
+           "string tooltip_text" : "Close",
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "bool hexpand" : true,
+           "id" : "combo",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "id" : "dir_model",
+             "strings" : "{}",
+             "xtype" : "StringList"
+            }
+           ],
+           "xtype" : "DropDown",
+           "| void loadClass" : [
+            "(Palete.Symbol sy) {",
+            "",
+            "}"
+           ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "listeners" : {
+            "clicked" : [
+             "() => {",
+             "\t_this.el.hide();",
+             "}"
+            ]
+           },
+           "string icon_name" : "window-close-symbolic",
+           "string tooltip_text" : "Close",
+           "xtype" : "Button"
           }
          ],
          "xtype" : "Box"
