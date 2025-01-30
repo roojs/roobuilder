@@ -13,7 +13,6 @@ public class CodeInfo : Object
 		return _CodeInfo;
 	}
 	public Xcls_pane pane;
-	public Xcls_tree_search tree_search;
 	public Xcls_back_button back_button;
 	public Xcls_next_button next_button;
 	public Xcls_toggle_method toggle_method;
@@ -184,72 +183,10 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			var child_1 = new Xcls_SearchBar10( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SearchBar10 : Object
-	{
-		public Gtk.SearchBar el;
-		private CodeInfo  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_SearchBar10(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.SearchBar();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.hexpand = true;
-			this.el.search_mode_enabled = true;
-			new Xcls_tree_search( _this );
-			this.el.child = _this.tree_search.el;
-		}
-
-		// user defined functions
-	}
-	public class Xcls_tree_search : Object
-	{
-		public Gtk.SearchEntry el;
-		private CodeInfo  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_tree_search(CodeInfo _owner )
-		{
-			_this = _owner;
-			_this.tree_search = this;
-			this.el = new Gtk.SearchEntry();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.hexpand = true;
-			this.el.activates_default = true;
-
-			//listeners
-			this.el.search_changed.connect( ( ) => {
-			 if (_this.current_filter == null) {
-			 	return;
-				}
-				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
-			});
-		}
-
-		// user defined functions
-	}
-
-
 
 	public class Xcls_Box25 : Object
 	{

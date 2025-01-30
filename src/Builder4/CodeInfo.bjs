@@ -24,34 +24,6 @@
        "bool hexpand" : true,
        "bool vexpand" : true,
        "int spacing" : 0,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "bool hexpand" : true,
-         "bool search_mode_enabled" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "child",
-           "bool activates_default" : true,
-           "bool hexpand" : true,
-           "id" : "tree_search",
-           "listeners" : {
-            "search_changed" : [
-             "( ) => {",
-             " if (_this.current_filter == null) {",
-             " \treturn;",
-             "\t}",
-             "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
-             "}"
-            ]
-           },
-           "xtype" : "SearchEntry"
-          }
-         ],
-         "xtype" : "SearchBar"
-        }
-       ],
        "xtype" : "Box"
       },
       {
