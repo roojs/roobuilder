@@ -11,9 +11,13 @@ Roo.docs.template  = {
         }
         return output;
     },
-   
+    
+    
     augments : function(data)
     {
+        
+         
+        
         if (!data.augments.length) {
             return '';
         }
@@ -36,7 +40,26 @@ Roo.docs.template  = {
                '</pre></div>';
            
     },
-    
+    implements : function(ar)
+    {
+        
+         
+        
+        if (!ar.length) {
+            return '';
+        }
+        var linkSymbol  = this.linkSymbol;
+        var output = '<div class="inheritance res-block"> <pre class="res-block-inner">';
+        
+         ar.map(
+            function($) {  
+            output += linkSymbol($) + "\n"; 
+            }
+        );
+         
+        return output +   '</pre></div>';
+           
+    },
     implementors : function(data)
     {
         if (!data.childClasses || typeof(data.childClasses[data.name]) == 'undefined') { 

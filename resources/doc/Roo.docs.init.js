@@ -2,7 +2,8 @@
 
 Roo.docs.init = {
     
-    classes : false, // flat version of list of classes 
+    classes : false, // flat version of list of classes
+    classesAr : [],
     currentClass : '--none--', // currently viewed class name
     
     prefix : '',
@@ -99,6 +100,7 @@ Roo.docs.init = {
                 var d = Roo.decode(res.responseText);
                 //Roo.log(d);
                 this.classes = {};
+                this.classesAr = [];
                 
                 d = d.sort(Roo.docs.template.makeSortby("name"));
                 
@@ -166,7 +168,8 @@ Roo.docs.init = {
     
     addTreeItem : function(parent, e, type , parent_e) {
         
-        this.classes[e.name] = e;
+          this.classes[e.name] = e;
+          this.classesAr.push(e);
         
          if (window.location.protocol == 'doc:'  ) {
             return;
@@ -250,6 +253,10 @@ Roo.docs.init = {
         if (!e.cn.length) {
             return;
         }
+        
+        e.cn = e.cn.sort(Roo.docs.template.makeSortby("name"));
+
+        
         e.cn.forEach(function(ec) {
             var cn = ec.name.split('.').pop();
             //Roo.log(cn);
@@ -351,7 +358,7 @@ Roo.docs.init = {
                     this.gtkToRoo(d);
                     Roo.log(d);
                 }
-                
+                // flutter support? doesnt work anyway?
                 if (typeof(d.augments) == 'undefined') {
                     d.augments = [];
                     d.config = []; // props for ctor?
@@ -412,6 +419,7 @@ Roo.docs.init = {
                     if (m.isConstant) {
                         return;
                     }
+                    
                     if (d.props.find(function(e) {
                         return e.name == m.name;
                     })) {
@@ -448,14 +456,24 @@ Roo.docs.init = {
         d.desc = d.doc;
         d.memberOf = d['parent-name'] === '' ? Roo.docs.init.currentClass :  d['parent-name'];
         d.config  = typeof(d.props) == 'undefined'  ? [] : Object.values(d.props).map(this.gtkToRoo, this);
+        d.config = d.config.filter(function(a) { return a.name !== "..."; });
         d.methods = typeof(d.methods) == 'undefined'  ? [] : Object.values(d.methods).map(this.gtkToRoo, this);
+        if (typeof(d.ctors) != 'undefined') {
+            d.methods = d.methods.concat(Object.values(d.ctors).map(this.gtkToRoo, this));
+        }
+        if (d.stype == this.SymbolKind.Constructor) { 
+            d.isStatic = true;
+            d.isConstructor = true;
+            d.name = d.name == 'new' ? d.memberOf : d.fqn;
+        }
         d.events =typeof(d.signals) == 'undefined'  ? [] :  Object.values(d.signals).map(this.gtkToRoo, this);
         d.is_enum = (d.stype == this.SymbolKind.Enum || d.stype == this.SymbolKind.EnumMember);
         if (d.stype == this.SymbolKind.Enum) {
             d.config = Object.values(d.enums).map(this.gtkToRoo, this);
         }
         d.isAbstract  = d['is-abstract'];
-        d.augments = [ d['inherits-str'] ].filter(function(v) { return v != ''; }); // ??
+        d.augments = []; //[ d['inherits-str'] ].filter(function(v) { return v != ''; }); // ??
+        d.implements = [];
         d.example = '';
         d.type = d.rtype;
         d.source_file = d['file-name'];
@@ -472,16 +490,62 @@ Roo.docs.init = {
         //d.isOptional d.defaultValue
             d.params  = d['param-ar'].map(this.gtkToRoo, this); 
         }
+        if (typeof(this.classes[d.fqn]) != 'undefined') {
+            this.addAugments(d, this.classes[d.fqn].inherits);
+            d.implementors = [];
+            this.addImplementors(d, d.fqn);
         
-        
+        }
+       
         return d;
     },
     
+    addAugments: function(orig, inherits)
+    {
+        inherits.forEach(function(sc) {
+            
+            var cc = this.classes[sc];
+            if (cc.is_class) {
+                orig.augments.push(sc);
+            } else if (orig.implements.indexOf(sc) < 0) {
+                orig.implements.push(sc);
+            }
+            this.addAugments(orig, cc.inherits);
+        }  ,this);
+    
+        
+    },
+    addImplementors : function(orig, fqn)
+    {
+        // call recursively until we dont add any new ones..
+        var add = [];
+        this.classesAr.forEach(function(c) {
+            if (typeof(c.inherits) == 'undefined') {
+                return;
+            }
+            if (c.inherits.indexOf(fqn) < 0) {
+                return;
+            }
+            if (orig.implementors.indexOf(c.name) > -1) {
+                return;
+            }
+            orig.implementors.push(c.name);
+            add.push(c.name);
+            
+        });
+        add.forEach(function(a) {
+            this.addImplementors(orig, a);
+        },this);
+        
+        
+    },
     
     
+    activeDoc : false,
     
     fillDoc : function(d)
     {
+        this.activeDoc = d;
         /*{
             "name" : "Roo.bootstrap.Progress",
             "augments" : [
@@ -535,12 +599,26 @@ Roo.docs.init = {
             Roo.docs.augments.hide();
         }
         
-        if (d.childClasses && typeof(d.childClasses[d.name]) != 'undefined') { 
+        if (d.implements.length) {
+            Roo.docs.implements.show();
+            Roo.docs.implements.bodyEl.dom.innerHTML = Roo.docs.template.implements(d.implements);
+        } else {
+            Roo.docs.implements.hide();
+        }
+        
+        if (typeof(d.implementors) != 'undefined' && d.implementors.length) {
+            Roo.docs.implementors.show();
+            Roo.docs.implementors.bodyEl.dom.innerHTML = Roo.docs.template.implements(d.implementors);
+        } else  if (d.childClasses && typeof(d.childClasses[d.name]) != 'undefined') { 
             Roo.docs.implementors.show();
             Roo.docs.implementors.bodyEl.dom.innerHTML = Roo.docs.template.implementors(d);
         } else {
             Roo.docs.implementors.hide();
         }
+        
+        
+        
+        
         
         if (d.tree_children && d.tree_children.length > 0) {
             Roo.docs.doc_children.show();

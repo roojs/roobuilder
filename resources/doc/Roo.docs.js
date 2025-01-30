@@ -14,6 +14,7 @@ Roo.docs = new Roo.XComponent({
   'd41d8cd98f00b204e9800998ecf8427e' :"",
   '4d9ee8f98abde282da987fed0aac295c' :"Children that can be added using addxtype({...})",
   '9b34238e8113db140b452beec500024b' :"Roo JS Documentation",
+  'c6faf864445938958b9ba7eaca3bb2f4' :"Implements Interfaces",
   '3673e725413179fe76f341ed908a5c36' :"Defined in: ",
   'd2b697ad8e989a6c4592987f22f5bbfc' :"doc-comments",
   'f361257612a512f9be2fdc2abfb25aef' :"<small>Defined by</small>",
@@ -836,6 +837,21 @@ Roo.docs = new Roo.XComponent({
             render : function (_self)
              {
                  _this.augments  = this;
+             }
+           },
+           xns : Roo.bootstrap,
+           '|xns' : 'Roo.bootstrap'
+          },
+          {
+           xtype : 'Card',
+           cls : 'doc-augments',
+           header : _this._strings['c6faf864445938958b9ba7eaca3bb2f4'] /* Implements Interfaces */,
+           header_weight : 'info',
+           panel : 'primary',
+           listeners : {
+            render : function (_self)
+             {
+                 _this.implements  = this;
              }
            },
            xns : Roo.bootstrap,
