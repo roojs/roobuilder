@@ -6,6 +6,7 @@ Roo.docs.init = {
     classesAr : [],
     currentClass : '--none--', // currently viewed class name
     
+    loadingTree : false,
     prefix : '',
     hash : '',
     
@@ -56,16 +57,7 @@ Roo.docs.init = {
         Roo.XComponent.on('buildcomplete', function() {
             
             //Roo.XComponent.modules[0].el.fireEvent('render');
-            var t = this;
-            this.loadTree(function() {
-                
-                if (location.hash.length) {
-                    t.loadHash();
-                    return;
-                }
-                
-                t.loadIntro();
-            });
+            this.loadTree();
             if (window.location.pathname.match(/gtk.html$/)) {
                 // testing in browser..
                 Roo.docs.roo_title.el.dom.innerHTML = "Gtk Documentation";
@@ -89,10 +81,21 @@ Roo.docs.init = {
         
     },
     
-    loadTree: function(done)
+    loadTree: function()
     {
+        
+        
+        if (!location.hash.length) {
+            this.loadIntro();
+            return;
+        }
+        if (this.loadingTree) {
+            Roo.log("Should not get here  - already loading tree.");
+        }
+        
         if (this.classes !== false) {
-            done();
+            this.loadHash();
+            return;
         }
         
         Roo.log("protocol: " + window.location.protocol);
@@ -106,14 +109,14 @@ Roo.docs.init = {
         }
         
         Roo.docs.doc_body_content.hide();
-        
+        this.loadingTree = true;
         Roo.Ajax.request({
             url : this.prefix + 'tree.json',
             method : 'GET',
             success : function(res)
             {
                 var d = Roo.decode(res.responseText);
-                //Roo.log(d);
+                Roo.log("GOT Tree = building classes");
                 this.classes = {};
                 this.classesAr = [];
                 
@@ -153,7 +156,10 @@ Roo.docs.init = {
 
                     roo.show(roo.triggerEl, '?', false);
                 }
-                done();
+                  this.loadingTree = false;
+                  Roo.log("Loading Tree done");
+                
+                this.loadHash();
                 
                 
                 
@@ -288,7 +294,7 @@ Roo.docs.init = {
     {
         
         
-        if(typeof(this.classes[name]) != 'undefined') {
+        if(typeof(this.classes[name]) == 'undefined') {
             Roo.log("Class " + name + " no in this.classes");
             return;
         }
@@ -683,18 +689,22 @@ Roo.docs.init = {
     
     onHashChange : function()
     {
-        var t= this;
-        this.loadTree(function() {
-            if (t.hash == location.hash) {
-                return;
-            }
-            t.loadHash();
-        });
+     
+        this.loadTree();
        
         
     },
     loadHash : function()
     {
+        if (this.hash == location.hash) {
+            Roo.log("skip load Hash (existing)");
+            return;
+        }
+        if (this.loadingTree) {
+            Roo.log("currentlyl Loading tree - delay");
+            this.loadHash.defer(500, this);
+            return;
+        }
         
         Roo.log("load hash:" + location.hash);
         
