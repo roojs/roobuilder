@@ -147,10 +147,10 @@
              "listeners" : {
               "search_changed" : [
                "( ) => {",
-               " if (_this.current_filter == null) {",
-               " \treturn;",
-               "\t}",
-               "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
+               "// if (_this.current_filter == null) {",
+               " //\treturn;",
+               "//}",
+               "\t//_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
                "}"
               ]
              },
