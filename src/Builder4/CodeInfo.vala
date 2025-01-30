@@ -21,6 +21,11 @@ public class CodeInfo : Object
 	public Xcls_tree_search tree_search;
 	public Xcls_combo combo;
 	public Xcls_dir_model dir_model;
+	public Xcls_back_button back_button;
+	public Xcls_next_button next_button;
+	public Xcls_toggle_method toggle_method;
+	public Xcls_toggle_prop toggle_prop;
+	public Xcls_toggle_signal toggle_signal;
 	public Xcls_content content;
 	public Xcls_webview webview;
 
@@ -528,6 +533,9 @@ public class CodeInfo : Object
 			var child_3 = new Xcls_Button30( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
+			var child_4 = new Xcls_Box432( _this );
+			child_4.ref();
+			this.el.append( child_4.el );
 		}
 
 		// user defined functions
@@ -647,6 +655,230 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
+
+	public class Xcls_Box432 : Object
+	{
+		public Gtk.Box el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box432(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			new Xcls_back_button( _this );
+			this.el.append( _this.back_button.el );
+			new Xcls_next_button( _this );
+			this.el.append( _this.next_button.el );
+			var child_3 = new Xcls_Label435( _this );
+			child_3.ref();
+			this.el.append( child_3.el );
+			new Xcls_toggle_method( _this );
+			this.el.append( _this.toggle_method.el );
+			new Xcls_toggle_prop( _this );
+			this.el.append( _this.toggle_prop.el );
+			new Xcls_toggle_signal( _this );
+			this.el.append( _this.toggle_signal.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_back_button : Object
+	{
+		public Gtk.Button el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_back_button(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.back_button = this;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "go-previous-symbolic";
+			this.el.tooltip_text = "Back (previous class)";
+
+			//listeners
+			this.el.clicked.connect( () => {
+				_this.history_pos--;
+				_this.showSymbol(_this.history.get(_this.history_pos));
+				
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_next_button : Object
+	{
+		public Gtk.Button el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_next_button(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.next_button = this;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "go-next-symbolic";
+			this.el.tooltip_text = "next class";
+
+			//listeners
+			this.el.clicked.connect( () => {
+				_this.history_pos++;
+				_this.showSymbol(_this.history.get(_this.history_pos));
+				
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label435 : Object
+	{
+		public Gtk.Label el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Label435(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( null );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.hexpand = true;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_toggle_method : Object
+	{
+		public Gtk.ToggleButton el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_toggle_method(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.toggle_method = this;
+			this.el = new Gtk.ToggleButton();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "format-justify-left-symbolic";
+			this.el.active = true;
+			this.el.tooltip_text = "Method";
+
+			//listeners
+			this.el.toggled.connect( () => {
+				 if (_this.current_filter == null) {
+			 	return;
+				}
+				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_toggle_prop : Object
+	{
+		public Gtk.ToggleButton el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_toggle_prop(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.toggle_prop = this;
+			this.el = new Gtk.ToggleButton();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "format-text-italic-symbolic";
+			this.el.active = true;
+			this.el.tooltip_text = "Properties";
+
+			//listeners
+			this.el.toggled.connect( () => {
+			if (_this.current_filter == null) {
+			 	return;
+				}
+				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_toggle_signal : Object
+	{
+		public Gtk.ToggleButton el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_toggle_signal(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.toggle_signal = this;
+			this.el = new Gtk.ToggleButton();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "alarm-symbolic";
+			this.el.active = true;
+			this.el.tooltip_text = "Signal";
+
+			//listeners
+			this.el.toggled.connect( () => {
+			if (_this.current_filter == null) {
+			 	return;
+				}
+				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
+			});
+		}
+
+		// user defined functions
+	}
+
 
 
 	public class Xcls_content : Object
