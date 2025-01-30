@@ -64,60 +64,6 @@
              "$ xns" : "Gtk",
              "bool hexpand" : true,
              "xtype" : "Label"
-            },
-            {
-             "$ xns" : "Gtk",
-             "bool active" : true,
-             "id" : "toggle_method",
-             "listeners" : {
-              "toggled" : [
-               "() => {",
-               "\t if (_this.current_filter == null) {",
-               " \treturn;",
-               "\t}",
-               "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
-               "}"
-              ]
-             },
-             "string icon_name" : "format-justify-left-symbolic",
-             "string tooltip_text" : "Method",
-             "xtype" : "ToggleButton"
-            },
-            {
-             "$ xns" : "Gtk",
-             "bool active" : true,
-             "id" : "toggle_prop",
-             "listeners" : {
-              "toggled" : [
-               "() => {",
-               "if (_this.current_filter == null) {",
-               " \treturn;",
-               "\t}",
-               "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
-               "}"
-              ]
-             },
-             "string icon_name" : "format-text-italic-symbolic",
-             "string tooltip_text" : "Properties",
-             "xtype" : "ToggleButton"
-            },
-            {
-             "$ xns" : "Gtk",
-             "bool active" : true,
-             "id" : "toggle_signal",
-             "listeners" : {
-              "toggled" : [
-               "() => {",
-               "if (_this.current_filter == null) {",
-               " \treturn;",
-               "\t}",
-               "\t_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
-               "}"
-              ]
-             },
-             "string icon_name" : "alarm-symbolic",
-             "string tooltip_text" : "Signal",
-             "xtype" : "ToggleButton"
             }
            ],
            "xtype" : "Box"

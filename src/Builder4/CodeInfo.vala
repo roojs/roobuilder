@@ -15,9 +15,6 @@ public class CodeInfo : Object
 	public Xcls_pane pane;
 	public Xcls_back_button back_button;
 	public Xcls_next_button next_button;
-	public Xcls_toggle_method toggle_method;
-	public Xcls_toggle_prop toggle_prop;
-	public Xcls_toggle_signal toggle_signal;
 	public Xcls_tree_search tree_search;
 	public Xcls_combo combo;
 	public Xcls_dir_model dir_model;
@@ -245,12 +242,6 @@ public class CodeInfo : Object
 			var child_3 = new Xcls_Label561( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
-			new Xcls_toggle_method( _this );
-			this.el.append( _this.toggle_method.el );
-			new Xcls_toggle_prop( _this );
-			this.el.append( _this.toggle_prop.el );
-			new Xcls_toggle_signal( _this );
-			this.el.append( _this.toggle_signal.el );
 		}
 
 		// user defined functions
@@ -337,108 +328,6 @@ public class CodeInfo : Object
 
 			// set gobject values
 			this.el.hexpand = true;
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_toggle_method : Object
-	{
-		public Gtk.ToggleButton el;
-		private CodeInfo  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_toggle_method(CodeInfo _owner )
-		{
-			_this = _owner;
-			_this.toggle_method = this;
-			this.el = new Gtk.ToggleButton();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.icon_name = "format-justify-left-symbolic";
-			this.el.active = true;
-			this.el.tooltip_text = "Method";
-
-			//listeners
-			this.el.toggled.connect( () => {
-				 if (_this.current_filter == null) {
-			 	return;
-				}
-				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
-			});
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_toggle_prop : Object
-	{
-		public Gtk.ToggleButton el;
-		private CodeInfo  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_toggle_prop(CodeInfo _owner )
-		{
-			_this = _owner;
-			_this.toggle_prop = this;
-			this.el = new Gtk.ToggleButton();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.icon_name = "format-text-italic-symbolic";
-			this.el.active = true;
-			this.el.tooltip_text = "Properties";
-
-			//listeners
-			this.el.toggled.connect( () => {
-			if (_this.current_filter == null) {
-			 	return;
-				}
-				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
-			});
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_toggle_signal : Object
-	{
-		public Gtk.ToggleButton el;
-		private CodeInfo  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_toggle_signal(CodeInfo _owner )
-		{
-			_this = _owner;
-			_this.toggle_signal = this;
-			this.el = new Gtk.ToggleButton();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.icon_name = "alarm-symbolic";
-			this.el.active = true;
-			this.el.tooltip_text = "Signal";
-
-			//listeners
-			this.el.toggled.connect( () => {
-			if (_this.current_filter == null) {
-			 	return;
-				}
-				_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);
-			});
 		}
 
 		// user defined functions
