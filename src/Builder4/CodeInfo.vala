@@ -137,23 +137,24 @@ public class CodeInfo : Object
 	}
 	public class Xcls_pane : Object
 	{
-		public Gtk.Paned el;
+		public Gtk.Box el;
 		private CodeInfo  _this;
 
 
 		// my vars (def)
+		public bool wide_handle;
 
 		// ctor
 		public Xcls_pane(CodeInfo _owner )
 		{
 			_this = _owner;
 			_this.pane = this;
-			this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
 			// my vars (dec)
+			this.wide_handle = true;
 
 			// set gobject values
-			this.el.wide_handle = true;
 			var child_1 = new Xcls_Box2( _this );
 			child_1.ref();
 			this.el.start_child = child_1.el;
