@@ -153,40 +153,13 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box2( _this );
+			var child_1 = new Xcls_Box25( _this );
 			child_1.ref();
-			this.el.start_child = child_1.el;
-			var child_2 = new Xcls_Box25( _this );
-			child_2.ref();
-			this.el.end_child = child_2.el;
+			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box2 : Object
-	{
-		public Gtk.Box el;
-		private CodeInfo  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Box2(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.hexpand = true;
-			this.el.vexpand = true;
-		}
-
-		// user defined functions
-	}
-
 	public class Xcls_Box25 : Object
 	{
 		public Gtk.Box el;
