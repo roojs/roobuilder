@@ -974,6 +974,7 @@ namespace Palete
 				add.set_string_member("name", cls.fqn);
 				add.set_array_member("cn", new Json.Array());
 				add.set_boolean_member("is_class",  cls.stype == Lsp.SymbolKind.Class);
+				add.set_boolean_member("is_struct",  cls.stype == Lsp.SymbolKind.Struct);
 				add.set_boolean_member("is_enum", cls.stype == Lsp.SymbolKind.Enum);
 				var inherits = new Json.Array();
 				add.set_array_member("inherits", inherits);
