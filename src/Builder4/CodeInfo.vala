@@ -429,7 +429,9 @@ public class CodeInfo : Object
 			var m = this.el.model;
 			for(var i =0; i < m.get_n_items(); i++) {
 			 	if (m.get_item(i).string == cur) {
+			 		this.selecting = true;
 			 		this.el.set_selected(i);
+			 		this.selecting = false;
 			 		return;
 		 		}
 			}
