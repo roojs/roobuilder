@@ -950,6 +950,8 @@ namespace Palete
 		}
 		
 		// this is the tree that docs use (it's pretty simple)
+		// the js side converts it into a tree (for web testing)
+		
 		
 		public Json.Array classCacheToJSON()
 		{
