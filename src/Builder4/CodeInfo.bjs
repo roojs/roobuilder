@@ -70,32 +70,6 @@
           },
           {
            "$ xns" : "Gtk",
-           "bool hexpand" : true,
-           "bool search_mode_enabled" : true,
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* prop" : "child",
-             "bool activates_default" : true,
-             "bool hexpand" : true,
-             "id" : "tree_search",
-             "listeners" : {
-              "search_changed" : [
-               "( ) => {",
-               "// if (_this.current_filter == null) {",
-               " //\treturn;",
-               "//}",
-               "\t//_this.current_filter.el.changed(Gtk.FilterChange.DIFFERENT);",
-               "}"
-              ]
-             },
-             "xtype" : "SearchEntry"
-            }
-           ],
-           "xtype" : "SearchBar"
-          },
-          {
-           "$ xns" : "Gtk",
            "listeners" : {
             "clicked" : [
              "() => {",
@@ -116,17 +90,80 @@
           },
           {
            "$ xns" : "Gtk",
+           "bool enable_search" : true,
            "bool hexpand" : true,
            "id" : "combo",
            "items" : [
             {
              "$ xns" : "Gtk",
+             "* prop" : "expression",
+             "GLib.Type this_type" : "typeof(Gtk.StringObject)",
+             "string property_name" : "string",
+             "xtype" : "PropertyExpression"
+            },
+            {
+             "$ xns" : "Gtk",
              "* prop" : "model",
-             "id" : "dir_model",
-             "strings" : "{}",
-             "xtype" : "StringList"
+             "items" : [
+              {
+               "# bool loaded" : false,
+               "$ xns" : "GLib",
+               "* init" : [
+                "{",
+                "",
+                "\t//this.el.append(new Gtk.StringList(_this.minutes));",
+                "\t//this.el.append(new Gtk.StringList(_this.hours));\t",
+                "}",
+                ""
+               ],
+               "* prop" : "model",
+               "GLib.Type item_type" : "typeof(Gtk.StringObject)",
+               "id" : "classlist_model",
+               "xtype" : "ListStore",
+               "| void load" : [
+                "(Palete.SymbolLoader sy) {",
+                "\tif (this.loaded) {",
+                "\t\treturn;",
+                "\t}",
+                "\tthis.el.remove_all();",
+                "\tsy.loadClassCache();",
+                "\tforeach(var c in sy.classCache.keys) {",
+                "\t\tGLib.debug(\"Add item to help list %s\", c);",
+                "\t\tthis.el.append(new Gtk.StringObject(c)); ",
+                "\t}",
+                "\tthis.loaded = true;",
+                "\t",
+                "}"
+               ]
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "sorter",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "expression",
+                 "GLib.Type this_type" : "typeof(Gtk.StringObject)",
+                 "string property_name" : "string",
+                 "xtype" : "PropertyExpression"
+                }
+               ],
+               "xtype" : "StringSorter"
+              }
+             ],
+             "xtype" : "SortListModel"
             }
            ],
+           "listeners" : {
+            "notify[\"selected\"]" : [
+             "() => {",
+             "\tvar sel = this.el.get_selected_item() as Gtk.StringObject;",
+             " \tGLib.debug(\"selected %s\", sel.string);",
+             "}",
+             " ",
+             " "
+            ]
+           },
            "xtype" : "DropDown",
            "| void loadClass" : [
             "(Palete.Symbol sy) {",
@@ -274,8 +311,9 @@
     "\t\tthis.el.hide();",
     "\t\treturn;",
     "\t}",
-    " ",
+    " \t_this.classlist_model.load(sl);",
     " \tthis.navigateTo(sy);",
+    "\t",
     "\t",
     "\t",
     "",
