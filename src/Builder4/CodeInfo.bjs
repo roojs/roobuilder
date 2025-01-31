@@ -59,11 +59,6 @@
              "string icon_name" : "go-next-symbolic",
              "string tooltip_text" : "next class",
              "xtype" : "Button"
-            },
-            {
-             "$ xns" : "Gtk",
-             "bool hexpand" : true,
-             "xtype" : "Label"
             }
            ],
            "xtype" : "Box"

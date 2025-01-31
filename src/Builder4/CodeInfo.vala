@@ -245,9 +245,6 @@ public class CodeInfo : Object
 			this.el.append( _this.back_button.el );
 			new Xcls_next_button( _this );
 			this.el.append( _this.next_button.el );
-			var child_3 = new Xcls_Label7( _this );
-			child_3.ref();
-			this.el.append( child_3.el );
 		}
 
 		// user defined functions
@@ -311,29 +308,6 @@ public class CodeInfo : Object
 				_this.showSymbol(_this.history.get(_this.history_pos));
 				
 			});
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Label7 : Object
-	{
-		public Gtk.Label el;
-		private CodeInfo  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Label7(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( null );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.hexpand = true;
 		}
 
 		// user defined functions
