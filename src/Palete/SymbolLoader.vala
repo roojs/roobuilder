@@ -984,7 +984,7 @@ namespace Palete
 							 cls.stype == Lsp.SymbolKind.Interface ||
 							 cls.stype == Lsp.SymbolKind.Namespace ||
 							 cls.stype == Lsp.SymbolKind.Enum
-							 )) ;
+							 ) ;
 				var inherits = new Json.Array();
 				add.set_array_member("inherits", inherits);
 				if (cls.stype != Lsp.SymbolKind.Enum) {
