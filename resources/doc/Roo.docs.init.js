@@ -306,7 +306,7 @@ Roo.docs.init = {
             Roo.log("Class " + name + " no in this.classes");
             return;
         }
-        if (!this.classes[name].is_class && !this.classes[name].is_struct ) {
+        if (!this.classes[name].is_class ) {
             Roo.log("Class " + name + " is not a class (from this.classes)");
             return;
         }
@@ -593,14 +593,27 @@ Roo.docs.init = {
         */
         
         Roo.docs.classType.el.dom.firstChild.textContent  = 'Class ';
-        if (d.isAbstract) {
-            Roo.docs.classType.el.dom.firstChild.textContent  = 'interface '; // slightly better?
+        if (d.stype) {
+            switch (d.stype) {
+                case this.SymbolKind.Interface:
+                     Roo.docs.classType.el.dom.firstChild.textContent  = 'Interface '; // slightly better?
+                     break;
+                case this.SymbolKind.Enum:
+                   Roo.docs.classType.el.dom.firstChild.textContent  = 'Enum '; // slightly better?
+                   break;
+                case this.SymbolKind.Namespace:
+                   Roo.docs.classType.el.dom.firstChild.textContent  = 'Namespace '; // slightly better?
+                   break;
+                case this.SymbolKind.Struct:
+                   Roo.docs.classType.el.dom.firstChild.textContent  = 'Struct '; // slightly better?
+                   break;
+                
+
+            }
         }
-        if (d.is_enum) {
-            Roo.docs.classType.el.dom.firstChild.textContent  = 'enum ';
-        }
+      
         if (d.is_mixin) {
-            Roo.docs.classType.el.dom.firstChild.textContent  = 'mixin ';
+            Roo.docs.classType.el.dom.firstChild.textContent  = 'Mixin ';
         }
         document.body.scrollTop  = 0;
         Roo.docs.doc_name.el.dom.innerHTML = Roo.docs.template.resolveLinks(d.name);
