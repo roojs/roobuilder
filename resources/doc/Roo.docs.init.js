@@ -539,7 +539,10 @@ Roo.docs.init = {
         inherits.forEach(function(sc) {
             
             var cc = this.classes[sc];
-            Roo.log(JSON.stringify(cc, null,2));
+            if (typeof(cc) == 'undefined') {
+                Roo.log("Missing? " + sc);
+                return;
+            }
             if (cc.stype == this.SymbolKind.Class) {
                 orig.augments.push(sc);
             } else if (orig.implements.indexOf(sc) < 0) {
