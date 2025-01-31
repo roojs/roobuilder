@@ -65,6 +65,11 @@ Roo.docs.template  = {
         if (!data.childClasses || typeof(data.childClasses[data.name]) == 'undefined') { 
             return '';
         }
+        
+        data.childClasses = data.childClasses.sort(function(a,b) {
+            return a == b ? 0  : (a >  b  ? -1 : 1 );
+        });
+
         var linkSymbol  = this.linkSymbol;
         //var linkSymbol  = this.linkSymbol;
         var output = '<ul class="inheritance res-block"> ';
