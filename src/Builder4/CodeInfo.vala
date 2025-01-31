@@ -37,6 +37,7 @@ public class CodeInfo : Object
 		this.history_pos = -1;
 
 		// set gobject values
+		this.el.has_arrow = true;
 		this.el.autohide = true;
 		this.el.position = Gtk.PositionType.BOTTOM;
 		new Xcls_pane( _this );
