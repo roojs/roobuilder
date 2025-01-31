@@ -316,11 +316,18 @@ namespace Palete
 				 
 				switch(s.stype) {
 					case Lsp.SymbolKind.Property:
+					
 						if (s.rtype == "GLib.Object") { // ?? confgurable
 						 	continue;
 						}
 					 	sym.props.set(s.name, s);
 						break;
+					case Lsp.SymbolKind.Field:
+						if (sym.stype != Lsp.Symbol.Struct) {
+							continue;
+						}
+				 		sym.props.set(s.name, s);
+				 		break;
 					case Lsp.SymbolKind.Signal:
 						sym.signals.set(s.name, s);
 						mids.set((int)s.id, s);
