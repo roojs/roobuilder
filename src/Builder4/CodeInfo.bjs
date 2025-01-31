@@ -157,6 +157,9 @@
            "listeners" : {
             "notify[\"selected\"]" : [
              "() => {",
+             "\tif (!_this.classlist_model.loaded) {",
+             "\t\treturn;",
+             "\t}",
              "\tvar sel = this.el.get_selected_item() as Gtk.StringObject;",
              " \tGLib.debug(\"selected %s\", sel.string);",
              " \t_this.show(\":\" + sel.string);",
