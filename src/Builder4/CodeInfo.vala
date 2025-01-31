@@ -417,7 +417,13 @@ public class CodeInfo : Object
 			if (cur == "") {
 				return;
 			}
-			
+			var m = this.el.model;
+			for(var i =0; i < m.get_n_items(); i++) {
+			 	if (m.get_item(i).string == cur) {
+			 		this.el.set_selected(i);
+			 		return;
+		 		}
+			}
 		
 		}
 	}

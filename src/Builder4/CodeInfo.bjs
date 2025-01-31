@@ -190,7 +190,13 @@
             "\tif (cur == \"\") {",
             "\t\treturn;",
             "\t}",
-            "\t",
+            "\tvar m = this.el.model;",
+            "\tfor(var i =0; i < m.get_n_items(); i++) {",
+            "\t \tif (m.get_item(i).string == cur) {",
+            "\t \t\tthis.el.set_selected(i);",
+            "\t \t\treturn;",
+            " \t\t}",
+            "\t}",
             "",
             "}"
            ]
