@@ -494,10 +494,18 @@ public class CodeInfo : Object
 			}
 			this.el.remove_all();
 			sy.loadClassCache();
+			
+			
+			
+			 
 			foreach(var c in sy.classCache.keys) {
 				GLib.debug("Add item to help list %s", c);
-				this.el.append(new Gtk.StringObject(c)); 
+				this.el.append(new Gtk.StringObject(c));
+				 
 			}
+			_this.combo.selectCurrent();
+			
+			
 			this.loaded = true;
 			
 		}
