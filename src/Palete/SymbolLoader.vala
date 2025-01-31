@@ -978,7 +978,8 @@ namespace Palete
 				add.set_string_member("name", cls.fqn);
 				add.set_array_member("cn", new Json.Array());
 				// most things are classses for the tree navigation purpose
-				add.set_boolean_member("is_class",  cls.stype == Lsp.SymbolKind.Class || 
+				add.set_boolean_member("is_class",  
+							cls.stype == Lsp.SymbolKind.Class || 
 							cls.stype == Lsp.SymbolKind.Struct ||
 							 cls.stype == Lsp.SymbolKind.Interface ||
 							 cls.stype == Lsp.SymbolKind.Namespace ||
