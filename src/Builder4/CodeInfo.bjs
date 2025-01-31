@@ -291,13 +291,15 @@
     "}"
    ],
    "| void show" : [
-    "(Gtk.Widget onbtn, string stype_and_name) {",
+    "(Gtk.Widget? onbtn, string stype_and_name) {",
     "",
     "\t",
     "\tvar sname = stype_and_name.split(\":\")[1];",
+    "\t",
     "\tif (this.el.parent != null) {",
     "\t\tthis.el.set_parent(null);",
     "\t}",
+    "\t",
     "   \tthis.el.set_parent(onbtn);",
     "\tthis.el.popup();",
     "\tvar win = this.win.el;",

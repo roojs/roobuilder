@@ -103,13 +103,15 @@ public class CodeInfo : Object
 		}
 		this.showSymbol(sy,load_page);
 	}
-	public void show (Gtk.Widget onbtn, string stype_and_name) {
+	public void show (Gtk.Widget? onbtn, string stype_and_name) {
 	
 		
 		var sname = stype_and_name.split(":")[1];
+		
 		if (this.el.parent != null) {
 			this.el.set_parent(null);
 		}
+		
 	   	this.el.set_parent(onbtn);
 		this.el.popup();
 		var win = this.win.el;
