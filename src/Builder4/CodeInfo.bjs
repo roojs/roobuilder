@@ -406,6 +406,7 @@
     "\t\t",
     "\t\t",
     "\t\tdefault:\t",
+    "\t\t\tGLib.debug(\"unknown sybmol type\");",
     "\t\t\tbreak;",
     "\t}",
     "\t_this.back_button.el.sensitive = this.history_pos > 0;",

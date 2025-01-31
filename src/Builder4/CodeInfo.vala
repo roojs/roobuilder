@@ -82,6 +82,7 @@ public class CodeInfo : Object
 			
 			
 			default:	
+				GLib.debug("unknown sybmol type");
 				break;
 		}
 		_this.back_button.el.sensitive = this.history_pos > 0;
