@@ -399,6 +399,7 @@ public class CodeInfo : Object
 			this.el.notify["selected"].connect( () => {
 				var sel = this.el.get_selected_item() as Gtk.StringObject;
 			 	GLib.debug("selected %s", sel.string);
+			 	_this.show(":" + sel.string);
 			});
 		}
 
