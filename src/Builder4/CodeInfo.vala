@@ -398,7 +398,7 @@ public class CodeInfo : Object
 
 			//listeners
 			this.el.notify["selected"].connect( () => {
-				if (!_this.classlist_model.loaded) {
+				if (!_this.classlist_model.loaded || this.selecting) {
 					return;
 				}
 				var sel = this.el.get_selected_item() as Gtk.StringObject;
