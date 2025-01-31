@@ -107,17 +107,18 @@ public class CodeInfo : Object
 	
 		
 		var sname = stype_and_name.split(":")[1];
+		if (onbtn != null) {
+			if (this.el.parent != null) {
+				this.el.set_parent(null);
+			}
+			
+		   	this.el.set_parent(onbtn);
+			this.el.popup();
 		
-		if (this.el.parent != null) {
-			this.el.set_parent(null);
-		}
-		
-	   	this.el.set_parent(onbtn);
-		this.el.popup();
-		var win = this.win.el;
-		this.el.set_size_request( win.get_width() - 50, win.get_height() - 200);
+			var win = this.win.el;
+			this.el.set_size_request( win.get_width() - 50, win.get_height() - 200);
 	   // _this.pane.el.set_position(200); // adjust later?
-	
+		}
 		var sl = _this.win.windowstate.file.getSymbolLoader();
 		var sy = sl.singleByFqn(sname);
 		if (sy == null) {
