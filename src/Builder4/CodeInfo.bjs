@@ -89,6 +89,7 @@
            "xtype" : "Button"
           },
           {
+           "# bool selecting" : false,
            "$ xns" : "Gtk",
            "bool enable_search" : true,
            "bool hexpand" : true,

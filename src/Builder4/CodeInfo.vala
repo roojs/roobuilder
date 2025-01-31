@@ -378,6 +378,7 @@ public class CodeInfo : Object
 
 
 		// my vars (def)
+		public bool selecting;
 
 		// ctor
 		public Xcls_combo(CodeInfo _owner )
@@ -391,6 +392,7 @@ public class CodeInfo : Object
 			this.el = new Gtk.DropDown( child_1.el, child_2.el );
 
 			// my vars (dec)
+			this.selecting = false;
 
 			// set gobject values
 			this.el.enable_search = true;
