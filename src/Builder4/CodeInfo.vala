@@ -410,6 +410,9 @@ public class CodeInfo : Object
 		public void loadClass (Palete.Symbol sy) {
 		
 		}
+		public void selectCurrent () {
+		
+		}
 	}
 	public class Xcls_PropertyExpression12 : Object
 	{

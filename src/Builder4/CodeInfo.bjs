@@ -181,6 +181,11 @@
             "(Palete.Symbol sy) {",
             "",
             "}"
+           ],
+           "| void selectCurrent" : [
+            "() {",
+            "",
+            "}"
            ]
           },
           {
