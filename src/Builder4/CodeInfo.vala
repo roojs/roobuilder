@@ -528,7 +528,6 @@ public class CodeInfo : Object
 				this.el.append(new Gtk.StringObject(c));
 				 
 			}
-			_this.combo.selectCurrent();
 			
 			
 			this.loaded = true;

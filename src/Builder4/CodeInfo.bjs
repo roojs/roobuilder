@@ -136,7 +136,6 @@
                 "\t\tthis.el.append(new Gtk.StringObject(c));",
                 "\t\t ",
                 "\t}",
-                "\t_this.combo.selectCurrent();",
                 "\t",
                 "\t",
                 "\tthis.loaded = true;",
