@@ -195,6 +195,12 @@ namespace Palete {
 		 	foreach(var p in cls.get_fields()) {
 				new new_field(builder, this, p);
 			}
+			foreach(var p in cls.get_methods()) {
+				new new_method(builder, this, p);
+			}
+			foreach(var p in cls.get_properties()) {
+				new new_property(builder, this, p);
+			}
 			 
 		}
 		public SymbolVala.new_class(ValaSymbolBuilder builder, Symbol? parent, Vala.Class cls)	
