@@ -402,7 +402,15 @@ public class CodeInfo : Object
 				}
 				var sel = this.el.get_selected_item() as Gtk.StringObject;
 			 	GLib.debug("selected %s", sel.string);
-			 	_this.show(":" + sel.string);
+			
+			 	var sl = _this.win.windowstate.file.getSymbolLoader();
+				var sy = sl.singleByFqn(sel.string);
+				if (sy == null) {
+					GLib.debug("could not find symbol %s", sname);
+					this.el.hide();
+					return;
+				}
+				_this.navigateTo(sy);
 			});
 		}
 
