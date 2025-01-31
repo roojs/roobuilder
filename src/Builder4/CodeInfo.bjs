@@ -328,6 +328,7 @@
     "\t\tthis.history.set(this.history_pos, sy);",
     "\t}",
     "\tthis.showSymbol(sy,load_page);",
+    "\tthis.combo.selectCurrent();",
     "}"
    ],
    "| void show" : [

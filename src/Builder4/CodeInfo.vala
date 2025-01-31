@@ -102,6 +102,7 @@ public class CodeInfo : Object
 			this.history.set(this.history_pos, sy);
 		}
 		this.showSymbol(sy,load_page);
+		this.combo.selectCurrent();
 	}
 	public void show (Gtk.Widget? onbtn, string stype_and_name) {
 	
