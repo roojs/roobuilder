@@ -323,7 +323,7 @@ namespace Palete
 					 	sym.props.set(s.name, s);
 						break;
 					case Lsp.SymbolKind.Field:
-						if (sym.stype != Lsp.Symbol.Struct) {
+						if (sym.stype != Lsp.SymbolKind.Struct) {
 							continue;
 						}
 				 		sym.props.set(s.name, s);
