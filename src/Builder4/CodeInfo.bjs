@@ -355,6 +355,7 @@
     "",
     " \tthis.navigateTo(sy);",
     " \t_this.classlist_model.load(sl);\t",
+    " \t_this.combo.selectCurrent();",
     "\t",
     "\t",
     "",

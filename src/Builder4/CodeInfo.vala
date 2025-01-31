@@ -129,6 +129,7 @@ public class CodeInfo : Object
 	
 	 	this.navigateTo(sy);
 	 	_this.classlist_model.load(sl);	
+	 	_this.combo.selectCurrent();
 		
 		
 	
