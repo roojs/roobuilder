@@ -410,7 +410,7 @@ public class CodeInfo : Object
 			 	var sl = _this.win.windowstate.file.getSymbolLoader();
 				var sy = sl.singleByFqn(sel.string);
 				if (sy == null) {
-					GLib.debug("could not find symbol %s", sname);
+					GLib.debug("could not find symbol %s", sel.string);
 					this.el.hide();
 					return;
 				}

@@ -174,7 +174,7 @@
              " \tvar sl = _this.win.windowstate.file.getSymbolLoader();",
              "\tvar sy = sl.singleByFqn(sel.string);",
              "\tif (sy == null) {",
-             "\t\tGLib.debug(\"could not find symbol %s\", sname);",
+             "\t\tGLib.debug(\"could not find symbol %s\", sel.string);",
              "\t\tthis.el.hide();",
              "\t\treturn;",
              "\t}",
