@@ -411,6 +411,13 @@ public class CodeInfo : Object
 		
 		}
 		public void selectCurrent () {
+			var cur = this.history_pos > -1) ?
+					this.history.get(this.history_pos).fqn
+					: "";
+			if (cur == "") {
+				return;
+			}
+			
 		
 		}
 	}
