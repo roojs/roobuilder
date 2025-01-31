@@ -192,8 +192,8 @@
            ],
            "| void selectCurrent" : [
             "() {",
-            "\tvar cur = (this.history_pos > -1) ?",
-            "\t\t\tthis.history.get(this.history_pos).fqn",
+            "\tvar cur = (_this.history_pos > -1) ?",
+            "\t\t\t_this.history.get(_this.history_pos).fqn",
             "\t\t\t: \"\";",
             "\tif (cur == \"\") {",
             "\t\treturn;",
