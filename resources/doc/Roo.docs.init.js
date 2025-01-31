@@ -306,7 +306,7 @@ Roo.docs.init = {
             Roo.log("Class " + name + " no in this.classes");
             return;
         }
-        if (!this.classes[name].is_class ) {
+        if (!this.classes[name].is_class && !this.classes[name].is_struct ) {
             Roo.log("Class " + name + " is not a class (from this.classes)");
             return;
         }
