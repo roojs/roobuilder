@@ -66,7 +66,7 @@ Roo.docs.template  = {
             return '';
         }
         
-        data.childClasses = data.childClasses.sort(function(a,b) {
+        data.childClasses[data.name] = data.childClasses[data.name].sort(function(a,b) {
             return a == b ? 0  : (a >  b  ? -1 : 1 );
         });
 
