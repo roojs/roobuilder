@@ -551,7 +551,7 @@ namespace Palete {
 						break;	
 					case "ValaStruct":
 						new SymbolVala.new_struct(this, null, cn as Vala.Struct);
-						//GLib.error("Added struct from visit file? %s", (cn as Vala.Struct).name);
+						GLib.error("Added struct from visit file? %s", (cn as Vala.Struct).name);
 						continue;
 						break;	
 					case "ValaField":
