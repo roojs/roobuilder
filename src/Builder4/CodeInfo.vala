@@ -127,10 +127,10 @@ public class CodeInfo : Object
 			this.el.hide();
 			return;
 		}
+	 	_this.classlist_model.load(sl);	
 	
 	 	this.navigateTo(sy);
-	 	_this.classlist_model.load(sl);	
-	 	_this.combo.selectCurrent();
+	
 		
 		
 	
