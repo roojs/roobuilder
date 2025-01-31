@@ -54,6 +54,9 @@ public class CodeInfo : Object
 		GLib.debug("showing symbol %s", sy.fqn);
 		switch(sy.stype) {
 			case Lsp.SymbolKind.Class:
+			case Lsp.SymbolKind.Symbol:
+			case Lsp.SymbolKind.Namespace:
+			case Lsp.SymbolKind.Interface:
 			case Lsp.SymbolKind.Enum:
 				//_this.tree.loadClass(sy);
 			//	_this.combo.loadClass(sy);
