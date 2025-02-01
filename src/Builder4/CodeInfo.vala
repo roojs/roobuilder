@@ -48,24 +48,21 @@ public class CodeInfo : Object
 		
 			// what are the coords of the parent?
 			X.WindowAttributes wa;
-			//xd.get_window_attributes(xw, out  wa);
 			var mws = this.win.el.get_surface() as Gdk.X11.Surface;
 			var mw_xw = mws.get_xid();
-			var mw_d = mws.get_display() as Gdk.X11.Display;
-			unowned X.Display mw_xd = mw_d.get_xdisplay();	
-			mw_xd.get_window_attributes(mw_xw, out  wa);
-			 
-			GLib.debug("Window data: %d %d w/h %d %d",
-				wa.x, wa.y, wa.width, wa.height
-			);
-			 
 			
+			unowned X.Display mw_xd = (
+					mws.get_display() as Gdk.X11.Display
+				).get_xdisplay();	
+		
+			mw_xd.get_window_attributes(mw_xw, out  wa);
 			
 			var s = this.el.get_surface() as Gdk.X11.Surface;
-			GLib.debug("s is %s", s == null ? "null" : "a value");
 			var xw = s.get_xid();
-			var d = s.get_display() as Gdk.X11.Display;
-			unowned X.Display xd = d.get_xdisplay();
+			
+			unowned X.Display xd = (
+					mws.get_display() as Gdk.X11.Display
+				).get_xdisplay();
 			xd.move_window(xw, wa.x+60, wa.y+100);
 			
 		
