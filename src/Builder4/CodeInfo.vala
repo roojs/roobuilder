@@ -45,9 +45,25 @@ public class CodeInfo : Object
 
 		//listeners
 		this.el.show.connect( () => {
+		
+			// what are the coords of the parent?
+			X.WindowAttributes wa;
+			//xd.get_window_attributes(xw, out  wa);
+			var mws = this.win.el.get_surface() as Gdk.X11.Surface;
+			var mw_xw = mws.get_xid();
+			var mw_d = mws.get_display() as Gdk.X11.Display;
+			unowned X.Display mw_xd = d.get_xdisplay();	
+			mw_xd.get_window_attributes(mw_xw, out  wa);
+			
+			GLib.debug("Window data: %d %d w/h %d %d",
+				wa.x, wa,y, wx.width, wy.height
+			);
+			
 			var s = this.el.get_surface() as Gdk.X11.Surface;
+			GLib.debug("s is %s", s == null ? "null" : "a value");
 			var xw = s.get_xid();
-			var xd = s.get_display() as X.Display;
+			var d = s.get_display() as Gdk.X11.Display;
+			unowned X.Display xd = d.get_xdisplay();
 			xd.move_window(xw, 100, 100);
 			
 		
