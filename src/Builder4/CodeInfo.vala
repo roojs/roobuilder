@@ -44,7 +44,7 @@ public class CodeInfo : Object
 		this.el.child = _this.pane.el;
 
 		//listeners
-		this.el.realize.connect( () => {
+		this.el.show.connect( () => {
 			var s = this.el.get_surface() as Gdk.X11.Surface;
 			var xw = s.get_xid();
 			var xd = s.get_display() as X.Display;

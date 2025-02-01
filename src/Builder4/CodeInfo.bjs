@@ -308,7 +308,7 @@
     }
    ],
    "listeners" : {
-    "realize" : [
+    "show" : [
      "() => {",
      "\tvar s = this.el.get_surface() as Gdk.X11.Surface;",
      "\tvar xw = s.get_xid();",
