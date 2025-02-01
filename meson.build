@@ -33,6 +33,7 @@ deps = [
    dependency('libadwaita-1'),
    dependency('roojspack-1.5'),
    dependency('sqlite3'),
+   dependency('gtk4-x11'),
 
 ]
  
