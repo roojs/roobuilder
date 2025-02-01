@@ -329,7 +329,7 @@
      "\tvar xw = s.get_xid();",
      "\tvar d = s.get_display() as Gdk.X11.Display;",
      "\tunowned X.Display xd = d.get_xdisplay();",
-     "\txd.move_window(xw, 100, 100);",
+     "\txd.move_window(xw, wa.x+10, wa.y+20);",
      "\t",
      "",
      "}"

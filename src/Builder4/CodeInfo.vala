@@ -64,7 +64,7 @@ public class CodeInfo : Object
 			var xw = s.get_xid();
 			var d = s.get_display() as Gdk.X11.Display;
 			unowned X.Display xd = d.get_xdisplay();
-			xd.move_window(xw, 100, 100);
+			xd.move_window(xw, wa.x+10, wa.y+20);
 			
 		
 		});
