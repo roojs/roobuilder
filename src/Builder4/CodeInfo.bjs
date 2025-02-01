@@ -308,7 +308,16 @@
     }
    ],
    "listeners" : {
-    "realize" : ""
+    "realize" : [
+     "() => {",
+     "\tvar s = this.el.get_surface() as Gdk.X11.Surface;",
+     "\tvar xw = s.get_xid();",
+     "\tvar xd = s.get_display() as X.Display;",
+     "\txd.move_window(xw, 100, 100);",
+     "\t",
+     "",
+     "}"
+    ]
    },
    "xtype" : "Popover",
    "| void navigateTo" : [
