@@ -42,6 +42,9 @@ public class CodeInfo : Object
 		this.el.position = Gtk.PositionType.BOTTOM;
 		new Xcls_pane( _this );
 		this.el.child = _this.pane.el;
+
+		//listeners
+		this.el.realize.connect( );
 	}
 
 	// user defined functions
@@ -213,12 +216,12 @@ public class CodeInfo : Object
 			var child_1 = new Xcls_Box4( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Button8( _this );
+			var child_2 = new Xcls_Button7( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 			new Xcls_combo( _this );
 			this.el.append( _this.combo.el );
-			var child_4 = new Xcls_Button15( _this );
+			var child_4 = new Xcls_Button14( _this );
 			child_4.ref();
 			this.el.append( child_4.el );
 		}
@@ -315,7 +318,7 @@ public class CodeInfo : Object
 	}
 
 
-	public class Xcls_Button8 : Object
+	public class Xcls_Button7 : Object
 	{
 		public Gtk.Button el;
 		private CodeInfo  _this;
@@ -324,7 +327,7 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button8(CodeInfo _owner )
+		public Xcls_Button7(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -365,9 +368,9 @@ public class CodeInfo : Object
 		{
 			_this = _owner;
 			_this.combo = this;
-			var child_1 = new Xcls_SortListModel11( _this );
+			var child_1 = new Xcls_SortListModel10( _this );
 			child_1.ref();
-			var child_2 = new Xcls_PropertyExpression10( _this );
+			var child_2 = new Xcls_PropertyExpression9( _this );
 			child_2.ref();
 			this.el = new Gtk.DropDown( child_1.el, child_2.el );
 
@@ -421,7 +424,7 @@ public class CodeInfo : Object
 		
 		}
 	}
-	public class Xcls_PropertyExpression10 : Object
+	public class Xcls_PropertyExpression9 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private CodeInfo  _this;
@@ -430,7 +433,7 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression10(CodeInfo _owner )
+		public Xcls_PropertyExpression9(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
@@ -443,7 +446,7 @@ public class CodeInfo : Object
 		// user defined functions
 	}
 
-	public class Xcls_SortListModel11 : Object
+	public class Xcls_SortListModel10 : Object
 	{
 		public Gtk.SortListModel el;
 		private CodeInfo  _this;
@@ -452,11 +455,11 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SortListModel11(CodeInfo _owner )
+		public Xcls_SortListModel10(CodeInfo _owner )
 		{
 			_this = _owner;
 			new Xcls_classlist_model( _this );
-			var child_2 = new Xcls_StringSorter13( _this );
+			var child_2 = new Xcls_StringSorter12( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( _this.classlist_model.el, child_2.el );
 
@@ -520,7 +523,7 @@ public class CodeInfo : Object
 		}
 	}
 
-	public class Xcls_StringSorter13 : Object
+	public class Xcls_StringSorter12 : Object
 	{
 		public Gtk.StringSorter el;
 		private CodeInfo  _this;
@@ -529,10 +532,10 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter13(CodeInfo _owner )
+		public Xcls_StringSorter12(CodeInfo _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression14( _this );
+			var child_1 = new Xcls_PropertyExpression13( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -543,7 +546,7 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression14 : Object
+	public class Xcls_PropertyExpression13 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private CodeInfo  _this;
@@ -552,7 +555,7 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression14(CodeInfo _owner )
+		public Xcls_PropertyExpression13(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
@@ -568,7 +571,7 @@ public class CodeInfo : Object
 
 
 
-	public class Xcls_Button15 : Object
+	public class Xcls_Button14 : Object
 	{
 		public Gtk.Button el;
 		private CodeInfo  _this;
@@ -577,7 +580,7 @@ public class CodeInfo : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button15(CodeInfo _owner )
+		public Xcls_Button14(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();

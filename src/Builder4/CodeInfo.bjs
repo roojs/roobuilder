@@ -307,6 +307,9 @@
      "xtype" : "Box"
     }
    ],
+   "listeners" : {
+    "realize" : ""
+   },
    "xtype" : "Popover",
    "| void navigateTo" : [
     "(Palete.Symbol sy, bool load_page = true) {",
