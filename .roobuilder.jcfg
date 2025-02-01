@@ -111,6 +111,7 @@
         "gio-unix-2.0",
         "libadwaita-1",
         "roojspack-1.5",
-        "sqlite3"
+        "sqlite3",
+        "gtk4-x11"
     ]
 }

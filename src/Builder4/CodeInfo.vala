@@ -52,19 +52,21 @@ public class CodeInfo : Object
 			var mws = this.win.el.get_surface() as Gdk.X11.Surface;
 			var mw_xw = mws.get_xid();
 			var mw_d = mws.get_display() as Gdk.X11.Display;
-			unowned X.Display mw_xd = d.get_xdisplay();	
+			unowned X.Display mw_xd = mw_d.get_xdisplay();	
 			mw_xd.get_window_attributes(mw_xw, out  wa);
-			
+			 
 			GLib.debug("Window data: %d %d w/h %d %d",
-				wa.x, wa,y, wx.width, wy.height
+				wa.x, wa.y, wa.width, wa.height
 			);
+			 
+			
 			
 			var s = this.el.get_surface() as Gdk.X11.Surface;
 			GLib.debug("s is %s", s == null ? "null" : "a value");
 			var xw = s.get_xid();
 			var d = s.get_display() as Gdk.X11.Display;
 			unowned X.Display xd = d.get_xdisplay();
-			xd.move_window(xw, wa.x+10, wa.y+20);
+			xd.move_window(xw, wa.x+60, wa.y+100);
 			
 		
 		});
@@ -148,7 +150,8 @@ public class CodeInfo : Object
 			this.el.popup();
 		
 			var win = this.win.el;
-			this.el.set_size_request( win.get_width() - 50, win.get_height() - 200);
+			this.el.set_size_request(
+				win.get_width() - 50, win.get_height() - 100);
 	   // _this.pane.el.set_position(200); // adjust later?
 		}
 		var sl = _this.win.windowstate.file.getSymbolLoader();
@@ -301,7 +304,7 @@ public class CodeInfo : Object
 			this.el.clicked.connect( () => {
 				_this.history_pos--;
 				_this.showSymbol(_this.history.get(_this.history_pos));
-				
+				_this.combo.selectCurrent();
 			});
 		}
 
@@ -333,7 +336,7 @@ public class CodeInfo : Object
 			this.el.clicked.connect( () => {
 				_this.history_pos++;
 				_this.showSymbol(_this.history.get(_this.history_pos));
-				
+				_this.combo.selectCurrent();
 			});
 		}
 
