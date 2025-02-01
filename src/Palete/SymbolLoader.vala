@@ -82,6 +82,8 @@ namespace Palete
 							WHERE
 								sd.fqn = symbol.fqn
 							AND
+								sd.stype = symbol.stype
+							AND
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
@@ -142,6 +144,8 @@ namespace Palete
 								symbol sd
 							WHERE
 								sd.fqn = symbol.fqn
+							AND
+								sd.stype = symbol.stype
 							AND
 								sd.gir_version = symbol.gir_version
 							AND
@@ -244,6 +248,8 @@ namespace Palete
 							WHERE
 								sd.fqn = symbol.fqn
 							AND
+								sd.stype = symbol.stype	
+							AND
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
@@ -270,6 +276,8 @@ namespace Palete
 										symbol sd
 									WHERE
 										sd.fqn = symbol.fqn
+									AND
+										sd.stype = symbol.stype
 									AND
 										sd.gir_version = symbol.gir_version
 									AND
@@ -393,6 +401,8 @@ namespace Palete
 								symbol sd
 							WHERE
 								sd.fqn = symbol.fqn
+							AND
+								sd.stype = symbol.stype
 							AND
 								sd.gir_version = symbol.gir_version
 							AND
@@ -622,6 +632,8 @@ namespace Palete
 							WHERE
 								sd.fqn = symbol.fqn
 							AND
+								sd.stype = symbol.stype
+							AND
 								sd.gir_version = symbol.gir_version
 							AND
 								is_gir = 1
@@ -646,6 +658,8 @@ namespace Palete
 										symbol sd
 									WHERE
 										sd.fqn = symbol.fqn
+									AND
+										sd.stype = symbol.stype
 									AND
 										sd.gir_version = symbol.gir_version
 									AND
