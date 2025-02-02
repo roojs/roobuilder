@@ -331,7 +331,7 @@ namespace Palete
 					 	sym.props.set(s.name, s);
 						break;
 					case Lsp.SymbolKind.Field:
-						if (sym.stype != Lsp.SymbolKind.Struct) {
+						if (sym.props.has_key(s.name)) {
 							continue;
 						}
 				 		sym.props.set(s.name, s);
@@ -608,7 +608,7 @@ namespace Palete
 				Lsp.SymbolKind.Constructor,
 				Lsp.SymbolKind.Enum,
 				Lsp.SymbolKind.Interface,
-				Lsp.SymbolKind.Function,
+				Lsp.SymbolKind.Function,g
 				Lsp.SymbolKind.EnumMember,
 				Lsp.SymbolKind.Struct,
 				Lsp.SymbolKind.Delegate,// ?? not standard.
