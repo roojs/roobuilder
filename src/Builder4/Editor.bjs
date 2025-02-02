@@ -160,7 +160,7 @@
            "id" : "help_button",
            "listeners" : {
             "clicked" : [
-             " () => { ",
+             "() => { ",
              "   \t_this.window.windowstate.popover_codeinfo.show(this.el, \":GLib.Object\");",
              "}",
              "  "
