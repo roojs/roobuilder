@@ -608,7 +608,7 @@ namespace Palete
 				Lsp.SymbolKind.Constructor,
 				Lsp.SymbolKind.Enum,
 				Lsp.SymbolKind.Interface,
-				Lsp.SymbolKind.Function,g
+				Lsp.SymbolKind.Function,
 				Lsp.SymbolKind.EnumMember,
 				Lsp.SymbolKind.Struct,
 				Lsp.SymbolKind.Delegate,// ?? not standard.
