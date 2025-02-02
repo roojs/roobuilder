@@ -162,7 +162,7 @@
            "listeners" : {
             "clicked" : [
              " () => { ",
-             "    _this.saveContents();",
+             "   \t_this.window.windowstate.popover_codeinfo.show(this.el, \":GLib.Object\");",
              "}",
              "  "
             ]
