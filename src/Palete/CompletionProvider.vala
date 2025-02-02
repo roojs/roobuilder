@@ -25,7 +25,7 @@ namespace Palete {
 
 		public string get_name ()
 		{
-		  return  "roojsbuilder";
+		  return  "roobuilder";
 		}
 
 		public int get_priority (GtkSource.CompletionContext context)
@@ -36,14 +36,17 @@ namespace Palete {
 		
 		public bool is_trigger(global::Gtk.TextIter  iter, unichar ch)
 		{
-			if (this.in_populate || ch == 32 || ch == 10) {
+			if (this.in_populate || ch == 32 || ch == 10) { // space tab or currently populating?
 				return false;
 			}
+			
 			if (this.editor.buffer.el.iter_has_context_class(iter, "comment") ||
 				this.editor.buffer.el.iter_has_context_class(iter, "string")
 			) { 
 				return false;
 			}
+			// at this point we need to look up in database ? for vala to see what is at the current location?
+			// 
 			var back = iter.copy();
 			back.backward_char();
 			
