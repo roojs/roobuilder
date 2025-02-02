@@ -158,7 +158,6 @@
            "$ xns" : "Gtk",
            "bool vexpand" : true,
            "id" : "help_button",
-           "label" : "Help",
            "listeners" : {
             "clicked" : [
              " () => { ",

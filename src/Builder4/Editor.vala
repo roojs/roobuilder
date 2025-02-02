@@ -720,7 +720,6 @@ public class Editor : Object
 			// set gobject values
 			this.el.icon_name = "help-about-symbolic";
 			this.el.vexpand = true;
-			this.el.label = "Help";
 
 			//listeners
 			this.el.clicked.connect( () => { 
