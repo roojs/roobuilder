@@ -718,6 +718,7 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.icon_name = "help-about-symbolic";
 			this.el.vexpand = true;
 			this.el.label = "Help";
 
