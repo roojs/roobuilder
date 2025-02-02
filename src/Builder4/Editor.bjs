@@ -156,6 +156,21 @@
           },
           {
            "$ xns" : "Gtk",
+           "bool vexpand" : true,
+           "id" : "help_button",
+           "label" : "Help",
+           "listeners" : {
+            "clicked" : [
+             " () => { ",
+             "    _this.saveContents();",
+             "}",
+             "  "
+            ]
+           },
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
            "* ctor" : "new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1)",
            "* init" : [
             "{",

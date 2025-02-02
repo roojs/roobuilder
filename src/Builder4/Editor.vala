@@ -15,6 +15,7 @@ public class Editor : Object
 	public Xcls_paned paned;
 	public Xcls_save_button save_button;
 	public Xcls_helper helper;
+	public Xcls_help_button help_button;
 	public Xcls_close_btn close_btn;
 	public Xcls_RightEditor RightEditor;
 	public Xcls_view view;
@@ -556,9 +557,11 @@ public class Editor : Object
 			this.el.append( _this.save_button.el );
 			new Xcls_helper( _this );
 			this.el.append( _this.helper.el );
-			var child_3 = new Xcls_Scale6( _this );
-			child_3.ref();
-			this.el.append( child_3.el );
+			new Xcls_help_button( _this );
+			this.el.append( _this.help_button.el );
+			var child_4 = new Xcls_Scale6( _this );
+			child_4.ref();
+			this.el.append( child_4.el );
 			new Xcls_close_btn( _this );
 			this.el.append( _this.close_btn.el );
 		}
@@ -695,6 +698,36 @@ public class Editor : Object
 			*/
 			
 		}
+	}
+
+	public class Xcls_help_button : Object
+	{
+		public Gtk.Button el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_help_button(Editor _owner )
+		{
+			_this = _owner;
+			_this.help_button = this;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.vexpand = true;
+			this.el.label = "Help";
+
+			//listeners
+			this.el.clicked.connect( () => { 
+			    _this.saveContents();
+			});
+		}
+
+		// user defined functions
 	}
 
 	public class Xcls_Scale6 : Object
