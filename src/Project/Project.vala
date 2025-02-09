@@ -969,7 +969,7 @@ namespace Project {
 			while (sl.get_n_items() > 0) {
 				sl.remove(0);
 			}
-			
+			sl.append("(none)");
 			foreach(var sp in this.sub_paths) {
 				 var add = sp.path == this.path ? "/" : sp.path.substring(this.path.length);
 				if (prefix.length > 0 && !add.has_prefix(prefix)) {

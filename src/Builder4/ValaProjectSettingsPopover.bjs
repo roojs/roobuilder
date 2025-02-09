@@ -726,6 +726,8 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
+                 "bool autoselect" : false,
+                 "bool can_unselect" : true,
                  "id" : "target_sel",
                  "items" : [
                   {

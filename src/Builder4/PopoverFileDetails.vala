@@ -40,7 +40,7 @@ public class Xcls_PopoverFileDetails : Object
 	public Xcls_gen gen;
 	public Xcls_save_btn save_btn;
 
-		// my vars (def)
+	// my vars (def)
 	public bool is_new;
 	public bool new_window;
 	public signal void success (Project.Project pr, JsRender.JsRender file);
@@ -255,7 +255,7 @@ public class Xcls_PopoverFileDetails : Object
 	                                                    
 	}
 	public void onFileTypeChange () {
-		if (this.filetype.el.selected == Gtk.INVALID_LIST_POSITION) {
+		if (this.filetype.el.selected ==  0) {
 			this.dir_dropdown.el.hide();
 			this.dir_dropdown_lbl.el.hide();
 			this.build_module_lbl.el.hide();
@@ -290,7 +290,7 @@ public class Xcls_PopoverFileDetails : Object
 		this.dir_dropdown_lbl.el.show();
 		var sel = this.filetype.getValue();
 		
-		var old_sel = _this.dir_dropdown.el.selected != Gtk.INVALID_LIST_POSITION;
+		var old_sel = _this.dir_dropdown.el.selected != 0;
 		var olddir = this.dir_dropdown.getValue();
 		GLib.debug("old dir = %s", olddir);
 		if (this.file.project.xtype=="Gtk" && (sel == "bjs" || sel == "vala")) {
@@ -298,7 +298,7 @@ public class Xcls_PopoverFileDetails : Object
 			if (old_sel && olddir.has_prefix("/src")) {
 			 	this.dir_dropdown.setValue(olddir);
 	 		} else {
-		 	     _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
+		 	     _this.dir_dropdown.el.selected = 0;
 	 	    }
 	         
 		} else {
@@ -307,7 +307,7 @@ public class Xcls_PopoverFileDetails : Object
 			if (old_sel) {
 				this.dir_dropdown.setValue(olddir);
 			} else {
-			     _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
+			     _this.dir_dropdown.el.selected = 0;
 		     }
 	       
 	    }
@@ -327,7 +327,7 @@ public class Xcls_PopoverFileDetails : Object
 	 	this.filetype.el.show();
 	    this.filetype_lbl.el.show();
 	    this.filetype_model.load();
-		this.filetype.el.selected = Gtk.INVALID_LIST_POSITION;
+		this.filetype.el.selected = 0;
 	 
 		    
 	}
@@ -373,7 +373,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box1(Xcls_PopoverFileDetails _owner )
@@ -402,7 +402,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_grid(Xcls_PopoverFileDetails _owner )
@@ -490,7 +490,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_filetype_lbl(Xcls_PopoverFileDetails _owner )
@@ -515,7 +515,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool in_showhide;
 
 		// ctor
@@ -569,7 +569,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_filetype_model(Xcls_PopoverFileDetails _owner )
@@ -588,8 +588,9 @@ public class Xcls_PopoverFileDetails : Object
 		    var el = this.el;
 		    
 		    while (el.get_n_items() > 0) {
-		    	el.remove(0);
+		      	el.remove(0);
 			}
+			el.append("(none)");
 		 	el.append("bjs - User Interface File");
 		 
 		    
@@ -624,7 +625,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_dir_dropdown_lbl(Xcls_PopoverFileDetails _owner )
@@ -650,7 +651,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int colspan;
 
 		// ctor
@@ -696,7 +697,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_dir_model(Xcls_PopoverFileDetails _owner )
@@ -720,7 +721,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_name_lbl(Xcls_PopoverFileDetails _owner )
@@ -745,7 +746,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_name(Xcls_PopoverFileDetails _owner )
@@ -770,7 +771,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_title_lbl(Xcls_PopoverFileDetails _owner )
@@ -796,7 +797,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_title(Xcls_PopoverFileDetails _owner )
@@ -821,7 +822,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_region_lbl(Xcls_PopoverFileDetails _owner )
@@ -848,7 +849,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_region(Xcls_PopoverFileDetails _owner )
@@ -873,7 +874,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_parent_lbl(Xcls_PopoverFileDetails _owner )
@@ -899,7 +900,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_parent(Xcls_PopoverFileDetails _owner )
@@ -923,7 +924,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_permname_lbl(Xcls_PopoverFileDetails _owner )
@@ -949,7 +950,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_permname(Xcls_PopoverFileDetails _owner )
@@ -973,7 +974,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_modOrder_lbl(Xcls_PopoverFileDetails _owner )
@@ -999,7 +1000,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_modOrder(Xcls_PopoverFileDetails _owner )
@@ -1023,7 +1024,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_build_module_lbl(Xcls_PopoverFileDetails _owner )
@@ -1049,7 +1050,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_build_module(Xcls_PopoverFileDetails _owner )
@@ -1089,7 +1090,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_build_module_model(Xcls_PopoverFileDetails _owner )
@@ -1117,6 +1118,7 @@ public class Xcls_PopoverFileDetails : Object
 			if (compilegroups == null) {
 				return;
 			}
+			el.append("(none)");
 			foreach(var k in compilegroups.keys) {
 				this.el.append(k);
 			}
@@ -1138,7 +1140,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int colspan;
 
 		// ctor
@@ -1166,7 +1168,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int colspan;
 
 		// ctor
@@ -1194,7 +1196,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int colspan;
 
 		// ctor
@@ -1222,7 +1224,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_gen(Xcls_PopoverFileDetails _owner )
@@ -1255,7 +1257,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_HeaderBar28(Xcls_PopoverFileDetails _owner )
@@ -1282,7 +1284,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button29(Xcls_PopoverFileDetails _owner )
@@ -1311,7 +1313,7 @@ public class Xcls_PopoverFileDetails : Object
 		private Xcls_PopoverFileDetails  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor

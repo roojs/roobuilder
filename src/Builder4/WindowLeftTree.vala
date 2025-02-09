@@ -21,7 +21,7 @@ public class Xcls_WindowLeftTree : Object
 	public Xcls_maincol maincol;
 	public Xcls_LeftTreeMenu LeftTreeMenu;
 
-		// my vars (def)
+	// my vars (def)
 	public signal bool before_node_change ();
 	public Xcls_MainWindow? main_window;
 	public int last_error_counter;
@@ -187,7 +187,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ListView1(Xcls_WindowLeftTree _owner )
@@ -210,7 +210,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory2(Xcls_WindowLeftTree _owner )
@@ -233,7 +233,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_viewwin(Xcls_WindowLeftTree _owner )
@@ -263,7 +263,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool blockChanges;
 		public bool headers_visible;
 		public string lastEventSource;
@@ -495,7 +495,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick5(Xcls_WindowLeftTree _owner )
@@ -585,7 +585,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick6(Xcls_WindowLeftTree _owner )
@@ -656,7 +656,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_DragSource7(Xcls_WindowLeftTree _owner )
@@ -747,7 +747,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_EventControllerKey8(Xcls_WindowLeftTree _owner )
@@ -783,7 +783,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int is_shift;
 
 		// ctor
@@ -827,7 +827,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Gtk.Widget? highlightWidget;
 		public JsRender.Node? lastDragNode;
 		public string lastDragString;
@@ -1349,7 +1349,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_selmodel(Xcls_WindowLeftTree _owner )
@@ -1363,6 +1363,7 @@ public class Xcls_WindowLeftTree : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
+			this.el.autoselect = false;
 
 			//listeners
 			this.el.selection_changed.connect( (position, n_items) => {
@@ -1460,7 +1461,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_model(Xcls_WindowLeftTree _owner )
@@ -1647,7 +1648,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_maincol(Xcls_WindowLeftTree _owner )
@@ -1674,7 +1675,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory14(Xcls_WindowLeftTree _owner )
@@ -1790,7 +1791,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnViewColumn15(Xcls_WindowLeftTree _owner )
@@ -1814,7 +1815,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory16(Xcls_WindowLeftTree _owner )
@@ -1871,7 +1872,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_LeftTreeMenu(Xcls_WindowLeftTree _owner )
@@ -1896,7 +1897,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box18(Xcls_WindowLeftTree _owner )
@@ -1926,7 +1927,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button19(Xcls_WindowLeftTree _owner )
@@ -1957,7 +1958,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button20(Xcls_WindowLeftTree _owner )
@@ -1993,7 +1994,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button21(Xcls_WindowLeftTree _owner )
