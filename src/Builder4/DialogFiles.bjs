@@ -554,7 +554,6 @@
               "min-width: 24px;",
               "}",
               "\");",
-              "",
               "\tGtk.StyleContext.add_provider_for_display(",
               "\t\tthis.el.get_display(),",
               "\t\tthis.css,",

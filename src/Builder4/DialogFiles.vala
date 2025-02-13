@@ -1247,7 +1247,6 @@ public class DialogFiles : Object
 			min-width: 24px;
 			}
 			");
-			
 				Gtk.StyleContext.add_provider_for_display(
 					this.el.get_display(),
 					this.css,
