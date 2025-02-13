@@ -771,7 +771,7 @@
  		void dumpSymbolJSONTree(Project.Project? cur_project)
 		{
 			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
-			var pal  = cur_project.palete;
+			 
 			// write to /home/xxx/.Buider/docs/{name}.json ?? 
 			var ar = sl.classCacheToJSON();
 			// in theory this loads up all of the types..

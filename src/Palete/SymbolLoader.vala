@@ -72,6 +72,9 @@ namespace Palete
 			var res = new Symbol();
 			var cols = this.sq.getColsExcept({ "doc", "parent_name" });
 			var stmt = this.sq.selectPrepare("
+					
+					-- singleBYId
+			
 					SELECT 
 						" + string.joinv(",",cols) + " 
 						,COALESCE((
@@ -135,6 +138,9 @@ namespace Palete
 			var res = new Symbol();
 			var cols = this.sq.getColsExcept({ "doc" , "parent_name"});
 			var stmt = this.sq.selectPrepare("
+			
+					-- singleByFqn
+			
 					SELECT 
 						" + string.joinv(",",cols) + " 
 						,COALESCE((
@@ -237,7 +243,11 @@ namespace Palete
 			var cols = this.sq.getColsExcept({ "doc", "parent_name", "rtype" });
 			// this is loading everyng!? how about filtering it?
 			// rtype is taken from girs for enum (?? constants as well?)
-			var stmt = this.sq.selectPrepare("
+			var stmt = this.sq.selectPrepare("	
+			
+				-- getPropertiesFor
+			
+			
 					SELECT 
 						" + string.joinv(",",cols) + ",
 						COALESCE((
@@ -392,6 +402,10 @@ namespace Palete
 			var cols = this.sq.getColsExcept({ "doc" });
 			
 			var stmt = this.sq.selectPrepare("
+			
+					-- loadParamsForMethods
+			
+			
 					SELECT 
 						" + string.joinv(",",cols) + ",
 						COALESCE((
@@ -520,6 +534,9 @@ namespace Palete
 			
 			
 			var stmt = this.sq.selectPrepare("
+			
+					-- fillImplements
+			
 					SELECT 
 						" + prop + " 
 					FROM 
@@ -622,6 +639,9 @@ namespace Palete
 			var cols = this.sq.getColsExcept({ "doc" , "parent_name", "rtype"}, "symbol.");
 			
 			var stmt = this.sq.selectPrepare("
+			
+					-- loadClassCache
+			
 					SELECT 
 						" + string.joinv(",",cols) + ",
 						COALESCE((
@@ -789,6 +809,9 @@ namespace Palete
 			}
   			GLib.debug("Get methods params for %s", method.fqn);
 			var stmt = this.sq.selectPrepare("
+			
+					-- loadMethodParams
+					
 					SELECT 
 						*  
 					FROM 
@@ -827,6 +850,9 @@ namespace Palete
 			}
 			
 			var stmt = this.sq.selectPrepare("
+			
+				-- dropSearchMethods
+			
 				SELECT 
 					fqn 
 				FROM 
@@ -896,6 +922,9 @@ namespace Palete
 			}
 			
 			var stmt = this.sq.selectPrepare("
+			
+				-- dropSearchProps
+			
 				SELECT 
 					fqn
 				FROM
@@ -936,6 +965,9 @@ namespace Palete
 			
 			var f = this.manager.factory_by_path(file.targetName());
 			var stmt = this.sq.selectPrepare("
+				
+				-- getSymbolAt
+			
 				SELECT 
 					*
 				FROM
