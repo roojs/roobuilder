@@ -28,15 +28,18 @@ namespace Project {
 				}
 			}
 			
-			// used for xscrnsvr (add Xss)
-			/*
-			foreach(var p in this.project.clibraries.split(" ")) {
+			// used for xscrnsvr (add Xss) -- add -lXss to the compile flags.
+			
+			foreach(var p in this.project.cflags.split(" ")) {
 				if (p.strip().length < 1) {
 					continue;
 				}
-				deps +=  "   meson.get_compiler('c').find_library('"+  p + "'),";
+				if (!p.has_suffix("-l")) {
+					continue;
+				}
+				deps +=  "   meson.get_compiler('c').find_library('"+  p.substring(2) + "'),";
 			}
-			*/
+			 
 			/*
 			  dependency('glib-2.0'),
 				dependency('gobject-2.0'), << for others.. ut will this wrok using find_lib for all?
