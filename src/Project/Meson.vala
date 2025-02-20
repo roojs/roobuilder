@@ -27,6 +27,15 @@ namespace Project {
 					deps += "   dependency('" + p  + "'),\n";				
 				}
 			}
+			
+			// used for xscrnsvr (add Xss)
+			foreach(var p in this.project.clibraries.split(" ")) {
+				if (p.strip().length < 1) {
+					continue;
+				}
+				deps +=  "   meson.get_compiler('c').find_library('"+  p + "'),
+			}
+			
 			/*
 			  dependency('glib-2.0'),
 				dependency('gobject-2.0'), << for others.. ut will this wrok using find_lib for all?
