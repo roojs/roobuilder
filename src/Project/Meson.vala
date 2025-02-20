@@ -61,6 +61,9 @@ namespace Project {
 				if (p.strip().length < 1) {
 					continue;
 				}
+				if (p.has_suffix("-l")) {
+					continue;
+				}
 				cflags += "add_project_arguments(['" + p "'], language: 'c')\n";
 			}
 
