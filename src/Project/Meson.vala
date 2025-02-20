@@ -30,7 +30,7 @@ namespace Project {
 			
 			// used for xscrnsvr (add Xss) -- add -lXss to the compile flags.
 			
-			foreach(var p in this.project.cflags.split(" ")) {
+			foreach(var p in this.project.compile_flags.split(" ")) {
 				if (p.strip().length < 1) {
 					continue;
 				}
@@ -57,7 +57,7 @@ namespace Project {
 			//vapi_dir = meson.current_source_dir() / 'vapi'
 			//add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
 			var cflags = "";
-			foreach(var p in this.project.cflags.split(" ")) {
+			foreach(var p in this.project.compile_flags.split(" ")) {
 				if (p.strip().length < 1) {
 					continue;
 				}
