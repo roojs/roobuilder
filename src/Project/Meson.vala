@@ -34,7 +34,7 @@ namespace Project {
 				if (p.strip().length < 1) {
 					continue;
 				}
-				if (!p.has_suffix("-l")) {
+				if (!p.has_prefix("-l")) {
 					continue;
 				}
 				deps +=  "   meson.get_compiler('c').find_library('"+  p.substring(2) + "'),";
@@ -61,7 +61,7 @@ namespace Project {
 				if (p.strip().length < 1) {
 					continue;
 				}
-				if (p.has_suffix("-l")) {
+				if (p.has_prefix("-l")) {
 					continue;
 				}
 				cflags += "add_project_arguments(['" + p + "'], language: 'c')\n";
