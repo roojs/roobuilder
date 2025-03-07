@@ -30,7 +30,7 @@ public class Xcls_GtkView : Object
 	public Xcls_regex regex;
 	public Xcls_multiline multiline;
 
-		// my vars (def)
+	// my vars (def)
 	public Gtk.Widget lastObj;
 	public Xcls_MainWindow main_window;
 	public int last_error_counter;
@@ -105,6 +105,7 @@ public class Xcls_GtkView : Object
 	        
 	   		var xmlstr = JsRender.NodeToGlade.mungeFile( file);
 	   		var builder = new Gtk.Builder();
+	   		GLib.debug("%s", xmlstr);
 	   		try {
 		   		if (!builder.add_from_string(xmlstr, xmlstr.length)) {
 		   			return;
@@ -425,7 +426,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_notebook(Xcls_GtkView _owner )
@@ -456,7 +457,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_label_preview(Xcls_GtkView _owner )
@@ -479,7 +480,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_label_code(Xcls_GtkView _owner )
@@ -502,7 +503,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ScrolledWindow4(Xcls_GtkView _owner )
@@ -525,7 +526,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_view_layout(Xcls_GtkView _owner )
@@ -550,7 +551,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_container(Xcls_GtkView _owner )
@@ -575,7 +576,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box7(Xcls_GtkView _owner )
@@ -601,7 +602,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_sourceviewscroll(Xcls_GtkView _owner )
@@ -626,7 +627,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool loading;
 		public string prop_selected;
 		public JsRender.Node? node_selected;
@@ -893,7 +894,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int error_line;
 		public bool in_cursor_change;
 		public bool dirty;
@@ -972,7 +973,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool is_control;
 
 		// ctor
@@ -1024,7 +1025,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public double distance;
 
 		// ctor
@@ -1070,7 +1071,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box13(Xcls_GtkView _owner )
@@ -1104,7 +1105,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Gtk.CssProvider css;
 
 		// ctor
@@ -1175,7 +1176,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_EventControllerKey15(Xcls_GtkView _owner )
@@ -1220,7 +1221,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_results(Xcls_GtkView _owner )
@@ -1266,7 +1267,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -1300,7 +1301,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -1334,7 +1335,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -1361,7 +1362,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_settings(Xcls_GtkView _owner )
@@ -1386,7 +1387,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box21(Xcls_GtkView _owner )
@@ -1413,7 +1414,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_case_sensitive(Xcls_GtkView _owner )
@@ -1437,7 +1438,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_regex(Xcls_GtkView _owner )
@@ -1461,7 +1462,7 @@ public class Xcls_GtkView : Object
 		private Xcls_GtkView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_multiline(Xcls_GtkView _owner )
