@@ -119,11 +119,7 @@ public class Xcls_GtkView : Object
 				return;
 			}
 	   		
-	
-	   		
-	         
-	        	 
-	       
+	 
 	        
 	}
 	public void highlightNodeAtLine (int ln) {
