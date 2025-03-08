@@ -211,7 +211,7 @@ namespace Palete {
 			}
 			set {
 				var ar = value.split(",");
-				this.symbolvars= new Gee.ArrayList<string>();
+				this.scopevars = new Gee.ArrayList<string>();
 				for(var i =0 ; i < ar.length; i++) {
 					this.scopevars.add(ar[i]);
 				}
