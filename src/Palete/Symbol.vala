@@ -219,7 +219,7 @@ namespace Palete {
 					(((Symbol)a).begin_line >((Symbol)b).begin_line) ? 1 : -1
 				);
 			});
-			if (this.scopevars.length > 0 ){
+			if (this.scopevars.size > 0 ){
 				var j = "";
 				foreach(var s in this.scopevars) {
 					j += (j.length > 0 ? "," : "") + s;
