@@ -409,6 +409,7 @@ namespace Palete {
 					parent_id INTEGER,
 					stype INTEGER,
 					
+					
 					begin_line INTEGER,
 					begin_col INTEGER,
 					end_line INTEGER,
@@ -433,7 +434,8 @@ namespace Palete {
 					is_gir INT2,
 					fqn TEXT,
 					implements_str TEXT,
-					inherits_str TEXT
+					inherits_str TEXT,
+					scopevars TEXT
 				);
 				",
 				"CREATE INDEX symbol_ix1 on symbol(file_id,parent_id,stype, sequence)",
