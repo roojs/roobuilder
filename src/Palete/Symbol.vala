@@ -202,7 +202,7 @@ namespace Palete {
 		}
 		
 		public string scopevars_str { 
-			unowned get { 
+			owned get { 
 				var j = "";
 				foreach(var s in this.scopevars) {
 					j += (j.length > 0 ? "," : "") + s;
