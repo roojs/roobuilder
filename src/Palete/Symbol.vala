@@ -72,6 +72,9 @@ namespace Palete {
 
 		public int sequence_count = 0; // used by symbolvala - to label symbols.
 		
+		public string[] scopevars = { } ;
+		
+		
   		public string implements_str { 
 			owned get {
 				if (this.implements.size < 1) {
@@ -216,6 +219,10 @@ namespace Palete {
 					(((Symbol)a).begin_line >((Symbol)b).begin_line) ? 1 : -1
 				);
 			});
+			if (this.scopevars.length > 0 ){
+				print("%s   -> scopvars : %s", indent, String.joinv(this.scopevars, ","));
+			}
+				
 			
 			for(var i = 0; i < this.children.get_n_items();i++) {
 				var c = (Symbol) this.children.get_item(i);
