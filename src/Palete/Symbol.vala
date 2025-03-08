@@ -455,7 +455,7 @@ namespace Palete {
 					fqn TEXT,
 					implements_str TEXT,
 					inherits_str TEXT,
-					scopevars TEXT
+					scopevars_str TEXT
 				);
 				",
 				"CREATE INDEX symbol_ix1 on symbol(file_id,parent_id,stype, sequence)",
