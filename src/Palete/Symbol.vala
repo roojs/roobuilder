@@ -220,7 +220,7 @@ namespace Palete {
 				);
 			});
 			if (this.scopevars.length > 0 ){
-				print("%s   -> scopvars : %s", indent, string.joinv(this.scopevars, ","));
+				print("%s   -> scopvars : %s\n", indent, string.joinv(this.scopevars, ","));
 			}
 				
 			
