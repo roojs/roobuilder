@@ -409,6 +409,12 @@ namespace Palete {
 				this.readCodeNode(builder, sig.body);
 			}
 			
+			this.scopevars += "this"; // always has this..
+			var vars = sig.body.get_local_variables();
+			for(var i -= 0; i < vars.size; i++) {
+				this.scopevars +=  vars.get(i).name;
+				
+			}
 			 
 		}
 	 	public void setParent(Symbol? parent) 
