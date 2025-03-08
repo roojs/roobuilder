@@ -201,6 +201,26 @@ namespace Palete {
 			return this.fqn.substring(0, this.fqn.length - this.name.length - 1);
 		}
 		
+		public string scopevars_str { 
+			get { 
+				var j = "";
+				foreach(var s in this.scopevars) {
+					j += (j.length > 0 ? "," : "") + s;
+				}
+				return j;
+			}
+			set {
+				var ar = value.split(",");
+				this.symbolvars= new Gee.ArrayList<string>();
+				for(var i =0 ; i < ar.length; i++) {
+					this.scopevars.add(ar[i]);
+				}
+			}
+		}
+				
+			
+				
+		
 		public void dump(string indent)
 		{
 			
