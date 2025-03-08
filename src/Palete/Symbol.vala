@@ -72,7 +72,7 @@ namespace Palete {
 
 		public int sequence_count = 0; // used by symbolvala - to label symbols.
 		
-		public string[] scopevars = { } ;
+		public string[] scopevars = { } ; // symbols available in this scope
 		
 		
   		public string implements_str { 
