@@ -405,16 +405,18 @@ namespace Palete {
 				 new new_parameter(builder, this, p, n++);
 			}
 			
-			if (this.file.path.has_suffix(".vala") ) {
-				this.readCodeNode(builder, sig.body);
+			if (!this.file.path.has_suffix(".vala") ) {
+				return;
 			}
-			
+			this.readCodeNode(builder, sig.body);
 			this.scopevars.add( "this"); // always has this..
 			var vars = sig.body.get_local_variables();
 			for(var i = 0; i < vars.size; i++) {
 				this.scopevars.add( vars.get(i).name);
 				
 			}
+			
+			
 			 
 		}
 	 	public void setParent(Symbol? parent) 
