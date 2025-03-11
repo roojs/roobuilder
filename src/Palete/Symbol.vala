@@ -43,6 +43,7 @@ namespace Palete {
  		public bool is_static  { get; set; default = false; } 
  		public bool is_gir  { get; set; default = false; } 
  		public bool is_ctor_only { get; set; default = false; }  // FIXME!!!
+ 		public bool is_local_var { get; set; default = false; }  //  used for completion
  		
  		public string inherits_str { get; set; default = ""; }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
@@ -72,8 +73,7 @@ namespace Palete {
 
 		public int sequence_count = 0; // used by symbolvala - to label symbols.
 		
-		public Gee.ArrayList<string> scopevars  { get; set; default = new Gee.ArrayList<string>(); }// symbols available in this scope
-		
+	 	
 		
   		public string implements_str { 
 			owned get {
@@ -201,24 +201,7 @@ namespace Palete {
 			return this.fqn.substring(0, this.fqn.length - this.name.length - 1);
 		}
 		
-		public string scopevars_str { 
-			owned get { 
-				var j = "";
-				foreach(var s in this.scopevars) {
-					j += (j.length > 0 ? "," : "") + s;
-				}
-				return j;
-			}
-			set {
-				var ar = value.split(",");
-				this.scopevars = new Gee.ArrayList<string>();
-				for(var i =0 ; i < ar.length; i++) {
-					this.scopevars.add(ar[i]);
-				}
-			}
-		}
-				
-			
+		 
 				
 		
 		public void dump(string indent)
@@ -239,15 +222,12 @@ namespace Palete {
 					(((Symbol)a).begin_line >((Symbol)b).begin_line) ? 1 : -1
 				);
 			});
-			if (this.scopevars.size > 0 ){
-				print("%s   -> scopvars : %s\n", indent, this.scopevars_str);
-			}
-				
+		 	
 			
 			for(var i = 0; i < this.children.get_n_items();i++) {
 				var c = (Symbol) this.children.get_item(i);
 				c.dump(si);
-			}
+			} // a 
 		}
 		public string dumpArgs()
 		{
