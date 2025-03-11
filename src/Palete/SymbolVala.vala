@@ -867,8 +867,10 @@ namespace Palete {
 
 			this.setParent(parent);
 			if (c is Vala.LocalVariable) {
-			
 				this.doc =   "Local";
+			}
+			if (c is Vala.Parameter) {
+				this.doc =   "Parameter";
 			}
 		}
 		/*
