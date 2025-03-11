@@ -409,12 +409,7 @@ namespace Palete {
 				return;
 			}
 			this.readCodeNode(builder, sig.body);
-			this.scopevars.add( "this"); // always has this.. (except static?)
-			var vars = sig.body.get_local_variables();
-			for(var i = 0; i < vars.size; i++) {
-				this.scopevars.add( vars.get(i).name);
-				
-			}
+		 
 			
 			
 			 
