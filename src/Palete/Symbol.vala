@@ -444,7 +444,7 @@ namespace Palete {
 				"CREATE INDEX symbol_ix1 on symbol(file_id,parent_id,stype, sequence)",
 				"CREATE INDEX symbol_ix2 on symbol(fqn)",
 				"CREATE INDEX symbol_ix3 on symbol(is_abstract, is_sealed, is_static)",
-				"CREATE INDEX symbol_ix3 on symbol(implements_str, inherits_str)"
+				"CREATE INDEX symbol_ix4 on symbol(implements_str, inherits_str)"
 			};
 			return ret;
 		}
