@@ -866,7 +866,7 @@ namespace Palete {
 			this.sequence = parent.sequence_count++;
 
 			this.setParent(parent);
-			this.doc = c is Vala.LocalVariable ? "Local" : "??";
+			this.doc = (c is Vala.LocalVariable ? "Local" : "??");
 		}
 		/*
 		public SymbolVala.new_variable_from_foreach(ValaSymbolBuilder builder, Symbol? parent, Vala.ForeachStatement c)	
