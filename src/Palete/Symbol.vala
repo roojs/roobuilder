@@ -430,6 +430,7 @@ namespace Palete {
 
 					is_static INT2,
 					is_ctor_only INT2,
+					is_local_var INT2,
 					
 					parent_name TEXT,
 					doc TEXT,
@@ -437,7 +438,7 @@ namespace Palete {
 					fqn TEXT,
 					implements_str TEXT,
 					inherits_str TEXT,
-					scopevars_str TEXT
+
 				);
 				",
 				"CREATE INDEX symbol_ix1 on symbol(file_id,parent_id,stype, sequence)",
