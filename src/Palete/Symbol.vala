@@ -214,6 +214,7 @@ namespace Palete {
 				this.to_fqn(), 
 				this.dumpArgs(), 
 				this.rtype);
+				
 			if (this.doc != "") {
 			    print("%s-->%s\n",indent, this.doc.split("\n")[0]);
 			}
