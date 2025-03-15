@@ -583,6 +583,22 @@ namespace Palete {
 			//}
 			this.log(LanguageClientAction.COMPLETE, "SEND complete  %s @ %d:%d".printf(file.relpath, line, offset) );
 			
+			var sy = file.getSymbolLoader().getSymbolAt(file,line,offset);
+		 	var retv = new Lsp.Hover();
+		 	if (sy == null) {
+		 		// not in a symbol - get the scoped symbols.
+		 	
+		 	
+		 		return retv;
+	 		}
+	 		GLib.debug("Set contents to %s", sy.rtype + " " + sy.name + " (" + sy.stype.to_string() + ")");
+		 	retv.contents.add(new Lsp.MarkedString("",
+		 		SymbolFormat.helpLabel(sy)
+	 		));
+	 		return retv;
+	 		
+			
+			
 			Variant? return_value;
 			
 			var args = this.buildDict (  
