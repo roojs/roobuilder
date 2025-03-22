@@ -122,7 +122,7 @@ namespace Palete {
 						offset -= 2;
 					}
 					GLib.debug("complate call on line %d / offset %d", line,offset); 
-					res = yield this.file.getLanguageServer().completion(this.file, line, offset, trigger_char =="." ? 1 : 0);
+					res = yield this.file.getLanguageServer().completion(this.file, line, offset, trigger_char =="." ? 1 : 0, this.trigger_word);
 				} catch (GLib.Error e) {
 					GLib.debug("got error %s", e.message);
 					this.in_populate = false;
