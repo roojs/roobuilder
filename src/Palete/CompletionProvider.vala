@@ -68,7 +68,7 @@ namespace Palete {
 			ws.backward_word_start();
 			var ws = back.get_text(iter);	
 			this.trigger_word = str;
-			
+			GLib.debug("Previos word to trigger is '%s';", str);		
 			return true;
 		}
 		
