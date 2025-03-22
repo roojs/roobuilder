@@ -424,11 +424,9 @@ namespace Palete {
 				}
 			}
 			// is this what is really needed..
-			
+			// in theory it's a method .. with children..
 			return this;
-			
-			
-		
+			 
 		
 		}
 		
