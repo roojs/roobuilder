@@ -259,7 +259,7 @@
 					(dom, lvl, msg) => {
 					
 					var bits = msg.split(":");
-					if (BuilderApplication.opt_debug_only.length > 0 && 
+					if (BuilderApplication.opt_debug_only != null && 
 						!("," + BuilderApplication.opt_debug_only + ",").contains( "," + bits[0].replace(".vala", "") + ",")
 						)
 					
