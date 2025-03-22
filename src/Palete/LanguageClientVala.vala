@@ -565,7 +565,7 @@ namespace Palete {
 		
 		@triggerType 1 = typing or ctl-spac, 2 = tiggercharactres?  3= inside completion?
 		*/
-		 public override async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
+		 public override async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1, string pre = "") throws GLib.Error 
 		 {
 		 	/* partial_result_token ,  work_done_token   context = null) */
 		 	GLib.debug("%s get completion %s @ %d:%d", this.get_type().name(),  file.relpath, line, offset);
@@ -621,7 +621,7 @@ namespace Palete {
  					break;
  				case Lsp.SymbolKind.Method:
  					// it's ina method - we need to look at
- 					
+ 					 
  					
 				default:
 	 				GLib.debug("completion can only handle variables");
