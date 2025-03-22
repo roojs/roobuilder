@@ -22,6 +22,7 @@ namespace Palete {
 		   // this.windowstate = null; // not ready until the UI is built.
 		    
  		}
+ 		
 
 		public string get_name ()
 		{
@@ -107,13 +108,9 @@ namespace Palete {
 					
 					if (this.trigger_char == ".") {
 						// at this point we need to wait for the compiler to finish.
-						//GLib.debug("yielding for async update to tree");
-						//this.file.updateTree();
-						GLib.debug("waiting for start of updateD");
-						yield this.file.wait_for_start_of_tree_update();
-						GLib.debug("wiating for end od update");
-						yield this.file.wait_for_end_of_tree_update();
-						GLib.debug("ready to go");
+						// original design tries to wait until it's compiled.
+						// but this doesnt really work, as it's often not in a state where 
+						// compilation is successfull - so the last compiled state is probably ok.
 						offset -= 2;
 					}
 					GLib.debug("complate call on line %d / offset %d", line,offset); 
