@@ -207,8 +207,11 @@ namespace Palete {
 		public void dump(string indent)
 		{
 			
-			print("%s %d>%d : %s : %s%s%s [%s]\n", indent, 
-				this.begin_line, this.end_line,
+			print("%s %d.%d>%d.%d : %s : %s%s%s [%s]\n", indent, 
+				this.begin_line,
+				this.begin_col,
+				this.end_line,
+				this.end_col,
 				this.stype == 0 ?  "??" : this.stype.to_string().substring( 16, -1 ), 
 				this.is_local_var ? "*" : "",
 				this.to_fqn(), 
@@ -437,7 +440,7 @@ namespace Palete {
 					is_gir INT2,
 					fqn TEXT,
 					implements_str TEXT,
-					inherits_str TEXT,
+					inherits_str TEXT
 
 				);
 				",

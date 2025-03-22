@@ -571,11 +571,7 @@ namespace Palete {
 		 	GLib.debug("%s get completion %s @ %d:%d", this.get_type().name(),  file.relpath, line, offset);
 		 	
 			var ret = new Lsp.CompletionList();	
-			
-		    if (!this.isReady()) {
-		    	GLib.debug("completion - language server not ready");
-				return ret;
-			}
+			 
 			// make sure completion has the latest info..
 			//if (this.change_queue_file != null && this.change_queue_file.path != file.path) {
  			//	this.document_change_real(this.change_queue_file, this.change_queue_file_source);
@@ -583,73 +579,49 @@ namespace Palete {
 			//}
 			this.log(LanguageClientAction.COMPLETE, "SEND complete  %s @ %d:%d".printf(file.relpath, line, offset) );
 			
-			var sy = file.getSymbolLoader().getSymbolAt(file,line,offset);
-		 	var retv = new Lsp.Hover();
+			var sy = file.getSymbolLoader().getSymbolAt(file,line,offset-1);
+ 
 		 	if (sy == null) {
 		 		// not in a symbol - get the scoped symbols.
-		 	
-		 	
-		 		return retv;
+		 		var sy_ar = file.getSymbolLoader().getScopeSymbolsAt(file,line,offset);
+		 		var dupes = new Gee.ArrayList<string>();
+		 		foreach(var sym in sy_ar) {
+		 			if (dupes.contains(sym.name)) {
+		 				continue;
+	 				}
+	 				dupes.add(sym.name);
+		 			ret.add(new Lsp.CompletionItem.keyword(sym.name, sym.name, sym.doc)); // enough?
+		 		}
+	 			if (!dupes.contains("this")) {
+	 				ret.add(new Lsp.CompletionItem.keyword("this", "this", "current object"));
+ 				}
+		 		return ret;
 	 		}
-	 		GLib.debug("Set contents to %s", sy.rtype + " " + sy.name + " (" + sy.stype.to_string() + ")");
-		 	retv.contents.add(new Lsp.MarkedString("",
-		 		SymbolFormat.helpLabel(sy)
-	 		));
-	 		return retv;
-	 		
-			
-			
-			Variant? return_value;
-			
-			var args = this.buildDict (  
-					context : this.buildDict (    ///CompletionContext;
-						triggerKind: new GLib.Variant.int32 (triggerType) 
-					//	triggerCharacter :  new GLib.Variant.string ("")
-					),
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version) 
-					), 
-					position :  this.buildDict ( 
-						line :  new GLib.Variant.uint64 ( (uint) line) ,
-						character :  new GLib.Variant.uint64 ( uint.max(0,  (offset -1))) 
-					)
-				);
-			 
-			GLib.debug ("textDocument/completion send with %s", Json.to_string (Json.gvariant_serialize (args), true));					
-			
-			yield this.jsonrpc_client.call_async (
-				"textDocument/completion",
-				args,
-				null,
-				out return_value
-			);
-			
-			
-			//GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
-			var json = Json.gvariant_serialize (return_value);
-
-
-			if (json.get_node_type() == Json.NodeType.OBJECT) {
-				ret = Json.gobject_deserialize (typeof (Lsp.CompletionList), json) as Lsp.CompletionList; 
-				this.log(LanguageClientAction.COMPLETE_REPLY, "GOT complete  %d items".printf(ret.items.size) );
-				GLib.debug ("LS replied with Object");
-				return ret;
-			}  
-
-			if (json.get_node_type() != Json.NodeType.ARRAY) {
-				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
-				this.log(LanguageClientAction.ERROR_REPLY, "GOT something else??");
-				return ret;
-			
-			}
-			var ar = json.get_array();			
-			
-			for(var i = 0; i < ar.get_length(); i++ ) {
-				var add= Json.gobject_deserialize ( typeof (Lsp.CompletionItem),  ar.get_element(i)) as Lsp.CompletionItem;
-				ret.items.add( add);
-					 
-	 		}
+ 			// get properties from sy?
+ 			GLib.debug("completion got this symbol @ cursor : %s (%s)", sy.fqn, sy.rtype);
+ 			switch (sy.stype) {
+ 				case Lsp.SymbolKind.Variable:
+ 					sy = file.getSymbolLoader().singleByFqn(sy.rtype);
+ 					if (sy == null) {
+ 						GLib.debug("completion could not work out type");
+ 					}
+ 					break;
+				default:
+	 				GLib.debug("completion can only handle variables");
+	 				return ret;
+ 				
+ 			
+ 			}
+ 			file.getSymbolLoader().getPropertiesFor(sy.fqn, Lsp.SymbolKind.Property);
+ 			// at this point sy.children should be loaded
+ 			foreach(var sym in sy.children_map.values) {
+ 				var add =new Lsp.CompletionItem.keyword(sym.name, /* add starting symbol prefix? */ sym.name, sym.doc);
+ 				//add.kind == // SYMBOLD TO COMPLETION KIND?
+ 				ret.add(add);
+ 			
+ 			}
+ 			
+ 			
 			this.log(LanguageClientAction.COMPLETE_REPLY, "GOT array %d items".printf(ret.items.size) );
 			GLib.debug ("LS replied with Array");
  			return ret;

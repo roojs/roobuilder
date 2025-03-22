@@ -142,6 +142,25 @@ namespace JsRender {
 			}
 		
 		}
+		public async void wait_for_start_of_tree_update()
+		{
+			// use interfaces if we can get this to suppor tmore...
+			var pr = (Project.Gtk)this.project;
+			if (pr != null) {
+				yield pr.symbol_builder.wait_for_start_of_run();
+			}
+		
+		}
+		public async void wait_for_end_of_tree_update()
+		{
+			// use interfaces if we can get this to suppor tmore...
+			var pr = (Project.Gtk)this.project;
+			if (pr != null) {
+				yield pr.symbol_builder.wait_for_end_of_run();
+			}
+		
+		}
+		
 		public Palete.SymbolFile? symbol_file()
 		{
 			var sm =  this.symbol_manager();

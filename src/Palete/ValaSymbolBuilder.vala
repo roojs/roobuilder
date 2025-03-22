@@ -69,11 +69,13 @@ namespace Palete {
 			
 		
 		}
+	 
 		
 		public void doVapiBuildForFile(JsRender.JsRender file)
 		{
 			// this is done with the progress dialog.
 			if (this.running) {
+				
 				return;
 			}
 			this.running = true;
@@ -121,16 +123,19 @@ namespace Palete {
 			this.done_first_compile.add(mod);
 			this.running = false;	
 		}
+		bool buildingTree = false;
 		// main entrance point.. 
 		// starts the process of updating the tree..
 		public void updateTree(string buildmodule) 
 		{
 			// this needs to do the  'last' queued change..
 			
-
+			
 			updateBackground.begin(buildmodule, (o,r )  => {
 				var ar = updateBackground.end(r);
+
 				if (ar != null) {
+					this.buildingTree = true;
 					this.scan_project.onTreeChanged(ar);
 					GLib.debug("updating errors %d files", this.files.size);
 					foreach(var path in this.files) {
@@ -144,11 +149,46 @@ namespace Palete {
 						//);
 						f.updateErrors( !this.errors.has_key(path) ? null : this.errors.get(path));
 				 	}
+ 					this.buildingTree = false;
 					//this.scan_project.update
 				}
+
 				
 			});
 		}
+		public async void wait_for_start_of_run()
+		{
+		 	
+			while (!yield this.wait_for_end_of_run_wait()) {	}
+			
+			GLib.debug("done waiting for  start ");
+		}
+		
+		public async void wait_for_end_of_run()
+		{
+		 	
+			while (yield this.wait_for_end_of_run_wait()) {	}
+			
+			GLib.debug("done waiting for  end");
+		}
+		 
+		
+		async bool wait_for_end_of_run_wait()
+		{
+			
+			SourceFunc cb = wait_for_end_of_run_wait.callback;
+			GLib.Timeout.add(200, () => {
+		 		 GLib.Idle.add((owned) cb);
+		 		 return false;
+			});
+			yield;
+			return this.running || this.buildingTree;
+			 
+			
+
+		}
+		 
+		
 		
 		async int queuer(int cnt)
 		{
@@ -173,10 +213,16 @@ namespace Palete {
 			// we only give up if we are last in queue otherwise
 			
 			this.queue_id++;
+			GLib.debug("updateBackground called with %d", this.queue_id);
 			
 			while (true) {
 				var qid = yield this.queuer(queue_id);
+				
 				if (this.queue_id > qid) { // has somethig increased the 
+					// while we were waiting another task requested a compile
+					// so we will not do this one.
+					
+					GLib.debug("updateBackground failed - (another compile requested) this queue = %d, called queue is %d", this.queue_id, qid);
 					return null;
 				}
 				if (!this.running) {  // wait till it's not running...

@@ -21,6 +21,7 @@
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
 			{ "output", 0, 0, OptionArg.STRING, ref opt_compile_output, "output binary file path", null },
 			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages for non-ui ", null },
+			{ "debug-only", 0, 0, OptionArg.STRING, ref opt_debug_only, "Show debug messages for specific files eg. Editor,CompletionProvider ", null },
 			{ "debug-critical", 0, 0, OptionArg.NONE, ref opt_debug_critical, " crash on warnings for gdb ", null },
 			{ "disable-threads", 0, 0, OptionArg.NONE, ref opt_disable_threads, "Disable threading for compiler (as it's difficult to debug) ", null },
 			
@@ -59,6 +60,7 @@
 		public static string opt_test_symbol_dump_file;
 		public static string opt_test_symbol_dump_fqn;
 		public static string opt_test_symbol_json;
+		public static string opt_debug_only;
 		public static bool opt_test_symbol_json_tree;
 		
 		public static bool opt_skip_linking = false;
@@ -255,7 +257,17 @@
 				GLib.Log.set_default_handler( 
 				//	GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING | GLib.LogLevelFlags.LEVEL_CRITICAL, 
 					(dom, lvl, msg) => {
-
+					
+					var bits = msg.split(":");
+					if (BuilderApplication.opt_debug_only.length > 0 && 
+						!("," + BuilderApplication.opt_debug_only + ",").contains( "," + bits[0].replace(".vala", "") + ",")
+						)
+					
+					{
+						return;
+					}	
+							
+					
 					print("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
 					
 					if (dom== "GtkSourceView") { // seems to be some critical wanrings comming from gtksourceview related to insert?

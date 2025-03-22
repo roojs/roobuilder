@@ -867,7 +867,7 @@ namespace Palete {
 
 			this.setParent(parent);
 			
-			if (c is Vala.LocalVariable || c is Vala.Paramenter) {
+			if (c is Vala.LocalVariable || c is Vala.Parameter) {
 				this.is_local_var  =   true;
 			}
 			 
