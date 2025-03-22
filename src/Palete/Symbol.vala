@@ -202,12 +202,9 @@ namespace Palete {
 		}
 		
 		 
-				
+		public string dumpToString(string indent = "") {
 		
-		public void dump(string indent)
-		{
-			
-			print("%s %d.%d>%d.%d : %s : %s%s%s [%s]\n", indent, 
+			return "%s %d.%d>%d.%d : %s : %s%s%s [%s]\n".printf(indent, 
 				this.begin_line,
 				this.begin_col,
 				this.end_line,
@@ -216,7 +213,14 @@ namespace Palete {
 				this.is_local_var ? "*" : "",
 				this.to_fqn(), 
 				this.dumpArgs(), 
-				this.rtype);
+				this.rtype
+			);
+		}
+		
+		public void dump(string indent)
+		{
+			
+			print( "%s",  this.dumpToString());
 				
 			if (this.doc != "") {
 			    print("%s-->%s\n",indent, this.doc.split("\n")[0]);
