@@ -62,6 +62,12 @@ namespace Palete {
 			GLib.debug("Previos char to trigger is '%s';", str);
 			
 			this.trigger_char = str;
+			
+			var ws = back.copy();
+			ws.backward_word_start();
+			var ws = back.get_text(iter);	
+			this.trigger_word = str;
+			
 			return true;
 		}
 		
@@ -85,6 +91,7 @@ namespace Palete {
 				var line = end.get_line();
 				var offset =  end.get_line_offset();
 				GLib.debug("Bounds offset = begin = %d end = %d", begin.get_line_offset(), end.get_line_offset());
+				
 				
 				if (this.editor.prop != null) {
 				//	tried line -1 (does not work)
