@@ -404,6 +404,34 @@ namespace Palete {
 			}
 		}
 		
+		public Symbol? getSymbolAt(int line, int col)
+		{
+			if (this.begin_line < line || this.end_line > line) {
+				return null;
+			}
+			// on same line
+			if (this.begin_line == line && this.end_line == line) {
+				if (this.begin_col < col || this.end_col  > col) {
+					return null;
+				}
+				return this;
+			}
+			for(var i = 0; i < this.children.get_n_items();i++) {
+				var s = (Symbol) this.children.get_item(i);
+				var ret = s.getSymbolAt(line,col);
+				if (ret != null) {
+					return ret;
+				}
+			}
+			// is this what is really needed..
+			
+			return this;
+			
+			
+		
+		
+		}
+		
 		
 		public static string[] create_table() {
 			string[] ret = { "
