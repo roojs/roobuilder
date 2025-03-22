@@ -581,6 +581,7 @@ namespace Palete {
 			
 			var sy = file.getSymbolLoader().getSymbolAt(file,line,offset-1);
  
+ 			GLib.debug("Completion @ symbol : %s", sy.toString());
 		 	if (sy == null) {
 		 		// not in a symbol - get the scoped symbols.
 		 		var sy_ar = file.getSymbolLoader().getScopeSymbolsAt(file,line,offset);
