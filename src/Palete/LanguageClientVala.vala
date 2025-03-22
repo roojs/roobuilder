@@ -581,7 +581,7 @@ namespace Palete {
 			
 			var sy = file.getSymbolLoader().getSymbolAt(file,line,offset-1);
  
- 			GLib.debug("Completion @ symbol : %s", sy.dumpToString());
+ 			GLib.debug("Completion @ symbol : %s", sy == null ? "nothing" : sy.dumpToString());
 		 	if (sy == null) {
 		 		return ret;
 	 		}
