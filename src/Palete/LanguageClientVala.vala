@@ -607,6 +607,7 @@ namespace Palete {
 	 			if (!dupes.contains("this")) {
 	 				ret.add(new Lsp.CompletionItem.keyword("this", "this", "current object"));
  				}
+ 				GLib.debug("completion returned a list of local variables");
 		 		return ret;
 	 		}
  			// get properties from sy?
