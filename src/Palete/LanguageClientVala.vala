@@ -603,7 +603,7 @@ namespace Palete {
 		 		return ret;
 	 		}
  			// get properties from sy?
- 			GLib.debug("completion got this symbol @ cursor : %s (%s)", sy.fqn, sy.rtype);
+
  			switch (sy.stype) {
  				case Lsp.SymbolKind.Variable:
  					sy = file.getSymbolLoader().singleByFqn(sy.rtype);
