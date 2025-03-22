@@ -583,7 +583,11 @@ namespace Palete {
  
  			GLib.debug("Completion @ symbol : %s", sy.dumpToString());
 		 	if (sy == null) {
+		 		return ret;
+	 		}
+	 		if (sy.stype == Lsp.SymbolKind.Method && triggerType == 0) {
 		 		// not in a symbol - get the scoped symbols.
+		 		// this could be done via a walk as well - currently it's a query?
 		 		var sy_ar = file.getSymbolLoader().getScopeSymbolsAt(file,line,offset);
 		 		var dupes = new Gee.ArrayList<string>();
 		 		foreach(var sym in sy_ar) {
