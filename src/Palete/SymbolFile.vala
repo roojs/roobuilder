@@ -157,10 +157,12 @@ namespace Palete {
 		
 		public Symbol? getSymbolAt(int line, int col)
 		{
+			GLib.debug("Searching for symbol @%d:%d", line,col);
 			for(var i = 0; i < this.children.get_n_items();i++) {
 				var s = (Symbol) this.children.get_item(i);
 				var ret = s.getSymbolAt(line,col);
 				if (ret != null) {
+					GLib.debug("gOT symbol %s", ret.dumpToString());
 					return ret;
 				}
 			}
