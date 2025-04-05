@@ -72,6 +72,26 @@ namespace Palete {
 			return true;
 		}
 		
+		void examineContext(GtkSource.CompletionContext context)
+		{
+			
+			global::Gtk.TextIter begin, end;
+			if (!context.get_bounds (out begin, out end)) {
+				GLib.debug("could not get context completion");
+				return;
+			}
+			
+			var back = begin.copy();
+			back.backward_char();
+			GLib.debug("Back 1 char = '%s'",  back.get_text(begin));
+			var word = begin.copy();
+			word.backward_word();
+			GLib.debug("Back 1 word = '%s'",  word.get_text(begin));
+			
+		
+		}
+		
+		
 		bool in_populate = false;
 	 
 		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable) 
