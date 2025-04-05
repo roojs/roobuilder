@@ -410,6 +410,7 @@ namespace Palete {
 		
 		public Symbol? getSymbolAt(int line, int col)
 		{
+			GLib.debug("Searching for symbol @%d:%d  from %s", line,col, this.dumpToString());
 			if (this.begin_line < line || this.end_line > line) {
 				return null;
 			}
