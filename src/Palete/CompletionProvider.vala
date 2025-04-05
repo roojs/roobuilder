@@ -52,7 +52,8 @@ namespace Palete {
 				GLib.debug("comment or string");
 				return false;
 			}
-			// at this point we need to look up in database ? for vala to see what is at the current location?
+			
+			/*// at this point we need to look up in database ? for vala to see what is at the current location?
 			// 
 			var back = iter.copy();
 			back.backward_char();
@@ -68,7 +69,8 @@ namespace Palete {
 			ws.backward_word_start();
 			str = ws.get_text(back);	
 			this.trigger_word = str;
-			GLib.debug("Previos word to trigger is '%s';", str);		
+			GLib.debug("Previos word to trigger is '%s';", str);	
+			*/
 			return true;
 		}
 		
