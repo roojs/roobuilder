@@ -85,7 +85,7 @@ namespace Palete {
 			back.backward_char();
 			GLib.debug("Back 1 char = '%s'",  back.get_text(begin));
 			var word = begin.copy();
-			word.backward_word();
+			word.backward_word_start();
 			GLib.debug("Back 1 word = '%s'",  word.get_text(begin));
 			
 		
