@@ -587,7 +587,7 @@ namespace Palete {
 	 		}
 	 		if (triggerType == 0) {
 	 			GLib.debug("triggered in open water");
-	 			switch((sy.stype) {
+	 			switch(sy.stype) {
 	 				case Lsp.SymbolKind.Method:
 	 				case Lsp.SymbolKind.Constructor:
 	 					break;
