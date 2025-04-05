@@ -579,8 +579,8 @@ namespace Palete {
 			//}
 			this.log(LanguageClientAction.COMPLETE, "SEND complete  %s @ %d:%d".printf(file.relpath, line, offset) );
 			
-			var sy = file.getSymbolLoader().getSymbolAt(file,line,offset-1);
- 
+			//var sy = file.getSymbolLoader().getSymbolAt(file,line,offset-1);
+ 			var sy = file.getSymbolLoader().getSymbolAtFromFile(file,line,offset-1);
  			GLib.debug("Completion @ symbol : %s", sy == null ? "nothing" : sy.dumpToString());
 		 	if (sy == null) {
 		 		return ret;
