@@ -593,8 +593,8 @@ namespace Palete {
 	 					break;
  					default: 
 	 				// could return stuff if we were in a class like types / etc.
-	 						GLib.debug("return nothing at present - as we are in %d", ((Lsp.SymbolKind)sy.stype).to_string());
-	 				return ret;
+	 					GLib.debug("return nothing at present - as we are in %d", ((Lsp.SymbolKind)sy.stype).to_string());
+	 					return ret;
 	 			}
 
 		 		// not in a symbol - get the scoped symbols.
