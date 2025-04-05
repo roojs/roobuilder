@@ -34,8 +34,8 @@ namespace Palete {
 		  return 200;
 		}
 		
-		string trigger_char = "";
-		string trigger_word = "";
+		//string trigger_char = "";
+		// trigger_word = "";
 		
 		public bool is_trigger(global::Gtk.TextIter  iter, unichar ch)
 		{
