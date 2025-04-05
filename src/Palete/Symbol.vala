@@ -412,11 +412,13 @@ namespace Palete {
 		{
 			GLib.debug("Searching for symbol @%d:%d  from %s", line,col, this.dumpToString());
 			if (this.begin_line < line || this.end_line > line) {
+				GLib.debug("no in line range");
 				return null;
 			}
 			// on same line
 			if (this.begin_line == line && this.end_line == line) {
 				if (this.begin_col < col || this.end_col  > col) {
+					GLib.debug("no in col range");
 					return null;
 				}
 				return this;
