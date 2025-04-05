@@ -105,6 +105,8 @@ namespace Palete {
 			}
 			this.in_populate = true;
 
+			this.examineContext(context);
+
 			global::Gtk.TextIter begin, end;
 			Lsp.CompletionList res;
 			if (context.get_bounds (out begin, out end)) {
