@@ -72,6 +72,27 @@ namespace Palete {
 			return true;
 		}
 		
+		
+		string contextString(GtkSource.CompletionContext context, int max)
+		{
+			global::Gtk.TextIter begin, end;
+			if (!context.get_bounds (out begin, out end)) {
+				GLib.debug("could not get context completion");
+				return "";
+			}
+			var back = begin.copy();
+			switch (max) {
+				case 1:  
+					back.backward_char();
+					break;
+				case -1;
+					back.backward_word_start();
+					back;
+			}
+			
+			return  back.get_text(begin);
+		}
+		
 		void examineContext(GtkSource.CompletionContext context)
 		{
 			
@@ -109,52 +130,50 @@ namespace Palete {
 
 			global::Gtk.TextIter begin, end;
 			Lsp.CompletionList res;
-			if (context.get_bounds (out begin, out end)) {
-				 	
-				var line = end.get_line();
-				var offset =  end.get_line_offset();
-				GLib.debug("Bounds offset = begin = %d end = %d", begin.get_line_offset(), end.get_line_offset());
-				
-				
-				if (this.editor.prop != null) {
-				//	tried line -1 (does not work)
-					GLib.debug("node pad = '%s' %d", this.editor.node.node_pad, this.editor.node.node_pad.length);
-					
-					line += this.editor.prop.start_line ; 
-					// this is based on Gtk using tabs (hence 1/2 chars);
-					offset += this.editor.node.node_pad.length;
-					// javascript listeners are indented 2 more spaces.
-					if (this.editor.prop.ptype == JsRender.NodePropType.LISTENER) {
-						offset += 2;
-					}
-				} 
-				//  this should not really be slow, as it's a quick repsonse
- 				//yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
-				try {
-					GLib.debug("sending request to language server %s (trigger = %s)",
-						this.file.getLanguageServer().get_type().name(),
-						this.trigger_char);
-					// this needs to send a request based on position of what's where..
-					
-					if (this.trigger_char == ".") {
-						// at this point we need to wait for the compiler to finish.
-						// original design tries to wait until it's compiled.
-						// but this doesnt really work, as it's often not in a state where 
-						// compilation is successfull - so the last compiled state is probably ok.
-						offset -= 2;
-					}
-					GLib.debug("complate call on line %d / offset %d", line,offset); 
-					res = yield this.file.getLanguageServer().completion(this.file, line, offset, trigger_char =="." ? 1 : 0, this.trigger_word);
-				} catch (GLib.Error e) {
-					GLib.debug("got error %s", e.message);
-					this.in_populate = false;
-					return ret;
-				}
-				
-			} else {
+			if (!context.get_bounds (out begin, out end)) {
 				this.in_populate = false;
 				return ret;
 			}
+		
+			 	
+			var line = end.get_line();
+			var offset =  end.get_line_offset();
+			GLib.debug("Bounds offset = begin = %d end = %d", begin.get_line_offset(), end.get_line_offset());
+			
+			
+			if (this.editor.prop != null) {
+			//	tried line -1 (does not work)
+				GLib.debug("node pad = '%s' %d", this.editor.node.node_pad, this.editor.node.node_pad.length);
+				
+				line += this.editor.prop.start_line ; 
+				// this is based on Gtk using tabs (hence 1/2 chars);
+				offset += this.editor.node.node_pad.length;
+				// javascript listeners are indented 2 more spaces.
+				if (this.editor.prop.ptype == JsRender.NodePropType.LISTENER) {
+					offset += 2;
+				}
+			} 
+			
+			var trigger_char = this.contextString(context,1);
+			var trigger_word = this.contextString(context,-1);
+			//  this should not really be slow, as it's a quick repsonse
+			//yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
+			try {
+				GLib.debug("sending request to language server %s (trigger = %s)",
+					this.file.getLanguageServer().get_type().name(),
+					trigger_char);
+				// this needs to send a request based on position of what's where..
+				
+				 
+				GLib.debug("complate call on line %d / offset %d", line,offset); 
+				res = yield this.file.getLanguageServer().completion(this.file, line, offset, trigger_char =="." ? 1 : 0, trigger_word);
+			} catch (GLib.Error e) {
+				GLib.debug("got error %s", e.message);
+				this.in_populate = false;
+				return ret;
+			}
+			
+			 
 			
 			GLib.debug("pupoulate async  - got reply");
 			this.model = new CompletionModel(this, context, res, cancellable); 
