@@ -587,9 +587,13 @@ namespace Palete {
 	 		}
 	 		if (triggerType == 0) {
 	 			GLib.debug("triggered in open water");
-	 			if (sy.stype != Lsp.SymbolKind.Method) {
+	 			switch((sy.stype) {
+	 				case Lsp.SymbolKind.Method:
+	 				case Lsp.SymbolKind.Constructor:
+	 					break;
+ 					default: 
 	 				// could return stuff if we were in a class like types / etc.
-	 				GLib.debug("return nothing at present - as we are not in a method");
+	 						GLib.debug("return nothing at present - as we are in %d", sy.stype.to_string());
 	 				return ret;
 	 			}
 
