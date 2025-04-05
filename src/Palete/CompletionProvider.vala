@@ -84,10 +84,10 @@ namespace Palete {
 			}
 			var back = begin.copy();
 			switch (max) {
-				case 1:  
+				case 1: 
 					back.backward_char();
 					break;
-				case -1;
+				case -1:
 					back.backward_word_start();
 					back;
 			}
