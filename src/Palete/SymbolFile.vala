@@ -162,7 +162,7 @@ namespace Palete {
 				var s = (Symbol) this.children.get_item(i);
 				var ret = s.getSymbolAt(line,col);
 				if (ret != null) {
-					GLib.debug("gOT symbol %s", ret.dumpToString());
+					GLib.debug("got symbol %s", ret.dumpToString());
 					return ret;
 				}
 			}
