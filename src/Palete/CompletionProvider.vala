@@ -89,7 +89,7 @@ namespace Palete {
 					break;
 				case -1:
 					back.backward_word_start();
-					back;
+					break;
 			}
 			
 			return  back.get_text(begin);
