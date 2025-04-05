@@ -423,6 +423,7 @@ namespace Palete {
 				}
 				return this;
 			}
+			GLib.debug("searching children %d", (int) this.children.get_n_items());
 			for(var i = 0; i < this.children.get_n_items();i++) {
 				var s = (Symbol) this.children.get_item(i);
 				var ret = s.getSymbolAt(line,col);
