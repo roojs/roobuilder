@@ -960,6 +960,12 @@ namespace Palete
 		
 		}
 		
+		public Symbol? getSymbolAtFromFile(JsRender.JsRender file, int line, int offset)
+		{
+			var f = this.manager.factory_by_path(file.targetName());
+			return f.getSymbolAt(line,offset);
+		}
+		
 		public Symbol? getSymbolAt(JsRender.JsRender file, int line, int offset)
 		{
 			
