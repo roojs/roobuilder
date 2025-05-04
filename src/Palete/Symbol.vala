@@ -104,7 +104,7 @@ namespace Palete {
 				private set {}
 		}	
 		
-		public GLib.ListStore children;
+		public GLib.ListStore children  { get; set; };
 		public Gee.HashMap<string,Symbol> children_map;
 		
 		public string line_sig {
