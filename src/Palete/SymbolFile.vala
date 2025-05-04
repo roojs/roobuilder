@@ -443,6 +443,19 @@ namespace Palete {
 				parent.end_col = c.end_line;
 			}
 		}
+		
+		public Json.Array symbolsToJSON()
+		{
+			var ret = new Json.Array();
+		 
+		 	if (this.children.n_items < 1) {
+		 		return ret;
+		 	}
+		 	for(var i =0 ;i < this.children.n_items; i++)   {
+		 		ret.add_element(Json.gobject_serialize((Symbol)this.children.get_item(i))); 
+		 	}
+		 	return ret;
+		}
 	 	
 	 	
 		 
