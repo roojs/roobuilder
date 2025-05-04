@@ -699,11 +699,11 @@
 				}
 				if (BuilderApplication.opt_test_symbol_json_file != null) {
 					var fc = new Palete.SymbolFileCollection();
-					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_dump_file);
+					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_json_file);
 					sf.loadSymbols();
 					var data = this.jsonArrayToString(sf.symbolsToJSON());
 					print("%s", data);
-				GLib.Process.exit(Posix.EXIT_SUCCESS);
+					GLib.Process.exit(Posix.EXIT_SUCCESS);
 				}
 
  
