@@ -538,6 +538,22 @@ namespace Palete {
 					node.set_array (ret);
 					return node;
 				
+				
+				case "children":
+					var ret = new Json.Array();
+				 	var kv = @value as GLib.ListStore;
+				 	if (kv.n_items < 1) {
+				 		return (Json.Node)null;
+				 	}
+				 	for(var i =0 ;i < kv.n_items; i++)   {
+				 		ret.add_element(Json.gobject_serialize((Symbol)kv.get_item(i))); 
+				 	
+				 	}
+				 	
+				 	var node = new Json.Node (Json.NodeType.ARRAY);
+					node.set_array (ret);
+					return node;
+				
 				default: 
 					break;
 			}

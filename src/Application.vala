@@ -37,6 +37,7 @@
             { "test-language-server", 0, 0, OptionArg.STRING, ref opt_test_language_server, "run language server on this file", null },
             { "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group (use 'none' with Roo)", null },
             { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_file, "symbol database dump file after loading (needs full path)", null },
+            { "test-symbol-db-json-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_json_file, "symbol database dump file to JSON after loading (needs full path)", null },
             { "test-symbol-fqn", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_fqn, "show droplists / children from a fqn using new Symbol code", null },
             { "test-gir-parser", 0, 0, OptionArg.NONE, ref opt_test_gir_parser, "Test Gir Parser (run with --debug)", null },
              { "test-meson", 0, 0, OptionArg.NONE, ref opt_test_meson, "Test wriging meson and resources files - needs project and test-symbol-target", null },
@@ -58,6 +59,7 @@
 		public static string opt_test_language_server;
 		public static string opt_test_symbol_target;
 		public static string opt_test_symbol_dump_file;
+		public static string opt_test_symbol_json_file;
 		public static string opt_test_symbol_dump_fqn;
 		public static string opt_test_symbol_json;
 		public static string opt_debug_only;
@@ -693,8 +695,16 @@
 					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_dump_file);
 					sf.loadSymbols();
 					sf.dump();
+					return;
 				}
-				
+				if (BuilderApplication.opt_test_symbol_json_file != null) {
+					var fc = new Palete.SymbolFileCollection();
+					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_dump_file);
+					sf.loadSymbols();
+					var data = this.jsonArrayToString(sf.symbolsToJSON());
+					print("%s", data);
+					return;
+				}
 
  
 				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
@@ -762,13 +772,9 @@
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/" + fqn + ".json");
 			
 			var js = Json.gobject_serialize (sy) ;
-			var  generator = new Json.Generator ();
-			
-			generator.set_root (js);
-			generator.pretty = true;
-			generator.indent = 4;
+			 
 
- 			var data = generator.to_data (null);
+ 			var data = this.jsonObjectToString(js);
  			//print("%s\n", data);
  			//return;
 			var data_out = new GLib.DataOutputStream(
@@ -779,6 +785,32 @@
 			print("Wrote : %s\n", f.get_path());
 			
  		}
+ 		
+ 		string jsonArrayToString(Json.Array ar)
+ 		{
+ 			var node = new Json.Node (Json.NodeType.ARRAY);
+			node.set_array (ar);
+
+			var  generator = new Json.Generator ();
+			
+			generator.set_root (node);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			return  generator.to_data (null);
+ 		}
+ 		string jsonObjectToString(Json.Node node)
+ 		{
+ 			 
+			var  generator = new Json.Generator ();
+			
+			generator.set_root (node);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			return  generator.to_data (null);
+ 		}
+ 		
  		
  		void dumpSymbolJSONTree(Project.Project? cur_project)
 		{
@@ -794,16 +826,7 @@
 			}
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/_tree_.json");
 			
-			 var node = new Json.Node (Json.NodeType.ARRAY);
-					node.set_array (ar);
-
-			var  generator = new Json.Generator ();
-			
-			generator.set_root (node);
-			generator.pretty = true;
-			generator.indent = 4;
-
- 			var data = generator.to_data (null);
+		 	var data = this.jsonArrayToString(ar);
  			//print("%s\n", data);
  			//return;
 			var data_out = new GLib.DataOutputStream(
