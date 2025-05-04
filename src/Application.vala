@@ -695,7 +695,7 @@
 					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_dump_file);
 					sf.loadSymbols();
 					sf.dump();
-					return;
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
 				}
 				if (BuilderApplication.opt_test_symbol_json_file != null) {
 					var fc = new Palete.SymbolFileCollection();
@@ -703,7 +703,7 @@
 					sf.loadSymbols();
 					var data = this.jsonArrayToString(sf.symbolsToJSON());
 					print("%s", data);
-					return;
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
 				}
 
  
