@@ -737,17 +737,13 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.has_frame = false;
-			this.el.label = "Rename Project";
+			this.el.label = "Rename Project (not yet)";
 
 			//listeners
 			this.el.clicked.connect( () => {
 			_this.LeftTreeMenu.el.hide();
 			     DialogSaveTemplate.singleton().showIt(
-			            (Gtk.Window) _this.el.get_root (), 
-			            _this.main_window.windowstate.file.palete(), 
-			            _this.getActiveElement()
-			    );
-			     
+			    
 			    
 			});
 		}

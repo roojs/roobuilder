@@ -271,17 +271,13 @@
               {
                "$ xns" : "Gtk",
                "bool has_frame" : false,
-               "label" : "Rename Project",
+               "label" : "Rename Project (not yet)",
                "listeners" : {
                 "clicked" : [
                  "  () => {",
                  "_this.LeftTreeMenu.el.hide();",
                  "     DialogSaveTemplate.singleton().showIt(",
-                 "            (Gtk.Window) _this.el.get_root (), ",
-                 "            _this.main_window.windowstate.file.palete(), ",
-                 "            _this.getActiveElement()",
-                 "    );",
-                 "     ",
+                 "    ",
                  "    ",
                  "}"
                 ]
