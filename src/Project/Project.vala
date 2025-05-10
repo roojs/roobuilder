@@ -893,7 +893,7 @@ namespace Project {
 		public void renameFile(JsRender.JsRender file, string new_path)
 		{
 			this.files.unset(file.path);
-			this.files.set(new_path, files);
+			this.files.set(new_path, file);
 		
 		}
 			
