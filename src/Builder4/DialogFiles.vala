@@ -658,7 +658,7 @@ public class DialogFiles : Object
 				
 				  
 				 
-			    if (this.selectedProject == null) {
+			    if (_this.selectedProject == null) {
 			 
 			        GLib.debug("notjing selected");
 				    return ;

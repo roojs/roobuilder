@@ -245,7 +245,7 @@
                "\t",
                "\t  ",
                "\t ",
-               "    if (this.selectedProject == null) {",
+               "    if (_this.selectedProject == null) {",
                " ",
                "        GLib.debug(\"notjing selected\");",
                "\t    return ;",
