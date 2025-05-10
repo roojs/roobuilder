@@ -731,7 +731,7 @@ public class DialogFiles : Object
 			var child_2 = new Xcls_Button17( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
-			var child_3 = new Xcls_MenuButton18( _this );
+			var child_3 = new Xcls_Button18( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
 		}
@@ -880,9 +880,9 @@ public class DialogFiles : Object
 		// user defined functions
 	}
 
-	public class Xcls_MenuButton18 : Object
+	public class Xcls_Button18 : Object
 	{
-		public Gtk.MenuButton el;
+		public Gtk.Button el;
 		private DialogFiles  _this;
 
 
@@ -890,19 +890,22 @@ public class DialogFiles : Object
 		public DialogConfirm confirm;
 
 		// ctor
-		public Xcls_MenuButton18(DialogFiles _owner )
+		public Xcls_Button18(DialogFiles _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.MenuButton();
+			this.el = new Gtk.Button();
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.has_frame = false;
 			this.el.label = "Remove from Builder";
+			var child_1 = new Xcls_Box192( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
 
 			//listeners
-			this.el.activate.connect( () => {
+			this.el.click.connect( () => {
 			    
 			    _this.LeftTreeMenu.el.hide();
 			    
@@ -940,6 +943,79 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
+	public class Xcls_Box192 : Object
+	{
+		public Gtk.Box el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box192(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Image193( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			var child_2 = new Xcls_Label194( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Image193 : Object
+	{
+		public Gtk.Image el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Image193(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "user-trash";
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label194 : Object
+	{
+		public Gtk.Label el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Label194(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Delete Project" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
 
 
 

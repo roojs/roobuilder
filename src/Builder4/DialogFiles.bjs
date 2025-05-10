@@ -344,9 +344,30 @@
                "# DialogConfirm confirm" : "",
                "$ xns" : "Gtk",
                "bool has_frame" : false,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "child",
+                 "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+                 "int spacing" : 0,
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "string icon_name" : "user-trash",
+                   "xtype" : "Image"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "string label" : "Delete Project",
+                   "xtype" : "Label"
+                  }
+                 ],
+                 "xtype" : "Box"
+                }
+               ],
                "label" : "Remove from Builder",
                "listeners" : {
-                "activate" : [
+                "click" : [
                  "  () => {",
                  "    ",
                  "    _this.LeftTreeMenu.el.hide();",
@@ -383,7 +404,7 @@
                  "}"
                 ]
                },
-               "xtype" : "MenuButton"
+               "xtype" : "Button"
               }
              ],
              "xtype" : "Box"
