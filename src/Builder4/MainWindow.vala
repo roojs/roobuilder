@@ -889,7 +889,7 @@ public class Xcls_MainWindow : Object
 		public Xcls_Label118(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "New File" );
+			this.el = new Gtk.Label( "Edit File Properties" );
 
 			// my vars (dec)
 
