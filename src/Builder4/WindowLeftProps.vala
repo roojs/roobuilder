@@ -2417,7 +2417,7 @@ public class Xcls_LeftProps : Object
 			        return;
 			    	
 			    }
-			     if (prop.rtype == "bool") {
+			     if (prop.rtype.down() == "bool" || prop.rtype.down() == "boolean") {
 			     	sw.show();
 			     	sw.set_active(prop.val.down() == "true" ? true : false);
 					this.is_setting = false;        
