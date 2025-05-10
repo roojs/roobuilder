@@ -310,7 +310,7 @@
               },
               {
                "$ xns" : "Gtk",
-               "string label" : "Edit File Properties",
+               "string label" : "File Properties",
                "xtype" : "Label"
               }
              ],
