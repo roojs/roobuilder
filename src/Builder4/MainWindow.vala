@@ -768,6 +768,9 @@ public class Xcls_MainWindow : Object
 			this.el.icon_name = "emblem-system";
 			this.el.tooltip_text = "Project Details";
 			this.el.label = "Edit Project Settings";
+			var child_1 = new Xcls_Box167( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
@@ -780,6 +783,80 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
+	public class Xcls_Box167 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_MainWindow  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box167(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Image168( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			var child_2 = new Xcls_Label169( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Image168 : Object
+	{
+		public Gtk.Image el;
+		private Xcls_MainWindow  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Image168(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "emblem-system";
+			this.el.margin_end = 4;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label169 : Object
+	{
+		public Gtk.Label el;
+		private Xcls_MainWindow  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Label169(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Project Properties" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
 
 	public class Xcls_Button19 : Object
 	{
@@ -788,7 +865,6 @@ public class Xcls_MainWindow : Object
 
 
 		// my vars (def)
-		public bool always_show_image;
 
 		// ctor
 		public Xcls_Button19(Xcls_MainWindow _owner )
@@ -797,12 +873,9 @@ public class Xcls_MainWindow : Object
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
-			this.always_show_image = true;
 
 			// set gobject values
-			this.el.icon_name = "document-properties";
 			this.el.tooltip_text = "File Details";
-			this.el.label = "Edit File Properties";
 			var child_1 = new Xcls_Box116( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
