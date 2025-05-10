@@ -988,6 +988,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.icon_name = "user-trash";
+			this.el.margin_end = 4;
 		}
 
 		// user defined functions

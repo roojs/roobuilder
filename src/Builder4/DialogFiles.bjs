@@ -353,6 +353,7 @@
                  "items" : [
                   {
                    "$ xns" : "Gtk",
+                   "int margin_end" : 4,
                    "string icon_name" : "user-trash",
                    "xtype" : "Image"
                   },
