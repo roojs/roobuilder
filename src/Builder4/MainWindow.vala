@@ -890,7 +890,7 @@ public class Xcls_MainWindow : Object
 			     _this.windowstate.file_details.show(
 			        _this.windowstate.file, _this.el, false
 			    );
-			     
+			     _this.setTitle();
 			    return  ;    
 			
 			
