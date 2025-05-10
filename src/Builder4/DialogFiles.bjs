@@ -1179,65 +1179,6 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
-       "DialogConfirm confirm" : "null",
-       "id" : "btn_delproj",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "child",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "int spacing" : 0,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "string icon_name" : "user-trash",
-           "xtype" : "Image"
-          },
-          {
-           "$ xns" : "Gtk",
-           "string label" : "Delete Project",
-           "xtype" : "Label"
-          }
-         ],
-         "xtype" : "Box"
-        }
-       ],
-       "listeners" : {
-        "clicked" : [
-         "  ( ) => {",
-         "  ",
-         "  ",
-         "  \tif (this.confirm == null) {",
-         "  \t\tthis.confirm = new DialogConfirm();",
-         "   \t\tthis.confirm.el.set_transient_for(_this.el);",
-         "\t}",
-         "\t",
-         "\tvar project  = (Project.Project) _this.projectsort.el.get_item(",
-         "\t\t_this.projectselection.el.selected",
-         "\t\t);",
-         "\t",
-         "\tthis.confirm.el.response.connect((res) => {",
-         "\t\tthis.confirm.el.hide();",
-         "\t\tif (res == Gtk.ResponseType.CANCEL) {",
-         "\t\t\treturn;",
-         "\t\t}",
-         "\t   project  = (Project.Project) _this.projectsort.el.get_item(",
-         "\t\t\t_this.projectselection.el.selected",
-         "\t\t);",
-         "\t\tProject.Project.remove(project);",
-         "\t  _this.projectmodel.remove(project);",
-         "\t\t_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
-         "\t",
-         "\t});",
-         "  \tthis.confirm.showIt(\"Confirm Delete Project\", \"Are you sure you want to delete this project?\");",
-         "}"
-        ]
-       },
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "pack_start",
        "id" : "btn_addfile",
        "items" : [
         {

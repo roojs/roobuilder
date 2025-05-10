@@ -36,7 +36,6 @@ public class DialogFiles : Object
 	public Xcls_treefilter treefilter;
 	public Xcls_name name;
 	public Xcls_btn_newproj btn_newproj;
-	public Xcls_btn_delproj btn_delproj;
 	public Xcls_btn_addfile btn_addfile;
 	public Xcls_btn_delfile btn_delfile;
 
@@ -2194,8 +2193,6 @@ public class DialogFiles : Object
 			this.el.pack_end ( child_1.el  );
 			new Xcls_btn_newproj( _this );
 			this.el.pack_start ( _this.btn_newproj.el  );
-			new Xcls_btn_delproj( _this );
-			this.el.pack_start ( _this.btn_delproj.el  );
 			new Xcls_btn_addfile( _this );
 			this.el.pack_start ( _this.btn_addfile.el  );
 			new Xcls_btn_delfile( _this );
@@ -2369,136 +2366,6 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.halign = Gtk.Align.START;
-		}
-
-		// user defined functions
-	}
-
-
-
-	public class Xcls_btn_delproj : Object
-	{
-		public Gtk.Button el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-		public DialogConfirm confirm;
-
-		// ctor
-		public Xcls_btn_delproj(DialogFiles _owner )
-		{
-			_this = _owner;
-			_this.btn_delproj = this;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-			this.confirm = null;
-
-			// set gobject values
-			var child_1 = new Xcls_Box61( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
-
-			//listeners
-			this.el.clicked.connect( ( ) => {
-			  
-			  
-			  	if (this.confirm == null) {
-			  		this.confirm = new DialogConfirm();
-			   		this.confirm.el.set_transient_for(_this.el);
-				}
-				
-				var project  = (Project.Project) _this.projectsort.el.get_item(
-					_this.projectselection.el.selected
-					);
-				
-				this.confirm.el.response.connect((res) => {
-					this.confirm.el.hide();
-					if (res == Gtk.ResponseType.CANCEL) {
-						return;
-					}
-				   project  = (Project.Project) _this.projectsort.el.get_item(
-						_this.projectselection.el.selected
-					);
-					Project.Project.remove(project);
-				  _this.projectmodel.remove(project);
-					_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
-				
-				});
-			  	this.confirm.showIt("Confirm Delete Project", "Are you sure you want to delete this project?");
-			});
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Box61 : Object
-	{
-		public Gtk.Box el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Box61(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_Image62( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
-			var child_2 = new Xcls_Label63( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Image62 : Object
-	{
-		public Gtk.Image el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Image62(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Image();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.icon_name = "user-trash";
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Label63 : Object
-	{
-		public Gtk.Label el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Label63(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( "Delete Project" );
-
-			// my vars (dec)
-
-			// set gobject values
 		}
 
 		// user defined functions
