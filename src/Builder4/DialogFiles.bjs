@@ -288,6 +288,28 @@
               {
                "$ xns" : "Gtk",
                "bool has_frame" : false,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "child",
+                 "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+                 "int spacing" : 0,
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "int margin_end" : 4,
+                   "string icon_name" : "emblem-system",
+                   "xtype" : "Image"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "string label" : "Project Properties",
+                   "xtype" : "Label"
+                  }
+                 ],
+                 "xtype" : "Box"
+                }
+               ],
                "label" : "Project Properties",
                "listeners" : {
                 "clicked" : [

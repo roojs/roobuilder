@@ -757,6 +757,9 @@ public class DialogFiles : Object
 			// set gobject values
 			this.el.has_frame = false;
 			this.el.label = "Project Properties";
+			var child_1 = new Xcls_Box129( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
@@ -771,6 +774,80 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
+	public class Xcls_Box129 : Object
+	{
+		public Gtk.Box el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box129(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Image130( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			var child_2 = new Xcls_Label131( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Image130 : Object
+	{
+		public Gtk.Image el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Image130(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "emblem-system";
+			this.el.margin_end = 4;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label131 : Object
+	{
+		public Gtk.Label el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Label131(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Project Properties" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
 
 	public class Xcls_MenuButton17 : Object
 	{
