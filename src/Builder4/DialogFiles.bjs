@@ -367,7 +367,7 @@
                ],
                "label" : "Remove from Builder",
                "listeners" : {
-                "click" : [
+                "clicked" : [
                  "  () => {",
                  "    ",
                  "    _this.LeftTreeMenu.el.hide();",

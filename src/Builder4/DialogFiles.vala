@@ -905,7 +905,7 @@ public class DialogFiles : Object
 			this.el.child = child_1.el;
 
 			//listeners
-			this.el.click.connect( () => {
+			this.el.clicked.connect( () => {
 			    
 			    _this.LeftTreeMenu.el.hide();
 			    
