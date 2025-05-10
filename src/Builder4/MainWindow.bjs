@@ -255,7 +255,6 @@
           {
            "$ tooltip_text" : "\"Project Details\"",
            "$ xns" : "Gtk",
-           "bool always_show_image" : true,
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -288,7 +287,6 @@
              "}"
             ]
            },
-           "string icon_name" : "emblem-system",
            "string label" : "Edit Project Settings",
            "xtype" : "Button"
           },

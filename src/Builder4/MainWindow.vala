@@ -753,7 +753,6 @@ public class Xcls_MainWindow : Object
 
 
 		// my vars (def)
-		public bool always_show_image;
 
 		// ctor
 		public Xcls_Button18(Xcls_MainWindow _owner )
@@ -762,10 +761,8 @@ public class Xcls_MainWindow : Object
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
-			this.always_show_image = true;
 
 			// set gobject values
-			this.el.icon_name = "emblem-system";
 			this.el.tooltip_text = "Project Details";
 			this.el.label = "Edit Project Settings";
 			var child_1 = new Xcls_Box167( _this );
