@@ -793,7 +793,7 @@ public class DialogFiles : Object
 			this.el.label = "Rename Project (not yet)";
 
 			//listeners
-			this.el.clicked.connect( () => {
+			this.el.activate.connect( () => {
 			_this.LeftTreeMenu.el.hide();
 			 
 			    
@@ -826,7 +826,7 @@ public class DialogFiles : Object
 			this.el.label = "Remove Project";
 
 			//listeners
-			this.el.clicked.connect( () => {
+			this.el.activate.connect( () => {
 			    
 			    _this.LeftTreeMenu.el.hide();
 			    

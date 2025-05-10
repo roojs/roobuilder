@@ -308,7 +308,7 @@
                "bool has_frame" : false,
                "label" : "Rename Project (not yet)",
                "listeners" : {
-                "clicked" : [
+                "activate" : [
                  "  () => {",
                  "_this.LeftTreeMenu.el.hide();",
                  " ",
@@ -325,7 +325,7 @@
                "bool has_frame" : false,
                "label" : "Remove Project",
                "listeners" : {
-                "clicked" : [
+                "activate" : [
                  "  () => {",
                  "    ",
                  "    _this.LeftTreeMenu.el.hide();",
