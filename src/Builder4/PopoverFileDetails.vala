@@ -135,6 +135,10 @@ public class Xcls_PopoverFileDetails : Object
 		this.filetype_lbl.el.hide();
 		this.filetype.el.hide();
 			 
+		_this.name_lbl.el.show();
+		_this.name.el.show();
+						 
+			 
 		var sel = this.filetype.getValue();
 		switch(_this.project.xtype) {
 			case "Roo":	 
