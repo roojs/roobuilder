@@ -311,7 +311,7 @@
                 "clicked" : [
                  "  () => {",
                  "_this.LeftTreeMenu.el.hide();",
-                 "     DialogSaveTemplate.singleton().showIt(",
+                 " ",
                  "    ",
                  "    ",
                  "}"

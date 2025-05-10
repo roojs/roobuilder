@@ -795,7 +795,7 @@ public class DialogFiles : Object
 			//listeners
 			this.el.clicked.connect( () => {
 			_this.LeftTreeMenu.el.hide();
-			     DialogSaveTemplate.singleton().showIt(
+			 
 			    
 			    
 			});
