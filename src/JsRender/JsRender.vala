@@ -290,8 +290,10 @@ namespace JsRender {
 		{
 			if (this.xtype == "PlainFile") {
 				GLib.FileUtils.remove(this.path);
-			
-				this.path =  GLib.Path.get_dirname(this.path) +"/" +  name ;
+				var new_path = GLib.Path.get_dirname(this.path) +"/" +  name ;;
+				this.project.renameFile(this, new_path);
+				this.path =  new_path;
+				
 				return;
 			}
 			var bjs = GLib.Path.get_dirname(this.path) +"/" +  name + ".bjs";
@@ -299,11 +301,13 @@ namespace JsRender {
 				throw new Error.RENAME_FILE_EXISTS("File exists %s\n",name);
 			}
 			GLib.FileUtils.remove(this.path);
+			this.project.renameFile(this, bjs);
 			this.removeFiles();
 			// remove other files?
 			
            	this.name = name;
 			this.path = bjs;
+			
 			
 		}
 		
