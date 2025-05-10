@@ -274,6 +274,28 @@
            "$ tooltip_text" : "\"File Details\"",
            "$ xns" : "Gtk",
            "bool always_show_image" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "int margin_end" : 4,
+               "string icon_name" : "document-new",
+               "xtype" : "Image"
+              },
+              {
+               "$ xns" : "Gtk",
+               "string label" : "New File",
+               "xtype" : "Label"
+              }
+             ],
+             "xtype" : "Box"
+            }
+           ],
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
