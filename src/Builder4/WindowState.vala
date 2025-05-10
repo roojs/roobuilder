@@ -581,6 +581,7 @@ public class WindowState : Object
 		{
 			this.popover_files.el.hide();
 			this.fileViewOpen(file, this.file_details.new_window,  -1);
+			this.win.setTitle();
 			// if it's comming from the file dialog -> hide it...
 			
 		});
