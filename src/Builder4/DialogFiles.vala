@@ -769,7 +769,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.has_frame = false;
-			this.el.label = "Delete Project";
+			this.el.label = "Remove Project";
 
 			//listeners
 			this.el.clicked.connect( () => {
