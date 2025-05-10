@@ -193,6 +193,7 @@
         {
          "$ visible" : true,
          "$ xns" : "Gtk",
+         "bool has_tooltip" : true,
          "bool hexpand" : true,
          "id" : "name",
          "string placeholder_text" : " (File name without extension)",
