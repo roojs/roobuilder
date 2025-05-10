@@ -289,6 +289,9 @@ namespace JsRender {
 		public void renameTo(string name) throws  Error
 		{
 			if (this.xtype == "PlainFile") {
+				GLib.FileUtils.remove(this.path);
+			
+				this.path =  GLib.Path.get_dirname(this.path) +"/" +  name ;
 				return;
 			}
 			var bjs = GLib.Path.get_dirname(this.path) +"/" +  name + ".bjs";
@@ -299,7 +302,7 @@ namespace JsRender {
 			this.removeFiles();
 			// remove other files?
 			
-           		this.name = name;
+           	this.name = name;
 			this.path = bjs;
 			
 		}
