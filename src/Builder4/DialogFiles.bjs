@@ -287,7 +287,6 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "Gtk.Align halign" : 0,
                "bool has_frame" : false,
                "label" : "Project Properties",
                "listeners" : {
@@ -302,7 +301,7 @@
                  "}"
                 ]
                },
-               "xtype" : "Button"
+               "xtype" : "MenuButton"
               },
               {
                "$ xns" : "Gtk",
@@ -318,7 +317,7 @@
                  "}"
                 ]
                },
-               "xtype" : "Button"
+               "xtype" : "MenuButton"
               },
               {
                "# DialogConfirm confirm" : "",
@@ -363,7 +362,7 @@
                  "}"
                 ]
                },
-               "xtype" : "Button"
+               "xtype" : "MenuButton"
               }
              ],
              "xtype" : "Box"

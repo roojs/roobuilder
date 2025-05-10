@@ -725,37 +725,36 @@ public class DialogFiles : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button229( _this );
+			var child_1 = new Xcls_MenuButton229( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Button230( _this );
+			var child_2 = new Xcls_MenuButton230( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
-			var child_3 = new Xcls_Button231( _this );
+			var child_3 = new Xcls_MenuButton231( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button229 : Object
+	public class Xcls_MenuButton229 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.MenuButton el;
 		private DialogFiles  _this;
 
 
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button229(DialogFiles _owner )
+		public Xcls_MenuButton229(DialogFiles _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.MenuButton();
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.halign = 0;
 			this.el.has_frame = false;
 			this.el.label = "Project Properties";
 
@@ -773,19 +772,19 @@ public class DialogFiles : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button230 : Object
+	public class Xcls_MenuButton230 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.MenuButton el;
 		private DialogFiles  _this;
 
 
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button230(DialogFiles _owner )
+		public Xcls_MenuButton230(DialogFiles _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.MenuButton();
 
 			// my vars (dec)
 
@@ -805,9 +804,9 @@ public class DialogFiles : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button231 : Object
+	public class Xcls_MenuButton231 : Object
 	{
-		public Gtk.Button el;
+		public Gtk.MenuButton el;
 		private DialogFiles  _this;
 
 
@@ -815,10 +814,10 @@ public class DialogFiles : Object
 		public DialogConfirm confirm;
 
 		// ctor
-		public Xcls_Button231(DialogFiles _owner )
+		public Xcls_MenuButton231(DialogFiles _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Button();
+			this.el = new Gtk.MenuButton();
 
 			// my vars (dec)
 
