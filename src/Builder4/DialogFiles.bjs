@@ -539,6 +539,7 @@
            "int width_request" : 200,
            "items" : [
             {
+             "# Gtk.CssProvider css" : "",
              "$ xns" : "Gtk",
              "* init" : [
               "{",
@@ -564,7 +565,6 @@
               ""
              ],
              "* prop" : "child",
-             "Gtk.CssProvider css" : "",
              "id" : "treeview",
              "items" : [
               {
