@@ -195,6 +195,7 @@
          "$ xns" : "Gtk",
          "bool hexpand" : true,
          "id" : "name",
+         "string placeholder_text" : " (File name without extension)",
          "xtype" : "Entry"
         },
         {
