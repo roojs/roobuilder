@@ -385,6 +385,9 @@ public class DialogFiles : Object
 			var child_2 = new Xcls_ColumnViewColumn11( _this );
 			child_2.ref();
 			this.el.append_column ( child_2.el  );
+			var child_3 = new Xcls_GestureClick388( _this );
+			child_3.ref();
+			this.el.add_controller(  child_3.el );
 		}
 
 		// user defined functions
@@ -629,6 +632,77 @@ public class DialogFiles : Object
 		// user defined functions
 	}
 
+
+	public class Xcls_GestureClick388 : Object
+	{
+		public Gtk.GestureClick el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_GestureClick388(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.GestureClick();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.button = 3;
+
+			//listeners
+			this.el.pressed.connect( (n_press, x, y) => {
+			
+				
+				  
+				 
+			    if (_this.model.el.get_n_items() < 1) {
+			 
+			        GLib.debug("no items");
+				    return ;
+			    }
+			    string pos;
+			    var row_widget = _this.view.getRowWidgetAt(x,y, out pos );
+			    if (row_widget == null) {
+				    GLib.debug("no row selected items");
+				    return;
+			    }
+			    
+			    var node =  row_widget.get_data<JsRender.Node>("node");
+			    if (node == null) {
+			    	GLib.warning("No node found from widget");
+			    	return;
+				}
+				
+				
+				_this.model.selectNode(node);
+			     
+			     
+			     
+				GLib.debug("Prssed %d", (int)  this.el.get_current_button());
+				//_this.deletemenu.el.set_parent(_this.view.el);
+				_this.LeftTreeMenu.el.set_parent(_this.view.el);
+				
+				
+				//Gtk.Allocation rect;
+				//_this.view.el.get_allocation(out rect);
+			 	//_this.deletemenu.el.set_has_arrow(false);
+				_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 
+				
+					
+				_this.LeftTreeMenu.el.set_offset( 
+						(int)x  ,
+						(int)y - (int)_this.view.el.get_height());
+			
+			    _this.LeftTreeMenu.el.popup();
+			      
+			});
+		}
+
+		// user defined functions
+	}
 
 
 	public class Xcls_LeftTreeMenu : Object
