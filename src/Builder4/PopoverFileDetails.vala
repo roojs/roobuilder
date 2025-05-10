@@ -763,6 +763,7 @@ public class Xcls_PopoverFileDetails : Object
 
 			// set gobject values
 			this.el.hexpand = true;
+			this.el.tooltip_text = " (File name without extension)";
 			this.el.has_tooltip = true;
 			this.el.placeholder_text = " (File name without extension)";
 			this.el.visible = true;

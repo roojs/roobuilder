@@ -197,6 +197,7 @@
          "bool hexpand" : true,
          "id" : "name",
          "string placeholder_text" : " (File name without extension)",
+         "string tooltip_text" : " (File name without extension)",
          "xtype" : "Entry"
         },
         {
