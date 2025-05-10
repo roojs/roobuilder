@@ -775,52 +775,30 @@ public class DialogFiles : Object
 			this.el.clicked.connect( () => {
 			    
 			    _this.LeftTreeMenu.el.hide();
-			    var node = _this.getActiveElement();
-			      
-			     
-			     var sm = DialogSaveModule.singleton();
-			     
-			     
-			    sm.showIt(
-			            (Gtk.Window) _this.el.get_root (), 
-			            _this.main_window.windowstate.project, 
-			            node
-			     );
-			     /*
-			     gtk4 migration - disabled this part.. probably not used muchanyway
-			     
-			     
-			     if (name.length < 1) {
-			            return;
-			  
-			     }
-			     node.set_prop( new JsRender.NodeProp.special("xinclude", name));
-			     node.items.clear();
+			   	if (this.confirm == null) {
+			  		this.confirm = new DialogConfirm();
+			   		this.confirm.el.set_transient_for(_this.el);
+				}
+				
+				var project  = (Project.Project) _this.projectsort.el.get_item(
+					_this.projectselection.el.selected
+					);
+				
+				this.confirm.el.response.connect((res) => {
+					this.confirm.el.hide();
+					if (res == Gtk.ResponseType.CANCEL) {
+						return;
+					}
+				   project  = (Project.Project) _this.projectsort.el.get_item(
+						_this.projectselection.el.selected
+					);
+					Project.Project.remove(project);
+				  _this.projectmodel.remove(project);
+					_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
+				
+				});
+			  	this.confirm.showIt("Confirm Delete Project", "Are you sure you want to delete this project?");
 			
-			
-			    var s = _this.view.el.get_selection();
-			    
-			    print("GET  SELECTED?");
-			    Gtk.TreeIter iter;
-			    Gtk.TreeModel mod;
-			
-			    
-			    if (!s.get_selected(out mod, out iter)) {
-			        return; // nothing seleted..
-			    }
-			    Gtk.TreeIter citer;
-			    var n_cn = mod.iter_n_children(iter) -1;
-			    for (var i = n_cn; i > -1; i--) {
-			        mod.iter_nth_child(out citer, iter, i);
-			        
-			
-			        print("removing node from Tree\n");    
-			    
-			        _this.model.el.remove(ref citer);
-			    }
-			    _this.changed();
-			    _this.node_selected(node, "tree");
-			     */
 			    
 			});
 		}
