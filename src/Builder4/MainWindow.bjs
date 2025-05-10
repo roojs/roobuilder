@@ -287,7 +287,6 @@
              "}"
             ]
            },
-           "string label" : "Edit Project Settings",
            "xtype" : "Button"
           },
           {
@@ -326,7 +325,7 @@
              "     _this.windowstate.file_details.show(",
              "        _this.windowstate.file, _this.el, false",
              "    );",
-             "     _this.setTitle();",
+             " ",
              "    return  ;    ",
              "",
              "",

@@ -764,7 +764,6 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.tooltip_text = "Project Details";
-			this.el.label = "Edit Project Settings";
 			var child_1 = new Xcls_Box167( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
@@ -887,7 +886,7 @@ public class Xcls_MainWindow : Object
 			     _this.windowstate.file_details.show(
 			        _this.windowstate.file, _this.el, false
 			    );
-			     _this.setTitle();
+			 
 			    return  ;    
 			
 			
