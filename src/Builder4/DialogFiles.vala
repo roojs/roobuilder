@@ -755,6 +755,7 @@ public class DialogFiles : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.halign = 0;
 			this.el.has_frame = false;
 			this.el.label = "Project Properties";
 

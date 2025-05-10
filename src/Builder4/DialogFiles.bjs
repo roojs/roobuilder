@@ -287,6 +287,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "Gtk.Align halign" : 0,
                "bool has_frame" : false,
                "label" : "Project Properties",
                "listeners" : {
