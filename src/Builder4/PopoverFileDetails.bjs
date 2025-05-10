@@ -492,6 +492,7 @@
          "\t      _this.done = true;",
          "\t    _this.file.save();",
          "\t    _this.el.hide();",
+         "\t    \t_this.success(_this.project, _this.file);",
          "\t    return;",
          "\t}  ",
          "\t",

@@ -2264,10 +2264,17 @@ public class Xcls_LeftProps : Object
 				lbl.use_markup = true;
 				lbl.xalign =0;
 				lbl.ellipsize = Pango.EllipsizeMode.END;
+				
+				
 				var cb = new Gtk.DropDown(new Gtk.StringList({}), null);
 				cb.hexpand = true;
-			 
 				hb.append(cb);
+				
+				var sw = new Gtk.Switch();
+				//sw.hexpand = true;
+				hb.append(sw);
+				
+				
 				((Gtk.ListItem)listitem).set_child(hb);
 				 
 				 var ef = new Gtk.EventControllerFocus();
@@ -2288,6 +2295,8 @@ public class Xcls_LeftProps : Object
 				 	 _this.selmodel.selectProp(prop);
 				 	 
 				 });
+				 
+				 // text edit
 			 	elbl.changed.connect(() => {
 					// notify and save the changed value...
 				 	
@@ -2304,6 +2313,16 @@ public class Xcls_LeftProps : Object
 				       
 			        }
 			        
+				});
+				
+				sw.notify["active"].connect(()=> {
+				  if (_this.loading || this.is_setting) {
+				  	return;
+				  }
+					 var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+				 	 _this.stop_editor();
+				 	 prop.val = sw.active ? "true" : "false";
+						 	 
 				});
 				
 				
@@ -2346,12 +2365,14 @@ public class Xcls_LeftProps : Object
 				var elbl = (Gtk.EditableLabel)bx.get_first_child();
 				var lbl = (Gtk.Label) elbl.get_next_sibling();
 				var cb  = (Gtk.DropDown) lbl.get_next_sibling();
+				var sw = (Gtk.Switch) cb.get_next_sibling();
 				// decide if it's a combo or editable text..
 				var model = (Gtk.StringList) cb.model;
 			 
 				elbl.hide();
 				lbl.hide();
 				cb.hide();
+				sw.hide();
 				
 				var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
 			 	if (prop == null || _this.node == null ) {
@@ -2385,7 +2406,7 @@ public class Xcls_LeftProps : Object
 			    
 			    
 			    if (use_textarea) {
-			    	prop.bind_property("val_short",
+			    		prop.bind_property("val_short",
 			                    lbl, "label",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			        prop.bind_property("val_tooltip",
@@ -2396,6 +2417,12 @@ public class Xcls_LeftProps : Object
 			        return;
 			    	
 			    }
+			     if (prop.rtype == "bool") {
+			     	sw.show();
+			     	sw.set_active(prop.val.down() == "true" ? true : false);
+					this.is_setting = false;        
+			 		return;
+				}
 			     
 			        
 			        
