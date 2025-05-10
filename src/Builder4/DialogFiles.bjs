@@ -289,7 +289,7 @@
               {
                "$ xns" : "Gtk",
                "bool has_frame" : false,
-               "label" : "Save as Module",
+               "label" : "Delete Project",
                "listeners" : {
                 "clicked" : [
                  "  () => {",

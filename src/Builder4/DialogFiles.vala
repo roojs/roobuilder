@@ -771,7 +771,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.has_frame = false;
-			this.el.label = "Save as Module";
+			this.el.label = "Delete Project";
 
 			//listeners
 			this.el.clicked.connect( () => {
