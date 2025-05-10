@@ -254,7 +254,7 @@
               {
                "$ xns" : "Gtk",
                "bool has_frame" : false,
-               "label" : "Delete Element",
+               "label" : "Project Properties",
                "listeners" : {
                 "clicked" : [
                  " ( ) => {",
