@@ -658,44 +658,21 @@ public class DialogFiles : Object
 				
 				  
 				 
-			    if (_this.projectselection.el.get_n_items() < 1) {
+			    if (this.selectedProject == null) {
 			 
-			        GLib.debug("no items");
+			        GLib.debug("notjing selected");
 				    return ;
 			    }
-			    
-			    string pos;
-			    var row_widget = _this.view.getRowWidgetAt(x,y, out pos );
-			    if (row_widget == null) {
-				    GLib.debug("no row selected items");
-				    return;
-			    }
-			    
-			    var node =  row_widget.get_data<JsRender.Node>("node");
-			    if (node == null) {
-			    	GLib.warning("No node found from widget");
-			    	return;
-				}
-				
-				
-				_this.model.selectNode(node);
 			     
-			     
-			     
-				GLib.debug("Prssed %d", (int)  this.el.get_current_button());
-				//_this.deletemenu.el.set_parent(_this.view.el);
-				_this.LeftTreeMenu.el.set_parent(_this.view.el);
+				_this.LeftTreeMenu.el.set_parent(_this.project_list.el);
 				
-				
-				//Gtk.Allocation rect;
-				//_this.view.el.get_allocation(out rect);
-			 	//_this.deletemenu.el.set_has_arrow(false);
+			 
 				_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 
 				
 					
 				_this.LeftTreeMenu.el.set_offset( 
 						(int)x  ,
-						(int)y - (int)_this.view.el.get_height());
+						(int)y - (int)_this.project_list.el.get_height());
 			
 			    _this.LeftTreeMenu.el.popup();
 			      
