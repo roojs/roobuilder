@@ -869,7 +869,7 @@ public class DialogFiles : Object
 			this.el.label = "Rename (not yet)";
 
 			//listeners
-			this.el.activate.connect( () => {
+			this.el.click.connect( () => {
 			_this.LeftTreeMenu.el.hide();
 			 
 			    
