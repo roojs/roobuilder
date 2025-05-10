@@ -323,7 +323,7 @@
                "# DialogConfirm confirm" : "",
                "$ xns" : "Gtk",
                "bool has_frame" : false,
-               "label" : "Remove Project",
+               "label" : "Remove from Builder",
                "listeners" : {
                 "activate" : [
                  "  () => {",

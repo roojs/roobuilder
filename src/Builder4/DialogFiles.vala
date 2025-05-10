@@ -823,7 +823,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.has_frame = false;
-			this.el.label = "Remove Project";
+			this.el.label = "Remove from Builder";
 
 			//listeners
 			this.el.activate.connect( () => {
