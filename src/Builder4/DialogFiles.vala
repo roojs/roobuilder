@@ -728,7 +728,7 @@ public class DialogFiles : Object
 			var child_1 = new Xcls_Button16( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_MenuButton17( _this );
+			var child_2 = new Xcls_Button17( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 			var child_3 = new Xcls_MenuButton18( _this );
@@ -756,7 +756,6 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.has_frame = false;
-			this.el.label = "Project Properties";
 			var child_1 = new Xcls_Box129( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
@@ -849,19 +848,19 @@ public class DialogFiles : Object
 
 
 
-	public class Xcls_MenuButton17 : Object
+	public class Xcls_Button17 : Object
 	{
-		public Gtk.MenuButton el;
+		public Gtk.Button el;
 		private DialogFiles  _this;
 
 
 		// my vars (def)
 
 		// ctor
-		public Xcls_MenuButton17(DialogFiles _owner )
+		public Xcls_Button17(DialogFiles _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.MenuButton();
+			this.el = new Gtk.Button();
 
 			// my vars (dec)
 

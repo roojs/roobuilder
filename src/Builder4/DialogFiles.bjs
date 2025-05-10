@@ -310,7 +310,6 @@
                  "xtype" : "Box"
                 }
                ],
-               "label" : "Project Properties",
                "listeners" : {
                 "clicked" : [
                  " ( ) => {",
@@ -339,7 +338,7 @@
                  "}"
                 ]
                },
-               "xtype" : "MenuButton"
+               "xtype" : "Button"
               },
               {
                "# DialogConfirm confirm" : "",
