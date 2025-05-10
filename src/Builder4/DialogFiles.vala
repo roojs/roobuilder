@@ -658,11 +658,12 @@ public class DialogFiles : Object
 				
 				  
 				 
-			    if (_this.model.el.get_n_items() < 1) {
+			    if (_this.projectselection.el.get_n_items() < 1) {
 			 
 			        GLib.debug("no items");
 				    return ;
 			    }
+			    
 			    string pos;
 			    var row_widget = _this.view.getRowWidgetAt(x,y, out pos );
 			    if (row_widget == null) {
