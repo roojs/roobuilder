@@ -759,7 +759,7 @@ public class DialogFiles : Object
 			this.el.label = "Project Properties";
 
 			//listeners
-			this.el.clicked.connect( ( ) => {
+			this.el.activate.connect( ( ) => {
 			_this.LeftTreeMenu.el.hide();
 			 if (_this.selectedProject == null) {
 				   return;
