@@ -1361,9 +1361,9 @@ public class Xcls_PopoverFileDetails : Object
 				  	var old_target = _this.file.build_module;
 			         _this.updateFileFromEntry();
 				    if (_this.project.xtype == "Gtk" && old_target != _this.file.build_module) {
-				    	var gp = (JsRender.Gtk)_this.file;
-				    	gp.updateCompileGroup(old_target,  _this.file.build_module);
-			    	}
+							var gp = (JsRender.Gtk)_this.file;
+							gp.updateCompileGroup(old_target,  _this.file.build_module);
+						}
 			
 				      _this.done = true;
 				    _this.file.save();
