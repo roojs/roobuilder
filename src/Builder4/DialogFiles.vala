@@ -775,6 +775,11 @@ public class DialogFiles : Object
 			this.el.clicked.connect( () => {
 			    
 			    _this.LeftTreeMenu.el.hide();
+			    
+			    _this.LeftTreeMenu.el.hide();
+				 if (_this.selectedProject == null) {
+					   return;
+				   }
 			   	if (this.confirm == null) {
 			  		this.confirm = new DialogConfirm();
 			   		this.confirm.el.set_transient_for(_this.el);
