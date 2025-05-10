@@ -329,7 +329,7 @@
                "bool has_frame" : false,
                "label" : "Rename (not yet)",
                "listeners" : {
-                "click" : [
+                "clicked" : [
                  "  () => {",
                  "_this.LeftTreeMenu.el.hide();",
                  " ",
