@@ -239,6 +239,119 @@
            ],
            "string name" : "project-list",
            "xtype" : "ColumnView"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* pack" : false,
+           "id" : "LeftTreeMenu",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "bool has_frame" : false,
+               "label" : "Delete Element",
+               "listeners" : {
+                "clicked" : [
+                 " ( ) => {",
+                 "_this.LeftTreeMenu.el.hide();",
+                 " _this.model.deleteSelected();",
+                 "_this.changed();",
+                 "}"
+                ]
+               },
+               "xtype" : "Button"
+              },
+              {
+               "$ xns" : "Gtk",
+               "bool has_frame" : false,
+               "label" : "Save as Template",
+               "listeners" : {
+                "clicked" : [
+                 "  () => {",
+                 "_this.LeftTreeMenu.el.hide();",
+                 "     DialogSaveTemplate.singleton().showIt(",
+                 "            (Gtk.Window) _this.el.get_root (), ",
+                 "            _this.main_window.windowstate.file.palete(), ",
+                 "            _this.getActiveElement()",
+                 "    );",
+                 "     ",
+                 "    ",
+                 "}"
+                ]
+               },
+               "xtype" : "Button"
+              },
+              {
+               "$ xns" : "Gtk",
+               "bool has_frame" : false,
+               "label" : "Save as Module",
+               "listeners" : {
+                "clicked" : [
+                 "  () => {",
+                 "    ",
+                 "    _this.LeftTreeMenu.el.hide();",
+                 "    var node = _this.getActiveElement();",
+                 "      ",
+                 "     ",
+                 "     var sm = DialogSaveModule.singleton();",
+                 "     ",
+                 "     ",
+                 "    sm.showIt(",
+                 "            (Gtk.Window) _this.el.get_root (), ",
+                 "            _this.main_window.windowstate.project, ",
+                 "            node",
+                 "     );",
+                 "     /*",
+                 "     gtk4 migration - disabled this part.. probably not used muchanyway",
+                 "     ",
+                 "     ",
+                 "     if (name.length < 1) {",
+                 "            return;",
+                 "  ",
+                 "     }",
+                 "     node.set_prop( new JsRender.NodeProp.special(\"xinclude\", name));",
+                 "     node.items.clear();",
+                 "",
+                 "",
+                 "    var s = _this.view.el.get_selection();",
+                 "    ",
+                 "    print(\"GET  SELECTED?\");",
+                 "    Gtk.TreeIter iter;",
+                 "    Gtk.TreeModel mod;",
+                 "",
+                 "    ",
+                 "    if (!s.get_selected(out mod, out iter)) {",
+                 "        return; // nothing seleted..",
+                 "    }",
+                 "    Gtk.TreeIter citer;",
+                 "    var n_cn = mod.iter_n_children(iter) -1;",
+                 "    for (var i = n_cn; i > -1; i--) {",
+                 "        mod.iter_nth_child(out citer, iter, i);",
+                 "        ",
+                 "",
+                 "        print(\"removing node from Tree\\n\");    ",
+                 "    ",
+                 "        _this.model.el.remove(ref citer);",
+                 "    }",
+                 "    _this.changed();",
+                 "    _this.node_selected(node, \"tree\");",
+                 "     */",
+                 "    ",
+                 "}"
+                ]
+               },
+               "xtype" : "Button"
+              }
+             ],
+             "xtype" : "Box"
+            }
+           ],
+           "xtype" : "Popover"
           }
          ],
          "xtype" : "ScrolledWindow"
