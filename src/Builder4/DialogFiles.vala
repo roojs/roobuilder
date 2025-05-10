@@ -764,7 +764,8 @@ public class DialogFiles : Object
 			 if (_this.selectedProject == null) {
 				   return;
 			   }
-				_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);
+				_this.win.windowstate.projectPopoverShow(_this.el, 
+				_this.selectedProject, null);
 			});
 		}
 

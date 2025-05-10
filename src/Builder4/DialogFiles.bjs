@@ -296,7 +296,8 @@
                  " if (_this.selectedProject == null) {",
                  "\t   return;",
                  "   }",
-                 "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);",
+                 "\t_this.win.windowstate.projectPopoverShow(_this.el, ",
+                 "\t_this.selectedProject, null);",
                  "}"
                 ]
                },
