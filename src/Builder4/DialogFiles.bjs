@@ -285,6 +285,7 @@
                "xtype" : "Button"
               },
               {
+               "# DialogConfirm confirm" : "",
                "$ xns" : "Gtk",
                "bool has_frame" : false,
                "label" : "Remove Project",

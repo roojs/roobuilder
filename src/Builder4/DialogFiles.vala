@@ -758,6 +758,7 @@ public class DialogFiles : Object
 
 
 		// my vars (def)
+		public DialogConfirm confirm;
 
 		// ctor
 		public Xcls_Button231(DialogFiles _owner )
