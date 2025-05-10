@@ -790,7 +790,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.has_frame = false;
-			this.el.label = "Rename Project (not yet)";
+			this.el.label = "Rename (not yet)";
 
 			//listeners
 			this.el.activate.connect( () => {

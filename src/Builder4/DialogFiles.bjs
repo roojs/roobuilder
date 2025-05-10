@@ -306,7 +306,7 @@
               {
                "$ xns" : "Gtk",
                "bool has_frame" : false,
-               "label" : "Rename Project (not yet)",
+               "label" : "Rename (not yet)",
                "listeners" : {
                 "activate" : [
                  "  () => {",
