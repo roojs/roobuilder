@@ -301,7 +301,7 @@
                  "}"
                 ]
                },
-               "xtype" : "MenuButton"
+               "xtype" : "Button"
               },
               {
                "$ xns" : "Gtk",
