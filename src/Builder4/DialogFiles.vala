@@ -735,7 +735,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.has_frame = false;
-			this.el.label = "Save as Template";
+			this.el.label = "Rename Project";
 
 			//listeners
 			this.el.clicked.connect( () => {

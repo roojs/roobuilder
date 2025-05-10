@@ -269,7 +269,7 @@
               {
                "$ xns" : "Gtk",
                "bool has_frame" : false,
-               "label" : "Save as Template",
+               "label" : "Rename Project",
                "listeners" : {
                 "clicked" : [
                  "  () => {",
