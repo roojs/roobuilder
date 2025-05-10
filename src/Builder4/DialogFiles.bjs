@@ -1179,45 +1179,6 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
-       "id" : "btn_projprop",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "child",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "int spacing" : 0,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "int margin_end" : 4,
-           "string icon_name" : "emblem-system",
-           "xtype" : "Image"
-          },
-          {
-           "$ xns" : "Gtk",
-           "string label" : "Project Properties",
-           "xtype" : "Label"
-          }
-         ],
-         "xtype" : "Box"
-        }
-       ],
-       "listeners" : {
-        "clicked" : [
-         "  ( ) => {",
-         "  // should disable the button really.",
-         "   if (_this.selectedProject == null) {",
-         "\t   return;",
-         "   }",
-         "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);",
-         " }"
-        ]
-       },
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "pack_start",
        "DialogConfirm confirm" : "null",
        "id" : "btn_delproj",
        "items" : [
