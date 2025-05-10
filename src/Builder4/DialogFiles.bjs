@@ -259,8 +259,10 @@
                 "clicked" : [
                  " ( ) => {",
                  "_this.LeftTreeMenu.el.hide();",
-                 " _this.model.deleteSelected();",
-                 "_this.changed();",
+                 " if (_this.selectedProject == null) {",
+                 "\t   return;",
+                 "   }",
+                 "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);",
                  "}"
                 ]
                },

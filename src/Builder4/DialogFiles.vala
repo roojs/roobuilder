@@ -709,8 +709,10 @@ public class DialogFiles : Object
 			//listeners
 			this.el.clicked.connect( ( ) => {
 			_this.LeftTreeMenu.el.hide();
-			 _this.model.deleteSelected();
-			_this.changed();
+			 if (_this.selectedProject == null) {
+				   return;
+			   }
+				_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);
 			});
 		}
 
