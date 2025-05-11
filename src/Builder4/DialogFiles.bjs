@@ -520,6 +520,7 @@
                  "$ uint selected" : " Gtk.INVALID_LIST_POSITION",
                  "$ xns" : "Gtk",
                  "* prop" : "model",
+                 "bool autoselect" : false,
                  "bool can_unselect" : true,
                  "id" : "iconsel",
                  "items" : [

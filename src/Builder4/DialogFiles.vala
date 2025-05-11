@@ -1274,6 +1274,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
+			this.el.autoselect = false;
 			this.el.selected =  Gtk.INVALID_LIST_POSITION;
 
 			//listeners
