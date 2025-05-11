@@ -168,6 +168,7 @@ public class DialogFiles : Object
 		 
 		var sm = this.projectselection.el;
 		if (project == null) {
+			GLib.debug("set selected to null");
 			sm.selected = Gtk.INVALID_LIST_POSITION;
 			this.onProjectSelected(null);
 			return;
@@ -225,7 +226,7 @@ public class DialogFiles : Object
 	
 		_this.project_list.el.set_model(_this.projectselection.el);
 	    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; 
-	    
+	    GLib.debug("set selected to null");
 		_this.is_loading = false;
 	    
 	
