@@ -516,6 +516,7 @@
                  "xtype" : "GestureClick"
                 },
                 {
+                 "$ uint selected" : " Gtk.INVALID_LIST_POSITION",
                  "$ xns" : "Gtk",
                  "* prop" : "model",
                  "bool can_unselect" : true,
@@ -609,7 +610,6 @@
                    " "
                   ]
                  },
-                 "uint selected" : " Gtk.INVALID_LIST_POSITION",
                  "xtype" : "SingleSelection",
                  "| JsRender.JsRender? selectedFile" : [
                   "() {",
