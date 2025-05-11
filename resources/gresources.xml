@@ -5,8 +5,29 @@
     <file>roobuilder.css</file>
   </gresource>
   <gresource prefix="/data">
-    <file>roodata.json</file>
     <file>object.defaults.json</file>
+    <file>roodata.json</file>
+  </gresource>
+  <gresource prefix="/doc">
+    <file>Roo.docs.init.js</file>
+    <file>Roo.docs.js</file>
+    <file>Roo.docs.template.js</file>
+    <file>docs.css</file>
+    <file>gtk.html</file>
+    <file>roojs-bootstrap-debug.js</file>
+    <file>roojs-core-debug.js</file>
+  </gresource>
+  <gresource prefix="/doc/css-bootstrap">
+    <file>font-awesome.css</file>
+  </gresource>
+  <gresource prefix="/doc/css-bootstrap/font-awesome">
+    <file>fa-brands-400.woff2</file>
+    <file>fa-regular-400.woff2</file>
+    <file>fa-solid-900.woff2</file>
+  </gresource>
+  <gresource prefix="/doc/css-bootstrap4">
+    <file>bootstrap.min.css</file>
+    <file>roojs-bootstrap.css</file>
   </gresource>
   <gresource prefix="/glade-icons">
     <file>widget-gtk-aboutdialog.png</file>
@@ -173,26 +194,5 @@
   </gresource>
   <gresource prefix="/images">
     <file>roobuilder.png</file>
-  </gresource>
-  <gresource prefix="/doc">
-    <file>gtk.html</file>
-    <file>roojs-bootstrap-debug.js</file>
-    <file>roojs-core-debug.js</file>
-    <file>Roo.docs.js</file>
-    <file>Roo.docs.init.js</file>
-    <file>Roo.docs.template.js</file>
-    <file>docs.css</file>
-  </gresource>
-  <gresource prefix="/doc/css-bootstrap4">
-    <file>bootstrap.min.css</file>
-    <file>roojs-bootstrap.css</file>
-  </gresource>
-  <gresource prefix="/doc/css-bootstrap">
-    <file>font-awesome.css</file>
-  </gresource>
-  <gresource prefix="/doc/css-bootstrap/font-awesome">
-    <file>fa-brands-400.woff2</file>
-    <file>fa-regular-400.woff2</file>
-    <file>fa-solid-900.woff2</file>
   </gresource>
 </gresources>
