@@ -224,10 +224,11 @@ public class DialogFiles : Object
 	     Project.Project.loadIntoStore(this.projectmodel.el);
 	
 		_this.project_list.el.set_model(_this.projectselection.el);
-		
+	    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; 
+	    
 		_this.is_loading = false;
 	    
-	    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; 
+	
 		_this.btn_delfile.el.hide();
 	 
 	  
