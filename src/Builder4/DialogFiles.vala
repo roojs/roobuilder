@@ -199,11 +199,13 @@ public class DialogFiles : Object
 		
 		 this.el.show();
 	 this.load();
+	 GLib.debug("set selected to %s", project == null ? "NULL" : "a project");
 		this.selectProject(project);
 		this.onProjectSelected(project);   //?? twice?
 		 
 		    GLib.Timeout.add(500, () => {
 		    	if (project == null) {
+		    	GLib.debug("set selected to null");
 	    	   		_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
 					this.onProjectSelected(null); 
 		
