@@ -19,7 +19,7 @@ public class Xcls_PopoverAddProp : Object
 	public Xcls_model model;
 	public Xcls_name name;
 
-		// my vars (def)
+	// my vars (def)
 	public bool modal;
 	public JsRender.NodePropType ptype;
 	public bool active;
@@ -133,7 +133,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_viewwin(Xcls_PopoverAddProp _owner )
@@ -159,7 +159,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_view(Xcls_PopoverAddProp _owner )
@@ -284,7 +284,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick3(Xcls_PopoverAddProp _owner )
@@ -367,7 +367,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_selmodel(Xcls_PopoverAddProp _owner )
@@ -401,7 +401,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_sortmodel(Xcls_PopoverAddProp _owner )
@@ -442,7 +442,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_model(Xcls_PopoverAddProp _owner )
@@ -482,7 +482,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_TreeListRowSorter7(Xcls_PopoverAddProp _owner )
@@ -505,7 +505,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_StringSorter8(Xcls_PopoverAddProp _owner )
@@ -528,7 +528,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_PropertyExpression9(Xcls_PopoverAddProp _owner )
@@ -554,7 +554,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_name(Xcls_PopoverAddProp _owner )
@@ -590,7 +590,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory11(Xcls_PopoverAddProp _owner )
@@ -664,7 +664,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnViewColumn12(Xcls_PopoverAddProp _owner )
@@ -698,7 +698,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory13(Xcls_PopoverAddProp _owner )
@@ -744,7 +744,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnViewColumn14(Xcls_PopoverAddProp _owner )
@@ -778,7 +778,7 @@ public class Xcls_PopoverAddProp : Object
 		private Xcls_PopoverAddProp  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory15(Xcls_PopoverAddProp _owner )
