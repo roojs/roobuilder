@@ -449,7 +449,7 @@ namespace Palete {
 			}
 			var retval = s.rtype == "" ? "" : ("    return " + s.rtype + ";"); 
 			
-			return @"function ($args) {\n$retval\n}".;
+			return @"function ($args) {\n$retval\n}";
 		}
 		
 		
