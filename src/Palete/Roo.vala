@@ -52,8 +52,7 @@ namespace Palete {
 					var rets = o.get_array_member("returns");
 					for (var ri = 0; ri < rets.get_length(); ri++) {
 						var ro = rets.get_object_element(ri);
-						prop.rtype = ro.get_string_member("type");
-						break;
+						prop.rtype = (prop.rtype.length > 0 ? "|" : "") + ro.get_string_member("type");
 					}
 				}
 				
