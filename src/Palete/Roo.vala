@@ -428,6 +428,20 @@ namespace Palete {
 			
 		}
 		
+		// when adding signals - this should return an empty function
+		
+		
+		public override string symbolToSig(Symbol s)
+		{
+			
+			var args = "";
+			foreach(s.params_ar.values as v) {
+				args += (args.length > 0 ? ", " : "") + v.name;
+			}
+			
+			return @"function ($args) {\n$retval\n}".;
+		}
+		
 		
 		
     }
