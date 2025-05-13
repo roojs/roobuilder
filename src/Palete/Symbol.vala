@@ -66,7 +66,7 @@ namespace Palete {
 		//public bool methods_loaded = false;
 		//public bool ctors_loaded = false;
 		
-		public string sig = "";  
+		//public string sig = "";  
 		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> valid_cn  { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> can_drop_onto  { get; set; default = new Gee.ArrayList<string>(); }
