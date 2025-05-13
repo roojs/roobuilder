@@ -84,7 +84,7 @@ namespace Palete {
 							GLib.debug("params for %s contains a member with no name  : %s", prop.name, o.get_string_member("sig"));
 							continue;
 						}
-						var pp = new Symbol.new_simple(Lsp.SymbolKind.Parameter , po.get_string_member("name") );
+						var pp = new Symbol.new_simple(Lsp.SymbolKind.Parameter , pn );
 						pp.rtype = po.get_string_member("type");
 						prop.param_ar.set(p,  pp );
 					}
