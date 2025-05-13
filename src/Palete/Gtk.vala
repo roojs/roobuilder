@@ -485,6 +485,12 @@ namespace Palete {
 			
 			var args = "";
 			foreach(var v in s.param_ar.values) {
+				// not sure if this happens but lets avoid it.
+				var vn = v.name;
+				if (vn == "this") {
+					vn = "self"; // ?? is that ok?
+				}
+				
 				args += (args.length > 0 ? ", " : "") + v.rtype + " " + v.name;
 			}
 			var retval = "";
