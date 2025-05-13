@@ -52,7 +52,7 @@ namespace Palete {
 					o.get_string_member("memberOf") : cls.fqn) + "." + name;
 				
 				// this is the function default.
-				prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
+				//prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
 				
 				if (o.has_member("optvals")  ) {
 					var oar = o.get_array_member("optvals");
