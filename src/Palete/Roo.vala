@@ -455,7 +455,7 @@ namespace Palete {
 			foreach(var v in s.param_ar.values) {
 				var n = v.name;
 				if (n == "this") {
-					n = "self");
+					n = "self";
 				}
 				args += (args.length > 0 ? ", " : "") + v.name;
 			}
