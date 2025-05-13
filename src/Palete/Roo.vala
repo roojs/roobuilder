@@ -46,7 +46,17 @@ namespace Palete {
 				var name = o.get_string_member("name"); 
 				var prop = new Symbol.new_simple(kind, name );  
 
-				prop.rtype        = o.get_string_member("type");
+				prop.rtype  = "";
+
+				if (o.has_member("returns")  ) {
+					var rets = o.get_array_member("returns");
+					for (var ri = 0; ri < rets.get_length(); ri++) {
+						var ro = rets.get_object_element(ri);
+						prop.rtype = ro.get_string_member("type");
+						break;
+					}
+				}
+				
 				prop.doc  = o.get_string_member("desc");
 				prop.fqn = (o.has_member("memberOf") && o.get_string_member("memberOf").length > 0 ? 
 					o.get_string_member("memberOf") : cls.fqn) + "." + name;
@@ -438,6 +448,7 @@ namespace Palete {
 			foreach(var v in s.params_ar.values) {
 				args += (args.length > 0 ? ", " : "") + v.name;
 			}
+			
 			
 			return @"function ($args) {\n$retval\n}".;
 		}
