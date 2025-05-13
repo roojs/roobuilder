@@ -444,7 +444,7 @@ namespace Palete {
 		{
 			
 			var args = "";
-			foreach(var v in s.params_ar.values) {
+			foreach(var v in s.param_ar.values) {
 				args += (args.length > 0 ? ", " : "") + v.name;
 			}
 			var retval = s.rtype == "" ? "" : ("    return " + s.rtype + ";"); 
