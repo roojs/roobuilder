@@ -457,7 +457,7 @@ namespace Palete {
 				if (n == "this") {
 					n = "self";
 				}
-				args += (args.length > 0 ? ", " : "") + v.name;
+				args += (args.length > 0 ? ", " : "") + n;
 			}
 			var retval = s.rtype == "" ? "" : ("    return " + s.rtype + ";"); 
 			
