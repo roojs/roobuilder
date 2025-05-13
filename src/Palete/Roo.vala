@@ -447,7 +447,7 @@ namespace Palete {
 			foreach(var v in s.params_ar.values) {
 				args += (args.length > 0 ? ", " : "") + v.name;
 			}
-			var retval = s.rtype = "" ? "" : ("    return " + s.rtype + ";"); 
+			var retval = s.rtype == "" ? "" : ("    return " + s.rtype + ";"); 
 			
 			return @"function ($args) {\n$retval\n}".;
 		}
