@@ -68,7 +68,7 @@ namespace Palete {
 					for (var p = 0; p < par.get_length(); p++) {
 						var po = par.get_object_element(p);
 						var pp = new Symbol.new_simple(Lsp.SymbolKind.Parameter , po.get_string_member("name") );
-						pp.rtype = po.get_string_member("type")
+						pp.rtype = po.get_string_member("type");
 						prop.param_ar.set(p,  pp );
 					}
 				}
