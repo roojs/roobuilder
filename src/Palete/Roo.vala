@@ -71,7 +71,7 @@ namespace Palete {
 						pp.rtype = po.get_string_member("type")
 						prop.param_ar.set(p,  pp );
 					}
-				
+				}
 				
 				//GLib.debug("add Prop : FQN=%s : NAME=%s  (RTYPE= %s)", prop.fqn,  prop.name ,prop.rtype);
 				ret.set(name,prop);
