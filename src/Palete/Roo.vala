@@ -61,7 +61,17 @@ namespace Palete {
 						prop.optvalues.add(oar.get_string_element(oi));
 					}
 					
-				}	
+				}
+				if (o.has_member("params")  ) {
+					var par = o.get_array_member("params");
+					
+					for (var p = 0; p < par.get_length(); p++) {
+						var po = par.get_object_element(p);
+						var pp = new Symbol.new_simple(Lsp.SymbolKind.Parameter , po.get_string_member("name") );
+						pp.rtype = po.get_string_member("type")
+						prop.param_ar.set(p,  pp );
+					}
+				
 				
 				//GLib.debug("add Prop : FQN=%s : NAME=%s  (RTYPE= %s)", prop.fqn,  prop.name ,prop.rtype);
 				ret.set(name,prop);
