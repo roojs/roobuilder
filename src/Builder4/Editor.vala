@@ -931,7 +931,7 @@ public class Editor : Object
 			
 			var attrs = new GtkSource.MarkAttributes();
 			
-			attrs.set_icon_name ( "process-stop");    
+			attrs.set_icon_name ( "dialog-error");    
 			attrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
 			    return strdup( mark.name);
@@ -945,7 +945,7 @@ public class Editor : Object
 			
 			
 			var wattrs = new GtkSource.MarkAttributes();
-			wattrs.set_icon_name ( "process-stop");    
+			wattrs.set_icon_name ( "dialog-warning");    
 			wattrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
 			    return strdup(mark.name);
@@ -960,7 +960,7 @@ public class Editor : Object
 			 
 			var dattrs = new GtkSource.MarkAttributes();
 			 
-			dattrs.set_icon_name ( "process-stop"); 
+			dattrs.set_icon_name ( "alarm-symbolic"); 
 			
 			dattrs.query_tooltip_text.connect(( mark) => {
 				GLib.debug("tooltip query? %s", mark.name);
