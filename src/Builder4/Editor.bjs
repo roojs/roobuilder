@@ -299,7 +299,7 @@
             " ",
             "var dattrs = new GtkSource.MarkAttributes();",
             " ",
-            "dattrs.set_icon_name ( \"alarm-symbolic\"); ",
+            "dattrs.set_icon_name ( \"weather-fog-symbolic\"); ",
             "",
             "dattrs.query_tooltip_text.connect(( mark) => {",
             "\tGLib.debug(\"tooltip query? %s\", mark.name);",

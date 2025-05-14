@@ -960,7 +960,7 @@ public class Editor : Object
 			 
 			var dattrs = new GtkSource.MarkAttributes();
 			 
-			dattrs.set_icon_name ( "alarm-symbolic"); 
+			dattrs.set_icon_name ( "weather-fog-symbolic"); 
 			
 			dattrs.query_tooltip_text.connect(( mark) => {
 				GLib.debug("tooltip query? %s", mark.name);
