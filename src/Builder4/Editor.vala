@@ -363,8 +363,7 @@ public class Editor : Object
 		Gtk.TextIter start;
 		Gtk.TextIter end;     
 		
-		// this does not work - it removes the marks to much and kills the UI experience
-		 
+		  
 		foreach(var diag in ar) {
 		
 			if (this.errors.contains(diag)) {
@@ -392,14 +391,14 @@ public class Editor : Object
 	 	    var spos = (int)diag.range.start.character - hoffset;
 	 	    if (spos < 0) { spos =0 ; }
 	 	    if (spos > iter.get_chars_in_line()) {
-	 	    	spos = iter.get_chars_in_line();
-	    	}
+		 	    	spos = iter.get_chars_in_line();
+				}
 			buf.get_iter_at_line( out iter, eline_to);
 			var epos = (int)diag.range.end.character - hoffset;
 	 	    if (epos < 0) { epos =0 ; }
 	 	    if (epos > iter.get_chars_in_line()) {
-	 	    	epos = iter.get_chars_in_line();
-	    	}
+		 	    	epos = iter.get_chars_in_line();
+				}
 	 	     
 	 	    
 	 	    buf.get_iter_at_line_offset( out start, eline, spos); 
@@ -424,7 +423,7 @@ public class Editor : Object
 	 	    
 	 	    
 		    buf.apply_tag_by_name(diag.category  +  this.tag_counter.to_string(), start, end);
-	    	diag.set_data<Gtk.TextTag>("tag", tag);
+	    		diag.set_data<Gtk.TextTag>("tag", tag);
 		    this.errors.add(diag);
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
