@@ -931,7 +931,7 @@ public class Editor : Object
 			
 			var attrs = new GtkSource.MarkAttributes();
 			
-			attrs.set_icon_name ( "software-update-urgent");    
+			attrs.set_icon_name ( "dialog-error");    
 			attrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
 			    return strdup( mark.name);
