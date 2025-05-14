@@ -931,7 +931,7 @@ public class Editor : Object
 			
 			var attrs = new GtkSource.MarkAttributes();
 			
-			attrs.set_icon_name ( "dialog-error");    
+			attrs.set_icon_name ( "edit-clear-symbolic");    
 			attrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
 			    return strdup( mark.name);
@@ -945,7 +945,7 @@ public class Editor : Object
 			
 			
 			var wattrs = new GtkSource.MarkAttributes();
-			wattrs.set_icon_name ( "dialog-warning");    
+			wattrs.set_icon_name ( "zoom-out-symbolic");    
 			wattrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
 			    return strdup(mark.name);
