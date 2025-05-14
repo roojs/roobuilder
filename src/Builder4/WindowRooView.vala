@@ -1089,7 +1089,7 @@ public class Xcls_WindowRooView : Object
 			
 			
 				var attrs = new GtkSource.MarkAttributes();
-				attrs.set_icon_name ( "process-stop");    
+				attrs.set_icon_name ( "dialog-error");    
 				attrs.query_tooltip_text.connect(( mark) => {
 					//print("tooltip query? %s\n", mark.name);
 					return mark.name;
@@ -1098,7 +1098,7 @@ public class Xcls_WindowRooView : Object
 				this.el.set_mark_attributes ("ERR", attrs, 1);
 			
 				 var wattrs = new GtkSource.MarkAttributes();
-				wattrs.set_icon_name ( "process-stop");    
+				wattrs.set_icon_name ( "dialog-warning");    
 				wattrs.query_tooltip_text.connect(( mark) => {
 					//print("tooltip query? %s\n", mark.name);
 					return mark.name;
@@ -1109,7 +1109,7 @@ public class Xcls_WindowRooView : Object
 			
 			
 				 var dattrs = new GtkSource.MarkAttributes();
-				dattrs.set_icon_name ( "process-stop");    
+				dattrs.set_icon_name ( "dialog-information");    
 				dattrs.query_tooltip_text.connect(( mark) => {
 					//print("tooltip query? %s\n", mark.name);
 					return mark.name;
