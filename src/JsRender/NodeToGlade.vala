@@ -144,7 +144,8 @@ public class JsRender.NodeToGlade : Object {
 		var obj = this.create_element("object");
 		//var id = this.node.uid();
 		var skip_props = false;
-		if (gdata.implements.contains("Gtk.Native")) {
+		// old gtk3  -windows are not native..
+		if (gdata.implements.contains("Gtk.Native") || gdata.fqn == "Gtk.Window") {
 			 
 			obj->set_prop("class", "GtkFrame");
 			skip_props = true;

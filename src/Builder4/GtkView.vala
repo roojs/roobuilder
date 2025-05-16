@@ -110,15 +110,15 @@ public class Xcls_GtkView : Object
 		   		if (!builder.add_from_string(xmlstr, xmlstr.length)) {
 		   			return;
 				}
-				var obj = (Gtk.Widget) builder.get_object("w"+ file.tree.oid.to_string());
-		   		 this.container.el.append(obj);
-				obj.show();
+	
 			    this.createThumb();
 			} catch(GLib.Error e) {
 				GLib.debug(e.message);
 				return;
 			}
-	   		
+			var obj = (Gtk.Widget) builder.get_object("w"+ file.tree.oid.to_string());
+	   		 this.container.el.append(obj);
+			obj.show();   		
 	 
 	        
 	}

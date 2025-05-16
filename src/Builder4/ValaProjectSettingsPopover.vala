@@ -772,6 +772,8 @@ public class ValaProjectSettingsPopover : Object
 
 
 		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression24(ValaProjectSettingsPopover _owner )
@@ -780,6 +782,8 @@ public class ValaProjectSettingsPopover : Object
 			this.el = new Gtk.PropertyExpression( typeof(Project.VapiSelection), null, "sortkey" );
 
 			// my vars (dec)
+			this.property_name = "sortkey";
+			this.this_type = typeof(Project.VapiSelection);
 
 			// set gobject values
 		}
@@ -820,6 +824,8 @@ public class ValaProjectSettingsPopover : Object
 
 
 		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression26(ValaProjectSettingsPopover _owner )
@@ -828,6 +834,8 @@ public class ValaProjectSettingsPopover : Object
 			this.el = new Gtk.PropertyExpression( typeof(Project.VapiSelection), null, "sortkey" );
 
 			// my vars (dec)
+			this.property_name = "sortkey";
+			this.this_type = typeof(Project.VapiSelection);
 
 			// set gobject values
 		}
@@ -1216,6 +1224,7 @@ public class ValaProjectSettingsPopover : Object
 
 
 		// my vars (def)
+		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
 		public Xcls_treelistmodel(ValaProjectSettingsPopover _owner )
@@ -1229,6 +1238,10 @@ public class ValaProjectSettingsPopover : Object
 }  );
 
 			// my vars (dec)
+			this.create_func = (item) => {
+	//GLib.debug("liststore got %s", item.get_type().name());
+	return ((JsRender.JsRender)item).childfiles;
+};
 
 			// set gobject values
 		}
@@ -1312,6 +1325,8 @@ public class ValaProjectSettingsPopover : Object
 
 
 		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression43(ValaProjectSettingsPopover _owner )
@@ -1320,6 +1335,8 @@ public class ValaProjectSettingsPopover : Object
 			this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
 
 			// my vars (dec)
+			this.property_name = "name";
+			this.this_type = typeof(JsRender.JsRender);
 
 			// set gobject values
 		}
@@ -1337,6 +1354,7 @@ public class ValaProjectSettingsPopover : Object
 
 
 		// my vars (def)
+		public Gtk.CustomFilterFunc match_func;
 
 		// ctor
 		public Xcls_CustomFilter44(ValaProjectSettingsPopover _owner )
@@ -1369,6 +1387,31 @@ public class ValaProjectSettingsPopover : Object
 } );
 
 			// my vars (dec)
+			this.match_func = (item) => { 
+	
+	var tr = ((Gtk.TreeListRow)item).get_item();
+	//GLib.debug("filter %s", tr.get_type().name());
+	var j =  (JsRender.JsRender) tr;
+	if (j.xtype == "Gtk") {
+		return true;
+	}
+	if (j.xtype != "Dir") {
+		return j.path.has_suffix(".vala") ||  j.path.has_suffix(".c");
+	}
+	// dirs..
+	 
+	for (var i =0 ; i < j.childfiles.n_items; i++) {
+		var f = (JsRender.JsRender) j.childfiles.get_item(i);
+		if (f.xtype == "Gtk") {
+			return true;
+		}
+		if (f.path.has_suffix(".vala") ||  f.path.has_suffix(".c")) {
+			return true;
+		}
+	}
+	return false;
+
+};
 
 			// set gobject values
 		}
