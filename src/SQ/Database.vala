@@ -18,9 +18,13 @@ namespace SQ {
 	
 	
 	public class Database {
+	
+		static string version;
+		
 		static Sqlite.Database? _db = null;
 		public static Sqlite.Database db {
 			get {
+			 	Database.version = "1.2";
 			 	if (_db != null) {
 			 		return _db;
 		 		}
@@ -48,7 +52,7 @@ namespace SQ {
 		public static string symbol_filename()
 		{
 			// perhasp we dont need to rename this all the time
-			return BuilderApplication.configDirectory() + "/symbols.db";
+			return BuilderApplication.configDirectory() + "/symbols-" + Database.version + ".db";
 			//return BuilderApplication.configDirectory() + "/symbols-" + BuilderApplication.exe_version() + ".db";
 		}
 		

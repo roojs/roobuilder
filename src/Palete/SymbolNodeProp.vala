@@ -16,7 +16,7 @@ namespace Palete {
 			if (s.stype == Lsp.SymbolKind.Signal) { // gtk is Signal, roo is signal??
 				// when we add properties, they are actually listeners attached to signals
 				// was a listener overrident?? why?
-				 var r = new JsRender.NodeProp.listener(s.name,   s.sig); 
+				 var r = new JsRender.NodeProp.listener(s.name,  this.palete.symbolToSig(s)); 
 				 r.propertyof = s.property_of();
 				 r.doc = s.doc;
 				 // notify[xxxx] << for all the properties of the symbol.

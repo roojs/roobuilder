@@ -367,7 +367,7 @@ namespace Palete
 					case Lsp.SymbolKind.EnumMember:
 						sym.enums.set(s.name, s);
 						mids.set((int)s.id, s);
-						break;	
+						break;
 						
 					case Lsp.SymbolKind.Parameter:
 						
@@ -960,6 +960,12 @@ namespace Palete
 		
 		}
 		
+		public Symbol? getSymbolAtFromFile(JsRender.JsRender file, int line, int offset)
+		{
+			var f = this.manager.factory_by_path(file.targetName());
+			return f.getSymbolAt(line,offset);
+		}
+		
 		public Symbol? getSymbolAt(JsRender.JsRender file, int line, int offset)
 		{
 			
@@ -994,6 +1000,62 @@ namespace Palete
 			return els.size < 1 ? null : els.get(0);
 					
 		}
+		
+		
+		public Gee.ArrayList<Symbol> getScopeSymbolsAt(JsRender.JsRender file, int line, int offset)
+		{
+			// we need to know the method, that the cursor is at,
+			// from there we can look for the Variables.
+			var ret = new Gee.ArrayList<Symbol>();
+			var f = this.manager.factory_by_path(file.targetName());
+			
+			// docs are probably only usefull for the types..?
+			// so need to do a lookup on rtype?
+			
+			var stmt = this.sq.selectPrepare("
+					
+				-- getScopeSymbolsAt 
+			
+				  
+				SELECT 
+					*
+				FROM
+					symbol
+				WHERE 
+					file_id = $fid
+					AND
+					is_local_var = 1
+					AND
+					begin_line >= COALESCE(
+						(
+							SELECT 
+								begin_line
+							FROM
+								symbol
+							WHERE 
+								file_id = $fid
+								AND
+								begin_line <= $line
+								AND 
+								end_line >= $line
+							LIMIT 1
+						), $line + 1)
+					AND 
+						end_line <= $line
+			");
+			
+			stmt.bind_int64(stmt.bind_parameter_index ("$fid"), f.id);
+			stmt.bind_int(stmt.bind_parameter_index ("$line"),line + 1);
+ 
+			
+			var els = new Gee.ArrayList<Symbol>();
+			this.sq.selectExecute(stmt, els);
+			return els;
+			
+			
+					
+		}
+		
 		
 		// this is the tree that docs use (it's pretty simple)
 		// the js side converts it into a tree (for web testing)

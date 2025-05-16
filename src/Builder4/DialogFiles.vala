@@ -18,6 +18,7 @@ public class DialogFiles : Object
 	public Xcls_projectselection projectselection;
 	public Xcls_projectsort projectsort;
 	public Xcls_projectmodel projectmodel;
+	public Xcls_LeftTreeMenu LeftTreeMenu;
 	public Xcls_filepane filepane;
 	public Xcls_searchbox searchbox;
 	public Xcls_iconscroll iconscroll;
@@ -35,8 +36,6 @@ public class DialogFiles : Object
 	public Xcls_treefilter treefilter;
 	public Xcls_name name;
 	public Xcls_btn_newproj btn_newproj;
-	public Xcls_btn_projprop btn_projprop;
-	public Xcls_btn_delproj btn_delproj;
 	public Xcls_btn_addfile btn_addfile;
 	public Xcls_btn_delfile btn_delfile;
 
@@ -70,7 +69,7 @@ public class DialogFiles : Object
 		var child_1 = new Xcls_Box1( _this );
 		child_1.ref();
 		this.el.child = child_1.el;
-		var child_2 = new Xcls_HeaderBar44( _this );
+		var child_2 = new Xcls_HeaderBar56( _this );
 		child_2.ref();
 		this.el.titlebar = child_2.el;
 
@@ -169,6 +168,7 @@ public class DialogFiles : Object
 		 
 		var sm = this.projectselection.el;
 		if (project == null) {
+			GLib.debug("set selected to null");
 			sm.selected = Gtk.INVALID_LIST_POSITION;
 			this.onProjectSelected(null);
 			return;
@@ -199,11 +199,13 @@ public class DialogFiles : Object
 		
 		 this.el.show();
 	 this.load();
+	 GLib.debug("set selected to %s", project == null ? "NULL" : "a project");
 		this.selectProject(project);
 		this.onProjectSelected(project);   //?? twice?
 		 
 		    GLib.Timeout.add(500, () => {
 		    	if (project == null) {
+		    	GLib.debug("set selected to null");
 	    	   		_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
 					this.onProjectSelected(null); 
 		
@@ -225,10 +227,11 @@ public class DialogFiles : Object
 	     Project.Project.loadIntoStore(this.projectmodel.el);
 	
 		_this.project_list.el.set_model(_this.projectselection.el);
-		
+	    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; 
+	    GLib.debug("set selected to null");
 		_this.is_loading = false;
 	    
-	    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; 
+	
 		_this.btn_delfile.el.hide();
 	 
 	  
@@ -318,7 +321,7 @@ public class DialogFiles : Object
 			this.el.start_child = _this.projectscroll.el;
 			new Xcls_filepane( _this );
 			this.el.end_child = _this.filepane.el;
-			var child_3 = new Xcls_EventControllerKey43( _this );
+			var child_3 = new Xcls_EventControllerKey55( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
@@ -351,6 +354,7 @@ public class DialogFiles : Object
 			this.el.vexpand = true;
 			new Xcls_project_list( _this );
 			this.el.child = _this.project_list.el;
+			new Xcls_LeftTreeMenu( _this );
 
 			// init method
 
@@ -383,6 +387,9 @@ public class DialogFiles : Object
 			var child_2 = new Xcls_ColumnViewColumn11( _this );
 			child_2.ref();
 			this.el.append_column ( child_2.el  );
+			var child_3 = new Xcls_GestureClick13( _this );
+			child_3.ref();
+			this.el.add_controller(  child_3.el );
 		}
 
 		// user defined functions
@@ -407,6 +414,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
+			this.el.autoselect = false;
 
 			//listeners
 			this.el.notify["selected"].connect( (position, n_items) => {
@@ -416,15 +424,11 @@ public class DialogFiles : Object
 				}
 			  
 				if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-					_this.btn_delproj.el.hide();
-					_this.btn_projprop.el.hide();
-					_this.btn_addfile.el.hide();
+					 _this.btn_addfile.el.hide();
 					//_this.btn_delfile.el.hide();
 					 
 				} else {
-					_this.btn_delproj.el.show();
-					_this.btn_projprop.el.show();
-					_this.btn_addfile.el.show();
+					 _this.btn_addfile.el.show();
 					//_this.btn_delfile.el.show(); // ??
 				}
 			 
@@ -628,6 +632,392 @@ public class DialogFiles : Object
 	}
 
 
+	public class Xcls_GestureClick13 : Object
+	{
+		public Gtk.GestureClick el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_GestureClick13(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.GestureClick();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.button = 3;
+
+			//listeners
+			this.el.pressed.connect( (n_press, x, y) => {
+			
+				
+				  
+				 
+			    if (_this.selectedProject == null) {
+			 
+			        GLib.debug("notjing selected");
+				    return ;
+			    }
+			     
+				_this.LeftTreeMenu.el.set_parent(_this.project_list.el);
+				
+			 
+				_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 
+				
+					
+				_this.LeftTreeMenu.el.set_offset( 
+						(int)x  ,
+						(int)y - (int)_this.project_list.el.get_height());
+			
+			    _this.LeftTreeMenu.el.popup();
+			      
+			});
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_LeftTreeMenu : Object
+	{
+		public Gtk.Popover el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_LeftTreeMenu(DialogFiles _owner )
+		{
+			_this = _owner;
+			_this.LeftTreeMenu = this;
+			this.el = new Gtk.Popover();
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Box15( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box15 : Object
+	{
+		public Gtk.Box el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box15(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Button16( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			var child_2 = new Xcls_Button20( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
+			var child_3 = new Xcls_Button21( _this );
+			child_3.ref();
+			this.el.append( child_3.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Button16 : Object
+	{
+		public Gtk.Button el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Button16(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.has_frame = false;
+			var child_1 = new Xcls_Box17( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( ( ) => {
+			_this.LeftTreeMenu.el.hide();
+			 if (_this.selectedProject == null) {
+				   return;
+			   }
+				_this.win.windowstate.projectPopoverShow(_this.el, 
+				_this.selectedProject, null);
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box17 : Object
+	{
+		public Gtk.Box el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box17(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Image18( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			var child_2 = new Xcls_Label19( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Image18 : Object
+	{
+		public Gtk.Image el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Image18(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "emblem-system";
+			this.el.margin_end = 4;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label19 : Object
+	{
+		public Gtk.Label el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Label19(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Project Properties" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
+
+	public class Xcls_Button20 : Object
+	{
+		public Gtk.Button el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Button20(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.has_frame = false;
+			this.el.label = "Rename (not yet)";
+
+			//listeners
+			this.el.clicked.connect( () => {
+			_this.LeftTreeMenu.el.hide();
+			 
+			    
+			    
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Button21 : Object
+	{
+		public Gtk.Button el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+		public DialogConfirm confirm;
+
+		// ctor
+		public Xcls_Button21(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.has_frame = false;
+			this.el.label = "Remove from Builder";
+			var child_1 = new Xcls_Box22( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( () => {
+			    
+			    _this.LeftTreeMenu.el.hide();
+			    
+			    _this.LeftTreeMenu.el.hide();
+				 if (_this.selectedProject == null) {
+					   return;
+				   }
+			   	if (this.confirm == null) {
+			  		this.confirm = new DialogConfirm();
+			   		this.confirm.el.set_transient_for(_this.el);
+				}
+				
+				var project  = (Project.Project) _this.projectsort.el.get_item(
+					_this.projectselection.el.selected
+					);
+				
+				this.confirm.el.response.connect((res) => {
+					this.confirm.el.hide();
+					if (res == Gtk.ResponseType.CANCEL) {
+						return;
+					}
+				   project  = (Project.Project) _this.projectsort.el.get_item(
+						_this.projectselection.el.selected
+					);
+					Project.Project.remove(project);
+				  _this.projectmodel.remove(project);
+					_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
+				
+				});
+			  	this.confirm.showIt("Confirm Delete Project", "Are you sure you want to delete this project?");
+			
+			    
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box22 : Object
+	{
+		public Gtk.Box el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box22(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Image23( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			var child_2 = new Xcls_Label24( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Image23 : Object
+	{
+		public Gtk.Image el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Image23(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "user-trash";
+			this.el.margin_end = 4;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label24 : Object
+	{
+		public Gtk.Label el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Label24(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Delete Project" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
+
+
 
 
 	public class Xcls_filepane : Object
@@ -650,7 +1040,7 @@ public class DialogFiles : Object
 			// set gobject values
 			this.el.position = 200;
 			this.el.visible = false;
-			var child_1 = new Xcls_Box14( _this );
+			var child_1 = new Xcls_Box26( _this );
 			child_1.ref();
 			this.el.end_child = child_1.el;
 			new Xcls_treescroll( _this );
@@ -659,7 +1049,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_Box14 : Object
+	public class Xcls_Box26 : Object
 	{
 		public Gtk.Box el;
 		private DialogFiles  _this;
@@ -668,7 +1058,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box14(DialogFiles _owner )
+		public Xcls_Box26(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -678,7 +1068,7 @@ public class DialogFiles : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			var child_1 = new Xcls_Box15( _this );
+			var child_1 = new Xcls_Box27( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_iconscroll( _this );
@@ -687,7 +1077,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_Box15 : Object
+	public class Xcls_Box27 : Object
 	{
 		public Gtk.Box el;
 		private DialogFiles  _this;
@@ -696,7 +1086,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box15(DialogFiles _owner )
+		public Xcls_Box27(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -804,21 +1194,21 @@ public class DialogFiles : Object
 			_this = _owner;
 			_this.gridview = this;
 			new Xcls_iconsel( _this );
-			var child_2 = new Xcls_SignalListItemFactory28( _this );
+			var child_2 = new Xcls_SignalListItemFactory40( _this );
 			child_2.ref();
 			this.el = new Gtk.GridView( _this.iconsel.el, child_2.el );
 
 			// my vars (dec)
 
 			// set gobject values
-			var child_3 = new Xcls_GestureClick19( _this );
+			var child_3 = new Xcls_GestureClick31( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_GestureClick19 : Object
+	public class Xcls_GestureClick31 : Object
 	{
 		public Gtk.GestureClick el;
 		private DialogFiles  _this;
@@ -827,7 +1217,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick19(DialogFiles _owner )
+		public Xcls_GestureClick31(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -876,7 +1266,7 @@ public class DialogFiles : Object
 		{
 			_this = _owner;
 			_this.iconsel = this;
-			var child_1 = new Xcls_FilterListModel21( _this );
+			var child_1 = new Xcls_FilterListModel33( _this );
 			child_1.ref();
 			this.el = new Gtk.SingleSelection( child_1.el );
 
@@ -884,6 +1274,8 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
+			this.el.autoselect = false;
+			this.el.selected =  Gtk.INVALID_LIST_POSITION;
 
 			//listeners
 			this.el.notify["selected"].connect( () => {
@@ -912,7 +1304,7 @@ public class DialogFiles : Object
 		 
 		}
 	}
-	public class Xcls_FilterListModel21 : Object
+	public class Xcls_FilterListModel33 : Object
 	{
 		public Gtk.FilterListModel el;
 		private DialogFiles  _this;
@@ -921,7 +1313,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel21(DialogFiles _owner )
+		public Xcls_FilterListModel33(DialogFiles _owner )
 		{
 			_this = _owner;
 			new Xcls_gridsort( _this );
@@ -949,7 +1341,7 @@ public class DialogFiles : Object
 			_this = _owner;
 			_this.gridsort = this;
 			new Xcls_gridmodel( _this );
-			var child_2 = new Xcls_StringSorter24( _this );
+			var child_2 = new Xcls_StringSorter36( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( _this.gridmodel.el, child_2.el );
 
@@ -994,7 +1386,7 @@ public class DialogFiles : Object
 		}
 	}
 
-	public class Xcls_StringSorter24 : Object
+	public class Xcls_StringSorter36 : Object
 	{
 		public Gtk.StringSorter el;
 		private DialogFiles  _this;
@@ -1003,10 +1395,10 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter24(DialogFiles _owner )
+		public Xcls_StringSorter36(DialogFiles _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression25( _this );
+			var child_1 = new Xcls_PropertyExpression37( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -1018,7 +1410,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression25 : Object
+	public class Xcls_PropertyExpression37 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private DialogFiles  _this;
@@ -1027,7 +1419,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression25(DialogFiles _owner )
+		public Xcls_PropertyExpression37(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
@@ -1055,7 +1447,7 @@ public class DialogFiles : Object
 		{
 			_this = _owner;
 			_this.iconsearch = this;
-			var child_1 = new Xcls_PropertyExpression27( _this );
+			var child_1 = new Xcls_PropertyExpression39( _this );
 			child_1.ref();
 			this.el = new Gtk.StringFilter( child_1.el );
 
@@ -1068,7 +1460,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression27 : Object
+	public class Xcls_PropertyExpression39 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private DialogFiles  _this;
@@ -1077,7 +1469,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression27(DialogFiles _owner )
+		public Xcls_PropertyExpression39(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
@@ -1093,7 +1485,7 @@ public class DialogFiles : Object
 
 
 
-	public class Xcls_SignalListItemFactory28 : Object
+	public class Xcls_SignalListItemFactory40 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private DialogFiles  _this;
@@ -1102,7 +1494,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory28(DialogFiles _owner )
+		public Xcls_SignalListItemFactory40(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -1226,7 +1618,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.name = "file-list";
-			var child_2 = new Xcls_GestureClick31( _this );
+			var child_2 = new Xcls_GestureClick43( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
 			new Xcls_name( _this );
@@ -1258,7 +1650,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_GestureClick31 : Object
+	public class Xcls_GestureClick43 : Object
 	{
 		public Gtk.GestureClick el;
 		private DialogFiles  _this;
@@ -1267,7 +1659,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick31(DialogFiles _owner )
+		public Xcls_GestureClick43(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -1317,7 +1709,7 @@ public class DialogFiles : Object
 		{
 			_this = _owner;
 			_this.treeselmodel = this;
-			var child_1 = new Xcls_FilterListModel33( _this );
+			var child_1 = new Xcls_FilterListModel45( _this );
 			child_1.ref();
 			this.el = new Gtk.SingleSelection( child_1.el );
 
@@ -1325,6 +1717,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
+			this.el.autoselect = false;
 
 			//listeners
 			this.el.notify["selected"].connect( () => {
@@ -1361,7 +1754,7 @@ public class DialogFiles : Object
 			return  (JsRender.JsRender) tr.item;
 		}
 	}
-	public class Xcls_FilterListModel33 : Object
+	public class Xcls_FilterListModel45 : Object
 	{
 		public Gtk.FilterListModel el;
 		private DialogFiles  _this;
@@ -1370,7 +1763,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel33(DialogFiles _owner )
+		public Xcls_FilterListModel45(DialogFiles _owner )
 		{
 			_this = _owner;
 			new Xcls_treelistsort( _this );
@@ -1398,7 +1791,7 @@ public class DialogFiles : Object
 			_this = _owner;
 			_this.treelistsort = this;
 			new Xcls_treelistmodel( _this );
-			var child_2 = new Xcls_TreeListRowSorter37( _this );
+			var child_2 = new Xcls_TreeListRowSorter49( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( _this.treelistmodel.el, child_2.el );
 
@@ -1460,7 +1853,7 @@ public class DialogFiles : Object
 	}
 
 
-	public class Xcls_TreeListRowSorter37 : Object
+	public class Xcls_TreeListRowSorter49 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private DialogFiles  _this;
@@ -1469,10 +1862,10 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter37(DialogFiles _owner )
+		public Xcls_TreeListRowSorter49(DialogFiles _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter38( _this );
+			var child_1 = new Xcls_StringSorter50( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -1483,7 +1876,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter38 : Object
+	public class Xcls_StringSorter50 : Object
 	{
 		public Gtk.StringSorter el;
 		private DialogFiles  _this;
@@ -1492,10 +1885,10 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter38(DialogFiles _owner )
+		public Xcls_StringSorter50(DialogFiles _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression39( _this );
+			var child_1 = new Xcls_PropertyExpression51( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -1507,7 +1900,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression39 : Object
+	public class Xcls_PropertyExpression51 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private DialogFiles  _this;
@@ -1516,7 +1909,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression39(DialogFiles _owner )
+		public Xcls_PropertyExpression51(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender) , null, "name" );
@@ -1615,7 +2008,7 @@ public class DialogFiles : Object
 		{
 			_this = _owner;
 			_this.name = this;
-			var child_1 = new Xcls_SignalListItemFactory42( _this );
+			var child_1 = new Xcls_SignalListItemFactory54( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "General Files", child_1.el );
 
@@ -1638,7 +2031,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory42 : Object
+	public class Xcls_SignalListItemFactory54 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private DialogFiles  _this;
@@ -1647,7 +2040,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory42(DialogFiles _owner )
+		public Xcls_SignalListItemFactory54(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -1734,7 +2127,7 @@ public class DialogFiles : Object
 
 
 
-	public class Xcls_EventControllerKey43 : Object
+	public class Xcls_EventControllerKey55 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private DialogFiles  _this;
@@ -1743,7 +2136,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey43(DialogFiles _owner )
+		public Xcls_EventControllerKey55(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -1781,7 +2174,7 @@ public class DialogFiles : Object
 
 
 
-	public class Xcls_HeaderBar44 : Object
+	public class Xcls_HeaderBar56 : Object
 	{
 		public Gtk.HeaderBar el;
 		private DialogFiles  _this;
@@ -1790,7 +2183,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_HeaderBar44(DialogFiles _owner )
+		public Xcls_HeaderBar56(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.HeaderBar();
@@ -1799,15 +2192,11 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.show_title_buttons = false;
-			var child_1 = new Xcls_Button45( _this );
+			var child_1 = new Xcls_Button57( _this );
 			child_1.ref();
 			this.el.pack_end ( child_1.el  );
 			new Xcls_btn_newproj( _this );
 			this.el.pack_start ( _this.btn_newproj.el  );
-			new Xcls_btn_projprop( _this );
-			this.el.pack_start ( _this.btn_projprop.el  );
-			new Xcls_btn_delproj( _this );
-			this.el.pack_start ( _this.btn_delproj.el  );
 			new Xcls_btn_addfile( _this );
 			this.el.pack_start ( _this.btn_addfile.el  );
 			new Xcls_btn_delfile( _this );
@@ -1816,7 +2205,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_Button45 : Object
+	public class Xcls_Button57 : Object
 	{
 		public Gtk.Button el;
 		private DialogFiles  _this;
@@ -1825,7 +2214,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button45(DialogFiles _owner )
+		public Xcls_Button57(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -1878,7 +2267,7 @@ public class DialogFiles : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box47( _this );
+			var child_1 = new Xcls_Box59( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 
@@ -1910,362 +2299,6 @@ public class DialogFiles : Object
 		
 			_this.show(  pe.result , _this.new_window);
 		}
-	}
-	public class Xcls_Box47 : Object
-	{
-		public Gtk.Box el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Box47(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_Image48( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
-			var child_2 = new Xcls_Label49( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Image48 : Object
-	{
-		public Gtk.Image el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Image48(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Image();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.icon_name = "folder-new";
-			this.el.margin_end = 4;
-			this.el.icon_size = Gtk.IconSize.NORMAL;
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Label49 : Object
-	{
-		public Gtk.Label el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Label49(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( "New Project" );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.halign = Gtk.Align.START;
-		}
-
-		// user defined functions
-	}
-
-
-
-	public class Xcls_btn_projprop : Object
-	{
-		public Gtk.Button el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_btn_projprop(DialogFiles _owner )
-		{
-			_this = _owner;
-			_this.btn_projprop = this;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_Box51( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
-
-			//listeners
-			this.el.clicked.connect( ( ) => {
-			  // should disable the button really.
-			   if (_this.selectedProject == null) {
-				   return;
-			   }
-				_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);
-			 });
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Box51 : Object
-	{
-		public Gtk.Box el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Box51(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_Image52( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
-			var child_2 = new Xcls_Label53( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Image52 : Object
-	{
-		public Gtk.Image el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Image52(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Image();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.icon_name = "emblem-system";
-			this.el.margin_end = 4;
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Label53 : Object
-	{
-		public Gtk.Label el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Label53(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( "Project Properties" );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
-
-	public class Xcls_btn_delproj : Object
-	{
-		public Gtk.Button el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-		public DialogConfirm confirm;
-
-		// ctor
-		public Xcls_btn_delproj(DialogFiles _owner )
-		{
-			_this = _owner;
-			_this.btn_delproj = this;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-			this.confirm = null;
-
-			// set gobject values
-			var child_1 = new Xcls_Box55( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
-
-			//listeners
-			this.el.clicked.connect( ( ) => {
-			  
-			  
-			  	if (this.confirm == null) {
-			  		this.confirm = new DialogConfirm();
-			   		this.confirm.el.set_transient_for(_this.el);
-				}
-				
-				var project  = (Project.Project) _this.projectsort.el.get_item(
-					_this.projectselection.el.selected
-					);
-				
-				this.confirm.el.response.connect((res) => {
-					this.confirm.el.hide();
-					if (res == Gtk.ResponseType.CANCEL) {
-						return;
-					}
-				   project  = (Project.Project) _this.projectsort.el.get_item(
-						_this.projectselection.el.selected
-					);
-					Project.Project.remove(project);
-				  _this.projectmodel.remove(project);
-					_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
-				
-				});
-			  	this.confirm.showIt("Confirm Delete Project", "Are you sure you want to delete this project?");
-			});
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Box55 : Object
-	{
-		public Gtk.Box el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Box55(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_Image56( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
-			var child_2 = new Xcls_Label57( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Image56 : Object
-	{
-		public Gtk.Image el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Image56(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Image();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.icon_name = "user-trash";
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_Label57 : Object
-	{
-		public Gtk.Label el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Label57(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( "Delete Project" );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
-
-	public class Xcls_btn_addfile : Object
-	{
-		public Gtk.Button el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_btn_addfile(DialogFiles _owner )
-		{
-			_this = _owner;
-			_this.btn_addfile = this;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_Box59( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
-
-			//listeners
-			this.el.clicked.connect( () => {
-			    // create a new file in project..
-			    print("add file selected\n");
-			    
-			    if (_this.selectedProject == null) {
-			    	return;
-			    }
-			    try {
-			    	var f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, "");
-			     	_this.win.windowstate.file_details.show( f, _this.el, _this.new_window );
-			     } catch (JsRender.Error e) {}
-			
-			});
-		}
-
-		// user defined functions
 	}
 	public class Xcls_Box59 : Object
 	{
@@ -2311,8 +2344,9 @@ public class DialogFiles : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "document-new";
+			this.el.icon_name = "folder-new";
 			this.el.margin_end = 4;
+			this.el.icon_size = Gtk.IconSize.NORMAL;
 		}
 
 		// user defined functions
@@ -2328,6 +2362,122 @@ public class DialogFiles : Object
 
 		// ctor
 		public Xcls_Label61(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "New Project" );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.halign = Gtk.Align.START;
+		}
+
+		// user defined functions
+	}
+
+
+
+	public class Xcls_btn_addfile : Object
+	{
+		public Gtk.Button el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_btn_addfile(DialogFiles _owner )
+		{
+			_this = _owner;
+			_this.btn_addfile = this;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Box63( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
+
+			//listeners
+			this.el.clicked.connect( () => {
+			    // create a new file in project..
+			    print("add file selected\n");
+			    
+			    if (_this.selectedProject == null) {
+			    	return;
+			    }
+			    try {
+			    	var f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, "");
+			     	_this.win.windowstate.file_details.show( f, _this.el, _this.new_window );
+			     } catch (JsRender.Error e) {}
+			
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box63 : Object
+	{
+		public Gtk.Box el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box63(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Image64( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			var child_2 = new Xcls_Label65( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Image64 : Object
+	{
+		public Gtk.Image el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Image64(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "document-new";
+			this.el.margin_end = 4;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label65 : Object
+	{
+		public Gtk.Label el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Label65(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "New File" );
@@ -2362,7 +2512,7 @@ public class DialogFiles : Object
 			this.confirm = null;
 
 			// set gobject values
-			var child_1 = new Xcls_Box63( _this );
+			var child_1 = new Xcls_Box67( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 
@@ -2422,7 +2572,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_Box63 : Object
+	public class Xcls_Box67 : Object
 	{
 		public Gtk.Box el;
 		private DialogFiles  _this;
@@ -2431,7 +2581,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box63(DialogFiles _owner )
+		public Xcls_Box67(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -2439,17 +2589,17 @@ public class DialogFiles : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Image64( _this );
+			var child_1 = new Xcls_Image68( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Label65( _this );
+			var child_2 = new Xcls_Label69( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Image64 : Object
+	public class Xcls_Image68 : Object
 	{
 		public Gtk.Image el;
 		private DialogFiles  _this;
@@ -2458,7 +2608,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Image64(DialogFiles _owner )
+		public Xcls_Image68(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Image();
@@ -2472,7 +2622,7 @@ public class DialogFiles : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label65 : Object
+	public class Xcls_Label69 : Object
 	{
 		public Gtk.Label el;
 		private DialogFiles  _this;
@@ -2481,7 +2631,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Label65(DialogFiles _owner )
+		public Xcls_Label69(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "Delete File" );

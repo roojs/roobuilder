@@ -43,6 +43,7 @@ namespace Palete {
  		public bool is_static  { get; set; default = false; } 
  		public bool is_gir  { get; set; default = false; } 
  		public bool is_ctor_only { get; set; default = false; }  // FIXME!!!
+ 		public bool is_local_var { get; set; default = false; }  //  used for completion
  		
  		public string inherits_str { get; set; default = ""; }
   		public Gee.ArrayList<string> implements { get; set; default = new Gee.ArrayList<string>(); }		
@@ -65,12 +66,14 @@ namespace Palete {
 		//public bool methods_loaded = false;
 		//public bool ctors_loaded = false;
 		
-		public string sig = "";  
+		//public string sig = "";  
 		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> valid_cn  { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> can_drop_onto  { get; set; default = new Gee.ArrayList<string>(); }
 
 		public int sequence_count = 0; // used by symbolvala - to label symbols.
+		
+	 	
 		
   		public string implements_str { 
 			owned get {
@@ -101,7 +104,7 @@ namespace Palete {
 				private set {}
 		}	
 		
-		public GLib.ListStore children;
+		public GLib.ListStore children  { get; set; }
 		public Gee.HashMap<string,Symbol> children_map;
 		
 		public string line_sig {
@@ -198,15 +201,27 @@ namespace Palete {
 			return this.fqn.substring(0, this.fqn.length - this.name.length - 1);
 		}
 		
+		 
+		public string dumpToString(string indent = "") {
+		
+			return "%s %d.%d>%d.%d : %s : %s%s%s [%s]\n".printf(indent, 
+				this.begin_line,
+				this.begin_col,
+				this.end_line,
+				this.end_col,
+				this.stype == 0 ?  "??" : this.stype.to_string().substring( 16, -1 ), 
+				this.is_local_var ? "*" : "",
+				this.to_fqn(), 
+				this.dumpArgs(), 
+				this.rtype
+			);
+		}
+		
 		public void dump(string indent)
 		{
 			
-			print("%s %d>%d : %s : %s%s [%s]\n", indent, 
-				this.begin_line, this.end_line,
-				this.stype == 0 ?  "??" : this.stype.to_string().substring( 16, -1 ), 
-				this.to_fqn(), 
-				this.dumpArgs(), 
-				this.rtype);
+			print( "%s",  this.dumpToString());
+				
 			if (this.doc != "") {
 			    print("%s-->%s\n",indent, this.doc.split("\n")[0]);
 			}
@@ -216,11 +231,12 @@ namespace Palete {
 					(((Symbol)a).begin_line >((Symbol)b).begin_line) ? 1 : -1
 				);
 			});
+		 	
 			
 			for(var i = 0; i < this.children.get_n_items();i++) {
 				var c = (Symbol) this.children.get_item(i);
 				c.dump(si);
-			}
+			} // a 
 		}
 		public string dumpArgs()
 		{
@@ -392,6 +408,36 @@ namespace Palete {
 			}
 		}
 		
+		public Symbol? getSymbolAt(int line, int col)
+		{
+			GLib.debug("Searching for symbol @%d:%d  from %s", line,col, this.dumpToString());
+			if (this.begin_line > line || this.end_line < line) {
+				GLib.debug("no in line range");
+				return null;
+			}
+			// on same line
+			if (this.begin_line == line && this.end_line == line) {
+				if (this.begin_col < col || this.end_col  > col) {
+					GLib.debug("no in col range");
+					return null;
+				}
+				return this;
+			}
+			GLib.debug("searching children %d", (int) this.children.get_n_items());
+			for(var i = 0; i < this.children.get_n_items();i++) {
+				var s = (Symbol) this.children.get_item(i);
+				var ret = s.getSymbolAt(line,col);
+				if (ret != null) {
+					return ret;
+				}
+			}
+			// is this what is really needed..
+			// in theory it's a method .. with children..
+			return this;
+			 
+		
+		}
+		
 		
 		public static string[] create_table() {
 			string[] ret = { "
@@ -401,6 +447,7 @@ namespace Palete {
 					gir_version TEXT,
 					parent_id INTEGER,
 					stype INTEGER,
+					
 					
 					begin_line INTEGER,
 					begin_col INTEGER,
@@ -420,6 +467,7 @@ namespace Palete {
 
 					is_static INT2,
 					is_ctor_only INT2,
+					is_local_var INT2,
 					
 					parent_name TEXT,
 					doc TEXT,
@@ -427,12 +475,13 @@ namespace Palete {
 					fqn TEXT,
 					implements_str TEXT,
 					inherits_str TEXT
+
 				);
 				",
 				"CREATE INDEX symbol_ix1 on symbol(file_id,parent_id,stype, sequence)",
 				"CREATE INDEX symbol_ix2 on symbol(fqn)",
 				"CREATE INDEX symbol_ix3 on symbol(is_abstract, is_sealed, is_static)",
-				"CREATE INDEX symbol_ix3 on symbol(implements_str, inherits_str)"
+				"CREATE INDEX symbol_ix4 on symbol(implements_str, inherits_str)"
 			};
 			return ret;
 		}
@@ -482,6 +531,22 @@ namespace Palete {
 				 	}
 				 	foreach(var k in kv.keys) {
 				 		ret.add_element(Json.gobject_serialize(kv.get(k))); 
+				 	
+				 	}
+				 	
+				 	var node = new Json.Node (Json.NodeType.ARRAY);
+					node.set_array (ret);
+					return node;
+				
+				
+				case "children":
+					var ret = new Json.Array();
+				 	var kv = @value as GLib.ListStore;
+				 	if (kv.n_items < 1) {
+				 		return (Json.Node)null;
+				 	}
+				 	for(var i =0 ;i < kv.n_items; i++)   {
+				 		ret.add_element(Json.gobject_serialize((Symbol)kv.get_item(i))); 
 				 	
 				 	}
 				 	

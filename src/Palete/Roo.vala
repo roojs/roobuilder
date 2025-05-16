@@ -46,13 +46,22 @@ namespace Palete {
 				var name = o.get_string_member("name"); 
 				var prop = new Symbol.new_simple(kind, name );  
 
-				prop.rtype        = o.get_string_member("type");
+				prop.rtype  = "";
+
+				if (o.has_member("returns")  ) {
+					var rets = o.get_array_member("returns");
+					for (var ri = 0; ri < rets.get_length(); ri++) {
+						var ro = rets.get_object_element(ri);
+						prop.rtype = (prop.rtype.length > 0 ? "|" : "") + ro.get_string_member("type");
+					}
+				}
+				
 				prop.doc  = o.get_string_member("desc");
 				prop.fqn = (o.has_member("memberOf") && o.get_string_member("memberOf").length > 0 ? 
 					o.get_string_member("memberOf") : cls.fqn) + "." + name;
 				
 				// this is the function default.
-				prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
+				//prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
 				
 				if (o.has_member("optvals")  ) {
 					var oar = o.get_array_member("optvals");
@@ -61,7 +70,25 @@ namespace Palete {
 						prop.optvalues.add(oar.get_string_element(oi));
 					}
 					
-				}	
+				}
+				if (o.has_member("params")  ) {
+					var par = o.get_array_member("params");
+					
+					for (var p = 0; p < par.get_length(); p++) {
+						var po = par.get_object_element(p);
+						var pn = po.get_string_member("name");
+						if (pn == "") { 
+							pn = po.get_string_member("type");
+						}
+						if (pn == "") { 
+							GLib.debug("params for %s contains a member with no name  : %s", prop.name, o.get_string_member("sig"));
+							continue;
+						}
+						var pp = new Symbol.new_simple(Lsp.SymbolKind.Parameter , pn );
+						pp.rtype = po.get_string_member("type");
+						prop.param_ar.set(p,  pp );
+					}
+				}
 				
 				//GLib.debug("add Prop : FQN=%s : NAME=%s  (RTYPE= %s)", prop.fqn,  prop.name ,prop.rtype);
 				ret.set(name,prop);
@@ -416,6 +443,25 @@ namespace Palete {
 			
 			
 			
+		}
+		
+		// when adding signals - this should return an empty function
+		
+		
+		public override string symbolToSig(Symbol s)
+		{
+			
+			var args = "";
+			foreach(var v in s.param_ar.values) {
+				var n = v.name;
+				if (n == "this") {
+					n = "self";
+				}
+				args += (args.length > 0 ? ", " : "") + n;
+			}
+			var retval = s.rtype == "" ? "" : ("    return " + s.rtype + ";"); 
+			
+			return @"function ($args) {\n$retval\n}";
 		}
 		
 		

@@ -135,6 +135,10 @@ public class Xcls_PopoverFileDetails : Object
 		this.filetype_lbl.el.hide();
 		this.filetype.el.hide();
 			 
+		_this.name_lbl.el.show();
+		_this.name.el.show();
+						 
+			 
 		var sel = this.filetype.getValue();
 		switch(_this.project.xtype) {
 			case "Roo":	 
@@ -728,7 +732,7 @@ public class Xcls_PopoverFileDetails : Object
 		{
 			_this = _owner;
 			_this.name_lbl = this;
-			this.el = new Gtk.Label( "Component Name (File name without extension)" );
+			this.el = new Gtk.Label( "Component Name" );
 
 			// my vars (dec)
 
@@ -759,6 +763,9 @@ public class Xcls_PopoverFileDetails : Object
 
 			// set gobject values
 			this.el.hexpand = true;
+			this.el.tooltip_text = " (File name without extension)";
+			this.el.has_tooltip = true;
+			this.el.placeholder_text = " (File name without extension)";
 			this.el.visible = true;
 		}
 
@@ -1357,13 +1364,14 @@ public class Xcls_PopoverFileDetails : Object
 				  	var old_target = _this.file.build_module;
 			         _this.updateFileFromEntry();
 				    if (_this.project.xtype == "Gtk" && old_target != _this.file.build_module) {
-				    	var gp = (JsRender.Gtk)_this.file;
-				    	gp.updateCompileGroup(old_target,  _this.file.build_module);
-			    	}
+							var gp = (JsRender.Gtk)_this.file;
+							gp.updateCompileGroup(old_target,  _this.file.build_module);
+						}
 			
 				      _this.done = true;
 				    _this.file.save();
 				    _this.el.hide();
+				    	_this.success(_this.project, _this.file);
 				    return;
 				}  
 				

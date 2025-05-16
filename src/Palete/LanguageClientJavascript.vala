@@ -69,7 +69,8 @@ namespace Palete {
 		public override void document_close (JsRender.JsRender file) {}
 		public override void exit () throws GLib.Error { }
  		public override async void shutdown () throws GLib.Error { }
- 		public override async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
+ 		public override async Lsp.CompletionList?  completion(
+ 			JsRender.JsRender file, int line, int offset , int triggerType = 1, string pre = "") throws GLib.Error 
  		{
  		
 			var ret = new Lsp.CompletionList();	

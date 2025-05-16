@@ -40,7 +40,7 @@ deps = [
 # let Vala add the appropriate defines for GLIB_X_X
 add_project_arguments(['--target-glib=auto'], language: 'vala')
 
- 
+
 
 conf = configuration_data()
 conf.set('PROJECT_NAME', meson.project_name())
@@ -81,7 +81,7 @@ gnome.post_install(gtk_update_icon_cache : true)
 
 roobuilder_resources = gnome.compile_resources(
 	'roobuilder-resources', 'resources/gresources.xml',
-	source_dir: [ 'resources/Editors', 'resources/css', 'resources/data', 'resources/glade-icons', 'resources/html', 'resources/images', 'resources/doc', 'resources/doc/css-bootstrap4', 'resources/doc/css-bootstrap', 'resources/doc/css-bootstrap/font-awesome' ],
+	source_dir: [ 'resources/Editors', 'resources/css', 'resources/data', 'resources/doc', 'resources/doc/css-bootstrap', 'resources/doc/css-bootstrap/font-awesome', 'resources/doc/css-bootstrap4', 'resources/glade-icons', 'resources/html', 'resources/images' ],
 	c_name: 'roobuilder_resources' 
 )
 

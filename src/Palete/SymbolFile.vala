@@ -155,6 +155,21 @@ namespace Palete {
 		}
 		*/
 		
+		public Symbol? getSymbolAt(int line, int col)
+		{
+			GLib.debug("Searching for symbol @%d:%d", line,col);
+			for(var i = 0; i < this.children.get_n_items();i++) {
+				var s = (Symbol) this.children.get_item(i);
+				var ret = s.getSymbolAt(line,col);
+				if (ret != null) {
+					GLib.debug("got symbol %s", ret.dumpToString());
+					return ret;
+				}
+			}
+			return null;
+		}
+		
+		
 		public void dump()
 		{
 			print("File %s (%d)\n", this.path, (int)this.version);
@@ -427,6 +442,19 @@ namespace Palete {
 				parent.end_line =  c.end_line;
 				parent.end_col = c.end_line;
 			}
+		}
+		
+		public Json.Array symbolsToJSON()
+		{
+			var ret = new Json.Array();
+		 
+		 	if (this.children.n_items < 1) {
+		 		return ret;
+		 	}
+		 	for(var i =0 ;i < this.children.n_items; i++)   {
+		 		ret.add_element(Json.gobject_serialize((Symbol)this.children.get_item(i))); 
+		 	}
+		 	return ret;
 		}
 	 	
 	 	

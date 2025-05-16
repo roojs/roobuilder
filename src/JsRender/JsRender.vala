@@ -142,6 +142,25 @@ namespace JsRender {
 			}
 		
 		}
+		public async void wait_for_start_of_tree_update()
+		{
+			// use interfaces if we can get this to suppor tmore...
+			var pr = (Project.Gtk)this.project;
+			if (pr != null) {
+				yield pr.symbol_builder.wait_for_start_of_run();
+			}
+		
+		}
+		public async void wait_for_end_of_tree_update()
+		{
+			// use interfaces if we can get this to suppor tmore...
+			var pr = (Project.Gtk)this.project;
+			if (pr != null) {
+				yield pr.symbol_builder.wait_for_end_of_run();
+			}
+		
+		}
+		
 		public Palete.SymbolFile? symbol_file()
 		{
 			var sm =  this.symbol_manager();
@@ -270,6 +289,11 @@ namespace JsRender {
 		public void renameTo(string name) throws  Error
 		{
 			if (this.xtype == "PlainFile") {
+				GLib.FileUtils.remove(this.path);
+				var new_path = GLib.Path.get_dirname(this.path) +"/" +  name ;;
+				this.project.renameFile(this, new_path);
+				this.path =  new_path;
+				
 				return;
 			}
 			var bjs = GLib.Path.get_dirname(this.path) +"/" +  name + ".bjs";
@@ -277,11 +301,13 @@ namespace JsRender {
 				throw new Error.RENAME_FILE_EXISTS("File exists %s\n",name);
 			}
 			GLib.FileUtils.remove(this.path);
+			this.project.renameFile(this, bjs);
 			this.removeFiles();
 			// remove other files?
 			
-           		this.name = name;
+           	this.name = name;
 			this.path = bjs;
+			
 			
 		}
 		

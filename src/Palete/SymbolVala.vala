@@ -405,9 +405,12 @@ namespace Palete {
 				 new new_parameter(builder, this, p, n++);
 			}
 			
-			if (this.file.path.has_suffix(".vala") ) {
-				this.readCodeNode(builder, sig.body);
+			if (!this.file.path.has_suffix(".vala") ) {
+				return;
 			}
+			this.readCodeNode(builder, sig.body);
+		 
+			
 			
 			 
 		}
@@ -608,7 +611,9 @@ namespace Palete {
 					//this.debugHandle(s);	
 					this.readCodeNode(builder, ss.inner);
 					break;
-				case "ValaVariable":	
+					
+					
+				case "ValaVariable":	 // abstract technically..
 				case "ValaLocalVariable":
 				
 					var ss = s as Vala.Variable;
@@ -861,6 +866,11 @@ namespace Palete {
 			this.sequence = parent.sequence_count++;
 
 			this.setParent(parent);
+			
+			if (c is Vala.LocalVariable || c is Vala.Parameter) {
+				this.is_local_var  =   true;
+			}
+			 
 		}
 		/*
 		public SymbolVala.new_variable_from_foreach(ValaSymbolBuilder builder, Symbol? parent, Vala.ForeachStatement c)	

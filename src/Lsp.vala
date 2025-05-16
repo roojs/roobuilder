@@ -635,6 +635,9 @@ namespace Lsp {
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) {
             error ("deserialization not supported");
         }
+        public void add(CompletionItem item) {
+        		this.items.add(item);
+        }
     }
 
     [CCode (default_value = "LSP_COMPLETION_TRIGGER_KIND_Invoked")]
