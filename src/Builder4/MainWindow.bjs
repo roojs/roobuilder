@@ -575,8 +575,8 @@
             },
             {
              "# GLib.ListStore notices" : "null",
+             "# Xcls_ValaCompileErrors popup" : "",
              "$ xns" : "Gtk",
-             "Xcls_ValaCompileErrors popup" : "",
              "id" : "statusbar_depricated",
              "items" : [
               {
@@ -614,7 +614,6 @@
                "}"
               ]
              },
-             "string label" : "0 Depricated",
              "xtype" : "Button",
              "| void setNotices" : [
               "",

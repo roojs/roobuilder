@@ -1534,7 +1534,6 @@ public class Xcls_MainWindow : Object
 			this.notices = null;
 
 			// set gobject values
-			this.el.label = "0 Depricated";
 			var child_1 = new Xcls_Box473( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
