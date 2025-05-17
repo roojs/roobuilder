@@ -435,8 +435,8 @@
              "xtype" : "Label"
             },
             {
+             "# Xcls_ValaCompileErrors popup" : "",
              "$ xns" : "Gtk",
-             "Xcls_ValaCompileErrors popup" : "",
              "id" : "statusbar_errors",
              "items" : [
               {
