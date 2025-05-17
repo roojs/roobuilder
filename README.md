@@ -55,7 +55,7 @@ Release
     
   c) make make install
   
-    ninja -C install
+    ninja -C build install
     
   e) run it
 
