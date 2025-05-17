@@ -28,7 +28,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_errors statusbar_errors;
 	public Xcls_statusbar_errors_lbl statusbar_errors_lbl;
 	public Xcls_statusbar_warnings statusbar_warnings;
-	public Xcls_statusbar_errors_lbl statusbar_errors_lbl;
+	public Xcls_statusbar_warnings_lbl statusbar_warnings_lbl;
 	public Xcls_statusbar_depricated statusbar_depricated;
 	public Xcls_statusbar_run statusbar_run;
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
@@ -1458,8 +1458,8 @@ public class Xcls_MainWindow : Object
 			var child_1 = new Xcls_Image423( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			new Xcls_statusbar_errors_lbl( _this );
-			this.el.append( _this.statusbar_errors_lbl.el );
+			new Xcls_statusbar_warnings_lbl( _this );
+			this.el.append( _this.statusbar_warnings_lbl.el );
 		}
 
 		// user defined functions
@@ -1488,7 +1488,7 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
-	public class Xcls_statusbar_errors_lbl : Object
+	public class Xcls_statusbar_warnings_lbl : Object
 	{
 		public Gtk.Label el;
 		private Xcls_MainWindow  _this;
@@ -1497,10 +1497,10 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_statusbar_errors_lbl(Xcls_MainWindow _owner )
+		public Xcls_statusbar_warnings_lbl(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.statusbar_errors_lbl = this;
+			_this.statusbar_warnings_lbl = this;
 			this.el = new Gtk.Label( "0 Warnings" );
 
 			// my vars (dec)

@@ -523,7 +523,7 @@
                 },
                 {
                  "$ xns" : "Gtk",
-                 "id" : "statusbar_errors_lbl",
+                 "id" : "statusbar_warnings_lbl",
                  "string label" : "0 Warnings",
                  "xtype" : "Label"
                 }
