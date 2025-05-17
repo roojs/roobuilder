@@ -83,7 +83,7 @@ namespace Palete {
 				return ar;
 			}
 			this.packer_running = true;
-		    code = "var Roo;\n" + code; // inject roo varialbe so it does not get flagged as a warning 
+		   var tcode = "var Roo;\n" + code; // inject roo varialbe so it does not get flagged as a warning 
 		    
 		    ThreadFunc<bool> run = () => {
 
@@ -99,7 +99,7 @@ namespace Palete {
 			 	var p = new JSDOC.Packer(cfg);
 			 	
 			 	
-				p.packFile(code, fn,"");
+				p.packFile(tcode, fn,"");
 				 
 	 			ret = p.result;
 				Idle.add((owned) callback); 
