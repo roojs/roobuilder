@@ -32,6 +32,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_depricated statusbar_depricated;
 	public Xcls_statusbar_depricated_lbl statusbar_depricated_lbl;
 	public Xcls_statusbar_run statusbar_run;
+	public Xcls_statusbar_depricated_lbl statusbar_depricated_lbl;
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 	public Xcls_statusbar_compile_icon statusbar_compile_icon;
 	public Xcls_sidebar sidebar;
@@ -1675,6 +1676,9 @@ public class Xcls_MainWindow : Object
 			this.el.icon_name = "media-playback-start";
 			this.el.label = "Run";
 			this.el.visible = false;
+			var child_1 = new Xcls_Box503( _this );
+			child_1.ref();
+			this.el.child = child_1.el;
 
 			//listeners
 			this.el.clicked.connect( () => {
@@ -1720,6 +1724,80 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 	}
+	public class Xcls_Box503 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_MainWindow  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box503(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Image504( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			new Xcls_statusbar_depricated_lbl( _this );
+			this.el.append( _this.statusbar_depricated_lbl.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Image504 : Object
+	{
+		public Gtk.Image el;
+		private Xcls_MainWindow  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Image504(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Image();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "dialog-information";
+			this.el.margin_end = 4;
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_statusbar_depricated_lbl : Object
+	{
+		public Gtk.Label el;
+		private Xcls_MainWindow  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_statusbar_depricated_lbl(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			_this.statusbar_depricated_lbl = this;
+			this.el = new Gtk.Label( "0 Depricated" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
 
 
 	public class Xcls_statusbar_compile_spinner : Object
