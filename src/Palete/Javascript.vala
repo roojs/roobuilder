@@ -55,7 +55,7 @@ namespace Palete {
 				this.compressionErrors.begin(code, file.path, (obj, res) => {
 					try {
 						ar = this.compressionErrors.end(res); 
-					} catch (Error e) { } //dont care...
+					} catch (GLib.ThreadError e) { } //dont care...
 					file.updateErrors( ar );
 				});
 
