@@ -75,7 +75,7 @@ Build it..
 
     dpkg-buildpackage -rfakeroot -us -uc -b
 
-    flatpak-builder --force-clean --sandbox --user --install --mirror-screenshots-url=https://dl.flathub.org/repo/screenshots --repo=repo build-dir org.roojs.roobuilder.json
+    flatpak-builder   --force-clean --sandbox  --install --mirror-screenshots-url=https://dl.flathub.org/repo/screenshots --repo=repo build-dir org.roojs.roobuilder.json
 
 ---
 
