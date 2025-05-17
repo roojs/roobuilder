@@ -53,7 +53,9 @@ namespace Palete {
 			if (ex == null) {
 //				file.updateErrors( ar ); // clear old errors ?? 
 				this.compressionErrors.begin(code, file.path, (obj, res) => {
-					ar = this.compressionErrors.end(res);
+					try {
+						ar = this.compressionErrors.end(res); 
+					} catch (Error e) { } //dont care...
 					file.updateErrors( ar );
 				});
 
