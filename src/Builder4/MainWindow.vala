@@ -1562,7 +1562,7 @@ public class Xcls_MainWindow : Object
 		    }
 		    
 		    this.el.show();
-		    this.el.label = "%d/%d Depricated".printf(ferrs,(int)nots.get_n_items());
+		    _this.statusbar_depricated_lbl.el.label = "%d/%d Depricated".printf(ferrs,(int)nots.get_n_items());
 		
 		    
 		 
