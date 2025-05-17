@@ -107,7 +107,6 @@
         "libxml-2.0",
         "posix",
         "gtksourceview-5",
-        "jsonrpc-glib-1.0",
         "gio-unix-2.0",
         "libadwaita-1",
         "roojspack-1.5",

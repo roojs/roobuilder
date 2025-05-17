@@ -33,7 +33,7 @@ namespace Palete {
 		EXIT,
  	}
 
-	public abstract class LanguageClient :   Jsonrpc.Server {
+	public abstract class LanguageClient :   Object {
 	
 		public Project.Project project;
 		

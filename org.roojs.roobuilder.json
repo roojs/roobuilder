@@ -1,7 +1,7 @@
 {
     "app-id": "org.roojs.roobuilder",
     "runtime": "org.gnome.Sdk",
-    "runtime-version": "45",
+    "runtime-version": "47",
     "sdk": "org.gnome.Sdk",
     "sdk-extensions": [
     	"org.freedesktop.Sdk.Extension.vala"
@@ -32,7 +32,7 @@
         "*.a"
     ],
     "modules": [
-       "shared-modules/intltool/intltool-0.51.json",
+      
         {
             "name" : "jsonrpc-glib",
             "config-opts" : [
@@ -84,7 +84,7 @@
                     "tag" : "release-5.0.6"
 		        }
             ],
-    	    "post-install": [
+    	        "post-install": [
 	            "cp -a /usr/lib/sdk/vala/bin/. /app/bin/",
 	            "cp -a /usr/lib/sdk/vala/lib/. /app/lib/",
 	            "cp -a /usr/lib/sdk/vala/share/. /app/share/"

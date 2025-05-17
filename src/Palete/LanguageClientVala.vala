@@ -17,7 +17,7 @@ namespace Palete {
 		private GLib.SubprocessLauncher launcher = null;
 		private GLib.Subprocess? subprocess = null;
 		private IOStream? subprocess_stream = null;
-	    public Jsonrpc.Client? jsonrpc_client = null;
+	   // public Jsonrpc.Client? jsonrpc_client = null;
 		
 		int countdown = 0;
 		Gee.ArrayList<JsRender.JsRender> open_files;
@@ -42,13 +42,14 @@ namespace Palete {
 		void startServer()
 		{
 			return;
-			var exe = GLib.Environment.find_program_in_path( "vala-language-server");
+			/*var exe = GLib.Environment.find_program_in_path( "vala-language-server");
 			if (exe == null) {
 				GLib.warning("could not find vala-language-server");
 				 
 				return;
 			}
 			this.initProcess(exe);
+			*/
 		}
 		
 		
@@ -108,7 +109,7 @@ namespace Palete {
 	 
 		
 	 
-		
+	/*	
 		
 		public bool initProcess(string process_path)
 		{
@@ -173,7 +174,7 @@ namespace Palete {
 	      	}
             return true;
         }
-        bool in_close = false;
+
 		public override void client_accepted (Jsonrpc.Client client) 
 		{
 			if (this.jsonrpc_client == null) {
@@ -199,8 +200,9 @@ namespace Palete {
 			 
 		}
 		
-		
+		*/
 		public override   void  initialize_server()   {
+			/*
 			try {
 				Variant? return_value;
 				    this.jsonrpc_client.call (
@@ -231,8 +233,10 @@ namespace Palete {
 				GLib.debug ("LS replied with error %s", e.message);
 				this.onClose();
 			}
-			
+			*/
 		}
+		
+        bool in_close = false;
 		void onClose()
 	 	{
 	 		if (this.in_close) {
@@ -245,13 +249,14 @@ namespace Palete {
  			this.in_close = true;
 	 		GLib.debug("onClose called");
 	 		
-	 		if (this.jsonrpc_client != null) {
+	 		/*if (this.jsonrpc_client != null) {
 	 			try {
 					this.jsonrpc_client.close();
 				} catch (GLib.Error e) {
 					GLib.debug("rpc Error close error %s", e.message);	
 				}		
 			}
+			*/
 			if (this.subprocess_stream != null) {
 				try {
 		 			this.subprocess_stream.close();
@@ -268,7 +273,7 @@ namespace Palete {
 			
 			this.launcher = null;
 			this.subprocess = null;
-			this.jsonrpc_client = null;
+			//this.jsonrpc_client = null;
 			this.closed = true;	 	
 			this.in_close = false;
 	 	}
@@ -336,6 +341,7 @@ namespace Palete {
 		public void onDiagnostic(Variant? return_value) 
 		{
 			return;
+			/*
 			//GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
 			var dg = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
 			GLib.debug("got diag for %s", dg.filename);
@@ -356,7 +362,7 @@ namespace Palete {
 			//GLib.debug("got Diagnostics for %s", f.path);
 			f.updateErrors( dg.diagnostics );
 			 
-			
+			*/
 		}
 		
 		public override void document_open (JsRender.JsRender file)  
@@ -370,7 +376,9 @@ namespace Palete {
 			this.open_files.add(file);
 			
 			
-			GLib.debug ("LS sent open");			 
+			GLib.debug ("LS sent open");		
+			return;
+			/*
  			try {
 				this.jsonrpc_client.send_notification (
 					"textDocument/didOpen",
@@ -390,20 +398,24 @@ namespace Palete {
 				this.onClose();
 				GLib.debug ("LS sent open err %s", e.message);
 			}
+			*/
 
  		}
  		
  		public override  async void document_save (JsRender.JsRender file)  
-    	{
+		{
    			if (!this.isReady()) {
 				return;
 			}
+			
 			// save only really flags the file on the server - to actually force a change update - we need to 
 			// flag it as changed.
 			yield this.document_change_force(file, file.toSource());
 			
 			this.change_queue_file = null;
 			GLib.debug ("LS send save");
+			return;
+			/*
 			 try {
 			 
 			 	var args = this.buildDict (  
@@ -428,6 +440,7 @@ namespace Palete {
 				GLib.debug ("LS   save err %s", e.message);
 				this.onClose();
 			}
+			*/
 
          
     	}
@@ -443,6 +456,8 @@ namespace Palete {
 			}
 			this.log(LanguageClientAction.CLOSE, file.path);
 			GLib.debug ("LS send close");
+			return;
+			/*
 	 		try {
 				  this.jsonrpc_client.send_notification  (
 					"textDocument/didChange",
@@ -459,7 +474,7 @@ namespace Palete {
 				GLib.debug ("LS close err %s", e.message);
 				this.onClose();
 			}
-
+			*/
          
     	}
     	
@@ -481,7 +496,7 @@ namespace Palete {
     	
 
  		public override async void document_change_force (JsRender.JsRender file, string contents)  
-    	{
+    		{
    			
    			
    			if (!this.isReady()) {
@@ -493,6 +508,8 @@ namespace Palete {
 		    if (!this.open_files.contains(file)) {
 				 this.document_open(file);
 			}  
+			return;
+			/*
 			
 			GLib.debug ("LS send change %s rev %d", file.path, file.version);
 			var ar = new Json.Array();
@@ -520,6 +537,7 @@ namespace Palete {
 				GLib.debug ("LS change err %s", e.message);
 				this.onClose();
 			}
+			*/
 
          
     	}
@@ -531,12 +549,14 @@ namespace Palete {
 				return;
 			}
  			this.log(LanguageClientAction.TERM, "SEND exit");
-		 
+		 	return;
+		 	/*
 			  this.jsonrpc_client.send_notification (
 				"exit",
 				null,
 				null 
 			);
+			*/
 			this.onClose();
 
 		}
@@ -548,6 +568,8 @@ namespace Palete {
 			}
  			this.log(LanguageClientAction.TERM, "SEND shutodwn");
 		 	this.sent_shutdown  = true;
+		 	return;
+		 	/*
 			Variant? return_value;
 			yield this.jsonrpc_client.call_async (
 				"shutdown",
@@ -556,6 +578,7 @@ namespace Palete {
 				out return_value
 			);
 			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
+			*/
 		}
 		//public async  ??/symbol (string symbol) throws GLib.Error {
 		
@@ -669,8 +692,8 @@ namespace Palete {
 		 		SymbolFormat.helpLabel(sy)
 	 		));
 	 		return retv;
-		 	
-		 	/* partial_result_token ,  work_done_token   context = null) */
+		 	/*
+		 	/* partial_result_token ,  work_done_token   context = null) 
 		 	//GLib.debug("get hover %s %d %d", file.relpath, (int)line, (int)offset);
 			var ret = new Lsp.Hover();	
 		 	//ret = null;
@@ -693,7 +716,7 @@ namespace Palete {
 		 	//GLib.debug("get hover RUN %s %d %d", file.relpath, (int)line, (int)offset);
 			
 			this.getting_hover = true;
-			
+	
 			Variant? return_value;
 			try {
 				yield this.jsonrpc_client.call_async (
@@ -732,7 +755,7 @@ namespace Palete {
 			ret =  Json.gobject_deserialize ( typeof (Lsp.Hover),  json) as Lsp.Hover; 
 			
 			return ret;
-			
+			*/
  		
 
 		}
@@ -771,6 +794,7 @@ namespace Palete {
 				return ret;
 			}
 
+ 
 			
 			doc_symbol_queue_call_count++;
 			var call_id = yield this.queuer(doc_symbol_queue_call_count);
@@ -779,7 +803,8 @@ namespace Palete {
 				return ret;
 			}
 			this.getting_symbols = true;
-			
+			return ret;
+			/*
 			Variant? return_value;
 			try { 
 				yield this.jsonrpc_client.call_async (
@@ -814,7 +839,7 @@ namespace Palete {
 					 
 	 		}
 			return ret ;
-			
+			*/
  		
 		}
 		// cant seem to get this to show anything!!
@@ -826,6 +851,8 @@ namespace Palete {
 		    if (!this.isReady()) {
 				return ret;
 			}
+			return ret;
+			/*
 			Variant? return_value;
 				yield this.jsonrpc_client.call_async (
 				"textDocument/signatureHelp",
@@ -861,7 +888,7 @@ namespace Palete {
 					 
 	 		}
 			return ret ;
-			
+			*/
  		
 		}
 		// ok for general symbol search, not much details though.
@@ -874,6 +901,8 @@ namespace Palete {
 			if (!this.isReady()) {
 				return ret;
 			}
+			return ret;
+			/*
 			Variant? return_value;
 				yield this.jsonrpc_client.call_async (
 				"workspace/symbol",
@@ -886,6 +915,7 @@ namespace Palete {
 			
 GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));	
 			return ret;
+			*/
 		}
 		
 	}
