@@ -1364,7 +1364,7 @@ public class Xcls_MainWindow : Object
 		public Xcls_Label340(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "File Properties" );
+			this.el = new Gtk.Label( "0 Errors" );
 
 			// my vars (dec)
 

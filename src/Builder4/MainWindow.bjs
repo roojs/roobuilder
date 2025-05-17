@@ -453,7 +453,7 @@
                 },
                 {
                  "$ xns" : "Gtk",
-                 "string label" : "File Properties",
+                 "string label" : "0 Errors",
                  "xtype" : "Label"
                 }
                ],
