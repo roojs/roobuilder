@@ -87,7 +87,7 @@ namespace Palete {
 			this.packer_running = true;
 			var tcode = "var Roo;\n" + code; // inject roo varialbe so it does not get flagged as a warning 
 		    
-			ThreadFunc<bool> run = () => {
+			owned ThreadFunc<bool> run = () => {
 
 			// standard error format:  file %s, line %s, Error 
 			  
