@@ -1672,7 +1672,6 @@ public class Xcls_MainWindow : Object
 			this.last_request = null;
 
 			// set gobject values
-			this.el.icon_name = "media-playback-start";
 			this.el.visible = false;
 			var child_1 = new Xcls_Box503( _this );
 			child_1.ref();

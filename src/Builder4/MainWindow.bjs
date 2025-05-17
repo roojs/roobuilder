@@ -715,7 +715,6 @@
                "}"
               ]
              },
-             "string icon_name" : "media-playback-start",
              "xtype" : "Button"
             }
            ],
