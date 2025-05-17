@@ -508,6 +508,29 @@
              "$ xns" : "Gtk",
              "Xcls_ValaCompileErrors popup" : "",
              "id" : "statusbar_warnings",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+               "int spacing" : 0,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "int margin_end" : 4,
+                 "string icon_name" : "dialog-error",
+                 "xtype" : "Image"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "id" : "statusbar_errors_lbl",
+                 "string label" : "0 Errors",
+                 "xtype" : "Label"
+                }
+               ],
+               "xtype" : "Box"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "() => {",
