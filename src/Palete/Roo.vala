@@ -46,9 +46,9 @@ namespace Palete {
 				var name = o.get_string_member("name"); 
 				var prop = new Symbol.new_simple(kind, name );  
 
-				prop.rtype  = "";
+				prop.rtype  = o.get_string_member("type");
 
-				if (o.has_member("returns")  ) {
+				if (prop.rtype == "function" && o.has_member("returns")  ) {
 					var rets = o.get_array_member("returns");
 					for (var ri = 0; ri < rets.get_length(); ri++) {
 						var ro = rets.get_object_element(ri);
