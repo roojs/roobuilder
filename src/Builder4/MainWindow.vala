@@ -32,7 +32,6 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_depricated statusbar_depricated;
 	public Xcls_statusbar_depricated_lbl statusbar_depricated_lbl;
 	public Xcls_statusbar_run statusbar_run;
-	public Xcls_statusbar_depricated_lbl statusbar_depricated_lbl;
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 	public Xcls_statusbar_compile_icon statusbar_compile_icon;
 	public Xcls_sidebar sidebar;
@@ -1674,7 +1673,6 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.icon_name = "media-playback-start";
-			this.el.label = "Run";
 			this.el.visible = false;
 			var child_1 = new Xcls_Box503( _this );
 			child_1.ref();
@@ -1744,8 +1742,9 @@ public class Xcls_MainWindow : Object
 			var child_1 = new Xcls_Image504( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			new Xcls_statusbar_depricated_lbl( _this );
-			this.el.append( _this.statusbar_depricated_lbl.el );
+			var child_2 = new Xcls_Label505( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
 		}
 
 		// user defined functions
@@ -1767,14 +1766,14 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "dialog-information";
+			this.el.icon_name = "media-playback-start";
 			this.el.margin_end = 4;
 		}
 
 		// user defined functions
 	}
 
-	public class Xcls_statusbar_depricated_lbl : Object
+	public class Xcls_Label505 : Object
 	{
 		public Gtk.Label el;
 		private Xcls_MainWindow  _this;
@@ -1783,11 +1782,10 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_statusbar_depricated_lbl(Xcls_MainWindow _owner )
+		public Xcls_Label505(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.statusbar_depricated_lbl = this;
-			this.el = new Gtk.Label( "0 Depricated" );
+			this.el = new Gtk.Label( "Run" );
 
 			// my vars (dec)
 

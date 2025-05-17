@@ -645,9 +645,9 @@
              ]
             },
             {
+             "# Palete.ValaCompileRequest? last_request" : "null",
+             "# Xcls_ValaCompileErrors popup" : "",
              "$ xns" : "Gtk",
-             "Palete.ValaCompileRequest? last_request" : "null",
-             "Xcls_ValaCompileErrors popup" : "",
              "bool visible" : false,
              "id" : "statusbar_run",
              "items" : [
@@ -660,13 +660,12 @@
                 {
                  "$ xns" : "Gtk",
                  "int margin_end" : 4,
-                 "string icon_name" : "dialog-information",
+                 "string icon_name" : "media-playback-start",
                  "xtype" : "Image"
                 },
                 {
                  "$ xns" : "Gtk",
-                 "id" : "statusbar_depricated_lbl",
-                 "string label" : "0 Depricated",
+                 "string label" : "Run",
                  "xtype" : "Label"
                 }
                ],
@@ -717,7 +716,6 @@
               ]
              },
              "string icon_name" : "media-playback-start",
-             "string label" : "Run",
              "xtype" : "Button"
             }
            ],
