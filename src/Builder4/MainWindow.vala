@@ -1423,7 +1423,7 @@ public class Xcls_MainWindow : Object
 		    }
 		    
 		    this.el.show();
-		    this.el.label = "%d/%d Warnings".printf(ferrs,(int)nots.get_n_items());
+		    _this.statusbar_warnings_lbl.el.label = "%d/%d Warnings".printf(ferrs,(int)nots.get_n_items());
 		
 		    
 		 
