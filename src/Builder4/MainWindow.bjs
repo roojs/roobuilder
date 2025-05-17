@@ -588,13 +588,13 @@
                 {
                  "$ xns" : "Gtk",
                  "int margin_end" : 4,
-                 "string icon_name" : "dialog-warning",
+                 "string icon_name" : "dialog-information",
                  "xtype" : "Image"
                 },
                 {
                  "$ xns" : "Gtk",
-                 "id" : "statusbar_warnings_lbl",
-                 "string label" : "0 Warnings",
+                 "id" : "statusbar_depricated_lbl",
+                 "string label" : "0 Depricated",
                  "xtype" : "Label"
                 }
                ],
@@ -614,7 +614,6 @@
                "}"
               ]
              },
-             "string icon_name" : "dialog-information",
              "string label" : "0 Depricated",
              "xtype" : "Button",
              "| void setNotices" : [

@@ -30,7 +30,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_statusbar_warnings statusbar_warnings;
 	public Xcls_statusbar_warnings_lbl statusbar_warnings_lbl;
 	public Xcls_statusbar_depricated statusbar_depricated;
-	public Xcls_statusbar_warnings_lbl statusbar_warnings_lbl;
+	public Xcls_statusbar_depricated_lbl statusbar_depricated_lbl;
 	public Xcls_statusbar_run statusbar_run;
 	public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 	public Xcls_statusbar_compile_icon statusbar_compile_icon;
@@ -1534,7 +1534,6 @@ public class Xcls_MainWindow : Object
 			this.notices = null;
 
 			// set gobject values
-			this.el.icon_name = "dialog-information";
 			this.el.label = "0 Depricated";
 			var child_1 = new Xcls_Box473( _this );
 			child_1.ref();
@@ -1598,8 +1597,8 @@ public class Xcls_MainWindow : Object
 			var child_1 = new Xcls_Image474( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			new Xcls_statusbar_warnings_lbl( _this );
-			this.el.append( _this.statusbar_warnings_lbl.el );
+			new Xcls_statusbar_depricated_lbl( _this );
+			this.el.append( _this.statusbar_depricated_lbl.el );
 		}
 
 		// user defined functions
@@ -1621,14 +1620,14 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "dialog-warning";
+			this.el.icon_name = "dialog-information";
 			this.el.margin_end = 4;
 		}
 
 		// user defined functions
 	}
 
-	public class Xcls_statusbar_warnings_lbl : Object
+	public class Xcls_statusbar_depricated_lbl : Object
 	{
 		public Gtk.Label el;
 		private Xcls_MainWindow  _this;
@@ -1637,11 +1636,11 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_statusbar_warnings_lbl(Xcls_MainWindow _owner )
+		public Xcls_statusbar_depricated_lbl(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.statusbar_warnings_lbl = this;
-			this.el = new Gtk.Label( "0 Warnings" );
+			_this.statusbar_depricated_lbl = this;
+			this.el = new Gtk.Label( "0 Depricated" );
 
 			// my vars (dec)
 
