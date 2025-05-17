@@ -505,8 +505,8 @@
              ]
             },
             {
+             "# Xcls_ValaCompileErrors popup" : "",
              "$ xns" : "Gtk",
-             "Xcls_ValaCompileErrors popup" : "",
              "id" : "statusbar_warnings",
              "items" : [
               {
@@ -544,7 +544,6 @@
                "}"
               ]
              },
-             "string label" : "0 Warnings",
              "xtype" : "Button",
              "| void setNotices" : [
               "(GLib.ListStore nots, int ferrs ) {",
