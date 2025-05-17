@@ -1395,7 +1395,6 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "dialog-warning";
 			this.el.label = "0 Warnings";
 			var child_1 = new Xcls_Box422( _this );
 			child_1.ref();
@@ -1482,7 +1481,7 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.icon_name = "dialog-error";
+			this.el.icon_name = "dialog-warning";
 			this.el.margin_end = 4;
 		}
 
@@ -1502,7 +1501,7 @@ public class Xcls_MainWindow : Object
 		{
 			_this = _owner;
 			_this.statusbar_errors_lbl = this;
-			this.el = new Gtk.Label( "0 Errors" );
+			this.el = new Gtk.Label( "0 Warnings" );
 
 			// my vars (dec)
 

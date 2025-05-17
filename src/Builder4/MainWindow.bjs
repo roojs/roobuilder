@@ -518,13 +518,13 @@
                 {
                  "$ xns" : "Gtk",
                  "int margin_end" : 4,
-                 "string icon_name" : "dialog-error",
+                 "string icon_name" : "dialog-warning",
                  "xtype" : "Image"
                 },
                 {
                  "$ xns" : "Gtk",
                  "id" : "statusbar_errors_lbl",
-                 "string label" : "0 Errors",
+                 "string label" : "0 Warnings",
                  "xtype" : "Label"
                 }
                ],
@@ -544,7 +544,6 @@
                "}"
               ]
              },
-             "string icon_name" : "dialog-warning",
              "string label" : "0 Warnings",
              "xtype" : "Button",
              "| void setNotices" : [
