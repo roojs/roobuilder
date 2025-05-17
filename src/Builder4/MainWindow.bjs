@@ -473,7 +473,6 @@
                "}"
               ]
              },
-             "string label" : "0 Errors",
              "xtype" : "Button",
              "| void setNotices" : [
               "(GLib.ListStore nots, int ferrors ) {",

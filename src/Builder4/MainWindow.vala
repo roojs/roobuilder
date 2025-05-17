@@ -1256,7 +1256,6 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.label = "0 Errors";
 			var child_1 = new Xcls_Box338( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
