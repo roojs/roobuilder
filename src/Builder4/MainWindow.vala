@@ -1285,7 +1285,7 @@ public class Xcls_MainWindow : Object
 		    }
 		    
 		    this.el.show();
-		    this.el.label = "%d/%d Errors".printf(ferrors,(int)nots.get_n_items());
+		    _this.statusbar_errors_lbl.el.label = "%d/%d Errors".printf(ferrors,(int)nots.get_n_items());
 		
 		    
 		 
