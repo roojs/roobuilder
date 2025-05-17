@@ -102,6 +102,7 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "model",
+             "bool autoselect" : false,
              "bool can_unselect" : true,
              "id" : "projectselection",
              "items" : [
@@ -159,15 +160,11 @@
                "\t}",
                "  ",
                "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
-               "\t\t_this.btn_delproj.el.hide();",
-               "\t\t_this.btn_projprop.el.hide();",
-               "\t\t_this.btn_addfile.el.hide();",
+               "\t\t _this.btn_addfile.el.hide();",
                "\t\t//_this.btn_delfile.el.hide();",
                "\t\t ",
                "\t} else {",
-               "\t\t_this.btn_delproj.el.show();",
-               "\t\t_this.btn_projprop.el.show();",
-               "\t\t_this.btn_addfile.el.show();",
+               "\t\t _this.btn_addfile.el.show();",
                "\t\t//_this.btn_delfile.el.show(); // ??",
                "\t}",
                " ",
@@ -235,10 +232,183 @@
              ],
              "string title" : "Project",
              "xtype" : "ColumnViewColumn"
+            },
+            {
+             "$ xns" : "Gtk",
+             "listeners" : {
+              "pressed" : [
+               "(n_press, x, y) => {",
+               "",
+               "\t",
+               "\t  ",
+               "\t ",
+               "    if (_this.selectedProject == null) {",
+               " ",
+               "        GLib.debug(\"notjing selected\");",
+               "\t    return ;",
+               "    }",
+               "     ",
+               "\t_this.LeftTreeMenu.el.set_parent(_this.project_list.el);",
+               "\t",
+               " ",
+               "\t_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); ",
+               "\t",
+               "\t\t",
+               "\t_this.LeftTreeMenu.el.set_offset( ",
+               "\t\t\t(int)x  ,",
+               "\t\t\t(int)y - (int)_this.project_list.el.get_height());",
+               "",
+               "    _this.LeftTreeMenu.el.popup();",
+               "      ",
+               "}",
+               ""
+              ]
+             },
+             "uint button" : 3,
+             "xtype" : "GestureClick"
             }
            ],
            "string name" : "project-list",
            "xtype" : "ColumnView"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* pack" : false,
+           "id" : "LeftTreeMenu",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "bool has_frame" : false,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "child",
+                 "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+                 "int spacing" : 0,
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "int margin_end" : 4,
+                   "string icon_name" : "emblem-system",
+                   "xtype" : "Image"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "string label" : "Project Properties",
+                   "xtype" : "Label"
+                  }
+                 ],
+                 "xtype" : "Box"
+                }
+               ],
+               "listeners" : {
+                "clicked" : [
+                 " ( ) => {",
+                 "_this.LeftTreeMenu.el.hide();",
+                 " if (_this.selectedProject == null) {",
+                 "\t   return;",
+                 "   }",
+                 "\t_this.win.windowstate.projectPopoverShow(_this.el, ",
+                 "\t_this.selectedProject, null);",
+                 "}"
+                ]
+               },
+               "xtype" : "Button"
+              },
+              {
+               "$ xns" : "Gtk",
+               "bool has_frame" : false,
+               "label" : "Rename (not yet)",
+               "listeners" : {
+                "clicked" : [
+                 "  () => {",
+                 "_this.LeftTreeMenu.el.hide();",
+                 " ",
+                 "    ",
+                 "    ",
+                 "}"
+                ]
+               },
+               "xtype" : "Button"
+              },
+              {
+               "# DialogConfirm confirm" : "",
+               "$ xns" : "Gtk",
+               "bool has_frame" : false,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "child",
+                 "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+                 "int spacing" : 0,
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "int margin_end" : 4,
+                   "string icon_name" : "user-trash",
+                   "xtype" : "Image"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "string label" : "Delete Project",
+                   "xtype" : "Label"
+                  }
+                 ],
+                 "xtype" : "Box"
+                }
+               ],
+               "label" : "Remove from Builder",
+               "listeners" : {
+                "clicked" : [
+                 "  () => {",
+                 "    ",
+                 "    _this.LeftTreeMenu.el.hide();",
+                 "    ",
+                 "    _this.LeftTreeMenu.el.hide();",
+                 "\t if (_this.selectedProject == null) {",
+                 "\t\t   return;",
+                 "\t   }",
+                 "   \tif (this.confirm == null) {",
+                 "  \t\tthis.confirm = new DialogConfirm();",
+                 "   \t\tthis.confirm.el.set_transient_for(_this.el);",
+                 "\t}",
+                 "\t",
+                 "\tvar project  = (Project.Project) _this.projectsort.el.get_item(",
+                 "\t\t_this.projectselection.el.selected",
+                 "\t\t);",
+                 "\t",
+                 "\tthis.confirm.el.response.connect((res) => {",
+                 "\t\tthis.confirm.el.hide();",
+                 "\t\tif (res == Gtk.ResponseType.CANCEL) {",
+                 "\t\t\treturn;",
+                 "\t\t}",
+                 "\t   project  = (Project.Project) _this.projectsort.el.get_item(",
+                 "\t\t\t_this.projectselection.el.selected",
+                 "\t\t);",
+                 "\t\tProject.Project.remove(project);",
+                 "\t  _this.projectmodel.remove(project);",
+                 "\t\t_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
+                 "\t",
+                 "\t});",
+                 "  \tthis.confirm.showIt(\"Confirm Delete Project\", \"Are you sure you want to delete this project?\");",
+                 "",
+                 "    ",
+                 "}"
+                ]
+               },
+               "xtype" : "Button"
+              }
+             ],
+             "xtype" : "Box"
+            }
+           ],
+           "xtype" : "Popover"
           }
          ],
          "xtype" : "ScrolledWindow"
@@ -347,8 +517,10 @@
                  "xtype" : "GestureClick"
                 },
                 {
+                 "$ uint selected" : " Gtk.INVALID_LIST_POSITION",
                  "$ xns" : "Gtk",
                  "* prop" : "model",
+                 "bool autoselect" : false,
                  "bool can_unselect" : true,
                  "id" : "iconsel",
                  "items" : [
@@ -539,6 +711,7 @@
            "int width_request" : 200,
            "items" : [
             {
+             "# Gtk.CssProvider css" : "",
              "$ xns" : "Gtk",
              "* init" : [
               "{",
@@ -554,7 +727,6 @@
               "min-width: 24px;",
               "}",
               "\");",
-              "",
               "\tGtk.StyleContext.add_provider_for_display(",
               "\t\tthis.el.get_display(),",
               "\t\tthis.css,",
@@ -565,7 +737,6 @@
               ""
              ],
              "* prop" : "child",
-             "Gtk.CssProvider css" : "",
              "id" : "treeview",
              "items" : [
               {
@@ -602,6 +773,7 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
+               "bool autoselect" : false,
                "bool can_unselect" : true,
                "id" : "treeselmodel",
                "items" : [
@@ -941,6 +1113,7 @@
          ""
         ]
        },
+       "string icon_name" : "window-close-symbolic",
        "string label" : "Close / Cancel",
        "xtype" : "Button"
       },
@@ -1002,104 +1175,6 @@
         "\t_this.show(  pe.result , _this.new_window);",
         "}"
        ]
-      },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "pack_start",
-       "id" : "btn_projprop",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "child",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "int spacing" : 0,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "int margin_end" : 4,
-           "string icon_name" : "emblem-system",
-           "xtype" : "Image"
-          },
-          {
-           "$ xns" : "Gtk",
-           "string label" : "Project Properties",
-           "xtype" : "Label"
-          }
-         ],
-         "xtype" : "Box"
-        }
-       ],
-       "listeners" : {
-        "clicked" : [
-         "  ( ) => {",
-         "  // should disable the button really.",
-         "   if (_this.selectedProject == null) {",
-         "\t   return;",
-         "   }",
-         "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);",
-         " }"
-        ]
-       },
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "pack_start",
-       "DialogConfirm confirm" : "null",
-       "id" : "btn_delproj",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "child",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "int spacing" : 0,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "string icon_name" : "user-trash",
-           "xtype" : "Image"
-          },
-          {
-           "$ xns" : "Gtk",
-           "string label" : "Delete Project",
-           "xtype" : "Label"
-          }
-         ],
-         "xtype" : "Box"
-        }
-       ],
-       "listeners" : {
-        "clicked" : [
-         "  ( ) => {",
-         "  ",
-         "  ",
-         "  \tif (this.confirm == null) {",
-         "  \t\tthis.confirm = new DialogConfirm();",
-         "   \t\tthis.confirm.el.set_transient_for(_this.el);",
-         "\t}",
-         "\t",
-         "\tvar project  = (Project.Project) _this.projectsort.el.get_item(",
-         "\t\t_this.projectselection.el.selected",
-         "\t\t);",
-         "\t",
-         "\tthis.confirm.el.response.connect((res) => {",
-         "\t\tthis.confirm.el.hide();",
-         "\t\tif (res == Gtk.ResponseType.CANCEL) {",
-         "\t\t\treturn;",
-         "\t\t}",
-         "\t   project  = (Project.Project) _this.projectsort.el.get_item(",
-         "\t\t\t_this.projectselection.el.selected",
-         "\t\t);",
-         "\t\tProject.Project.remove(project);",
-         "\t  _this.projectmodel.remove(project);",
-         "\t\t_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
-         "\t",
-         "\t});",
-         "  \tthis.confirm.showIt(\"Confirm Delete Project\", \"Are you sure you want to delete this project?\");",
-         "}"
-        ]
-       },
-       "xtype" : "Button"
       },
       {
        "$ xns" : "Gtk",
@@ -1250,10 +1325,11 @@
     "     Project.Project.loadIntoStore(this.projectmodel.el);",
     "",
     "\t_this.project_list.el.set_model(_this.projectselection.el);",
-    "\t",
+    "    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; ",
+    "    GLib.debug(\"set selected to null\");",
     "\t_this.is_loading = false;",
     "    ",
-    "    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; ",
+    "",
     "\t_this.btn_delfile.el.hide();",
     " ",
     "  ",
@@ -1321,6 +1397,7 @@
     "\t ",
     "\tvar sm = this.projectselection.el;",
     "\tif (project == null) {",
+    "\t\tGLib.debug(\"set selected to null\");",
     "\t\tsm.selected = Gtk.INVALID_LIST_POSITION;",
     "\t\tthis.onProjectSelected(null);",
     "\t\treturn;",
@@ -1354,11 +1431,13 @@
     "\t",
     "\t this.el.show();",
     " this.load();",
+    " GLib.debug(\"set selected to %s\", project == null ? \"NULL\" : \"a project\");",
     "\tthis.selectProject(project);",
     "\tthis.onProjectSelected(project);   //?? twice?",
     "\t ",
     "\t    GLib.Timeout.add(500, () => {",
     "\t    \tif (project == null) {",
+    "\t    \tGLib.debug(\"set selected to null\");",
     "    \t   \t\t_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
     "\t\t\t\tthis.onProjectSelected(null); ",
     "\t",

@@ -21,7 +21,7 @@ public class Xcls_PopoverProperty : Object
 	public Xcls_kname kname;
 	public Xcls_error error;
 
-		// my vars (def)
+	// my vars (def)
 	public bool is_new;
 	public Gtk.PositionType position;
 	public signal void success (Project.Project pr, JsRender.JsRender file);
@@ -198,7 +198,7 @@ public class Xcls_PopoverProperty : Object
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box1(Xcls_PopoverProperty _owner )
@@ -212,17 +212,17 @@ public class Xcls_PopoverProperty : Object
 			this.el.homogeneous = false;
 			new Xcls_header( _this );
 			this.el.append( _this.header.el );
-			var child_2 = new Xcls_Label4( _this );
+			var child_2 = new Xcls_Label6( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 			new Xcls_ptype( _this );
 			this.el.append( _this.ptype.el );
-			var child_4 = new Xcls_Label7( _this );
+			var child_4 = new Xcls_Label9( _this );
 			child_4.ref();
 			this.el.append( child_4.el );
 			new Xcls_ktype( _this );
 			this.el.append( _this.ktype.el );
-			var child_6 = new Xcls_Label9( _this );
+			var child_6 = new Xcls_Label11( _this );
 			child_6.ref();
 			this.el.append( child_6.el );
 			new Xcls_kname( _this );
@@ -239,7 +239,7 @@ public class Xcls_PopoverProperty : Object
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_header(Xcls_PopoverProperty _owner )
@@ -267,7 +267,7 @@ public class Xcls_PopoverProperty : Object
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -303,7 +303,7 @@ public class Xcls_PopoverProperty : Object
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_headertitle(Xcls_PopoverProperty _owner )
@@ -327,7 +327,7 @@ public class Xcls_PopoverProperty : Object
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -393,16 +393,16 @@ public class Xcls_PopoverProperty : Object
 	}
 
 
-	public class Xcls_Label4 : Object
+	public class Xcls_Label6 : Object
 	{
 		public Gtk.Label el;
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_Label4(Xcls_PopoverProperty _owner )
+		public Xcls_Label6(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "Property Type (eg. property or method)" );
@@ -425,14 +425,14 @@ public class Xcls_PopoverProperty : Object
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ptype(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
 			_this.ptype = this;
-			var child_1 = new Xcls_StringList6( _this );
+			var child_1 = new Xcls_StringList8( _this );
 			child_1.ref();
 			this.el = new Gtk.DropDown( child_1.el, null );
 
@@ -466,16 +466,16 @@ public class Xcls_PopoverProperty : Object
 			
 		}
 	}
-	public class Xcls_StringList6 : Object
+	public class Xcls_StringList8 : Object
 	{
 		public Gtk.StringList el;
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_StringList6(Xcls_PopoverProperty _owner )
+		public Xcls_StringList8(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.StringList( JsRender.NodePropType.get_pulldown_list() );
@@ -489,16 +489,16 @@ public class Xcls_PopoverProperty : Object
 	}
 
 
-	public class Xcls_Label7 : Object
+	public class Xcls_Label9 : Object
 	{
 		public Gtk.Label el;
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_Label7(Xcls_PopoverProperty _owner )
+		public Xcls_Label9(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "Type or Return Type" );
@@ -521,7 +521,7 @@ public class Xcls_PopoverProperty : Object
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ktype(Xcls_PopoverProperty _owner )
@@ -539,16 +539,16 @@ public class Xcls_PopoverProperty : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label9 : Object
+	public class Xcls_Label11 : Object
 	{
 		public Gtk.Label el;
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_Label9(Xcls_PopoverProperty _owner )
+		public Xcls_Label11(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "Name" );
@@ -572,7 +572,7 @@ public class Xcls_PopoverProperty : Object
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_kname(Xcls_PopoverProperty _owner )
@@ -585,26 +585,26 @@ public class Xcls_PopoverProperty : Object
 
 			// set gobject values
 			this.el.visible = true;
-			var child_1 = new Xcls_EventControllerFocus11( _this );
+			var child_1 = new Xcls_EventControllerFocus13( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
-			var child_2 = new Xcls_EventControllerKey12( _this );
+			var child_2 = new Xcls_EventControllerKey14( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_EventControllerFocus11 : Object
+	public class Xcls_EventControllerFocus13 : Object
 	{
 		public Gtk.EventControllerFocus el;
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerFocus11(Xcls_PopoverProperty _owner )
+		public Xcls_EventControllerFocus13(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerFocus();
@@ -628,16 +628,16 @@ public class Xcls_PopoverProperty : Object
 		// user defined functions
 	}
 
-	public class Xcls_EventControllerKey12 : Object
+	public class Xcls_EventControllerKey14 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey12(Xcls_PopoverProperty _owner )
+		public Xcls_EventControllerKey14(Xcls_PopoverProperty _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -668,7 +668,7 @@ public class Xcls_PopoverProperty : Object
 		private Xcls_PopoverProperty  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_error(Xcls_PopoverProperty _owner )

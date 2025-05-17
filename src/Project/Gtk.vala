@@ -49,7 +49,7 @@ namespace Project
 		public GtkValaSettings? active_cg = null;
 		public Gee.HashMap<string,GtkValaSettings> compilegroups;
 		public Meson meson;
-		
+		public Palete.ValaSymbolBuilder symbol_builder;
 		
 		public Palete.Gtk gpalete {
 			get {
@@ -68,7 +68,7 @@ namespace Project
 		   
 	  		this.palete = new Palete.Gtk(this);
 	  		
-	  		this.gir_cache = new Gee.HashMap<string,Palete.GirObject>();
+	  		 
 			this.xtype = "Gtk";
 	  		//var gid = "project-gtk-%d".printf(gtk_id++);
 	  		//this.id = gid;
@@ -76,6 +76,7 @@ namespace Project
 	  		//this.hidden = new Gee.ArrayList<string>();
   		 	this.compilegroups = new  Gee.HashMap<string,GtkValaSettings>();
   		 	this.meson = new Meson(this);
+  		 	this.symbol_builder = new Palete.ValaSymbolBuilder(this);
 		
 		}
 		
@@ -157,7 +158,7 @@ namespace Project
 			this.gir_cache_loaded = false; // force reload of the cache if we change the packages.
 			this.gpalete.loaded = false;
 			this.initChildCache();
-			this.gir_cache = null;
+ 
 		}
 		
 		public override void onSave()
@@ -255,7 +256,78 @@ namespace Project
  		}
 		 
 		 
-		 
+		public override Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file)
+		{
+			var cgn = this.firstBuildModuleWith(file);
+			if (cgn == "") {
+				return null;
+			}
+			return this.compilegroups.get(cgn).symbolManager();
+			
+		} 
+		// is this needed? (by test code only?)
+ 		public override Palete.SymbolLoader getSymbolLoader (string? cgn) {
+ 			 if (cgn == null) {
+ 			 	GLib.error("Gtk needs a compile group");
+		 	}
+ 			return this.compilegroups.get(cgn).symbolLoader();
+ 		}
+		public override Palete.SymbolLoader? getSymbolLoaderForFile (JsRender.JsRender file) {
+			var cgn = this.firstBuildModuleWith(file);
+			if (cgn == "") {
+				return null;
+			}
+			return this.getSymbolLoader(cgn);
+		}
+		
+		
+#if VALA_0_56
+		int vala_version=56;
+#elif VALA_0_36
+		int vala_version=36;
+#endif		
+		public Gee.ArrayList<string> vapiPaths( )
+		{
+			var ret = new Gee.ArrayList<string>();
+			foreach(var k in this.packages) {
+				 
+				var path = this.packageToPath(k);
+				if (path == "" || ret.contains(path)) {
+					continue;
+				}
+				ret.add(path);
+				 
+			}
+
+
+			return ret;
+		}
+		
+		string packageToPath(string n) 
+		{
+			// only try two? = we are ignoreing our configDirectory?
+
+			var fn =  "/usr/share/vala-0.%d/vapi/%s.vapi".printf(this.vala_version, n);
+			if (FileUtils.test (fn, FileTest.EXISTS)) {
+				return fn;
+			}
+			 
+			fn =  "/usr/share/vala/vapi/%s.vapi".printf( n);
+			if (FileUtils.test (fn, FileTest.EXISTS)) {
+				return fn;
+			}
+			var vd = this.vapidirs();
+			for(var i = 0 ; i < vd.length; i++ ) {
+				fn = vd[i] + "/%s.vapi".printf( n);
+				if (!FileUtils.test (fn, FileTest.EXISTS)) {
+					return fn;
+				}
+			}
+			return "";
+			
+		}
+ 
+		
 		 
 		 
 		 
@@ -320,6 +392,10 @@ namespace Project
 			
 			
 		}
+		
+		
+		
+		
 		
 		
 		void makeTemplatedFile(string name, string[] str, string replace) 
@@ -425,7 +501,7 @@ build/
 	}
 			
 		
-		 public override void   initDatabase()
+		public override void   initDatabase()
 		{
 		     // nOOP
 		}

@@ -55,8 +55,8 @@ public class Xcls_PopoverAddObject : Object
 	public void show (Palete.Palete pal, string cls,  Gtk.Widget onbtn) {
 	
 	     
-	
-	    var tr = pal.getChildList(cls, false);
+		var sl = this.mainwindow.windowstate.file.getSymbolLoader();
+	    var tr = pal.getChildListFromSymbols(sl, cls, false);
 	    var m = (GLib.ListStore) _this.model.el.model;
 		m.remove_all();
 	
@@ -70,13 +70,13 @@ public class Xcls_PopoverAddObject : Object
 			 
 	
 			GLib.debug("add to model: %s", dname);		
-			m.append(pal.fqnToNode(dname));
+			m.append(pal.fqnToNode(sl, dname));
 		}
 		 m.sort( (a, b) => {
 	
-				return Posix.strcmp( ((JsRender.Node)a).fqn(),  ((JsRender.Node)b).fqn());
-				
-			});
+			return Posix.strcmp( ((JsRender.Node)a).fqn(),  ((JsRender.Node)b).fqn());
+			
+		});
 		 
 	    
 	    var win = this.mainwindow.el;
@@ -90,6 +90,9 @@ public class Xcls_PopoverAddObject : Object
 		// max hieght ...
 	    this.el.set_size_request( 350, h); // full height?
 	
+		if (this.el.parent != null) {
+			this.el.unparent();
+		}
 	      this.el.set_parent(onbtn);
 	
 	    //if (this.el.relative_to == null) {
@@ -425,7 +428,13 @@ public class Xcls_PopoverAddObject : Object
 			 	
 			    var paintable = new Gtk.WidgetPaintable(widget);
 			    this.el.set_icon(paintable, 0,0);
-			            
+			    
+			  
+			    // the delay enables the drag to work!!!
+			    GLib.Timeout.add(100, () => {
+			 	    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
+			 	    return false;
+			    });
 			 
 			});
 			this.el.drag_end.connect( (drag, delete_data) => {

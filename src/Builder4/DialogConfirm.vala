@@ -13,19 +13,20 @@ public class DialogConfirm : Object
 		return _DialogConfirm;
 	}
 
-		// my vars (def)
+	// my vars (def)
 
 	// ctor
 	public DialogConfirm()
 	{
 		_this = this;
-		this.el = new Gtk.MessageDialog( null, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Test" );
+		this.el = new Gtk.MessageDialog( null, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, null, null );
 
 		// my vars (dec)
 
 		// set gobject values
 		this.el.title = "Please Confirm ";
 		this.el.name = "DialogConfirm";
+		this.el.text = "Test";
 		this.el.modal = true;
 		this.el.use_markup = true;
 
@@ -34,7 +35,6 @@ public class DialogConfirm : Object
 		   this.el.response(Gtk.ResponseType.CANCEL);
 		    this.el.hide();
 		    return true;
-		
 		});
 	}
 

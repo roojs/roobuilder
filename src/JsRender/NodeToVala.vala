@@ -139,18 +139,20 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		GLib.debug("calling  addMyVars");
 		
 		this.addLine();
-		this.addLine(this.ipad + "// my vars (def)");
+		this.addLine(this.pad + "// my vars (def)");
 			
 
+		var sl =  this.file.getSymbolLoader();
+		var pal = this.file.project.palete;
+		var cls = pal.getClass(sl, this.node.fqn());
  
-		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		   
 		if (cls == null) {
-			GLib.debug("Gir factory failed to find class %s", this.node.fqn());
+			GLib.debug("Symbol loader  failed to find class %s", this.node.fqn());
 			
 			//return;
 		}
-	  
+ 		sl.loadProps(cls);
 		
 			// Key = TYPE:name
 		foreach(var prop in this.node.props.values) {
@@ -175,7 +177,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				continue;
 			}
 			
-			GLib.debug("Got myvars: %s", prop.name.strip());
+			GLib.debug("Got myvars: '%s' :  %s", cls.fqn, prop.name.strip());
 			
 			if (prop.rtype.strip().length < 1) {
 				continue;
@@ -185,10 +187,14 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			if (this.node.fqn() == "Gtk.NotebookPage") {
 				isUser= true;
 			}
-			// is it a class property...
-			if (cls != null && cls.props.has_key(prop.name) && !isUser) {
+			// is it a class property.. - if so we dont add it here..
+			var pp = cls.props.get(prop.name) ;
+			if (null != pp && !isUser) {
+				
+				//GLib.debug("class has prop - %s", pp ==null ? "NULL" : pp.name);
 				continue;
 			}
+			 
 			
 			this.myvars.add(prop.name);
 			prop.start_line = this.cur_line;
@@ -309,7 +315,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	
 	protected  void addWrappedProperties()
 	{
-		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		
+		var sl =  this.file.getSymbolLoader();
+		var pal = this.file.project.palete;
+		var cls = pal.getClass(sl, this.node.fqn());
+ 
+ 
 		if (cls == null) {
 			GLib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
 			return;
@@ -321,9 +332,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			// what are the properties of this class???
 		this.addLine();
 		this.addLine(this.ipad + "// set gobject values");
-		
-		foreach(var p in cls.props.keys) { 
-		 	var val = cls.props.get(p);
+		var props = pal.getPropertiesFor(sl, this.node.fqn(), NodePropType.PROP);
+		foreach(var p in props.keys) { 
+		 	var val = props.get(p);
 			//print("Check Write %s\n", p);
 			if (!this.node.has(p)) {
 				continue;
@@ -348,13 +359,13 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			var is_raw = prop.ptype == NodePropType.RAW;
 			
 			// what's the type.. - if it's a string.. then we quote it..
-			if (val.type == "string" && !is_raw) {
+			if (val.rtype == "string" && !is_raw) {
 				 v = "\"" +  v.escape("") + "\"";
 			}
 			if (v == "TRUE" || v == "FALSE") {
 				v = v.down();
 			}
-			if (val.type == "float" && v[v.length-1] != 'f') {
+			if (val.rtype == "float" && v[v.length-1] != 'f') {
 				v += "f";
 			}
 			
@@ -572,12 +583,16 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 					: "" ) + " );");
 			return;  
 		}
-		var childcls =  this.file.project.palete.getClass(child.fqn()); // very trusting..
+		var pal = this.file.project.palete;
+		var sl  = this.file.getSymbolLoader();
+		var childcls =  pal.getClass(sl, child.fqn()); // very trusting..
+ 
 		if (childcls == null) {
 		  return;
 		}
 		// GTK4
-		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
+		var imps = sl.implementationOf(childcls.fqn);
+		var is_event = imps.contains("Gtk.EventController");
 		if (is_event) {
 		    this.addLine(this.ipad + this.this_el + "add_controller(  %s.el );".printf(childname) );
 		    return;

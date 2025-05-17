@@ -22,10 +22,11 @@ namespace Palete {
 		   // this.windowstate = null; // not ready until the UI is built.
 		    
  		}
+ 		
 
 		public string get_name ()
 		{
-		  return  "roojsbuilder";
+		  return  "roobuilder";
 		}
 
 		public int get_priority (GtkSource.CompletionContext context)
@@ -33,28 +34,193 @@ namespace Palete {
 		  return 200;
 		}
 		
+		//string trigger_char = "";
+		// trigger_word = "";
 		
 		public bool is_trigger(global::Gtk.TextIter  iter, unichar ch)
 		{
-			if (this.in_populate || ch == 32 || ch == 10) {
+			
+			GLib.debug("is_trigger %d" ,(int) ch);
+			if (this.in_populate || ch == 32 || ch == 10) { // space tab or currently populating?
+				GLib.debug("in popuplate or space/tab");
 				return false;
 			}
+			
 			if (this.editor.buffer.el.iter_has_context_class(iter, "comment") ||
 				this.editor.buffer.el.iter_has_context_class(iter, "string")
 			) { 
+				GLib.debug("comment or string");
 				return false;
 			}
+			
+			/*// at this point we need to look up in database ? for vala to see what is at the current location?
+			// 
 			var back = iter.copy();
 			back.backward_char();
 			
 			// what's the character at the iter?
 			var str = back.get_text(iter);
 			
-			GLib.debug("Previos char to trigger is '%s;", str);
+			GLib.debug("Previos char to trigger is '%s';", str);
 			
+			this.trigger_char = str;
 			
+			var ws = back.copy();
+			ws.backward_word_start();
+			str = ws.get_text(back);	
+			this.trigger_word = str;
+			GLib.debug("Previos word to trigger is '%s';", str);	
+			*/
 			return true;
 		}
+		
+		
+		string contextString(GtkSource.CompletionContext context, int max)
+		{
+			global::Gtk.TextIter begin, end;
+			if (!context.get_bounds (out begin, out end)) {
+				GLib.debug("could not get context completion");
+				return "";
+			}
+			var back = begin.copy();
+			switch (max) {
+				case 1: 
+					back.backward_char();
+					break;
+				case -1:
+					back.backward_word_start();
+					break;
+			}
+			
+			return  back.get_text(begin);
+		}
+		
+		void examineContext(GtkSource.CompletionContext context)
+		{
+			
+			global::Gtk.TextIter begin, end;
+			if (!context.get_bounds (out begin, out end)) {
+				GLib.debug("could not get context completion");
+				return;
+			}
+			
+			var back = begin.copy();
+			back.backward_char();
+			GLib.debug("Back 1 char = '%s'",  back.get_text(begin));
+			var word = begin.copy();
+			word.backward_word_start();
+			GLib.debug("Back 1 word = '%s'",  word.get_text(begin));
+			
+		
+		}
+		
+		
+		bool in_populate = false;
+	 
+		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable) 
+		{
+			GLib.debug("pupoulate async");
+			var ret = new GLib.ListStore(typeof(CompletionProposal));
+			
+			if (this.in_populate) {
+				GLib.debug("pupoulate async  - skipped waiting for reply");
+				return ret;
+			}
+			this.in_populate = true;
+
+			this.examineContext(context);
+
+			global::Gtk.TextIter begin, end;
+			Lsp.CompletionList res;
+			if (!context.get_bounds (out begin, out end)) {
+				this.in_populate = false;
+				return ret;
+			}
+		
+			 	
+			var line = end.get_line();
+			var offset =  end.get_line_offset();
+			GLib.debug("Bounds offset = begin = %d end = %d", begin.get_line_offset(), end.get_line_offset());
+			
+			
+			if (this.editor.prop != null) {
+			//	tried line -1 (does not work)
+				GLib.debug("node pad = '%s' %d", this.editor.node.node_pad, this.editor.node.node_pad.length);
+				
+				line += this.editor.prop.start_line ; 
+				// this is based on Gtk using tabs (hence 1/2 chars);
+				offset += this.editor.node.node_pad.length;
+				// javascript listeners are indented 2 more spaces.
+				if (this.editor.prop.ptype == JsRender.NodePropType.LISTENER) {
+					offset += 2;
+				}
+			} 
+			
+			var trigger_char = this.contextString(context,1);
+			var trigger_word = this.contextString(context,-1);
+			//  this should not really be slow, as it's a quick repsonse
+			//yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
+			try {
+				GLib.debug("sending request to language server %s (trigger = %s)",
+					this.file.getLanguageServer().get_type().name(),
+					trigger_char);
+				// this needs to send a request based on position of what's where..
+				
+				 
+				GLib.debug("complate call on line %d / offset %d", line,offset); 
+				res = yield this.file.getLanguageServer().completion(this.file, line, offset, trigger_char =="." ? 1 : 0, trigger_word);
+			} catch (GLib.Error e) {
+				GLib.debug("got error %s", e.message);
+				this.in_populate = false;
+				return ret;
+			}
+			
+			 
+			
+			GLib.debug("pupoulate async  - got reply");
+			this.model = new CompletionModel(this, context, res, cancellable); 
+			var word = context.get_word();
+			
+			var lc = end.copy();
+			lc.backward_char();
+			var lchar = lc.get_text(end);
+			
+			
+			GLib.debug("Context word is %s / '%s' , %d", word, lchar, (int)word.length);
+			if (word.length < 1 && lchar != ".") {
+				word = " "; // this should filter out everything, and prevent it displaying 
+			}
+			
+			var expression = new global::Gtk.PropertyExpression(typeof(CompletionProposal), null, "label");
+			this.filter = new global::Gtk.StringFilter(expression);
+			this.filter.set_search( word);
+			var  filter_model = new global::Gtk.FilterListModel(this.model, this.filter); 
+			filter.match_mode = global::Gtk.StringFilterMatchMode.PREFIX;
+			filter_model.set_incremental(true);
+			this.in_populate = false;
+			return filter_model; 
+			
+			 
+			
+		}
+
+		internal  void refilter (GtkSource.CompletionContext context, GLib.ListModel in_model)
+		{
+ 
+ 			//GLib.debug("pupoulate refilter");
+	 		if (this.filter == null) {
+	 			return;
+ 			}
+
+			var word = context.get_word();
+			GLib.debug("refilter word %s", word);
+			
+			this.filter.set_search(word);
+		 
+		
+		}
+		
+		// triggered after we get the proposal?
 		
 		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
 		{
@@ -205,93 +371,6 @@ namespace Palete {
 			}	
 		}
 
-		bool in_populate = false;
-	 
-		internal  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancellable) 
-		{
-			GLib.debug("pupoulate async");
-			var ret = new GLib.ListStore(typeof(CompletionProposal));
-			
-			if (this.in_populate) {
-				GLib.debug("pupoulate async  - skipped waiting for reply");
-				return ret;
-			}
-			this.in_populate = true;
-
-			global::Gtk.TextIter begin, end;
-			Lsp.CompletionList res;
-			if (context.get_bounds (out begin, out end)) {
-				var line = end.get_line();
-				var offset =  end.get_line_offset();
-				if (this.editor.prop != null) {
-				//	tried line -1 (does not work)
-					GLib.debug("node pad = '%s' %d", this.editor.node.node_pad, this.editor.node.node_pad.length);
-					
-					line += this.editor.prop.start_line ; 
-					// this is based on Gtk using tabs (hence 1/2 chars);
-					offset += this.editor.node.node_pad.length;
-					// javascript listeners are indented 2 more spaces.
-					if (this.editor.prop.ptype == JsRender.NodePropType.LISTENER) {
-						offset += 2;
-					}
-				} 
-				//  this should not really be slow, as it's a quick repsonse
- 				yield this.file.getLanguageServer().document_change_force(this.file, this.editor.tempFileContents());				
-				try {
-					GLib.debug("sending request to language server %s", this.file.getLanguageServer().get_type().name());
-					
-					res = yield this.file.getLanguageServer().completion(this.file, line, offset, 1);
-				} catch (GLib.Error e) {
-					GLib.debug("got error %s", e.message);
-					this.in_populate = false;
-					return ret;
-				}
-				
-			} else {
-				this.in_populate = false;
-				return ret;
-			}
-			
-			GLib.debug("pupoulate async  - got reply");
-			this.model = new CompletionModel(this, context, res, cancellable); 
-			var word = context.get_word();
-			
-			var lc = end.copy();
-			lc.backward_char();
-			var lchar = lc.get_text(end);
-			
-			
-			GLib.debug("Context word is %s / '%s' , %d", word, lchar, (int)word.length);
-			if (word.length < 1 && lchar != ".") {
-				word = " "; // this should filter out everything, and prevent it displaying 
-			}
-			
-			var expression = new global::Gtk.PropertyExpression(typeof(CompletionProposal), null, "label");
-			this.filter = new global::Gtk.StringFilter(expression);
-			this.filter.set_search( word);
-			var  filter_model = new global::Gtk.FilterListModel(this.model, this.filter); 
-			filter.match_mode = global::Gtk.StringFilterMatchMode.PREFIX;
-			filter_model.set_incremental(true);
-			this.in_populate = false;
-			return filter_model; 
-			
-			 
-			
-		}
-
-		internal  void refilter (GtkSource.CompletionContext context, GLib.ListModel in_model)
-		{
- 
- 			//GLib.debug("pupoulate refilter");
-	 		if (this.filter == null) {
-	 			return;
- 			}
-
-			var word = context.get_word();
-			this.filter.set_search(word);
-		 
-		
-		}
 
 
 /*

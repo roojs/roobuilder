@@ -5,7 +5,10 @@ namespace Project
 		public string name { get; set; }
  
 		
-		Gtk project;
+		public Gtk project {
+			get;
+			private set;
+		}
 
 		public Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
  
@@ -15,6 +18,9 @@ namespace Project
 		public bool loading_ui = true;
 		public bool is_library = false;
 		
+		Palete.SymbolFileCollection symbol_manager;
+		Palete.SymbolLoader symbol_loader;
+		
 		public GtkValaSettings(Gtk project, string name) 
 		{
 			this.name = name;
@@ -23,8 +29,11 @@ namespace Project
 		 
 			this.sources = new Gee.ArrayList<string>();
 			this.execute_args = "";
-				
+			this.symbol_manager = new Palete.SymbolFileCollection();
+			this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
 		}
+		
+		
 		 
 		public GtkValaSettings.from_json(Gtk project, Json.Object el) {
 
@@ -40,8 +49,9 @@ namespace Project
 		   }
 			// sources and packages.
 			this.sources = this.filterFiles(this.project.readArray(el.get_array_member("sources")));
-			
-
+			this.symbol_manager = new Palete.SymbolFileCollection();
+			this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
+			this.symbol_manager.loadAllFiles(this);
 		}
 		
 		// why not array of strings?
@@ -97,6 +107,18 @@ namespace Project
 			}
 			return ret;
 		}
+		// ?? needed?
+		public Palete.SymbolFileCollection symbolManager()
+		{
+			return this.symbol_manager;
+		}
+		public Palete.SymbolLoader symbolLoader()
+		{
+			return this.symbol_loader;
+		}
+		
+		
+		
 		
 		public string writeMesonExe(string resources)
 		{
@@ -142,6 +164,9 @@ pkg.generate( $(cgname)_lib,
 
 		
 		}
+		
+		
+		
 		
 	}
  }

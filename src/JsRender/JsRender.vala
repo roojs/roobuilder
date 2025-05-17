@@ -76,6 +76,7 @@ namespace JsRender {
         
 		public string title = "";  // a title.. ?? nickname.. ??? -
 
+	
 		private int _version = 1;   // should we increment this based on the node..?
 		public int version {
 			get {
@@ -91,6 +92,7 @@ namespace JsRender {
 			}
 			
 		}
+		public int64 vtime = 0; // the version modifiection time
 
 
 		public string permname;
@@ -129,8 +131,53 @@ namespace JsRender {
 		}
 
 		//public signal void changed (Node? node, string source);  (not used?)
-		public signal void navigation_tree_updated( Gee.ArrayList<Lsp.DocumentSymbol> syms);
 		 
+		public signal void symbol_tree_updated( );
+		public void update_symbol_tree()
+		{
+			// use interfaces if we can get this to suppor tmore...
+			var pr = (Project.Gtk)this.project;
+			if (pr != null) {
+				pr.symbol_builder.updateTreeFromFile(this);
+			}
+		
+		}
+		public async void wait_for_start_of_tree_update()
+		{
+			// use interfaces if we can get this to suppor tmore...
+			var pr = (Project.Gtk)this.project;
+			if (pr != null) {
+				yield pr.symbol_builder.wait_for_start_of_run();
+			}
+		
+		}
+		public async void wait_for_end_of_tree_update()
+		{
+			// use interfaces if we can get this to suppor tmore...
+			var pr = (Project.Gtk)this.project;
+			if (pr != null) {
+				yield pr.symbol_builder.wait_for_end_of_run();
+			}
+		
+		}
+		
+		public Palete.SymbolFile? symbol_file()
+		{
+			var sm =  this.symbol_manager();
+			if (sm == null) {
+				return null;
+			}
+				
+			return  sm.factory_by_path(this.path);
+		}
+		public Palete.SymbolFileCollection? symbol_manager()
+		{
+			return this.project.symbolManager(this);
+		}
+		public Palete.SymbolLoader getSymbolLoader() {
+			return this.project.getSymbolLoaderForFile(this);
+		}
+		
 		public signal void compile_notice(string type, string file, int line, string message);
 		
 		private  GLib.Icon? _icon = null;
@@ -165,6 +212,34 @@ namespace JsRender {
 		//public Xcls_Editor editor;
 		public GLib.ListStore childfiles; // used by directories..
 		
+		/*
+		private  Vala.SourceFile? _vala_source_file = null;
+		public Vala.SourceFile vala_source_file(Vala.CodeContext context, Vala.UsingDirective ns_ref) 
+		{
+		 	if (this._vala_source_file != null) {
+				return this._vala_source_file; 
+			}
+			 
+			this._vala_source_file  = new Vala.SourceFile (
+				context, // needs replacing when you use it...
+				Vala.SourceFileType.SOURCE, 
+				this.targetName() 
+			);
+			this._vala_source_file.content = this.toSourceCode();
+			this._vala_source_file.add_using_directive (ns_ref);
+			return this._vala_source_file; 
+			
+		}
+		public string vala_source_file_content {
+			private get { return ""; }
+			set  {
+				if (this._vala_source_file == null) {
+					return;
+				}
+				this._vala_source_file.content = value;
+			}
+		}
+		*/
 		
 		//abstract JsRender(Project.Project project, string path); 
 		
@@ -172,7 +247,7 @@ namespace JsRender {
 		{
 		    
 			//this.cn = new GLib.List<JsRender>();
-			GLib.debug("new jsrender %s", path);
+			//.debug("new jsrender %s", path);
 			this.path = path;
 			this.project = project;
 			this.hasParent = false;
@@ -214,6 +289,11 @@ namespace JsRender {
 		public void renameTo(string name) throws  Error
 		{
 			if (this.xtype == "PlainFile") {
+				GLib.FileUtils.remove(this.path);
+				var new_path = GLib.Path.get_dirname(this.path) +"/" +  name ;;
+				this.project.renameFile(this, new_path);
+				this.path =  new_path;
+				
 				return;
 			}
 			var bjs = GLib.Path.get_dirname(this.path) +"/" +  name + ".bjs";
@@ -221,11 +301,13 @@ namespace JsRender {
 				throw new Error.RENAME_FILE_EXISTS("File exists %s\n",name);
 			}
 			GLib.FileUtils.remove(this.path);
+			this.project.renameFile(this, bjs);
 			this.removeFiles();
 			// remove other files?
 			
-           		this.name = name;
+           	this.name = name;
 			this.path = bjs;
+			
 			
 		}
 		
@@ -797,13 +879,13 @@ namespace JsRender {
 		
 		}
 		 
-		public void updateErrors(Gee.ArrayList<Lsp.Diagnostic> new_errors) 
+		public void updateErrors(Gee.ArrayList<Lsp.Diagnostic>? new_errors) 
 		{
 			var oc = this.error_counter;
 			var skip = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
 			var rem = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
 			foreach(var old in this.errors) {
-				if (new_errors.contains(old)) {
+				if (new_errors != null && new_errors.contains(old)) {
 					skip.add(old);
 					continue;
 				}
@@ -813,11 +895,13 @@ namespace JsRender {
 			foreach(var old in  rem) {
 				this.removeError(old);
 			}
-			foreach(var err in new_errors) {
-				if (skip.contains(err)) {
-					continue;
+			if (new_errors != null) {
+				foreach(var err in new_errors) {
+					if (skip.contains(err)) {
+						continue;
+					}
+					this.addError(err);
 				}
-				this.addError(err);
 			}
 			if (oc != this.error_counter) {
 				BuilderApplication.updateCompileResults();
@@ -831,24 +915,24 @@ namespace JsRender {
 		{
 			return this.errors;
 		}
-		
+		 
 		private void addError(Lsp.Diagnostic diag)
 		{
 			
 			//GLib.debug("ADD Error %s", diag.to_string());
 			this.errors.add(diag);
 			this.project.addError(this, diag);
-			
 			this.error_counter++;
 			 
 		}
-		 
+ 
 		public void removeError(Lsp.Diagnostic diag) 
 		{
 			//GLib.debug("REMOVE Error %s", diag.to_string());
 			this.errors.remove(diag);
 			this.project.removeError(this, diag);
 			this.error_counter++;
+		 
 		}
 		public int getErrorsTotal(string category) 
 		{
@@ -879,12 +963,14 @@ namespace JsRender {
 		}
 		
 		
+		 
+		
 		
 		public abstract string language_id();
 		public abstract void save();
 		public abstract void saveHTML(string html);
 		public abstract string toSource() ;
-		public abstract string toSourceCode() ; // used by commandline tester..
+		public abstract string toSourceCode(bool force=false) ; // used by commandline tester..
 		public abstract void setSource(string str);
 		public abstract string toSourcePreview() ;
 		public abstract void removeFiles() ;

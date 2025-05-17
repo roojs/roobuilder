@@ -1,52 +1,5 @@
 
- /*
-	public class AppSettings : Object
-	{
-
-		
-		
-		// what are we going to have as settings?
-		public string roo_html_dir { get; set; }
-
-		public AppSettings()
-		{
-			this.notify.connect(() => {
-				this.save();
-			});
-		}
- 
-		public static AppSettings factory()
-		{
-			 
-			var setting_file = BuilderApplication.configDirectory() + "/builder.settings";
-			
-			if (!FileUtils.test(setting_file, FileTest.EXISTS)) {
-				 return new AppSettings();
-			}
-			string data; 
-			try { 
-				FileUtils.get_contents(setting_file, out data);
-				return Json.gobject_from_data (typeof (AppSettings), data) as AppSettings;
-			} catch (Error e) {
-			}
-			return new AppSettings();
-		}
-		public void save()
-		{
-			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
-			var setting_file = dirname + "/builder.settings";
-			string data = Json.gobject_to_data (this, null);
-			GLib.debug("saving application settings\n");
-			try {
-				FileUtils.set_contents(setting_file,   data);
-			} catch (Error e) {
-				print("Error saving app settings");
-			}
-		}
-
-		
-	}
-	*/
+  
 	
 	public static BuilderApplication application = null;
 	
@@ -59,49 +12,74 @@
 		// 
 		const OptionEntry[] options = {
 		
+		
 			
 			{ "project", 0, 0, OptionArg.STRING, ref opt_compile_project, "select a project", null },
-			{ "target", 0, 0, OptionArg.STRING, ref opt_compile_target, "Target to build", null },
+		//	{ "target", 0, 0, OptionArg.STRING, ref opt_compile_target, "Target to build", null },
 			{ "skip-linking", 0, 0, OptionArg.NONE, ref opt_skip_linking, "Do not link the files and make a binary - used to do syntax checking", null },
 			{ "skip-file", 0, 0, OptionArg.STRING, ref opt_compile_skip ,"For test compiles do not add this (usually used in conjunction with add-file ", null },
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
 			{ "output", 0, 0, OptionArg.STRING, ref opt_compile_output, "output binary file path", null },
-			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages for non-ui, or crash on warnings for gdb ", null },
+			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages for non-ui ", null },
+			{ "debug-only", 0, 0, OptionArg.STRING, ref opt_debug_only, "Show debug messages for specific files eg. Editor,CompletionProvider ", null },
+			{ "debug-critical", 0, 0, OptionArg.NONE, ref opt_debug_critical, " crash on warnings for gdb ", null },
+			{ "disable-threads", 0, 0, OptionArg.NONE, ref opt_disable_threads, "Disable threading for compiler (as it's difficult to debug) ", null },
+			
 			{ "pull-resources", 0, 0, OptionArg.NONE, ref opt_pull_resources, "Fetch the online resources", null },			
             
             // some testing code.
             { "list-projects", 0, 0,  OptionArg.NONE, ref opt_list_projects, "List Projects", null },
             { "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
-            { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file (use all to convert all of them and compare output)", null },
-            { "bjs-glade", 0, 0, OptionArg.NONE, ref opt_bjs_compile_glade, "output glade", null },
-            { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
-            { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
-            { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
-            { "language-server", 0, 0, OptionArg.STRING, ref opt_language_server, "run language server on this file", null },
-            { "drop-list", 0, 0, OptionArg.STRING, ref opt_drop_list, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
-            
+            { "test-bjs-compile", 0, 0, OptionArg.STRING, ref opt_test_bjs_compile, "convert bjs file (use all to convert all of them and compare output)", null },
+            { "test-bjs-glade", 0, 0, OptionArg.NONE, ref opt_test_bjs_compile_glade, "output glade", null },
+//            { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
+//            { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
+            { "test-language-server", 0, 0, OptionArg.STRING, ref opt_test_language_server, "run language server on this file", null },
+            { "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group (use 'none' with Roo)", null },
+            { "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_file, "symbol database dump file after loading (needs full path)", null },
+            { "test-symbol-db-json-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_json_file, "symbol database dump file to JSON after loading (needs full path)", null },
+            { "test-symbol-fqn", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_fqn, "show droplists / children from a fqn using new Symbol code", null },
+            { "test-gir-parser", 0, 0, OptionArg.NONE, ref opt_test_gir_parser, "Test Gir Parser (run with --debug)", null },
+             { "test-meson", 0, 0, OptionArg.NONE, ref opt_test_meson, "Test wriging meson and resources files - needs project and test-symbol-target", null },
+           // { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
+            { "test-symbol-json", 0, 0, OptionArg.STRING, ref opt_test_symbol_json, "dump Symbols to JSON (for testing Doc UI)", null },
+            { "test-symbol-json-tree", 0, 0, OptionArg.NONE, ref opt_test_symbol_json_tree, "dump Symbol Tree to JSON (for testing Doc UI)", null }, 
             
 			{ null }
 		};
 		public static string opt_compile_project;
-		public static string opt_compile_target;
+		//public static string opt_compile_target;
 		public static string opt_compile_skip;
 		public static string opt_compile_add;
 		public static string opt_compile_output;
-		public static string opt_bjs_compile;
-		public static string opt_bjs_compile_target;
-		public static string opt_test;  
-		public static string opt_drop_list;
-		public static string opt_language_server;
-        
-        public static bool opt_skip_linking = false;
+		public static string opt_test_bjs_compile;
+		public static string opt_test_bjs_compile_target;
+ 
+	//	public static string opt_test_fqn;
+		public static string opt_test_language_server;
+		public static string opt_test_symbol_target;
+		public static string opt_test_symbol_dump_file;
+		public static string opt_test_symbol_json_file;
+		public static string opt_test_symbol_dump_fqn;
+		public static string opt_test_symbol_json;
+		public static string opt_debug_only;
+		public static bool opt_test_symbol_json_tree;
+		
+		public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
+		public static bool opt_debug_critical = false;
+		public static bool opt_disable_threads = false;
 		public static bool opt_list_projects = false;
 		public static bool opt_list_files = false;
 		public static bool opt_pull_resources = false;
-		public static bool opt_bjs_compile_glade = false;
-        public static bool opt_bjs_test = false; 		
+		public static bool opt_test_bjs_compile_glade = false;
+		public static bool opt_test_meson = false;
+        public static bool opt_test_gir_parser = false; 		
+       
+       
+       
 		public static string _self;
+		public static string _version = "0000";
 		
 		public enum Target {
 		    INT32,
@@ -134,18 +112,10 @@
 				// this should nto happen!!?
 				GLib.error("could not read /proc/self/exe");
 			}
-			GLib.debug("SELF = %s", _self);
-			var f =  File.new_for_path(_self);
-			var dt = "0000";
-			try {
-				var fi = f.query_info("*",0);
-				dt = fi.get_creation_date_time().to_unix().to_string();
-			} catch (GLib.Error e) {
-				// skip.
-			}
+		 	 
 			
 			Object(
-				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self),dt),
+				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self), exe_version()),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
@@ -171,21 +141,44 @@
 				 
 			}
 			this.initDebug();
-			this.runTests();			
+
 			this.pullResources();
 			
 	        Project.Project.loadAll();
 			this.listProjects();
 			var cur_project = this.compileProject();
-			this.dropList(cur_project); // --drop-list
-			this.languageServer(cur_project); // --language-server			
+			//this.testFqn(cur_project); // --drop-list
+			this.testLanguageServer(cur_project); // --language-server
+			this.testCompileBjs(cur_project);
+			this.testSymbolBuilder(cur_project); // symbol builder tests
 			this.listFiles(cur_project);
-			this.testBjs(cur_project);
-			this.languageServer(cur_project);
-			this.compileBjs(cur_project);
+			//this.testBjs(cur_project);
+ 
+			
 			//this.compileVala();
-
+			
+			 // done in background thread.
 		}
+		
+	 	public static string exe_version()
+	 	{
+	 		string v= "0000";
+	 		try {
+				_self = FileUtils.read_link("/proc/self/exe");
+			} catch (Error e) {
+				// this should nto happen!!?
+				GLib.error("could not read /proc/self/exe");
+			}
+		 	var f =  File.new_for_path(_self);
+			 
+			try {
+				var fi = f.query_info("*",0);
+				v = fi.get_creation_date_time().to_unix().to_string();
+			} catch (GLib.Error e) {
+				// skip.
+			}
+			return v;
+		 }
 
 		public static Settings settings;
 
@@ -201,6 +194,9 @@
 			);
 			BuilderApplication.settings = new Settings();
 		
+			var gb = new Palete.ValaSymbolGirBuilder(true);
+			gb.ref();
+		
 			var w = new Xcls_MainWindow();
 		    w.initChildren();
 			BuilderApplication.addWindow(w);
@@ -208,7 +204,11 @@
 			// it looks like showall after children causes segfault on ubuntu 14.4
 			w.windowstate.init();
 		//	w.windowstate.showPopoverFiles(w.open_projects_btn.el, null, false);
+		
+			
 			w.show();
+
+
 		
 		}
 		
@@ -259,7 +259,17 @@
 				GLib.Log.set_default_handler( 
 				//	GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING | GLib.LogLevelFlags.LEVEL_CRITICAL, 
 					(dom, lvl, msg) => {
-
+					
+					var bits = msg.split(":");
+					if (BuilderApplication.opt_debug_only != null && 
+						!("," + BuilderApplication.opt_debug_only + ",").contains( "," + bits[0].replace(".vala", "") + ",")
+						)
+					
+					{
+						return;
+					}	
+							
+					
 					print("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
 					
 					if (dom== "GtkSourceView") { // seems to be some critical wanrings comming from gtksourceview related to insert?
@@ -268,7 +278,7 @@
 					//if (msg.contains("gdk_popup_present")) { // seems to be problems with the popup present on gtksourceview competion.
 					//	return;
 					//}
-					if (BuilderApplication.opt_debug && lvl ==  GLib.LogLevelFlags.LEVEL_CRITICAL) {
+					if (BuilderApplication.opt_debug_critical && lvl ==  GLib.LogLevelFlags.LEVEL_CRITICAL) {
 						GLib.error(msg);
 					}
 				});
@@ -298,7 +308,7 @@
 
 			
 			if (cur_project == null) {
-				GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
+				GLib.error("invalid project %s",BuilderApplication.opt_compile_project);
 			}
 			cur_project.load();
 
@@ -307,69 +317,58 @@
 			return cur_project;
 		
 		}
-		
-		void dropList(Project.Project? cur_project) {
+		/*
+		void testFqn(Project.Project? cur_project) {
 
 
-			if (cur_project== null || BuilderApplication.opt_drop_list == null) {
+			if (cur_project== null || BuilderApplication.opt_test_fqn == null) {
 				return;
 			}
+			var fqn = BuilderApplication.opt_test_fqn;
 			
 			if (BuilderApplication.opt_compile_project == null) {
 				GLib.error("need a project %s, to use --drop-list",BuilderApplication.opt_compile_project);
 			 }
-			  if (cur_project.xtype != "Gtk") {
-			 	 var rp = (Palete.Roo) cur_project.palete;
-			   	print("\n\nDropList:\n%s", geeArrayToString(rp.getDropList(BuilderApplication.opt_drop_list)));
-	 			 print("\n\nChildList:\n%s", geeArrayToString(rp.getChildList(BuilderApplication.opt_drop_list, false)));
-	 			 print("\n\nChildList \n(with props): %s", geeArrayToString(rp.getChildList(BuilderApplication.opt_drop_list, true))); 	
-	 			 
-	 			 
-	 			 print("\n\nPropsList: %s", this.girArrayToString(rp.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.PROP)));
-	  			 print("\n\nSignalList: %s", this.girArrayToString(rp.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.LISTENER)));
-	 			 
-	 			 // ctor.
-	 			  print("\n\nCtor Values: %s", rp.fqnToNode(BuilderApplication.opt_drop_list).toJsonString());
-	 			 GLib.Process.exit(Posix.EXIT_SUCCESS);
 			  
-			  
-			 
-			 }
-			 var p = (Palete.Gtk) cur_project.palete;
+			 var p = cur_project.palete;
 			
-			 print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(BuilderApplication.opt_drop_list)));
- 			 print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, false)));
- 			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, true))); 	
+			 //print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(fqn)));
+ 			// print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(fqn, false)));
+ 			// print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(fqn, true))); 	
  			 
  			 
- 			 print("\n\nPropsList: %s", this.girArrayToString(p.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.PROP)));
-  			 print("\n\nSignalList: %s", this.girArrayToString(p.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.LISTENER)));
+ 			 print("\n\nPropsList: \n%s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.PROP)));
+  			 print("\n\nSignalList:\n%s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.LISTENER)));
  			 
  			 // ctor.
- 			  print("\n\nCtor Values: %s", p.fqnToNode(BuilderApplication.opt_drop_list).toJsonString());
+ 			  print("\n\nCtor Values:\n %s", p.fqnToNode(fqn).toJsonString());
  			 
  			  GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
 		}
+		*/
 		string geeArrayToString(Gee.ArrayList<string> ar) 
 		{
 			var ret = "";
 			foreach(var n in ar) {
-			 	ret +=   n + "\n";
+			 	ret +=   ("  " + n + "\n");
 		 	 }
 		 	 return ret;
 		}
-		string girArrayToString(Gee.HashMap<string,Palete.GirObject> map) 
+		 
+		string symbolArrayToString(Gee.HashMap<string,Palete.Symbol> map) 
 		{
 			var ret = "";
-			foreach(var gi in map.values) {
-				 ret += "%s %s (%s)\n".printf(gi.type, gi.name, gi.propertyof);
-			
+			var keys = new Gee.ArrayList<string>();
+			keys.add_all(map.keys);
+			keys.sort();
+			foreach(var k in keys) {
+				var gi = map.get(k);
+				 ret += "    %s %s%s [%s]\n".printf(gi.rtype, gi.name, gi.dumpArgs(), gi.fqn.substring(0, gi.fqn.length - 1 - gi.name.length));
 			}
 			return ret;
 		
 		}
-		 
 		
 		void listFiles(Project.Project? cur_project)
 		{
@@ -388,7 +387,7 @@
 		 Test to see if the internal BJS reader/writer still outputs the same files.
 		 -- probably need this for the generator as well.
 		*/
-		
+		/*
 		void testBjs(Project.Project? cur_project)
 		{
 			if (!BuilderApplication.opt_bjs_test) {
@@ -397,19 +396,25 @@
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
+			
+			
 			print("Checking files\n");
 			try { 
 				var ar = cur_project.sortedFiles();
 				foreach(var file in ar) {
 					string oldstr;
-
+					if (file.xtype == "PlainFile") {
+						continue;
+					}
+					
 					file.loadItems();
-					GLib.FileUtils.get_contents(file.path, out oldstr);				
-					var outstr = file.toJsonString();
+					GLib.FileUtils.get_contents(file.targetName(), out oldstr);	
+					 
+					var outstr = file.toSourceCode(true); // force it.
 					if (outstr != oldstr) { 
 						
-						GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
-						print("meld  %s /tmp/%s\n", file.path,  file.name);
+						GLib.FileUtils.set_contents("/tmp/" + file.name + ".out",   outstr);
+						print("Files differ : use\n meld  %s /tmp/%s.out\n", file.targetName(),  file.name);
 						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 					}
 					print("# Files match %s\n", file.name);
@@ -424,17 +429,39 @@
 			print("All files pass");
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
-		
-		void compileBjs(Project.Project? cur_project)
+		*/
+		void testCompileBjs(Project.Project? cur_project)
 		{
-			if (BuilderApplication.opt_bjs_compile == null) {
+			if (BuilderApplication.opt_test_bjs_compile == null) {
 				return;
 			}
+			GLib.debug("Run --test-bjs-compile");
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
+			if (cur_project.xtype == "Gtk" ) {
+				if (opt_test_symbol_target == null) {
+					GLib.error("you must specify a compile target using --test-symbol-target when testing Gtk bjs generation");			
+				}
+				// 
+				var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
+				var loop = new MainLoop();
 			
-			if (BuilderApplication.opt_bjs_compile == "all") {
+				sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, (o,r )  => {
+					sb.updateBackground.end(r);
+					this.testCompileBjsReal(cur_project);
+				});
+				loop.run();
+				return;
+			}
+			this.testCompileBjsReal(cur_project);
+			
+		}
+		// wrapped so we build symbosl before calling it.
+		void testCompileBjsReal(Project.Project? cur_project)
+		{
+			GLib.debug("Run --test-bjs-compile (real)");
+			if (BuilderApplication.opt_test_bjs_compile == "all") {
 				try { 
 					var ar = cur_project.sortedFiles();
 					
@@ -445,11 +472,14 @@
 						}
     			
 
-						file.loadItems();
+						
 						var oldfn = file.targetName();
-						
-						print("\n\n\n\nFile : %s\n", oldfn);
-						
+			 			if (!GLib.FileUtils.test(oldfn, FileTest.EXISTS)) {
+			 				GLib.message("Skip %s - target does not exist", oldfn);
+			 				continue;
+		 				}
+						GLib.message("Compiling : %s", oldfn);
+						file.loadItems();
 										
 						var outstr = file.toSourceCode();
 						
@@ -478,7 +508,8 @@
 						if (outstr != oldstr) { 
 							
 							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
-							print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
+							GLib.message("Files do not match - test with:\nmeld   %s /tmp/%s\n",
+								oldfn,  file.name + ".out");
 							//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 						}						
 						//print("# Files match %s\n", file.name);
@@ -495,13 +526,13 @@
 			
 			
 			
-			var file = cur_project.getByRelPath(BuilderApplication.opt_bjs_compile);
+			var file = cur_project.getByRelPath(BuilderApplication.opt_test_bjs_compile);
 			if (file == null) {
 				// then compile them all, and compare them...
 				
 			 
 			
-				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
+				GLib.error("missing file %s in project %s", BuilderApplication.opt_test_bjs_compile, cur_project.name);
 			}
 			try {
 				file.loadItems();
@@ -509,7 +540,7 @@
 				GLib.debug("Load items failed");
 			}
 					
-			if (BuilderApplication.opt_bjs_compile_glade) {
+			if (BuilderApplication.opt_test_bjs_compile_glade) {
 				var str = file.toGlade();
 				print("%s", str);
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
@@ -545,24 +576,24 @@
 			
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
-		void languageServer(Project.Project? cur_project)
+		void testLanguageServer(Project.Project? cur_project)
 		{
-			if (BuilderApplication.opt_language_server == null) {
+			if (BuilderApplication.opt_test_language_server == null) {
 				return;
 			}
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
-			var file = cur_project.getByRelPath(BuilderApplication.opt_language_server);
+			var file = cur_project.getByRelPath(BuilderApplication.opt_test_language_server);
 			if (file == null) {
 				// then compile them all, and compare them...
 
-	 			if (!GLib.FileUtils.test(BuilderApplication.opt_language_server, FileTest.EXISTS)) {
-					GLib.error("missing file %s in project %s", BuilderApplication.opt_language_server, cur_project.name);
+	 			if (!GLib.FileUtils.test(BuilderApplication.opt_test_language_server, FileTest.EXISTS)) {
+					GLib.error("missing file %s in project %s", BuilderApplication.opt_test_language_server, cur_project.name);
 
 	 			}
 	 			// in theory we can test a vapi?
- 				file = new JsRender.PlainFile(cur_project,BuilderApplication.opt_language_server);
+ 				file = new JsRender.PlainFile(cur_project,BuilderApplication.opt_test_language_server);
 			}
 			
 			var ls = file.getLanguageServer();
@@ -595,7 +626,9 @@
 				
 				ls.documentSymbols.begin(file, (o,res) => {
 					GLib.debug("Got doc symbols return");
-					ls.documentSymbols.end(res);
+					try {
+						ls.documentSymbols.end(res);
+					} catch (GLib.Error e) {}
 				});
 				
 				return false;
@@ -606,6 +639,206 @@
 			loop.run();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
+		/**
+		language server doesnt really give us a rich data set on code,
+		so let's see if we can use the existing GIR code to gather that data.
+		*/
+		void testSymbolBuilder(Project.Project? cur_project)
+		{
+			GLib.debug("Run --test-symbol-builder-compile");
+			if (cur_project == null) {
+				return;
+			}
+			if (cur_project.xtype == "Roo") {
+				 if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
+					this.dumpSymbol(cur_project);
+					GLib.Process.exit(Posix.EXIT_SUCCESS);
+				}
+				return;
+			}
+			if (BuilderApplication.opt_test_symbol_target == null ) {
+				return;
+			}
+			
+			if (opt_test_gir_parser) {
+				 new Palete.ValaSymbolGirBuilder(false, true); //no dialog+  for compile
+				 print("Done Gir Builder\n");
+				 GLib.Process.exit(Posix.EXIT_SUCCESS);	
+			 }
+
+			
+			if (cur_project.xtype == "Gtk") { 
+				GLib.debug("running girparser");
+				new Palete.ValaSymbolGirBuilder(false, false);	// no dialog + dont forc
+   			}
+   			
+   			if (BuilderApplication.opt_test_meson) {
+   				((Project.Gtk)cur_project).meson.save();
+   				GLib.debug("meson file updated and saved");
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+   			
+   			}
+   			
+  			GLib.debug("running vapiparser");	
+			//GLib.debug("started server - sleep 30 secs so you can gdb attach");
+			//Posix.sleep( 30 );
+			 
+			var loop = new MainLoop();
+			 
+			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
+			
+			sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, (o,r )  => {
+				  sb.updateBackground.end(r);
+				
+				if (BuilderApplication.opt_test_symbol_dump_file != null) {
+					var fc = new Palete.SymbolFileCollection();
+					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_dump_file);
+					sf.loadSymbols();
+					sf.dump();
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+				}
+				if (BuilderApplication.opt_test_symbol_json_file != null) {
+					var fc = new Palete.SymbolFileCollection();
+					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_json_file);
+					sf.loadSymbols();
+					var data = this.jsonArrayToString(sf.symbolsToJSON());
+					print("%s", data);
+					GLib.Process.exit(Posix.EXIT_SUCCESS);
+				}
+
+ 
+				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
+					this.dumpSymbol(cur_project);
+				}
+				if (BuilderApplication.opt_test_symbol_json != null) {
+					this.dumpSymbolJSON(cur_project);
+				}
+				if (BuilderApplication.opt_test_symbol_json_tree) {
+					this.dumpSymbolJSONTree(cur_project);
+				}
+			
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+		 	});
+			 
+			loop.run();
+			 
+			 
+			//Palete.SymbolFile.dumpAll();
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
+		}
+		
+		void dumpSymbol(Project.Project? cur_project)
+		{
+			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
+			var pal  = cur_project.palete;
+			var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
+ 			print("\n\nPropsList:\n%s", this.symbolArrayToString(
+ 				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP)));
+			print("\n\nSignalList:\n%s",  this.symbolArrayToString(
+				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.LISTENER)));
+			
+			print("\n\nConstructors:\n%s", this.symbolArrayToString(
+				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.CTOR)));
+	
+			print("\n\nMethods:\n%s", this.symbolArrayToString(
+				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.METHOD)));
+
+			print("\n\nImplementations:\n%s", this.geeArrayToString( 
+				pal.getImplementations(sl, fqn)
+			)); 
+			print("\n\nChildList:\n%s", this.geeArrayToString(
+				pal.getChildListFromSymbols(sl , fqn, false)));	
+			print("\n\nChildList (with props):\n%s", this.geeArrayToString(
+				pal.getChildListFromSymbols(sl , fqn, true)));	
+			print("\n\nDroplist :\n%s", this.geeArrayToString(
+				pal.getDropListFromSymbols(sl , fqn)));	
+			
+		}
+		void dumpSymbolJSON(Project.Project? cur_project)
+		{
+			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
+			var pal  = cur_project.palete;
+			var fqn = BuilderApplication.opt_test_symbol_json;
+			// write to /home/xxx/.Buider/docs/{name}.json ?? 
+			var sy = sl.singleByFqn(fqn);
+			// in theory this loads up all of the types..
+			pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP);
+			
+			
+			var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
+			if (!fd.query_exists()) {
+				fd.make_directory();
+			}
+			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/" + fqn + ".json");
+			
+			var js = Json.gobject_serialize (sy) ;
+			 
+
+ 			var data = this.jsonObjectToString(js);
+ 			//print("%s\n", data);
+ 			//return;
+			var data_out = new GLib.DataOutputStream(
+              f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+ 	       );
+			data_out.put_string(data, null);
+			data_out.close(null);
+			print("Wrote : %s\n", f.get_path());
+			
+ 		}
+ 		
+ 		string jsonArrayToString(Json.Array ar)
+ 		{
+ 			var node = new Json.Node (Json.NodeType.ARRAY);
+			node.set_array (ar);
+
+			var  generator = new Json.Generator ();
+			
+			generator.set_root (node);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			return  generator.to_data (null);
+ 		}
+ 		string jsonObjectToString(Json.Node node)
+ 		{
+ 			 
+			var  generator = new Json.Generator ();
+			
+			generator.set_root (node);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			return  generator.to_data (null);
+ 		}
+ 		
+ 		
+ 		void dumpSymbolJSONTree(Project.Project? cur_project)
+		{
+			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
+			 
+			// write to /home/xxx/.Buider/docs/{name}.json ?? 
+			var ar = sl.classCacheToJSON();
+			// in theory this loads up all of the types..
+ 
+			var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
+			if (!fd.query_exists()) {
+				fd.make_directory();
+			}
+			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/_tree_.json");
+			
+		 	var data = this.jsonArrayToString(ar);
+ 			//print("%s\n", data);
+ 			//return;
+			var data_out = new GLib.DataOutputStream(
+              f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+ 	       );
+			data_out.put_string(data, null);
+			data_out.close(null);
+			print("Wrote : %s\n", f.get_path());
+			
+ 		}
+		
+		
 			
 	/*	
 		void compileVala()
@@ -624,7 +857,7 @@
 			if (!opt_pull_resources) {
 				return;
 			}
-			var loop = new MainLoop();
+			var loop = new GLib.MainLoop();
 			Resources.singleton().updateProgress.connect((p,t) => {
 				print("Got %d/%d", (int) p,(int)t);
 				if (p == t) {
@@ -636,46 +869,7 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 		
-		
-		void runTests()
-		{
-			if (opt_test == null) {
-				return;
-			}
-			switch(opt_test) {
-				case "help":
-					print("""
-help             - list available tests
-flutter-project  -  was try and read flutter data (but desnt work.)
-""");		
-					break;
-				case "flutter-project":
-			        Project.Project.loadAll();
-					//var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
-					/*var pa = p.palete as Palete.Flutter;
-					pa.dumpusage();
-					 var ar = pa.getChildList("material.Scaffold");
-					GLib.debug("childlist for material.Scaffold is %s", 
-						string.joinv( "\n-- ", ar)
-					);
-					ar = pa.getDropList("material.MaterialApp");
-					GLib.debug("droplist for material.MaterialApp is %s", 
-						string.joinv( "\n-- ", ar)
-					);
-					*/
-					break;
-					
-				 
-					
-					
-				default:
-					print("Invalid test\n");
-					break;
-
-
-			}
-			GLib.Process.exit(Posix.EXIT_SUCCESS);		
-		}
+		 
 		
 		
 		// move to 'window colletction?
@@ -704,7 +898,7 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 				}
 			}
 			
-
+			 
 			 	
 			w.el.hide();
 			w.el.close();
@@ -864,8 +1058,4 @@ flutter-project  -  was try and read flutter data (but desnt work.)
 	 
 	}
 	
-	
-		
 
- 
- 

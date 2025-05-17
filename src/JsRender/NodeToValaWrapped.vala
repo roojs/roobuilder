@@ -40,6 +40,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 	public static string mungeFile(JsRender file) 
 	{
 		if (file.tree == null) {
+			GLib.debug("tree is empty!");
 			return "";
 		}
 
@@ -207,18 +208,9 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 
 	void addWrappedCtor()
 	{
-		// wrapped ctor..
-		// this may need to look up properties to fill in the arguments..
-		// introspection does not workk..... - as things like gtkmessagedialog
-		/*
-		if (cls == 'Gtk.Table') {
-
-		var methods = this.palete.getPropertiesFor(cls, 'methods');
-
-		print(JSON.stringify(this.palete.proplist[cls], null,4));
-		Seed.quit();
-		}
-		*/
+		 var sl =  this.file.getSymbolLoader();
+		var pal = this.file.project.palete;
+ 
 		
 		// ctor can still override.
 		if (this.node.has("* ctor")) {
@@ -234,8 +226,8 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		// used to hold label and child...
 		 
 		// is the wrapped element a struct?		
-		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
-		if (ncls != null && ncls.nodetype == "Struct") {
+		var ncls = pal.getAny(sl, this.node.fqn());
+		if (ncls != null && ncls.stype == Lsp.SymbolKind.Struct) {
 			// we can use regular setters to apply the values.
 			this.addLine(this.ipad + "this.el = " + this.node.fqn() + "();");
 			return;
@@ -292,17 +284,35 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			default:
 				break;
 		}
-		var default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);		
-		 
 		
+		sl.loadCtors(ncls);
+		var default_ctor = ncls.ctors.get(ctor.substring(1, ctor.length-1));
+		if (default_ctor == null) {
+			GLib.message("Could not find ctor '%s', '%s'",ctor, ctor.substring(1, ctor.length-1));
+			return;
+		}
+		//var default_ctor = pal.getAny(sl, this.node.fqn() + ctor);
+ 
+		 
+		GLib.debug("Got CTOR %s/%s/%s with n params %d", this.node.fqn() + ctor,
+			default_ctor.name,default_ctor.fqn, default_ctor.param_ar.size); 
 		// use the default ctor - with arguments (from properties)
 		
-		if (default_ctor != null && default_ctor.paramset != null && default_ctor.paramset.params.size > 0) {
+		if (default_ctor != null  && default_ctor.param_ar.size > 0) {
 			string[] args  = {};
-			foreach(var param in default_ctor.paramset.params) {
+			var pos = 0;
+			while (default_ctor.param_ar.has_key(pos)) {
+				var param = default_ctor.param_ar.get(pos);
+				pos++;
 				 
 				var n = param.name;
-			    GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
+				
+				 //weird shit. new Label(str) << str is actually property label
+				if (ncls.fqn == "Gtk.Label" && n == "str") {
+					n = "label";
+				}
+				
+			   // GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
 				if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;
 				}
@@ -314,7 +324,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 					
 					var v = this.node.get(n);
 
-					if (param.type == "string") {
+					if (param.rtype == "string") {
 						v = "\"" +  v.escape("") + "\"";
 					}
 					if (v == "TRUE" || v == "FALSE") {
@@ -346,15 +356,15 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 					
 					
 				 
-				if (param.type.contains("int")) {
+				if (param.rtype.contains("int")) {
 					args += "0";
 					continue;
 				}
-				if (param.type.contains("float")) {
+				if (param.rtype.contains("float")) {
 					args += "0f";
 					continue;
 				}
-				if (param.type.contains("bool")) {
+				if (param.rtype.contains("bool")) {
 					args += "true"; // always default to true?
 					continue;
 				}

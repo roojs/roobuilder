@@ -22,15 +22,20 @@ public errordomain FakeServerError {
 
 public class FakeServerCache : Object
 {
+	//public FakeServer server;
 	public string fname;
-	public  uint8[]  data;
+	public uint8[] data;
 	public string content_type;
 	public int64 size; 
 	 
 	public static Gee.HashMap<string,FakeServerCache> cache;
 	
-	public static FakeServerCache factory(string fname, string scheme)
+	public static FakeServerCache factory(WebKit.URISchemeRequest request) 
 	{
+		var fname  = request.get_path();
+		var scheme = request.get_scheme();
+		var wk = request.get_web_view();
+		 
 		if (cache == null) {
 			cache = new Gee.HashMap<string,FakeServerCache>();
 		}
@@ -39,7 +44,10 @@ public class FakeServerCache : Object
 	    if (scheme == "resources") {
 			return new FakeServerCache.from_resource(fname);
 		}
-	    
+	    if (scheme == "doc") {
+	    		var state = wk.get_data<WindowState>("windowstate");
+			return new FakeServerCache.from_doc(state, fname);
+		}
 	    if (cache.has_key(fname)) {
 			print ("CACHE got  %s\n", fname);
 			return cache.get(fname);
@@ -76,11 +84,13 @@ public class FakeServerCache : Object
 		cache.clear();
 	}
     
-	public static FakeServerCache factory_with_data(string data) {
+	public static FakeServerCache factory_with_data( string data) 
+	{
+		 
 		if (cache == null) {
 			cache = new Gee.HashMap<string,FakeServerCache>();
 		}
-		var el = new  FakeServerCache.with_data(data);
+		var el = new  FakeServerCache.with_data( data);
 		print("CACHE - store %s\n", el.fname);
 		cache.set(el.fname, el);
 		return el;
@@ -89,8 +99,9 @@ public class FakeServerCache : Object
     
     
     
-	public FakeServerCache.with_data( string data )
+	public FakeServerCache.with_data(  string data )
 	{
+		 
 		this.fname = "/" + GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, data, data.length) + ".js";
 		this.data = data.data;
 		this.content_type = "text/javascript;charset=UTF-8";
@@ -98,12 +109,106 @@ public class FakeServerCache : Object
 	 
 	  
 	}
-	public FakeServerCache.from_resource( string fname )
+	
+	public FakeServerCache.from_doc( WindowState state, string fname )
 	{
+		 
+		GLib.debug("serve doc: %s", fname);
+		var sl = state.file.getSymbolLoader();
+		var pal = state.project.palete;
+		if (fname == "/tree.json") {
+			
+			var json = sl.classCacheToJSON();
+			var  generator = new Json.Generator ();
+			var  root = new Json.Node(Json.NodeType.OBJECT);
+   			root.init_array(json);
+    
+			generator.set_root (root);
+			generator.pretty = true;
+			generator.indent = 4;
+			
+			GLib.debug("wrinte %s", BuilderApplication.configDirectory() + "/docs/tree.json");
+			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/tree.json");
+			
+ 			var data = generator.to_data (null);
+ 			var data_out = new GLib.DataOutputStream(
+              f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+ 	       );
+			data_out.put_string(data, null);
+			data_out.close(null);
+ 			
+			this.data = data.data;
+		 	this.content_type = "application/json";
+			this.size = data.length;
+			return;
+		}
+		
+		if (fname.has_prefix("/symbols/")) {
+			///symbols/Gtk.Widget.json
+			var fqn = fname.replace("/symbols/","");
+			fqn = fqn.substring(0,fqn.length-5);
+			GLib.debug("loading symbol data for %s", fqn);
+			var sy = sl.singleByFqn(fqn);
+			// in theory this loads up all of the types..
+			pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP);
+			var js = Json.gobject_serialize (sy) ;
+			var  generator = new Json.Generator ();
+			
+			generator.set_root (js);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			var data = generator.to_data (null);
+			this.data = data.data;
+		 	this.content_type = "application/json";
+			this.size = data.length;
+			state.popover_codeinfo.navigateTo(sy, false);
+			return;
+			
+		
+		}
 		
 		
+		// testing - look in 
+		var tname = GLib.Environment.get_home_dir() + "/.Builder/test-docs" + fname;
+		var  file = GLib.File.new_for_path ( tname);
+		if (file.query_exists()) {
+			this.initWithFile(file);
+			GLib.debug("Serve from   %s", tname);
+			return;
+		}
 		
+		var f = GLib. File.new_for_uri("resource:///doc"+ fname);	
+		if (f.query_exists()) {
+			this.initWithFile(f);
+			GLib.debug("Serve from   resource:///doc%s", fname);
+			return;
+		}
+		// serves up a number of things.
+		// aa.. symbol/xxxxx.json - 
+		//if (fname.has_prefix("symbol/") ) {
+		GLib.debug("Could not find %s in .Builder/test-docs or resource ", fname);	
+		 	this.data = "Not found".data;
+		 	this.content_type = "text/plain";
+			this.size = this.data.length;
+			return;
+		//}
+		
+	}
+	
+	// this is  downloaded resource
+	
+	public FakeServerCache.from_resource(   string fname )
+	{
+	 
 		this.fname = fname;
+		
+		var f = GLib. File.new_for_uri("resource://"+ fname);	
+		if (!f.query_exists()) {
+			this.initWithFile(f);
+			return;
+		}
+		
 		
 		var  file = File.new_for_path ( BuilderApplication.configDirectory() + "/resources/" + fname);
 		if (!file.query_exists()) {
@@ -112,31 +217,14 @@ public class FakeServerCache : Object
 			this.size = 0;
 			return;
 		}
-		try {
-		    var info = file.query_info(
-				     "standard::*",
-				    FileQueryInfoFlags.NONE
-		    );
-		
-		    this.content_type = info.get_content_type();
-		    this.size = info.get_size();
-		    uint8[] data;
-		     
-		     
-		    GLib.FileUtils.get_data(file.get_path(), out data);
-		    this.data = data;
-		} catch (Error e) {
-			this.data = "".data;
-			this.size = 0;
-			this.content_type = "";
-			return;
-		}
+		this.initWithFile(file);
 		
 
 	  
 	}
-	public FakeServerCache( string fname ) {
-	       
+	public FakeServerCache(  string fname ) 
+	{
+	    
 		this.fname = fname;
 		
 		var  file = File.new_for_path ( GLib.Environment.get_home_dir() + "/gitlive" + fname);
@@ -146,24 +234,7 @@ public class FakeServerCache : Object
 			this.size = 0;
 			return;
 		}
-		try { 
-		    var info = file.query_info(
-				     "standard::*",
-				    FileQueryInfoFlags.NONE
-		    );
-		    this.content_type = info.get_content_type();
-		    this.size = info.get_size();
-		    uint8[] data;
- 
-	
-		    GLib.FileUtils.get_data(file.get_path(), out data);
-		    this.data = data;
-		} catch (Error e) {
-			this.data = "".data;
-			this.size = 0;
-			this.content_type = "";
-			return;
-		}
+		this.initWithFile(file);
 
 		
 
@@ -172,12 +243,33 @@ public class FakeServerCache : Object
 	    
 
 	}
+	public void initWithFile(GLib.File file)
+	{
+		try { 
+			var info = file.query_info(
+				"standard::*",
+				FileQueryInfoFlags.NONE
+			);
+			this.content_type = info.get_content_type();
+			this.size = info.get_size();
+			uint8[] data;
+			string etag_out;
+			file.load_contents (null, out data, out etag_out);
+			this.data = data;
+		} catch (Error e) {
+			this.data = "".data;
+			this.size = 0;
+			this.content_type = "";
+			return;
+		}
+
+	}
 
  
 	public void run(WebKit.URISchemeRequest request, Cancellable? cancellable) 
 	{
 		var stream =  new GLib.MemoryInputStream.from_data (this.data,  GLib.free);
-		print("SEND %s\nwe", this.size.to_string()); 
+		GLib.debug("SEND %s", this.size.to_string()); 
 
 		request.finish(stream,
 					 this.size,
@@ -197,17 +289,36 @@ public class FakeServer : Object
 	//WebKit.WebView view;
 	
 	static WebKit.WebContext cx = null;
-	public FakeServer(WebKit.WebView wkview)
+	
+	 
+	
+	static FakeServer server_instance = null;
+	public static FakeServer server()
+	{
+		if (server_instance != null) {
+			return server_instance;
+		}
+		server_instance = new FakeServer();
+		// don't need to ref  = as it's static?
+		return server_instance;
+	
+	}
+	
+	
+	private FakeServer()
 	{
 		//this.view = wkview;
+	 
 		if (cx != null) {
 			return;
 		}
+		// first call will register  - after that all will use the same handlers.
 		 
-		 cx = WebKit.WebContext.get_default();
+		cx = WebKit.WebContext.get_default();
 		//var cx = this.view.get_context();
 		cx.register_uri_scheme("xhttp",  serve);
 		cx.register_uri_scheme("resources",  serve);
+		cx.register_uri_scheme("doc",  serve);
 		cx.set_cache_model (WebKit.CacheModel.DOCUMENT_VIEWER);
 
 		// these do not help for cross domain requests..
@@ -223,8 +334,8 @@ public class FakeServer : Object
     { 
 		// request is URISchemeRequest
 			 
-		print("REQ: %s\n",request.get_path());
-		var cdata = FakeServerCache.factory(request.get_path() , request.get_scheme());
+		print("REQ: %s   %s\n", request.get_scheme(),request.get_path());
+		var cdata = FakeServerCache.factory(request); //request.get_path() , request.get_scheme());
 	
  		if (cdata.size < 1 ) {
 			print("Skip file missing = %s/gitlive%s\n", GLib.Environment.get_home_dir() , request.get_path());

@@ -4,10 +4,10 @@
  "items" : [
   {
    "$ buttons" : "Gtk.ButtonsType.YES_NO",
-   "$ message_type" : "Gtk.MessageType.QUESTION",
    "$ modal" : true,
    "$ use_markup" : true,
    "$ xns" : "Gtk",
+   "Gtk.MessageType type" : "Gtk.MessageType.QUESTION",
    "flags" : "Gtk.DialogFlags.MODAL",
    "listeners" : {
     "close_request" : [
@@ -15,7 +15,6 @@
      "   this.el.response(Gtk.ResponseType.CANCEL);",
      "    this.el.hide();",
      "    return true;",
-     "",
      "}",
      ""
     ]

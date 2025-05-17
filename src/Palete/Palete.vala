@@ -19,7 +19,7 @@ namespace Palete
 
 		//public Gee.ArrayList<Usage> map;
 
-		public Gee.HashMap<string,GirObject> classes; // used in roo.. 
+		
 		public Gee.HashMap<string,Gee.ArrayList<string>> dropCache;
 		public Project.Project project;
 	
@@ -28,7 +28,7 @@ namespace Palete
 				// nothing?
 			this.project = project;
 			//this.map = null;
-			this.classes = null;
+		
 			this.dropCache = new Gee.HashMap<string,Gee.ArrayList<string>>() ;
         }
         
@@ -115,22 +115,107 @@ namespace Palete
 		
 			return ret;
 		}
-
- 
-		 
+		int check_syntax_counter = 0;
 		
+
+		async int queuer (int cnt) {
+			SourceFunc cb = this.queuer.callback;
+		  
+			GLib.Timeout.add(500, () => {
+		 		 GLib.Idle.add((owned) cb);
+		 		 return false;
+			});
+			
+			yield;
+			return cnt;
+		}
+
+		public async void checkSyntax(Editor editor) {
+		 
+			this.check_syntax_counter++;
+			var call_id = yield this.queuer(this.check_syntax_counter);
+			if (call_id != this.check_syntax_counter) {
+
+				return ;
+			}
+			
+			var str = editor.buffer.toString();
+			
+			// needed???
+			/*if (this.error_line > 0) {
+				 Gtk.TextIter start;
+				 Gtk.TextIter end;     
+				this.el.get_bounds (out start, out end);
+
+				this.el.remove_source_marks (start, end, null);
+			}
+			*/
+			if (str.length < 1) {
+				print("checkSyntax - empty string?\n");
+				return ;
+			}
+			
+			// bit presumptiona
+			if (editor.file.xtype == "PlainFile") {
+
+				// assume it's gtk...
+				 
+				editor.file.setSource(str);
+				BuilderApplication.showSpinner("appointment soon","document change pending");
+				editor.file.getLanguageServer().document_change(editor.file);
+				editor.file.update_symbol_tree();
+			//	_this.file.getLanguageServer().queueDocumentSymbols(_this.file);
+				// why revert??
+				//_this.file.setSource(oldcode);
+				
+				 
+				return ;
+
+			}
+		   if (editor.file == null) {
+			   return ;
+		   }
+		 
+			
+
+			  
+			 
+			GLib.debug("calling validate");    
+			// clear the buttons.
+		 	if (editor.prop.name == "xns" || editor.prop.name == "xtype") {
+				return  ;
+			}
+			var oldcode  = editor.prop.val;
+			
+			//_this.prop.val = str;
+			editor.node.updated_count++;
+			editor.file.getLanguageServer().document_change(editor.file);
+			editor.node.updated_count++;
+			//_this.prop.val = oldcode;
+			
+			
+			//print("done mark line\n");
+			 
+			return ; // at present allow saving - even if it's invalid..
+		}
+
 		
 		      
 		//public abstract void on_child_added(JsRender.Node? parent,JsRender.Node child);
 		public abstract void load();
-		public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype);
-		public abstract GirObject? getClass(string ename);
-	
-		public abstract bool typeOptions(string fqn, string key, string type, out string[] opts);
-		public abstract Gee.ArrayList<string> getChildList(string in_rval, bool with_prop);
-		public abstract Gee.ArrayList<string> getDropList(string rval);		
-		public abstract JsRender.Node fqnToNode(string fqn);
+		//public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype);
+		public abstract Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl, string fqn, JsRender.NodePropType ptype);
+		public abstract Symbol? getClass(SymbolLoader? sl, string ename);
+		public abstract Symbol? getAny(SymbolLoader? sl, string ename);
+		public abstract Gee.ArrayList<string> getImplementations(SymbolLoader? sl, string fqn);
 		
+		public abstract bool typeOptions(SymbolLoader? sl,string fqn, string key, string type, out string[] opts);
+		//public abstract Gee.ArrayList<string> getChildList(string in_rval, bool with_prop);
+		//public abstract Gee.ArrayList<string> getDropList(string rval);		
+		public abstract JsRender.Node fqnToNode(SymbolLoader? sl, string fqn);
+		public abstract Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader? sl, string in_rval, bool with_props);
+		public abstract Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string rval);
+		public abstract string symbolToSig(Symbol s);
 	}
 
 

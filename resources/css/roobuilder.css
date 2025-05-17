@@ -1,3 +1,4 @@
+#codeinfo-tree ,
 #left-tree-view { 
     font-size: 12px;
 }	
@@ -40,18 +41,16 @@
      border-bottom-color: #EEA9FF;
 }
 
-
+#codeinfo-tree indent,
+#codeinfo-tree expander,
 #left-tree-view indent,
 #left-tree-view expander
 {
-    -gtk-icon-size : 4px;
-     min-width: 4px;
+    -gtk-icon-size : 6px;
+     min-width: 6px;
 }
 
-
-#left-tree-view indent:nth-last-child(2)  {
-    min-width: 24px;
-}
+#codeinfo-tree cell,
 #left-tree-view cell {
 	padding-top: 3px;
 	padding-bottom: 3px;
@@ -128,7 +127,6 @@
 .lang-method-symbolic {
 	color : #029f2b;
 	font-weight: bold;
-
 }
 
 .lang-property-symbolic,
@@ -139,6 +137,19 @@
 	color : #666;
 
 }
+
+.lang-class-symbolic.in-active-symbol,
+.lang-constructor-symbolic.in-active-symbol,
+.lang-method-symbolic.in-active-symbol,
+.lang-property-symbolic.in-active-symbol,
+.lang-field-symbolic.in-active-symbol,
+.lang-enummember-symbolic.in-active-symbol
+{
+	font-weight: normal;
+	font-style : italic;
+}
+ 
+
 tooltip {
     padding: 1px;
     margin: 0px 0px 0px 0px;

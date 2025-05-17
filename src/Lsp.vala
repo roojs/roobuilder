@@ -93,7 +93,7 @@ namespace Lsp {
         public bool equals(Position o) {
         	return o.line == this.line && o.character == this.character;
     	}
-		
+
         public string to_string () {
             return @"$line:$character";
         }
@@ -540,6 +540,7 @@ namespace Lsp {
 
     [CCode (default_value = "LSP_SYMBOL_KIND_Variable")]
     public enum SymbolKind {
+    	Any = 0,
         File = 1,
         Module = 2,
         Namespace = 3,
@@ -565,7 +566,16 @@ namespace Lsp {
         Struct = 23,
         Event = 24,
         Operator = 25,
-        TypeParameter = 26;
+        TypeParameter = 26,
+        Delegate = 27,// ?? not standard.
+        Parameter = 28, // ?? not standard.
+        Signal = 29, // ?? not standard.
+     	Return = 30, // ?? not standard.
+        MemberAccess = 31,
+        ObjectType = 32,
+        MethodCall = 33; // ?? not standard  = generaic symbol
+        // member access
+        // keyword?
         
         public string icon () { 
 	   		return "lang-" + this.to_string().replace( "LSP_SYMBOL_KIND_", "" ).down() + "-symbolic"; 
@@ -589,6 +599,7 @@ namespace Lsp {
 		
 		
 		}
+		 
         
     }
 
@@ -623,6 +634,9 @@ namespace Lsp {
 
         public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) {
             error ("deserialization not supported");
+        }
+        public void add(CompletionItem item) {
+        		this.items.add(item);
         }
     }
 

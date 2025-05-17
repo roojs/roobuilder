@@ -82,7 +82,7 @@ namespace JsRender {
 		public   override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
 		{
 		  
-			print("load Items!\n");
+			GLib.debug("load Items!");
 			if (this.tree != null) {
 				this.loaded = true;
 			
@@ -116,8 +116,14 @@ namespace JsRender {
 		 	if (obj.has_member("gen_extended")) { // should check type really..
 				this.gen_extended = obj.get_boolean_member("gen_extended");
 			}
+			var pr = (Project.Gtk)this.project;
+			if (pr != null) {
+				pr.symbol_builder.doVapiBuildForFile(this);
+			}
+			//?? at this point?
+			// get the palete and trigger a load of the vapi data..
 			
-			 
+		///this.palete();
 			
 			// load items[0] ??? into tree...
 			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
@@ -153,20 +159,53 @@ namespace JsRender {
 	    
 	    int last_source_version = -2;
 	    string last_source;
-	    public override string toSourceCode() // no seed support currently.
+	    public override string toSourceCode(bool force=false) // no seed support currently.
 	    {
-		    if (this.version == this.last_source_version) {
+		    if (!force  && this.version == this.last_source_version) {
 		    	GLib.debug("toSource - using Cache");
+ 				
 		    	return this.last_source;
 	    	}
-	    	GLib.debug("toSource - generating %s", this.gen_extended  ? "Extended": "Wrapped");
+
+	    	//var utime = new GLib.DateTime.now();
 	    	
+	    	if (this.tree == null) {
+				var stime =  GLib.File.new_for_path(this.path).query_info( 
+					FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				var ttime =  GLib.FileUtils.test(this.targetName(), GLib.FileTest.EXISTS) ?
+					GLib.File.new_for_path(this.targetName()).query_info( 
+						FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix()
+					: 0;
+					
+				GLib.debug("toSource %s Time check targettime=%d, sourcetime = %d this.vtime = %d",
+					this.path, (int)ttime, (int)stime, (int)this.vtime
+				);
+				if ((ttime >= stime && this.vtime <= ttime) || this.vtime == 0) {
+					GLib.debug("toSource %s from existing vala file", this.path);
+					this.vtime = ttime;
+					string ret;
+					GLib.FileUtils.get_contents(this.targetName(), out ret);
+					return ret;
+				}
+				this.vtime = stime;
+				/// and return the contents of targetName..
+				// otherwise set utime = now()
+	    		this.loadItems();
+	    		 
+    		
+    		} else {
+    			this.vtime = new GLib.DateTime.now_local().to_unix();
+			}
+			GLib.debug("toSource %s -x generating %s", this.path, this.gen_extended  ? "Extended": "Wrapped");
+    		// check utime on target and source ...
 		    this.last_source =   	this.gen_extended ? 
 		 		NodeToValaExtended.mungeFile(this) :
 				NodeToValaWrapped.mungeFile(this);
 				
 		    this.last_source_version = this.version;
-		    
+ 			// set utime as now... 
+
+		     
 		    
 		    
 		    return this.last_source;
@@ -216,7 +255,7 @@ namespace JsRender {
 	        
 	    }
 	    */
-	    
+	    // full path  of target file..
 	    public override string targetName()
 	    {
 	    	return GLib.Path.get_dirname(this.path) + "/" + this.name + ".vala";

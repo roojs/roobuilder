@@ -38,7 +38,7 @@ public class ValaProjectSettingsPopover : Object
 	public Xcls_build_as_library build_as_library;
 	public Xcls_save_btn save_btn;
 
-		// my vars (def)
+	// my vars (def)
 	public Project.Callback doneObj;
 	public bool cg_loading;
 	public Xcls_MainWindow window;
@@ -149,7 +149,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_HeaderBar1(ValaProjectSettingsPopover _owner )
@@ -173,7 +173,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label2(ValaProjectSettingsPopover _owner )
@@ -196,7 +196,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box3(ValaProjectSettingsPopover _owner )
@@ -224,7 +224,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_notebook(ValaProjectSettingsPopover _owner )
@@ -255,7 +255,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_label_global(ValaProjectSettingsPopover _owner )
@@ -278,7 +278,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_label_targets(ValaProjectSettingsPopover _owner )
@@ -301,7 +301,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box7(ValaProjectSettingsPopover _owner )
@@ -333,7 +333,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box8(ValaProjectSettingsPopover _owner )
@@ -361,7 +361,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label9(ValaProjectSettingsPopover _owner )
@@ -385,7 +385,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_compile_flags(ValaProjectSettingsPopover _owner )
@@ -418,7 +418,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_generate_meson(ValaProjectSettingsPopover _owner )
@@ -449,7 +449,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box12(ValaProjectSettingsPopover _owner )
@@ -480,7 +480,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label13(ValaProjectSettingsPopover _owner )
@@ -504,7 +504,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_version(ValaProjectSettingsPopover _owner )
@@ -537,7 +537,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label15(ValaProjectSettingsPopover _owner )
@@ -561,7 +561,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_licence(ValaProjectSettingsPopover _owner )
@@ -595,7 +595,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_vapi_scroll(ValaProjectSettingsPopover _owner )
@@ -625,7 +625,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnView18(ValaProjectSettingsPopover _owner )
@@ -654,7 +654,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_NoSelection19(ValaProjectSettingsPopover _owner )
@@ -677,7 +677,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_FilterListModel20(ValaProjectSettingsPopover _owner )
@@ -701,7 +701,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SortListModel21(ValaProjectSettingsPopover _owner )
@@ -725,7 +725,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_vapimodel(ValaProjectSettingsPopover _owner )
@@ -748,7 +748,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_StringSorter23(ValaProjectSettingsPopover _owner )
@@ -771,7 +771,9 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression24(ValaProjectSettingsPopover _owner )
@@ -780,6 +782,8 @@ public class ValaProjectSettingsPopover : Object
 			this.el = new Gtk.PropertyExpression( typeof(Project.VapiSelection), null, "sortkey" );
 
 			// my vars (dec)
+			this.property_name = "sortkey";
+			this.this_type = typeof(Project.VapiSelection);
 
 			// set gobject values
 		}
@@ -795,7 +799,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_vapi_filter(ValaProjectSettingsPopover _owner )
@@ -819,7 +823,9 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression26(ValaProjectSettingsPopover _owner )
@@ -828,6 +834,8 @@ public class ValaProjectSettingsPopover : Object
 			this.el = new Gtk.PropertyExpression( typeof(Project.VapiSelection), null, "sortkey" );
 
 			// my vars (dec)
+			this.property_name = "sortkey";
+			this.this_type = typeof(Project.VapiSelection);
 
 			// set gobject values
 		}
@@ -844,7 +852,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnViewColumn27(ValaProjectSettingsPopover _owner )
@@ -868,7 +876,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory28(ValaProjectSettingsPopover _owner )
@@ -916,7 +924,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnViewColumn29(ValaProjectSettingsPopover _owner )
@@ -939,7 +947,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory30(ValaProjectSettingsPopover _owner )
@@ -997,7 +1005,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_vapi_search(ValaProjectSettingsPopover _owner )
@@ -1030,7 +1038,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Paned32(ValaProjectSettingsPopover _owner )
@@ -1058,7 +1066,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_set_vbox(ValaProjectSettingsPopover _owner )
@@ -1084,7 +1092,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ScrolledWindow34(ValaProjectSettingsPopover _owner )
@@ -1108,7 +1116,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treeview(ValaProjectSettingsPopover _owner )
@@ -1136,7 +1144,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treeselmodel(ValaProjectSettingsPopover _owner )
@@ -1160,7 +1168,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_FilterListModel37(ValaProjectSettingsPopover _owner )
@@ -1184,7 +1192,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treelistsort(ValaProjectSettingsPopover _owner )
@@ -1215,7 +1223,8 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
+		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
 		public Xcls_treelistmodel(ValaProjectSettingsPopover _owner )
@@ -1229,6 +1238,10 @@ public class ValaProjectSettingsPopover : Object
 }  );
 
 			// my vars (dec)
+			this.create_func = (item) => {
+	//GLib.debug("liststore got %s", item.get_type().name());
+	return ((JsRender.JsRender)item).childfiles;
+};
 
 			// set gobject values
 		}
@@ -1241,7 +1254,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_treemodel(ValaProjectSettingsPopover _owner )
@@ -1265,7 +1278,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_TreeListRowSorter41(ValaProjectSettingsPopover _owner )
@@ -1288,7 +1301,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_StringSorter42(ValaProjectSettingsPopover _owner )
@@ -1311,7 +1324,9 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression43(ValaProjectSettingsPopover _owner )
@@ -1320,6 +1335,8 @@ public class ValaProjectSettingsPopover : Object
 			this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
 
 			// my vars (dec)
+			this.property_name = "name";
+			this.this_type = typeof(JsRender.JsRender);
 
 			// set gobject values
 		}
@@ -1336,7 +1353,8 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
+		public Gtk.CustomFilterFunc match_func;
 
 		// ctor
 		public Xcls_CustomFilter44(ValaProjectSettingsPopover _owner )
@@ -1369,6 +1387,31 @@ public class ValaProjectSettingsPopover : Object
 } );
 
 			// my vars (dec)
+			this.match_func = (item) => { 
+	
+	var tr = ((Gtk.TreeListRow)item).get_item();
+	//GLib.debug("filter %s", tr.get_type().name());
+	var j =  (JsRender.JsRender) tr;
+	if (j.xtype == "Gtk") {
+		return true;
+	}
+	if (j.xtype != "Dir") {
+		return j.path.has_suffix(".vala") ||  j.path.has_suffix(".c");
+	}
+	// dirs..
+	 
+	for (var i =0 ; i < j.childfiles.n_items; i++) {
+		var f = (JsRender.JsRender) j.childfiles.get_item(i);
+		if (f.xtype == "Gtk") {
+			return true;
+		}
+		if (f.path.has_suffix(".vala") ||  f.path.has_suffix(".c")) {
+			return true;
+		}
+	}
+	return false;
+
+};
 
 			// set gobject values
 		}
@@ -1384,7 +1427,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_name(ValaProjectSettingsPopover _owner )
@@ -1421,7 +1464,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory46(ValaProjectSettingsPopover _owner )
@@ -1496,7 +1539,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnViewColumn47(ValaProjectSettingsPopover _owner )
@@ -1519,7 +1562,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory48(ValaProjectSettingsPopover _owner )
@@ -1586,7 +1629,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box49(ValaProjectSettingsPopover _owner )
@@ -1615,7 +1658,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box50(ValaProjectSettingsPopover _owner )
@@ -1643,7 +1686,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button51(ValaProjectSettingsPopover _owner )
@@ -1690,7 +1733,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button52(ValaProjectSettingsPopover _owner )
@@ -1735,7 +1778,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ScrolledWindow53(ValaProjectSettingsPopover _owner )
@@ -1767,7 +1810,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnView54(ValaProjectSettingsPopover _owner )
@@ -1792,7 +1835,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_target_sel(ValaProjectSettingsPopover _owner )
@@ -1805,6 +1848,8 @@ public class ValaProjectSettingsPopover : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.can_unselect = true;
+			this.el.autoselect = false;
 
 			//listeners
 			this.el.selection_changed.connect( (position, n_items) => {
@@ -1873,7 +1918,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_target_model(ValaProjectSettingsPopover _owner )
@@ -1897,7 +1942,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnViewColumn57(ValaProjectSettingsPopover _owner )
@@ -1921,7 +1966,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory58(ValaProjectSettingsPopover _owner )
@@ -1971,7 +2016,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_set_vboxb(ValaProjectSettingsPopover _owner )
@@ -2005,7 +2050,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label60(ValaProjectSettingsPopover _owner )
@@ -2027,7 +2072,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool in_insert;
 
 		// ctor
@@ -2118,7 +2163,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label62(ValaProjectSettingsPopover _owner )
@@ -2140,7 +2185,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_build_execute_args(ValaProjectSettingsPopover _owner )
@@ -2173,7 +2218,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_build_as_library(ValaProjectSettingsPopover _owner )
@@ -2210,7 +2255,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box65(ValaProjectSettingsPopover _owner )
@@ -2244,7 +2289,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button66(ValaProjectSettingsPopover _owner )
@@ -2274,7 +2319,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label67(ValaProjectSettingsPopover _owner )
@@ -2297,7 +2342,7 @@ public class ValaProjectSettingsPopover : Object
 		private ValaProjectSettingsPopover  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_save_btn(ValaProjectSettingsPopover _owner )

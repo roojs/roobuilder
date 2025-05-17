@@ -79,21 +79,23 @@ namespace JsRender {
         },
         */
 
-	public   override void	 removeFiles() {
-		if (FileUtils.test(this.path, FileTest.EXISTS)) {
-			GLib.FileUtils.remove(this.path);
-		}
-		 
-	}
-    
-	public   override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
-	{
-			if (this.loaded) {
-				return;
+		public   override void	 removeFiles() {
+			if (FileUtils.test(this.path, FileTest.EXISTS)) {
+				GLib.FileUtils.remove(this.path);
 			}
-	        GLib.FileUtils.get_contents(this.path, out this.contents);
-	        this.loaded = true;
-	}
+			 
+		}
+		
+		public   override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
+		{
+				if (this.loaded) {
+					return;
+				}
+			    GLib.FileUtils.get_contents(this.path, out this.contents);
+			    this.vtime = GLib.File.new_for_path(this.path).query_info( 
+					FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+			    this.loaded = true;
+		}
      
         
 		
@@ -102,21 +104,23 @@ namespace JsRender {
 			 return "";
 		}
 		public override void setSource(string str) {
+			this.vtime = new GLib.DateTime.now_local().to_unix();
 			this.contents = str;
+  
 		}
         public override string toSource()
         {
-			return this.contents;
+			return this.toSourceCode();
             
-             
             
         }
-		 public override string toSourceCode()
+		 public override string toSourceCode(bool force=false)
         {
-			return this.contents;
-            
-             
-            
+ 			if (!this.loaded) {
+ 				this.loadItems();
+			}
+		   return this.contents;
+           
         }
         public override void save() {
     		if (!this.loaded) {

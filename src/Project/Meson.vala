@@ -27,6 +27,19 @@ namespace Project {
 					deps += "   dependency('" + p  + "'),\n";				
 				}
 			}
+			
+			// used for xscrnsvr (add Xss) -- add -lXss to the compile flags.
+			
+			foreach(var p in this.project.compile_flags.split(" ")) {
+				if (p.strip().length < 1) {
+					continue;
+				}
+				if (!p.has_prefix("-l")) {
+					continue;
+				}
+				deps +=  "   meson.get_compiler('c').find_library('"+  p.substring(2) + "'),";
+			}
+			 
 			/*
 			  dependency('glib-2.0'),
 				dependency('gobject-2.0'), << for others.. ut will this wrok using find_lib for all?
@@ -43,6 +56,17 @@ namespace Project {
 			}
 			//vapi_dir = meson.current_source_dir() / 'vapi'
 			//add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
+			var cflags = "";
+			foreach(var p in this.project.compile_flags.split(" ")) {
+				if (p.strip().length < 1) {
+					continue;
+				}
+				if (p.has_prefix("-l")) {
+					continue;
+				}
+				cflags += "add_project_arguments(['" + p + "'], language: 'c')\n";
+			}
+
 
 			var targets = "";
 			var icons = "";
@@ -83,7 +107,7 @@ $deps
 # let Vala add the appropriate defines for GLIB_X_X
 add_project_arguments(['--target-glib=auto'], language: 'vala')
 
- 
+$cflags
 
 conf = configuration_data()
 conf.set('PROJECT_NAME', meson.project_name())

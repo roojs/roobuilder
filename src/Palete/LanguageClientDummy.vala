@@ -21,7 +21,8 @@ namespace Palete {
 		public override void document_close (JsRender.JsRender file) {}
 		public override void exit () throws GLib.Error { }
  		public override async void shutdown () throws GLib.Error { }
- 		public override async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error {
+ 		public override async Lsp.CompletionList?  completion(
+ 			JsRender.JsRender file, int line, int offset , int triggerType = 1, string pre = "") throws GLib.Error {
 			var ret = new Lsp.CompletionList();	
 			return ret;
  		}
@@ -30,7 +31,7 @@ namespace Palete {
  		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error {
  			return new Lsp.Hover();
 		}
-		public override void queueDocumentSymbols (JsRender.JsRender file) { }
+		//public override void queueDocumentSymbols (JsRender.JsRender file) { }
  		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error {
  			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
 			return ret;

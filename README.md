@@ -55,7 +55,7 @@ Release
     
   c) make make install
   
-    ninja -C install
+    ninja -C build install
     
   e) run it
 
@@ -66,10 +66,10 @@ Release
 **Notes on updating packaging..** 
 
 Update Package details.
-    Edit the about version (check debian/changelog)
     
     dch -U -i (auto increases release..)
-    dch -v {release version}
+    
+    then edit the about version (check debian/changelog)
 
 Build it..
 

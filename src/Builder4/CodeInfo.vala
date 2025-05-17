@@ -12,8 +12,18 @@ public class CodeInfo : Object
 		}
 		return _CodeInfo;
 	}
+	public Xcls_pane pane;
+	public Xcls_back_button back_button;
+	public Xcls_next_button next_button;
+	public Xcls_combo combo;
+	public Xcls_classlist_model classlist_model;
+	public Xcls_content content;
+	public Xcls_webview webview;
 
-		// my vars (def)
+	// my vars (def)
+	public Xcls_MainWindow? win;
+	public Gee.ArrayList<Palete.Symbol>? history;
+	public int history_pos;
 
 	// ctor
 	public CodeInfo()
@@ -22,125 +32,177 @@ public class CodeInfo : Object
 		this.el = new Gtk.Popover();
 
 		// my vars (dec)
+		this.win = null;
+		this.history = new Gee.ArrayList<Palete.Symbol>();
+		this.history_pos = -1;
 
 		// set gobject values
-		var child_1 = new Xcls_Paned1( _this );
-		child_1.ref();
-		this.el.child = child_1.el;
+		this.el.has_arrow = true;
+		this.el.autohide = true;
+		this.el.position = Gtk.PositionType.BOTTOM;
+		new Xcls_pane( _this );
+		this.el.child = _this.pane.el;
+
+		//listeners
+		this.el.show.connect( () => {
+		
+			// what are the coords of the parent?
+			X.WindowAttributes wa;
+			var mws = this.win.el.get_surface() as Gdk.X11.Surface;
+			var mw_xw = mws.get_xid();
+			
+			unowned X.Display mw_xd = (
+					mws.get_display() as Gdk.X11.Display
+				).get_xdisplay();	
+		
+			mw_xd.get_window_attributes(mw_xw, out  wa);
+			
+			var s = this.el.get_surface() as Gdk.X11.Surface;
+			var xw = s.get_xid();
+			
+			unowned X.Display xd = (
+					mws.get_display() as Gdk.X11.Display
+				).get_xdisplay();
+			xd.move_window(xw, wa.x+60, wa.y+100);
+			
+		
+		});
 	}
 
 	// user defined functions
-	public void show (Gtk.Widget onbtn) {
-	   this.el.set_parent(onbtn);
-		this.el.popup();
-	}
-	public class Xcls_Paned1 : Object
-	{
-		public Gtk.Paned el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Paned1(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_Notebook2( _this );
-			child_1.ref();
-			this.el.end_child = child_1.el;
-			var child_2 = new Xcls_Box5( _this );
-			child_2.ref();
-			this.el.start_child = child_2.el;
+	public void showSymbol (Palete.Symbol sy, bool load_page = true) {
+		// doesnt deal with history... - caller should do that.
+		var sl = _this.win.windowstate.file.getSymbolLoader();
+		
+		// can set this multiple times?
+		this.webview.el.set_data("windowstate", _this.win.windowstate);
+		
+		GLib.debug("showing symbol %s", sy.fqn);
+		switch(sy.stype) {
+			case Lsp.SymbolKind.Class:
+			case Lsp.SymbolKind.Struct:
+			case Lsp.SymbolKind.Namespace:
+			case Lsp.SymbolKind.Interface:
+			case Lsp.SymbolKind.Enum:
+				//_this.tree.loadClass(sy);
+			//	_this.combo.loadClass(sy);
+			//	_this.content.loadSymbol(sy);
+				if (load_page) {
+					this.webview.el.load_uri("doc://localhost/gtk.html#" + sy.fqn);
+				}
+				break;
+				
+			case Lsp.SymbolKind.Method:
+			case Lsp.SymbolKind.EnumMember:
+				var cls = sl.singleById(sy.parent_id);
+			//	_this.tree.loadClass(cls);
+		//		_this.tree.select(sy);
+		//		_this.combo.loadClass(cls);
+				if (load_page) {
+					this.webview.el.load_uri("doc://localhost/gtk.html#" + cls.fqn);
+				}
+			//	_this.content.loadSymbol(cls);
+				this.history.add(sy);
+				break;
+	
+			
+			
+			default:	
+				GLib.debug("unknown sybmol type");
+				break;
 		}
-
-		// user defined functions
+		_this.back_button.el.sensitive = this.history_pos > 0;
+		GLib.debug("hp=%d, hps = %d", this.history_pos, this.history.size);
+		_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);
+		
 	}
-	public class Xcls_Notebook2 : Object
-	{
-		public Gtk.Notebook el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_Notebook2(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Notebook();
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_NotebookPage3( _this  , this);
-			child_1.ref();
+	public void navigateTo (Palete.Symbol sy, bool load_page = true) {
+		
+		if (this.history_pos > -1) {
+			var cur = this.history.get(this.history_pos);
+			if (sy.fqn == cur.fqn) {
+				return; // same url
+			}
 		}
-
-		// user defined functions
-	}
-	public class Xcls_NotebookPage3 : Object
-	{
-		public Gtk.NotebookPage el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-		public string tab_label;
-
-		// ctor
-		public Xcls_NotebookPage3(CodeInfo _owner , Xcls_Notebook2 notebook)
-		{
-			_this = _owner;
-
-			// my vars (dec)
-			this.tab_label = "Documentation";
-			var child_1 = new Xcls_WebView4( _this );
-			child_1.ref();
-			notebook.el.append_page( child_1.el , new Gtk.Label(this.tab_label) );
+		GLib.debug("setting history and showing symbol");
+		this.history_pos++; 
+		if (this.history_pos == this.history.size) {
+			this.history.add(sy);
+		} else {
+			this.history.set(this.history_pos, sy);
 		}
-
-		// user defined functions
+		this.showSymbol(sy,load_page);
+		this.combo.selectCurrent();
 	}
-	public class Xcls_WebView4 : Object
-	{
-		public WebKit.WebView el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_WebView4(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new WebKit.WebView();
-
-			// my vars (dec)
-
-			// set gobject values
+	public void show (Gtk.Widget? onbtn, string stype_and_name) {
+	
+		
+		var sname = stype_and_name.split(":")[1];
+		if (onbtn != null) {
+			if (this.el.parent != null) {
+				this.el.set_parent(null);
+			}
+			
+		   	this.el.set_parent(onbtn);
+			this.el.popup();
+		
+			var win = this.win.el;
+			this.el.set_size_request(
+				win.get_width() - 50, win.get_height() - 100);
+	   // _this.pane.el.set_position(200); // adjust later?
 		}
-
-		// user defined functions
+		var sl = _this.win.windowstate.file.getSymbolLoader();
+		var sy = sl.singleByFqn(sname);
+		if (sy == null) {
+			GLib.debug("could not find symbol %s", sname);
+			this.el.hide();
+			return;
+		}
+	 	_this.classlist_model.load(sl);	
+	
+	 	this.navigateTo(sy);
+	
+		
+		
+	
+	
+		
 	}
-
-
-
-	public class Xcls_Box5 : Object
+	public class Xcls_pane : Object
 	{
 		public Gtk.Box el;
 		private CodeInfo  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_Box5(CodeInfo _owner )
+		public Xcls_pane(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.pane = this;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Box2( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box2 : Object
+	{
+		public Gtk.Box el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box2(CodeInfo _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -148,244 +210,256 @@ public class CodeInfo : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.hexpand = true;
-			this.el.vexpand = true;
-			var child_1 = new Xcls_SearchBar6( _this );
+			var child_1 = new Xcls_Box3( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_ScrolledWindow595( _this );
+			new Xcls_content( _this );
+			this.el.append ( _this.content.el  );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box3 : Object
+	{
+		public Gtk.Box el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box3(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Box4( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			var child_2 = new Xcls_Button7( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
+			new Xcls_combo( _this );
+			this.el.append( _this.combo.el );
+			var child_4 = new Xcls_Button14( _this );
+			child_4.ref();
+			this.el.append( child_4.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SearchBar6 : Object
+	public class Xcls_Box4 : Object
 	{
-		public Gtk.SearchBar el;
+		public Gtk.Box el;
 		private CodeInfo  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_SearchBar6(CodeInfo _owner )
+		public Xcls_Box4(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.SearchBar();
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.hexpand = true;
-			this.el.search_mode_enabled = true;
-			var child_1 = new Xcls_SearchEntry1881( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
+			new Xcls_back_button( _this );
+			this.el.append( _this.back_button.el );
+			new Xcls_next_button( _this );
+			this.el.append( _this.next_button.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_SearchEntry1881 : Object
+	public class Xcls_back_button : Object
 	{
-		public Gtk.SearchEntry el;
+		public Gtk.Button el;
 		private CodeInfo  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_SearchEntry1881(CodeInfo _owner )
+		public Xcls_back_button(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.SearchEntry();
+			_this.back_button = this;
+			this.el = new Gtk.Button();
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.hexpand = true;
-			this.el.activates_default = true;
-		}
-
-		// user defined functions
-	}
-
-
-	public class Xcls_ScrolledWindow595 : Object
-	{
-		public Gtk.ScrolledWindow el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_ScrolledWindow595(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.ScrolledWindow();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.hexpand = true;
-			this.el.vexpand = true;
-			var child_1 = new Xcls_ColumnView596( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
-		}
-
-		// user defined functions
-	}
-	public class Xcls_ColumnView596 : Object
-	{
-		public Gtk.ColumnView el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_ColumnView596(CodeInfo _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_SingleSelection35( _this );
-			child_1.ref();
-			this.el = new Gtk.ColumnView( child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_2 = new Xcls_ColumnViewColumn597( _this );
-			child_2.ref();
-			this.el.append_column( child_2.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_ColumnViewColumn597 : Object
-	{
-		public Gtk.ColumnViewColumn el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_ColumnViewColumn597(CodeInfo _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory95( _this );
-			child_1.ref();
-			this.el = new Gtk.ColumnViewColumn( "Object Navigation", child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.expand = true;
-		}
-
-		// user defined functions
-	}
-	public class Xcls_SignalListItemFactory95 : Object
-	{
-		public Gtk.SignalListItemFactory el;
-		private CodeInfo  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_SignalListItemFactory95(CodeInfo _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.SignalListItemFactory();
-
-			// my vars (dec)
-
-			// set gobject values
+			this.el.icon_name = "go-previous-symbolic";
+			this.el.tooltip_text = "Back (previous class)";
 
 			//listeners
-			this.el.setup.connect( (listitem) => {
-				
-				var expand = new Gtk.TreeExpander();
-				 
-				expand.set_indent_for_depth(true);
-				expand.set_indent_for_icon(true);
-				var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-				var icon = new Gtk.Image();
-				var lbl = new Gtk.Label("");
-				lbl.use_markup = true;
-				lbl.ellipsize = Pango.EllipsizeMode.END;
-				
-				icon.margin_end = 4;
-			 	lbl.justify = Gtk.Justification.LEFT;
-			 	lbl.xalign = 0;
-			
-			//	listitem.activatable = true; ??
-				
-				hbox.append(icon);
-				hbox.append(lbl);
-				expand.set_child(hbox);
-				((Gtk.ListItem)listitem).set_child(expand);
-				
+			this.el.clicked.connect( () => {
+				_this.history_pos--;
+				_this.showSymbol(_this.history.get(_this.history_pos));
+				_this.combo.selectCurrent();
 			});
-			this.el.bind.connect( (listitem) => {
-				// GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
-				
-				//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
-				var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
-				 
-				 
-				var hbox = (Gtk.Box) expand.child;
-			 
-				
-				var img = (Gtk.Image) hbox.get_first_child();
-				var lbl = (Gtk.Label) img.get_next_sibling();
-				
-				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-				var node = (JsRender.Node) lr.get_item();
-				if (node == null || node.fqn() == "") {
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_next_button : Object
+	{
+		public Gtk.Button el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_next_button(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.next_button = this;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "go-next-symbolic";
+			this.el.tooltip_text = "next class";
+
+			//listeners
+			this.el.clicked.connect( () => {
+				_this.history_pos++;
+				_this.showSymbol(_this.history.get(_this.history_pos));
+				_this.combo.selectCurrent();
+			});
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_Button7 : Object
+	{
+		public Gtk.Button el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Button7(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "view-refresh-symbolic";
+			this.el.tooltip_text = "Close";
+
+			//listeners
+			this.el.clicked.connect( () => {
+			
+				FakeServerCache.clear(); // force refresh
+				if (_this.history_pos > -1) {
+					var sy  = _this.history.get(_this.history_pos);
+					
+					_this.webview.el.load_uri(
+						"doc://localhost/gtk.html#" + sy.fqn);
+				}
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_combo : Object
+	{
+		public Gtk.DropDown el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+		public bool selecting;
+
+		// ctor
+		public Xcls_combo(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.combo = this;
+			var child_1 = new Xcls_SortListModel10( _this );
+			child_1.ref();
+			var child_2 = new Xcls_PropertyExpression9( _this );
+			child_2.ref();
+			this.el = new Gtk.DropDown( child_1.el, child_2.el );
+
+			// my vars (dec)
+			this.selecting = false;
+
+			// set gobject values
+			this.el.enable_search = true;
+			this.el.hexpand = true;
+
+			//listeners
+			this.el.notify["selected"].connect( () => {
+				if (!_this.classlist_model.loaded || this.selecting) {
 					return;
 				}
-			   
-			    expand.set_hide_expander( !node.hasChildren() );
-			 	expand.set_list_row(lr);
-			 	
-			 	node.bind_property("iconResourceName",
-			                    img, "resource",
-			                   GLib.BindingFlags.SYNC_CREATE);
-			 	
-			 	node.bind_property("nodeTitleProp",
-			                    lbl, "label",
-			                   GLib.BindingFlags.SYNC_CREATE);
-			 	node.bind_property("nodeTipProp",
-			                    lbl, "tooltip_markup",
-			                   GLib.BindingFlags.SYNC_CREATE);
-			 	// bind image...
-			 	
+				var sel = this.el.get_selected_item() as Gtk.StringObject;
+			 	GLib.debug("selected %s", sel.string);
+			
+			 	var sl = _this.win.windowstate.file.getSymbolLoader();
+				var sy = sl.singleByFqn(sel.string);
+				if (sy == null) {
+					GLib.debug("could not find symbol %s", sel.string);
+					this.el.hide();
+					return;
+				}
+				_this.navigateTo(sy);
 			});
 		}
 
 		// user defined functions
+		public void loadClass (Palete.Symbol sy) {
+		
+		}
+		public void selectCurrent () {
+			var cur = (_this.history_pos > -1) ?
+					_this.history.get(_this.history_pos).fqn
+					: "";
+			if (cur == "") {
+				return;
+			}
+			var m = this.el.model;
+			for(var i =0; i < m.get_n_items(); i++) {
+				var se = m.get_item(i) as Gtk.StringObject;
+			 	if (se.string == cur) {
+			 		this.selecting = true;
+			 		this.el.set_selected(i);
+			 		this.selecting = false;
+			 		return;
+		 		}
+			}
+		
+		}
 	}
-
-
-	public class Xcls_SingleSelection35 : Object
+	public class Xcls_PropertyExpression9 : Object
 	{
-		public Gtk.SingleSelection el;
+		public Gtk.PropertyExpression el;
 		private CodeInfo  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_SingleSelection35(CodeInfo _owner )
+		public Xcls_PropertyExpression9(CodeInfo _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_TreeListModel58( _this );
-			child_1.ref();
-			this.el = new Gtk.SingleSelection( child_1.el );
+			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
 
 			// my vars (dec)
 
@@ -394,25 +468,23 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
-	public class Xcls_TreeListModel58 : Object
+
+	public class Xcls_SortListModel10 : Object
 	{
-		public Gtk.TreeListModel el;
+		public Gtk.SortListModel el;
 		private CodeInfo  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_TreeListModel58(CodeInfo _owner )
+		public Xcls_SortListModel10(CodeInfo _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_ListStore81( _this );
-			child_1.ref();
-			this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
-	//fixme...
-	return ((JsRender.Node)item).childstore;
-}
- );
+			new Xcls_classlist_model( _this );
+			var child_2 = new Xcls_StringSorter12( _this );
+			child_2.ref();
+			this.el = new Gtk.SortListModel( _this.classlist_model.el, child_2.el );
 
 			// my vars (dec)
 
@@ -421,19 +493,95 @@ public class CodeInfo : Object
 
 		// user defined functions
 	}
-	public class Xcls_ListStore81 : Object
+	public class Xcls_classlist_model : Object
 	{
 		public GLib.ListStore el;
 		private CodeInfo  _this;
 
 
-			// my vars (def)
+		// my vars (def)
+		public bool loaded;
 
 		// ctor
-		public Xcls_ListStore81(CodeInfo _owner )
+		public Xcls_classlist_model(CodeInfo _owner )
 		{
 			_this = _owner;
-			this.el = new GLib.ListStore( typeof(JsRender.Node) );
+			_this.classlist_model = this;
+			this.el = new GLib.ListStore( typeof(Gtk.StringObject) );
+
+			// my vars (dec)
+			this.loaded = false;
+
+			// set gobject values
+
+			// init method
+
+			{
+			
+				//this.el.append(new Gtk.StringList(_this.minutes));
+				//this.el.append(new Gtk.StringList(_this.hours));	
+			}
+		}
+
+		// user defined functions
+		public void load (Palete.SymbolLoader sy) {
+			if (this.loaded) {
+				return;
+			}
+			this.el.remove_all();
+			sy.loadClassCache();
+			
+			
+			
+			 
+			foreach(var c in sy.classCache.keys) {
+				GLib.debug("Add item to help list %s", c);
+				this.el.append(new Gtk.StringObject(c));
+				 
+			}
+			
+			
+			this.loaded = true;
+			
+		}
+	}
+
+	public class Xcls_StringSorter12 : Object
+	{
+		public Gtk.StringSorter el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_StringSorter12(CodeInfo _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_PropertyExpression13( _this );
+			child_1.ref();
+			this.el = new Gtk.StringSorter( child_1.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_PropertyExpression13 : Object
+	{
+		public Gtk.PropertyExpression el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_PropertyExpression13(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
 
 			// my vars (dec)
 
@@ -445,6 +593,143 @@ public class CodeInfo : Object
 
 
 
+
+	public class Xcls_Button14 : Object
+	{
+		public Gtk.Button el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Button14(CodeInfo _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "window-close-symbolic";
+			this.el.tooltip_text = "Close";
+
+			//listeners
+			this.el.clicked.connect( () => {
+				_this.el.hide();
+			});
+		}
+
+		// user defined functions
+	}
+
+
+	public class Xcls_content : Object
+	{
+		public Gtk.ScrolledWindow el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_content(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.content = this;
+			this.el = new Gtk.ScrolledWindow();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+			this.el.hexpand = true;
+			this.el.vexpand = true;
+			this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+			new Xcls_webview( _this );
+			this.el.set_child ( _this.webview.el  );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_webview : Object
+	{
+		public WebKit.WebView el;
+		private CodeInfo  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_webview(CodeInfo _owner )
+		{
+			_this = _owner;
+			_this.webview = this;
+			this.el = new WebKit.WebView();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			// init method
+
+			{
+			    // this may not work!?
+			    var settings =  this.el.get_settings();
+			    settings.enable_write_console_messages_to_stdout = true;
+			    settings.enable_page_cache = false;
+			    
+			    
+			
+			     // FIXME - base url of script..
+			     // we need it so some of the database features work.
+			    this.el.load_html( "Render not ready" , 
+			            //fixme - should be a config option!
+			            // or should we catch stuff and fix it up..
+			          //  "http://localhost/roojs1/docs/?gtk=1#Gtk.Widget"
+			            "doc://localhost/"
+			    );
+			        
+			        
+			    
+			    
+			}
+
+			//listeners
+			this.el.script_dialog.connect( (dlg) => {
+				var msg = dlg.get_message();
+				try {
+					var p = new Json.Parser();
+					p.load_from_data(msg);
+					
+					var r = p.get_root();
+					if (r.get_node_type() != Json.NodeType.ARRAY) {
+						GLib.debug("alert got something that was nto an array");
+					}
+					var ar = r.get_array();
+					if (ar.get_string_element(0) != "click") {
+						GLib.debug("node is not an element");
+					}
+					var cls = ar.get_string_element(1);
+					 var f = _this.win.windowstate.project.getByPath(cls);
+					if (f == null) {
+						GLib.debug("Cant open file %s", cls);
+					}
+					
+					_this.win.windowstate.fileViewOpen(
+							f, true,  -1);
+					_this.el.hide();
+				} catch (GLib.Error e) {
+				
+					GLib.debug("parsing alert failed");
+				}
+				return true;
+			
+			});
+		}
+
+		// user defined functions
+	}
 
 
 

@@ -3,7 +3,7 @@
  "gen_extended" : false,
  "items" : [
   {
-   "$ authors" : "{ \"Alan Knowles\" }",
+   "$ authors" : "{ \"Alan Knowles <alan@roojs.com>\" }",
    "$ xns" : "Gtk",
    "bool modal" : true,
    "program_name" : "roobuilder",

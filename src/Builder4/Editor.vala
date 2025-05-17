@@ -15,6 +15,7 @@ public class Editor : Object
 	public Xcls_paned paned;
 	public Xcls_save_button save_button;
 	public Xcls_helper helper;
+	public Xcls_help_button help_button;
 	public Xcls_close_btn close_btn;
 	public Xcls_RightEditor RightEditor;
 	public Xcls_view view;
@@ -33,9 +34,9 @@ public class Editor : Object
 	public Xcls_navigation navigation;
 	public Xcls_navigationselmodel navigationselmodel;
 	public Xcls_navigationsort navigationsort;
-	public Xcls_navliststore navliststore;
 
-		// my vars (def)
+	// my vars (def)
+	public Gee.ArrayList<Lsp.Diagnostic>? errors;
 	public int pos_root_x;
 	public Xcls_MainWindow window;
 	public bool dirty;
@@ -43,6 +44,7 @@ public class Editor : Object
 	public bool pos;
 	public int last_error_counter;
 	public GtkSource.SearchContext searchcontext;
+	public int tag_counter;
 	public int last_search_end;
 	public signal void save ();
 	public JsRender.JsRender? file;
@@ -57,11 +59,13 @@ public class Editor : Object
 		this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
 		// my vars (dec)
+		this.errors = null;
 		this.window = null;
 		this.dirty = false;
 		this.pos = false;
 		this.last_error_counter = 0;
 		this.searchcontext = null;
+		this.tag_counter = 0;
 		this.last_search_end = 0;
 		this.file = null;
 		this.node = null;
@@ -78,37 +82,40 @@ public class Editor : Object
 
 	// user defined functions
 	public bool saveContents ()  {
-	    
-	    
-	    if (_this.file == null) {
-	        return true;
-	    }
-	    
-	     
-	     
-	     var str = _this.buffer.toString();
-	     
-	     _this.buffer.checkSyntax();
-	     
-	     
-	     
-	     // LeftPanel.model.changed(  str , false);
-	     _this.dirty = false;
-	     _this.save_button.el.sensitive = false;
-	     
-	    // find the text for the node..
-	    if (_this.file.xtype != "PlainFile") {
-	       // in theory these properties have to exist!?!
-	    	this.prop.val = str;
-	        //this.window.windowstate.left_props.reload();
-	    } else {
-	        _this.file.setSource(  str );
-	     }
-	    
-	    // call the signal..
-	    this.save();
-	    
-	    return true;
+	
+	
+		if (_this.file == null) {
+			return true;
+		}
+	
+		 
+		 
+		 var str = _this.buffer.toString();
+		 var pal = _this.file.palete();
+		 pal.checkSyntax.begin(_this, (obj,res) => {
+		 	pal.checkSyntax.end(res);
+		 
+		 });
+		 
+		 
+		 
+		 // LeftPanel.model.changed(  str , false);
+		 _this.dirty = false;
+		 _this.save_button.el.sensitive = false;
+		 
+		// find the text for the node..
+		if (_this.file.xtype != "PlainFile") {
+		   // in theory these properties have to exist!?!
+			this.prop.val = str;
+			//this.window.windowstate.left_props.reload();
+		} else {
+			_this.file.setSource(  str );
+		}
+	
+		// call the signal..
+		this.save();
+	
+		return true;
 	
 	}
 	public void forwardSearch (bool change_focus) {
@@ -141,12 +148,12 @@ public class Editor : Object
 	{
 	    this.reset();
 	    if (this.file != null) {
-	    	this.file.navigation_tree_updated.disconnect(
+	    	this.file.symbol_tree_updated.disconnect(
 	    		_this.navigation.show
 	    	);
 	    }
 	    this.file = file;    
-	    this.file.navigation_tree_updated.connect(
+	    this.file.symbol_tree_updated.connect(
 			_this.navigation.show
 		);
 	    if (file.xtype != "PlainFile") {
@@ -162,11 +169,20 @@ public class Editor : Object
 	        this.close_btn.el.show();       
 	    
 	    } else {
-	        this.view.load(        file.toSource() );
+	        this.view.load(  file.toSource() );
 	        this.updateErrorMarks();
 	        this.close_btn.el.hide();
-	        var ls = file.getLanguageServer();
-	        ls.queueDocumentSymbols(file);
+	 
+	       
+		    var sf = file.symbol_file();
+		    sf.loadSymbols();
+	         
+	        // trigger a scan
+			_this.file.update_symbol_tree();
+	
+	        _this.navigation.show();
+	        //var ls = file.getLanguageServer();
+	        //ls.queueDocumentSymbols(file);
 	        ////ls.documentSymbols.begin(file, (a,o) => {
 	        //	_this.navigation.show(ls.documentSymbols.end(o)); 
 	       //});
@@ -195,6 +211,7 @@ public class Editor : Object
 			this.buffer.el.place_cursor(st);
 			this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
 		}
+		
 	
 	}
 	public string tempFileContents () {
@@ -264,15 +281,15 @@ public class Editor : Object
 	}
 	public void updateErrorMarks () {
 		
-	 
+	   if (this.errors == null) {
+		   	this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+	   	}
 	
 		var buf = _this.buffer.el;
-		Gtk.TextIter start;
-		Gtk.TextIter end;     
-		buf.get_bounds (out start, out end);
-	
-		
-	
+		Gtk.TextIter docstart;
+		Gtk.TextIter docend;     
+		buf.get_bounds (out docstart, out docend);
+	 
 	 
 		//GLib.debug("highlight errors");		 
 	
@@ -286,7 +303,7 @@ public class Editor : Object
 			
 			return;
 		} 
-	
+	 
 		 
 		if (_this.file == null) {
 			GLib.debug("file is null?");
@@ -295,18 +312,28 @@ public class Editor : Object
 		}
 		var ar = this.file.getErrors();
 		if (ar.size < 1) {
-			buf.remove_source_marks (start, end, "ERR");
-			buf.remove_source_marks (start, end, "WARN");
-			buf.remove_source_marks (start, end, "DEPR");
-			buf.remove_tag_by_name ("ERR", start, end);
-			buf.remove_tag_by_name ("WARN", start, end);
-			buf.remove_tag_by_name ("DEPR", start, end);
+		
+		 
+			foreach(var diag in this.errors) {
+				var tag = diag.steal_data<Gtk.TextTag>("tag");
+				if (tag != null) {
+					buf.tag_table.remove(tag);
+				}
+				
+				GtkSource.Mark mark = diag.steal_data<GtkSource.Mark>("mark");
+				if (mark != null) {
+					buf.delete_mark(mark);
+				}
+				 
+				 
+			}
+			
 			this.last_error_counter = file.error_counter ;
+			this.errors.clear();
 			//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
 			return;
 		}
 		
-	
 	 // basicaly check if there is no change, then we do not do any update..
 	 // we can do this by just using an error counter?
 	 // if that's changed then we will do an update, otherwise dont bother.
@@ -333,14 +360,16 @@ public class Editor : Object
 			}
 		
 		}
-		buf.remove_source_marks (start, end, "ERR");
-		buf.remove_source_marks (start, end, "WARN");
-		buf.remove_source_marks (start, end, "DEPR");
-		buf.remove_tag_by_name ("ERR", start, end);
-		buf.remove_tag_by_name ("WARN", start, end);
-		buf.remove_tag_by_name ("DEPR", start, end);
+		Gtk.TextIter start;
+		Gtk.TextIter end;     
 		
-		foreach(var diag in ar) { 
+		  
+		foreach(var diag in ar) {
+		
+			if (this.errors.contains(diag)) {
+				continue;
+			}
+		
 		     Gtk.TextIter iter;
 	//        print("get inter\n");
 		    var eline = (int)diag.range.start.line - offset;
@@ -356,30 +385,70 @@ public class Editor : Object
 		    
 		    buf.get_iter_at_line( out iter, eline);
 		   	var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
-		    buf.create_source_mark( msg, diag.category, iter);
+		    var mark = buf.create_source_mark( msg, diag.category, iter);
+		    diag.set_data<GtkSource.Mark>("mark", mark);
 		    
 	 	    var spos = (int)diag.range.start.character - hoffset;
 	 	    if (spos < 0) { spos =0 ; }
 	 	    if (spos > iter.get_chars_in_line()) {
-	 	    	spos = iter.get_chars_in_line();
-	    	}
+		 	    	spos = iter.get_chars_in_line();
+				}
 			buf.get_iter_at_line( out iter, eline_to);
 			var epos = (int)diag.range.end.character - hoffset;
 	 	    if (epos < 0) { epos =0 ; }
 	 	    if (epos > iter.get_chars_in_line()) {
-	 	    	epos = iter.get_chars_in_line();
-	    	}
+		 	    	epos = iter.get_chars_in_line();
+				}
 	 	     
 	 	    
 	 	    buf.get_iter_at_line_offset( out start, eline, spos); 
 	 	   
 	 	    buf.get_iter_at_line_offset( out end, eline_to,epos); 
-	 	    	
-		    buf.apply_tag_by_name(diag.category, start, end);
-		    
+	 	    this.tag_counter++;
+	 	    Gtk.TextTag tag;
+	 	    switch(diag.category) {
+	 	    	case "ERR":
+					tag = buf.create_tag ("ERR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "pink");
+					break;
+				case "WARN":
+					tag = buf.create_tag ("WARN" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
+					break;
+				case "DEPR":
+					tag = buf.create_tag ("DEPR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
+					break;
+				default:
+					continue;
+	 	    
+	 	    }
+	 	    
+	 	    
+		    buf.apply_tag_by_name(diag.category  +  this.tag_counter.to_string(), start, end);
+	    		diag.set_data<Gtk.TextTag>("tag", tag);
+		    this.errors.add(diag);
 		   // GLib.debug("set line %d to %s", eline, msg);
 		    //this.marks.set(eline, msg);
 		}
+		var del = new Gee.ArrayList<Lsp.Diagnostic>(); // no compare neeed...
+		foreach(var diag in this.errors) {
+			if (ar.contains(diag)) {
+				continue;
+			}
+			var tag = diag.steal_data<Gtk.TextTag>("tag");
+			if (tag != null) {
+				buf.tag_table.remove(tag);
+			}
+	 
+			GtkSource.Mark mark = diag.steal_data<GtkSource.Mark>("mark");
+			if (mark != null) {
+				buf.delete_mark(mark);
+				del.add(diag);
+			}
+		
+		}
+		foreach(var diag in del) {
+			this.errors.remove(diag);
+		}
+		
 		this.last_error_counter = file.error_counter ;
 	
 	
@@ -408,7 +477,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_paned(Editor _owner )
@@ -439,7 +508,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box2(Editor _owner )
@@ -456,7 +525,7 @@ public class Editor : Object
 			this.el.append( child_1.el );
 			new Xcls_RightEditor( _this );
 			this.el.append( _this.RightEditor.el );
-			var child_3 = new Xcls_Box15( _this );
+			var child_3 = new Xcls_Box16( _this );
 			child_3.ref();
 			this.el.append ( child_3.el  );
 		}
@@ -469,7 +538,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box3(Editor _owner )
@@ -487,9 +556,11 @@ public class Editor : Object
 			this.el.append( _this.save_button.el );
 			new Xcls_helper( _this );
 			this.el.append( _this.helper.el );
-			var child_3 = new Xcls_Scale6( _this );
-			child_3.ref();
-			this.el.append( child_3.el );
+			new Xcls_help_button( _this );
+			this.el.append( _this.help_button.el );
+			var child_4 = new Xcls_Scale7( _this );
+			child_4.ref();
+			this.el.append( child_4.el );
 			new Xcls_close_btn( _this );
 			this.el.append( _this.close_btn.el );
 		}
@@ -502,7 +573,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_save_button(Editor _owner )
@@ -532,7 +603,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_helper(Editor _owner )
@@ -560,13 +631,22 @@ public class Editor : Object
 				return true;
 			});
 			this.el.activate_link.connect( (uri) => {
+			
+			 
 				GLib.debug("got uri %s", uri);
+				
+				_this.window.windowstate.popover_codeinfo.show(this.el, uri);
+				/*
 				var ls = _this.file.getLanguageServer();
 				ls.symbol.begin(uri, (a,b) => {
-					ls.symbol.end(b);
+					try { 
+						ls.symbol.end(b);
+					} catch (GLib.Error e) {}
 				});
-				
+				*/
 				return true;
+				 
+				 
 			});
 		}
 
@@ -577,8 +657,12 @@ public class Editor : Object
 				this.el.set_text("");
 				return;
 			}
+			
+			this.el.set_markup(help.contents.get(0).value);
+			 /*
 			var sig = help.contents.get(0).value.split(" ");
 			string[] str = {};
+			GLib.debug("setHelp %s", help.contents.get(0).value);
 			for(var i =0; i < sig.length; i++) {
 			
 				switch(sig[i]) {
@@ -592,7 +676,7 @@ public class Editor : Object
 					case "(":
 					case ")":
 					
-						str += sig[i];
+						str += sig[i] + " ";
 						continue;
 						
 						
@@ -610,20 +694,51 @@ public class Editor : Object
 				this.el.tooltip_markup = GLib.Markup.escape_text(help.contents.get(0).value);
 			}
 			this.el.set_markup(string.joinv(" ",str));
+			*/
 			
 		}
 	}
 
-	public class Xcls_Scale6 : Object
+	public class Xcls_help_button : Object
+	{
+		public Gtk.Button el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_help_button(Editor _owner )
+		{
+			_this = _owner;
+			_this.help_button = this;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "help-about-symbolic";
+			this.el.vexpand = true;
+
+			//listeners
+			this.el.clicked.connect( () => { 
+			   	_this.window.windowstate.popover_codeinfo.show(this.el, ":GLib.Object");
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Scale7 : Object
 	{
 		public Gtk.Scale el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_Scale6(Editor _owner )
+		public Xcls_Scale7(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
@@ -674,7 +789,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_close_btn(Editor _owner )
@@ -688,7 +803,7 @@ public class Editor : Object
 			// set gobject values
 			this.el.icon_name = "window-close";
 			this.el.halign = Gtk.Align.END;
-			var child_1 = new Xcls_Image8( _this );
+			var child_1 = new Xcls_Image9( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 
@@ -696,21 +811,22 @@ public class Editor : Object
 			this.el.clicked.connect( () => { 
 			    _this.saveContents();
 			    _this.window.windowstate.switchState(WindowState.State.PREVIEW);
+			    
 			});
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Image8 : Object
+	public class Xcls_Image9 : Object
 	{
 		public Gtk.Image el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_Image8(Editor _owner )
+		public Xcls_Image9(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Image();
@@ -733,7 +849,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_RightEditor(Editor _owner )
@@ -761,7 +877,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Gtk.CssProvider css;
 
 		// ctor
@@ -791,10 +907,10 @@ public class Editor : Object
 			this.el.buffer = _this.buffer.el;
 			new Xcls_keystate( _this );
 			this.el.add_controller(  _this.keystate.el );
-			var child_3 = new Xcls_EventControllerScroll13( _this );
+			var child_3 = new Xcls_EventControllerScroll14( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
-			var child_4 = new Xcls_GestureClick14( _this );
+			var child_4 = new Xcls_GestureClick15( _this );
 			child_4.ref();
 			this.el.add_controller(  child_4.el );
 
@@ -815,7 +931,7 @@ public class Editor : Object
 			
 			var attrs = new GtkSource.MarkAttributes();
 			
-			attrs.set_icon_name ( "process-stop");    
+			attrs.set_icon_name ( "dialog-error");    
 			attrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
 			    return strdup( mark.name);
@@ -829,7 +945,7 @@ public class Editor : Object
 			
 			
 			var wattrs = new GtkSource.MarkAttributes();
-			wattrs.set_icon_name ( "process-stop");    
+			wattrs.set_icon_name ( "dialog-warning");    
 			wattrs.query_tooltip_text.connect(( mark) => {
 			     GLib.debug("tooltip query? %s", mark.name);
 			    return strdup(mark.name);
@@ -844,7 +960,7 @@ public class Editor : Object
 			 
 			var dattrs = new GtkSource.MarkAttributes();
 			 
-			dattrs.set_icon_name ( "process-stop"); 
+			dattrs.set_icon_name ( "dialog-information"); 
 			
 			dattrs.query_tooltip_text.connect(( mark) => {
 				GLib.debug("tooltip query? %s", mark.name);
@@ -971,8 +1087,9 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int error_line;
+		public int check_syntax_counter;
 		public Gee.HashMap<int,string>? xmarks;
 		public bool check_queued;
 
@@ -985,6 +1102,7 @@ public class Editor : Object
 
 			// my vars (dec)
 			this.error_line = -1;
+			this.check_syntax_counter = 0;
 			this.xmarks = null;
 			this.check_queued = false;
 
@@ -1004,11 +1122,6 @@ public class Editor : Object
 			buf.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
 			buf.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
 			buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
-			
-			
-			buf.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "pink");
-			buf.create_tag ("WARN", "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
-			buf.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
 
 			//listeners
 			this.el.cursor_moved.connect( ( ) => {
@@ -1018,7 +1131,7 @@ public class Editor : Object
 						out iter, this.el.cursor_position);
 			
 				_this.navigation.updateSelectedLine(
-						(uint)iter.get_line(),
+						(uint)iter.get_line() +1,
 						(uint)iter.get_line_offset()
 					);
 				this.showHelp(iter);
@@ -1029,7 +1142,10 @@ public class Editor : Object
 			    // ??needed..??
 			    _this.save_button.el.sensitive = true;
 			    print("EDITOR CHANGED");
-			    this.checkSyntax();
+			    var pal = _this.file.palete();
+			    pal.checkSyntax.begin( _this,  ( obj,res ) => {
+			    	pal.checkSyntax.end(res);
+			   });
 			   
 			    _this.dirty = true;
 			
@@ -1039,177 +1155,7 @@ public class Editor : Object
 		}
 
 		// user defined functions
-		public bool OLDhighlightErrorsJson (string type, Json.Object obj) {
-			Gtk.TextIter start;
-			Gtk.TextIter end;     
-			this.el.get_bounds (out start, out end);
-		
-			this.el.remove_source_marks (start, end, type);
-			GLib.debug("highlight errors");		 
-		
-			 // we should highlight other types of errors..
-		
-			if (!obj.has_member(type)) {
-				GLib.debug("Return has no errors\n");
-				return true;
-			}
-		
-			if (_this.window.windowstate.state != WindowState.State.CODEONLY 
-				&&
-				_this.window.windowstate.state != WindowState.State.CODE
-				) {
-				GLib.debug("windowstate != CODEONLY?");
-				
-				return true;
-			} 
-		
-			//this.marks = new Gee.HashMap<int,string>();
-			var err = obj.get_object_member(type);
-		 
-			if (_this.file == null) {
-				GLib.debug("file is null?");
-				return true;
-		
-			}
-			var valafn = _this.file.path;
-		
-			if (_this.file.xtype != "PlainFile") {
-		
-				valafn = "";
-				try {             
-					var  regex = new Regex("\\.bjs$");
-					// should not happen
-			      		valafn = regex.replace(_this.file.path,_this.file.path.length , 0 , ".vala");
-				} catch (GLib.RegexError e) {
-					return true;
-				}   
-		
-		
-		
-			}
-			if (!err.has_member(valafn)) {
-				GLib.debug("File path has no errors");
-				return  true;
-			}
-		
-			var lines = err.get_object_member(valafn);
-			
-			var offset = 1;
-			if (obj.has_member("line_offset")) { // ?? why??
-				offset = (int)obj.get_int_member("line_offset") + 1;
-			}
-		
-		
-			var tlines = this.el.get_line_count () +1;
-			
-			if (_this.prop != null) {
-			
-				tlines = _this.prop.end_line + 1;
-				offset = _this.prop.start_line + 1;
-			
-			}
-			
-		
-		
-			lines.foreach_member((obj, line, node) => {
-				
-			     Gtk.TextIter iter;
-		//        print("get inter\n");
-			    var eline = int.parse(line) - offset;
-			    GLib.debug("GOT ERROR on line %s -- converted to %d  (offset = %d)\n", line,eline, offset);
-			    
-			    
-			    if (eline > tlines || eline < 0) {
-			        return;
-			    }
-			   
-			    
-			    this.el.get_iter_at_line( out iter, eline);
-			    //print("mark line\n");
-			    var msg  = "";
-			    var ar = lines.get_array_member(line);
-			    for (var i = 0 ; i < ar.get_length(); i++) {
-			    	if (ar.get_string_element(i) == "Success") {
-			    		continue;
-		    		}
-					msg += (msg.length > 0) ? "\n" : "";
-					msg += ar.get_string_element(i);
-				}
-				if (msg == "") {
-					return;
-				}
-				msg = "Line: %d".printf(eline+1) +  " " + msg;
-			    this.el.create_source_mark(msg, type, iter);
-			    GLib.debug("set line %d to %m", eline, msg);
-			   // this.marks.set(eline, msg);
-			} );
-			return false;
-		
-		
-		
-		
-		
-			}
-		public bool checkSyntax () {
-		 
-		    
-		    var str = this.toString();
-		    
-		    // needed???
-		    if (this.error_line > 0) {
-		         Gtk.TextIter start;
-		         Gtk.TextIter end;     
-		        this.el.get_bounds (out start, out end);
-		
-		        this.el.remove_source_marks (start, end, null);
-		    }
-		    if (str.length < 1) {
-		        print("checkSyntax - empty string?\n");
-		        return true;
-		    }
-		    
-		    // bit presumptiona
-		    if (_this.file.xtype == "PlainFile") {
-		    
-		        // assume it's gtk...
-		         var  oldcode =_this.file.toSource();
-		        _this.file.setSource(str);
-			    BuilderApplication.showSpinner("appointment soon","document change pending");
-		    	_this.file.getLanguageServer().document_change(_this.file);
-				_this.file.getLanguageServer().queueDocumentSymbols(_this.file);
-		        _this.file.setSource(oldcode);
-		        
-				 
-		        return true;
-		    
-		    }
-		   if (_this.file == null) {
-		       return true;
-		   }
-		 
-		    
-		
-		      
-		     
-		    GLib.debug("calling validate");    
-		    // clear the buttons.
-		 	if (_this.prop.name == "xns" || _this.prop.name == "xtype") {
-				return true ;
-			}
-			var oldcode  = _this.prop.val;
-			
-			_this.prop.val = str;
-			_this.node.updated_count++;
-		    _this.file.getLanguageServer().document_change(_this.file);
-		    _this.node.updated_count++;
-		    _this.prop.val = oldcode;
-		    
-		    
-		    //print("done mark line\n");
-		     
-		    return true; // at present allow saving - even if it's invalid..
-		}
-		public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
+		public bool XhighlightErrors ( Gee.HashMap<int,string> validate_res) {
 		         
 			this.error_line = validate_res.size;
 		
@@ -1289,7 +1235,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool is_control;
 
 		// ctor
@@ -1361,17 +1307,17 @@ public class Editor : Object
 		// user defined functions
 	}
 
-	public class Xcls_EventControllerScroll13 : Object
+	public class Xcls_EventControllerScroll14 : Object
 	{
 		public Gtk.EventControllerScroll el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public double distance;
 
 		// ctor
-		public Xcls_EventControllerScroll13(Editor _owner )
+		public Xcls_EventControllerScroll14(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
@@ -1409,16 +1355,16 @@ public class Editor : Object
 		// user defined functions
 	}
 
-	public class Xcls_GestureClick14 : Object
+	public class Xcls_GestureClick15 : Object
 	{
 		public Gtk.GestureClick el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick14(Editor _owner )
+		public Xcls_GestureClick15(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -1457,16 +1403,16 @@ public class Editor : Object
 
 
 
-	public class Xcls_Box15 : Object
+	public class Xcls_Box16 : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_Box15(Editor _owner )
+		public Xcls_Box16(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1484,7 +1430,7 @@ public class Editor : Object
 			this.el.append( _this.nextBtn.el );
 			new Xcls_backBtn( _this );
 			this.el.append( _this.backBtn.el );
-			var child_5 = new Xcls_MenuButton21( _this );
+			var child_5 = new Xcls_MenuButton22( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
 		}
@@ -1497,7 +1443,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Gtk.CssProvider css;
 
 		// ctor
@@ -1514,7 +1460,7 @@ public class Editor : Object
 			this.el.hexpand = true;
 			this.el.placeholder_text = "Press enter to search";
 			this.el.search_delay = 3;
-			var child_1 = new Xcls_EventControllerKey17( _this );
+			var child_1 = new Xcls_EventControllerKey18( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
@@ -1559,16 +1505,16 @@ public class Editor : Object
 			
 		}
 	}
-	public class Xcls_EventControllerKey17 : Object
+	public class Xcls_EventControllerKey18 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey17(Editor _owner )
+		public Xcls_EventControllerKey18(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -1610,7 +1556,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_results(Editor _owner )
@@ -1656,7 +1602,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -1691,7 +1637,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -1719,17 +1665,17 @@ public class Editor : Object
 		// user defined functions
 	}
 
-	public class Xcls_MenuButton21 : Object
+	public class Xcls_MenuButton22 : Object
 	{
 		public Gtk.MenuButton el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
-		public Xcls_MenuButton21(Editor _owner )
+		public Xcls_MenuButton22(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.MenuButton();
@@ -1752,7 +1698,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_settings(Editor _owner )
@@ -1764,23 +1710,23 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box23( _this );
+			var child_1 = new Xcls_Box24( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box23 : Object
+	public class Xcls_Box24 : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_Box23(Editor _owner )
+		public Xcls_Box24(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1804,7 +1750,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_case_sensitive(Editor _owner )
@@ -1834,7 +1780,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_regex(Editor _owner )
@@ -1864,7 +1810,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_multiline(Editor _owner )
@@ -1893,7 +1839,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_navigation_holder(Editor _owner )
@@ -1909,7 +1855,7 @@ public class Editor : Object
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			this.el.visible = false;
-			var child_1 = new Xcls_Box28( _this );
+			var child_1 = new Xcls_Box29( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_navigationwindow( _this );
@@ -1918,16 +1864,16 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_Box28 : Object
+	public class Xcls_Box29 : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_Box28(Editor _owner )
+		public Xcls_Box29(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1946,7 +1892,7 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_navigationwindow(Editor _owner )
@@ -1973,8 +1919,9 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int last_selected_line;
+		public Palete.SymbolFile? symbolfile;
 		public Gtk.Widget? selected_row;
 
 		// ctor
@@ -1987,14 +1934,15 @@ public class Editor : Object
 
 			// my vars (dec)
 			this.last_selected_line = -1;
+			this.symbolfile = null;
 			this.selected_row = null;
 
 			// set gobject values
 			this.el.name = "editor-navigation";
-			var child_2 = new Xcls_ColumnViewColumn31( _this );
+			var child_2 = new Xcls_ColumnViewColumn32( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
-			var child_3 = new Xcls_GestureClick40( _this );
+			var child_3 = new Xcls_GestureClick43( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
@@ -2040,28 +1988,33 @@ public class Editor : Object
 			} 
 			return row;
 		 }
-		public void show (Gee.ArrayList<Lsp.DocumentSymbol> syms) {
+		public void show () {
+			GLib.debug("show tree");
+			var new_symbolfile= _this.file.symbol_file();
 			
-			if (!_this.navigation_holder.el.visible && syms.size > 0) {
+			// shoudl tree for first time only?
+			if (!_this.navigation_holder.el.visible && new_symbolfile.children.get_n_items() > 0) {
 				_this.navigation_holder.el.show();
 				_this.paned.el.position  = 
 					_this.paned.el.get_width() - 200;
-			} 
-			//_this.navliststore.el.remove_all();
-			
-			
-			var ls  = new GLib.ListStore(typeof(Lsp.DocumentSymbol));
-			
-			foreach(var sym in syms) {
-				ls.append(sym);
 			}
-			// if syms updated is empty, but we already have one..
-			if (_this.navliststore.el.get_n_items() > 0 && ls.get_n_items() < 1) {
+			
+			var tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();
+			var old = (GLib.ListStore)tlm.get_model();
+			
+			if (this.symbolfile != null && this.symbolfile.id ==  new_symbolfile.id) {
 				return;
 			}
-			Lsp.DocumentSymbol.copyList(ls, _this.navliststore.el);
-			//_this.navliststore.el.append(sym);
-			this.last_selected_line = -1;
+			old.remove_all();
+			this.symbolfile = new_symbolfile;
+			var ls = new_symbolfile.children;
+			 
+			for(var i = 0; i < ls.get_n_items();i++) {
+				var ni = (Palete.Symbol)ls.get_item(i);
+				old.append(ni);
+			}
+		 	this.last_selected_line = -1;
+		 	// first load
 			GLib.Idle.add(() => {
 				_this.navigationsort.collapseOnLoad();
 				Gtk.TextIter iter;
@@ -2133,7 +2086,7 @@ public class Editor : Object
 			
 			
 			var new_row = -1;
-			var sym = _this.navliststore.symbolAtLine(line, chr);
+			var sym = _this.navigationsort.symbolAtLine(line, chr);
 			if (sym != null) {
 			 	new_row = _this.navigationsort.getRowFromSymbol(sym);
 		 		GLib.debug("select line %d - row found %d", (int)line, new_row);
@@ -2165,19 +2118,19 @@ public class Editor : Object
 		
 		}
 	}
-	public class Xcls_ColumnViewColumn31 : Object
+	public class Xcls_ColumnViewColumn32 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_ColumnViewColumn31(Editor _owner )
+		public Xcls_ColumnViewColumn32(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory32( _this );
+			var child_1 = new Xcls_SignalListItemFactory33( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Code Navigation", child_1.el );
 
@@ -2189,16 +2142,16 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory32 : Object
+	public class Xcls_SignalListItemFactory33 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory32(Editor _owner )
+		public Xcls_SignalListItemFactory33(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -2247,15 +2200,12 @@ public class Editor : Object
 				var lbl = (Gtk.Label) img.get_next_sibling();
 				
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-				var sym = (Lsp.DocumentSymbol) lr.get_item();
+				var sym = (Palete.Symbol) lr.get_item();
 				
 				sym.set_data<Gtk.Widget>("widget", expand.get_parent());
-				expand.get_parent().get_parent().set_data<Lsp.DocumentSymbol>("symbol", sym);
+				expand.get_parent().get_parent().set_data<Palete.Symbol>("symbol", sym);
 				
-				//GLib.debug("save sym on %s", expand.get_parent().get_parent().get_type().name());
-				
-				//GLib.debug("got %d children for %s" , (int)sym.children.get_n_items(), sym.name);
-			    
+				  
 			    expand.set_hide_expander( sym.children.get_n_items()  < 1);
 			 	expand.set_list_row(lr);
 			 	//this.in_bind = true;
@@ -2291,15 +2241,16 @@ public class Editor : Object
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_navigationselmodel(Editor _owner )
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			new Xcls_navigationsort( _this );
-			this.el = new Gtk.NoSelection( _this.navigationsort.el );
+			var child_1 = new Xcls_FilterListModel35( _this );
+			child_1.ref();
+			this.el = new Gtk.NoSelection( child_1.el );
 
 			// my vars (dec)
 
@@ -2308,22 +2259,96 @@ public class Editor : Object
 
 		// user defined functions
 	}
+	public class Xcls_FilterListModel35 : Object
+	{
+		public Gtk.FilterListModel el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_FilterListModel35(Editor _owner )
+		{
+			_this = _owner;
+			new Xcls_navigationsort( _this );
+			var child_2 = new Xcls_CustomFilter36( _this );
+			child_2.ref();
+			this.el = new Gtk.FilterListModel( _this.navigationsort.el, child_2.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_CustomFilter36 : Object
+	{
+		public Gtk.CustomFilter el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_CustomFilter36(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.CustomFilter( (item) => { 
+	var tr = ((Gtk.TreeListRow)item).get_item();
+   GLib.debug("filter%s =>  %s", item.get_type().name(), 
+   tr.get_type().name()
+   );
+	var j =  (Palete.Symbol) tr;
+	
+	switch( j.stype) {
+	
+		case Lsp.SymbolKind.Namespace:
+		case Lsp.SymbolKind.Class:
+		case Lsp.SymbolKind.Method:
+		case Lsp.SymbolKind.Property:
+		 case Lsp.SymbolKind.Field:  //???
+		case Lsp.SymbolKind.Constructor:
+		case Lsp.SymbolKind.Interface:
+		case Lsp.SymbolKind.Enum:
+		case Lsp.SymbolKind.Constant:
+		case Lsp.SymbolKind.EnumMember:
+		case Lsp.SymbolKind.Struct:
+			return true;
+			
+		default : 
+			GLib.debug("hide %s", j.stype.to_string());
+			return false;
+	
+	}
+
+} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 	public class Xcls_navigationsort : Object
 	{
 		public Gtk.SortListModel el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_navigationsort(Editor _owner )
 		{
 			_this = _owner;
 			_this.navigationsort = this;
-			var child_1 = new Xcls_TreeListModel35( _this );
+			var child_1 = new Xcls_TreeListModel41( _this );
 			child_1.ref();
-			var child_2 = new Xcls_TreeListRowSorter37( _this );
+			var child_2 = new Xcls_TreeListRowSorter38( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
@@ -2336,13 +2361,13 @@ public class Editor : Object
 		public void collapseOnLoad () {
 			for (var i=0;i < this.el.get_n_items(); i++) {
 				var tr = (Gtk.TreeListRow)this.el.get_item(i);
-				var sym =  (Lsp.DocumentSymbol)tr.get_item();
-				switch (sym.kind) {
+				var sym =  (Palete.Symbol)tr.get_item();
+				switch (sym.stype) {
 			 		case Lsp.SymbolKind.Enum: 
 			 			tr.expanded = false;
 			 			break;
 					default:
-						//tr.expanded = true;
+						tr.expanded = true;
 						break;
 				}
 			}
@@ -2351,95 +2376,24 @@ public class Editor : Object
 		
 		
 		}
-		public int getRowFromSymbol (Lsp.DocumentSymbol sym) {
-		
+		public int getRowFromSymbol (Palete.Symbol sym) {
+		// is this used as we have setdata???
 			for (var i=0;i < this.el.get_n_items(); i++) {
 				var tr = (Gtk.TreeListRow)this.el.get_item(i);
-			   
-				if (sym.equals( (Lsp.DocumentSymbol)tr.get_item())) {
+				var trs = (Palete.Symbol)tr.get_item();
+				if (sym.id ==  trs.id) {
 					return i;
 				}
 			}
 		   	return -1;
 		}
-		public Lsp.DocumentSymbol? getSymbolAt (uint row) {
-		
-		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
-		   
-		   var a = tr.get_item();;   
-		   GLib.debug("get_item (2) = %s", a.get_type().name());
-		  	
-		   
-		   return (Lsp.DocumentSymbol)tr.get_item();
-			 
-		}
-	}
-	public class Xcls_TreeListModel35 : Object
-	{
-		public Gtk.TreeListModel el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_TreeListModel35(Editor _owner )
-		{
-			_this = _owner;
-			new Xcls_navliststore( _this );
-			this.el = new Gtk.TreeListModel( _this.navliststore.el, false, true, (item) => {
- 
-	return ((Lsp.DocumentSymbol)item).children;
-}
- );
-
-			// my vars (dec)
-
-			// set gobject values
-
-			//listeners
-			this.el.items_changed.connect( (position, removed, added) => {
-				GLib.debug("tree item changed %d , %d , %d",(int) position, (int)removed, (int) added);
-				 if (added < 1) { 
-				 	return;
-			 	}
-				//var sym = (Lsp.DocumentSymbol) this.el.get_item(position);
-				var row = this.el.get_row(position);
-				
-				GLib.debug("got %s", row.get_item().get_type().name());
-				
-			
-			});
-		}
-
-		// user defined functions
-	}
-	public class Xcls_navliststore : Object
-	{
-		public GLib.ListStore el;
-		private Editor  _this;
-
-
-			// my vars (def)
-
-		// ctor
-		public Xcls_navliststore(Editor _owner )
-		{
-			_this = _owner;
-			_this.navliststore = this;
-			this.el = new GLib.ListStore( typeof(Lsp.DocumentSymbol) );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-		public Lsp.DocumentSymbol? symbolAtLine (uint line, uint chr) {
+		public Palete.Symbol? symbolAtLine (uint line, uint chr) {
 		 
+			var tlm = (Gtk.TreeListModel)this.el.get_model();
+			var ls = tlm.get_model();
 			
-			for(var i = 0; i < this.el.get_n_items();i++) {
-				var el = (Lsp.DocumentSymbol)this.el.get_item(i);
+			for(var i = 0; i < ls.get_n_items();i++) {
+				var el = (Palete.Symbol)ls.get_item(i);
 				//GLib.debug("Check sym %s : %d-%d",
 				//	el.name , (int)el.range.start.line,
 				//	(int)el.range.end.line
@@ -2453,22 +2407,31 @@ public class Editor : Object
 			
 			return null;
 		}
+		public Palete.Symbol? getSymbolAt (uint row) {
+		
+		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
+		   
+		  // var a = tr.get_item();;   
+		  // GLib.debug("get_item (2) = %s", a.get_type().name());
+		  	
+		   
+		   return (Palete.Symbol)tr.get_item();
+			 
+		}
 	}
-
-
-	public class Xcls_TreeListRowSorter37 : Object
+	public class Xcls_TreeListRowSorter38 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter37(Editor _owner )
+		public Xcls_TreeListRowSorter38(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter38( _this );
+			var child_1 = new Xcls_StringSorter39( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -2479,19 +2442,19 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter38 : Object
+	public class Xcls_StringSorter39 : Object
 	{
 		public Gtk.StringSorter el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter38(Editor _owner )
+		public Xcls_StringSorter39(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression39( _this );
+			var child_1 = new Xcls_PropertyExpression40( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -2502,19 +2465,70 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression39 : Object
+	public class Xcls_PropertyExpression40 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression39(Editor _owner )
+		public Xcls_PropertyExpression40(Editor _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(Lsp.DocumentSymbol), null, "sort_key" );
+			this.el = new Gtk.PropertyExpression( typeof(Palete.Symbol), null, "sort_key" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+
+
+	public class Xcls_TreeListModel41 : Object
+	{
+		public Gtk.TreeListModel el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_TreeListModel41(Editor _owner )
+		{
+			_this = _owner;
+			var child_1 = new Xcls_ListStore42( _this );
+			child_1.ref();
+			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
+ 
+	return ((Palete.Symbol)item).children;
+}
+ );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_ListStore42 : Object
+	{
+		public GLib.ListStore el;
+		private Editor  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_ListStore42(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
 
 			// my vars (dec)
 
@@ -2528,16 +2542,16 @@ public class Editor : Object
 
 
 
-	public class Xcls_GestureClick40 : Object
+	public class Xcls_GestureClick43 : Object
 	{
 		public Gtk.GestureClick el;
 		private Editor  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick40(Editor _owner )
+		public Xcls_GestureClick43(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -2557,7 +2571,7 @@ public class Editor : Object
 			    }
 				GLib.debug("got click on %s", row.get_type().name());    
 			    //Lsp.DocumentSymbol
-			    var sym =  row.get_data<Lsp.DocumentSymbol>("symbol");
+			    var sym =  row.get_data<Palete.Symbol>("symbol");
 			    if (sym == null) {
 			    	return;
 				}
@@ -2573,12 +2587,12 @@ public class Editor : Object
 			              }
 			            },
 			        */
-			     GLib.debug("goto line %d",   (int)sym.range.start.line); 
-			    _this.scroll_to_line((int)sym.range.start.line);
+			     GLib.debug("goto line %d",   (int)sym.begin_line); 
+			    _this.scroll_to_line((int)sym.begin_line - 1);
 			    Gtk.TextIter iter;
 			    _this.buffer.el.get_iter_at_line_offset(out iter, 
-			    	(int)sym.range.start.line,
-			    	(int)sym.range.start.character
+			    	(int)sym.begin_line - 1,
+			    	(int)sym.begin_col
 				);
 			    _this.buffer.el.place_cursor(iter);
 				

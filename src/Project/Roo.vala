@@ -13,7 +13,10 @@ public class Project.Roo : Project {
 	public string DBTYPE = "";
 	public string DBNAME = "";
 	public string DBUSERNAME = "";  // should be stored in settings somehwere - not in roo file!
-	public string DBPASSWORD = "";	 
+	public string DBPASSWORD = "";	
+	
+	Palete.SymbolFileCollection symbol_manager;
+	Palete.SymbolLoader symbol_loader;
     public Roo(string path) {
 
 		
@@ -23,7 +26,9 @@ public class Project.Roo : Project {
         // various loader methods..
         //this.id = "project-roo-%d".printf(rid++);
 		this.initDatabase();
-        
+		this.symbol_manager  = new Palete.SymbolFileCollection();
+		this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
+		
     }
 	public override void   initDatabase()
 	{
@@ -107,7 +112,17 @@ public class Project.Roo : Project {
 		}
 		return this.language_servers.get(lang);
 	}
-
+	public override Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file)
+	{
+		 return this.symbol_manager;
+	} 
+	public override Palete.SymbolLoader getSymbolLoader (string? cgname) {
+		return this.symbol_loader;
+	}
+	public override Palete.SymbolLoader? getSymbolLoaderForFile (JsRender.JsRender file) {
+		return this.symbol_loader;
+	}
+		 
 }
  
  

@@ -21,7 +21,7 @@ public class Xcls_WindowLeftTree : Object
 	public Xcls_maincol maincol;
 	public Xcls_LeftTreeMenu LeftTreeMenu;
 
-		// my vars (def)
+	// my vars (def)
 	public signal bool before_node_change ();
 	public Xcls_MainWindow? main_window;
 	public int last_error_counter;
@@ -187,7 +187,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ListView1(Xcls_WindowLeftTree _owner )
@@ -210,7 +210,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory2(Xcls_WindowLeftTree _owner )
@@ -233,7 +233,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_viewwin(Xcls_WindowLeftTree _owner )
@@ -263,7 +263,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool blockChanges;
 		public bool headers_visible;
 		public string lastEventSource;
@@ -315,62 +315,7 @@ public class Xcls_WindowLeftTree : Object
 			// init method
 
 			{
-			 /*
-			  this.css = new Gtk.CssProvider();
-			//	try {
-					this.css.load_from_string("
-			#left-tree-view { font-size: 12px;}	
-			.drag-over  { background-color:#88a3bc; }
-			.drag-below  {   
-			 border-bottom-width: 5px; 
-			 border-bottom-style: solid;
-			 border-bottom-color: #88a3bc;
-			}
-			.drag-above  {
-			 border-top-width: 5px;
-			 border-top-style: solid;
-			 border-top-color: #88a3bc;
-			}
-			.node-err  {
-			 border-top-width: 5px;
-			 border-top-style: solid;
-			 border-top-color: red;
-			 border-bottom-width: 5px; 
-			 border-bottom-style: solid;
-			 border-bottom-color: red;
-			}
-			.node-warn  {
-			 border-top-width: 5px;
-			 border-top-style: solid;
-			 border-top-color: #ABF4EB;
-			 border-bottom-width: 5px; 
-			 border-bottom-style: solid;
-			 border-bottom-color: #ABF4EB;
-			}
-			.node-depr  {
-			 border-top-width: 5px;
-			 border-top-style: solid;
-			 border-top-color: #EEA9FF;
-			 border-bottom-width: 5px; 
-			 border-bottom-style: solid;
-			 border-bottom-color: #EEA9FF;
-			}
-			
-			#left-tree-view indent {
-			-gtk-icon-size : 2px;
-			}
-			#left-tree-view indent:nth-last-child(2)  {
-			min-width: 24px;
-			}
-			");
-			
-				Gtk.StyleContext.add_provider_for_display(
-					this.el.get_display(),
-					this.css,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-				);
-				*/
-				  
+			   
 			}
 		}
 
@@ -550,7 +495,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick5(Xcls_WindowLeftTree _owner )
@@ -571,59 +516,63 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.pressed.connect( (n_press, x, y) => {
 			 
-			    //console.log("button press?");
-			    
-			    //this.el.set_state(Gtk.EventSequenceState.CLAIMED);
+				//console.log("button press?");
+				
+				//this.el.set_state(Gtk.EventSequenceState.CLAIMED);
 			
-			
-			    
-			    _this.view.button_is_pressed = true;
-			      
-			    _this.view.lastEventSource = "tree";
-			    if (! _this.before_node_change() ) {
-			    	GLib.debug("before_node_change return false");
-			       return ;
-			    }
-			    
+				var ws =  _this.main_window.windowstate;
+				
+				_this.view.button_is_pressed = true;
+				  
+				_this.view.lastEventSource = "tree";
+				if (! _this.before_node_change() ) {
+					GLib.debug("before_node_change return false");
+				   return ;
+				}
+				
 				 // nothing there -show dialog
-			    if (_this.model.el.get_n_items() < 1) {
-				    _this.main_window.windowstate.showAddObject(_this.view.el, null);
-			        GLib.debug("no items");
-				    return ;
-			    }
-			    string pos;
-			    var row_widget = _this.view.getRowWidgetAt(x,y, out pos );
-			    if (row_widget == null) {
-				    GLib.debug("no row selected items");
-				    return;
-			    }
-			    
-			    var node =   row_widget.get_data<JsRender.Node>("node");
-			    if (node == null) {
-			    	GLib.warning("No node found bound to widget");
-			    	return;
+				if (_this.model.el.get_n_items() < 1) {
+					ws.showAddObject(_this.view.el, null);
+				    GLib.debug("no items");
+					return ;
+				}
+				string pos;
+				var row_widget = _this.view.getRowWidgetAt(x,y, out pos );
+				if (row_widget == null) {
+					GLib.debug("no row selected items");
+					return;
+				}
+				
+				var node =   row_widget.get_data<JsRender.Node>("node");
+				if (node == null) {
+					GLib.warning("No node found bound to widget");
+					return;
 				}
 			
-			     
-			     
-			    if (_this.view.getColAt(x,y) > 0 ) {
-				    GLib.debug("add colum clicked.");
-			        var fqn = node.fqn();
-			    	var cn = _this.main_window.windowstate.project.palete.getChildList(fqn, false);
+				 
+				 
+				if (_this.view.getColAt(x,y) > 0 ) {
+					GLib.debug("add colum clicked.");
+				    var fqn = node.fqn();
+			
+				    var pal = ws.project.palete;
+				 	var sl = ws.file.getSymbolLoader();
+					var cn = pal.getChildListFromSymbols(sl, fqn, false);
+			
 			  		if (cn.size < 1) {
 			  			return ;
 					}
 			
-					_this.main_window.windowstate.leftTreeBeforeChange();
+					ws.leftTreeBeforeChange();
 					//_this.view.el.get_selection().select_path(res);
 					GLib.debug("Button Pressed - start show window");
-					_this.main_window.windowstate.showAddObject(_this.view.el, node);
+					ws.showAddObject(_this.view.el, node);
 					GLib.debug("Button Pressed - finsihed show window");
-			     	return ;
+				 	return ;
 				}
-			    
+				
 				 
-			     
+				 
 			});
 		}
 
@@ -636,7 +585,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick6(Xcls_WindowLeftTree _owner )
@@ -707,7 +656,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_DragSource7(Xcls_WindowLeftTree _owner )
@@ -779,7 +728,8 @@ public class Xcls_WindowLeftTree : Object
 			 	
 			    var paintable = new Gtk.WidgetPaintable(widget);
 			    this.el.set_icon(paintable, 0,0);
-			            
+			      
+			    
 			 
 			});
 			this.el.drag_end.connect( (drag, delete_data) => {
@@ -797,7 +747,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_EventControllerKey8(Xcls_WindowLeftTree _owner )
@@ -833,7 +783,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int is_shift;
 
 		// ctor
@@ -877,7 +827,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Gtk.Widget? highlightWidget;
 		public JsRender.Node? lastDragNode;
 		public string lastDragString;
@@ -1090,7 +1040,7 @@ public class Xcls_WindowLeftTree : Object
 				//GLib.debug("shift is    %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
 				string pos; // over / before / after..
 			
-			    //GLib.debug("got drag motion");
+			    GLib.debug("got drag motion");
 			
 			    GLib.Value v = GLib.Value(typeof(string));
 			   	//var str = drop.read_text( [ "text/plain" ] 0);
@@ -1112,9 +1062,12 @@ public class Xcls_WindowLeftTree : Object
 					this.lastDragNode.loadFromJsonString(v.get_string(), 1);
 				}
 			    
-			
-				var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(
-							this.lastDragNode.fqn());
+				var file = _this.main_window.windowstate.file;
+				var palete =  file.palete();
+				var ls = file.getSymbolLoader();
+				var drop_on_to = palete.getDropListFromSymbols(ls, this.lastDragNode.fqn());
+			   
+			 
 			     
 			     string[] str = {};
 			     foreach(var dp in drop_on_to) {
@@ -1210,6 +1163,10 @@ public class Xcls_WindowLeftTree : Object
 				this.addHighlight(null,"");
 			
 			});
+			this.el.enter.connect( (x, y) => {
+				GLib.debug("droptarget - got enter");
+				return Gdk.DragAction.COPY;
+			});
 			this.el.drop.connect( (v, x, y) => {
 				
 				// must get the pos before we clear the hightlihg.
@@ -1234,8 +1191,10 @@ public class Xcls_WindowLeftTree : Object
 				dropNode.loadFromJsonString(v.get_string(), 2);
 				GLib.debug("dropped node %s", dropNode.toJsonString());
 				
-				
-				var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(dropNode.fqn());
+				var file = _this.main_window.windowstate.file;
+				var palete =  file.palete();
+				var ls = file.getSymbolLoader();
+				var drop_on_to = palete.getDropListFromSymbols(ls, dropNode.fqn());
 			   
 			    // if there are not items in the tree.. the we have to set isOver to true for anything..
 			 
@@ -1390,7 +1349,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_selmodel(Xcls_WindowLeftTree _owner )
@@ -1404,6 +1363,7 @@ public class Xcls_WindowLeftTree : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
+			this.el.autoselect = false;
 
 			//listeners
 			this.el.selection_changed.connect( (position, n_items) => {
@@ -1501,7 +1461,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_model(Xcls_WindowLeftTree _owner )
@@ -1688,7 +1648,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_maincol(Xcls_WindowLeftTree _owner )
@@ -1715,7 +1675,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory14(Xcls_WindowLeftTree _owner )
@@ -1831,7 +1791,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ColumnViewColumn15(Xcls_WindowLeftTree _owner )
@@ -1855,7 +1815,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory16(Xcls_WindowLeftTree _owner )
@@ -1891,8 +1851,11 @@ public class Xcls_WindowLeftTree : Object
 				 );
 				 
 			 	var fqn = node.fqn();
-			    var cn = _this.main_window.windowstate.project.palete.getChildList(fqn, false);
-			
+			 	var ws = _this.main_window.windowstate;
+			 	var pal = ws.project.palete;
+			 	var sl = ws.file.getSymbolLoader();
+			    var cn = pal.getChildListFromSymbols(sl, fqn, false);
+			    
 				img.set_visible(cn.size > 0 ? true : false);
 			 	 
 			});
@@ -1909,7 +1872,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_LeftTreeMenu(Xcls_WindowLeftTree _owner )
@@ -1934,7 +1897,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box18(Xcls_WindowLeftTree _owner )
@@ -1964,7 +1927,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button19(Xcls_WindowLeftTree _owner )
@@ -1995,7 +1958,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button20(Xcls_WindowLeftTree _owner )
@@ -2031,7 +1994,7 @@ public class Xcls_WindowLeftTree : Object
 		private Xcls_WindowLeftTree  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button21(Xcls_WindowLeftTree _owner )

@@ -22,7 +22,7 @@ public class Xcls_LeftProps : Object
 	public Xcls_valcol valcol;
 	public Xcls_ContextMenu ContextMenu;
 
-		// my vars (def)
+	// my vars (def)
 	public bool loading;
 	public bool allow_edit;
 	public signal void show_add_props (string type);
@@ -301,7 +301,7 @@ public class Xcls_LeftProps : Object
 	        return ;
 	    }
 	
-	    node.loadProps(this.model.el, _this.main_window.windowstate.project); 
+	    node.loadProps(this.model.el, file); 
 	    
 	    
 	   //GLib.debug("clear selection\n");
@@ -324,7 +324,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box1(Xcls_LeftProps _owner )
@@ -358,7 +358,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label2(Xcls_LeftProps _owner )
@@ -382,7 +382,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -420,7 +420,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -460,7 +460,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_MenuButton5(Xcls_LeftProps _owner )
@@ -484,7 +484,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_addpop(Xcls_LeftProps _owner )
@@ -509,7 +509,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box7(Xcls_LeftProps _owner )
@@ -581,7 +581,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button8(Xcls_LeftProps _owner )
@@ -621,7 +621,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label9(Xcls_LeftProps _owner )
@@ -646,7 +646,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button10(Xcls_LeftProps _owner )
@@ -689,7 +689,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label11(Xcls_LeftProps _owner )
@@ -714,7 +714,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button12(Xcls_LeftProps _owner )
@@ -755,7 +755,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label13(Xcls_LeftProps _owner )
@@ -780,7 +780,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button14(Xcls_LeftProps _owner )
@@ -820,7 +820,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label15(Xcls_LeftProps _owner )
@@ -845,7 +845,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button16(Xcls_LeftProps _owner )
@@ -886,7 +886,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label17(Xcls_LeftProps _owner )
@@ -911,7 +911,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Separator18(Xcls_LeftProps _owner )
@@ -933,7 +933,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button19(Xcls_LeftProps _owner )
@@ -971,7 +971,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label20(Xcls_LeftProps _owner )
@@ -996,7 +996,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button21(Xcls_LeftProps _owner )
@@ -1035,7 +1035,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label22(Xcls_LeftProps _owner )
@@ -1060,7 +1060,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button23(Xcls_LeftProps _owner )
@@ -1099,7 +1099,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label24(Xcls_LeftProps _owner )
@@ -1124,7 +1124,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Separator25(Xcls_LeftProps _owner )
@@ -1146,7 +1146,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button26(Xcls_LeftProps _owner )
@@ -1185,7 +1185,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label27(Xcls_LeftProps _owner )
@@ -1210,7 +1210,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button28(Xcls_LeftProps _owner )
@@ -1247,7 +1247,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label29(Xcls_LeftProps _owner )
@@ -1272,7 +1272,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button30(Xcls_LeftProps _owner )
@@ -1309,7 +1309,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label31(Xcls_LeftProps _owner )
@@ -1334,7 +1334,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Separator32(Xcls_LeftProps _owner )
@@ -1356,7 +1356,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button33(Xcls_LeftProps _owner )
@@ -1395,7 +1395,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label34(Xcls_LeftProps _owner )
@@ -1420,7 +1420,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button35(Xcls_LeftProps _owner )
@@ -1459,7 +1459,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label36(Xcls_LeftProps _owner )
@@ -1484,7 +1484,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button37(Xcls_LeftProps _owner )
@@ -1523,7 +1523,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label38(Xcls_LeftProps _owner )
@@ -1552,7 +1552,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool editing;
 
 		// ctor
@@ -1587,7 +1587,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public Xcls_PopoverProperty popover;
 
 		// ctor
@@ -1816,7 +1816,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_deletemenu(Xcls_LeftProps _owner )
@@ -1841,7 +1841,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box42(Xcls_LeftProps _owner )
@@ -1865,7 +1865,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button43(Xcls_LeftProps _owner )
@@ -1901,7 +1901,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Label44(Xcls_LeftProps _owner )
@@ -1927,7 +1927,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick45(Xcls_LeftProps _owner )
@@ -1984,7 +1984,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick46(Xcls_LeftProps _owner )
@@ -2044,7 +2044,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_selmodel(Xcls_LeftProps _owner )
@@ -2058,6 +2058,7 @@ public class Xcls_LeftProps : Object
 
 			// set gobject values
 			this.el.can_unselect = true;
+			this.el.autoselect = false;
 		}
 
 		// user defined functions
@@ -2099,7 +2100,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_model(Xcls_LeftProps _owner )
@@ -2123,7 +2124,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_keycol(Xcls_LeftProps _owner )
@@ -2150,7 +2151,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory50(Xcls_LeftProps _owner )
@@ -2210,7 +2211,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_valcol(Xcls_LeftProps _owner )
@@ -2237,7 +2238,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool is_setting;
 
 		// ctor
@@ -2263,10 +2264,17 @@ public class Xcls_LeftProps : Object
 				lbl.use_markup = true;
 				lbl.xalign =0;
 				lbl.ellipsize = Pango.EllipsizeMode.END;
+				
+				
 				var cb = new Gtk.DropDown(new Gtk.StringList({}), null);
 				cb.hexpand = true;
-			 
 				hb.append(cb);
+				
+				var sw = new Gtk.Switch();
+				//sw.hexpand = true;
+				hb.append(sw);
+				
+				
 				((Gtk.ListItem)listitem).set_child(hb);
 				 
 				 var ef = new Gtk.EventControllerFocus();
@@ -2287,6 +2295,8 @@ public class Xcls_LeftProps : Object
 				 	 _this.selmodel.selectProp(prop);
 				 	 
 				 });
+				 
+				 // text edit
 			 	elbl.changed.connect(() => {
 					// notify and save the changed value...
 				 	
@@ -2303,6 +2313,16 @@ public class Xcls_LeftProps : Object
 				       
 			        }
 			        
+				});
+				
+				sw.notify["active"].connect(()=> {
+				  if (_this.loading || this.is_setting) {
+				  	return;
+				  }
+					 var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+				 	 _this.stop_editor();
+				 	 prop.val = sw.active ? "true" : "false";
+						 	 
 				});
 				
 				
@@ -2340,19 +2360,19 @@ public class Xcls_LeftProps : Object
 			
 			
 				var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
-			 
-				
-				
+			  
 				
 				var elbl = (Gtk.EditableLabel)bx.get_first_child();
 				var lbl = (Gtk.Label) elbl.get_next_sibling();
 				var cb  = (Gtk.DropDown) lbl.get_next_sibling();
+				var sw = (Gtk.Switch) cb.get_next_sibling();
 				// decide if it's a combo or editable text..
 				var model = (Gtk.StringList) cb.model;
 			 
 				elbl.hide();
 				lbl.hide();
 				cb.hide();
+				sw.hide();
 				
 				var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
 			 	if (prop == null || _this.node == null ) {
@@ -2369,15 +2389,16 @@ public class Xcls_LeftProps : Object
 				//GLib.debug("prop.key = %s", prop.to_display_name());
 				 
 			    var use_textarea =  prop.useTextArea();
-			    
-			    
+			     
 			    var pal = _this.file.project.palete;
 			        
 			    string[] opts = {};
 			  
 			    var has_opts = prop.ptype.can_have_opt_list() ? 
-			    	pal.typeOptions(_this.node.fqn(), prop.name, prop.rtype, out opts)
-			    	: false;
+			    	pal.typeOptions(
+			    		_this.file.getSymbolLoader(), 
+			    		_this.node.fqn(), prop.name, prop.rtype, out opts
+					) : false;
 			    
 			    if (!has_opts && prop.ptype == JsRender.NodePropType.RAW) {
 			      	use_textarea = true;
@@ -2385,7 +2406,7 @@ public class Xcls_LeftProps : Object
 			    
 			    
 			    if (use_textarea) {
-			    	prop.bind_property("val_short",
+			    		prop.bind_property("val_short",
 			                    lbl, "label",
 			                   GLib.BindingFlags.SYNC_CREATE);
 			        prop.bind_property("val_tooltip",
@@ -2396,6 +2417,12 @@ public class Xcls_LeftProps : Object
 			        return;
 			    	
 			    }
+			     if (prop.rtype.down() == "bool" || prop.rtype.down() == "boolean") {
+			     	sw.show();
+			     	sw.set_active(prop.val.down() == "true" ? true : false);
+					this.is_setting = false;        
+			 		return;
+				}
 			     
 			        
 			        
@@ -2449,7 +2476,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_ContextMenu(Xcls_LeftProps _owner )
@@ -2474,7 +2501,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box54(Xcls_LeftProps _owner )
@@ -2498,7 +2525,7 @@ public class Xcls_LeftProps : Object
 		private Xcls_LeftProps  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button55(Xcls_LeftProps _owner )

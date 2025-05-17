@@ -32,6 +32,7 @@ public class WindowState : Object
 	public Xcls_WindowRooView		window_rooview;
 	public Xcls_GtkView				window_gladeview;
 	public DialogFiles				popover_files;
+	public CodeInfo  				popover_codeinfo;
 	
 	//public Xcls_ClutterFiles     clutterfiles;
 	//public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
@@ -103,12 +104,15 @@ public class WindowState : Object
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
   
+  		// not a popover anymore !
 		this.popover_files = new DialogFiles();
 		 this.popover_files.win = this.win;
 	    this.popover_files.el.application = this.win.el.application;
 	    this.popover_files.el.set_transient_for( this.win.el );
  
-
+ 		this.popover_codeinfo = new CodeInfo();
+ 		this.popover_codeinfo.win = this.win;
+ 		FakeServer.server();
 	}
 
  
@@ -575,6 +579,11 @@ public class WindowState : Object
 		
 		this.file_details.success.connect((project,file) =>
 		{
+			if (this.file.path == file.path) {
+				this.win.setTitle();
+				return;
+			
+			}
 			this.popover_files.el.hide();
 			this.fileViewOpen(file, this.file_details.new_window,  -1);
 			// if it's comming from the file dialog -> hide it...

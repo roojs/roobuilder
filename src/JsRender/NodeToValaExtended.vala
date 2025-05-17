@@ -129,14 +129,16 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 	{
 			
 		
-		
-		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
-		if (ncls == null || ncls.nodetype != "Class") { 
+		var sl =  this.file.getSymbolLoader();
+		var pal = this.file.project.palete;
+		var ncls = pal.getClass(sl, this.node.fqn());
+		if (ncls == null) { 
 			this.addLine(this.ipad + "** classname is invalid - can not make ctor "  + this.node.fqn());
 			return;
 		}
+		
 		var ctor = ".new";
-		var default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);		
+		var default_ctor = pal.getAny(sl,  this.node.fqn() + ctor);		
 		
 		if (default_ctor == null) {
 			this.addLine(this.ipad + "** classname is invalid - can not find ctor "  + this.node.fqn() + ".new");
@@ -144,14 +146,18 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		}
 		// simple ctor...(will not need ctor params..
 		
-		
+		sl.loadMethodParams(default_ctor);
 		// now we can skip ctor arguments if we have actually set them?
 		string[] args  = {};
-		if (default_ctor.paramset != null &&  default_ctor.paramset.params.size > 0)  {
-			foreach(var param in default_ctor.paramset.params) {
+		
+		if (  default_ctor.param_ar.keys.size > 0)  {
+			var pos = 0;
+			while (default_ctor.param_ar.has_key(pos)) {
+			 	var param = default_ctor.param_ar.get(pos);
+				pos++;
 					 
 				var n = param.name;
-				GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
+				//GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
 				// not sure if it's even worth warning on this...
 				if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;
@@ -164,7 +170,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 					continue;
 				}
 				// finally 	
-				args += (param.type + " " + n);
+				args += (param.rtype + " " + n);
 				  
 
 			}
@@ -190,12 +196,15 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 		this.addUnderThis(); // set up '_this = _owner or _this = this;
 		
 		// if there are no ctor args, then we do not need to call object // or create props.
-		if (default_ctor.paramset == null ||  default_ctor.paramset.params.size < 1)  {
+		if (default_ctor.param_ar.keys.size < 1)  {
 	 	 	return;
  	 	}
 		// .vala props.. 
  		var obj_args = new Gee.HashMap<string,string>();
-	 	foreach(var param in default_ctor.paramset.params) {
+	 	var pos = 0;
+		while (default_ctor.param_ar.has_key(pos)) {
+			var param = default_ctor.param_ar.get(pos);
+			pos++;
 			var n = param.name;
 			if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;
@@ -207,7 +216,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				
 				var v = this.node.get(n);
 
-				if (param.type == "string") {
+				if (param.rtype == "string") {
 					v = "\"" +  v.escape("") + "\"";
 				}
 				if (v == "TRUE" || v == "FALSE") {

@@ -32,13 +32,15 @@ deps = [
    dependency('gio-unix-2.0'),
    dependency('libadwaita-1'),
    dependency('roojspack-1.5'),
+   dependency('sqlite3'),
+   dependency('gtk4-x11'),
 
 ]
  
 # let Vala add the appropriate defines for GLIB_X_X
 add_project_arguments(['--target-glib=auto'], language: 'vala')
 
- 
+
 
 conf = configuration_data()
 conf.set('PROJECT_NAME', meson.project_name())
@@ -79,7 +81,7 @@ gnome.post_install(gtk_update_icon_cache : true)
 
 roobuilder_resources = gnome.compile_resources(
 	'roobuilder-resources', 'resources/gresources.xml',
-	source_dir: [ 'resources/Editors', 'resources/css', 'resources/data', 'resources/glade-icons', 'resources/html' ],
+	source_dir: [ 'resources/Editors', 'resources/css', 'resources/data', 'resources/doc', 'resources/doc/css-bootstrap', 'resources/doc/css-bootstrap/font-awesome', 'resources/doc/css-bootstrap4', 'resources/glade-icons', 'resources/html', 'resources/images' ],
 	c_name: 'roobuilder_resources' 
 )
 
@@ -111,8 +113,6 @@ roobuilder_src = files([
    'src/Builder4/WindowLeftProps.vala',
    'src/Builder4/WindowRooView.vala',
    'src/Builder4/WindowState.vala',
-   'src/Palete/GirObject.vala',
-   'src/Palete/Gir.vala',
    'src/JsRender/Dir.vala',
    'src/JsRender/Gtk.vala',
    'src/JsRender/JsonGen.vala',
@@ -130,7 +130,6 @@ roobuilder_src = files([
    'src/Palete/Gtk.vala',
    'src/Palete/Palete.vala',
    'src/Palete/Roo.vala',
-   'src/Palete/VapiParser.vala',
    'src/Builder4/WindowLeftTree.vala',
    'src/Builder4/PopoverAddProp.vala',
    'src/Builder4/PopoverFileDetails.vala',
@@ -158,6 +157,23 @@ roobuilder_src = files([
    'src/Settings.vala',
    'src/Palete/HoverProvider.vala',
    'src/Builder4/CodeInfo.vala',
+   'src/Palete/ValaSymbolBuilder.vala',
+   'src/Palete/Symbol.vala',
+   'src/Palete/SymbolFile.vala',
+   'src/Palete/SymbolVala.vala',
+   'src/Palete/ValaSymbolGirBuilder.vala',
+   'src/Palete/SymbolGir.vala',
+   'src/Palete/SymbolFileCollection.vala',
+   'src/SQ/Database.vala',
+   'src/SQ/Query.vala',
+   'src/SQ/Schema.vala',
+   'src/Palete/ValaErrorReporter.vala',
+   'src/Palete/SymbolLoader.vala',
+   'src/JsRender/NodePropType.vala',
+   'src/Palete/SymbolNodeProp.vala',
+   'src/Builder4/LoadingProgress.vala',
+   'src/Palete/SymbolFormat.vala',
+   'src/Palete/JsonSerialize.vala',
 ])
 
 

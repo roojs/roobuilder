@@ -1,13 +1,14 @@
 {
  "build_module" : "",
+ "gen_extended" : false,
  "items" : [
   {
    "$ buttons" : "Gtk.ButtonsType.OK",
-   "$ message_type" : "Gtk.MessageType.ERROR",
    "$ modal" : true,
    "$ use_markup" : true,
    "$ xns" : "Gtk",
    "Gtk.DialogFlags flags" : "Gtk.DialogFlags.MODAL",
+   "Gtk.MessageType type" : "Gtk.MessageType.INFO",
    "id" : "StandardErrorDialog",
    "listeners" : {
     "response" : [
@@ -19,21 +20,17 @@
    "text" : "fixme",
    "xtype" : "MessageDialog",
    "| void show" : [
-    " (Gtk.Window win, string msg) {",
+    " (Gtk.Window? win, string msg) {",
     "",
     "    this.el.set_transient_for(win);",
     "    this.el.modal = true;",
     "    this.el.text =  msg;",
     "    this.el.show();",
+    "    ",
     "}",
     ""
    ]
   }
  ],
- "modOrder" : "",
- "name" : "StandardErrorDialog",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/StandardErrorDialog.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "StandardErrorDialog"
 }

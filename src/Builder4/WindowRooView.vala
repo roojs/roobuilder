@@ -33,7 +33,7 @@ public class Xcls_WindowRooView : Object
 	public Xcls_regex regex;
 	public Xcls_multiline multiline;
 
-		// my vars (def)
+	// my vars (def)
 	public Gtk.Widget lastObj;
 	public Xcls_MainWindow main_window;
 	public int last_error_counter;
@@ -357,7 +357,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_notebook(Xcls_WindowRooView _owner )
@@ -387,7 +387,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_label_preview(Xcls_WindowRooView _owner )
@@ -410,7 +410,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_label_code(Xcls_WindowRooView _owner )
@@ -433,7 +433,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_paned(Xcls_WindowRooView _owner )
@@ -460,7 +460,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_viewbox(Xcls_WindowRooView _owner )
@@ -489,7 +489,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box6(Xcls_WindowRooView _owner )
@@ -521,7 +521,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button7(Xcls_WindowRooView _owner )
@@ -549,7 +549,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_AutoRedraw(Xcls_WindowRooView _owner )
@@ -579,7 +579,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Button9(Xcls_WindowRooView _owner )
@@ -613,7 +613,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public WebKit.WebInspector inspector;
 		public bool pendingRedraw;
 		public int redraws;
@@ -634,9 +634,9 @@ public class Xcls_WindowRooView : Object
 			this.pendingRedraw = false;
 			this.redraws = 0;
 			this.refreshRequired = false;
-			this.runjs = "";
-			this.runhtml = "";
-			this.renderedData = "";
+			this.runjs = "\"\"";
+			this.runhtml = "\"\"";
+			this.renderedData = "\"\"";
 			this.lastRedraw = null;
 
 			// set gobject values
@@ -648,42 +648,7 @@ public class Xcls_WindowRooView : Object
 			    // this may not work!?
 			    var settings =  this.el.get_settings();
 			    settings.enable_developer_extras = true;
-			    
-			    
-			    var fs= new FakeServer(this.el);
-			    fs.ref();
-			    // this was an attempt to change the url perms.. did not work..
-			    // settings.enable_file_access_from_file_uris = true;
-			    // settings.enable_offline_web_application_cache - true;
-			    // settings.enable_universal_access_from_file_uris = true;
 			   
-			     
-			    
-			    
-			    
-			
-			     // FIXME - base url of script..
-			     // we need it so some of the database features work.
-			    this.el.load_html( "Render not ready" , 
-			            //fixme - should be a config option!
-			            // or should we catch stuff and fix it up..
-			            "http://localhost/app.Builder/"
-			    );
-			   
-			        
-			   //this.el.open('file:///' + __script_path__ + '/../builder.html');
-			    /*
-			    Gtk.drag_dest_set
-			    (
-			            this.el,              //
-			            Gtk.DestDefaults.MOTION  | Gtk.DestDefaults.HIGHLIGHT,
-			            null,            // list of targets
-			            Gdk.DragAction.COPY         // what to do with data after dropped 
-			    );
-			                            
-			   // print("RB: TARGETS : " + LeftTree.atoms["STRING"]);
-			    Gtk.drag_dest_set_target_list(this.el, this.get('/Window').targetList);
-			    */
 			    GLib.Timeout.add_seconds(1,  ()  =>{
 			         //print("run refresh?");
 			         if (this.el == null) {
@@ -911,7 +876,7 @@ public class Xcls_WindowRooView : Object
 		    var base_template = project.base_template;
 		    var f = GLib. File.new_for_uri("resource:///html/" + base_template);
 		    
-		    if (base_template.length > 0 &&  f.query_exists(null)) {
+		    if (base_template.length > 0 &&  !f.query_exists(null)) {
 		       
 		           GLib.debug("invalid base_template name ='%s' - using default", base_template);
 		           f = GLib. File.new_for_uri("resource:///html/roo.builder.html");
@@ -947,7 +912,10 @@ public class Xcls_WindowRooView : Object
 		
 		
 		    //this.runjs = js_src;
-		    var fc =    FakeServerCache.factory_with_data(js_src);
+		    
+		    var fc =    FakeServerCache.factory_with_data( js_src);
+		    		
+		    		
 		    this.runjs = fc.fname;
 		    var html  = (string) inhtml;
 		    html = html == null ? "" : html; // fix null?
@@ -963,13 +931,15 @@ public class Xcls_WindowRooView : Object
 		    
 		     var rootURL = project.rootURL;
 		
-		    
-		    
+		    if (!this.el.get_realized()) {
+		    	return;
+			}
+		    // disabled as it keeps crashing here?
 		    this.el.load_html( html , 
 		        //fixme - should be a config option!
-		        (rootURL.length > 0 ? rootURL : "xhttp://localhost/roobuilder/")
+		       (rootURL.length > 0 ? rootURL : "xhttp://localhost/roobuilder/")
 		    );
-		      this.initInspector();   
+		    this.initInspector();   
 		    // force the inspector...        
 		       //   this.initInspector();
 		        
@@ -991,7 +961,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_inspectorcontainer(Xcls_WindowRooView _owner )
@@ -1016,7 +986,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box12(Xcls_WindowRooView _owner )
@@ -1043,7 +1013,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_sourceviewscroll(Xcls_WindowRooView _owner )
@@ -1068,7 +1038,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int editable_start_pos;
 		public bool loading;
 		public bool button_is_pressed;
@@ -1088,7 +1058,7 @@ public class Xcls_WindowRooView : Object
 			this.editable_start_pos = -1;
 			this.loading = true;
 			this.button_is_pressed = false;
-			this.prop_selected = "";
+			this.prop_selected = "\"\"";
 			this.css = null;
 			this.key_is_pressed = false;
 			this.node_selected = null;
@@ -1119,7 +1089,7 @@ public class Xcls_WindowRooView : Object
 			
 			
 				var attrs = new GtkSource.MarkAttributes();
-				attrs.set_icon_name ( "process-stop");    
+				attrs.set_icon_name ( "dialog-error");    
 				attrs.query_tooltip_text.connect(( mark) => {
 					//print("tooltip query? %s\n", mark.name);
 					return mark.name;
@@ -1128,7 +1098,7 @@ public class Xcls_WindowRooView : Object
 				this.el.set_mark_attributes ("ERR", attrs, 1);
 			
 				 var wattrs = new GtkSource.MarkAttributes();
-				wattrs.set_icon_name ( "process-stop");    
+				wattrs.set_icon_name ( "dialog-warning");    
 				wattrs.query_tooltip_text.connect(( mark) => {
 					//print("tooltip query? %s\n", mark.name);
 					return mark.name;
@@ -1139,7 +1109,7 @@ public class Xcls_WindowRooView : Object
 			
 			
 				 var dattrs = new GtkSource.MarkAttributes();
-				dattrs.set_icon_name ( "process-stop");    
+				dattrs.set_icon_name ( "dialog-information");    
 				dattrs.query_tooltip_text.connect(( mark) => {
 					//print("tooltip query? %s\n", mark.name);
 					return mark.name;
@@ -1488,7 +1458,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public int error_line;
 		public bool in_cursor_change;
 		public bool dirty;
@@ -1521,7 +1491,6 @@ public class Xcls_WindowRooView : Object
 				buf.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
 				buf.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
 				buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
-			
 			
 				buf.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "pink");
 				buf.create_tag ("WARN", "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
@@ -1651,7 +1620,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool is_control;
 
 		// ctor
@@ -1710,7 +1679,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public double distance;
 
 		// ctor
@@ -1757,7 +1726,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box18(Xcls_WindowRooView _owner )
@@ -1791,7 +1760,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_entry(Xcls_WindowRooView _owner )
@@ -1857,7 +1826,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_EventControllerKey20(Xcls_WindowRooView _owner )
@@ -1902,7 +1871,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_results(Xcls_WindowRooView _owner )
@@ -1948,7 +1917,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -1982,7 +1951,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -2017,7 +1986,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 		public bool always_show_image;
 
 		// ctor
@@ -2043,7 +2012,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_search_settings(Xcls_WindowRooView _owner )
@@ -2068,7 +2037,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_Box26(Xcls_WindowRooView _owner )
@@ -2095,7 +2064,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_case_sensitive(Xcls_WindowRooView _owner )
@@ -2125,7 +2094,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_regex(Xcls_WindowRooView _owner )
@@ -2155,7 +2124,7 @@ public class Xcls_WindowRooView : Object
 		private Xcls_WindowRooView  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_multiline(Xcls_WindowRooView _owner )

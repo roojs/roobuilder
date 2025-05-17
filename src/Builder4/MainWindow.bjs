@@ -39,7 +39,7 @@
           {
            "$ xns" : "Adw",
            "* prop" : "child",
-           "string icon_name" : "preferences-system-windows",
+           "string icon_name" : "network-workgroup",
            "string label" : " Files",
            "xtype" : "ButtonContent"
           }
@@ -255,7 +255,28 @@
           {
            "$ tooltip_text" : "\"Project Details\"",
            "$ xns" : "Gtk",
-           "bool always_show_image" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "int margin_end" : 4,
+               "string icon_name" : "emblem-system",
+               "xtype" : "Image"
+              },
+              {
+               "$ xns" : "Gtk",
+               "string label" : "Project Properties",
+               "xtype" : "Label"
+              }
+             ],
+             "xtype" : "Box"
+            }
+           ],
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -266,14 +287,33 @@
              "}"
             ]
            },
-           "string icon_name" : "emblem-system",
-           "string label" : "Edit Project Settings",
            "xtype" : "Button"
           },
           {
            "$ tooltip_text" : "\"File Details\"",
            "$ xns" : "Gtk",
-           "bool always_show_image" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "int margin_end" : 4,
+               "string icon_name" : "document-new",
+               "xtype" : "Image"
+              },
+              {
+               "$ xns" : "Gtk",
+               "string label" : "File Properties",
+               "xtype" : "Label"
+              }
+             ],
+             "xtype" : "Box"
+            }
+           ],
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -285,15 +325,13 @@
              "     _this.windowstate.file_details.show(",
              "        _this.windowstate.file, _this.el, false",
              "    );",
-             "     ",
+             " ",
              "    return  ;    ",
              "",
              "",
              "}"
             ]
            },
-           "string icon_name" : "document-properties",
-           "string label" : "Edit File Properties",
            "xtype" : "Button"
           },
           {
@@ -397,9 +435,32 @@
              "xtype" : "Label"
             },
             {
+             "# Xcls_ValaCompileErrors popup" : "",
              "$ xns" : "Gtk",
-             "Xcls_ValaCompileErrors popup" : "",
              "id" : "statusbar_errors",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+               "int spacing" : 0,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "int margin_end" : 4,
+                 "string icon_name" : "dialog-error",
+                 "xtype" : "Image"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "id" : "statusbar_errors_lbl",
+                 "string label" : "0 Errors",
+                 "xtype" : "Label"
+                }
+               ],
+               "xtype" : "Box"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "() => {",
@@ -413,8 +474,6 @@
                "}"
               ]
              },
-             "string icon_name" : "dialog-error",
-             "string label" : "0 Errors",
              "xtype" : "Button",
              "| void setNotices" : [
               "(GLib.ListStore nots, int ferrors ) {",
@@ -428,7 +487,7 @@
               "    }",
               "    ",
               "    this.el.show();",
-              "    this.el.label = \"%d/%d Errors\".printf(ferrors,(int)nots.get_n_items());",
+              "    _this.statusbar_errors_lbl.el.label = \"%d/%d Errors\".printf(ferrors,(int)nots.get_n_items());",
               "",
               "    ",
               " ",
@@ -446,9 +505,32 @@
              ]
             },
             {
+             "# Xcls_ValaCompileErrors popup" : "",
              "$ xns" : "Gtk",
-             "Xcls_ValaCompileErrors popup" : "",
              "id" : "statusbar_warnings",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+               "int spacing" : 0,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "int margin_end" : 4,
+                 "string icon_name" : "dialog-warning",
+                 "xtype" : "Image"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "id" : "statusbar_warnings_lbl",
+                 "string label" : "0 Warnings",
+                 "xtype" : "Label"
+                }
+               ],
+               "xtype" : "Box"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "() => {",
@@ -462,8 +544,6 @@
                "}"
               ]
              },
-             "string icon_name" : "dialog-warning",
-             "string label" : "0 Warnings",
              "xtype" : "Button",
              "| void setNotices" : [
               "(GLib.ListStore nots, int ferrs ) {",
@@ -477,7 +557,7 @@
               "    }",
               "    ",
               "    this.el.show();",
-              "    this.el.label = \"%d/%d Warnings\".printf(ferrs,(int)nots.get_n_items());",
+              "    _this.statusbar_warnings_lbl.el.label = \"%d/%d Warnings\".printf(ferrs,(int)nots.get_n_items());",
               "",
               "    ",
               " ",
@@ -495,9 +575,32 @@
             },
             {
              "# GLib.ListStore notices" : "null",
+             "# Xcls_ValaCompileErrors popup" : "",
              "$ xns" : "Gtk",
-             "Xcls_ValaCompileErrors popup" : "",
              "id" : "statusbar_depricated",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+               "int spacing" : 0,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "int margin_end" : 4,
+                 "string icon_name" : "dialog-information",
+                 "xtype" : "Image"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "id" : "statusbar_depricated_lbl",
+                 "string label" : "0 Depricated",
+                 "xtype" : "Label"
+                }
+               ],
+               "xtype" : "Box"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "() => {",
@@ -511,8 +614,6 @@
                "}"
               ]
              },
-             "string icon_name" : "dialog-information",
-             "string label" : "0 Depricated",
              "xtype" : "Button",
              "| void setNotices" : [
               "",
@@ -527,7 +628,7 @@
               "    }",
               "    ",
               "    this.el.show();",
-              "    this.el.label = \"%d/%d Depricated\".printf(ferrs,(int)nots.get_n_items());",
+              "    _this.statusbar_depricated_lbl.el.label = \"%d/%d Depricated\".printf(ferrs,(int)nots.get_n_items());",
               "",
               "    ",
               " ",
@@ -544,11 +645,33 @@
              ]
             },
             {
+             "# Palete.ValaCompileRequest? last_request" : "null",
+             "# Xcls_ValaCompileErrors popup" : "",
              "$ xns" : "Gtk",
-             "Palete.ValaCompileRequest? last_request" : "null",
-             "Xcls_ValaCompileErrors popup" : "",
              "bool visible" : false,
              "id" : "statusbar_run",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+               "int spacing" : 0,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "int margin_end" : 4,
+                 "string icon_name" : "media-playback-start",
+                 "xtype" : "Image"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "string label" : "Run",
+                 "xtype" : "Label"
+                }
+               ],
+               "xtype" : "Box"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "() => {",
@@ -592,8 +715,6 @@
                "}"
               ]
              },
-             "string icon_name" : "media-playback-start",
-             "string label" : "Run",
              "xtype" : "Button"
             }
            ],
@@ -1089,6 +1210,9 @@
                  "\t\treturn;",
                  "\t}",
                  "\tvar tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;",
+                 "\tif (tr == null) {",
+                 "\t\treturn;",
+                 "\t}",
                  "\tGLib.debug(\"SELECTED = %s\", tr.item.get_type().name());",
                  "\tvar f = (JsRender.JsRender) tr.item;",
                  "\tGLib.debug(\"Click %s\", f.name);",

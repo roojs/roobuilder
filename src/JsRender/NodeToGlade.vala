@@ -8,15 +8,17 @@
 public class JsRender.NodeToGlade : Object {
 
 	Node node;
-	Project.Gtk project;
+ 
 	Xml.Node* parent;
 	Xml.Doc* doc;
+	JsRender file;
 	
-	public NodeToGlade( Project.Gtk project, Node node, Xml.Node* parent) 
+	public NodeToGlade( JsRender file,  Node node, Xml.Node* parent) 
 	{
 		
 		this.parent = parent;
-		this.project = project;
+ 
+		this.file = file;
 		this.node = node;
  		
 	}
@@ -26,8 +28,8 @@ public class JsRender.NodeToGlade : Object {
 		if (file.tree == null) {
 			return "";
 		}
-
-		var n = new NodeToGlade(  (Project.Gtk) file.project, file.tree,  null);
+ 
+		var n = new NodeToGlade( file, file.tree,  null);
 	
 		///n.toValaName(file.tree);
 		
@@ -56,7 +58,7 @@ public class JsRender.NodeToGlade : Object {
 	}
 	public Xml.Node* mungeChild( Node cnode , Xml.Node* cdom)
 	{
-		var x = new  NodeToGlade(this.project, cnode,  cdom);
+		var x = new  NodeToGlade(this.file, cnode,  cdom);
 		return x.mungeNode();
 	}
 	public static Xml.Ns* ns = null;
@@ -90,9 +92,12 @@ public class JsRender.NodeToGlade : Object {
 		} 
 		
 		var cls = this.node.fqn().replace(".", "");
+		var sl = file.getSymbolLoader();
 		
-		var gdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
-		if (gdata == null || !gdata.inherits.contains("Gtk.Buildable")) {
+		var gdata = file.project.palete.getClass(sl,   this.node.fqn());
+		if (gdata == null || 
+			(!gdata.implements.contains("Gtk.Buildable") && 
+				gdata.implements.contains("Gtk.Native"))) {
 			switch(cls) {
 			//exception to the rule.. (must be buildable to work with glade?
 				
@@ -110,7 +115,7 @@ public class JsRender.NodeToGlade : Object {
 					return null;
 			}
 		}
- 		if (gdata.inherits.contains("Gtk.Native")&& !is_top) {
+ 		if (gdata.implements.contains("Gtk.Native")&& !is_top) {
 			return null;
 		}
 		// what namespaces are supported
@@ -127,7 +132,7 @@ public class JsRender.NodeToGlade : Object {
 		
 		// other problems!!!
 		
-		if (gdata.fqn() == ("Gtk.ListStore")) {
+		if (gdata.fqn == "Gtk.ListStore") {
 			return null;
 		}
 		 
@@ -139,7 +144,8 @@ public class JsRender.NodeToGlade : Object {
 		var obj = this.create_element("object");
 		//var id = this.node.uid();
 		var skip_props = false;
-		if (gdata.inherits.contains("Gtk.Native")) {
+		// old gtk3  -windows are not native..
+		if (gdata.implements.contains("Gtk.Native") || gdata.fqn == "Gtk.Window") {
 			 
 			obj->set_prop("class", "GtkFrame");
 			skip_props = true;
@@ -160,7 +166,7 @@ public class JsRender.NodeToGlade : Object {
 		obj->set_prop("id", "w" + this.node.oid.to_string());
 		this.parent->add_child(obj);
 		// properties..
-		var props = Palete.Gir.factoryFqn(this.project, this.node.fqn()).props;
+		var props = this.file.project.palete.getPropertiesFor(sl, this.node.fqn(), NodePropType.PROP);
  
               
 		var pviter = props.map_iterator();
@@ -174,13 +180,29 @@ public class JsRender.NodeToGlade : Object {
 			}
 			var k = pviter.get_key();	
 			var prop = props.get(k);
+			
+			if (prop.stype == Lsp.SymbolKind.Parameter) {
+				continue;
+			}
+			if (prop.is_ctor_only) { // gtk.propertyexpression - property_name <??< is not liked?
+				continue;
+			}
+			
 			var val = this.node.get(pviter.get_key()).strip();	
 			// for Enums - we change it to lowercase, and remove all the previous bits.. hopefully might work.
-			if (prop.type.contains(".") && val.contains(".")) {
-				var typ =  Palete.Gir.factoryFqn(this.project, prop.type);
-				if (typ.nodetype == "Enum") {
-					 var bits = val.split(".");
-					 val = bits[bits.length-1].down();
+			if (prop.rtype.contains(".") && val.contains(".")) {
+				var typ =  file.project.palete.getAny(sl, prop.rtype);
+				switch(typ.stype) {
+					case Lsp.SymbolKind.Struct:
+					case Lsp.SymbolKind.Delegate:
+						continue;
+				
+					case  Lsp.SymbolKind.Enum:
+						 var bits = val.split(".");
+						 val = bits[bits.length-1].down();
+						 break;
+					 default:
+						 break;
 				}
 			}
 			
@@ -213,23 +235,25 @@ public class JsRender.NodeToGlade : Object {
 			}
 		}
 		var items = this.node.readItems();
+		var is_native = gdata.implements.contains("Gtk.Native");
 		for (var i = 0; i < items.size; i++ ) {
 			var cn = items.get(i);
 			
 			var childname = "child";
 			var pname = "";
-			if (cn.has("* prop")) { // && cn.get_prop("* prop").val == "child") {
+			if (!is_native && cn.has("* prop")) { // && cn.get_prop("* prop").val == "child") {
 				childname = "property";
 				pname = cn.get_prop("* prop").val;
 			}
-			
+			 
 			var child  = this.create_element(childname);
-			if (pname != "") {
+			if (!is_native && pname != "") {
 				child->set_prop("name", pname);
 			}
 			
+			
 			if ((cls == "GtkWindow" || cls == "GtkApplicationWindow") && cn.fqn() == "Gtk.HeaderBar") {
-				child->set_prop("type", "label");
+			//	child->set_prop("type", "label");
 			}
 			
 			
@@ -280,4 +304,4 @@ public class JsRender.NodeToGlade : Object {
 
 
 		
-}
+} 

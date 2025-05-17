@@ -58,6 +58,9 @@ namespace Project {
 	public abstract class Project : Object {
 		
 		public signal void on_changed (); 
+		
+		
+		
 	
 		//public string id;
 		//public string fn = ""; // just a md5...
@@ -82,11 +85,13 @@ namespace Project {
 		public Palete.Palete palete;
 		 
 		private bool is_scanned = false; 
-		public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir ??? is this used by Roo?
+ 
 		//public Palete.ValaCompileRequest last_request = null; // depricated?
 		public Gee.HashMap<string,GLib.ListStore>? errorsByType = null;
  		public bool loading = false; // flag this to block saving (normally when loading ui that might trigger save..
 		
+		
+		//public Palete.SymbolFileCollection symbol_manager;
 		
 		protected Gee.HashMap<string,Palete.LanguageClient> language_servers;
 		
@@ -104,6 +109,7 @@ namespace Project {
 	 		this.language_servers = new Gee.HashMap<string,Palete.LanguageClient>();
 	 		this.language_servers.set("dummy", new Palete.LanguageClientDummy(this));
 			this.errorsByType = new  Gee.HashMap<string,GLib.ListStore>();
+			//this.symbol_manager = new Palete.SymbolFileCollection();
 			
 		}
 		 
@@ -884,6 +890,12 @@ namespace Project {
 			
 			
 		}
+		public void renameFile(JsRender.JsRender file, string new_path)
+		{
+			this.files.unset(file.path);
+			this.files.set(new_path, file);
+		
+		}
 			
 		// but do not add it to our list.!!!
 		public void makeProjectSubdir(string name)
@@ -963,7 +975,7 @@ namespace Project {
 			while (sl.get_n_items() > 0) {
 				sl.remove(0);
 			}
-			
+			sl.append("(none)");
 			foreach(var sp in this.sub_paths) {
 				 var add = sp.path == this.path ? "/" : sp.path.substring(this.path.length);
 				if (prefix.length > 0 && !add.has_prefix(prefix)) {
@@ -1079,8 +1091,22 @@ namespace Project {
 			}
 			return ls;
 		}
+		// triggered from vala symbol compiler 
+		public void onTreeChanged(Gee.ArrayList<string> paths) {
+			// loop trhoug paths - see if files are open, if so... update right tree?
+			foreach(var p in paths) {
+				var f = this.getByPath(p);
+				var sf = f.symbol_file();
+				if (sf != null) {
+					f.symbol_file().refreshSymbolsFromDB();
+					f.symbol_tree_updated();
+				}
+			}
 		
+		}
 		
+		public abstract Palete.SymbolLoader getSymbolLoader (string? cgname); 
+		public abstract Palete.SymbolLoader? getSymbolLoaderForFile (JsRender.JsRender file); 		
 		public abstract Palete.LanguageClient  getLanguageServer(string lang);
 		
 		
@@ -1089,7 +1115,8 @@ namespace Project {
 		public abstract void initialize(); // for new projects (make dirs?);
 		public abstract void loadJson(Json.Object obj); 
 		public abstract void saveJson(Json.Object obj);
-		  
+		public abstract Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file);
+		
 	}
 }
  

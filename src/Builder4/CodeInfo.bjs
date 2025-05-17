@@ -3,175 +3,299 @@
  "gen_extended" : false,
  "items" : [
   {
+   "# Xcls_MainWindow? win" : "null",
+   "# int history_pos" : "-1",
+   "$ Gee.ArrayList<Palete.Symbol>? history" : "new Gee.ArrayList<Palete.Symbol>()",
    "$ xns" : "Gtk",
+   "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",
+   "bool autohide" : true,
+   "bool has_arrow" : true,
    "items" : [
     {
      "$ xns" : "Gtk",
      "* prop" : "child",
-     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "id" : "pane",
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* prop" : "end_child",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "items" : [
-          {
-           "$ xns" : "WebKit",
-           "* prop" : "child",
-           "xtype" : "WebView"
-          }
-         ],
-         "string tab_label" : "Documentation",
-         "xtype" : "NotebookPage"
-        }
-       ],
-       "xtype" : "Notebook"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* prop" : "start_child",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-       "bool hexpand" : true,
-       "bool vexpand" : true,
-       "int spacing" : 0,
        "items" : [
         {
          "$ xns" : "Gtk",
-         "bool hexpand" : true,
-         "bool search_mode_enabled" : true,
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* prop" : "child",
-           "bool activates_default" : true,
-           "bool hexpand" : true,
-           "xtype" : "SearchEntry"
-          }
-         ],
-         "xtype" : "SearchBar"
-        },
-        {
-         "$ xns" : "Gtk",
-         "bool hexpand" : true,
-         "bool vexpand" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "child",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "bool expand" : true,
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "* prop" : "factory",
-               "listeners" : {
-                "bind" : [
-                 "(listitem) => {",
-                 "\t// GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
-                 "\t",
-                 "\t//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();",
-                 "\tvar expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();",
-                 "\t ",
-                 "\t ",
-                 "\tvar hbox = (Gtk.Box) expand.child;",
-                 " ",
-                 "\t",
-                 "\tvar img = (Gtk.Image) hbox.get_first_child();",
-                 "\tvar lbl = (Gtk.Label) img.get_next_sibling();",
-                 "\t",
-                 "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
-                 "\tvar node = (JsRender.Node) lr.get_item();",
-                 "\tif (node == null || node.fqn() == \"\") {",
-                 "\t\treturn;",
-                 "\t}",
-                 "   ",
-                 "    expand.set_hide_expander( !node.hasChildren() );",
-                 " \texpand.set_list_row(lr);",
-                 " \t",
-                 " \tnode.bind_property(\"iconResourceName\",",
-                 "                    img, \"resource\",",
-                 "                   GLib.BindingFlags.SYNC_CREATE);",
-                 " \t",
-                 " \tnode.bind_property(\"nodeTitleProp\",",
-                 "                    lbl, \"label\",",
-                 "                   GLib.BindingFlags.SYNC_CREATE);",
-                 " \tnode.bind_property(\"nodeTipProp\",",
-                 "                    lbl, \"tooltip_markup\",",
-                 "                   GLib.BindingFlags.SYNC_CREATE);",
-                 " \t// bind image...",
-                 " \t",
-                 "}",
-                 ""
-                ],
-                "setup" : [
-                 "(listitem) => {",
-                 "\t",
-                 "\tvar expand = new Gtk.TreeExpander();",
-                 "\t ",
-                 "\texpand.set_indent_for_depth(true);",
-                 "\texpand.set_indent_for_icon(true);",
-                 "\tvar hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
-                 "\tvar icon = new Gtk.Image();",
-                 "\tvar lbl = new Gtk.Label(\"\");",
-                 "\tlbl.use_markup = true;",
-                 "\tlbl.ellipsize = Pango.EllipsizeMode.END;",
-                 "\t",
-                 "\ticon.margin_end = 4;",
-                 " \tlbl.justify = Gtk.Justification.LEFT;",
-                 " \tlbl.xalign = 0;",
-                 "",
-                 "//\tlistitem.activatable = true; ??",
-                 "\t",
-                 "\thbox.append(icon);",
-                 "\thbox.append(lbl);",
-                 "\texpand.set_child(hbox);",
-                 "\t((Gtk.ListItem)listitem).set_child(expand);",
-                 "\t",
-                 "}",
-                 ""
-                ]
-               },
-               "xtype" : "SignalListItemFactory"
-              }
-             ],
-             "string title" : "Object Navigation",
-             "xtype" : "ColumnViewColumn"
+             "id" : "back_button",
+             "listeners" : {
+              "clicked" : [
+               "() => {",
+               "\t_this.history_pos--;",
+               "\t_this.showSymbol(_this.history.get(_this.history_pos));",
+               "\t_this.combo.selectCurrent();",
+               "}"
+              ]
+             },
+             "string icon_name" : "go-previous-symbolic",
+             "string tooltip_text" : "Back (previous class)",
+             "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "id" : "next_button",
+             "listeners" : {
+              "clicked" : [
+               "() => {",
+               "\t_this.history_pos++;",
+               "\t_this.showSymbol(_this.history.get(_this.history_pos));",
+               "\t_this.combo.selectCurrent();",
+               "}"
+              ]
+             },
+             "string icon_name" : "go-next-symbolic",
+             "string tooltip_text" : "next class",
+             "xtype" : "Button"
+            }
+           ],
+           "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "listeners" : {
+            "clicked" : [
+             "() => {",
+             "",
+             "\tFakeServerCache.clear(); // force refresh",
+             "\tif (_this.history_pos > -1) {",
+             "\t\tvar sy  = _this.history.get(_this.history_pos);",
+             "\t\t",
+             "\t\t_this.webview.el.load_uri(",
+             "\t\t\t\"doc://localhost/gtk.html#\" + sy.fqn);",
+             "\t}",
+             "}"
+            ]
+           },
+           "string icon_name" : "view-refresh-symbolic",
+           "string tooltip_text" : "Close",
+           "xtype" : "Button"
+          },
+          {
+           "# bool selecting" : false,
+           "$ xns" : "Gtk",
+           "bool enable_search" : true,
+           "bool hexpand" : true,
+           "id" : "combo",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "expression",
+             "GLib.Type this_type" : "typeof(Gtk.StringObject)",
+             "string property_name" : "string",
+             "xtype" : "PropertyExpression"
             },
             {
              "$ xns" : "Gtk",
              "* prop" : "model",
              "items" : [
               {
-               "$ Gtk.TreeListModelCreateModelFunc create_func" : [
-                "(item) => {",
-                "\t//fixme...",
-                "\treturn ((JsRender.Node)item).childstore;",
+               "# bool loaded" : false,
+               "$ xns" : "GLib",
+               "* init" : [
+                "{",
+                "",
+                "\t//this.el.append(new Gtk.StringList(_this.minutes));",
+                "\t//this.el.append(new Gtk.StringList(_this.hours));\t",
                 "}",
                 ""
                ],
-               "$ xns" : "Gtk",
                "* prop" : "model",
-               "bool autoexpand" : true,
-               "bool passthrough" : false,
+               "GLib.Type item_type" : "typeof(Gtk.StringObject)",
+               "id" : "classlist_model",
+               "xtype" : "ListStore",
+               "| void load" : [
+                "(Palete.SymbolLoader sy) {",
+                "\tif (this.loaded) {",
+                "\t\treturn;",
+                "\t}",
+                "\tthis.el.remove_all();",
+                "\tsy.loadClassCache();",
+                "\t",
+                "\t",
+                "\t",
+                "\t ",
+                "\tforeach(var c in sy.classCache.keys) {",
+                "\t\tGLib.debug(\"Add item to help list %s\", c);",
+                "\t\tthis.el.append(new Gtk.StringObject(c));",
+                "\t\t ",
+                "\t}",
+                "\t",
+                "\t",
+                "\tthis.loaded = true;",
+                "\t",
+                "}"
+               ]
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "sorter",
                "items" : [
                 {
-                 "$ GLib.Type item_type" : "typeof(JsRender.Node)",
-                 "$ xns" : "GLib",
-                 "* prop" : "root",
-                 "xtype" : "ListStore"
+                 "$ xns" : "Gtk",
+                 "* prop" : "expression",
+                 "GLib.Type this_type" : "typeof(Gtk.StringObject)",
+                 "string property_name" : "string",
+                 "xtype" : "PropertyExpression"
                 }
                ],
-               "xtype" : "TreeListModel"
+               "xtype" : "StringSorter"
               }
              ],
-             "xtype" : "SingleSelection"
+             "xtype" : "SortListModel"
             }
            ],
-           "xtype" : "ColumnView"
+           "listeners" : {
+            "notify[\"selected\"]" : [
+             "() => {",
+             "\tif (!_this.classlist_model.loaded || this.selecting) {",
+             "\t\treturn;",
+             "\t}",
+             "\tvar sel = this.el.get_selected_item() as Gtk.StringObject;",
+             " \tGLib.debug(\"selected %s\", sel.string);",
+             "",
+             " \tvar sl = _this.win.windowstate.file.getSymbolLoader();",
+             "\tvar sy = sl.singleByFqn(sel.string);",
+             "\tif (sy == null) {",
+             "\t\tGLib.debug(\"could not find symbol %s\", sel.string);",
+             "\t\tthis.el.hide();",
+             "\t\treturn;",
+             "\t}",
+             "\t_this.navigateTo(sy);",
+             "}",
+             " ",
+             " "
+            ]
+           },
+           "xtype" : "DropDown",
+           "| void loadClass" : [
+            "(Palete.Symbol sy) {",
+            "",
+            "}"
+           ],
+           "| void selectCurrent" : [
+            "() {",
+            "\tvar cur = (_this.history_pos > -1) ?",
+            "\t\t\t_this.history.get(_this.history_pos).fqn",
+            "\t\t\t: \"\";",
+            "\tif (cur == \"\") {",
+            "\t\treturn;",
+            "\t}",
+            "\tvar m = this.el.model;",
+            "\tfor(var i =0; i < m.get_n_items(); i++) {",
+            "\t\tvar se = m.get_item(i) as Gtk.StringObject;",
+            "\t \tif (se.string == cur) {",
+            "\t \t\tthis.selecting = true;",
+            "\t \t\tthis.el.set_selected(i);",
+            "\t \t\tthis.selecting = false;",
+            "\t \t\treturn;",
+            " \t\t}",
+            "\t}",
+            "",
+            "}"
+           ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "listeners" : {
+            "clicked" : [
+             "() => {",
+             "\t_this.el.hide();",
+             "}"
+            ]
+           },
+           "string icon_name" : "window-close-symbolic",
+           "string tooltip_text" : "Close",
+           "xtype" : "Button"
+          }
+         ],
+         "xtype" : "Box"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "append",
+         "Gtk.PolicyType hscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
+         "Gtk.PolicyType vscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
+         "bool hexpand" : true,
+         "bool vexpand" : true,
+         "id" : "content",
+         "items" : [
+          {
+           "$ xns" : "WebKit",
+           "* init" : [
+            " {",
+            "    // this may not work!?",
+            "    var settings =  this.el.get_settings();",
+            "    settings.enable_write_console_messages_to_stdout = true;",
+            "    settings.enable_page_cache = false;",
+            "    ",
+            "    ",
+            "",
+            "     // FIXME - base url of script..",
+            "     // we need it so some of the database features work.",
+            "    this.el.load_html( \"Render not ready\" , ",
+            "            //fixme - should be a config option!",
+            "            // or should we catch stuff and fix it up..",
+            "          //  \"http://localhost/roojs1/docs/?gtk=1#Gtk.Widget\"",
+            "            \"doc://localhost/\"",
+            "    );",
+            "        ",
+            "        ",
+            "    ",
+            "    ",
+            "}",
+            ""
+           ],
+           "* pack" : "set_child",
+           "id" : "webview",
+           "listeners" : {
+            "script_dialog" : [
+             "(dlg) => {",
+             "\tvar msg = dlg.get_message();",
+             "\ttry {",
+             "\t\tvar p = new Json.Parser();",
+             "\t\tp.load_from_data(msg);",
+             "\t\t",
+             "\t\tvar r = p.get_root();",
+             "\t\tif (r.get_node_type() != Json.NodeType.ARRAY) {",
+             "\t\t\tGLib.debug(\"alert got something that was nto an array\");",
+             "\t\t}",
+             "\t\tvar ar = r.get_array();",
+             "\t\tif (ar.get_string_element(0) != \"click\") {",
+             "\t\t\tGLib.debug(\"node is not an element\");",
+             "\t\t}",
+             "\t\tvar cls = ar.get_string_element(1);",
+             "\t\t var f = _this.win.windowstate.project.getByPath(cls);",
+             "\t\tif (f == null) {",
+             "\t\t\tGLib.debug(\"Cant open file %s\", cls);",
+             "\t\t}",
+             "\t\t",
+             "\t\t_this.win.windowstate.fileViewOpen(",
+             "\t\t\t\tf, true,  -1);",
+             "\t\t_this.el.hide();",
+             "\t} catch (GLib.Error e) {",
+             "\t",
+             "\t\tGLib.debug(\"parsing alert failed\");",
+             "\t}",
+             "\treturn true;",
+             "",
+             "}"
+            ]
+           },
+           "xtype" : "WebView"
           }
          ],
          "xtype" : "ScrolledWindow"
@@ -180,14 +304,139 @@
        "xtype" : "Box"
       }
      ],
-     "xtype" : "Paned"
+     "xtype" : "Box"
     }
    ],
+   "listeners" : {
+    "show" : [
+     "() => {",
+     "",
+     "\t// what are the coords of the parent?",
+     "\tX.WindowAttributes wa;",
+     "\tvar mws = this.win.el.get_surface() as Gdk.X11.Surface;",
+     "\tvar mw_xw = mws.get_xid();",
+     "\t",
+     "\tunowned X.Display mw_xd = (",
+     "\t\t\tmws.get_display() as Gdk.X11.Display",
+     "\t\t).get_xdisplay();\t",
+     "",
+     "\tmw_xd.get_window_attributes(mw_xw, out  wa);",
+     "\t",
+     "\tvar s = this.el.get_surface() as Gdk.X11.Surface;",
+     "\tvar xw = s.get_xid();",
+     "\t",
+     "\tunowned X.Display xd = (",
+     "\t\t\tmws.get_display() as Gdk.X11.Display",
+     "\t\t).get_xdisplay();",
+     "\txd.move_window(xw, wa.x+60, wa.y+100);",
+     "\t",
+     "",
+     "}"
+    ]
+   },
    "xtype" : "Popover",
+   "| void navigateTo" : [
+    "(Palete.Symbol sy, bool load_page = true) {",
+    "\t",
+    "\tif (this.history_pos > -1) {",
+    "\t\tvar cur = this.history.get(this.history_pos);",
+    "\t\tif (sy.fqn == cur.fqn) {",
+    "\t\t\treturn; // same url",
+    "\t\t}",
+    "\t}",
+    "\tGLib.debug(\"setting history and showing symbol\");",
+    "\tthis.history_pos++; ",
+    "\tif (this.history_pos == this.history.size) {",
+    "\t\tthis.history.add(sy);",
+    "\t} else {",
+    "\t\tthis.history.set(this.history_pos, sy);",
+    "\t}",
+    "\tthis.showSymbol(sy,load_page);",
+    "\tthis.combo.selectCurrent();",
+    "}"
+   ],
    "| void show" : [
-    "(Gtk.Widget onbtn) {",
-    "   this.el.set_parent(onbtn);",
-    "\tthis.el.popup();",
+    "(Gtk.Widget? onbtn, string stype_and_name) {",
+    "",
+    "\t",
+    "\tvar sname = stype_and_name.split(\":\")[1];",
+    "\tif (onbtn != null) {",
+    "\t\tif (this.el.parent != null) {",
+    "\t\t\tthis.el.set_parent(null);",
+    "\t\t}",
+    "\t\t",
+    "\t   \tthis.el.set_parent(onbtn);",
+    "\t\tthis.el.popup();",
+    "\t",
+    "\t\tvar win = this.win.el;",
+    "\t\tthis.el.set_size_request(",
+    "\t\t\twin.get_width() - 50, win.get_height() - 100);",
+    "   // _this.pane.el.set_position(200); // adjust later?",
+    "\t}",
+    "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
+    "\tvar sy = sl.singleByFqn(sname);",
+    "\tif (sy == null) {",
+    "\t\tGLib.debug(\"could not find symbol %s\", sname);",
+    "\t\tthis.el.hide();",
+    "\t\treturn;",
+    "\t}",
+    " \t_this.classlist_model.load(sl);\t",
+    "",
+    " \tthis.navigateTo(sy);",
+    "",
+    "\t",
+    "\t",
+    "",
+    "",
+    "\t",
+    "}"
+   ],
+   "| void showSymbol" : [
+    "(Palete.Symbol sy, bool load_page = true) {",
+    "\t// doesnt deal with history... - caller should do that.",
+    "\tvar sl = _this.win.windowstate.file.getSymbolLoader();",
+    "\t",
+    "\t// can set this multiple times?",
+    "\tthis.webview.el.set_data(\"windowstate\", _this.win.windowstate);",
+    "\t",
+    "\tGLib.debug(\"showing symbol %s\", sy.fqn);",
+    "\tswitch(sy.stype) {",
+    "\t\tcase Lsp.SymbolKind.Class:",
+    "\t\tcase Lsp.SymbolKind.Struct:",
+    "\t\tcase Lsp.SymbolKind.Namespace:",
+    "\t\tcase Lsp.SymbolKind.Interface:",
+    "\t\tcase Lsp.SymbolKind.Enum:",
+    "\t\t\t//_this.tree.loadClass(sy);",
+    "\t\t//\t_this.combo.loadClass(sy);",
+    "\t\t//\t_this.content.loadSymbol(sy);",
+    "\t\t\tif (load_page) {",
+    "\t\t\t\tthis.webview.el.load_uri(\"doc://localhost/gtk.html#\" + sy.fqn);",
+    "\t\t\t}",
+    "\t\t\tbreak;",
+    "\t\t\t",
+    "\t\tcase Lsp.SymbolKind.Method:",
+    "\t\tcase Lsp.SymbolKind.EnumMember:",
+    "\t\t\tvar cls = sl.singleById(sy.parent_id);",
+    "\t\t//\t_this.tree.loadClass(cls);",
+    "\t//\t\t_this.tree.select(sy);",
+    "\t//\t\t_this.combo.loadClass(cls);",
+    "\t\t\tif (load_page) {",
+    "\t\t\t\tthis.webview.el.load_uri(\"doc://localhost/gtk.html#\" + cls.fqn);",
+    "\t\t\t}",
+    "\t\t//\t_this.content.loadSymbol(cls);",
+    "\t\t\tthis.history.add(sy);",
+    "\t\t\tbreak;",
+    "",
+    "\t\t",
+    "\t\t",
+    "\t\tdefault:\t",
+    "\t\t\tGLib.debug(\"unknown sybmol type\");",
+    "\t\t\tbreak;",
+    "\t}",
+    "\t_this.back_button.el.sensitive = this.history_pos > 0;",
+    "\tGLib.debug(\"hp=%d, hps = %d\", this.history_pos, this.history.size);",
+    "\t_this.next_button.el.sensitive = this.history_pos < (this.history.size -1);",
+    "\t",
     "}"
    ]
   }

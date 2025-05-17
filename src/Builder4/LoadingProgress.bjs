@@ -1,0 +1,47 @@
+{
+ "build_module" : "roobuilder",
+ "gen_extended" : false,
+ "items" : [
+  {
+   "$ xns" : "Gtk",
+   "* init" : [
+    "{",
+    "\tthis.el.application =  BuilderApplication.singleton(null); ",
+    "}",
+    ""
+   ],
+   "bool modal" : true,
+   "bool resizable" : false,
+   "int default_width" : 300,
+   "items" : [
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "child",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "int height_request" : 300,
+       "int width_request" : 300,
+       "string resource" : "/images/roobuilder.png",
+       "xtype" : "Image"
+      },
+      {
+       "$ xns" : "Gtk",
+       "bool show_text" : true,
+       "bool visible" : true,
+       "double fraction" : 0,
+       "id" : "bar",
+       "string text" : "Parsing",
+       "xtype" : "ProgressBar"
+      }
+     ],
+     "xtype" : "Box"
+    }
+   ],
+   "string title" : "Loading",
+   "xtype" : "Window"
+  }
+ ],
+ "name" : "LoadingProgress"
+}

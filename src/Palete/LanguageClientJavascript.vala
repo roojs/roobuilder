@@ -32,14 +32,36 @@ namespace Palete {
 			Javascript.singleton().validate(file.toSourceCode(), file );
 			BuilderApplication.updateCompileResults();
 		}
+ 		static int change_count = 1;
  		public override async void document_change_force (JsRender.JsRender file, string contents )   {
+			
+			change_count ++;
+			var  call_id = yield this.queuer(change_count);
+			if (call_id != change_count) {
+				return;
+			}
 			this.file_contents.set(file.path, contents);
 			GLib.debug("set file %s : %d chars", file.path, this.file_contents.get(file.path).length);
 			Javascript.singleton().validate(contents, file );
 			BuilderApplication.updateCompileResults();
  		}
+ 		async int queuer(int cnt)
+		{
+			SourceFunc cb = this.queuer.callback;
+		  
+			GLib.Timeout.add(500, () => {
+		 		 GLib.Idle.add((owned) cb);
+		 		 return false;
+			});
+			
+			yield;
+			return cnt;
+		}
+ 		
+ 		
  		public override  void document_change (JsRender.JsRender file )    
  		{
+ 	
  			this.document_change_force.begin( file, file.toSourceCode(), (obj, res) => {
  				this.document_change_force.end(res);
  			});;
@@ -47,7 +69,8 @@ namespace Palete {
 		public override void document_close (JsRender.JsRender file) {}
 		public override void exit () throws GLib.Error { }
  		public override async void shutdown () throws GLib.Error { }
- 		public override async Lsp.CompletionList?  completion(JsRender.JsRender file, int line, int offset , int triggerType = 1) throws GLib.Error 
+ 		public override async Lsp.CompletionList?  completion(
+ 			JsRender.JsRender file, int line, int offset , int triggerType = 1, string pre = "") throws GLib.Error 
  		{
  		
 			var ret = new Lsp.CompletionList();	
@@ -161,7 +184,7 @@ namespace Palete {
 
 				var is_last = i == parts.length -1;	
 				// look up all the properties of the type...
-				var cls = this.project.palete.getClass(curtype);
+				var cls = this.project.palete.getClass(file.getSymbolLoader(), curtype);
 				if (cls == null) {
 					GLib.debug("could not get class of curtype '%s'\n", curtype);
 					return ret;
@@ -173,9 +196,9 @@ namespace Palete {
 					if (cur_instance) {
 						if (cls.props.has_key(parts[i])) {
 							var prop = cls.props.get(parts[i]);
-							if (prop.type.index_of(".",0) > -1) {
+							if (prop.rtype.index_of(".",0) > -1) {
 								// type is another roo object..
-								curtype = prop.type;
+								curtype = prop.rtype;
 								prevbits += parts[i] + ".";
 								continue;
 							}
@@ -190,7 +213,8 @@ namespace Palete {
 				
 					// not a instance..
 					//look for child classes.
-					var citer = this.project.palete.classes.map_iterator();
+					var pal = (Roo) this.project.palete;
+					var citer = pal.classes.map_iterator();
 					var foundit = false;
 					while (citer.next()) {
 						var scls = citer.get_key();
@@ -219,7 +243,8 @@ namespace Palete {
 				if (!cur_instance) {
 					GLib.debug("matching instance");
 					// it's a static reference..
-					var citer = this.project.palete.classes.map_iterator();
+					var pal = (Roo) this.project.palete;
+					var citer = pal.classes.map_iterator();
 					while (citer.next()) {
 						var scls = citer.get_key();
 						var look = prevbits + parts[i];
@@ -247,7 +272,7 @@ namespace Palete {
 					// got a matching property...
 					// return type?
 					
-					var sci =  new Lsp.CompletionItem.keyword( prop.name + "(", prop.name + "(" , prop.doctxt );
+					var sci =  new Lsp.CompletionItem.keyword( prop.name + "(", prop.name + "(" , prop.doc );
 					ret.items.add(sci);
 
 				 
@@ -264,7 +289,7 @@ namespace Palete {
 					//	continue;
 					//}
 					
-					var sci =  new Lsp.CompletionItem.keyword( prop.name, prop.name , prop.doctxt );
+					var sci =  new Lsp.CompletionItem.keyword( prop.name, prop.name , prop.doc );
 					ret.items.add(sci);
  
 				
@@ -288,7 +313,7 @@ namespace Palete {
 		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error {
  			return new Lsp.Hover();
 		}
-		public override void queueDocumentSymbols (JsRender.JsRender file) { }
+		//public override void queueDocumentSymbols (JsRender.JsRender file) { }
 		public override async Gee.ArrayList<Lsp.DocumentSymbol> documentSymbols (JsRender.JsRender file) throws GLib.Error {
  			var ret = new Gee.ArrayList<Lsp.DocumentSymbol>();	
 			return ret;
