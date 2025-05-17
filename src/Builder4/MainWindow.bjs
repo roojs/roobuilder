@@ -448,7 +448,7 @@
                 {
                  "$ xns" : "Gtk",
                  "int margin_end" : 4,
-                 "string icon_name" : "document-new",
+                 "string icon_name" : "dialog-error",
                  "xtype" : "Image"
                 },
                 {
