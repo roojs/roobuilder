@@ -473,7 +473,6 @@
                "}"
               ]
              },
-             "string icon_name" : "dialog-error",
              "string label" : "0 Errors",
              "xtype" : "Button",
              "| void setNotices" : [
