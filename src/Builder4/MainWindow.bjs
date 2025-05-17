@@ -578,6 +578,29 @@
              "$ xns" : "Gtk",
              "Xcls_ValaCompileErrors popup" : "",
              "id" : "statusbar_depricated",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+               "int spacing" : 0,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "int margin_end" : 4,
+                 "string icon_name" : "dialog-warning",
+                 "xtype" : "Image"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "id" : "statusbar_warnings_lbl",
+                 "string label" : "0 Warnings",
+                 "xtype" : "Label"
+                }
+               ],
+               "xtype" : "Box"
+              }
+             ],
              "listeners" : {
               "clicked" : [
                "() => {",
