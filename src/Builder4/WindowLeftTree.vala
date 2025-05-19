@@ -1073,7 +1073,7 @@ public class Xcls_WindowLeftTree : Object
 			     foreach(var dp in drop_on_to) {
 			     	str += dp;
 			 	}
-			 	//GLib.debug("droplist: %s", string.joinv(", ", str));
+			 	GLib.debug("droplist: %s", string.joinv(", ", str));
 			     
 			     
 			    // if there are not items in the tree.. the we have to set isOver to true for anything..
@@ -1163,12 +1163,8 @@ public class Xcls_WindowLeftTree : Object
 				this.addHighlight(null,"");
 			
 			});
-			this.el.enter.connect( (x, y) => {
-				GLib.debug("droptarget - got enter");
-				return Gdk.DragAction.COPY;
-			});
 			this.el.drop.connect( (v, x, y) => {
-				
+				GLib.debug("drop event");
 				// must get the pos before we clear the hightlihg.
 			 	var pos = "";
 			 	var row_widget = _this.view.getRowWidgetAt(x,y, out pos);
