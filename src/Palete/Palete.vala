@@ -38,7 +38,7 @@ namespace Palete
 
 			var gn = data.fqn();
             // store it in user's directory..
-            var appdir =  GLib.Environment.get_home_dir() + "/.Builder"; 
+            var appdir =  Application.configDirectory(); 
 
 			try {
 		        if (!GLib.FileUtils.test(appdir+ "/" + gn, GLib.FileTest.IS_DIR)) {
@@ -63,7 +63,7 @@ namespace Palete
 			var gn = node.fqn();
 				
 			var ret = new GLib.List<string>();
-			var dir= GLib.Environment.get_home_dir() + "/.Builder/" + gn;
+			var dir= Application.configDirectory() + "/" + gn;
 			if (!GLib.FileUtils.test(dir, GLib.FileTest.IS_DIR)) {
 				return ret;
 			}

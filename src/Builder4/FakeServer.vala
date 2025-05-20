@@ -170,7 +170,7 @@ public class FakeServerCache : Object
 		
 		
 		// testing - look in 
-		var tname = GLib.Environment.get_home_dir() + "/.Builder/test-docs" + fname;
+		var tname  = Application.configDirectory()+ "/test-docs" + fname;
 		var  file = GLib.File.new_for_path ( tname);
 		if (file.query_exists()) {
 			this.initWithFile(file);
@@ -226,7 +226,7 @@ public class FakeServerCache : Object
 	{
 	    
 		this.fname = fname;
-		
+		// not sure why this is hard coded... needs fixing..
 		var  file = File.new_for_path ( GLib.Environment.get_home_dir() + "/gitlive" + fname);
 		if (!file.query_exists()) {
 			this.data = "".data;

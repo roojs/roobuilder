@@ -225,7 +225,10 @@
 		
 		public static string configDirectory()
 		{
-			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+			
+			
+			var dirname = GLib.Environment.get_user_config_dir() + "/roobuilder";
+			GLib.debug("Config directory is %s", dirname);
 		
 			if (!FileUtils.test(dirname,FileTest.IS_DIR)) {
 				var dir = File.new_for_path(dirname);

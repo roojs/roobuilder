@@ -1,4 +1,11 @@
-roobuilder (5.0.6) UNRELEASED; urgency=medium
+roobuilder (5.0.7) UNRELEASED; urgency=medium
+
+  * small fix to drag drop of nodes
+  * attempting to sort out flatpak
+
+ -- Alan Knowles <alan@fastboy>  Tue, 20 May 2025 20:18:14 +0800
+
+roobuilder (5.0.6) unstable; urgency=medium
 
   * Vala Language server support has been removed (did not provide the needed features)
   * Internal compiler now used in background thread 
