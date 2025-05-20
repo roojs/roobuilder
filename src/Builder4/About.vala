@@ -13,7 +13,7 @@ public class About : Object
 		return _About;
 	}
 
-		// my vars (def)
+	// my vars (def)
 
 	// ctor
 	public About()
@@ -27,7 +27,7 @@ public class About : Object
 		this.el.program_name = "roobuilder";
 		this.el.license = "LGPL";
 		this.el.authors = { "Alan Knowles <alan@roojs.com>" };
-		this.el.version = "4.4.2";
+		this.el.version = "5.0.8";
 		this.el.website = "https://github.com/roojs/roobuilder";
 		this.el.modal = true;
 		this.el.copyright = "LGPL";

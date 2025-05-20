@@ -9,7 +9,7 @@
    "program_name" : "roobuilder",
    "string copyright" : "LGPL",
    "string license" : "LGPL",
-   "string version" : "4.4.2",
+   "string version" : "5.0.8",
    "website" : "https://github.com/roojs/roobuilder",
    "xtype" : "AboutDialog",
    "| void show" : [

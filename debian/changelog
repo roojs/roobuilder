@@ -1,4 +1,10 @@
-roobuilder (5.0.7) UNRELEASED; urgency=medium
+roobuilder (5.0.8) UNRELEASED; urgency=medium
+
+  * fix document viewer crash bug 
+
+ -- Alan Knowles <alan@fastboy>  Tue, 20 May 2025 21:52:31 +0800
+
+roobuilder (5.0.7) unstable; urgency=medium
 
   * small fix to drag drop of nodes
   * attempting to sort out flatpak
