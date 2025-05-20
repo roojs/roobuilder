@@ -182,21 +182,24 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{  \"New Folder\", \"Existing Folder\" /*,  \"Checkout from git\"  */ }",
+           "strings" : "{ \"(select)\",  \"New Folder\", \"Existing Folder\" /*,  \"Checkout from git\"  */ }",
            "xtype" : "StringList"
           }
          ],
          "listeners" : {
           "notify[\"selected\"]" : [
            "( ) => {",
+           "\t_this.hideAll();",
            "\t ",
            "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+           "\t",
            "\t\treturn;",
            "\t}",
            "\tvar m = (Gtk.StringList) this.el.model;",
            "\tGLib.debug(\"selected item: %s\", m.get_string(this.el.selected));",
-           "\t",
-           "\t_this.hideAll();",
+           "\tif (\"(select)\" == m.get_string(this.el.selected)) {",
+           "\t\treturn;",
+           "\t}",
            "\t_this.parent_lbl.el.show();",
            "\t_this.parent_dd.el.show();",
            "\t_this.parent_dd.load();",
@@ -258,14 +261,14 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{ \"gitlive\", \"Projects\", \"Select\" }",
+           "strings" : "{ \"(select)\", \"gitlive\", \"Projects\", \"Select\" }",
            "xtype" : "StringList"
           }
          ],
          "listeners" : {
           "notify[\"selected\"]" : [
            "( ) => {",
-           "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+           "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION || this.getValue() == \"(select)\") {",
            "\t\t_this.hideAll();",
            "\t\t_this.parent_lbl.el.show();",
            "     \t_this.parent_dd.el.show();   ",
@@ -387,7 +390,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{ \"gitlive\", \"Projects\", \"Select\" }",
+           "strings" : "{ \"(select)\",  \"gitlive\", \"Projects\", \"Select\" }",
            "xtype" : "StringList"
           }
          ],
@@ -395,7 +398,7 @@
           "notify[\"selected\"]" : [
            "() => {",
            "\tvar fn = this.getValue();",
-           "\tif (fn == \"\") {",
+           "\tif (fn == \"(select)\") {",
            "\t\treturn;",
            "\t}",
            "\tvar p  = _this.parent_dd.getValue();",
@@ -507,6 +510,7 @@
            "* prop" : "model",
            "strings" : [
             "{  ",
+            "\t\"(select)\", ",
             "\t\"Gtk - A Gtk / Vala Desktop project\", ",
             "\t\"Roo - A Web  Javascript Project using the Roo Library\"",
             "\t/*,  \"Flutter\" */ ",
@@ -520,7 +524,7 @@
            "( ) => {",
            "",
            "\t_this.ok_btn.el.hide();\t",
-           "\tif (this.getValue() != \"\") {",
+           "\tif (this.getValue() != \"(select)\") {",
            "\t   _this.ok_btn.el.show();",
            "\t}",
            "",
