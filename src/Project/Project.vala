@@ -122,7 +122,7 @@ namespace Project {
 				return;
 			}
 
-			var dirname = Application.configDirectory();
+			var dirname = BuilderApplication.configDirectory();
 			var dir = File.new_for_path(dirname);
 			if (!dir.query_exists()) {
 				try {
@@ -169,7 +169,7 @@ namespace Project {
 			generator.indent = 4;
 
  			var data = generator.to_data (null);
-			var dirname = Application.configDirectory();
+			var dirname = BuilderApplication.configDirectory();
     		GLib.debug("Write new Project list\n %s", data);
     		//Posix.exit(0);
     		
@@ -187,7 +187,7 @@ namespace Project {
     	public static void convertOldProjects()
     	{
     	
-			var dirname = Application.configDirectory();
+			var dirname = BuilderApplication.configDirectory();
 			var  dir = File.new_for_path(dirname);
 			try {
 				var file_enum = dir.enumerate_children(
@@ -286,7 +286,7 @@ namespace Project {
 		static void loadProjectList()
 		{
 		
-			var dirname = Application.configDirectory();
+			var dirname = BuilderApplication.configDirectory();
 			 
 			projects = new  Gee.ArrayList<Project>();
 			  

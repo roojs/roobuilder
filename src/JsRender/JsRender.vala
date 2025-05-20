@@ -483,7 +483,7 @@ namespace JsRender {
 			 
 			var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path); 
 
-			var dir = Application.configDirectory() + "/icons";
+			var dir = BuilderApplication.configDirectory() + "/icons";
 			try {
 				if (!FileUtils.test(dir, FileTest.IS_DIR)) {
 					 File.new_for_path(dir).make_directory();
