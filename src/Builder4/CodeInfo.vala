@@ -51,18 +51,21 @@ public class CodeInfo : Object
 			var mws = this.win.el.get_surface() as Gdk.X11.Surface;
 			var mw_xw = mws.get_xid();
 			
-			unowned X.Display mw_xd = (
-					mws.get_display() as Gdk.X11.Display
-				).get_xdisplay();	
+			var di = (Gdk.X11.Display) mws.get_display() ;
+			if (di == null) {
+				return;
+			}
+			
+			unowned X.Display mw_xd =  (X.Display) di.get_xdisplay();	
 		
 			mw_xd.get_window_attributes(mw_xw, out  wa);
 			
 			var s = this.el.get_surface() as Gdk.X11.Surface;
 			var xw = s.get_xid();
 			
-			unowned X.Display xd = (
-					mws.get_display() as Gdk.X11.Display
-				).get_xdisplay();
+			var si = s.get_display() as Gdk.X11.Display;
+			
+			unowned X.Display xd = si.get_xdisplay();
 			xd.move_window(xw, wa.x+60, wa.y+100);
 			
 		

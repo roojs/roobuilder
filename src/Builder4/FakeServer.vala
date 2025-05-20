@@ -126,9 +126,18 @@ public class FakeServerCache : Object
 			generator.set_root (root);
 			generator.pretty = true;
 			generator.indent = 4;
+			var dirname = BuilderApplication.configDirectory() + "/docs";
+			if (!FileUtils.test(dirname,FileTest.IS_DIR)) {
+				var dir = File.new_for_path(dirname);
+				try {
+					dir.make_directory();	
+				} catch (Error e) {
+					GLib.error("Failed to make directory %s", dirname);
+				} 
+			}
 			
-			GLib.debug("wrinte %s", BuilderApplication.configDirectory() + "/docs/tree.json");
-			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/tree.json");
+			GLib.debug("write %s", dirname + "/tree.json");
+			var f = GLib. File.new_for_path(dirname +  "/tree.json");
 			
  			var data = generator.to_data (null);
  			var data_out = new GLib.DataOutputStream(
