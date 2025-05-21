@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.roojs.roobuilder</id>
+  
+  <name>roobuilder</name>
+  <summary>Vala and Javascript IDE - for building Vala Desktop applications and Javascript UI&apos;s using the roojs libraries (for bootstrap and classic)</summary>
+  
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>LGPL-3.0-or-later</project_license>
+  
+  <description>
+    <p>
+      # roobuilder Vala and Javascript IDE - for building Vala Desktop applications and Javascript UI&apos;s using the roojs libraries (for bootstrap and classic)
+    </p>
+    <p>
+      --- <em>
+    </em>Videos<em>
+  </em>
+</p>
+<p>
+  GLib Settings Demo
+</p>
+<p>
+  Part 1 - click to view on youtube
+</p>
+<p>
+  [![GLib Settings Demo Part 1](https://i.ytimg.com/vi/kx4B0frG-vc/hqdefault.jpg)](https://www.youtube.com/watch?v=kx4B0frG-vc&amp;t=20s &quot;GLib Settings Demo Part 1 - Click to Watch!&quot;)
+</p>
+<p>
+  Part 2 - click to view on youtube
+</p>
+<p>
+  [![GLib Settings Demo Part 2](https://i.ytimg.com/vi/XChS0YEB4yY/hqdefault.jpg)](https://www.youtube.com/watch?v=XChS0YEB4yY&amp;t=6s &quot;GLib Settings Demo Part 2 - Click to Watch!&quot;)
+</p>
+<p>
+  --- <em>
+</em>Changlog<em>
+</em>
+</p>
+<p>
+  https://github.com/roojs/roobuilder/blob/master/debian/changelog
+</p>
+<p>
+  --- <em>
+</em>Features Wishlist<em>
+</em>
+</p>
+<p>
+  Random list of ideas to add - I regulary add these in totally random order.          https://docs.google.com/spreadsheets/d/1-qNQX1Bwwd1cV405Kj1l3B3Mi6K-GvECnMeuzRKfbGA/edit?usp=sharing      --- <em>
+</em>Debian and Ubuntu packages<em>
+</em>
+</p>
+<p>
+  you will need libvala (available on most debian/ubuntu repos),     and vala-language-server (available below)   Dependancies
+</p>
+<p>
+  <em> https://github.com/roojs/vala-language-server/releases    </em> https://github.com/roojs/roojspacker/releases    Release
+  </p>
+  <p>
+    * https://github.com/roojs/roobuilder/releases    ---
+  </p>
+  <p>
+    <em>
+    </em>Building it<em>
+  </em>
+</p>
+<p>
+  a) Clone this code..        git clone https://github.com/roojs/roobuilder.git        b) configure it.        meson setup build --prefix=/usr        c) make make install        ninja -C build install        e) run it
+</p>
+<p>
+  roobuilder      ---
+</p>
+<p>
+  <em>
+  </em>Notes on updating packaging..<em>
+</em>
+</p>
+<p>
+  Update Package details.          dch -U -i (auto increases release..)          then edit the about version (check debian/changelog)
+</p>
+<p>
+  Build it..
+</p>
+<p>
+  dpkg-buildpackage -rfakeroot -us -uc -b
+</p>
+<p>
+  flatpak-builder   --force-clean --sandbox  --install --mirror-screenshots-url=https://dl.flathub.org/repo/screenshots --repo=repo build-dir org.roojs.roobuilder.json     flatpak build-bundle repo ../roobuilder.flatpak org.roojs.roobuilder ---
+</p>
+<p>
+  <em>
+  </em>Known issues<em>
+</em>
+</p>
+<p>
+  <em> Flatpack -  run doesnt work - needs more work understanding how flatpack would manage to compile with libraries from the system, or inside the pack   </em> See the wishlist..
+  </p>
+</description>
+
+<launchable type="desktop-id">roobuilder.desktop</launchable>
+<screenshots>
+  <screenshot type="default">
+    <image>https://i.ytimg.com/vi/kx4B0frG-vc/hqdefault.jpg</image>
+  </screenshot>
+  <screenshot>
+    <image>https://i.ytimg.com/vi/XChS0YEB4yY/hqdefault.jpg</image>
+  </screenshot>
+</screenshots>
+</component>

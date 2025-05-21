@@ -1,0 +1,13 @@
+#need to add this to meson (roobuilder builds meson)
+
+metainfo_file = '/path/to/org.roojs.roobuilder.metainfo.xml'
+ascli_exe = find_program('appstreamcli', required: false)
+if ascli_exe.found()
+  test('validate metainfo file',
+        ascli_exe,
+        args: ['validate',
+               '--no-net',
+               '--pedantic',
+               metainfo_file]
+  )
+endif
