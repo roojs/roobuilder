@@ -81,5 +81,5 @@ Build it..
 
 **Known issues** 
 
-  * Flatpack -  run doesnt work - needs more work understanding how flatpack would manage to compile with libraries from the system, or inside the pack
+
   * See the wishlist..

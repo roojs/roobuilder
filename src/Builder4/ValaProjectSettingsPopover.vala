@@ -34,6 +34,7 @@ public class ValaProjectSettingsPopover : Object
 	public Xcls_target_model target_model;
 	public Xcls_set_vboxb set_vboxb;
 	public Xcls_build_name build_name;
+	public Xcls_build_fqn build_fqn;
 	public Xcls_build_execute_args build_execute_args;
 	public Xcls_build_as_library build_as_library;
 	public Xcls_save_btn save_btn;
@@ -2033,9 +2034,14 @@ public class ValaProjectSettingsPopover : Object
 			this.el.append( child_1.el );
 			new Xcls_build_name( _this );
 			this.el.append( _this.build_name.el );
-			var child_3 = new Xcls_Label62( _this );
+			var child_3 = new Xcls_Label120( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
+			new Xcls_build_fqn( _this );
+			this.el.append( _this.build_fqn.el );
+			var child_5 = new Xcls_Label62( _this );
+			child_5.ref();
+			this.el.append( child_5.el );
 			new Xcls_build_execute_args( _this );
 			this.el.append( _this.build_execute_args.el );
 			new Xcls_build_as_library( _this );
@@ -2151,6 +2157,65 @@ public class ValaProjectSettingsPopover : Object
 				}
 			
 				_this.selected_target.name = this.el.buffer.text;
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Label120 : Object
+	{
+		public Gtk.Label el;
+		private ValaProjectSettingsPopover  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Label120(ValaProjectSettingsPopover _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Label( "Fully Qualified name" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_build_fqn : Object
+	{
+		public Gtk.Entry el;
+		private ValaProjectSettingsPopover  _this;
+
+
+		// my vars (def)
+		public bool in_insert;
+
+		// ctor
+		public Xcls_build_fqn(ValaProjectSettingsPopover _owner )
+		{
+			_this = _owner;
+			_this.build_fqn = this;
+			this.el = new Gtk.Entry();
+
+			// my vars (dec)
+			this.in_insert = false;
+
+			// set gobject values
+			this.el.placeholder_text = "eg. org.gnome.yourproject";
+
+			//listeners
+			this.el.changed.connect( ()  => {
+				if (_this.selected_target == null) {
+					return;
+				}
+				var name = this.el.text;
+				 
+			
+				_this.selected_target.fqn = this.el.buffer.text;
 			});
 		}
 

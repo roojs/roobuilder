@@ -945,6 +945,31 @@
               },
               {
                "$ xns" : "Gtk",
+               "utf8 label" : "Fully Qualified name",
+               "xtype" : "Label"
+              },
+              {
+               "# bool in_insert" : false,
+               "$ xns" : "Gtk",
+               "id" : "build_fqn",
+               "listeners" : {
+                "changed" : [
+                 "()  => {",
+                 "\tif (_this.selected_target == null) {",
+                 "\t\treturn;",
+                 "\t}",
+                 "\tvar name = this.el.text;",
+                 "\t ",
+                 "",
+                 "\t_this.selected_target.fqn = this.el.buffer.text;",
+                 "}"
+                ]
+               },
+               "string placeholder_text" : "eg. org.gnome.yourproject",
+               "xtype" : "Entry"
+              },
+              {
+               "$ xns" : "Gtk",
                "utf8 label" : "test argments - when run after a build",
                "xtype" : "Label"
               },

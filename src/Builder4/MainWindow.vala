@@ -2499,6 +2499,8 @@ public class Xcls_MainWindow : Object
 
 
 		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression72(Xcls_MainWindow _owner )
@@ -2507,6 +2509,8 @@ public class Xcls_MainWindow : Object
 			this.el = new Gtk.PropertyExpression( typeof(WindowState), null, "file_name" );
 
 			// my vars (dec)
+			this.property_name = "file_name";
+			this.this_type = typeof(WindowState);
 
 			// set gobject values
 		}
@@ -2570,6 +2574,8 @@ public class Xcls_MainWindow : Object
 
 
 		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression75(Xcls_MainWindow _owner )
@@ -2578,6 +2584,8 @@ public class Xcls_MainWindow : Object
 			this.el = new Gtk.PropertyExpression( typeof(WindowState), null, "file_name" );
 
 			// my vars (dec)
+			this.property_name = "file_name";
+			this.this_type = typeof(WindowState);
 
 			// set gobject values
 		}
@@ -2957,6 +2965,7 @@ public class Xcls_MainWindow : Object
 
 
 		// my vars (def)
+		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
 		public Xcls_treelistmodel(Xcls_MainWindow _owner )
@@ -2970,6 +2979,10 @@ public class Xcls_MainWindow : Object
 }  );
 
 			// my vars (dec)
+			this.create_func = (item) => {
+	//GLib.debug("liststore got %s", item.get_type().name());
+	return ((JsRender.JsRender)item).childfiles;
+};
 
 			// set gobject values
 		}
@@ -3054,6 +3067,8 @@ public class Xcls_MainWindow : Object
 
 
 		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression90(Xcls_MainWindow _owner )
@@ -3062,6 +3077,8 @@ public class Xcls_MainWindow : Object
 			this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender) , null, "name" );
 
 			// my vars (dec)
+			this.property_name = "name";
+			this.this_type = typeof(JsRender.JsRender);
 
 			// set gobject values
 		}
@@ -3079,6 +3096,7 @@ public class Xcls_MainWindow : Object
 
 
 		// my vars (def)
+		public Gtk.CustomFilterFunc match_func;
 
 		// ctor
 		public Xcls_treefilter(Xcls_MainWindow _owner )
@@ -3133,6 +3151,52 @@ public class Xcls_MainWindow : Object
 } );
 
 			// my vars (dec)
+			this.match_func = (item) => { 
+	var tr = ((Gtk.TreeListRow)item).get_item();
+	//GLib.debug("filter %s", tr.get_type().name());
+	var j =  (JsRender.JsRender) tr;
+	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
+		return false;
+	}
+	var str = _this.filesearch.el.text.down();	
+	if (j.xtype == "Dir") {
+	
+		
+		for (var i =0 ; i < j.childfiles.n_items; i++) {
+			var f = (JsRender.JsRender) j.childfiles.get_item(i);
+			//if (f.xtype != "PlainFile") {
+			//	continue;
+			//}
+			if (f.content_type.contains("image")) {
+				continue;
+			}
+			if (str.length < 1) {
+				return true;
+			}
+			if (f.name.down().contains(str)) {
+				return true;
+			}
+			
+		}
+		 
+		return false;
+	}
+	//if (j.xtype != "PlainFile") {
+	//	return false;
+	//}
+ 	if (j.content_type.contains("image")) {
+		return false;
+	}
+			 
+	if (str.length < 1) { // no search.
+		return true;
+	}
+	if (j.name.down().contains(str)) {
+		return true;
+	}
+	return false; 
+
+};
 
 			// set gobject values
 		}

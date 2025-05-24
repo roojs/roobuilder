@@ -190,17 +190,28 @@ gnome.post_install(gtk_update_icon_cache : true)
 		string addDesktop(GtkValaSettings cg)
 		{
 			// we could actually generate this!?!
+			var ret = "";
 			var d  = this.project.getByRelPath(   cg.name  + ".desktop");
-			if (d == null) {
-				return "";
-			}
-			var path = d.relpath;
-			return @"
+			if (d != null) {
+				var path = d.relpath;
+				ret +=  @"
 install_data(
 	'$path',
 	install_dir : get_option('datadir') + '/applications/'
 )
 ";
+			}
+			d = this.project.getByRelPath(   cg.fqn  + ".metainfo.xml");		
+			if (cg.fqn.length > 0 && d != null) {
+				var mpath = d.relpath;
+				ret += @"
+install_data(
+  '$mpath',
+  install_dir: join_paths(get_option('datadir'), 'metainfo')
+)
+";
+			}
+			return ret;
 		}
 		bool has_resources = false;
 		

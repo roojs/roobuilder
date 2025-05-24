@@ -90,6 +90,11 @@ install_data(
 	install_dir : get_option('datadir') + '/applications/'
 )
 
+install_data(
+  'org.roojs.roobuilder.metainfo.xml',
+  install_dir: join_paths(get_option('datadir'), 'metainfo')
+)
+
 
 roobuilder_src = files([
    'src/Builder4/About.vala',

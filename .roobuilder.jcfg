@@ -3,6 +3,7 @@
     "compilegroups" : [
         {
             "name" : "roobuilder",
+            "fqn" : "org.roojs.roobuilder",
             "is_library" : false,
             "execute_args" : "",
             "sources" : [
