@@ -181,6 +181,21 @@ install_data(
 )
 ";
 			}
+			
+			GLib.debug("looking for on : %s" ,  "pixmaps/scalable/apps/" + cg.fqn  + ".svg");
+			var img = this.project.getByRelPath( "pixmaps/scalable/apps/" + cg.fqn  + ".svg");
+			if (img != null) {
+			 
+				var path = img.relpath;
+					ret += @"
+install_data(
+	'$path',
+	install_dir:  get_option('datadir') + '/icons/hicolor/scalable/apps/'
+)
+";
+			}
+			
+			
 			 
 			
 			

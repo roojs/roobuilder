@@ -88,6 +88,11 @@ install_data(
 	install_dir:  get_option('datadir') + '/icons/hicolor/256x256/apps/'
 )
 
+install_data(
+	'pixmaps/scalable/apps/org.roojs.roobuilder.svg',
+	install_dir:  get_option('datadir') + '/icons/hicolor/scalable/apps/'
+)
+
 
 gnome.post_install(gtk_update_icon_cache : true)
 
