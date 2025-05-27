@@ -73,6 +73,7 @@ Update Package details.
     
     Update the About dialog release
     Update the flatpak file release
+    Update the desktop file release
     
     git tag release-XXXX
     git push --tags
