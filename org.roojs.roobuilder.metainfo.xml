@@ -3,57 +3,43 @@
   <id>org.roojs.roobuilder</id>
   
   <name>roobuilder</name>
-  <summary>Vala and Javascript IDE - for building Vala Desktop applications and Javascript UI&apos;s using the roojs libraries (for bootstrap and classic)</summary>
+  <summary>Vala and Javascript IDE - for building Vala Desktop applications and Web Javascript</summary>
   
   <metadata_license>FSFAP</metadata_license>
   <project_license>LGPL-3.0-or-later</project_license>
-  <developer_name>Alan Knowles</developer_name>
+  <developer id="org.roojs.alan">
+    <name>Alan Knowles</name>
+    <url type="homepage">https://roojs.org</url>
+  </developer>
   <releases>
     <release version="5.0.9" date="2025-05-27"/>
   </releases>
   <url type="homepage">https://github.com/roojs/roobuilder</url>
-
+  <url type="faq">https://docs.google.com/spreadsheets/d/1-qNQX1Bwwd1cV405Kj1l3B3Mi6K-GvECnMeuzRKfbGA/edit?usp=sharing</url>
   <description>
+ 
  <p>
-   <em>Videos</em>
+    It's a cross between Glade / Visual Studio - the idea is that most 'action' code for an application is actually quite 
+    simple - so entering the code on the event handlers for an widget makes the proximity of code to action better. 
 </p>
 <p>
-  GLib Settings Demo
-</p>
-<p>
-  Part 1    - https://www.youtube.com/watch?v=kx4B0frG-vc 
-</p>
-<p>
-  Part 2 - click to view on youtube - https://www.youtube.com/watch?v=XChS0YEB4yY 
-  </p>
-<p>
-  --- <em>
- Changlog 
-</em>
-</p>
-<p>
-  https://github.com/roojs/roobuilder/blob/master/debian/changelog
-</p>
-<p>
-  --- <em>
- Features Wishlist
-</em>
-</p>
-<p>
-  Random list of ideas to add - I regulary add these in totally random order.     
-  https://docs.google.com/spreadsheets/d/1-qNQX1Bwwd1cV405Kj1l3B3Mi6K-GvECnMeuzRKfbGA/edit?usp=sharing      --- 
+    This idea is applied to the Vala based Gtk applications, along with the Javascript based Roo web applications that this 
+    application is used to build and develop.
+</p><p>
 
-  <em>Known issues</em>
-</p>
-<p>
-  See the wishlist..
+ 
+ Features Wishlist -  Random list of ideas to add - I regulary add these in totally random order.  (see the url / wishlist)
+  </p> 
+  <p>
+  Known issues -  See the wishlist..
   </p>
 </description>
+<content_rating type="oars-1.1"/>
 
 <launchable type="desktop-id">org.roojs.roobuilder</launchable>
 <screenshots>
   <screenshot type="default">
-  <caption>Screenshot of adding a property to an Object<caption>
+    <caption>Screenshot of adding a property to an Object</caption>
     <image>https://www.roojs.org/index.php/Images/2563/roobuilder-screenshot-add-proper.png</image>
   </screenshot>
     <screenshot>
