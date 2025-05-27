@@ -4,6 +4,7 @@
   
   <name>roobuilder</name>
   <summary>Vala and Javascript IDE - for building Vala Desktop applications and Web Javascript</summary>
+  <icon type="stock">org.roojs.roobuilder</icon>
   
   <metadata_license>FSFAP</metadata_license>
   <project_license>LGPL-3.0-or-later</project_license>
@@ -11,6 +12,11 @@
     <name>Alan Knowles</name>
     <url type="homepage">https://roojs.org</url>
   </developer>
+  <categories>
+    <category>Utility</category>
+    <category>Development</category>
+  </categories>
+  
   <releases>
     <release version="5.0.9" date="2025-05-27"/>
   </releases>
