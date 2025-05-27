@@ -88,46 +88,6 @@ install_data(
 	install_dir:  get_option('datadir') + '/icons/hicolor/256x256/apps/'
 )
 
-install_data(
-	'pixmaps/16x16/apps/roobuilder.png',
-	install_dir:  get_option('datadir') + '/icons/hicolor/16x16/apps/'
-)
-
-install_data(
-	'pixmaps/22x22/apps/roobuilder.png',
-	install_dir:  get_option('datadir') + '/icons/hicolor/22x22/apps/'
-)
-
-install_data(
-	'pixmaps/24x24/apps/roobuilder.png',
-	install_dir:  get_option('datadir') + '/icons/hicolor/24x24/apps/'
-)
-
-install_data(
-	'pixmaps/32x32/apps/roobuilder.png',
-	install_dir:  get_option('datadir') + '/icons/hicolor/32x32/apps/'
-)
-
-install_data(
-	'pixmaps/48x48/apps/roobuilder.png',
-	install_dir:  get_option('datadir') + '/icons/hicolor/48x48/apps/'
-)
-
-install_data(
-	'pixmaps/64x64/apps/roobuilder.png',
-	install_dir:  get_option('datadir') + '/icons/hicolor/64x64/apps/'
-)
-
-install_data(
-	'pixmaps/128x128/apps/roobuilder.png',
-	install_dir:  get_option('datadir') + '/icons/hicolor/128x128/apps/'
-)
-
-install_data(
-	'pixmaps/256x256/apps/roobuilder.png',
-	install_dir:  get_option('datadir') + '/icons/hicolor/256x256/apps/'
-)
-
 
 gnome.post_install(gtk_update_icon_cache : true)
 
@@ -139,6 +99,11 @@ roobuilder_resources = gnome.compile_resources(
 	c_name: 'roobuilder_resources' 
 )
 
+
+install_data(
+	'org.roojs.roobuilder.desktop',
+	install_dir : get_option('datadir') + '/applications/'
+)
 
 install_data(
   'org.roojs.roobuilder.metainfo.xml',

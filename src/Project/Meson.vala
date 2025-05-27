@@ -181,21 +181,7 @@ install_data(
 )
 ";
 			}
-			foreach(var size in sizes) {
-				GLib.debug("looking for on : %s" ,  "pixmaps/" + size + "/apps/" + cg.name  + ".png");
-				var img = this.project.getByRelPath( "pixmaps/" + size + "/apps/" + cg.name  + ".png");
-				if (img == null) {
-					continue;
-				}
-				var path = img.relpath;
-				ret += @"
-install_data(
-	'$path',
-	install_dir:  get_option('datadir') + '/icons/hicolor/$size/apps/'
-)
-";
-			}
-			
+			 
 			
 			
 			if (ret == "") {
@@ -212,7 +198,7 @@ gnome.post_install(gtk_update_icon_cache : true)
 		{
 			// we could actually generate this!?!
 			var ret = "";
-			var d  = this.project.getByRelPath(   cg.name  + ".desktop");
+			var d  = this.project.getByRelPath(   cg.fqn  + ".desktop");
 			if (d != null) {
 				var path = d.relpath;
 				ret +=  @"
