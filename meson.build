@@ -91,7 +91,7 @@ roobuilder_resources = gnome.compile_resources(
 
 
 install_data(
-	'roobuilder.desktop',
+	'org.roojs.roobuilder.desktop',
 	install_dir : get_option('datadir') + '/applications/'
 )
 
