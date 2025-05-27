@@ -168,8 +168,8 @@ GLib.debug("write meson : %s" , data);
 					"128x128", "256x256"
 				} ;
 			foreach(var size in sizes) {
-				GLib.debug("looking for on : %s" ,  "pixmaps/" + size + "/apps/" + cg.name  + ".png");
-				var img = this.project.getByRelPath( "pixmaps/" + size + "/apps/" + cg.name  + ".png");
+				GLib.debug("looking for on : %s" ,  "pixmaps/" + size + "/apps/" + cg.fqn  + ".png");
+				var img = this.project.getByRelPath( "pixmaps/" + size + "/apps/" + cg.fqn  + ".png");
 				if (img == null) {
 					continue;
 				}

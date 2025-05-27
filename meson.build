@@ -49,42 +49,42 @@ add_project_arguments(['--vapidir',  meson.current_source_dir() / 'src/vapi'], l
 
 
 install_data(
-	'pixmaps/16x16/apps/roobuilder.png',
+	'pixmaps/16x16/apps/org.roojs.roobuilder.png',
 	install_dir:  get_option('datadir') + '/icons/hicolor/16x16/apps/'
 )
 
 install_data(
-	'pixmaps/22x22/apps/roobuilder.png',
+	'pixmaps/22x22/apps/org.roojs.roobuilder.png',
 	install_dir:  get_option('datadir') + '/icons/hicolor/22x22/apps/'
 )
 
 install_data(
-	'pixmaps/24x24/apps/roobuilder.png',
+	'pixmaps/24x24/apps/org.roojs.roobuilder.png',
 	install_dir:  get_option('datadir') + '/icons/hicolor/24x24/apps/'
 )
 
 install_data(
-	'pixmaps/32x32/apps/roobuilder.png',
+	'pixmaps/32x32/apps/org.roojs.roobuilder.png',
 	install_dir:  get_option('datadir') + '/icons/hicolor/32x32/apps/'
 )
 
 install_data(
-	'pixmaps/48x48/apps/roobuilder.png',
+	'pixmaps/48x48/apps/org.roojs.roobuilder.png',
 	install_dir:  get_option('datadir') + '/icons/hicolor/48x48/apps/'
 )
 
 install_data(
-	'pixmaps/64x64/apps/roobuilder.png',
+	'pixmaps/64x64/apps/org.roojs.roobuilder.png',
 	install_dir:  get_option('datadir') + '/icons/hicolor/64x64/apps/'
 )
 
 install_data(
-	'pixmaps/128x128/apps/roobuilder.png',
+	'pixmaps/128x128/apps/org.roojs.roobuilder.png',
 	install_dir:  get_option('datadir') + '/icons/hicolor/128x128/apps/'
 )
 
 install_data(
-	'pixmaps/256x256/apps/roobuilder.png',
+	'pixmaps/256x256/apps/org.roojs.roobuilder.png',
 	install_dir:  get_option('datadir') + '/icons/hicolor/256x256/apps/'
 )
 
