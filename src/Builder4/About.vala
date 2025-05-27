@@ -24,6 +24,7 @@ public class About : Object
 		// my vars (dec)
 
 		// set gobject values
+		this.el.logo_icon_name = "roobuilder";
 		this.el.program_name = "roobuilder";
 		this.el.license = "LGPL";
 		this.el.authors = { "Alan Knowles <alan@roojs.com>" };

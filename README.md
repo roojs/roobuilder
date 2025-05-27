@@ -70,6 +70,12 @@ Update Package details.
     dch -U -i (auto increases release..)
     
     then edit the about version (check debian/changelog)
+    
+    Update the About dialog release
+    Update the flatpak file release
+    
+    git tag release-XXXX
+    git push --tags
 
 Build it..
 

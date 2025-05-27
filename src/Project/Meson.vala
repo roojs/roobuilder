@@ -162,7 +162,7 @@ GLib.debug("write meson : %s" , data);
 		{
 			 
 			var ret = "";
-			string[] sizes = { "16x16", "22x22","24x24","32x32", "48x48" } ;
+			string[] sizes = { "16x16", "22x22","24x24","32x32", "48x48" , "64x64"} ;
 			foreach(var size in sizes) {
 				GLib.debug("looking for on : %s" ,  "pixmaps/" + size + "/apps/" + cg.name  + ".png");
 				var img = this.project.getByRelPath( "pixmaps/" + size + "/apps/" + cg.name  + ".png");

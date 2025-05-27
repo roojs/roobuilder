@@ -73,6 +73,11 @@ install_data(
 	install_dir:  get_option('datadir') + '/icons/hicolor/48x48/apps/'
 )
 
+install_data(
+	'pixmaps/64x64/apps/roobuilder.png',
+	install_dir:  get_option('datadir') + '/icons/hicolor/64x64/apps/'
+)
+
 
 gnome.post_install(gtk_update_icon_cache : true)
 
