@@ -7,4 +7,4 @@ Icon=org.roojs.roobuilder
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GNOME;GTK;Utility;
+Categories=Utility;Development;
