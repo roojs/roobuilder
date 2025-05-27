@@ -7,7 +7,12 @@
   
   <metadata_license>FSFAP</metadata_license>
   <project_license>LGPL-3.0-or-later</project_license>
-  
+  <developer_name>Alan Knowles</developer_name>
+  <releases>
+    <release version="5.0.9" date="2025-05-27"/>
+  </releases>
+  <url type="homepage">https://github.com/roojs/roobuilder</url>
+
   <description>
  <p>
    <em>Videos</em>
@@ -45,18 +50,22 @@
   </p>
 </description>
 
-<launchable type="desktop-id">roobuilder.desktop</launchable>
+<launchable type="desktop-id">org.roojs.roobuilder</launchable>
 <screenshots>
   <screenshot type="default">
+  <caption>Screenshot of adding a property to an Object<caption>
     <image>https://www.roojs.org/index.php/Images/2563/roobuilder-screenshot-add-proper.png</image>
   </screenshot>
     <screenshot>
+    <caption>Screenshot of auto documentation generated from code</caption>
     <image>https://www.roojs.org/index.php/Images/2562/roobuilder-screenshot-auto-doc.png</image>
   </screenshot>
     <screenshot>
+    <caption>Screenshot of editing a Javascript Web application</caption>
     <image>  https://www.roojs.org/index.php/Images/2564/roobuilder-screenshot-edit-js.png</image>
   </screenshot>
   <screenshot>
+  <caption>Screenshot file and project selector</caption>
     <image>https://www.roojs.org/index.php/Images/2565/roobuilder-screenshot-files.png</image>
   </screenshot>
 </screenshots>
