@@ -181,6 +181,23 @@ install_data(
 )
 ";
 			}
+			foreach(var size in sizes) {
+				GLib.debug("looking for on : %s" ,  "pixmaps/" + size + "/apps/" + cg.name  + ".png");
+				var img = this.project.getByRelPath( "pixmaps/" + size + "/apps/" + cg.name  + ".png");
+				if (img == null) {
+					continue;
+				}
+				var path = img.relpath;
+				ret += @"
+install_data(
+	'$path',
+	install_dir:  get_option('datadir') + '/icons/hicolor/$size/apps/'
+)
+";
+			}
+			
+			
+			
 			if (ret == "") {
 				return "";
 			}
