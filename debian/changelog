@@ -1,8 +1,10 @@
 roobuilder (5.0.8) UNRELEASED; urgency=medium
 
   * fix document viewer crash bug 
+  * add support for metainfo.xml bundling in meson
+  * one more 
 
- -- Alan Knowles <alan@fastboy>  Tue, 20 May 2025 21:52:31 +0800
+ -- Alan Knowles <alan@roojs.com>  Tue, 20 May 2025 21:52:31 +0800
 
 roobuilder (5.0.7) unstable; urgency=medium
 
@@ -12,7 +14,7 @@ roobuilder (5.0.7) unstable; urgency=medium
   * fix new project dialog - workaround gtk stringlist dropdown bug
   * 
 
- -- Alan Knowles <alan@fastboy>  Tue, 20 May 2025 20:18:14 +0800
+ -- Alan Knowles <alan@roojs.com>  Tue, 20 May 2025 20:18:14 +0800
 
 roobuilder (5.0.6) unstable; urgency=medium
 
