@@ -2,8 +2,8 @@ namespace Project
 {
 // an object describing a build config (or generic ...)
 	public class GtkValaSettings : Object {
-		public string name { get; set; }
- 		public string fqn { get; set; }
+		public string name { get; set;   }
+ 		public string fqn { get; set;  }
 		
 		public Gtk project {
 			get;
@@ -25,7 +25,7 @@ namespace Project
 		{
 			this.name = name;
 			this.project = project;
- 
+ 			this.fqn = "org.roojs." + name; // nice dummy name?
 		 
 			this.sources = new Gee.ArrayList<string>();
 			this.execute_args = "";
@@ -39,6 +39,7 @@ namespace Project
 
 			this.project = project;
 			this.name = el.get_string_member("name");
+			this.fqn = "org.roojs." + this.name;
 			if (el.has_member("is_library")) {
 				this.is_library = el.get_boolean_member("is_library");
 	 		}

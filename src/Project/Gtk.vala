@@ -468,6 +468,7 @@ namespace Project
  "items" : [
   {
    "$ xns" : "Gtk",
+   "title" : "test",
    "| void show" : "() { this.el.show(); }",
    "items" : [
     {

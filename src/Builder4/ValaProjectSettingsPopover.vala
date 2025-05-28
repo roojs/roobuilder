@@ -212,7 +212,7 @@ public class ValaProjectSettingsPopover : Object
 			this.el.vexpand = true;
 			new Xcls_notebook( _this );
 			this.el.append( _this.notebook.el );
-			var child_2 = new Xcls_Box65( _this );
+			var child_2 = new Xcls_Box67( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 		}
@@ -1907,6 +1907,7 @@ public class ValaProjectSettingsPopover : Object
 			 GLib.debug("Set name to %s", cg.name);
 			 
 		 	_this.build_name.el.buffer.set_text(cg.name.data);
+		 	_this.build_fqn.el.buffer.set_text(cg.fqn.data);
 		 	_this.build_as_library.el.active = cg.is_library;
 		 
 			_this.build_execute_args.el.buffer.set_text(  cg.execute_args.data );
@@ -2034,12 +2035,12 @@ public class ValaProjectSettingsPopover : Object
 			this.el.append( child_1.el );
 			new Xcls_build_name( _this );
 			this.el.append( _this.build_name.el );
-			var child_3 = new Xcls_Label120( _this );
+			var child_3 = new Xcls_Label62( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
 			new Xcls_build_fqn( _this );
 			this.el.append( _this.build_fqn.el );
-			var child_5 = new Xcls_Label62( _this );
+			var child_5 = new Xcls_Label64( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
 			new Xcls_build_execute_args( _this );
@@ -2163,7 +2164,7 @@ public class ValaProjectSettingsPopover : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label120 : Object
+	public class Xcls_Label62 : Object
 	{
 		public Gtk.Label el;
 		private ValaProjectSettingsPopover  _this;
@@ -2172,7 +2173,7 @@ public class ValaProjectSettingsPopover : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Label120(ValaProjectSettingsPopover _owner )
+		public Xcls_Label62(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "Fully Qualified name" );
@@ -2222,7 +2223,7 @@ public class ValaProjectSettingsPopover : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label62 : Object
+	public class Xcls_Label64 : Object
 	{
 		public Gtk.Label el;
 		private ValaProjectSettingsPopover  _this;
@@ -2231,7 +2232,7 @@ public class ValaProjectSettingsPopover : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Label62(ValaProjectSettingsPopover _owner )
+		public Xcls_Label64(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "test argments - when run after a build" );
@@ -2314,7 +2315,7 @@ public class ValaProjectSettingsPopover : Object
 
 
 
-	public class Xcls_Box65 : Object
+	public class Xcls_Box67 : Object
 	{
 		public Gtk.Box el;
 		private ValaProjectSettingsPopover  _this;
@@ -2323,7 +2324,7 @@ public class ValaProjectSettingsPopover : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box65(ValaProjectSettingsPopover _owner )
+		public Xcls_Box67(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -2336,10 +2337,10 @@ public class ValaProjectSettingsPopover : Object
 			this.el.hexpand = true;
 			this.el.margin_bottom = 4;
 			this.el.margin_top = 4;
-			var child_1 = new Xcls_Button66( _this );
+			var child_1 = new Xcls_Button68( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Label67( _this );
+			var child_2 = new Xcls_Label69( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 			new Xcls_save_btn( _this );
@@ -2348,7 +2349,7 @@ public class ValaProjectSettingsPopover : Object
 
 		// user defined functions
 	}
-	public class Xcls_Button66 : Object
+	public class Xcls_Button68 : Object
 	{
 		public Gtk.Button el;
 		private ValaProjectSettingsPopover  _this;
@@ -2357,7 +2358,7 @@ public class ValaProjectSettingsPopover : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button66(ValaProjectSettingsPopover _owner )
+		public Xcls_Button68(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -2378,7 +2379,7 @@ public class ValaProjectSettingsPopover : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label67 : Object
+	public class Xcls_Label69 : Object
 	{
 		public Gtk.Label el;
 		private ValaProjectSettingsPopover  _this;
@@ -2387,7 +2388,7 @@ public class ValaProjectSettingsPopover : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Label67(ValaProjectSettingsPopover _owner )
+		public Xcls_Label69(ValaProjectSettingsPopover _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "" );
