@@ -14,7 +14,6 @@ public class Xcls_WindowLeftTree : Object
 	}
 	public Xcls_viewwin viewwin;
 	public Xcls_view view;
-	public Xcls_keystate keystate;
 	public Xcls_drop drop;
 	public Xcls_selmodel selmodel;
 	public Xcls_model model;
@@ -302,15 +301,13 @@ public class Xcls_WindowLeftTree : Object
 			var child_5 = new Xcls_EventControllerKey8( _this );
 			child_5.ref();
 			this.el.add_controller(  child_5.el );
-			new Xcls_keystate( _this );
-			this.el.add_controller(  _this.keystate.el );
 			new Xcls_drop( _this );
 			this.el.add_controller(  _this.drop.el );
 			new Xcls_maincol( _this );
 			this.el.append_column ( _this.maincol.el  );
-			var child_9 = new Xcls_ColumnViewColumn15( _this );
-			child_9.ref();
-			this.el.append_column ( child_9.el  );
+			var child_8 = new Xcls_ColumnViewColumn15( _this );
+			child_8.ref();
+			this.el.append_column ( child_8.el  );
 
 			// init method
 
@@ -777,50 +774,6 @@ public class Xcls_WindowLeftTree : Object
 		// user defined functions
 	}
 
-	public class Xcls_keystate : Object
-	{
-		public Gtk.EventControllerKey el;
-		private Xcls_WindowLeftTree  _this;
-
-
-		// my vars (def)
-		public int is_shift;
-
-		// ctor
-		public Xcls_keystate(Xcls_WindowLeftTree _owner )
-		{
-			_this = _owner;
-			_this.keystate = this;
-			this.el = new Gtk.EventControllerKey();
-
-			// my vars (dec)
-			this.is_shift = 0;
-
-			// set gobject values
-
-			//listeners
-			this.el.key_released.connect( (keyval, keycode, state) => {
-				GLib.debug("key release %d, %d, %d" , (int) keyval, (int)  keycode, state);
-			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
-			 		this.is_shift = 0;
-				}
-				//GLib.debug("set state %d , shift = %d", (int)this.el.get_current_event_state(), Gdk.ModifierType.SHIFT_MASK);
-			
-			
-			 
-			});
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-			
-			 	if (keyval == Gdk.Key.Shift_L || keyval == Gdk.Key.Shift_R) {
-			 		this.is_shift = 1;
-				}
-				return true;
-			});
-		}
-
-		// user defined functions
-	}
-
 	public class Xcls_drop : Object
 	{
 		public Gtk.DropTarget el;
@@ -1035,7 +988,11 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.motion.connect( (  x, y) => {
 			 
-				var is_shift = _this.keystate.is_shift > 0;
+				var is_shift = 
+					0 != (_this.main_window.state & Gdk.ModifierType.SHIFT_MASK);
+			
+			    
+			    
 				
 				//GLib.debug("shift is    %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
 				string pos; // over / before / after..
@@ -1170,9 +1127,10 @@ public class Xcls_WindowLeftTree : Object
 			 	var row_widget = _this.view.getRowWidgetAt(x,y, out pos);
 				this.addHighlight(null,"");
 			 
-			 	var is_shift = _this.keystate.is_shift > 0;
-			 
+			 	var is_shift = 
+					0 != (_this.main_window.state & Gdk.ModifierType.SHIFT_MASK);
 			
+			 	 
 			 	// -- get position..
 			 	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
 					// still dragging same node

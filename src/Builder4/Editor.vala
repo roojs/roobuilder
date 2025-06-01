@@ -20,7 +20,6 @@ public class Editor : Object
 	public Xcls_RightEditor RightEditor;
 	public Xcls_view view;
 	public Xcls_buffer buffer;
-	public Xcls_keystate keystate;
 	public Xcls_search_entry search_entry;
 	public Xcls_search_results search_results;
 	public Xcls_nextBtn nextBtn;
@@ -905,14 +904,12 @@ public class Editor : Object
 			this.el.highlight_current_line = true;
 			new Xcls_buffer( _this );
 			this.el.buffer = _this.buffer.el;
-			new Xcls_keystate( _this );
-			this.el.add_controller(  _this.keystate.el );
-			var child_3 = new Xcls_EventControllerScroll14( _this );
+			var child_2 = new Xcls_EventControllerScroll14( _this );
+			child_2.ref();
+			this.el.add_controller(  child_2.el );
+			var child_3 = new Xcls_GestureClick15( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
-			var child_4 = new Xcls_GestureClick15( _this );
-			child_4.ref();
-			this.el.add_controller(  child_4.el );
 
 			// init method
 
@@ -1229,84 +1226,6 @@ public class Editor : Object
 		}
 	}
 
-	public class Xcls_keystate : Object
-	{
-		public Gtk.EventControllerKey el;
-		private Editor  _this;
-
-
-		// my vars (def)
-		public bool is_control;
-
-		// ctor
-		public Xcls_keystate(Editor _owner )
-		{
-			_this = _owner;
-			_this.keystate = this;
-			this.el = new Gtk.EventControllerKey();
-
-			// my vars (dec)
-			this.is_control = false;
-
-			// set gobject values
-
-			//listeners
-			this.el.key_released.connect( (keyval, keycode, state) => {
-			
-			 	 if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {
-			 		this.is_control = false;
-				}
-			    if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-			        GLib.debug("SAVE: ctrl-S  pressed");
-			        _this.saveContents();
-			        return;
-			    }
-			    
-			    if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-				    GLib.debug("SAVE: ctrl-g  pressed");
-					_this.forwardSearch(true);
-				    return;
-				}
-				if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-				    GLib.debug("SAVE: ctrl-f  pressed");
-					_this.search_entry.el.grab_focus();
-					_this.search_entry.el.select_region(0,-1);
-				    return;
-				}
-				if (keyval == Gdk.Key.space && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-					_this.view.el.show_completion();
-				}
-				
-				Gtk.TextIter iter;
-				_this.buffer.el.get_iter_at_offset( out iter, _this.buffer.el.cursor_position);  
-				var line  = iter.get_line();
-				var offset = iter.get_line_offset();
-				GLib.debug("line  %d  off %d", line ,offset);
-				if (_this.prop != null) {
-					line += _this.prop.start_line + 1; // i think..
-					offset += 12; // should probably be 8 without namespaced 
-					GLib.debug("guess line  %d  off %d", line ,offset);
-				} 
-			    //_this.view.el.show_completion();
-			   // print(event.key.keyval)
-			    
-			    
-			    return;
-			 
-			 
-			});
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-			
-			 	if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {
-			 		this.is_control = true;
-				}
-				return false;
-			});
-		}
-
-		// user defined functions
-	}
-
 	public class Xcls_EventControllerScroll14 : Object
 	{
 		public Gtk.EventControllerScroll el;
@@ -1329,7 +1248,12 @@ public class Editor : Object
 
 			//listeners
 			this.el.scroll.connect( (dx, dy) => {
-				if (!_this.keystate.is_control) {
+			
+				var is_control = 
+					0 != (_this.window.state & Gdk.ModifierType.CONTROL_MASK);
+			
+			
+				if (!is_control) {
 					return false;
 				}
 				 //GLib.debug("scroll %f",  dy);
@@ -2290,6 +2214,7 @@ public class Editor : Object
 
 
 		// my vars (def)
+		public Gtk.CustomFilterFunc match_func;
 
 		// ctor
 		public Xcls_CustomFilter36(Editor _owner )
@@ -2326,6 +2251,35 @@ public class Editor : Object
 } );
 
 			// my vars (dec)
+			this.match_func = (item) => { 
+	var tr = ((Gtk.TreeListRow)item).get_item();
+   GLib.debug("filter%s =>  %s", item.get_type().name(), 
+   tr.get_type().name()
+   );
+	var j =  (Palete.Symbol) tr;
+	
+	switch( j.stype) {
+	
+		case Lsp.SymbolKind.Namespace:
+		case Lsp.SymbolKind.Class:
+		case Lsp.SymbolKind.Method:
+		case Lsp.SymbolKind.Property:
+		 case Lsp.SymbolKind.Field:  //???
+		case Lsp.SymbolKind.Constructor:
+		case Lsp.SymbolKind.Interface:
+		case Lsp.SymbolKind.Enum:
+		case Lsp.SymbolKind.Constant:
+		case Lsp.SymbolKind.EnumMember:
+		case Lsp.SymbolKind.Struct:
+			return true;
+			
+		default : 
+			GLib.debug("hide %s", j.stype.to_string());
+			return false;
+	
+	}
+
+};
 
 			// set gobject values
 		}
@@ -2472,6 +2426,8 @@ public class Editor : Object
 
 
 		// my vars (def)
+		public string property_name;
+		public GLib.Type this_type;
 
 		// ctor
 		public Xcls_PropertyExpression40(Editor _owner )
@@ -2480,6 +2436,8 @@ public class Editor : Object
 			this.el = new Gtk.PropertyExpression( typeof(Palete.Symbol), null, "sort_key" );
 
 			// my vars (dec)
+			this.property_name = "sort_key";
+			this.this_type = typeof(Palete.Symbol);
 
 			// set gobject values
 		}
@@ -2496,6 +2454,7 @@ public class Editor : Object
 
 
 		// my vars (def)
+		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
 		public Xcls_TreeListModel41(Editor _owner )
@@ -2510,6 +2469,10 @@ public class Editor : Object
  );
 
 			// my vars (dec)
+			this.create_func = (item) => {
+ 
+	return ((Palete.Symbol)item).children;
+};
 
 			// set gobject values
 		}

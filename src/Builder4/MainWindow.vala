@@ -54,6 +54,8 @@ public class Xcls_MainWindow : Object
 	public Xcls_keystate keystate;
 
 	// my vars (def)
+	public Gtk.EventControllerKey evn;
+	public Gdk.ModifierType state;
 	public WindowState windowstate;
 	public bool winloading;
 	public Project.Project project;
@@ -65,6 +67,7 @@ public class Xcls_MainWindow : Object
 		this.el = new Gtk.ApplicationWindow(BuilderApplication.singleton({}));
 
 		// my vars (dec)
+		this.state = 0;
 		this.winloading = false;
 		this.project = null;
 
@@ -80,6 +83,19 @@ public class Xcls_MainWindow : Object
 		// init method
 
 		this.el.set_icon_name("roobuilder");
+		
+		
+		this.evn = new Gtk.EventControllerKey();
+		 
+		this.evn.key_released.connect( ( keyval,  keycode, state) =>  {
+			_this.state = state;
+		
+		});
+		this.evn.key_pressed.connect( ( keyval,  keycode,   state) =>  {
+			_this.state = state;
+		    return true;
+		});
+		((Gtk.Widget	)this.el).add_controller(this.evn);
 
 		//listeners
 		this.el.close_request.connect( ( ) => {

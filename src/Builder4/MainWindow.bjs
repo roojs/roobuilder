@@ -3,6 +3,8 @@
  "gen_extended" : false,
  "items" : [
   {
+   "# Gdk.ModifierType state" : 0,
+   "# Gtk.EventControllerKey evn" : "",
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "",
    "# bool winloading" : false,
@@ -12,6 +14,19 @@
    "* init" : [
     "",
     "this.el.set_icon_name(\"roobuilder\");",
+    "",
+    "",
+    "this.evn = new Gtk.EventControllerKey();",
+    " ",
+    "this.evn.key_released.connect( ( keyval,  keycode, state) =>  {",
+    "\t_this.state = state;",
+    "",
+    "});",
+    "this.evn.key_pressed.connect( ( keyval,  keycode,   state) =>  {",
+    "\t_this.state = state;",
+    "    return true;",
+    "});",
+    "((Gtk.Widget\t)this.el).add_controller(this.evn);",
     ""
    ],
    "border_width" : 0,
