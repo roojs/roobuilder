@@ -258,6 +258,7 @@ namespace Project
 		 
 		public override Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file)
 		{
+			GLib.debug("fetch symbol manager");
 			var cgn = this.firstBuildModuleWith(file);
 			if (cgn == "") {
 				return null;
