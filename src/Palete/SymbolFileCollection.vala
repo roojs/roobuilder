@@ -79,6 +79,8 @@ namespace Palete {
 
 		public void loadAllFiles(Project.GtkValaSettings cg)
 		{
+			
+
 			foreach(var path in cg.sources) {
 
 				
@@ -99,6 +101,7 @@ namespace Palete {
 				if (this.files.has_key(tn)) {
 					continue;
 				}
+				GLib.debug("add path %s",tn);
 				this.factory_by_path(tn);	
 				 
 			}
@@ -107,6 +110,7 @@ namespace Palete {
 				if (this.files.has_key(path)) {
 					continue;
 				}
+				GLib.debug("add path %s",tn);
 				this.factory_by_path(path);	
 			}
 			
