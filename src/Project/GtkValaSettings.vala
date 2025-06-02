@@ -115,10 +115,13 @@ namespace Project
 		// ?? needed?
 		public Palete.SymbolFileCollection symbolManager()
 		{
+			this.symbol_manager.loadAllFiles(this);
 			return this.symbol_manager;
 		}
 		public Palete.SymbolLoader symbolLoader()
 		{
+			// force an update 
+			this.symbol_manager.loadAllFiles(this);
 			return this.symbol_loader;
 		}
 		

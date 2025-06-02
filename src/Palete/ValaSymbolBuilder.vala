@@ -75,14 +75,16 @@ namespace Palete {
 		{
 			// this is done with the progress dialog.
 			if (this.running) {
-				
+				GLib.debug("SKIP - Already running");
 				return;
 			}
 			this.running = true;
 			var mod = this.scan_project.firstBuildModuleWith(file);
 			if (this.done_first_compile.contains(mod)) {
+				GLib.debug("SKIP - Already done first compile");
 				return;
 			}
+			// if we are not running from opt -compile - then we show dialog.
 			if (BuilderApplication.opt_compile_project == null) {
 				lp = new LoadingProgress();
 				
@@ -122,6 +124,7 @@ namespace Palete {
 			this.lp = null;
 			this.done_first_compile.add(mod);
 			this.running = false;	
+			GLib.debug("Done vapi build");
 		}
 		bool buildingTree = false;
 		// main entrance point.. 

@@ -197,22 +197,24 @@ public class DialogFiles : Object
 	      //var h = win.get_height();
 	 
 		
-		 this.el.show();
-	 this.load();
-	 GLib.debug("set selected to %s", project == null ? "NULL" : "a project");
+		this.el.show();
+		_this.btn_addfile.el.hide();
+		 
+		this.load();
+		GLib.debug("set selected to %s", project == null ? "NULL" : "a project");
 		this.selectProject(project);
 		this.onProjectSelected(project);   //?? twice?
 		 
-		    GLib.Timeout.add(500, () => {
-		    	if (project == null) {
-		    	GLib.debug("set selected to null");
-	    	   		_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
-					this.onProjectSelected(null); 
+		GLib.Timeout.add(500, () => {
+			if (project == null) {
+				GLib.debug("set selected to null");
+				_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
+				this.onProjectSelected(null); 
 		
-				} 
-		          this.el.set_size_request( 800 , 750);  // ?? based on default 
-		     return false;
-	     });
+			} 
+			this.el.set_size_request( 800 , 750);  // ?? based on default 
+			return false;
+		});
 		 
 	}//
 	public void load () {
@@ -420,7 +422,7 @@ public class DialogFiles : Object
 			this.el.notify["selected"].connect( (position, n_items) => {
 			
 			    if (_this.is_loading) {
-			    	return;
+			    		return;
 				}
 			  
 				if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
@@ -1604,7 +1606,6 @@ public class DialogFiles : Object
 
 
 		// my vars (def)
-		public Gtk.CssProvider css;
 
 		// ctor
 		public Xcls_treeview(DialogFiles _owner )
@@ -1623,29 +1624,6 @@ public class DialogFiles : Object
 			this.el.add_controller(  child_2.el );
 			new Xcls_name( _this );
 			this.el.append_column ( _this.name.el  );
-
-			// init method
-
-			{
-			 
-				this.css = new Gtk.CssProvider();
-			 
-				this.css.load_from_string("
-			#file-list { font-size: 12px;}
-			#file-list indent {
-			-gtk-icon-size : 2px;
-			}
-			#file-list indent:nth-last-child(2)  {
-			min-width: 24px;
-			}
-			");
-				Gtk.StyleContext.add_provider_for_display(
-					this.el.get_display(),
-					this.css,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-				);
-					 
-			}
 		}
 
 		// user defined functions
