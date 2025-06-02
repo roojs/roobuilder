@@ -110,7 +110,7 @@ namespace Palete {
 				if (this.files.has_key(path)) {
 					continue;
 				}
-				GLib.debug("add path %s",tn);
+				GLib.debug("add path %s",path);
 				this.factory_by_path(path);	
 			}
 			
