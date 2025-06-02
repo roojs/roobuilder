@@ -38,6 +38,7 @@ public class About : Object
 	public void show (Gtk.Window parent) {
 		this.el.application = parent.application;
 		this.el.set_transient_for(parent);
+		this.el.version = BuilderApplication.release_version;
 		this.el.show();
 	}
 }

@@ -25,8 +25,6 @@
    
    // .roobuilder.jcfg  << hidden file with project details?
    
-   
-   
  
  * 
  * 
@@ -39,9 +37,7 @@ namespace Project {
 		INVALID_VALUE,
 		INVALID_FORMAT
 	}
-
-
-	
+  
 	// static array of all projects.
 	private Gee.ArrayList<Project>  projects;
 	
@@ -1059,6 +1055,7 @@ namespace Project {
 			add.lines.append(new_ce);
 			  
 		}
+		
 		public void removeError(JsRender.JsRender f, Lsp.Diagnostic diag)
 		{
 			var ls = this.getErrors(diag.category);

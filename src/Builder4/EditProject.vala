@@ -60,9 +60,9 @@ public class EditProject : Object
 	     this.doneObj= doneObj;
 	    _this.hideAll(); 
 	     // hide stuff..
-	     _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;
-	     _this.folder_dd.el.selected = Gtk.INVALID_LIST_POSITION;
-	     _this.ptype_dd.el.selected = Gtk.INVALID_LIST_POSITION;
+	     _this.type_dd.el.selected = 0;
+	     _this.folder_dd.el.selected = 0;
+	     _this.ptype_dd.el.selected = 0;
 	     _this.parent_dd.extra_value = "";
 	    //[ 'xtype'  ].forEach(function(k) {
 	    //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);

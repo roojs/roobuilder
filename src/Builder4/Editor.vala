@@ -524,7 +524,7 @@ public class Editor : Object
 			this.el.append( child_1.el );
 			new Xcls_RightEditor( _this );
 			this.el.append( _this.RightEditor.el );
-			var child_3 = new Xcls_Box16( _this );
+			var child_3 = new Xcls_Box15( _this );
 			child_3.ref();
 			this.el.append ( child_3.el  );
 		}
@@ -904,12 +904,15 @@ public class Editor : Object
 			this.el.highlight_current_line = true;
 			new Xcls_buffer( _this );
 			this.el.buffer = _this.buffer.el;
-			var child_2 = new Xcls_EventControllerScroll14( _this );
+			var child_2 = new Xcls_EventControllerScroll13( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
-			var child_3 = new Xcls_GestureClick15( _this );
+			var child_3 = new Xcls_GestureClick14( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
+			var child_4 = new Xcls_EventControllerKey83( _this );
+			child_4.ref();
+			this.el.add_controller(  child_4.el );
 
 			// init method
 
@@ -1226,7 +1229,7 @@ public class Editor : Object
 		}
 	}
 
-	public class Xcls_EventControllerScroll14 : Object
+	public class Xcls_EventControllerScroll13 : Object
 	{
 		public Gtk.EventControllerScroll el;
 		private Editor  _this;
@@ -1236,7 +1239,7 @@ public class Editor : Object
 		public double distance;
 
 		// ctor
-		public Xcls_EventControllerScroll14(Editor _owner )
+		public Xcls_EventControllerScroll13(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
@@ -1279,7 +1282,7 @@ public class Editor : Object
 		// user defined functions
 	}
 
-	public class Xcls_GestureClick15 : Object
+	public class Xcls_GestureClick14 : Object
 	{
 		public Gtk.GestureClick el;
 		private Editor  _this;
@@ -1288,7 +1291,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick15(Editor _owner )
+		public Xcls_GestureClick14(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -1325,9 +1328,72 @@ public class Editor : Object
 		// user defined functions
 	}
 
+	public class Xcls_EventControllerKey83 : Object
+	{
+		public Gtk.EventControllerKey el;
+		private Editor  _this;
 
 
-	public class Xcls_Box16 : Object
+		// my vars (def)
+
+		// ctor
+		public Xcls_EventControllerKey83(Editor _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.EventControllerKey();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.key_released.connect( (  keyval,   keycode,  state) =>  
+			{
+			    if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+			        GLib.debug("SAVE: ctrl-S  pressed");
+			        _this.saveContents();
+			        return;
+			    }
+			    
+			    if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+				    GLib.debug("SAVE: ctrl-g  pressed");
+					_this.forwardSearch(true);
+				    return;
+				}
+				if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+				    GLib.debug("SAVE: ctrl-f  pressed");
+					_this.search_entry.el.grab_focus();
+					_this.search_entry.el.select_region(0,-1);
+				    return;
+				}
+				if (keyval == Gdk.Key.space && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+					_this.view.el.show_completion();
+				}
+				
+				Gtk.TextIter iter;
+				_this.buffer.el.get_iter_at_offset( out iter, _this.buffer.el.cursor_position);  
+				var line  = iter.get_line();
+				var offset = iter.get_line_offset();
+				GLib.debug("line  %d  off %d", line ,offset);
+				if (_this.prop != null) {
+					line += _this.prop.start_line + 1; // i think..
+					offset += 12; // should probably be 8 without namespaced 
+					GLib.debug("guess line  %d  off %d", line ,offset);
+				} 
+			    //_this.view.el.show_completion();
+			   // print(event.key.keyval)
+			    
+			    
+			
+			});
+		}
+
+		// user defined functions
+	}
+
+
+
+	public class Xcls_Box15 : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
@@ -1336,7 +1402,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box16(Editor _owner )
+		public Xcls_Box15(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1354,7 +1420,7 @@ public class Editor : Object
 			this.el.append( _this.nextBtn.el );
 			new Xcls_backBtn( _this );
 			this.el.append( _this.backBtn.el );
-			var child_5 = new Xcls_MenuButton22( _this );
+			var child_5 = new Xcls_MenuButton21( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
 		}
@@ -1384,7 +1450,7 @@ public class Editor : Object
 			this.el.hexpand = true;
 			this.el.placeholder_text = "Press enter to search";
 			this.el.search_delay = 3;
-			var child_1 = new Xcls_EventControllerKey18( _this );
+			var child_1 = new Xcls_EventControllerKey17( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
@@ -1429,7 +1495,7 @@ public class Editor : Object
 			
 		}
 	}
-	public class Xcls_EventControllerKey18 : Object
+	public class Xcls_EventControllerKey17 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Editor  _this;
@@ -1438,7 +1504,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey18(Editor _owner )
+		public Xcls_EventControllerKey17(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -1589,7 +1655,7 @@ public class Editor : Object
 		// user defined functions
 	}
 
-	public class Xcls_MenuButton22 : Object
+	public class Xcls_MenuButton21 : Object
 	{
 		public Gtk.MenuButton el;
 		private Editor  _this;
@@ -1599,7 +1665,7 @@ public class Editor : Object
 		public bool always_show_image;
 
 		// ctor
-		public Xcls_MenuButton22(Editor _owner )
+		public Xcls_MenuButton21(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.MenuButton();
@@ -1634,14 +1700,14 @@ public class Editor : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box24( _this );
+			var child_1 = new Xcls_Box23( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box24 : Object
+	public class Xcls_Box23 : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
@@ -1650,7 +1716,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box24(Editor _owner )
+		public Xcls_Box23(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1779,7 +1845,7 @@ public class Editor : Object
 			this.el.hexpand = true;
 			this.el.vexpand = true;
 			this.el.visible = false;
-			var child_1 = new Xcls_Box29( _this );
+			var child_1 = new Xcls_Box28( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_navigationwindow( _this );
@@ -1788,7 +1854,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_Box29 : Object
+	public class Xcls_Box28 : Object
 	{
 		public Gtk.Box el;
 		private Editor  _this;
@@ -1797,7 +1863,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box29(Editor _owner )
+		public Xcls_Box28(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1863,10 +1929,10 @@ public class Editor : Object
 
 			// set gobject values
 			this.el.name = "editor-navigation";
-			var child_2 = new Xcls_ColumnViewColumn32( _this );
+			var child_2 = new Xcls_ColumnViewColumn31( _this );
 			child_2.ref();
 			this.el.append_column( child_2.el );
-			var child_3 = new Xcls_GestureClick43( _this );
+			var child_3 = new Xcls_GestureClick42( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
@@ -2042,7 +2108,7 @@ public class Editor : Object
 		
 		}
 	}
-	public class Xcls_ColumnViewColumn32 : Object
+	public class Xcls_ColumnViewColumn31 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Editor  _this;
@@ -2051,10 +2117,10 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ColumnViewColumn32(Editor _owner )
+		public Xcls_ColumnViewColumn31(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory33( _this );
+			var child_1 = new Xcls_SignalListItemFactory32( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Code Navigation", child_1.el );
 
@@ -2066,7 +2132,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory33 : Object
+	public class Xcls_SignalListItemFactory32 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Editor  _this;
@@ -2075,7 +2141,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory33(Editor _owner )
+		public Xcls_SignalListItemFactory32(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -2172,7 +2238,7 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationselmodel = this;
-			var child_1 = new Xcls_FilterListModel35( _this );
+			var child_1 = new Xcls_FilterListModel34( _this );
 			child_1.ref();
 			this.el = new Gtk.NoSelection( child_1.el );
 
@@ -2183,7 +2249,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_FilterListModel35 : Object
+	public class Xcls_FilterListModel34 : Object
 	{
 		public Gtk.FilterListModel el;
 		private Editor  _this;
@@ -2192,11 +2258,11 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel35(Editor _owner )
+		public Xcls_FilterListModel34(Editor _owner )
 		{
 			_this = _owner;
 			new Xcls_navigationsort( _this );
-			var child_2 = new Xcls_CustomFilter36( _this );
+			var child_2 = new Xcls_CustomFilter35( _this );
 			child_2.ref();
 			this.el = new Gtk.FilterListModel( _this.navigationsort.el, child_2.el );
 
@@ -2207,17 +2273,16 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_CustomFilter36 : Object
+	public class Xcls_CustomFilter35 : Object
 	{
 		public Gtk.CustomFilter el;
 		private Editor  _this;
 
 
 		// my vars (def)
-		public Gtk.CustomFilterFunc match_func;
 
 		// ctor
-		public Xcls_CustomFilter36(Editor _owner )
+		public Xcls_CustomFilter35(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.CustomFilter( (item) => { 
@@ -2251,35 +2316,6 @@ public class Editor : Object
 } );
 
 			// my vars (dec)
-			this.match_func = (item) => { 
-	var tr = ((Gtk.TreeListRow)item).get_item();
-   GLib.debug("filter%s =>  %s", item.get_type().name(), 
-   tr.get_type().name()
-   );
-	var j =  (Palete.Symbol) tr;
-	
-	switch( j.stype) {
-	
-		case Lsp.SymbolKind.Namespace:
-		case Lsp.SymbolKind.Class:
-		case Lsp.SymbolKind.Method:
-		case Lsp.SymbolKind.Property:
-		 case Lsp.SymbolKind.Field:  //???
-		case Lsp.SymbolKind.Constructor:
-		case Lsp.SymbolKind.Interface:
-		case Lsp.SymbolKind.Enum:
-		case Lsp.SymbolKind.Constant:
-		case Lsp.SymbolKind.EnumMember:
-		case Lsp.SymbolKind.Struct:
-			return true;
-			
-		default : 
-			GLib.debug("hide %s", j.stype.to_string());
-			return false;
-	
-	}
-
-};
 
 			// set gobject values
 		}
@@ -2300,9 +2336,9 @@ public class Editor : Object
 		{
 			_this = _owner;
 			_this.navigationsort = this;
-			var child_1 = new Xcls_TreeListModel41( _this );
+			var child_1 = new Xcls_TreeListModel40( _this );
 			child_1.ref();
-			var child_2 = new Xcls_TreeListRowSorter38( _this );
+			var child_2 = new Xcls_TreeListRowSorter37( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( child_1.el, child_2.el );
 
@@ -2373,7 +2409,7 @@ public class Editor : Object
 			 
 		}
 	}
-	public class Xcls_TreeListRowSorter38 : Object
+	public class Xcls_TreeListRowSorter37 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Editor  _this;
@@ -2382,10 +2418,10 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter38(Editor _owner )
+		public Xcls_TreeListRowSorter37(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter39( _this );
+			var child_1 = new Xcls_StringSorter38( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -2396,7 +2432,7 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter39 : Object
+	public class Xcls_StringSorter38 : Object
 	{
 		public Gtk.StringSorter el;
 		private Editor  _this;
@@ -2405,10 +2441,10 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter39(Editor _owner )
+		public Xcls_StringSorter38(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression40( _this );
+			var child_1 = new Xcls_PropertyExpression39( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -2419,25 +2455,21 @@ public class Editor : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression40 : Object
+	public class Xcls_PropertyExpression39 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Editor  _this;
 
 
 		// my vars (def)
-		public string property_name;
-		public GLib.Type this_type;
 
 		// ctor
-		public Xcls_PropertyExpression40(Editor _owner )
+		public Xcls_PropertyExpression39(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Palete.Symbol), null, "sort_key" );
 
 			// my vars (dec)
-			this.property_name = "sort_key";
-			this.this_type = typeof(Palete.Symbol);
 
 			// set gobject values
 		}
@@ -2447,20 +2479,19 @@ public class Editor : Object
 
 
 
-	public class Xcls_TreeListModel41 : Object
+	public class Xcls_TreeListModel40 : Object
 	{
 		public Gtk.TreeListModel el;
 		private Editor  _this;
 
 
 		// my vars (def)
-		public Gtk.TreeListModelCreateModelFunc create_func;
 
 		// ctor
-		public Xcls_TreeListModel41(Editor _owner )
+		public Xcls_TreeListModel40(Editor _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_ListStore42( _this );
+			var child_1 = new Xcls_ListStore41( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListModel( child_1.el, false, false, (item) => {
  
@@ -2469,17 +2500,13 @@ public class Editor : Object
  );
 
 			// my vars (dec)
-			this.create_func = (item) => {
- 
-	return ((Palete.Symbol)item).children;
-};
 
 			// set gobject values
 		}
 
 		// user defined functions
 	}
-	public class Xcls_ListStore42 : Object
+	public class Xcls_ListStore41 : Object
 	{
 		public GLib.ListStore el;
 		private Editor  _this;
@@ -2488,7 +2515,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ListStore42(Editor _owner )
+		public Xcls_ListStore41(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new GLib.ListStore( typeof(Palete.Symbol) );
@@ -2505,7 +2532,7 @@ public class Editor : Object
 
 
 
-	public class Xcls_GestureClick43 : Object
+	public class Xcls_GestureClick42 : Object
 	{
 		public Gtk.GestureClick el;
 		private Editor  _this;
@@ -2514,7 +2541,7 @@ public class Editor : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick43(Editor _owner )
+		public Xcls_GestureClick42(Editor _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();

@@ -19,12 +19,16 @@ namespace SQ {
 	
 	public class Database {
 	
-		static string version;
+		static string version { 
+			get {
+				return BuilderApplication.release_version;
+			}
+		}
 		
 		static Sqlite.Database? _db = null;
 		public static Sqlite.Database db {
 			get {
-			 	Database.version = "1.2";
+			 //	Database.version = "1.2";
 			 	if (_db != null) {
 			 		return _db;
 		 		}

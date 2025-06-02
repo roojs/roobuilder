@@ -76,10 +76,14 @@
 		public static bool opt_test_meson = false;
         public static bool opt_test_gir_parser = false; 		
        
-       
+        public static string release_version {
+        		get {
+        			return "5.0.9"; // can we get this from somewhere?
+    			}
+		}
        
 		public static string _self;
-		public static string _version = "0000";
+		//public static string _version = "0000";
 		
 		public enum Target {
 		    INT32,

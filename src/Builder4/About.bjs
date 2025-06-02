@@ -17,6 +17,7 @@
     "(Gtk.Window parent) {",
     "\tthis.el.application = parent.application;",
     "\tthis.el.set_transient_for(parent);",
+    "\tthis.el.version = BuilderApplication.release_version;",
     "\tthis.el.show();",
     "}"
    ]
