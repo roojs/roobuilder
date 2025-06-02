@@ -120,6 +120,8 @@ namespace Project
 		}
 		public Palete.SymbolLoader symbolLoader()
 		{
+			// force an update 
+			this.symbol_manager.loadAllFiles(this);
 			return this.symbol_loader;
 		}
 		
