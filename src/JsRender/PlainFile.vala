@@ -88,7 +88,11 @@ namespace JsRender {
 		
 		public   override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
 		{
-				if (this.loaded) {
+				
+				var vtime = GLib.File.new_for_path(this.path).query_info( 
+					FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				
+				if (this.loaded && vtime == this.vtime) {
 					return;
 				}
 			    GLib.FileUtils.get_contents(this.path, out this.contents);
@@ -103,7 +107,8 @@ namespace JsRender {
         {
 			 return "";
 		}
-		public override void setSource(string str) {
+		public override void setSource(string str) 
+		{
 			this.vtime = new GLib.DateTime.now_local().to_unix();
 			this.contents = str;
   
@@ -116,13 +121,16 @@ namespace JsRender {
         }
 		 public override string toSourceCode(bool force=false)
         {
- 			if (!this.loaded) {
- 				this.loadItems();
-			}
+ 		 	// load items already check is loaded? +vitme
+			try {
+				this.loadItems();
+			} catch (GLib.Error e) {}
+		 
 		   return this.contents;
            
         }
-        public override void save() {
+        public override void save() 
+        {
     		if (!this.loaded) {
     			print("Ignoring Save  - as file was never loaded?\n");
 	    		return;

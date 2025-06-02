@@ -696,11 +696,11 @@ namespace JsRender {
 		public void writeFile(string path, string contents) throws GLib.IOError, GLib.Error
 		{
 
-			         
+			this.vtime = new GLib.DateTime.now_local().to_unix();         
 			var f = GLib.File.new_for_path(path);
 			var data_out = new GLib.DataOutputStream(
-                                          f.replace(null, false, GLib.FileCreateFlags.NONE, null)
-         	       );
+				f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+			);
 			data_out.put_string(contents, null);
 			data_out.close(null);
 		}

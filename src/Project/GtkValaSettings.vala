@@ -115,6 +115,7 @@ namespace Project
 		// ?? needed?
 		public Palete.SymbolFileCollection symbolManager()
 		{
+			this.symbol_manager.loadAllFiles(this);
 			return this.symbol_manager;
 		}
 		public Palete.SymbolLoader symbolLoader()
