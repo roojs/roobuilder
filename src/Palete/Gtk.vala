@@ -491,10 +491,10 @@ namespace Palete {
 					vn = "self"; // ?? is that ok?
 				}
 				
-				args += (args.length > 0 ? ", " : "") + v.rtype + " " + v.name;
+				args += (args.length > 0 ? ", " : "") + "/* " + v.rtype + " */ " + v.name;
 			}
 			var retval = "";
-			if (s.rtype != "") {
+			if (s.rtype != "" && s.rtype != "void") {
 				if (s.rtype == "bool") {
 					retval = "    return true|false;";
 				} else {
