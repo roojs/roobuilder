@@ -12,7 +12,7 @@ namespace Project
 			private set;
 		}
 
-		public Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
+		private Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
  
 
 		public string execute_args;
