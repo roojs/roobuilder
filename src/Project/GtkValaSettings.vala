@@ -15,7 +15,7 @@ namespace Project
 		private Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
  
  		public Gee.ArrayList<string> sources_ro {
- 			get { return this.sources; };
+ 			get { return this.sources; }
  			private set {};
 		}
 
