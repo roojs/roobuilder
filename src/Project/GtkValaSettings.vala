@@ -5,6 +5,8 @@ namespace Project
 		public string name { get; set;   }
  		public string fqn { get; set;  }
 		
+		public bool is_manager_dirty = true;
+		
 		public Gtk project {
 			get;
 			private set;
@@ -31,6 +33,7 @@ namespace Project
 			this.execute_args = "";
 			this.symbol_manager = new Palete.SymbolFileCollection();
 			this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
+			this.is_manager_dirty = false; // we have loaded..
 		}
 		
 		
@@ -115,13 +118,19 @@ namespace Project
 		// ?? needed?
 		public Palete.SymbolFileCollection symbolManager()
 		{
-			this.symbol_manager.loadAllFiles(this);
+			if (this.is_manager_dirty) {
+				this.symbol_manager.loadAllFiles(this);
+				this.is_manager_dirty = false;
+			}
 			return this.symbol_manager;
 		}
 		public Palete.SymbolLoader symbolLoader()
 		{
 			// force an update 
-			this.symbol_manager.loadAllFiles(this);
+			if (this.is_manager_dirty) {
+				this.symbol_manager.loadAllFiles(this);
+				this.is_manager_dirty = false;
+			}
 			return this.symbol_loader;
 		}
 		
