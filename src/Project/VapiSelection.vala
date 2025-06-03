@@ -50,7 +50,7 @@ namespace Project {
 		public VapiSelection(  Gtk project, string name)
 		{
 			this.project = project;
-			//this.vapi_list = vapi_list;
+			 
 			this.name = name;
 		}
 	}
