@@ -23,7 +23,6 @@ public class Xcls_WindowRooView : Object
 	public Xcls_sourceviewscroll sourceviewscroll;
 	public Xcls_sourceview sourceview;
 	public Xcls_buffer buffer;
-	public Xcls_keystate keystate;
 	public Xcls_search_entry search_entry;
 	public Xcls_search_results search_results;
 	public Xcls_nextBtn nextBtn;
@@ -1071,11 +1070,9 @@ public class Xcls_WindowRooView : Object
 			this.el.css_classes = { "code-editor" };
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
-			new Xcls_keystate( _this );
-			this.el.add_controller ( _this.keystate.el  );
-			var child_3 = new Xcls_EventControllerScroll17( _this );
-			child_3.ref();
-			this.el.add_controller(  child_3.el );
+			var child_2 = new Xcls_EventControllerScroll17( _this );
+			child_2.ref();
+			this.el.add_controller(  child_2.el );
 
 			// init method
 
@@ -1614,65 +1611,6 @@ public class Xcls_WindowRooView : Object
 		}
 	}
 
-	public class Xcls_keystate : Object
-	{
-		public Gtk.EventControllerKey el;
-		private Xcls_WindowRooView  _this;
-
-
-		// my vars (def)
-		public bool is_control;
-
-		// ctor
-		public Xcls_keystate(Xcls_WindowRooView _owner )
-		{
-			_this = _owner;
-			_this.keystate = this;
-			this.el = new Gtk.EventControllerKey();
-
-			// my vars (dec)
-			this.is_control = false;
-
-			// set gobject values
-
-			//listeners
-			this.el.key_released.connect( (keyval, keycode, state) => {
-			
-			
-			 	 if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {
-			 		this.is_control = false;
-				}
-			});
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-			
-			 	if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {
-			 		this.is_control = true;
-				}
-			    
-			  	if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-				    GLib.debug("SAVE: ctrl-g  pressed");
-					_this.forwardSearch(true);
-				    return false;
-				}
-				if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-				    GLib.debug("SAVE: ctrl-f  pressed");
-					_this.search_entry.el.grab_focus();
-				    return false ;
-				}
-			    
-				//this.button_is_pressed = true;
-				//return false;
-			   // print(event.key.keyval)
-			    
-			    return false;
-			 
-			 
-			});
-		}
-
-		// user defined functions
-	}
-
 	public class Xcls_EventControllerScroll17 : Object
 	{
 		public Gtk.EventControllerScroll el;
@@ -1695,7 +1633,11 @@ public class Xcls_WindowRooView : Object
 
 			//listeners
 			this.el.scroll.connect( (dx, dy) => {
-				if (!_this.keystate.is_control) {
+			
+			var is_control = 
+					0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.CONTROL_MASK);
+			
+				if (!is_control) {
 					return false;
 				}
 				//GLib.debug("scroll %f",  dy);

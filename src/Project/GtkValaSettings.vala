@@ -41,15 +41,20 @@ namespace Project
 		}
 		
 		
-		void addSource(string source) 
+		public void addSource(string source) 
 		{
 			if (!this.sources.contains(source)) {
 				this.sources.add(source);
 				this.is_manager_dirty = true;
 			}
 		}
-		
-		
+		public void removeSource(string source) 
+		{
+			if (this.sources.contains(source)) {
+					this.sources.remove(source);
+				this.is_manager_dirty = true;
+			}
+		}
 		 
 		public GtkValaSettings.from_json(Gtk project, Json.Object el) {
 
@@ -164,7 +169,7 @@ $cgname = executable('$cgname',
 ";
 			}
 			string[]  deps = {};
-			foreach(var p in this.project.packages) {
+			foreach(var p in this.project.packages_ro) {
 				if (p == "posix" ) {
 					continue;
 				} 

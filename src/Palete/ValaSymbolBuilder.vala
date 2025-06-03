@@ -375,7 +375,7 @@ namespace Palete {
 			
  
 			 			
-			var pkgs = this.fillDeps(this.scan_project.packages);
+			var pkgs = this.fillDeps(this.scan_project.packages_ro);
 			
 	    	
 	    	for (var i = 0; i < pkgs.size; i++) {
@@ -396,8 +396,8 @@ namespace Palete {
 			var pr = this.scan_project;
 			var cg =  this.scan_project.compilegroups.get(build_module);
 			this.files= new Gee.ArrayList<string>();
-			for (var i = 0; i < ( with_code ? cg.sources.size : 0); i++) {
-				var path = cg.sources.get(i);
+			for (var i = 0; i < ( with_code ? cg.sources_ro.size : 0); i++) {
+				var path = cg.sources_ro.get(i);
 				
 				var jfile = pr.getByRelPath(path);
 				if (jfile == null) {

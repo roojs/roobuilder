@@ -198,52 +198,16 @@
              "xtype" : "Buffer"
             },
             {
-             "# bool is_control" : false,
-             "$ xns" : "Gtk",
-             "id" : "keystate",
-             "listeners" : {
-              "key_pressed" : [
-               "(keyval, keycode, state) => {",
-               "",
-               "\tif (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {",
-               " \t\tthis.is_control = true;",
-               "\t}",
-               "\t ",
-               "\t if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-               "\t    GLib.debug(\"SAVE: ctrl-g  pressed\");",
-               "\t\t_this.forwardSearch(true);",
-               "\t    return true;",
-               "\t}",
-               "    if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-               "\t    GLib.debug(\"SAVE: ctrl-f  pressed\");",
-               "\t\t_this.search_entry.el.grab_focus();",
-               "\t    return true;",
-               "\t}",
-               "\t ",
-               "\treturn false;",
-               "}\t ",
-               "\t"
-              ],
-              "key_released" : [
-               "(keyval, keycode, state) => {",
-               "",
-               "\t if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {",
-               " \t\tthis.is_control = false;",
-               "\t}",
-               "}",
-               ""
-              ]
-             },
-             "xtype" : "EventControllerKey"
-            },
-            {
              "# double distance" : "0.0f",
              "$ xns" : "Gtk",
              "Gtk.EventControllerScrollFlags flags" : "Gtk.EventControllerScrollFlags.VERTICAL",
              "listeners" : {
               "scroll" : [
                "(dx, dy) => {",
-               "\tif (!_this.keystate.is_control) {",
+               "\tvar is_control = ",
+               "\t\t0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.CONTROL_MASK);",
+               "",
+               "\tif (!is_control) {",
                "\t\treturn false;",
                "\t}",
                "\t//GLib.debug(\"scroll %f\",  dy);",

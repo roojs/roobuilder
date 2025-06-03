@@ -1454,9 +1454,8 @@ public class Xcls_PopoverFileDetails : Object
 					var pr = (Project.Gtk) _this.file.project;
 					if (pr.compilegroups.has_key(_this.file.build_module)) {
 						var cg = pr.compilegroups.get(_this.file.build_module);
-						if (!cg.sources.contains(_this.file.relpath)) {
-							cg.sources.add(_this.file.relpath);
-						}
+						cg.addSource(_this.file.relpath);
+						 
 					}
 				
 				}
