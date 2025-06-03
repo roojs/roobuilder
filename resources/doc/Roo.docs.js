@@ -9,12 +9,12 @@ Roo.docs = new Roo.XComponent({
  _strings : {
   '3e6ec55e2dff4342e3f25b0b0b988de9' :"Inheritance tree",
   'ae635f08107a69569e636835f24e6f6f' :" extends ",
-  'decbe415d8accca7c2c16d48a79ee934' :"Read More",
   '87f9f735a1d36793ceaecd4e47124b63' :"Events",
   'd41d8cd98f00b204e9800998ecf8427e' :"",
   '4d9ee8f98abde282da987fed0aac295c' :"Children that can be added using addxtype({...})",
   '9b34238e8113db140b452beec500024b' :"Roo JS Documentation",
-  'c6faf864445938958b9ba7eaca3bb2f4' :"Implements Interfaces",
+  '50f33d14f129e4548c1c270fd6725a78' :"Configuration options",
+  'e64b94523532dbac62df6795a5153f04' :"doc-desc",
   '3673e725413179fe76f341ed908a5c36' :"Defined in: ",
   'd2b697ad8e989a6c4592987f22f5bbfc' :"doc-comments",
   'f361257612a512f9be2fdc2abfb25aef' :"<small>Defined by</small>",
@@ -22,7 +22,6 @@ Roo.docs = new Roo.XComponent({
   '3c81cc62cd8a24b231d0c0db34feda61' :"Implementations",
   'f561aaf6ef0bf14d4208bb46a4ccb3ad' :"xxx",
   '9bd81329febf6efe22788e03ddeaf0af' :" Class ",
-  '0d073857ee3281e8b55980467544221c' :"Configuration options / Properties",
   'a1d108496af420635536a4e29e87d42b' :"Constructor, Static and Public Methods",
   'd41d8cd98f00b204e9800998ecf8427e' :" "
  },
@@ -213,6 +212,19 @@ Roo.docs = new Roo.XComponent({
          ]
         }
        ]
+      },
+      {
+       xtype : 'Container',
+       cls : 'left-menu-sidebar-options',
+       xns : Roo.bootstrap,
+       '|xns' : 'Roo.bootstrap',
+       items  : [
+        {
+         xtype : 'Row',
+         xns : Roo.bootstrap,
+         '|xns' : 'Roo.bootstrap'
+        }
+       ]
       }
      ]
     },
@@ -286,9 +298,8 @@ Roo.docs = new Roo.XComponent({
      ]
     },
     {
-     xtype : 'Card',
-     cls : 'general-content-body general-content-intro border-0',
-     weight : 'white',
+     xtype : 'Container',
+     cls : 'general-content-body general-content-intro',
      listeners : {
       render : function (_self)
        {
@@ -312,8 +323,7 @@ Roo.docs = new Roo.XComponent({
        '|xns' : 'Roo.bootstrap'
       },
       {
-       xtype : 'Card',
-       cls : 'border-0',
+       xtype : 'Container',
        listeners : {
         render : function (_self)
          {
@@ -321,27 +331,13 @@ Roo.docs = new Roo.XComponent({
          }
        },
        xns : Roo.bootstrap,
-       '|xns' : 'Roo.bootstrap',
-       items  : [
-        {
-         xtype : 'Row',
-         listeners : {
-          render : function (_self)
-           {
-               _this.introRow = this;
-           }
-         },
-         xns : Roo.bootstrap,
-         '|xns' : 'Roo.bootstrap'
-        }
-       ]
+       '|xns' : 'Roo.bootstrap'
       }
      ]
     },
     {
-     xtype : 'Card',
-     cls : 'general-content-body border-0',
-     weight : 'white',
+     xtype : 'Container',
+     cls : 'general-content-body',
      listeners : {
       render : function (_self)
        {
@@ -364,9 +360,8 @@ Roo.docs = new Roo.XComponent({
          '|xns' : 'Roo.bootstrap',
          items  : [
           {
-           xtype : 'Card',
-           cls : 'doc-header-container border-0',
-           weight : 'white',
+           xtype : 'Container',
+           cls : 'doc-header-container',
            xns : Roo.bootstrap,
            '|xns' : 'Roo.bootstrap',
            items  : [
@@ -461,12 +456,7 @@ Roo.docs = new Roo.XComponent({
                 click : function (e)
                  {
                      
-                     alert(JSON.stringify(
-                         ["click",  this.el.dom.innerHTML]
-                     ));
-                     if (window.location.protocol == 'doc:') {
-                        return;
-                     }
+                     Roo.log(["click", this]);
                      if (this.el.dom.innerHTML.length > 0) {
                          Roo.docs.init.loadSource();
                      }
@@ -484,44 +474,17 @@ Roo.docs = new Roo.XComponent({
            ]
           },
           {
-           xtype : 'Element',
+           xtype : 'Container',
+           cls : 'doc-desc',
+           html : _this._strings['e64b94523532dbac62df6795a5153f04'] /* doc-desc */,
+           listeners : {
+            render : function (_self)
+             {
+                 _this.doc_desc = this;
+             }
+           },
            xns : Roo.bootstrap,
-           '|xns' : 'Roo.bootstrap',
-           items  : [
-            {
-             xtype : 'Element',
-             cls : 'doc-desc',
-             listeners : {
-              render : function (_self)
-               {
-                   _this.doc_desc = this;
-               }
-             },
-             xns : Roo.bootstrap,
-             '|xns' : 'Roo.bootstrap'
-            },
-            {
-             xtype : 'Button',
-             cls : 'btn-block mt-2',
-             html : _this._strings['decbe415d8accca7c2c16d48a79ee934'] /* Read More */,
-             pressed : false,
-             size : 'sm',
-             weight : 'info',
-             listeners : {
-              render : function (_self)
-               {
-                   _this.read_more_btn = this;
-               },
-              toggle : function (btn, e, pressed)
-               {
-                   _this.doc_desc.el.toggleClass('active');
-                   this.setText(pressed ? "Hide Content" : "Show More");
-               }
-             },
-             xns : Roo.bootstrap,
-             '|xns' : 'Roo.bootstrap'
-            }
-           ]
+           '|xns' : 'Roo.bootstrap'
           },
           {
            xtype : 'Container',
@@ -532,13 +495,13 @@ Roo.docs = new Roo.XComponent({
            '|xns' : 'Roo.bootstrap'
           },
           {
-           xtype : 'Card',
-           cls : 'doc-table-container mt-4 border-dark',
-           collapsable : true,
-           header : _this._strings['0d073857ee3281e8b55980467544221c'] /* Configuration options / Properties */,
-           header_weight : 'info',
+           xtype : 'Container',
+           cls : 'doc-table-container',
+           expandable : true,
+           expanded : true,
+           header : _this._strings['50f33d14f129e4548c1c270fd6725a78'] /* Configuration options */,
+           panel : 'primary',
            style : 'margin-top:15px',
-           weight : 'white',
            listeners : {
             render : function (_self)
              {
@@ -552,7 +515,6 @@ Roo.docs = new Roo.XComponent({
              xtype : 'Table',
              responsive : true,
              rowSelection : true,
-             selected_weight : '',
              striped : true,
              listeners : {
               render : function (_self)
@@ -629,12 +591,12 @@ Roo.docs = new Roo.XComponent({
            ]
           },
           {
-           xtype : 'Card',
-           cls : 'doc-table-container mt-4 border-dark',
-           collapsable : true,
+           xtype : 'Container',
+           cls : 'doc-table-container',
+           expandable : true,
            expanded : true,
            header : _this._strings['a1d108496af420635536a4e29e87d42b'] /* Constructor, Static and Public Methods */,
-           header_weight : 'info',
+           panel : 'primary',
            listeners : {
             render : function (_self)
              {
@@ -648,7 +610,6 @@ Roo.docs = new Roo.XComponent({
              xtype : 'Table',
              responsive : true,
              rowSelection : true,
-             selected_weight : '',
              listeners : {
               render : function (_self)
                {
@@ -726,11 +687,12 @@ Roo.docs = new Roo.XComponent({
            ]
           },
           {
-           xtype : 'Card',
-           cls : 'doc-table-container mt-4 border-dark',
-           collapsable : true,
+           xtype : 'Container',
+           cls : 'doc-table-container',
+           expandable : true,
+           expanded : true,
            header : _this._strings['87f9f735a1d36793ceaecd4e47124b63'] /* Events */,
-           header_weight : 'info',
+           panel : 'primary',
            listeners : {
             render : function (_self)
              {
@@ -744,7 +706,6 @@ Roo.docs = new Roo.XComponent({
              xtype : 'Table',
              responsive : true,
              rowSelection : true,
-             selected_weight : '',
              listeners : {
               render : function (_self)
                {
@@ -828,10 +789,9 @@ Roo.docs = new Roo.XComponent({
          '|xns' : 'Roo.bootstrap',
          items  : [
           {
-           xtype : 'Card',
+           xtype : 'Container',
            cls : 'doc-augments',
            header : _this._strings['3e6ec55e2dff4342e3f25b0b0b988de9'] /* Inheritance tree */,
-           header_weight : 'info',
            panel : 'primary',
            listeners : {
             render : function (_self)
@@ -843,25 +803,9 @@ Roo.docs = new Roo.XComponent({
            '|xns' : 'Roo.bootstrap'
           },
           {
-           xtype : 'Card',
-           cls : 'doc-augments',
-           header : _this._strings['c6faf864445938958b9ba7eaca3bb2f4'] /* Implements Interfaces */,
-           header_weight : 'info',
-           panel : 'primary',
-           listeners : {
-            render : function (_self)
-             {
-                 _this.implements  = this;
-             }
-           },
-           xns : Roo.bootstrap,
-           '|xns' : 'Roo.bootstrap'
-          },
-          {
-           xtype : 'Card',
+           xtype : 'Container',
            cls : 'doc-implementors',
            header : _this._strings['3c81cc62cd8a24b231d0c0db34feda61'] /* Implementations */,
-           header_weight : 'info',
            panel : 'primary',
            listeners : {
             render : function (_self)
@@ -873,10 +817,10 @@ Roo.docs = new Roo.XComponent({
            '|xns' : 'Roo.bootstrap'
           },
           {
-           xtype : 'Card',
+           xtype : 'Container',
            cls : 'doc-children',
            header : _this._strings['4d9ee8f98abde282da987fed0aac295c'] /* Children that can be added using addxtype({...}) */,
-           header_weight : 'info',
+           panel : 'primary',
            listeners : {
             render : function (_self)
              {

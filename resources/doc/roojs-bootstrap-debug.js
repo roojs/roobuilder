@@ -1986,7 +1986,7 @@ Roo.extend(Roo.bootstrap.Container, Roo.bootstrap.Component,  {
  * @cfg {String} header_image  src url of image.
  * @cfg {String|Object} header
  * @cfg {Number} header_size (0|1|2|3|4|5) H1 or H2 etc.. 0 indicates default
- * @cfg {String} header_weight (primary|secondary|success|info|warning|danger|light|dark)
+ * @cfg {Number} header_weight  (primary|secondary|success|info|warning|danger|light|dark)
  * 
  * @cfg {String} title
  * @cfg {String} subtitle
@@ -2140,7 +2140,7 @@ Roo.extend(Roo.bootstrap.Card, Roo.bootstrap.Component,  {
         
         ['', 'xs', 'sm', 'lg', 'xl'].forEach(function(v) {
             if (('' + t['display' + (v.length ? '_' : '') + v]).length) {
-                cls += ' d' +  (v.length ? '-' : '') + v + '-' + t['display' + (v.length ? '_' : '') + v];
+                cls += ' d' +  (v.length ? '-' : '') + v + '-' + t['display' + (v.length ? '_' : '') + v]
             }
         });
         
@@ -2183,14 +2183,12 @@ Roo.extend(Roo.bootstrap.Card, Roo.bootstrap.Component,  {
             cls : 'card',
             cn : [ ]
         };
-        //var bodycls = '';
         
-        //this seems pretty messed up.
-        //if (this.weight.length && this.weight != 'light') {
-        //    bodycls += ' text-white';
-        //} else {
-        //    bodycls += ' text-dark'; // need as it's nested..
-        //}
+        if (this.weight.length && this.weight != 'light') {
+            cfg.cls += ' text-white';
+        } else {
+            cfg.cls += ' text-dark'; // need as it's nested..
+        }
         if (this.weight.length) {
             cfg.cls += ' bg-' + this.weight;
         }
@@ -2199,13 +2197,10 @@ Roo.extend(Roo.bootstrap.Card, Roo.bootstrap.Component,  {
         
         var hdr = false;
         var hdr_ctr = false;
-        var hw = (this.header_weight ? ' bg-' + this.header_weight : '');
-        var hb = (['light', 'white'].indexOf(this.header_weight) > -1 ? ' text-dark' : ' text-white');
-          
         if (this.header.length) {
             hdr = {
                 tag : this.header_size > 0 ? 'h' + this.header_size : 'div',
-                cls : 'card-header' + hw + hb,
+                cls : 'card-header ' + (this.header_weight ? 'bg-' + this.header_weight : ''),
                 cn : []
             };
             cfg.cn.push(hdr);
@@ -2213,7 +2208,7 @@ Roo.extend(Roo.bootstrap.Card, Roo.bootstrap.Component,  {
         } else {
             hdr = {
                 tag : 'div',
-                cls : 'card-header d-none ' + hw + hb,
+                cls : 'card-header d-none ' + (this.header_weight ? 'bg-' + this.header_weight : ''),
                 cn : []
             };
             cfg.cn.push(hdr);
@@ -2221,6 +2216,7 @@ Roo.extend(Roo.bootstrap.Card, Roo.bootstrap.Component,  {
         }
         if (this.collapsable) {
             hdr_ctr = {
+            tag : 'a',
             cls : 'd-block user-select-none',
             cn: [
                     {
@@ -4144,7 +4140,7 @@ Roo.extend(Roo.bootstrap.menu.Item, Roo.bootstrap.Component,  {
         if(this.isContainer){
             return {
                 tag: 'li',
-                cls: 'roo-dropdown-menu-item '
+                cls: 'dropdown-menu-item '
             };
         }
         var ctag = {
@@ -4171,7 +4167,7 @@ Roo.extend(Roo.bootstrap.menu.Item, Roo.bootstrap.Component,  {
         
         var cfg= {
             tag: 'li',
-            cls: 'roo-dropdown-menu-item',
+            cls: 'dropdown-menu-item',
             cn: [ anc ]
         };
         if (this.parent().type == 'treeview') {
@@ -5536,6 +5532,327 @@ Roo.Msg.show({
  */
 Roo.MessageBox = Roo.MessageBox || Roo.bootstrap.MessageBox;
 Roo.Msg = Roo.Msg || Roo.MessageBox;
+/*
+ * - LGPL
+ *
+ * toaster  - collection of toasts  - notification popups.
+ * 
+ */
+
+/**
+ * @class Roo.bootstrap.Toaster
+ * @extends Roo.bootstrap.Component
+ * @children Roo.bootstrap.Toast
+ * Bootstrap Toaster Class - a notification with toasts
+ * 
+ * @constructor
+ * Create a new Toaster - should really only be one on the page.?
+ * 
+ * @param {Object} config The config object
+ */
+
+Roo.bootstrap.Toaster = function(config){
+    if (Roo.bootstrap.Toaster.page !== false) {
+        throw "toaster already initialized";
+    }
+    
+    Roo.bootstrap.Toaster.superclass.constructor.call(this, config);
+    Roo.bootstrap.Toaster.page = this;
+};
+Roo.bootstrap.Toaster.page = false;
+
+Roo.extend(Roo.bootstrap.Toaster, Roo.bootstrap.Component,  {
+ 
+    getAutoCreate : function(){
+         
+        return cfg = {
+            cls : 'bootstrap', // wrapped so we can use it elsewhere
+            cn : [ {
+                cls: 'toaster',  // add bootstrap so it can be used with roo classic
+                cn : [
+                    {
+                        tag: 'div',
+                        cls : 'toast-holder'
+                    }
+                ]    
+            }]
+            
+        }; 
+    },
+    initEvents : function()
+    {
+         this.containerEl = this.el.select('.toast-holder', true).first();
+    },
+    getChildContainer : function() /// what children are added to.
+    {
+        return this.containerEl;
+    },
+    show : function ()
+    {
+        if (!this.el) {
+            this.render(document.body);
+        }
+        this.el.removeClass('d-none');
+    },
+    hide : function()
+    {
+        this.el.addClass('d-none'); // not sure if this would ever be needed..
+    }
+   
+});
+
+
+/*
+ * - LGPL
+ *
+ * toast - notification popup.
+ * 
+ */
+
+/**
+ * @class Roo.bootstrap.Toast
+ * @extends Roo.bootstrap.Component
+ * Bootstrap Toaster Class - a notification with toasts
+ * 
+ * @constructor
+ *
+ * Create a new Toast - will auto create a toaster if necessary.
+ * @cfg title {string} Title of toast
+ * @cfg body {string} Body text of string
+ * @cfg show_time {boolean} should a time stamp be show/updated? - default false?
+ * @cfg timeout {number|boolean} number of seconds until it should be hidden false
+ * @cfg progress {number|boolean} show progressBar - false to hide, to show 0-100
+ * @cfg {String} weight (primary|warning|info|danger|secondary|success|light|dark) colour to make the square!
+ * 
+ * @param {Object} config The config object
+ *
+ * 
+ */
+
+Roo.bootstrap.Toast  = function(config)
+{
+    if (Roo.bootstrap.Toaster.page === false) {
+        (new Roo.bootstrap.Toaster()).show();
+    }
+    
+    Roo.bootstrap.Toast.superclass.constructor.call(this, config);
+      this.addEvents({
+        // raw events
+        /**
+         * @event close
+         * When a toast is closed (via button or timeout.)
+         * @param {Roo.bootstrap.Toast} toast
+         * @param {Roo.EventObject} e
+         */
+        "close" : true,
+         /**
+         * @event show
+         * When a toast is show() - usually on contruction..
+         * @param {Roo.bootstrap.Toast} toast
+         * @param {Roo.EventObject} e
+         */
+        "show" : true
+    });
+    
+    
+    this.render(Roo.bootstrap.Toaster.page.getChildContainer());
+    this.fireEvent('show', this);
+};
+ 
+Roo.extend(Roo.bootstrap.Toast, Roo.bootstrap.Component,  {
+    
+    title : '',
+    body : '',
+    show_time : false,
+    timeout : false,
+    progress : false,
+    weight : 'primary',
+ 
+    getAutoCreate : function(){
+          console.log(Roo.BLANK_IMAGE_URL);
+        return {
+            cls: 'toast fade show',
+            role : 'alert',
+            cn : [
+                {
+                    cls : 'toast-header',
+                    cn : [
+                        {
+                            tag : 'img',
+                            src : Roo.BLANK_IMAGE_URL,
+                            cls : 'rounded mr-2 bg-' + this.weight
+                        },
+                        {
+                            tag : 'small',
+                            cls : 'mr-auto',
+                            html : this.title
+                        },
+                        {
+                            tag : 'small',
+                            cls : 'toast-timer text-muted d-none',
+                            html : ''
+                        },
+                        {
+                            tag : 'button',
+                            cls : 'ml-2 mb-1 close',
+                            type : 'button',
+                            cn : [
+                                {
+                                    tag: 'span',
+                                    html : '&times;'
+                                }
+                            ]
+                        }
+                    ]
+                    
+                },
+                {
+                    cls : 'toast-body',
+                    cn : [
+                        {
+                            cls : 'progress d-none',
+                            cn : {
+                                cls : 'progress-bar bg-' + this.weight
+                            }
+                        },
+                        {
+                            cls: 'toast-body-text small',
+                            html : this.body
+                        }
+                    ]
+                }
+            ]
+                
+            
+        };
+        
+    },
+    progressBarEl : null,
+
+    progressEl : null,
+    bodyEl : null,
+    
+    bodyTextEl : null,
+    closeEl : null,
+    timerEl  : null,
+    timeout_id : false,
+     
+    initEvents : function()
+    {
+        this.progressBarEl = this.el.select('.progress-bar', true).first();
+        this.bodyEl = this.el.select('.toast-body', true).first();
+        this.bodyTextEl = this.el.select('.toast-body-text', true).first();
+        this.closeEl = this.el.select('.close', true).first();
+        this.timerEl  = this.el.select('.toast-timer', true).first();
+        this.progressEl  = this.el.select('.progress', true).first();
+        
+        if (this.body == '') {
+            this.bodyTextEl.addClass('d-none');
+            if (this.progress === false) {
+                this.bodyEl.addClass('d-none');
+            }
+        }
+        this.updateProgress(this.progress);
+        
+        this.closeEl.on('click', this.hide, this);
+        this.setTimeout(this.timeout);
+        
+        if (this.show_time > 0) {
+            this.timerEl.removeClass('d-none');
+            this.show_time = new Date();
+            this.updateTimer();
+             
+        }
+        
+        
+    },
+    
+    /**
+     * hide and destroy the toast
+     */
+    hide : function() 
+    {
+        if (!this.el) {
+            return;
+        }
+        if (this.show_time_interval !== false) {
+            clearInterval(this.show_time_interval);
+        }
+        this.closeEl.un('click',this.hide);
+        this.el.dom.parentNode.removeChild(this.el.dom);
+        this.el = false;
+        this.fireEvent('close', this);
+        
+    },
+    
+     
+    updateTimer : function()
+    {
+        if (!this.el) {
+            return;
+        }
+        if (this.show_time === false) {
+            this.show_time = new Date();
+        }
+        
+        var s = Math.floor(((new Date()) - this.show_time) / 1000);
+        var m = Math.floor(s/60);
+        this.timerEl.update(
+            s < 1 ? 'now' :
+            (
+                s > 60 ? (m + " mins ago") : (s + " sec. ago")
+            )
+        );
+        
+        this.updateTimer.defer(s < 60 ? 5000 : 60000, this);
+    },
+    
+    /**
+     * update the Progress Bar
+     * @param {Number|Boolean} false to hide, or number between 0-1
+     */
+    updateProgress : function(n)
+    {
+        this.progress = n;
+        if (this.progress !== false) {
+            this.progress = Math.min(this.progress, 1.0);
+            this.progress = Math.max(this.progress, 0.0);
+            this.bodyEl.removeClass('d-none');
+            this.progressEl.removeClass("d-none");
+            this.progressBarEl.setWidth(Math.floor(100 * this.progress) + '%');
+            return;
+        }
+        
+        this.progressEl.addClass('d-none');
+    },
+    /**
+     * set / update timeout - time when the notification will autohide
+     * @param {string} timeout in seconds
+     */
+    setTimeout : function(n)
+    {
+        if (this.timeout_id !== false) {
+            clearTimeout(this.timeout_id);
+            this.timeout_id = false;
+        }
+        if (n > 0) {
+            this.timeout = n;
+            this.timeout_id = this.hide.defer(this.timeout * 1000, this);
+        }
+     },
+    /**
+     * update body text
+     * @param {string} text to put in body
+     */
+     updateBody : function(str)
+     {
+        this.bodyTextEl[str.length > 0 ? 'removeClass' : 'addClass']('d-none');
+        this.bodyEl.removeClass('d-none');
+        this.bodyTextEl.update(str);
+     }
+});
+
+
 /*
  * - LGPL
  *
@@ -8837,6 +9154,21 @@ Roo.extend(Roo.grid.ColumnModel, Roo.util.Observable, {
     },
 
     /**
+     * Return the dataIndex for displayed columns
+     * @param {Array} add Array of data indexes added to the result
+     * @return {Array} result
+     */
+    getDisplayedColumnIndexes: function(add) {
+        var indexes = this.config.filter(function(c) {
+            return typeof(c.hidden) == 'undefined' || c.hidden !== true;
+        }).map(function(c) {
+            return c.dataIndex;
+        });
+
+        return indexes.concat(add);
+    },
+
+    /**
      * Sets the dataIndex for a column.
      * @param {Number} col The column index
      * @param {Number} dataIndex The new dataIndex
@@ -9159,7 +9491,7 @@ Currently the Table  uses multiple headers to try and handle XL / Medium etc... 
  * @cfg {Roo.grid.ColumnModel} cm[] A column for the grid.
  * 
  * @cfg {String} cls table class
- * @cfg {String} selected_weight (primary|secondary|success|danger|warning|info|light|dark|muted|white|) colour of selected row use blank to disable, default info
+ *
  *
  * @cfg {string} empty_results  Text to display for no results 
  * @cfg {boolean} striped Should the rows be alternative striped
@@ -9342,7 +9674,7 @@ Roo.bootstrap.Table = function(config)
 Roo.extend(Roo.bootstrap.Table, Roo.bootstrap.Component,  {
     
     cls: false,
-    selected_weight : 'info',
+    
     empty_results : '',
     striped : false,
     scrollBody : false,
@@ -10161,9 +10493,7 @@ Roo.extend(Roo.bootstrap.Table, Roo.bootstrap.Component,  {
     // private - called by RowSelection
     onRowSelect : function(rowIndex){
         var row = this.getRowDom(rowIndex);
-        if (this.selected_weight !== '') {
-            row.addClass(['bg-' + this.selected_weight, this.selected_weight]);
-        }
+        row.addClass(['bg-info','info']);
     },
     // private - called by RowSelection
     onRowDeselect : function(rowIndex)
@@ -10172,9 +10502,7 @@ Roo.extend(Roo.bootstrap.Table, Roo.bootstrap.Component,  {
             return;
         }
         var row = this.getRowDom(rowIndex);
-        if (this.selected_weight !== '') {
-             row.removeClass(['bg-' + this.selected_weight, this.selected_weight]);
-        }
+        row.removeClass(['bg-info','info']);
     },
       /**
      * Focuses the specified row.
@@ -14331,7 +14659,7 @@ Roo.extend(Roo.bootstrap.form.TriggerField, Roo.bootstrap.form.Input,  {
         
         if(this.fireEvent("remove", this) !== false){
             this.reset();
-            this.fireEvent("afterremove", this);
+            this.fireEvent("afterremove", this)
         }
     },
     
@@ -14343,7 +14671,7 @@ Roo.extend(Roo.bootstrap.form.TriggerField, Roo.bootstrap.form.Input,  {
             style: 'display:none'
         });
         
-        this.list.setVisibilityMode(Roo.Element.DISPLAY).originalDisplay = 'block';
+        this.list.setVisibilityMode(Roo.Element.DISPLAY).originalDisplay = 'block';;
         
     },
 
@@ -16971,7 +17299,7 @@ Roo.extend(Roo.data.JsonReader, Roo.data.DataReader, {
     read : function(response){
         var json = response.responseText;
        
-        var o = /* eval:var:o */ eval("("+json+")");
+        var o = JSON.parse(json); // was eval
         if(!o) {
             throw {message: "JsonReader.read: Json object not found"};
         }
@@ -23740,7 +24068,7 @@ Roo.extend(Roo.bootstrap.form.DateField, Roo.bootstrap.form.Input,  {
     {
         Roo.bootstrap.form.DateField.superclass.onBlur.call(this);
 
-        if(!this.readOnly) {
+        if(!this.readOnly && this.editable) {
             var d = this.inputEl().getValue();
             var date = this.parseDate(d);
             if(date) {
@@ -27247,6 +27575,7 @@ Roo.htmleditor.Filter.prototype = {
 Roo.htmleditor.FilterAttributes = function(cfg)
 {
     Roo.apply(this, cfg);
+    this.lang = this.lang || 'en';
     this.attrib_black = this.attrib_black || [];
     this.attrib_white = this.attrib_white || [];
 
@@ -27275,6 +27604,9 @@ Roo.extend(Roo.htmleditor.FilterAttributes, Roo.htmleditor.Filter,
         }
         
         for (var i = node.attributes.length-1; i > -1 ; i--) {
+            if(i >= node.attributes.length) {
+                continue;
+            }
             var a = node.attributes[i];
             //console.log(a);
             if (this.attrib_white.length && this.attrib_white.indexOf(a.name.toLowerCase()) < 0) {
@@ -27309,6 +27641,7 @@ Roo.extend(Roo.htmleditor.FilterAttributes, Roo.htmleditor.Filter,
             if (a.name == 'class') {
                 if (a.value.match(/^Mso/)) {
                     node.removeAttribute('class');
+                    continue;
                 }
                 
                 if (a.value.match(/^body$/)) {
@@ -27317,9 +27650,18 @@ Roo.extend(Roo.htmleditor.FilterAttributes, Roo.htmleditor.Filter,
                 continue;
             }
             
-            
             // style cleanup!?
             // class cleanup?
+
+            if(a.name == 'dir') {
+                var documentDir = ['ar', 'he', 'fa', 'ur', 'ps', 'syr', 'dv', 'arc', 'nqo', 'sam', 'tzm', 'ug', 'yi'].includes(this.lang) ? 'rtl' : 'ltr';
+                var nodeDir = a.value.toLowerCase();
+
+                // remove span dir if it is same as the document dir
+                if(node.tagName.toLowerCase() == 'span' && nodeDir == documentDir) {
+                    node.removeAttribute(a.name);
+                }
+            }
             
         }
         return true; // clean children
@@ -27553,6 +27895,7 @@ Roo.extend(Roo.htmleditor.FilterKeepChildren, Roo.htmleditor.FilterBlack,
 
 Roo.htmleditor.FilterParagraph = function(cfg)
 {
+    this.lang = cfg.lang || 'en';
     // no need to apply config.
     this.searchTag(cfg.node);
 }
@@ -27576,12 +27919,30 @@ Roo.extend(Roo.htmleditor.FilterParagraph, Roo.htmleditor.Filter,
             return false; // no need to walk..
         }
 
+        var documentDir = ['ar', 'he', 'fa', 'ur', 'ps', 'syr', 'dv', 'arc', 'nqo', 'sam', 'tzm', 'ug', 'yi'].includes(this.lang) ? 'rtl' : 'ltr';
+        var nodeDir = node.hasAttribute('dir') ? node.getAttribute('dir').toLowerCase() : false;
+        var span = node.ownerDocument.createElement('span');
+
         var ar = Array.from(node.childNodes);
         for (var i = 0; i < ar.length; i++) {
             node.removeChild(ar[i]);
+
+            // copy content to span with if the direction is needed
+            if(nodeDir && nodeDir != documentDir) {
+                span.appendChild(ar[i]);
+                continue;
+            }
+
             // what if we need to walk these???
             node.parentNode.insertBefore(ar[i], node);
         }
+
+        if(nodeDir && nodeDir != documentDir) {
+            // keep direction
+            span.setAttribute('dir', nodeDir);
+            node.parentNode.insertBefore(span, node);
+        }
+
         // now what about this?
         // <p> &nbsp; </p>
         
@@ -27651,9 +28012,10 @@ Roo.extend(Roo.htmleditor.FilterSpan, Roo.htmleditor.FilterKeepChildren,
  
     replaceTag : function(node)
     {
-        if (node.attributes && node.attributes.length > 0) {
+        if (node.attributes && node.attributes.length > 0 && node.textContent.trim().length > 0) {
             return true; // walk if there are any.
         }
+
         Roo.htmleditor.FilterKeepChildren.prototype.replaceTag.call(this, node);
         return false;
      
@@ -29921,8 +30283,7 @@ Roo.extend(Roo.htmleditor.BlockFigure, Roo.htmleditor.Block, {
             return Roo.htmleditor.Block.factory(toolbar.tb.selectedNode);
         };
         
-        
-        var rooui =  typeof(Roo.bootstrap) == 'undefined' ? Roo : Roo.bootstrap;
+        var rooui =  typeof(Roo.bootstrap.form) == 'undefined' ? Roo : Roo.bootstrap;
         
         var syncValue = toolbar.editorcore.syncValue;
         
@@ -29970,21 +30331,44 @@ Roo.extend(Roo.htmleditor.BlockFigure, Roo.htmleditor.Block, {
             {
                 xtype : 'Button',
                 text: 'Change Link URL',
-                 
+                onPromptKeyUp: function(e) {
+                    var b = block();
+                    var isYoutube = b.cls == 'youtube';
+
+                    if(!isYoutube) {
+                        return;
+                    }
+
+                    var msg = "Enter the url for the link - leave blank to have no link";
+                    var video_url = "//www.youtube.com/embed/" + e.target.value.split('/').pop().split('?').shift();
+                    msg += "<br>Embed Link: <a href='" + video_url + "' target='_blank'>" + video_url + "</a>";
+
+                    Roo.MessageBox.updateText(msg);
+                },
                 listeners : {
                     click: function (btn, state)
                     {
                         var b = block();
+
+                        var isYoutube = b.cls == 'youtube';
+
+                        var msg = "Enter the url for the link - leave blank to have no link";
+                        if(isYoutube) {
+                            msg += "<br>Embed Link: <a href='" + b.video_url + "' target='_blank'>" + b.video_url + "</a>";
+                        }
                         
                         Roo.MessageBox.show({
                             title : "Link URL",
-                            msg : "Enter the url for the link - leave blank to have no link",
+                            msg : msg,
                             buttons: Roo.MessageBox.OKCANCEL,
                             fn: function(btn, val){
                                 if (btn != 'ok') {
                                     return;
                                 }
                                 b.href = val;
+                                if(isYoutube) {
+                                    b.video_url = "//www.youtube.com/embed/" + val.split('/').pop().split('?').shift();
+                                }
                                 b.updateElement();
                                 syncValue();
                                 toolbar.editorcore.onEditorEvent();
@@ -29995,14 +30379,20 @@ Roo.extend(Roo.htmleditor.BlockFigure, Roo.htmleditor.Block, {
                             modal : true,
                             value : b.href
                         });
+                        
+                        var activeTextEl = Roo.MessageBox.getActiveTextEl();
+                        activeTextEl.removeListener('keyup', btn.onPromptKeyUp);
+                        if(isYoutube) {
+                            activeTextEl.addListener('keyup', btn.onPromptKeyUp);
+                        }
                     }
                 },
                 xns : rooui.Toolbar
             },
             {
                 xtype : 'Button',
+                cls: 'x-toolbar-figure-show-video-url',
                 text: 'Show Video URL',
-                 
                 listeners : {
                     click: function (btn, state)
                     {
@@ -30014,7 +30404,6 @@ Roo.extend(Roo.htmleditor.BlockFigure, Roo.htmleditor.Block, {
                 xns : rooui.Toolbar
             },
             
-            
             {
                 xtype : 'TextItem',
                 text : "Width: ",
@@ -30022,6 +30411,7 @@ Roo.extend(Roo.htmleditor.BlockFigure, Roo.htmleditor.Block, {
             },
             {
                 xtype : 'ComboBox',
+                
                 allowBlank : false,
                 displayField : 'val',
                 editable : true,
@@ -30372,7 +30762,7 @@ Roo.extend(Roo.htmleditor.BlockTable, Roo.htmleditor.Block, {
         };
         
         
-        var rooui =  typeof(Roo.bootstrap) == 'undefined' ? Roo : Roo.bootstrap;
+        var rooui =  typeof(Roo.bootstrap.form) == 'undefined' ? Roo : Roo.bootstrap;
         
         var syncValue = toolbar.editorcore.syncValue;
         
@@ -30897,7 +31287,7 @@ Roo.extend(Roo.htmleditor.BlockTd, Roo.htmleditor.Block, {
             }
         }
         
-        var rooui =  typeof(Roo.bootstrap) == 'undefined' ? Roo : Roo.bootstrap;
+        var rooui =  typeof(Roo.bootstrap.form) == 'undefined' ? Roo : Roo.bootstrap;
         
         var syncValue = toolbar.editorcore.syncValue;
         
@@ -31980,6 +32370,7 @@ Roo.extend(Roo.HtmlEditorCore, Roo.Component,  {
                 new Roo.htmleditor.FilterBlack({ node : div, tag : this.black});
                 new Roo.htmleditor.FilterAttributes({
                     node : div,
+                    lang : this.language,
                     attrib_white : [
                             'href',
                             'src',
@@ -31992,6 +32383,7 @@ Roo.extend(Roo.HtmlEditorCore, Roo.Component,  {
                             'data-width',
                             'data-caption',
                             'start' ,
+                            'dir',
                             'style',
                             // youtube embed.
                             'class',
@@ -32076,7 +32468,7 @@ Roo.extend(Roo.HtmlEditorCore, Roo.Component,  {
                 this.owner.fireEvent('push', this, v);
             }
             if (this.autoClean) {
-                new Roo.htmleditor.FilterParagraph({node : this.doc.body}); // paragraphs
+                new Roo.htmleditor.FilterParagraph({node : this.doc.body, lang: this.language}); // paragraphs
                 new Roo.htmleditor.FilterSpan({node : this.doc.body}); // empty spans
             }
             if (this.enableBlocks) {
@@ -32302,6 +32694,7 @@ Roo.extend(Roo.HtmlEditorCore, Roo.Component,  {
             new Roo.htmleditor.FilterStyleToTag({ node : d });
             new Roo.htmleditor.FilterAttributes({
                 node : d,
+                lang : this.language,
                 attrib_white : [
                     'href',
                     'src',
@@ -32309,7 +32702,8 @@ Roo.extend(Roo.HtmlEditorCore, Roo.Component,  {
                     'align',
                     'colspan',
                     'rowspan',
-                    'start'
+                    'start',
+                    'dir'
                 /*  THESE ARE NOT ALLWOED FOR PASTE
                  *    'data-display',
                     'data-caption-display',
@@ -32330,7 +32724,7 @@ Roo.extend(Roo.HtmlEditorCore, Roo.Component,  {
             new Roo.htmleditor.FilterBlack({ node : d, tag : this.black});
             // should be fonts..
             new Roo.htmleditor.FilterKeepChildren({node : d, tag : [ 'FONT', ':' ]} );
-            new Roo.htmleditor.FilterParagraph({ node : d });
+            new Roo.htmleditor.FilterParagraph({ node : d, lang: this.language });
             new Roo.htmleditor.FilterHashLink({node : d});
             new Roo.htmleditor.FilterSpan({ node : d });
             new Roo.htmleditor.FilterLongBr({ node : d });
@@ -33020,6 +33414,7 @@ Roo.extend(Roo.HtmlEditorCore, Roo.Component,  {
         new Roo.htmleditor.FilterComment({node : node});
         new Roo.htmleditor.FilterAttributes({
                 node : node,
+                lang : this.language,
                 attrib_black : this.ablack,
                 attrib_clean : this.aclean,
                 style_white : this.cwhite,
@@ -51629,7 +52024,7 @@ Roo.languagedetect.Parser = function (string) {
      * @access  private
      * @param   string  string to be parsed
      */
-    this.string = string ? string.replace(/[~!@#$%^&*()_|+\-=?;:",.<>\{\}\[\]\\\/]/g, ' ') : '';
+    this.string = string ? string.replace(/[\d~!@#$%^&*()_|+\-=?;:",.<>\{\}\[\]\\\/]/g, ' ') : '';
 };
 
   

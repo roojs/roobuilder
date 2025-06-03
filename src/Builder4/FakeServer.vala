@@ -14,6 +14,12 @@
  * 
  * At present this serves from ~/gitlive/****  - that probably needs more thought..
  * 
+ * supported schemes 
+ *  resources://  (not cached)
+ *  doc://  (eg. we serve up the tree etc..) - we use stuff from resources/doc first.)
+ *  xhttp:// (cached) - servered from /resources/* first, then bundled resources.
+ *
+ *	FakeServerCache.clear() // to reset the cache... - eg. after loading up remote resources
  * 
  */
 public errordomain FakeServerError {
@@ -119,8 +125,8 @@ public class FakeServerCache : Object
 		if (fname == "/tree.json") {
 			
 			var json = sl.classCacheToJSON();
-			var  generator = new Json.Generator ();
-			var  root = new Json.Node(Json.NodeType.OBJECT);
+			var generator = new Json.Generator ();
+			var root = new Json.Node(Json.NodeType.OBJECT);
    			root.init_array(json);
     
 			generator.set_root (root);
@@ -135,17 +141,21 @@ public class FakeServerCache : Object
 					GLib.error("Failed to make directory %s", dirname);
 				} 
 			}
-			
-			GLib.debug("write %s", dirname + "/tree.json");
-			var f = GLib. File.new_for_path(dirname +  "/tree.json");
+			// we are writing this out only for debug purpsoes
+			GLib.debug("write %s", dirname + "/debug-doc-tree.json");
+			var f = GLib. File.new_for_path(dirname +  "/debug-doc-tree.json");
 			
  			var data = generator.to_data (null);
- 			var data_out = new GLib.DataOutputStream(
-              f.replace(null, false, GLib.FileCreateFlags.NONE, null)
- 	       );
-			data_out.put_string(data, null);
-			data_out.close(null);
- 			
+ 			try { 
+	 			var data_out = new GLib.DataOutputStream(
+		          f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+	 	       );
+				data_out.put_string(data, null);
+				data_out.close(null);
+ 				
+ 			} catch (GLib.Error e) {
+ 				GLib.debug("could not save file?");
+			}
 			this.data = data.data;
 		 	this.content_type = "application/json";
 			this.size = data.length;
@@ -178,7 +188,7 @@ public class FakeServerCache : Object
 		}
 		
 		
-		// testing - look in 
+		// testing - look in (used only when we were doing it manually) - I dont think this is used anymore...
 		var tname  = BuilderApplication.configDirectory()+ "/test-docs" + fname;
 		var  file = GLib.File.new_for_path ( tname);
 		if (file.query_exists()) {
@@ -187,46 +197,55 @@ public class FakeServerCache : Object
 			return;
 		}
 		
-		var f = GLib. File.new_for_uri("resource:///doc"+ fname);	
-		if (f.query_exists()) {
-			this.initWithFile(f);
-			GLib.debug("Serve from   resource:///doc%s", fname);
+		// files from resources.. (our Roo library js/css and static html)
+		file = File.new_for_path ( BuilderApplication.configDirectory() + "/resources/doc" + fname);
+		if (file.query_exists()) {
+			this.initWithFile(file);
 			return;
 		}
+		var f = GLib. File.new_for_uri("resource://doc"+ fname);	
+		if (f.query_exists()) {
+			this.initWithFile(f);
+			return;
+		}
+		
+		 
 		// serves up a number of things.
 		// aa.. symbol/xxxxx.json - 
 		//if (fname.has_prefix("symbol/") ) {
 		GLib.debug("Could not find %s in .Builder/test-docs or resource ", fname);	
-		 	this.data = "Not found".data;
-		 	this.content_type = "text/plain";
-			this.size = this.data.length;
-			return;
+	 	this.data = "Not found".data;
+	 	this.content_type = "text/plain";
+		this.size = this.data.length;
+		return;
 		//}
 		
 	}
 	
-	// this is  downloaded resource
-	
+	// this is 
+	// a) look downloaded resource
+	// b) fallback to bundled resources.
+	// otherwise give up.
 	public FakeServerCache.from_resource(   string fname )
 	{
-	 
+	  
 		this.fname = fname;
 		
+		var  file = File.new_for_path ( BuilderApplication.configDirectory() + "/resources/" + fname);
+		if (file.query_exists()) {
+			this.initWithFile(file);
+			return;
+		}
 		var f = GLib. File.new_for_uri("resource://"+ fname);	
-		if (!f.query_exists()) {
+		if (f.query_exists()) {
 			this.initWithFile(f);
 			return;
 		}
 		
 		
-		var  file = File.new_for_path ( BuilderApplication.configDirectory() + "/resources/" + fname);
-		if (!file.query_exists()) {
-			this.data = "".data;
-			this.content_type = "";
-			this.size = 0;
-			return;
-		}
-		this.initWithFile(file);
+		this.data = "".data;
+		this.content_type = "";
+		this.size = 0;
 		
 
 	  

@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gresources>  <gresource prefix="/Editors">
-  </gresource>
-  <gresource prefix="/css">
-    <file>roobuilder.css</file>
-  </gresource>
-  <gresource prefix="/data">
-    <file>roodata.json</file>
-    <file>object.defaults.json</file>
-  </gresource>
-  <gresource prefix="/glade-icons">
+<gresources>  <gresource prefix="/glade-icons">
     <file>widget-gtk-aboutdialog.png</file>
     <file>widget-gtk-accelgroup.png</file>
     <file>widget-gtk-accellabel.png</file>
@@ -165,20 +156,28 @@
     <file>widget-vte-terminal.png</file>
   </gresource>
   <gresource prefix="/html">
-    <file>bootstrap.builder.html</file>
     <file>bootstrap4.builder.html</file>
-    <file>mailer.builder.html</file>
     <file>roo.builder.html</file>
+    <file>bootstrap.builder.html</file>
+    <file>mailer.builder.html</file>
     <file>roo.builder.js</file>
+  </gresource>
+  <gresource prefix="/data">
+    <file>object.defaults.json</file>
+    <file>roodata.json</file>
+  </gresource>
+  <gresource prefix="/css">
+    <file>roobuilder.css</file>
   </gresource>
   <gresource prefix="/doc">
     <file>Roo.docs.init.js</file>
     <file>Roo.docs.js</file>
     <file>Roo.docs.template.js</file>
     <file>docs.css</file>
-    <file>gtk.html</file>
     <file>roojs-bootstrap-debug.js</file>
     <file>roojs-core-debug.js</file>
+    <file>roojs-debug.js</file>
+    <file>gtk.html</file>
   </gresource>
   <gresource prefix="/doc/css-bootstrap">
     <file>font-awesome.css</file>
@@ -192,7 +191,290 @@
     <file>bootstrap.min.css</file>
     <file>roojs-bootstrap.css</file>
   </gresource>
+  <gresource prefix="/doc/css">
+    <file>roojs.css</file>
+    <file>xtheme-slate.css</file>
+  </gresource>
+  <gresource prefix="/doc/images/default">
+    <file>flags.png</file>
+    <file>gradient-bg.gif</file>
+    <file>s.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/basic-dialog">
+    <file>btn-clear.gif</file>
+    <file>btn-sprite.gif</file>
+    <file>close.gif</file>
+    <file>collapse.gif</file>
+    <file>e-handle.gif</file>
+    <file>hd-sprite.gif</file>
+    <file>progress.gif</file>
+    <file>progress2.gif</file>
+    <file>s-handle.gif</file>
+    <file>se-handle.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/combo">
+    <file>arrow.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/dd">
+    <file>dd-sprite.gif</file>
+    <file>drop-add.gif</file>
+    <file>drop-no.gif</file>
+    <file>drop-sub.gif</file>
+    <file>drop-yes.gif</file>
+    <file>email.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/form">
+    <file>bg.gif</file>
+    <file>date-trigger.gif</file>
+    <file>exclamation.gif</file>
+    <file>htmleditor.gif</file>
+    <file>text-bg.gif</file>
+    <file>trigger.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/grid">
+    <file>arrow-left-white.gif</file>
+    <file>arrow-right-white.gif</file>
+    <file>dirty.gif</file>
+    <file>done.gif</file>
+    <file>drop-no.gif</file>
+    <file>drop-yes.gif</file>
+    <file>footer-bg.gif</file>
+    <file>grid-blue-hd.gif</file>
+    <file>grid-blue-split.gif</file>
+    <file>grid-hrow.gif</file>
+    <file>grid-loading.gif</file>
+    <file>grid-split.gif</file>
+    <file>grid-vista-hd.gif</file>
+    <file>invalid_line.gif</file>
+    <file>loading.gif</file>
+    <file>mso-hd.gif</file>
+    <file>nowait.gif</file>
+    <file>page-first-disabled.gif</file>
+    <file>page-first.gif</file>
+    <file>page-last-disabled.gif</file>
+    <file>page-last.gif</file>
+    <file>page-next-disabled.gif</file>
+    <file>page-next.gif</file>
+    <file>page-prev-disabled.gif</file>
+    <file>page-prev.gif</file>
+    <file>pick-button.gif</file>
+    <file>refresh.gif</file>
+    <file>sort_asc.gif</file>
+    <file>sort_desc.gif</file>
+    <file>wait.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/layout">
+    <file>collapse.gif</file>
+    <file>expand.gif</file>
+    <file>gradient-bg.gif</file>
+    <file>layout-sprite.gif</file>
+    <file>ns-collapse.gif</file>
+    <file>ns-expand.gif</file>
+    <file>panel-close.gif</file>
+    <file>panel-title-bg.gif</file>
+    <file>panel-title-light-bg.gif</file>
+    <file>tab-close-on.gif</file>
+    <file>tab-close.gif</file>
+    <file>tool-sprites.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/menu">
+    <file>chk-sprite.gif</file>
+    <file>menu-bg.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/qtip">
+    <file>bg.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/sizer">
+    <file>corners-dark-sprite.gif</file>
+    <file>corners-sprite.gif</file>
+    <file>e-handle-dark.gif</file>
+    <file>e-handle.gif</file>
+    <file>ne-handle-dark.gif</file>
+    <file>ne-handle.gif</file>
+    <file>nw-handle-dark.gif</file>
+    <file>nw-handle.gif</file>
+    <file>s-handle-dark.gif</file>
+    <file>s-handle.gif</file>
+    <file>se-handle-dark.gif</file>
+    <file>se-handle.gif</file>
+    <file>square.gif</file>
+    <file>sw-handle-dark.gif</file>
+    <file>sw-handle.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/tabs">
+    <file>tab-btm-inactive-left-bg.gif</file>
+    <file>tab-btm-inactive-right-bg.gif</file>
+    <file>tab-btm-left-bg.gif</file>
+    <file>tab-btm-right-bg.gif</file>
+    <file>tab-sprite.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/toolbar">
+    <file>btn-arrow.gif</file>
+    <file>btn-over-bg.gif</file>
+    <file>gray-bg.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/default/tree">
+    <file>drop-add.gif</file>
+    <file>drop-between.gif</file>
+    <file>drop-no.gif</file>
+    <file>drop-over.gif</file>
+    <file>drop-sprite.gif</file>
+    <file>drop-under.gif</file>
+    <file>drop-yes.gif</file>
+    <file>elbow-end-minus-nl.gif</file>
+    <file>elbow-end-minus.gif</file>
+    <file>elbow-end-plus-nl.gif</file>
+    <file>elbow-end-plus.gif</file>
+    <file>elbow-end.gif</file>
+    <file>elbow-line.gif</file>
+    <file>elbow-minus-nl.gif</file>
+    <file>elbow-minus.gif</file>
+    <file>elbow-plus-nl.gif</file>
+    <file>elbow-plus.gif</file>
+    <file>elbow-sprite.gif</file>
+    <file>elbow.gif</file>
+    <file>folder-open.gif</file>
+    <file>folder.gif</file>
+    <file>leaf.gif</file>
+    <file>loading.gif</file>
+    <file>node-sprite.gif</file>
+    <file>s.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate">
+    <file>gradient-bg.gif</file>
+    <file>s.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/button">
+    <file>btn-arrow.gif</file>
+    <file>btn-sprite.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/editor">
+    <file>tb-sprite.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/form">
+    <file>clear-trigger.gif</file>
+    <file>date-trigger.gif</file>
+    <file>search-trigger.gif</file>
+    <file>trigger-tpl.gif</file>
+    <file>trigger.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/grid">
+    <file>arrow-left-white.gif</file>
+    <file>arrow-right-white.gif</file>
+    <file>col-move-bottom.gif</file>
+    <file>col-move-top.gif</file>
+    <file>footer-bg.gif</file>
+    <file>grid-blue-hd.gif</file>
+    <file>grid-blue-split.gif</file>
+    <file>grid-hrow.gif</file>
+    <file>grid-split.gif</file>
+    <file>grid-vista-hd.gif</file>
+    <file>grid3-hd-btn.gif</file>
+    <file>grid3-hrow-over.gif</file>
+    <file>grid3-hrow.gif</file>
+    <file>grid3-special-col-bg.gif</file>
+    <file>grid3-special-col-sel-bg.gif</file>
+    <file>group-expand-sprite.gif</file>
+    <file>mso-hd.gif</file>
+    <file>page-first-disabled.gif</file>
+    <file>page-first.gif</file>
+    <file>page-last-disabled.gif</file>
+    <file>page-last.gif</file>
+    <file>page-next-disabled.gif</file>
+    <file>page-next.gif</file>
+    <file>page-prev-disabled.gif</file>
+    <file>page-prev.gif</file>
+    <file>row-over.gif</file>
+    <file>row-sel.gif</file>
+    <file>sort_asc.gif</file>
+    <file>sort_desc.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/menu">
+    <file>item-over</file>
+    <file>item-over - Copy.gif</file>
+    <file>item-over.gif</file>
+    <file>menu-parent.gif</file>
+    <file>menu.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/panel">
+    <file>corners-sprite.gif</file>
+    <file>left-right.gif</file>
+    <file>light-hd.gif</file>
+    <file>tool-sprite-tpl.gif</file>
+    <file>tool-sprites.gif</file>
+    <file>tools-sprites-trans.gif</file>
+    <file>top-bottom.gif</file>
+    <file>top-bottom.png</file>
+    <file>white-corners-sprite.gif</file>
+    <file>white-left-right.gif</file>
+    <file>white-top-bottom.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/progress">
+    <file>progress-bg.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/qtip">
+    <file>bg.gif</file>
+    <file>close.gif</file>
+    <file>tip-sprite.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/shared">
+    <file>glass-bg.gif</file>
+    <file>hd-sprite.gif</file>
+    <file>left-btn.gif</file>
+    <file>right-btn.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/sizer">
+    <file>e-handle-dark.gif</file>
+    <file>e-handle.gif</file>
+    <file>ne-handle-dark.gif</file>
+    <file>ne-handle.gif</file>
+    <file>nw-handle-dark.gif</file>
+    <file>nw-handle.gif</file>
+    <file>s-handle-dark.gif</file>
+    <file>s-handle.gif</file>
+    <file>se-handle-dark.gif</file>
+    <file>se-handle.gif</file>
+    <file>square.gif</file>
+    <file>sw-handle-dark.gif</file>
+    <file>sw-handle.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/tabs">
+    <file>scroll-left.gif</file>
+    <file>scroll-right.gif</file>
+    <file>scroller-bg.gif</file>
+    <file>tab-btm-inactive-left-bg.gif</file>
+    <file>tab-btm-inactive-right-bg.gif</file>
+    <file>tab-btm-left-bg.gif</file>
+    <file>tab-btm-right-bg.gif</file>
+    <file>tab-close.gif</file>
+    <file>tab-sprite.gif</file>
+    <file>tab-strip-bg.gif</file>
+    <file>tab-strip-bg.png</file>
+    <file>tab-strip-btm-bg.gif</file>
+    <file>tabs-sprite.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/toolbar">
+    <file>bg.gif</file>
+    <file>btn-arrow-light.gif</file>
+    <file>btn-arrow.gif</file>
+    <file>btn-over-bg.gif</file>
+    <file>gray-bg.gif</file>
+    <file>tb-bg.gif</file>
+    <file>tb-btn-sprite.gif</file>
+  </gresource>
+  <gresource prefix="/doc/images/slate/window">
+    <file>icon-error.gif</file>
+    <file>icon-info.gif</file>
+    <file>icon-question.gif</file>
+    <file>icon-warning.gif</file>
+    <file>left-corners.png</file>
+    <file>left-right.png</file>
+    <file>right-corners.png</file>
+    <file>top-bottom.png</file>
+  </gresource>
   <gresource prefix="/images">
     <file>roobuilder.png</file>
+  </gresource>
+  <gresource prefix="/Editors">
   </gresource>
 </gresources>

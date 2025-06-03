@@ -85,6 +85,7 @@ public class Project.Roo : Project {
 	
 	public override void initialize() {
 		// ?? what kind of files can we set up a project ?
+		 	
 	}
 	public override void onSave()
 	{

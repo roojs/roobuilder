@@ -3,6 +3,7 @@
  "gen_extended" : false,
  "items" : [
   {
+   "# Project.Callback? doneObj" : "null",
    "# Project.Roo project" : "",
    "# bool done" : false,
    "$ xns" : "Gtk",
@@ -374,11 +375,13 @@
          "",
          " ",
          " _this.buttonPressed(\"save\");",
-         " ",
+         " _this.project.save(); ",
          "\t// what about .js ?",
          "   _this.done = true;",
          "\t_this.el.hide();",
-         "",
+         "\tif (_this.doneObj != null) {",
+         "\t\t_this.doneObj.call(_this.project);",
+         "\t}",
          "// hopefull this will work with bjs files..",
          "\t",
          " ",
@@ -435,9 +438,9 @@
     "}"
    ],
    "| void show" : [
-    " (Gtk.Window pwin, Project.Roo project) {",
+    " (Gtk.Window pwin, Project.Roo project, Project.Callback? doneObj) {",
     "    _this.done = false;",
-    "    ",
+    "    this.doneObj = doneObj;",
     "    _this.project = project;",
     "    _this.path.el.label = project.path;",
     "    // get the active project.",

@@ -2,123 +2,51 @@
 
 Roo.docs.init = {
     
-    classes : false, // flat version of list of classes
-    classesAr : [],
+    classes : false, // flat version of list of classes 
     currentClass : '--none--', // currently viewed class name
     
-    loadingTree : false,
     prefix : '',
     hash : '',
-    
-    SymbolKind : {
-        Any : 0,
-        File : 1,
-        Module : 2,
-        Namespace : 3,
-        Package : 4,
-        Class : 5,
-        Method : 6,
-        Property : 7,
-        Field : 8,
-        Constructor : 9,
-        Enum : 10,
-        Interface : 11,
-        Function : 12,
-        Variable : 13,
-        Constant : 14,
-        String : 15,
-        Number : 16,
-        Boolean : 17,
-        Array : 18,
-        Object : 19,
-        Key : 20,
-        Null : 21,
-        EnumMember : 22,
-        Struct : 23,
-        Event : 24,
-        Operator : 25,
-        TypeParameter : 26,
-        Delegate : 27,// ?? not standard.
-        Parameter : 28, // ?? not standard.
-        Signal : 29, // ?? not standard.
-        Return : 30, // ?? not standard.
-        MemberAccess : 31,
-        ObjectType : 32,
-        MethodCall : 33
-    },
-    
     
     onReady : function()
     {
        
-        Roo.log("onready");
+        
         Roo.XComponent.hideProgress = true;
         Roo.XComponent.build();
+         
+        
         Roo.XComponent.on('buildcomplete', function() {
             
             //Roo.XComponent.modules[0].el.fireEvent('render');
             this.loadTree();
-            if (window.location.pathname.match(/gtk.html$/)) {
-                // testing in browser..
-                Roo.docs.roo_title.el.dom.innerHTML = "Gtk Documentation";
+            if (window.location.search.length > 0) {
+                Roo.docs.roo_title.el.dom.innerHTML = "Flutter Documentation";
             }
             
-            
-            
         }, this);
-        
-        
-        if (window.location.pathname.match(/gtk.html$/)) {
-            this.prefix = window.location.pathname + "/../gtk/";
-        }
-         
-        if (window.location.protocol == 'doc:'  ) {
-            this.prefix = "";
+        if (window.location.search.length > 0) {
+            this.prefix = "/flutter/";
+            
         }
         
-        window.onhashchange = function() { Roo.docs.init.onHashChange(); };
+        window.onhashchange = function() { Roo.docs.init.onHashChange(); }
          
         
     },
     
     loadTree: function()
     {
-        
-        
-        if (!location.hash.length) {
-            this.loadIntro();
-            return;
-        }
-        if (this.loadingTree) {
-            Roo.log("Should not get here  - already loading tree.");
-        }
-        
-        if (this.classes !== false) {
-            this.loadHash();
-            return;
-        }
-        
-        Roo.log("protocol: " + window.location.protocol);
-        
-        if (window.location.protocol == 'doc:'  ) {
-            Roo.docs.roo_title.el.dom.innerHTML = "Gtk Documentation";
-              Roo.docs.roo_title.hide();
-            Roo.docs.sidebar.hide();
-            Roo.docs.doc_body_content.el.setStyle( { marginLeft : '10px'});
-        
-        }
-        
         Roo.docs.doc_body_content.hide();
-        this.loadingTree = true;
+        
         Roo.Ajax.request({
             url : this.prefix + 'tree.json',
             method : 'GET',
-            success : function(res)
+            success : function(res, o)
             {
                 var d = Roo.decode(res.responseText);
-                Roo.log("GOT Tree = building classes");
+                //Roo.log(d);
                 this.classes = {};
-                this.classesAr = [];
                 
                 d = d.sort(Roo.docs.template.makeSortby("name"));
                 
@@ -151,16 +79,17 @@ Roo.docs.init = {
                     }
                 }, this);
                 
-                if (window.location.protocol != 'doc:' && !Roo.docs.init.prefix.length) {
-                    var roo = Roo.docs.navGroup.items[1].menu;
-
+                var roo = Roo.docs.navGroup.items[1].menu;
+                if (!Roo.docs.init.prefix.length) {
                     roo.show(roo.triggerEl, '?', false);
                 }
-                  this.loadingTree = false;
-                  Roo.log("Loading Tree done");
                 
-                this.loadHash();
+                if (location.hash.length) {
+                    this.loadHash();
+                    return;
+                }
                 
+                this.loadIntro();
                 
                 
             },
@@ -183,21 +112,8 @@ Roo.docs.init = {
     
     
     addTreeItem : function(parent, e, type , parent_e) {
-            
-        this.classes[e.name] = e;
-        Roo.log("this.classes = add  " + e.name);
         
-        this.classesAr.push(e);
-        
-         if (window.location.protocol == 'doc:'  ) {
-            // load the children..
-            e.cn.forEach(function(cn) {
-                this.addTreeItem(e, cn, null, null );
-            }, this);
-            
-            
-            return;
-         }
+        this.classes[e.name] = e; 
         // add a node..
         var node = parent.addxtypeChild(Roo.factory({
             html: e.name.split('.').pop(),
@@ -265,7 +181,7 @@ Roo.docs.init = {
         if (parent_e !== false) {
             e.node = node;
             e.parent_menu = parent;
-            e.parent = parent_e === true ? null : parent_e;
+            e.parent = parent_e == true ? null : parent_e;
         }
         
         parent.items.push(node);
@@ -277,10 +193,6 @@ Roo.docs.init = {
         if (!e.cn.length) {
             return;
         }
-        
-        e.cn = e.cn.sort(Roo.docs.template.makeSortby("name"));
-
-        
         e.cn.forEach(function(ec) {
             var cn = ec.name.split('.').pop();
             //Roo.log(cn);
@@ -300,18 +212,9 @@ Roo.docs.init = {
     
     loadClass : function(name)
     {
-        
-        
-        if(typeof(this.classes[name]) == 'undefined') {
-            Roo.log("Class " + name + " no in this.classes");
-            return;
+        if(typeof(this.classes[name]) != 'undefined' && this.classes[name].is_class ) {
+            this.loadDoc(this.classes[name]);
         }
-        if (!this.classes[name].is_class ) {
-            Roo.log("Class " + name + " is not a class (from this.classes)");
-            return;
-        }
-        this.loadDoc(this.classes[name]);   
-        
         
         
         
@@ -324,7 +227,7 @@ Roo.docs.init = {
         Roo.Ajax.request({
             url : 'src/' +this.currentClass.replace(/\./g,'_') + '.js.html',
             method : 'GET',
-            success : function(res)
+            success : function(res, o)
             {
                 Roo.docs.ViewSource.show({
                         source : res.responseText,
@@ -340,59 +243,42 @@ Roo.docs.init = {
     
     loadDoc : function(cls)
     {
-        Roo.log("loadDoc: " + cls);
-
         if (this.currentClass == cls.name) {
-            Roo.log("loadDoc: (same as current)");
-
             return;
         }
         //Roo.docs.mobileNavGroup.hide();
-        
-        Roo.docs.doc_desc.el.removeClass('active');
-        Roo.docs.read_more_btn.setActive(false);
-        Roo.docs.read_more_btn.hide(); 
-        
-
+        Roo.log("loadDoc?");
         Roo.docs.doc_body_content.hide();
         Roo.docs.navHeaderBar.collapse();
         this.currentClass = cls.name;
-        if (!cls) {
+        if (!cls ) {
             Roo.docs.introBody.show();
             return;
         }
         
         // expand parents..
-        if (window.location.protocol != 'doc:') { 
-            var m = cls.parent_menu;
+        
+        var m = cls.parent_menu;
+        m.show(m.triggerEl,'?', false);
+        var mp = cls;
+        while ((mp = mp.parent)) {
+            m = mp.parent_menu;
             m.show(m.triggerEl,'?', false);
-            var mp = cls;
-            while ((mp = mp.parent)) {
-                m = mp.parent_menu;
-                m.show(m.triggerEl,'?', false);
-            }
-            cls.node.el.scrollIntoView(Roo.docs.sidebar.el,false);
-            Roo.docs.sidebar.el.select('.active').removeClass('active');
-            cls.node.el.addClass('active');
         }
+        cls.node.el.scrollIntoView(Roo.docs.sidebar.el,false);
+        Roo.docs.sidebar.el.select('.active').removeClass('active');
+        cls.node.el.addClass('active');
+        
         Roo.docs.introBody.hide();
         Roo.docs.doc_body_content.show();
-        
-        
-        
         Roo.Ajax.request({
             url : this.prefix + 'symbols/' + cls.name + '.json',
             method : 'GET',
-            success : function(res)
+            success : function(res, o)
             {
                 
                 var d = Roo.decode(res.responseText);
-                if (typeof(d['file-id']) != 'undefined'){
-                    // Gtk Doc..
-                    this.gtkToRoo(d);
-                    Roo.log(d);
-                }
-                // flutter support? doesnt work anyway?
+                
                 if (typeof(d.augments) == 'undefined') {
                     d.augments = [];
                     d.config = []; // props for ctor?
@@ -428,7 +314,7 @@ Roo.docs.init = {
         ax.request({
             url : this.prefix + 'symbols/' + next + '.json',
             method : 'GET',
-            success : function(res)
+            success : function(res, o)
             {
                 
                 var r = Roo.decode(res.responseText);
@@ -453,7 +339,6 @@ Roo.docs.init = {
                     if (m.isConstant) {
                         return;
                     }
-                    
                     if (d.props.find(function(e) {
                         return e.name == m.name;
                     })) {
@@ -474,7 +359,7 @@ Roo.docs.init = {
              
             
             
-                this.fillAugments(d,ext, cb);
+                this.fillAugments(d,ext, cb)
                 
             },
             scope : this
@@ -483,107 +368,9 @@ Roo.docs.init = {
     },
     
     
-    gtkToRoo : function(d)
-    {
-        d.isGtk = true;
-        d.name =  d.stype == this.SymbolKind.Class ? d.fqn : d.name; // ???
-        d.desc = d.doc;
-        d.memberOf = d['parent-name'] === '' ? Roo.docs.init.currentClass :  d['parent-name'];
-        d.config  = typeof(d.props) == 'undefined'  ? [] : Object.values(d.props).map(this.gtkToRoo, this);
-        d.config = d.config.filter(function(a) { return a.name !== "..."; });
-        d.methods = typeof(d.methods) == 'undefined'  ? [] : Object.values(d.methods).map(this.gtkToRoo, this);
-        if (typeof(d.ctors) != 'undefined') {
-            d.methods = d.methods.concat(Object.values(d.ctors).map(this.gtkToRoo, this));
-        }
-        if (d.stype == this.SymbolKind.Constructor) { 
-            d.isStatic = true;
-            d.isConstructor = true;
-            d.name = d.name == 'new' ? d.memberOf : d.fqn;
-        }
-        d.events =typeof(d.signals) == 'undefined'  ? [] :  Object.values(d.signals).map(this.gtkToRoo, this);
-        d.is_enum = (d.stype == this.SymbolKind.Enum || d.stype == this.SymbolKind.EnumMember);
-        if (d.stype == this.SymbolKind.Enum) {
-            d.config = Object.values(d.enums).map(this.gtkToRoo, this);
-        }
-        d.isAbstract  = d['is-abstract'];
-        d.augments = []; //[ d['inherits-str'] ].filter(function(v) { return v != ''; }); // ??
-        d.implements = [];
-        d.example = '';
-        d.type = d.rtype;
-        d.source_file = d['file-name'];
-        if (d.stype == this.SymbolKind.Function || this.SymbolKind.Signal) {
-             d.returns = [
-                {
-                    type : d.rtype, // for methods.
-                    desc : ''
-                }
-            ];
-        }
-        d.params = [];
-        if (typeof(d['param-ar']) != 'undefined') {
-        //d.isOptional d.defaultValue
-            d.params  = d['param-ar'].map(this.gtkToRoo, this); 
-        }
-        if (typeof(this.classes[d.fqn]) != 'undefined') {
-            this.addAugments(d, this.classes[d.fqn].inherits);
-            d.implementors = [];
-            this.addImplementors(d, d.fqn);
-        
-        }
-       
-        return d;
-    },
-    
-    addAugments: function(orig, inherits)
-    {
-        inherits.forEach(function(sc) {
-            
-            var cc = this.classes[sc];
-            if (typeof(cc) == 'undefined') {
-                Roo.log("Missing? " + sc);
-                return;
-            }
-            if (cc.stype == this.SymbolKind.Class) {
-                orig.augments.push(sc);
-            } else if (orig.implements.indexOf(sc) < 0) {
-                orig.implements.push(sc);
-            }
-            this.addAugments(orig, cc.inherits);
-        }  ,this);
-    
-        
-    },
-    addImplementors : function(orig, fqn)
-    {
-        // call recursively until we dont add any new ones..
-        var add = [];
-        this.classesAr.forEach(function(c) {
-            if (typeof(c.inherits) == 'undefined') {
-                return;
-            }
-            if (c.inherits.indexOf(fqn) < 0) {
-                return;
-            }
-            if (orig.implementors.indexOf(c.name) > -1) {
-                return;
-            }
-            orig.implementors.push(c.name);
-            add.push(c.name);
-            
-        });
-        add.forEach(function(a) {
-            this.addImplementors(orig, a);
-        },this);
-        
-        
-    },
-    
-    
-    activeDoc : false,
     
     fillDoc : function(d)
     {
-        this.activeDoc = d;
         /*{
             "name" : "Roo.bootstrap.Progress",
             "augments" : [
@@ -597,34 +384,18 @@ Roo.docs.init = {
         */
         
         Roo.docs.classType.el.dom.firstChild.textContent  = 'Class ';
-        if (d.stype) {
-            switch (d.stype) {
-                case this.SymbolKind.Interface:
-                     Roo.docs.classType.el.dom.firstChild.textContent  = 'Interface '; // slightly better?
-                     break;
-                case this.SymbolKind.Enum:
-                   Roo.docs.classType.el.dom.firstChild.textContent  = 'Enum '; // slightly better?
-                   break;
-                case this.SymbolKind.Namespace:
-                   Roo.docs.classType.el.dom.firstChild.textContent  = 'Namespace '; // slightly better?
-                   break;
-                case this.SymbolKind.Struct:
-                   Roo.docs.classType.el.dom.firstChild.textContent  = 'Struct '; // slightly better?
-                   break;
-                
-
-            }
+        if (d.isAbstract) {
+            Roo.docs.classType.el.dom.firstChild.textContent  = 'abstract class ';
         }
-      
+        if (d.is_enum) {
+            Roo.docs.classType.el.dom.firstChild.textContent  = 'enum ';
+        }
         if (d.is_mixin) {
-            Roo.docs.classType.el.dom.firstChild.textContent  = 'Mixin ';
+            Roo.docs.classType.el.dom.firstChild.textContent  = 'mixin ';
         }
         document.body.scrollTop  = 0;
         Roo.docs.doc_name.el.dom.innerHTML = Roo.docs.template.resolveLinks(d.name);
         Roo.docs.doc_desc.el.dom.innerHTML = Roo.docs.template.summary(d);
-        if (Roo.docs.doc_desc.el.isScrollable()) {
-             Roo.docs.read_more_btn.show(); 
-        }
         Roo.docs.doc_extends.hide();
         Roo.docs.doc_extends_sep.hide();
         if (d.augments.length) {
@@ -633,11 +404,7 @@ Roo.docs.init = {
             Roo.docs.doc_extends.el.dom.innerHTML = d.augments[0];
             Roo.docs.doc_extends.el.dom.href= '#' + d.augments[0];
         }
-        if (window.location.protocol == 'doc:') {
-            Roo.docs.doc_source.el.dom.innerHTML = d['file-path'];
-        } else {
-             Roo.docs.doc_source.el.dom.innerHTML = d.name.replace(/\./g,"/") + ".js";
-        }
+        Roo.docs.doc_source.el.dom.innerHTML = d.name.replace(/\./g,"/") + ".js";
         if (Roo.docs.init.prefix.length) {
             Roo.docs.doc_source_row.hide();
         }
@@ -645,35 +412,21 @@ Roo.docs.init = {
         
         if (d.augments.length) {
             Roo.docs.augments.show();
-            Roo.docs.augments.bodyEl.dom.innerHTML = Roo.docs.template.augments(d);
+            Roo.docs.augments.bodyEl().dom.innerHTML = Roo.docs.template.augments(d);
         } else {
             Roo.docs.augments.hide();
         }
         
-        if (d.implements.length) {
-            Roo.docs.implements.show();
-            Roo.docs.implements.bodyEl.dom.innerHTML = Roo.docs.template.implements(d.implements);
-        } else {
-            Roo.docs.implements.hide();
-        }
-        
-        if (typeof(d.implementors) != 'undefined' && d.implementors.length) {
+        if (d.childClasses && typeof(d.childClasses[d.name]) != 'undefined') { 
             Roo.docs.implementors.show();
-            Roo.docs.implementors.bodyEl.dom.innerHTML = Roo.docs.template.implements(d.implementors);
-        } else  if (d.childClasses && typeof(d.childClasses[d.name]) != 'undefined') { 
-            Roo.docs.implementors.show();
-            Roo.docs.implementors.bodyEl.dom.innerHTML = Roo.docs.template.implementors(d);
+            Roo.docs.implementors.bodyEl().dom.innerHTML = Roo.docs.template.implementors(d);
         } else {
             Roo.docs.implementors.hide();
         }
         
-        
-        
-        
-        
         if (d.tree_children && d.tree_children.length > 0) {
             Roo.docs.doc_children.show();
-            Roo.docs.doc_children.bodyEl.dom.innerHTML = Roo.docs.template.doc_children(d);
+            Roo.docs.doc_children.bodyEl().dom.innerHTML = Roo.docs.template.doc_children(d);
         } else {
             Roo.docs.doc_children.hide();
         }
@@ -714,25 +467,14 @@ Roo.docs.init = {
     
     onHashChange : function()
     {
-     
-        this.loadTree();
-       
+        if (this.hash == location.hash) {
+            return;
+        }
+        this.loadHash();
         
     },
     loadHash : function()
     {
-        if (this.hash == location.hash) {
-            Roo.log("skip load Hash (existing)");
-            return;
-        }
-        if (this.loadingTree) {
-            Roo.log("currentlyl Loading tree - delay");
-            this.loadHash.defer(500, this);
-            return;
-        }
-        
-        Roo.log("load hash:" + location.hash);
-        
         if (location.hash.length < 2) {
             this.loadDoc(false);
         }
@@ -746,7 +488,7 @@ Roo.docs.init = {
       
         
         Roo.Ajax.request({
-            url : this.prefix + 'summary.txt',
+            url : 'summary.txt',
             method : 'GET',
             success : function(res)
             {
@@ -769,8 +511,7 @@ Roo.docs.init = {
         var lines = intro.split("\n");
         var tree = { 'name' : 'root', cn : []};
         var state = [ tree ];
-        var i=0;
-        for (i=0;i< lines.length;i++) {
+        for (var i=0;i< lines.length;i++) {
             var line = lines[i];
             if (!line.length || line.match(/^\s+$/)) {
                 continue;
@@ -787,7 +528,7 @@ Roo.docs.init = {
         }
         //Roo.log(tree);
         
-        for(i = 0; i < tree.cn.length; i++) {
+        for(var i = 0; i < tree.cn.length; i++) {
             // make a container..
             var treei = tree.cn[i];
             var ctree = {
@@ -798,8 +539,8 @@ Roo.docs.init = {
                 sm : 6,
                 items : [ {
                     header : treei.name,
-                    xtype : 'Card',
-                    header_weight : 'info',
+                    xtype : 'Container',
+                    panel : 'info',
                     xns : Roo.bootstrap,
                     items : []
                 }]
@@ -809,8 +550,8 @@ Roo.docs.init = {
                 // another container..
                var ctreei = {
                     header : treeii.name,
-                    xtype : 'Card',
-                    header_weight : 'info',
+                    xtype : 'Container',
+                    panel : 'primary',
                     xns : Roo.bootstrap,
                   
                     items : [
@@ -878,7 +619,7 @@ Roo.docs.init = {
             
             
             
-            Roo.docs.introRow.addxtypeChild(ctree);
+            Roo.docs.introBody.addxtypeChild(ctree);
         }
         
         

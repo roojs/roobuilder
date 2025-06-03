@@ -294,12 +294,12 @@ public class Xcls_PopoverFileDetails : Object
 		this.dir_dropdown_lbl.el.show();
 		var sel = this.filetype.getValue();
 		
-		var old_sel = _this.dir_dropdown.el.selected != 0;
+	
 		var olddir = this.dir_dropdown.getValue();
 		GLib.debug("old dir = %s", olddir);
 		if (this.file.project.xtype=="Gtk" && (sel == "bjs" || sel == "vala")) {
 			_this.project.loadDirsToStringList(_this.dir_model.el, "/src");
-			if (old_sel && olddir.has_prefix("/src")) {
+			if (olddir.length > 0 && olddir.has_prefix("/src")) {
 			 	this.dir_dropdown.setValue(olddir);
 	 		} else {
 		 	     _this.dir_dropdown.el.selected = 0;
@@ -308,7 +308,7 @@ public class Xcls_PopoverFileDetails : Object
 		} else {
 	
 	        _this.project.loadDirsToStringList(_this.dir_model.el, "");
-			if (old_sel) {
+			if (olddir.length > 0) {
 				this.dir_dropdown.setValue(olddir);
 			} else {
 			     _this.dir_dropdown.el.selected = 0;
