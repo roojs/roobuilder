@@ -14,6 +14,10 @@ namespace Project
 
 		private Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
  
+ 		public Gee.ArrayList<string> sources_ro {
+ 			get { return this.sources }
+ 			private set;
+		}
 
 		public string execute_args;
 		
@@ -36,6 +40,10 @@ namespace Project
 			this.is_manager_dirty = false; // we have loaded..
 		}
 		
+		
+		void addSource(string source) 
+		{
+			this.sources.
 		
 		 
 		public GtkValaSettings.from_json(Gtk project, Json.Object el) {
