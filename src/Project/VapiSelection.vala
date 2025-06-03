@@ -9,20 +9,20 @@ namespace Project {
 		public string name { get;  set; }
 		public string sortkey {
 			 owned get {
-			 	return (this.vapi_list.contains(this.name)? "A" : "Z" ) + "-"+ this.name;
+			 	return (this.project.packages_ro.contains(this.name)? "A" : "Z" ) + "-"+ this.name;
 		 	}
 		 	set {}
 			
 		}
 		public bool selected {
 			get {
-				var res = project.packages_ro.contains(this.name);
+				var res = this.project.packages_ro.contains(this.name);
 				GLib.debug("vapi %s = %s", this.name, res ? "X" : "");
 				return res;
 			}
 			set {
 				if (value) {
-					if (project.addPackage(this.name)) {
+					if (this.project.addPackage(this.name)) {
 						GLib.debug("vapi set %s = X", this.name);
 						
 						this.sortkey = "";
@@ -44,7 +44,7 @@ namespace Project {
 				}
 			}
 		}
-		Gee.ArrayList<string> vapi_list;
+ 
 		public global::Gtk.CheckButton? btn = null;
 		
 		public VapiSelection(  Gtk project, string name)
