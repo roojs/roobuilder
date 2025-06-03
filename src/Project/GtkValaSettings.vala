@@ -16,7 +16,7 @@ namespace Project
  
  		public Gee.ArrayList<string> sources_ro {
  			get { return this.sources }
- 			private set;
+ 			private set {};
 		}
 
 		public string execute_args;
