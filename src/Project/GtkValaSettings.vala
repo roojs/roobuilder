@@ -43,7 +43,12 @@ namespace Project
 		
 		void addSource(string source) 
 		{
-			this.sources.
+			if (!this.sources.contains(source)) {
+				this.sources.add(source);
+				this.is_manager_dirty = true;
+			}
+		}
+		
 		
 		 
 		public GtkValaSettings.from_json(Gtk project, Json.Object el) {
