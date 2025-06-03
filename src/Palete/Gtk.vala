@@ -473,8 +473,7 @@ namespace Palete {
 			});
 			 
 			return ret;
-			
-			
+			 
 			
 		}
 		// when adding signals - this should return an empty function
