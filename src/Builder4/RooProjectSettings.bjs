@@ -92,9 +92,9 @@
                "* prop" : "model",
                "strings" : [
                 "{ ",
+                "\t\"bootstrap4.builder.html\",",
                 "\t\"roo.builder.html\",",
                 "\t\"bootstrap.builder.html\",",
-                "\t\"bootstrap4.builder.html\",",
                 "\t\"mailer.builder.html\"",
                 "}"
                ],

@@ -459,9 +459,9 @@ public class Xcls_RooProjectSettings : Object
 		{
 			_this = _owner;
 			this.el = new Gtk.StringList( { 
+	"bootstrap4.builder.html",
 	"roo.builder.html",
 	"bootstrap.builder.html",
-	"bootstrap4.builder.html",
 	"mailer.builder.html"
 } );
 
