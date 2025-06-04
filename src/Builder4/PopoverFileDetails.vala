@@ -683,7 +683,9 @@ public class Xcls_PopoverFileDetails : Object
 
 		// user defined functions
 		public string getValue () {
-			return _this.dir_model.el.get_string(this.el.selected);
+			var ret = _this.dir_model.el.get_string(this.el.selected);;
+			
+			return ret == null ? "" : ret;
 		}
 		public void setValue (string cur) {
 			var el  = _this.dir_model.el;
