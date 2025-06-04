@@ -71,9 +71,9 @@ Update Package details.
     
     then edit the about version (check debian/changelog)
     
-    Update the About dialog release
+    Update the BuilderApplication release
     Update the flatpak file release
-    Update the desktop file release
+    Update the metadata file release and date
     
     git tag release-XXXX
     git push --tags
@@ -81,6 +81,9 @@ Update Package details.
 Build it..
 
     dpkg-buildpackage -rfakeroot -us -uc -b
+
+    #test build
+    flatpak-builder   --force-clean --sandbox  --install --mirror-screenshots-url=https://dl.flathub.org/repo/screenshots --repo=repo build-dir org.roojs.roobuilder-test.json
 
     flatpak-builder   --force-clean --sandbox  --install --mirror-screenshots-url=https://dl.flathub.org/repo/screenshots --repo=repo build-dir org.roojs.roobuilder.json
     flatpak build-bundle repo ../roobuilder.flatpak org.roojs.roobuilder

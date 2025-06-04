@@ -50,7 +50,7 @@
                     "type": "git",
                     "url": "file:///home/alan/gitlive/roobuilder",
                     "branch": "master",
-		   "no-fetch" : true 
+		            "no-fetch" : true 
                 }
             ] 
         }
