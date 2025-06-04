@@ -133,10 +133,10 @@ public class Xcls_RooProjectSettings : Object
 		}
 	    
 	    _this.project.html_gen = val;
-	    
+	    	var sm = (Gtk.StringList) _this.base_template.el.model;
 	    // set by event changed... -- let's do it anyway
 	    	_this.project.base_template = sm.get_string(_this.base_template.el.selected);
-	     _this.project.base_template = _this.base_template.el.get_text();    
+	 
 	    
 	    var js = _this.project;
 	    js.DBTYPE = _this.database_DBTYPE.el.get_text();
