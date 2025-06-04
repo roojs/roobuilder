@@ -381,7 +381,7 @@ namespace Palete {
 		 			if (v.contains(":")) {
 		 				continue;
 					}
-					if (in_rval == "top") {
+					if (in_rval == "*top") {
 						if (is_bootstrap && !v.contains("bootstrap")) {
 							continue;
 						}
