@@ -373,6 +373,7 @@ namespace Palete {
 					ar = new Gee.ArrayList<string>();
 				}
 			}
+			var is_bootstrap = ((Project.Roo)this.project).base_template.contains("bootstrap");
 			
 		 	if (!with_prop) {
 		 		var ret = new Gee.ArrayList<string>();
