@@ -31,7 +31,6 @@ roobuilder (5.0.7) unstable; urgency=medium
   * attempting to sort out flatpak
   * fix config directory - uses ~/.config/roobuilder now
   * fix new project dialog - workaround gtk stringlist dropdown bug
-  * 
 
  -- Alan Knowles <alan@roojs.com>  Tue, 20 May 2025 20:18:14 +0800
 
