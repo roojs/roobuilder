@@ -97,7 +97,7 @@ public class FakeServerCache : Object
 			cache = new Gee.HashMap<string,FakeServerCache>();
 		}
 		var el = new  FakeServerCache.with_data( data);
-		GLib.debug("CACHE - store %s\n", el.fname);
+		GLib.debug("CACHE - store %s", el.fname);
 		cache.set(el.fname, el);
 		return el;
 	}
