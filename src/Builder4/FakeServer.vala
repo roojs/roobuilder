@@ -47,9 +47,7 @@ public class FakeServerCache : Object
 		}
 		
   	    GLib.debug ("CACHE look for %s:%s", scheme, fname);
-	    if (scheme == "resources") {
-			return new FakeServerCache.from_resource(fname);
-		}
+	  
 	    if (scheme == "doc") {
 	    		var state = wk.get_data<WindowState>("windowstate");
 			return new FakeServerCache.from_doc(state, fname);
@@ -58,6 +56,13 @@ public class FakeServerCache : Object
 			GLib.debug ("CACHE got  %s", fname);
 			return cache.get(fname);
 		}
+		
+	  	if (scheme == "resources") {
+			var res =  new FakeServerCache.from_resource(fname);
+	 	    cache.set(fname, res);
+		    return res;
+		}
+		
 	    GLib.debug ("CACHE create %s", fname);
 	    
 	    var el = new  FakeServerCache(fname);
@@ -97,7 +102,7 @@ public class FakeServerCache : Object
 			cache = new Gee.HashMap<string,FakeServerCache>();
 		}
 		var el = new  FakeServerCache.with_data( data);
-		GLib.debug("CACHE - store %s", el.fname);
+		GLib.debug("CACHE - store %s\n", el.fname);
 		cache.set(el.fname, el);
 		return el;
 	}
