@@ -67,6 +67,8 @@ Release
 
 Update Package details.
     
+    change the last release from UNRELEASED - unstable in debian/changelog
+    
     dch -U -i (auto increases release..)
     
     then edit the about version (check debian/changelog)

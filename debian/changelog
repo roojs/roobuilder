@@ -1,4 +1,18 @@
-roobuilder (5.0.9) UNRELEASED; urgency=medium
+roobuilder (5.0.10) UNRELEASED; urgency=medium
+
+  * better handling of ctnl/shift keydown detection for drag/drop and editor text zooming
+  * new projects load the vapi's needed to generated the vala code from bjs 
+  * new roo/javascript projects now have sensible defaults
+  * bootstrap Roo Javascript project uses internal resources to render
+  * classic roo projects now have notes about what to install where to get the rendererer working
+  * add element on javascript now checks template to see if its bootstrap or classic
+  * compiled files list now has a dirty flag if you change files that are used by the compiler it will get updated.
+  * fixed compile icons on notification.
+  * some detection of changed files - to reload content if edited outside the builder.
+
+ -- Alan Knowles <alan@roojs.com>  Wed, 04 Jun 2025 16:53:33 +0800
+
+roobuilder (5.0.9) unstable; urgency=medium
 
   * more fixes to pass flatpak validation - metadata, extra icons
 
