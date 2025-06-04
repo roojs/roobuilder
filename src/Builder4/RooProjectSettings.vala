@@ -67,8 +67,11 @@ public class Xcls_RooProjectSettings : Object
 	    //print (project.fn);
 	    //project.runhtml = project.runhtml || '';
 	    _this.view.el.get_buffer().set_text(project.runhtml);
-	     
-	      
+	
+	     // localhost
+	     if (_this.project.rootURL == "") {
+		     _this.project.rootURL = "http://localhost/";
+	     }
 	    _this.rootURL.el.set_text( _this.project.rootURL );
 	    
 	 
