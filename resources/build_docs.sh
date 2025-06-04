@@ -42,10 +42,10 @@ cp ../../roojs1/docs/docs.css doc/
 
 #css for (roojs1)
 cp ../../roojs1/css/roojs.css doc/css/
-cp ../../roojs1/css/xtheme-slate.css doc/css/
+ 
 
 #images for (roojs1)
 cp  -r ../../roojs1/images/default doc/images/
-cp  -r ../../roojs1/images/slate doc/images/
+ 
 
 
