@@ -83,7 +83,7 @@ public class Xcls_RooProjectSettings : Object
 	
 		var sm = (Gtk.StringList)     _this.base_template.el.model;
 		this.base_template.loading = true;
-		this.base_template.el.selected = Gtk.INVALID_LIST_POSITION;
+		this.base_template.el.selected = 0; // default to first selection
 		for(var i=0;i< sm.get_n_items(); i++) {
 			if (sm.get_string( i ) ==  this.project.base_template) {
 				this.base_template.el.selected = i;

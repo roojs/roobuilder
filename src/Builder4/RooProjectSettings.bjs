@@ -469,7 +469,7 @@
     "",
     "\tvar sm = (Gtk.StringList)     _this.base_template.el.model;",
     "\tthis.base_template.loading = true;",
-    "\tthis.base_template.el.selected = Gtk.INVALID_LIST_POSITION;",
+    "\tthis.base_template.el.selected = 0; // default to first selection",
     "\tfor(var i=0;i< sm.get_n_items(); i++) {",
     "\t\tif (sm.get_string( i ) ==  this.project.base_template) {",
     "\t\t\tthis.base_template.el.selected = i;",
