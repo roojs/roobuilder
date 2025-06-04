@@ -46,7 +46,7 @@ public class FakeServerCache : Object
 			cache = new Gee.HashMap<string,FakeServerCache>();
 		}
 		
-	   // print ("CACHE look for ==%s==\n", fname);
+  	    GLib.debug ("CACHE look for %s:%s", scheme, fname);
 	    if (scheme == "resources") {
 			return new FakeServerCache.from_resource(fname);
 		}
@@ -55,10 +55,10 @@ public class FakeServerCache : Object
 			return new FakeServerCache.from_doc(state, fname);
 		}
 	    if (cache.has_key(fname)) {
-			print ("CACHE got  %s\n", fname);
+			GLib.debug ("CACHE got  %s", fname);
 			return cache.get(fname);
 		}
-	    print ("CACHE create %s\n", fname);
+	    GLib.debug ("CACHE create %s", fname);
 	    
 	    var el = new  FakeServerCache(fname);
  
@@ -97,7 +97,7 @@ public class FakeServerCache : Object
 			cache = new Gee.HashMap<string,FakeServerCache>();
 		}
 		var el = new  FakeServerCache.with_data( data);
-		print("CACHE - store %s\n", el.fname);
+		GLib.debug("CACHE - store %s\n", el.fname);
 		cache.set(el.fname, el);
 		return el;
 	}
@@ -266,7 +266,7 @@ public class FakeServerCache : Object
 
 		
 
-		print("FakeServerCache :%s, %s (%s/%d)\n", fname , 
+		GLib.debug("FakeServerCache :%s, %s (%s/%d)", fname , 
 			this.content_type, this.size.to_string(), this.data.length);
 	    
 
@@ -362,16 +362,16 @@ public class FakeServer : Object
     { 
 		// request is URISchemeRequest
 			 
-		print("REQ: %s   %s\n", request.get_scheme(),request.get_path());
+		GLib.debug("REQ: %s   %s", request.get_scheme(),request.get_path());
 		var cdata = FakeServerCache.factory(request); //request.get_path() , request.get_scheme());
 	
  		if (cdata.size < 1 ) {
-			print("Skip file missing = %s/gitlive%s\n", GLib.Environment.get_home_dir() , request.get_path());
+			GLib.debug("Skip file missing = %s/gitlive%s", GLib.Environment.get_home_dir() , request.get_path());
 			request.finish_error(new FakeServerError.FILE_DOES_NOT_EXIST ("My error msg"));
 			return;
 		}
 	
-		print("Send :%s, %s (%s/%d)", request.get_path(), 
+		GLib.debug("Send :%s, %s (%s/%d)", request.get_path(), 
 		      cdata.content_type, cdata.size.to_string(), cdata.data.length);
 		cdata.run(request,    null);
 		 
