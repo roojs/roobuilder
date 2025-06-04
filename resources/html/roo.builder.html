@@ -12,22 +12,9 @@
         <title>Gtk Builder App Runner.</title>
         <!-- this lot needs to be available on the target site.. if used on remote.. -->
         
-        <link rel="stylesheet" type="text/css" href="resources://localhost/doc/css/roojs.css" />
-        <link rel="stylesheet" type="text/css" href="resources://localhost/doc/css/xtheme-slate.css" />
-        
-        <script type="text/javascript" src="resources://localhost/doc/roojs-debug.js?ts=1234"></script>
-        
-        <script type="text/javascript">
-            Ext=Roo; // bc
-            Roo.isTouch = false; // force non-touch..
-            Roo.BLANK_IMAGE_URL =  "resources://localhost/doc/images/default/s.gif";
-            Roo.rootURL = 'resources://localhost/doc/';
-            Roo.XComponent.hideProgress = true;
-              // local apps can override these ..
-            rootURL = 'http://localhost'; // not sure if this is great or not - not served by us..
-            baseURL = rootURL + '/index.php';
-        </script>
-           
+        <link rel="stylesheet" type="text/css" href="roojs1/css/roojs-debug.css" />
+        <link rel="stylesheet" type="text/css" href="roojs1/css/xtheme-slate.css" />
+       
         <!-- <script type="text/javascript" src="builder.html.js?ts=1234"></script>    -->
     
     <!-- user generate code ends up here... -->
@@ -36,9 +23,35 @@
      </head>
        <!--background:#F8ECB2;-->   
     <body class="ytheme-gray" id="bootstrap-body">  
+        <div class="x-hidden">
+            <h1>You need to install the roojs1 library on your machine, and serve it via apache/nginx</h1>
+            
+            <p>
+             Usually this involves 
+             <code>git clone http://github.com/roojs/roojs1<code>
+             then copy/link that into /var/www/html/roojs1
+            </p>
         
+        
+        </div>
+
         
      
     </body>
+    
+     
+    <script type="text/javascript" src="roojs1/roojs-debug.js?ts=1234"></script>
+    
+    <script type="text/javascript">
+        Ext=Roo; // bc
+        Roo.isTouch = false; // force non-touch..
+        Roo.BLANK_IMAGE_URL =  "roojs1/images/default/s.gif";
+        Roo.rootURL = '/roojs1/';
+        Roo.XComponent.hideProgress = true;
+          // local apps can override these ..
+        rootURL = 'xhttp://localhost';
+        baseURL = rootURL + '/index.php';
+    </script>
+       
+    
 </html>
-        

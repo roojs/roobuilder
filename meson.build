@@ -100,7 +100,7 @@ gnome.post_install(gtk_update_icon_cache : true)
 
 roobuilder_resources = gnome.compile_resources(
 	'roobuilder-resources', 'resources/gresources.xml',
-	source_dir: [ 'resources/glade-icons', 'resources/html', 'resources/data', 'resources/css', 'resources/doc', 'resources/doc/css-bootstrap', 'resources/doc/css-bootstrap/font-awesome', 'resources/doc/css-bootstrap4', 'resources/doc/css', 'resources/doc/images/default', 'resources/doc/images/default/basic-dialog', 'resources/doc/images/default/combo', 'resources/doc/images/default/dd', 'resources/doc/images/default/form', 'resources/doc/images/default/grid', 'resources/doc/images/default/layout', 'resources/doc/images/default/menu', 'resources/doc/images/default/qtip', 'resources/doc/images/default/sizer', 'resources/doc/images/default/tabs', 'resources/doc/images/default/toolbar', 'resources/doc/images/default/tree', 'resources/doc/images/slate', 'resources/doc/images/slate/button', 'resources/doc/images/slate/editor', 'resources/doc/images/slate/form', 'resources/doc/images/slate/grid', 'resources/doc/images/slate/menu', 'resources/doc/images/slate/panel', 'resources/doc/images/slate/progress', 'resources/doc/images/slate/qtip', 'resources/doc/images/slate/shared', 'resources/doc/images/slate/sizer', 'resources/doc/images/slate/tabs', 'resources/doc/images/slate/toolbar', 'resources/doc/images/slate/window', 'resources/images', 'resources/Editors' ],
+	source_dir: [ 'resources/glade-icons', 'resources/html', 'resources/data', 'resources/css', 'resources/doc', 'resources/doc/css-bootstrap', 'resources/doc/css-bootstrap/font-awesome', 'resources/doc/css-bootstrap4', 'resources/images', 'resources/Editors' ],
 	c_name: 'roobuilder_resources' 
 )
 

@@ -52,14 +52,14 @@ public class FakeServerCache : Object
 	    		var state = wk.get_data<WindowState>("windowstate");
 			return new FakeServerCache.from_doc(state, fname);
 		}
-	    if (cache.has_key(fname)) {
+	    if (cache.has_key(scheme +":" + fname)) {
 			GLib.debug ("CACHE got  %s", fname);
-			return cache.get(fname);
+			return cache.get(scheme +":" +fname);
 		}
 		
 	  	if (scheme == "resources") {
 			var res =  new FakeServerCache.from_resource(fname);
-	 	    cache.set(fname, res);
+	 	    cache.set(scheme +":" + fname, res);
 		    return res;
 		}
 		
@@ -67,7 +67,7 @@ public class FakeServerCache : Object
 	    
 	    var el = new  FakeServerCache(fname);
  
- 	    cache.set(fname, el);
+ 	    cache.set(scheme +":" + fname, el);
 	    return el;
 	}
 	// called onload to clear the temporary cached file..
@@ -103,7 +103,7 @@ public class FakeServerCache : Object
 		}
 		var el = new  FakeServerCache.with_data( data);
 		GLib.debug("CACHE - store %s\n", el.fname);
-		cache.set(el.fname, el);
+		cache.set( "xhttp:" + el.fname, el);
 		return el;
 	}
     
