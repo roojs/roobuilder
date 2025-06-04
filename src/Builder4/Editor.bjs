@@ -489,7 +489,7 @@
                "(dx, dy) => {",
                "",
                "\tvar is_control = ",
-               "\t\t0 != (_this.window.state & Gdk.ModifierType.CONTROL_MASK);",
+               "\t\t0 != (_this.window.keyboard.get_modifier_state() & Gdk.ModifierType.CONTROL_MASK);",
                "",
                "",
                "\tif (!is_control) {",

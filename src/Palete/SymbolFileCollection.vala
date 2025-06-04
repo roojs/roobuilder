@@ -80,8 +80,9 @@ namespace Palete {
 		public void loadAllFiles(Project.GtkValaSettings cg)
 		{
 			
-
-			foreach(var path in cg.sources) {
+			// remove any that should not be here?
+			
+			foreach(var path in cg.sources_ro) {
 
 				
 				var jfile = cg.project.getByRelPath(path);

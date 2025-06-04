@@ -463,7 +463,7 @@ public class WindowState : Object
             return;
         }
         if (pr.xtype  == "Roo" ) {
-			this.roo_projectsettings_pop.show(pwin,(Project.Roo)pr);
+			this.roo_projectsettings_pop.show(pwin,(Project.Roo)pr, doneObj);
 			return;
 		}
 
@@ -579,7 +579,7 @@ public class WindowState : Object
 		
 		this.file_details.success.connect((project,file) =>
 		{
-			if (this.file.path == file.path) {
+			if (this.file != null && this.file.path == file.path) {
 				this.win.setTitle();
 				return;
 			

@@ -20,7 +20,7 @@ namespace Project {
 			var project_licence =   this.project.licence;
 
 			var deps = "";
-			foreach(var p in this.project.packages) {
+			foreach(var p in this.project.packages_ro) {
 				if (p == "posix" ) {
 					deps += "   valac.find_library('" + p  + "'),\n";
 				} else {
@@ -138,7 +138,7 @@ GLib.debug("write meson : %s" , data);
 		{
 			
 			var str = cg.name + "_src = files([\n";
-			foreach(var s in cg.sources) {
+			foreach(var s in cg.sources_ro) {
 				var f= this.project.getByPath(this.project.path + "/" +  s);
 				if (f == null) {
 					continue;

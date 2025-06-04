@@ -4,18 +4,18 @@
 # might change this to copy all of roojs1 needed files, so we can really bundle it..
 # also need to check if our 'resources builder scans subdirectories...
 
-# html
-cp ../../roojs1/docs/gtk.html doc/
+# html (not sure were the source of this is now..)
+#cp ../../roojs1/docs/gtk.html doc/
 
 #js (libraries)
 cp ../../roojs1/roojs-bootstrap-debug.js doc/
 cp ../../roojs1/roojs-core-debug.js doc/
 
 #js (doc specific)
-cp ../../roojs1/docs/Roo.docs.js doc/
-cp ../../roojs1/docs/Roo.docs.init.js doc/
-cp ../../roojs1/docs/Roo.docs.template.js doc/
-#skip file viewer?? - not needed
+#cp ../../roojs1/docs/Roo.docs.js doc/
+#cp ../../roojs1/docs/Roo.docs.init.js doc/
+#cp ../../roojs1/docs/Roo.docs.template.js doc/
+
 
 #css (library)
 mkdir doc/css-bootstrap4 || echo "doc/css-boostrap4 exists"
@@ -29,5 +29,8 @@ cp ../../roojs1/fonts/font-awesome.css doc/css-bootstrap/
 cp ../../roojs1/fonts/font-awesome/*.woff2 doc/css-bootstrap/font-awesome
 
 #css for docs
-cp ../../roojs1/docs/docs.css doc/
+#cp ../../roojs1/docs/docs.css doc/
+
+ 
+
 

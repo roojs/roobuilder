@@ -355,41 +355,50 @@ namespace Palete {
 		}
 		
 		public  Gee.ArrayList<string> getChildList(string in_rval, bool with_prop)
-        {
-        	// fixme - use database..
-        	if (this.top_classes.size < 1) {
-        		this.load();
-        	}
-        	 
-        	 
-        	 
-        	var ar = this.top_classes;
-        	if (in_rval != "*top") {
-        		if (this.classes.has_key(in_rval)) {
-          		   // some of these children will be eg: Roo.bootstrap.layout.Region:center
-        			ar = this.classes.get(in_rval).valid_cn;
-        		} else {
-        			GLib.debug("could not find class %s", in_rval);
-        			ar = new Gee.ArrayList<string>();
-    			}
-        	}
-        	
-         	if (!with_prop) {
-         		var ret = new Gee.ArrayList<string>();
-         		foreach(var v in ar) {
-         			if (v.contains(":")) {
-         				continue;
-     				}
-     				ret.add(v);
-         		}
-         		return ret;
-         	}
-    		 
-        	GLib.debug("getChildList for %s returns %d items",  in_rval, ar.size);
-        	return ar;	
-        	
-        	//return this.original_getChildList(  in_rval);
-    	}
+		{
+			// fixme - use database..
+			if (this.top_classes.size < 1) {
+				this.load();
+			}
+			 
+			 
+			 
+			var ar = this.top_classes;
+			if (in_rval != "*top") {
+				if (this.classes.has_key(in_rval)) {
+		  		   // some of these children will be eg: Roo.bootstrap.layout.Region:center
+					ar = this.classes.get(in_rval).valid_cn;
+				} else {
+					GLib.debug("could not find class %s", in_rval);
+					ar = new Gee.ArrayList<string>();
+				}
+			}
+			var is_bootstrap = ((Project.Roo)this.project).base_template.contains("bootstrap");
+			
+		 	if (!with_prop) {
+		 		var ret = new Gee.ArrayList<string>();
+		 		foreach(var v in ar) {
+		 			if (v.contains(":")) {
+		 				continue;
+					}
+					if (in_rval == "*top") {
+						if (is_bootstrap && !v.contains("bootstrap")) {
+							continue;
+						}
+						if (!is_bootstrap && v.contains("bootstrap")) {
+							continue;
+						}
+					}
+					ret.add(v);
+		 		}
+		 		return ret;
+		 	}
+			 
+			GLib.debug("getChildList for %s returns %d items",  in_rval, ar.size);
+			return ar;	
+			
+			//return this.original_getChildList(  in_rval);
+		}
     	
 		public override Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string rval) {
 			return this.getDropList(rval);

@@ -53,9 +53,8 @@ public class Xcls_MainWindow : Object
 	public Xcls_name name;
 
 	// my vars (def)
-	public Gtk.EventControllerKey evn;
-	public Gdk.ModifierType state;
 	public WindowState windowstate;
+	public Gdk.Device keyboard;
 	public bool winloading;
 	public Project.Project project;
 
@@ -66,7 +65,6 @@ public class Xcls_MainWindow : Object
 		this.el = new Gtk.ApplicationWindow(BuilderApplication.singleton({}));
 
 		// my vars (dec)
-		this.state = 0;
 		this.winloading = false;
 		this.project = null;
 
@@ -82,49 +80,6 @@ public class Xcls_MainWindow : Object
 		// init method
 
 		this.el.set_icon_name("roobuilder");
-		
-		this.evn = new Gtk.EventControllerKey();
-		this.evn.propagation_phase =  Gtk.PropagationPhase.BUBBLE;
-		 
-		this.evn.modifiers.connect( ( state) =>  {
-				 
-			GLib.Timeout.add(50, () => {
-				
-			  	var display = this.el.get_display();
-				var seat = display.get_default_seat();
-				
-				// 2. Get the keyboard device
-				var keyboard = seat.get_keyboard();
-				if (keyboard == null) {
-				    return false;
-				}
-				
-				// 3. Get the current modifier state
-			  
-				var modifiers = keyboard.get_modifier_state();
-			   
-			 
-				GLib.debug("state changed %d => %d", (int)_this.state, (int)modifiers);	
-				_this.state = modifiers;
-				return false;
-			});
-			
-			return false;
-		});
-		
-		this.evn.key_released.connect ((keyval, keycode, state) => {
-		
-		
-			if (keyval == Gdk.Key.o && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {
-				// ctrl O pressed
-				if (!_this.splitview.el.show_sidebar) {
-					_this.sidebar.show(); 
-				}
-			}
-		});
-		
-		
-		((Gtk.Widget	)this.el).add_controller(this.evn);
 
 		//listeners
 		this.el.close_request.connect( ( ) => {
@@ -159,7 +114,11 @@ public class Xcls_MainWindow : Object
 		    _this.statusbar_compile_spinner.el.hide();
 		  
 		    Resources.singleton().checkResources();
-		    
+		    var display = this.el.get_display();
+			var seat = display.get_default_seat();
+			
+			// 2. Get the keyboard device
+			this.keyboard = seat.get_keyboard();
 		  
 		
 		});
@@ -483,6 +442,9 @@ public class Xcls_MainWindow : Object
 			this.el.content = _this.vbox.el;
 			new Xcls_sidebar( _this );
 			this.el.sidebar = _this.sidebar.el;
+			var child_3 = new Xcls_EventControllerKey94( _this );
+			child_3.ref();
+			this.el.add_controller(  child_3.el );
 		}
 
 		// user defined functions
@@ -2054,7 +2016,7 @@ public class Xcls_MainWindow : Object
 					
 					
 				 	_this.windowstate.fileViewOpen(f,
-				 		(_this.state & Gdk.ModifierType.SHIFT_MASK) == 0
+				 		(_this.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK) == 0
 					);
 					
 					_this.splitview.el.show_sidebar = false;
@@ -2905,7 +2867,7 @@ public class Xcls_MainWindow : Object
 				
 				
 			 	_this.windowstate.fileViewOpen(f,
-			 		(_this.state & Gdk.ModifierType.SHIFT_MASK) == 0
+			 		(_this.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK) == 0
 					
 				);
 				
@@ -3265,48 +3227,48 @@ public class Xcls_MainWindow : Object
 			});
 			this.el.bind.connect( (listitem) => {
 				
-				 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
-			                	
-			            	
-			            	
-			        	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
-			    	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
-			    	  
-			     	var hbox = (Gtk.Box) expand.child;
-			 
-				
-					var img = (Gtk.Image) hbox.get_first_child();
-					var lbl = (Gtk.Label) img.get_next_sibling();
+				//GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+						
+					
+					
+				//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+				var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
 			
-			 
-			    	
-			    	 if (lbl == null || lbl.label != "") { // do not update
-			    	 	return;
-			     	}
-			    	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-			    	//GLib.debug("LR = %s", lr.get_type().name());
-			    
-			    	
-			    	var jr =(JsRender.JsRender) lr.get_item();
-			    	//GLib.debug("JR = %s", jr.get_type().name());		
-			    	
-			    	 if (jr == null) {
-			    		 GLib.debug("Problem getting item"); 
-			    		 return;
-			    	 }
+				var hbox = (Gtk.Box) expand.child;
 			
-					jr.bind_property("icon",
-			                img, "gicon",
-			               GLib.BindingFlags.SYNC_CREATE);
 			
-			    	//GLib.debug("change  %s to %s", lbl.label, np.name);
-			    	lbl.label = jr.name; // for dir's we could hsow the sub path..
-			    	lbl.tooltip_markup = jr.path;
-			    	 
-			        expand.set_hide_expander(  jr.xtype != "Dir" );
-			     	 expand.set_list_row(lr);
-			     
-			         	 
+				var img = (Gtk.Image) hbox.get_first_child();
+				var lbl = (Gtk.Label) img.get_next_sibling();
+			
+			
+			
+				if (lbl == null || lbl.label != "") { // do not update
+					return;
+				}
+				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+				//GLib.debug("LR = %s", lr.get_type().name());
+			
+			
+				var jr =(JsRender.JsRender) lr.get_item();
+				//GLib.debug("JR = %s", jr.get_type().name());		
+			
+				if (jr == null) {
+					GLib.debug("Problem getting item"); 
+					return;
+				}
+			
+				jr.bind_property("icon",
+					img, "gicon",
+					GLib.BindingFlags.SYNC_CREATE);
+			
+				//GLib.debug("change  %s to %s", lbl.label, np.name);
+				lbl.label = jr.name; // for dir's we could hsow the sub path..
+				lbl.tooltip_markup = jr.path;
+			
+				expand.set_hide_expander(  jr.xtype != "Dir" );
+				expand.set_list_row(lr);
+			
+			 	 
 			                 	// bind image...
 			});
 		}
@@ -3318,6 +3280,38 @@ public class Xcls_MainWindow : Object
 
 
 
+
+	public class Xcls_EventControllerKey94 : Object
+	{
+		public Gtk.EventControllerKey el;
+		private Xcls_MainWindow  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_EventControllerKey94(Xcls_MainWindow _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.EventControllerKey();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.key_released.connect( (  keyval,   keycode, state) =>  {
+			     if (keyval == Gdk.Key.o && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {
+					// ctrl O pressed
+					if (!_this.splitview.el.show_sidebar) {
+						_this.sidebar.show(); 
+					}
+				}
+			});
+		}
+
+		// user defined functions
+	}
 
 
 }

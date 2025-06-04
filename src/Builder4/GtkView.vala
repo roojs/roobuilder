@@ -20,7 +20,6 @@ public class Xcls_GtkView : Object
 	public Xcls_sourceviewscroll sourceviewscroll;
 	public Xcls_sourceview sourceview;
 	public Xcls_buffer buffer;
-	public Xcls_keystate keystate;
 	public Xcls_search_entry search_entry;
 	public Xcls_search_results search_results;
 	public Xcls_nextBtn nextBtn;
@@ -586,7 +585,7 @@ public class Xcls_GtkView : Object
 			// set gobject values
 			new Xcls_sourceviewscroll( _this );
 			this.el.append( _this.sourceviewscroll.el );
-			var child_2 = new Xcls_Box13( _this );
+			var child_2 = new Xcls_Box12( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 		}
@@ -649,11 +648,9 @@ public class Xcls_GtkView : Object
 			this.el.tab_width = 4;
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
-			new Xcls_keystate( _this );
-			this.el.add_controller(  _this.keystate.el );
-			var child_3 = new Xcls_EventControllerScroll12( _this );
-			child_3.ref();
-			this.el.add_controller(  child_3.el );
+			var child_2 = new Xcls_EventControllerScroll11( _this );
+			child_2.ref();
+			this.el.add_controller(  child_2.el );
 
 			// init method
 
@@ -964,59 +961,7 @@ public class Xcls_GtkView : Object
 		// user defined functions
 	}
 
-	public class Xcls_keystate : Object
-	{
-		public Gtk.EventControllerKey el;
-		private Xcls_GtkView  _this;
-
-
-		// my vars (def)
-		public bool is_control;
-
-		// ctor
-		public Xcls_keystate(Xcls_GtkView _owner )
-		{
-			_this = _owner;
-			_this.keystate = this;
-			this.el = new Gtk.EventControllerKey();
-
-			// my vars (dec)
-			this.is_control = false;
-
-			// set gobject values
-
-			//listeners
-			this.el.key_released.connect( (keyval, keycode, state) => {
-			
-				 if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {
-			 		this.is_control = false;
-				}
-			});
-			this.el.key_pressed.connect( (keyval, keycode, state) => {
-			
-				if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R) {
-			 		this.is_control = true;
-				}
-				 
-				 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-				    GLib.debug("SAVE: ctrl-g  pressed");
-					_this.forwardSearch(true);
-				    return true;
-				}
-			    if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-				    GLib.debug("SAVE: ctrl-f  pressed");
-					_this.search_entry.el.grab_focus();
-				    return true;
-				}
-				 
-				return false;
-			});
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_EventControllerScroll12 : Object
+	public class Xcls_EventControllerScroll11 : Object
 	{
 		public Gtk.EventControllerScroll el;
 		private Xcls_GtkView  _this;
@@ -1026,7 +971,7 @@ public class Xcls_GtkView : Object
 		public double distance;
 
 		// ctor
-		public Xcls_EventControllerScroll12(Xcls_GtkView _owner )
+		public Xcls_EventControllerScroll11(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
@@ -1038,7 +983,10 @@ public class Xcls_GtkView : Object
 
 			//listeners
 			this.el.scroll.connect( (dx, dy) => {
-				if (!_this.keystate.is_control) {
+				var is_control = 
+					0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.CONTROL_MASK);
+			
+				if (!is_control) {
 					return false;
 				}
 				//GLib.debug("scroll %f",  dy);
@@ -1062,7 +1010,7 @@ public class Xcls_GtkView : Object
 
 
 
-	public class Xcls_Box13 : Object
+	public class Xcls_Box12 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_GtkView  _this;
@@ -1071,7 +1019,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box13(Xcls_GtkView _owner )
+		public Xcls_Box12(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1089,7 +1037,7 @@ public class Xcls_GtkView : Object
 			this.el.append( _this.nextBtn.el );
 			new Xcls_backBtn( _this );
 			this.el.append( _this.backBtn.el );
-			var child_5 = new Xcls_MenuButton19( _this );
+			var child_5 = new Xcls_MenuButton18( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
 		}
@@ -1119,7 +1067,7 @@ public class Xcls_GtkView : Object
 			this.el.hexpand = true;
 			this.el.placeholder_text = "Press enter to search";
 			this.el.search_delay = 3;
-			var child_1 = new Xcls_EventControllerKey15( _this );
+			var child_1 = new Xcls_EventControllerKey14( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
@@ -1167,7 +1115,7 @@ public class Xcls_GtkView : Object
 			
 		}
 	}
-	public class Xcls_EventControllerKey15 : Object
+	public class Xcls_EventControllerKey14 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Xcls_GtkView  _this;
@@ -1176,7 +1124,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey15(Xcls_GtkView _owner )
+		public Xcls_EventControllerKey14(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -1326,7 +1274,7 @@ public class Xcls_GtkView : Object
 		// user defined functions
 	}
 
-	public class Xcls_MenuButton19 : Object
+	public class Xcls_MenuButton18 : Object
 	{
 		public Gtk.MenuButton el;
 		private Xcls_GtkView  _this;
@@ -1336,7 +1284,7 @@ public class Xcls_GtkView : Object
 		public bool always_show_image;
 
 		// ctor
-		public Xcls_MenuButton19(Xcls_GtkView _owner )
+		public Xcls_MenuButton18(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.MenuButton();
@@ -1371,14 +1319,14 @@ public class Xcls_GtkView : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box21( _this );
+			var child_1 = new Xcls_Box20( _this );
 			child_1.ref();
 			this.el.set_child ( child_1.el  );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box21 : Object
+	public class Xcls_Box20 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_GtkView  _this;
@@ -1387,7 +1335,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box21(Xcls_GtkView _owner )
+		public Xcls_Box20(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );

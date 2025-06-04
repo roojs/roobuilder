@@ -39,7 +39,7 @@ namespace Palete {
 
 				return false;
 			}
-			BuilderApplication.showSpinner("spinner", "running meson");
+			BuilderApplication.showSpinner("content-loading-symbolic", "running meson");
 
 			var res = yield  this.runMeson();
 	
@@ -48,7 +48,7 @@ namespace Palete {
 				BuilderApplication.showSpinner("");
 				return false;
 			}
-			BuilderApplication.showSpinner("spinner", "running ninja");
+			BuilderApplication.showSpinner("content-loading-symbolic", "running ninja");
 			res = yield this.runNinja();
 			if (0 != res) {
 				GLib.debug("Failed to run ninja");

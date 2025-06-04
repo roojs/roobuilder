@@ -278,27 +278,22 @@ namespace JsRender {
 	    
 	    public void updateCompileGroup(string old_target, string new_target) 
 	    {
-	    	if (old_target == new_target) {
-	    		return;
-    		}
-    		if (old_target != "") {
-    			if (this.gproject.compilegroups.has_key(old_target)) {
-    				var cg = this.gproject.compilegroups.get(old_target);
-    				if (cg.sources.contains(this.relpath)) {
-    					cg.sources.remove(this.relpath);
-					}
+			if (old_target == new_target) {
+				return;
+			}
+			if (old_target != "") {
+				if (this.gproject.compilegroups.has_key(old_target)) {
+					var cg = this.gproject.compilegroups.get(old_target);
+					cg.removeSource(this.relpath);
 				}
 			}
-	   	 if (new_target != "") {
-    			if (this.gproject.compilegroups.has_key(new_target)) {
-    				var cg = this.gproject.compilegroups.get(new_target);
-    				if (!cg.sources.contains(this.relpath)) {
-    					cg.sources.add(this.relpath);
-					}
+			if (new_target != "") {
+				if (this.gproject.compilegroups.has_key(new_target)) {
+					var cg = this.gproject.compilegroups.get(new_target);
+					cg.addSource(new_target); 
 				}
 			}
-	    
-	    
+
 	    }
 	    
 		/*

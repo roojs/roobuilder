@@ -5,13 +5,19 @@ namespace Project
 		public string name { get; set;   }
  		public string fqn { get; set;  }
 		
+		public bool is_manager_dirty = true;
+		
 		public Gtk project {
 			get;
 			private set;
 		}
 
-		public Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
+		private Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
  
+ 		public Gee.ArrayList<string> sources_ro {
+ 			get { return this.sources; }
+ 			private set {}
+		}
 
 		public string execute_args;
 		
@@ -31,9 +37,24 @@ namespace Project
 			this.execute_args = "";
 			this.symbol_manager = new Palete.SymbolFileCollection();
 			this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
+			this.is_manager_dirty = false; // we have loaded..
 		}
 		
 		
+		public void addSource(string source) 
+		{
+			if (!this.sources.contains(source)) {
+				this.sources.add(source);
+				this.is_manager_dirty = true;
+			}
+		}
+		public void removeSource(string source) 
+		{
+			if (this.sources.contains(source)) {
+					this.sources.remove(source);
+				this.is_manager_dirty = true;
+			}
+		}
 		 
 		public GtkValaSettings.from_json(Gtk project, Json.Object el) {
 
@@ -115,13 +136,19 @@ namespace Project
 		// ?? needed?
 		public Palete.SymbolFileCollection symbolManager()
 		{
-			this.symbol_manager.loadAllFiles(this);
+			if (this.is_manager_dirty) {
+				this.symbol_manager.loadAllFiles(this);
+				this.is_manager_dirty = false;
+			}
 			return this.symbol_manager;
 		}
 		public Palete.SymbolLoader symbolLoader()
 		{
 			// force an update 
-			this.symbol_manager.loadAllFiles(this);
+			if (this.is_manager_dirty) {
+				this.symbol_manager.loadAllFiles(this);
+				this.is_manager_dirty = false;
+			}
 			return this.symbol_loader;
 		}
 		
@@ -142,7 +169,7 @@ $cgname = executable('$cgname',
 ";
 			}
 			string[]  deps = {};
-			foreach(var p in this.project.packages) {
+			foreach(var p in this.project.packages_ro) {
 				if (p == "posix" ) {
 					continue;
 				} 

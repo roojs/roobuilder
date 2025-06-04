@@ -232,7 +232,7 @@
 			
 			
 			var dirname = GLib.Environment.get_user_config_dir() + "/roobuilder";
-			GLib.debug("Config directory is %s", dirname);
+			//GLib.debug("Config directory is %s", dirname);
 		
 			if (!FileUtils.test(dirname,FileTest.IS_DIR)) {
 				var dir = File.new_for_path(dirname);
@@ -991,11 +991,11 @@
 					case Palete.LanguageClientAction.INIT:
 			 		case Palete.LanguageClientAction.LAUNCH:
 			 		case Palete.LanguageClientAction.ACCEPT:
-						BuilderApplication.showSpinner( "software-update-available", msg );
+						BuilderApplication.showSpinner( "software-update-available-symbolic", msg );
 						return;
 						
 			 		case Palete.LanguageClientAction.DIAG:
-				 		BuilderApplication.showSpinner( "format-justify-fill", msg);			 		
+				 		BuilderApplication.showSpinner( "format-justify-fill-symbolic", msg);			 		
 			 			return;
 
 					case Palete.LanguageClientAction.DIAG_END:
@@ -1003,26 +1003,26 @@
 			 			return;
 
 			 		case Palete.LanguageClientAction.OPEN:
-				 		BuilderApplication.showSpinner( "document-open", msg);			 		
+				 		BuilderApplication.showSpinner( "document-open-symbolic", msg);			 		
 			 			return;
 			 		case Palete.LanguageClientAction.SAVE:
-			 			BuilderApplication.showSpinner( "document-save", msg);			 		
+			 			BuilderApplication.showSpinner( "document-save-symbolic", msg);			 		
 			 			return;
 			 		case Palete.LanguageClientAction.CLOSE:
-			 			BuilderApplication.showSpinner( "window.close", msg);			 		
+			 			BuilderApplication.showSpinner( "window-close-symbolic", msg);			 		
 			 			return;
 			 		case Palete.LanguageClientAction.CHANGE:
-			 			BuilderApplication.showSpinner( "format-text-direction-ltr", msg);
+			 			BuilderApplication.showSpinner( "format-text-direction-ltr-symbolic", msg);
 			 			return;			 			
 			 		case Palete.LanguageClientAction.TERM:
-						BuilderApplication.showSpinner( "media-playback-stop", msg);
+						BuilderApplication.showSpinner( "media-playback-stop-symbolic", msg);
 						return;			 			
 			 		case Palete.LanguageClientAction.COMPLETE:
-						BuilderApplication.showSpinner( "mail-send-recieve", msg);
+						BuilderApplication.showSpinner( "mail-send-receive-symbolic", msg);
 						return;
 			 		
 			 		case Palete.LanguageClientAction.COMPLETE_REPLY:
-						BuilderApplication.showSpinner( "face-cool", msg);
+						BuilderApplication.showSpinner( "face-cool-symbolic", msg);
 						return;
 						
 			 		case Palete.LanguageClientAction.RESTART:
@@ -1030,11 +1030,11 @@
 			 		case Palete.LanguageClientAction.ERROR_START:
 					case Palete.LanguageClientAction.ERROR_RPC:
 					case Palete.LanguageClientAction.ERROR_REPLY:
-						BuilderApplication.showSpinner( "software-update-urgent", msg );
+						BuilderApplication.showSpinner( "software-update-urgent-symbolic", msg );
 						return;
 
 					case Palete.LanguageClientAction.EXIT:
-						BuilderApplication.showSpinner( "face-sick", msg);
+						BuilderApplication.showSpinner( "face-sick-symbolic", msg);
 						return;
 					
 			

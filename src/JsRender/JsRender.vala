@@ -747,12 +747,13 @@ namespace JsRender {
 				
 				
 				}
-				if (gproj.active_cg.sources == null) {
+				// should not happen...
+				if (gproj.active_cg.sources_ro == null) {
 					GLib.debug("compile_group_selected - sources is null? ");
 					return false;
 				}
 
-				return gproj.active_cg.sources.contains(this.relpath);
+				return gproj.active_cg.sources_ro.contains(this.relpath);
 				
 			}
 			set {
@@ -780,14 +781,13 @@ namespace JsRender {
 				
 				if (value == false) {
 					GLib.debug("REMOVE %s", this.relpath);
-					
-					gproj.active_cg.sources.remove(this.relpath);
+					gproj.active_cg.removeSource(this.relpath);
 					return;
 				}
-				if (!gproj.active_cg.sources.contains(this.relpath)) { 
-					GLib.debug("ADD %s", this.relpath);
-					gproj.active_cg.sources.add(this.relpath);
-				}
+
+				GLib.debug("ADD %s", this.relpath);
+				gproj.active_cg.addSource(this.relpath);
+				
 			
 			}
 		}

@@ -42,8 +42,13 @@ namespace Project
 	    public string compile_flags = ""; // generic to all.	
 	    public bool generate_meson = false; 
 	     
-		public Gee.ArrayList<string> packages; // list of vapi's that are used by this project. 
-		 
+		private Gee.ArrayList<string> packages; // list of vapi's that are used by this project. 
+		
+		public Gee.ArrayList<string> packages_ro {
+			get { return this.packages ;} 
+			private set {}
+		}
+		
 		//pblic Gee.ArrayList<string> hidden; // list of dirs to be hidden from display...
 		
 		public GtkValaSettings? active_cg = null;
@@ -206,7 +211,7 @@ namespace Project
 			var pal = (Palete.Gtk) this.palete;
 			var pkgs = pal.packages(this);
 			foreach (var p in pkgs) {
-				ls.append(new VapiSelection(this.packages, p));
+				ls.append(new VapiSelection(this , p));
 			}
 			
 		}
@@ -254,8 +259,32 @@ namespace Project
 	 			return this.language_servers.get(lang);
  		
  		}
-		 
-		 
+ 		
+ 		public bool addPackage(string p)
+ 		{
+ 			if (this.packages.contains(p)) {
+	 			return false;
+ 			}
+ 			this.packages.add(p);
+	 		this.set_manager_dirty();
+	 		return true;
+ 		}
+		 public bool removePackage(string p)
+ 		{
+ 			if (!this.packages.contains(p)) {
+	 			return false;
+ 			}
+ 			this.packages.remove(p);
+	 		this.set_manager_dirty();
+	 		return true;
+ 		}
+ 		
+ 		public void set_manager_dirty()
+ 		{
+ 			foreach(var cg in this.compilegroups.values) {
+ 				cg.is_manager_dirty= true;
+			}
+		 }
 		public override Palete.SymbolFileCollection? symbolManager(JsRender.JsRender file)
 		{
 			GLib.debug("fetch symbol manager");
@@ -378,9 +407,9 @@ namespace Project
 
 			var cg =  new GtkValaSettings(this, this.name);
 			this.compilegroups.set(this.name, cg);
-			cg.sources.add("src/Main.vala");
-			cg.sources.add("src/%sApplication.vala".printf(this.name));
-			cg.sources.add("src/ui/ui.Window.bjs");
+			cg.addSource("src/Main.vala");
+			cg.addSource("src/%sApplication.vala".printf(this.name));
+			cg.addSource("src/ui/ui.Window.bjs");
 			// rescan... not needed as it get's selected after initialization.
 			this.load();
 			var fn = this.getByPath(this.path + "/src/ui/ui.Window.bjs");
