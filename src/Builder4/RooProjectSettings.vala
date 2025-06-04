@@ -135,7 +135,7 @@ public class Xcls_RooProjectSettings : Object
 	    _this.project.html_gen = val;
 	    
 	    // set by event changed...
-	    //_this.project.base_template = _this.base_template.el.get_text();    
+	     _this.project.base_template = _this.base_template.el.get_text();    
 	    
 	    var js = _this.project;
 	    js.DBTYPE = _this.database_DBTYPE.el.get_text();
