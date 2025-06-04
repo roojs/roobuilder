@@ -18,7 +18,7 @@ public class Xcls_PopoverAddObject : Object
 	public Xcls_model model;
 	public Xcls_maincol maincol;
 
-		// my vars (def)
+	// my vars (def)
 	public signal void before_node_change (JsRender.Node? node);
 	public bool modal;
 	public signal void after_node_change (JsRender.Node? node);
@@ -114,7 +114,7 @@ public class Xcls_PopoverAddObject : Object
 		private Xcls_PopoverAddObject  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_viewwin(Xcls_PopoverAddObject _owner )
@@ -143,7 +143,7 @@ public class Xcls_PopoverAddObject : Object
 		private Xcls_PopoverAddObject  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_view(Xcls_PopoverAddObject _owner )
@@ -364,7 +364,7 @@ public class Xcls_PopoverAddObject : Object
 		private Xcls_PopoverAddObject  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_DragSource3(Xcls_PopoverAddObject _owner )
@@ -452,7 +452,7 @@ public class Xcls_PopoverAddObject : Object
 		private Xcls_PopoverAddObject  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_selmodel(Xcls_PopoverAddObject _owner )
@@ -493,7 +493,7 @@ public class Xcls_PopoverAddObject : Object
 		private Xcls_PopoverAddObject  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_model(Xcls_PopoverAddObject _owner )
@@ -527,7 +527,7 @@ public class Xcls_PopoverAddObject : Object
 		private Xcls_PopoverAddObject  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_maincol(Xcls_PopoverAddObject _owner )
@@ -553,7 +553,7 @@ public class Xcls_PopoverAddObject : Object
 		private Xcls_PopoverAddObject  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_SignalListItemFactory7(Xcls_PopoverAddObject _owner )
@@ -631,7 +631,7 @@ public class Xcls_PopoverAddObject : Object
 		private Xcls_PopoverAddObject  _this;
 
 
-			// my vars (def)
+		// my vars (def)
 
 		// ctor
 		public Xcls_GestureClick8(Xcls_PopoverAddObject _owner )
