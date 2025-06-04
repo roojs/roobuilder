@@ -12,9 +12,9 @@ cp ../../roojs1/roojs-bootstrap-debug.js doc/
 cp ../../roojs1/roojs-core-debug.js doc/
 
 #js (doc specific)
-cp ../../roojs1/docs/Roo.docs.js doc/
-cp ../../roojs1/docs/Roo.docs.init.js doc/
-cp ../../roojs1/docs/Roo.docs.template.js doc/
+#cp ../../roojs1/docs/Roo.docs.js doc/
+#cp ../../roojs1/docs/Roo.docs.init.js doc/
+#cp ../../roojs1/docs/Roo.docs.template.js doc/
 
 
 #css (library)
@@ -29,7 +29,7 @@ cp ../../roojs1/fonts/font-awesome.css doc/css-bootstrap/
 cp ../../roojs1/fonts/font-awesome/*.woff2 doc/css-bootstrap/font-awesome
 
 #css for docs
-cp ../../roojs1/docs/docs.css doc/
+#cp ../../roojs1/docs/docs.css doc/
 
  
 

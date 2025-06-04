@@ -4,18 +4,20 @@ Roo.docs.template  = {
 
     summary : function (data)
     {
-    
-        output = this.resolveLinks(data.desc) ;
+
+        var output = this.resolveLinks(data.desc) ;
         if (data.example.length) {
             output += '<pre class="code">'+data.example+'</pre>';
         }
         return output;
     },
-
     
     
     augments : function(data)
     {
+        
+         
+        
         if (!data.augments.length) {
             return '';
         }
@@ -25,45 +27,75 @@ Roo.docs.template  = {
         var iblock_indent = 0;
          data.augments.reverse().map(
             function($) {  
-            output += iblock_indent ? ('<img src="../images/default/s.gif" height="1" width="' + 
-                iblock_indent + '"/><img src="../images/default/tree/elbow-end.gif" class="elbow"/>') : '';
+            output += iblock_indent ? ('<span style="display:inline-block;width:' + 
+                iblock_indent + 'px">&nbsp</span><i class="fas fa-chevron-right"></i>') : '';
             output += linkSymbol($) + "\n"; 
             iblock_indent += 20;
             }
-        )
+        );
          
-        return output +  '<img src="../images/default/s.gif" height="1"  width="' +  iblock_indent +'"/>' +
-            '<img class="elbow" src="../images/default/tree/elbow-end.gif"/>'+data.name+
+        return output +  '<span style="display:inline-block;width:' +  iblock_indent + 'px">&nbsp</span>' +
+            '<i class="fas fa-chevron-right"></i>'+data.name+
         
-               '</pre></div>'
+               '</pre></div>';
            
     },
-    
+    implements : function(ar)
+    {
+        
+         
+        
+        if (!ar.length) {
+            return '';
+        }
+        var linkSymbol  = this.linkSymbol;
+        var output = '<div class="inheritance res-block"> <pre class="res-block-inner">';
+        
+         ar.map(
+            function($) {  
+            output += linkSymbol($) + "\n"; 
+            }
+        );
+         
+        return output +   '</pre></div>';
+           
+    },
     implementors : function(data)
     {
         if (!data.childClasses || typeof(data.childClasses[data.name]) == 'undefined') { 
             return '';
         }
+        
+
         var linkSymbol  = this.linkSymbol;
         //var linkSymbol  = this.linkSymbol;
         var output = '<ul class="inheritance res-block"> ';
         
+        var oar = [];
         var iterArray  = function(ar) {
             for(var i = 0; i < ar.length; i++) {
-                output += '<li>' +linkSymbol(ar[i]) ; // a href...
+                oar.push(ar[i]);
                 if (typeof(data.childClasses[ar[i]]) != 'undefined') {
-                    output += '<ul>';
                     iterArray(data.childClasses[ar[i]]);
-                    output += '</ul>';
                 }
-                output +=  "</li>";
+                
                 
             }
             
-        }
+        };
         iterArray(data.childClasses[data.name]);
-         
-        return output +   '</ul>'
+        oar.sort();
+        
+        var output = '<ul class="inheritance res-block"> ';
+        for(var i = 0; i < aor.length; i++) {
+                output += '<li>' +linkSymbol(oar[i]) + '</li>' ; // a href...
+                  
+                
+        }
+        
+        
+        
+        return output +   '</ul>';
     
     },
     
@@ -81,7 +113,7 @@ Roo.docs.template  = {
         var output = '<ul class="doc-children-list res-block"> ';
         ar.sort(function (a, b) {
             return a.toLowerCase().localeCompare(b.toLowerCase());
-        })
+        });
         for(var i = 0; i < ar.length; i++) {
             output += '<li>' +linkSymbol(ar[i])  + "</li>";
             
@@ -90,7 +122,7 @@ Roo.docs.template  = {
     
         
          
-        return output +   '</ul>'
+        return output +   '</ul>';
     
     },
     
@@ -99,8 +131,11 @@ Roo.docs.template  = {
     {
        
         var output = '<a name="'+dtag.memberOf+'-cfg-'+dtag.name+'"></a>';
-        output += '<div class="fixedFont"><b  class="itemname"> ' + dtag.name + '</b> : ' +
-            (dtag.type.length ? this.linkSymbol(dtag.type) : "" ) + '</div>';
+        var name = (dtag.is_enum ? dtag.memberOf  + '.' : '') + dtag.name;
+        
+        var type = dtag.is_enum ? dtag.type : this.linkSymbol(dtag.type);
+        output += '<div class="fixedFont"><b  class="itemname"> ' + name + '</b> : ' +
+                 type+ '</div>';
               
         output += '<div class="mdesc"><div class="short">'+this.resolveLinks(this.summarize(dtag.desc))+'</div></div>';
             
@@ -110,9 +145,10 @@ Roo.docs.template  = {
                 return v.length ? v : "<B>Empty</B>";
                 }).join(", ")) : ''
             ) + '</div></div>';
-        Roo.log(JSON.stringify(output));
+        //Roo.log(JSON.stringify(output));
         return output;
     },
+     
     
     methodsSort : function(data)
     {
@@ -124,7 +160,8 @@ Roo.docs.template  = {
             !data.isBuiltin && 
             !data.isSingleton &&
             !data.isStatic &&
-            !data.isFlutter
+            !data.isFlutter &&
+            !data.isGtk // gkt..
             ) {
             data.isInherited = false;
             data.isConstructor = true;
@@ -215,13 +252,11 @@ Roo.docs.template  = {
         output += this.makeSignature(member.params);
         if (member.returns && member.returns.length) {
             output += ': ';
-            for(var i = 0;i< member.returns.length;i++) {
-                var item = member.returns[i];
-                output += (i > 0 ? ' or ' : '') +
-                this.linkSymbol(item.type);
-            }
-        }
-            
+            for(var i = 0;i< member.returns.length;i++) {         
+                output += (i > 0 ? ' or ' : '') +   this.linkSymbol(member.returns[i].type);
+           }
+         }
+
             
         output += '</div> <div class="mdesc">';
             if (!member.isConstructor) {
@@ -287,13 +322,14 @@ Roo.docs.template  = {
                </if>
                */
         if (member.returns && member.returns.length) {
-            output += '<dl class="detailList"><dt class="heading">Returns:</dt>';
+             output += '<dl class="detailList"><dt class="heading">Returns:</dt>';
             for (var i =0; i < member.returns.length; i++) {
                 var item = member.returns[i];
                  output+= '<dd>' + this.linkSymbol( item.type ) + ' ' + this.resolveLinks(item.desc) + '</dd></dl>';
             }
-                        
-        }
+                         
+         }
+
         
         /*
                 <if test="member.requires.length">
@@ -358,13 +394,13 @@ Roo.docs.template  = {
         }            
         if ((member.deprecated && member.deprecated.length) || member.isDeprecated) {
             output+= '<dl class="detailList"><dt class="heading">Deprecated:</dt><dt>' +
-                        +member.deprecated+'</dt></dl>';
+                        member.deprecated+'</dt></dl>';
         }
         
         
         if (member.since && member.since.length) {
             output+= '<dl class="detailList"><dt class="heading">Since:</dt><dt>' +
-                        +member.since+'</dt></dl>';
+                        member.since+'</dt></dl>';
         }
          /*
                 <if test="member.exceptions.length">
@@ -380,7 +416,7 @@ Roo.docs.template  = {
                 </if>
                 */    
         if (member.returns && member.returns.length) {
-            output += '<dl class="detailList"><dt class="heading">Returns:</dt>';
+             output += '<dl class="detailList"><dt class="heading">Returns:</dt>';
             for (var i =0; i < member.returns.length; i++) {
                 var item = member.returns[i];
                 output+= '<dd>' + this.linkSymbol( item.type ) + ' ' + this.resolveLinks(item.desc) + '</dd></dl>';
@@ -388,6 +424,8 @@ Roo.docs.template  = {
                     
         }
         
+    
+           
         /*
                 <if test="member.requires.length">
                         <dl class="detailList">
@@ -419,7 +457,7 @@ Roo.docs.template  = {
     makeSignature : function(params)
     {
         
-            if (!params.length) return "()";
+        if (!params.length) return "()";
         var linkSymbol = this.linkSymbol;
         var signature = " ("    +
             params.filter(
@@ -443,8 +481,7 @@ Roo.docs.template  = {
                     
                      
                 }
-            ).join(", ")
-        +
+            ).join(", ")  +
         ")";
         return signature;
         
@@ -454,7 +491,17 @@ Roo.docs.template  = {
         if (!str || typeof(str) == 'undefined') {
             return '';
         }
+        str = Roo.Markdown.toHtml(str);
         
+        var linkSymbol = this.linkSymbol;
+
+         //[vfunc@Gtk.Widget.get_request_mode]
+        str = str.replace(/\[(\S+)@(\S+)\]/gi,
+            function(match, type,  symbolName) {
+                Roo.log([ "match", type, match,symbolName]);
+                return  linkSymbol(symbolName);
+            }
+        );
         // gtk specific. now..
         // @ -> bold.. - they are arguments..
         /*
@@ -484,6 +531,8 @@ Roo.docs.template  = {
         str = str.replace(/\n\n+/gi, '<br/><br/>');
         //str = str.replace(/\n/gi, '<br/>');
         var linkSymbol = this.linkSymbol;
+
+        //[vfunc@Gtk.Widget.get_request_mode]
         str = str.replace(/\{@link ([^} ]+) ?\}/gi,
             function(match, symbolName) {
                 return linkSymbol(symbolName);
@@ -503,7 +552,10 @@ Roo.docs.template  = {
     },
     linkSymbol : function(str)
     {
-        Roo.log(str);
+        if (!str.length) {
+            return "";
+        }
+        //Roo.log(str);
         var ar = str.split('<');
         var out = '';
         for(var i = ar.length-1; i > -1; i--) {
@@ -514,11 +566,11 @@ Roo.docs.template  = {
             out = '<span class=\"fixedFont\"><a href="#' + bit+ '">' + bit + '</a>' + out + '</span>';
         }
     
-    return out;
+        return out;
     },
-        makeSortby : function(attribute) {
+    makeSortby : function(attribute) {
         return function(a, b) {
-            if (a[attribute] != undefined && b[attribute] != undefined) {
+            if (typeof(a[attribute]) != 'undefined' && typeof(b[attribute]) != 'undefined') {
             a = a[attribute]; //.toLowerCase();
             b = b[attribute];//.toLowerCase();
             if (a < b) return -1;
@@ -526,6 +578,6 @@ Roo.docs.template  = {
             return 0;
             }
             return 0;
-        }
+        };
     }
 }
