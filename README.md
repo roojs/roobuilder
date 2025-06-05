@@ -26,7 +26,12 @@ Part 2 - click to view on youtube
     
     https://docs.google.com/spreadsheets/d/1-qNQX1Bwwd1cV405Kj1l3B3Mi6K-GvECnMeuzRKfbGA/edit?usp=sharing
     
----
+**Try on Flatpak**
+
+Ready to go here.
+
+ * https://flathub.org/apps/org.roojs.roobuilder
+
 **Debian and Ubuntu packages** 
 
  you will need libvala (available on most debian/ubuntu repos), 
