@@ -724,7 +724,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "bool has_tooltip" : true,
            "bool hexpand" : true,
            "id" : "projectsearch",
            "items" : [
@@ -804,12 +803,6 @@
              ""
             ]
            },
-           "string placeholder_text" : "Search for project",
-           "string tooltip_text" : [
-            "up/down arrow to select file from lower file list",
-            "enter opens selected in new window",
-            "shift+enter opens it in this window "
-           ],
            "xtype" : "SearchEntry"
           },
           {

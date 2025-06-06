@@ -1507,9 +1507,6 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.hexpand = true;
-			this.el.tooltip_text = "up/down arrow to select file from lower file list\nenter opens selected in new window\nshift+enter opens it in this window ";
-			this.el.has_tooltip = true;
-			this.el.placeholder_text = "Search for project";
 			var child_1 = new Xcls_EventControllerKey1709( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
