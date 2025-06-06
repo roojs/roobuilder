@@ -767,7 +767,7 @@
                "items" : [
                 {
                  "$ xns" : "Gtk",
-                 "* prop" : "model",
+                 "* prop" : "xmodel",
                  "bool incremental" : true,
                  "id" : "projectsort",
                  "items" : [

@@ -1599,14 +1599,15 @@ public class DialogFiles : Object
 		{
 			_this = _owner;
 			_this.projectselection = this;
-			new Xcls_projectsort( _this );
-			this.el = new Gtk.SingleSelection( _this.projectsort.el );
+			this.el = new Gtk.SingleSelection( null );
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.can_unselect = true;
 			this.el.autoselect = false;
+			new Xcls_projectsort( _this );
+			this.el.xmodel = _this.projectsort.el;
 
 			//listeners
 			this.el.notify["selected"].connect( (position, n_items) => {
