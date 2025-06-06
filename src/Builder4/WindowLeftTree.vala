@@ -1099,13 +1099,22 @@ public class Xcls_WindowLeftTree : Object
 			 	if (pos == "over") {
 				 	if (!drop_on_to.contains(node.fqn())) {
 						//GLib.debug("drop on does not contain %s - try center" , node.fqn());
-						this.addHighlight(null, ""); 
+						if (!is_control) {
+							this.addHighlight(null, ""); 
+							return Gdk.DragAction.ASK;
+						} 
+						this.addHighlight(row_widget, pos); 
 						return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 					}
 					if (_this.view.dragNode  != null && is_shift) {
 			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
 				 			//GLib.debug("shift drop not self not allowed");
-			 				this.addHighlight(null, "");
+			 				if (!is_control) {
+								this.addHighlight(null, ""); 	
+								return Gdk.DragAction.ASK;
+							} 
+							this.addHighlight(row_widget, pos); 
+							
 							return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;
 			 			}
 					}
