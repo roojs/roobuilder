@@ -1041,8 +1041,8 @@ public class Xcls_WindowLeftTree : Object
 			   	 	// FIXME check valid drop types?
 			    		if (!drop_on_to.contains("*top")) {
 			    			this.addHighlight(null, "");	
-						return Gdk.DragAction.ASK
-					}
+						return Gdk.DragAction.ASK;
+					};
 					this.addHighlight(_this.view.el, "over");
 			
 					return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY; // no need to highlight?
