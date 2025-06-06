@@ -1477,6 +1477,7 @@
     " \t _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
     " \tthis.treescroll.el.vadjustment.value = 0;",
     "\tthis.in_onprojectselected = false;\t",
+    "\t",
     "}",
     ""
    ],
