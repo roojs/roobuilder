@@ -1511,7 +1511,7 @@ public class DialogFiles : Object
 			//listeners
 			this.el.search_changed.connect( ( ) => {
 			
-				_this.projectsearch.el.set_search(this.el.get_text());
+				//_this.projectsearch.el.set_search(this.el.get_text());
 			  
 				_this.projecttreefilter.el.changed(Gtk.FilterChange.DIFFERENT);
 			});

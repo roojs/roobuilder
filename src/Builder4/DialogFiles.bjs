@@ -730,7 +730,7 @@
             "search_changed" : [
              "( ) => {",
              "",
-             "\t_this.projectsearch.el.set_search(this.el.get_text());",
+             "\t//_this.projectsearch.el.set_search(this.el.get_text());",
              "  ",
              "\t_this.projecttreefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
              "}",
