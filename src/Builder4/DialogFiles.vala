@@ -29,6 +29,7 @@ public class DialogFiles : Object
 	public Xcls_treemodel treemodel;
 	public Xcls_treefilter treefilter;
 	public Xcls_name name;
+	public Xcls_projectsearch projectsearch;
 	public Xcls_projectscroll projectscroll;
 	public Xcls_project_list project_list;
 	public Xcls_projectselection projectselection;
@@ -1479,12 +1480,131 @@ public class DialogFiles : Object
 			// my vars (dec)
 
 			// set gobject values
+			new Xcls_projectsearch( _this );
+			this.el.append( _this.projectsearch.el );
 			new Xcls_projectscroll( _this );
 			this.el.append( _this.projectscroll.el );
 		}
 
 		// user defined functions
 	}
+	public class Xcls_projectsearch : Object
+	{
+		public Gtk.SearchEntry el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_projectsearch(DialogFiles _owner )
+		{
+			_this = _owner;
+			_this.projectsearch = this;
+			this.el = new Gtk.SearchEntry();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.hexpand = true;
+			this.el.tooltip_text = "up/down arrow to select file from lower file list\nenter opens selected in new window\nshift+enter opens it in this window ";
+			this.el.has_tooltip = true;
+			this.el.placeholder_text = "Search for project";
+			var child_1 = new Xcls_EventControllerKey1709( _this );
+			child_1.ref();
+			this.el.add_controller(  child_1.el );
+
+			//listeners
+			this.el.search_changed.connect( ( ) => {
+			
+				_this.windowsearch.el.set_search(this.el.get_text());
+				if (this.el.text == "") {
+					_this.treescroll.el.visible = false;
+					return;
+				}
+				_this.treescroll.el.visible = true;
+				_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
+			});
+		}
+
+		// user defined functions
+	}
+	public class Xcls_EventControllerKey1709 : Object
+	{
+		public Gtk.EventControllerKey el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_EventControllerKey1709(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.EventControllerKey();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.key_released.connect( (keyval, keycode, state) => {
+				if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
+					return;
+				}
+				//GLib.debug(
+				//	"searcj key release %d, %d, %d  ?= %d" , 
+				//		(int) keyval, (int)  keycode, state,
+				//		(int)Gdk.Key.Return
+				//	);
+				if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
+					return;
+				}
+					
+				var dir = 0;
+				
+				if (keyval == Gdk.Key.Return) {
+					var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
+					GLib.debug("SELECTED = %s", tr.item.get_type().name());
+					var f = (JsRender.JsRender) tr.item;
+					GLib.debug("Click %s", f.name);
+					if (f.xtype == "Dir") {
+						return;
+					}
+					
+					
+				 	_this.windowstate.fileViewOpen(f,
+				 		(_this.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK) == 0
+					);
+					
+					_this.splitview.el.show_sidebar = false;
+					return;
+					
+				
+				}
+				if (keyval == Gdk.Key.Up) {
+					dir = -1;
+				}if (keyval == Gdk.Key.Down) {
+					dir = 1;
+				}
+				if (dir == 0) {
+					return;
+				}
+				var ns = _this.treeselmodel.el.selected + dir;
+				if (ns < 0) {
+					ns = 0;
+				}
+				if (ns >= _this.treeselmodel.el.get_n_items()) {
+					ns  = _this.treeselmodel.el.get_n_items()-1;
+				}
+				_this.treeselmodel.el.selected = ns;
+			});
+		}
+
+		// user defined functions
+	}
+
+
 	public class Xcls_projectscroll : Object
 	{
 		public Gtk.ScrolledWindow el;
