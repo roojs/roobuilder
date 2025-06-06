@@ -1008,7 +1008,7 @@ public class Xcls_WindowLeftTree : Object
 			  		cont.get_value(ref v);
 				} catch (GLib.Error e) {
 				   // GLib.debug("failed to get drag value");
-					return Gdk.DragAction.COPY;	 
+					return Gdk.DragAction.ASK;	 
 				
 				}
 			 
@@ -1039,11 +1039,11 @@ public class Xcls_WindowLeftTree : Object
 			 
 			    if (_this.model.el.n_items < 1) {
 			   	 	// FIXME check valid drop types?
-			    		if (drop_on_to.contains("*top")) {
-						this.addHighlight(_this.view.el, "over");
-					} else {
-						this.addHighlight(null, "");		
+			    		if (!drop_on_to.contains("*top")) {
+			    			this.addHighlight(null, "");	
+						return Gdk.DragAction.ASK
 					}
+					this.addHighlight(_this.view.el, "over");
 			
 					return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY; // no need to highlight?
 			     
@@ -1061,7 +1061,7 @@ public class Xcls_WindowLeftTree : Object
 			
 			 	if (row_widget == null) {
 					this.addHighlight(null, "");	
-					return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;
+					return Gdk.DragAction.ASK;
 			 	}
 			 	var node = row_widget.get_data<JsRender.Node>("node");
 				
@@ -1083,7 +1083,7 @@ public class Xcls_WindowLeftTree : Object
 					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
 						 			GLib.debug("shift drop not self not allowed");
 					 				this.addHighlight(null, "");
-									return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;
+									return Gdk.DragAction.ASK;
 					 			}
 					 			
 					 		}
