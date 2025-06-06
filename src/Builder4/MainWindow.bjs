@@ -1516,6 +1516,10 @@
          "\t\t\t_this.sidebar.show(); ",
          "\t\t}",
          "\t}",
+         "\tif (keyval == Gdk.Key.Escape && _this.splitview.el.show_sidebar) {",
+         "\t\t_this.splitview.el.show_sidebar = false;",
+         "\t}",
+         "\t",
          "}",
          ""
         ]

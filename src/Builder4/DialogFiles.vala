@@ -320,12 +320,15 @@ public class DialogFiles : Object
 			this.el.vexpand = true;
 			this.el.position = 200;
 			new Xcls_projectscroll( _this );
-			this.el.start_child = _this.projectscroll.el;
+			this.el.pack_start( _this.projectscroll.el );
 			new Xcls_filepane( _this );
 			this.el.end_child = _this.filepane.el;
 			var child_3 = new Xcls_EventControllerKey55( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
+			var child_4 = new Xcls_Box965( _this );
+			child_4.ref();
+			this.el.start_child = child_4.el;
 		}
 
 		// user defined functions
@@ -2145,6 +2148,28 @@ public class DialogFiles : Object
 			
 				return true;
 			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Box965 : Object
+	{
+		public Gtk.Box el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box965(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( null, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
 		}
 
 		// user defined functions

@@ -85,7 +85,6 @@
           "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
           " "
          ],
-         "* prop" : "start_child",
          "bool expand" : true,
          "bool has_frame" : true,
          "bool hexpand" : true,
@@ -1050,6 +1049,11 @@
           ]
          },
          "xtype" : "EventControllerKey"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "start_child",
+         "xtype" : "Box"
         }
        ],
        "xtype" : "Paned"

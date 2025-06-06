@@ -3307,6 +3307,10 @@ public class Xcls_MainWindow : Object
 						_this.sidebar.show(); 
 					}
 				}
+				if (keyval == Gdk.Key.Escape && _this.splitview.el.show_sidebar) {
+					_this.splitview.el.show_sidebar = false;
+				}
+				
 			});
 		}
 
