@@ -720,6 +720,7 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "start_child",
+         "Gtk.Orientation orientation" : "",
          "items" : [
           {
            "$ xns" : "Gtk",

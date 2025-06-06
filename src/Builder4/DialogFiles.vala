@@ -1471,7 +1471,7 @@ public class DialogFiles : Object
 		public Xcls_Box965(DialogFiles _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( null, 0 );
+			this.el = new Gtk.Box( , 0 );
 
 			// my vars (dec)
 
