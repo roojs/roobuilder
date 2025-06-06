@@ -1514,13 +1514,9 @@ public class DialogFiles : Object
 			//listeners
 			this.el.search_changed.connect( ( ) => {
 			
-				_this.windowsearch.el.set_search(this.el.get_text());
-				if (this.el.text == "") {
-					_this.treescroll.el.visible = false;
-					return;
-				}
-				_this.treescroll.el.visible = true;
-				_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
+				_this.projectsearch.el.set_search(this.el.get_text());
+			  
+				_this.projecttreefilter.el.changed(Gtk.FilterChange.DIFFERENT);
 			});
 		}
 
