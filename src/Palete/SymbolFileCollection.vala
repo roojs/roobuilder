@@ -81,6 +81,7 @@ namespace Palete {
 		{
 			
 			// remove any that should not be here?
+			var afiles = new Gee.ArrayList<string>();
 			
 			foreach(var path in cg.sources_ro) {
 
@@ -99,6 +100,7 @@ namespace Palete {
 					//context.add_c_source_file(path);
 					continue;
 				}
+				afiles.add(tn);
 				if (this.files.has_key(tn)) {
 					continue;
 				}
@@ -106,15 +108,25 @@ namespace Palete {
 				this.factory_by_path(tn);	
 				 
 			}
+			
+			
+			
+			
+			
 			var vp = cg.project.vapiPaths();
 			foreach(var path in vp) {
+				afiles.add(path);
 				if (this.files.has_key(path)) {
 					continue;
 				}
 				GLib.debug("add path %s",path);
 				this.factory_by_path(path);	
 			}
-			
+			foreach(var cf in this.files.keys) {
+				if (!afiles.contains(cf)) {
+					this.files.unset(cf);
+				}
+			}
 
 		}
 		 
