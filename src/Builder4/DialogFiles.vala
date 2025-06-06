@@ -2205,9 +2205,8 @@ public class DialogFiles : Object
 			_this = _owner;
 			_this.iconfilter = this;
 			this.el = new Gtk.CustomFilter( (item) => { 
-	var tr = ((Gtk.TreeListRow)item).get_item();
-	GLib.debug("filter %s %s", item.get_type().name(), tr.get_type().name());
-	var j =  (JsRender.JsRender) tr;
+	 
+	var j =  (JsRender.JsRender) item;
  
 	var str = _this.searchbox.el.text.down();	
 	GLib.debug("filter %s to %s" , str, j.name.down());
