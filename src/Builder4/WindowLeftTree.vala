@@ -991,6 +991,8 @@ public class Xcls_WindowLeftTree : Object
 				var is_shift = 
 					0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK);
 			
+				var is_control = // contol overrides our rules for dropping
+					0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.CONTRL_MASK);
 			    
 			    
 				
