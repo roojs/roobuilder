@@ -86,7 +86,7 @@
            "(keyval, keycode, state) => {",
            "",
            "\tif (keycode != Gdk.Key.Escape) {",
-           "\t\treturn true;",
+           "\t\treturn false; // dont do anything?",
            "\t}",
            "\tif (BuilderApplication.windows.size < 2 && ",
            "\t\t_this.win.windowstate.file == null",
@@ -128,7 +128,7 @@
                "\tif (_this.projectselection.el.get_n_items() < 0) {",
                "\t\treturn;",
                "\t}",
-               "\t_this.projectselection.el.selected = 1; // select first ",
+               "\t//_this.projectselection.el.selected = 1; // select first ",
                "}",
                ""
               ]
@@ -141,12 +141,12 @@
              "( ) => {",
              "",
              "\t_this.projectlistfilter.el.set_search(this.el.get_text());",
-             " // ",
-             "\t//_this.projectlistfilter.el.changed(Gtk.FilterChange.DIFFERENT);",
+             " ",
              "}",
              ""
             ]
            },
+           "uint search_delay" : 500,
            "xtype" : "SearchEntry"
           },
           {
@@ -178,6 +178,7 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
+                 "id" : "projectfiltermodel",
                  "items" : [
                   {
                    "$ xns" : "Gtk",
@@ -572,6 +573,7 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
+                 "id" : "treefiltermodel",
                  "items" : [
                   {
                    "$ xns" : "Gtk",
@@ -868,9 +870,10 @@
                "listeners" : {
                 "search_changed" : [
                  "( ) => {",
-                 "",
+                 "GLib.debug(\"file search %s\", this.el.text);",
                  "\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
-                 "\t_this.iconsearch.el.set_search(this.el.text);",
+                 "\t_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);\t",
+                 "//\t_this.iconsearch.el.set_search(this.el.text);",
                  "}",
                  ""
                 ]
@@ -940,6 +943,7 @@
                   {
                    "$ xns" : "Gtk",
                    "* prop" : "model",
+                   "id" : "iconfiltermodel",
                    "items" : [
                     {
                      "$ xns" : "Gtk",
@@ -985,21 +989,29 @@
                      "xtype" : "SortListModel"
                     },
                     {
-                     "$ Gtk.StringFilterMatchMode match_mode" : "Gtk.StringFilterMatchMode.SUBSTRING",
                      "$ xns" : "Gtk",
                      "* prop" : "filter",
-                     "bool ignore_case" : true,
-                     "id" : "iconsearch",
-                     "items" : [
-                      {
-                       "$ xns" : "Gtk",
-                       "* prop" : "expression",
-                       "GLib.Type this_type" : "typeof(JsRender.JsRender)",
-                       "string property_name" : "name",
-                       "xtype" : "PropertyExpression"
-                      }
+                     "Gtk.CustomFilterFunc match_func" : [
+                      "(item) => { ",
+                      "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
+                      "\tGLib.debug(\"filter %s %s\", item.name(), tr.get_type().name());",
+                      "\tvar j =  (JsRender.JsRender) tr;",
+                      " ",
+                      "\tvar str = _this.searchbox.el.text.down();\t",
+                      "\tGLib.debug(\"filter %s to %s\" , str, j.name.down());",
+                      "\t \t\t ",
+                      "\tif (str.length < 1) { // no search.",
+                      "\t\treturn true;",
+                      "\t}",
+                      "\tif (j.name.down().contains(str)) {",
+                      "\t\treturn true;",
+                      "\t}",
+                      "\treturn false; ",
+                      "",
+                      "}"
                      ],
-                     "xtype" : "StringFilter"
+                     "id" : "iconfilter",
+                     "xtype" : "CustomFilter"
                     }
                    ],
                    "xtype" : "FilterListModel"

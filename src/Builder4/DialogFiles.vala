@@ -17,6 +17,7 @@ public class DialogFiles : Object
 	public Xcls_projectscroll projectscroll;
 	public Xcls_project_list project_list;
 	public Xcls_projectselection projectselection;
+	public Xcls_projectfiltermodel projectfiltermodel;
 	public Xcls_projectsort projectsort;
 	public Xcls_projectmodel projectmodel;
 	public Xcls_projectlistfilter projectlistfilter;
@@ -25,6 +26,7 @@ public class DialogFiles : Object
 	public Xcls_treescroll treescroll;
 	public Xcls_treeview treeview;
 	public Xcls_treeselmodel treeselmodel;
+	public Xcls_treefiltermodel treefiltermodel;
 	public Xcls_treelistsort treelistsort;
 	public Xcls_treelistmodel treelistmodel;
 	public Xcls_treemodel treemodel;
@@ -34,9 +36,10 @@ public class DialogFiles : Object
 	public Xcls_iconscroll iconscroll;
 	public Xcls_gridview gridview;
 	public Xcls_iconsel iconsel;
+	public Xcls_iconfiltermodel iconfiltermodel;
 	public Xcls_gridsort gridsort;
 	public Xcls_gridmodel gridmodel;
-	public Xcls_iconsearch iconsearch;
+	public Xcls_iconfilter iconfilter;
 	public Xcls_btn_newproj btn_newproj;
 	public Xcls_btn_addfile btn_addfile;
 	public Xcls_btn_delfile btn_delfile;
@@ -356,7 +359,7 @@ public class DialogFiles : Object
 			this.el.key_pressed.connect( (keyval, keycode, state) => {
 			
 				if (keycode != Gdk.Key.Escape) {
-					return true;
+					return false; // dont do anything?
 				}
 				if (BuilderApplication.windows.size < 2 && 
 					_this.win.windowstate.file == null
@@ -423,6 +426,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.hexpand = true;
+			this.el.search_delay = 500;
 			var child_1 = new Xcls_EventControllerKey330( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
@@ -431,8 +435,7 @@ public class DialogFiles : Object
 			this.el.search_changed.connect( ( ) => {
 			
 				_this.projectlistfilter.el.set_search(this.el.get_text());
-			 // 
-				//_this.projectlistfilter.el.changed(Gtk.FilterChange.DIFFERENT);
+			 
 			});
 		}
 
@@ -462,7 +465,7 @@ public class DialogFiles : Object
 				if (_this.projectselection.el.get_n_items() < 0) {
 					return;
 				}
-				_this.projectselection.el.selected = 1; // select first 
+				//_this.projectselection.el.selected = 1; // select first 
 			});
 		}
 
@@ -549,9 +552,8 @@ public class DialogFiles : Object
 		{
 			_this = _owner;
 			_this.projectselection = this;
-			var child_1 = new Xcls_FilterListModel971( _this );
-			child_1.ref();
-			this.el = new Gtk.SingleSelection( child_1.el );
+			new Xcls_projectfiltermodel( _this );
+			this.el = new Gtk.SingleSelection( _this.projectfiltermodel.el );
 
 			// my vars (dec)
 
@@ -594,7 +596,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_FilterListModel971 : Object
+	public class Xcls_projectfiltermodel : Object
 	{
 		public Gtk.FilterListModel el;
 		private DialogFiles  _this;
@@ -603,9 +605,10 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel971(DialogFiles _owner )
+		public Xcls_projectfiltermodel(DialogFiles _owner )
 		{
 			_this = _owner;
+			_this.projectfiltermodel = this;
 			new Xcls_projectsort( _this );
 			new Xcls_projectlistfilter( _this );
 			this.el = new Gtk.FilterListModel( _this.projectsort.el, _this.projectlistfilter.el );
@@ -1385,9 +1388,8 @@ public class DialogFiles : Object
 		{
 			_this = _owner;
 			_this.treeselmodel = this;
-			var child_1 = new Xcls_FilterListModel902( _this );
-			child_1.ref();
-			this.el = new Gtk.SingleSelection( child_1.el );
+			new Xcls_treefiltermodel( _this );
+			this.el = new Gtk.SingleSelection( _this.treefiltermodel.el );
 
 			// my vars (dec)
 
@@ -1430,7 +1432,7 @@ public class DialogFiles : Object
 			return  (JsRender.JsRender) tr.item;
 		}
 	}
-	public class Xcls_FilterListModel902 : Object
+	public class Xcls_treefiltermodel : Object
 	{
 		public Gtk.FilterListModel el;
 		private DialogFiles  _this;
@@ -1439,9 +1441,10 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel902(DialogFiles _owner )
+		public Xcls_treefiltermodel(DialogFiles _owner )
 		{
 			_this = _owner;
+			_this.treefiltermodel = this;
 			new Xcls_treelistsort( _this );
 			new Xcls_treefilter( _this );
 			this.el = new Gtk.FilterListModel( _this.treelistsort.el, _this.treefilter.el );
@@ -1892,9 +1895,10 @@ public class DialogFiles : Object
 
 			//listeners
 			this.el.search_changed.connect( ( ) => {
-			
+			GLib.debug("file search %s", this.el.text);
 				_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
-				_this.iconsearch.el.set_search(this.el.text);
+				_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);	
+			//	_this.iconsearch.el.set_search(this.el.text);
 			});
 		}
 
@@ -2019,9 +2023,8 @@ public class DialogFiles : Object
 		{
 			_this = _owner;
 			_this.iconsel = this;
-			var child_1 = new Xcls_FilterListModel919( _this );
-			child_1.ref();
-			this.el = new Gtk.SingleSelection( child_1.el );
+			new Xcls_iconfiltermodel( _this );
+			this.el = new Gtk.SingleSelection( _this.iconfiltermodel.el );
 
 			// my vars (dec)
 
@@ -2057,7 +2060,7 @@ public class DialogFiles : Object
 		 
 		}
 	}
-	public class Xcls_FilterListModel919 : Object
+	public class Xcls_iconfiltermodel : Object
 	{
 		public Gtk.FilterListModel el;
 		private DialogFiles  _this;
@@ -2066,12 +2069,13 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel919(DialogFiles _owner )
+		public Xcls_iconfiltermodel(DialogFiles _owner )
 		{
 			_this = _owner;
+			_this.iconfiltermodel = this;
 			new Xcls_gridsort( _this );
-			new Xcls_iconsearch( _this );
-			this.el = new Gtk.FilterListModel( _this.gridsort.el, _this.iconsearch.el );
+			new Xcls_iconfilter( _this );
+			this.el = new Gtk.FilterListModel( _this.gridsort.el, _this.iconfilter.el );
 
 			// my vars (dec)
 
@@ -2187,45 +2191,36 @@ public class DialogFiles : Object
 
 
 
-	public class Xcls_iconsearch : Object
+	public class Xcls_iconfilter : Object
 	{
-		public Gtk.StringFilter el;
+		public Gtk.CustomFilter el;
 		private DialogFiles  _this;
 
 
 		// my vars (def)
 
 		// ctor
-		public Xcls_iconsearch(DialogFiles _owner )
+		public Xcls_iconfilter(DialogFiles _owner )
 		{
 			_this = _owner;
-			_this.iconsearch = this;
-			var child_1 = new Xcls_PropertyExpression925( _this );
-			child_1.ref();
-			this.el = new Gtk.StringFilter( child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.match_mode = Gtk.StringFilterMatchMode.SUBSTRING;
-			this.el.ignore_case = true;
-		}
-
-		// user defined functions
+			_this.iconfilter = this;
+			this.el = new Gtk.CustomFilter( (item) => { 
+	var tr = ((Gtk.TreeListRow)item).get_item();
+	GLib.debug("filter %s %s", item.name(), tr.get_type().name());
+	var j =  (JsRender.JsRender) tr;
+ 
+	var str = _this.searchbox.el.text.down();	
+	GLib.debug("filter %s to %s" , str, j.name.down());
+	 		 
+	if (str.length < 1) { // no search.
+		return true;
 	}
-	public class Xcls_PropertyExpression925 : Object
-	{
-		public Gtk.PropertyExpression el;
-		private DialogFiles  _this;
+	if (j.name.down().contains(str)) {
+		return true;
+	}
+	return false; 
 
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_PropertyExpression925(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
+} );
 
 			// my vars (dec)
 
@@ -2234,7 +2229,6 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-
 
 
 
