@@ -664,7 +664,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.actions = Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ;
+			this.el.actions = Gdk.DragAction.COPY   | Gdk.DragAction.MOVE | Gdk.DragAction.ASK  ;
 
 			//listeners
 			this.el.drag_cancel.connect( (drag, reason) => {
@@ -791,7 +791,7 @@ public class Xcls_WindowLeftTree : Object
 			_this = _owner;
 			_this.drop = this;
 			this.el = new Gtk.DropTarget ( typeof(string) ,
-		Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   );
+		Gdk.DragAction.COPY   | Gdk.DragAction.MOVE | Gdk.DragAction.ASK   );
 
 			// my vars (dec)
 			this.highlightWidget = null;
@@ -989,8 +989,12 @@ public class Xcls_WindowLeftTree : Object
 			this.el.motion.connect( (  x, y) => {
 			 
 				var is_shift = 
-					0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK);
+					0 != (_this.main_window.keyboard.get_modifier_state()
+					& Gdk.ModifierType.SHIFT_MASK);
 			
+				var is_control = // contol overrides our rules for dropping
+					0 != (_this.main_window.keyboard.get_modifier_state() 
+						& Gdk.ModifierType.CONTROL_MASK);
 			    
 			    
 				
@@ -1006,7 +1010,7 @@ public class Xcls_WindowLeftTree : Object
 			  		cont.get_value(ref v);
 				} catch (GLib.Error e) {
 				   // GLib.debug("failed to get drag value");
-					return Gdk.DragAction.COPY;	 
+					return Gdk.DragAction.ASK;	 
 				
 				}
 			 
@@ -1036,14 +1040,14 @@ public class Xcls_WindowLeftTree : Object
 			    // if there are not items in the tree.. the we have to set isOver to true for anything..
 			 
 			    if (_this.model.el.n_items < 1) {
-			    	// FIXME check valid drop types?
-			    	if (drop_on_to.contains("*top")) {
-						this.addHighlight(_this.view.el, "over");
-					} else {
-						this.addHighlight(null, "");		
-					}
+			   	 	// FIXME check valid drop types?
+			    		if (!drop_on_to.contains("*top")) {
+			    			this.addHighlight(null, "");	
+						return Gdk.DragAction.ASK;
+					};
+					this.addHighlight(_this.view.el, "over");
 			
-					return Gdk.DragAction.COPY; // no need to highlight?
+					return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY; // no need to highlight?
 			     
 			    }
 			    
@@ -1059,7 +1063,7 @@ public class Xcls_WindowLeftTree : Object
 			
 			 	if (row_widget == null) {
 					this.addHighlight(null, "");	
-				 	return Gdk.DragAction.COPY;
+					return Gdk.DragAction.ASK;
 			 	}
 			 	var node = row_widget.get_data<JsRender.Node>("node");
 				
@@ -1072,7 +1076,7 @@ public class Xcls_WindowLeftTree : Object
 						pos = "over";
 					} else {
 				 		 
-				 		if (!drop_on_to.contains(node.parent.fqn())) {
+				 		if (!drop_on_to.contains(node.parent.fqn() ) && !is_control) {
 							//GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
 				 			pos = "over";
 			 			} else {
@@ -1081,7 +1085,7 @@ public class Xcls_WindowLeftTree : Object
 					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
 						 			GLib.debug("shift drop not self not allowed");
 					 				this.addHighlight(null, "");
-					 				return Gdk.DragAction.COPY;	
+									return Gdk.DragAction.ASK;
 					 			}
 					 			
 					 		}
@@ -1097,14 +1101,23 @@ public class Xcls_WindowLeftTree : Object
 			 	if (pos == "over") {
 				 	if (!drop_on_to.contains(node.fqn())) {
 						//GLib.debug("drop on does not contain %s - try center" , node.fqn());
-						this.addHighlight(null, ""); 
+						if (!is_control) {
+							this.addHighlight(null, ""); 
+							return Gdk.DragAction.ASK;
+						} 
+						this.addHighlight(row_widget, pos); 
 						return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 					}
 					if (_this.view.dragNode  != null && is_shift) {
 			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
 				 			//GLib.debug("shift drop not self not allowed");
-			 				this.addHighlight(null, "");
-			 				return Gdk.DragAction.COPY;	
+			 				if (!is_control) {
+								this.addHighlight(null, ""); 	
+								return Gdk.DragAction.ASK;
+							} 
+							this.addHighlight(row_widget, pos); 
+							
+							return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;
 			 			}
 					}
 			 			
@@ -1129,7 +1142,13 @@ public class Xcls_WindowLeftTree : Object
 			 
 			 	var is_shift = 
 					0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK);
-			
+				
+				var is_control = // contol overrides our rules for dropping
+					0 != (_this.main_window.keyboard.get_modifier_state() 
+						& Gdk.ModifierType.CONTROL_MASK);
+			    
+			    
+				
 			 	 
 			 	// -- get position..
 			 	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
@@ -1162,8 +1181,8 @@ public class Xcls_WindowLeftTree : Object
 					GLib.debug("adding to top");
 					
 					 var m = (GLib.ListStore) _this.model.el.model;
-			     	_this.main_window.windowstate.file.tree = dropNode;  
-			    	dropNode.updated_count++;
+					_this.main_window.windowstate.file.tree = dropNode;  
+					dropNode.updated_count++;
 			   
 					m.append(dropNode);
 					_this.model.selectNode(dropNode); 	
@@ -1187,7 +1206,7 @@ public class Xcls_WindowLeftTree : Object
 					if (node.parent == null) {
 						pos = "over";
 					} else {
-				 		if (!drop_on_to.contains(node.parent.fqn())) {
+				 		if (!drop_on_to.contains(node.parent.fqn())  && !is_control) {
 							pos = "over";
 			 			} else {
 							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
@@ -1205,7 +1224,7 @@ public class Xcls_WindowLeftTree : Object
 			 		
 			 	}
 			 	if (pos == "over") {
-				 	if (!drop_on_to.contains(node.fqn())) {
+				 	if (!drop_on_to.contains(node.fqn()) && !is_control) {
 						GLib.debug("drop on does not contain %s - try center" , node.fqn());
 						return false;
 			
