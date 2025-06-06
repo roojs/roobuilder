@@ -189,7 +189,7 @@
          "xtype" : "GestureClick"
         },
         {
-         "$ Gdk.DragAction[] actions" : "Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ",
+         "$ Gdk.DragAction[] actions" : "Gdk.DragAction.COPY   | Gdk.DragAction.MOVE | Gdk.DragAction.ASK  ",
          "$ xns" : "Gtk",
          "listeners" : {
           "drag_begin" : [
@@ -294,13 +294,14 @@
          "xtype" : "EventControllerKey"
         },
         {
+         "# Gtk.Widget? highlightWidget" : "null",
+         "# JsRender.Node? lastDragNode" : "null",
+         "# string lastDragString" : "\"\"",
          "$ xns" : "Gtk",
          "* ctor" : [
           "new Gtk.DropTarget ( typeof(string) ,",
-          "\t\tGdk.DragAction.COPY   | Gdk.DragAction.MOVE   )"
+          "\t\tGdk.DragAction.COPY   | Gdk.DragAction.MOVE | Gdk.DragAction.ASK   )"
          ],
-         "Gtk.Widget? highlightWidget" : "null",
-         "JsRender.Node? lastDragNode" : "null",
          "id" : "drop",
          "listeners" : {
           "accept" : [
@@ -501,7 +502,13 @@
            " ",
            " \tvar is_shift = ",
            "\t\t0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK);",
-           "",
+           "\t",
+           "\tvar is_control = // contol overrides our rules for dropping",
+           "\t\t0 != (_this.main_window.keyboard.get_modifier_state() ",
+           "\t\t\t& Gdk.ModifierType.CONTROL_MASK);",
+           "    ",
+           "    ",
+           "\t",
            " \t ",
            " \t// -- get position..",
            " \tif (this.lastDragString != v.get_string() || this.lastDragNode == null) {",
@@ -534,8 +541,8 @@
            "\t\tGLib.debug(\"adding to top\");",
            "\t\t",
            "\t\t var m = (GLib.ListStore) _this.model.el.model;",
-           "     \t_this.main_window.windowstate.file.tree = dropNode;  ",
-           "    \tdropNode.updated_count++;",
+           "\t\t_this.main_window.windowstate.file.tree = dropNode;  ",
+           "\t\tdropNode.updated_count++;",
            "   ",
            "\t\tm.append(dropNode);",
            "\t\t_this.model.selectNode(dropNode); \t",
@@ -559,7 +566,7 @@
            "\t\tif (node.parent == null) {",
            "\t\t\tpos = \"over\";",
            "\t\t} else {",
-           "\t \t\tif (!drop_on_to.contains(node.parent.fqn())) {",
+           "\t \t\tif (!drop_on_to.contains(node.parent.fqn())  && !is_control) {",
            "\t\t\t\tpos = \"over\";",
            " \t\t\t} else {",
            "\t\t\t\tGLib.debug(\"drop  contains %s - using %s\" , node.parent.fqn(), pos);",
@@ -577,7 +584,7 @@
            " \t\t",
            " \t}",
            " \tif (pos == \"over\") {",
-           "\t \tif (!drop_on_to.contains(node.fqn())) {",
+           "\t \tif (!drop_on_to.contains(node.fqn()) && !is_control) {",
            "\t\t\tGLib.debug(\"drop on does not contain %s - try center\" , node.fqn());",
            "\t\t\treturn false;",
            "",
@@ -742,7 +749,7 @@
            "\t\t\tpos = \"over\";",
            "\t\t} else {",
            "\t \t\t ",
-           "\t \t\tif (!drop_on_to.contains(node.parent.fqn())) {",
+           "\t \t\tif (!drop_on_to.contains(node.parent.fqn() ) && !is_control) {",
            "\t\t\t\t//GLib.debug(\"drop on does not contain %s - try center\" , node.parent.fqn());",
            "\t \t\t\tpos = \"over\";",
            " \t\t\t} else {",
@@ -797,7 +804,6 @@
            "}"
           ]
          },
-         "string lastDragString" : "\"\"",
          "xtype" : "DropTarget",
          "| void addHighlight" : [
           "(Gtk.Widget? w, string hl) {",

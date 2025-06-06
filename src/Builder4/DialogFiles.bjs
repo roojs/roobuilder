@@ -123,14 +123,12 @@
              "$ xns" : "Gtk",
              "listeners" : {
               "key_released" : [
-               "(keyval, keycode, state) => {",
+               "(/* uint */ keyval, /* uint */ keycode, /* Gdk.ModifierType */ state) =>  {",
                " ",
-               "\tif (_this.projectselection.el.get_n_items() < 0) {",
-               "\t\treturn;",
+               "\tif (keyval == Gdk.Key.Return  ) {",
+               "\t\t_this.searchbox.el.grab_focus();",
                "\t}",
-               "\t//_this.projectselection.el.selected = 1; // select first ",
-               "}",
-               ""
+               "}"
               ]
              },
              "xtype" : "EventControllerKey"
@@ -141,6 +139,11 @@
              "( ) => {",
              "",
              "\t_this.projectlistfilter.el.set_search(this.el.get_text());",
+             " if (_this.projectselection.el.get_n_items() < 0) {",
+             "\t\treturn;",
+             "\t}",
+             "\t",
+             "\t_this.projectselection.el.selected = 0; // select first ",
              " ",
              "}",
              ""
@@ -269,7 +272,7 @@
                  "    }",
                  "\t    ",
                  "\t Project.Project project  = this.el.selected == Gtk.INVALID_LIST_POSITION ? null :",
-                 "\t\t \t(Project.Project) _this.projectsort.el.get_item(this.el.selected);",
+                 "\t\t \t(Project.Project) _this.projectfiltermodel.el.get_item(this.el.selected);",
                  "\t ",
                  "\t GLib.debug(\"selection changed to %s\", project == null ? \"none\" : project.name);",
                  "  ",
@@ -1408,7 +1411,7 @@
     "\t",
     "\t_this.filepane.el.show();\t",
     "\tthis.in_onprojectselected = true;",
-    "\t",
+    "\t ",
     "\t",
     "",
     "\tproject.load();",
@@ -1426,7 +1429,7 @@
     " \t\t_this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;",
     "  \t \t _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;\t\t ",
     "\t ",
-    "\t     _this.searchbox.el.grab_focus();",
+    "\t    // _this.searchbox.el.grab_focus();",
     "\t\t   return false;",
     "     });",
     "\t _this.treeview.el.set_model(new Gtk.SingleSelection(null));",

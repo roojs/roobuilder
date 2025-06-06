@@ -664,7 +664,7 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.actions = Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ;
+			this.el.actions = Gdk.DragAction.COPY   | Gdk.DragAction.MOVE | Gdk.DragAction.ASK  ;
 
 			//listeners
 			this.el.drag_cancel.connect( (drag, reason) => {
@@ -791,7 +791,7 @@ public class Xcls_WindowLeftTree : Object
 			_this = _owner;
 			_this.drop = this;
 			this.el = new Gtk.DropTarget ( typeof(string) ,
-		Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   );
+		Gdk.DragAction.COPY   | Gdk.DragAction.MOVE | Gdk.DragAction.ASK   );
 
 			// my vars (dec)
 			this.highlightWidget = null;
@@ -1076,7 +1076,7 @@ public class Xcls_WindowLeftTree : Object
 						pos = "over";
 					} else {
 				 		 
-				 		if (!drop_on_to.contains(node.parent.fqn())) {
+				 		if (!drop_on_to.contains(node.parent.fqn() ) && !is_control) {
 							//GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
 				 			pos = "over";
 			 			} else {
@@ -1142,7 +1142,13 @@ public class Xcls_WindowLeftTree : Object
 			 
 			 	var is_shift = 
 					0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK);
-			
+				
+				var is_control = // contol overrides our rules for dropping
+					0 != (_this.main_window.keyboard.get_modifier_state() 
+						& Gdk.ModifierType.CONTROL_MASK);
+			    
+			    
+				
 			 	 
 			 	// -- get position..
 			 	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
@@ -1175,8 +1181,8 @@ public class Xcls_WindowLeftTree : Object
 					GLib.debug("adding to top");
 					
 					 var m = (GLib.ListStore) _this.model.el.model;
-			     	_this.main_window.windowstate.file.tree = dropNode;  
-			    	dropNode.updated_count++;
+					_this.main_window.windowstate.file.tree = dropNode;  
+					dropNode.updated_count++;
 			   
 					m.append(dropNode);
 					_this.model.selectNode(dropNode); 	
@@ -1200,7 +1206,7 @@ public class Xcls_WindowLeftTree : Object
 					if (node.parent == null) {
 						pos = "over";
 					} else {
-				 		if (!drop_on_to.contains(node.parent.fqn())) {
+				 		if (!drop_on_to.contains(node.parent.fqn())  && !is_control) {
 							pos = "over";
 			 			} else {
 							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
@@ -1218,7 +1224,7 @@ public class Xcls_WindowLeftTree : Object
 			 		
 			 	}
 			 	if (pos == "over") {
-				 	if (!drop_on_to.contains(node.fqn())) {
+				 	if (!drop_on_to.contains(node.fqn()) && !is_control) {
 						GLib.debug("drop on does not contain %s - try center" , node.fqn());
 						return false;
 			

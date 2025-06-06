@@ -136,7 +136,7 @@ public class DialogFiles : Object
 		
 		_this.filepane.el.show();	
 		this.in_onprojectselected = true;
-		
+		 
 		
 	
 		project.load();
@@ -154,7 +154,7 @@ public class DialogFiles : Object
 	 		_this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
 	  	 	 _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;		 
 		 
-		     _this.searchbox.el.grab_focus();
+		    // _this.searchbox.el.grab_focus();
 			   return false;
 	     });
 		 _this.treeview.el.set_model(new Gtk.SingleSelection(null));
@@ -427,7 +427,7 @@ public class DialogFiles : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.search_delay = 500;
-			var child_1 = new Xcls_EventControllerKey330( _this );
+			var child_1 = new Xcls_EventControllerKey529( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
@@ -435,13 +435,18 @@ public class DialogFiles : Object
 			this.el.search_changed.connect( ( ) => {
 			
 				_this.projectlistfilter.el.set_search(this.el.get_text());
+			 if (_this.projectselection.el.get_n_items() < 0) {
+					return;
+				}
+				
+				_this.projectselection.el.selected = 0; // select first 
 			 
 			});
 		}
 
 		// user defined functions
 	}
-	public class Xcls_EventControllerKey330 : Object
+	public class Xcls_EventControllerKey529 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private DialogFiles  _this;
@@ -450,7 +455,7 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey330(DialogFiles _owner )
+		public Xcls_EventControllerKey529(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -460,12 +465,11 @@ public class DialogFiles : Object
 			// set gobject values
 
 			//listeners
-			this.el.key_released.connect( (keyval, keycode, state) => {
+			this.el.key_released.connect( (/* uint */ keyval, /* uint */ keycode, /* Gdk.ModifierType */ state) =>  {
 			 
-				if (_this.projectselection.el.get_n_items() < 0) {
-					return;
+				if (keyval == Gdk.Key.Return  ) {
+					_this.searchbox.el.grab_focus();
 				}
-				//_this.projectselection.el.selected = 1; // select first 
 			});
 		}
 
@@ -586,7 +590,7 @@ public class DialogFiles : Object
 			    }
 				    
 				 Project.Project project  = this.el.selected == Gtk.INVALID_LIST_POSITION ? null :
-					 	(Project.Project) _this.projectsort.el.get_item(this.el.selected);
+					 	(Project.Project) _this.projectfiltermodel.el.get_item(this.el.selected);
 				 
 				 GLib.debug("selection changed to %s", project == null ? "none" : project.name);
 			  
