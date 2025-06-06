@@ -994,7 +994,7 @@
                      "Gtk.CustomFilterFunc match_func" : [
                       "(item) => { ",
                       "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
-                      "\tGLib.debug(\"filter %s %s\", item.name(), tr.get_type().name());",
+                      "\tGLib.debug(\"filter %s %s\", item.get_type().name(), tr.get_type().name());",
                       "\tvar j =  (JsRender.JsRender) tr;",
                       " ",
                       "\tvar str = _this.searchbox.el.text.down();\t",
