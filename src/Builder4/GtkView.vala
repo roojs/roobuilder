@@ -774,8 +774,8 @@ public class Xcls_GtkView : Object
 			var old_ar = old.split("\n");
 			var new_ar = str.split("\n");
 			var no_change_start = 0;
-			var no_change_new_end = new_ar.length;
-			var no_change_old_end = old_ar.length;
+			var no_change_new_end = new_ar.length -1;
+			var no_change_old_end = old_ar.length -1;
 			for (var i = 0; i < old_ar.length;i++) {
 				if (old_ar[i] == new_ar[i]) {
 					continue;
@@ -784,7 +784,7 @@ public class Xcls_GtkView : Object
 				break;
 			}
 			
-			for (var oi = old_ar.length, ni = new_ar.length; oi > 0 && ni> 0;  oi--,   ni--) {
+			for (var oi = no_change_old_end, ni = no_change_new_end; oi > 0 && ni> 0;  oi--,   ni--) {
 				if (old_ar[oi] == new_ar[ni]) {
 					continue;
 				}
