@@ -779,7 +779,7 @@ public class Xcls_GtkView : Object
 				if (old_ar[i] == new_ar[i]) {
 					continue;
 				}
-				no_change_start = i-1;
+				no_change_start = i;
 				break;
 			}
 			
@@ -800,7 +800,8 @@ public class Xcls_GtkView : Object
 			
 			// delete the old lines
 			if (no_change_old_end != no_change_start) {
-				
+				buf.get_iter_at_line(s, no_change_start);
+				buf.get_iter_at_line(s, no_change_new_end);
 				
 			}
 			
