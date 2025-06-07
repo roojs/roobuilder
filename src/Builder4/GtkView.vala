@@ -797,20 +797,19 @@ public class Xcls_GtkView : Object
 			for(var i = no_change_start; i < no_change_new_end; i++) {
 				ns += new_ar[i] + "\n";
 			}
-			
+			buf.get_iter_at_line(s, no_change_start);
+			buf.begin_user_action(); // is it really needed?
 			// delete the old lines
 			if (no_change_old_end != no_change_start) {
-				buf.get_iter_at_line(s, no_change_start);
-				buf.get_iter_at_line(s, no_change_new_end);
-				
+		
+				buf.get_iter_at_line(e, no_change_new_end);
+				buf.delete(e);
 			}
-			
-		
-		
-		
+			buf.insert(s, ns);
+			buf.end_user_action(); 
 		
 		//    print("setting str %d\n", str.length);
-		    buf.set_text(str, str.length);
+		    //buf.set_text(str, str.length);
 		    var lm = GtkSource.LanguageManager.get_default();
 		     
 		    //?? is javascript going to work as js?
@@ -821,6 +820,7 @@ public class Xcls_GtkView : Object
 		   _this.main_window.windowstate.updateErrorMarksAll(); 
 		   //  restore the cursor position?
 		    // after reloading the contents.
+		    /*
 		     GLib.Timeout.add(500, () => {
 				_this.buffer.in_cursor_change = true;
 		        print("RESORTING cursor to = %d\n", cpos);
@@ -836,6 +836,7 @@ public class Xcls_GtkView : Object
 				//_this.buffer.checkSyntax();
 				return false;
 			});
+			*/
 		  
 		    
 		    this.loading = false; 
