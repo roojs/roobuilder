@@ -743,13 +743,23 @@ public class Xcls_GtkView : Object
 		// user defined functions
 		public void loadFile ( ) {
 		    this.loading = true;
-		    var buf = this.el.get_buffer();
-		    buf.set_text("",0);
-		 
-			var cpos = buf.cursor_position;
 		    
-		   	print("BEFORE LOAD cursor = %d\n", cpos);
-		        var vadj_pos = this.el.get_vadjustment().get_value();
+		    
+		    
+		    
+		    var buf = this.el.get_buffer();
+		    Gtk.TextIter s;
+		    Gtk.TextIter e;
+		    buf.get_start_iter(out s);
+		    buf.get_end_iter(out e);
+		    var old = this.el.get_buffer().get_text(s,e,true);
+		    
+		    //buf.set_text("",0);
+		 
+			//var cpos = buf.cursor_position;
+		    
+		   //	print("BEFORE LOAD cursor = %d\n", cpos);
+		     //   var vadj_pos = this.el.get_vadjustment().get_value();
 		
 		    if (_this.file == null || _this.file.xtype != "Gtk") {
 		        print("xtype != Gtk");
@@ -758,6 +768,45 @@ public class Xcls_GtkView : Object
 		    }
 		   
 		    var str = _this.file.toSource();
+		
+			// work out what has changed
+			var old_ar = old.split("\n");
+			var new_ar = str.split("\n");
+			var no_change_start = 0;
+			var no_change_new_end = 0;
+			var no_change_old_end = 0;
+			for (var i = 0; i < old_ar.length;i++) {
+				if (old_ar[i] == new_ar[i]) {
+					continue;
+				}
+				no_change_start = i-1;
+				break;
+			}
+			
+			for (var oi = old_ar.length, ni = new_ar.length;; oi > 0 && ni> 0; oi--, ni--) {
+				if (old_ar[oi] == new_ar[ni]) {
+					continue;
+				}
+				
+				no_change_new_end = ni;
+				no_change_old_end = ni;
+				break;
+			}
+			// build the string we are about to add..
+			var ns = "";
+			for(var i = no_change_start; i < no_change_new_end; i++) {
+				ns += new_ar[i] + "\n";
+			}
+			
+			// delete the old lines
+			if (no_change_old_end != no_change_start) {
+				
+				
+			}
+			
+		
+		
+		
 		
 		//    print("setting str %d\n", str.length);
 		    buf.set_text(str, str.length);
