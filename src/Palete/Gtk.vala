@@ -252,7 +252,7 @@ namespace Palete {
 				return false;
 			}
 			string[] ret = {};
-			GLib.debug("getting type optiosn for an emum");
+			GLib.debug("getting type optiosn for an emum: %s", type);
 			
 			var enums = sl.getPropertiesFor(type, Lsp.SymbolKind.EnumMember);
 			foreach(var ty in enums.values) {
