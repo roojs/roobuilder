@@ -64,7 +64,7 @@ public class Xcls_WindowRooView : Object
 	{
 	    this.file = file;
 	    this.view.renderJS(true);
-	    this.notebook.el.page = 0;// gtk preview 
+	    //this.notebook.el.page = 0;// gtk preview 
 	    this.sourceview.loadFile();   
 	    this.last_error_counter = -1;
 	    this.updateErrorMarks();
