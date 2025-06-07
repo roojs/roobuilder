@@ -866,7 +866,7 @@
             "\twhile (no_change_new_end > 0 && old_ar[no_change_new_end -1] == \"\") {",
             "\t\tno_change_new_end--;",
             "\t}",
-            "\tfor (var oi = no_change_old_end -1 , ni = no_change_new_end -1; oi > 0 && ni>  0;  oi--,   ni--) {",
+            "\tfor (var oi = no_change_old_end -1 , ni = no_change_new_end -1; oi > no_change_start && ni>   no_change_start;  oi--,   ni--) {",
             "\t\tif (old_ar[oi] == new_ar[ni]) {",
             "\t\t\tcontinue;",
             "\t\t}",
