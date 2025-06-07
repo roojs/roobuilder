@@ -10,11 +10,7 @@ namespace JsRender
 {
 
 
-
 	public class  NodeProp : Object {
-
-
-
 
 
 
