@@ -62,9 +62,13 @@ public class Xcls_WindowRooView : Object
 	// user defined functions
 	public void loadFile (JsRender.JsRender file)
 	{
+	    
+	    if (this.file ==null || file.path != this.file.path) {
+	   		 this.notebook.el.page = 0;// webkit preview 
+	    }
 	    this.file = file;
 	    this.view.renderJS(true);
-	    //this.notebook.el.page = 0;// gtk preview 
+	   
 	    this.sourceview.loadFile();   
 	    this.last_error_counter = -1;
 	    this.updateErrorMarks();
