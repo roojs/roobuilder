@@ -325,7 +325,7 @@
             "\t\tbreak;",
             "\t}",
             "\t",
-            "\tfor (var oi = old_ar.length, ni = new_ar.length;; oi > 0 && ni> 0; oi--; ni--) {",
+            "\tfor (var oi = old_ar.length, ni = new_ar.length; oi > 0 && ni> 0;  oi--,   ni--) {",
             "\t\tif (old_ar[oi] == new_ar[ni]) {",
             "\t\t\tcontinue;",
             "\t\t}",

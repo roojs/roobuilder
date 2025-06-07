@@ -783,7 +783,7 @@ public class Xcls_GtkView : Object
 				break;
 			}
 			
-			for (var oi = old_ar.length, ni = new_ar.length;; oi > 0 && ni> 0; oi--; ni--) {
+			for (var oi = old_ar.length, ni = new_ar.length; oi > 0 && ni> 0;  oi--,   ni--) {
 				if (old_ar[oi] == new_ar[ni]) {
 					continue;
 				}
