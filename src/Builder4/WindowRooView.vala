@@ -1207,6 +1207,13 @@ public class Xcls_WindowRooView : Object
 				break;
 			}
 			
+			// clean ends..
+			while (no_change_old_end > 0 && old_ar[no_change_old_end -1] == "") {
+				no_change_old_end--;
+			}
+			while (no_change_new_end > 0 && old_ar[no_change_new_end -1] == "") {
+				no_change_new_end--;
+			}
 			for (var oi = no_change_old_end -1 , ni = no_change_new_end -1; oi > 0 && ni>  0;  oi--,   ni--) {
 				if (old_ar[oi] == new_ar[ni]) {
 					continue;
