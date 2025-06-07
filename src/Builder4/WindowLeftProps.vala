@@ -2391,7 +2391,7 @@ public class Xcls_LeftProps : Object
 				//GLib.debug("prop.key = %s", prop.to_display_name());
 				 
 			    var use_textarea =  prop.useTextArea();
-			     
+			    GLib.debug("use_textarea  for %s is %d", prop.name, use_textarea ? 1 : 0);
 			    var pal = _this.file.project.palete;
 			        
 			    string[] opts = {};
@@ -2399,15 +2399,20 @@ public class Xcls_LeftProps : Object
 			    var has_opts = prop.ptype.can_have_opt_list() ? 
 			    	pal.typeOptions(
 			    		_this.file.getSymbolLoader(), 
-			    		_this.node.fqn(), prop.name, prop.rtype, out opts
+			    		_this.node.fqn(), 
+			    		prop.name, 
+			    		prop.rtype, 
+			    		out opts
 					) : false;
 			    
 			    if (!has_opts && prop.ptype == JsRender.NodePropType.RAW) {
+			      	
 			      	use_textarea = true;
 			    }
 			    
 			    
 			    if (use_textarea) {
+			    		GLib.debug("set %s as a textarea", prop.name);
 			    		prop.bind_property("val_short",
 			                    lbl, "label",
 			                   GLib.BindingFlags.SYNC_CREATE);
