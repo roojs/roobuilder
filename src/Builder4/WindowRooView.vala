@@ -1202,8 +1202,8 @@ public class Xcls_WindowRooView : Object
 			var no_change_new_end = new_ar.length ;
 			var no_change_old_end = old_ar.length ;
 			for (var i = 0; i < old_ar.length;i++) {
+				no_change_start = i;
 				if (i == new_ar.length) {
-					no_change_start = i;
 					break;
 				}
 				
@@ -1214,7 +1214,6 @@ public class Xcls_WindowRooView : Object
 				if (i+1 < old_ar.length && i+1 < new_ar.length) {
 					// check the next line.
 					if (old_ar[i+1] != new_ar[i+1]) {
-						no_change_start = i;
 						break;
 					}
 					GLib.debug("change 1 line %d => %s", i, new_ar[i]);
@@ -1223,10 +1222,10 @@ public class Xcls_WindowRooView : Object
 					buf.get_iter_at_line(out e, i+1);
 					buf.delete(ref s, ref e);
 					buf.insert(ref s, new_ar[i] + "\n", new_ar[i].length+1);
-					continue;
+				 	continue;
 				}
 				
-				no_change_start = i;
+		
 				break;
 			}
 			
@@ -1234,7 +1233,7 @@ public class Xcls_WindowRooView : Object
 			while (no_change_old_end > 0 && old_ar[no_change_old_end -1] == "") {
 				no_change_old_end--;
 			}
-			while (no_change_new_end > 0 && old_ar[no_change_new_end -1] == "") {
+			while (no_change_new_end > 0 && new_ar[no_change_new_end -1] == "") {
 				no_change_new_end--;
 			}
 			for (var oi = no_change_old_end -1 , ni = no_change_new_end -1; 
