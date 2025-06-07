@@ -1167,6 +1167,7 @@ public class Xcls_WindowRooView : Object
 		    this.loading = true;
 		    
 		    
+		
 		    
 		    
 		    var buf = this.el.get_buffer();
@@ -1186,6 +1187,7 @@ public class Xcls_WindowRooView : Object
 		    if (_this.file == null || _this.file.xtype != "Roo") {
 		        print("xtype != Roo");
 		        this.loading = false;
+		
 		        return;
 		    }
 		   
