@@ -1237,7 +1237,8 @@ public class Xcls_WindowRooView : Object
 			while (no_change_new_end > 0 && old_ar[no_change_new_end -1] == "") {
 				no_change_new_end--;
 			}
-			for (var oi = no_change_old_end -1 , ni = no_change_new_end -1; oi > no_change_start && ni>   no_change_start;  oi--,   ni--) {
+			for (var oi = no_change_old_end -1 , ni = no_change_new_end -1; 
+				oi > no_change_start && ni>   no_change_start;  oi--,   ni--) {
 				if (old_ar[oi] == new_ar[ni]) {
 					continue;
 				}
