@@ -1547,7 +1547,7 @@ public class Xcls_WindowRooView : Object
 			GLib.debug("cursor moved called");
 			
 			
-			 	if (this.in_cursor_change ) {
+			 	if (this.in_cursor_change|| this.loading ) {
 			        GLib.debug("cursor changed : %d [ignoring nested call)", this.el.cursor_position);
 			        return;
 			    }

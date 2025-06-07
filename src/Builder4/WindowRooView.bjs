@@ -650,7 +650,7 @@
                "GLib.debug(\"cursor moved called\");",
                "",
                "",
-               " \tif (this.in_cursor_change ) {",
+               " \tif (this.in_cursor_change|| this.loading ) {",
                "        GLib.debug(\"cursor changed : %d [ignoring nested call)\", this.el.cursor_position);",
                "        return;",
                "    }",
