@@ -797,12 +797,12 @@ public class Xcls_GtkView : Object
 			for(var i = no_change_start; i < no_change_new_end; i++) {
 				ns += new_ar[i] + "\n";
 			}
-			buf.get_iter_at_line(s, no_change_start);
+			buf.get_iter_at_line(out s, no_change_start);
 			buf.begin_user_action(); // is it really needed?
 			// delete the old lines
 			if (no_change_old_end != no_change_start) {
 		
-				buf.get_iter_at_line(e, no_change_new_end);
+				buf.get_iter_at_line(out e, no_change_new_end);
 				buf.delete(e);
 			}
 			buf.insert(s, ns);
