@@ -802,7 +802,7 @@ public class Xcls_GtkView : Object
 			buf.begin_user_action(); // is it really needed?
 			// delete the old lines
 			if (no_change_old_end != no_change_start) {
-				GLib.debug("remove @%d - %d", no_change_start, no_change_new_end);
+				GLib.debug("remove @%d - %d", no_change_start, no_change_old_end);
 				buf.get_iter_at_line(out e, no_change_old_end);
 				buf.delete(ref s, ref e);
 			}

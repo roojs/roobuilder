@@ -344,7 +344,7 @@
             "\tbuf.begin_user_action(); // is it really needed?",
             "\t// delete the old lines",
             "\tif (no_change_old_end != no_change_start) {",
-            "\t\tGLib.debug(\"remove @%d - %d\", no_change_start, no_change_new_end);",
+            "\t\tGLib.debug(\"remove @%d - %d\", no_change_start, no_change_old_end);",
             "\t\tbuf.get_iter_at_line(out e, no_change_old_end);",
             "\t\tbuf.delete(ref s, ref e);",
             "\t}",
