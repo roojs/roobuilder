@@ -892,7 +892,7 @@
             "\t}",
             "",
             "\tGLib.debug(\"insert @%d : %d lines\", no_change_start, ns.split(\"\\n\").length);",
-            "\tif (ns.length) {",
+            "\tif (ns.length > 0) {",
             "\t\tbuf.insert(ref s, ns, ns.length);",
             "\t}",
             "\tbuf.end_user_action(); ",

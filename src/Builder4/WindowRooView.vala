@@ -1263,7 +1263,7 @@ public class Xcls_WindowRooView : Object
 			}
 		
 			GLib.debug("insert @%d : %d lines", no_change_start, ns.split("\n").length);
-			if (ns.length) {
+			if (ns.length > 0) {
 				buf.insert(ref s, ns, ns.length);
 			}
 			buf.end_user_action(); 
