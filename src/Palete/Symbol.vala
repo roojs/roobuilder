@@ -403,6 +403,9 @@ namespace Palete {
 				case Lsp.SymbolKind.Any:
 					return this.children_map;
 				
+				case Lsp.SymbolKind.EnumMember:
+					return this.enums;
+				
 				default:
 					return new Gee.HashMap<string,Symbol>();;
 			}

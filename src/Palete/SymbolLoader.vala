@@ -366,7 +366,7 @@ namespace Palete
 						
 					case Lsp.SymbolKind.EnumMember:
 						sym.enums.set(s.name, s);
-						mids.set((int)s.id, s);
+						//mids.set((int)s.id, s); // no need to load methods for enums?
 						break;
 						
 					case Lsp.SymbolKind.Parameter:

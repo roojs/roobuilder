@@ -227,10 +227,16 @@ namespace Palete {
 			 
 		}
 		  
-		public override bool  typeOptions(SymbolLoader? sl, string fqn, string key, string type, out string[] opts) 
+		public override bool  typeOptions(
+			SymbolLoader? sl,
+			string fqn, 
+			string key, 
+			string type, 
+			out string[] opts) 
 		{
 			opts = {};
 			if (type == ""  ) { // empty type   dont try and fill in options
+				GLib.debug("skip type options  type is empty");
 				return false;
 			}
 			GLib.debug("get typeOptions %s (%s)%s", fqn, type, key);
@@ -242,9 +248,12 @@ namespace Palete {
 			 
 			//print ("Got type %s", gir.asJSONString());
 			if (sy == null || sy.stype != Lsp.SymbolKind.Enum) {
+				GLib.debug("skip type options  - not an emum");
 				return false;
 			}
 			string[] ret = {};
+			GLib.debug("getting type optiosn for an emum: %s", type);
+			
 			var enums = sl.getPropertiesFor(type, Lsp.SymbolKind.EnumMember);
 			foreach(var ty in enums.values) {
 				ret  += ty.fqn;
