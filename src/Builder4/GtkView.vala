@@ -798,11 +798,12 @@ public class Xcls_GtkView : Object
 				ns += new_ar[i] + "\n";
 			}
 			buf.get_iter_at_line(out s, no_change_start);
+			GLib.debug("insert @%d", no_change_start);
 			buf.begin_user_action(); // is it really needed?
 			// delete the old lines
 			if (no_change_old_end != no_change_start) {
-		
-				buf.get_iter_at_line(out e, no_change_new_end);
+				GLib.debug("remove @%d - %d", no_change_start, no_change_new_end);
+				buf.get_iter_at_line(out e, no_change_old_end);
 				buf.delete(ref s, ref e);
 			}
 			buf.insert(ref s, ns, ns.length);
