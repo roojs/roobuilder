@@ -846,7 +846,7 @@
             "\t\t\t\tno_change_start = i;",
             "\t\t\t\tbreak;",
             "\t\t\t}",
-            "\t\t\tGLib.debug(\"change 1 line %d\", i);",
+            "\t\t\tGLib.debug(\"change 1 line %d => %s\", i, new_ar[i]);",
             "\t\t\t// ONLY CHANGE 1 LINE..",
             "\t\t\tbuf.get_iter_at_line(out s, i);",
             "\t\t\tbuf.get_iter_at_line(out e, i+1);",

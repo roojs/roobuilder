@@ -1217,7 +1217,7 @@ public class Xcls_WindowRooView : Object
 						no_change_start = i;
 						break;
 					}
-					GLib.debug("change 1 line %d", i);
+					GLib.debug("change 1 line %d => %s", i, new_ar[i]);
 					// ONLY CHANGE 1 LINE..
 					buf.get_iter_at_line(out s, i);
 					buf.get_iter_at_line(out e, i+1);
