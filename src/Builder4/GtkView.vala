@@ -773,8 +773,8 @@ public class Xcls_GtkView : Object
 			var old_ar = old.split("\n");
 			var new_ar = str.split("\n");
 			var no_change_start = 0;
-			var no_change_new_end = 0;
-			var no_change_old_end = 0;
+			var no_change_new_end = new_ar.length;
+			var no_change_old_end = old_ar.length;
 			for (var i = 0; i < old_ar.length;i++) {
 				if (old_ar[i] == new_ar[i]) {
 					continue;
