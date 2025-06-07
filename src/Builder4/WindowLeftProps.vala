@@ -2438,7 +2438,7 @@ public class Xcls_LeftProps : Object
 			        // others... - fill in options for true/false?
 			           // GLib.debug (ktype.up());
 			    if (has_opts) {
-				
+				    GLib.debug("options  for %s", prop.name);
 					while(model.get_n_items() > 0) {
 						model.remove(0);
 					}
@@ -2457,7 +2457,7 @@ public class Xcls_LeftProps : Object
 					this.is_setting = false;        
 					return ;
 			    }
-			                                  
+			    GLib.debug("no options  for %s", prop.name);                              
 				// see if type is a Enum.
 				// triggers a changed event
 			 
