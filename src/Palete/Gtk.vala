@@ -247,9 +247,12 @@ namespace Palete {
 			 
 			//print ("Got type %s", gir.asJSONString());
 			if (sy == null || sy.stype != Lsp.SymbolKind.Enum) {
+				GLib.debug("skip type options  - not an emum");
 				return false;
 			}
 			string[] ret = {};
+			GLib.debug("getting type optiosn for an emum");
+			
 			var enums = sl.getPropertiesFor(type, Lsp.SymbolKind.EnumMember);
 			foreach(var ty in enums.values) {
 				ret  += ty.fqn;
