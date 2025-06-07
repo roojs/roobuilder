@@ -1574,12 +1574,16 @@ public class Xcls_WindowRooView : Object
 			});
 			this.el.changed.connect( () => {
 			  
+			  
+			  	return; // this is supposed to be a readonly view of the code?
+			  	
 			    // check syntax??
 			    // ??needed..??
 			   // _this.save_button.el.sensitive = true;
 			    ///?? has changed occured during loading?
 			    
 			    // only trigger this if 
+			    
 			    
 			    
 			    
