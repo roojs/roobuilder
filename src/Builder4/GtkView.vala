@@ -789,8 +789,8 @@ public class Xcls_GtkView : Object
 					continue;
 				}
 				
-				no_change_new_end = ni;
-				no_change_old_end = oi;
+				no_change_new_end = ni + 1;
+				no_change_old_end = oi + 1;
 				break;
 			}
 			// build the string we are about to add..
