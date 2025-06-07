@@ -871,6 +871,11 @@
    "| void loadFile" : [
     "(JsRender.JsRender file) ",
     "{",
+    "        ",
+    "         if (this.file ==null || file.path != this.file.path) {",
+    "\t   \t\t this.notebook.el.page = 0;// webkit preview ",
+    "\t\t}",
+    "        ",
     "        this.file = null;",
     "        ",
     "        if (file.tree == null) {",

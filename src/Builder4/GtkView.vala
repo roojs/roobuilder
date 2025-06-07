@@ -59,6 +59,11 @@ public class Xcls_GtkView : Object
 	// user defined functions
 	public void loadFile (JsRender.JsRender file) 
 	{
+	        
+	         if (this.file ==null || file.path != this.file.path) {
+		   		 this.notebook.el.page = 0;// webkit preview 
+			}
+	        
 	        this.file = null;
 	        
 	        if (file.tree == null) {
