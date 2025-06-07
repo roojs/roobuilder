@@ -1261,8 +1261,11 @@ public class Xcls_WindowRooView : Object
 				buf.get_iter_at_line(out e, no_change_old_end);
 				buf.delete(ref s, ref e);
 			}
+		
 			GLib.debug("insert @%d : %d lines", no_change_start, ns.split("\n").length);
-			buf.insert(ref s, ns, ns.length);
+			if (ns.length) {
+				buf.insert(ref s, ns, ns.length);
+			}
 			buf.end_user_action(); 
 		
 		//    print("setting str %d\n", str.length);
