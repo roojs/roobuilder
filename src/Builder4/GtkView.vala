@@ -798,7 +798,7 @@ public class Xcls_GtkView : Object
 				ns += new_ar[i] + "\n";
 			}
 			buf.get_iter_at_line(out s, no_change_start);
-			GLib.debug("insert @%d", no_change_start);
+		
 			buf.begin_user_action(); // is it really needed?
 			// delete the old lines
 			if (no_change_old_end != no_change_start) {
@@ -806,6 +806,7 @@ public class Xcls_GtkView : Object
 				buf.get_iter_at_line(out e, no_change_old_end);
 				buf.delete(ref s, ref e);
 			}
+			GLib.debug("insert @%d : %d lines", no_change_start, ns.split("\n").length);
 			buf.insert(ref s, ns, ns.length);
 			buf.end_user_action(); 
 		
