@@ -803,7 +803,7 @@ public class Xcls_GtkView : Object
 			if (no_change_old_end != no_change_start) {
 		
 				buf.get_iter_at_line(out e, no_change_new_end);
-				buf.delete(s, e);
+				buf.delete(ref s, ref e);
 			}
 			buf.insert(s, ns);
 			buf.end_user_action(); 
