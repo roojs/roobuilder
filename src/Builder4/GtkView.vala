@@ -65,7 +65,8 @@ public class Xcls_GtkView : Object
 	            return;
 	        }
 	        this.last_error_counter = -1;
-	        this.notebook.el.page = 0;// gtk preview 
+	        // leave preview where it was..
+	        //this.notebook.el.page = 0;// gtk preview 
 	   
 	  
 	        
