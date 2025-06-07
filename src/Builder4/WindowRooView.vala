@@ -62,9 +62,13 @@ public class Xcls_WindowRooView : Object
 	// user defined functions
 	public void loadFile (JsRender.JsRender file)
 	{
+	    
+	    if (this.file ==null || file.path != this.file.path) {
+	   		 this.notebook.el.page = 0;// webkit preview 
+	    }
 	    this.file = file;
 	    this.view.renderJS(true);
-	    this.notebook.el.page = 0;// gtk preview 
+	   
 	    this.sourceview.loadFile();   
 	    this.last_error_counter = -1;
 	    this.updateErrorMarks();
@@ -1163,44 +1167,119 @@ public class Xcls_WindowRooView : Object
 		    this.loading = true;
 		    
 		    
-		    // get the cursor and scroll position....
-		    var buf = this.el.get_buffer();
-			var cpos = buf.cursor_position;
-		    
-		   print("BEFORE LOAD cursor = %d\n", cpos);
-		   
-		    var vadj_pos = this.el.get_vadjustment().get_value();
-		   
-		    
-		 
-		    buf.set_text("",0);
-		 
 		
+		    // this is a bit more complex than the gtk version,
+		    // as the roo library has a list of translated text at the start of the file.
+		    // 
 		    
+		    var buf = this.el.get_buffer();
+		    Gtk.TextIter s;
+		    Gtk.TextIter e;
+		    buf.get_start_iter(out s);
+		    buf.get_end_iter(out e);
+		    var old = this.el.get_buffer().get_text(s,e,true);
+		    
+		    //buf.set_text("",0);
+		 
+			//var cpos = buf.cursor_position;
+		    
+		   //	print("BEFORE LOAD cursor = %d\n", cpos);
+		     //   var vadj_pos = this.el.get_vadjustment().get_value();
 		
 		    if (_this.file == null || _this.file.xtype != "Roo") {
 		        print("xtype != Roo");
 		        this.loading = false;
+		
 		        return;
 		    }
-		    
-		    // get the string from the rendered tree...
-		     
-		     var str = _this.file.toSource();
-		     
+		   
+		    var str = _this.file.toSource();
+			buf.begin_user_action(); // is it really needed?
+			// work out what has changed
+			var old_ar = old.split("\n");
+			var new_ar = str.split("\n");
+			var no_change_start = 0;
+			var no_change_new_end = new_ar.length ;
+			var no_change_old_end = old_ar.length ;
+			for (var i = 0; i < old_ar.length;i++) {
+				no_change_start = i;
+				if (i == new_ar.length) {
+					break;
+				}
+				
+				if (old_ar[i] == new_ar[i]) {
+					continue;
+				}
+				// single line changes, (like the translations..
+				if (i+1 < old_ar.length && i+1 < new_ar.length) {
+					// check the next line.
+					if (old_ar[i+1] != new_ar[i+1]) {
+						break;
+					}
+					GLib.debug("change 1 line %d => %s", i, new_ar[i]);
+					// ONLY CHANGE 1 LINE..
+					buf.get_iter_at_line(out s, i);
+					buf.get_iter_at_line(out e, i+1);
+					buf.delete(ref s, ref e);
+					buf.insert(ref s, new_ar[i] + "\n", new_ar[i].length+1);
+				 	continue;
+				}
+				
+		
+				break;
+			}
+			
+			// clean ends..
+			while (no_change_old_end > 0 && old_ar[no_change_old_end -1] == "") {
+				no_change_old_end--;
+			}
+			while (no_change_new_end > 0 && new_ar[no_change_new_end -1] == "") {
+				no_change_new_end--;
+			}
+			for (var oi = no_change_old_end -1 , ni = no_change_new_end -1; 
+				oi > no_change_start && ni>   no_change_start;  oi--,   ni--) {
+				if (old_ar[oi] == new_ar[ni]) {
+					continue;
+				}
+				
+				no_change_new_end = ni + 1;
+				no_change_old_end = oi + 1;
+				break;
+			}
+			// build the string we are about to add..
+			var ns = "";
+			for(var i = no_change_start; i < no_change_new_end; i++) {
+				ns += new_ar[i] + "\n";
+			}
+			buf.get_iter_at_line(out s, no_change_start);
+		
+		
+			// delete the old lines
+			if (no_change_old_end != no_change_start) {
+				GLib.debug("remove @%d - %d", no_change_start, no_change_old_end);
+				buf.get_iter_at_line(out e, no_change_old_end);
+				buf.delete(ref s, ref e);
+			}
+		
+			GLib.debug("insert @%d : %d lines", no_change_start, ns.split("\n").length);
+			if (ns.length > 0) {
+				buf.insert(ref s, ns, ns.length);
+			}
+			buf.end_user_action(); 
+		
 		//    print("setting str %d\n", str.length);
-		    buf.set_text(str, str.length);
+		    //buf.set_text(str, str.length);
 		    var lm = GtkSource.LanguageManager.get_default();
 		     
 		    //?? is javascript going to work as js?
 		    
 		    ((GtkSource.Buffer)(buf)) .set_language(lm.get_language(_this.file.language));
 		  
-		    
-		    _this.main_window.windowstate.updateErrorMarksAll();
-		    
-		    //  restore the cursor position?
+		     
+		   _this.main_window.windowstate.updateErrorMarksAll(); 
+		   //  restore the cursor position?
 		    // after reloading the contents.
+		    /*
 		     GLib.Timeout.add(500, () => {
 				_this.buffer.in_cursor_change = true;
 		        print("RESORTING cursor to = %d\n", cpos);
@@ -1216,7 +1295,9 @@ public class Xcls_WindowRooView : Object
 				//_this.buffer.checkSyntax();
 				return false;
 			});
-				
+			*/
+		  
+		    
 		    this.loading = false; 
 		    _this.buffer.dirty = false;
 		}
@@ -1499,7 +1580,7 @@ public class Xcls_WindowRooView : Object
 			GLib.debug("cursor moved called");
 			
 			
-			 	if (this.in_cursor_change ) {
+			 	if (this.in_cursor_change|| _this.sourceview.loading ) {
 			        GLib.debug("cursor changed : %d [ignoring nested call)", this.el.cursor_position);
 			        return;
 			    }
@@ -1526,12 +1607,16 @@ public class Xcls_WindowRooView : Object
 			});
 			this.el.changed.connect( () => {
 			  
+			  
+			  	return; // this is supposed to be a readonly view of the code?
+			  	
 			    // check syntax??
 			    // ??needed..??
 			   // _this.save_button.el.sensitive = true;
 			    ///?? has changed occured during loading?
 			    
 			    // only trigger this if 
+			    
 			    
 			    
 			    

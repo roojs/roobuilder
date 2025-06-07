@@ -2321,7 +2321,9 @@ public class Xcls_LeftProps : Object
 				  }
 					 var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
 				 	 _this.stop_editor();
-				 	 prop.val = sw.active ? "true" : "false";
+				 	 prop.val = sw.active ? "true" : "false";	 
+				 	 _this.changed();
+				 	 
 						 	 
 				});
 				

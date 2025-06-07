@@ -59,13 +59,19 @@ public class Xcls_GtkView : Object
 	// user defined functions
 	public void loadFile (JsRender.JsRender file) 
 	{
+	        
+	         if (this.file ==null || file.path != this.file.path) {
+		   		 this.notebook.el.page = 0;// webkit preview 
+			}
+	        
 	        this.file = null;
 	        
 	        if (file.tree == null) {
 	            return;
 	        }
 	        this.last_error_counter = -1;
-	        this.notebook.el.page = 0;// gtk preview 
+	        // leave preview where it was..
+	        //this.notebook.el.page = 0;// gtk preview 
 	   
 	  
 	        
@@ -743,51 +749,75 @@ public class Xcls_GtkView : Object
 		// user defined functions
 		public void loadFile ( ) {
 		    this.loading = true;
-		    var buf = this.el.get_buffer();
-		    buf.set_text("",0);
-		 
-			var cpos = buf.cursor_position;
 		    
-		   	print("BEFORE LOAD cursor = %d\n", cpos);
-		        var vadj_pos = this.el.get_vadjustment().get_value();
+		    
+		    
+		    
+		    var buf = this.el.get_buffer();
+		    Gtk.TextIter s;
+		    Gtk.TextIter e;
+		    buf.get_start_iter(out s);
+		    buf.get_end_iter(out e);
+		    var old = this.el.get_buffer().get_text(s,e,true);
+		    
+		    //buf.set_text("",0);
+		 
+			//var cpos = buf.cursor_position;
+		    
+		   //	print("BEFORE LOAD cursor = %d\n", cpos);
+		     //   var vadj_pos = this.el.get_vadjustment().get_value();
 		
 		    if (_this.file == null || _this.file.xtype != "Gtk") {
 		        print("xtype != Gtk");
 		        this.loading = false;
 		        return;
 		    }
-		    /*
-		    var valafn = "";
-		      try {             
-		           var  regex = new Regex("\\.bjs$");
-		        
-		         
-		            valafn = regex.replace(_this.file.path,_this.file.path.length , 0 , ".vala");
-		         } catch (GLib.RegexError e) {
-		             this.loading = false;
-		            return;
-		        }   
-		    
-		
-		   if (!FileUtils.test(valafn,FileTest.IS_REGULAR) ) {
-		        print("File path has no errors\n");
-		        this.loading = false;
-		        return  ;
-		    }
-		    
-		    string str;
-		    try {
-		    
-		        GLib.FileUtils.get_contents (valafn, out str);
-		    } catch (Error e) {
-		        this.loading = false;
-		        return  ;
-		    }
-		    */
+		   
 		    var str = _this.file.toSource();
 		
+			// work out what has changed
+			var old_ar = old.split("\n");
+			var new_ar = str.split("\n");
+			var no_change_start = 0;
+			var no_change_new_end = new_ar.length ;
+			var no_change_old_end = old_ar.length ;
+			for (var i = 0; i < old_ar.length;i++) {
+				if (old_ar[i] == new_ar[i]) {
+					continue;
+				}
+				no_change_start = i;
+				break;
+			}
+			
+			for (var oi = no_change_old_end -1 , ni = no_change_new_end -1; oi > 0 && ni>  0;  oi--,   ni--) {
+				if (old_ar[oi] == new_ar[ni]) {
+					continue;
+				}
+				
+				no_change_new_end = ni + 1;
+				no_change_old_end = oi + 1;
+				break;
+			}
+			// build the string we are about to add..
+			var ns = "";
+			for(var i = no_change_start; i < no_change_new_end; i++) {
+				ns += new_ar[i] + "\n";
+			}
+			buf.get_iter_at_line(out s, no_change_start);
+		
+			buf.begin_user_action(); // is it really needed?
+			// delete the old lines
+			if (no_change_old_end != no_change_start) {
+				GLib.debug("remove @%d - %d", no_change_start, no_change_old_end);
+				buf.get_iter_at_line(out e, no_change_old_end);
+				buf.delete(ref s, ref e);
+			}
+			GLib.debug("insert @%d : %d lines", no_change_start, ns.split("\n").length);
+			buf.insert(ref s, ns, ns.length);
+			buf.end_user_action(); 
+		
 		//    print("setting str %d\n", str.length);
-		    buf.set_text(str, str.length);
+		    //buf.set_text(str, str.length);
 		    var lm = GtkSource.LanguageManager.get_default();
 		     
 		    //?? is javascript going to work as js?
@@ -798,6 +828,7 @@ public class Xcls_GtkView : Object
 		   _this.main_window.windowstate.updateErrorMarksAll(); 
 		   //  restore the cursor position?
 		    // after reloading the contents.
+		    /*
 		     GLib.Timeout.add(500, () => {
 				_this.buffer.in_cursor_change = true;
 		        print("RESORTING cursor to = %d\n", cpos);
@@ -813,6 +844,7 @@ public class Xcls_GtkView : Object
 				//_this.buffer.checkSyntax();
 				return false;
 			});
+			*/
 		  
 		    
 		    this.loading = false; 
