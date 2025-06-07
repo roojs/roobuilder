@@ -236,6 +236,7 @@ namespace Palete {
 		{
 			opts = {};
 			if (type == ""  ) { // empty type   dont try and fill in options
+				GLib.debug("skip type options  type is empty");
 				return false;
 			}
 			GLib.debug("get typeOptions %s (%s)%s", fqn, type, key);
