@@ -2377,10 +2377,15 @@ public class Xcls_LeftProps : Object
 				sw.hide();
 				
 				var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
+			 	
+			 	
+			 	
 			 	if (prop == null || _this.node == null ) {
 			 		GLib.error("something is wrong");
 				 	 
 				}
+				
+				GLib.debug("bind %s", prop.name);
 				if ( _this.node.fqn() == "") {
 			 		GLib.debug("node is missing fqn");
 				 	return;
