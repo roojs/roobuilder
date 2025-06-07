@@ -1168,7 +1168,9 @@ public class Xcls_WindowRooView : Object
 		    
 		    
 		
-		    
+		    // this is a bit more complex than the gtk version,
+		    // as the roo library has a list of translated text at the start of the file.
+		    // 
 		    
 		    var buf = this.el.get_buffer();
 		    Gtk.TextIter s;
@@ -1192,7 +1194,7 @@ public class Xcls_WindowRooView : Object
 		    }
 		   
 		    var str = _this.file.toSource();
-		
+			buf.begin_user_action(); // is it really needed?
 			// work out what has changed
 			var old_ar = old.split("\n");
 			var new_ar = str.split("\n");
@@ -1200,9 +1202,29 @@ public class Xcls_WindowRooView : Object
 			var no_change_new_end = new_ar.length ;
 			var no_change_old_end = old_ar.length ;
 			for (var i = 0; i < old_ar.length;i++) {
+				if (i == new_ar.length) {
+					no_change_start = i;
+					break;
+				}
+				
 				if (old_ar[i] == new_ar[i]) {
 					continue;
 				}
+				// single line changes, (like the translations..
+				if (i+1 < old_ar.length && i+1 < new_ar.length) {
+					// check the next line.
+					if (old_ar[i+1] != new_ar[i+1]) {
+						no_change_start = i;
+						break;
+					}
+					// ONLY CHANGE 1 LINE..
+					buf.get_iter_at_line(out s, i);
+					buf.get_iter_at_line(out e, i+1);
+					buf.delete(ref s, ref e);
+					buf.insert(ref s, new_ar[i] + "\n", new_ar[i].length+1);
+					continue;
+				}
+				
 				no_change_start = i;
 				break;
 			}
@@ -1230,7 +1252,7 @@ public class Xcls_WindowRooView : Object
 			}
 			buf.get_iter_at_line(out s, no_change_start);
 		
-			buf.begin_user_action(); // is it really needed?
+		
 			// delete the old lines
 			if (no_change_old_end != no_change_start) {
 				GLib.debug("remove @%d - %d", no_change_start, no_change_old_end);
