@@ -1264,6 +1264,7 @@ public class Xcls_WindowRooView : Object
 		  
 		    
 		    this.loading = false; 
+		    _this.buffer.dirty = false;
 		}
 		public void nodeSelected (JsRender.Node? sel, bool scroll) {
 		  

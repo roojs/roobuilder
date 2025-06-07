@@ -889,6 +889,7 @@
             "  ",
             "    ",
             "    this.loading = false; ",
+            "    _this.buffer.dirty = false;",
             "}",
             ""
            ],
