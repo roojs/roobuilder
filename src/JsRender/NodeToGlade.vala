@@ -135,7 +135,7 @@ public class JsRender.NodeToGlade : Object {
 		if (gdata.fqn == "Gtk.ListStore") {
 			return null;
 		}
-		if (!gdata.implements.contains("GLib.Object")) {
+		if (gdata.fqn.contains("Gtk.Property")) { // kludgy fix..
 			return null;
 		}
 		 // <object class="GtkNotebookPage">
