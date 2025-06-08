@@ -96,7 +96,7 @@ namespace Palete {
 		public  override Symbol? getClass(SymbolLoader? sl, string ename)
 		{
 			var ret =  sl.singleByFqn(ename);
-			return ret.stype == Lsp.SymbolKind.Class ? ret : null;
+			return ret != null && ret.stype == Lsp.SymbolKind.Class ? ret : null;
 		}
 		public  override Symbol? getAny(SymbolLoader? sl, string ename)
 		{
