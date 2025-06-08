@@ -170,6 +170,7 @@
              "   \t",
              "   \t_this.window.windowstate.popover_codeinfo.show(this.el,s);",
              "}",
+             "",
              "  "
             ]
            },
