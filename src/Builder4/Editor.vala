@@ -726,6 +726,7 @@ public class Editor : Object
 			   	
 			   	if (_this.node != null) {
 			   		s = _this.node.fqn();
+			   		GLib.debug("node selected - fqn is %s", s);
 			   	}
 			   	
 			   	_this.window.windowstate.popover_codeinfo.show(this.el,s);

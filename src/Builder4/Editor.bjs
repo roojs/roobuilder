@@ -166,6 +166,7 @@
              "   \t",
              "   \tif (_this.node != null) {",
              "   \t\ts = _this.node.fqn();",
+             "   \t\tGLib.debug(\"node selected - fqn is %s\", s);",
              "   \t}",
              "   \t",
              "   \t_this.window.windowstate.popover_codeinfo.show(this.el,s);",
