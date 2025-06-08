@@ -149,7 +149,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		   
 		if (cls == null) {
 			GLib.debug("Symbol loader  failed to find class %s", this.node.fqn());
-			this.addLine(this.pad + "/* Symbol loader faile failed to find " + this.node.fqn()  + " */");
+			this.addLine(this.pad + "/* Symbol loader failed to find " + this.node.fqn()  + " */");
 			return;
 		}
  		sl.loadProps(cls);
