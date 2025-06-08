@@ -161,7 +161,10 @@
            "listeners" : {
             "clicked" : [
              "() => { ",
-             "   \t_this.window.windowstate.popover_codeinfo.show(this.el, \":GLib.Object\");",
+             "   \t_",
+             "   \t",
+             "   \t",
+             "   \tthis.window.windowstate.popover_codeinfo.show(this.el, \":GLib.Object\");",
              "}",
              "  "
             ]
