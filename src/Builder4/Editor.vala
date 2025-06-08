@@ -724,7 +724,7 @@ public class Editor : Object
 			   	
 			   	var s = "GLib.Object";
 			   	
-			   	if (this.node != null) {
+			   	if (_this.node != null) {
 			   		s = this.node.fqn();
 			   	}
 			   	
