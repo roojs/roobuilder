@@ -165,7 +165,7 @@
              "   \tvar s = \"GLib.Object\";",
              "   \t",
              "   \tif (_this.node != null) {",
-             "   \t\ts = this.node.fqn();",
+             "   \t\ts = _this.node.fqn();",
              "   \t}",
              "   \t",
              "   \tthis.window.windowstate.popover_codeinfo.show(this.el,s);",

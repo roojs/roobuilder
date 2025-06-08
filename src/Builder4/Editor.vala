@@ -725,7 +725,7 @@ public class Editor : Object
 			   	var s = "GLib.Object";
 			   	
 			   	if (_this.node != null) {
-			   		s = this.node.fqn();
+			   		s = _this.node.fqn();
 			   	}
 			   	
 			   	this.window.windowstate.popover_codeinfo.show(this.el,s);
