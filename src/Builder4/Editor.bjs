@@ -168,7 +168,7 @@
              "   \t\ts = this.node.fqn();",
              "   \t}",
              "   \t",
-             "   \tthis.window.windowstate.popover_codeinfo.show(this.el, \":GLib.Object\");",
+             "   \tthis.window.windowstate.popover_codeinfo.show(this.el,s);",
              "}",
              "  "
             ]

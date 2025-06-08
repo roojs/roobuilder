@@ -728,7 +728,7 @@ public class Editor : Object
 			   		s = this.node.fqn();
 			   	}
 			   	
-			   	this.window.windowstate.popover_codeinfo.show(this.el, ":GLib.Object");
+			   	this.window.windowstate.popover_codeinfo.show(this.el,s);
 			});
 		}
 
