@@ -721,8 +721,12 @@ public class Editor : Object
 
 			//listeners
 			this.el.clicked.connect( () => { 
-			   	_
 			   	
+			   	var s = "GLib.Object";
+			   	
+			   	if (this.node != null) {
+			   		s = this.node.fqn();
+			   	}
 			   	
 			   	this.window.windowstate.popover_codeinfo.show(this.el, ":GLib.Object");
 			});

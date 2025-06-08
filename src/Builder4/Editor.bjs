@@ -161,8 +161,12 @@
            "listeners" : {
             "clicked" : [
              "() => { ",
-             "   \t_",
              "   \t",
+             "   \tvar s = \"GLib.Object\";",
+             "   \t",
+             "   \tif (this.node != null) {",
+             "   \t\ts = this.node.fqn();",
+             "   \t}",
              "   \t",
              "   \tthis.window.windowstate.popover_codeinfo.show(this.el, \":GLib.Object\");",
              "}",
