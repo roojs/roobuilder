@@ -168,7 +168,7 @@
              "   \t\ts = _this.node.fqn();",
              "   \t}",
              "   \t",
-             "   \tthis.window.windowstate.popover_codeinfo.show(this.el,s);",
+             "   \t_this.window.windowstate.popover_codeinfo.show(this.el,s);",
              "}",
              "  "
             ]

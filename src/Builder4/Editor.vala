@@ -728,7 +728,7 @@ public class Editor : Object
 			   		s = _this.node.fqn();
 			   	}
 			   	
-			   	this.window.windowstate.popover_codeinfo.show(this.el,s);
+			   	_this.window.windowstate.popover_codeinfo.show(this.el,s);
 			});
 		}
 
