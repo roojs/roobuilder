@@ -199,6 +199,7 @@ public class FakeServerCache : Object
 		
 		// testing - look in (used only when we were doing it manually) - I dont think this is used anymore...
 		var tname  = BuilderApplication.configDirectory()+ "/test-docs" + fname;
+		GLib.debug("checking override files from   %s", tname);
 		var  file = GLib.File.new_for_path ( tname);
 		if (file.query_exists()) {
 			this.initWithFile(file);
