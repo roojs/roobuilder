@@ -135,7 +135,9 @@ public class JsRender.NodeToGlade : Object {
 		if (gdata.fqn == "Gtk.ListStore") {
 			return null;
 		}
-		 
+		if (!gdata.implements.contains("GLib.Object")) {
+			return null;
+		}
 		 // <object class="GtkNotebookPage">
        	//         <property name="tab-expand">1</property>
          //       <property name="child">
