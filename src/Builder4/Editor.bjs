@@ -162,10 +162,10 @@
             "clicked" : [
              "() => { ",
              "   \t",
-             "   \tvar s = \"GLib.Object\";",
+             "   \tvar s = \":GLib.Object\";",
              "   \t",
              "   \tif (_this.node != null) {",
-             "   \t\ts = _this.node.fqn();",
+             "   \t\ts = \":\" + _this.node.fqn();",
              "   \t\tGLib.debug(\"node selected - fqn is %s\", s);",
              "   \t}",
              "   \t",

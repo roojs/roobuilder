@@ -722,10 +722,10 @@ public class Editor : Object
 			//listeners
 			this.el.clicked.connect( () => { 
 			   	
-			   	var s = "GLib.Object";
+			   	var s = ":GLib.Object";
 			   	
 			   	if (_this.node != null) {
-			   		s = _this.node.fqn();
+			   		s = ":" + _this.node.fqn();
 			   		GLib.debug("node selected - fqn is %s", s);
 			   	}
 			   	
