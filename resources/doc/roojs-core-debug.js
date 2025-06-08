@@ -293,20 +293,8 @@ Company.data.CustomStore = function(config) { ... }
             for (i=0; i<a.length; ++i) {
                 d=a[i].split(".");
                 rt = d[0];
-                
-				if (typeof(window != 'undefined')) {
-					if (typeof(window[rt]) == "undefined"){
-						window[rt] = {};
-					}
-					o = window[rt];
-				
-				} else {
-					/** eval:var:o */
-					eval('if (typeof ' + rt + ' == "undefined"){' + rt + ' = {};} o = ' + rt + ';');
-				}
-				
-				
-                
+                /** eval:var:o */
+                eval('if (typeof ' + rt + ' == "undefined"){' + rt + ' = {};} o = ' + rt + ';');
                 for (j=1; j<d.length; ++j) {
                     o[d[j]]=o[d[j]] || {};
                     o=o[d[j]];
@@ -1260,108 +1248,14 @@ Date.parseRegexes = [];
 Date.formatFunctions = {count:0};
 
 // private
-Date.formatParsed = {}
 Date.prototype.dateFormat = function(format) {
-    if (typeof(Date.formatParsed[format])  == 'undefined') {
-        
-          //  var funcName = "format" + Date.formatFunctions.count++;
-          //Date.formatFunctions[format] = funcName;
-          //var code = "Date.prototype." + funcName + " = function(){return ";
-          // generate an array.. 
-          var code = [];
-          var special = false;
-          var ch = '';
-          for (var i = 0; i < format.length; ++i) {
-              ch = format.charAt(i);
-              if (!special && ch == "\\") {
-                  special = true;
-              }
-              else if (special) {
-                  special = false;
-                  code.push([String.escape(ch)]);
-              }
-              else {
-                  code.push(ch);
-              }
-          }
-          Date.formatParsed[format] = code;
+    if (Date.formatFunctions[format] == null) {
+        Date.createNewFormat(format);
     }
-    var ret = '';
-    var ar =  Date.formatParsed[format];
-    for(var i =0; i <ar.length; i++) {
-        var c = ar[i];
-    
-      if (typeof(c) != 'string') {
-        ret += c[0];
-        continue;
-      }
-      ret += this.formatCodeToValue(c);
-    }
-    return ret;
- 
+    var func = Date.formatFunctions[format];
+    return this[func]();
 };
-Date.prototype.formatCodeToValue = function(character) {
-    switch (character) {
-    case "d":
-        return String.leftPad(this.getDate(), 2, '0');
-    case "D":
-        return Date.dayNames[this.getDay()].substring(0, 3);
-    case "j":
-        return this.getDate();
-    case "l":
-        return Date.dayNames[this.getDay()];
-    case "S":
-        return this.getSuffix();
-    case "w":
-        return this.getDay();
-    case "z":
-        return this.getDayOfYear();
-    case "W":
-        return this.getWeekOfYear();
-    case "F":
-        return Date.monthNames[this.getMonth()];
-    case "m":
-        return String.leftPad(this.getMonth() + 1, 2, '0');
-    case "M":
-        return Date.monthNames[this.getMonth()].substring(0, 3);
-    case "n":
-        return (this.getMonth() + 1);
-    case "t":
-        return this.getDaysInMonth();
-    case "L":
-        return (this.isLeapYear() ? 1 : 0);
-    case "Y":
-        return this.getFullYear();
-    case "y":
-        return (this.getFullYear()+ "").substring(2, 4) ;
-    case "a":
-        return (this.getHours() < 12 ? 'am' : 'pm') ;
-    case "A":
-        return (this.getHours() < 12 ? 'AM' : 'PM') ;
-    case "g":
-        return ((this.getHours() % 12) ? this.getHours() % 12 : 12);
-    case "G":
-        return this.getHours();
-    case "h":
-        return String.leftPad((this.getHours() % 12) ? this.getHours() % 12 : 12, 2, '0');
-    case "H":
-        return String.leftPad(this.getHours(), 2, '0');
-    case "i":
-        return String.leftPad(this.getMinutes(), 2, '0');
-    case "s":
-        return String.leftPad(this.getSeconds(), 2, '0');
-    case "O":
-        return this.getGMTOffset();
-    case "P":
-    	return this.getGMTColonOffset();
-    case "T":
-        return this.getTimezone();
-    case "Z":
-        return (this.getTimezoneOffset() * -60);
-    default:
-        return String.escape(character);
-    }
-};
+
 
 /**
  * Formats a date given the supplied format string
@@ -1372,9 +1266,92 @@ Date.prototype.formatCodeToValue = function(character) {
 Date.prototype.format = Date.prototype.dateFormat;
 
 // private
- 
+Date.createNewFormat = function(format) {
+    var funcName = "format" + Date.formatFunctions.count++;
+    Date.formatFunctions[format] = funcName;
+    var code = "Date.prototype." + funcName + " = function(){return ";
+    var special = false;
+    var ch = '';
+    for (var i = 0; i < format.length; ++i) {
+        ch = format.charAt(i);
+        if (!special && ch == "\\") {
+            special = true;
+        }
+        else if (special) {
+            special = false;
+            code += "'" + String.escape(ch) + "' + ";
+        }
+        else {
+            code += Date.getFormatCode(ch);
+        }
+    }
+    /** eval:var:zzzzzzzzzzzzz */
+    eval(code.substring(0, code.length - 3) + ";}");
+};
 
-
+// private
+Date.getFormatCode = function(character) {
+    switch (character) {
+    case "d":
+        return "String.leftPad(this.getDate(), 2, '0') + ";
+    case "D":
+        return "Date.dayNames[this.getDay()].substring(0, 3) + ";
+    case "j":
+        return "this.getDate() + ";
+    case "l":
+        return "Date.dayNames[this.getDay()] + ";
+    case "S":
+        return "this.getSuffix() + ";
+    case "w":
+        return "this.getDay() + ";
+    case "z":
+        return "this.getDayOfYear() + ";
+    case "W":
+        return "this.getWeekOfYear() + ";
+    case "F":
+        return "Date.monthNames[this.getMonth()] + ";
+    case "m":
+        return "String.leftPad(this.getMonth() + 1, 2, '0') + ";
+    case "M":
+        return "Date.monthNames[this.getMonth()].substring(0, 3) + ";
+    case "n":
+        return "(this.getMonth() + 1) + ";
+    case "t":
+        return "this.getDaysInMonth() + ";
+    case "L":
+        return "(this.isLeapYear() ? 1 : 0) + ";
+    case "Y":
+        return "this.getFullYear() + ";
+    case "y":
+        return "('' + this.getFullYear()).substring(2, 4) + ";
+    case "a":
+        return "(this.getHours() < 12 ? 'am' : 'pm') + ";
+    case "A":
+        return "(this.getHours() < 12 ? 'AM' : 'PM') + ";
+    case "g":
+        return "((this.getHours() % 12) ? this.getHours() % 12 : 12) + ";
+    case "G":
+        return "this.getHours() + ";
+    case "h":
+        return "String.leftPad((this.getHours() % 12) ? this.getHours() % 12 : 12, 2, '0') + ";
+    case "H":
+        return "String.leftPad(this.getHours(), 2, '0') + ";
+    case "i":
+        return "String.leftPad(this.getMinutes(), 2, '0') + ";
+    case "s":
+        return "String.leftPad(this.getSeconds(), 2, '0') + ";
+    case "O":
+        return "this.getGMTOffset() + ";
+    case "P":
+    	return "this.getGMTColonOffset() + ";
+    case "T":
+        return "this.getTimezone() + ";
+    case "Z":
+        return "(this.getTimezoneOffset() * -60) + ";
+    default:
+        return "'" + String.escape(character) + "' + ";
+    }
+};
 
 /**
  * Parses the passed string using the specified format. Note that this function expects dates in normal calendar
@@ -1401,289 +1378,215 @@ dt = Date.parseDate("2006-1-15 3:20:01 PM", "Y-m-d h:i:s A" );
  * @return {Date} The parsed date
  * @static
  */
- 
-
 Date.parseDate = function(input, format) {
-    
-    var out = {
-		y : -1,
-		m : -1,
-		d : -1,
-		h : -1,
-		i : -1,
-		s : -1,
-		o : false,
-		z : false
-		
-	};
-	var v;
-    var d = new Date();
-    out.y = d.getFullYear();
-    out.m = d.getMonth();
-    out.d = d.getDate();
-    if (typeof(input) !== 'string') {
-		input = input.toString();
-	}
-    if (typeof(Date.parseFuncData[format]) == 'undefined') {
-			
-		
-		var regex = "";
-		var funcs = [];
-		 
-		var special = false;
-		var ch = '';
-		for (var i = 0; i < format.length; ++i) {
-			ch = format.charAt(i);
-			if (!special && ch == "\\") {
-				special = true;
-			}
-			else if (special) {
-				special = false;
-				regex += String.escape(ch);
- 			}
-			else {
-        
-				var obj = Date.formatCodeToRegex(ch, 0);
-  
-				regex += obj.s;
-				if (obj.f !== false) {
-					funcs.push(obj.f);
-				}
-			}
-		}
-		Date.parseFuncData[format] = {
-			f : funcs ,
-			re : new RegExp("^" + regex + "$")
-		};
-  }
-	
-	if (!input.match(Date.parseFuncData[format].re)) {
-		return null;
-	}
-	
-	input.replace(Date.parseFuncData[format].re, function(   ) {
-			
-	   var results = arguments;
-	   Date.parseFuncData[format].f.forEach(function(v, i) {
-		   
-		   v(results[i+1], out);
-   
-	   });
-
-	});
-	
-	
-
-    if (out.y >= 0 && out.m >= 0 && out.d > 0 && out.h >= 0 && out.i >= 0 && out.s >= 0) {
-		v = new Date(out.y, out.m, out.d, out.h, out.i, out.s);
-		v.setFullYear(out.y);
-	} else if (out.y >= 0 && out.m >= 0 && out.d > 0 && out.h >= 0 && out.i >= 0)  {
-		v = new Date(out.y, out.m, out.d, out.h, out.i);
-		v.setFullYear(out.y);
-	} else if (out.y >= 0 && out.m >= 0 && out.d > 0 && out.h >= 0) {
-		v = new Date(out.y, out.m, out.d, out.h);
-		v.setFullYear(out.y);
-	}else if (out.y >= 0 && out.m >= 0 && out.d > 0) {
-		v = new Date(out.y, out.m, out.d);
-		v.setFullYear(out.y);
-	} else if (out.y >= 0 && out.m >= 0) {
-		v = new Date(out.y, out.m);
-		v.setFullYear(out.y);
-	} else if (out.y >= 0) {
-		v = new Date(out.y);
-		v.setFullYear(out.y);
-	}
-	
-	if (!v || (out.z === false && out.o === false)) {
-	  return v;
-	}
-	if (out.z !== false) {
-		return v.add(Date.SECOND, (v.getTimezoneOffset() * 60) + (out.z*1));
-	}
-	// out.o
-	return v.add(Date.HOUR, (v.getGMTOffset() / 100) + (out.o / -100))  ; // reset to GMT, then add offset
-
- 
+    if (Date.parseFunctions[format] == null) {
+        Date.createParser(format);
+    }
+    var func = Date.parseFunctions[format];
+    return Date[func](input);
 };
-Date.parseFuncData = {};
+/**
+ * @private
+ */
 
-Date.formatCodeToRegex = function(character) {
+Date.createParser = function(format) {
+    var funcName = "parse" + Date.parseFunctions.count++;
+    var regexNum = Date.parseRegexes.length;
+    var currentGroup = 1;
+    Date.parseFunctions[format] = funcName;
+
+    var code = "Date." + funcName + " = function(input){\n"
+        + "var y = -1, m = -1, d = -1, h = -1, i = -1, s = -1, o, z, v;\n"
+        + "var d = new Date();\n"
+        + "y = d.getFullYear();\n"
+        + "m = d.getMonth();\n"
+        + "d = d.getDate();\n"
+        + "if (typeof(input) !== 'string') { input = input.toString(); }\n"
+        + "var results = input.match(Date.parseRegexes[" + regexNum + "]);\n"
+        + "if (results && results.length > 0) {";
+    var regex = "";
+
+    var special = false;
+    var ch = '';
+    for (var i = 0; i < format.length; ++i) {
+        ch = format.charAt(i);
+        if (!special && ch == "\\") {
+            special = true;
+        }
+        else if (special) {
+            special = false;
+            regex += String.escape(ch);
+        }
+        else {
+            var obj = Date.formatCodeToRegex(ch, currentGroup);
+            currentGroup += obj.g;
+            regex += obj.s;
+            if (obj.g && obj.c) {
+                code += obj.c;
+            }
+        }
+    }
+
+    code += "if (y >= 0 && m >= 0 && d > 0 && h >= 0 && i >= 0 && s >= 0)\n"
+        + "{v = new Date(y, m, d, h, i, s); v.setFullYear(y);}\n"
+        + "else if (y >= 0 && m >= 0 && d > 0 && h >= 0 && i >= 0)\n"
+        + "{v = new Date(y, m, d, h, i); v.setFullYear(y);}\n"
+        + "else if (y >= 0 && m >= 0 && d > 0 && h >= 0)\n"
+        + "{v = new Date(y, m, d, h); v.setFullYear(y);}\n"
+        + "else if (y >= 0 && m >= 0 && d > 0)\n"
+        + "{v = new Date(y, m, d); v.setFullYear(y);}\n"
+        + "else if (y >= 0 && m >= 0)\n"
+        + "{v = new Date(y, m); v.setFullYear(y);}\n"
+        + "else if (y >= 0)\n"
+        + "{v = new Date(y); v.setFullYear(y);}\n"
+        + "}return (v && (z || o))?\n" // favour UTC offset over GMT offset
+        + "    ((z)? v.add(Date.SECOND, (v.getTimezoneOffset() * 60) + (z*1)) :\n" // reset to UTC, then add offset
+        + "        v.add(Date.HOUR, (v.getGMTOffset() / 100) + (o / -100))) : v\n" // reset to GMT, then add offset
+        + ";}";
+
+    Date.parseRegexes[regexNum] = new RegExp("^" + regex + "$");
+    /** eval:var:zzzzzzzzzzzzz */
+    eval(code);
+};
+
+// private
+Date.formatCodeToRegex = function(character, currentGroup) {
     switch (character) {
     case "D":
-        return {
-	    f : function(result, out) {},
-        s:"(Sun|Mon|Tue|Wed|Thu|Fri|Sat)"};
+        return {g:0,
+        c:null,
+        s:"(?:Sun|Mon|Tue|Wed|Thu|Fri|Sat)"};
     case "j":
-        return {
-          f : function(result, out) {
-            out.d = parseInt(result, 10);
-          },
-          s:"(\\d{1,2})"}; // day of month without leading zeroes,
+        return {g:1,
+            c:"d = parseInt(results[" + currentGroup + "], 10);\n",
+            s:"(\\d{1,2})"}; // day of month without leading zeroes
     case "d":
-        return {
-			f : function(result, out) {
-				out.d = parseInt(result, 10);
-			},
+        return {g:1,
+            c:"d = parseInt(results[" + currentGroup + "], 10);\n",
             s:"(\\d{2})"}; // day of month with leading zeroes
     case "l":
-        return {
-			f : function(result, out) {},
-            s:"(" + Date.dayNames.join("|") + ")"};
+        return {g:0,
+            c:null,
+            s:"(?:" + Date.dayNames.join("|") + ")"};
     case "S":
-        return {
-			f : function(result, out) {},
-            s:"(st|nd|rd|th)"};
+        return {g:0,
+            c:null,
+            s:"(?:st|nd|rd|th)"};
     case "w":
-        return {
-			f : false,             
+        return {g:0,
+            c:null,
             s:"\\d"};
     case "z":
-        return { 
-			f : function(result, out) {},
-            s:"(\\d{1,3})"};
+        return {g:0,
+            c:null,
+            s:"(?:\\d{1,3})"};
     case "W":
-        return {
-			f : function(result, out) {},
-            s:"(\\d{2})"};
+        return {g:0,
+            c:null,
+            s:"(?:\\d{2})"};
     case "F":
-        return {
-			f : function(result, out) {
-				out.m = parseInt(Date.monthNumbers[result].substring(0, 3), 10);
-			},
+        return {g:1,
+            c:"m = parseInt(Date.monthNumbers[results[" + currentGroup + "].substring(0, 3)], 10);\n",
             s:"(" + Date.monthNames.join("|") + ")"};
     case "M":
-        return {
-            f : function(result, out) {
-				out.m = parseInt(Date.monthNumbers[result], 10);
-			},
+        return {g:1,
+            c:"m = parseInt(Date.monthNumbers[results[" + currentGroup + "]], 10);\n",
             s:"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"};
     case "n":
-        return {
-			f : function(result, out) {
-				out.m = parseInt(Date.monthNumbers[result], 10);
-			},
+        return {g:1,
+            c:"m = parseInt(results[" + currentGroup + "], 10) - 1;\n",
             s:"(\\d{1,2})"}; // Numeric representation of a month, without leading zeros
     case "m":
-        return {
-			f : function(result, out) {
-				out.m = Math.max(0,parseInt(result, 10) - 1);
-			},
+        return {g:1,
+            c:"m = Math.max(0,parseInt(results[" + currentGroup + "], 10) - 1);\n",
             s:"(\\d{2})"}; // Numeric representation of a month, with leading zeros
     case "t":
-        return {
-			f : false,
+        return {g:0,
+            c:null,
             s:"\\d{1,2}"};
     case "L":
-        return {
-			f : function(result, out) {},
-            s:"(1|0)"};
+        return {g:0,
+            c:null,
+            s:"(?:1|0)"};
     case "Y":
-        return {
-			f : function(result, out) {
-				out.y =  parseInt(result, 10);
-			},
+        return {g:1,
+            c:"y = parseInt(results[" + currentGroup + "], 10);\n",
             s:"(\\d{4})"};
     case "y":
-        return {
-			f : function(result, out) {
-				var ty = parseInt(result, 10);
-                out.y = ty > Date.y2kYear ? 1900 + ty : 2000 + ty;
-			},
+        return {g:1,
+            c:"var ty = parseInt(results[" + currentGroup + "], 10);\n"
+                + "y = ty > Date.y2kYear ? 1900 + ty : 2000 + ty;\n",
             s:"(\\d{1,2})"};
     case "a":
-        return {
-			f : function(result, out) {
-				if (result == 'am') {
-					if (out.h == 12) { h = 0; }
-                } else {
-					if (out.h < 12) { out.h += 12; }
-				}
-			},	
+        return {g:1,
+            c:"if (results[" + currentGroup + "] == 'am') {\n"
+                + "if (h == 12) { h = 0; }\n"
+                + "} else { if (h < 12) { h += 12; }}",
             s:"(am|pm)"};
     case "A":
-        return {
-			f : function(result, out) {
-				if (result == 'AM') {
-					if (out.h == 12) { h = 0; }
-                } else {
-					if (out.h < 12) { out.h += 12; }
-				}
-			},	
+        return {g:1,
+            c:"if (results[" + currentGroup + "] == 'AM') {\n"
+                + "if (h == 12) { h = 0; }\n"
+                + "} else { if (h < 12) { h += 12; }}",
             s:"(AM|PM)"};
     case "g":
     case "G":
-        return {
-			f : function(result, out) {
-				out.h = parseInt(result,10);
-			},	
-			s:"(\\d{1,2})"}; // 12/24-hr format  format of an hour without leading zeroes
+        return {g:1,
+            c:"h = parseInt(results[" + currentGroup + "], 10);\n",
+            s:"(\\d{1,2})"}; // 12/24-hr format  format of an hour without leading zeroes
     case "h":
     case "H":
-        return {
-			f : function(result, out) {
-				out.h = parseInt(result,10);
-			},
+        return {g:1,
+            c:"h = parseInt(results[" + currentGroup + "], 10);\n",
             s:"(\\d{2})"}; //  12/24-hr format  format of an hour with leading zeroes
     case "i":
-        return {
-			f : function(result, out) {
-				out.i = parseInt(result,10);
-			},	
+        return {g:1,
+            c:"i = parseInt(results[" + currentGroup + "], 10);\n",
             s:"(\\d{2})"};
     case "s":
-        return {
-			f : function(result, out) {
-				out.s = parseInt(result,10);
-			},	
+        return {g:1,
+            c:"s = parseInt(results[" + currentGroup + "], 10);\n",
             s:"(\\d{2})"};
-    case "O": 
-        return {
-			f : function(result, out) {
-				out.o = result;
-                var sn = out.o.substring(0,1);
-                var hr = out.o.substring(1,3)*1 + Math.floor(out.o.substring(3,5) / 60); // get hours (performs minutes-to-hour conversion also)
-                var mn = out.o.substring(3,5) % 60; // get minutes
-                out.o = ((-12 <= (hr*60 + mn)/60) && ((hr*60 + mn)/60 <= 14))? // -12hrs <= GMT offset <= 14hrs
-                    (sn + String.leftPad(hr, 2, 0) + String.leftPad(mn, 2, 0)) : null;
-			},	
-			
-            s:"([+\-]\\d{2,4})"
-		};
+    case "O":
+        return {g:1,
+            c:[
+                "o = results[", currentGroup, "];\n",
+                "var sn = o.substring(0,1);\n", // get + / - sign
+                "var hr = o.substring(1,3)*1 + Math.floor(o.substring(3,5) / 60);\n", // get hours (performs minutes-to-hour conversion also)
+                "var mn = o.substring(3,5) % 60;\n", // get minutes
+                "o = ((-12 <= (hr*60 + mn)/60) && ((hr*60 + mn)/60 <= 14))?\n", // -12hrs <= GMT offset <= 14hrs
+                "    (sn + String.leftPad(hr, 2, 0) + String.leftPad(mn, 2, 0)) : null;\n"
+            ].join(""),
+            s:"([+\-]\\d{2,4})"};
     
     
-    case "P":   //xx:yy
-    	return {
-			f : function(result, out) { 
-				out.o = result;
-				var sn = out.o.substring(0,1);
-				var hr = out.o.substring(1,3)*1 + Math.floor(out.o.substring(4,6) / 60);
-				var mn = out.o.substring(4,6) % 60;
-       
-				out.o = ((-12 <= (hr*60 + mn)/60) && ((hr*60 + mn)/60 <= 14))?
-    	                (sn + String.leftPad(hr, 2, 0) + String.leftPad(mn, 2, 0)) : null;
-			},
-            s:"([+\-]\\d{2}:\\d{2})"
-		};
-    
-	case "T": // note it's just ignored..
-        return {
-			f : function(result, out) {},
-            s:"([A-Z]{1,4})"}; // timezone abbrev. may be between 1 - 4 chars
+    case "P":
+    	return {g:1,
+    		c:[
+    		   "o = results[", currentGroup, "];\n",
+    		   "var sn = o.substring(0,1);\n",
+    		   "var hr = o.substring(1,3)*1 + Math.floor(o.substring(4,6) / 60);\n",
+    		   "var mn = o.substring(4,6) % 60;\n",
+    		   "o = ((-12 <= (hr*60 + mn)/60) && ((hr*60 + mn)/60 <= 14))?\n",
+    	                "    (sn + String.leftPad(hr, 2, 0) + String.leftPad(mn, 2, 0)) : null;\n"
+            ].join(""),
+            s:"([+\-]\\d{4})"};
+    case "T":
+        return {g:0,
+            c:null,
+            s:"[A-Z]{1,4}"}; // timezone abbrev. may be between 1 - 4 chars
     case "Z":
-        return {
-			f : function(result, out) {
-				out.z = result; // -43200 <= UTC offset <= 50400
-                out.z = (-43200 <= out.z*1 && out.z*1 <= 50400)? out.z : null;
-			},
-            s:"([+\-]?\\d{1,5})"
-		}; // leading '+' sign is optional for UTC offset
+        return {g:1,
+            c:"z = results[" + currentGroup + "];\n" // -43200 <= UTC offset <= 50400
+                  + "z = (-43200 <= z*1 && z*1 <= 50400)? z : null;\n",
+            s:"([+\-]?\\d{1,5})"}; // leading '+' sign is optional for UTC offset
     default:
-        return {
-			f : false,
-            s: String.escape(character)
-		};
+        return {g:0,
+            c:null,
+            s:String.escape(character)};
     }
 };
+
 /**
  * Get the timezone abbreviation of the current date (equivalent to the format specifier 'T').
  * @return {String} The abbreviated timezone name (e.g. 'CST')
@@ -6280,11 +6183,7 @@ Roo.Template.prototype = {
          * eval:var:values
          * eval:var:fm
          */
-        try {
-            eval(body);
-        } catch(e) {
-            Roo.log(e); // probably eval not allowed.
-        }
+        eval(body);
         return this;
     },
     
@@ -6498,10 +6397,84 @@ Roo.DomQuery = function(){
  	    return this;
  	};
 
-    
+    function byClassName(c, a, v){
+        if(!v){
+            return c;
+        }
+        var r = [], ri = -1, cn;
+        for(var i = 0, ci; ci = c[i]; i++){
+	    
+	    
+            if((' '+
+		( (ci instanceof SVGElement) ? ci.className.baseVal : ci.className)
+		 +' ').indexOf(v) != -1){
+                r[++ri] = ci;
+            }
+        }
+        return r;
+    };
 
-    
-     
+    function attrValue(n, attr){
+        if(!n.tagName && typeof n.length != "undefined"){
+            n = n[0];
+        }
+        if(!n){
+            return null;
+        }
+        if(attr == "for"){
+            return n.htmlFor;
+        }
+        if(attr == "class" || attr == "className"){
+	    return (n instanceof SVGElement) ? n.className.baseVal : n.className;
+        }
+        return n.getAttribute(attr) || n[attr];
+
+    };
+
+    function getNodes(ns, mode, tagName){
+        var result = [], ri = -1, cs;
+        if(!ns){
+            return result;
+        }
+        tagName = tagName || "*";
+        if(typeof ns.getElementsByTagName != "undefined"){
+            ns = [ns];
+        }
+        if(!mode){
+            for(var i = 0, ni; ni = ns[i]; i++){
+                cs = ni.getElementsByTagName(tagName);
+                for(var j = 0, ci; ci = cs[j]; j++){
+                    result[++ri] = ci;
+                }
+            }
+        }else if(mode == "/" || mode == ">"){
+            var utag = tagName.toUpperCase();
+            for(var i = 0, ni, cn; ni = ns[i]; i++){
+                cn = ni.children || ni.childNodes;
+                for(var j = 0, cj; cj = cn[j]; j++){
+                    if(cj.nodeName == utag || cj.nodeName == tagName  || tagName == '*'){
+                        result[++ri] = cj;
+                    }
+                }
+            }
+        }else if(mode == "+"){
+            var utag = tagName.toUpperCase();
+            for(var i = 0, n; n = ns[i]; i++){
+                while((n = n.nextSibling) && n.nodeType != 1);
+                if(n && (n.nodeName == utag || n.nodeName == tagName || tagName == '*')){
+                    result[++ri] = n;
+                }
+            }
+        }else if(mode == "~"){
+            for(var i = 0, n; n = ns[i]; i++){
+                while((n = n.nextSibling) && (n.nodeType != 1 || (tagName == '*' || n.tagName.toLowerCase()!=tagName)));
+                if(n){
+                    result[++ri] = n;
+                }
+            }
+        }
+        return result;
+    };
 
     function concat(a, b){
         if(b.slice){
@@ -6513,11 +6486,67 @@ Roo.DomQuery = function(){
         return a;
     }
 
-   
-   
+    function byTag(cs, tagName){
+        if(cs.tagName || cs == document){
+            cs = [cs];
+        }
+        if(!tagName){
+            return cs;
+        }
+        var r = [], ri = -1;
+        tagName = tagName.toLowerCase();
+        for(var i = 0, ci; ci = cs[i]; i++){
+            if(ci.nodeType == 1 && ci.tagName.toLowerCase()==tagName){
+                r[++ri] = ci;
+            }
+        }
+        return r;
+    };
 
-    
+    function byId(cs, attr, id){
+        if(cs.tagName || cs == document){
+            cs = [cs];
+        }
+        if(!id){
+            return cs;
+        }
+        var r = [], ri = -1;
+        for(var i = 0,ci; ci = cs[i]; i++){
+            if(ci && ci.id == id){
+                r[++ri] = ci;
+                return r;
+            }
+        }
+        return r;
+    };
 
+    function byAttribute(cs, attr, value, op, custom){
+        var r = [], ri = -1, st = custom=="{";
+        var f = Roo.DomQuery.operators[op];
+        for(var i = 0, ci; ci = cs[i]; i++){
+            var a;
+            if(st){
+                a = Roo.DomQuery.getStyle(ci, attr);
+            }
+            else if(attr == "class" || attr == "className"){
+                a = (ci instanceof SVGElement) ? ci.className.baseVal : ci.className;
+            }else if(attr == "for"){
+                a = ci.htmlFor;
+            }else if(attr == "href"){
+                a = ci.getAttribute("href", 2);
+            }else{
+                a = ci.getAttribute(attr);
+            }
+            if((f && f(a, value)) || (!f && a)){
+                r[++ri] = ci;
+            }
+        }
+        return r;
+    };
+
+    function byPseudo(cs, name, value){
+        return Roo.DomQuery.pseudos[name](cs, value);
+    };
 
     // This is for IE MSXML which does not support expandos.
     // IE runs the same speed using setAttribute, however FF slows way down
@@ -6549,7 +6578,39 @@ Roo.DomQuery = function(){
         return r;
     }
 
-   
+    function nodup(cs){
+        if(!cs){
+            return [];
+        }
+        var len = cs.length, c, i, r = cs, cj, ri = -1;
+        if(!len || typeof cs.nodeType != "undefined" || len == 1){
+            return cs;
+        }
+        if(isIE && typeof cs[0].selectSingleNode != "undefined"){
+            return nodupIEXml(cs);
+        }
+        var d = ++key;
+        cs[0]._nodup = d;
+        for(i = 1; c = cs[i]; i++){
+            if(c._nodup != d){
+                c._nodup = d;
+            }else{
+                r = [];
+                for(var j = 0; j < i; j++){
+                    r[++ri] = cs[j];
+                }
+                for(j = i+1; cj = cs[j]; j++){
+                    if(cj._nodup != d){
+                        cj._nodup = d;
+                        r[++ri] = cj;
+                    }
+                }
+                return r;
+            }
+        }
+        return r;
+    }
+
     function quickDiffIEXml(c1, c2){
         var d = ++key;
         for(var i = 0, len = c1.length; i < len; i++){
@@ -6587,246 +6648,20 @@ Roo.DomQuery = function(){
         }
         return r;
     }
-	
-	function quickId(ns, mode, root, id)
-	{
-		if(ns == root){
-		   var d = root.ownerDocument || root;
-		   return d.getElementById(id);
-		}
-		ns =  getNodes(ns, mode, "*");
-		return Roo.DomQuery.byId(ns, null, id);
-	}
-	function getNodes(ns, mode, tagName)
-	{
-		var result = [], ri = -1, cs;
-		if(!ns){
-			return result;
-		}
-		tagName = tagName || "*";
-		if(typeof ns.getElementsByTagName != "undefined"){
-			ns = [ns];
-		}
-		if(!mode){
-			for(var i = 0, ni; ni = ns[i]; i++){
-				cs = ni.getElementsByTagName(tagName);
-				for(var j = 0, ci; ci = cs[j]; j++){
-					result[++ri] = ci;
-				}
-			}
-		}else if(mode == "/" || mode == ">"){
-			var utag = tagName.toUpperCase();
-			for(var i = 0, ni, cn; ni = ns[i]; i++){
-				cn = ni.children || ni.childNodes;
-				for(var j = 0, cj; cj = cn[j]; j++){
-					if(cj.nodeName == utag || cj.nodeName == tagName  || tagName == '*'){
-						result[++ri] = cj;
-					}
-				}
-			}
-		}else if(mode == "+"){
-			var utag = tagName.toUpperCase();
-			for(var i = 0, n; n = ns[i]; i++){
-				while((n = n.nextSibling) && n.nodeType != 1);
-				if(n && (n.nodeName == utag || n.nodeName == tagName || tagName == '*')){
-					result[++ri] = n;
-				}
-			}
-		}else if(mode == "~"){
-			for(var i = 0, n; n = ns[i]; i++){
-				while((n = n.nextSibling) && (n.nodeType != 1 || (tagName == '*' || n.tagName.toLowerCase()!=tagName)));
-				if(n){
-					result[++ri] = n;
-				}
-			}
-		}
-		return result;
-	}
-	function byId (cs, attr, id)
-	{
-		if(cs.tagName || cs == document){
-			cs = [cs];
-		}
-		if(!id){
-			return cs;
-		}
-		var r = [], ri = -1;
-		for(var i = 0,ci; ci = cs[i]; i++){
-			if(ci && ci.id == id){
-				r[++ri] = ci;
-				return r;
-			}
-		}
-		return r;
-	}
-	
-	
-	function byTag(cs, tagName)
-	{
-		if(cs.tagName || cs == document){
-			cs = [cs];
-		}
-		if(!tagName){
-			return cs;
-		}
-		var r = [], ri = -1;
-		tagName = tagName.toLowerCase();
-		for(var i = 0, ci; ci = cs[i]; i++){
-			if(ci.nodeType == 1 && ci.tagName.toLowerCase()==tagName){
-				r[++ri] = ci;
-			}
-		}
-		return r;
-	}
 
-	
-	
-	function byClassName(c, a, v)
-	{
-		if(!v){
-			return c;
-		}
-		var r = [], ri = -1, cn;
-		for(var i = 0, ci; ci = c[i]; i++){
-		
-		
-			if((' '+
-		( (ci instanceof SVGElement) ? ci.className.baseVal : ci.className)
-		 +' ').indexOf(v) != -1){
-				r[++ri] = ci;
-			}
-		}
-		return r;
-	}
-	function byAttribute(cs, attr, value, op, custom)
-	{
-		var r = [], ri = -1, st = custom=="{";
-		var f = Roo.DomQuery.operators[op];
-		for(var i = 0, ci; ci = cs[i]; i++){
-			var a;
-			if(st){
-				a = Roo.DomQuery.getStyle(ci, attr);
-			}
-			else if(attr == "class" || attr == "className"){
-				a = (ci instanceof SVGElement) ? ci.className.baseVal : ci.className;
-			}else if(attr == "for"){
-				a = ci.htmlFor;
-			}else if(attr == "href"){
-				a = ci.getAttribute("href", 2);
-			}else{
-				a = ci.getAttribute(attr);
-			}
-			if((f && f(a, value)) || (!f && a)){
-				r[++ri] = ci;
-			}
-		}
-		return r;
-	}
-	
-	
-	function nodup(cs)
-	{
-		if(!cs){
-			return [];
-		}
-		var len = cs.length, c, i, r = cs, cj, ri = -1;
-		if(!len || typeof cs.nodeType != "undefined" || len == 1){
-			return cs;
-		}
-		if(isIE && typeof cs[0].selectSingleNode != "undefined"){
-			return nodupIEXml(cs);
-		}
-		var d = ++key;
-		cs[0]._nodup = d;
-		for(i = 1; c = cs[i]; i++){
-			if(c._nodup != d){
-				c._nodup = d;
-			}else{
-				r = [];
-				for(var j = 0; j < i; j++){
-					r[++ri] = cs[j];
-				}
-				for(j = i+1; cj = cs[j]; j++){
-					if(cj._nodup != d){
-						cj._nodup = d;
-						r[++ri] = cj;
-					}
-				}
-				return r;
-			}
-		}
-		return r;
-	}
-	
-	// enable a generic call to all of the above functions.
-	
-	var cmdcall = {
-		quickId : function(n, root, mode, arg) {
-			return quickId(n, mode, root, arg);
-		},
-		getNodes: function(n, root, mode, arg) {
-			return getNodes(n, mode, arg)
-		},
-		byId: function(n, root, mode, arg) {
-			return byId(n, null, arg);
-		},
-		byTag: function(n, root, mode, arg) {
-			return byTag(n, arg);
-		},
-		byClassName: function(n, root, mode, arg) {
-			return  byClassName(n, null, " " + arg[1] + " ");
-		},
-		byPseudo: function(n, root, mode, arg) {
-			return byPseudo(n, arg[1], arg[2]);
-		},
-		byAttribute: function(n, root, mode, arg) {
-           return byAttribute(n, arg[2], arg[4], arg[3], arg[1]);
-		},
-        byIdAr: function(n, root, mode, arg) {
-            return byId(n, null, arg[1]);
+    function quickId(ns, mode, root, id){
+        if(ns == root){
+           var d = root.ownerDocument || root;
+           return d.getElementById(id);
         }
- 	};
-   
-	function byPseudo (cs, name, value)
-	{
-		return Roo.DomQuery.pseudos[name](cs, value);
-	}
-	
-    function runFn(root, cmds)
-	{
-		 
-		var mode;
-		++Roo.DomQuery.batch;
-		var n = root || document;
-		for(var i = 0; i < cmds.length;i++) {
-			var cmd = cmds[i];
-			if (typeof(cmd) == "string") {
-				mode = cmd;
-				continue;
-			}
-			if (cmd == "attrValue") {
-				return {
-					firstChild:{
-						nodeValue: Roo.DomQuery.attrValue(n, cmd[1][1])
-					}
-				};
-			}
-			n = cmdcall[cmd[0]](n, root,  mode,  cmd[1]);
-		}
-		return  nodup(n);
-		
-	}
-	
-	 
+        ns = getNodes(ns, mode, "*");
+        return byId(ns, null, id);
+    }
 
     return {
         getStyle : function(el, name){
             return Roo.fly(el).getStyle(name);
         },
-		
-		
-		
-		
         /**
          * Compiles a selector/xpath query into a reusable function. The returned function
          * takes one parameter "root" (optional), which is the context node from where the query should start.
@@ -6834,11 +6669,10 @@ Roo.DomQuery = function(){
          * @param {String} type (optional) Either "select" (the default) or "simple" for a simple selector match
          * @return {Function}
          */
-        compile : function(path, type)
-		{
+        compile : function(path, type){
             type = type || "select";
-        
-			var cmdar = [];
+            
+            var fn = ["var f = function(root){\n var mode; ++batch; var n = root || document;\n"];
             var q = path, mode, lq;
             var tk = Roo.DomQuery.matchers;
             var tklen = tk.length;
@@ -6847,7 +6681,7 @@ Roo.DomQuery = function(){
             // accept leading mode switch
             var lmode = q.match(modeRe);
             if(lmode && lmode[1]){
-                cmdar.push(lmode[1].replace(trimRe, ""));
+                fn[fn.length] = 'mode="'+lmode[1].replace(trimRe, "")+'";';
                 q = q.replace(lmode[1], "");
             }
             // strip leading slashes
@@ -6861,20 +6695,20 @@ Roo.DomQuery = function(){
                 if(type == "select"){
                     if(tm){
                         if(tm[1] == "#"){
-                			cmdar.push([ "quickId" , tm[2] ]);
+                            fn[fn.length] = 'n = quickId(n, mode, root, "'+tm[2]+'");';
                         }else{
-                			cmdar.push([ "getNodes" , tm[2] ]);
+                            fn[fn.length] = 'n = getNodes(n, mode, "'+tm[2]+'");';
                         }
                         q = q.replace(tm[0], "");
                     }else if(q.substr(0, 1) != '@'){
-                		cmdar.push([ "getNodes" , "*" ]);
+                        fn[fn.length] = 'n = getNodes(n, mode, "*");';
                     }
                 }else{
                     if(tm){
                         if(tm[1] == "#"){
-                			cmdar.push([ "byId" , tm[2] ]);
+                            fn[fn.length] = 'n = byId(n, null, "'+tm[2]+'");';
                         }else{
-                			cmdar.push([ "byTag", tm[2] ]);
+                            fn[fn.length] = 'n = byTag(n, "'+tm[2]+'");';
                         }
                         q = q.replace(tm[0], "");
                     }
@@ -6885,8 +6719,10 @@ Roo.DomQuery = function(){
                         var t = tk[j];
                         var m = q.match(t.re);
                         if(m){
-                			cmdar.push([ t.method, m]);
-				            q = q.replace(m[0], "");
+                            fn[fn.length] = t.select.replace(tplRe, function(x, i){
+                                                    return m[i];
+                                                });
+                            q = q.replace(m[0], "");
                             matched = true;
                             break;
                         }
@@ -6897,12 +6733,31 @@ Roo.DomQuery = function(){
                     }
                 }
                 if(mm[1]){
-                	cmdar.push(mm[1].replace(trimRe, ""));
+                    fn[fn.length] = 'mode="'+mm[1].replace(trimRe, "")+'";';
                     q = q.replace(mm[1], "");
                 }
             }
- 			return runFn.createDelegate(null, [ cmdar ], true);
-			
+            fn[fn.length] = "return nodup(n);\n}";
+            
+             /** 
+              * list of variables that need from compression as they are used by eval.
+             *  eval:var:batch 
+             *  eval:var:nodup
+             *  eval:var:byTag
+             *  eval:var:ById
+             *  eval:var:getNodes
+             *  eval:var:quickId
+             *  eval:var:mode
+             *  eval:var:root
+             *  eval:var:n
+             *  eval:var:byClassName
+             *  eval:var:byPseudo
+             *  eval:var:byAttribute
+             *  eval:var:attrValue
+             * 
+             **/ 
+            eval(fn.join(""));
+            return f;
         },
 
         /**
@@ -6934,7 +6789,7 @@ Roo.DomQuery = function(){
                 }
             }
             if(paths.length > 1){
-                return  nodup(results);
+                return nodup(results);
             }
             return results;
         },
@@ -7013,24 +6868,21 @@ Roo.DomQuery = function(){
         /**
          * Collection of matching regular expressions and code snippets.
          */
-        matchers : [
-			{
+        matchers : [{
                 re: /^\.([\w-]+)/,
- 				method : 'byClassName'
+                select: 'n = byClassName(n, null, " {1} ");'
             }, {
                 re: /^\:([\w-]+)(?:\(((?:[^\s>\/]*|.*?))\))?/,
- 				method : 'byPseudo'
+                select: 'n = byPseudo(n, "{1}", "{2}");'
             },{
                 re: /^(?:([\[\{])(?:@)?([\w-]+)\s?(?:(=|.=)\s?['"]?(.*?)["']?)?[\]\}])/,
- 				method: 'byAttribute'
+                select: 'n = byAttribute(n, "{2}", "{4}", "{3}", "{1}");'
             }, {
                 re: /^#([\w-]+)/,
-              //  select: 'n = Roo.DomQuery.byId(n, null, "{1}");',
-				method: 'byIdAr'
+                select: 'n = byId(n, null, "{1}");'
             },{
                 re: /^@([\w-]+)/,
-                //select: 'return {firstChild:{nodeValue:Roo.DomQuery.attrValue(n, "{1}")}};',
-				method : 'attrValue'
+                select: 'return {firstChild:{nodeValue:attrValue(n, "{1}")}};'
             }
         ],
 
@@ -7235,32 +7087,7 @@ Roo.DomQuery = function(){
                 }
                 return r;
             }
-        },
-		
-		
-		
-		
-		
-		
-		attrValue : function (n, attr)
-		{
-			if(!n.tagName && typeof n.length != "undefined"){
-				n = n[0];
-			}
-			if(!n){
-				return null;
-			}
-			if(attr == "for"){
-				return n.htmlFor;
-			}
-			if(attr == "class" || attr == "className"){
-			return (n instanceof SVGElement) ? n.className.baseVal : n.className;
-			}
-			return n.getAttribute(attr) || n[attr];
-	
-		}
-
-
+        }
     };
 }();
 
@@ -7272,7 +7099,8 @@ Roo.DomQuery = function(){
  * @member Roo
  * @method query
  */
-Roo.query = Roo.DomQuery.select;/*
+Roo.query = Roo.DomQuery.select;
+/*
  * Based on:
  * Ext JS Library 1.1.1
  * Copyright(c) 2006-2007, Ext JS, LLC.
@@ -8246,12 +8074,10 @@ Roo.onReady(function(){
         cls.push('roo-border-box');
     }
     if(Roo.isStrict){ // add to the parent to allow for selectors like ".ext-strict .ext-ie"
-        
         var p = bd.dom.parentNode;
         if(p){
             p.className += ' roo-strict';
         }
-         
     }
     bd.addClass(cls.join(' '));
 });
@@ -18420,7 +18246,7 @@ Roo.extend(Roo.XComponent, Roo.util.Observable, {
                     // fall through
                 default:
                     el = Roo.get(ename);
-                    if (typeof(Roo.bootstrap.Body) != 'undefined' && tree['|xns'] == 'Roo.bootstrap') {
+                    if (typeof(Roo.bootstrap) != 'undefined' && tree['|xns'] == 'Roo.bootstrap') {
                         this.parent = { el : true};
                     }
                     
@@ -18443,7 +18269,7 @@ Roo.extend(Roo.XComponent, Roo.util.Observable, {
         // altertive root elements ??? - we need a better way to indicate these.
         var is_alt = Roo.XComponent.is_alt ||
                     (typeof(tree.el) != 'undefined' && tree.el == document.body) ||
-                    (typeof(Roo.bootstrap.Body) != 'undefined' && tree.xns == Roo.bootstrap) ||
+                    (typeof(Roo.bootstrap) != 'undefined' && tree.xns == Roo.bootstrap) ||
                     (typeof(Roo.mailer) != 'undefined' && tree.xns == Roo.mailer) ;
         
         
@@ -19834,7 +19660,9 @@ Roo.Markdown.toHtml = function(text) {
       this.options = options || {};
     }
     
-    Renderer.prototype.code = function(code, lang, escaped) {
+    Renderer.prototype.code = function(code, lang, escaped)
+    {
+      escaped = false;
       if (this.options.highlight) {
         var out = this.options.highlight(code, lang);
         if (out != null && out !== code) {
@@ -19843,7 +19671,7 @@ Roo.Markdown.toHtml = function(text) {
         }
       } else {
             // hack!!! - it's already escapeD?
-            escaped = true;
+          //  escaped = true;
       }
     
       if (!lang) {
@@ -25182,7 +25010,7 @@ Roo.languagedetect.Parser = function (string) {
      * @access  private
      * @param   string  string to be parsed
      */
-    this.string = string ? string.replace(/[\d~!@#$%^&*()_|+\-=?;:",.<>\{\}\[\]\\\/]/g, ' ') : '';
+    this.string = string ? string.replace(/[~!@#$%^&*()_|+\-=?;:",.<>\{\}\[\]\\\/]/g, ' ') : '';
 };
 
   
