@@ -51,7 +51,8 @@ public class FakeServerCache : Object
 	    if (scheme == "doc") {
 	    		var state = wk.get_data<WindowState>("windowstate");
 	    		if (state == null) {
-	    			state = BuilderApplication.windows.get(0).windowstate; 
+				var res =  new FakeServerCache.from_resource(fname);
+				return res; // erroro condition really
 	    		}
 	    		
 			return new FakeServerCache.from_doc(state, fname);
