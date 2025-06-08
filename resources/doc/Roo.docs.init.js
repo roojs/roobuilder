@@ -185,7 +185,7 @@ Roo.docs.init = {
     addTreeItem : function(parent, e, type , parent_e) {
             
         this.classes[e.name] = e;
-        Roo.log("this.classes = add  " + e.name);
+        //Roo.log("this.classes = add  " + e.name);
         
         this.classesAr.push(e);
         
