@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gresources>  <gresource prefix="/glade-icons">
+<gresources>  <gresource prefix="/Editors">
+  </gresource>
+  <gresource prefix="/css">
+    <file>roobuilder.css</file>
+  </gresource>
+  <gresource prefix="/data">
+    <file>roodata.json</file>
+    <file>object.defaults.json</file>
+  </gresource>
+  <gresource prefix="/glade-icons">
     <file>widget-gtk-aboutdialog.png</file>
     <file>widget-gtk-accelgroup.png</file>
     <file>widget-gtk-accellabel.png</file>
@@ -156,26 +165,19 @@
     <file>widget-vte-terminal.png</file>
   </gresource>
   <gresource prefix="/html">
-    <file>bootstrap4.builder.html</file>
-    <file>roo.builder.html</file>
     <file>bootstrap.builder.html</file>
+    <file>bootstrap4.builder.html</file>
     <file>mailer.builder.html</file>
+    <file>roo.builder.html</file>
     <file>roo.builder.js</file>
   </gresource>
-  <gresource prefix="/data">
-    <file>object.defaults.json</file>
-    <file>roodata.json</file>
-  </gresource>
-  <gresource prefix="/css">
-    <file>roobuilder.css</file>
-  </gresource>
   <gresource prefix="/doc">
+    <file>roojs-bootstrap-debug.js</file>
+    <file>roojs-core-debug.js</file>
     <file>Roo.docs.init.js</file>
     <file>Roo.docs.js</file>
     <file>Roo.docs.template.js</file>
     <file>docs.css</file>
-    <file>roojs-bootstrap-debug.js</file>
-    <file>roojs-core-debug.js</file>
     <file>gtk.html</file>
   </gresource>
   <gresource prefix="/doc/css-bootstrap">
@@ -187,12 +189,10 @@
     <file>fa-solid-900.woff2</file>
   </gresource>
   <gresource prefix="/doc/css-bootstrap4">
-    <file>bootstrap.min.css</file>
     <file>roojs-bootstrap.css</file>
+    <file>bootstrap.min.css</file>
   </gresource>
   <gresource prefix="/images">
     <file>roobuilder.png</file>
-  </gresource>
-  <gresource prefix="/Editors">
   </gresource>
 </gresources>
