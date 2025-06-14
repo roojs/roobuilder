@@ -123,7 +123,7 @@ namespace Palete {
 			
 		}
 		
-		void initDB()
+		public void initDB()
 		{
 			if (this.id < 0) {
 				var sqf = new SQ.Query<SymbolFile>("files");				
