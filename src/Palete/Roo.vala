@@ -117,7 +117,10 @@ namespace Palete {
 			if (!f.query_exists(null)) {
 				f = GLib. File.new_for_uri("resource:///data/roodata.json");	
 			}			
-
+			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version??
+			sf.version = sf.cur_mod_time();
+			//sf.initDB();
+			// in theory 
 			
 			
 			var pa = new Json.Parser();
@@ -187,6 +190,7 @@ namespace Palete {
 			 			
 		 			}
 	 			}
+	 			
  
 				this.classes.set(key, cls);
 			});
