@@ -15,6 +15,22 @@ namespace Palete {
 			
 		}
 		
+		public SymbolRoo.new_class(SymbolFile f, Symbol? parent,   string name)
+	 	{
+
+			this(f, parent);
+			this.name = name;
+			this.stype = Lsp.SymbolKind.Class;
+			this.fqn = this.to_fqn();
+			
+	 		//GLib.debug("new Class %s", this.to_fqn());			 
+	 	 
+		 	 
+			 
+		 	 
+		}
+		 
+		
 		public void write( ) 
 		{
 			
