@@ -137,7 +137,7 @@ namespace Palete {
 			clist.foreach_member((o , key, value) => {
 				//print("cls:" + key+"\n");
 			 
-				var cls = new Symbol.new_simple(Lsp.SymbolKind.Class, key);  
+				var cls = new Symbol.new_class(sf, key);  
 				
 				cls.props = this.propsFromJSONArray(Lsp.SymbolKind.Property, value.get_object().get_array_member("props"),cls);
 				cls.signals = this.propsFromJSONArray(Lsp.SymbolKind.Signal, value.get_object().get_array_member("events"),cls);
