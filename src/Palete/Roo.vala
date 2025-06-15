@@ -36,65 +36,6 @@ namespace Palete {
 
         }
 
-		Gee.HashMap<string,Symbol> propsFromJSONArray(Lsp.SymbolKind kind, Json.Array ar, Symbol cls)
-		{
-
-			var ret = new Gee.HashMap<string,Symbol>();
-			
-			for (var i =0 ; i < ar.get_length(); i++) {
-				var o = ar.get_object_element(i);
-				var name = o.get_string_member("name"); 
-				var prop = new Symbol.new_simple(kind, name );  
-
-				prop.rtype  = o.get_string_member("type");
-
-				if (prop.rtype == "function" && o.has_member("returns")  ) {
-					var rets = o.get_array_member("returns");
-					for (var ri = 0; ri < rets.get_length(); ri++) {
-						var ro = rets.get_object_element(ri);
-						prop.rtype = (prop.rtype.length > 0 ? "|" : "") + ro.get_string_member("type");
-					}
-				}
-				
-				prop.doc  = o.get_string_member("desc");
-				prop.fqn = (o.has_member("memberOf") && o.get_string_member("memberOf").length > 0 ? 
-					o.get_string_member("memberOf") : cls.fqn) + "." + name;
-				
-				// this is the function default.
-				//prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
-				
-				if (o.has_member("optvals")  ) {
-					var oar = o.get_array_member("optvals");
-					
-					for (var oi = 0; oi < oar.get_length(); oi++) {
-						prop.optvalues.add(oar.get_string_element(oi));
-					}
-					
-				}
-				if (o.has_member("params")  ) {
-					var par = o.get_array_member("params");
-					
-					for (var p = 0; p < par.get_length(); p++) {
-						var po = par.get_object_element(p);
-						var pn = po.get_string_member("name");
-						if (pn == "") { 
-							pn = po.get_string_member("type");
-						}
-						if (pn == "") { 
-							GLib.debug("params for %s contains a member with no name  : %s", prop.name, o.get_string_member("sig"));
-							continue;
-						}
-						var pp = new Symbol.new_simple(Lsp.SymbolKind.Parameter , pn );
-						pp.rtype = po.get_string_member("type");
-						prop.param_ar.set(p,  pp );
-					}
-				}
-				
-				//GLib.debug("add Prop : FQN=%s : NAME=%s  (RTYPE= %s)", prop.fqn,  prop.name ,prop.rtype);
-				ret.set(name,prop);
-			}
-			return ret;
-		}
 		
 	 	
 		public override void  load () {
@@ -119,8 +60,13 @@ namespace Palete {
 			}			
 			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version??
 			sf.version = sf.cur_mod_time();
+			// database may contain a version - we will update the version (if not the same)
+			
+			sf.loadSymbols();
 			//sf.initDB();
-			// in theory 
+			// in theory  - we dont need to load again if our DB is the same
+			// but I'm not sure we store all of this in the DB currently?
+			
 			
 			
 			var pa = new Json.Parser();
@@ -137,14 +83,14 @@ namespace Palete {
 			clist.foreach_member((o , key, value) => {
 				//print("cls:" + key+"\n");
 			 
-				var cls = new Symbol.new_class(sf, key);  
+				var cls = new SymbolRoo.new_class(sf, null, key);  
 				
-				cls.props = this.propsFromJSONArray(Lsp.SymbolKind.Property, value.get_object().get_array_member("props"),cls);
-				cls.signals = this.propsFromJSONArray(Lsp.SymbolKind.Signal, value.get_object().get_array_member("events"),cls);
+				cls.propsFromJSONArray(Lsp.SymbolKind.Property, value.get_object().get_array_member("props"),cls);
+				cls.propsFromJSONArray(Lsp.SymbolKind.Signal, value.get_object().get_array_member("events"),cls);
 				
 				
 				if (value.get_object().has_member("methods")) {
-					cls.methods = this.propsFromJSONArray(Lsp.SymbolKind.Method, value.get_object().get_array_member("methods"),cls);
+					 cls.propsFromJSONArray(Lsp.SymbolKind.Method, value.get_object().get_array_member("methods"),cls);
 				}
 				if (value.get_object().has_member("implementations")) {
 					var vcn = value.get_object().get_array_member("implementations");
@@ -191,7 +137,7 @@ namespace Palete {
 		 			}
 	 			}
 	 			
- 
+ 				cls.write();
 				this.classes.set(key, cls);
 			});
 			
