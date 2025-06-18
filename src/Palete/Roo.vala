@@ -38,14 +38,19 @@ namespace Palete {
 
 		
 	 	
-		public override void  load () {
-
+		public override void  load () 
+		{
+			GLib.debug("Palete load");
 			if (this.classes != null) {
+				GLib.debug("Palete load - skip loaded");
+			
 				return;
 			}
 			if (Roo.classes_cache != null) {
 				this.classes = Roo.classes_cache;
 				this.top_classes = Roo.top_classes_cache ;
+				GLib.debug("Palete load - skip got cache");
+			
 				return;
 			}
 			
@@ -61,6 +66,7 @@ namespace Palete {
 			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version??
 			sf.version = sf.cur_mod_time();
 			// database may contain a version - we will update the version (if not the same)
+			GLib.debug("Palete load - load symbols");
 			
 			sf.loadSymbols();
 			//sf.initDB();
@@ -84,6 +90,7 @@ namespace Palete {
 				//print("cls:" + key+"\n");
 			 
 				var cls = new SymbolRoo.new_class(sf, null, key);  
+				cls.write(); // so childen have id to use.
 				
 				cls.propsFromJSONArray(Lsp.SymbolKind.Property, value.get_object().get_array_member("props"),cls);
 				cls.propsFromJSONArray(Lsp.SymbolKind.Signal, value.get_object().get_array_member("events"),cls);
@@ -191,6 +198,8 @@ namespace Palete {
 			}
 			Roo.classes_cache = this.classes;
 			Roo.top_classes_cache  = this.top_classes;
+			
+			SQ.Database.backupDB();// write to disk
 		}
 		  
 			
@@ -248,7 +257,11 @@ namespace Palete {
  
 				case JsRender.NodePropType.METHOD:
 					return cls.methods;
+				
+				case JsRender.NodePropType.CTOR:
+					return cls.ctors;
 					 
+				
  				default:
 					GLib.error( "getPropertiesFor called with: " + ptype.to_string());
 					//var ret = new Gee.HashMap<string,GirObject>();
