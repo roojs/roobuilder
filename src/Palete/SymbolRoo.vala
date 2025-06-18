@@ -39,7 +39,7 @@ namespace Palete {
 		}
 		 
 		 
-		public void propsFromJSONArray(Lsp.SymbolKind kind, Json.Array ar, Symbol cls)
+		public void propsFromJSONArray(Lsp.SymbolKind kind, Json.Array ar)
 		{
 
 			 
@@ -64,7 +64,7 @@ namespace Palete {
 				
 				prop.doc  = o.get_string_member("desc");
 				prop.fqn = (o.has_member("memberOf") && o.get_string_member("memberOf").length > 0 ? 
-					o.get_string_member("memberOf") : cls.fqn) + "." + name;
+					o.get_string_member("memberOf") : this.fqn) + "." + name;
 				
 				// this is the function default.
 				//prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
