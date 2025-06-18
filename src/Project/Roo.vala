@@ -26,7 +26,13 @@ public class Project.Roo : Project {
         // various loader methods..
         //this.id = "project-roo-%d".printf(rid++);
 		this.initDatabase();
-		this.symbol_manager  = new Palete.SymbolFileCollection();
+		
+		var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/resources/roodata.json");
+		if (!f.query_exists(null)) {
+			f = GLib. File.new_for_uri("resource:///data/roodata.json");	
+		}			
+		
+		this.symbol_manager  = Palete.SymbolFileCollection.factory_by_path(f.get_uri());
 		this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
 		
     }
