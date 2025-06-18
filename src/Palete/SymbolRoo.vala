@@ -44,9 +44,9 @@ namespace Palete {
 
 			 
 			
-			if (this.id < 1) {
-				GLib.error("parent does not have id?");
-			}
+			//if (this.id < 1) {
+			//	GLib.error("parent does not have id?");
+			//}
 			for (var i =0 ; i < ar.get_length(); i++) {
 				var o = ar.get_object_element(i);
 				var name = o.get_string_member("name"); 
