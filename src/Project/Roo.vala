@@ -32,7 +32,8 @@ public class Project.Roo : Project {
 			f = GLib. File.new_for_uri("resource:///data/roodata.json");	
 		}			
 		
-		this.symbol_manager  = Palete.SymbolFileCollection.factory_by_path(f.get_uri());
+		this.symbol_manager  = new;Palete.SymbolFileCollection()'
+		this.symbol_manager.factory_by_path(f.get_uri());
 		this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
 		
     }
