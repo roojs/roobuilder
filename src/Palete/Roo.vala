@@ -11,7 +11,7 @@ namespace Palete {
         public enum eltype { 
             NS,
             CLASS,
-            METHOD,
+            METHOD
             PROP
         }
                 
@@ -92,12 +92,12 @@ namespace Palete {
 				var cls = new SymbolRoo.new_class(sf, null, key);  
 				cls.write(); // so childen have id to use.
 				
-				cls.propsFromJSONArray(Lsp.SymbolKind.Property, value.get_object().get_array_member("props"),cls);
-				cls.propsFromJSONArray(Lsp.SymbolKind.Signal, value.get_object().get_array_member("events"),cls);
+				cls.propsFromJSONArray(Lsp.SymbolKind.Property, value.get_object().get_array_member("props"));
+				cls.propsFromJSONArray(Lsp.SymbolKind.Signal, value.get_object().get_array_member("events"));
 				
 				
 				if (value.get_object().has_member("methods")) {
-					 cls.propsFromJSONArray(Lsp.SymbolKind.Method, value.get_object().get_array_member("methods"),cls);
+					 cls.propsFromJSONArray(Lsp.SymbolKind.Method, value.get_object().get_array_member("methods"));
 				}
 				if (value.get_object().has_member("implementations")) {
 					var vcn = value.get_object().get_array_member("implementations");
