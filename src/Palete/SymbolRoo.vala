@@ -129,9 +129,7 @@ namespace Palete {
 			
 			this.rev = this.file.version;
 			
-			if (this.doc == "") {
-				return;
-			}
+			 
 			var q = new SQ.Query<Symbol>("symbol");
 			if (!this.file.fqn_map.has_key(this.fqn)) {
 				
