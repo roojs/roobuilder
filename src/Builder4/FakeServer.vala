@@ -177,6 +177,9 @@ public class FakeServerCache : Object
 			var fqn = fname.replace("/symbols/","");
 			fqn = fqn.substring(0,fqn.length-5);
 			GLib.debug("loading symbol data for %s", fqn);
+			
+			// if state.project.xtype == "Roo" - then load the file from githubs docs.
+			
 			var sy = sl.singleByFqn(fqn);
 			// in theory this loads up all of the types..
 			pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP);
