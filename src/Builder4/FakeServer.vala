@@ -179,6 +179,10 @@ public class FakeServerCache : Object
 			GLib.debug("loading symbol data for %s", fqn);
 			
 			// if state.project.xtype == "Roo" - then load the file from githubs docs.
+			if (state.project.xtype == "Roo") {
+				this.initWithURL("https://roojs.github.io/roojs1/docs/symbols/" + fqn + ".json");
+			
+			}
 			
 			var sy = sl.singleByFqn(fqn);
 			// in theory this loads up all of the types..
