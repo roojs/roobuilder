@@ -324,7 +324,7 @@ public class FakeServerCache : Object
 			this.content_type = "application/json"; // need to sort this out.
 			this.size = data.length;
 			 
-			this.data = data;
+			this.data = (uint8[])data;
 		} catch (Error e) {
 			this.data = "".data;
 			this.size = 0;
