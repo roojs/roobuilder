@@ -181,7 +181,7 @@ public class FakeServerCache : Object
 			// if state.project.xtype == "Roo" - then load the file from githubs docs.
 			if (state.project.xtype == "Roo") {
 				this.initWithURL("https://roojs.github.io/roojs1/docs/symbols/" + fqn + ".json");
-			
+				return;
 			}
 			
 			var sy = sl.singleByFqn(fqn);
