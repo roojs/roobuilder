@@ -314,7 +314,7 @@ public class FakeServerCache : Object
 	{
 		try { 
 			
-			print("downloading %s \nto : %s\n", url);
+			GLib.debug("downloading %s", url);
 			var session = new Soup.Session ();
 			session.user_agent = "Roo Builder ";
 			var message = new Soup.Message ("GET",  url );
