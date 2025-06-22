@@ -177,6 +177,13 @@ public class FakeServerCache : Object
 			var fqn = fname.replace("/symbols/","");
 			fqn = fqn.substring(0,fqn.length-5);
 			GLib.debug("loading symbol data for %s", fqn);
+			
+			// if state.project.xtype == "Roo" - then load the file from githubs docs.
+			if (state.project.xtype == "Roo") {
+				this.initWithURL("https://roojs.github.io/roojs1/docs/symbols/" + fqn + ".json");
+				return;
+			}
+			
 			var sy = sl.singleByFqn(fqn);
 			// in theory this loads up all of the types..
 			pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP);
@@ -295,6 +302,29 @@ public class FakeServerCache : Object
 			string etag_out;
 			file.load_contents (null, out data, out etag_out);
 			this.data = data;
+		} catch (Error e) {
+			this.data = "".data;
+			this.size = 0;
+			this.content_type = "";
+			return;
+		}
+
+	}
+	public void initWithURL(string url)
+	{
+		try { 
+			
+			GLib.debug("downloading %s", url);
+			var session = new Soup.Session ();
+			session.user_agent = "Roo Builder ";
+			var message = new Soup.Message ("GET",  url );
+			var res = session.send_and_read (message);
+ 
+		     
+			this.content_type = "application/json"; // need to sort this out.
+			this.size = res.length;
+			 
+			this.data = res.get_data();
 		} catch (Error e) {
 			this.data = "".data;
 			this.size = 0;
