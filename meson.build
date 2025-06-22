@@ -33,6 +33,7 @@ deps = [
    dependency('roojspack-1.5'),
    dependency('sqlite3'),
    dependency('gtk4-x11'),
+   dependency('libsoup-3.0'),
 
 ]
  
