@@ -738,6 +738,7 @@
 		{
 			var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
 			var pal  = cur_project.palete;
+			pal.load();
 			var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
  			print("\n\nPropsList:\n%s", this.symbolArrayToString(
  				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP)));

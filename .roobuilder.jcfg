@@ -113,6 +113,7 @@
         "libadwaita-1",
         "roojspack-1.5",
         "sqlite3",
-        "gtk4-x11"
+        "gtk4-x11",
+        "libsoup-3.0"
     ]
 }
