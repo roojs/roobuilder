@@ -310,6 +310,30 @@ public class FakeServerCache : Object
 		}
 
 	}
+	public void initWithURL(string url)
+	{
+		try { 
+			
+			print("downloading %s \nto : %s\n", url);
+			var session = new Soup.Session ();
+			session.user_agent = "Roo Builder ";
+			var message = new Soup.Message ("GET",  url );
+			var data = (string) session.send_and_read (message).get_data();
+		     
+			this.content_type = info.get_content_type();
+			this.size = data.linegth;
+			uint8[] data;
+			string etag_out;
+			file.load_contents (null, out data, out etag_out);
+			this.data = data;
+		} catch (Error e) {
+			this.data = "".data;
+			this.size = 0;
+			this.content_type = "";
+			return;
+		}
+
+	}
 
  
 	public void run(WebKit.URISchemeRequest request, Cancellable? cancellable) 
