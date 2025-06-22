@@ -319,7 +319,7 @@ public class FakeServerCache : Object
 			session.user_agent = "Roo Builder ";
 			var message = new Soup.Message ("GET",  url );
 			var res = session.send_and_read (message);
- 
+			var data = (string) 
 		     
 			this.content_type = "application/json"; // need to sort this out.
 			this.size = res.length;

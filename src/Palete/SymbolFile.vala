@@ -43,7 +43,9 @@ namespace Palete {
 				if (file != null) {
 					return file.vtime;
 				}
-				
+				if (path.has_prefix("resource://")) {
+					return GLib.File.new_for_uri(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				}
 				return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
 			} catch (GLib.Error e) {
 				return -2;
@@ -121,7 +123,7 @@ namespace Palete {
 			
 		}
 		
-		void initDB()
+		public void initDB()
 		{
 			if (this.id < 0) {
 				var sqf = new SQ.Query<SymbolFile>("files");				

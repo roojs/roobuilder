@@ -87,7 +87,8 @@
                 "src/Palete/SymbolNodeProp.vala",
                 "src/Builder4/LoadingProgress.bjs",
                 "src/Palete/SymbolFormat.vala",
-                "src/Palete/JsonSerialize.vala"
+                "src/Palete/JsonSerialize.vala",
+                "src/Palete/SymbolRoo.vala"
             ]
         }
     ],
@@ -112,6 +113,7 @@
         "libadwaita-1",
         "roojspack-1.5",
         "sqlite3",
-        "gtk4-x11"
+        "gtk4-x11",
+        "libsoup-3.0"
     ]
 }
