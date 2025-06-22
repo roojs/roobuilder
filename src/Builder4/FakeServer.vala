@@ -319,12 +319,12 @@ public class FakeServerCache : Object
 			session.user_agent = "Roo Builder ";
 			var message = new Soup.Message ("GET",  url );
 			var res = session.send_and_read (message);
-			var data = (string) res.get_data();
+			var data = (string) 
 		     
 			this.content_type = "application/json"; // need to sort this out.
-			this.size = data.length;
+			this.size = res.length;
 			 
-			this.data = (uint8[])data;
+			this.data = res.get_data();
 		} catch (Error e) {
 			this.data = "".data;
 			this.size = 0;
