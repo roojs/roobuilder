@@ -1942,7 +1942,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.active = true;
-			this.el.label = "Vala";
+			this.el.label = "CSS";
 
 			//listeners
 			this.el.toggled.connect( () =>  {

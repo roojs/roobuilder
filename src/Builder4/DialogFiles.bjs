@@ -865,7 +865,7 @@
                  "}"
                 ]
                },
-               "string label" : "Vala",
+               "string label" : "CSS",
                "xtype" : "ToggleButton"
               }
              ],
