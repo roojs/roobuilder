@@ -31,7 +31,7 @@ public class DialogFiles : Object
 	public Xcls_gridsort gridsort;
 	public Xcls_gridmodel gridmodel;
 	public Xcls_iconfilter iconfilter;
-	public Xcls_filt filt;
+	public Xcls_filte filte;
 	public Xcls_treescroll treescroll;
 	public Xcls_treeview treeview;
 	public Xcls_treeselmodel treeselmodel;
@@ -1854,8 +1854,8 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.hexpand = true;
-			new Xcls_filt( _this );
-			this.el.append( _this.filt.el );
+			new Xcls_filte( _this );
+			this.el.append( _this.filte.el );
 			var child_2 = new Xcls_ToggleButton51( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
@@ -1875,7 +1875,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_filt : Object
+	public class Xcls_filte : Object
 	{
 		public Gtk.ToggleButton el;
 		private DialogFiles  _this;
@@ -1884,10 +1884,10 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_filt(DialogFiles _owner )
+		public Xcls_filte(DialogFiles _owner )
 		{
 			_this = _owner;
-			_this.filt = this;
+			_this.filte = this;
 			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
