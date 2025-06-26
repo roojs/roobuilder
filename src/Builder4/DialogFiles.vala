@@ -1868,6 +1868,9 @@ public class DialogFiles : Object
 			var child_5 = new Xcls_ToggleButton102( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
+			var child_6 = new Xcls_ToggleButton406( _this );
+			child_6.ref();
+			this.el.append( child_6.el );
 		}
 
 		// user defined functions
@@ -2007,6 +2010,35 @@ public class DialogFiles : Object
 			// set gobject values
 			this.el.active = true;
 			this.el.label = "PHP";
+
+			//listeners
+			this.el.toggled.connect( () =>  {
+				// change the filter.
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_ToggleButton406 : Object
+	{
+		public Gtk.ToggleButton el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_ToggleButton406(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ToggleButton();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.active = true;
+			this.el.label = "O";
 
 			//listeners
 			this.el.toggled.connect( () =>  {
