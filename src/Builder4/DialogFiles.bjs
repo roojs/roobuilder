@@ -885,6 +885,10 @@
                "string placeholder_text" : "type to filter results",
                "uint search_delay" : 1000,
                "xtype" : "SearchEntry"
+              },
+              {
+               "$ xns" : "Gtk",
+               "xtype" : "ToggleButton"
               }
              ],
              "xtype" : "Box"
