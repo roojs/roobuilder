@@ -76,7 +76,7 @@
        "bool homogeneous" : false,
        "bool vexpand" : true,
        "id" : "mainpane",
-       "int position" : 200,
+       "int position" : 220,
        "int spacing" : 0,
        "items" : [
         {
