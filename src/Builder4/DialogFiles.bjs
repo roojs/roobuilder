@@ -888,6 +888,7 @@
               },
               {
                "$ xns" : "Gtk",
+               "bool active" : true,
                "string label" : "Linked Files",
                "xtype" : "ToggleButton"
               }
