@@ -854,6 +854,19 @@
                },
                "string label" : "Vala",
                "xtype" : "ToggleButton"
+              },
+              {
+               "$ xns" : "Gtk",
+               "bool active" : true,
+               "listeners" : {
+                "toggled" : [
+                 "() =>  {",
+                 "\t// change the filter.",
+                 "}"
+                ]
+               },
+               "string label" : "Vala",
+               "xtype" : "ToggleButton"
               }
              ],
              "xtype" : "Box"

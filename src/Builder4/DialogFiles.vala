@@ -1859,6 +1859,9 @@ public class DialogFiles : Object
 			var child_2 = new Xcls_ToggleButton2576( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
+			var child_3 = new Xcls_ToggleButton2590( _this );
+			child_3.ref();
+			this.el.append( child_3.el );
 		}
 
 		// user defined functions
@@ -1902,6 +1905,35 @@ public class DialogFiles : Object
 
 		// ctor
 		public Xcls_ToggleButton2576(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ToggleButton();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.active = true;
+			this.el.label = "Vala";
+
+			//listeners
+			this.el.toggled.connect( () =>  {
+				// change the filter.
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_ToggleButton2590 : Object
+	{
+		public Gtk.ToggleButton el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_ToggleButton2590(DialogFiles _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.ToggleButton();
