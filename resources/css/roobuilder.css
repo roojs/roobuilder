@@ -194,11 +194,10 @@ gridview child  {
 }
 
 button.small {
-    color: grey;
     min-height:12px;
     min-width: 12px;;
     padding: 2px 4px;
     font-size: 0.8em;
     border-radius: 1px;
-    margin: 1px;  
+    margin: 2px;  
 }
