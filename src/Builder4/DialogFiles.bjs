@@ -889,6 +889,13 @@
               {
                "$ xns" : "Gtk",
                "bool active" : true,
+               "listeners" : {
+                "toggled" : [
+                 "() =>  {",
+                 "",
+                 "}"
+                ]
+               },
                "string label" : "Linked Files",
                "xtype" : "ToggleButton"
               }
