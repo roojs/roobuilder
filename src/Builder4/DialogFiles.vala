@@ -1934,7 +1934,7 @@ public class DialogFiles : Object
 
 			//listeners
 			this.el.toggled.connect( () =>  {
-			
+				// change the filter.
 			});
 		}
 

@@ -892,7 +892,7 @@
                "listeners" : {
                 "toggled" : [
                  "() =>  {",
-                 "",
+                 "\t// change the filter.",
                  "}"
                 ]
                },
