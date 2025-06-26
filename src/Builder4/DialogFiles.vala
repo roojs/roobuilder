@@ -1999,7 +1999,8 @@ public class DialogFiles : Object
 
 			//listeners
 			this.el.toggled.connect( () =>  {
-				// change the filter.
+				_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
+				_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);	
 			});
 		}
 
