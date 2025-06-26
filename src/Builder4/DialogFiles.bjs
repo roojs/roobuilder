@@ -912,6 +912,7 @@
                 ]
                },
                "string label" : "Other",
+               "string[] css_classes" : "{ \"small\" }",
                "xtype" : "ToggleButton"
               }
              ],
