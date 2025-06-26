@@ -419,7 +419,7 @@
                 {
                  "$ xns" : "Gtk",
                  "bool has_frame" : false,
-                 "label" : "Rename (not yet)",
+                 "label" : "Vala",
                  "listeners" : {
                   "clicked" : [
                    "  () => {",

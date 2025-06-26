@@ -1086,7 +1086,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.has_frame = false;
-			this.el.label = "Rename (not yet)";
+			this.el.label = "Vala";
 
 			//listeners
 			this.el.clicked.connect( () => {
