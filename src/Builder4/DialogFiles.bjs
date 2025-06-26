@@ -522,7 +522,6 @@
           {
            "$ xns" : "Gtk",
            "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-           "* prop" : "start_child",
            "bool has_frame" : true,
            "bool hexpand" : true,
            "bool vexpand" : true,
@@ -1137,6 +1136,11 @@
              "xtype" : "ScrolledWindow"
             }
            ],
+           "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "start_child",
            "xtype" : "Box"
           }
          ],

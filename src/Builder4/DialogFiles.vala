@@ -1263,10 +1263,13 @@ public class DialogFiles : Object
 			this.el.position = 200;
 			this.el.visible = false;
 			new Xcls_treescroll( _this );
-			this.el.start_child = _this.treescroll.el;
+			this.el.pack_start( _this.treescroll.el );
 			var child_2 = new Xcls_Box47( _this );
 			child_2.ref();
 			this.el.end_child = child_2.el;
+			var child_3 = new Xcls_Box2067( _this );
+			child_3.ref();
+			this.el.start_child = child_3.el;
 		}
 
 		// user defined functions
@@ -2345,6 +2348,28 @@ public class DialogFiles : Object
 
 
 
+
+	public class Xcls_Box2067 : Object
+	{
+		public Gtk.Box el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box2067(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( null, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 
