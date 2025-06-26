@@ -891,7 +891,7 @@
                  "}"
                 ]
                },
-               "string label" : "JS",
+               "string label" : "PHP",
                "xtype" : "ToggleButton"
               }
              ],

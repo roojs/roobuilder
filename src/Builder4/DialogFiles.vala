@@ -2006,7 +2006,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.active = true;
-			this.el.label = "JS";
+			this.el.label = "PHP";
 
 			//listeners
 			this.el.toggled.connect( () =>  {
