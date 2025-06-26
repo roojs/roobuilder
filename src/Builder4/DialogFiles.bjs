@@ -825,6 +825,61 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "bool hexpand" : true,
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* init" : [
+                " ",
+                "/*",
+                "this.css = new Gtk.CssProvider();",
+                "try {",
+                "\tthis.css.load_from_data(\"#popover-files-iconsearch { font:  10px monospace;}\".data);",
+                "} catch (Error e) {}",
+                "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+                "        ",
+                "        ",
+                "*/"
+               ],
+               "Gtk.CssProvider css" : "",
+               "bool hexpand" : true,
+               "id" : "searchbox",
+               "listeners" : {
+                "search_changed" : [
+                 "( ) => {",
+                 "GLib.debug(\"file search %s\", this.el.text);",
+                 "\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
+                 "\t_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);\t",
+                 "//\t_this.iconsearch.el.set_search(this.el.text);",
+                 "}",
+                 ""
+                ]
+               },
+               "string name" : "popover-files-iconsearch",
+               "string placeholder_text" : "type to filter results",
+               "uint search_delay" : 1000,
+               "xtype" : "SearchEntry"
+              },
+              {
+               "$ xns" : "Gtk",
+               "bool active" : true,
+               "listeners" : {
+                "toggled" : [
+                 "() =>  {",
+                 "\t// change the filter.",
+                 "}"
+                ]
+               },
+               "string label" : "Linked Files",
+               "xtype" : "ToggleButton"
+              }
+             ],
+             "xtype" : "Box"
+            },
+            {
+             "$ xns" : "Gtk",
              "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
              "bool has_frame" : true,
              "bool hexpand" : true,
