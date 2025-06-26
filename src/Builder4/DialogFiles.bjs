@@ -884,6 +884,7 @@
                 ]
                },
                "string label" : "JS",
+               "string[] css_classes" : "?string[]?",
                "xtype" : "ToggleButton"
               },
               {
