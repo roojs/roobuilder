@@ -32,7 +32,7 @@ public class DialogFiles : Object
 	public Xcls_gridsort gridsort;
 	public Xcls_gridmodel gridmodel;
 	public Xcls_iconfilter iconfilter;
-	public Xcls_filter_val filter_val;
+	public Xcls_filter_vala filter_vala;
 	public Xcls_filter_c filter_c;
 	public Xcls_filter_css filter_css;
 	public Xcls_filter_js filter_js;
@@ -1863,8 +1863,8 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.hexpand = true;
-			new Xcls_filter_val( _this );
-			this.el.append( _this.filter_val.el );
+			new Xcls_filter_vala( _this );
+			this.el.append( _this.filter_vala.el );
 			new Xcls_filter_c( _this );
 			this.el.append( _this.filter_c.el );
 			new Xcls_filter_css( _this );
@@ -1879,7 +1879,7 @@ public class DialogFiles : Object
 
 		// user defined functions
 	}
-	public class Xcls_filter_val : Object
+	public class Xcls_filter_vala : Object
 	{
 		public Gtk.ToggleButton el;
 		private DialogFiles  _this;
@@ -1888,10 +1888,10 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_filter_val(DialogFiles _owner )
+		public Xcls_filter_vala(DialogFiles _owner )
 		{
 			_this = _owner;
-			_this.filter_val = this;
+			_this.filter_vala = this;
 			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
@@ -1904,7 +1904,7 @@ public class DialogFiles : Object
 			//listeners
 			this.el.toggled.connect( () =>  {
 				_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
-				_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);	
+			
 			});
 		}
 
@@ -2432,7 +2432,7 @@ public class DialogFiles : Object
 	var str = _this.searchbox.el.text.down();	
 	if (j.xtype == "Dir") {
 	
-		
+		var sf= 0;
 		for (var i =0 ; i < j.childfiles.n_items; i++) {
 			var f = (JsRender.JsRender) j.childfiles.get_item(i);
 			if (f.xtype != "PlainFile") {
@@ -2441,6 +2441,44 @@ public class DialogFiles : Object
 			if (f.content_type.contains("image")) {
 				continue;
 			}
+			var cs = false;
+			switch(f.file_ext.down()) {
+				case "php":
+					if (_this.filter_php.el.active) {
+						cs = true;
+					}
+					continue;
+				case "vala":
+					if (_this.filter_vala.el.active) {
+						cs = true;
+					}
+					break;
+				case "c":
+					if (_this.filter_c.el.active) {
+						cs=true;;
+					}
+					break;
+				case "js":
+					if (_this.filter_js.el.active) {
+						cs=true;;
+					}
+					break;
+				case "css":
+					if (_this.filter_css.el.active) {
+						cs=true;;
+					}
+					break;
+				default:
+					if (_this.filter_other.el.active) {
+						cs=true;;
+					}
+					break;
+			}
+			if (!cs) {
+				continue;
+			}
+			
+			
 			if (str.length < 1) {
 				return true;
 			}
@@ -2458,7 +2496,41 @@ public class DialogFiles : Object
  	if (j.content_type.contains("image")) {
 		return false;
 	}
-			 
+	
+	switch(j.file_ext.down()) {
+		case "php":
+			if (_this.filter_php.el.active) {
+				break;
+			}
+			return false;
+		case "vala":
+			if (_this.filter_vala.el.active) {
+				break;
+			}
+			return false;
+		case "c":
+			if (_this.filter_c.el.active) {
+				break;
+			}
+			return false;
+		case "css":
+			if (_this.filter_css.el.active) {
+				break;
+			}
+			return false;
+		case "js":
+			if (_this.filter_js.el.active) {
+				break;
+			}
+			return false;
+		default:
+			if (_this.filter_other.el.active) {
+				break;
+			}
+			return false;
+	}
+	
+	
 	if (str.length < 1) { // no search.
 		return true;
 	}
