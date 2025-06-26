@@ -1924,6 +1924,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.active = true;
+			this.el.css_classes = { "small" };
 			this.el.label = "C";
 
 			//listeners

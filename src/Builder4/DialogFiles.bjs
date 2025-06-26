@@ -856,6 +856,7 @@
                 ]
                },
                "string label" : "C",
+               "string[] css_classes" : "{ \"small\" }",
                "xtype" : "ToggleButton"
               },
               {
