@@ -192,3 +192,12 @@ gridview child  {
 #file-list indent:nth-last-child(2)  {
     min-width: 24px;
 }
+
+button.small {
+    min-height:12px;
+    min-width: 12px;;
+    padding: 2px 4px;
+    font-size: 0.8em;
+    border-radius: 1px;
+    margin: 1px;  
+}

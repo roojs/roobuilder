@@ -750,7 +750,7 @@ public class Xcls_GtkView : Object
 		public void loadFile ( ) {
 		    this.loading = true;
 		    
-		    
+		    _this.buffer.in_cursor_change = true;
 		    
 		    
 		    var buf = this.el.get_buffer();
@@ -770,6 +770,7 @@ public class Xcls_GtkView : Object
 		    if (_this.file == null || _this.file.xtype != "Gtk") {
 		        print("xtype != Gtk");
 		        this.loading = false;
+		         _this.buffer.in_cursor_change = false;
 		        return;
 		    }
 		   
@@ -845,7 +846,7 @@ public class Xcls_GtkView : Object
 				return false;
 			});
 			*/
-		  
+		   _this.buffer.in_cursor_change = false;
 		    
 		    this.loading = false; 
 		}
