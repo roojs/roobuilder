@@ -842,6 +842,7 @@
                 ]
                },
                "string label" : "Vala",
+               "string[] css_classes" : "?string[]?",
                "xtype" : "ToggleButton"
               },
               {
