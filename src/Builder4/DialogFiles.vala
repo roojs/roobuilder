@@ -1857,6 +1857,9 @@ public class DialogFiles : Object
 			this.el.hexpand = true;
 			new Xcls_searchbox( _this );
 			this.el.append( _this.searchbox.el );
+			var child_2 = new Xcls_ToggleButton916( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
 		}
 
 		// user defined functions
@@ -1904,6 +1907,29 @@ public class DialogFiles : Object
 				_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);	
 			//	_this.iconsearch.el.set_search(this.el.text);
 			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_ToggleButton916 : Object
+	{
+		public Gtk.ToggleButton el;
+		private DialogFiles  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_ToggleButton916(DialogFiles _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.ToggleButton();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.label = "\"\"";
 		}
 
 		// user defined functions
