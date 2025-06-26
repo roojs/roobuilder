@@ -834,11 +834,6 @@
              ],
              "string name" : "file-list",
              "xtype" : "ColumnView"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* prop" : "start_child",
-             "xtype" : "Box"
             }
            ],
            "xtype" : "ScrolledWindow"

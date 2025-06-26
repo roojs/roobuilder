@@ -1299,9 +1299,6 @@ public class DialogFiles : Object
 			this.el.visible = true;
 			new Xcls_treeview( _this );
 			this.el.child = _this.treeview.el;
-			var child_2 = new Xcls_Box2119( _this );
-			child_2.ref();
-			this.el.start_child = child_2.el;
 
 			// init method
 
@@ -1813,28 +1810,6 @@ public class DialogFiles : Object
 	}
 
 
-
-	public class Xcls_Box2119 : Object
-	{
-		public Gtk.Box el;
-		private DialogFiles  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Box2119(DialogFiles _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( null, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
 
 
 	public class Xcls_Box47 : Object
