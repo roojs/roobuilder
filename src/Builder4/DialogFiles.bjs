@@ -832,7 +832,7 @@
               {
                "$ xns" : "Gtk",
                "bool active" : true,
-               "id" : "filter_v",
+               "id" : "filter_va",
                "listeners" : {
                 "toggled" : [
                  "() =>  {",
