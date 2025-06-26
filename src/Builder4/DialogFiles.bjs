@@ -854,11 +854,6 @@
                },
                "string label" : "Vala",
                "xtype" : "ToggleButton"
-              },
-              {
-               "$ xns" : "Gtk",
-               "string icon_name" : "user-trash",
-               "xtype" : "Image"
               }
              ],
              "xtype" : "Box"
