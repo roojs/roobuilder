@@ -904,7 +904,7 @@
                  "}"
                 ]
                },
-               "string label" : "O",
+               "string label" : "Other",
                "xtype" : "ToggleButton"
               }
              ],
