@@ -569,10 +569,14 @@
               {
                "$ xns" : "Gtk",
                "bool active" : true,
+               "id" : "",
                "listeners" : {
                 "toggled" : [
                  "() =>  {",
                  "\t// change the filter.",
+                 "\t",
+                 "\t\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
+                 "\t_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);\t",
                  "}"
                 ]
                },
