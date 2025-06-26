@@ -1913,7 +1913,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.active = true;
-			this.el.label = "Vala";
+			this.el.label = "C";
 
 			//listeners
 			this.el.toggled.connect( () =>  {
