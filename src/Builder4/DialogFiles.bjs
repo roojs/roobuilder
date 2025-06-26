@@ -888,7 +888,7 @@
               },
               {
                "$ xns" : "Gtk",
-               "string label" : "Symlinked",
+               "string label" : "Follow Links",
                "xtype" : "ToggleButton"
               }
              ],

@@ -1929,7 +1929,7 @@ public class DialogFiles : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.label = "Symlinked";
+			this.el.label = "Follow Links";
 		}
 
 		// user defined functions
