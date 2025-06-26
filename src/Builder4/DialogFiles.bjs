@@ -867,6 +867,19 @@
                },
                "string label" : "CSS",
                "xtype" : "ToggleButton"
+              },
+              {
+               "$ xns" : "Gtk",
+               "bool active" : true,
+               "listeners" : {
+                "toggled" : [
+                 "() =>  {",
+                 "\t// change the filter.",
+                 "}"
+                ]
+               },
+               "string label" : "CSS",
+               "xtype" : "ToggleButton"
               }
              ],
              "xtype" : "Box"
