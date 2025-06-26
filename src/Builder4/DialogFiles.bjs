@@ -839,7 +839,7 @@
                  "}"
                 ]
                },
-               "string label" : "Linked Files",
+               "string label" : "Vala",
                "xtype" : "ToggleButton"
               }
              ],

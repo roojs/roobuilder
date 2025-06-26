@@ -1878,7 +1878,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.active = true;
-			this.el.label = "Linked Files";
+			this.el.label = "Vala";
 
 			//listeners
 			this.el.toggled.connect( () =>  {
