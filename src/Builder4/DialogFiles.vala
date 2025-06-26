@@ -1956,6 +1956,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.active = true;
+			this.el.css_classes = ?string[]?;
 			this.el.label = "CSS";
 
 			//listeners

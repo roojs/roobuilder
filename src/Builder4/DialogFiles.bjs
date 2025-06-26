@@ -872,6 +872,7 @@
                 ]
                },
                "string label" : "CSS",
+               "string[] css_classes" : "?string[]?",
                "xtype" : "ToggleButton"
               },
               {
