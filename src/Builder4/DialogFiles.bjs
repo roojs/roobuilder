@@ -890,7 +890,7 @@
                 "toggled" : [
                  "() =>  {",
                  "\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
-                 "\t_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);\t",
+                 "",
                  "}"
                 ]
                },
