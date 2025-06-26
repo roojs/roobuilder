@@ -36,6 +36,7 @@ public class DialogFiles : Object
 	public Xcls_filter_css filter_css;
 	public Xcls_filter_js filter_js;
 	public Xcls_filter_php filter_php;
+	public Xcls_filter_other filter_other;
 	public Xcls_treescroll treescroll;
 	public Xcls_treeview treeview;
 	public Xcls_treeselmodel treeselmodel;
@@ -1868,9 +1869,8 @@ public class DialogFiles : Object
 			this.el.append( _this.filter_js.el );
 			new Xcls_filter_php( _this );
 			this.el.append( _this.filter_php.el );
-			var child_6 = new Xcls_ToggleButton55( _this );
-			child_6.ref();
-			this.el.append( child_6.el );
+			new Xcls_filter_other( _this );
+			this.el.append( _this.filter_other.el );
 		}
 
 		// user defined functions
@@ -2025,7 +2025,7 @@ public class DialogFiles : Object
 		// user defined functions
 	}
 
-	public class Xcls_ToggleButton55 : Object
+	public class Xcls_filter_other : Object
 	{
 		public Gtk.ToggleButton el;
 		private DialogFiles  _this;
@@ -2034,9 +2034,10 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ToggleButton55(DialogFiles _owner )
+		public Xcls_filter_other(DialogFiles _owner )
 		{
 			_this = _owner;
+			_this.filter_other = this;
 			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
