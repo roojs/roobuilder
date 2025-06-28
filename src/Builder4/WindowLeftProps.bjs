@@ -618,12 +618,10 @@
              "listeners" : {
               "clicked" : [
                "( ) => {",
-               "\t",
-               "",
                "\tvar n = (JsRender.NodeProp) _this.selmodel.el.selected_item;",
-               "",
                "\t_this.deletemenu.el.hide();",
                "\t_this.node.remove_prop(n);",
+               " \t_this.changed();",
                "}",
                ""
               ]

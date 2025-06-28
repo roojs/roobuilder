@@ -1884,12 +1884,10 @@ public class Xcls_LeftProps : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
-				
-			
 				var n = (JsRender.NodeProp) _this.selmodel.el.selected_item;
-			
 				_this.deletemenu.el.hide();
 				_this.node.remove_prop(n);
+			 	_this.changed();
 			});
 		}
 
