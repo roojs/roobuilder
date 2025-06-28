@@ -828,7 +828,8 @@ namespace Project {
 				//GLib.debug("Could have added %s/%s", dir, fn);
 				try {
 					var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
-i					if (jsDir.is_symlink) {
+					
+					if (jsDir.is_symlink) {
 						el.is_symlink = true;
 					}
 					this.files.set( dir + "/" + fn, el);
