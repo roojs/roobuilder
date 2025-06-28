@@ -24,7 +24,7 @@ public class DialogFiles : Object
 	public Xcls_LeftTreeMenu LeftTreeMenu;
 	public Xcls_filepane filepane;
 	public Xcls_searchbox searchbox;
-	public Xcls_filter_linked filter_linked;
+	public Xcls_filter_symlink filter_symlink;
 	public Xcls_iconscroll iconscroll;
 	public Xcls_gridview gridview;
 	public Xcls_iconsel iconsel;
@@ -1327,8 +1327,8 @@ public class DialogFiles : Object
 			this.el.hexpand = true;
 			new Xcls_searchbox( _this );
 			this.el.append( _this.searchbox.el );
-			new Xcls_filter_linked( _this );
-			this.el.append( _this.filter_linked.el );
+			new Xcls_filter_symlink( _this );
+			this.el.append( _this.filter_symlink.el );
 		}
 
 		// user defined functions
@@ -1381,7 +1381,7 @@ public class DialogFiles : Object
 		// user defined functions
 	}
 
-	public class Xcls_filter_linked : Object
+	public class Xcls_filter_symlink : Object
 	{
 		public Gtk.ToggleButton el;
 		private DialogFiles  _this;
@@ -1390,16 +1390,17 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_filter_linked(DialogFiles _owner )
+		public Xcls_filter_symlink(DialogFiles _owner )
 		{
 			_this = _owner;
-			_this.filter_linked = this;
+			_this.filter_symlink = this;
 			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
 
 			// set gobject values
 			this.el.active = true;
+			this.el.tooltip_text = "Hide or Show Files that are included in the project via Symbolic Links";
 			this.el.label = "Linked Files";
 
 			//listeners
@@ -1719,7 +1720,14 @@ public class DialogFiles : Object
  
 	var str = _this.searchbox.el.text.down();	
 	GLib.debug("filter %s to %s" , str, j.name.down());
-	 		 
+	
+	if (!_this.filter_symlink.el.active) {
+		// hide symlinks
+		if (j.is_symlink) {
+			return false;
+		}
+	}
+	
 	if (str.length < 1) { // no search.
 		return true;
 	}
@@ -2429,6 +2437,13 @@ public class DialogFiles : Object
 	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
 		return false;
 	}
+	if (!_this.filter_symlink.el.active) {
+		// hide symlinks
+		if (j.is_symlink) {
+			return false;
+		}
+	}
+	
 	var str = _this.searchbox.el.text.down();	
 	if (j.xtype == "Dir") {
 	
@@ -2440,6 +2455,12 @@ public class DialogFiles : Object
 			}
 			if (f.content_type.contains("image")) {
 				continue;
+			}
+			if (!_this.filter_symlink.el.active) {
+				// hide symlinks
+				if (f.is_symlink) {
+					continue;
+				}
 			}
 			var cs = false;
 			switch(f.file_ext.down()) {

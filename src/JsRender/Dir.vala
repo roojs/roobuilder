@@ -19,8 +19,8 @@ namespace JsRender {
 	        this.id = "dir-%d".printf(did++);
 	        this.name = this.relpath;
 	        if (this.name == "") {
-	        	this.name = "/";
-        	}
+			    	this.name = "/";
+		    	}
 	        //console.dump(this);
 	        // various loader methods..
 

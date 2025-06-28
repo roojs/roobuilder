@@ -132,26 +132,26 @@ namespace Project {
 			  
 		    
 		    if (FileUtils.test(dirname + "/Projects.list", GLib.FileTest.IS_REGULAR)) {
-		    	loadProjectList();
-		    	projects_loaded = true;
-		    	return;
-	    	}
-	    	convertOldProjects(); // this saves..
-	    	foreach(var p in projects) {
-	    		p.save();
-    		}
+				loadProjectList();
+				projects_loaded = true;
+				return;
+			}
+			convertOldProjects(); // this saves..
+			foreach(var p in projects) {
+				p.save();
+			}
 	 		projects_loaded = true;
  
-    	}
-    	 
-    	public static void remove(Project p) {
-    		projects.remove(p);
-    		saveProjectList();
-    	
-    	}
-    	
-    	public static void saveProjectList()
-    	{
+		}
+		 
+		public static void remove(Project p) {
+			projects.remove(p);
+			saveProjectList();
+		
+		}
+		
+		public static void saveProjectList()
+		{
 			var f = new Json.Object();
 			foreach(var p in projects) {
 				f.set_string_member(p.path, p.xtype);
@@ -166,22 +166,22 @@ namespace Project {
 
  			var data = generator.to_data (null);
 			var dirname = BuilderApplication.configDirectory();
-    		GLib.debug("Write new Project list\n %s", data);
-    		//Posix.exit(0);
-    		
-    		try {
+			GLib.debug("Write new Project list\n %s", data);
+			//Posix.exit(0);
+			
+			try {
 				//FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
 				FileUtils.set_contents(dirname + "/Projects.list", data, data.length);  
 			} catch (GLib.Error e) {
 				GLib.error("failed  to save file %s", e.message);
 			}
-    		
-    	}
-    	
-    	
-    	
-    	public static void convertOldProjects()
-    	{
+			
+		}
+		
+		
+		
+		public static void convertOldProjects()
+		{
     	
 			var dirname = BuilderApplication.configDirectory();
 			var  dir = File.new_for_path(dirname);
@@ -688,12 +688,13 @@ namespace Project {
 			
 		}
 		*/
-		private void loadSubDirectories(string subdir, int dp) 
+		private void  loadSubDirectories(string subdir, int dp, bool is_symlink = false) 
 		{
 			//dp = dp || 0;
 			//print("Project.Base: Running scandir on " + dir +"\n");
+			// could we use .git ignore for this?
 			if (dp > 5) { // no more than 5 deep?
-				return;
+				return ;
 			}
 			if (subdir == "build") { // cmake!
 				return;
@@ -720,6 +721,9 @@ namespace Project {
 			
 			GLib.debug("Project %s Scan Dir: %s", this.name, dir);
 			var jsDir = new JsRender.Dir(this, dir);
+			if (is_symlink) {
+				jsDir.is_symlink = true;
+			}
 			this.sub_paths.add(jsDir); // might be ''...
 			
 			
@@ -748,8 +752,8 @@ namespace Project {
 					
 					if (FileUtils.test(dir  + "/" + fn, GLib.FileTest.IS_DIR)) {
 						if (subdir == "debian") { // dont bother with subdirs  of debian.
-            				continue;
-        			}
+            					continue;
+        					}
 
 						
 						subs.add(dir  + "/" + fn);
@@ -778,6 +782,10 @@ namespace Project {
 				 	
 					var xt = this.xtype;
 					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
+					if (jsDir.is_symlink) {
+						el.is_symlink = true;
+					}
+					
 					this.files.set( dir + "/" + fn, el);
 					jsDir.childfiles.append(el);
 					
@@ -819,8 +827,12 @@ namespace Project {
 				
 				//GLib.debug("Could have added %s/%s", dir, fn);
 				try {
-					 var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
-					 this.files.set( dir + "/" + fn, el);
+					var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
+					
+					if (jsDir.is_symlink) {
+						el.is_symlink = true;
+					}
+					this.files.set( dir + "/" + fn, el);
 					jsDir.childfiles.append(el);
 				} catch (JsRender.Error e) {
 					GLib.warning("Project::scanDirs failed : " + e.message + "\n");
@@ -828,7 +840,7 @@ namespace Project {
 			}
 			
 			foreach (var sd in subs) {
-				 this.loadSubDirectories(sd.substring(this.path.length+1), dp+1);
+				 this.loadSubDirectories(sd.substring(this.path.length+1), dp+1, jsDir.is_symlink);
 			}
 			
 		

@@ -118,6 +118,7 @@ namespace JsRender {
 		public bool hasParent; 
 		
 		public bool loaded;
+		public bool is_symlink;
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
 		public	Gee.HashMap<string,string> namedStrings;
@@ -282,7 +283,7 @@ namespace JsRender {
 			//this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
 			this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); }); 
 			this.undo_json = new Gee.HashMap<int,string>();
-
+			this.is_symlink = FileUtils.test(this.path, GLib.FileTest.IS_SYMLINK);
 
 		}
 		
@@ -297,7 +298,7 @@ namespace JsRender {
 				return;
 			}
 			var bjs = GLib.Path.get_dirname(this.path) +"/" +  name + ".bjs";
-			if (FileUtils.test(bjs, FileTest.EXISTS)) {
+			if (FileUtils.test(bjs, GLib.FileTest.EXISTS)) {
 				throw new Error.RENAME_FILE_EXISTS("File exists %s\n",name);
 			}
 			GLib.FileUtils.remove(this.path);
