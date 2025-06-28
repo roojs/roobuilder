@@ -688,12 +688,13 @@ namespace Project {
 			
 		}
 		*/
-		private void loadSubDirectories(string subdir, int dp) 
+		private void  loadSubDirectories(string subdir, int dp, bool is_symlink) 
 		{
 			//dp = dp || 0;
 			//print("Project.Base: Running scandir on " + dir +"\n");
+			// could we use .git ignore for this?
 			if (dp > 5) { // no more than 5 deep?
-				return;
+				return ;
 			}
 			if (subdir == "build") { // cmake!
 				return;
@@ -720,6 +721,9 @@ namespace Project {
 			
 			GLib.debug("Project %s Scan Dir: %s", this.name, dir);
 			var jsDir = new JsRender.Dir(this, dir);
+			if (is_symlink) {
+				jsDir.is_symlink = true;
+			}
 			this.sub_paths.add(jsDir); // might be ''...
 			
 			
@@ -823,8 +827,11 @@ namespace Project {
 				
 				//GLib.debug("Could have added %s/%s", dir, fn);
 				try {
-					 var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
-					 this.files.set( dir + "/" + fn, el);
+					var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
+i					if (jsDir.is_symlink) {
+						el.is_symlink = true;
+					}
+					this.files.set( dir + "/" + fn, el);
 					jsDir.childfiles.append(el);
 				} catch (JsRender.Error e) {
 					GLib.warning("Project::scanDirs failed : " + e.message + "\n");
@@ -832,7 +839,7 @@ namespace Project {
 			}
 			
 			foreach (var sd in subs) {
-				 this.loadSubDirectories(sd.substring(this.path.length+1), dp+1);
+				 this.loadSubDirectories(sd.substring(this.path.length+1), dp+1, jsDir.is_symlink);
 			}
 			
 		
