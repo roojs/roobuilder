@@ -132,26 +132,26 @@ namespace Project {
 			  
 		    
 		    if (FileUtils.test(dirname + "/Projects.list", GLib.FileTest.IS_REGULAR)) {
-		    	loadProjectList();
-		    	projects_loaded = true;
-		    	return;
-	    	}
-	    	convertOldProjects(); // this saves..
-	    	foreach(var p in projects) {
-	    		p.save();
-    		}
+				loadProjectList();
+				projects_loaded = true;
+				return;
+			}
+			convertOldProjects(); // this saves..
+			foreach(var p in projects) {
+				p.save();
+			}
 	 		projects_loaded = true;
  
-    	}
-    	 
-    	public static void remove(Project p) {
-    		projects.remove(p);
-    		saveProjectList();
-    	
-    	}
-    	
-    	public static void saveProjectList()
-    	{
+		}
+		 
+		public static void remove(Project p) {
+			projects.remove(p);
+			saveProjectList();
+		
+		}
+		
+		public static void saveProjectList()
+		{
 			var f = new Json.Object();
 			foreach(var p in projects) {
 				f.set_string_member(p.path, p.xtype);
@@ -166,22 +166,22 @@ namespace Project {
 
  			var data = generator.to_data (null);
 			var dirname = BuilderApplication.configDirectory();
-    		GLib.debug("Write new Project list\n %s", data);
-    		//Posix.exit(0);
-    		
-    		try {
+			GLib.debug("Write new Project list\n %s", data);
+			//Posix.exit(0);
+			
+			try {
 				//FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
 				FileUtils.set_contents(dirname + "/Projects.list", data, data.length);  
 			} catch (GLib.Error e) {
 				GLib.error("failed  to save file %s", e.message);
 			}
-    		
-    	}
-    	
-    	
-    	
-    	public static void convertOldProjects()
-    	{
+			
+		}
+		
+		
+		
+		public static void convertOldProjects()
+		{
     	
 			var dirname = BuilderApplication.configDirectory();
 			var  dir = File.new_for_path(dirname);
