@@ -24,7 +24,7 @@ public class DialogFiles : Object
 	public Xcls_LeftTreeMenu LeftTreeMenu;
 	public Xcls_filepane filepane;
 	public Xcls_searchbox searchbox;
-	public Xcls_filter_linked filter_linked;
+	public Xcls_filter_s filter_s;
 	public Xcls_iconscroll iconscroll;
 	public Xcls_gridview gridview;
 	public Xcls_iconsel iconsel;
@@ -1327,8 +1327,8 @@ public class DialogFiles : Object
 			this.el.hexpand = true;
 			new Xcls_searchbox( _this );
 			this.el.append( _this.searchbox.el );
-			new Xcls_filter_linked( _this );
-			this.el.append( _this.filter_linked.el );
+			new Xcls_filter_s( _this );
+			this.el.append( _this.filter_s.el );
 		}
 
 		// user defined functions
@@ -1381,7 +1381,7 @@ public class DialogFiles : Object
 		// user defined functions
 	}
 
-	public class Xcls_filter_linked : Object
+	public class Xcls_filter_s : Object
 	{
 		public Gtk.ToggleButton el;
 		private DialogFiles  _this;
@@ -1390,10 +1390,10 @@ public class DialogFiles : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_filter_linked(DialogFiles _owner )
+		public Xcls_filter_s(DialogFiles _owner )
 		{
 			_this = _owner;
-			_this.filter_linked = this;
+			_this.filter_s = this;
 			this.el = new Gtk.ToggleButton();
 
 			// my vars (dec)
