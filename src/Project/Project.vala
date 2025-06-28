@@ -748,8 +748,8 @@ namespace Project {
 					
 					if (FileUtils.test(dir  + "/" + fn, GLib.FileTest.IS_DIR)) {
 						if (subdir == "debian") { // dont bother with subdirs  of debian.
-            				continue;
-        			}
+            					continue;
+        					}
 
 						
 						subs.add(dir  + "/" + fn);
@@ -778,6 +778,10 @@ namespace Project {
 				 	
 					var xt = this.xtype;
 					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
+					if (jsDir.is_symlink) {
+						el.is_symlink = true;
+					}
+					
 					this.files.set( dir + "/" + fn, el);
 					jsDir.childfiles.append(el);
 					
