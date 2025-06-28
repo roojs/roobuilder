@@ -1719,7 +1719,14 @@ public class DialogFiles : Object
  
 	var str = _this.searchbox.el.text.down();	
 	GLib.debug("filter %s to %s" , str, j.name.down());
-	 		 
+	
+	if (!_this.filter_symlink.el.active) {
+		// hide symlinks
+		if (j.is_symlink) {
+			return false;
+		}
+	}
+	
 	if (str.length < 1) { // no search.
 		return true;
 	}
