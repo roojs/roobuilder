@@ -2457,7 +2457,7 @@ public class DialogFiles : Object
 			}
 			if (!_this.filter_symlink.el.active) {
 				// hide symlinks
-				if (j.is_symlink) {
+				if (f.is_symlink) {
 					continue;
 				}
 			}

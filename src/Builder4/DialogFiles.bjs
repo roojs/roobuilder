@@ -1084,7 +1084,7 @@
                       "\t\t\t}",
                       "\t\t\tif (!_this.filter_symlink.el.active) {",
                       "\t\t\t\t// hide symlinks",
-                      "\t\t\t\tif (j.is_symlink) {",
+                      "\t\t\t\tif (f.is_symlink) {",
                       "\t\t\t\t\tcontinue;",
                       "\t\t\t\t}",
                       "\t\t\t}",
