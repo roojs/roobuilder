@@ -581,7 +581,7 @@
                 ]
                },
                "string label" : "Linked Files",
-               "string tooltip_text" : "Hide or Show Symbolic Linked Files",
+               "string tooltip_text" : "Hide or Show Files that are included in the project via Symbolic Links",
                "xtype" : "ToggleButton"
               }
              ],
