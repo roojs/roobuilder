@@ -2436,6 +2436,13 @@ public class DialogFiles : Object
 	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
 		return false;
 	}
+	if (!_this.filter_symlink.el.active) {
+		// hide symlinks
+		if (j.is_symlink) {
+			return false;
+		}
+	}
+	
 	var str = _this.searchbox.el.text.down();	
 	if (j.xtype == "Dir") {
 	
@@ -2447,6 +2454,12 @@ public class DialogFiles : Object
 			}
 			if (f.content_type.contains("image")) {
 				continue;
+			}
+			if (!_this.filter_symlink.el.active) {
+				// hide symlinks
+				if (j.is_symlink) {
+					continue;
+				}
 			}
 			var cs = false;
 			switch(f.file_ext.down()) {
