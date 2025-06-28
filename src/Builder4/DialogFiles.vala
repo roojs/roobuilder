@@ -1400,6 +1400,7 @@ public class DialogFiles : Object
 
 			// set gobject values
 			this.el.active = true;
+			this.el.tooltip_text = "Hide or Show Symbolic Linked Files";
 			this.el.label = "Linked Files";
 
 			//listeners

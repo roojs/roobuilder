@@ -581,6 +581,7 @@
                 ]
                },
                "string label" : "Linked Files",
+               "string tooltip_text" : "Hide or Show Symbolic Linked Files",
                "xtype" : "ToggleButton"
               }
              ],
