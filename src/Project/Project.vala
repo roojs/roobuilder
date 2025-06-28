@@ -688,7 +688,7 @@ namespace Project {
 			
 		}
 		*/
-		private void  loadSubDirectories(string subdir, int dp, bool is_symlink) 
+		private void  loadSubDirectories(string subdir, int dp, bool is_symlink = false) 
 		{
 			//dp = dp || 0;
 			//print("Project.Base: Running scandir on " + dir +"\n");
