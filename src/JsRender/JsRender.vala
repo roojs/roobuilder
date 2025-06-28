@@ -283,7 +283,7 @@ namespace JsRender {
 			//this.errorsByType  = new Gee.HashMap<string, GLib.ListStore>();
 			this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); }); 
 			this.undo_json = new Gee.HashMap<int,string>();
-			this.is_symlink = FileUtils.test(bjs, GLib.FileTest.IS_SYMLINK);
+			this.is_symlink = FileUtils.test(this.path, GLib.FileTest.IS_SYMLINK);
 
 		}
 		
