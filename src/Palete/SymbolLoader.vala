@@ -328,11 +328,11 @@ namespace Palete
 			this.sq.selectExecute(stmt, els);
 			
 			foreach(var s in els) {
-				var sid = s.id.to_string();
-				if (!this.propCache.has_key(sid)) {
-					this.propCache.set(sid, new Gee.ArrayList<Symbol>());
+				var pid = s.parent_id.to_string();
+				if (!this.propCache.has_key(pid)) {
+					this.propCache.set(pid, new Gee.ArrayList<Symbol>());
 				}
-				this.propCache.get(sid).add(s);
+				this.propCache.get(pid).add(s);
 				switch(s.stype) {
 					case Lsp.SymbolKind.Signal:
 					case Lsp.SymbolKind.Constructor:
@@ -365,9 +365,7 @@ namespace Palete
 				foreach(var s in els) {
 					 // dont overwrite property with name 
 					 // does this make sense ? should the owner class be an interface?
-					if (ret.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
-						continue;
-			 		}
+					
 					 
 					switch(s.stype) {
 						case Lsp.SymbolKind.Property:
@@ -375,6 +373,9 @@ namespace Palete
 							if (s.rtype == "GLib.Object") { // ?? confgurable
 							 	continue;
 							}
+							if (sym.props.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
+								continue;
+					 		}
 						 	sym.props.set(s.name, s);
 							break;
 						case Lsp.SymbolKind.Field:
@@ -384,6 +385,9 @@ namespace Palete
 					 		sym.props.set(s.name, s);
 					 		break;
 						case Lsp.SymbolKind.Signal:
+							if (sym.signals.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
+								continue;
+					 		}
 							sym.signals.set(s.name, s);
 
 							break;
@@ -396,6 +400,10 @@ namespace Palete
 							 
 							break;
 						case Lsp.SymbolKind.Method:
+							if (sym.methods.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
+								continue;
+					 		}
+						
 							sym.methods.set(s.name, s);
 
 							break;
