@@ -42,6 +42,7 @@ namespace Palete
 			private set;
 		}
 		Gee.HashMap<int,Symbol> idCache;
+		Gee.HashMap<int,Gee.ArrayList<Symbol>> propCache;
 		
 		
 		public SymbolLoader(SymbolFileCollection manager) 
@@ -50,7 +51,8 @@ namespace Palete
 			this.sq  =  new SQ.Query<Symbol>("symbol");
  
 			this.classCache  = new Gee.HashMap<string,Symbol>();	
-			this.idCache  = new Gee.HashMap<int,Symbol>();	
+			this.idCache  = new Gee.HashMap<int,Symbol>();
+			this.propCache = new Gee.HashMap<int,Gee.ArrayList<Symbol>>();
 		}
 		
 		// really only for classes?
@@ -234,6 +236,8 @@ namespace Palete
 			// we dont need parent constructors!?
 			 
 			this.getParentIds(sym,  pids);
+			
+			// at this point it might 
 				
 			
 			string[] pidss = {};
@@ -245,7 +249,7 @@ namespace Palete
 			// rtype is taken from girs for enum (?? constants as well?)
 			var stmt = this.sq.selectPrepare("	
 			
-				-- getPropertiesFor
+				-- getPropertiesFor " + fqn + "
 			
 			
 					SELECT 
