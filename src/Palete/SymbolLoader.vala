@@ -221,7 +221,6 @@ namespace Palete
 		public Gee.HashMap<string,Symbol>  getPropertiesFor(string fqn, Lsp.SymbolKind kind )
 		{
 			
-			var ret = new Gee.HashMap<string,Symbol>();
 			var sym = this.singleByFqn(fqn);
 			if (sym == null) {
 				return new Gee.HashMap<string,Symbol>();
