@@ -435,15 +435,25 @@ namespace Palete {
 				return ret;
 			}
 			var snp = new SymbolNodeProp (this,  sl);
-			var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor);
-			if (ar.has_key(cls.name)) {
+			
+			/*
+			
+				it's not efficient to fill in the default properties here
+				better to ask when they get added..
+				TODO
+			*/
+			//var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor);
+			//if (ar.has_key(cls.name)) {
 				//var props = sl.getParametersFor(cls);
-				var props = cls.param_ar.values; //?? in order?
-				foreach(var p in props) {
-			 		snp.convert(p, cls.fqn);
-				}
-			}
-			var props = this.getPropertiesFor(sl, fqn, JsRender.NodePropType.PROP);
+			//	var props = cls.param_ar.values; //?? in order?
+			//	foreach(var p in props) {
+			// 		snp.convert(p, cls.fqn);
+			//	}
+			//}
+			
+			
+			
+			//var props = this.getPropertiesFor(sl, fqn, JsRender.NodePropType.PROP);
 			/*
 			CTOR properties are not really that usefull to add by the looks of it.
 			
@@ -469,15 +479,15 @@ namespace Palete {
 			var nprops = this.node_defaults.get_object_member(fqn);
 			JsRender.NodeProp? add = null;
 			nprops.foreach_member((o, mn, node)  => {
-				if (props.has_key(mn)) {
-					add = snp.convert(props.get(mn), cls.fqn);
-				 	add.val = o.get_string_member(mn);
+				//if (props.has_key(mn)) {
+				//	add = snp.convert(props.get(mn), cls.fqn);
+				// 	add.val = o.get_string_member(mn);
 
-			 	} else {
+			 	//} else {
 			 	
 				 	var kt = mn.split(" ");
 				 	add = new JsRender.NodeProp.user(kt[1], kt[0], o.get_string_member(mn));
-		 		}
+		 		//}
 				ret.add_prop(add);					 		
 			});
 			 
