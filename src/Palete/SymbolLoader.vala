@@ -42,7 +42,7 @@ namespace Palete
 			private set;
 		}
 		Gee.HashMap<int,Symbol> idCache;
-		Gee.HashMap<int,Gee.ArrayList<Symbol>> propCache;
+		Gee.HashMap<string,Gee.ArrayList<Symbol>> propCache;
 		
 		
 		public SymbolLoader(SymbolFileCollection manager) 
@@ -52,7 +52,7 @@ namespace Palete
  
 			this.classCache  = new Gee.HashMap<string,Symbol>();	
 			this.idCache  = new Gee.HashMap<int,Symbol>();
-			this.propCache = new Gee.HashMap<int,Gee.ArrayList<Symbol>>();
+			this.propCache = new Gee.HashMap<string,Gee.ArrayList<Symbol>>();
 		}
 		
 		// really only for classes?
@@ -242,6 +242,9 @@ namespace Palete
 			
 			string[] pidss = {};
 			foreach(var pid in pids) {
+				if (this.propCache.has_key(pid)) {
+					continue;
+				}
 				pidss += pid;
 			}
 			var cols = this.sq.getColsExcept({ "doc", "parent_name", "rtype" });
