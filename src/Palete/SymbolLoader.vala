@@ -353,7 +353,7 @@ namespace Palete
 
 			
 			foreach(var pid in pids) {
-				els = this.propCache.get(sid);
+				els = this.propCache.get(pid);
 				if (els.size < 1) {
 					continue;
 				}
