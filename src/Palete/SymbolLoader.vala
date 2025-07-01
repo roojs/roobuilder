@@ -353,6 +353,10 @@ namespace Palete
 
 			
 			foreach(var pid in pids) {
+				if (!this.propCache.has_key(pid)) {
+					// this probably happens if one of the parents does not have any propertyes?
+					continue;
+				}
 				els = this.propCache.get(pid);
 				if (els.size < 1) {
 					continue;
