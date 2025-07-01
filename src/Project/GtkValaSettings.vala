@@ -77,6 +77,9 @@ namespace Project
 			this.symbol_manager = new Palete.SymbolFileCollection();
 			this.symbol_loader = new Palete.SymbolLoader(this.symbol_manager);
 			this.symbol_manager.loadAllFiles(this);
+			// will trigger a load of the cache for the base level data
+			// should speed up property fetching.
+			this.symbol_loader.getPropertiesFor("Gtk.Widget", Lsp.SymbolKind.Property);
 		}
 		
 		// why not array of strings?

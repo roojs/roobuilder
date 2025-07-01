@@ -42,6 +42,7 @@ namespace Palete
 			private set;
 		}
 		Gee.HashMap<int,Symbol> idCache;
+		Gee.HashMap<string,Gee.ArrayList<Symbol>> propCache;
 		
 		
 		public SymbolLoader(SymbolFileCollection manager) 
@@ -50,7 +51,8 @@ namespace Palete
 			this.sq  =  new SQ.Query<Symbol>("symbol");
  
 			this.classCache  = new Gee.HashMap<string,Symbol>();	
-			this.idCache  = new Gee.HashMap<int,Symbol>();	
+			this.idCache  = new Gee.HashMap<int,Symbol>();
+			this.propCache = new Gee.HashMap<string,Gee.ArrayList<Symbol>>();
 		}
 		
 		// really only for classes?
@@ -219,7 +221,6 @@ namespace Palete
 		public Gee.HashMap<string,Symbol>  getPropertiesFor(string fqn, Lsp.SymbolKind kind )
 		{
 			
-			var ret = new Gee.HashMap<string,Symbol>();
 			var sym = this.singleByFqn(fqn);
 			if (sym == null) {
 				return new Gee.HashMap<string,Symbol>();
@@ -234,10 +235,15 @@ namespace Palete
 			// we dont need parent constructors!?
 			 
 			this.getParentIds(sym,  pids);
+			
+			// at this point it might 
 				
 			
 			string[] pidss = {};
 			foreach(var pid in pids) {
+				if (this.propCache.has_key(pid)) {
+					continue;
+				}
 				pidss += pid;
 			}
 			var cols = this.sq.getColsExcept({ "doc", "parent_name", "rtype" });
@@ -245,7 +251,7 @@ namespace Palete
 			// rtype is taken from girs for enum (?? constants as well?)
 			var stmt = this.sq.selectPrepare("	
 			
-				-- getPropertiesFor
+				-- getPropertiesFor " + fqn + "
 			
 			
 					SELECT 
@@ -317,70 +323,108 @@ namespace Palete
 			");
 			 
 			var els = new Gee.ArrayList<Symbol>();
+			var mids = new Gee.HashMap<int,Symbol>();
 			this.sq.selectExecute(stmt, els);
-	
+			
+			foreach(var s in els) {
+				var pid = s.parent_id.to_string();
+				if (!this.propCache.has_key(pid)) {
+					this.propCache.set(pid, new Gee.ArrayList<Symbol>());
+				}
+				this.propCache.get(pid).add(s);
+				switch(s.stype) {
+					case Lsp.SymbolKind.Signal:
+					case Lsp.SymbolKind.Constructor:
+					case Lsp.SymbolKind.Method:
+						mids.set((int)s.id, s);
+						break;
+					default:
+						break;
+				}	
+			 		
+			}
+			
 			sym.props   = new Gee.HashMap<string,Symbol>();
 			sym.signals = new Gee.HashMap<string,Symbol>();	
 			sym.methods   = new Gee.HashMap<string,Symbol>();			
 			sym.ctors  = new Gee.HashMap<string,Symbol>();	
 		 	sym.children =  new GLib.ListStore(typeof(Symbol));
-			var mids = new Gee.HashMap<int,Symbol>();
-			foreach(var s in els) {
-				 // dont overwrite property with name 
-				 // does this make sense ? should the owner class be an interface?
-				if (ret.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
+
+			
+			foreach(var pid in pids) {
+				if (!this.propCache.has_key(pid)) {
+					// this probably happens if one of the parents does not have any propertyes?
 					continue;
-		 		}
-				 
-				switch(s.stype) {
-					case Lsp.SymbolKind.Property:
-					
-						if (s.rtype == "GLib.Object") { // ?? confgurable
-						 	continue;
-						}
-					 	sym.props.set(s.name, s);
-						break;
-					case Lsp.SymbolKind.Field:
-						if (sym.props.has_key(s.name)) {
-							continue;
-						}
-				 		sym.props.set(s.name, s);
-				 		break;
-					case Lsp.SymbolKind.Signal:
-						sym.signals.set(s.name, s);
-						mids.set((int)s.id, s);
-						break;
-					case Lsp.SymbolKind.Constructor:
-						if (s.parent_id == sym.id) {
-							sym.ctors.set(s.name, s);
-						} else {
-							continue;
-						}
-						mids.set((int)s.id, s);
-						 
-						break;
-					case Lsp.SymbolKind.Method:
-						sym.methods.set(s.name, s);
-						mids.set((int)s.id, s);
-						break;
-						
-					case Lsp.SymbolKind.EnumMember:
-						sym.enums.set(s.name, s);
-						//mids.set((int)s.id, s); // no need to load methods for enums?
-						break;
-						
-					case Lsp.SymbolKind.Parameter:
-						
-					
-					default:
-						break;
+				}
+				els = this.propCache.get(pid);
+				if (els.size < 1) {
+					continue;
 				}
 				
-			 
-				GLib.debug("add %s %s", fqn, s.name);
-				
-				sym.children_map.set(s.name, s);
-				sym.children.append(s);
+				foreach(var s in els) {
+					 // dont overwrite property with name 
+					 // does this make sense ? should the owner class be an interface?
+					
+					 
+					switch(s.stype) {
+						case Lsp.SymbolKind.Property:
+						
+							if (s.rtype == "GLib.Object") { // ?? confgurable
+							 	continue;
+							}
+							if (sym.props.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
+								continue;
+					 		}
+						 	sym.props.set(s.name, s);
+							break;
+						case Lsp.SymbolKind.Field:
+							if (sym.props.has_key(s.name)) {
+								continue;
+							}
+					 		sym.props.set(s.name, s);
+					 		break;
+						case Lsp.SymbolKind.Signal:
+							if (sym.signals.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
+								continue;
+					 		}
+							sym.signals.set(s.name, s);
+
+							break;
+						case Lsp.SymbolKind.Constructor:
+							if (s.parent_id == sym.id) {
+								sym.ctors.set(s.name, s);
+							} else {
+								continue;
+							}
+							 
+							break;
+						case Lsp.SymbolKind.Method:
+							if (sym.methods.has_key(s.name) && s.stype == Lsp.SymbolKind.Interface) {
+								continue;
+					 		}
+						
+							sym.methods.set(s.name, s);
+
+							break;
+							
+						case Lsp.SymbolKind.EnumMember:
+							sym.enums.set(s.name, s);
+							//mids.set((int)s.id, s); // no need to load methods for enums?
+							break;
+							
+						case Lsp.SymbolKind.Parameter:
+							
+						
+						default:
+							break;
+					}
+					
+				 
+					GLib.debug("add %s %s", fqn, s.name);
+					
+					sym.children_map.set(s.name, s);
+					sym.children.append(s);
+				}
 			}
 			this.loadParamsForMethods(mids);
 			
