@@ -2429,7 +2429,11 @@ public class Xcls_LeftProps : Object
 			    }
 			     if (prop.rtype.down() == "bool" || prop.rtype.down() == "boolean") {
 			     	sw.show();
+			     	if (prop.val == "") {
+						prop.val = "true";
+					}
 			     	sw.set_active(prop.val.down() == "true" ? true : false);
+			     	
 					this.is_setting = false;        
 			 		return;
 				}
