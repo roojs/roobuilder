@@ -665,8 +665,8 @@ public class Xcls_PopoverAddObject : Object
 				pal.loadNodeDefaults(ws.file.getSymbolLoader(), add);
 				if (lt.model.el.n_items < 1) {
 					ws.file.tree = add;  
-			    	add.updated_count++;
-			    	var m = (GLib.ListStore) lt.model.el.model;
+			  	  	add.updated_count++;
+			   	 	var m = (GLib.ListStore) lt.model.el.model;
 					m.append(add);
 					lt.model.selectNode(add); 	
 					lt.changed();
