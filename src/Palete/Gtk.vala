@@ -127,9 +127,10 @@ namespace Palete {
 		*/
 		public override Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl,  string fqn, JsRender.NodePropType ptype) 
 		{
+			var ret = new Gee.HashMap<string,Symbol>();
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
-					var ret = new Gee.HashMap<string,Symbol>();
+
 					var ps =  sl.getPropertiesFor(fqn, Lsp.SymbolKind.Property);
 					foreach(var k in ps.keys) {
 						if (GLib.strv_contains(properties_to_ignore, k)) {
@@ -157,7 +158,8 @@ namespace Palete {
 					//var ret = new Gee.HashMap<string,GirObject>();
 					//return ret;
 				
-			}
+			
+			return ret;}
 			
 		
 		}
