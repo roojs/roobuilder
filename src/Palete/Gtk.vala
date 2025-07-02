@@ -516,7 +516,7 @@ namespace Palete {
 			
 			
 			
-			var props = this.getPropertiesFor(sl, fqn, JsRender.NodePropType.PROP);
+			var props = this.getPropertiesFor(sl, ret.fqn(), JsRender.NodePropType.PROP);
 			
 			//CTOR properties are not really that usefull to add by the looks of it.
 			
