@@ -502,7 +502,7 @@ namespace Palete {
 			var snp = new SymbolNodeProp (this,  sl);
 			var cls = this.getClass(sl, ret.fqn());
 			if (null == cls)  {
-				return ret;
+				return;
 			}
 			 
 			var ar = sl.getPropertiesFor(ret.fqn(), Lsp.SymbolKind.Constructor);
