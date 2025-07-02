@@ -2429,9 +2429,7 @@ public class Xcls_LeftProps : Object
 			    }
 			     if (prop.rtype.down() == "bool" || prop.rtype.down() == "boolean") {
 			     	sw.show();
-			     	if (prop.val == "") {
-						prop.val = "true";
-					}
+			     	 
 			     	sw.set_active(prop.val.down() == "true" ? true : false);
 			     	
 					this.is_setting = false;        
@@ -2450,9 +2448,7 @@ public class Xcls_LeftProps : Object
 						model.remove(0);
 					}
 					cb.show();
-					if (prop.val == "") {
-						prop.val = opts[0];
-					}
+					 
 			 		// can not remove - hopefully always empty.
 					var sel = 0;
 					for(var i = 0; i < opts.length; i ++) {
