@@ -258,7 +258,7 @@
            "\tvar pal = ws.project.palete;",
            "\tpal.loadNodeDefaults(ws.file.getSymbolLoader(), addn);",
            "\tvar add = addn.deepClone();",
-           "",
+           "\tGLib.debug(\"ADD %s\", add.toJsonString());",
            "\tif (lt.model.el.n_items < 1) {",
            "\t\tws.file.tree = add;  ",
            "  \t  \tadd.updated_count++;",

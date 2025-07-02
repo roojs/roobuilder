@@ -661,7 +661,7 @@ public class Xcls_PopoverAddObject : Object
 				var pal = ws.project.palete;
 				pal.loadNodeDefaults(ws.file.getSymbolLoader(), addn);
 				var add = addn.deepClone();
-			
+				GLib.debug("ADD %s", add.toJsonString());
 				if (lt.model.el.n_items < 1) {
 					ws.file.tree = add;  
 			  	  	add.updated_count++;
