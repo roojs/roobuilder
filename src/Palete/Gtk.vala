@@ -533,12 +533,12 @@ namespace Palete {
 			///it's available..
 
 			if (!this.node_defaults.has_member("defaults")) {
-				return ret ;
+				return ;
 			}
 			var obj = this.node_defaults.get_object_member("defaults");
 
-			if (!obj.has_member(fqn)) {
-				return ret;
+			if (!obj.has_member(ret.fqn())) {
+				return ;
 			}
 			var nprops = this.node_defaults.get_object_member(fqn);
 			JsRender.NodeProp? add = null;
