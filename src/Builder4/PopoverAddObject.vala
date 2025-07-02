@@ -392,7 +392,10 @@ public class Xcls_PopoverAddObject : Object
 					return null;
 				 
 				}
-			
+				var ws = _this.mainwindow.windowstate;
+				var pal = ws.project.palete;
+				
+				pal.loadNodeDefaults(ws.file.getSymbolLoader(), ndata);
 			  
 				//data.set_text(tp,tp.length);   
 			
@@ -652,12 +655,17 @@ public class Xcls_PopoverAddObject : Object
 				// find left tree selected node
 				var ws =_this.mainwindow.windowstate;
 				var lt = ws.left_tree;
-			
-				var add = _this.selmodel.getSelectedNode().deepClone();
+				
+				_this.el.hide();
+			  	var addn = _this.selmodel.getSelectedNode();
+				var pal = ws.project.palete;
+				pal.loadNodeDefaults(ws.file.getSymbolLoader(), addn);
+				var add = addn.deepClone();
+				GLib.debug("ADD %s", add.toJsonString());
 				if (lt.model.el.n_items < 1) {
 					ws.file.tree = add;  
-			    	add.updated_count++;
-			    	var m = (GLib.ListStore) lt.model.el.model;
+			  	  	add.updated_count++;
+			   	 	var m = (GLib.ListStore) lt.model.el.model;
 					m.append(add);
 					lt.model.selectNode(add); 	
 					lt.changed();

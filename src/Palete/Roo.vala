@@ -417,6 +417,11 @@ namespace Palete {
 			
 		}
 		
+
+		public override void loadNodeDefaults(SymbolLoader? sl, JsRender.Node ret)
+		{
+			// do nothing? we dont have defaults?
+		}
 		// when adding signals - this should return an empty function
 		
 		

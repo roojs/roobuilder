@@ -127,9 +127,10 @@ namespace Palete {
 		*/
 		public override Gee.HashMap<string,Symbol> getPropertiesFor(SymbolLoader? sl,  string fqn, JsRender.NodePropType ptype) 
 		{
+			var ret = new Gee.HashMap<string,Symbol>();
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
-					var ret = new Gee.HashMap<string,Symbol>();
+
 					var ps =  sl.getPropertiesFor(fqn, Lsp.SymbolKind.Property);
 					foreach(var k in ps.keys) {
 						if (GLib.strv_contains(properties_to_ignore, k)) {
@@ -157,7 +158,8 @@ namespace Palete {
 					//var ret = new Gee.HashMap<string,GirObject>();
 					//return ret;
 				
-			}
+			
+			return ret;}
 			
 		
 		}
@@ -430,72 +432,90 @@ namespace Palete {
 			var ret = new JsRender.Node();
 			ret.setFqn(fqn);
 			
-			var cls = this.getClass(sl, fqn);
-			if (null == cls)  {
-				return ret;
-			}
+		 	return ret;
+			 
+			
+		}
+		// when adding signals - this should return an empty function
+		public  override void loadNodeDefaults(SymbolLoader? sl, JsRender.Node ret)
+		{
+		
 			var snp = new SymbolNodeProp (this,  sl);
-			
+			var cls = this.getClass(sl, ret.fqn());
+			if (null == cls)  {
+				return;
+			}
 			/*
-			
-				it's not efficient to fill in the default properties here
-				better to ask when they get added..
-				TODO
+			I think the code prefres to is is_ctor_only to determine if it's needed
+			as a default property.
 			*/
-			//var ar = sl.getPropertiesFor(fqn, Lsp.SymbolKind.Constructor);
-			//if (ar.has_key(cls.name)) {
-				//var props = sl.getParametersFor(cls);
-			//	var props = cls.param_ar.values; //?? in order?
-			//	foreach(var p in props) {
-			// 		snp.convert(p, cls.fqn);
-			//	}
-			//}
+
+			var ar = sl.getPropertiesFor(ret.fqn(), Lsp.SymbolKind.Constructor);
+			foreach(var k in ar.keys) {
+				GLib.debug("Got Ctor: %s", k);
+			}
+			if (ar.has_key("new")) {
+				GLib.debug("Got Class Ctor - Adding params?");
+				var ctor = ar.get("new");
+				var props = ctor.param_ar.values; //?? in order?
+				foreach(var p in props) {
+
+					var ap=snp.convert(p, cls.fqn);
+					GLib.debug("Add Ctor property %s", ap.to_display_name());
+			 		ret.add_prop(ap);
+				}
+			}
 			
 			
 			
-			//var props = this.getPropertiesFor(sl, fqn, JsRender.NodePropType.PROP);
-			/*
-			CTOR properties are not really that usefull to add by the looks of it.
+			var props = this.getPropertiesFor(sl, ret.fqn(), JsRender.NodePropType.PROP);
+			
+			//CTOR properties are not really that usefull to add by the looks of it.
 			
 
 			foreach(var p in props.values) {
 				if (!p.is_ctor_only || ret.has(p.name)) {
 					continue;
 				}
-				ret.add_prop(snp.convert(p, cls.fqn));
+
+				var ap=snp.convert(p, cls.fqn);
+				GLib.debug("Add property (Ctor only)  %s", ap.to_display_name());
+				ret.add_prop(ap);
 			}
-			*/
+			
 			// manually set... - based on JSON defaults file?	
-			this.load(); // make sure it's available..
+			this.load(); // make sure node_defaults is loaded from defaults file
+			///it's available..
 
 			if (!this.node_defaults.has_member("defaults")) {
-				return ret ;
+				return ;
 			}
 			var obj = this.node_defaults.get_object_member("defaults");
 
-			if (!obj.has_member(fqn)) {
-				return ret;
+			if (!obj.has_member(ret.fqn())) {
+				return ;
 			}
-			var nprops = this.node_defaults.get_object_member(fqn);
+			var nprops = this.node_defaults.get_object_member(ret.fqn());
 			JsRender.NodeProp? add = null;
 			nprops.foreach_member((o, mn, node)  => {
-				//if (props.has_key(mn)) {
-				//	add = snp.convert(props.get(mn), cls.fqn);
-				// 	add.val = o.get_string_member(mn);
+			
+				if (props.has_key(mn)) {
+					add = snp.convert(props.get(mn), cls.fqn);
+					GLib.debug("Add property (listed in defaults)  %s", add.to_display_name());
+				 	add.val = o.get_string_member(mn);
 
-			 	//} else {
-			 	
-				 	var kt = mn.split(" ");
+			 	} else {
+ 					var kt = mn.split(" ");
 				 	add = new JsRender.NodeProp.user(kt[1], kt[0], o.get_string_member(mn));
-		 		//}
+					GLib.debug("Add property (listed in defaults - with value)  %s", add.to_display_name());
+		 		}
 				ret.add_prop(add);					 		
 			});
-			 
-			return ret;
-			 
-			
+		
+		
 		}
-		// when adding signals - this should return an empty function
+		
+		
 		
 		
 		public override string symbolToSig(Symbol s)

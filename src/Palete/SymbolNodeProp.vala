@@ -30,6 +30,15 @@ namespace Palete {
 			// does not handle Enums... - no need to handle anything else.
 			var def = s.rtype.contains(".") ?  "" :  this.guessDefaultValueForType(s.rtype);
 			if (s.rtype.contains(".") || s.rtype.contains("|") || s.rtype.contains("/")) {
+				var ty = this.sl.singleByFqn(s.rtype);
+				if (ty.stype == Lsp.SymbolKind.Enum) {
+					foreach(var k in ty.enums.values) { // first value?
+						def = k.fqn;
+						break;
+					}
+				}
+				
+			
 				var ret = new JsRender.NodeProp.prop(s.name, s.rtype, def);  ///< was raw..?
 				ret.propertyof = s.property_of();
 				ret.doc = s.doc;
@@ -174,7 +183,7 @@ namespace Palete {
 					return "0f";
 				case "utf8":
 				case "string":
-					return "\"\"";
+					return ""; // was "''" << but doesnt seem to work well.
 				default:
 					return "?"+  type + "?";
 			}
