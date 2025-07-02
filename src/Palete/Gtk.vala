@@ -435,7 +435,7 @@ namespace Palete {
 		 	return ret;
 			 
 			
-		}fqnToNode
+		}
 		// when adding signals - this should return an empty function
 		public  override void loadNodeDefaults(SymbolLoader? sl, JsRender.Node ret)
 		{
