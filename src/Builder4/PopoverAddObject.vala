@@ -657,10 +657,7 @@ public class Xcls_PopoverAddObject : Object
 				var lt = ws.left_tree;
 			
 			 
-					var pal = ws.project.palete;
-					
-			
-			
+				var pal = ws.project.palete;
 				var add = _this.selmodel.getSelectedNode().deepClone();
 				pal.loadNodeDefaults(ws.file.getSymbolLoader(), add);
 				if (lt.model.el.n_items < 1) {
