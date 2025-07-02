@@ -418,7 +418,7 @@ namespace Palete {
 		}
 		
 
-		public void loadNodeDefaults(SymbolLoader sl?, JsRender.Node ret)
+		public void loadNodeDefaults(SymbolLoader? sl, JsRender.Node ret)
 		{
 			// do nothing? we dont have defaults?
 		}
