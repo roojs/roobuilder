@@ -432,10 +432,7 @@ namespace Palete {
 			var ret = new JsRender.Node();
 			ret.setFqn(fqn);
 			
-			var cls = this.getClass(sl, fqn);
-			if (null == cls)  {
-				return ret;
-			}
+			
 			/*
 			var snp = new SymbolNodeProp (this,  sl);
 		 
@@ -503,7 +500,10 @@ namespace Palete {
 		{
 		
 			var snp = new SymbolNodeProp (this,  sl);
-		 
+			var cls = this.getClass(sl, ret.fqn());
+			if (null == cls)  {
+				return ret;
+			}
 			 
 			var ar = sl.getPropertiesFor(ret.fqn(), Lsp.SymbolKind.Constructor);
 			if (ar.has_key(cls.name)) {
