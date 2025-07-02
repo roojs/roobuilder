@@ -33,7 +33,7 @@ namespace Palete {
 				var ty = this.sl.singleByFqn(s.rtype);
 				if (ty.stype == Lsp.SymbolKind.Enum) {
 					foreach(var k in ty.enums.values) { // first value?
-						def = ty.enums.get(k).fqn;
+						def = k.fqn;
 						break;
 					}
 				}
