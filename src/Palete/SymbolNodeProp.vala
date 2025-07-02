@@ -183,7 +183,7 @@ namespace Palete {
 					return "0f";
 				case "utf8":
 				case "string":
-					return "\"\"";
+					return ""; // was "''" << but doesnt seem to work well.
 				default:
 					return "?"+  type + "?";
 			}
