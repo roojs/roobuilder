@@ -328,6 +328,10 @@ public class Xcls_PopoverAddProp : Object
 					GLib.debug("no clicking on expandables");
 					return;
 				}
+				var ws = _this.mainwindow.windowstate;
+				var pal = ws.project.palete;
+				
+				pal.loadNodeDefaults(ws.file.getSymbolLoader(), prop);
 				// if it's a node...
 				if (prop.add_node != null) {
 			
