@@ -499,7 +499,7 @@ namespace Palete {
 			
 		}
 		// when adding signals - this should return an empty function
-		public void loadNodeDefaults(SymbolLoader? sl, JsRender.Node ret)
+		public  override void loadNodeDefaults(SymbolLoader? sl, JsRender.Node ret)
 		{
 		
 			var snp = new SymbolNodeProp (this,  sl);
