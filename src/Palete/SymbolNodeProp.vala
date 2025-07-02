@@ -31,8 +31,11 @@ namespace Palete {
 			var def = s.rtype.contains(".") ?  "" :  this.guessDefaultValueForType(s.rtype);
 			if (s.rtype.contains(".") || s.rtype.contains("|") || s.rtype.contains("/")) {
 				var ty = this.sl.singleByFqn(s.rtype);
-				if (ty.stype == Lsp.SymbolKind.Enum) {
-					def = ty.enums.values.get(0).fqn;
+				if (ty.stype == Lsp.SymbolKind.Enum) {	
+					foreach(ty.enums.values as k) { // first value?
+						def = ty.enums.get(k).fqn;
+						break;
+					}
 				}
 				
 			
