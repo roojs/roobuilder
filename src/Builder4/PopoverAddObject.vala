@@ -392,7 +392,10 @@ public class Xcls_PopoverAddObject : Object
 					return null;
 				 
 				}
-			
+				var ws = _this.mainwindow.windowstate;
+				var pal = ws.project.palete;
+				
+				pal.loadNodeDefaults(ws.file.getSymbolLoader(), ndata);
 			  
 				//data.set_text(tp,tp.length);   
 			
