@@ -507,7 +507,7 @@ namespace Palete {
 			 
 			var ar = sl.getPropertiesFor(ret.fqn(), Lsp.SymbolKind.Constructor);
 			if (ar.has_key(cls.name)) {
-				var props = sl.getParametersFor(cls);
+
 				var props = cls.param_ar.values; //?? in order?
 				foreach(var p in props) {
 			 		snp.convert(p, cls.fqn);
