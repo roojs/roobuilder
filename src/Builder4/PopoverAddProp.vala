@@ -328,12 +328,12 @@ public class Xcls_PopoverAddProp : Object
 					GLib.debug("no clicking on expandables");
 					return;
 				}
-				var ws = _this.mainwindow.windowstate;
-				var pal = ws.project.palete;
-				
 				
 				// if it's a node...
 				if (prop.add_node != null) {
+					var ws = _this.mainwindow.windowstate;
+					var pal = ws.project.palete;
+					
 					pal.loadNodeDefaults(ws.file.getSymbolLoader(), prop.add_node);
 					if (!prop.name.contains("[]") && null != _this.node.findProp(prop.name)) {
 						GLib.debug("Add Child already contains child with %s", prop.name);	
