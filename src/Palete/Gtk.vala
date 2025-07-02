@@ -516,7 +516,7 @@ namespace Palete {
 			
 			var props = this.getPropertiesFor(sl, fqn, JsRender.NodePropType.PROP);
 			
-			CTOR properties are not really that usefull to add by the looks of it.
+			//CTOR properties are not really that usefull to add by the looks of it.
 			
 
 			foreach(var p in props.values) {
@@ -541,15 +541,15 @@ namespace Palete {
 			var nprops = this.node_defaults.get_object_member(fqn);
 			JsRender.NodeProp? add = null;
 			nprops.foreach_member((o, mn, node)  => {
-				//if (props.has_key(mn)) {
-				//	add = snp.convert(props.get(mn), cls.fqn);
-				// 	add.val = o.get_string_member(mn);
+				if (props.has_key(mn)) {
+					add = snp.convert(props.get(mn), cls.fqn);
+				 	add.val = o.get_string_member(mn);
 
-			 	//} else {
+			 	} else {
 			 	
 				 	var kt = mn.split(" ");
 				 	add = new JsRender.NodeProp.user(kt[1], kt[0], o.get_string_member(mn));
-		 		//}
+		 		}
 				ret.add_prop(add);					 		
 			});
 		
