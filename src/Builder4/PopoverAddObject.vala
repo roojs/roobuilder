@@ -655,11 +655,13 @@ public class Xcls_PopoverAddObject : Object
 				// find left tree selected node
 				var ws =_this.mainwindow.windowstate;
 				var lt = ws.left_tree;
-			
-			 
+				
+				_this.el.hide();
+			  	var addn = _this.selmodel.getSelectedNode();
 				var pal = ws.project.palete;
-				var add = _this.selmodel.getSelectedNode().deepClone();
-				pal.loadNodeDefaults(ws.file.getSymbolLoader(), add);
+				pal.loadNodeDefaults(ws.file.getSymbolLoader(), addn);
+				var add = addn.deepClone();
+			
 				if (lt.model.el.n_items < 1) {
 					ws.file.tree = add;  
 			  	  	add.updated_count++;

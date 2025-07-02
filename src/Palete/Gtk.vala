@@ -445,13 +445,24 @@ namespace Palete {
 			if (null == cls)  {
 				return;
 			}
-			 
-			var ar = sl.getPropertiesFor(ret.fqn(), Lsp.SymbolKind.Constructor);
-			if (ar.has_key(cls.name)) {
+			/*
+			I think the code prefres to is is_ctor_only to determine if it's needed
+			as a default property.
+			*/
 
-				var props = cls.param_ar.values; //?? in order?
+			var ar = sl.getPropertiesFor(ret.fqn(), Lsp.SymbolKind.Constructor);
+			foreach(var k in ar.keys) {
+				GLib.debug("Got Ctor: %s", k);
+			}
+			if (ar.has_key("new")) {
+				GLib.debug("Got Class Ctor - Adding params?");
+				var ctor = ar.get("new");
+				var props = ctor.param_ar.values; //?? in order?
 				foreach(var p in props) {
-			 		snp.convert(p, cls.fqn);
+
+					var ap=snp.convert(p, cls.fqn);
+					GLib.debug("Add Ctor property %s", ap.to_display_name());
+			 		ret.add_prop(ap);
 				}
 			}
 			
@@ -466,7 +477,10 @@ namespace Palete {
 				if (!p.is_ctor_only || ret.has(p.name)) {
 					continue;
 				}
-				ret.add_prop(snp.convert(p, cls.fqn));
+
+				var ap=snp.convert(p, cls.fqn);
+				GLib.debug("Add property (Ctor only)  %s", ap.to_display_name());
+				ret.add_prop(ap);
 			}
 			
 			// manually set... - based on JSON defaults file?	
@@ -484,14 +498,16 @@ namespace Palete {
 			var nprops = this.node_defaults.get_object_member(ret.fqn());
 			JsRender.NodeProp? add = null;
 			nprops.foreach_member((o, mn, node)  => {
+			
 				if (props.has_key(mn)) {
 					add = snp.convert(props.get(mn), cls.fqn);
+					GLib.debug("Add property (listed in defaults)  %s", add.to_display_name());
 				 	add.val = o.get_string_member(mn);
 
 			 	} else {
-			 	
-				 	var kt = mn.split(" ");
+ 					var kt = mn.split(" ");
 				 	add = new JsRender.NodeProp.user(kt[1], kt[0], o.get_string_member(mn));
+					GLib.debug("Add property (listed in defaults - with value)  %s", add.to_display_name());
 		 		}
 				ret.add_prop(add);					 		
 			});

@@ -2337,7 +2337,7 @@ public class Xcls_LeftProps : Object
 					    var model = (Gtk.StringList)cb.model;
 					    prop.val =   model.get_string(cb.selected);
 					    GLib.debug("property set to %s", prop.val);
-			        	GLib.debug("calling changed");
+			        		GLib.debug("calling changed");
 				        _this.changed();
 				         
 			        }
@@ -2447,7 +2447,7 @@ public class Xcls_LeftProps : Object
 					}
 					cb.show();
 			 		// can not remove - hopefully always empty.
-					var sel = -1;
+					var sel = 0;
 					for(var i = 0; i < opts.length; i ++) {
 						model.append( opts[i]);
 						// not sure this is a great idea... 
@@ -2456,7 +2456,7 @@ public class Xcls_LeftProps : Object
 						}
 					}
 					GLib.debug("Set selected item to %d", sel);
-					cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
+					cb.set_selected(sel); // always select something. 
 					this.is_setting = false;        
 					return ;
 			    }
