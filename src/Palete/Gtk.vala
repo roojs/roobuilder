@@ -540,7 +540,7 @@ namespace Palete {
 			if (!obj.has_member(ret.fqn())) {
 				return ;
 			}
-			var nprops = this.node_defaults.get_object_member(fqn);
+			var nprops = this.node_defaults.get_object_member(ret.fqn());
 			JsRender.NodeProp? add = null;
 			nprops.foreach_member((o, mn, node)  => {
 				if (props.has_key(mn)) {
