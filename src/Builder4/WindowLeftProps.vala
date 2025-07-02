@@ -2446,6 +2446,9 @@ public class Xcls_LeftProps : Object
 						model.remove(0);
 					}
 					cb.show();
+					if (prop.val == "") {
+						prop.val = opts[0];
+					}
 			 		// can not remove - hopefully always empty.
 					var sel = 0;
 					for(var i = 0; i < opts.length; i ++) {
@@ -2457,6 +2460,7 @@ public class Xcls_LeftProps : Object
 					}
 					GLib.debug("Set selected item to %d", sel);
 					cb.set_selected(sel); // always select something. 
+					
 					this.is_setting = false;        
 					return ;
 			    }
