@@ -135,7 +135,7 @@ namespace Palete {
 				
 				q.insert(this);
 				this.file.fqn_map.set(this.fqn, this);
-				this.file.symbol_map.set(this.id, this);
+				this.file.symbol_map.set((int)this.id, this);
  				return;
 			}
 			 
