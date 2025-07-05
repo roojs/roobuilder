@@ -62,13 +62,19 @@ namespace Palete {
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/resources/roodata.json");
 			if (!f.query_exists(null)) {
 				f = GLib. File.new_for_uri("resource:///data/roodata.json");	
-			}			
-			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version??
-			sf.version = sf.cur_mod_time();
-			// database may contain a version - we will update the version (if not the same)
-			GLib.debug("Palete load - load symbols");
+			}
 			
-			sf.loadSymbols();
+			
+			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version??
+			
+			if (sf.version != sf.cur_mod_time()) {
+				
+				sf.version = sf.cur_mod_time();
+				// database may contain a version - we will update the version (if not the same)
+				GLib.debug("Palete load - load symbols");
+				
+				sf.loadSymbols();
+			}
 			//sf.initDB();
 			// in theory  - we dont need to load again if our DB is the same
 			// but I'm not sure we store all of this in the DB currently?
