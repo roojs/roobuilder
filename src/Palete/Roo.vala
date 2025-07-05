@@ -86,6 +86,8 @@ namespace Palete {
 				if (s.stype != Lsp.SymbolKind.Class) { 
 					continue;
 				}
+				GLib.debug("add class %s", s.fqn);
+				
 				this.classes.set(s.fqn, s);
 				if (s.is_builder_top) {
 					this.top_classes.add(s.fqn);	
