@@ -103,6 +103,15 @@ namespace Palete {
 				this.stringToArray(value, this.can_drop_onto);
 			}
 		}
+		public string all_implementations_str {
+			owned get {
+				return this.arrayToString(this.all_implementations);
+			}
+			set {
+				this.stringToArray(value, this.all_implementations);
+			}
+		}
+		
 		
 		string arrayToString(Gee.ArrayList<string> ar)
 		{
