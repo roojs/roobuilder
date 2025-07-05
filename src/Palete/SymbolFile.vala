@@ -43,13 +43,13 @@ namespace Palete {
 				if (file != null) {
 					return file.vtime;
 				}
-				if (path.has_prefix("resource://")) {
+				if (this.path.has_prefix("resource://")) {
 				
 					return BuilderApplication.exe_as_file(
 						).query_info( FileAttribute.TIME_MODIFIED, 0)
 						.get_modification_date_time().to_unix();
 				}
-				return GLib.File.new_for_path(path)
+				return GLib.File.new_for_path(this.path)
 					.query_info( FileAttribute.TIME_MODIFIED, 0)
 					.get_modification_date_time().to_unix();
 			} catch (GLib.Error e) {
