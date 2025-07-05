@@ -387,7 +387,7 @@ namespace Palete {
  				// sets properties etc..
  				if (parent.stype == Lsp.SymbolKind.Class) {
  					var prop = parent.childrenOfType(child.stype);
- 					prop.(child.name, child);
+ 					prop.set(child.name, child);
  				
  				}
  				
