@@ -68,6 +68,8 @@ namespace Palete {
 		
 		//public string sig = "";  
 		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
+		
+		// these two are serialized for the roo library
 		public Gee.ArrayList<string> valid_cn  { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> can_drop_onto  { get; set; default = new Gee.ArrayList<string>(); }
 
@@ -79,25 +81,55 @@ namespace Palete {
 		
   		public string implements_str { 
 			owned get {
-				if (this.implements.size < 1) {
-					return "";
-				}
-				string[] r = {};
-				foreach(var s in this.implements) {
-					r += s;
-				}
-				return  "\n" + string.joinv("\n", r) + "\n";
+				return this.arrayToString(this.implements);
 			}
 			set {
-				var bits = value.split("\n");
-				this.implements.clear();
-				for (var i =0;i < bits.length;i++) {
-					if (bits[i].length > 0) {
-						this.implements.add(bits[i]);
-					}
+				this.stringToArray(value, this.implements);
+			}
+		}
+		
+		public string valid_cn_str {
+			owned get {
+				return this.arrayToString(this.valid_cn);
+			}
+			set {
+				this.stringToArray(value, this.valid_cn);
+			}
+		}
+		public string can_drop_onto_str {
+			owned get {
+				return this.arrayToString(this.can_drop_onto);
+			}
+			set {
+				this.stringToArray(value, this.can_drop_onto);
+			}
+		}
+		
+		string arrayToString(Gee.ArrayList<string> ar)
+		{
+			if (ar.size < 1) {
+					return "";
+			}
+			string[] r = {};
+			foreach(var s in ar) {
+				r += s;
+			}
+			return  "\n" + string.joinv("\n", r) + "\n";
+		
+		}
+		void stringToArray(string s, Gee.ArrayList<string> ar) 
+		{
+			var bits = s.split("\n");
+			ar.clear();
+			for (var i =0;i < bits.length;i++) {
+				if (bits[i].length > 0) {
+					ar.add(bits[i]);
 				}
 			}
-		}	
+		}
+		
+		
+		
 		public string codeinfo_name {
 				owned get 
 				{
