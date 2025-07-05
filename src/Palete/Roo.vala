@@ -99,7 +99,7 @@ namespace Palete {
 			//sf.initDB();
 			// in theory  - we dont need to load again if our DB is the same
 			// but I'm not sure we store all of this in the DB currently?
-			
+		}
 			
 		void loadJsonDataIntoSymbols(GLib.File f)
 		{
