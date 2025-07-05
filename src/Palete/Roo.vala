@@ -121,7 +121,7 @@ namespace Palete {
 				//print("cls:" + key+"\n");
 			 	if (sf.fqn_map.has_key(key);
 			 		GLib.debug("Already got class %s", key);
-			 		continue;
+			 		return;
 		 		}
 				var cls = new SymbolRoo.new_class(sf, null, key);  
 				cls.write(); // so childen have id to use.
