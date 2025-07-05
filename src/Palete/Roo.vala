@@ -230,8 +230,10 @@ namespace Palete {
 					
 					cls.can_drop_onto = add_to.get(cls.fqn);
 					GLib.debug("set can_drop_onto for %s to %s", cls.fqn, cls.can_drop_onto_str);
-					cls.write();
+					
 				}
+				// write them all...
+				cls.write();
 				
 			}
 			
