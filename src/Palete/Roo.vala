@@ -227,8 +227,8 @@ namespace Palete {
 					cls.can_drop_onto = add_to.get(cls.fqn);
 				}
 			}
-			sf.version = sf.cur_mod_time();
-			sf.is_parsed = true;
+
+			sf.is_parsed = true; // foces update time and writes to db..
 			SQ.Database.backupDB();// write to disk
 		}
 		  
