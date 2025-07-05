@@ -72,7 +72,9 @@ namespace Palete {
 		public Gee.ArrayList<string> can_drop_onto  { get; set; default = new Gee.ArrayList<string>(); }
 
 		public int sequence_count = 0; // used by symbolvala - to label symbols.
+		// this is used on the roo tree to dermine what can be added to an empty file
 		
+		public bool is_builder_top { get; set; default false; }
 	 	
 		
   		public string implements_str { 
@@ -471,6 +473,8 @@ namespace Palete {
 					is_static INT2,
 					is_ctor_only INT2,
 					is_local_var INT2,
+					
+					is
 					
 					parent_name TEXT,
 					doc TEXT,
