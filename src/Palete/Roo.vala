@@ -67,20 +67,43 @@ namespace Palete {
 			
 			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version??
 			
-			if (sf.version != sf.cur_mod_time()) {
+			if (sf.version == sf.cur_mod_time()) {
+				sf.loadSymbols();
+				
+				
+			} else {
+				this.loadJsonDataIntoSymbols();
 				
 				sf.version = sf.cur_mod_time();
-				// database may contain a version - we will update the version (if not the same)
-				GLib.debug("Palete load - load symbols");
-				
-				sf.loadSymbols();
 			}
+			
+			
+			// database may contain a version - we will update the version (if not the same)
+			GLib.debug("Palete load - load symbols");
+			
+			// extrac list of classes and top_classes
+			foreach(sf.symbol_map.values as s) {
+				if (s.stype != Lsp.SymbolType.Class) { 
+					continue;
+				}
+				this.classes.set(s.fqn, s);
+				if (s.is_builder_top) {
+t					this.top_classes.add(s.fqn);	
+				}
+			}
+			
+			Roo.classes_cache = this.classes;
+			Roo.top_classes_cache  = this.top_classes;
+			
+			
 			//sf.initDB();
 			// in theory  - we dont need to load again if our DB is the same
 			// but I'm not sure we store all of this in the DB currently?
 			
 			
-			
+		void loadJsonDataIntoSymbols()
+		{
+		
 			var pa = new Json.Parser();
 			try { 
 				uint8[] data;
@@ -142,8 +165,8 @@ namespace Palete {
 				 		if ("builder" == vcn.get_string_element(i)) {
 				 			// this class can be added to the top level.
 				 			GLib.debug("Add %s to *top", cls.fqn);
-				 			
-							this.top_classes.add(cls.fqn);
+				 			cls.is_builder_top = true;
+							// was add to top classes here..
 							break;
 			 			}
 			 			
@@ -151,7 +174,7 @@ namespace Palete {
 	 			}
 	 			
  				cls.write();
-				this.classes.set(key, cls);
+				//this.classes.set(key, cls);
 			});
 			
 			// look for properties of classes, that are atually clasess
@@ -196,14 +219,14 @@ namespace Palete {
 				}
 				 
 			}
+			
+			
 			foreach(var cls in this.classes.values) {
 				if (add_to.has_key(cls.fqn)) {
 					
 					cls.can_drop_onto = add_to.get(cls.fqn);
 				}
 			}
-			Roo.classes_cache = this.classes;
-			Roo.top_classes_cache  = this.top_classes;
 			
 			SQ.Database.backupDB();// write to disk
 		}
