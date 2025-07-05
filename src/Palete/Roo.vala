@@ -230,6 +230,7 @@ namespace Palete {
 				if (add_to.has_key(cls.fqn)) {
 					
 					cls.can_drop_onto = add_to.get(cls.fqn);
+					GLib.debug("set can_drop_onto for %s to %s", cls.fan, cls.can_drop_onto_str);
 				}
 			}
 
