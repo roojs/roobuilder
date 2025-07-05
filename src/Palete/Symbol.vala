@@ -59,8 +59,7 @@ namespace Palete {
 		public Gee.HashMap<string,Symbol> signals { get; set; default = new Gee.HashMap<string,Symbol>(); }		
 		public Gee.HashMap<string,Symbol> methods { get; set; default = new Gee.HashMap<string,Symbol>(); }				
 		public Gee.HashMap<string,Symbol> ctors { get; set; default = new Gee.HashMap<string,Symbol>(); }	
-		public Gee.HashMap<string,Symbol> enums { get; set; default = new Gee.HashMap<string,Symbol>();
-		}			
+		public Gee.HashMap<string,Symbol> enums { get; set; default = new Gee.HashMap<string,Symbol>();}			
 		public bool children_loaded = false;
 		//public bool signals_loaded = false;
 		//public bool methods_loaded = false;
@@ -417,8 +416,8 @@ namespace Palete {
 			}
 		}
 		
-		public Gee.HashMap<string,Symbol> childrenOfType(Lsp.SymbolKind kind) {
-			if (!this.children_loaded) {
+		public Gee.HashMap<string,Symbol> childrenOfType(Lsp.SymbolKind kind, bool is_loading = false) {
+			if (!is_loading && !this.children_loaded) {
 				GLib.error("children called before they were loaded");
 			}
 			switch(kind) {
@@ -514,6 +513,7 @@ namespace Palete {
 					fqn TEXT,
 					implements_str TEXT,
 					inherits_str TEXT,
+					
 					can_drop_onto_str TEXT,
 					valid_cn_str TEXT
 
