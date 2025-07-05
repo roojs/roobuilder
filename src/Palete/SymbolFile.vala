@@ -45,9 +45,13 @@ namespace Palete {
 				}
 				if (path.has_prefix("resource://")) {
 				
-					return BuilderApplication.exe_as_file().query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+					return BuilderApplication.exe_as_file(
+						).query_info( FileAttribute.TIME_MODIFIED, 0)
+						.get_modification_date_time().to_unix();
 				}
-				return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				return GLib.File.new_for_path(path)
+					.query_info( FileAttribute.TIME_MODIFIED, 0)
+					.get_modification_date_time().to_unix();
 			} catch (GLib.Error e) {
 				return -2;
 			}
