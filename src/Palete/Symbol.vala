@@ -474,7 +474,7 @@ namespace Palete {
 					is_ctor_only INT2,
 					is_local_var INT2,
 					
-					is
+					is_builder_top INT2,
 					
 					parent_name TEXT,
 					doc TEXT,
