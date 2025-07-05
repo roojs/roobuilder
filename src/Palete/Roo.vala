@@ -119,7 +119,7 @@ namespace Palete {
 			var clist =  node.get_object(); /// was in data... .get_object_member("data");
 			clist.foreach_member((o , key, value) => {
 				//print("cls:" + key+"\n");
-			 	if (sf.fqn_map.has_key(key);
+			 	if (sf.fqn_map.has_key(key)) {
 			 		GLib.debug("Already got class %s", key);
 			 		return;
 		 		}
