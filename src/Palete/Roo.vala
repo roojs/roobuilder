@@ -83,7 +83,7 @@ namespace Palete {
 			
 			// extrac list of classes and top_classes
 			foreach(var s in sf.symbol_map.values) {
-				if (s.stype != Lsp.SymbolType.Class) { 
+				if (s.stype != Lsp.SymbolKind.Class) { 
 					continue;
 				}
 				this.classes.set(s.fqn, s);
