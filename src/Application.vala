@@ -78,7 +78,8 @@
        
         public static string release_version {
         		get {
-        			return "5.0.10"; // can we get this from somewhere?
+        			// the database version depends on this as well
+        			return "5.0.11"; // can we get this from somewhere?
     			}
 		}
        
