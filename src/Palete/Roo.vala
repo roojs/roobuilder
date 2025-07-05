@@ -72,7 +72,7 @@ namespace Palete {
 				
 				
 			} else {
-				this.loadJsonDataIntoSymbols(f);
+				this.loadJsonDataIntoSymbols(f,sf);
 				
 				sf.version = sf.cur_mod_time();
 			}
