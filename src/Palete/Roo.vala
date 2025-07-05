@@ -82,7 +82,7 @@ namespace Palete {
 			GLib.debug("Palete load - load symbols");
 			
 			// extrac list of classes and top_classes
-			foreach(sf.symbol_map.values as s) {
+			foreach(var s in sf.symbol_map.values) {
 				if (s.stype != Lsp.SymbolType.Class) { 
 					continue;
 				}
