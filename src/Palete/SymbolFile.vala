@@ -49,6 +49,12 @@ namespace Palete {
 						).query_info( FileAttribute.TIME_MODIFIED, 0)
 						.get_modification_date_time().to_unix();
 				}
+				if (this.path.has_prefix("file://")) {
+				
+					return GLib.File.new_for_url(this.path)
+						.query_info( FileAttribute.TIME_MODIFIED, 0)
+						.get_modification_date_time().to_unix();
+				}
 				return GLib.File.new_for_path(this.path)
 					.query_info( FileAttribute.TIME_MODIFIED, 0)
 					.get_modification_date_time().to_unix();
