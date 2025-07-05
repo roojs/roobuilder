@@ -74,7 +74,7 @@ namespace Palete {
 			} else {
 				this.loadJsonDataIntoSymbols(f,sf);
 				
-				sf.version = sf.cur_mod_time();
+				
 			}
 			
 			
@@ -227,7 +227,8 @@ namespace Palete {
 					cls.can_drop_onto = add_to.get(cls.fqn);
 				}
 			}
-			
+			sf.version = sf.cur_mod_time();
+			sf.is_parsed = true;
 			SQ.Database.backupDB();// write to disk
 		}
 		  
