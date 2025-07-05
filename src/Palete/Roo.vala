@@ -88,7 +88,7 @@ namespace Palete {
 				}
 				this.classes.set(s.fqn, s);
 				if (s.is_builder_top) {
-t					this.top_classes.add(s.fqn);	
+					this.top_classes.add(s.fqn);	
 				}
 			}
 			
