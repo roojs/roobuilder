@@ -524,7 +524,8 @@ namespace Palete {
 					inherits_str TEXT,
 					
 					can_drop_onto_str TEXT,
-					valid_cn_str TEXT
+					valid_cn_str TEXT,
+					all_implementations_str TEXT
 
 				);
 				",
