@@ -72,7 +72,7 @@ namespace Palete {
 				
 				
 			} else {
-				this.loadJsonDataIntoSymbols();
+				this.loadJsonDataIntoSymbols(f);
 				
 				sf.version = sf.cur_mod_time();
 			}
@@ -101,7 +101,7 @@ t					this.top_classes.add(s.fqn);
 			// but I'm not sure we store all of this in the DB currently?
 			
 			
-		void loadJsonDataIntoSymbols()
+		void loadJsonDataIntoSymbols(GLib.File f)
 		{
 		
 			var pa = new Json.Parser();
