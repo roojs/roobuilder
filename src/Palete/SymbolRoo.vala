@@ -65,6 +65,7 @@ namespace Palete {
 				}
 				
 				prop.doc  = o.get_string_member("desc");
+				// tbis gets overriden by to_fqn?
 				prop.fqn = (o.has_member("memberOf") && o.get_string_member("memberOf").length > 0 ? 
 					o.get_string_member("memberOf") : this.fqn) + "." + name;
 				
@@ -124,8 +125,8 @@ namespace Palete {
 		public void write( ) 
 		{
 			
-		 	
-			this.fqn = this.to_fqn();
+		 	// to_fqn might not work - as it changes member of data.
+			// this.fqn = this.to_fqn();
 			GLib.debug("ADD %s", this.fqn);
 			this.rev = this.file.version;
 			
