@@ -57,7 +57,7 @@ namespace Palete {
 			
  
 			this.classes = new Gee.HashMap<string,Symbol>();
-			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
+
 			
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/resources/roodata.json");
 			if (!f.query_exists(null)) {
@@ -101,9 +101,9 @@ namespace Palete {
 			// but I'm not sure we store all of this in the DB currently?
 		}
 			
-		void loadJsonDataIntoSymbols(GLib.File f)
+		void loadJsonDataIntoSymbols(GLib.File f, SymbolFile sf)
 		{
-		
+			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
 			var pa = new Json.Parser();
 			try { 
 				uint8[] data;
