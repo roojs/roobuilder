@@ -513,7 +513,9 @@ namespace Palete {
 					is_gir INT2,
 					fqn TEXT,
 					implements_str TEXT,
-					inherits_str TEXT
+					inherits_str TEXT,
+					can_drop_onto_str TEXT,
+					valid_cn TEXT
 
 				);
 				",
