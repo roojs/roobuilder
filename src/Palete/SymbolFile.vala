@@ -384,6 +384,15 @@ namespace Palete {
 				parent.children.append(child); 
  				parent.children_map.set(child.type_name, child);
  				this.symbol_map.set((int)child.id, child);
+ 				// sets properties etc..
+ 				if (parent.stype == Lsp.SymbolKind.Class) {
+ 					var prop = parent.childrenOfType(child.stype);
+ 					prop.(child.name, child);
+ 				
+ 				}
+ 				
+ 				
+ 				
 			}
 			
 			
