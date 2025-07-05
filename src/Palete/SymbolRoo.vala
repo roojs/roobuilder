@@ -141,10 +141,12 @@ namespace Palete {
 			 
 			// update..
 			
-			var old = this.file.symbol_map.get((int) this.id);
+			//var old = this.file.symbol_map.get((int) this.id);
+			// we use null in update as the 'old' is going to be the same
+			// so no update was done..
 			
 
-			q.update(old,this); 
+			q.update(null,this); 
 
 			// should nto need to update file symbols.
 		}
