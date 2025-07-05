@@ -126,7 +126,7 @@ namespace Palete {
 			
 		 	
 			this.fqn = this.to_fqn();
-			
+			GLib.debug("ADD %s", this.fqn);
 			this.rev = this.file.version;
 			
 			 
