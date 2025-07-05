@@ -82,7 +82,7 @@ namespace SQ {
 			if (Sqlite.DONE != stmt.step ()) {
 			    GLib.debug("SYmbol insert: %s", Database.db.errmsg());
 			}
-			GLib.debug("Execute %s", stmt.expanded_sql());	 
+			//GLib.debug("Execute %s", stmt.expanded_sql());	 
 			
 			stmt.reset(); //not really needed.
 			var id = Database.db.last_insert_rowid();
