@@ -104,6 +104,7 @@ namespace Palete {
 		void loadJsonDataIntoSymbols(GLib.File f, SymbolFile sf)
 		{
 			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
+			var classes = new Gee.HashMap<string, SymbolRoo>();
 			var pa = new Json.Parser();
 			try { 
 				uint8[] data;
@@ -177,14 +178,14 @@ namespace Palete {
 	 			}
 	 			
  				cls.write();
-				//this.classes.set(key, cls);
+				classes.set(key, cls);
 			});
 			
 			// look for properties of classes, that are atually clasess
 			// eg. Roo.data.Store has proxy and reader..
 			
 			
-			foreach(var cls in this.classes.values) {
+			foreach(var cls in classes.values) {
 				foreach(var gir_obj in cls.props.values) {
 					var types = gir_obj.rtype.split("|");
 					for(var i =0; i < types.length; i++) {
@@ -224,7 +225,7 @@ namespace Palete {
 			}
 			
 			
-			foreach(var cls in this.classes.values) {
+			foreach(var cls in classes.values) {
 				if (add_to.has_key(cls.fqn)) {
 					
 					cls.can_drop_onto = add_to.get(cls.fqn);
