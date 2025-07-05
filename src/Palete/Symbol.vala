@@ -105,12 +105,7 @@ namespace Palete {
 		}
 		public string all_implementations_str {
 			owned get {
-				var ret =  this.arrayToString(this.all_implementations);
-				if (ret != "") {
-					GLib.debug("save implementainos str %s", ret);
-				}
-				return ret;
-				
+				return this.arrayToString(this.all_implementations);
 			}
 			set {
 				this.stringToArray(value, this.all_implementations);
