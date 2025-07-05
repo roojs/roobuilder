@@ -65,7 +65,7 @@ namespace Palete {
 			}
 			
 			
-			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version??
+			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version loaded from db if it exists
 			sf.loadSymbols();	
 			
 			if (sf.version != sf.cur_mod_time()) {
