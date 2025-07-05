@@ -74,7 +74,7 @@ namespace Palete {
 		public int sequence_count = 0; // used by symbolvala - to label symbols.
 		// this is used on the roo tree to dermine what can be added to an empty file
 		
-		public bool is_builder_top { get; set; default false; }
+		public bool is_builder_top { get; set; default =  false; }
 	 	
 		
   		public string implements_str { 
