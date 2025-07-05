@@ -131,7 +131,7 @@ namespace Palete {
 			
 			 
 			var q = new SQ.Query<Symbol>("symbol");
-			if (!this.file.fqn_map.has_key(this.fqn)) {
+			if (this.id ==0) {
 				
 				q.insert(this);
 				this.file.fqn_map.set(this.fqn, this);
@@ -141,7 +141,7 @@ namespace Palete {
 			 
 			// update..
 			
-			var old = this.file.fqn_map.get(this.fqn);
+			var old = this.file.symbol_map.get((int) this.id);
 			
 
 			q.update(old,this); 
