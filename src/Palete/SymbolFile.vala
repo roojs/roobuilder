@@ -53,6 +53,7 @@ namespace Palete {
 					.query_info( FileAttribute.TIME_MODIFIED, 0)
 					.get_modification_date_time().to_unix();
 			} catch (GLib.Error e) {
+				GLib.debug("Failed to get Time for file %s : %s", this.path, e.to_string());
 				return -2;
 			}
 		}
