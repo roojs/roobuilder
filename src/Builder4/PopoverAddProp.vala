@@ -174,6 +174,9 @@ public class Xcls_PopoverAddProp : Object
 			this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 			new Xcls_view( _this );
 			this.el.set_child ( _this.view.el  );
+			var child_2 = new Xcls_Box890( _this );
+			child_2.ref();
+			this.el.append( child_2.el );
 		}
 
 		// user defined functions
@@ -847,6 +850,29 @@ public class Xcls_PopoverAddProp : Object
 	}
 
 
+
+	public class Xcls_Box890 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_PopoverAddProp  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box890(Xcls_PopoverAddProp _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.css_name = "";
+		}
+
+		// user defined functions
+	}
 
 
 
