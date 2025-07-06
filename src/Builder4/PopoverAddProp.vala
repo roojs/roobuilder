@@ -550,8 +550,10 @@ public class Xcls_PopoverAddProp : Object
 	if (str.length < 1) { // no search.
 		return true;
 	}
-	if (j.name.down().contains(str)) {
+	if (j.name.down().contains(str) || 
+		j.rtype.down().contains(str)) {
 		return true;
+		
 	}
 	return false; 
 
