@@ -16,8 +16,8 @@ public class Xcls_PopoverAddProp : Object
 	public Xcls_viewwin viewwin;
 	public Xcls_view view;
 	public Xcls_selmodel selmodel;
-	public Xcls_iconfiltermodel iconfiltermodel;
-	public Xcls_iconfilter iconfilter;
+	public Xcls_propfiltermodel propfiltermodel;
+	public Xcls_propfilter propfilter;
 	public Xcls_sortmodel sortmodel;
 	public Xcls_model model;
 	public Xcls_name name;
@@ -480,8 +480,8 @@ public class Xcls_PopoverAddProp : Object
 		{
 			_this = _owner;
 			_this.selmodel = this;
-			new Xcls_iconfiltermodel( _this );
-			this.el = new Gtk.SingleSelection( _this.iconfiltermodel.el );
+			new Xcls_propfiltermodel( _this );
+			this.el = new Gtk.SingleSelection( _this.propfiltermodel.el );
 
 			// my vars (dec)
 
@@ -501,7 +501,7 @@ public class Xcls_PopoverAddProp : Object
 			 
 		}
 	}
-	public class Xcls_iconfiltermodel : Object
+	public class Xcls_propfiltermodel : Object
 	{
 		public Gtk.FilterListModel el;
 		private Xcls_PopoverAddProp  _this;
@@ -510,13 +510,13 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_iconfiltermodel(Xcls_PopoverAddProp _owner )
+		public Xcls_propfiltermodel(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
-			_this.iconfiltermodel = this;
+			_this.propfiltermodel = this;
 			new Xcls_sortmodel( _this );
-			new Xcls_iconfilter( _this );
-			this.el = new Gtk.FilterListModel( _this.sortmodel.el, _this.iconfilter.el );
+			new Xcls_propfilter( _this );
+			this.el = new Gtk.FilterListModel( _this.sortmodel.el, _this.propfilter.el );
 
 			// my vars (dec)
 
@@ -525,7 +525,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
-	public class Xcls_iconfilter : Object
+	public class Xcls_propfilter : Object
 	{
 		public Gtk.CustomFilter el;
 		private Xcls_PopoverAddProp  _this;
@@ -534,10 +534,10 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_iconfilter(Xcls_PopoverAddProp _owner )
+		public Xcls_propfilter(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
-			_this.iconfilter = this;
+			_this.propfilter = this;
 			this.el = new Gtk.CustomFilter( (item) => { 
 	 
 	var j =  (JsRender.JsRender) item;
