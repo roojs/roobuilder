@@ -146,12 +146,38 @@ public class Xcls_PopoverAddProp : Object
 
 			// set gobject values
 			this.el.css_name = "";
+			var child_1 = new Xcls_Box1544( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
 			new Xcls_viewwin( _this );
 			this.el.append( _this.viewwin.el );
 		}
 
 		// user defined functions
 	}
+	public class Xcls_Box1544 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_PopoverAddProp  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box1544(Xcls_PopoverAddProp _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.css_name = "";
+		}
+
+		// user defined functions
+	}
+
 	public class Xcls_viewwin : Object
 	{
 		public Gtk.ScrolledWindow el;
