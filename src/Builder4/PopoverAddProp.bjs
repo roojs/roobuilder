@@ -170,7 +170,7 @@
                "Gtk.CustomFilterFunc match_func" : [
                 "(item) => { ",
                 "\t ",
-                "\tvar j =  (JsRender.NodeProp) item;",
+                "\tvar j =  (JsRender.NodeProp) item.get_item();",
                 " ",
                 "\tvar str = _this.searchbox.el.text.down();\t",
                 "\tGLib.debug(\"filter %s to %s\" , str, j.name.down());",
