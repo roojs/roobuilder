@@ -204,6 +204,7 @@ public class Xcls_PopoverAddObject : Object
 			// my vars (dec)
 
 			// set gobject values
+			this.el.vexpand = true;
 			new Xcls_view( _this );
 			this.el.set_child ( _this.view.el  );
 

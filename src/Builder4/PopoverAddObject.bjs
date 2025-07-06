@@ -66,6 +66,7 @@
       " ",
       ""
      ],
+     "bool vexpand" : true,
      "id" : "viewwin",
      "items" : [
       {
