@@ -194,84 +194,84 @@
                ],
                "id" : "iconfilter",
                "xtype" : "CustomFilter"
-              }
-             ],
-             "xtype" : "FilterListModel"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* init" : [
-              "{",
-              "\t//this.el.set_sorter(new Gtk.TreeListRowSorter(_this.view.el.sorter));",
-              "}",
-              ""
-             ],
-             "* prop" : "model",
-             "id" : "sortmodel",
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "* ctor" : [
-                "new Gtk.TreeListModel(",
-                "    new GLib.ListStore(typeof(JsRender.NodeProp)), //..... << that's our store..",
-                "    false, // passthru",
-                "    false, // autexpand",
-                "    (item) => {",
-                "    \treturn ((JsRender.NodeProp)item).childstore;",
-                "    ",
-                "    }",
-                "    ",
-                "    ",
-                ")"
-               ],
-               "* prop" : "model",
-               "id" : "model",
-               "xtype" : "TreeListModel",
-               "| JsRender.NodeProp getNodeAt" : [
-                "(uint row) {",
-                "",
-                "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",
-                "    ",
-                "   return (JsRender.NodeProp)tr.get_item();",
-                "\t ",
-                "}"
-               ]
               },
               {
                "$ xns" : "Gtk",
-               "* prop" : "sorter",
+               "* init" : [
+                "{",
+                "\t//this.el.set_sorter(new Gtk.TreeListRowSorter(_this.view.el.sorter));",
+                "}",
+                ""
+               ],
+               "* prop" : "model",
+               "id" : "sortmodel",
                "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* ctor" : [
+                  "new Gtk.TreeListModel(",
+                  "    new GLib.ListStore(typeof(JsRender.NodeProp)), //..... << that's our store..",
+                  "    false, // passthru",
+                  "    false, // autexpand",
+                  "    (item) => {",
+                  "    \treturn ((JsRender.NodeProp)item).childstore;",
+                  "    ",
+                  "    }",
+                  "    ",
+                  "    ",
+                  ")"
+                 ],
+                 "* prop" : "model",
+                 "id" : "model",
+                 "xtype" : "TreeListModel",
+                 "| JsRender.NodeProp getNodeAt" : [
+                  "(uint row) {",
+                  "",
+                  "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",
+                  "    ",
+                  "   return (JsRender.NodeProp)tr.get_item();",
+                  "\t ",
+                  "}"
+                 ]
+                },
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "sorter",
                  "items" : [
                   {
                    "$ xns" : "Gtk",
-                   "* prop" : "expression",
-                   "GLib.Type this_type" : "typeof(JsRender.NodeProp)",
-                   "string property_name" : "sort_name",
-                   "xtype" : "PropertyExpression"
+                   "* prop" : "sorter",
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "expression",
+                     "GLib.Type this_type" : "typeof(JsRender.NodeProp)",
+                     "string property_name" : "sort_name",
+                     "xtype" : "PropertyExpression"
+                    }
+                   ],
+                   "xtype" : "StringSorter"
                   }
                  ],
-                 "xtype" : "StringSorter"
+                 "xtype" : "TreeListRowSorter"
                 }
                ],
-               "xtype" : "TreeListRowSorter"
+               "xtype" : "SortListModel",
+               "| JsRender.NodeProp? getNodeAt" : [
+                "(uint row) {",
+                "",
+                "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",
+                "   ",
+                "    // GLib.debug(\"get_item (2) = %s\", a.get_type().name());",
+                "  \t",
+                "   ",
+                "   return (JsRender.NodeProp)tr.get_item();",
+                "\t ",
+                "}"
+               ]
               }
              ],
-             "xtype" : "SortListModel",
-             "| JsRender.NodeProp? getNodeAt" : [
-              "(uint row) {",
-              "",
-              "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",
-              "   ",
-              "    // GLib.debug(\"get_item (2) = %s\", a.get_type().name());",
-              "  \t",
-              "   ",
-              "   return (JsRender.NodeProp)tr.get_item();",
-              "\t ",
-              "}"
-             ]
+             "xtype" : "FilterListModel"
             }
            ],
            "xtype" : "SingleSelection",

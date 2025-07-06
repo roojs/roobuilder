@@ -514,8 +514,9 @@ public class Xcls_PopoverAddProp : Object
 		{
 			_this = _owner;
 			_this.iconfiltermodel = this;
+			new Xcls_sortmodel( _this );
 			new Xcls_iconfilter( _this );
-			this.el = new Gtk.FilterListModel( null, _this.iconfilter.el );
+			this.el = new Gtk.FilterListModel( _this.sortmodel.el, _this.iconfilter.el );
 
 			// my vars (dec)
 
@@ -569,7 +570,6 @@ public class Xcls_PopoverAddProp : Object
 		// user defined functions
 	}
 
-
 	public class Xcls_sortmodel : Object
 	{
 		public Gtk.SortListModel el;
@@ -584,7 +584,7 @@ public class Xcls_PopoverAddProp : Object
 			_this = _owner;
 			_this.sortmodel = this;
 			new Xcls_model( _this );
-			var child_2 = new Xcls_TreeListRowSorter1485( _this );
+			var child_2 = new Xcls_TreeListRowSorter2022( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( _this.model.el, child_2.el );
 
@@ -651,7 +651,7 @@ public class Xcls_PopoverAddProp : Object
 		}
 	}
 
-	public class Xcls_TreeListRowSorter1485 : Object
+	public class Xcls_TreeListRowSorter2022 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Xcls_PopoverAddProp  _this;
@@ -660,10 +660,10 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter1485(Xcls_PopoverAddProp _owner )
+		public Xcls_TreeListRowSorter2022(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter1486( _this );
+			var child_1 = new Xcls_StringSorter2023( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -674,7 +674,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter1486 : Object
+	public class Xcls_StringSorter2023 : Object
 	{
 		public Gtk.StringSorter el;
 		private Xcls_PopoverAddProp  _this;
@@ -683,10 +683,10 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter1486(Xcls_PopoverAddProp _owner )
+		public Xcls_StringSorter2023(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression1487( _this );
+			var child_1 = new Xcls_PropertyExpression2024( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -697,7 +697,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression1487 : Object
+	public class Xcls_PropertyExpression2024 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Xcls_PopoverAddProp  _this;
@@ -706,7 +706,7 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression1487(Xcls_PopoverAddProp _owner )
+		public Xcls_PropertyExpression2024(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(JsRender.NodeProp), null, "sort_name" );
@@ -718,6 +718,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
+
 
 
 
