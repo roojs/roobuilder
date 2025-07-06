@@ -42,11 +42,11 @@ public class Xcls_PopoverAddObject : Object
 		this.el.height_request = 800;
 		this.el.hexpand = false;
 		this.el.position = Gtk.PositionType.RIGHT;
+		var child_1 = new Xcls_Box405( _this );
+		child_1.ref();
+		this.el.child = child_1.el;
 		new Xcls_viewwin( _this );
 		this.el.append( _this.viewwin.el );
-		var child_2 = new Xcls_Box370( _this );
-		child_2.ref();
-		this.el.child = child_2.el;
 	}
 
 	// user defined functions
@@ -113,6 +113,28 @@ public class Xcls_PopoverAddObject : Object
 	 
 		this.el.hide();
 	}
+	public class Xcls_Box405 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_PopoverAddObject  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box405(Xcls_PopoverAddObject _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 	public class Xcls_viewwin : Object
 	{
 		public Gtk.ScrolledWindow el;
