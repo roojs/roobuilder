@@ -32,6 +32,7 @@ namespace JsRender
 				}
 			}
 		}  // can not be updated... ?? you have to remove / replace?
+		// property type (eg. listener / property etc..)
 		private NodePropType  _ptype;
 		 
 		public NodePropType  ptype {		
