@@ -115,6 +115,7 @@ public class Xcls_PopoverAddProp : Object
 		//onbtn.get_allocation(out rect);
 		//this.el.set_pointing_to(rect);
 	    this.el.show();
+	    this.searchbox.el.focus();
 	   
 	    //while(Gtk.events_pending()) { 
 	    //        Gtk.main_iteration();   // why?
@@ -540,7 +541,7 @@ public class Xcls_PopoverAddProp : Object
 			_this.propfilter = this;
 			this.el = new Gtk.CustomFilter( (item) => { 
 	 
-	var j =  (JsRender.NodeProp)) item;
+	var j =  (JsRender.NodeProp) item;
  
 	var str = _this.searchbox.el.text.down();	
 	GLib.debug("filter %s to %s" , str, j.name.down());
