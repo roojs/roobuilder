@@ -496,7 +496,6 @@
        "xtype" : "ScrolledWindow"
       }
      ],
-     "string css_name" : "",
      "xtype" : "Box"
     }
    ],

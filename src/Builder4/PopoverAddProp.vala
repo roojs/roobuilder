@@ -145,7 +145,6 @@ public class Xcls_PopoverAddProp : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.css_name = "";
 			var child_1 = new Xcls_Box1544( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
