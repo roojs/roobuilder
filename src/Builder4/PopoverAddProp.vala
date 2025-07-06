@@ -172,7 +172,6 @@ public class Xcls_PopoverAddProp : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.css_name = "";
 		}
 
 		// user defined functions

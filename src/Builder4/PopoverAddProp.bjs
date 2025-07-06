@@ -26,7 +26,6 @@
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "int spacing" : 0,
-       "string css_name" : "",
        "xtype" : "Box"
       },
       {
