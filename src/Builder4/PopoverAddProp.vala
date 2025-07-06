@@ -544,7 +544,7 @@ public class Xcls_PopoverAddProp : Object
 	var j =  (JsRender.NodeProp) ((Gtk.TreeListRow)item).get_item();
  
 	var str = _this.searchbox.el.text.down();	
-	GLib.debug("filter %s to %s" , str, j.name.down());
+	//GLib.debug("filter %s to %s" , str, j.name.down());
 	
 	 
 	if (str.length < 1) { // no search.

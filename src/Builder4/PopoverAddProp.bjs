@@ -173,7 +173,7 @@
                 "\tvar j =  (JsRender.NodeProp) ((Gtk.TreeListRow)item).get_item();",
                 " ",
                 "\tvar str = _this.searchbox.el.text.down();\t",
-                "\tGLib.debug(\"filter %s to %s\" , str, j.name.down());",
+                "\t//GLib.debug(\"filter %s to %s\" , str, j.name.down());",
                 "\t",
                 "\t ",
                 "\tif (str.length < 1) { // no search.",
