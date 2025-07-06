@@ -18,8 +18,6 @@ public class Xcls_PopoverAddObject : Object
 	public Xcls_model model;
 	public Xcls_propfiltermodel propfiltermodel;
 	public Xcls_propfilter propfilter;
-	public Xcls_sortmodel sortmodel;
-	public Xcls_model model;
 	public Xcls_maincol maincol;
 
 	// my vars (def)
@@ -540,9 +538,8 @@ public class Xcls_PopoverAddObject : Object
 		{
 			_this = _owner;
 			_this.propfiltermodel = this;
-			new Xcls_sortmodel( _this );
 			new Xcls_propfilter( _this );
-			this.el = new Gtk.FilterListModel( _this.sortmodel.el, _this.propfilter.el );
+			this.el = new Gtk.FilterListModel( null, _this.propfilter.el );
 
 			// my vars (dec)
 
@@ -589,158 +586,6 @@ public class Xcls_PopoverAddObject : Object
 
 		// user defined functions
 	}
-
-	public class Xcls_sortmodel : Object
-	{
-		public Gtk.SortListModel el;
-		private Xcls_PopoverAddObject  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_sortmodel(Xcls_PopoverAddObject _owner )
-		{
-			_this = _owner;
-			_this.sortmodel = this;
-			new Xcls_model( _this );
-			var child_2 = new Xcls_TreeListRowSorter209( _this );
-			child_2.ref();
-			this.el = new Gtk.SortListModel( _this.model.el, child_2.el );
-
-			// my vars (dec)
-
-			// set gobject values
-
-			// init method
-
-			{
-				//this.el.set_sorter(new Gtk.TreeListRowSorter(_this.view.el.sorter));
-			}
-		}
-
-		// user defined functions
-		public JsRender.NodeProp? getNodeAt (uint row) {
-		
-		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
-		   
-		    // GLib.debug("get_item (2) = %s", a.get_type().name());
-		  	
-		   
-		   return (JsRender.NodeProp)tr.get_item();
-			 
-		}
-	}
-	public class Xcls_model : Object
-	{
-		public Gtk.TreeListModel el;
-		private Xcls_PopoverAddObject  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_model(Xcls_PopoverAddObject _owner )
-		{
-			_this = _owner;
-			_this.model = this;
-			this.el = new Gtk.TreeListModel(
-    new GLib.ListStore(typeof(JsRender.NodeProp)), //..... << that's our store..
-    false, // passthru
-    false, // autexpand
-    (item) => {
-    	return ((JsRender.NodeProp)item).childstore;
-    
-    }
-    
-    
-);
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-		public JsRender.NodeProp getNodeAt (uint row) {
-		
-		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
-		    
-		   return (JsRender.NodeProp)tr.get_item();
-			 
-		}
-	}
-
-	public class Xcls_TreeListRowSorter209 : Object
-	{
-		public Gtk.TreeListRowSorter el;
-		private Xcls_PopoverAddObject  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_TreeListRowSorter209(Xcls_PopoverAddObject _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_StringSorter210( _this );
-			child_1.ref();
-			this.el = new Gtk.TreeListRowSorter( child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-	public class Xcls_StringSorter210 : Object
-	{
-		public Gtk.StringSorter el;
-		private Xcls_PopoverAddObject  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_StringSorter210(Xcls_PopoverAddObject _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression211( _this );
-			child_1.ref();
-			this.el = new Gtk.StringSorter( child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-	public class Xcls_PropertyExpression211 : Object
-	{
-		public Gtk.PropertyExpression el;
-		private Xcls_PopoverAddObject  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_PropertyExpression211(Xcls_PopoverAddObject _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(JsRender.NodeProp), null, "sort_name" );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
-
 
 
 
