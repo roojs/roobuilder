@@ -541,7 +541,7 @@ public class Xcls_PopoverAddProp : Object
 			_this.propfilter = this;
 			this.el = new Gtk.CustomFilter( (item) => { 
 	 
-	var j =  (JsRender.NodeProp) item.get_item();
+	var j =  (JsRender.NodeProp) ((Gtk.TreeListRow)item).get_item();
  
 	var str = _this.searchbox.el.text.down();	
 	GLib.debug("filter %s to %s" , str, j.name.down());
