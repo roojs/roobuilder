@@ -18,8 +18,12 @@
   </categories>
   
   <releases>
+     <release version="5.0.11" date="2025-07-06"/>
     <release version="5.0.10" date="2025-06-04"/>
   </releases>
+  
+   
+  
   <url type="homepage">https://github.com/roojs/roobuilder</url>
   <url type="faq">https://docs.google.com/spreadsheets/d/1-qNQX1Bwwd1cV405Kj1l3B3Mi6K-GvECnMeuzRKfbGA/edit?usp=sharing</url>
   <description>
