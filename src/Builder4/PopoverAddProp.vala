@@ -43,7 +43,7 @@ public class Xcls_PopoverAddProp : Object
 		this.el.hexpand = false;
 		this.el.position = Gtk.PositionType.RIGHT;
 		new Xcls_viewwin( _this );
-		this.el.set_child ( _this.viewwin.el  );
+		this.el.set_childx ( _this.viewwin.el  );
 	}
 
 	// user defined functions

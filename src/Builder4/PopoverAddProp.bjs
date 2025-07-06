@@ -19,7 +19,7 @@
     {
      "$ shadow_type" : "Gtk.ShadowType.IN",
      "$ xns" : "Gtk",
-     "* pack" : "set_child",
+     "* pack" : "set_childx",
      "Gtk.PolicyType hscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
      "Gtk.PolicyType vscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
      "id" : "viewwin",
