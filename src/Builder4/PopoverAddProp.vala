@@ -115,7 +115,7 @@ public class Xcls_PopoverAddProp : Object
 		//onbtn.get_allocation(out rect);
 		//this.el.set_pointing_to(rect);
 	    this.el.show();
-	    this.searchbox.el.focus();
+	    this.searchbox.el.grab_focus();
 	   
 	    //while(Gtk.events_pending()) { 
 	    //        Gtk.main_iteration();   // why?
