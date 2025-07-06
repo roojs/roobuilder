@@ -45,7 +45,7 @@ public class Xcls_PopoverAddObject : Object
 		this.el.position = Gtk.PositionType.RIGHT;
 		var child_1 = new Xcls_Box405( _this );
 		child_1.ref();
-		this.el.child = child_1.el;
+		this.el.set_child ( child_1.el  );
 	}
 
 	// user defined functions
@@ -829,27 +829,5 @@ public class Xcls_PopoverAddObject : Object
 
 
 
-
-	public class Xcls_Box370 : Object
-	{
-		public Gtk.Box el;
-		private Xcls_PopoverAddObject  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Box370(Xcls_PopoverAddObject _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
 
 }
