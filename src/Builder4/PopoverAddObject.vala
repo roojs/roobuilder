@@ -15,9 +15,9 @@ public class Xcls_PopoverAddObject : Object
 	public Xcls_viewwin viewwin;
 	public Xcls_view view;
 	public Xcls_selmodel selmodel;
-	public Xcls_model model;
 	public Xcls_propfiltermodel propfiltermodel;
 	public Xcls_propfilter propfilter;
+	public Xcls_model model;
 	public Xcls_maincol maincol;
 
 	// my vars (def)
@@ -464,8 +464,8 @@ public class Xcls_PopoverAddObject : Object
 		{
 			_this = _owner;
 			_this.selmodel = this;
-			new Xcls_model( _this );
-			this.el = new Gtk.SingleSelection( _this.model.el );
+			new Xcls_propfiltermodel( _this );
+			this.el = new Gtk.SingleSelection( _this.propfiltermodel.el );
 
 			// my vars (dec)
 
@@ -492,39 +492,6 @@ public class Xcls_PopoverAddObject : Object
 			 
 		}
 	}
-	public class Xcls_model : Object
-	{
-		public Gtk.TreeListModel el;
-		private Xcls_PopoverAddObject  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_model(Xcls_PopoverAddObject _owner )
-		{
-			_this = _owner;
-			_this.model = this;
-			this.el = new Gtk.TreeListModel(
-    new GLib.ListStore(typeof(JsRender.Node)), //..... << that's our store..
-    false, // passthru
-    true, // autexpand
-    (item) => {
-    	return ((JsRender.Node)item).childstore;
-    
-    }
-    
-    
-);
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
 	public class Xcls_propfiltermodel : Object
 	{
 		public Gtk.FilterListModel el;
@@ -538,8 +505,9 @@ public class Xcls_PopoverAddObject : Object
 		{
 			_this = _owner;
 			_this.propfiltermodel = this;
+			new Xcls_model( _this );
 			new Xcls_propfilter( _this );
-			this.el = new Gtk.FilterListModel( null, _this.propfilter.el );
+			this.el = new Gtk.FilterListModel( _this.model.el, _this.propfilter.el );
 
 			// my vars (dec)
 
@@ -578,6 +546,39 @@ public class Xcls_PopoverAddObject : Object
 	return false; 
 
 } );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_model : Object
+	{
+		public Gtk.TreeListModel el;
+		private Xcls_PopoverAddObject  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_model(Xcls_PopoverAddObject _owner )
+		{
+			_this = _owner;
+			_this.model = this;
+			this.el = new Gtk.TreeListModel(
+    new GLib.ListStore(typeof(JsRender.Node)), //..... << that's our store..
+    false, // passthru
+    true, // autexpand
+    (item) => {
+    	return ((JsRender.Node)item).childstore;
+    
+    }
+    
+    
+);
 
 			// my vars (dec)
 

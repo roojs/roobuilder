@@ -122,25 +122,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* ctor" : [
-            "new Gtk.TreeListModel(",
-            "    new GLib.ListStore(typeof(JsRender.Node)), //..... << that's our store..",
-            "    false, // passthru",
-            "    true, // autexpand",
-            "    (item) => {",
-            "    \treturn ((JsRender.Node)item).childstore;",
-            "    ",
-            "    }",
-            "    ",
-            "    ",
-            ")"
-           ],
-           "* prop" : "model",
-           "id" : "model",
-           "xtype" : "TreeListModel"
-          },
-          {
-           "$ xns" : "Gtk",
            "* prop" : "model",
            "id" : "propfiltermodel",
            "items" : [
@@ -168,6 +149,25 @@
              ],
              "id" : "propfilter",
              "xtype" : "CustomFilter"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* ctor" : [
+              "new Gtk.TreeListModel(",
+              "    new GLib.ListStore(typeof(JsRender.Node)), //..... << that's our store..",
+              "    false, // passthru",
+              "    true, // autexpand",
+              "    (item) => {",
+              "    \treturn ((JsRender.Node)item).childstore;",
+              "    ",
+              "    }",
+              "    ",
+              "    ",
+              ")"
+             ],
+             "* prop" : "model",
+             "id" : "model",
+             "xtype" : "TreeListModel"
             }
            ],
            "xtype" : "FilterListModel"
