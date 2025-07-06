@@ -59,8 +59,7 @@ namespace Palete {
 		public Gee.HashMap<string,Symbol> signals { get; set; default = new Gee.HashMap<string,Symbol>(); }		
 		public Gee.HashMap<string,Symbol> methods { get; set; default = new Gee.HashMap<string,Symbol>(); }				
 		public Gee.HashMap<string,Symbol> ctors { get; set; default = new Gee.HashMap<string,Symbol>(); }	
-		public Gee.HashMap<string,Symbol> enums { get; set; default = new Gee.HashMap<string,Symbol>();
-		}			
+		public Gee.HashMap<string,Symbol> enums { get; set; default = new Gee.HashMap<string,Symbol>();}			
 		public bool children_loaded = false;
 		//public bool signals_loaded = false;
 		//public bool methods_loaded = false;
@@ -68,34 +67,77 @@ namespace Palete {
 		
 		//public string sig = "";  
 		public Gee.ArrayList<string> optvalues { get; set; default = new Gee.ArrayList<string>(); }
+		
+		// these two are serialized for the roo library
 		public Gee.ArrayList<string> valid_cn  { get; set; default = new Gee.ArrayList<string>(); }
 		public Gee.ArrayList<string> can_drop_onto  { get; set; default = new Gee.ArrayList<string>(); }
 
 		public int sequence_count = 0; // used by symbolvala - to label symbols.
+		// this is used on the roo tree to dermine what can be added to an empty file
 		
+		public bool is_builder_top { get; set; default =  false; }
 	 	
 		
   		public string implements_str { 
 			owned get {
-				if (this.implements.size < 1) {
-					return "";
-				}
-				string[] r = {};
-				foreach(var s in this.implements) {
-					r += s;
-				}
-				return  "\n" + string.joinv("\n", r) + "\n";
+				return this.arrayToString(this.implements);
 			}
 			set {
-				var bits = value.split("\n");
-				this.implements.clear();
-				for (var i =0;i < bits.length;i++) {
-					if (bits[i].length > 0) {
-						this.implements.add(bits[i]);
-					}
+				this.stringToArray(value, this.implements);
+			}
+		}
+		
+		public string valid_cn_str {
+			owned get {
+				return this.arrayToString(this.valid_cn);
+			}
+			set {
+				this.stringToArray(value, this.valid_cn);
+			}
+		}
+		public string can_drop_onto_str {
+			owned get {
+				return this.arrayToString(this.can_drop_onto);
+			}
+			set {
+				this.stringToArray(value, this.can_drop_onto);
+			}
+		}
+		public string all_implementations_str {
+			owned get {
+				return this.arrayToString(this.all_implementations);
+			}
+			set {
+				this.stringToArray(value, this.all_implementations);
+			}
+		}
+		
+		
+		string arrayToString(Gee.ArrayList<string> ar)
+		{
+			if (ar.size < 1) {
+					return "";
+			}
+			string[] r = {};
+			foreach(var s in ar) {
+				r += s;
+			}
+			return  "\n" + string.joinv("\n", r) + "\n";
+		
+		}
+		void stringToArray(string s, Gee.ArrayList<string> ar) 
+		{
+			var bits = s.split("\n");
+			ar.clear();
+			for (var i =0;i < bits.length;i++) {
+				if (bits[i].length > 0) {
+					ar.add(bits[i]);
 				}
 			}
-		}	
+		}
+		
+		
+		
 		public string codeinfo_name {
 				owned get 
 				{
@@ -383,8 +425,8 @@ namespace Palete {
 			}
 		}
 		
-		public Gee.HashMap<string,Symbol> childrenOfType(Lsp.SymbolKind kind) {
-			if (!this.children_loaded) {
+		public Gee.HashMap<string,Symbol> childrenOfType(Lsp.SymbolKind kind, bool is_loading = false) {
+			if (!is_loading && !this.children_loaded) {
 				GLib.error("children called before they were loaded");
 			}
 			switch(kind) {
@@ -472,12 +514,18 @@ namespace Palete {
 					is_ctor_only INT2,
 					is_local_var INT2,
 					
+					is_builder_top INT2,
+					
 					parent_name TEXT,
 					doc TEXT,
 					is_gir INT2,
 					fqn TEXT,
 					implements_str TEXT,
-					inherits_str TEXT
+					inherits_str TEXT,
+					
+					can_drop_onto_str TEXT,
+					valid_cn_str TEXT,
+					all_implementations_str TEXT
 
 				);
 				",

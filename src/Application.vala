@@ -78,7 +78,8 @@
        
         public static string release_version {
         		get {
-        			return "5.0.10"; // can we get this from somewhere?
+        			// the database version depends on this as well
+        			return "5.0.11"; // can we get this from somewhere?
     			}
 		}
        
@@ -164,16 +165,23 @@
 			 // done in background thread.
 		}
 		
-	 	public static string exe_version()
-	 	{
-	 		string v= "0000";
-	 		try {
+		public static GLib.File exe_as_file()
+		{
+			try {
 				_self = FileUtils.read_link("/proc/self/exe");
 			} catch (Error e) {
 				// this should nto happen!!?
 				GLib.error("could not read /proc/self/exe");
 			}
-		 	var f =  File.new_for_path(_self);
+		 	return GLib.File.new_for_path(_self);
+	 	}
+		
+		
+	 	public static string exe_version()
+	 	{
+	 		string v= "0000";
+	 		 
+		 	var f =  exe_as_file();
 			 
 			try {
 				var fi = f.query_info("*",0);

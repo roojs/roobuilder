@@ -12,9 +12,12 @@ public class Xcls_PopoverAddProp : Object
 		}
 		return _PopoverAddProp;
 	}
+	public Xcls_searchbox searchbox;
 	public Xcls_viewwin viewwin;
 	public Xcls_view view;
 	public Xcls_selmodel selmodel;
+	public Xcls_propfiltermodel propfiltermodel;
+	public Xcls_propfilter propfilter;
 	public Xcls_sortmodel sortmodel;
 	public Xcls_model model;
 	public Xcls_name name;
@@ -42,8 +45,9 @@ public class Xcls_PopoverAddProp : Object
 		this.el.height_request = 800;
 		this.el.hexpand = false;
 		this.el.position = Gtk.PositionType.RIGHT;
-		new Xcls_viewwin( _this );
-		this.el.set_child ( _this.viewwin.el  );
+		var child_1 = new Xcls_Box373( _this );
+		child_1.ref();
+		this.el.set_child ( child_1.el  );
 	}
 
 	// user defined functions
@@ -111,6 +115,7 @@ public class Xcls_PopoverAddProp : Object
 		//onbtn.get_allocation(out rect);
 		//this.el.set_pointing_to(rect);
 	    this.el.show();
+	    this.searchbox.el.grab_focus();
 	   
 	    //while(Gtk.events_pending()) { 
 	    //        Gtk.main_iteration();   // why?
@@ -127,6 +132,104 @@ public class Xcls_PopoverAddProp : Object
 		this.el.hide();
 		this.node = null;
 	}
+	public class Xcls_Box373 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_PopoverAddProp  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box373(Xcls_PopoverAddProp _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Box1544( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			new Xcls_viewwin( _this );
+			this.el.append( _this.viewwin.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box1544 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_PopoverAddProp  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box1544(Xcls_PopoverAddProp _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			new Xcls_searchbox( _this );
+			this.el.append( _this.searchbox.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_searchbox : Object
+	{
+		public Gtk.SearchEntry el;
+		private Xcls_PopoverAddProp  _this;
+
+
+		// my vars (def)
+		public Gtk.CssProvider css;
+
+		// ctor
+		public Xcls_searchbox(Xcls_PopoverAddProp _owner )
+		{
+			_this = _owner;
+			_this.searchbox = this;
+			this.el = new Gtk.SearchEntry();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.name = "popover-files-iconsearch";
+			this.el.hexpand = true;
+			this.el.placeholder_text = "type to filter results";
+			this.el.search_delay = 1000;
+
+			// init method
+
+			/*
+			this.css = new Gtk.CssProvider();
+			try {
+				this.css.load_from_data("#popover-files-iconsearch { font:  10px monospace;}".data);
+			} catch (Error e) {}
+			this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+			        
+			        
+			*/
+
+			//listeners
+			this.el.search_changed.connect( ( ) => {
+				GLib.debug("prop search %s", this.el.text);
+			
+				_this.propfilter.el.changed(Gtk.FilterChange.DIFFERENT);	
+			//	_this.iconsearch.el.set_search(this.el.text);
+			});
+		}
+
+		// user defined functions
+	}
+
+
 	public class Xcls_viewwin : Object
 	{
 		public Gtk.ScrolledWindow el;
@@ -178,15 +281,15 @@ public class Xcls_PopoverAddProp : Object
 			this.el.show_row_separators = true;
 			this.el.show_column_separators = true;
 			this.el.reorderable = true;
-			var child_2 = new Xcls_GestureClick3( _this );
+			var child_2 = new Xcls_GestureClick1481( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
 			new Xcls_name( _this );
 			this.el.append_column ( _this.name.el  );
-			var child_4 = new Xcls_ColumnViewColumn12( _this );
+			var child_4 = new Xcls_ColumnViewColumn1490( _this );
 			child_4.ref();
 			this.el.append_column ( child_4.el  );
-			var child_5 = new Xcls_ColumnViewColumn14( _this );
+			var child_5 = new Xcls_ColumnViewColumn1492( _this );
 			child_5.ref();
 			this.el.append_column ( child_5.el  );
 		}
@@ -278,7 +381,7 @@ public class Xcls_PopoverAddProp : Object
 		
 		 }
 	}
-	public class Xcls_GestureClick3 : Object
+	public class Xcls_GestureClick1481 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_PopoverAddProp  _this;
@@ -287,7 +390,7 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick3(Xcls_PopoverAddProp _owner )
+		public Xcls_GestureClick1481(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -378,8 +481,8 @@ public class Xcls_PopoverAddProp : Object
 		{
 			_this = _owner;
 			_this.selmodel = this;
-			new Xcls_sortmodel( _this );
-			this.el = new Gtk.SingleSelection( _this.sortmodel.el );
+			new Xcls_propfiltermodel( _this );
+			this.el = new Gtk.SingleSelection( _this.propfiltermodel.el );
 
 			// my vars (dec)
 
@@ -399,6 +502,71 @@ public class Xcls_PopoverAddProp : Object
 			 
 		}
 	}
+	public class Xcls_propfiltermodel : Object
+	{
+		public Gtk.FilterListModel el;
+		private Xcls_PopoverAddProp  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_propfiltermodel(Xcls_PopoverAddProp _owner )
+		{
+			_this = _owner;
+			_this.propfiltermodel = this;
+			new Xcls_sortmodel( _this );
+			new Xcls_propfilter( _this );
+			this.el = new Gtk.FilterListModel( _this.sortmodel.el, _this.propfilter.el );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+	public class Xcls_propfilter : Object
+	{
+		public Gtk.CustomFilter el;
+		private Xcls_PopoverAddProp  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_propfilter(Xcls_PopoverAddProp _owner )
+		{
+			_this = _owner;
+			_this.propfilter = this;
+			this.el = new Gtk.CustomFilter( (item) => { 
+	 
+	var j =  (JsRender.NodeProp) ((Gtk.TreeListRow)item).get_item();
+ 
+	var str = _this.searchbox.el.text.down();	
+	//GLib.debug("filter %s to %s" , str, j.name.down());
+	
+	 
+	if (str.length < 1) { // no search.
+		return true;
+	}
+	if (j.name.down().contains(str) || 
+		j.rtype.down().contains(str)) {
+		return true;
+		
+	}
+	return false; 
+
+} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 	public class Xcls_sortmodel : Object
 	{
 		public Gtk.SortListModel el;
@@ -413,7 +581,7 @@ public class Xcls_PopoverAddProp : Object
 			_this = _owner;
 			_this.sortmodel = this;
 			new Xcls_model( _this );
-			var child_2 = new Xcls_TreeListRowSorter7( _this );
+			var child_2 = new Xcls_TreeListRowSorter2022( _this );
 			child_2.ref();
 			this.el = new Gtk.SortListModel( _this.model.el, child_2.el );
 
@@ -480,7 +648,7 @@ public class Xcls_PopoverAddProp : Object
 		}
 	}
 
-	public class Xcls_TreeListRowSorter7 : Object
+	public class Xcls_TreeListRowSorter2022 : Object
 	{
 		public Gtk.TreeListRowSorter el;
 		private Xcls_PopoverAddProp  _this;
@@ -489,10 +657,10 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_TreeListRowSorter7(Xcls_PopoverAddProp _owner )
+		public Xcls_TreeListRowSorter2022(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_StringSorter8( _this );
+			var child_1 = new Xcls_StringSorter2023( _this );
 			child_1.ref();
 			this.el = new Gtk.TreeListRowSorter( child_1.el );
 
@@ -503,7 +671,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
-	public class Xcls_StringSorter8 : Object
+	public class Xcls_StringSorter2023 : Object
 	{
 		public Gtk.StringSorter el;
 		private Xcls_PopoverAddProp  _this;
@@ -512,10 +680,10 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringSorter8(Xcls_PopoverAddProp _owner )
+		public Xcls_StringSorter2023(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression9( _this );
+			var child_1 = new Xcls_PropertyExpression2024( _this );
 			child_1.ref();
 			this.el = new Gtk.StringSorter( child_1.el );
 
@@ -526,7 +694,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression9 : Object
+	public class Xcls_PropertyExpression2024 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Xcls_PopoverAddProp  _this;
@@ -535,7 +703,7 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression9(Xcls_PopoverAddProp _owner )
+		public Xcls_PropertyExpression2024(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(JsRender.NodeProp), null, "sort_name" );
@@ -547,6 +715,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
+
 
 
 
@@ -565,7 +734,7 @@ public class Xcls_PopoverAddProp : Object
 		{
 			_this = _owner;
 			_this.name = this;
-			var child_1 = new Xcls_SignalListItemFactory11( _this );
+			var child_1 = new Xcls_SignalListItemFactory1489( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Double click to add", child_1.el );
 
@@ -588,7 +757,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory11 : Object
+	public class Xcls_SignalListItemFactory1489 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_PopoverAddProp  _this;
@@ -597,7 +766,7 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory11(Xcls_PopoverAddProp _owner )
+		public Xcls_SignalListItemFactory1489(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -662,7 +831,7 @@ public class Xcls_PopoverAddProp : Object
 	}
 
 
-	public class Xcls_ColumnViewColumn12 : Object
+	public class Xcls_ColumnViewColumn1490 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_PopoverAddProp  _this;
@@ -671,10 +840,10 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ColumnViewColumn12(Xcls_PopoverAddProp _owner )
+		public Xcls_ColumnViewColumn1490(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory13( _this );
+			var child_1 = new Xcls_SignalListItemFactory1491( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Type", child_1.el );
 
@@ -696,7 +865,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory13 : Object
+	public class Xcls_SignalListItemFactory1491 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_PopoverAddProp  _this;
@@ -705,7 +874,7 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory13(Xcls_PopoverAddProp _owner )
+		public Xcls_SignalListItemFactory1491(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -742,7 +911,7 @@ public class Xcls_PopoverAddProp : Object
 	}
 
 
-	public class Xcls_ColumnViewColumn14 : Object
+	public class Xcls_ColumnViewColumn1492 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_PopoverAddProp  _this;
@@ -751,10 +920,10 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ColumnViewColumn14(Xcls_PopoverAddProp _owner )
+		public Xcls_ColumnViewColumn1492(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory15( _this );
+			var child_1 = new Xcls_SignalListItemFactory1493( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Property of", child_1.el );
 
@@ -776,7 +945,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory15 : Object
+	public class Xcls_SignalListItemFactory1493 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_PopoverAddProp  _this;
@@ -785,7 +954,7 @@ public class Xcls_PopoverAddProp : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory15(Xcls_PopoverAddProp _owner )
+		public Xcls_SignalListItemFactory1493(Xcls_PopoverAddProp _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -820,6 +989,7 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
+
 
 
 

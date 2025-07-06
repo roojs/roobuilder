@@ -57,24 +57,54 @@ namespace Palete {
 			
  
 			this.classes = new Gee.HashMap<string,Symbol>();
-			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
+
 			
 			var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/resources/roodata.json");
 			if (!f.query_exists(null)) {
 				f = GLib. File.new_for_uri("resource:///data/roodata.json");	
-			}			
-			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version??
-			sf.version = sf.cur_mod_time();
+			}
+			
+			
+			var sf = new SymbolFile.new_from_path(f.get_uri(), 1); // version loaded from db if it exists
+			sf.loadSymbols();	
+			
+			if (sf.version != sf.cur_mod_time()) {
+ 
+				this.loadJsonDataIntoSymbols(f,sf);
+				
+				
+			}
+			
+			
 			// database may contain a version - we will update the version (if not the same)
 			GLib.debug("Palete load - load symbols");
 			
-			sf.loadSymbols();
+			// extrac list of classes and top_classes
+			foreach(var s in sf.symbol_map.values) {
+				if (s.stype != Lsp.SymbolKind.Class) { 
+					continue;
+				}
+				GLib.debug("add class %s", s.fqn);
+				
+				this.classes.set(s.fqn, s);
+				if (s.is_builder_top) {
+					this.top_classes.add(s.fqn);	
+				}
+			}
+			
+			Roo.classes_cache = this.classes;
+			Roo.top_classes_cache  = this.top_classes;
+			
+			
 			//sf.initDB();
 			// in theory  - we dont need to load again if our DB is the same
 			// but I'm not sure we store all of this in the DB currently?
+		}
 			
-			
-			
+		void loadJsonDataIntoSymbols(GLib.File f, SymbolFile sf)
+		{
+			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
+			var classes = new Gee.HashMap<string, SymbolRoo>();
 			var pa = new Json.Parser();
 			try { 
 				uint8[] data;
@@ -88,7 +118,10 @@ namespace Palete {
 			var clist =  node.get_object(); /// was in data... .get_object_member("data");
 			clist.foreach_member((o , key, value) => {
 				//print("cls:" + key+"\n");
-			 
+			 	if (sf.fqn_map.has_key(key)) {
+			 		GLib.debug("Already got class %s", key);
+			 		return;
+		 		}
 				var cls = new SymbolRoo.new_class(sf, null, key);  
 				cls.write(); // so childen have id to use.
 				
@@ -136,8 +169,8 @@ namespace Palete {
 				 		if ("builder" == vcn.get_string_element(i)) {
 				 			// this class can be added to the top level.
 				 			GLib.debug("Add %s to *top", cls.fqn);
-				 			
-							this.top_classes.add(cls.fqn);
+				 			cls.is_builder_top = true;
+							// was add to top classes here..
 							break;
 			 			}
 			 			
@@ -145,14 +178,14 @@ namespace Palete {
 	 			}
 	 			
  				cls.write();
-				this.classes.set(key, cls);
+				classes.set(key, cls);
 			});
 			
 			// look for properties of classes, that are atually clasess
 			// eg. Roo.data.Store has proxy and reader..
 			
 			
-			foreach(var cls in this.classes.values) {
+			foreach(var cls in classes.values) {
 				foreach(var gir_obj in cls.props.values) {
 					var types = gir_obj.rtype.split("|");
 					for(var i =0; i < types.length; i++) {
@@ -190,15 +223,22 @@ namespace Palete {
 				}
 				 
 			}
-			foreach(var cls in this.classes.values) {
+			
+			
+			foreach(var cls in classes.values) {
 				if (add_to.has_key(cls.fqn)) {
 					
 					cls.can_drop_onto = add_to.get(cls.fqn);
+					GLib.debug("set can_drop_onto for %s to %s", cls.fqn, cls.can_drop_onto_str);
+					
 				}
+				// write them all...
+				cls.write();
+				
 			}
-			Roo.classes_cache = this.classes;
-			Roo.top_classes_cache  = this.top_classes;
 			
+
+			sf.is_parsed = true; // foces update time and writes to db..
 			SQ.Database.backupDB();// write to disk
 		}
 		  

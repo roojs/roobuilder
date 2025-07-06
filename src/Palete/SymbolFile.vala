@@ -43,11 +43,23 @@ namespace Palete {
 				if (file != null) {
 					return file.vtime;
 				}
-				if (path.has_prefix("resource://")) {
-					return GLib.File.new_for_uri(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				if (this.path.has_prefix("resource://")) {
+				
+					return BuilderApplication.exe_as_file(
+						).query_info( FileAttribute.TIME_MODIFIED, 0)
+						.get_modification_date_time().to_unix();
 				}
-				return GLib.File.new_for_path(path).query_info( FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+				if (this.path.has_prefix("file://")) {
+				
+					return GLib.File.new_for_uri(this.path)
+						.query_info( FileAttribute.TIME_MODIFIED, 0)
+						.get_modification_date_time().to_unix();
+				}
+				return GLib.File.new_for_path(this.path)
+					.query_info( FileAttribute.TIME_MODIFIED, 0)
+					.get_modification_date_time().to_unix();
 			} catch (GLib.Error e) {
+				GLib.debug("Failed to get Time for file %s : %s", this.path, e.message);
 				return -2;
 			}
 		}
@@ -372,6 +384,15 @@ namespace Palete {
 				parent.children.append(child); 
  				parent.children_map.set(child.type_name, child);
  				this.symbol_map.set((int)child.id, child);
+ 				// sets properties etc..
+ 				if (parent.stype == Lsp.SymbolKind.Class) {
+ 					var prop = parent.childrenOfType(child.stype, true);
+ 					prop.set(child.name, child);
+ 				
+ 				}
+ 				
+ 				
+ 				
 			}
 			
 			

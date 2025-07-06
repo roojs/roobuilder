@@ -65,6 +65,7 @@ namespace Palete {
 				}
 				
 				prop.doc  = o.get_string_member("desc");
+				// tbis gets overriden by to_fqn?
 				prop.fqn = (o.has_member("memberOf") && o.get_string_member("memberOf").length > 0 ? 
 					o.get_string_member("memberOf") : this.fqn) + "." + name;
 				
@@ -124,26 +125,29 @@ namespace Palete {
 		public void write( ) 
 		{
 			
-		 	
-			this.fqn = this.to_fqn();
-			
+		 	// to_fqn might not work - as it changes member of data.
+			// this.fqn = this.to_fqn();
+			GLib.debug("ADD %s", this.fqn);
 			this.rev = this.file.version;
 			
 			 
 			var q = new SQ.Query<Symbol>("symbol");
-			if (!this.file.fqn_map.has_key(this.fqn)) {
+			if (this.id < 1) {
 				
 				q.insert(this);
-				  
+				this.file.fqn_map.set(this.fqn, this);
+				this.file.symbol_map.set((int)this.id, this);
  				return;
 			}
 			 
 			// update..
 			
-			var old = this.file.fqn_map.get(this.fqn);
+			//var old = this.file.symbol_map.get((int) this.id);
+			// we use null in update as the 'old' is going to be the same
+			// so no update was done..
 			
 
-			q.update(old,this); 
+			q.update(null,this); 
 
 			// should nto need to update file symbols.
 		}
