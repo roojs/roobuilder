@@ -17,8 +17,6 @@ public class Xcls_PopoverAddProp : Object
 	public Xcls_view view;
 	public Xcls_selmodel selmodel;
 	public Xcls_iconfiltermodel iconfiltermodel;
-	public Xcls_gridsort gridsort;
-	public Xcls_gridmodel gridmodel;
 	public Xcls_iconfilter iconfilter;
 	public Xcls_sortmodel sortmodel;
 	public Xcls_model model;
@@ -516,9 +514,8 @@ public class Xcls_PopoverAddProp : Object
 		{
 			_this = _owner;
 			_this.iconfiltermodel = this;
-			new Xcls_gridsort( _this );
 			new Xcls_iconfilter( _this );
-			this.el = new Gtk.FilterListModel( _this.gridsort.el, _this.iconfilter.el );
+			this.el = new Gtk.FilterListModel( null, _this.iconfilter.el );
 
 			// my vars (dec)
 
@@ -527,113 +524,6 @@ public class Xcls_PopoverAddProp : Object
 
 		// user defined functions
 	}
-	public class Xcls_gridsort : Object
-	{
-		public Gtk.SortListModel el;
-		private Xcls_PopoverAddProp  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_gridsort(Xcls_PopoverAddProp _owner )
-		{
-			_this = _owner;
-			_this.gridsort = this;
-			new Xcls_gridmodel( _this );
-			var child_2 = new Xcls_StringSorter1906( _this );
-			child_2.ref();
-			this.el = new Gtk.SortListModel( _this.gridmodel.el, child_2.el );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-	public class Xcls_gridmodel : Object
-	{
-		public GLib.ListStore el;
-		private Xcls_PopoverAddProp  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_gridmodel(Xcls_PopoverAddProp _owner )
-		{
-			_this = _owner;
-			_this.gridmodel = this;
-			this.el = new GLib.ListStore( typeof(JsRender.JsRender) );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-		public void remove (JsRender.JsRender p) {
-		
-			for (var i =0;i < this.el.n_items; i++ ) {
-				var pr = (JsRender.JsRender) this.el.get_item(i);
-				if (p.path == pr.path) {
-					this.el.remove(i);
-					return;
-				}
-			}
-		 
-		}
-	}
-
-	public class Xcls_StringSorter1906 : Object
-	{
-		public Gtk.StringSorter el;
-		private Xcls_PopoverAddProp  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_StringSorter1906(Xcls_PopoverAddProp _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression1907( _this );
-			child_1.ref();
-			this.el = new Gtk.StringSorter( child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.ignore_case = true;
-		}
-
-		// user defined functions
-	}
-	public class Xcls_PropertyExpression1907 : Object
-	{
-		public Gtk.PropertyExpression el;
-		private Xcls_PopoverAddProp  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_PropertyExpression1907(Xcls_PopoverAddProp _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
-
 	public class Xcls_iconfilter : Object
 	{
 		public Gtk.CustomFilter el;
