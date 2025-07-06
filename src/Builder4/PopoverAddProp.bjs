@@ -483,6 +483,14 @@
       }
      ],
      "xtype" : "ScrolledWindow"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "child",
+     "Gtk.Orientation orientation" : "",
+     "int spacing" : 0,
+     "string css_name" : "",
+     "xtype" : "Box"
     }
    ],
    "xtype" : "Popover",
