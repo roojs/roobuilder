@@ -161,6 +161,88 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "* prop" : "model",
+             "id" : "iconfiltermodel",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "id" : "gridsort",
+               "items" : [
+                {
+                 "$ xns" : "GLib",
+                 "* prop" : "model",
+                 "GLib.Type item_type" : "typeof(JsRender.JsRender)",
+                 "id" : "gridmodel",
+                 "xtype" : "ListStore",
+                 "| void remove" : [
+                  "(JsRender.JsRender p) {",
+                  "",
+                  "\tfor (var i =0;i < this.el.n_items; i++ ) {",
+                  "\t\tvar pr = (JsRender.JsRender) this.el.get_item(i);",
+                  "\t\tif (p.path == pr.path) {",
+                  "\t\t\tthis.el.remove(i);",
+                  "\t\t\treturn;",
+                  "\t\t}",
+                  "\t}",
+                  " ",
+                  "}"
+                 ]
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "sorter",
+                 "bool ignore_case" : true,
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "expression",
+                   "GLib.Type this_type" : "typeof(JsRender.JsRender)",
+                   "string property_name" : "name",
+                   "xtype" : "PropertyExpression"
+                  }
+                 ],
+                 "xtype" : "StringSorter"
+                }
+               ],
+               "xtype" : "SortListModel"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "filter",
+               "Gtk.CustomFilterFunc match_func" : [
+                "(item) => { ",
+                "\t ",
+                "\tvar j =  (JsRender.JsRender) item;",
+                " ",
+                "\tvar str = _this.searchbox.el.text.down();\t",
+                "\tGLib.debug(\"filter %s to %s\" , str, j.name.down());",
+                "\t",
+                "\tif (!_this.filter_symlink.el.active) {",
+                "\t\t// hide symlinks",
+                "\t\tif (j.is_symlink) {",
+                "\t\t\treturn false;",
+                "\t\t}",
+                "\t}",
+                "\t",
+                "\tif (str.length < 1) { // no search.",
+                "\t\treturn true;",
+                "\t}",
+                "\tif (j.name.down().contains(str)) {",
+                "\t\treturn true;",
+                "\t}",
+                "\treturn false; ",
+                "",
+                "}"
+               ],
+               "id" : "iconfilter",
+               "xtype" : "CustomFilter"
+              }
+             ],
+             "xtype" : "FilterListModel"
+            },
+            {
+             "$ xns" : "Gtk",
              "* init" : [
               "{",
               "\t//this.el.set_sorter(new Gtk.TreeListRowSorter(_this.view.el.sorter));",
