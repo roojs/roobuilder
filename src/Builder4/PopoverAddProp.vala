@@ -540,18 +540,12 @@ public class Xcls_PopoverAddProp : Object
 			_this.propfilter = this;
 			this.el = new Gtk.CustomFilter( (item) => { 
 	 
-	var j =  (JsRender.JsRender) item;
+	var j =  (JsRender.NodeProp)) item;
  
 	var str = _this.searchbox.el.text.down();	
 	GLib.debug("filter %s to %s" , str, j.name.down());
 	
-	if (!_this.filter_symlink.el.active) {
-		// hide symlinks
-		if (j.is_symlink) {
-			return false;
-		}
-	}
-	
+	 
 	if (str.length < 1) { // no search.
 		return true;
 	}
