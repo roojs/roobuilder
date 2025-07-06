@@ -44,7 +44,7 @@ public class Xcls_PopoverAddProp : Object
 		this.el.position = Gtk.PositionType.RIGHT;
 		var child_1 = new Xcls_Box373( _this );
 		child_1.ref();
-		this.el.child = child_1.el;
+		this.el.set_child ( child_1.el  );
 	}
 
 	// user defined functions
