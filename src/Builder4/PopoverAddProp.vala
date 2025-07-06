@@ -147,7 +147,7 @@ public class Xcls_PopoverAddProp : Object
 			// set gobject values
 			this.el.css_name = "";
 			new Xcls_viewwin( _this );
-			this.el.set_childx ( _this.viewwin.el  );
+			this.el.append( _this.viewwin.el );
 		}
 
 		// user defined functions
