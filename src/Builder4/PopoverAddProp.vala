@@ -12,6 +12,7 @@ public class Xcls_PopoverAddProp : Object
 		}
 		return _PopoverAddProp;
 	}
+	public Xcls_searchbox searchbox;
 	public Xcls_viewwin viewwin;
 	public Xcls_view view;
 	public Xcls_selmodel selmodel;
@@ -171,10 +172,60 @@ public class Xcls_PopoverAddProp : Object
 			// my vars (dec)
 
 			// set gobject values
+			new Xcls_searchbox( _this );
+			this.el.append( _this.searchbox.el );
 		}
 
 		// user defined functions
 	}
+	public class Xcls_searchbox : Object
+	{
+		public Gtk.SearchEntry el;
+		private Xcls_PopoverAddProp  _this;
+
+
+		// my vars (def)
+		public Gtk.CssProvider css;
+
+		// ctor
+		public Xcls_searchbox(Xcls_PopoverAddProp _owner )
+		{
+			_this = _owner;
+			_this.searchbox = this;
+			this.el = new Gtk.SearchEntry();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.name = "popover-files-iconsearch";
+			this.el.hexpand = true;
+			this.el.placeholder_text = "type to filter results";
+			this.el.search_delay = 1000;
+
+			// init method
+
+			/*
+			this.css = new Gtk.CssProvider();
+			try {
+				this.css.load_from_data("#popover-files-iconsearch { font:  10px monospace;}".data);
+			} catch (Error e) {}
+			this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+			        
+			        
+			*/
+
+			//listeners
+			this.el.search_changed.connect( ( ) => {
+			GLib.debug("file search %s", this.el.text);
+				_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
+				_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);	
+			//	_this.iconsearch.el.set_search(this.el.text);
+			});
+		}
+
+		// user defined functions
+	}
+
 
 	public class Xcls_viewwin : Object
 	{
