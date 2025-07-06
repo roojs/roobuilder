@@ -612,13 +612,13 @@ public class Xcls_PopoverAddObject : Object
 	var j =  (JsRender.Node) tr;
  
 	var str = _this.searchbox.el.text.down();	
-	GLib.debug("filter %s to %s" , str, j.name.down());
+	GLib.debug("filter %s to %s" , str, j.fqn().down());
 	
 	 
 	if (str.length < 1) { // no search.
 		return true;
 	}
-	if (j.name.down().contains(str)) {
+	if (j.fqn().down().contains(str)) {
 		return true;
 	}
 	return false; 
