@@ -216,9 +216,9 @@ public class Xcls_PopoverAddProp : Object
 
 			//listeners
 			this.el.search_changed.connect( ( ) => {
-			GLib.debug("file search %s", this.el.text);
-				_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
-				_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);	
+				GLib.debug("prop search %s", this.el.text);
+			
+				_this.propfilter.el.changed(Gtk.FilterChange.DIFFERENT);	
 			//	_this.iconsearch.el.set_search(this.el.text);
 			});
 		}

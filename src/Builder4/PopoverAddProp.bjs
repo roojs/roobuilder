@@ -47,9 +47,9 @@
          "listeners" : {
           "search_changed" : [
            "( ) => {",
-           "GLib.debug(\"file search %s\", this.el.text);",
-           "\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
-           "\t_this.iconfilter.el.changed(Gtk.FilterChange.DIFFERENT);\t",
+           "\tGLib.debug(\"prop search %s\", this.el.text);",
+           "",
+           "\t_this.propfilter.el.changed(Gtk.FilterChange.DIFFERENT);\t",
            "//\t_this.iconsearch.el.set_search(this.el.text);",
            "}",
            ""
