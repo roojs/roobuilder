@@ -1,4 +1,27 @@
-roobuilder (5.0.10) UNRELEASED; urgency=medium
+roobuilder (5.0.11) UNRELEASED; urgency=medium
+
+  * Add Support in the inline help for the Roo Javascript Library
+  * Included update JS doc library via 'about - fetch resources'
+  * JS Docs dependant on Github site
+  * Docs default to currently edited object if help button pressed
+  * Fixed CSS for live version now synced with master of roojs1 library
+  * Fixed delete property not triggering code update
+  * Large Performance fixes for loading / adding properties etc. (less stuff loaded from DB)
+  * Large Performance fixes for startup - files only parsed once - and timestamps checked
+  * Fixed drag/ shift-drag to move - slightly better key checking support
+  * Fixed GObject Enums  as combo boxes in property editor
+  * fixed Boolean switch - setting property
+  * New file filters Vala/C/CSS/PHP/JS/Other etc..
+  * New file filter for symlinked files (hide/show files which are in project due to be symlinked)
+  * Search on Projects (on file tab)
+  * Search on Object add, Properties and event handlers
+  * Escape key will now close file dialog
+  * Major performance improvement of updating generated code (only add/remove lines that have changed from GtkSourceView)
+  
+  
+ -- Alan Knowles <alan@fastboy>  Sun, 06 Jul 2025 11:55:07 +0800
+
+roobuilder (5.0.10) unstable; urgency=medium
 
   * better handling of ctnl/shift keydown detection for drag/drop and editor text zooming
   * new projects load the vapi's needed to generated the vala code from bjs 
