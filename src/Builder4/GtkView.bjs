@@ -177,7 +177,7 @@
                "   \t",
                "   \tvar s = \":GLib.Object\";",
                "   \t",
-               "\tvar lt = _this.main_window.windowstate.left_tree",
+               "\tvar lt = _this.main_window.windowstate.left_tree;",
                "   \tif (lt.node != null) {",
                "   \t\ts = \":\" + lt.node.fqn();",
                "   \t\tGLib.debug(\"node selected - fqn is %s\", s);",

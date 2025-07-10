@@ -787,7 +787,7 @@ public class Xcls_GtkView : Object
 			   	
 			   	var s = ":GLib.Object";
 			   	
-				var lt = _this.main_window.windowstate.left_tree
+				var lt = _this.main_window.windowstate.left_tree;
 			   	if (lt.node != null) {
 			   		s = ":" + lt.node.fqn();
 			   		GLib.debug("node selected - fqn is %s", s);
