@@ -1,5 +1,6 @@
 {
  "build_module" : "",
+ "gen_extended" : false,
  "items" : [
   {
    "# Gtk.Widget lastObj" : "null",
@@ -650,10 +651,5 @@
    ]
   }
  ],
- "modOrder" : "",
- "name" : "GladeuiView",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/GladeuiView.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "GladeuiView"
 }
