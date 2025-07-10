@@ -156,6 +156,7 @@ Roo.docs.template  = {
             
         var ownMethods = [];
         
+        // this creates a ctor at the top.
         if (data.name.length && 
             !data.isBuiltin && 
             !data.isSingleton &&
@@ -215,12 +216,13 @@ Roo.docs.template  = {
             if (data.isSingleton) {
                 return true;
             }
-            if (($.memberOf != data.name) && $.isStatic){
+            if (($.memberOf != data.name) && ($.isStatic || data.isStatic)){
+                $.isStatic = true; // kludge to make static classes into methods
                 return true;
             }
             if (!$.isStatic) {
-            $.isInherited = ($.memberOf != data.alias);
-            ownMethods.push($);
+                $.isInherited = ($.memberOf != data.alias);
+                ownMethods.push($);
             }
             
             return true;
