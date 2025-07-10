@@ -20,6 +20,8 @@ public class Xcls_WindowRooView : Object
 	public Xcls_AutoRedraw AutoRedraw;
 	public Xcls_view view;
 	public Xcls_inspectorcontainer inspectorcontainer;
+	public Xcls_helper helper;
+	public Xcls_help_button help_button;
 	public Xcls_sourceviewscroll sourceviewscroll;
 	public Xcls_sourceview sourceview;
 	public Xcls_buffer buffer;
@@ -1001,8 +1003,9 @@ public class Xcls_WindowRooView : Object
 
 			// set gobject values
 			this.el.vexpand = true;
-			new Xcls_sourceviewscroll( _this );
-			this.el.append( _this.sourceviewscroll.el );
+			var child_1 = new Xcls_Box310( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
 			var child_2 = new Xcls_Box17( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
@@ -1010,6 +1013,260 @@ public class Xcls_WindowRooView : Object
 
 		// user defined functions
 	}
+	public class Xcls_Box310 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_WindowRooView  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box310(Xcls_WindowRooView _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			var child_1 = new Xcls_Box311( _this );
+			child_1.ref();
+			this.el.append( child_1.el );
+			new Xcls_sourceviewscroll( _this );
+			this.el.append( _this.sourceviewscroll.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_Box311 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_WindowRooView  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box311(Xcls_WindowRooView _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.homogeneous = false;
+			this.el.hexpand = false;
+			this.el.vexpand = false;
+			new Xcls_helper( _this );
+			this.el.append( _this.helper.el );
+			new Xcls_help_button( _this );
+			this.el.append( _this.help_button.el );
+			var child_3 = new Xcls_Scale314( _this );
+			child_3.ref();
+			this.el.append( child_3.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_helper : Object
+	{
+		public Gtk.Label el;
+		private Xcls_WindowRooView  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_helper(Xcls_WindowRooView _owner )
+		{
+			_this = _owner;
+			_this.helper = this;
+			this.el = new Gtk.Label( null );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.margin_end = 4;
+			this.el.margin_start = 4;
+			this.el.justify = Gtk.Justification.LEFT;
+			this.el.hexpand = true;
+			this.el.xalign = 0f;
+
+			//listeners
+			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
+				GLib.debug("using quiery tooltip?");
+				var lbl = new Gtk.Label(this.el.tooltip_markup);
+				lbl.width_request = 500;
+				tooltip.set_custom(lbl);
+			
+				return true;
+			});
+			this.el.activate_link.connect( (uri) => {
+			
+			 
+				GLib.debug("got uri %s", uri);
+				
+				_this.main_window.windowstate.popover_codeinfo.show(this.el, uri);
+				/*
+				var ls = _this.file.getLanguageServer();
+				ls.symbol.begin(uri, (a,b) => {
+					try { 
+						ls.symbol.end(b);
+					} catch (GLib.Error e) {}
+				});
+				*/
+				return true;
+				 
+				 
+			});
+		}
+
+		// user defined functions
+		public void setHelp (Lsp.Hover? help) {
+			if (help == null || help.contents == null
+				|| help.contents.size < 1) {
+				this.el.set_text("");
+				return;
+			}
+			
+			this.el.set_markup(help.contents.get(0).value);
+			 /*
+			var sig = help.contents.get(0).value.split(" ");
+			string[] str = {};
+			GLib.debug("setHelp %s", help.contents.get(0).value);
+			for(var i =0; i < sig.length; i++) {
+			
+				switch(sig[i]) {
+					case "public":
+					case "private":
+					case "protected":
+					case "async":
+					case "class":
+					case "{":
+					case "}":
+					case "(":
+					case ")":
+					
+						str += sig[i] + " ";
+						continue;
+						
+						
+					default:
+			
+						str += ("<a href=\"" + GLib.Markup.escape_text(sig[i]) + "\">" + 
+							GLib.Markup.escape_text(sig[i])
+							+"</a>");
+					continue;
+				}
+			}
+			if (help.contents.size > 1) {
+				this.el.tooltip_markup =  GLib.Markup.escape_text(help.contents.get(1).value);
+			} else {
+				this.el.tooltip_markup = GLib.Markup.escape_text(help.contents.get(0).value);
+			}
+			this.el.set_markup(string.joinv(" ",str));
+			*/
+			
+		}
+	}
+
+	public class Xcls_help_button : Object
+	{
+		public Gtk.Button el;
+		private Xcls_WindowRooView  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_help_button(Xcls_WindowRooView _owner )
+		{
+			_this = _owner;
+			_this.help_button = this;
+			this.el = new Gtk.Button();
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.icon_name = "help-about-symbolic";
+			this.el.vexpand = true;
+
+			//listeners
+			this.el.clicked.connect( () => { 
+			   	
+			   	var s = ":GLib.Object";
+			   	
+				var lt = _this.main_window.windowstate.left_tree;
+				var n = lt.selmodel.getSelectedNode();
+			   	if (n != null) {
+			   		s = ":" + n.fqn();
+			   		GLib.debug("node selected - fqn is %s", s);
+			   	}
+			   	
+			   	_this.main_window.windowstate.popover_codeinfo.show(this.el,s);
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_Scale314 : Object
+	{
+		public Gtk.Scale el;
+		private Xcls_WindowRooView  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Scale314(Xcls_WindowRooView _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.width_request = 150;
+			this.el.has_origin = true;
+			this.el.halign = Gtk.Align.END;
+			this.el.draw_value = false;
+			this.el.digits = 0;
+			this.el.sensitive = true;
+
+			// init method
+
+			{
+				//this.el.set_range(6,30);
+			 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
+			 	BuilderApplication.settings.editor_font_size_updated.connect(
+			 		() => {
+			 			BuilderApplication.settings.editor_font_size_inchange = true;
+			 		//	GLib.debug("update range");
+			 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
+			 		 	BuilderApplication.settings.editor_font_size_inchange = false;
+			 		}
+				);
+				
+			 
+			}
+
+			//listeners
+			this.el.change_value.connect( (st, val ) => {
+				if (BuilderApplication.settings.editor_font_size_inchange) {
+					return false;
+				}
+			  	BuilderApplication.settings.editor_font_size = val;
+			 	return false;
+			});
+		}
+
+		// user defined functions
+	}
+
+
 	public class Xcls_sourceviewscroll : Object
 	{
 		public Gtk.ScrolledWindow el;
@@ -1074,9 +1331,12 @@ public class Xcls_WindowRooView : Object
 			this.el.css_classes = { "code-editor" };
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
-			var child_2 = new Xcls_EventControllerScroll16( _this );
+			var child_2 = new Xcls_EventControllerScroll418( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
+			var child_3 = new Xcls_GestureClick419( _this );
+			child_3.ref();
+			this.el.add_controller(  child_3.el );
 
 			// init method
 
@@ -1694,9 +1954,39 @@ public class Xcls_WindowRooView : Object
 		    //print("TO STRING? " + ret);
 		    return ret;
 		}
+		public void showHelp (Gtk.TextIter iter) {
+			var back = iter.copy();
+			back.backward_char();
+			
+			var forward = iter.copy();
+			forward.forward_char();
+			
+			// what's the character at the iter?
+			var str = back.get_text(iter);
+			str += iter.get_text(forward);
+			if (str.strip().length < 1) {
+				return;
+			}
+			var offset = iter.get_line_offset();
+			var line = iter.get_line();
+			 
+			
+			var ls = _this.file.getLanguageServer();
+			ls.hover.begin(
+				_this.file, line, offset,
+				( a, o)  => {
+					try {
+						var res = ls.hover.end(o );
+					
+						_this.helper.setHelp(res);
+					} catch (GLib.Error e) {
+						// noop..
+					}
+				});
+		}
 	}
 
-	public class Xcls_EventControllerScroll16 : Object
+	public class Xcls_EventControllerScroll418 : Object
 	{
 		public Gtk.EventControllerScroll el;
 		private Xcls_WindowRooView  _this;
@@ -1706,7 +1996,7 @@ public class Xcls_WindowRooView : Object
 		public double distance;
 
 		// ctor
-		public Xcls_EventControllerScroll16(Xcls_WindowRooView _owner )
+		public Xcls_EventControllerScroll418(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
@@ -1744,6 +2034,53 @@ public class Xcls_WindowRooView : Object
 
 		// user defined functions
 	}
+
+	public class Xcls_GestureClick419 : Object
+	{
+		public Gtk.GestureClick el;
+		private Xcls_WindowRooView  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_GestureClick419(Xcls_WindowRooView _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.GestureClick();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.pressed.connect( (n_press, x, y) => {
+				Gtk.TextIter iter;
+				int  buffer_x, buffer_y;
+				var gut = _this.sourceview.el.get_gutter(Gtk.TextWindowType.LEFT);
+				
+				 _this.sourceview.el.window_to_buffer_coords (Gtk.TextWindowType.TEXT,
+					(int)x - gut.get_width(),  (int)y,
+			  		out  buffer_x, out  buffer_y);
+				_this.sourceview.el.get_iter_at_location (out  iter,  
+						buffer_x,  buffer_y);
+				
+				
+				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
+					_this.buffer.el.iter_has_context_class(iter, "string")
+				) { 
+					return ;
+				}
+				_this.buffer.showHelp(iter);
+				 
+					 
+			 
+			});
+		}
+
+		// user defined functions
+	}
+
 
 
 

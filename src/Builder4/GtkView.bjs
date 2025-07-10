@@ -65,7 +65,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "int spacing" : 0,
          "items" : [
           {
@@ -90,7 +90,7 @@
                " ",
                "\tGLib.debug(\"got uri %s\", uri);",
                "\t",
-               "\t_this.window.windowstate.popover_codeinfo.show(this.el, uri);",
+               "\t_this.main_window.windowstate.popover_codeinfo.show(this.el, uri);",
                "\t/*",
                "\tvar ls = _this.file.getLanguageServer();",
                "\tls.symbol.begin(uri, (a,b) => {",
@@ -178,8 +178,9 @@
                "   \tvar s = \":GLib.Object\";",
                "   \t",
                "\tvar lt = _this.main_window.windowstate.left_tree;",
-               "   \tif (lt.node != null) {",
-               "   \t\ts = \":\" + lt.node.fqn();",
+               "\tvar n = lt.selmodel.getSelectedNode();",
+               "   \tif (n != null) {",
+               "   \t\ts = \":\" + n.fqn();",
                "   \t\tGLib.debug(\"node selected - fqn is %s\", s);",
                "   \t}",
                "   \t",
@@ -289,7 +290,14 @@
               "",
               "\tthis.el.set_mark_attributes (\"grey\", gattrs, 1);",
               "",
-              "",
+              "\t",
+              "\t// white space drawer",
+              "\t this.el.get_space_drawer().set_matrix(null);",
+              "\t this.el.get_space_drawer().set_types_for_locations( ",
+              "\t\tGtkSource.SpaceLocationFlags.ALL,",
+              "\t\tGtkSource.SpaceTypeFlags.ALL",
+              "\t);",
+              "\tthis.el.get_space_drawer().set_enable_matrix(true);",
               "",
               "",
               "",
@@ -366,7 +374,41 @@
                  ""
                 ]
                },
-               "xtype" : "Buffer"
+               "xtype" : "Buffer",
+               "| void showHelp" : [
+                "(Gtk.TextIter iter) {",
+                "\tvar back = iter.copy();",
+                "\tback.backward_char();",
+                "\t",
+                "\tvar forward = iter.copy();",
+                "\tforward.forward_char();",
+                "\t",
+                "\t// what's the character at the iter?",
+                "\tvar str = back.get_text(iter);",
+                "\tstr += iter.get_text(forward);",
+                "\tif (str.strip().length < 1) {",
+                "\t\treturn;",
+                "\t}",
+                "\tvar offset = iter.get_line_offset();",
+                "\tvar line = iter.get_line();",
+                "\t ",
+                "\t",
+                "\tvar ls = _this.file.getLanguageServer();",
+                "\tls.hover.begin(",
+                "\t\t_this.file, line, offset,",
+                "\t\t( a, o)  => {",
+                "\t\t\ttry {",
+                "\t\t\t\tvar res = ls.hover.end(o );",
+                "\t\t\t",
+                "\t\t\t\t_this.helper.setHelp(res);",
+                "\t\t\t} catch (GLib.Error e) {",
+                "\t\t\t\t// noop..",
+                "\t\t\t}",
+                "\t\t});",
+                "}\t",
+                "\t\t ",
+                ""
+               ]
               },
               {
                "# double distance" : "0.0f",
@@ -399,6 +441,37 @@
                 ]
                },
                "xtype" : "EventControllerScroll"
+              },
+              {
+               "$ xns" : "Gtk",
+               "listeners" : {
+                "pressed" : [
+                 "(n_press, x, y) => {",
+                 "\tGtk.TextIter iter;",
+                 "\tint  buffer_x, buffer_y;",
+                 "\tvar gut = _this.sourceview.el.get_gutter(Gtk.TextWindowType.LEFT);",
+                 "\t",
+                 "\t _this.sourceview.el.window_to_buffer_coords (Gtk.TextWindowType.TEXT,",
+                 "\t\t(int)x - gut.get_width(),  (int)y,",
+                 "  \t\tout  buffer_x, out  buffer_y);",
+                 "\t_this.sourceview.el.get_iter_at_location (out  iter,  ",
+                 "\t\t\tbuffer_x,  buffer_y);",
+                 "\t",
+                 "\t",
+                 "\tif (_this.buffer.el.iter_has_context_class(iter, \"comment\") ||",
+                 "\t\t_this.buffer.el.iter_has_context_class(iter, \"string\")",
+                 "\t) { ",
+                 "\t\treturn ;",
+                 "\t}",
+                 "\t_this.buffer.showHelp(iter);",
+                 "\t ",
+                 "\t\t ",
+                 " ",
+                 "}",
+                 ""
+                ]
+               },
+               "xtype" : "GestureClick"
               }
              ],
              "listeners" : {
@@ -622,7 +695,6 @@
            "xtype" : "ScrolledWindow"
           }
          ],
-         "string css_name" : "",
          "xtype" : "Box"
         },
         {

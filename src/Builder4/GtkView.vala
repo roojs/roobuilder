@@ -613,12 +613,11 @@ public class Xcls_GtkView : Object
 		public Xcls_Box189(Xcls_GtkView _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
 			// my vars (dec)
 
 			// set gobject values
-			this.el.css_name = "";
 			var child_1 = new Xcls_Box295( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
@@ -697,7 +696,7 @@ public class Xcls_GtkView : Object
 			 
 				GLib.debug("got uri %s", uri);
 				
-				_this.window.windowstate.popover_codeinfo.show(this.el, uri);
+				_this.main_window.windowstate.popover_codeinfo.show(this.el, uri);
 				/*
 				var ls = _this.file.getLanguageServer();
 				ls.symbol.begin(uri, (a,b) => {
@@ -788,8 +787,9 @@ public class Xcls_GtkView : Object
 			   	var s = ":GLib.Object";
 			   	
 				var lt = _this.main_window.windowstate.left_tree;
-			   	if (lt.node != null) {
-			   		s = ":" + lt.node.fqn();
+				var n = lt.selmodel.getSelectedNode();
+			   	if (n != null) {
+			   		s = ":" + n.fqn();
 			   		GLib.debug("node selected - fqn is %s", s);
 			   	}
 			   	
@@ -914,6 +914,9 @@ public class Xcls_GtkView : Object
 			var child_2 = new Xcls_EventControllerScroll377( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
+			var child_3 = new Xcls_GestureClick41( _this );
+			child_3.ref();
+			this.el.add_controller(  child_3.el );
 
 			// init method
 
@@ -961,7 +964,14 @@ public class Xcls_GtkView : Object
 			
 				this.el.set_mark_attributes ("grey", gattrs, 1);
 			
-			
+				
+				// white space drawer
+				 this.el.get_space_drawer().set_matrix(null);
+				 this.el.get_space_drawer().set_types_for_locations( 
+					GtkSource.SpaceLocationFlags.ALL,
+					GtkSource.SpaceTypeFlags.ALL
+				);
+				this.el.get_space_drawer().set_enable_matrix(true);
 			
 			
 			
@@ -1249,6 +1259,36 @@ public class Xcls_GtkView : Object
 		}
 
 		// user defined functions
+		public void showHelp (Gtk.TextIter iter) {
+			var back = iter.copy();
+			back.backward_char();
+			
+			var forward = iter.copy();
+			forward.forward_char();
+			
+			// what's the character at the iter?
+			var str = back.get_text(iter);
+			str += iter.get_text(forward);
+			if (str.strip().length < 1) {
+				return;
+			}
+			var offset = iter.get_line_offset();
+			var line = iter.get_line();
+			 
+			
+			var ls = _this.file.getLanguageServer();
+			ls.hover.begin(
+				_this.file, line, offset,
+				( a, o)  => {
+					try {
+						var res = ls.hover.end(o );
+					
+						_this.helper.setHelp(res);
+					} catch (GLib.Error e) {
+						// noop..
+					}
+				});
+		}
 	}
 
 	public class Xcls_EventControllerScroll377 : Object
@@ -1292,6 +1332,52 @@ public class Xcls_GtkView : Object
 				}
 			
 				return true;
+			});
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_GestureClick41 : Object
+	{
+		public Gtk.GestureClick el;
+		private Xcls_GtkView  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_GestureClick41(Xcls_GtkView _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.GestureClick();
+
+			// my vars (dec)
+
+			// set gobject values
+
+			//listeners
+			this.el.pressed.connect( (n_press, x, y) => {
+				Gtk.TextIter iter;
+				int  buffer_x, buffer_y;
+				var gut = _this.sourceview.el.get_gutter(Gtk.TextWindowType.LEFT);
+				
+				 _this.sourceview.el.window_to_buffer_coords (Gtk.TextWindowType.TEXT,
+					(int)x - gut.get_width(),  (int)y,
+			  		out  buffer_x, out  buffer_y);
+				_this.sourceview.el.get_iter_at_location (out  iter,  
+						buffer_x,  buffer_y);
+				
+				
+				if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
+					_this.buffer.el.iter_has_context_class(iter, "string")
+				) { 
+					return ;
+				}
+				_this.buffer.showHelp(iter);
+				 
+					 
+			 
 			});
 		}
 
