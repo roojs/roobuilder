@@ -787,12 +787,13 @@ public class Xcls_GtkView : Object
 			   	
 			   	var s = ":GLib.Object";
 			   	
-			   	if (_this.node != null) {
-			   		s = ":" + _this.node.fqn();
+				var lt = _this.main_window.windowstate.left_tree
+			   	if (lt.node != null) {
+			   		s = ":" + lt.node.fqn();
 			   		GLib.debug("node selected - fqn is %s", s);
 			   	}
 			   	
-			   	_this.window.windowstate.popover_codeinfo.show(this.el,s);
+			   	_this.main_window.windowstate.popover_codeinfo.show(this.el,s);
 			});
 		}
 
