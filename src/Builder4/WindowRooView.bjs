@@ -576,7 +576,7 @@
               "clicked" : [
                "() => { ",
                "   \t",
-               "   \tvar s = \":GLib.Object\";",
+               "   \tvar s = \":Roo\";",
                "   \t",
                "\tvar lt = _this.main_window.windowstate.left_tree;",
                "\tvar n = lt.selmodel.getSelectedNode();",

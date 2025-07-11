@@ -12,9 +12,9 @@ cp ../../roojs1/roojs-bootstrap-debug.js doc/
 cp ../../roojs1/roojs-core-debug.js doc/
 
 #js (doc specific)
-#cp ../../roojs1/docs/Roo.docs.js doc/
-#cp ../../roojs1/docs/Roo.docs.init.js doc/
-#cp ../../roojs1/docs/Roo.docs.template.js doc/
+cp ../../roojs1/docs/Roo.docs.js doc/
+cp ../../roojs1/docs/Roo.docs.init.js doc/
+cp ../../roojs1/docs/Roo.docs.template.js doc/
 
 
 #css (library)

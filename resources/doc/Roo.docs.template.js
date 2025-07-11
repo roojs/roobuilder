@@ -69,7 +69,6 @@ Roo.docs.template  = {
 
         var linkSymbol  = this.linkSymbol;
         //var linkSymbol  = this.linkSymbol;
-        var output = '<ul class="inheritance res-block"> ';
         
         var oar = [];
         var iterArray  = function(ar) {
@@ -87,7 +86,7 @@ Roo.docs.template  = {
         oar.sort();
         
         var output = '<ul class="inheritance res-block"> ';
-        for(var i = 0; i < aor.length; i++) {
+        for(var i = 0; i < oar.length; i++) {
                 output += '<li>' +linkSymbol(oar[i]) + '</li>' ; // a href...
                   
                 
@@ -156,7 +155,6 @@ Roo.docs.template  = {
             
         var ownMethods = [];
         
-        // this creates a ctor at the top.
         if (data.name.length && 
             !data.isBuiltin && 
             !data.isSingleton &&
@@ -216,13 +214,12 @@ Roo.docs.template  = {
             if (data.isSingleton) {
                 return true;
             }
-            if (($.memberOf != data.name) && ($.isStatic || data.isStatic)){
-                $.isStatic = true; // kludge to make static classes into methods
+            if (($.memberOf != data.name) && $.isStatic){
                 return true;
             }
             if (!$.isStatic) {
-                $.isInherited = ($.memberOf != data.alias);
-                ownMethods.push($);
+            $.isInherited = ($.memberOf != data.alias);
+            ownMethods.push($);
             }
             
             return true;

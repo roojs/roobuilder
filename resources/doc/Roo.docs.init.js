@@ -87,7 +87,10 @@ Roo.docs.init = {
         
         if (!location.hash.length) {
             this.loadIntro();
-            return;
+             if (window.location.protocol == 'doc:'  ) {
+                return;
+             }
+            //return;
         }
         if (this.loadingTree) {
             Roo.log("Should not get here  - already loading tree.");
@@ -185,7 +188,7 @@ Roo.docs.init = {
     addTreeItem : function(parent, e, type , parent_e) {
             
         this.classes[e.name] = e;
-        //Roo.log("this.classes = add  " + e.name);
+        Roo.log("this.classes = add  " + e.name);
         
         this.classesAr.push(e);
         
@@ -650,7 +653,7 @@ Roo.docs.init = {
             Roo.docs.augments.hide();
         }
         
-        if (d.implements.length) {
+        if (typeof(d.implements) != 'undefined' && d.implements.length) {
             Roo.docs.implements.show();
             Roo.docs.implements.bodyEl.dom.innerHTML = Roo.docs.template.implements(d.implements);
         } else {
@@ -666,8 +669,6 @@ Roo.docs.init = {
         } else {
             Roo.docs.implementors.hide();
         }
-        
-        
         
         
         

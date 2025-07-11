@@ -1003,17 +1003,17 @@ public class Xcls_WindowRooView : Object
 
 			// set gobject values
 			this.el.vexpand = true;
-			var child_1 = new Xcls_Box310( _this );
+			var child_1 = new Xcls_Box13( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Box17( _this );
+			var child_2 = new Xcls_Box23( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box310 : Object
+	public class Xcls_Box13 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowRooView  _this;
@@ -1022,7 +1022,7 @@ public class Xcls_WindowRooView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box310(Xcls_WindowRooView _owner )
+		public Xcls_Box13(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1030,7 +1030,7 @@ public class Xcls_WindowRooView : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box311( _this );
+			var child_1 = new Xcls_Box14( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_sourceviewscroll( _this );
@@ -1039,7 +1039,7 @@ public class Xcls_WindowRooView : Object
 
 		// user defined functions
 	}
-	public class Xcls_Box311 : Object
+	public class Xcls_Box14 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowRooView  _this;
@@ -1048,7 +1048,7 @@ public class Xcls_WindowRooView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box311(Xcls_WindowRooView _owner )
+		public Xcls_Box14(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1063,7 +1063,7 @@ public class Xcls_WindowRooView : Object
 			this.el.append( _this.helper.el );
 			new Xcls_help_button( _this );
 			this.el.append( _this.help_button.el );
-			var child_3 = new Xcls_Scale314( _this );
+			var child_3 = new Xcls_Scale17( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
 		}
@@ -1196,7 +1196,7 @@ public class Xcls_WindowRooView : Object
 			//listeners
 			this.el.clicked.connect( () => { 
 			   	
-			   	var s = ":GLib.Object";
+			   	var s = ":Roo";
 			   	
 				var lt = _this.main_window.windowstate.left_tree;
 				var n = lt.selmodel.getSelectedNode();
@@ -1212,7 +1212,7 @@ public class Xcls_WindowRooView : Object
 		// user defined functions
 	}
 
-	public class Xcls_Scale314 : Object
+	public class Xcls_Scale17 : Object
 	{
 		public Gtk.Scale el;
 		private Xcls_WindowRooView  _this;
@@ -1221,7 +1221,7 @@ public class Xcls_WindowRooView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Scale314(Xcls_WindowRooView _owner )
+		public Xcls_Scale17(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
@@ -1331,10 +1331,10 @@ public class Xcls_WindowRooView : Object
 			this.el.css_classes = { "code-editor" };
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
-			var child_2 = new Xcls_EventControllerScroll418( _this );
+			var child_2 = new Xcls_EventControllerScroll21( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
-			var child_3 = new Xcls_GestureClick419( _this );
+			var child_3 = new Xcls_GestureClick22( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 
@@ -1986,7 +1986,7 @@ public class Xcls_WindowRooView : Object
 		}
 	}
 
-	public class Xcls_EventControllerScroll418 : Object
+	public class Xcls_EventControllerScroll21 : Object
 	{
 		public Gtk.EventControllerScroll el;
 		private Xcls_WindowRooView  _this;
@@ -1996,7 +1996,7 @@ public class Xcls_WindowRooView : Object
 		public double distance;
 
 		// ctor
-		public Xcls_EventControllerScroll418(Xcls_WindowRooView _owner )
+		public Xcls_EventControllerScroll21(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
@@ -2035,7 +2035,7 @@ public class Xcls_WindowRooView : Object
 		// user defined functions
 	}
 
-	public class Xcls_GestureClick419 : Object
+	public class Xcls_GestureClick22 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_WindowRooView  _this;
@@ -2044,7 +2044,7 @@ public class Xcls_WindowRooView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick419(Xcls_WindowRooView _owner )
+		public Xcls_GestureClick22(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -2084,7 +2084,7 @@ public class Xcls_WindowRooView : Object
 
 
 
-	public class Xcls_Box17 : Object
+	public class Xcls_Box23 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowRooView  _this;
@@ -2093,7 +2093,7 @@ public class Xcls_WindowRooView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box17(Xcls_WindowRooView _owner )
+		public Xcls_Box23(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -2111,7 +2111,7 @@ public class Xcls_WindowRooView : Object
 			this.el.append( _this.nextBtn.el );
 			new Xcls_backBtn( _this );
 			this.el.append( _this.backBtn.el );
-			var child_5 = new Xcls_MenuButton23( _this );
+			var child_5 = new Xcls_MenuButton29( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
 		}
@@ -2139,7 +2139,7 @@ public class Xcls_WindowRooView : Object
 			this.el.name = "roo-search-entry";
 			this.el.hexpand = true;
 			this.el.placeholder_text = "Press enter to search";
-			var child_1 = new Xcls_EventControllerKey19( _this );
+			var child_1 = new Xcls_EventControllerKey25( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
@@ -2184,7 +2184,7 @@ public class Xcls_WindowRooView : Object
 			
 		}
 	}
-	public class Xcls_EventControllerKey19 : Object
+	public class Xcls_EventControllerKey25 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Xcls_WindowRooView  _this;
@@ -2193,7 +2193,7 @@ public class Xcls_WindowRooView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey19(Xcls_WindowRooView _owner )
+		public Xcls_EventControllerKey25(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -2344,7 +2344,7 @@ public class Xcls_WindowRooView : Object
 		// user defined functions
 	}
 
-	public class Xcls_MenuButton23 : Object
+	public class Xcls_MenuButton29 : Object
 	{
 		public Gtk.MenuButton el;
 		private Xcls_WindowRooView  _this;
@@ -2354,7 +2354,7 @@ public class Xcls_WindowRooView : Object
 		public bool always_show_image;
 
 		// ctor
-		public Xcls_MenuButton23(Xcls_WindowRooView _owner )
+		public Xcls_MenuButton29(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.MenuButton();
@@ -2388,14 +2388,14 @@ public class Xcls_WindowRooView : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box25( _this );
+			var child_1 = new Xcls_Box31( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box25 : Object
+	public class Xcls_Box31 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowRooView  _this;
@@ -2404,7 +2404,7 @@ public class Xcls_WindowRooView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box25(Xcls_WindowRooView _owner )
+		public Xcls_Box31(Xcls_WindowRooView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
