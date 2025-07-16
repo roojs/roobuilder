@@ -249,7 +249,7 @@ public class WindowManager : Json.Serializable, Object {
 				GLib.debug("Invalid file %s", f.get_string_member("file"));
 				return;
 			}
-			this.addFromFile(fi,0);
+			wm().addFromFile(fi,0);
 			 
 		});
 
