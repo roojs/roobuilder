@@ -6,7 +6,7 @@
 // restores at startup
 // saves whenever a window is open/closed
 // might do more things.???
-
+// code used to be in BuilderApplication.
 
 public class WindowManager : Json.Serializable, Object {
 
