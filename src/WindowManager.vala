@@ -213,7 +213,7 @@ public class WindowManager : Json.Serializable, Object {
 			var obj = new Json.Object();
 			obj.set_string_member("project", window.windowstate.project.path);
 			obj.set_string_member("file", window.windowstate.file.relpath);
-			array.add_element (obj);        
+			array.add_object_element (obj);        
 		}
 
 
