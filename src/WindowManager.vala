@@ -1,6 +1,12 @@
 
 
 // only one of these exists, and it's created one the builder is created..
+// this manages adding / removing windows
+// stores it in  .config/roobuilder/window_list.json
+// restores at startup
+// saves whenever a window is open/closed
+// might do more things.???
+
 
 public class WindowManager : Json.Serializable, Object {
 
