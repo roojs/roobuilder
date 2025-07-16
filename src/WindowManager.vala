@@ -2,7 +2,7 @@
 
 // only one of these exists, and it's created one the builder is created..
 
-public class WindowManager : Object {
+public class WindowManager : Json.Serializable, Object {
 
 	static BuilderApplication app;
 	// ctor.
@@ -68,10 +68,109 @@ public class WindowManager : Object {
 		return null;
 	
 	}
+	static int queue_update_compile_countdown = -1;
+	static uint queue_update_compile_id = 0;
+		
+	
+	public static void updateCompileResults( )
+	{
+		queue_update_compile_countdown = 2; // 1 second after last call.
+		if (queue_update_compile_id == 0) {
+			queue_update_compile_id = GLib.Timeout.add(100, () => {
+		 		if (queue_update_compile_countdown < 0) {
+					return true;
+				}
+				queue_update_compile_countdown--;
+		 		if (queue_update_compile_countdown < 0) {
+					realUpdateCompileResults();
+				}
+				
+				return true;
+			});
+		}
+	}
 	
 	
+	public static void realUpdateCompileResults( )
+	{
+		
+		
+		
+		foreach(var ww in wm().windows) {
+			if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
+				continue;
+			}
+			
+
+			ww.windowstate.updateErrorMarksAll();
+			 
+			//GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
+			ww.updateErrors();
+			ww.windowstate.left_tree.updateErrors();
+			ww.windowstate.left_props.updateErrors();
+			
+		}
 	
+	}
 	
+	public static void showSpinnerLspLog(Palete.LanguageClientAction action, string message) {
+		
+		var msg = action.to_string() + " " + message;
+		switch(action) {
+		
+				case Palete.LanguageClientAction.INIT:
+		 		case Palete.LanguageClientAction.LAUNCH:
+		 		case Palete.LanguageClientAction.ACCEPT:
+					showSpinner( "software-update-available-symbolic", msg );
+					return;
+					
+		 		case Palete.LanguageClientAction.DIAG:
+			 		showSpinner( "format-justify-fill-symbolic", msg);			 		
+		 			return;
+
+				case Palete.LanguageClientAction.DIAG_END:
+			 		showSpinner( "", "");
+		 			return;
+
+		 		case Palete.LanguageClientAction.OPEN:
+			 		showSpinner( "document-open-symbolic", msg);			 		
+		 			return;
+		 		case Palete.LanguageClientAction.SAVE:
+		 			showSpinner( "document-save-symbolic", msg);			 		
+		 			return;
+		 		case Palete.LanguageClientAction.CLOSE:
+		 			showSpinner( "window-close-symbolic", msg);			 		
+		 			return;
+		 		case Palete.LanguageClientAction.CHANGE:
+		 			showSpinner( "format-text-direction-ltr-symbolic", msg);
+		 			return;			 			
+		 		case Palete.LanguageClientAction.TERM:
+					showSpinner( "media-playback-stop-symbolic", msg);
+					return;			 			
+		 		case Palete.LanguageClientAction.COMPLETE:
+					showSpinner( "mail-send-receive-symbolic", msg);
+					return;
+		 		
+		 		case Palete.LanguageClientAction.COMPLETE_REPLY:
+					showSpinner( "face-cool-symbolic", msg);
+					return;
+					
+		 		case Palete.LanguageClientAction.RESTART:
+		 		case Palete.LanguageClientAction.ERROR:
+		 		case Palete.LanguageClientAction.ERROR_START:
+				case Palete.LanguageClientAction.ERROR_RPC:
+				case Palete.LanguageClientAction.ERROR_REPLY:
+					showSpinner( "software-update-urgent-symbolic", msg );
+					return;
+
+				case Palete.LanguageClientAction.EXIT:
+					showSpinner( "face-sick-symbolic", msg);
+					return;
+				
+		
+		}
+	}
+
 	public static  void showSpinner(string icon, string tooltip = "")
 	{
 
@@ -98,10 +197,30 @@ public class WindowManager : Object {
 	
 	
 	// move to 'window colletction?
-	public Gee.ArrayList<Xcls_MainWindow> windows;
+	public Gee.ArrayList<Xcls_MainWindow> windows { get; set; };
 	public GLib.ListStore windowlist;
 	
 
-	
+	public Json.Node serialize_property (string property_name, GLib.Value value, GLib.ParamSpec pspec)
+	{
+		if (property_name != "windows") {
+			return default_serialize_property (property_name, value, pspec);
+		}
+		
+		var array = new Json.Array ();
+		for (int i = 0; i < this.windows.size; i++) {
+
+			var obj = new Json.Object();
+			obj.set_property("project", window.windowstate.project.getPath());
+			obj.set_property("file", window.windowstate.file.getRelPath());
+			array.add_element (obj);        
+		}
+
+
+        var node = new Json.Node (Json.NodeType.ARRAY);
+        node.set_array (array);
+        return node;
+    }
+
 	
 }
