@@ -72,6 +72,31 @@ public class WindowManager : Object {
 	
 	
 	
+	public static  void showSpinner(string icon, string tooltip = "")
+	{
+
+		// events:
+		// doc change send: - spinner - 
+		
+		
+		// ?? restart = software-update-urgent - crash?
+
+		
+		foreach (var win in wm().windows) {
+			if (icon != "") {
+				win.statusbar_compile_spinner.start(icon, tooltip);
+			}  else {
+				win.statusbar_compile_spinner.stop();
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 	// move to 'window colletction?
 	public Gee.ArrayList<Xcls_MainWindow> windows;
 	public GLib.ListStore windowlist;
