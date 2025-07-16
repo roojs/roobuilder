@@ -239,13 +239,13 @@ public class WindowManager : Json.Serializable, Object {
 			var f = el.get_object();
 
 			var p = Project.Project.getProjectByPath(  f.get_string_member("project"));
-			if (p is null) {
+			if (p == null) {
 				GLib.debug("Invalid project %s", f.get_string_member("project"));
 				return;
 			}
 			p.load(); // load files in project..
 			var fi = p.getByRelPath(f.get_string_member("file"));
-			if (fi is null) {
+			if (fi == null) {
 				GLib.debug("Invalid file %s", f.get_string_member("file"));
 				return;
 			}
