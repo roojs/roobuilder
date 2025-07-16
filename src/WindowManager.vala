@@ -246,8 +246,10 @@ public class WindowManager : Json.Serializable, Object {
 			p.load(); // load files in project..
 			var fi = p.getByRelPath(f.get_string_member("file"));
 			if (fi is null) {
-			
+				GLib.debug("Invalid file %s", f.get_string_member("file"));
+				return;
 			}
+			this.addFromFile(fi,0);
 			 
 		});
 
