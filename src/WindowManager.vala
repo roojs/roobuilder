@@ -200,8 +200,8 @@ public class WindowManager : Json.Serializable, Object {
 	{
 		var json= Json.gobject_serialize(this);
 		var data = app.jsonObjectToString(json);
-		var f = GLib. File.new_for_path(this.fn());
-		
+		var f = GLib. File.new_for_path(this.fn());	
+		try {
 			var data_out = new GLib.DataOutputStream(
 			  	f.replace(null, false, GLib.FileCreateFlags.NONE, null)
 			);
