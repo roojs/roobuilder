@@ -58,7 +58,7 @@ public class WindowManager : Object {
 		
 		
 	}
-	public static Xcls_MainWindow? get(JsRender.JsRender file)
+	public static Xcls_MainWindow? getFromFile(JsRender.JsRender file)
 	{
 		foreach(var ww in wm().windows) {
 			if (ww.windowstate != null && ww.windowstate.file != null &&  ww.windowstate.file.path == file.path) {
