@@ -208,7 +208,7 @@ public class WindowManager : Json.Serializable, Object {
 		}
 		
 		var array = new Json.Array ();
-		for (int i = 0; i < this.windows.size; i++) {
+		foreach(var window in this.windows) {
 
 			var obj = new Json.Object();
 			obj.set_string_member("project", window.windowstate.project.getPath());
