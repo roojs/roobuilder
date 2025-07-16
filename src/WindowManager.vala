@@ -217,7 +217,7 @@ public class WindowManager : Json.Serializable, Object {
 	{
 		var pa = new Json.Parser();
 		try { 
-			pa.load_from_file(this.path + "/.roobuilder.jcfg");
+			pa.load_from_file(this.fn());
 		} catch (GLib.Error e) {
 			GLib.error("could not load json file %s", e.message);
 		}
@@ -225,14 +225,22 @@ public class WindowManager : Json.Serializable, Object {
 
 		
 		if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
-			GLib.debug("SKIP %s/.roobuilder.jcfg  - invalid format?",this.path);
+			GLib.debug("SKIP %s  - invalid format?",this.fn());
 			return;
 		}
 		
 		var obj = node.get_object ();
-		 
-		this.loadJson(obj);
-	
+		 if (!obj.has_member("windows")) {
+			return;
+		}
+ 		var ar = obj.get_array_member("windows");
+		ar.foreach_element( (are, ix, el) => {
+			 
+			var f = el.get_object();
+			var p = f.get_string_member("project");
+			 
+		});
+
 	
 	}
 	
