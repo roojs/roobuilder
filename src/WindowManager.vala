@@ -190,13 +190,18 @@ public class WindowManager : Json.Serializable, Object {
 		}
 	}
 	
+	string fn()
+	{
+		return BuilderApplication.configDirectory() + "/open_files.json";
+	}
+	
 	// writes a json file with the current open files.
 	public void write()
 	{
 		var json= Json.gobject_serialize(this);
 		var data = app.jsonObjectToString(json);
-		var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/open_files.json");	
-		try {
+		var f = GLib. File.new_for_path(this.fn());
+		
 			var data_out = new GLib.DataOutputStream(
 			  	f.replace(null, false, GLib.FileCreateFlags.NONE, null)
 			);
@@ -206,6 +211,29 @@ public class WindowManager : Json.Serializable, Object {
 			GLib.error(e.message);
 		}
 		
+	}
+	
+	public void load()
+	{
+		var pa = new Json.Parser();
+		try { 
+			pa.load_from_file(this.path + "/.roobuilder.jcfg");
+		} catch (GLib.Error e) {
+			GLib.error("could not load json file %s", e.message);
+		}
+		var node = pa.get_root();
+
+		
+		if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
+			GLib.debug("SKIP %s/.roobuilder.jcfg  - invalid format?",this.path);
+			return;
+		}
+		
+		var obj = node.get_object ();
+		 
+		this.loadJson(obj);
+	
+	
 	}
 	
 	
