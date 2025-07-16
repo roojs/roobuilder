@@ -22,9 +22,21 @@ public class WindowManager : Object {
         wm().windowlist.append(w.windowstate);
 		wm().windows.add(w);
 
-
-		
+	
 	}
+	
+	public static void addFromFile(JsRender.JsRender file, int line)
+	{
+	    var w = new Xcls_MainWindow();
+		w.ref();
+		w.initChildren();
+		wm().add(w);
+		w.windowstate.init();
+		w.windowstate.fileViewOpen(file, false, line);
+		w.el.present();
+	
+	}
+	
 	public static void remove(Xcls_MainWindow w)
 	{
 		//GLib.debug("remove window before = %d", BuilderApplication.windows.size);
@@ -46,6 +58,9 @@ public class WindowManager : Object {
 		
 		
 	}
+	
+	
+	
 	
 	// move to 'window colletction?
 	public Gee.ArrayList<Xcls_MainWindow> windows;
