@@ -190,8 +190,18 @@ public class WindowManager : Json.Serializable, Object {
 		}
 	}
 	
-	
-	
+	// writes a json file with the current open files.
+	public void write()
+	{
+		var json= Json.gobject_serialize(this);
+		var data = this.app.jsonObjectToString(json);
+		var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/open_files.json");	
+		var data_out = new GLib.DataOutputStream(
+		  	f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+		);
+		data_out.put_string(data, null);
+		data_out.close(null);
+	}
 	
 	
 	
