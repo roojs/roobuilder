@@ -111,7 +111,7 @@
 	
 		public BuilderApplication (  string[] args)
 		{
-			
+			new WindowManager(this); // should reference as it set's the property here
 			try {
 				_self = FileUtils.read_link("/proc/self/exe");
 			} catch (Error e) {
@@ -816,7 +816,8 @@
 
  			return  generator.to_data (null);
  		}
- 		string jsonObjectToString(Json.Node node)
+ 		// these are kind of usefull??? 
+ 		public string jsonObjectToString(Json.Node node)
  		{
  			 
 			var  generator = new Json.Generator ();
