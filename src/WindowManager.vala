@@ -30,7 +30,7 @@ public class WindowManager : Object {
 	    var w = new Xcls_MainWindow();
 		w.ref();
 		w.initChildren();
-		wm().add(w);
+		add(w);
 		w.windowstate.init();
 		w.windowstate.fileViewOpen(file, false, line);
 		w.el.present();
