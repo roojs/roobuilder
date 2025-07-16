@@ -212,9 +212,10 @@ public class WindowManager : Json.Serializable, Object {
 		}
 		
 	}
-	
+	bool in_load = false;
 	public void load()
 	{
+		this.in_load = true;
 		var pa = new Json.Parser();
 		try { 
 			pa.load_from_file(this.fn());
@@ -226,11 +227,13 @@ public class WindowManager : Json.Serializable, Object {
 		
 		if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
 			GLib.debug("SKIP %s  - invalid format?",this.fn());
+		 	this.in_load = false;
 			return;
 		}
 		
 		var obj = node.get_object ();
 		 if (!obj.has_member("windows")) {
+		 	this.in_load = false;
 			return;
 		}
  		var ar = obj.get_array_member("windows");
@@ -252,7 +255,7 @@ public class WindowManager : Json.Serializable, Object {
 			wm().addFromFile(fi,0);
 			 
 		});
-
+		this.in_load = false;
 	
 	}
 	
