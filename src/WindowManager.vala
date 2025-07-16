@@ -19,7 +19,7 @@ public class WindowManager : Object {
 	public static  void add(Xcls_MainWindow w)
 	{
 		
-        wm().windowlist.append(w.windowstate);
+		wm().windowlist.append(w.windowstate);
 		wm().windows.add(w);
 
 	
