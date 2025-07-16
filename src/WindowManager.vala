@@ -197,7 +197,7 @@ public class WindowManager : Json.Serializable, Object {
 	
 	
 	// move to 'window colletction?
-	public Gee.ArrayList<Xcls_MainWindow> windows { get; set; };
+	public Gee.ArrayList<Xcls_MainWindow> windows { get; set; }
 	public GLib.ListStore windowlist;
 	
 
