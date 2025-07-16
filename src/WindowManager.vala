@@ -25,7 +25,27 @@ public class WindowManager : Object {
 
 		
 	}
-	
+	public static void remove(Xcls_MainWindow w)
+	{
+		//GLib.debug("remove window before = %d", BuilderApplication.windows.size);
+		wm().windows.remove(w);
+		for(var i = 0 ; i < wm().windowlist.get_n_items(); i++) {
+			var ws = wm().windowlist.get_item(i) as WindowState;
+			if (ws.file.path == w.windowstate.file.path && ws.project.path == w.windowstate.project.path) {
+				wm().windowlist.remove(i);
+				break;
+			}
+		}
+		
+		 
+		 	
+		w.el.hide();
+		w.el.close();
+		w.el.destroy();
+		//GLib.debug("remove window after = %d", BuilderApplication.windows.size);
+		
+		
+	}
 	
 	// move to 'window colletction?
 	public Gee.ArrayList<Xcls_MainWindow> windows;
