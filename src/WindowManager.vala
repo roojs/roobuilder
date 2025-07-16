@@ -203,7 +203,7 @@ public class WindowManager : Json.Serializable, Object {
 			data_out.put_string(data, null);
 			data_out.close(null);
 		} catch (GLib.Error e) {
-			Glib.error(e.get_message);
+			GLib.error(e.get_message);
 		}
 		
 	}
