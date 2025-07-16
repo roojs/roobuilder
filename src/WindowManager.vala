@@ -237,7 +237,17 @@ public class WindowManager : Json.Serializable, Object {
 		ar.foreach_element( (are, ix, el) => {
 			 
 			var f = el.get_object();
-			var p = f.get_string_member("project");
+
+			var p = Project.Project.getProjectByPath(  f.get_string_member("project"));
+			if (p is null) {
+				GLib.debug("Invalid project %s", f.get_string_member("project"));
+				return;
+			}
+			p.load(); // load files in project..
+			var fi = p.getByRelPath(f.get_string_member("file"));
+			if (fi is null) {
+			
+			}
 			 
 		});
 
