@@ -34,6 +34,7 @@ public class WindowManager : Json.Serializable, Object {
 		w.windowstate.init();
 		w.windowstate.fileViewOpen(file, false, line);
 		w.el.present();
+		wm().write();
 	
 	}
 	
@@ -54,6 +55,7 @@ public class WindowManager : Json.Serializable, Object {
 		w.el.hide();
 		w.el.close();
 		w.el.destroy();
+		wm().write();
 		//GLib.debug("remove window after = %d", BuilderApplication.windows.size);
 		
 		
