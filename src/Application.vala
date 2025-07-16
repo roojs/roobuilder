@@ -82,6 +82,7 @@
         			return "5.0.11"; // can we get this from somewhere?
     			}
 		}
+		public WindowManager window_manager;
        
 		public static string _self;
 		//public static string _version = "0000";
