@@ -924,7 +924,7 @@
 			
 			
 		}
-	 
+ 		// WindowManager.getFromFile
 		public static Xcls_MainWindow? getWindow(JsRender.JsRender file)
 		{
 			foreach(var ww in BuilderApplication.windows) {
@@ -935,7 +935,7 @@
 			return null;
 		
 		}
-		
+		// WindowManager.addFromFile
 		public static void newWindow(JsRender.JsRender file, int line)
 		{
 		    var w = new Xcls_MainWindow();
