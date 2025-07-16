@@ -21,7 +21,7 @@ public class WindowManager : Json.Serializable, Object {
 		
 		wm().windowlist.append(w.windowstate);
 		wm().windows.add(w);
-
+		wm().write();
 	
 	}
 	
@@ -34,7 +34,7 @@ public class WindowManager : Json.Serializable, Object {
 		w.windowstate.init();
 		w.windowstate.fileViewOpen(file, false, line);
 		w.el.present();
-		wm().write();
+
 	
 	}
 	
