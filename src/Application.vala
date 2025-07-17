@@ -212,7 +212,7 @@
 		
 		
 		
-			WindowManager.load();
+			WindowManager.wm().load();
 			if (	WindowManager.size() > 0) {
 				return;
 			}
