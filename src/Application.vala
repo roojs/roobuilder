@@ -124,8 +124,8 @@
 				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self), exe_version()),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
-			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
-			BuilderApplication.windowlist = new GLib.ListStore(typeof(WindowState));
+			//BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
+			//BuilderApplication.windowlist = new GLib.ListStore(typeof(WindowState));
 			//BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
 			
 			
