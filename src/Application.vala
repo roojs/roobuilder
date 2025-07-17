@@ -811,7 +811,7 @@
 			
  		}
  		
- 		string jsonArrayToString(Json.Array ar)
+ 		public string jsonArrayToString(Json.Array ar)
  		{
  			var node = new Json.Node (Json.NodeType.ARRAY);
 			node.set_array (ar);
