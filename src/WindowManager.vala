@@ -242,10 +242,10 @@ public class WindowManager : Json.Serializable, Object {
 			return;
 		}
 		
-		this.in_load = true;
+		wm().in_load = true;
 		var pa = new Json.Parser();
 		try { 
-			pa.load_from_file(this.fn());
+			pa.load_from_file(wm().fn());
 		} catch (GLib.Error e) {
 			GLib.debug("could not load json file %s", e.message);
 			return;
@@ -254,8 +254,8 @@ public class WindowManager : Json.Serializable, Object {
 
 		
 		if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
-			GLib.debug("SKIP %s  - invalid format?",this.fn());
-		 	this.in_load = false;
+			GLib.debug("SKIP %s  - invalid format?",wm().fn());
+		 	wm().in_load = false;
 			return;
 		}
 		 
