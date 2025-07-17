@@ -889,7 +889,7 @@
 		
 		 
 		
-		
+		/*
 		// move to 'window colletction?
 		public static Gee.ArrayList<Xcls_MainWindow> windows;
 		public static GLib.ListStore windowlist;
@@ -1070,7 +1070,7 @@
 				}
 			}
 		}
-		
+		*/
 		
 		
 	 
