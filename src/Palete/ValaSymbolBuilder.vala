@@ -219,7 +219,8 @@ namespace Palete {
 			GLib.debug("updateBackground called with %d", this.queue_id);
 			
 			while (true) {
-				var qid = yield this.queuer(queue_id);
+				GLib.debug("calling Queuer  with %d", this.queue_id);
+				var qid = yield this.queuer(this.queue_id);
 				
 				if (this.queue_id > qid) { // has somethig increased the 
 					// while we were waiting another task requested a compile
