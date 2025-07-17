@@ -236,9 +236,9 @@ public class WindowManager : Json.Serializable, Object {
 		
 	}
 	bool in_load = false;
-	public void load()
+	public static void load()
 	{
-		if (!GLib.FileUtils.test(this.fn(), GLib.FileTest.EXISTS)) {
+		if (!GLib.FileUtils.test(wm().fn(), GLib.FileTest.EXISTS)) {
 			return;
 		}
 		
@@ -276,10 +276,10 @@ public class WindowManager : Json.Serializable, Object {
 				return;
 			}
 			var w = addFromFile(fi,0);
-			this.restoreWindowPosition(W, f.get_int_member("x"), f.get_int_member("y")); 
+			wm().restoreWindowPosition(w, f.get_int_member("x"), f.get_int_member("y")); 
 			 
 		});
-		this.in_load = false;
+		wm().in_load = false;
 	
 	}
 	
