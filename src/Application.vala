@@ -160,7 +160,7 @@
 			this.listFiles(cur_project);
 			//this.testBjs(cur_project);
  
-			
+		
 			//this.compileVala();
 			
 			 // done in background thread.
@@ -210,8 +210,16 @@
 			var gb = new Palete.ValaSymbolGirBuilder(true);
 			gb.ref();
 		
+		
+		
+			WindowManager.load();
+			if (	WindowManager.size() > 0) {
+				return;
+			}
 			var w = new Xcls_MainWindow();
 		    w.initChildren();
+		    
+		    
 			WindowManager.add(w);
 			
 			// it looks like showall after children causes segfault on ubuntu 14.4

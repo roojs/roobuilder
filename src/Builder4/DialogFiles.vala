@@ -101,7 +101,7 @@ public class DialogFiles : Object
 				if (keycode != 9) {
 					return   ;
 				}
-				if (BuilderApplication.windows.size < 2 && 
+				if (WindowManager.size() < 2 && 
 					_this.win.windowstate.file == null
 				) { 
 					BuilderApplication.singleton(null).quit();
@@ -111,7 +111,7 @@ public class DialogFiles : Object
 				_this.el.hide();
 				
 				 if (_this.win.windowstate.file == null) {		 
-					BuilderApplication.removeWindow(_this.win);
+					WindowManager.remove(_this.win);
 					    
 				}
 			
@@ -368,7 +368,7 @@ public class DialogFiles : Object
 				if (keycode != Gdk.Key.Escape) {
 					return false; // dont do anything?
 				}
-				if (BuilderApplication.windows.size < 2 && 
+				if (WindowManager.size() < 2 && 
 					_this.win.windowstate.file == null
 				) { 
 					BuilderApplication.singleton(null).quit();
@@ -378,7 +378,7 @@ public class DialogFiles : Object
 				_this.el.hide();
 				
 				 if (_this.win.windowstate.file == null) {		 
-					BuilderApplication.removeWindow(_this.win);
+					WindowManager.remove(_this.win);
 					    
 				}
 			

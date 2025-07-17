@@ -110,7 +110,7 @@ public class Project.Roo : Project {
 	  			var ls = new Palete.LanguageClientJavascript(this);
 				ls.log.connect((act, msg) => {
 					//GLib.debug("log %s: %s", act.to_string(), msg);
-					BuilderApplication.showSpinnerLspLog(act,msg);
+					WindowManager.showSpinnerLspLog(act,msg);
 				});
 				this.language_servers.set(lang, ls);
 				break;

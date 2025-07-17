@@ -39,23 +39,23 @@ namespace Palete {
 
 				return false;
 			}
-			BuilderApplication.showSpinner("content-loading-symbolic", "running meson");
+			WindowManager.showSpinner("content-loading-symbolic", "running meson");
 
 			var res = yield  this.runMeson();
 	
 			if (0 != res) {
 				GLib.debug("Failed to run Meson");
-				BuilderApplication.showSpinner("");
+				WindowManager.showSpinner("");
 				return false;
 			}
-			BuilderApplication.showSpinner("content-loading-symbolic", "running ninja");
+			WindowManager.showSpinner("content-loading-symbolic", "running ninja");
 			res = yield this.runNinja();
 			if (0 != res) {
 				GLib.debug("Failed to run ninja");
 				return false;
 			}
 			
-			BuilderApplication.showSpinner("");
+			WindowManager.showSpinner("");
 			return this.execResult();
 			  
 		}

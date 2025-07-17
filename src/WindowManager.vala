@@ -226,12 +226,17 @@ public class WindowManager : Json.Serializable, Object {
 	bool in_load = false;
 	public void load()
 	{
+		if (!GLib.FileUtils.test(this.fn(), GLib.FileTest.EXISTS)) {
+			return;
+		}
+		
 		this.in_load = true;
 		var pa = new Json.Parser();
 		try { 
 			pa.load_from_file(this.fn());
 		} catch (GLib.Error e) {
-			GLib.error("could not load json file %s", e.message);
+			GLib.debug("could not load json file %s", e.message);
+			return;
 		}
 		var node = pa.get_root();
 
@@ -270,8 +275,22 @@ public class WindowManager : Json.Serializable, Object {
 	
 	}
 	
+	public static int size()
+	{
+		return wm().window.size;
+	}
+	public void addAllToModel(GLib.ListStore s)
+	{
+		WindowManager.addAllToModel(this.windmodel.el);
+		for(var i = 0;i < wm().windowlist.get_n_items(); i++) {
+			s.append( wm().windowlist.get_item(i));
+		}
 	
-	
+	}
+	public Gee.ArrayList<Xcls_MainWindow> getWindows()
+	{
+		return wm().windows;
+	}
 	
 	// move to 'window colletction?
 	public Gee.ArrayList<Xcls_MainWindow> windows { get; set; }
@@ -298,6 +317,38 @@ public class WindowManager : Json.Serializable, Object {
         node.set_array (array);
         return node;
     }
+    void saveWindowPosition(Xcls_MainWindow win, Json.Object obj)
+    {
+    
+		
+		X.WindowAttributes wa;
+		var mws = this.win.el.get_surface() as Gdk.X11.Surface;
+		var mw_xw = mws.get_xid();
+		
+		var di = (Gdk.X11.Display) mws.get_display() ;
+		if (di == null) {
+			return;
+		}
+		
+		unowned X.Display mw_xd =  (X.Display) di.get_xdisplay();	
+
+		mw_xd.get_window_attributes(mw_xw, out  wa);
+		obj.set_int_member("x", wa.x);
+		obj.set_int_member("y", wa.y);
+	}
+	void restoreWindowPosition(	Xcls_MainWindow win, int x, int y)
+	{
+		
+		var s = win.el.get_surface() as Gdk.X11.Surface;
+		var xw = s.get_xid();
+		
+		var si = s.get_display() as Gdk.X11.Display;
+		
+		unowned X.Display xd = si.get_xdisplay();
+		xd.move_window(xw, x,y);
+		GLib.debug("Move to %d, %d",  x,y);
+	}
+    
 
 	
 }

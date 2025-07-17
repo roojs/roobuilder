@@ -161,7 +161,7 @@ namespace Palete
 				// assume it's gtk...
 				 
 				editor.file.setSource(str);
-				BuilderApplication.showSpinner("user-status-pending-symbolic","document change pending");
+				WindowManager.showSpinner("user-status-pending-symbolic","document change pending");
 				editor.file.getLanguageServer().document_change(editor.file);
 				editor.file.update_symbol_tree();
 			//	_this.file.getLanguageServer().queueDocumentSymbols(_this.file);

@@ -90,9 +90,9 @@ public class Xcls_MainWindow : Object
 			 	this.windowstate.file
 		 	);
 			 
-			 BuilderApplication.removeWindow(this);
+			 WindowManager.remove(this);
 			 
-			 if (BuilderApplication.windows.size  < 1) {
+			 if (WindowManager.size()  < 1) {
 			 	try {
 					this.windowstate.file.getLanguageServer().exit();
 				} catch(Error e) {}
@@ -196,7 +196,7 @@ public class Xcls_MainWindow : Object
 	 
 	    var w = new Xcls_MainWindow();
 	    w.ref();
-		BuilderApplication.addWindow(w);
+		WindowManager.add(w);
 	    w.el.show();
 	    w.initChildren();
 	    w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);
@@ -436,8 +436,8 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.collapsed = true;
-			this.el.show_sidebar = false;
 			this.el.sidebar_width_fraction = 0.400000;
+			this.el.show_sidebar = false;
 			new Xcls_vbox( _this );
 			this.el.content = _this.vbox.el;
 			new Xcls_sidebar( _this );
@@ -1282,7 +1282,7 @@ public class Xcls_MainWindow : Object
 
 		// user defined functions
 		public void setNotices (GLib.ListStore nots, int ferrors ) {
-		    BuilderApplication.showSpinner("");
+		    WindowManager.showSpinner("");
 		     if (nots.get_n_items() < 1 ) {
 		    	this.el.hide();
 		    	if (this.popup != null) {
@@ -1914,9 +1914,8 @@ public class Xcls_MainWindow : Object
 			_this.winloading = true;
 			_this.winmodel.el.remove_all();
 			_this.filesearch.el.set_text("");
-			for(var i = 0;i < BuilderApplication.windowlist.get_n_items(); i++) {
-				_this.winmodel.el.append( BuilderApplication.windowlist.get_item(i));
-			}
+			WindowManager.addAllToModel(this.winmodel.el);
+			 
 			_this.winsel.selectCurrent();
 			_this.winloading = false;
 			

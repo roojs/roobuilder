@@ -431,7 +431,7 @@ public class WindowState : Object
 		
 			// in theory active file can only be rooo...
 			var ep = this.roo_projectsettings_pop.project;
-			foreach(var ww in BuilderApplication.windows) {
+			foreach(var ww in WindowManager.getWindows()) {
 				if (ww.windowstate.file != null && 
 					ww.windowstate.project.path == ep.path && 
 					ww.windowstate.file.xtype == "Roo") {
@@ -651,7 +651,7 @@ public class WindowState : Object
 	
 	public void fileViewOpen(JsRender.JsRender file, bool new_window, int line = -1)
 	{
-		var existing = BuilderApplication.getWindow(file);
+		var existing = WindowManager.getFromFile(file);
 		
 		if (existing != null) {
 			existing.el.present();
@@ -662,7 +662,7 @@ public class WindowState : Object
 		if (new_window) {
 	
 			this.popover_files.el.hide();
-			BuilderApplication.newWindow(file, line);
+			WindowManager.addFromFile(file, line);
 			return;
 		}
 		
@@ -673,7 +673,7 @@ public class WindowState : Object
 
 		
 		file.getLanguageServer().document_open(file);
-		BuilderApplication.showSpinner("spinner", "document open sent");	
+		WindowManager.showSpinner("spinner", "document open sent");	
 			
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();
@@ -736,7 +736,7 @@ public class WindowState : Object
 		}
 		this.win.setTitle();
 		
-		BuilderApplication.updateCompileResults();	 
+		WindowManager.updateCompileResults();	 
 
 	}
  
