@@ -31,7 +31,7 @@ public class WindowManager : Json.Serializable, Object {
 	
 	}
 	
-	public static void addFromFile(JsRender.JsRender file, int line)
+	public static Xcls_MainWindow addFromFile(JsRender.JsRender file, int line)
 	{
 	    var w = new Xcls_MainWindow();
 		w.ref();
@@ -40,7 +40,7 @@ public class WindowManager : Json.Serializable, Object {
 		w.windowstate.init();
 		w.windowstate.fileViewOpen(file, false, line);
 		w.el.present();
-
+		return w;
 	
 	}
 	
@@ -275,7 +275,8 @@ public class WindowManager : Json.Serializable, Object {
 				GLib.debug("Invalid file %s", f.get_string_member("file"));
 				return;
 			}
-			addFromFile(fi,0);
+			var w = addFromFile(fi,0);
+			this.restoreWindowPosition(W, f.get_int_member("x"), f.get_int_member("y")); 
 			 
 		});
 		this.in_load = false;
