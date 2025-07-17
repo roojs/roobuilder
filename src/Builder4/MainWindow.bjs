@@ -1488,6 +1488,8 @@
         "\t_this.winloading = true;",
         "\t_this.winmodel.el.remove_all();",
         "\t_this.filesearch.el.set_text(\"\");",
+        "\t",
+        "",
         "\tWindowManager.addAllToModel(this.winmodel.el);",
         "\t ",
         "\t_this.winsel.selectCurrent();",

@@ -1914,6 +1914,8 @@ public class Xcls_MainWindow : Object
 			_this.winloading = true;
 			_this.winmodel.el.remove_all();
 			_this.filesearch.el.set_text("");
+			
+		
 			WindowManager.addAllToModel(this.winmodel.el);
 			 
 			_this.winsel.selectCurrent();
