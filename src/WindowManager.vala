@@ -236,7 +236,7 @@ public class WindowManager : Json.Serializable, Object {
 		
 	}
 	bool in_load = false;
-	public void load()
+	public static void load()
 	{
 		if (!GLib.FileUtils.test(this.fn(), GLib.FileTest.EXISTS)) {
 			return;
