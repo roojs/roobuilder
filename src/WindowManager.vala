@@ -295,7 +295,7 @@ public class WindowManager : Json.Serializable, Object {
 		}
 	
 	}
-	public Gee.ArrayList<Xcls_MainWindow> getWindows()
+	public static Gee.ArrayList<Xcls_MainWindow> getWindows()
 	{
 		return wm().windows;
 	}
