@@ -212,7 +212,7 @@
 		
 			var w = new Xcls_MainWindow();
 		    w.initChildren();
-			BuilderApplication.addWindow(w);
+			WindowManager.add(w);
 			
 			// it looks like showall after children causes segfault on ubuntu 14.4
 			w.windowstate.init();
