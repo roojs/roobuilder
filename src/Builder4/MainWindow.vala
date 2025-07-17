@@ -1915,7 +1915,7 @@ public class Xcls_MainWindow : Object
 			_this.winmodel.el.remove_all();
 			_this.filesearch.el.set_text("");
 			
-			WindowManager.addAllToModel(this.winmodel.el);
+			WindowManager.addAllToModel(_this.winmodel.el);
 			 
 			_this.winsel.selectCurrent();
 			_this.winloading = false;
