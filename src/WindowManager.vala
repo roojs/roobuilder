@@ -209,8 +209,20 @@ public class WindowManager : Json.Serializable, Object {
 		if (this.in_load) {
 			return;
 		}
-		var json= Json.gobject_serialize(this);
-		var data = app.jsonObjectToString(json);
+ 
+		
+		var array = new Json.Array ();
+		foreach(var window in this.windows) {
+
+			var obj = new Json.Object();
+			obj.set_string_member("project", window.windowstate.project.path);
+			obj.set_string_member("file", window.windowstate.file.relpath);
+			this.saveWindowPosition(win, obj);
+			array.add_object_element (obj);        
+		}
+
+		
+		var data = app.jsonArrayToString(array);
 		var f = GLib. File.new_for_path(this.fn());	
 		try {
 			var data_out = new GLib.DataOutputStream(
@@ -246,13 +258,8 @@ public class WindowManager : Json.Serializable, Object {
 		 	this.in_load = false;
 			return;
 		}
-		
-		var obj = node.get_object ();
-		 if (!obj.has_member("windows")) {
-		 	this.in_load = false;
-			return;
-		}
- 		var ar = obj.get_array_member("windows");
+		 
+ 		var ar = node.get_array();
 		ar.foreach_element( (are, ix, el) => {
 			 
 			var f = el.get_object();
@@ -296,28 +303,7 @@ public class WindowManager : Json.Serializable, Object {
 	public Gee.ArrayList<Xcls_MainWindow> windows { get; set; }
 	public GLib.ListStore windowlist;
 	
-
-	public Json.Node serialize_property (string property_name, GLib.Value value, GLib.ParamSpec pspec)
-	{
-		if (property_name != "windows") {
-			return default_serialize_property (property_name, value, pspec);
-		}
-		
-		var array = new Json.Array ();
-		foreach(var window in this.windows) {
-
-			var obj = new Json.Object();
-			obj.set_string_member("project", window.windowstate.project.path);
-			obj.set_string_member("file", window.windowstate.file.relpath);
-			this.saveWindowPosition(win, obj);
-			array.add_object_element (obj);        
-		}
-
-
-        var node = new Json.Node (Json.NodeType.ARRAY);
-        node.set_array (array);
-        return node;
-    }
+ 
     void saveWindowPosition(Xcls_MainWindow win, Json.Object obj)
     {
     
