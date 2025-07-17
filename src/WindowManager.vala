@@ -289,7 +289,7 @@ public class WindowManager : Json.Serializable, Object {
 	}
 	public void addAllToModel(GLib.ListStore s)
 	{
-		WindowManager.addAllToModel(this.windmodel.el);
+
 		for(var i = 0;i < wm().windowlist.get_n_items(); i++) {
 			s.append( wm().windowlist.get_item(i));
 		}
