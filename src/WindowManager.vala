@@ -287,7 +287,7 @@ public class WindowManager : Json.Serializable, Object {
 	{
 		return wm().windows.size;
 	}
-	public void addAllToModel(GLib.ListStore s)
+	public static void addAllToModel(GLib.ListStore s)
 	{
 
 		for(var i = 0;i < wm().windowlist.get_n_items(); i++) {
