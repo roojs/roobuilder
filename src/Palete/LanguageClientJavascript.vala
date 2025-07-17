@@ -42,7 +42,7 @@ namespace Palete {
 			}
 			this.file_contents.set(file.path, contents);
 			GLib.debug("set file %s : %d chars", file.path, this.file_contents.get(file.path).length);
-			BuilderApplication.singleton().validate(contents, file );
+			Javascript.singleton().validate(contents, file );
 			WindowManager.updateCompileResults();
  		}
  		async int queuer(int cnt)
