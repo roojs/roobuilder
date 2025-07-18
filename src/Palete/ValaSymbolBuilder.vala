@@ -223,7 +223,7 @@ namespace Palete {
 				first_run = false;
 				
 				if (this.last_request_id != reqid) {
-					GLib.debug("updateBackground failed - (another compile requested) this queue = %d, called queue is %d", this.request_id, reqid);
+					GLib.debug("updateBackground failed - (another compile requested) this queue = %d, called queue is %d", this.last_request_id, reqid);
 					// new request has happened.
 					return null;
 				}
