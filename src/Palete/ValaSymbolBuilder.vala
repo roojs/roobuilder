@@ -134,7 +134,7 @@ namespace Palete {
 			// this needs to do the  'last' queued change..
 			
 			
-			updateBackground.begin(buildmodule, (o,r, 0 )  => {
+			updateBackground.begin(buildmodule, (o,0 ,r )  => {
 				var ar = updateBackground.end(r);
 
 				if (ar != null) {
@@ -207,7 +207,7 @@ namespace Palete {
 				
  
 		
-		public async Gee.ArrayList<string>? updateBackground(  string build_module, int reqid = 0) {
+		public async Gee.ArrayList<string>? updateBackground(  string build_module, int reqid  ) {
 			
 			if (reqid == 0) {
  				// new request
