@@ -216,7 +216,7 @@ namespace Palete {
 			
 			GLib.debug("updateBackground called with %d", reqid);
 			this.last_request_id = reqid;
-			first_run = true;
+			var first_run = true;
 			while(this.running || first_run) {
 				GLib.debug("updateBackground napping for reqid %d", reqid);
 				yield nap(500);
@@ -225,7 +225,7 @@ namespace Palete {
 				if (this.last_request_id != reqid) {
 					GLib.debug("updateBackground failed - (another compile requested) this queue = %d, called queue is %d", this.request_id, reqid);
 					// new request has happened.
-					return;
+					return null;
 				}
 				
 				// ok to run.. - if not still running
