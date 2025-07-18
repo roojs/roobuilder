@@ -192,47 +192,46 @@ namespace Palete {
 		}
 		 
 		
-		
-		async int queuer(int cnt)
-		{
-			SourceFunc cb = queuer.callback;
-		  
-			GLib.Timeout.add(500, () => {
-		 		 GLib.Idle.add((owned) cb);
-		 		 return false;
-			});
-			
+	 
+ 		
+ 		int request_count  = 0;
+ 		int last_request_id = 0;
+ 
+ 		public async void nap (uint interval, int priority = GLib.Priority.DEFAULT) {
+			GLib.Timeout.add (interval, () => {
+				nap.callback ();
+				return false;
+			}, priority);
 			yield;
-			return cnt;
-		}
+		}	
+				
  
 		
-		public async Gee.ArrayList<string>? updateBackground(  string build_module) {
+		public async Gee.ArrayList<string>? updateBackground(  string build_module, int reqid = 0) {
 			
-			// -- nothing running - queue it for 500s
-			// -- if this is 'end of queue at end of 500s - then we can run it.
-			// what if we are already running something..
-			// - then we need to wait until that finishes until we run this..
-			// we only give up if we are last in queue otherwise
-			
-			this.queue_id++;
-			GLib.debug("updateBackground called with %d", this.queue_id);
-			
-			while (true) {
-				GLib.debug("calling Queuer  with %d", this.queue_id);
-				var qid = yield this.queuer(this.queue_id);
-				
-				if (this.queue_id > qid) { // has somethig increased the 
-					// while we were waiting another task requested a compile
-					// so we will not do this one.
-					
-					GLib.debug("updateBackground failed - (another compile requested) this queue = %d, called queue is %d", this.queue_id, qid);
-					return null;
-				}
-				if (!this.running) {  // wait till it's not running...
-					break;
-				}
+			if (reqid == 0) {
+ 				// new request
+ 				reqid = ++this.request_count;
 			}
+			
+			GLib.debug("updateBackground called with %d", reqid);
+			this.last_request_id = reqid;
+			first_run = true;
+			while(this.running || first_run) {
+				GLib.debug("updateBackground napping for reqid %d", reqid);
+				yield nap(500);
+				first_run = false;
+				
+				if (this.last_request_id != reqid) {
+					GLib.debug("updateBackground failed - (another compile requested) this queue = %d, called queue is %d", this.request_id, reqid);
+					// new request has happened.
+					return;
+				}
+				
+				// ok to run.. - if not still running
+			}
+			
+			 
 			this.running = true;
 			this.changed.clear();
 			//this.filemanager = new SymbolFileCollection();
