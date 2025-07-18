@@ -134,7 +134,7 @@ namespace Palete {
 			// this needs to do the  'last' queued change..
 			
 			
-			updateBackground.begin(buildmodule, (o,r )  => {
+			updateBackground.begin(buildmodule, (o,r, 0 )  => {
 				var ar = updateBackground.end(r);
 
 				if (ar != null) {
