@@ -54,6 +54,7 @@ public class Xcls_MainWindow : Object
 
 	// my vars (def)
 	public int last_x;
+	public int last_y;
 	public WindowState windowstate;
 	public Gdk.Device keyboard;
 	public bool winloading;
@@ -67,6 +68,7 @@ public class Xcls_MainWindow : Object
 
 		// my vars (dec)
 		this.last_x = 0;
+		this.last_y = 0;
 		this.winloading = false;
 		this.project = null;
 
