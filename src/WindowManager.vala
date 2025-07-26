@@ -293,7 +293,12 @@ public class WindowManager : Json.Serializable, Object {
 				return;
 			}
 			var w = addFromFile(fi,0);
-			wm().restoreWindowPosition(w, (int) f.get_int_member("x"),(int) f.get_int_member("y")); 
+			wm().restoreWindowPosition(w, 
+				(int) f.get_int_member("x"),
+				(int) f.get_int_member("y")
+				(int) f.get_int_member("w"),
+				(int) f.get_int_member("h")
+			); 
 			 
 		});
 		wm().in_load = false;
