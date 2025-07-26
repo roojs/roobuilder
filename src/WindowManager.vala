@@ -294,8 +294,8 @@ public class WindowManager : Json.Serializable, Object {
 			}
 			var w = addFromFile(fi,0);
 			wm().restoreWindowPosition(w, 
-				(uint) f.get_int_member("x"),
-				(uint) f.get_int_member("y"),
+				(int) f.get_int_member("x"),
+				(int) f.get_int_member("y"),
 				(uint) f.get_int_member("w"),
 				(uint) f.get_int_member("h")
 			); 
@@ -348,7 +348,7 @@ public class WindowManager : Json.Serializable, Object {
 		obj.set_int_member("w", wa.width);
 		obj.set_int_member("h", wa.height);
 		if (win.last_x == wa.x 
-			&& win.last_y == wa,y 
+			&& win.last_y == wa.y 
 			&& win.last_w == wa.width 
 			&& win.last_h == wa.height) {
 			return false;
