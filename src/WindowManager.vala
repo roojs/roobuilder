@@ -382,9 +382,9 @@ public class WindowManager : Json.Serializable, Object {
 		win.last_x = x;
 		win.last_y = y;
 
-		win.last_w = w > 0 ? w : wa.width;
+		win.last_w = w > 0 ? w : (uint)wa.width;
 		 
-		win.last_h = h > 0 ? h : wa.height;
+		win.last_h = h > 0 ? h : (uint)wa.height;
 		
 	}
     
