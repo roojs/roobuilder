@@ -59,7 +59,7 @@ public class Xcls_MainWindow : Object
 	public WindowState windowstate;
 	public Gdk.Device keyboard;
 	public bool winloading;
-	public int last_h;
+	public uint last_h;
 	public Project.Project project;
 
 	// ctor
