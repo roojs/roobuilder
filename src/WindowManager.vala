@@ -339,7 +339,7 @@ public class WindowManager : Json.Serializable, Object {
 		if (di == null) {
 			return false; // no change
 		}
-		
+		X.WindowAttributes wa;		
 		unowned X.Display xd =  (X.Display) di.get_xdisplay();	
 
 		xd.get_window_attributes(xw, out  wa);
