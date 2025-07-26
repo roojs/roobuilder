@@ -333,11 +333,11 @@ public class WindowManager : Json.Serializable, Object {
 		
 
 		var s = win.el.get_surface() as Gdk.X11.Surface;
-		var xw = mws.get_xid();
+		var xw = s.get_xid();
 		
 		var di = (Gdk.X11.Display) s.get_display() ;
 		if (di == null) {
-			return;
+			return false; // no change
 		}
 		
 		unowned X.Display xd =  (X.Display) di.get_xdisplay();	
