@@ -18,6 +18,12 @@ public class WindowManager : Json.Serializable, Object {
 		
 		this.windows = new  Gee.ArrayList<Xcls_MainWindow>();
 		this.windowlist = new GLib.ListStore(typeof(WindowState));
+		
+		GLib.timeout_add_seconds(30, () => {
+			wm().write();
+		});
+
+		
 	}
 	
 	static WindowManager wm()
