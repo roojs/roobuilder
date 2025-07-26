@@ -357,7 +357,7 @@ public class WindowManager : Json.Serializable, Object {
 		return true; // it's moved.
 		
 	}
-	void restoreWindowPosition(	Xcls_MainWindow win, int x, int y, int w, int h)
+	void restoreWindowPosition(	Xcls_MainWindow win, uint x, uint y, uint w, uint h)
 	{
 		
 		var s = win.el.get_surface() as Gdk.X11.Surface;
@@ -366,13 +366,18 @@ public class WindowManager : Json.Serializable, Object {
 		var di = s.get_display() as Gdk.X11.Display;
 		
 		unowned X.Display xd = di.get_xdisplay();
-		xd.move_window(xw, x,y);
+		
+		xd.move_resize_window(xw, x,y, w, h);
+		xd.get_window_attributes(xw, out  wa);
+		
+		
 		GLib.debug("Move to %d, %d",  x,y);
 		win.last_x = x;
 		win.last_y = y;
 		if (w > 0) {
 			win.last_w = w;
-		}
+		} else {
+			
 		if (h > 0) {
 			win.last_h = h;
 		}
