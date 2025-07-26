@@ -53,6 +53,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_name name;
 
 	// my vars (def)
+	public int last_x;
 	public WindowState windowstate;
 	public Gdk.Device keyboard;
 	public bool winloading;
@@ -65,6 +66,7 @@ public class Xcls_MainWindow : Object
 		this.el = new Gtk.ApplicationWindow(BuilderApplication.singleton({}));
 
 		// my vars (dec)
+		this.last_x = 0;
 		this.winloading = false;
 		this.project = null;
 
