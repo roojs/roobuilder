@@ -332,17 +332,17 @@ public class WindowManager : Json.Serializable, Object {
     
 		
 		X.WindowAttributes wa;
-		var mws = win.el.get_surface() as Gdk.X11.Surface;
-		var mw_xw = mws.get_xid();
+		var s = win.el.get_surface() as Gdk.X11.Surface;
+		var xw = mws.get_xid();
 		
-		var di = (Gdk.X11.Display) mws.get_display() ;
+		var di = (Gdk.X11.Display) s.get_display() ;
 		if (di == null) {
 			return;
 		}
 		
-		unowned X.Display mw_xd =  (X.Display) di.get_xdisplay();	
+		unowned X.Display xd =  (X.Display) di.get_xdisplay();	
 
-		mw_xd.get_window_attributes(mw_xw, out  wa);
+		xd.get_window_attributes(xw, out  wa);
 		obj.set_int_member("x", wa.x);
 		obj.set_int_member("y", wa.y);
 		obj.set_int_member("w", wa.width);
@@ -363,15 +363,19 @@ public class WindowManager : Json.Serializable, Object {
 		var s = win.el.get_surface() as Gdk.X11.Surface;
 		var xw = s.get_xid();
 		
-		var si = s.get_display() as Gdk.X11.Display;
+		var di = s.get_display() as Gdk.X11.Display;
 		
-		unowned X.Display xd = si.get_xdisplay();
+		unowned X.Display xd = di.get_xdisplay();
 		xd.move_window(xw, x,y);
 		GLib.debug("Move to %d, %d",  x,y);
 		win.last_x = x;
 		win.last_y = y;
-		win.last_w = w;
-		win.last_h = h;
+		if (w > 0) {
+			win.last_w = w;
+		}
+		if (h > 0) {
+			win.last_h = h;
+		}
 	}
     
 
