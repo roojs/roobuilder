@@ -15,6 +15,9 @@ public class WindowManager : Json.Serializable, Object {
 	public WindowManager(BuilderApplication application) {
 		app = application;
 		app.window_manager = this;
+		
+		this.windows = new  Gee.ArrayList<Xcls_MainWindow>();
+		this.windowlist = new GLib.ListStore(typeof(WindowState));
 	}
 	
 	static WindowManager wm()
