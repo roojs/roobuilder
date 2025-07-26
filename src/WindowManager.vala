@@ -223,7 +223,10 @@ public class WindowManager : Json.Serializable, Object {
 	// writes a json file with the current open files.
 	public void write()
 	{
+		GLib.debug("write window config");
+		
 		if (this.in_load) {
+			GLib.debug("write window config - in load");
 			return;
 		}
  
@@ -243,6 +246,7 @@ public class WindowManager : Json.Serializable, Object {
 			array.add_object_element (obj);        
 		}
 		if (!dirty) {
+			GLib.debug("write window config - not dirty");
 			return;
 		}
 		
@@ -257,7 +261,7 @@ public class WindowManager : Json.Serializable, Object {
 		} catch (GLib.Error e) {
 			GLib.error(e.message);
 		}
-		
+		GLib.debug("write window config - done");
 	}
 	bool in_load = false;
 	public static void load()
