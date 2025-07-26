@@ -348,7 +348,7 @@ public class WindowManager : Json.Serializable, Object {
 		obj.set_int_member("w", wa.width);
 		obj.set_int_member("h", wa.height);
 		if (win.last_x == wa.x 
-			&& win.last_y == y 
+			&& win.last_y == wa,y 
 			&& win.last_w == wa.width 
 			&& win.last_h == wa.height) {
 			return false;
@@ -360,7 +360,7 @@ public class WindowManager : Json.Serializable, Object {
 		return true; // it's moved.
 		
 	}
-	void restoreWindowPosition(	Xcls_MainWindow win, uint x, uint y, uint w, uint h)
+	void restoreWindowPosition(	Xcls_MainWindow win, int x, int y, uint w, uint h)
 	{
 		
 		var s = win.el.get_surface() as Gdk.X11.Surface;
