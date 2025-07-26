@@ -711,7 +711,7 @@
 			 
 			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 			
-			sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, (o,r )  => {
+			sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, 0,  (o,r )  => {
 				  sb.updateBackground.end(r);
 				
 				if (BuilderApplication.opt_test_symbol_dump_file != null) {
