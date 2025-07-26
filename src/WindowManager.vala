@@ -230,10 +230,14 @@ public class WindowManager : Json.Serializable, Object {
 			var obj = new Json.Object();
 			obj.set_string_member("project", window.windowstate.project.path);
 			obj.set_string_member("file", window.windowstate.file.relpath);
-			this.saveWindowPosition(window, obj);
+			if (this.saveWindowPosition(window, obj)) {
+				dirty = true;
+			};
 			array.add_object_element (obj);        
 		}
-
+		if (!dirty) {
+			return;
+		}
 		
 		var data = app.jsonArrayToString(array);
 		var f = GLib. File.new_for_path(this.fn());	
@@ -318,7 +322,7 @@ public class WindowManager : Json.Serializable, Object {
 	public GLib.ListStore windowlist;
 	
  
-    void saveWindowPosition(Xcls_MainWindow win, Json.Object obj)
+    void bool saveWindowPosition(Xcls_MainWindow win, Json.Object obj)
     {
     
 		
@@ -336,6 +340,13 @@ public class WindowManager : Json.Serializable, Object {
 		mw_xd.get_window_attributes(mw_xw, out  wa);
 		obj.set_int_member("x", wa.x);
 		obj.set_int_member("y", wa.y);
+		if (win.last_x = wa.x && win.last_y = y) {
+			return false;
+		}
+		win.last_x = wa.x;
+		win.last_y = wa.y;
+		return true; // it's moved.
+		
 	}
 	void restoreWindowPosition(	Xcls_MainWindow win, int x, int y)
 	{
@@ -348,6 +359,8 @@ public class WindowManager : Json.Serializable, Object {
 		unowned X.Display xd = si.get_xdisplay();
 		xd.move_window(xw, x,y);
 		GLib.debug("Move to %d, %d",  x,y);
+		win.last_x = x;
+		win.last_y = y;
 	}
     
 
