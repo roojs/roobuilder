@@ -295,7 +295,7 @@ public class WindowManager : Json.Serializable, Object {
 			var w = addFromFile(fi,0);
 			wm().restoreWindowPosition(w, 
 				(uint) f.get_int_member("x"),
-				(uint) f.get_int_member("y")
+				(uint) f.get_int_member("y"),
 				(uint) f.get_int_member("w"),
 				(uint) f.get_int_member("h")
 			); 
