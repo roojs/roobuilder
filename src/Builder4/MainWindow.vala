@@ -53,7 +53,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_name name;
 
 	// my vars (def)
-	public int last_w;
+	public uint last_w;
 	public int last_x;
 	public int last_y;
 	public WindowState windowstate;
