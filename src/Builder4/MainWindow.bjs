@@ -7,6 +7,7 @@
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "",
    "# bool winloading" : false,
+   "# int last_h" : 0,
    "# int last_w" : 0,
    "# int last_x" : 0,
    "# int last_y" : 0,
