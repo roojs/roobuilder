@@ -347,7 +347,10 @@ public class WindowManager : Json.Serializable, Object {
 		obj.set_int_member("y", wa.y);
 		obj.set_int_member("w", wa.width);
 		obj.set_int_member("h", wa.height);
-		if (win.last_x = wa.x && win.last_y = y && win.last_w = wa.width && win.last_h = wa.height) {
+		if (win.last_x == wa.x 
+			&& win.last_y == y 
+			&& win.last_w == wa.width 
+			&& win.last_h == wa.height) {
 			return false;
 		}
 		win.last_x = wa.x;
