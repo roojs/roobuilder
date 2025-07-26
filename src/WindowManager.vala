@@ -10,7 +10,7 @@
 
 public class WindowManager : Json.Serializable, Object {
 
-	static BuilderApplication app;
+	static BuilderApplication? app = null;
 	// ctor.
 	public WindowManager(BuilderApplication application) {
 		app = application;
@@ -18,7 +18,12 @@ public class WindowManager : Json.Serializable, Object {
 	}
 	
 	static WindowManager wm()
-	{
+	{	
+		if (app == null) {
+			app = BuilderApplication.singleton();
+		}
+		if (
+		
 		return app.window_manager;
 	}
 	
