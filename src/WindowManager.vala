@@ -22,7 +22,9 @@ public class WindowManager : Json.Serializable, Object {
 		if (app == null) {
 			app = BuilderApplication.singleton();
 		}
-		if (
+		if (app.window_manager == null) {
+			new WindowManager(app);
+		}
 		
 		return app.window_manager;
 	}
