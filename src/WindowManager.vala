@@ -220,7 +220,7 @@ public class WindowManager : Json.Serializable, Object {
 			return;
 		}
  
-		
+		var dirty = false;
 		var array = new Json.Array ();
 		foreach(var window in this.windows) {
 			if (window.windowstate.file == null) { 
