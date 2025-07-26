@@ -378,7 +378,7 @@ public class WindowManager : Json.Serializable, Object {
 		xd.get_window_attributes(xw, out  wa);
 		
 		
-		GLib.debug("Move to %d, %d %dx%d",  x,y, w,h);
+		GLib.debug("Move to %d, %d %dx%d",  x,y, (int) w, (int)h);
 		win.last_x = x;
 		win.last_y = y;
 
