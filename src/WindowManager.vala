@@ -327,7 +327,7 @@ public class WindowManager : Json.Serializable, Object {
 	public GLib.ListStore windowlist;
 	
  
-    void bool saveWindowPosition(Xcls_MainWindow win, Json.Object obj)
+    bool saveWindowPosition(Xcls_MainWindow win, Json.Object obj)
     {
     
 		
