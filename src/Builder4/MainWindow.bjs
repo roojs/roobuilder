@@ -1545,6 +1545,7 @@
      " \t);",
      "\t ",
      "\t WindowManager.remove(this);",
+     "\t WindowManager.save();",
      "\t ",
      "\t if (WindowManager.size()  < 1) {",
      "\t \ttry {",

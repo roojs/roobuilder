@@ -99,6 +99,7 @@ public class Xcls_MainWindow : Object
 		 	);
 			 
 			 WindowManager.remove(this);
+			 WindowManager.save();
 			 
 			 if (WindowManager.size()  < 1) {
 			 	try {

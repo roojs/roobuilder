@@ -217,11 +217,17 @@ public class WindowManager : Json.Serializable, Object {
 	
 	string fn()
 	{
+		//GLib.debug("open files: %s", BuilderApplication.configDirectory() + "/open_files.json");
 		return BuilderApplication.configDirectory() + "/open_files.json";
 	}
 	
+	public static void save()
+	{
+		wm().write(true);
+	}
+	
 	// writes a json file with the current open files.
-	public void write()
+	public void write(bool dirty = false)
 	{
 		GLib.debug("write window config");
 		
@@ -230,7 +236,7 @@ public class WindowManager : Json.Serializable, Object {
 			return;
 		}
  
-		var dirty = false;
+
 		var array = new Json.Array ();
 		foreach(var window in this.windows) {
 			if (window.windowstate.file == null) { 
@@ -261,7 +267,7 @@ public class WindowManager : Json.Serializable, Object {
 		} catch (GLib.Error e) {
 			GLib.error(e.message);
 		}
-		GLib.debug("write window config - done");
+		GLib.debug("write window confirg - done");
 	}
 	bool in_load = false;
 	public static void load()
@@ -281,7 +287,7 @@ public class WindowManager : Json.Serializable, Object {
 		var node = pa.get_root();
 
 		
-		if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
+		if (node == null || node.get_node_type () != Json.NodeType.ARRAY) {
 			GLib.debug("SKIP %s  - invalid format?",wm().fn());
 		 	wm().in_load = false;
 			return;
