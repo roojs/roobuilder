@@ -28,28 +28,20 @@
     {
      "$ xns" : "Gtk",
      "* pack" : "set_titlebar",
-     "bool show_close_button" : true,
+     "bool show_title_buttons" : false,
      "id" : "headerbar",
      "items" : [
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "bool hexpand" : true,
        "items" : [
         {
          "$ xns" : "Gtk",
          "* pack" : "append",
          "bool has_frame" : false,
          "bool has_tooltip" : true,
-         "items" : [
-          {
-           "$ xns" : "Adw",
-           "* prop" : "child",
-           "string icon_name" : "network-workgroup",
-           "string label" : " Files",
-           "xtype" : "ButtonContent"
-          }
-         ],
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
@@ -60,6 +52,7 @@
            "}"
           ]
          },
+         "string icon_name" : "folder",
          "string tooltip_text" : "Manage Windows (Ctrl-O)",
          "xtype" : "Button"
         },
@@ -131,9 +124,200 @@
         }
        ],
        "xtype" : "Box"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_end",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "int spacing" : 0,
+       "items" : [
+        {
+         "# int last_w" : 0,
+         "$ xns" : "Gtk",
+         "Gtk.Align halign" : "Gtk.Align.END",
+         "bool has_frame" : true,
+         "id" : "btn_tree",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "\t",
+           "\t// _this.el.close_request();",
+           "\t",
+           "\t// save the window size,",
+           "\t// and make the window the same size as the tree..",
+           "\t",
+           "\t\tint x,y;",
+           "\tuint w,h;",
+           "\tif (!_this.getSize(out x, out y, out w, out h)) {",
+           "\t\treturn;",
+           "\t}",
+           "",
+           "\tif (_this.btn_header.el.visible) {",
+           "\t\t// then wer are not full... only",
+           "\t\t\t",
+           "\t\t\t\t",
+           "\t\t_this.btn_full.last_w = _this.splitview.el.get_width();",
+           "",
+           "\t\t",
+           "\t\t_this.last_w = _this.leftpane.el.get_width();",
+           "\t\t_this.btn_full.last_h = _this.splitview.el.get_height();",
+           "\t\t ",
+           "\t\t",
+           "\t} else {",
+           "\t\t// we are in header collapse - no valuable data available.?",
+           "\t\t// techmically we could store the width?",
+           "\t}",
+           "",
+           "\t",
+           "\t_this.splitview.el.show();",
+           "\t_this.rightpane.el.hide();",
+           " \t_this.props.el.hide();",
+           "\t_this.btn_tree.el.hide();",
+           "\t_this.btn_full.el.show();",
+           "\t_this.btn_header.el.show();",
+           "\t",
+           "\t_this.el.set_default_size(this.last_w, _this.btn_full.last_h);",
+           "\t",
+           "\t//// what size is the ",
+           "",
+           "\t// load it everywhere",
+           "}",
+           ""
+          ]
+         },
+         "string icon_name" : "view-list-symbolic",
+         "string tooltip_text" : "Show Tree Only",
+         "xtype" : "Button"
+        },
+        {
+         "# int last_h" : 0,
+         "# int last_w" : 0,
+         "$ xns" : "Gtk",
+         "Gtk.Align halign" : "Gtk.Align.END",
+         "bool has_frame" : true,
+         "bool visible" : false,
+         "id" : "btn_full",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "\t",
+           "\t// _this.el.close_request();",
+           "\tint x,y;",
+           "\tuint w,h;",
+           "\tif (!_this.getSize(out x, out y, out w, out h)) {",
+           "\t\treturn;",
+           "\t}",
+           "\t ",
+           " ",
+           "\t ",
+           "\t",
+           "\t",
+           "\t",
+           " \t_this.splitview.el.show();",
+           "",
+           "\t_this.props.el.show();",
+           "\t_this.rightpane.el.show();",
+           "\t",
+           "\t_this.btn_tree.el.show();",
+           "\t_this.btn_full.el.hide();",
+           "\t_this.btn_header.el.show();",
+           "\t",
+           "\t GLib.debug(\"Set height request %d\",  _this.btn_full.last_h);",
+           "\t _this.el.set_default_size((int) _this.btn_full.last_w, (int) _this.btn_full.last_h ); ",
+           "\t// load it everywhere",
+           "}",
+           ""
+          ]
+         },
+         "string icon_name" : "accessories-dictionary-symbolic",
+         "string tooltip_text" : "Show Full Wundow",
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "Gtk.Align halign" : "Gtk.Align.END",
+         "bool has_frame" : true,
+         "id" : "btn_header",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "",
+           "",
+           "\t// fixme - need to handle code",
+           "\t",
+           "\t// from tree => collapse",
+           "\t// dont save the width",
+           "\tif (!_this.btn_full.el.visible) {",
+           "\t\t// then it's a full window",
+           "\t\t_this.btn_full.last_w = _this.splitview.el.get_width();",
+           "\t\t_this.btn_tree.last_w = _this.tree.el.get_width();",
+           "\t\t\t",
+           "\t} // else  we are tree view..",
+           "\t ",
+           "\t\t",
+           "\t_this.btn_full.last_h = _this.splitview.el.get_height();",
+           "\t",
+           "",
+           "\t _this.splitview.el.height_request = _this.btn_full.last_h;",
+           "\t// _this.el.close_request();",
+           "\t_this.splitview.el.hide();",
+           "\t _this.btn_tree.el.show();",
+           "\t_this.btn_full.el.show();",
+           "\t_this.btn_header.el.hide();",
+           " ",
+           "\t",
+           "\t// we need to work out",
+           "\tint x,y;",
+           "\tuint w,h;",
+           "\tif (!_this.getSize(out x, out y, out w, out h)) {",
+           "\t\treturn;",
+           "\t}",
+           "\t",
+           "\th -= _this.btn_full.last_h;",
+           "\t",
+           "\t//_this.el.set_default_size(-1,0);",
+           "\t_this.setSize(x,y, w, h);",
+           "\t",
+           "\t// load it everywhere",
+           "}",
+           ""
+          ]
+         },
+         "string icon_name" : "go-top-symbolic",
+         "string tooltip_text" : "Collapse window to Header",
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "Gtk.Align halign" : "Gtk.Align.END",
+         "bool has_frame" : true,
+         "int margin_start" : 48,
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "\t",
+           "\t _this.el.close_request();",
+           "\t",
+           " ",
+           "",
+           "\t// load it everywhere",
+           "}",
+           ""
+          ]
+         },
+         "string icon_name" : "window-close",
+         "xtype" : "Button"
+        }
+       ],
+       "xtype" : "Box"
       }
      ],
-     "xtype" : "HeaderBar"
+     "xtype" : "HeaderBar",
+     "| void test" : [
+      "() {",
+      "",
+      "}"
+     ]
     },
     {
      "$ xns" : "Adw",
@@ -219,6 +403,7 @@
            "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
            "bool hexpand" : true,
            "bool vexpand" : true,
+           "id" : "rightpane",
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -249,7 +434,7 @@
            ""
           ]
          },
-         "position" : 400,
+         "position" : 200,
          "xtype" : "Paned"
         },
         {
@@ -1537,8 +1722,10 @@
    "listeners" : {
     "close_request" : [
      "( ) => {",
-     "\t Resources.singleton().disconnect(_this.statusbar.handler_id);",
      "\t ",
+     "\t if (_this.statusbar.handler_id > -1) {",
+     "\t \tResources.singleton().disconnect(_this.statusbar.handler_id);",
+     "\t }",
      "\t ",
      "\t this.windowstate.file.getLanguageServer().document_close(",
      "\t \tthis.windowstate.file",
@@ -1591,6 +1778,31 @@
    },
    "string title" : "Roo Application Builder",
    "xtype" : "ApplicationWindow",
+   "| bool getSize" : [
+    "(out int x, out int y, out uint w, out uint h) {",
+    "",
+    "\tvar s =  this.el.get_surface() as Gdk.X11.Surface;",
+    "\tvar xw = s.get_xid();",
+    "\t",
+    "\tvar di = (Gdk.X11.Display) s.get_display() ;",
+    "\tif (di == null) {",
+    "\t\treturn false; // no change",
+    "\t}",
+    "\tX.WindowAttributes wa;\t\t",
+    "\tunowned X.Display xd =  (X.Display) di.get_xdisplay();\t",
+    "",
+    "\txd.get_window_attributes(xw, out  wa);",
+    "\tx = wa.x;",
+    "\ty = wa.y;",
+    "\tw = wa.width;",
+    "\th = wa.height;",
+    "\t",
+    "\tGLib.debug(\"Get size %d,%d %dx%d\", x,y, (int)w, (int)h);",
+    "\t// we don't set last_x/y (as the save code needs the old info to compare.",
+    "\t",
+    "\treturn true;",
+    "}"
+   ],
    "| void initChildren" : [
     " () {",
     "    // this needs putting in a better place..",
@@ -1621,6 +1833,36 @@
     "     ",
     "}",
     ""
+   ],
+   "| void setSize" : [
+    "(int x, int y, uint w, uint h) {",
+    "",
+    "",
+    "",
+    "\tvar s = this.el.get_surface() as Gdk.X11.Surface;",
+    "\tvar xw = s.get_xid();",
+    "\t",
+    "\tvar di = s.get_display() as Gdk.X11.Display;",
+    "\t",
+    "\tunowned X.Display xd = di.get_xdisplay();",
+    "\tif (w >0 && h > 0) {",
+    "\t\txd.move_resize_window(xw, x,y, w, h);",
+    "\t} else {",
+    "\t\txd.move_window(xw, x,y);",
+    "\t}",
+    "\tX.WindowAttributes wa;",
+    "\txd.get_window_attributes(xw, out  wa);",
+    "\t",
+    "\t",
+    "\tGLib.debug(\"Move to %d, %d %dx%d\",  x,y, (int) w, (int)h);",
+    "\tthis.last_x = x;",
+    "\tthis.last_y = y;",
+    "",
+    "\tthis.last_w = w > 0 ? w : (uint)wa.width;",
+    "\t ",
+    "\tthis.last_h = h > 0 ? h : (uint)wa.height;",
+    "",
+    "}"
    ],
    "| void setTitle" : [
     " () {",

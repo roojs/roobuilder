@@ -347,61 +347,35 @@ public class WindowManager : Json.Serializable, Object {
     bool saveWindowPosition(Xcls_MainWindow win, Json.Object obj)
     {
     
-		
-
-		var s = win.el.get_surface() as Gdk.X11.Surface;
-		var xw = s.get_xid();
-		
-		var di = (Gdk.X11.Display) s.get_display() ;
-		if (di == null) {
-			return false; // no change
-		}
-		X.WindowAttributes wa;		
-		unowned X.Display xd =  (X.Display) di.get_xdisplay();	
-
-		xd.get_window_attributes(xw, out  wa);
-		obj.set_int_member("x", wa.x);
-		obj.set_int_member("y", wa.y);
-		obj.set_int_member("w", wa.width);
-		obj.set_int_member("h", wa.height);
-		if (win.last_x == wa.x 
-			&& win.last_y == wa.y 
-			&& win.last_w == wa.width 
-			&& win.last_h == wa.height) {
+		int x,y;
+		uint w,h;
+		if (!win.getSize(out x, out y, out w, out h )) {
 			return false;
 		}
-		win.last_x = wa.x;
-		win.last_y = wa.y;
-		win.last_w = wa.width;
-		win.last_h = wa.height;
+
+		 
+
+	 
+		obj.set_int_member("x", x);
+		obj.set_int_member("y", y);
+		obj.set_int_member("w", w);
+		obj.set_int_member("h", h);
+		if (win.last_x == x 
+			&& win.last_y == y 
+			&& win.last_w == w 
+			&& win.last_h == h) {
+			return false;
+		}
+		win.last_x = x;
+		win.last_y = y;
+		win.last_w = w;
+		win.last_h = h;
 		return true; // it's moved.
 		
 	}
 	void restoreWindowPosition(	Xcls_MainWindow win, int x, int y, uint w, uint h)
 	{
-		
-		var s = win.el.get_surface() as Gdk.X11.Surface;
-		var xw = s.get_xid();
-		
-		var di = s.get_display() as Gdk.X11.Display;
-		
-		unowned X.Display xd = di.get_xdisplay();
-		if (w >0 && h > 0) {
-			xd.move_resize_window(xw, x,y, w, h);
-		} else {
-			xd.move_window(xw, x,y);
-		}
-		X.WindowAttributes wa;
-		xd.get_window_attributes(xw, out  wa);
-		
-		
-		GLib.debug("Move to %d, %d %dx%d",  x,y, (int) w, (int)h);
-		win.last_x = x;
-		win.last_y = y;
-
-		win.last_w = w > 0 ? w : (uint)wa.width;
-		 
-		win.last_h = h > 0 ? h : (uint)wa.height;
+		win.setSize(x,y,w,h); 
 		
 	}
     
