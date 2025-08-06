@@ -558,6 +558,9 @@ public class Xcls_MainWindow : Object
 				_this.btn_full.el.show();
 				_this.btn_header.el.show();
 				
+				
+				GLib.debug("Set size %d x %d", this.last_w, _this.btn_full.last_h);
+				
 				_this.el.set_default_size(this.last_w, _this.btn_full.last_h);
 				
 				//// what size is the 
