@@ -26,6 +26,8 @@ public class Xcls_MainWindow : Object
 	public Xcls_rightpane rightpane;
 	public Xcls_rooviewbox rooviewbox;
 	public Xcls_codeeditviewbox codeeditviewbox;
+	public Xcls_lable_project lable_project;
+	public Xcls_label label;
 	public Xcls_topbarmenu topbarmenu;
 	public Xcls_statusbar statusbar;
 	public Xcls_statusbar_compilestatus_label statusbar_compilestatus_label;
@@ -1124,9 +1126,8 @@ public class Xcls_MainWindow : Object
 			var child_1 = new Xcls_Image24( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Label25( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
+			new Xcls_lable_project( _this );
+			this.el.append( _this.lable_project.el );
 		}
 
 		// user defined functions
@@ -1155,7 +1156,7 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label25 : Object
+	public class Xcls_lable_project : Object
 	{
 		public Gtk.Label el;
 		private Xcls_MainWindow  _this;
@@ -1164,9 +1165,10 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Label25(Xcls_MainWindow _owner )
+		public Xcls_lable_project(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.lable_project = this;
 			this.el = new Gtk.Label( "Project Properties" );
 
 			// my vars (dec)
@@ -1240,9 +1242,8 @@ public class Xcls_MainWindow : Object
 			var child_1 = new Xcls_Image28( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Label29( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
+			new Xcls_label( _this );
+			this.el.append( _this.label.el );
 		}
 
 		// user defined functions
@@ -1271,7 +1272,7 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
-	public class Xcls_Label29 : Object
+	public class Xcls_label : Object
 	{
 		public Gtk.Label el;
 		private Xcls_MainWindow  _this;
@@ -1280,9 +1281,10 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Label29(Xcls_MainWindow _owner )
+		public Xcls_label(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.label = this;
 			this.el = new Gtk.Label( "File Properties" );
 
 			// my vars (dec)
