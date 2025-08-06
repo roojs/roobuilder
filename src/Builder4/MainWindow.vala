@@ -256,9 +256,10 @@ public class Xcls_MainWindow : Object
 	    	return;
 		}
 	    _this.el.set_title(
-	    	_this.windowstate.project.name + 
+	    _this.windowstate.file.relpath +
 	    	" - " +
-			_this.windowstate.file.relpath);
+	   _this.windowstate.project.name  
+			);
 	}
 	public void openNewWindow () {
 	 

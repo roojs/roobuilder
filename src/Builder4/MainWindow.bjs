@@ -1876,9 +1876,10 @@
     "    \treturn;",
     "\t}",
     "    _this.el.set_title(",
-    "    \t_this.windowstate.project.name + ",
+    "    _this.windowstate.file.relpath +",
     "    \t\" - \" +",
-    "\t\t_this.windowstate.file.relpath);",
+    "   _this.windowstate.project.name  ",
+    "\t\t);",
     "} "
    ],
    "| void show" : [
