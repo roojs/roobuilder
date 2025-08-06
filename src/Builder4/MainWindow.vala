@@ -541,7 +541,7 @@ public class Xcls_MainWindow : Object
 					_this.btn_full.last_w = _this.splitview.el.get_width();
 			
 					GLib.debug("tree size = %d", tree.viewwin.el.get_width());
-					_this.last_w = tree.viewwin.el.get_width();
+					this.last_w = tree.viewwin.el.get_width();
 					_this.btn_full.last_h = _this.splitview.el.get_height();
 					 
 					
