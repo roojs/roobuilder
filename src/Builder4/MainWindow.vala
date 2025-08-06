@@ -548,8 +548,9 @@ public class Xcls_MainWindow : Object
 					// we are in header collapse - no valuable data available.?
 					// techmically we could store the width?
 				}
-			
 				
+				_this.label_project.el.hide();
+				_this.label_file.el.hide();
 				_this.splitview.el.show();
 				_this.rightpane.el.hide();
 			 	_this.props.el.hide();
