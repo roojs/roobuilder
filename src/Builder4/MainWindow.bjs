@@ -463,7 +463,7 @@
               },
               {
                "$ xns" : "Gtk",
-               "id" : "lable_project",
+               "id" : "label_project",
                "string label" : "Project Properties",
                "xtype" : "Label"
               }
