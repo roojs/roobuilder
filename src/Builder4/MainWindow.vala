@@ -298,9 +298,6 @@ public class Xcls_MainWindow : Object
 		}
 
 		// user defined functions
-		public void test () {
-		
-		}
 	}
 	public class Xcls_Box2 : Object
 	{

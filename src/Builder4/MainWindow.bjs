@@ -318,12 +318,7 @@
        "xtype" : "Box"
       }
      ],
-     "xtype" : "HeaderBar",
-     "| void test" : [
-      "() {",
-      "",
-      "}"
-     ]
+     "xtype" : "HeaderBar"
     },
     {
      "$ xns" : "Adw",
