@@ -542,7 +542,7 @@ public class Xcls_MainWindow : Object
 			
 					GLib.debug("tree size = %d", tree.viewwin.el.get_width());
 					this.last_w = tree.viewwin.el.get_width();
-					_this.btn_full.last_h = _this.splitview.el.get_height();
+					_this.btn_full.last_h = h;
 					 
 					
 				} else {
