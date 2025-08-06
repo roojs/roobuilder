@@ -540,7 +540,7 @@ public class Xcls_MainWindow : Object
 					_this.btn_full.last_w = _this.splitview.el.get_width();
 			
 					
-					_this.last_w = _this.leftpane.el.get_width();
+					_this.last_w = _this.editpane.el.position
 					_this.btn_full.last_h = _this.splitview.el.get_height();
 					 
 					

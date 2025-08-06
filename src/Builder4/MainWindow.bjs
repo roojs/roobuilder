@@ -159,7 +159,7 @@
            "\t\t_this.btn_full.last_w = _this.splitview.el.get_width();",
            "",
            "\t\t",
-           "\t\t_this.last_w = _this.leftpane.el.get_width();",
+           "\t\t_this.last_w = _this.editpane.el.position",
            "\t\t_this.btn_full.last_h = _this.splitview.el.get_height();",
            "\t\t ",
            "\t\t",
