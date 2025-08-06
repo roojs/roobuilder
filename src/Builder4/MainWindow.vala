@@ -27,7 +27,7 @@ public class Xcls_MainWindow : Object
 	public Xcls_rooviewbox rooviewbox;
 	public Xcls_codeeditviewbox codeeditviewbox;
 	public Xcls_lable_project lable_project;
-	public Xcls_label label;
+	public Xcls_label_file label_file;
 	public Xcls_topbarmenu topbarmenu;
 	public Xcls_statusbar statusbar;
 	public Xcls_statusbar_compilestatus_label statusbar_compilestatus_label;
@@ -1242,8 +1242,8 @@ public class Xcls_MainWindow : Object
 			var child_1 = new Xcls_Image28( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			new Xcls_label( _this );
-			this.el.append( _this.label.el );
+			new Xcls_label_file( _this );
+			this.el.append( _this.label_file.el );
 		}
 
 		// user defined functions
@@ -1272,7 +1272,7 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
-	public class Xcls_label : Object
+	public class Xcls_label_file : Object
 	{
 		public Gtk.Label el;
 		private Xcls_MainWindow  _this;
@@ -1281,10 +1281,10 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_label(Xcls_MainWindow _owner )
+		public Xcls_label_file(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
-			_this.label = this;
+			_this.label_file = this;
 			this.el = new Gtk.Label( "File Properties" );
 
 			// my vars (dec)

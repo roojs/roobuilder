@@ -499,7 +499,7 @@
               },
               {
                "$ xns" : "Gtk",
-               "id" : "label",
+               "id" : "label_file",
                "string label" : "File Properties",
                "xtype" : "Label"
               }
