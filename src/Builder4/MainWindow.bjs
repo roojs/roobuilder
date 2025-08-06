@@ -161,7 +161,7 @@
            "",
            "\t\tGLib.debug(\"tree size = %d\", tree.viewwin.el.get_width());",
            "\t\tthis.last_w = tree.viewwin.el.get_width();",
-           "\t\t_this.btn_full.last_h = (int)h;",
+           "\t\t_this.btn_full.last_h = _this.el.get_height();",
            "\t\t ",
            "\t\t",
            "\t} else {",
