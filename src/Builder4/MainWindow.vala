@@ -255,11 +255,11 @@ public class Xcls_MainWindow : Object
 	    	this.el.set_title("Select File");
 	    	return;
 		}
-	    _this.el.set_title(
-	    _this.windowstate.file.relpath +
-	    	" - " +
-	   _this.windowstate.project.name  
-			);
+		_this.el.set_title(
+			_this.windowstate.file.relpath +
+			" - " +
+			_this.windowstate.project.name  
+		);
 	}
 	public void openNewWindow () {
 	 

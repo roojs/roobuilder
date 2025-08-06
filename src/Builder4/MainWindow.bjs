@@ -1875,11 +1875,11 @@
     "    \tthis.el.set_title(\"Select File\");",
     "    \treturn;",
     "\t}",
-    "    _this.el.set_title(",
-    "    _this.windowstate.file.relpath +",
-    "    \t\" - \" +",
-    "   _this.windowstate.project.name  ",
-    "\t\t);",
+    "\t_this.el.set_title(",
+    "\t\t_this.windowstate.file.relpath +",
+    "\t\t\" - \" +",
+    "\t\t_this.windowstate.project.name  ",
+    "\t);",
     "} "
    ],
    "| void show" : [
