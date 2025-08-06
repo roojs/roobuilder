@@ -252,8 +252,8 @@ public class Xcls_MainWindow : Object
 	    if (_this.windowstate.project == null || 
 		    _this.windowstate.file == null
 	    ) {
-	    	this.el.set_title("Select File");
-	    	return;
+			this.el.set_title("Select File");
+			return;
 		}
 		_this.el.set_title(
 			_this.windowstate.file.relpath +
