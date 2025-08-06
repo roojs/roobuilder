@@ -610,7 +610,8 @@ public class Xcls_MainWindow : Object
 			 
 				 
 				
-				
+				_this.label_project.el.show();
+				_this.label_file.el.show();
 				
 			 	_this.splitview.el.show();
 			
