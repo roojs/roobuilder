@@ -159,7 +159,7 @@
            "\t ",
            "\t\t_this.btn_full.last_w = _this.splitview.el.get_width();",
            "",
-           "\t\t",
+           "\t\tGLib.debug(\"tree size = %d\", tree.viewwin.el.get_width());",
            "\t\t_this.last_w = tree.viewwin.el.get_width();",
            "\t\t_this.btn_full.last_h = _this.splitview.el.get_height();",
            "\t\t ",
