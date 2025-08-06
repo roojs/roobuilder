@@ -536,7 +536,8 @@ public class Xcls_MainWindow : Object
 				if (_this.btn_header.el.visible) {
 					// then wer are not full... only
 						
-							
+					GLib.debug("mainpain pos = %d, editpane.pos= %d", 
+						_this.mainpane.el.position, _this.editpane.el.position);
 					_this.btn_full.last_w = _this.splitview.el.get_width();
 			
 					
