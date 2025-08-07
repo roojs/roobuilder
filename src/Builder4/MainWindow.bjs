@@ -20,7 +20,6 @@
     "  ",
     ""
    ],
-   "border_width" : 0,
    "default_height" : 850,
    "default_width" : 1200,
    "id" : "MainWindow",
@@ -42,9 +41,16 @@
          "* pack" : "append",
          "bool has_frame" : false,
          "bool has_tooltip" : true,
+         "id" : "btn_files",
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
+           "  ",
+           "  \tif (!_this.btn_header.el.visible) {",
+           "  \t\t// new window?",
+           "  \t\t\t_this.windowstate.showPopoverFiles(_this.el, _this.project, true);",
+           "     \treturn;",
+           "   }",
            "  \t_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;",
            "  \tif (_this.splitview.el.show_sidebar) {",
            "  \t\t_this.sidebar.show(); ",
@@ -59,6 +65,7 @@
         {
          "$ xns" : "Gtk",
          "bool has_frame" : false,
+         "id" : "btn_undo",
          "listeners" : {
           "clicked" : [
            "( ) => {",
@@ -92,6 +99,7 @@
         {
          "$ xns" : "Gtk",
          "bool has_frame" : false,
+         "id" : "btn_redo",
          "listeners" : {
           "clicked" : [
            "( ) => {",
@@ -136,6 +144,7 @@
          "$ xns" : "Gtk",
          "Gtk.Align halign" : "Gtk.Align.END",
          "bool has_frame" : true,
+         "bool visible" : false,
          "id" : "btn_tree",
          "listeners" : {
           "clicked" : [
@@ -243,6 +252,7 @@
          "$ xns" : "Gtk",
          "Gtk.Align halign" : "Gtk.Align.END",
          "bool has_frame" : true,
+         "bool visible" : true,
          "id" : "btn_header",
          "listeners" : {
           "clicked" : [
@@ -1810,11 +1820,11 @@
     " () {",
     "    // this needs putting in a better place..",
     "    if (this.windowstate == null) {",
-    "    \tthis.windowstate = new WindowState(this);",
+    "   \t \tthis.windowstate = new WindowState(this);",
     "    ",
     "    }",
     "     ",
-    "",
+    "\t",
     " ",
     "",
     "    ",

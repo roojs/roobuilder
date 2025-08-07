@@ -57,6 +57,10 @@ public class WindowManager : Json.Serializable, Object {
 		w.windowstate.init();
 		w.windowstate.fileViewOpen(file, false, line);
 		w.el.present();
+		w.btn_header.el.show();
+		if (file.xtype != "PlainFile") {
+			w.btn_tree.el.show();
+		}
 		return w;
 	
 	}

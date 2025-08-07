@@ -13,6 +13,9 @@ public class Xcls_MainWindow : Object
 		return _MainWindow;
 	}
 	public Xcls_headerbar headerbar;
+	public Xcls_btn_files btn_files;
+	public Xcls_btn_undo btn_undo;
+	public Xcls_btn_redo btn_redo;
 	public Xcls_btn_tree btn_tree;
 	public Xcls_btn_full btn_full;
 	public Xcls_btn_header btn_header;
@@ -206,11 +209,11 @@ public class Xcls_MainWindow : Object
 	public void initChildren () {
 	    // this needs putting in a better place..
 	    if (this.windowstate == null) {
-	    	this.windowstate = new WindowState(this);
+	   	 	this.windowstate = new WindowState(this);
 	    
 	    }
 	     
-	
+		
 	 
 	
 	    
@@ -318,20 +321,17 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.hexpand = true;
-			var child_1 = new Xcls_Button3( _this );
-			child_1.ref();
-			this.el.append ( child_1.el  );
-			var child_2 = new Xcls_Button4( _this );
-			child_2.ref();
-			this.el.append( child_2.el );
-			var child_3 = new Xcls_Button5( _this );
-			child_3.ref();
-			this.el.append( child_3.el );
+			new Xcls_btn_files( _this );
+			this.el.append ( _this.btn_files.el  );
+			new Xcls_btn_undo( _this );
+			this.el.append( _this.btn_undo.el );
+			new Xcls_btn_redo( _this );
+			this.el.append( _this.btn_redo.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button3 : Object
+	public class Xcls_btn_files : Object
 	{
 		public Gtk.Button el;
 		private Xcls_MainWindow  _this;
@@ -340,9 +340,10 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button3(Xcls_MainWindow _owner )
+		public Xcls_btn_files(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.btn_files = this;
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
@@ -355,6 +356,12 @@ public class Xcls_MainWindow : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
+			  
+			  	if (!_this.btn_header.el.visible) {
+			  		// new window?
+			  			_this.windowstate.showPopoverFiles(_this.el, _this.project, true);
+			     	return;
+			   }
 			  	_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;
 			  	if (_this.splitview.el.show_sidebar) {
 			  		_this.sidebar.show(); 
@@ -365,7 +372,7 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button4 : Object
+	public class Xcls_btn_undo : Object
 	{
 		public Gtk.Button el;
 		private Xcls_MainWindow  _this;
@@ -374,9 +381,10 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button4(Xcls_MainWindow _owner )
+		public Xcls_btn_undo(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.btn_undo = this;
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
@@ -413,7 +421,7 @@ public class Xcls_MainWindow : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button5 : Object
+	public class Xcls_btn_redo : Object
 	{
 		public Gtk.Button el;
 		private Xcls_MainWindow  _this;
@@ -422,9 +430,10 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button5(Xcls_MainWindow _owner )
+		public Xcls_btn_redo(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
+			_this.btn_redo = this;
 			this.el = new Gtk.Button();
 
 			// my vars (dec)
@@ -516,6 +525,7 @@ public class Xcls_MainWindow : Object
 			this.el.halign = Gtk.Align.END;
 			this.el.has_frame = true;
 			this.el.tooltip_text = "Show Tree Only";
+			this.el.visible = false;
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
@@ -655,6 +665,7 @@ public class Xcls_MainWindow : Object
 			this.el.halign = Gtk.Align.END;
 			this.el.has_frame = true;
 			this.el.tooltip_text = "Collapse window to Header";
+			this.el.visible = true;
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
