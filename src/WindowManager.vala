@@ -141,64 +141,7 @@ public class WindowManager : Json.Serializable, Object {
 		}
 	
 	}
-	
-	public static void showSpinnerLspLog(Palete.LanguageClientAction action, string message) {
-		
-		var msg = action.to_string() + " " + message;
-		switch(action) {
-		
-				case Palete.LanguageClientAction.INIT:
-		 		case Palete.LanguageClientAction.LAUNCH:
-		 		case Palete.LanguageClientAction.ACCEPT:
-					showSpinner( "software-update-available-symbolic", msg );
-					return;
-					
-		 		case Palete.LanguageClientAction.DIAG:
-			 		showSpinner( "format-justify-fill-symbolic", msg);			 		
-		 			return;
-
-				case Palete.LanguageClientAction.DIAG_END:
-			 		showSpinner( "", "");
-		 			return;
-
-		 		case Palete.LanguageClientAction.OPEN:
-			 		showSpinner( "document-open-symbolic", msg);			 		
-		 			return;
-		 		case Palete.LanguageClientAction.SAVE:
-		 			showSpinner( "document-save-symbolic", msg);			 		
-		 			return;
-		 		case Palete.LanguageClientAction.CLOSE:
-		 			showSpinner( "window-close-symbolic", msg);			 		
-		 			return;
-		 		case Palete.LanguageClientAction.CHANGE:
-		 			showSpinner( "format-text-direction-ltr-symbolic", msg);
-		 			return;			 			
-		 		case Palete.LanguageClientAction.TERM:
-					showSpinner( "media-playback-stop-symbolic", msg);
-					return;			 			
-		 		case Palete.LanguageClientAction.COMPLETE:
-					showSpinner( "mail-send-receive-symbolic", msg);
-					return;
-		 		
-		 		case Palete.LanguageClientAction.COMPLETE_REPLY:
-					showSpinner( "face-cool-symbolic", msg);
-					return;
-					
-		 		case Palete.LanguageClientAction.RESTART:
-		 		case Palete.LanguageClientAction.ERROR:
-		 		case Palete.LanguageClientAction.ERROR_START:
-				case Palete.LanguageClientAction.ERROR_RPC:
-				case Palete.LanguageClientAction.ERROR_REPLY:
-					showSpinner( "software-update-urgent-symbolic", msg );
-					return;
-
-				case Palete.LanguageClientAction.EXIT:
-					showSpinner( "face-sick-symbolic", msg);
-					return;
-				
-		
-		}
-	}
+	 
 
 	public static  void showSpinner(string icon, string tooltip = "")
 	{

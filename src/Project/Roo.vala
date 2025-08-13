@@ -108,10 +108,6 @@ public class Project.Roo : Project {
 		switch(lang) {
 	  		case "javascript":
 	  			var ls = new Palete.LanguageClientJavascript(this);
-				ls.log.connect((act, msg) => {
-					//GLib.debug("log %s: %s", act.to_string(), msg);
-					WindowManager.showSpinnerLspLog(act,msg);
-				});
 				this.language_servers.set(lang, ls);
 				break;
 				

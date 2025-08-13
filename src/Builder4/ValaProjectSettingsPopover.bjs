@@ -959,7 +959,7 @@
                  "\tif (_this.selected_target == null) {",
                  "\t\treturn;",
                  "\t}",
-                 "\tvar name = this.el.text;",
+                 " ",
                  "\t ",
                  "",
                  "\t_this.selected_target.fqn = this.el.buffer.text;",

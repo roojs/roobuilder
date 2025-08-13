@@ -2447,7 +2447,6 @@ public class DialogFiles : Object
 	var str = _this.searchbox.el.text.down();	
 	if (j.xtype == "Dir") {
 	
-		var sf= 0;
 		for (var i =0 ; i < j.childfiles.n_items; i++) {
 			var f = (JsRender.JsRender) j.childfiles.get_item(i);
 			if (f.xtype != "PlainFile") {

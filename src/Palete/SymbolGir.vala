@@ -200,7 +200,7 @@ namespace Palete {
 			var old = this.file.fqn_map.get(this.fqn);
 			
 
-			q.update(old,this); 
+			q.updateOld(old,this); 
 
 			// should nto need to update file symbols.
 		}

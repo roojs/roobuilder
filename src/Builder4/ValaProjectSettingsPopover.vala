@@ -2170,7 +2170,7 @@ public class ValaProjectSettingsPopover : Object
 				if (_this.selected_target == null) {
 					return;
 				}
-				var name = this.el.text;
+			 
 				 
 			
 				_this.selected_target.fqn = this.el.buffer.text;

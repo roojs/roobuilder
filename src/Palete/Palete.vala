@@ -185,7 +185,7 @@ namespace Palete
 		 	if (editor.prop.name == "xns" || editor.prop.name == "xtype") {
 				return  ;
 			}
-			var oldcode  = editor.prop.val;
+ 
 			
 			//_this.prop.val = str;
 			editor.node.updated_count++;

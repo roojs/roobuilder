@@ -230,11 +230,17 @@ public class Xcls_MainWindow : Object
 	}
 	public bool getSize (out int x, out int y, out uint w, out uint h) {
 	
+		x = 0; 
+		y = 0; 
+		w = 0; 
+		h = 0;
 		var s =  this.el.get_surface() as Gdk.X11.Surface;
 		var xw = s.get_xid();
 		
 		var di = (Gdk.X11.Display) s.get_display() ;
 		if (di == null) {
+				
+		
 			return false; // no change
 		}
 		X.WindowAttributes wa;		

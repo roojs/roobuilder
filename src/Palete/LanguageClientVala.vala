@@ -14,10 +14,7 @@ namespace Palete {
 				this._closed = value;
 			}
 		}
-		private GLib.SubprocessLauncher launcher = null;
-		private GLib.Subprocess? subprocess = null;
-		private IOStream? subprocess_stream = null;
-	   // public Jsonrpc.Client? jsonrpc_client = null;
+
 		
 		int countdown = 0;
 		Gee.ArrayList<JsRender.JsRender> open_files;
@@ -42,14 +39,7 @@ namespace Palete {
 		void startServer()
 		{
 			return;
-			/*var exe = GLib.Environment.find_program_in_path( "vala-language-server");
-			if (exe == null) {
-				GLib.warning("could not find vala-language-server");
-				 
-				return;
-			}
-			this.initProcess(exe);
-			*/
+			 
 		}
 		
 		
@@ -108,176 +98,13 @@ namespace Palete {
 		}
 	 
 		
-	 
-	/*	
-		
-		public bool initProcess(string process_path)
-		{
-			this.onClose();
-			this.log(LanguageClientAction.LAUNCH, process_path);
-			GLib.debug("Launching %s", process_path);
-			this.launcher = new GLib.SubprocessLauncher (SubprocessFlags.STDIN_PIPE | SubprocessFlags.STDOUT_PIPE);
-			var env = GLib.Environ.get();
-			env += "G_MESSAGES_DEBUG=all";
-
-			this.launcher.set_environ(env);
-			var logpath = GLib.Environment.get_home_dir() + "/.cache/vala-language-server";
-			
-			if (!GLib.FileUtils.test(logpath, GLib.FileTest.IS_DIR)) {
-				Posix.mkdir(logpath, 0700);
-			}
-			// not very reliable..
-			//this.launcher.set_stderr_file_path( 
-			//	logpath + "/" + 
-			//	(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log"
-			//);
-			//GLib.debug("log lang server to %s", logpath + "/" + 
-			//	(new GLib.DateTime.now_local()).format("%Y-%m-%d") + ".log");
-
-			try {
-
-				
-				this.subprocess = launcher.spawnv ({ process_path , "2>" , "/tmp/vala-language-server.log" });
-				
-				this.subprocess.wait_async.begin( null, ( obj,res ) => {
-					try {
-						this.subprocess.wait_async.end(res);
-					} catch (GLib.Error e) {
-						this.log(LanguageClientAction.ERROR_START, e.message);
-						GLib.debug("subprocess startup error %s", e.message);	        
-					}
-					this.log(LanguageClientAction.EXIT, "process ended");
-					GLib.debug("Subprocess ended %s", process_path);
-					this.onClose();
-
-				});
-				var input_stream = this.subprocess.get_stdout_pipe ();
-		   		var output_stream = this.subprocess.get_stdin_pipe ();
- 
-		 		if (input_stream is GLib.UnixInputStream && output_stream is GLib.UnixOutputStream) {
-					// set nonblocking
-					if (!GLib.Unix.set_fd_nonblocking(((GLib.UnixInputStream)input_stream).fd, true)
-					 || !GLib.Unix.set_fd_nonblocking (((GLib.UnixOutputStream)output_stream).fd, true)) 
-					 {
-					 	GLib.debug("could not set pipes to nonblocking");
-		 				this.onClose();
-					    return false;
-				    }
-			    }
-			    this.subprocess_stream = new GLib.SimpleIOStream (input_stream, output_stream);
-           		this.accept_io_stream ( this.subprocess_stream);
-			} catch (GLib.Error e) {
-				this.log(LanguageClientAction.ERROR_START, e.message);
-				GLib.debug("subprocess startup error %s", e.message);	
-				this.onClose();
-				return false;
-	      	}
-            return true;
-        }
-
-		public override void client_accepted (Jsonrpc.Client client) 
-		{
-			if (this.jsonrpc_client == null) {
-				this.jsonrpc_client = client;
-				
-				GLib.debug("client accepted connection - calling init server");
-				this.log(LanguageClientAction.ACCEPT, "client accepted");
-
-				this.jsonrpc_client.notification.connect((method, paramz) => {
-					this.onNotification(method, paramz);
-				});
-				 
-				this.jsonrpc_client.failed.connect(() => {
-					this.log(LanguageClientAction.ERROR_RPC, "client failed");
-					GLib.debug("language server server has failed");					
-					this.onClose();
-					
-
-				});
-
-				this.initialize_server ();
-			} 
-			 
-		}
-		
-		*/
+	  
 		public override   void  initialize_server()   {
-			/*
-			try {
-				Variant? return_value;
-				    this.jsonrpc_client.call (
-				    "initialize",
-				    this.buildDict (
-				        processId: new Variant.int32 ((int32) Posix.getpid ()),
-				        rootPath: new Variant.string (this.project.path),
-				        rootUri: new Variant.string (File.new_for_path (this.project.path).get_uri ()),
-				        capabilities : this.buildDict (
-				        	textDocument: this.buildDict (
-				        		documentSymbol : this.buildDict (
-				        			hierarchicalDocumentSymbolSupport : new Variant.boolean (true)
-			        			)
-				        	)
-				        )
-				    ),
-				    null,
-				    out return_value
-				);
-				GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));
-				this.open_files = new Gee.ArrayList<JsRender.JsRender>((a,b) => {
-					return a.path == b.path;
-				});
-				this.initialized = true;
-				//this.getting_diagnostics = false;
-				return;
-			} catch (GLib.Error e) {
-				GLib.debug ("LS replied with error %s", e.message);
-				this.onClose();
-			}
-			*/
+		 
 		}
 		
-        bool in_close = false;
-		void onClose()
-	 	{
-	 		if (this.in_close) {
-	 			return;
- 			}
- 			if (this.launcher == null) {
- 				return;
-			}
-			//this.getting_diagnostics = false;
- 			this.in_close = true;
-	 		GLib.debug("onClose called");
-	 		
-	 		/*if (this.jsonrpc_client != null) {
-	 			try {
-					this.jsonrpc_client.close();
-				} catch (GLib.Error e) {
-					GLib.debug("rpc Error close error %s", e.message);	
-				}		
-			}
-			*/
-			if (this.subprocess_stream != null) {
-				try {
-		 			this.subprocess_stream.close();
-	 			} catch (GLib.Error e) {
-	 				GLib.debug("stream Error close  %s", e.message);	
-				}		
- 			}
- 			if (this.subprocess != null) {
- 				this.subprocess.force_exit();
-			}
-			if (this.launcher != null) {
-				this.launcher.close();
-			}
-			
-			this.launcher = null;
-			this.subprocess = null;
-			//this.jsonrpc_client = null;
-			this.closed = true;	 	
-			this.in_close = false;
-	 	}
-	
+ 
+	 
 		public async void restartServer()
 		{
 			this.startServer();
@@ -287,7 +114,7 @@ namespace Palete {
 		public override bool isReady()
 		{
 			if (this.closed) {
-				this.log(LanguageClientAction.RESTART,"closed is set - restarting");
+				//this.log(LanguageClientAction.RESTART,"closed is set - restarting");
 				GLib.debug("server stopped = restarting");
 				this.initialized = false;
 				this.closed = false;
@@ -341,28 +168,7 @@ namespace Palete {
 		public void onDiagnostic(Variant? return_value) 
 		{
 			return;
-			/*
-			//GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
-			var dg = Json.gobject_deserialize (typeof (Lsp.Diagnostics), Json.gvariant_serialize (return_value)) as Lsp.Diagnostics; 
-			GLib.debug("got diag for %s", dg.filename);
-			this.log(LanguageClientAction.DIAG, dg.filename);
-			if (this.project.path == dg.filename) {
-				//this.getting_diagnostics = false;
-				this.log(LanguageClientAction.DIAG_END, "diagnostics done");
-				return;
-			
-			}
-			//this.getting_diagnostics =true;
-			var f = this.project.getByPath(dg.filename);
-			if (f == null) {
-				//GLib.debug("no file %s", dg.uri);
-				//this.project.updateErrorsforFile(null);
-				return;
-			}
-			//GLib.debug("got Diagnostics for %s", f.path);
-			f.updateErrors( dg.diagnostics );
 			 
-			*/
 		}
 		
 		public override void document_open (JsRender.JsRender file)  
@@ -378,27 +184,7 @@ namespace Palete {
 			
 			GLib.debug ("LS sent open");		
 			return;
-			/*
- 			try {
-				this.jsonrpc_client.send_notification (
-					"textDocument/didOpen",
-					this.buildDict (
-						textDocument : this.buildDict (
-							uri: new Variant.string (file.to_url()),
-							languageId :  new Variant.string (file.language_id()),
-							version :  new GLib.Variant.uint64 ( (uint64) file.version),
-							text : new Variant.string (file.toSource())
-						)
-					),
-					null
-				);
-				this.log(LanguageClientAction.OPEN, file.path);
-			} catch( GLib.Error  e) {
-				this.log(LanguageClientAction.ERROR_RPC, e.message);
-				this.onClose();
-				GLib.debug ("LS sent open err %s", e.message);
-			}
-			*/
+			  
 
  		}
  		
@@ -415,32 +201,7 @@ namespace Palete {
 			this.change_queue_file = null;
 			GLib.debug ("LS send save");
 			return;
-			/*
-			 try {
 			 
-			 	var args = this.buildDict (  
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url()),
-						version :  new GLib.Variant.uint64 ( (uint64) file.version)
-					)
-				);
-			 
-				//GLib.debug ("textDocument/save send with %s", Json.to_string (Json.gvariant_serialize (args), true));					
-			
-			 
-			 
-				  yield this.jsonrpc_client.send_notification_async  (
-					"textDocument/didSave",
-					args,
-					null 
-				);
-				this.log(LanguageClientAction.SAVE, file.path);
-			} catch( GLib.Error  e) {
-				this.log(LanguageClientAction.ERROR_RPC, e.message);
-				GLib.debug ("LS   save err %s", e.message);
-				this.onClose();
-			}
-			*/
 
          
     	}
@@ -454,27 +215,9 @@ namespace Palete {
 			if (this.open_files.contains(file)) {
 				this.open_files.remove(file);
 			}
-			this.log(LanguageClientAction.CLOSE, file.path);
 			GLib.debug ("LS send close");
 			return;
-			/*
-	 		try {
-				  this.jsonrpc_client.send_notification  (
-					"textDocument/didChange",
-					this.buildDict (  
-						textDocument : this.buildDict (    ///TextDocumentItem;
-							uri: new GLib.Variant.string (file.to_url())
-							
-						)
-					),
-					null  
-				);
-			} catch( GLib.Error  e) {
-				this.log(LanguageClientAction.ERROR_RPC, e.message);
-				GLib.debug ("LS close err %s", e.message);
-				this.onClose();
-			}
-			*/
+			 
          
     	}
     	
@@ -509,35 +252,7 @@ namespace Palete {
 				 this.document_open(file);
 			}  
 			return;
-			/*
-			
-			GLib.debug ("LS send change %s rev %d", file.path, file.version);
-			var ar = new Json.Array();
-			var obj = new Json.Object();
-			obj.set_string_member("text", contents);
-			ar.add_object_element(obj);
-			var node = new Json.Node(Json.NodeType.ARRAY);
-			node.set_array(ar);
-			this.log(LanguageClientAction.CHANGE, file.path);
-			 try {
-			  	yield this.jsonrpc_client.send_notification_async (
-					"textDocument/didChange",
-					this.buildDict (  
-						textDocument : this.buildDict (    ///TextDocumentItem;
-							uri: new GLib.Variant.string (file.to_url()),
-							version :  new GLib.Variant.uint64 ( (uint64) file.version) 
-						),
-						contentChanges : Json.gvariant_deserialize (node, null)
-						
-					),
-					null 
-				);
- 			} catch( GLib.Error  e) {
-				this.log(LanguageClientAction.ERROR_RPC, e.message);
-				GLib.debug ("LS change err %s", e.message);
-				this.onClose();
-			}
-			*/
+			 
 
          
     	}
@@ -548,16 +263,9 @@ namespace Palete {
 			
 				return;
 			}
- 			this.log(LanguageClientAction.TERM, "SEND exit");
+
 		 	return;
-		 	/*
-			  this.jsonrpc_client.send_notification (
-				"exit",
-				null,
-				null 
-			);
-			*/
-			this.onClose();
+		 	 
 
 		}
 		// not used currently..
@@ -566,24 +274,12 @@ namespace Palete {
 	 		if (!this.isReady()) {
 				return;
 			}
- 			this.log(LanguageClientAction.TERM, "SEND shutodwn");
+
 		 	this.sent_shutdown  = true;
 		 	return;
-		 	/*
-			Variant? return_value;
-			yield this.jsonrpc_client.call_async (
-				"shutdown",
-				null,
-				null,
-				out return_value
-			);
-			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));		
-			*/
+		 	 
 		}
-		//public async  ??/symbol (string symbol) throws GLib.Error {
-		
-		// and now for the important styff..
-		
+		 
 		/*
 		
 		@triggerType 1 = typing or ctl-spac, 2 = tiggercharactres?  3= inside completion?
@@ -595,13 +291,7 @@ namespace Palete {
 		 	
 			var ret = new Lsp.CompletionList();	
 			 
-			// make sure completion has the latest info..
-			//if (this.change_queue_file != null && this.change_queue_file.path != file.path) {
- 			//	this.document_change_real(this.change_queue_file, this.change_queue_file_source);
- 			//	this.change_queue_file != null;
-			//}
-			this.log(LanguageClientAction.COMPLETE, "SEND complete  %s @ %d:%d".printf(file.relpath, line, offset) );
-			
+		 
 			//var sy = file.getSymbolLoader().getSymbolAt(file,line,offset-1);
  			var sy = file.getSymbolLoader().getSymbolAtFromFile(file,line,offset-1);
  			GLib.debug("Completion @ symbol : %s", sy == null ? "nothing" : sy.dumpToString());
@@ -666,17 +356,14 @@ namespace Palete {
  			}
  			
  			
-			this.log(LanguageClientAction.COMPLETE_REPLY, "GOT array %d items".printf(ret.items.size) );
+ 
 			GLib.debug ("LS replied with Array");
  			return ret;
  		
 
 		}
 		
-	 
-		
-		static int hover_call_count = 1;
- 		bool getting_hover = false;
+	  
 		
 		//CompletionListInfo.itmems.parse_varient  or CompletionListInfo.parsevarient
  		public override async  Lsp.Hover hover (JsRender.JsRender file, int line, int offset) throws GLib.Error 
@@ -692,70 +379,7 @@ namespace Palete {
 		 		SymbolFormat.helpLabel(sy)
 	 		));
 	 		return retv;
-		 	/*
-		 	/* partial_result_token ,  work_done_token   context = null) 
-		 	//GLib.debug("get hover %s %d %d", file.relpath, (int)line, (int)offset);
-			var ret = new Lsp.Hover();	
-		 	//ret = null;
-		    if (!this.isReady()) {
-				return ret;
-			}
-			if (this.getting_hover) {
-				return ret;
-			}
-			
-			hover_call_count++;
-			var  call_id = yield this.queuer(hover_call_count);
-			
-			//GLib.debug("end hover call=%d   count=%d", call_id, hover_call_count);			
-			if (call_id != hover_call_count) {
-			 	//GLib.debug("get hover CANCELLED %s %d %d", file.relpath, (int)line, (int)offset);
-				return ret;
-			}
-			
-		 	//GLib.debug("get hover RUN %s %d %d", file.relpath, (int)line, (int)offset);
-			
-			this.getting_hover = true;
-	
-			Variant? return_value;
-			try {
-				yield this.jsonrpc_client.call_async (
-					"textDocument/hover",
-					this.buildDict (  
-						 
-						textDocument : this.buildDict (    ///TextDocumentItem;
-							uri: new GLib.Variant.string (file.to_url()),
-							version :  new GLib.Variant.uint64 ( (uint64) file.version) 
-						),
-						position :  this.buildDict ( 
-							line :  new GLib.Variant.uint64 ( (uint) line) ,
-							character :  new GLib.Variant.uint64 ( uint.max(0,  (offset -1))) 
-						)
-						 
-					),
-					null,
-					out return_value
-				);
-			} catch(GLib.Error e) {
-				this.getting_hover = false;
-				throw e;
-			}
-			this.getting_hover = false;
-			 GLib.debug ("LS hover replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
-			if (return_value == null) {
-				return ret;
-			}
-			
-			var json = Json.gvariant_serialize (return_value);
-			if (json.get_node_type() != Json.NodeType.OBJECT) {
-				return ret;
-			}
-			
-			
-			ret =  Json.gobject_deserialize ( typeof (Lsp.Hover),  json) as Lsp.Hover; 
-			
-			return ret;
-			*/
+		  
  		
 
 		}
@@ -763,19 +387,7 @@ namespace Palete {
 		
 		static int doc_symbol_queue_call_count = 1;
  
-		
-		/*
-		public override void queueDocumentSymbols (JsRender.JsRender file) 
-		{
-			  
-			this.documentSymbols.begin(file, (o, res) => {
-				var ret = documentSymbols.end(res);
-				//file.navigation_tree_updated(ret);
-			});
-		  
-			 
-		}
-		*/
+		 
 		
 		bool getting_symbols = false;
 	 
@@ -804,44 +416,7 @@ namespace Palete {
 			}
 			this.getting_symbols = true;
 			return ret;
-			/*
-			Variant? return_value;
-			try { 
-				yield this.jsonrpc_client.call_async (
-					"textDocument/documentSymbol",
-					this.buildDict (  
-						 
-						textDocument : this.buildDict (    ///TextDocumentItem;
-							uri: new GLib.Variant.string (file.to_url()),
-							version :  new GLib.Variant.uint64 ( (uint64) file.version) 
-						) 
-						 
-					),
-					null,
-					out return_value
-				);
-			} catch(Error e) {
-				this.getting_symbols = false;			
-				throw e;
-			}
-			this.getting_symbols = false;
-			
-			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
-			var json = Json.gvariant_serialize (return_value);
-			 
-			 
-
-			var ar = json.get_array();
-			GLib.debug ("LS replied with %D items", ar.get_length());
-			for(var i = 0; i < ar.get_length(); i++ ) {
-				var add= Json.gobject_deserialize ( typeof (Lsp.DocumentSymbol),  ar.get_element(i)) as Lsp.DocumentSymbol;
-				ret.add( add);
-					 
-	 		}
-			return ret ;
-			*/
- 		
-		}
+		 }
 		// cant seem to get this to show anything!!
 		public override async Gee.ArrayList<Lsp.SignatureInformation> signatureHelp (JsRender.JsRender file, int line, int offset) throws GLib.Error {
  			/* partial_result_token ,  work_done_token   context = null) */
@@ -852,43 +427,7 @@ namespace Palete {
 				return ret;
 			}
 			return ret;
-			/*
-			Variant? return_value;
-				yield this.jsonrpc_client.call_async (
-				"textDocument/signatureHelp",
-				this.buildDict (  
-					 
-					textDocument : this.buildDict (    ///TextDocumentItem;
-						uri: new GLib.Variant.string (file.to_url())
-					),
-					position :  this.buildDict ( 
-						line :  new GLib.Variant.uint64 ( (uint) line) ,
-						character :  new GLib.Variant.uint64 ( uint.max(0,  (offset -1))) 
-					)
-					 
-				),
-				null,
-				out return_value
-			);
-			
-			
-			GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));					
-			var json = Json.gvariant_serialize (return_value);
-		 	if (json.get_node_type() != Json.NodeType.ARRAY) {
-				return ret;
-			}
-			
 			 
-
-			var ar = json.get_array();
-			GLib.debug ("LS replied with %D items", ar.get_length());
-			for(var i = 0; i < ar.get_length(); i++ ) {
-				var add= Json.gobject_deserialize ( typeof (Lsp.SignatureInformation),  ar.get_element(i)) as Lsp.SignatureInformation;
-				ret.add( add);
-					 
-	 		}
-			return ret ;
-			*/
  		
 		}
 		// ok for general symbol search, not much details though.
@@ -902,20 +441,7 @@ namespace Palete {
 				return ret;
 			}
 			return ret;
-			/*
-			Variant? return_value;
-				yield this.jsonrpc_client.call_async (
-				"workspace/symbol",
-				this.buildDict (  
-					query :  new GLib.Variant.string (sym)					 
-				),
-				null,
-				out return_value
-			);
-			
-GLib.debug ("LS replied with %s", Json.to_string (Json.gvariant_serialize (return_value), true));	
-			return ret;
-			*/
+		 
 		}
 		
 	}

@@ -20,15 +20,16 @@
 namespace Palete {
 	
 	 
-	 public errordomain ValaSymbolBuilderError {
+	public errordomain ValaSymbolBuilderError {
 		PARSE_FAILED 
-	 }
+	}
+
 	 
  
 	public class ValaSymbolBuilder  : Vala.CodeVisitor {
 		
 		bool running = false;
-		int queue_id = 0;
+
 		
 		Vala.CodeContext context;
 		Gee.ArrayList<string> files; 
@@ -82,6 +83,7 @@ namespace Palete {
 			var mod = this.scan_project.firstBuildModuleWith(file);
 			if (this.done_first_compile.contains(mod)) {
 				GLib.debug("SKIP - Already done first compile");
+				this.running  = false;
 				return;
 			}
 			// if we are not running from opt -compile - then we show dialog.
@@ -104,7 +106,7 @@ namespace Palete {
 				//this.filemanager.factory_by_path(s).dump();
 			}
 			// copy the errors so the thread can't use them anymore...
-			this.errors = this.report.errors;
+			this.errors = this.report.verrors;
 			this.report = null;
 			if (lp != null) {
 				lp.bar.el.text= "Updating Database";
@@ -218,38 +220,46 @@ namespace Palete {
 			this.last_request_id = reqid;
 			var first_run = true;
 			while(this.running || first_run) {
-				GLib.debug("updateBackground napping for reqid %d", reqid);
+				GLib.debug("updateBackground napping for reqid  %d - current request = %d", reqid, this.last_request_id);
 				yield nap(500);
 				first_run = false;
+				 
 				
-				if (this.last_request_id != reqid) {
+				if (this.last_request_id > reqid) {
 					GLib.debug("updateBackground failed - (another compile requested) this queue = %d, called queue is %d", this.last_request_id, reqid);
 					// new request has happened.
 					return null;
 				}
-				
+	 			WindowManager.showSpinner("battery-low", "Waiting for compile to end");
 				// ok to run.. - if not still running
 			}
 			
 			 
 			this.running = true;
+			WindowManager.showSpinner("battery-low-charging", "Starting Compile");
+			
 			this.changed.clear();
 			//this.filemanager = new SymbolFileCollection();
 			if (!this.done_first_compile.contains(build_module)) {
 	 			yield this.create_valac_tree( build_module , false);
 	 			this.done_first_compile.add(build_module);
  			}
- 			yield this.create_valac_tree( build_module , true); 			
-			var ar = new Gee.ArrayList<string>();
-			foreach(var s in this.changed) {
-				ar.add(s);
-				this.filemanager.factory_by_path(s).dump();
+ 			yield this.create_valac_tree( build_module , true); 	
+ 			WindowManager.showSpinner("battery-good-charging", "Compile Ended - updating DB");
+			var ar = new Gee.ArrayList<string>(); 			
+ 			if (this.last_request_id == reqid) {
+	 			
+				foreach(var s in this.changed) {
+					ar.add(s);
+					this.filemanager.factory_by_path(s).dump();
+				}
 			}
+ 			WindowManager.showSpinner("", "Done");
 			// copy the errors so the thread can't use them anymore...
-			this.errors = this.report.errors;
+			this.errors = this.report.verrors;
 			this.report = null;
 			this.running = false;		
-			return ar;
+			return this.last_request_id == reqid ? ar  : null;
     
 		
 		}
@@ -482,8 +492,7 @@ namespace Palete {
 		
 		void parse()
 		{
-			// Perform a dummy slow calculation.
-			// (Insert real-life time-consuming algorithm here.)
+			 
 			Vala.CodeContext.push (this.context);
 			Vala.Parser parser = new Vala.Parser ();
 			parser.parse (this.context);
@@ -589,24 +598,24 @@ namespace Palete {
 					case "ValaMethod":
 						new SymbolVala.new_method(this, null, cn as Vala.Method);
 						continue;
-						break;
+
 					case "ValaErrorDomain":
 						new SymbolVala.new_error_domain(this, null, cn as Vala.ErrorDomain);
 						continue;
-						break;
+
 					case "ValaConstant":
 						new SymbolVala.new_constant(this, null, cn as Vala.Constant);
 						continue;
-						break;	
+
 					case "ValaStruct":
 						new SymbolVala.new_struct(this, null, cn as Vala.Struct);
 						//GLib.error("Added struct from visit file? %s", (cn as Vala.Struct).name);
 						continue;
-						break;	
+
 					case "ValaField":
 						new SymbolVala.new_field(this, null, cn as Vala.Field);
 						continue;
-						break;	
+
 					default:
 						GLib.debug("unknown child node %s", cn.type_name);
 //						new SymbolVala.new_method(this, null, cn as Vala.Method);					

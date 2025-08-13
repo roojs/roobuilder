@@ -1050,7 +1050,7 @@ namespace Palete
 		{
 			// we need to know the method, that the cursor is at,
 			// from there we can look for the Variables.
-			var ret = new Gee.ArrayList<Symbol>();
+ 
 			var f = this.manager.factory_by_path(file.targetName());
 			
 			// docs are probably only usefull for the types..?
