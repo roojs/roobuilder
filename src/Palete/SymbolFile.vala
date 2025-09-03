@@ -83,7 +83,7 @@ namespace Palete {
 					this.version =   this.cur_mod_time(); // should be current time..
 					GLib.debug("version set %s : %d", this.path, (int)this.version);
 					var sqf = new SQ.Query<SymbolFile>("files");
-					sqf.update(null,this);
+					sqf.updateById(this);
 					
 					var sq = new SQ.Query<Symbol>("symbol");
 					var ret = new Gee.ArrayList<Symbol>();

@@ -21,7 +21,7 @@ namespace Palete {
 		{
 			this.file_contents.set(file.path, file.toSourceCode());
 		 	Javascript.singleton().validate(file.toSourceCode(), file );
-			BuilderApplication.updateCompileResults();
+			WindowManager.updateCompileResults();
 		
 		}
 		public override async void document_save (JsRender.JsRender file)  
@@ -30,7 +30,7 @@ namespace Palete {
 			this.file_contents.set(file.path, file.toSourceCode());
 			GLib.debug("set file %s : %d  chars", file.path, this.file_contents.get(file.path).length);
 			Javascript.singleton().validate(file.toSourceCode(), file );
-			BuilderApplication.updateCompileResults();
+			WindowManager.updateCompileResults();
 		}
  		static int change_count = 1;
  		public override async void document_change_force (JsRender.JsRender file, string contents )   {
@@ -43,7 +43,7 @@ namespace Palete {
 			this.file_contents.set(file.path, contents);
 			GLib.debug("set file %s : %d chars", file.path, this.file_contents.get(file.path).length);
 			Javascript.singleton().validate(contents, file );
-			BuilderApplication.updateCompileResults();
+			WindowManager.updateCompileResults();
  		}
  		async int queuer(int cnt)
 		{

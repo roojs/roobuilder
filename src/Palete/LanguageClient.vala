@@ -41,7 +41,7 @@ namespace Palete {
  
 
 	
-		public signal void log(LanguageClientAction action, string message);
+ 
 		
 		
 		protected LanguageClient(Project.Project project)

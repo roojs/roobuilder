@@ -147,7 +147,7 @@ namespace Palete {
 			// so no update was done..
 			
 
-			q.update(null,this); 
+			q.updateById(this); 
 
 			// should nto need to update file symbols.
 		}

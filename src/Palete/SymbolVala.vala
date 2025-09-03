@@ -479,7 +479,7 @@ namespace Palete {
 			this.id = old.id;
 			this.file.updated_ids.add((int)this.id);
 			
-			q.update(old, this);
+			q.updateOld(old, this);
 		//	GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
 			// should nto need to update file symbols.
 		}
@@ -519,7 +519,7 @@ namespace Palete {
 			this.id = old.id;
 			this.file.updated_ids.add((int)this.id);
 			
-			q.update(old, this);
+			q.updateOld(old, this);
 			GLib.debug("DB UPDATE added %d:%d, %s", (int)this.parent_id,  (int)this.id, this.fqn);
 			// should nto need to update file symbols.
 		}
@@ -835,7 +835,7 @@ namespace Palete {
 		
 			GLib.debug("handling type %s: %s - %s name=%s",
 				s.source_reference.to_string(), s.type_name, this.codeNodeToString(s),
-				(s is Vala.Symbol) ? (s as Vala.Symbol).name : ""
+				(s is Vala.Symbol) ? ((Vala.Symbol)s).name : ""
 				);
 		}	
 

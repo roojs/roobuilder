@@ -174,9 +174,9 @@
   <gresource prefix="/doc">
     <file>roojs-bootstrap-debug.js</file>
     <file>roojs-core-debug.js</file>
+    <file>Roo.docs.template.js</file>
     <file>Roo.docs.init.js</file>
     <file>Roo.docs.js</file>
-    <file>Roo.docs.template.js</file>
     <file>docs.css</file>
     <file>gtk.html</file>
   </gresource>

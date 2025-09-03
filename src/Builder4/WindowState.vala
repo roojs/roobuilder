@@ -127,7 +127,7 @@ public class WindowState : Object
 	
 		this.win.leftpane.el.remove(this.win.editpane.el);
     	//this.win.tree.el.remove(this.left_tree.el);
-    	this.win.leftpane.el.append(this.left_tree.el);
+		this.win.leftpane.el.append(this.left_tree.el);
 	    
 	
 		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
@@ -146,6 +146,9 @@ public class WindowState : Object
 			//if (source == "editor") {
 			//	return;
 			//}
+			if (!this.win.btn_tree.el.visible) {
+				return;
+			}
 			if (this.file.xtype == "Roo") { 
 				this.window_rooview.sourceview.nodeSelected(sel,true); // foce scroll.
 			} else {
@@ -154,10 +157,17 @@ public class WindowState : Object
 		});
 		
 		this.left_tree.node_selected.connect((sel) => {
+			if (!this.win.btn_tree.el.visible) {
+				return;
+			}
 			this.leftTreeNodeSelected(sel);
 		});
 	 
 		this.left_tree.changed.connect(() => {
+			if (!this.win.btn_tree.el.visible) {
+				return;
+			}
+		
 			GLib.debug("LEFT TREE: Changed fired\n");
 			this.file.save();
 			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
@@ -431,7 +441,7 @@ public class WindowState : Object
 		
 			// in theory active file can only be rooo...
 			var ep = this.roo_projectsettings_pop.project;
-			foreach(var ww in BuilderApplication.windows) {
+			foreach(var ww in WindowManager.getWindows()) {
 				if (ww.windowstate.file != null && 
 					ww.windowstate.project.path == ep.path && 
 					ww.windowstate.file.xtype == "Roo") {
@@ -651,7 +661,7 @@ public class WindowState : Object
 	
 	public void fileViewOpen(JsRender.JsRender file, bool new_window, int line = -1)
 	{
-		var existing = BuilderApplication.getWindow(file);
+		var existing = WindowManager.getFromFile(file);
 		
 		if (existing != null) {
 			existing.el.present();
@@ -662,7 +672,11 @@ public class WindowState : Object
 		if (new_window) {
 	
 			this.popover_files.el.hide();
-			BuilderApplication.newWindow(file, line);
+			var w = WindowManager.addFromFile(file, line);
+			w.btn_header.el.show();
+			if (file.xtype != "PlainFile") {
+				w.btn_tree.el.show();
+			}
 			return;
 		}
 		
@@ -671,13 +685,15 @@ public class WindowState : Object
 		this.project = file.project;
 		this.file = file;
 
+		 
 		
 		file.getLanguageServer().document_open(file);
-		BuilderApplication.showSpinner("spinner", "document open sent");	
+		WindowManager.showSpinner("spinner", "document open sent");	
 			
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();
 			this.switchState (State.CODEONLY); 
+			this.win.btn_tree.el.hide();
 			try {
 				file.loadItems();
 			} catch (Error e) {}
@@ -686,6 +702,7 @@ public class WindowState : Object
 		} else {
 		
 			this.switchState (State.PREVIEW); 
+			this.win.btn_tree.el.show();
 			// this triggers loadItems..
 			this.left_tree.model.loadFile(file);
 			 
@@ -736,7 +753,7 @@ public class WindowState : Object
 		}
 		this.win.setTitle();
 		
-		BuilderApplication.updateCompileResults();	 
+		WindowManager.updateCompileResults();	 
 
 	}
  

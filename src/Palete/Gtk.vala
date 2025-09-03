@@ -158,8 +158,8 @@ namespace Palete {
 					//var ret = new Gee.HashMap<string,GirObject>();
 					//return ret;
 				
-			
-			return ret;}
+			 
+			}
 			
 		
 		}

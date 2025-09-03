@@ -20,15 +20,16 @@
 namespace Palete {
 	
 	 
-	 public errordomain ValaSymbolBuilderError {
+	public errordomain ValaSymbolBuilderError {
 		PARSE_FAILED 
-	 }
+	}
+
 	 
  
 	public class ValaSymbolBuilder  : Vala.CodeVisitor {
 		
 		bool running = false;
-		int queue_id = 0;
+
 		
 		Vala.CodeContext context;
 		Gee.ArrayList<string> files; 
@@ -82,6 +83,7 @@ namespace Palete {
 			var mod = this.scan_project.firstBuildModuleWith(file);
 			if (this.done_first_compile.contains(mod)) {
 				GLib.debug("SKIP - Already done first compile");
+				this.running  = false;
 				return;
 			}
 			// if we are not running from opt -compile - then we show dialog.
@@ -104,7 +106,7 @@ namespace Palete {
 				//this.filemanager.factory_by_path(s).dump();
 			}
 			// copy the errors so the thread can't use them anymore...
-			this.errors = this.report.errors;
+			this.errors = this.report.verrors;
 			this.report = null;
 			if (lp != null) {
 				lp.bar.el.text= "Updating Database";
@@ -134,7 +136,7 @@ namespace Palete {
 			// this needs to do the  'last' queued change..
 			
 			
-			updateBackground.begin(buildmodule, (o,r )  => {
+			updateBackground.begin(buildmodule, 0,  (o, r)  => {
 				var ar = updateBackground.end(r);
 
 				if (ar != null) {
@@ -192,64 +194,72 @@ namespace Palete {
 		}
 		 
 		
-		
-		async int queuer(int cnt)
-		{
-			SourceFunc cb = queuer.callback;
-		  
-			GLib.Timeout.add(500, () => {
-		 		 GLib.Idle.add((owned) cb);
-		 		 return false;
-			});
-			
+	 
+ 		
+ 		int request_count  = 0;
+ 		int last_request_id = 0;
+ 
+ 		public async void nap (uint interval, int priority = GLib.Priority.DEFAULT) {
+			GLib.Timeout.add (interval, () => {
+				nap.callback ();
+				return false;
+			}, priority);
 			yield;
-			return cnt;
-		}
+		}	
+				
  
 		
-		public async Gee.ArrayList<string>? updateBackground(  string build_module) {
+		public async Gee.ArrayList<string>? updateBackground(  string build_module, int reqid  ) {
 			
-			// -- nothing running - queue it for 500s
-			// -- if this is 'end of queue at end of 500s - then we can run it.
-			// what if we are already running something..
-			// - then we need to wait until that finishes until we run this..
-			// we only give up if we are last in queue otherwise
+			if (reqid == 0) {
+ 				// new request
+ 				reqid = ++this.request_count;
+			}
 			
-			this.queue_id++;
-			GLib.debug("updateBackground called with %d", this.queue_id);
-			
-			while (true) {
-				var qid = yield this.queuer(queue_id);
+			GLib.debug("updateBackground called with %d", reqid);
+			this.last_request_id = reqid;
+			var first_run = true;
+			while(this.running || first_run) {
+				GLib.debug("updateBackground napping for reqid  %d - current request = %d", reqid, this.last_request_id);
+				yield nap(500);
+				first_run = false;
+				 
 				
-				if (this.queue_id > qid) { // has somethig increased the 
-					// while we were waiting another task requested a compile
-					// so we will not do this one.
-					
-					GLib.debug("updateBackground failed - (another compile requested) this queue = %d, called queue is %d", this.queue_id, qid);
+				if (this.last_request_id > reqid) {
+					GLib.debug("updateBackground failed - (another compile requested) this queue = %d, called queue is %d", this.last_request_id, reqid);
+					// new request has happened.
 					return null;
 				}
-				if (!this.running) {  // wait till it's not running...
-					break;
-				}
+	 			WindowManager.showSpinner("battery-low", "Waiting for compile to end");
+				// ok to run.. - if not still running
 			}
+			
+			 
 			this.running = true;
+			WindowManager.showSpinner("battery-low-charging", "Starting Compile");
+			
 			this.changed.clear();
 			//this.filemanager = new SymbolFileCollection();
 			if (!this.done_first_compile.contains(build_module)) {
 	 			yield this.create_valac_tree( build_module , false);
 	 			this.done_first_compile.add(build_module);
  			}
- 			yield this.create_valac_tree( build_module , true); 			
-			var ar = new Gee.ArrayList<string>();
-			foreach(var s in this.changed) {
-				ar.add(s);
-				this.filemanager.factory_by_path(s).dump();
+ 			yield this.create_valac_tree( build_module , true); 	
+ 			WindowManager.showSpinner("battery-good-charging", "Compile Ended - updating DB");
+			var ar = new Gee.ArrayList<string>(); 			
+ 			if (this.last_request_id == reqid) {
+	 			
+				foreach(var s in this.changed) {
+					ar.add(s);
+					this.filemanager.factory_by_path(s).dump();
+				}
 			}
+ 			WindowManager.showSpinner("", "Done");
 			// copy the errors so the thread can't use them anymore...
-			this.errors = this.report.errors;
+			this.errors = this.report.verrors;
 			this.report = null;
 			this.running = false;		
-			return ar;
+			return this.last_request_id == reqid ? ar  : null;
     
 		
 		}
@@ -482,8 +492,7 @@ namespace Palete {
 		
 		void parse()
 		{
-			// Perform a dummy slow calculation.
-			// (Insert real-life time-consuming algorithm here.)
+			 
 			Vala.CodeContext.push (this.context);
 			Vala.Parser parser = new Vala.Parser ();
 			parser.parse (this.context);
@@ -589,24 +598,24 @@ namespace Palete {
 					case "ValaMethod":
 						new SymbolVala.new_method(this, null, cn as Vala.Method);
 						continue;
-						break;
+
 					case "ValaErrorDomain":
 						new SymbolVala.new_error_domain(this, null, cn as Vala.ErrorDomain);
 						continue;
-						break;
+
 					case "ValaConstant":
 						new SymbolVala.new_constant(this, null, cn as Vala.Constant);
 						continue;
-						break;	
+
 					case "ValaStruct":
 						new SymbolVala.new_struct(this, null, cn as Vala.Struct);
 						//GLib.error("Added struct from visit file? %s", (cn as Vala.Struct).name);
 						continue;
-						break;	
+
 					case "ValaField":
 						new SymbolVala.new_field(this, null, cn as Vala.Field);
 						continue;
-						break;	
+
 					default:
 						GLib.debug("unknown child node %s", cn.type_name);
 //						new SymbolVala.new_method(this, null, cn as Vala.Method);					

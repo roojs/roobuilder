@@ -232,7 +232,7 @@ namespace JsRender {
 	        this.getLanguageServer().document_save.begin(this, (obj, res) => {
 	        	this.getLanguageServer().document_save.end(res);
 	        });
-	        BuilderApplication.showSpinner("spinner", "document save send");	        
+	        WindowManager.showSpinner("spinner", "document save send");	        
 	    }
 		// ignore these calls.
 	    public override void saveHTML ( string html ) {}

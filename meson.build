@@ -160,6 +160,7 @@ roobuilder_src = files([
    'src/Palete/SymbolFormat.vala',
    'src/Palete/JsonSerialize.vala',
    'src/Palete/SymbolRoo.vala',
+   'src/WindowManager.vala',
 ])
 
 

@@ -95,7 +95,7 @@ namespace SQ {
 		}
 		
 		
-		public void update(T? old, T newer)
+		public void updateOld(T old, T newer)
 		{
 			assert(this.table != "");
 			var sc = Schema.load(this.table);
@@ -126,6 +126,50 @@ namespace SQ {
 
 			var id = this.getInt(old == null ? newer : old, "id",
 				ocl.find_property("id").value_type);
+				
+			this.updateImp(newer, types, setter, id);
+			
+				
+		}
+		public void updateById(T newer)
+		{
+			assert(this.table != "");
+			var sc = Schema.load(this.table);
+			
+			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
+			   
+			string[] setter = {};
+			var types = new Gee.HashMap<string,string> ();
+			foreach(var s in sc) {
+				if (s.name == "id" ){
+					continue;
+				}
+			
+				var ps = ocl.find_property( s.name );
+				if (ps == null) {
+					GLib.debug("could not find property %s in object interface",  s.name);
+					continue;
+				}
+				
+				 
+				setter += (s.name +  " = $" + s.name);
+				types.set(s.name,s.ctype);
+				
+			}
+			if (setter.length < 1) {
+				return;
+			}
+
+			var id = this.getInt(newer, "id",
+				ocl.find_property("id").value_type);
+			this.updateImp(newer, types, setter, id);
+		}
+		
+				
+		void updateImp(T newer, Gee.HashMap<string,string> types, string[] setter, int id)
+		{
+	
+			var ocl = (GLib.ObjectClass) typeof(T).class_ref ();
 			Sqlite.Statement stmt;
 			var q = "UPDATE " + this.table + " SET  " + string.joinv(",", setter) +
 				" WHERE id = " + id.to_string();

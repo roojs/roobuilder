@@ -82,6 +82,7 @@
         			return "5.0.11"; // can we get this from somewhere?
     			}
 		}
+		public WindowManager? window_manager = null;
        
 		public static string _self;
 		//public static string _version = "0000";
@@ -110,7 +111,7 @@
 	
 		public BuilderApplication (  string[] args)
 		{
-			
+			new WindowManager(this); // should reference as it set's the property here
 			try {
 				_self = FileUtils.read_link("/proc/self/exe");
 			} catch (Error e) {
@@ -123,8 +124,8 @@
 				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self), exe_version()),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
-			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
-			BuilderApplication.windowlist = new GLib.ListStore(typeof(WindowState));
+			//BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
+			//BuilderApplication.windowlist = new GLib.ListStore(typeof(WindowState));
 			//BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
 			
 			
@@ -159,7 +160,7 @@
 			this.listFiles(cur_project);
 			//this.testBjs(cur_project);
  
-			
+		
 			//this.compileVala();
 			
 			 // done in background thread.
@@ -209,9 +210,17 @@
 			var gb = new Palete.ValaSymbolGirBuilder(true);
 			gb.ref();
 		
+		
+		
+			WindowManager.load();
+			if (	WindowManager.size() > 0) {
+				return;
+			}
 			var w = new Xcls_MainWindow();
 		    w.initChildren();
-			BuilderApplication.addWindow(w);
+		    
+		    
+			WindowManager.add(w);
 			
 			// it looks like showall after children causes segfault on ubuntu 14.4
 			w.windowstate.init();
@@ -462,7 +471,7 @@
 				var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 				var loop = new MainLoop();
 			
-				sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, (o,r )  => {
+				sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, 0, (o,r )  => {
 					sb.updateBackground.end(r);
 					this.testCompileBjsReal(cur_project);
 				});
@@ -702,7 +711,7 @@
 			 
 			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 			
-			sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, (o,r )  => {
+			sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, 0,  (o,r )  => {
 				  sb.updateBackground.end(r);
 				
 				if (BuilderApplication.opt_test_symbol_dump_file != null) {
@@ -802,7 +811,7 @@
 			
  		}
  		
- 		string jsonArrayToString(Json.Array ar)
+ 		public string jsonArrayToString(Json.Array ar)
  		{
  			var node = new Json.Node (Json.NodeType.ARRAY);
 			node.set_array (ar);
@@ -815,7 +824,8 @@
 
  			return  generator.to_data (null);
  		}
- 		string jsonObjectToString(Json.Node node)
+ 		// these are kind of usefull??? -- move to somewhere more generic?
+ 		public string jsonObjectToString(Json.Node node)
  		{
  			 
 			var  generator = new Json.Generator ();
@@ -887,7 +897,7 @@
 		
 		 
 		
-		
+		/*
 		// move to 'window colletction?
 		public static Gee.ArrayList<Xcls_MainWindow> windows;
 		public static GLib.ListStore windowlist;
@@ -923,7 +933,7 @@
 			
 			
 		}
-	 
+ 		// WindowManager.getFromFile
 		public static Xcls_MainWindow? getWindow(JsRender.JsRender file)
 		{
 			foreach(var ww in BuilderApplication.windows) {
@@ -934,7 +944,7 @@
 			return null;
 		
 		}
-		
+		// WindowManager.addFromFile
 		public static void newWindow(JsRender.JsRender file, int line)
 		{
 		    var w = new Xcls_MainWindow();
@@ -1068,7 +1078,7 @@
 				}
 			}
 		}
-		
+		*/
 		
 		
 	 

@@ -905,7 +905,7 @@ namespace JsRender {
 				}
 			}
 			if (oc != this.error_counter) {
-				BuilderApplication.updateCompileResults();
+				WindowManager.updateCompileResults();
 			}
 			
 		}
