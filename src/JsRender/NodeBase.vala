@@ -21,7 +21,7 @@ namespace JsRender
 			this.parent = null;
 			this.file = null;
 			this.children = new Gee.ArrayList<NodeBase>();
-			this.props = new Gee.ArrayList<NodeProp>();
+			this.props = new Gee.ArrayList<GLib.Object>();
 		}
 		
 		// Getter methods
