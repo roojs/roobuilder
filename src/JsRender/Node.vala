@@ -96,7 +96,27 @@ public class JsRender.Node : NodeBase
 	// uid_count is now inherited from NodeBase
 	
 	// oid, parent, file, children, props are now inherited from NodeBase
-	private Gee.ArrayList<Node> items; // child items..
+	private Gee.ArrayList<Node> items; // child items.. (kept for compatibility)
+	
+	// Convenience methods to sync with base class properties
+	public void sync_children_to_base()
+	{
+		this.children.clear();
+		foreach (var item in this.items)
+		{
+			this.children.add(item);
+		}
+	}
+	
+	public void sync_props_to_base()
+	{
+		this.props.clear();
+		for (var i = 0; i < this.propstore.get_n_items(); i++)
+		{
+			var prop = (NodeProp) this.propstore.get_item(i);
+			this.props.add(prop);
+		}
+	}
 	public GLib.ListStore  childstore; // must be kept in sync with items
 	public GLib.ListStore?  propstore; // must be kept in sync with items
 	public string  xvala_cls; // set by node to vala
@@ -110,7 +130,7 @@ public class JsRender.Node : NodeBase
 	public Gee.HashMap<int,string> line_map; // store of l:xxx or p:....  // fixme - not needed as we can store line numbers in props now.
 	public Gee.ArrayList<int> node_lines; 
 	public Gee.HashMap<int,Node> node_lines_map; // store of l:xxx or p:....
-	public JsRender? file = null;
+	// file property is now inherited from NodeBase
 	
 	public string node_pad = "";
 	
