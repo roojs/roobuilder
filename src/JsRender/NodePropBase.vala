@@ -54,7 +54,7 @@ namespace JsRender
 		public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) {
 			// Skip parent property as it's recursive - don't set any value
 			if (property_name == "parent") {
-				value = GLib.Value (pspec.value_type);
+				//value = GLib.Value (pspec.value_type);
 				return false;
 			}
 			return default_deserialize_property (property_name, out value, pspec, property_node);
