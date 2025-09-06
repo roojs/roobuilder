@@ -98,25 +98,7 @@ public class JsRender.Node : NodeBase
 	// oid, parent, file, children, props are now inherited from NodeBase
 	private Gee.ArrayList<Node> items; // child items.. (kept for compatibility)
 	
-	// Convenience methods to sync with base class properties
-	public void sync_children_to_base()
-	{
-		this.children.clear();
-		foreach (var item in this.items)
-		{
-			this.children.add(item);
-		}
-	}
-	
-	public void sync_props_to_base()
-	{
-		this.props.clear();
-		for (var i = 0; i < this.propstore.get_n_items(); i++)
-		{
-			var prop = (NodeProp) this.propstore.get_item(i);
-			this.props.add(prop);
-		}
-	}
+	// Base class properties are now managed independently
 	public GLib.ListStore  childstore; // must be kept in sync with items
 	public GLib.ListStore?  propstore; // must be kept in sync with items
 	public string  xvala_cls; // set by node to vala
@@ -165,7 +147,7 @@ public class JsRender.Node : NodeBase
 	
 	//public signal void  version_changed();
 	
-	public Node()
+	public Node( )
 	{
 		base(); // Call parent constructor
 		this.items = new Gee.ArrayList<Node>();
@@ -183,7 +165,9 @@ public class JsRender.Node : NodeBase
 		this.node_lines_map = new Gee.HashMap<int,Node>();
 		this.childstore = new GLib.ListStore( typeof(Node));
 		
+		// Base class properties are initialized with default values
 	}
+	
 	
 	public bool has_parent(Node n) 
 	{
@@ -1078,6 +1062,15 @@ public class JsRender.Node : NodeBase
 		this.updated_count++;
 		
 		
+	}
+	
+	public NodeProp? find_prop_by_name(string name) {
+		foreach (var prop in this.props.values) {
+			if (prop.name == name) {
+				return prop;
+			}
+		}
+		return null;
 	}
 	
 	int props_updated_count = -1;
