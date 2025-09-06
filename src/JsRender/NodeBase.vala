@@ -18,7 +18,7 @@ namespace JsRender
 		protected NodeBase( )
 		{
 			// Properties are initialized with default values
-			this.oid = uid_count++;
+			//this.oid = uid_count++;
 			
 		}
 		
@@ -84,6 +84,7 @@ namespace JsRender
 								child.oid = uid_count++;
 							}
 							child.parent = this as Node;
+							child.file = this.file;
 							children_list.add(child);
 						}
 					});
@@ -120,14 +121,13 @@ namespace JsRender
 					// If not a valid value, assign new oid
 					value.set_int(uid_count++);
 					return true;
+				case "file":
 				case "parent":
 		            return false;
-				case "file":
-					// For other NodeBase properties, use default deserialization
-					return default_deserialize_property (property_name, out value, pspec, property_node);
-				default:
+				
+				 default:
 					// Skip properties that don't belong to NodeBase
-					value = GLib.Value (pspec.value_type);
+					 
 					return false;
 			}
 		}
