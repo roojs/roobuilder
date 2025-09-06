@@ -69,7 +69,6 @@ namespace JsRender
 
 		public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
 		{
-			value = null;
 			switch (property_name) {
 				case "children":
 					value = GLib.Value (typeof(Gee.ArrayList));
