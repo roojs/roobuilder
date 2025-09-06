@@ -40,7 +40,7 @@ namespace JsRender
 			return this.get_class ().find_property (name);
 		}
 
-		public Json.Node? serialize_property (string property_name, Value value, ParamSpec pspec) {
+		public Json.Node serialize_property (string property_name, Value value, ParamSpec pspec) {
 			switch (property_name) {
 				case "children":
 					var node = new Json.Node (Json.NodeType.ARRAY);
