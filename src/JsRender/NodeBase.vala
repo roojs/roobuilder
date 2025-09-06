@@ -35,7 +35,7 @@ namespace JsRender
 			return this.parent;
 		}
 		
-		public JsRender? get_file()
+		public GLib.Object? get_file()
 		{
 			return this.file;
 		}
@@ -45,7 +45,7 @@ namespace JsRender
 			return this.children;
 		}
 		
-		public Gee.ArrayList<NodeProp> get_props()
+		public Gee.ArrayList<GLib.Object> get_props()
 		{
 			return this.props;
 		}
@@ -56,7 +56,7 @@ namespace JsRender
 			this.parent = parent;
 		}
 		
-		public void set_file(JsRender? file)
+		public void set_file(GLib.Object? file)
 		{
 			this.file = file;
 		}
