@@ -89,14 +89,13 @@
 
 
 
-public class JsRender.Node : GLib.Object 
+public class JsRender.Node : NodeBase 
 {
 	
 
-	public static int uid_count = 0;
+	// uid_count is now inherited from NodeBase
 	
-	public int oid { get; private set; }
-	public Node parent;
+	// oid, parent, file, children, props are now inherited from NodeBase
 	private Gee.ArrayList<Node> items; // child items..
 	public GLib.ListStore  childstore; // must be kept in sync with items
 	public GLib.ListStore?  propstore; // must be kept in sync with items
@@ -148,6 +147,7 @@ public class JsRender.Node : GLib.Object
 	
 	public Node()
 	{
+		base(); // Call parent constructor
 		this.items = new Gee.ArrayList<Node>();
 		//this._props = new Gee.HashMap<string,NodeProp>();
 		//this._listeners = new Gee.HashMap<string,NodeProp>(); // Nodeprop can include line numbers..
@@ -155,7 +155,6 @@ public class JsRender.Node : GLib.Object
 		this.xvala_cls = "";
 		this.xvala_xcls = "";
 		this.xvala_id = "";
-		this.parent = null;
 		this.line_start = -1;
 		this.line_end = -1;		
 		this.lines = new Gee.ArrayList<int>();
@@ -163,7 +162,6 @@ public class JsRender.Node : GLib.Object
 		this.node_lines = new Gee.ArrayList<int>();
 		this.node_lines_map = new Gee.HashMap<int,Node>();
 		this.childstore = new GLib.ListStore( typeof(Node));
-		this.oid = uid_count++;
 		
 	}
 	
