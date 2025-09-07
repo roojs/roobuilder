@@ -3,7 +3,7 @@ namespace JsRender
 	public abstract class NodeBase : GLib.Object, Json.Serializable
 	{
 
-		protected NodePropType nodetype { get; set; default = NodePropType.NONE; }
+		protected NodePropType node_type { get; set; default = NodePropType.NONE; }
 		// Core properties
 		public int oid { get; private set; default = -1; }
 		public NodeBase? parent { get; set; default = null; }
@@ -40,10 +40,10 @@ namespace JsRender
 			if (this.oid == -1) {
 				this.oid = file.nextOid();
 			}
-			if (this.nodetype == NodePropType.OBJECT && this.parent != null) {
+			if (this.node_type == NodePropType.OBJECT && this.parent != null) {
 				this.parent.childstore.append(this as Node);
 			}
-			if (this.nodetype != NodePropType.OBJECT && this.parent != null) {
+			if (this.node_type != NodePropType.OBJECT && this.parent != null) {
 				this.parent.propstore.append(this as NodeProp);
 			}
 			
@@ -86,6 +86,7 @@ namespace JsRender
 						array.add_element (Json.gobject_serialize (child as NodeBase));
 					}
 					return node;
+				case "node-type":
 				case "prop-name":
 				case "prop-type":
 				case "return-type":
