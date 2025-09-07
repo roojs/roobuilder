@@ -59,5 +59,8 @@ namespace JsRender
 			}
 			return default_deserialize_property (property_name, out value, pspec, property_node);
 		}
+		
+		
+		
 	}
 }
