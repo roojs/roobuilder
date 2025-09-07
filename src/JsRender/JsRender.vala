@@ -965,7 +965,7 @@ namespace JsRender {
 		
 		// oid management per file now?
 		private int oid = 1;
-		public nextOid()
+		public int nextOid()
 		{
 			return this.oid++;
 		}
