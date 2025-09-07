@@ -111,6 +111,7 @@ namespace JsRender
 					}
 					var children_list = new Gee.ArrayList<NodeBase>();
 					property_node.get_array ().foreach_element ((array, index, element) => {
+						//var jobj = array.element(index))
 						var child = Json.gobject_deserialize (typeof (Node), array.get_element(index)) as NodeBase;
 						if (child != null) {
 							// If child oid is negative, assign a new one
