@@ -25,7 +25,10 @@ namespace JsRender
 
 		
 		// listerens can definatly overlap as they are stored in a seperate list. << no need to use this for listeners?
-		LISTENER;
+		LISTENER,
+		
+		
+		OBJECT; // node..
 		
 
 		
