@@ -41,7 +41,7 @@ namespace JsRender
 				this.old = file.nextOid();
 			}
 			var roid = this.oid;
-			foreach(var c in this.children.values) {
+			foreach(var c in this.children) {
 				
 				roid = int.max(roid, c.setFile(f));
 			}
