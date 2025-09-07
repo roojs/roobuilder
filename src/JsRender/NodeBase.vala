@@ -2,6 +2,8 @@ namespace JsRender
 {
 	public abstract class NodeBase : GLib.Object, Json.Serializable
 	{
+
+		protected NodePropType type { get; set; default = NodePropType.NONE; }
 		// Core properties
 		public int oid { get; private set; default = -1; }
 		public Node? parent { get; set; default = null; }
@@ -9,7 +11,20 @@ namespace JsRender
 		
 		// New properties as requested
 		public Gee.ArrayList<Node> children { get; private set; default = new Gee.ArrayList<Node>(); }
-		public Gee.ArrayList<NodeProp> properties { get; private set; default = new Gee.ArrayList<NodeProp>(); }
+
+
+	// Protected properties with prop_ prefix
+		protected string prop_name { get; set; default = ""; }
+
+		protected string return_type { get; set; default = ""; }
+		protected string prop_val { get; set; default = ""; }
+		
+		// Public properties
+
+		public string doc { get; set; default = ""; }
+		
+	
+
 		
 		// Static counter for unique IDs
 		public static int uid_count = 0;
