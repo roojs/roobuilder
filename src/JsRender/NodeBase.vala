@@ -6,7 +6,7 @@ namespace JsRender
 		protected NodePropType nodetype { get; set; default = NodePropType.NONE; }
 		// Core properties
 		public int oid { get; private set; default = -1; }
-		public Node? parent { get; set; default = null; }
+		public NodeBase? parent { get; set; default = null; }
 		
 		
 		// New properties as requested
