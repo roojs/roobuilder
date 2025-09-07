@@ -109,9 +109,9 @@ namespace JsRender
 						value.set_object(new Gee.ArrayList<Node>());
 						return false;
 					}
-					var children_list = new Gee.ArrayList<Node>();
+					var children_list = new Gee.ArrayList<NodeBase>();
 					property_node.get_array ().foreach_element ((array, index, element) => {
-						var child = Json.gobject_deserialize (typeof (Node), array.get_element(index)) as Node;
+						var child = Json.gobject_deserialize (typeof (Node), array.get_element(index)) as NodeBase;
 						if (child != null) {
 							// If child oid is negative, assign a new one
 						 	child.parent = this as Node;
