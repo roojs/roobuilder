@@ -953,7 +953,7 @@ namespace JsRender {
 			if (this.xtype == "PlainFile" ){
 				return;
 			}
-			Node.uid_count = 0;
+			//Node.uid_count = 0;
 			this.tree = new Node();
 			this.tree.loadFromJson(obj,bjs_version);
 			this.tree.file = this;
@@ -963,7 +963,12 @@ namespace JsRender {
 		
 		}
 		
-		
+		// oid management per file now?
+		private int oid = 1;
+		public nextOid()
+		{
+			return this.oid++;
+		}
 		 
 		
 		
