@@ -40,10 +40,10 @@ namespace JsRender
 			if (this.oid == -1) {
 				this.oid = file.nextOid();
 			}
-			if (this.nodetype == NodeProp.OBJECT && this.parent != null) {
+			if (this.nodetype == NodePropType.OBJECT && this.parent != null) {
 				this.parent.childstore.add(this as Node);
 			}
-			if (this.nodetype != NodeProp.OBJECT && this.parent != null) {
+			if (this.nodetype != NodePropType.OBJECT && this.parent != null) {
 				this.parent.propstore.add(this as Node);
 			}
 			
