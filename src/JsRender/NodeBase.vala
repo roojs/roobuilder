@@ -70,7 +70,7 @@ namespace JsRender
 		{
 			switch (property_name) {
 				case "children":
-					if (this.children.length < 0 ){
+					if (this.children.size < 0 ){
 						return null;
 					}
 					var node = new Json.Node (Json.NodeType.ARRAY);
