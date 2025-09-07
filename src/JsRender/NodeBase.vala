@@ -32,7 +32,7 @@ namespace JsRender
 			//this.oid = uid_count++;
 			
 		}
-		
+		// called on load - initalizes oid /file / props / tree
 		public int setFile(JsRender file)
 		{
 			this.file = file;
@@ -40,6 +40,13 @@ namespace JsRender
 			if (this.oid == -1) {
 				this.oid = file.nextOid();
 			}
+			if (this.nodetype == NodeProp.OBJECT && this.parent != null) {
+				this.parent.childstore.add(this as Node);
+			}
+			if (this.nodetype != NodeProp.OBJECT && this.parent != null) {
+				this.parent.propstore.add(this as Node);
+			}
+			
 			var roid = this.oid;
 			foreach(var c in this.children) {
 				roid = int.max(roid, c.setFile(file));
@@ -132,5 +139,17 @@ namespace JsRender
 					return false;
 			}
 		}
+		
+		// realized views.. .
+		public GLib.ListStore  childstore {
+			set;get ; default =  new GLib.ListStore( typeof(Node));
+		}
+		// must be kept in sync with items
+		public GLib.ListStore  propstore {
+			set;get ; default =  new GLib.ListStore( typeof(NodeProp));
+		}
+		
+		
+		
 	}
 }
