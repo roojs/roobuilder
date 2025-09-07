@@ -41,10 +41,10 @@ namespace JsRender
 				this.oid = file.nextOid();
 			}
 			if (this.nodetype == NodePropType.OBJECT && this.parent != null) {
-				this.parent.childstore.add(this as Node);
+				this.parent.childstore.append(this as Node);
 			}
 			if (this.nodetype != NodePropType.OBJECT && this.parent != null) {
-				this.parent.propstore.add(this as Node);
+				this.parent.propstore.append(this as Node);
 			}
 			
 			var roid = this.oid;
