@@ -114,7 +114,7 @@ namespace JsRender
 						var child = Json.gobject_deserialize (typeof (Node), array.get_element(index)) as NodeBase;
 						if (child != null) {
 							// If child oid is negative, assign a new one
-						 	child.parent = this as Node;
+						 	child.parent = this as NodeBase;
 							children_list.add(child);
 						}
 					});
