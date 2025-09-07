@@ -36,14 +36,13 @@ namespace JsRender
 		public int setFile(JsRender file)
 		{
 			this.file = file;
-			var roid = -1;
+ 
 			if (this.oid == -1) {
 				this.oid = file.nextOid();
 			}
 			var roid = this.oid;
 			foreach(var c in this.children) {
-				
-				roid = int.max(roid, c.setFile(f));
+				roid = int.max(roid, c.setFile(file));
 			}
 			return roid;
 		}
