@@ -38,10 +38,10 @@ namespace JsRender
 				return this.node_type;  
 			}
 			set {
-				if (this.prop_type == value) {
+				if (this.node_type == value) {
 					return;
 				}
-				this.prop_type = value;
+				this.node_type = value;
 				if (this.parent != null) {
 					// causes props/ listeners array to get updated.
 					// TODO: Cast to proper Node type when available
@@ -51,13 +51,13 @@ namespace JsRender
 		}
 		public string rtype { 
 			get { 
-				return this.return_type; 
+				return this.prop_type; 
 			}
 		 	set { 
-		 		if (this.return_type == value) {
+		 		if (this.prop_type == value) {
 		 			return;
 	 			}
-		 		this.return_type = value; 
+		 		this.prop_type = value; 
 				if (this.parent != null) {
 					// TODO: Cast to proper Node type when available
 					// this.parent.updated_count++;
