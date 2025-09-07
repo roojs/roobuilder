@@ -10,7 +10,7 @@ namespace JsRender
 		
 		
 		// New properties as requested
-		public Gee.ArrayList<Node> children { get; private set; default = new Gee.ArrayList<Node>(); }
+		public Gee.ArrayList<NodeBase> children { get; private set; default = new Gee.ArrayList<NodeBase>(); }
 
  
 	// Protected properties with prop_ prefix
@@ -44,7 +44,7 @@ namespace JsRender
 				this.parent.childstore.append(this as Node);
 			}
 			if (this.nodetype != NodePropType.OBJECT && this.parent != null) {
-				this.parent.propstore.append(this as Node);
+				this.parent.propstore.append(this as NodeProp);
 			}
 			
 			var roid = this.oid;
