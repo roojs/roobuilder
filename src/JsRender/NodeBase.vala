@@ -119,7 +119,7 @@ namespace JsRender
 						) as NodeBase;
 						if (child != null) {
 							// If child oid is negative, assign a new one
-						 	child.parent = this as NodeBase;
+						 	child.parent = this;
 							children_list.add(child);
 						}
 					});
