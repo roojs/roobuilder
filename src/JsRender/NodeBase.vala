@@ -38,7 +38,7 @@ namespace JsRender
 			this.file = file;
 			var roid = -1;
 			if (this.oid == -1) {
-				this.old = file.nextOid();
+				this.oid = file.nextOid();
 			}
 			var roid = this.oid;
 			foreach(var c in this.children) {
