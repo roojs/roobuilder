@@ -35,7 +35,7 @@ namespace JsRender
 		// property type (eg. listener / property etc..)
 		public NodePropType  ptype {		
 			get {
-				return this.prop_type;  
+				return this.node_type;  
 			}
 			set {
 				if (this.prop_type == value) {
