@@ -447,7 +447,7 @@ public class JsRender.Node : NodeBase
 			this.parent = value;
 		}
 		get {
-			return ((Node)this.parent)
+			return ((Node)this.parent);
 		}
 	}
 
