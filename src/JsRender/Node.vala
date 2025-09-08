@@ -451,17 +451,17 @@ public class JsRender.Node : NodeBase
 		}
 		var nlist = new Gee.ArrayList<Node>();
 		for (var i =0;i < this.parent.items.size; i++) {
-			if (this.parent.items.get(i) == this) {
+			if (((Node)this.parent).items.get(i) == this) {
 				continue;
 			}
-			nlist.add(this.parent.items.get(i));
+			nlist.add(((Node)this.parent).items.get(i));
 		}
 		uint pos;
 		if ( this.parent.childstore.find(this, out pos)) {
 			this.parent.childstore.remove(pos);
 		} 
-		this.parent.updated_count++;
-		this.parent.items = nlist;
+		((Node)this.parent).updated_count++;
+		((Node)this.parent).items = nlist;
 		this.parent = null;
 
 	}
