@@ -1717,7 +1717,7 @@ public class Xcls_LeftProps : Object
 				 	if (prop.parent == null) {
 				 		return;
 			 		}
-			    	_this.show_editor(_this.file, prop.parent, prop);
+			    	_this.show_editor(_this.file, prop.parentNode, prop);
 				
 				}
 				

@@ -1076,13 +1076,13 @@ public class Xcls_WindowLeftTree : Object
 						pos = "over";
 					} else {
 				 		 
-				 		if (!drop_on_to.contains(node.parent.fqn() ) && !is_control) {
+				 		if (!drop_on_to.contains(node.parentNode.fqn() ) && !is_control) {
 							//GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
 				 			pos = "over";
 			 			} else {
 							//GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
 							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
+					 			if (node.parentNode.oid == _this.view.dragNode.oid || node.parentNode.has_parent(_this.view.dragNode)) {
 						 			GLib.debug("shift drop not self not allowed");
 					 				this.addHighlight(null, "");
 									return Gdk.DragAction.ASK;
@@ -1206,12 +1206,12 @@ public class Xcls_WindowLeftTree : Object
 					if (node.parent == null) {
 						pos = "over";
 					} else {
-				 		if (!drop_on_to.contains(node.parent.fqn())  && !is_control) {
+				 		if (!drop_on_to.contains(node.parentNode.fqn())  && !is_control) {
 							pos = "over";
 			 			} else {
 							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
 							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
+					 			if (node.parentNode.oid == _this.view.dragNode.oid || node.parentNode.has_parent(_this.view.dragNode)) {
 						 			GLib.debug("shift drop not self not allowed");
 			  						return false;	
 					 			}
@@ -1257,7 +1257,7 @@ public class Xcls_WindowLeftTree : Object
 					 		_this.model.selectNode(null); 	 		
 					 		_this.view.dragNode.remove();
 				 		}
-						node.parent.insertBefore(dropNode, node);	 		
+						node.parentNode.insertBefore(dropNode, node);	 		
 						dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode); 			
 			 			_this.changed();
@@ -1271,7 +1271,7 @@ public class Xcls_WindowLeftTree : Object
 				 		}
 				
 			 			
-			 			node.parent.insertAfter(dropNode, node);
+			 			node.parentNode.insertAfter(dropNode, node);
 			 			dropNode.updated_count++;
 			 			_this.model.selectNode(dropNode);	
 			 			_this.changed();
