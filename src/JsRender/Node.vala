@@ -129,7 +129,7 @@ public class JsRender.Node : NodeBase
 				
 			//GLib.debug("Update Node %d p%d - rev %d", this.oid, this.parent != null ? this.parent.oid : -1, value);
 			if (this.parent != null) {
-				this.parent.updated_count++; // will recurse up.
+				(Node)(this.parent).updated_count++; // will recurse up.
 			}  else {
 				if (this.file != null) {
 					this.file.updateUndo();
