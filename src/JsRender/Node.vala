@@ -450,7 +450,7 @@ public class JsRender.Node : NodeBase
 			return;
 		}
 		var nlist = new Gee.ArrayList<Node>();
-		for (var i =0;i < this.parent.items.size; i++) {
+		for (var i =0;i < ((Node)this.parent).items.size; i++) {
 			if (((Node)this.parent).items.get(i) == this) {
 				continue;
 			}
