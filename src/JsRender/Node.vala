@@ -96,7 +96,7 @@ public class JsRender.Node : NodeBase
 	// uid_count is now inherited from NodeBase
 	
 	// oid, parent, file, children, props are now inherited from NodeBase
-	private Gee.ArrayList<Node> items; // child items.. (kept for compatibility)
+	//private Gee.ArrayList<Node> items; // child items.. (kept for compatibility)
 	
 	// Base class properties are now managed independently
 	//public GLib.ListStore  childstore; // must be kept in sync with items
