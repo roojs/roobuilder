@@ -89,7 +89,9 @@
                 "src/Palete/SymbolFormat.vala",
                 "src/Palete/JsonSerialize.vala",
                 "src/Palete/SymbolRoo.vala",
-                "src/WindowManager.vala"
+                "src/WindowManager.vala",
+                "src/JsRender/NodePropBase.vala",
+                "src/JsRender/NodeBase.vala"
             ]
         }
     ],
