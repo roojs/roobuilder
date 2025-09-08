@@ -153,7 +153,7 @@ public class JsRender.Node : NodeBase
 		//this.items = new Gee.ArrayList<Node>();
 		//this._props = new Gee.HashMap<string,NodeProp>();
 		//this._listeners = new Gee.HashMap<string,NodeProp>(); // Nodeprop can include line numbers..
-		this.propstore = new GLib.ListStore(typeof(NodeProp)); // Nodeprop can include line numbers..
+		//this.propstore = new GLib.ListStore(typeof(NodeProp)); // Nodeprop can include line numbers..
 		this.xvala_cls = "";
 		this.xvala_xcls = "";
 		this.xvala_id = "";
