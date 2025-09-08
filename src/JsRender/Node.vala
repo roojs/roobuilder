@@ -179,7 +179,7 @@ public class JsRender.Node : NodeBase
 		}
 		
 
-		return this.parent.has_parent(n);
+		return (Node)(this.parent).has_parent(n);
 	}
 	
 	
