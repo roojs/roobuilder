@@ -99,8 +99,8 @@ public class JsRender.Node : NodeBase
 	private Gee.ArrayList<Node> items; // child items.. (kept for compatibility)
 	
 	// Base class properties are now managed independently
-	public GLib.ListStore  childstore; // must be kept in sync with items
-	public GLib.ListStore?  propstore; // must be kept in sync with items
+	//public GLib.ListStore  childstore; // must be kept in sync with items
+	//public GLib.ListStore?  propstore; // must be kept in sync with items
 	public string  xvala_cls; // set by node to vala
 	public string xvala_xcls; // 'Xcls_' + id; // set by nodetoVala
 	public string xvala_id; // item id or "" // set by nodetovala
