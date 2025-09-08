@@ -443,7 +443,9 @@ public class JsRender.Node : NodeBase
 	 
 	}
 	public Node? parentNode { 
-		private set;
+		private set {
+			this.parent = value;
+		}
 		get {
 			return ((Node)this.parent)
 		}
