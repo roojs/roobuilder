@@ -442,14 +442,7 @@ public class JsRender.Node : NodeBase
 		 
 	 
 	}
-	public Node? parentNode { 
-		private set {
-			this.parent = value;
-		}
-		get {
-			return ((Node)this.parent);
-		}
-	}
+	
 
 	public void  remove()
 	{
