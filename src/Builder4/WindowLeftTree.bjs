@@ -569,7 +569,7 @@
            "\t \t\tif (!drop_on_to.contains(node.parentNode.fqn())  && !is_control) {",
            "\t\t\t\tpos = \"over\";",
            " \t\t\t} else {",
-           "\t\t\t\tGLib.debug(\"drop  contains %s - using %s\" , node.parent.fqn(), pos);",
+           "\t\t\t\tGLib.debug(\"drop  contains %s - using %s\" , node.parentNode.fqn(), pos);",
            "\t\t\t\tif (_this.view.dragNode  != null && is_shift) {",
            "\t\t \t\t\tif (node.parentNode.oid == _this.view.dragNode.oid || node.parentNode.has_parent(_this.view.dragNode)) {",
            "\t\t\t \t\t\tGLib.debug(\"shift drop not self not allowed\");",

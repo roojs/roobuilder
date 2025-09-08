@@ -1209,7 +1209,7 @@ public class Xcls_WindowLeftTree : Object
 				 		if (!drop_on_to.contains(node.parentNode.fqn())  && !is_control) {
 							pos = "over";
 			 			} else {
-							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+							GLib.debug("drop  contains %s - using %s" , node.parentNode.fqn(), pos);
 							if (_this.view.dragNode  != null && is_shift) {
 					 			if (node.parentNode.oid == _this.view.dragNode.oid || node.parentNode.has_parent(_this.view.dragNode)) {
 						 			GLib.debug("shift drop not self not allowed");
