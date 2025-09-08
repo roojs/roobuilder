@@ -341,7 +341,7 @@ public class JsRender.Node : NodeBase
 	
 	
 	}
-	
+	/*
 	public void dumpProps(string indent = "")
 	{
 		print("%s:\n" , this.fqn());
@@ -352,6 +352,7 @@ public class JsRender.Node : NodeBase
 			n.dumpProps(indent + "  ");
 		}
 	}
+	*/
 	
 	
 	
@@ -364,10 +365,12 @@ public class JsRender.Node : NodeBase
 	}
 	
 	
-	public bool hasChildren()
-	{
-		return this.items.size > 0;
-	}
+	//public bool hasChildren()
+	//{
+		
+	//	return this.items.size > 0;
+	//}
+	
 	public bool hasXnsType()
 	{
 		if (this.props.get("xns") != null && this.props.get("xtype") != null) {
