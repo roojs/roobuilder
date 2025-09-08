@@ -1,0 +1,4 @@
+{
+    "vala.languageServerPath": "/usr/bin/vala-language-server",
+    "vala.debugMode": false
+}
