@@ -155,7 +155,14 @@ namespace JsRender
 			set;get ; default =  new GLib.ListStore( typeof(NodeProp));
 		}
 		
-		
+		public Node? parentNode { 
+		private set {
+			this.parent = value;
+		}
+		get {
+			return ((Node)this.parent);
+		}
+	}
 		
 	}
 }
