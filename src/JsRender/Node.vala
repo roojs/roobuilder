@@ -150,7 +150,7 @@ public class JsRender.Node : NodeBase
 	public Node( )
 	{
 		base(); // Call parent constructor
-		this.items = new Gee.ArrayList<Node>();
+		//this.items = new Gee.ArrayList<Node>();
 		//this._props = new Gee.HashMap<string,NodeProp>();
 		//this._listeners = new Gee.HashMap<string,NodeProp>(); // Nodeprop can include line numbers..
 		this.propstore = new GLib.ListStore(typeof(NodeProp)); // Nodeprop can include line numbers..
@@ -183,11 +183,11 @@ public class JsRender.Node : NodeBase
 	}
 	
 	
-	public  Gee.ArrayList<Node> readItems()
-	{
-		return this.items; // note should not modify add/remove from this directly..
-		
-	}
+	//public  Gee.ArrayList<Node> readItems()
+	//{
+	//	return this.items; // note should not modify add/remove from this directly..
+	//	
+	//}
 	public void setNodeLine(int line, Node node) {
 		//print("Add node @ %d\n", line);
 		if (this.node_lines_map.has_key(line)) {
