@@ -154,15 +154,52 @@ namespace JsRender
 		public GLib.ListStore  propstore {
 			set;get ; default =  new GLib.ListStore( typeof(NodeProp));
 		}
+		public int childstore_find(NodeBase child) {
+			uint pos;
+			return childstore.find_with_equal_func(child, (a, b) => {
+				return ((NodeBase)a).oid == ((NodeBase)b).oid;
+			},	out pos) ? (int)pos : -1;
+		}
+		public  int propstore_find(NodeProp child) {
+			uint pos;
+			return this.propstore.find_with_equal_func(child, (a, b) => {
+				return ((NodeProp)a).oid == ((NodeProp)b).oid;
+			}, out pos) ? (int)pos : -1;
+		}
 		
 		public Node? parentNode { 
-		private set {
-			this.parent = value;
+			private set {
+				this.parent = value;
+			}
+			get {
+				return ((Node)this.parent);
+			}
 		}
-		get {
-			return ((Node)this.parent);
+
+		// snould only be called from action...
+		void removeChild(NodeBase child) 
+		{
+			child.removeChildren ();
+			this.children.remove(child);
+			
+			if (this.node_type == NodePropType.OBJECT) {
+				var pos = this.childstore_find(child);
+				if (pos != -1) {
+					this.childstore.remove(pos);
+				}
+			} else {
+				var pos = this.propstore_find(child as NodeProp);
+				if (pos != -1) {
+					this.propstore.remove(pos);
+				}
+			}
+			this.file.removeNode(child);
+			child.parent = null;
 		}
-	}
-		
+		void removeChildren() {
+			foreach(var c in this.children) {
+				this.removeChild(c);
+			}
+		}
 	}
 }
