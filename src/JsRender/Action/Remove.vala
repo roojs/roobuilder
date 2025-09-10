@@ -69,9 +69,7 @@ namespace JsRender
             foreach (var child in node.readItems()) {
                 int childLowest = this.findLowestOid(child);
                 if (childLowest > -1) {
-                    if (lowest == -1 || childLowest < lowest) {
-                        lowest = childLowest;
-                    }
+                    lowest = (lowest == -1 || childLowest < lowest) ? childLowest : lowest;
                 }
             }
             
