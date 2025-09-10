@@ -10,18 +10,18 @@ namespace JsRender
             this.node = node;
         }
 
-        public override void do(bool create_undo = true) {
+        public override void do( ) {
 
             if (this.node.parent == null) {
                 GLib.debug("remove - parent is null?");
                 return;
             }
             // need to setup undo...
-            if (create_undo) {
-                this.undoAction = new Action.Add(
-                    this.file, this.node.parent,  Json.gobject_serialize (this.node),
-                    -1);
-            }
+            
+            this.undoAction = new Action.Add(
+                this.file, this.node.parent,  Json.gobject_serialize (this.node),
+            );
+            
             // need to remove from
             // children
             // propstore
