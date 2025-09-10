@@ -9,7 +9,16 @@ namespace JsRender
         Remove(JsRender file, Node node) {
             base(file);
             this.node = node;
-            this.position = -1; // Will be set in do() method
+            
+            // Find the position of the node in its parent's children
+            if (this.node.parent != null) {
+                this.position = this.node.parent.children.index_of(this.node);
+                if (this.position == -1) {
+                    GLib.debug("remove - could not find node position in parent");
+                }
+            } else {
+                this.position = -1;
+            }
         }
 
         public override void do( ) {
