@@ -4,22 +4,20 @@ namespace JsRender
     public class Action.Remove : Action {
 
         Node node;
-        int position;
-        int lowestOid;
+        int position = -1;
+        int lowestOid = -1;
         Action? undoAction {set;get;default = null;};
         Remove(JsRender file, Node node) {
             base(file);
             this.node = node;
-            this.lowestOid = -1;
             
             // Find the position of the node in its parent's children
             if (this.node.parent != null) {
                 this.position = this.node.parent.children.index_of(this.node);
-                if (this.position == -1) {
-                    GLib.debug("remove - could not find node position in parent");
-                }
-            } else {
-                this.position = -1;
+                
+            }  
+            if (this.position == -1) {
+                GLib.debug("remove - could not find node position in parent");
             }
         }
 
