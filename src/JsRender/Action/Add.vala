@@ -14,7 +14,7 @@ namespace JsRender {
             this.position = position;
         }
 
-        public override void do(create_undo = true) {
+        public override void do(bool create_undo = true) {
             
             // Deserialize the node from JSON
             var parser = new Json.Parser();
