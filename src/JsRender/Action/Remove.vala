@@ -3,17 +3,17 @@ namespace JsRender
     
     public class Action.Remove : ActionBase {
 
-        Node node;
+        int nodeOid;
         int position = -1;
         int lowestOid = -1;
 
         Remove(JsRender file, Node node) {
             base(file);
-            this.node = node;
+            this.nodeOid = node.oid;
             
             // Find the position of the node in its parent's children
-            if (this.node.parent != null) {
-                this.position = this.node.parent.children.index_of(this.node);
+            if (node.parent != null) {
+                this.position = node.parent.children.index_of(node);
                 
             }  
             if (this.position == -1) {
@@ -23,8 +23,16 @@ namespace JsRender
         }
 
         public override void do( ) {
+            
+            // Get the node from OID
+            var nodeBase = this.file.nodes.get(this.nodeOid);
+            if (nodeBase == null || !(nodeBase is Node)) {
+                GLib.debug("Remove action - node with OID %d not found", this.nodeOid);
+                return;
+            }
+            var node = (Node)nodeBase;
 
-            if (this.node.parent == null) {
+            if (node.parent == null) {
                 GLib.debug("remove - parent is null?");
                 return;
             }
@@ -37,19 +45,16 @@ namespace JsRender
             // Setup undo action with the correct position
             // Serialize the node to JSON string using Json.Generator
             var generator = new Json.Generator();
-            generator.set_root(Json.gobject_serialize(this.node));
+            generator.set_root(Json.gobject_serialize(node));
             string nodeJson = generator.to_data(null);
             
             this.undoAction = new Action.Add(
-                this.file, (Node)this.node.parent, nodeJson,
+                this.file, (Node)node.parent, nodeJson,
                 this.position);
             
-             
-                // Remove the node from its parent
-            this.node.parent.removeChild(this.node);
-            
-            
-        } 
+            // Remove the node from its parent
+            node.parent.removeChild(node);
+        }
         public override void undo() {
             if (this.undoAction != null) {
                 this.undoAction.do();

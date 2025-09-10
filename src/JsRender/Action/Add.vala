@@ -3,21 +3,21 @@ namespace JsRender
     
     public class Action.Add : ActionBase {
 
-        Node parent;
+        int parentOid;
         string nodeJson;
         int position;
 
         
         public Add(JsRender file, Node parent, string nodeJson, int position = -1) {
             base(file);
-            this.parent = parent;
+            this.parentOid = parent.oid;
             this.nodeJson = nodeJson;
             this.position = position;
         }
         
-        public Add.from_node(JsRender file, Node parent, Node node, int position = -1) {
+        public Add.from_node(JsRender file, Node parent, NodeBase node, int position = -1) {
             base(file);
-            this.parent = parent;
+            this.parentOid = parent.oid;
             
             // Serialize the node to JSON string using Json.Generator
             var generator = new Json.Generator();
@@ -30,6 +30,14 @@ namespace JsRender
         public override void do() {
             
             try {
+                // Get the parent node from OID
+                var parentBase = this.file.nodes.get(this.parentOid);
+                if (parentBase == null || !(parentBase is Node)) {
+                    GLib.debug("Add action - parent with OID %d not found", this.parentOid);
+                    return;
+                }
+                var parent = (Node)parentBase;
+                
                 // Deserialize the node from JSON using gobject_from_data
                 var node = Json.gobject_from_data(typeof(Node), this.nodeJson) as Node;
                 if (node == null) {
@@ -40,16 +48,16 @@ namespace JsRender
                 // Validate and clean up OIDs to avoid conflicts
                 node.removeDuplicateOIDs(this.file);
                 
-                // Set the file reference
-                
                 // Add the node to the parent first
                 if (this.position == -1) {
                     // Append to the end
-                    this.parent.children.add(node);
+                    parent.children.add(node);
                 } else {
                     // Insert at specific position
-                    this.parent.children.insert(this.position, node);
+                    parent.children.insert(this.position, node);
                 }
+                
+                // Set the file reference after it's added
                 node.setFile(this.file);
                 
                 
