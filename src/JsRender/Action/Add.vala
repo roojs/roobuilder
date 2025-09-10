@@ -40,6 +40,9 @@ namespace JsRender
                     this.parent.insertChild(this.position, node);
                 }
                 
+                // Add the node to the file's OID mapping
+                this.file.addNodeToMap(node);
+                
                 // Setup undo action after the node has been added (so Remove knows the position)
                 this.undoAction = new Action.Remove(this.file, node);
                 
