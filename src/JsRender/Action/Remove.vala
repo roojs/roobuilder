@@ -20,7 +20,7 @@ namespace JsRender
             
             this.undoAction = new Action.Add(
                 this.file, this.node.parent,  Json.gobject_serialize (this.node),
-            );
+             -1 );
             
             // need to remove from
             // children
