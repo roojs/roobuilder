@@ -14,6 +14,7 @@ namespace JsRender
 
  
 	// Protected properties with prop_ prefix
+		protected bool is_static { get; set; default = false; }
 		protected string prop_name { get; set; default = ""; }
 		protected string prop_val { get; set; default = ""; }
 		// for properties  - it's the type ?? for nodes? we use props?
@@ -43,7 +44,7 @@ namespace JsRender
 			
 			// Add the node to the file's OID mapping
 			if (this.oid != -1) {
-				file.nodes.set(this.oid, this);
+				file.nodes.set(this.oid, (Node)this);
 			}
 			
 			if (this.node_type == NodePropType.OBJECT && this.parent != null) {
@@ -58,6 +59,19 @@ namespace JsRender
 				roid = int.max(roid, c.setFile(file));
 			}
 			return roid;
+		}
+		
+		public void removeDuplicateOIDs(JsRender file) {
+			// Check if the node's OID already exists in the file
+			if (this.oid != -1 && file.nodes.has_key(this.oid)) {
+				GLib.debug("OID %d already exists, resetting to -1", this.oid);
+				this.oid = -1;
+			}
+			
+			// Recursively check and clean OIDs in child nodes
+			foreach (var child in this.children) {
+				child.removeDuplicateOIDs(file);
+			}
 		}
 		
 		
@@ -99,6 +113,7 @@ namespace JsRender
 				case "prop-val":
 				case "doc": 
 				case "oid":
+				case "is-static":
 					return default_serialize_property (property_name, value, pspec);
 				 
 				default:
@@ -141,6 +156,7 @@ namespace JsRender
 				case "return-type":
 				case "prop-val":
 				case "doc":	
+				case "is-static":
 					return default_deserialize_property (property_name, out value, pspec, property_node);
 				
 				case "file":
@@ -183,7 +199,7 @@ namespace JsRender
 		}
 
 		// snould only be called from action...
-		void removeChild(NodeBase child) 
+		public void removeChild(NodeBase child) 
 		{
 			child.removeChildren ();
 			this.children.remove(child);
@@ -199,7 +215,11 @@ namespace JsRender
 					this.propstore.remove(pos);
 				}
 			}
-			this.file.removeNode(child);
+			// this is recursive so we need to remove them here.
+			this.file.nodes.unset(child.oid);
+			this.file.nextOid(child.oid); // make it available
+			child.oid = -1; // clear it
+			child.file = null;
 			child.parent = null;
 		}
 		void removeChildren() {

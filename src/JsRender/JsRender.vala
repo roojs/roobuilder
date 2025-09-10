@@ -969,8 +969,8 @@ namespace JsRender {
 		{
 			if (new_oid > -1) {
 				// Use the provided OID
-				this.oid = new_oid;
-				return new_oid;
+				this.oid = new_oid  < this.oid ? new_oid : this.oid;
+				return this.oid;
 			}
 			
 			// Find the next available OID
@@ -981,8 +981,8 @@ namespace JsRender {
 			return this.oid++;
 		}
 		
-		// OID to Node mapping - managed by Action classes, should not be used elsewhere
-		internal Gee.HashMap<int, Node> nodes = new Gee.HashMap<int, Node>();
+		// OID to NodeBase mapping - managed by Action classes, should not be used elsewhere
+		internal Gee.HashMap<int, NodeBase> nodes = new Gee.HashMap<int, NodeBase>();
 		 
 		
 		

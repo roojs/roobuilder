@@ -1,24 +1,29 @@
 namespace JsRender
 {
     
-    public class Action.Add : Action {
+    public class Action.Add : ActionBase {
 
         Node parent;
         string nodeJson;
         int position;
-        Action? undoAction {set;get;default = null;};
+
         
-        Add(JsRender file, Node parent, string nodeJson, int position = -1) {
+        public Add(JsRender file, Node parent, string nodeJson, int position = -1) {
             base(file);
             this.parent = parent;
             this.nodeJson = nodeJson;
             this.position = position;
         }
         
-        Add.from_node(JsRender file, Node parent, Node node, int position = -1) {
+        public Add.from_node(JsRender file, Node parent, Node node, int position = -1) {
             base(file);
             this.parent = parent;
-            this.nodeJson = Json.gobject_serialize(node);
+            
+            // Serialize the node to JSON string using Json.Generator
+            var generator = new Json.Generator();
+            generator.set_root(Json.gobject_serialize(node));
+            this.nodeJson = generator.to_data(null);
+            
             this.position = position;
         }
 
@@ -33,19 +38,19 @@ namespace JsRender
                 }
                 
                 // Validate and clean up OIDs to avoid conflicts
-                this.validateAndCleanOIDs(node);
+                node.removeDuplicateOIDs(this.file);
                 
                 // Set the file reference
-                node.setFile(this.file);
                 
                 // Add the node to the parent first
                 if (this.position == -1) {
                     // Append to the end
-                    this.parent.appendChild(node);
+                    this.parent.children.add(node);
                 } else {
                     // Insert at specific position
-                    this.parent.insertChild(this.position, node);
+                    this.parent.children.insert(this.position, node);
                 }
+                node.setFile(this.file);
                 
                 
                 // Setup undo action after the node has been added (so Remove knows the position)
@@ -57,18 +62,6 @@ namespace JsRender
             }
         }
 
-        private void validateAndCleanOIDs(Node node) {
-            // Check if the node's OID already exists in the file
-            if (node.oid != -1 && this.file.nodes.has_key(node.oid)) {
-                GLib.debug("OID %d already exists, resetting to -1", node.oid);
-                node.oid = -1;
-            }
-            
-            // Recursively check and clean OIDs in child nodes
-            foreach (var child in node.readItems()) {
-                this.validateAndCleanOIDs(child);
-            }
-        }
 
         public override void undo() {
             if (this.undoAction != null) {

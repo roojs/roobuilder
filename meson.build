@@ -107,9 +107,6 @@ roobuilder_src = files([
    'src/JsRender/NodeToGlade.vala',
    'src/JsRender/Roo.vala',
    'src/JsRender/Node.vala',
-   'src/JsRender/Action.vala',
-   'src/JsRender/Action/Add.vala',
-   'src/JsRender/Action/Remove.vala',
    'src/JsRender/PlainFile.vala',
    'src/JsRender/NodeToVala.vala',
    'src/JsRender/NodeToJs.vala',
@@ -166,6 +163,10 @@ roobuilder_src = files([
    'src/WindowManager.vala',
    'src/JsRender/NodePropBase.vala',
    'src/JsRender/NodeBase.vala',
+   'src/JsRender/Action.vala',
+   'src/JsRender/Action/Add.vala',
+   'src/JsRender/Action/Move.vala',
+   'src/JsRender/Action/Remove.vala',
 ])
 
 
