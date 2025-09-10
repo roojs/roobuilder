@@ -18,8 +18,8 @@ namespace JsRender {
             // need to setup undo...
             if (create_undo) {
                 this.undoAction = new Action.Add(
-                    this.file, this.parent.oid,  Json.gobject_serialize (this.node),
-                    false);
+                    this.file, this.node.parent,  Json.gobject_serialize (this.node),
+                    -1);
             }
             // need to remove from
             // children
