@@ -9,7 +9,7 @@ namespace JsRender {
             this.node = node;
         }
 
-        public override void do(create_undo = true) {
+        public override void do(bool create_undo = true) {
 
             if (this.node.parent == null) {
                 GLib.debug("remove - parent is null?");
@@ -17,7 +17,9 @@ namespace JsRender {
             }
             // need to setup undo...
             if (create_undo) {
-                this.undoAction = new Action.Add(this.file, this.parent.oid,  Json.gobject_serialize (this.node));
+                this.undoAction = new Action.Add(
+                    this.file, this.parent.oid,  Json.gobject_serialize (this.node),
+                    false);
             }
             // need to remove from
             // children
