@@ -9,7 +9,7 @@ namespace JsRender
 			this.file = file;
 		}
 	
-		public abstract void do(bool create_undo = true);
+		public abstract void do();
 		public abstract void undo();
 
 
