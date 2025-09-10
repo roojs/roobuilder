@@ -1,4 +1,5 @@
-namespace JsRender {
+namespace JsRender
+{
 
 	public abstract class Action {
 
@@ -14,5 +15,4 @@ namespace JsRender {
 
 
 	}
-	
 }
