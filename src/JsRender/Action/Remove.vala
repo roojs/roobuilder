@@ -5,10 +5,12 @@ namespace JsRender
 
         Node node;
         int position;
+        int lowestOid;
         Action? undoAction {set;get;default = null;};
         Remove(JsRender file, Node node) {
             base(file);
             this.node = node;
+            this.lowestOid = -1;
             
             // Find the position of the node in its parent's children
             if (this.node.parent != null) {
