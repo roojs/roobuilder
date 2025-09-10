@@ -49,14 +49,22 @@ namespace JsRender
             }
         }
 
+        private void validateAndCleanOIDs(Node node) {
+            // Check if the node's OID already exists in the file
+            if (node.oid != -1 && this.file.hasOID(node.oid)) {
+                GLib.debug("OID %d already exists, resetting to -1", node.oid);
+                node.oid = -1;
+            }
+            
+            // Recursively check and clean OIDs in child nodes
+            foreach (var child in node.readItems()) {
+                this.validateAndCleanOIDs(child);
+            }
+        }
+
         public override void undo() {
-            // Create undo action when needed
-            if (this.undoAction == null) {
-                // Find the node that was added and create remove action
-                // This is a simplified approach - in practice you'd need to track the added node
-                GLib.debug("Add undo not fully implemented yet");
-            } else {
-                this.undoAction.do(false);
+            if (this.undoAction != null) {
+                this.undoAction.do();
             }
         }
     }
