@@ -1,6 +1,6 @@
 namespace JsRender {
     
-    class Action.Remove : Action {
+    public class Action.Remove : Action {
 
         Node node;
         Action? undoAction {set;get;default = null;};

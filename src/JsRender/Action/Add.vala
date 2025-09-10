@@ -1,6 +1,6 @@
 namespace JsRender {
     
-    class Action.Add : Action {
+    public class Action.Add : Action {
 
         Node parent;
         string nodeJson;

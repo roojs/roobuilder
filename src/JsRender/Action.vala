@@ -1,6 +1,6 @@
 namespace JsRender {
 
-	abstract class Action {
+	public abstract class Action {
 
 		protected JsRender file;
 
