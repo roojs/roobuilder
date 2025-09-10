@@ -971,31 +971,11 @@ namespace JsRender {
 		}
 		
 		// OID to Node mapping - managed by Action classes, should not be used elsewhere
-		private Gee.HashMap<int, Node> nodes = new Gee.HashMap<int, Node>();
+		internal Gee.HashMap<int, Node> nodes = new Gee.HashMap<int, Node>();
 		
 		public bool hasOID(int oid)
 		{
 			return this.nodes.has_key(oid);
-		}
-		
-		public Node? getNodeByOID(int oid)
-		{
-			return this.nodes.get(oid);
-		}
-		
-		// Internal methods for Action classes to manage the nodes hashmap
-		internal void addNodeToMap(Node node)
-		{
-			if (node.oid != -1) {
-				this.nodes.set(node.oid, node);
-			}
-		}
-		
-		internal void removeNodeFromMap(Node node)
-		{
-			if (node.oid != -1) {
-				this.nodes.unset(node.oid);
-			}
 		}
 		 
 		
