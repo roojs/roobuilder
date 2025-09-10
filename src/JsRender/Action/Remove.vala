@@ -4,10 +4,12 @@ namespace JsRender
     public class Action.Remove : Action {
 
         Node node;
+        int position;
         Action? undoAction {set;get;default = null;};
         Remove(JsRender file, Node node) {
             base(file);
             this.node = node;
+            this.position = -1; // Will be set in do() method
         }
 
         public override void do( ) {
