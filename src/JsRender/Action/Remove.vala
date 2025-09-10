@@ -18,24 +18,27 @@ namespace JsRender
                 GLib.debug("remove - parent is null?");
                 return;
             }
-            // need to setup undo...
             
+            // Find the position of the node in its parent's children
+            this.position = this.node.parent.items.index_of(this.node);
+            if (this.position == -1) {
+                GLib.debug("remove - could not find node position in parent");
+                return;
+            }
+            
+            // Setup undo action with the correct position
             this.undoAction = new Action.Add(
-                this.file, this.node.parent,  Json.gobject_serialize (this.node),
-             -1 );
+                this.file, this.node.parent, Json.gobject_serialize(this.node),
+                this.position);
             
-            // need to remove from
-            // children
-            // propstore
-            // childstore
-            // clear parent
-            // recruse down first
+            // Remove the node from its parent
             this.node.parent.removeChild(this.node);
-           
         }
 
         public override void undo() {
-            this.undoAction.do(false);
+            if (this.undoAction != null) {
+                this.undoAction.do();
+            }
         }
     }
 }
