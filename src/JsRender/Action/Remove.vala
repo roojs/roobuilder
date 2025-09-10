@@ -40,6 +40,9 @@ namespace JsRender
             
             // Remove the node from its parent
             this.node.parent.removeChild(this.node);
+            
+            // Remove the OID from the file
+            this.file.removeNode(this.node);
         }
 
         public override void undo() {
