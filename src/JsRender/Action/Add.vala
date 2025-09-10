@@ -15,20 +15,24 @@ namespace JsRender
             this.position = position;
         }
 
-        public override void do(bool create_undo = true) {
+        public override void do() {
             
-            // Deserialize the node from JSON
-            var parser = new Json.Parser();
             try {
-                parser.load_from_data(this.nodeJson);
-                var node_obj = parser.get_root().get_object();
+                // Deserialize the node from JSON using gobject_from_data
+                var node = Json.gobject_from_data(typeof(Node), this.nodeJson) as Node;
+                if (node == null) {
+                    GLib.debug("Add action failed to deserialize node: null result");
+                    return;
+                }
                 
-                // Create a new node from the JSON data
-                var node = new Node();
+                // Validate and clean up OIDs to avoid conflicts
+                this.validateAndCleanOIDs(node);
+                
+                // Set the file reference
                 node.setFile(this.file);
-                node.loadFromJson(node_obj, 2);
                 
-                // Setup undo action will be created when needed
+                // Setup undo action
+                this.undoAction = new Action.Remove(this.file, node);
                 
                 // Add the node to the parent
                 if (this.position == -1) {
