@@ -40,6 +40,12 @@ namespace JsRender
 			if (this.oid == -1) {
 				this.oid = file.nextOid();
 			}
+			
+			// Add the node to the file's OID mapping
+			if (this.oid != -1) {
+				file.nodes.set(this.oid, this);
+			}
+			
 			if (this.node_type == NodePropType.OBJECT && this.parent != null) {
 				this.parent.childstore.append(this as Node);
 			}
