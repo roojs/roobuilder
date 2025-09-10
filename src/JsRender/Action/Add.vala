@@ -23,7 +23,9 @@ namespace JsRender {
                 var node_obj = parser.get_root().get_object();
                 
                 // Create a new node from the JSON data
-                var node = new Node.fromJson(this.file, node_obj);
+                var node = new Node();
+                node.setFile(this.file);
+                node.loadFromJson(node_obj, 2);
                 
                 // Setup undo action
                 if (create_undo) {
