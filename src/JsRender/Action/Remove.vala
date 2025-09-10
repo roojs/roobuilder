@@ -66,7 +66,7 @@ namespace JsRender
             }
             
             // Recursively check child nodes
-            foreach (var child in node.readItems()) {
+            foreach (var child in node.children) {
                 int childLowest = this.findLowestOid(child);
                 lowest = (childLowest > -1 && (lowest == -1 || childLowest < lowest)) ? 
                     childLowest : lowest;
