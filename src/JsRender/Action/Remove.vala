@@ -1,4 +1,5 @@
-namespace JsRender {
+namespace JsRender
+{
     
     public class Action.Remove : Action {
 
