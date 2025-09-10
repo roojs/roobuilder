@@ -20,7 +20,7 @@ namespace JsRender
             }
             
             // Find the position of the node in its parent's children
-            this.position = this.node.parent.items.index_of(this.node);
+            this.position = this.node.parent.children.index_of(this.node);
             if (this.position == -1) {
                 GLib.debug("remove - could not find node position in parent");
                 return;
