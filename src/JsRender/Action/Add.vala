@@ -31,10 +31,7 @@ namespace JsRender
                 // Set the file reference
                 node.setFile(this.file);
                 
-                // Setup undo action
-                this.undoAction = new Action.Remove(this.file, node);
-                
-                // Add the node to the parent
+                // Add the node to the parent first
                 if (this.position == -1) {
                     // Append to the end
                     this.parent.appendChild(node);
@@ -42,6 +39,9 @@ namespace JsRender
                     // Insert at specific position
                     this.parent.insertChild(this.position, node);
                 }
+                
+                // Setup undo action after the node has been added (so Remove knows the position)
+                this.undoAction = new Action.Remove(this.file, node);
                 
             } catch (Error e) {
                 GLib.debug("Add action failed to deserialize node: %s", e.message);
