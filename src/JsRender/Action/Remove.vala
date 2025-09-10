@@ -57,6 +57,27 @@ namespace JsRender
             }
         }
 
+        private int findLowestOid(Node node) {
+            int lowest = -1;
+            
+            // Check the current node's OID
+            if (node.oid > -1) {
+                lowest = node.oid;
+            }
+            
+            // Recursively check child nodes
+            foreach (var child in node.readItems()) {
+                int childLowest = this.findLowestOid(child);
+                if (childLowest > -1) {
+                    if (lowest == -1 || childLowest < lowest) {
+                        lowest = childLowest;
+                    }
+                }
+            }
+            
+            return lowest;
+        }
+
         public override void undo() {
             if (this.undoAction != null) {
                 this.undoAction.do();
