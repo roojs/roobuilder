@@ -14,6 +14,13 @@ namespace JsRender
             this.nodeJson = nodeJson;
             this.position = position;
         }
+        
+        Add.from_node(JsRender file, Node parent, Node node, int position = -1) {
+            base(file);
+            this.parent = parent;
+            this.nodeJson = Json.gobject_serialize(node);
+            this.position = position;
+        }
 
         public override void do() {
             
