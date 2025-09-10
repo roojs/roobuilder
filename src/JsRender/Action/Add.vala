@@ -27,10 +27,7 @@ namespace JsRender {
                 node.setFile(this.file);
                 node.loadFromJson(node_obj, 2);
                 
-                // Setup undo action
-                if (create_undo) {
-                    this.undoAction = new Action.Remove(this.file, node);
-                }
+                // Setup undo action will be created when needed
                 
                 // Add the node to the parent
                 if (this.position == -1) {
