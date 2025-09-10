@@ -45,7 +45,12 @@ namespace JsRender {
         }
 
         public override void undo() {
-            if (this.undoAction != null) {
+            // Create undo action when needed
+            if (this.undoAction == null) {
+                // Find the node that was added and create remove action
+                // This is a simplified approach - in practice you'd need to track the added node
+                GLib.debug("Add undo not fully implemented yet");
+            } else {
                 this.undoAction.do(false);
             }
         }
