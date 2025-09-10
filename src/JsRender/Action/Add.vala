@@ -56,7 +56,7 @@ namespace JsRender
 
         private void validateAndCleanOIDs(Node node) {
             // Check if the node's OID already exists in the file
-            if (node.oid != -1 && this.file.hasOID(node.oid)) {
+            if (node.oid != -1 && this.file.nodes.has_key(node.oid)) {
                 GLib.debug("OID %d already exists, resetting to -1", node.oid);
                 node.oid = -1;
             }
