@@ -43,9 +43,17 @@ namespace JsRender
             // Remove the node from its parent
             this.node.parent.removeChild(this.node);
             
+            // Find the lowest OID in the node tree before removing
+            this.lowestOid = this.findLowestOid(this.node);
+            
             // Remove the node from the file's OID mapping
             if (this.node.oid != -1) {
                 this.file.nodes.unset(this.node.oid);
+            }
+            
+            // Update the file's OID counter to reuse the lowest OID
+            if (this.lowestOid > -1) {
+                this.file.nextOid(this.lowestOid);
             }
         }
 
