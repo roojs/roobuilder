@@ -964,8 +964,10 @@ public class WindowState : Object
 	private void updateUndoRedoButtons()
 	{
 		if (this.file != null && this.file.action_manager != null) {
-			this.win.btn_undo.el.sensitive = this.file.action_manager.undoQueue.size > 0;
-			this.win.btn_redo.el.sensitive = this.file.action_manager.redoQueue.size > 0;
+			// We'll use the signals to determine the state, so just set initial state
+			// The signals will update the buttons as needed
+			this.win.btn_undo.el.sensitive = false;
+			this.win.btn_redo.el.sensitive = false;
 		} else {
 			this.win.btn_undo.el.sensitive = false;
 			this.win.btn_redo.el.sensitive = false;
