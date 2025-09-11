@@ -911,6 +911,66 @@ public class WindowState : Object
 		}
 
 	}
+	
+	// Connect to action manager signals for undo/redo button sensitivity
+	private void connectActionManagerSignals()
+	{
+		// Disconnect any existing signals first
+		this.disconnectActionManagerSignals();
+		
+		// Connect to the new file's action manager signals
+		this.file.action_manager.onUndoEmpty.connect(this.onUndoEmpty);
+		this.file.action_manager.onUndoNotEmpty.connect(this.onUndoNotEmpty);
+		this.file.action_manager.onRedoEmpty.connect(this.onRedoEmpty);
+		this.file.action_manager.onRedoNotEmpty.connect(this.onRedoNotEmpty);
+		
+		// Set initial button sensitivity
+		this.updateUndoRedoButtons();
+	}
+	
+	// Disconnect action manager signals
+	private void disconnectActionManagerSignals()
+	{
+		if (this.file != null && this.file.action_manager != null) {
+			this.file.action_manager.onUndoEmpty.disconnect(this.onUndoEmpty);
+			this.file.action_manager.onUndoNotEmpty.disconnect(this.onUndoNotEmpty);
+			this.file.action_manager.onRedoEmpty.disconnect(this.onRedoNotEmpty);
+			this.file.action_manager.onRedoNotEmpty.disconnect(this.onRedoNotEmpty);
+		}
+	}
+	
+	// Signal handlers for action manager
+	private void onUndoEmpty()
+	{
+		this.win.btn_undo.el.sensitive = false;
+	}
+	
+	private void onUndoNotEmpty()
+	{
+		this.win.btn_undo.el.sensitive = true;
+	}
+	
+	private void onRedoEmpty()
+	{
+		this.win.btn_redo.el.sensitive = false;
+	}
+	
+	private void onRedoNotEmpty()
+	{
+		this.win.btn_redo.el.sensitive = true;
+	}
+	
+	// Update undo/redo button sensitivity based on current state
+	private void updateUndoRedoButtons()
+	{
+		if (this.file != null && this.file.action_manager != null) {
+			this.win.btn_undo.el.sensitive = this.file.action_manager.undoQueue.size > 0;
+			this.win.btn_redo.el.sensitive = this.file.action_manager.redoQueue.size > 0;
+		} else {
+			this.win.btn_undo.el.sensitive = false;
+			this.win.btn_redo.el.sensitive = false;
+		}
+	}
   
  
 }
