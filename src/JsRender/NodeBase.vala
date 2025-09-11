@@ -198,34 +198,42 @@ namespace JsRender
 			}
 		}
 
-		// snould only be called from action...
-		public void removeChild(NodeBase child) 
-		{
-			child.removeChildren ();
-			this.children.remove(child);
-			
-			if (this.node_type == NodePropType.OBJECT) {
-				var pos = this.childstore_find(child);
-				if (pos != -1) {
-					this.childstore.remove(pos);
-				}
-			} else {
-				var pos = this.propstore_find(child as NodeProp);
-				if (pos != -1) {
-					this.propstore.remove(pos);
-				}
+	// should only be called from action...
+	public void removeChild(NodeBase child) 
+	{
+		child.removeFromStore();
+		child.removeFromFile();
+		this.children.remove(child);
+		
+		if (this.node_type == NodePropType.OBJECT) {
+			var pos = this.childstore_find(child);
+			if (pos != -1) {
+				this.childstore.remove(pos);
 			}
-			// this is recursive so we need to remove them here.
-			this.file.nodes.unset(child.oid);
-			this.file.nextOid(child.oid); // make it available
-			child.oid = -1; // clear it
-			child.file = null;
-			child.parent = null;
-		}
-		void removeChildren() {
-			foreach(var c in this.children) {
-				this.removeChild(c);
+		} else {
+			var pos = this.propstore_find(child as NodeProp);
+			if (pos != -1) {
+				this.propstore.remove(pos);
 			}
 		}
+	}
+	
+	// Remove this node from its parent's stores
+	public void removeFromStore() {
+		foreach(var c in this.children) {
+			c.removeFromStore();
+		}
+	}
+	
+	// Remove this node from file-related mappings and make OID available
+	public void removeFromFile() {
+		if (this.file != null && this.oid != -1) {
+			this.file.nodes.unset(this.oid);
+			this.file.nextOid(this.oid); // make it available
+		}
+		this.oid = -1; // clear it
+		this.file = null;
+		this.parent = null;
+	}
 	}
 }
