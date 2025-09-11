@@ -686,7 +686,14 @@ public class WindowState : Object
 		this.file = file;
 		
 		// Connect to action manager signals for undo/redo button sensitivity
-		this.connectActionManagerSignals();
+		this.file.action_manager.onUndoEmpty.connect(() => { this.win.btn_undo.el.sensitive = false; });
+		this.file.action_manager.onUndoNotEmpty.connect(() => { this.win.btn_undo.el.sensitive = true; });
+		this.file.action_manager.onRedoEmpty.connect(() => { this.win.btn_redo.el.sensitive = false; });
+		this.file.action_manager.onRedoNotEmpty.connect(() => { this.win.btn_redo.el.sensitive = true; });
+		
+		// Set initial button sensitivity
+		this.win.btn_undo.el.sensitive = this.file.action_manager.getUndoCount() > 0;
+		this.win.btn_redo.el.sensitive = this.file.action_manager.getRedoCount() > 0;
 
 		 
 		
