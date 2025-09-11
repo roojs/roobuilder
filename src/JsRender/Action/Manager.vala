@@ -115,5 +115,16 @@ namespace JsRender
                 this.onRedoEmpty();
             }
         }
+        
+        // Getter methods for queue sizes
+        public int getUndoCount()
+        {
+            return this.undoQueue.size;
+        }
+        
+        public int getRedoCount()
+        {
+            return this.redoQueue.size;
+        }
     }
 }
