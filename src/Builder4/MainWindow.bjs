@@ -1936,6 +1936,18 @@
     "\t} ",
     "\t",
     "}"
+   ],
+   "| void updateUndo" : [
+    "(bool has_undo) {",
+    "",
+    "\tthis.btn_undo.el.sensitive = has_undo;",
+    "}"
+   ],
+   "| void updateRedo" : [
+    "(bool has_redo) {",
+    "",
+    "\tthis.btn_redo.el.sensitive = has_redo;",
+    "}"
    ]
   }
  ],
