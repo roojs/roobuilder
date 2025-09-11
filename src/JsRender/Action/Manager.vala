@@ -33,37 +33,37 @@ namespace JsRender
         // Undo the last action
         public void undo()
         {
-            if (undoQueue.size == 0) {
+            if (this.undoQueue.size == 0) {
                 GLib.debug("Action.Manager: No actions to undo");
                 return;
             }
             
             // Pop the last action from undo queue
-            var action = undoQueue.remove_at(undoQueue.size - 1);
+            var action = this.undoQueue.remove_at(this.undoQueue.size - 1);
             
             // Call undo on the action
             action.undo();
             
             // Move it to redo queue
-            redoQueue.add(action);
+            this.redoQueue.add(action);
         }
         
         // Redo the last undone action
         public void redo()
         {
-            if (redoQueue.size == 0) {
+            if (this.redoQueue.size == 0) {
                 GLib.debug("Action.Manager: No actions to redo");
                 return;
             }
             
             // Pop the last action from redo queue
-            var action = redoQueue.remove_at(redoQueue.size - 1);
+            var action = this.redoQueue.remove_at(this.redoQueue.size - 1);
             
             // Call do on the action (which will re-execute it)
             action.do();
             
             // Move it back to undo queue
-            undoQueue.add(action);
+            this.undoQueue.add(action);
         }
         
         // Check if undo is available
