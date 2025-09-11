@@ -139,7 +139,7 @@ namespace JsRender {
 			// use interfaces if we can get this to suppor tmore...
 			var pr = (Project.Gtk)this.project;
 			if (pr != null) {
-				pr.symbol_builder.updateTreeFromFile(this);
+				pr.symbol_builder.upsdateTreeFromFile(this);
 			}
 		
 		}
@@ -977,6 +977,9 @@ namespace JsRender {
 		
 		// OID to NodeBase mapping - managed by Action classes, should not be used elsewhere
 		internal Gee.HashMap<int, NodeBase> nodes = new Gee.HashMap<int, NodeBase>();
+		
+		// Action manager for undo/redo functionality
+		public Action.Manager action_manager { get; private set; }
 		 
 		
 		
