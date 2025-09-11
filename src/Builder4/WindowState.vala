@@ -684,6 +684,9 @@ public class WindowState : Object
 		this.win.project = file.project;
 		this.project = file.project;
 		this.file = file;
+		
+		// Connect to action manager signals for undo/redo button sensitivity
+		this.connectActionManagerSignals();
 
 		 
 		
