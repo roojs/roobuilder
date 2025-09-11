@@ -75,7 +75,6 @@ namespace JsRender
             
             // Pop the last action from redo queue
             var action = this.redoQueue.remove_at(this.redoQueue.size - 1);
-            bool redoWillBeEmpty = this.redoQueue.size == 0;
             
             // Call do on the action (which will re-execute it)
             action.do();
@@ -85,7 +84,7 @@ namespace JsRender
             this.undoQueue.add(action);
             
             // Emit signals
-            if (redoWillBeEmpty) {
+            if (this.redoQueue.size == 0) {
                 this.onRedoEmpty();
             }
             if (undoWasEmpty) {
