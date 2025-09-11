@@ -91,22 +91,12 @@ namespace JsRender
             
             // Emit signals if queues had content
             if (hadUndo) {
-                this.onUndoEmpty();
+                this.onUndoUpdated(false);
             }
             if (hadRedo) {
-                this.onRedoEmpty();
+                this.onRedoUpdated(false);
             }
         }
         
-        // Getter methods for queue sizes
-        public int getUndoCount()
-        {
-            return this.undoQueue.size;
-        }
-        
-        public int getRedoCount()
-        {
-            return this.redoQueue.size;
-        }
     }
 }
