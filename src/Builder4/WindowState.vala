@@ -919,8 +919,6 @@ public class WindowState : Object
 
 	}
 }
-	
-	// Connect to action manager signals for undo/redo button sensitivity
 	private void connectActionManagerSignals()
 	{
 		// Disconnect any existing signals first
