@@ -221,11 +221,10 @@ namespace JsRender
 		}
 	}
 	
-	// Remove this node from file-related mappings and make OID available
+	// Remove this node from file-related mappings
 	public void removeFromFile() {
 		if (this.file != null && this.oid != -1) {
 			this.file.nodes.unset(this.oid);
-			this.file.nextOid(this.oid); // make it available
 		}
 		this.oid = -1; // clear it
 		this.file = null;

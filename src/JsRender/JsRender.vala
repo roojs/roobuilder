@@ -965,14 +965,8 @@ namespace JsRender {
 		
 		// oid management per file now?
 		private int oid = 1;
-		public int nextOid(int new_oid = -1)
+		public int nextOid()
 		{
-			if (new_oid > -1) {
-				// Use the provided OID
-				this.oid = new_oid  < this.oid ? new_oid : this.oid;
-				return this.oid;
-			}
-			
 			// Find the next available OID
 			while (this.nodes.has_key(this.oid)) {
 				this.oid++;
