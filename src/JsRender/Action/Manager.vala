@@ -66,29 +66,11 @@ namespace JsRender
             this.undoQueue.add(action);
         }
         
-        // Check if undo is available
-        public bool canUndo()
-        {
-            return this.undoQueue.size > 0;
-        }
-        
-        // Check if redo is available
-        public bool canRedo()
-        {
-            return this.redoQueue.size > 0;
-        }
-        
-        // Get the number of actions in undo queue
-        public int undoCount()
-        {
-            return this.undoQueue.size;
-        }
-        
-        // Get the number of actions in redo queue
-        public int redoCount()
-        {
-            return this.redoQueue.size;
-        }
+        // Signals for undo/redo state changes
+        public signal void onUndoEmpty();
+        public signal void onUndoNotEmpty();
+        public signal void onRedoEmpty();
+        public signal void onRedoNotEmpty();
         
         // Clear both queues
         public void clear()
