@@ -57,8 +57,9 @@ namespace JsRender
                     parent.children.insert(this.position, node);
                 }
                 
-                // Set the file reference after it's added
+                // Set the file reference and add to stores after it's added
                 node.setFile(this.file);
+                node.setStores();
                 
                 
                 // Setup undo action after the node has been added (so Remove knows the position)

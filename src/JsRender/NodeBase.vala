@@ -33,7 +33,7 @@ namespace JsRender
 			//this.oid = uid_count++;
 			
 		}
-		// called on load - initalizes oid /file / props / tree
+		// called on load - initializes oid /file / props / tree
 		public int setFile(JsRender file)
 		{
 			this.file = file;
@@ -47,18 +47,22 @@ namespace JsRender
 				file.nodes.set(this.oid, (Node)this);
 			}
 			
+			var roid = this.oid;
+			foreach(var c in this.children) {
+				roid = int.max(roid, c.setFile(file));
+			}
+			return roid;
+		}
+		
+		// Add this node to its parent's stores
+		public void setStores()
+		{
 			if (this.node_type == NodePropType.OBJECT && this.parent != null) {
 				this.parent.childstore.append(this as Node);
 			}
 			if (this.node_type != NodePropType.OBJECT && this.parent != null) {
 				this.parent.propstore.append(this as NodeProp);
 			}
-			
-			var roid = this.oid;
-			foreach(var c in this.children) {
-				roid = int.max(roid, c.setFile(file));
-			}
-			return roid;
 		}
 		
 		public void removeDuplicateOIDs(JsRender file) {
