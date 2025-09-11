@@ -265,6 +265,7 @@ namespace JsRender {
 			//print("JsRender.cto() - reset transStrings\n");
 			this.transStrings = new Gee.HashMap<string,string>();
 			this.namedStrings = new Gee.HashMap<string,string>();
+			this.action_manager = new Action.Manager();
 			// should use basename reallly...
 			
 			var ar = this.path.split("/");
