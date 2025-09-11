@@ -63,6 +63,11 @@ namespace JsRender
 			if (this.node_type != NodePropType.OBJECT && this.parent != null) {
 				this.parent.propstore.append(this as NodeProp);
 			}
+			
+			// Recursively set stores for all children
+			foreach(var c in this.children) {
+				c.setStores();
+			}
 		}
 		
 		public void removeDuplicateOIDs(JsRender file) {
