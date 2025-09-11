@@ -48,7 +48,6 @@ namespace JsRender
             
             // Pop the last action from undo queue
             var action = this.undoQueue.remove_at(this.undoQueue.size - 1);
-            bool undoWillBeEmpty = this.undoQueue.size == 0;
             
             // Call undo on the action
             action.undo();
@@ -58,7 +57,7 @@ namespace JsRender
             this.redoQueue.add(action);
             
             // Emit signals
-            if (undoWillBeEmpty) {
+            if (this.undoQueue.size == 0) {
                 this.onUndoEmpty();
             }
             if (redoWasEmpty) {
