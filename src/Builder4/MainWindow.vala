@@ -280,6 +280,18 @@ public class Xcls_MainWindow : Object
 	    w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);
 	     
 	}
+	
+	// Update undo button sensitivity
+	public void updateUndo(bool has_undo)
+	{
+		this.btn_undo.el.sensitive = has_undo;
+	}
+	
+	// Update redo button sensitivity
+	public void updateRedo(bool has_redo)
+	{
+		this.btn_redo.el.sensitive = has_redo;
+	}
 	public class Xcls_headerbar : Object
 	{
 		public Gtk.HeaderBar el;
