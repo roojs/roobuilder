@@ -919,7 +919,6 @@ public class WindowState : Object
 
 	}
 }
-	private void connectActionManagerSignals()
 	{
 		// Disconnect any existing signals first
 		this.disconnectActionManagerSignals();
