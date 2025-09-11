@@ -19,18 +19,12 @@ namespace JsRender
             action.do();
             
             // Clear the redo queue when a new action is performed
-            bool wasRedoEmpty = this.redoQueue.size == 0;
             this.redoQueue.clear();
-            if (!wasRedoEmpty) {
-                this.onRedoEmpty();
-            }
+            this.onRedoUpdated(false);
             
             // Add action to undo queue
-            bool wasUndoEmpty = this.undoQueue.size == 0;
             this.undoQueue.add(action);
-            if (wasUndoEmpty) {
-                this.onUndoNotEmpty();
-            }
+            this.onUndoUpdated(true);
             
             // Limit the size of the undo queue
             if (this.undoQueue.size > this.maxQueueSize) {
@@ -93,10 +87,8 @@ namespace JsRender
         }
         
         // Signals for undo/redo state changes
-        public signal void onUndoEmpty();
-        public signal void onUndoNotEmpty();
-        public signal void onRedoEmpty();
-        public signal void onRedoNotEmpty();
+        public signal void onUndoUpdated(bool has_undo);
+        public signal void onRedoUpdated(bool has_redo);
         
         // Clear both queues
         public void clear()
