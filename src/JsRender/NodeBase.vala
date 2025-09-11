@@ -198,30 +198,26 @@ namespace JsRender
 			}
 		}
 
-	// should only be called from action...
-	public void removeChild(NodeBase child) 
-	{
-		child.removeFromStore();
-		child.removeFromFile();
-		this.children.remove(child);
-		
-		if (this.node_type == NodePropType.OBJECT) {
-			var pos = this.childstore_find(child);
-			if (pos != -1) {
-				this.childstore.remove(pos);
-			}
-		} else {
-			var pos = this.propstore_find(child as NodeProp);
-			if (pos != -1) {
-				this.propstore.remove(pos);
-			}
-		}
-	}
-	
 	// Remove this node from its parent's stores
 	public void removeFromStore() {
+		// First, recursively remove all children from their stores
 		foreach(var c in this.children) {
 			c.removeFromStore();
+		}
+		
+		// Then remove this node from its parent's stores
+		if (this.parent != null) {
+			if (this.node_type == NodePropType.OBJECT) {
+				var pos = this.parent.childstore_find(this);
+				if (pos != -1) {
+					this.parent.childstore.remove(pos);
+				}
+			} else {
+				var pos = this.parent.propstore_find(this as NodeProp);
+				if (pos != -1) {
+					this.parent.propstore.remove(pos);
+				}
+			}
 		}
 	}
 	
