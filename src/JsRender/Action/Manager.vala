@@ -19,14 +19,14 @@ namespace JsRender
             action.do();
             
             // Clear the redo queue when a new action is performed
-            redoQueue.clear();
+            this.redoQueue.clear();
             
             // Add action to undo queue
-            undoQueue.add(action);
+            this.undoQueue.add(action);
             
             // Limit the size of the undo queue
-            if (undoQueue.size > maxQueueSize) {
-                undoQueue.remove_at(0); // Remove oldest action
+            if (this.undoQueue.size > this.maxQueueSize) {
+                this.undoQueue.remove_at(0); // Remove oldest action
             }
         }
         
