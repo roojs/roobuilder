@@ -83,19 +83,8 @@ namespace JsRender
         // Clear both queues
         public void clear()
         {
-            bool hadUndo = this.undoQueue.size > 0;
-            bool hadRedo = this.redoQueue.size > 0;
-            
             this.undoQueue.clear();
             this.redoQueue.clear();
-            
-            // Emit signals if queues had content
-            if (hadUndo) {
-                this.onUndoUpdated(false);
-            }
-            if (hadRedo) {
-                this.onRedoUpdated(false);
-            }
         }
         
     }
