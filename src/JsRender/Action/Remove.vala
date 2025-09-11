@@ -7,7 +7,7 @@ namespace JsRender
         int position = -1;
         int lowestOid = -1;
 
-        Remove(JsRender file, Node node) {
+        public Remove(JsRender file, Node node) {
             base(file);
             this.nodeOid = node.oid;
             

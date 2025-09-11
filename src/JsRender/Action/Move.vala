@@ -9,7 +9,7 @@ namespace JsRender
         int oldParentOid;
         int oldPosition = -1;
         
-        Move(JsRender file, Node node, Node newParent, int newPosition = -1) {
+        public Move(JsRender file, Node node, Node newParent, int newPosition = -1) {
             base(file);
             this.nodeOid = node.oid;
             this.newParentOid = newParent.oid;
