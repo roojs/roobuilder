@@ -50,9 +50,8 @@ namespace JsRender
             // Create undo action (Move back to original position)
             this.undoAction = new Action.Move(this.file, node, (Node)node.parent, this.oldPosition);
             
-            // Remove from old parent's stores and file mappings
+            // Remove from old parent's stores
             node.removeFromStore();
-            node.removeFromFile();
             
             // Remove from old parent's children list
             node.parent.children.remove(node);
@@ -64,9 +63,6 @@ namespace JsRender
             } else {
                 newParent.children.insert(this.newPosition, node);
             }
-            
-            // Re-add to OID mapping (setFile will handle this)
-            node.setFile(this.file);
         }
 
         public override void undo() {
