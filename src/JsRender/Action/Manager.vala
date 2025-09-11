@@ -69,16 +69,11 @@ namespace JsRender
             action.do();
             
             // Move it back to undo queue
-            bool undoWasEmpty = this.undoQueue.size == 0;
             this.undoQueue.add(action);
             
             // Emit signals
-            if (this.redoQueue.size == 0) {
-                this.onRedoEmpty();
-            }
-            if (undoWasEmpty) {
-                this.onUndoNotEmpty();
-            }
+            this.onRedoUpdated(this.redoQueue.size > 0);
+            this.onUndoUpdated(true);
         }
         
         // Signals for undo/redo state changes
