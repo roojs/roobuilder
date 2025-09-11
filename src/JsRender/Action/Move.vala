@@ -64,8 +64,8 @@ namespace JsRender
                 newParent.children.insert(this.newPosition, node);
             }
             
-            // Add to new parent's stores
-            node.setStores();
+            // Add to new parent's stores (no recursion needed for move)
+            node.setStores(false);
         }
 
         public override void undo() {

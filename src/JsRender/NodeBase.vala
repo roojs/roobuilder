@@ -55,7 +55,7 @@ namespace JsRender
 		}
 		
 		// Add this node to its parent's stores
-		public void setStores()
+		public void setStores(bool recursive = true)
 		{
 			if (this.node_type == NodePropType.OBJECT && this.parent != null) {
 				this.parent.childstore.append(this as Node);
@@ -64,9 +64,11 @@ namespace JsRender
 				this.parent.propstore.append(this as NodeProp);
 			}
 			
-			// Recursively set stores for all children
-			foreach(var c in this.children) {
-				c.setStores();
+			// Recursively set stores for all children (if requested)
+			if (recursive) {
+				foreach(var c in this.children) {
+					c.setStores();
+				}
 			}
 		}
 		
