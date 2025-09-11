@@ -76,12 +76,22 @@ namespace JsRender
             
             // Pop the last action from redo queue
             var action = this.redoQueue.remove_at(this.redoQueue.size - 1);
+            bool redoWillBeEmpty = this.redoQueue.size == 0;
             
             // Call do on the action (which will re-execute it)
             action.do();
             
             // Move it back to undo queue
+            bool undoWasEmpty = this.undoQueue.size == 0;
             this.undoQueue.add(action);
+            
+            // Emit signals
+            if (redoWillBeEmpty) {
+                this.onRedoEmpty();
+            }
+            if (undoWasEmpty) {
+                this.onUndoNotEmpty();
+            }
         }
         
         // Signals for undo/redo state changes
@@ -93,8 +103,19 @@ namespace JsRender
         // Clear both queues
         public void clear()
         {
+            bool hadUndo = this.undoQueue.size > 0;
+            bool hadRedo = this.redoQueue.size > 0;
+            
             this.undoQueue.clear();
             this.redoQueue.clear();
+            
+            // Emit signals if queues had content
+            if (hadUndo) {
+                this.onUndoEmpty();
+            }
+            if (hadRedo) {
+                this.onRedoEmpty();
+            }
         }
     }
 }
