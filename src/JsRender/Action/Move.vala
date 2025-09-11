@@ -50,8 +50,12 @@ namespace JsRender
             // Create undo action (Move back to original position)
             this.undoAction = new Action.Move(this.file, node, (Node)node.parent, this.oldPosition);
             
-            // Remove from old parent
-            node.parent.removeChild(node);
+            // Remove from old parent's stores and file mappings
+            node.removeFromStore();
+            node.removeFromFile();
+            
+            // Remove from old parent's children list
+            node.parent.children.remove(node);
              
             
             // Add to new parent

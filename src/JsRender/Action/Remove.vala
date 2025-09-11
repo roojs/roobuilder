@@ -52,8 +52,12 @@ namespace JsRender
                 this.file, (Node)node.parent, nodeJson,
                 this.position);
             
-            // Remove the node from its parent
-            node.parent.removeChild(node);
+            // Remove the node from stores and file mappings
+            node.removeFromStore();
+            node.removeFromFile();
+            
+            // Remove from parent's children list
+            node.parent.children.remove(node);
         }
         public override void undo() {
             if (this.undoAction != null) {
