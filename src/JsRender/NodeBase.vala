@@ -210,10 +210,12 @@ namespace JsRender
 		}
 
 	// Remove this node from its parent's stores
-	public void removeFromStore() {
-		// First, recursively remove all children from their stores
-		foreach(var c in this.children) {
-			c.removeFromStore();
+	public void removeFromStore(bool recursive = true) {
+		// First, recursively remove all children from their stores (if requested)
+		if (recursive) {
+			foreach(var c in this.children) {
+				c.removeFromStore();
+			}
 		}
 		
 		// Then remove this node from its parent's stores
