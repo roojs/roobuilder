@@ -69,32 +69,32 @@ namespace JsRender
         // Check if undo is available
         public bool canUndo()
         {
-            return undoQueue.size > 0;
+            return this.undoQueue.size > 0;
         }
         
         // Check if redo is available
         public bool canRedo()
         {
-            return redoQueue.size > 0;
+            return this.redoQueue.size > 0;
         }
         
         // Get the number of actions in undo queue
         public int undoCount()
         {
-            return undoQueue.size;
+            return this.undoQueue.size;
         }
         
         // Get the number of actions in redo queue
         public int redoCount()
         {
-            return redoQueue.size;
+            return this.redoQueue.size;
         }
         
         // Clear both queues
         public void clear()
         {
-            undoQueue.clear();
-            redoQueue.clear();
+            this.undoQueue.clear();
+            this.redoQueue.clear();
         }
     }
 }
