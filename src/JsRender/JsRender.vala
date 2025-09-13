@@ -971,6 +971,68 @@ namespace JsRender {
 		
 		}
 		
+		public void loadFromBjs() throws GLib.Error
+		{
+			if (this.xtype == "PlainFile") {
+				return;
+			}
+			
+			GLib.debug("loadFromBjs for %s", this.path);
+			
+			var pa = new Json.Parser();
+			pa.load_from_file(this.path);
+			var node = pa.get_root();
+
+			if (node.get_node_type () != Json.NodeType.OBJECT) {
+				throw new Error.INVALID_FORMAT ("Unexpected element type %s", node.type_name ());
+			}
+			var obj = node.get_object ();
+			
+			// Load bjs_version
+			if (obj.has_member("bjs_version")) {
+				this.bjs_version = (int)obj.get_int_member("bjs_version");
+			}
+			
+			// If bjs_version is empty or < 3, use legacy loading
+			if (this.bjs_version < 3) {
+				FileLegacy.load(this);
+				return;
+			}
+			
+			// Load new format properties
+			this.name = this.jsonHasOrEmpty(obj, "name");
+			this.gen_extended = obj.has_member("gen_extended") ? obj.get_boolean_member("gen_extended") : false;
+			
+			// Load Roo-specific properties
+			if (this.project.xtype == "Roo") {
+				this.parent = this.jsonHasOrEmpty(obj, "parent");
+				this.title = this.jsonHasOrEmpty(obj, "title");
+				this.permname = this.jsonHasOrEmpty(obj, "permname");
+				this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
+			}
+			
+			// Load Gtk-specific properties
+			if (this.project.xtype == "Gtk") {
+				this.build_module = this.jsonHasOrEmpty(obj, "build_module");
+			}
+			
+			// Load items array
+			if (obj.has_member("items") 
+				&& 
+				obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
+				&&
+				obj.get_array_member("items").get_length() > 0
+			) {
+				this.tree = new Node(); 
+				var ar = obj.get_array_member("items");
+				var tree_base = ar.get_object_element(0);
+				this.tree.loadFromJson(tree_base, this.bjs_version);
+				this.tree.file = this;
+			}
+			
+			this.loaded = true;
+		}
+		
 		// oid management per file now?
 		private int oid = 1;
 		public int nextOid()
