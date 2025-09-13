@@ -501,20 +501,6 @@ namespace JsRender {
 			  
 		}
 		
-		public string toJsonString()
-		{
-			if (this.xtype == "PlainFile") {
-				return "";
-			}
-			var node = new Json.Node(Json.NodeType.OBJECT);
-			node.set_object(this.toJsonObject());			
-			var generator = new JsonGen(node);
-		    generator.indent = 1;
-		    generator.pretty = true;
-		    
-			
-			return generator.to_data();
-		}
 		
 		public void saveBJS()
 		{
@@ -532,7 +518,8 @@ namespace JsRender {
 		    GLib.debug("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
 		    try {
 				// Use Json.gobject_to_data for serialization
-				string content = Json.gobject_to_data(this);
+				size_t length;
+				string content = Json.gobject_to_data(this, out length);
 				this.writeFile(this.path, content);
 		         
 		    } catch(GLib.Error e) {
@@ -579,7 +566,11 @@ namespace JsRender {
 			}
 			var node = pa.get_root();
 			this.in_undo = true;
-			this.loadTree(node.get_object(),2); 
+			// Load tree using Json.Serializable deserialization
+			var deserialized = Json.gobject_deserialize(typeof(JsRender), node) as JsRender;
+			if (deserialized != null) {
+				this.copyPropertiesFrom(deserialized);
+			} 
 			this.tree.updated_count = new_version;
 			this.in_undo = false;
 			return true;
