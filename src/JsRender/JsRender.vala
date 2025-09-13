@@ -1026,13 +1026,15 @@ namespace JsRender {
 			switch (property_name) {
 				case "tree":
 					if (this.tree == null) {
-						return null;
+						var null_node = new Json.Node(Json.NodeType.NULL);
+						return null_node;
 					}
 					return Json.gobject_serialize(this.tree);
 				case "items":
 					// Legacy format - serialize tree as items array
 					if (this.tree == null) {
-						return null;
+						var null_node = new Json.Node(Json.NodeType.NULL);
+						return null_node;
 					}
 					var array = new Json.Array();
 					array.add_element(Json.gobject_serialize(this.tree));
@@ -1042,7 +1044,8 @@ namespace JsRender {
 				case "nodes":
 					// New format - serialize tree as nodes array
 					if (this.tree == null) {
-						return null;
+						var null_node = new Json.Node(Json.NodeType.NULL);
+						return null_node;
 					}
 					var array = new Json.Array();
 					array.add_element(Json.gobject_serialize(this.tree));
