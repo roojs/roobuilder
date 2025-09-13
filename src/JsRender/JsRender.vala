@@ -1030,28 +1030,6 @@ namespace JsRender {
 						return null_node;
 					}
 					return Json.gobject_serialize(this.tree);
-				case "items":
-					// Legacy format - serialize tree as items array
-					if (this.tree == null) {
-						var null_node = new Json.Node(Json.NodeType.NULL);
-						return null_node;
-					}
-					var array = new Json.Array();
-					array.add_element(Json.gobject_serialize(this.tree));
-					var node = new Json.Node(Json.NodeType.ARRAY);
-					node.init_array(array);
-					return node;
-				case "nodes":
-					// New format - serialize tree as nodes array
-					if (this.tree == null) {
-						var null_node = new Json.Node(Json.NodeType.NULL);
-						return null_node;
-					}
-					var array = new Json.Array();
-					array.add_element(Json.gobject_serialize(this.tree));
-					var node = new Json.Node(Json.NodeType.ARRAY);
-					node.init_array(array);
-					return node;
 				case "bjs_version":
 				case "name":
 				case "gen_extended":
