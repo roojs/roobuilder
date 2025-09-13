@@ -992,7 +992,11 @@ namespace JsRender {
 					// Create a minimal Json.Object for bjs-version
 					var obj = new Json.Object();
 					obj.set_int_member("bjs-version", this.bjs_version);
-					legacy.loadItems(items_array, obj);
+					try {
+						legacy.loadItems(items_array, obj);
+					} catch (Error e) {
+						GLib.debug("Failed to load legacy items: %s", e.message);
+					}
 					// Don't set value for items - it's handled by FileLegacy
 					return false;
 				case "bjs_version":
