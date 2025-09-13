@@ -526,11 +526,14 @@ namespace JsRender {
 			    return;
 		    }
 		   
-		     
+		    // Set bjs_version to 3 to ensure new format is saved
+		    this.bjs_version = 3;
 		    
 		    GLib.debug("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
 		    try {
-				this.writeFile(this.path, this.toJsonString());
+				// Use Json.gobject_to_data for serialization
+				string content = Json.gobject_to_data(this);
+				this.writeFile(this.path, content);
 		         
 		    } catch(GLib.Error e) {
 		        print("Save failed");
@@ -584,67 +587,6 @@ namespace JsRender {
 		  
 
 		
-		public Json.Object toJsonObject ()
-		{
-		    
-		    
-			var ret = new Json.Object();
-			if (this.xtype == "PlainFile") {
-				return ret;
-			}
-			
-			// Set bjs_version
-			ret.set_int_member("bjs_version", this.bjs_version);
-			
-			//ret.set_string_member("id", this.id); // not relivant..
-			ret.set_string_member("name", this.name);
-			
-			// Export properties for Roo instances
-			if (this.project.xtype == "Roo") {
-				ret.set_string_member("parent", this.parent == null ? "" : this.parent);
-				ret.set_string_member("title", this.title == null ? "" : this.title);
-				//ret.set_string_member("path", this.path);
-				//ret.set_string_member("items", this.items);
-				ret.set_string_member("permname", this.permname  == null ? "" : this.permname);
-				ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
-			}
-			
-			// Export properties for Gtk instances
-			if (this.project.xtype == "Gtk") {
-				ret.set_string_member("build_module", this.build_module  );
-			}
-			
-			ret.set_boolean_member("gen_extended", this.gen_extended);
-			
-			if (this.transStrings.size > 0) {
-				var tr =  new Json.Object();
-				var iter = this.transStrings.map_iterator();
-				while (iter.next()) {
-					tr.set_string_member(iter.get_value(), iter.get_key());
-				}
-				ret.set_object_member("strings", tr);
-            }
-
-            
-            
-			if (this.namedStrings.size > 0) {
-				var tr =  new Json.Object();
-				var iter = this.namedStrings.map_iterator();
-				while (iter.next()) {
-					tr.set_string_member(iter.get_key(), iter.get_value());
-				}
-				ret.set_object_member("named_strings", tr);
-            }
-			
-			var ar = new Json.Array();
-			// empty files do not have a tree.
-			if (this.tree != null) {
-				ar.add_object_element(this.tree.toJsonObject());
-			}
-			ret.set_array_member("items", ar);
-		
-		    return ret;
-		}
 		
 		
 
@@ -1054,7 +996,10 @@ namespace JsRender {
 					var items_array = property_node.get_array();
 					// Pass to FileLegacy to convert items to tree
 					var legacy = new FileLegacy(this);
-					legacy.loadItems(items_array, this.toJsonObject());
+					// Create a minimal Json.Object for bjs-version
+					var obj = new Json.Object();
+					obj.set_int_member("bjs-version", this.bjs_version);
+					legacy.loadItems(items_array, obj);
 					value.set_object(items_array);
 					return true;
 				case "bjs_version":
