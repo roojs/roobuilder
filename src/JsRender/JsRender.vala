@@ -95,19 +95,20 @@ namespace JsRender {
 		public int64 vtime = 0; // the version modifiection time
 
 
-		public string permname;
+		public string permname { get; set; default = ""; }
 		public string language;
 		public string content_type;
-		public string modOrder;
+		public string modOrder { get; set; default = ""; }
 		public string xtype;
 		public uint64 webkit_page_id; // set by webkit view - used to extract extension/etc..
-		public bool gen_extended  = false; // nodetovala??
+		public bool gen_extended { get; set; default = false; } // nodetovala??
+		public int bjs_version { get; set; default = 3; }
 
 		public Project.Project project;
 
 		// GTK Specifc
  
-		public string build_module; // module to build if we compile (or are running tests...)	    
+		public string build_module { get; set; default = ""; } // module to build if we compile (or are running tests...)	    
 
 		//Project : false, // link to container project!
 		
