@@ -952,20 +952,6 @@ namespace JsRender {
 		
 		} 
 		
-		public void loadTree(Json.Object obj, int bjs_version = 2)
-		{
-			if (this.xtype == "PlainFile" ){
-				return;
-			}
-			//Node.uid_count = 0;
-			this.tree = new Node();
-			this.tree.loadFromJson(obj,bjs_version);
-			this.tree.file = this;
-			//this.tree.version_changed.connect(() => {
-			//	this.updateUndo();
-			//});
-		
-		}
 		
 		public void loadFromBjs() throws GLib.Error
 		{
@@ -977,7 +963,7 @@ namespace JsRender {
 			
 			// Read the file content
 			string content;
-			FileUtils.get_contents(this.path, out content);
+			GLib.FileUtils.get_contents(this.path, out content);
 			
 			// Use Json.gobject_from_data to deserialize
 			var deserialized = Json.gobject_from_data(typeof(JsRender), content) as JsRender;
@@ -1001,9 +987,6 @@ namespace JsRender {
 			this.modOrder = other.modOrder;
 			this.build_module = other.build_module;
 			this.tree = other.tree;
-			if (this.tree != null) {
-				this.tree.file = this;
-			}
 		}
 		
 		// Json.Serializable implementation
