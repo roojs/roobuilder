@@ -538,7 +538,10 @@ namespace JsRender {
 				return;
 			}
 			//GLib.debug("UNDO store %d", this.version);
-			this.undo_json.set(this.version, this.tree.toJsonString());
+			// Store tree as JSON string for undo
+			size_t length;
+			string tree_json = Json.gobject_to_data(this.tree, out length);
+			this.undo_json.set(this.version, tree_json);
 			if (this.undo_json.has_key(this.version+1)) {
 				var n = this.version +1;
 				while (this.undo_json.has_key(n)) {
