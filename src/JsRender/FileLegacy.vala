@@ -28,9 +28,9 @@ namespace JsRender {
             this.file.loaded = true;
         }
         
-        public static string jsonHasOrEmpty(JsRender file, string key) {
-            // This is a placeholder - the actual implementation will be moved from JsRender
-            return "";
+        public static string jsonHasOrEmpty(Json.Object obj, string key) {
+            return obj.has_member(key) ? 
+                        obj.get_string_member(key) : "";
         }
     }
 }

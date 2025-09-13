@@ -1010,6 +1010,75 @@ namespace JsRender {
 			}
 		}
 		
+		// Json.Serializable implementation
+		public new void Json.Serializable.set_property (ParamSpec pspec, Value value) {
+			base.set_property (pspec.get_name (), value);
+		}
+
+		public new Value Json.Serializable.get_property (ParamSpec pspec) {
+			Value val = Value (pspec.value_type);
+			base.get_property (pspec.get_name (), ref val);
+			return val;
+		}
+
+		public unowned ParamSpec? find_property (string name) {
+			return this.get_class ().find_property (name);
+		}
+
+		public Json.Node serialize_property (string property_name, Value value, ParamSpec pspec)
+		{
+			switch (property_name) {
+				case "tree":
+					if (this.tree == null) {
+						return null;
+					}
+					return Json.gobject_serialize(this.tree);
+				case "bjs_version":
+				case "name":
+				case "gen_extended":
+				case "parent":
+				case "title":
+				case "permname":
+				case "modOrder":
+				case "build_module":
+					return default_serialize_property (property_name, value, pspec);
+				default:
+					// Skip properties that don't belong to JsRender
+					return null;
+			}
+		}
+
+		public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+		{
+			switch (property_name) {
+				case "tree":
+					value = GLib.Value (typeof(Node));
+					if (property_node.get_node_type () != Json.NodeType.OBJECT) {
+						value.set_object(null);
+						return false;
+					}
+					var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+					if (node != null) {
+						node.file = this;
+						value.set_object(node);
+						return true;
+					}
+					return false;
+				case "bjs_version":
+				case "name":
+				case "gen_extended":
+				case "parent":
+				case "title":
+				case "permname":
+				case "modOrder":
+				case "build_module":
+					return default_deserialize_property (property_name, out value, pspec, property_node);
+				default:
+					// Skip properties that don't belong to JsRender
+					return false;
+			}
+		}
+		
 		// oid management per file now?
 		private int oid = 1;
 		public int nextOid()
