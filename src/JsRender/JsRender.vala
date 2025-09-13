@@ -995,7 +995,7 @@ namespace JsRender {
 			
 			// If bjs_version is empty or < 3, use legacy loading
 			if (this.bjs_version < 3) {
-				FileLegacy.load(this);
+				JsRender.FileLegacy.load(this);
 				return;
 			}
 			
