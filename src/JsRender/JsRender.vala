@@ -582,10 +582,6 @@ namespace JsRender {
 			return true;
 		}
 		  
-		public string jsonHasOrEmpty(Json.Object obj, string key) {
-			return obj.has_member(key) ? 
-						obj.get_string_member(key) : "";
-		}
 
 		
 		public Json.Object toJsonObject ()
@@ -1064,6 +1060,37 @@ namespace JsRender {
 						return true;
 					}
 					return false;
+				case "items":
+					// Legacy format - handle items array
+					value = GLib.Value (typeof(Json.Array));
+					if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+						value.set_object(new Json.Array());
+						return false;
+					}
+					var items_array = property_node.get_array();
+					var legacy = new FileLegacy(this);
+					legacy.loadItems(items_array);
+					value.set_object(items_array);
+					return true;
+				case "nodes":
+					// New format - handle nodes array
+					value = GLib.Value (typeof(Json.Array));
+					if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+						value.set_object(new Json.Array());
+						return false;
+					}
+					var nodes_array = property_node.get_array();
+					// Use Node deserializer on the array
+					if (nodes_array.get_length() > 0) {
+						var first_node = nodes_array.get_object_element(0);
+						var node = Json.gobject_deserialize(typeof(Node), first_node) as Node;
+						if (node != null) {
+							node.file = this;
+							this.tree = node;
+						}
+					}
+					value.set_object(nodes_array);
+					return true;
 				case "bjs_version":
 				case "name":
 				case "gen_extended":
