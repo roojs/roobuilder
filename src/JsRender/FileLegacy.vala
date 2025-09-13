@@ -7,14 +7,14 @@ namespace JsRender {
             this.file = file;
         }
         
-        public void loadItems(Json.Array items) throws Error {
+        public void loadItems(Json.Array items, Json.Object obj) throws Error {
             GLib.debug("FileLegacy.loadItems for %s", this.file.path);
             
             if (this.file.tree != null) {
                 return;
             }
             
-            var bjs_version_str = this.jsonHasOrEmpty(this.file, "bjs-version");
+            var bjs_version_str = jsonHasOrEmpty(obj, "bjs-version");
             bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
 
             // load items[0] into tree...
