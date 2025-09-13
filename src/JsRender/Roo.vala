@@ -212,9 +212,8 @@ namespace JsRender {
 			if (node.props.has_key("* xinclude")) {
 				ret.add(node.props.get("* xinclude").val);
 			}
-			var items = node.readItems();
-			for (var i =0; i < items.size; i++) {
-				this.findxincludes(items.get(i), ret);
+			for (var i =0; i < node.children.size; i++) {
+				this.findxincludes((Node)node.children.get(i), ret);
 			}
 			return ret;
 				
@@ -289,10 +288,9 @@ namespace JsRender {
 				}
 			 }
 
-			var items = node.readItems();
 			// iterate children..
-			for (var i =0; i < items.size; i++) {
-				this.findTransStrings(items.get(i) );
+			for (var i =0; i < node.children.size; i++) {
+				this.findTransStrings((Node)node.children.get(i) );
 			}
 		
 				
