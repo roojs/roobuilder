@@ -1069,30 +1069,10 @@ namespace JsRender {
 						return false;
 					}
 					var items_array = property_node.get_array();
-					// We need the parent object to get bjs-version, but we don't have access to it here
-					// So we'll handle this in the main deserialization logic
+					// Pass to FileLegacy to convert items to tree
+					var legacy = new FileLegacy(this);
+					legacy.loadItems(items_array, this.toJsonObject());
 					value.set_object(items_array);
-					return true;
-				case "nodes":
-					// New format - handle nodes array
-					value = GLib.Value (typeof(Json.Array));
-					if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-						value.set_object(new Json.Array());
-						return false;
-					}
-					var nodes_array = property_node.get_array();
-					// Use Node deserializer on the array
-					if (nodes_array.get_length() > 0) {
-						var first_node = nodes_array.get_object_element(0);
-						var node_wrapper = new Json.Node(Json.NodeType.OBJECT);
-						node_wrapper.set_object(first_node);
-						var node = Json.gobject_deserialize(typeof(Node), node_wrapper) as Node;
-						if (node != null) {
-							node.file = this;
-							this.tree = node;
-						}
-					}
-					value.set_object(nodes_array);
 					return true;
 				case "bjs_version":
 				case "name":
