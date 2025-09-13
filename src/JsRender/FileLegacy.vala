@@ -2,7 +2,7 @@ namespace JsRender {
 
     public class FileLegacy : Object {
         
-        public static JsRender load(JsRender file) throws GLib.Error {
+        public static JsRender load(JsRender file) throws Error {
             GLib.debug("FileLegacy.load for %s", file.path);
             
             if (file.tree != null) {

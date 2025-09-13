@@ -81,70 +81,23 @@ namespace JsRender {
 	    
 		public   override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
 		{
-		  
 			GLib.debug("load Items!");
 			if (this.tree != null) {
 				this.loaded = true;
-			
 				return;
 			}
-			/*
-			print("load: %s\n" , this.path);
-			if (!GLib.FileUtils.test(this.path, GLib.FileTest.EXISTS)) {
-				// new file?!?
-				this.tree = null;
-				this.loaded = true;
-				return;
-			}
-			*/
 
-			var pa = new Json.Parser();
-			pa.load_from_file(this.path);
-			var node = pa.get_root();
-		
-			if (node.get_node_type () != Json.NodeType.OBJECT) {
-				throw new Error.INVALID_FORMAT ("Unexpected element type %s", node.type_name ());
-			}
-			var obj = node.get_object ();
-		
-			this.name = obj.get_string_member("name");
- 
-		
-			if (obj.has_member("build_module")) { // should check type really..
-				this.build_module = obj.get_string_member("build_module");
-			}
-		 	if (obj.has_member("gen_extended")) { // should check type really..
-				this.gen_extended = obj.get_boolean_member("gen_extended");
-			}
+			this.loadFromBjs();
+			
 			var pr = (Project.Gtk)this.project;
 			if (pr != null) {
 				pr.symbol_builder.doVapiBuildForFile(this);
 			}
-			//?? at this point?
-			// get the palete and trigger a load of the vapi data..
 			
-		///this.palete();
-			
-			// load items[0] ??? into tree...
-			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
-			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
-
-			if (obj.has_member("items") 
-				&& 
-				obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
-				&&
-				obj.get_array_member("items").get_length() > 0
-			) {
-				var ar = obj.get_array_member("items");
-				var tree_base = ar.get_object_element(0);
-				this.loadTree(tree_base,  int.parse(bjs_version_str));
-			}
-		 	this.gen_extended ? 
+			this.gen_extended ? 
 		 		NodeToValaExtended.mungeFile(this) :
 				NodeToValaWrapped.mungeFile(this); // force line numbering..?? should we call toSourceCode???
-			this.loaded = true;
 			this.updateUndo();
-		
 		}
 		
 		
