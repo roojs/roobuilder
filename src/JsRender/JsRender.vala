@@ -597,9 +597,13 @@ namespace JsRender {
 				return ret;
 			}
 			
+			// Set bjs_version
+			ret.set_int_member("bjs_version", this.bjs_version);
+			
 			//ret.set_string_member("id", this.id); // not relivant..
 			ret.set_string_member("name", this.name);
 			
+			// Export properties for Roo instances
 			if (this.project.xtype == "Roo") {
 				ret.set_string_member("parent", this.parent == null ? "" : this.parent);
 				ret.set_string_member("title", this.title == null ? "" : this.title);
@@ -608,10 +612,12 @@ namespace JsRender {
 				ret.set_string_member("permname", this.permname  == null ? "" : this.permname);
 				ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
 			}
+			
+			// Export properties for Gtk instances
 			if (this.project.xtype == "Gtk") {
- 
 				ret.set_string_member("build_module", this.build_module  );
 			}
+			
 			ret.set_boolean_member("gen_extended", this.gen_extended);
 			
 			if (this.transStrings.size > 0) {
