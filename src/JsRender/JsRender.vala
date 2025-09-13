@@ -1103,7 +1103,9 @@ namespace JsRender {
 					// Use Node deserializer on the array
 					if (nodes_array.get_length() > 0) {
 						var first_node = nodes_array.get_object_element(0);
-						var node = Json.gobject_deserialize(typeof(Node), first_node) as Node;
+						var node_wrapper = new Json.Node(Json.NodeType.OBJECT);
+						node_wrapper.set_object(first_node);
+						var node = Json.gobject_deserialize(typeof(Node), node_wrapper) as Node;
 						if (node != null) {
 							node.file = this;
 							this.tree = node;
