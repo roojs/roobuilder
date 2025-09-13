@@ -1088,8 +1088,8 @@ namespace JsRender {
 						return false;
 					}
 					var items_array = property_node.get_array();
-					var legacy = new FileLegacy(this);
-					legacy.loadItems(items_array);
+					// We need the parent object to get bjs-version, but we don't have access to it here
+					// So we'll handle this in the main deserialization logic
 					value.set_object(items_array);
 					return true;
 				case "nodes":
