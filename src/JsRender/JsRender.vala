@@ -140,7 +140,7 @@ namespace JsRender {
 			// use interfaces if we can get this to suppor tmore...
 			var pr = (Project.Gtk)this.project;
 			if (pr != null) {
-				pr.symbol_builder.upsdateTreeFromFile(this);
+				pr.symbol_builder.updateTreeFromFile(this);
 			}
 		
 		}
@@ -960,7 +960,8 @@ namespace JsRender {
 					return default_serialize_property (property_name, value, pspec);
 				default:
 					// Skip properties that don't belong to JsRender
-					return null;
+					var null_node = new Json.Node(Json.NodeType.NULL);
+					return null_node;
 			}
 		}
 
@@ -982,9 +983,7 @@ namespace JsRender {
 					return false;
 				case "items":
 					// Legacy format - handle items array
-					value = GLib.Value (typeof(Json.Array));
 					if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-						value.set_object(new Json.Array());
 						return false;
 					}
 					var items_array = property_node.get_array();
@@ -994,8 +993,8 @@ namespace JsRender {
 					var obj = new Json.Object();
 					obj.set_int_member("bjs-version", this.bjs_version);
 					legacy.loadItems(items_array, obj);
-					value.set_object(items_array);
-					return true;
+					// Don't set value for items - it's handled by FileLegacy
+					return false;
 				case "bjs_version":
 				case "name":
 				case "gen_extended":
