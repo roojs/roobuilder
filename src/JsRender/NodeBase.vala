@@ -10,7 +10,7 @@ namespace JsRender
 		
 		
 		// New properties as requested
-		public Gee.ArrayList<NodeBase> children { get; private set; default = new Gee.ArrayList<NodeBase>(); }
+		public Gee.ArrayList<NodeBase> children { get; set; default = new Gee.ArrayList<NodeBase>(); }
 
  
 	// Protected properties with prop_ prefix
@@ -32,6 +32,28 @@ namespace JsRender
 			// Properties are initialized with default values
 			//this.oid = uid_count++;
 			
+		}
+		
+		// OID management methods
+		public void assignLegacyOid(int new_oid) {
+			this.oid = new_oid;
+		}
+		
+		public void clearOid() {
+			this.oid = -1;
+		}
+		
+		public bool hasOid() {
+			return this.oid != -1;
+		}
+		
+		// Legacy loading wrapper method
+		public void loadLegacy(Gee.ArrayList<NodeBase> legacy_children) {
+			this.children = legacy_children;
+			// Set parent references for all children
+			foreach (var child in this.children) {
+				child.parent = this;
+			}
 		}
 		// called on load - initializes oid /file / props / tree
 		public int setFile(JsRender file)
@@ -108,7 +130,7 @@ namespace JsRender
 			switch (property_name) {
 				case "children":
 					if (this.children.size < 0 ){
-						return null;
+						return new Json.Node(Json.NodeType.NULL);
 					}
 					var node = new Json.Node (Json.NodeType.ARRAY);
 					node.init_array (new Json.Array ());
@@ -121,15 +143,50 @@ namespace JsRender
 				case "prop-name":
 				case "prop-type":
 				case "return-type":
-				case "prop-val":
 				case "doc": 
 				case "oid":
 				case "is-static":
 					return default_serialize_property (property_name, value, pspec);
+				case "prop-val":
+					// Handle type detection and multi-line strings
+					var string_val = (string)value;
+					
+					// Check for multi-line strings first
+					if (string_val.index_of_char('\n', 0) >= 0) {
+						// String contains line breaks, convert to array
+						var node = new Json.Node(Json.NodeType.ARRAY);
+						var array = new Json.Array();
+						var lines = string_val.split("\n");
+						foreach (var line in lines) {
+							array.add_string_element(line);
+						}
+						node.init_array(array);
+						return node;
+					}
+					
+					// Type detection for single-line values
+					if (Lang.isBoolean(string_val)) {
+						var node = new Json.Node(Json.NodeType.VALUE);
+						node.set_boolean(string_val.down() == "false" ? false : true);
+						return node;
+					}
+					
+					if (Lang.isNumber(string_val)) {
+						var node = new Json.Node(Json.NodeType.VALUE);
+						if (string_val.contains(".")) {
+							node.set_double(double.parse(string_val));
+						} else {
+							node.set_int(long.parse(string_val));
+						}
+						return node;
+					}
+					
+					// Default to string serialization
+					return default_serialize_property (property_name, value, pspec);
 				 
 				default:
 					// Skip properties that don't belong to NodeBase
-					return null;
+					return new Json.Node(Json.NodeType.NULL);
 			}
 		}
 
@@ -165,10 +222,33 @@ namespace JsRender
 				case "prop-name":
 				case "prop-type":
 				case "return-type":
-				case "prop-val":
 				case "doc":	
 				case "is-static":
 					return default_deserialize_property (property_name, out value, pspec, property_node);
+				case "prop-val":
+					// Handle different JSON types and convert back to string
+					if (property_node.get_node_type() == Json.NodeType.ARRAY) {
+						// Convert array back to string with line breaks
+						var array = property_node.get_array();
+						var string_parts = new Gee.ArrayList<string>();
+						for (var i = 0; i < array.get_length(); i++) {
+							string_parts.add(array.get_string_element(i));
+						}
+						var result = string.joinv("\n", string_parts.to_array());
+						value = GLib.Value(typeof(string));
+						value.set_string(result);
+						return true;
+					} else if (property_node.get_node_type() == Json.NodeType.VALUE) {
+						// Handle typed values (boolean, number) and convert to string
+						var val = property_node.get_value();
+						var string_val = GLib.Value(typeof(string));
+						val.transform(ref string_val);
+						value = string_val;
+						return true;
+					} else {
+						// Not an array or value, deserialize as normal string
+						return default_deserialize_property (property_name, out value, pspec, property_node);
+					}
 				
 				case "file":
 				case "parent":
@@ -209,39 +289,39 @@ namespace JsRender
 			}
 		}
 
-	// Remove this node from its parent's stores
-	public void removeFromStore(bool recursive = true) {
-		// First, recursively remove all children from their stores (if requested)
-		if (recursive) {
-			foreach(var c in this.children) {
-				c.removeFromStore();
+		// Remove this node from its parent's stores
+		public void removeFromStore(bool recursive = true) {
+			// First, recursively remove all children from their stores (if requested)
+			if (recursive) {
+				foreach(var c in this.children) {
+					c.removeFromStore();
+				}
+			}
+			
+			// Then remove this node from its parent's stores
+			if (this.parent != null) {
+				if (this.node_type == NodePropType.OBJECT) {
+					var pos = this.parent.childstore_find(this);
+					if (pos != -1) {
+						this.parent.childstore.remove(pos);
+					}
+				} else {
+					var pos = this.parent.propstore_find(this as NodeProp);
+					if (pos != -1) {
+						this.parent.propstore.remove(pos);
+					}
+				}
 			}
 		}
 		
-		// Then remove this node from its parent's stores
-		if (this.parent != null) {
-			if (this.node_type == NodePropType.OBJECT) {
-				var pos = this.parent.childstore_find(this);
-				if (pos != -1) {
-					this.parent.childstore.remove(pos);
-				}
-			} else {
-				var pos = this.parent.propstore_find(this as NodeProp);
-				if (pos != -1) {
-					this.parent.propstore.remove(pos);
-				}
+		// Remove this node from file-related mappings
+		public void removeFromFile() {
+			if (this.file != null && this.oid != -1) {
+				this.file.nodes.unset(this.oid);
 			}
+			this.clearOid(); // clear it
+			this.file = null;
+			this.parent = null;
 		}
-	}
-	
-	// Remove this node from file-related mappings
-	public void removeFromFile() {
-		if (this.file != null && this.oid != -1) {
-			this.file.nodes.unset(this.oid);
-		}
-		this.oid = -1; // clear it
-		this.file = null;
-		this.parent = null;
-	}
 	}
 }

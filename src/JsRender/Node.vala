@@ -454,31 +454,32 @@ public class JsRender.Node : NodeBase
 			return;
 		}
 		var nlist = new Gee.ArrayList<Node>();
-		for (var i =0;i < ((Node)this.parent).items.size; i++) {
-			if (((Node)this.parent).items.get(i) == this) {
+		for (var i =0;i < ((Node)this.parent).children.size; i++) {
+			if (((Node)this.parent).children.get(i) == this) {
 				continue;
 			}
-			nlist.add(((Node)this.parent).items.get(i));
+			nlist.add((Node)((Node)this.parent).children.get(i));
 		}
 		uint pos;
 		if ( this.parent.childstore.find(this, out pos)) {
 			this.parent.childstore.remove(pos);
 		} 
 		((Node)this.parent).updated_count++;
-		((Node)this.parent).items = nlist;
+		((Node)this.parent).children = nlist;
 		this.parent = null;
 
 	}
 	 
 	/* creates javascript based on the rules */
 	public Node? findProp(string n) {
-		for(var i=0;i< this.items.size;i++) {
-			var p = this.items.get(i).get("* prop");
+		for(var i=0;i< this.children.size;i++) {
+			var child = (Node)this.children.get(i);
+			var p = child.get("* prop");
 			if (p  == null) {
 				continue;
 			}
 			if (p == n) {
-				return this.items.get(i);
+				return child;
 			}
 		}
 		return null;
@@ -502,68 +503,8 @@ public class JsRender.Node : NodeBase
 		return  Node.gen.to_data (null);   
 	}
 
-	public void loadFromJsonString(string str, int ver)
-	{
-		var pa = new Json.Parser();
-		try {
-			pa.load_from_data(str);
-		} catch (GLib.Error e) {
-			GLib.debug("Error loading string?");
-			return;
-		}
-		var new_node = pa.get_root();
-		var obj = new_node.get_object ();
-		     
-		this.loadFromJson(obj, ver);
-	}
-	
  
-
-	public void loadFromJson(Json.Object obj, int version) {
-		 
-		obj.foreach_member((o , key, value) => {
-			//print(key+"\n");
-			if (key == "items") {
-				var ar = value.get_array();
-				ar.foreach_element( (are, ix, el) => {
-					var node = new Node();
-					node.parent = this;
-					node.loadFromJson(el.get_object(), version);
-					this.items.add(node);
-					this.childstore.append(node);
-				});
-				return;
-			}
-			if (key == "listeners") {
-				var li = value.get_object();
-				li.foreach_member((lio , li_key, li_value) => {
-					this.add_prop(new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
-					//this.listeners.set(li_key,  new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
-				});
-				return;
-			}
-			
-
-			var rkey = key;
-			var sval = this.jsonNodeAsString(value);
-		
-			if (version == 1) {
-				rkey = this.upgradeKey(key, sval);
-			}
-			var n =  new NodeProp.from_json(rkey, sval);
-				
-			this.add_prop(n );
-
-
-		});
-		
-		
-		
-
-
-
-	}
-	
+ 
 	// converts the array into a string with line breaks.
 	public string jsonNodeAsString(Json.Node node)
 	{
@@ -640,97 +581,8 @@ public class JsRender.Node : NodeBase
 
 
 	
-	public Node  deepClone()
-	{
-		var n = new Node();
-		n.loadFromJson(this.toJsonObject(), 2);
-		return n;
-
-	}
-	public string toJsonString()
-	{
-		if (Node.gen == null) {
-			Node.gen = new Json.Generator();
-			gen.pretty =  true;
-			gen.indent = 1;
-		}
-		var n = new Json.Node(Json.NodeType.OBJECT);
-		n.set_object(this.toJsonObject () );
-		Node.gen.set_root (n);
-		return  Node.gen.to_data (null);   
-	}
-	
-	public void jsonObjectAddStringValue(Json.Object obj, string key, string v)
-	{
-		if (v.index_of_char('\n',0) < 0) {
-			obj.set_string_member(key,v);
-			return;
-		}
-		var aro = new Json.Array();
-		var ar = v.split("\n");
-		for(var i =0;i < ar.length;i++) {
-			aro.add_string_element(ar[i]);
-		}
-		obj.set_array_member(key,aro);
-	}
-	
-	public Json.Object toJsonObject()
-	{
-		var ret = new Json.Object();
-
-		// listeners...
-		if (this.listeners.size > 0) {
-			var li = new Json.Object();
-			ret.set_object_member("listeners", li);
-			var liter = this.listeners.map_iterator();
-			while (liter.next()) {
-				this.jsonObjectAddStringValue(li, liter.get_value().to_json_key(), liter.get_value().val);
-			}
-		}
-		//props
-		if (this.props.size > 0 ) {
-			var iter = this.props.map_iterator();
-			while (iter.next()) {
-				this.jsonObjectsetMember(ret, iter.get_value().to_json_key(), iter.get_value().val);
-			}
-		}
-		if (this.items.size > 0) {
-			var ar = new Json.Array();
-			ret.set_array_member("items", ar);
-		
-			// children..
-			for(var i =0;i < this.items.size;i++) {
-				ar.add_object_element(this.items.get(i).toJsonObject());
-			}
-		}
-		return ret;
-		
- 
-	}
 	 
-	public void jsonObjectsetMember(Json.Object o, string key, string val) {
-		if (Lang.isBoolean(val)) {
-			o.set_boolean_member(key, val.down() == "false" ? false : true);
-			return;
-		}
-		
-		
-		if (Lang.isNumber(val)) {
-			if (val.contains(".")) {
-				//print( "ADD " + key + "=" + val + " as a double?\n");
-				o.set_double_member(key, double.parse (val));
-				return;
-
-			}
-			//print( "ADD " + key + "=" + val + " as a int?\n")  ;
-			o.set_int_member(key,long.parse(val));
-			return;
-		}
-		///print( "ADD " + key + "=" + val + " as a string?\n");
-		this.jsonObjectAddStringValue(o,key,val);
-		//o.set_string_member(key,val);
-		
-	}
+	 
 	
 	
 	public string nodeTipProp { 
@@ -953,31 +805,7 @@ public class JsRender.Node : NodeBase
 		} 
 	}
 	
-	 
-	
-	public void insertAfter(Node child, Node after)	
-	{
-		this.insertChild(this.items.index_of(after) + 1, child);
-	}
-	public void insertBefore(Node child, Node before)	
-	{
-		this.insertChild(this.items.index_of(before), child);
-	}
-	
-	public void insertChild(int pos, Node child)
-	{
-		child.parent = this;
-		this.items.insert(pos, child);
-		this.childstore.insert(pos, child);
-		
-	}
-	public void appendChild(Node child)
-	{
-		child.parent = this;
-		this.items.add( child);
-		this.childstore.append(child);
-
-	}
+	  
 	
 	
 	/**

@@ -894,7 +894,7 @@ namespace JsRender {
 			if (this.xtype == "PlainFile") {
 				return;
 			}
-			
+			this.oid = 1;
 			GLib.debug("loadFromBjs for %s", this.path);
 			
 			// Read the file content
@@ -909,7 +909,8 @@ namespace JsRender {
 			
 			// Copy properties from deserialized object to this
 			this.copyPropertiesFrom(deserialized);
-			
+			this.tree.setFile(this);
+			this.tree.setStores(true);
 			this.loaded = true;
 		}
 		
@@ -945,8 +946,7 @@ namespace JsRender {
 			switch (property_name) {
 				case "tree":
 					if (this.tree == null) {
-						var null_node = new Json.Node(Json.NodeType.NULL);
-						return null_node;
+						return new Json.Node(Json.NodeType.NULL);
 					}
 					return Json.gobject_serialize(this.tree);
 				case "bjs_version":
@@ -960,8 +960,7 @@ namespace JsRender {
 					return default_serialize_property (property_name, value, pspec);
 				default:
 					// Skip properties that don't belong to JsRender
-					var null_node = new Json.Node(Json.NodeType.NULL);
-					return null_node;
+					return new Json.Node(Json.NodeType.NULL);
 			}
 		}
 
@@ -989,11 +988,8 @@ namespace JsRender {
 					var items_array = property_node.get_array();
 					// Pass to FileLegacy to convert items to tree
 					var legacy = new FileLegacy(this);
-					// Create a minimal Json.Object for bjs-version
-					var obj = new Json.Object();
-					obj.set_int_member("bjs-version", this.bjs_version);
 					try {
-						legacy.loadItems(items_array, obj);
+						legacy.loadItems(items_array, 1); // Default to version 1 for legacy items
 					} catch (Error e) {
 						GLib.debug("Failed to load legacy items: %s", e.message);
 					}
