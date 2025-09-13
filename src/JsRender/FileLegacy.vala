@@ -1,63 +1,36 @@
 namespace JsRender {
 
     public class FileLegacy : Object {
+        private JsRender file;
         
-        public static JsRender load(JsRender file) throws Error {
-            GLib.debug("FileLegacy.load for %s", file.path);
-            
-            if (file.tree != null) {
-                return file;
-            }
-            
-            GLib.debug("load " + file.path);
-
-            var pa = new Json.Parser();
-            pa.load_from_file(file.path);
-            var node = pa.get_root();
-
-            if (node.get_node_type () != Json.NodeType.OBJECT) {
-                throw new Error.INVALID_FORMAT ("Unexpected element type %s", node.type_name ());
-            }
-            var obj = node.get_object ();
+        public FileLegacy(JsRender file) {
+            this.file = file;
+        }
         
-            // Load common properties
-            file.modOrder = file.jsonHasOrEmpty(obj, "modOrder");
-            file.name = file.jsonHasOrEmpty(obj, "name");
-            file.parent = file.jsonHasOrEmpty(obj, "parent");
-            file.permname = file.jsonHasOrEmpty(obj, "permname");
-            file.title = file.jsonHasOrEmpty(obj, "title");
-            file.modOrder = file.jsonHasOrEmpty(obj, "modOrder");
+        public void loadItems(Json.Array items) throws Error {
+            GLib.debug("FileLegacy.loadItems for %s", this.file.path);
             
-            if (obj.has_member("gen_extended")) {
-                file.gen_extended = obj.get_boolean_member("gen_extended");
+            if (this.file.tree != null) {
+                return;
             }
             
-            // Load Gtk-specific properties
-            if (file.xtype == "Gtk") {
-                if (obj.has_member("build_module")) {
-                    file.build_module = obj.get_string_member("build_module");
-                }
-            }
-            
-            var bjs_version_str = file.jsonHasOrEmpty(obj, "bjs-version");
+            var bjs_version_str = this.jsonHasOrEmpty(this.file, "bjs-version");
             bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
 
             // load items[0] into tree...
-            if (obj.has_member("items") 
-                && 
-                obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
-                &&
-                obj.get_array_member("items").get_length() > 0
-            ) {
-                file.tree = new Node(); 
-                var ar = obj.get_array_member("items");
-                var tree_base = ar.get_object_element(0);
-                file.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
-                file.tree.file = file;
+            if (items.get_length() > 0) {
+                this.file.tree = new Node(); 
+                var tree_base = items.get_object_element(0);
+                this.file.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
+                this.file.tree.file = this.file;
             }
             
-            file.loaded = true;
-            return file;
+            this.file.loaded = true;
+        }
+        
+        public static string jsonHasOrEmpty(JsRender file, string key) {
+            // This is a placeholder - the actual implementation will be moved from JsRender
+            return "";
         }
     }
 }
