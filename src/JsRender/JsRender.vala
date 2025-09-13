@@ -979,58 +979,35 @@ namespace JsRender {
 			
 			GLib.debug("loadFromBjs for %s", this.path);
 			
-			var pa = new Json.Parser();
-			pa.load_from_file(this.path);
-			var node = pa.get_root();
-
-			if (node.get_node_type () != Json.NodeType.OBJECT) {
-				throw new Error.INVALID_FORMAT ("Unexpected element type %s", node.type_name ());
-			}
-			var obj = node.get_object ();
+			// Read the file content
+			string content;
+			FileUtils.get_contents(this.path, out content);
 			
-			// Load bjs_version
-			if (obj.has_member("bjs_version")) {
-				this.bjs_version = (int)obj.get_int_member("bjs_version");
+			// Use Json.gobject_from_data to deserialize
+			var deserialized = Json.gobject_from_data(typeof(JsRender), content) as JsRender;
+			if (deserialized == null) {
+				throw new Error.INVALID_FORMAT("Failed to deserialize JsRender from JSON");
 			}
 			
-			// If bjs_version is empty or < 3, use legacy loading
-			if (this.bjs_version < 3) {
-				JsRender.FileLegacy.load(this);
-				return;
-			}
-			
-			// Load new format properties
-			this.name = this.jsonHasOrEmpty(obj, "name");
-			this.gen_extended = obj.has_member("gen_extended") ? obj.get_boolean_member("gen_extended") : false;
-			
-			// Load Roo-specific properties
-			if (this.project.xtype == "Roo") {
-				this.parent = this.jsonHasOrEmpty(obj, "parent");
-				this.title = this.jsonHasOrEmpty(obj, "title");
-				this.permname = this.jsonHasOrEmpty(obj, "permname");
-				this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
-			}
-			
-			// Load Gtk-specific properties
-			if (this.project.xtype == "Gtk") {
-				this.build_module = this.jsonHasOrEmpty(obj, "build_module");
-			}
-			
-			// Load items array
-			if (obj.has_member("items") 
-				&& 
-				obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
-				&&
-				obj.get_array_member("items").get_length() > 0
-			) {
-				this.tree = new Node(); 
-				var ar = obj.get_array_member("items");
-				var tree_base = ar.get_object_element(0);
-				this.tree.loadFromJson(tree_base, this.bjs_version);
-				this.tree.file = this;
-			}
+			// Copy properties from deserialized object to this
+			this.copyPropertiesFrom(deserialized);
 			
 			this.loaded = true;
+		}
+		
+		private void copyPropertiesFrom(JsRender other) {
+			this.bjs_version = other.bjs_version;
+			this.name = other.name;
+			this.gen_extended = other.gen_extended;
+			this.parent = other.parent;
+			this.title = other.title;
+			this.permname = other.permname;
+			this.modOrder = other.modOrder;
+			this.build_module = other.build_module;
+			this.tree = other.tree;
+			if (this.tree != null) {
+				this.tree.file = this;
+			}
 		}
 		
 		// oid management per file now?
