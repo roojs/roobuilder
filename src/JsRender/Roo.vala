@@ -91,53 +91,8 @@ namespace JsRender {
 		
         public  override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
         {
-            
-				 
-			GLib.debug("load Items!");
-			if (this.tree != null) {
-				return;
-			}
-			GLib.debug("load " + this.path);
-
-			var pa = new Json.Parser();
-			pa.load_from_file(this.path);
-			var node = pa.get_root();
-
-			if (node.get_node_type () != Json.NodeType.OBJECT) {
-				throw new Error.INVALID_FORMAT ("Unexpected element type %s", node.type_name ());
-			}
-			var obj = node.get_object ();
-		
-		
-			this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
-			this.name = this.jsonHasOrEmpty(obj, "name");
-			this.parent = this.jsonHasOrEmpty(obj, "parent");
-			this.permname = this.jsonHasOrEmpty(obj, "permname");
-			this.title = this.jsonHasOrEmpty(obj, "title");
-			this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
-			if (obj.has_member("gen_extended")) { // should check type really..
-				this.gen_extended = obj.get_boolean_member("gen_extended");
-			}
-			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
-			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
-
-			
-			// load items[0] ??? into tree...
-			if (obj.has_member("items") 
-				&& 
-				obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
-				&&
-				obj.get_array_member("items").get_length() > 0
-			) {
-				this.tree = new Node(); 
-				var ar = obj.get_array_member("items");
-				var tree_base = ar.get_object_element(0);
-				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
-			}
-			this.loaded = true;
-			this.toSource(); // force it to number the lines...
-
-            
+            this.loadFromBjs();
+            this.toSource(); // force it to number the lines...
         }
         
 		public override string targetName()
