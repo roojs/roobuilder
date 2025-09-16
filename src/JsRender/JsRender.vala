@@ -7,7 +7,7 @@ namespace JsRender {
 		INVALID_FORMAT,
 		RENAME_FILE_EXISTS
 	}
-		
+	
 	public abstract class JsRender  : Object, Json.Serializable {
 		/**
 		 * @cfg {Array} doubleStringProps list of properties that can be double quoted.
