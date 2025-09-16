@@ -90,8 +90,10 @@ public class DialogSaveModule : Object
 			}
 		    f.tree = Json.gobject_unserialize( typeof(JsRender.Node)
 		    		Json.gobject_serialize(f.tree) 
-			)as JsRender.Node;
-		
+			) as JsRender.Node;
+			f.tree.clearOid(true);
+			f.tree.setFile(f);
+			f.tree.setStores(true);
 		    f.tree =  _this.data.deepClone();
 		    f.save();
 		     project.addFile(f);
