@@ -134,7 +134,7 @@
              "  ",
              "\t//data.set_text(tp,tp.length);   ",
              "\tsize_t l;",
-             "\tvar \tstr = Json.gobject_to_data(ndata.toJsonString(), out l);",
+             "\tvar \tstr = Json.gobject_to_data(ndata, out l);",
              "\tGLib.debug(\"prepare  store: %s\", str);",
              "\tGLib.Value ov = GLib.Value(typeof(string));",
              "\tov.set_string(str);",

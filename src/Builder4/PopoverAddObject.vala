@@ -477,7 +477,7 @@ public class Xcls_PopoverAddObject : Object
 			  
 				//data.set_text(tp,tp.length);   
 				size_t l;
-				var 	str = Json.gobject_to_data(ndata.toJsonString(), out l);
+				var 	str = Json.gobject_to_data(ndata, out l);
 				GLib.debug("prepare  store: %s", str);
 				GLib.Value ov = GLib.Value(typeof(string));
 				ov.set_string(str);
