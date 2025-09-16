@@ -581,10 +581,10 @@
 			}
 			
 			// dump the node tree
-			file.tree.dumpProps();
-			
-			
-			
+			 
+			size_t length;
+			string content = Json.gobject_to_data(file, out length);
+			print("%s", content);
 			
 			
 			var str_ar = str.split("\n");
