@@ -30,12 +30,12 @@
 		public override void do() {
 		    
 		    try {
-		        var node = Json.gobject_from_data(typeof(Node), this.nodeJson) as Node;
-		        if (node == null) {
-		            GLib.debug("Add action failed to deserialize node: null result");
-		            return;
-		        }
-		      node.removeDuplicateOIDs(this.file);	          
+				var node = Json.gobject_from_data(typeof(Node), this.nodeJson) as Node;
+				if (node == null) {
+					GLib.debug("Add action failed to deserialize node: null result");
+					return;
+				}
+		      	node.removeDuplicateOIDs(this.file);	          
 		       // Get the parent node from OID
 		        if ((this.parentOid > -1) {
 			        var parentBase = this.file.nodes.get(this.parentOid);
@@ -45,20 +45,23 @@
 			        }
 			        
 			        var parent = (Node)parentBase;
-		      	}  
+			        if (this.position == -1) {
+		            // Append to the end
+				        parent.children.add(node);
+				    } else {
+				        // Insert at specific position
+				        parent.children.insert(this.position, node);
+				    }
+		      	} else {
+		      		this.file.tree = node;
+	      		}
 			        // Deserialize the node from JSON using gobject_from_data
 		       
 		        // Validate and clean up OIDs to avoid conflicts
 
 		        
 		        // Add the node to the parent first
-		        if (this.position == -1) {
-		            // Append to the end
-		            parent.children.add(node);
-		        } else {
-		            // Insert at specific position
-		            parent.children.insert(this.position, node);
-		        }
+		        
 		        
 		        // Set the file reference and add to stores after it's added
 		        node.setFile(this.file);
