@@ -163,13 +163,12 @@ roobuilder_src = files([
    'src/WindowManager.vala',
    'src/JsRender/NodePropBase.vala',
    'src/JsRender/NodeBase.vala',
-    'src/JsRender/FileLegacy.vala',
-    'src/JsRender/Action.vala',
-    'src/JsRender/Action/Add.vala',
-    'src/JsRender/Action/ChangeProp.vala',
-    'src/JsRender/Action/Manager.vala',
-    'src/JsRender/Action/Move.vala',
-    'src/JsRender/Action/Remove.vala',
+   'src/JsRender/Action.vala',
+   'src/JsRender/Action/Add.vala',
+   'src/JsRender/Action/Move.vala',
+   'src/JsRender/Action/Remove.vala',
+   'src/JsRender/Action/ChangeProp.vala',
+   'src/JsRender/Action/Manager.vala',
 ])
 
 
