@@ -92,7 +92,7 @@
      "\t    ); ",
      "\t\treturn;",
      "\t}",
-     "    f.tree = Json.gobject_unserialize( typeof(JsRender.Node),",
+     "    f.tree = Json.gobject_deserialize( typeof(JsRender.Node),",
      "    \t\tJson.gobject_serialize(f.tree) ",
      "\t) as JsRender.Node;",
      "\tf.tree.clearOid(true);",
