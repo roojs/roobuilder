@@ -43,7 +43,7 @@ public class Xcls_PopoverAddObject : Object
 		this.el.height_request = 800;
 		this.el.hexpand = false;
 		this.el.position = Gtk.PositionType.RIGHT;
-		var child_1 = new Xcls_Box405( _this );
+		var child_1 = new Xcls_Box1( _this );
 		child_1.ref();
 		this.el.set_child ( child_1.el  );
 	}
@@ -112,7 +112,7 @@ public class Xcls_PopoverAddObject : Object
 	 
 		this.el.hide();
 	}
-	public class Xcls_Box405 : Object
+	public class Xcls_Box1 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_PopoverAddObject  _this;
@@ -121,7 +121,7 @@ public class Xcls_PopoverAddObject : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box405(Xcls_PopoverAddObject _owner )
+		public Xcls_Box1(Xcls_PopoverAddObject _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -236,12 +236,12 @@ public class Xcls_PopoverAddObject : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			var child_2 = new Xcls_DragSource843( _this );
+			var child_2 = new Xcls_DragSource5( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
 			new Xcls_maincol( _this );
 			this.el.append_column ( _this.maincol.el  );
-			var child_4 = new Xcls_GestureClick850( _this );
+			var child_4 = new Xcls_GestureClick12( _this );
 			child_4.ref();
 			this.el.add_controller(  child_4.el );
 		}
@@ -436,7 +436,7 @@ public class Xcls_PopoverAddObject : Object
 		
 		 }
 	}
-	public class Xcls_DragSource843 : Object
+	public class Xcls_DragSource5 : Object
 	{
 		public Gtk.DragSource el;
 		private Xcls_PopoverAddObject  _this;
@@ -445,7 +445,7 @@ public class Xcls_PopoverAddObject : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_DragSource843(Xcls_PopoverAddObject _owner )
+		public Xcls_DragSource5(Xcls_PopoverAddObject _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.DragSource();
@@ -681,7 +681,7 @@ public class Xcls_PopoverAddObject : Object
 		{
 			_this = _owner;
 			_this.maincol = this;
-			var child_1 = new Xcls_SignalListItemFactory849( _this );
+			var child_1 = new Xcls_SignalListItemFactory11( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Drag to add Object", child_1.el );
 
@@ -694,7 +694,7 @@ public class Xcls_PopoverAddObject : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory849 : Object
+	public class Xcls_SignalListItemFactory11 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_PopoverAddObject  _this;
@@ -703,7 +703,7 @@ public class Xcls_PopoverAddObject : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory849(Xcls_PopoverAddObject _owner )
+		public Xcls_SignalListItemFactory11(Xcls_PopoverAddObject _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -772,7 +772,7 @@ public class Xcls_PopoverAddObject : Object
 	}
 
 
-	public class Xcls_GestureClick850 : Object
+	public class Xcls_GestureClick12 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_PopoverAddObject  _this;
@@ -781,7 +781,7 @@ public class Xcls_PopoverAddObject : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick850(Xcls_PopoverAddObject _owner )
+		public Xcls_GestureClick12(Xcls_PopoverAddObject _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
