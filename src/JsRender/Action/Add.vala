@@ -37,7 +37,7 @@
 				}
 		      	node.removeDuplicateOIDs(this.file);	          
 		       // Get the parent node from OID
-		        if ((this.parentOid > -1) {
+		        if (this.parentOid > -1) {
 			        var parentBase = this.file.nodes.get(this.parentOid);
 			        if (parentBase == null || !(parentBase is Node)) {
 			            GLib.debug("Add action - parent with OID %d not found", this.parentOid);
