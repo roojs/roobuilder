@@ -39,8 +39,14 @@ namespace JsRender
 			this.oid = new_oid;
 		}
 		
-		public void clearOid() {
+		public void clearOid(bool recursive) {
 			this.oid = -1;
+			if (!recursive) {
+				return;
+			}
+			foreach (var child in this.children) {
+				child.clearOld(true);
+			}
 		}
 		
 		public bool hasOid() {
