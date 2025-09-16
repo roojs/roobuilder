@@ -801,9 +801,9 @@ public class Xcls_PopoverAddObject : Object
 				var lt = ws.left_tree;
 				
 				_this.el.hide();
-			  	var addn = _this.selmodel.getSelectedNode();
+			  	var add = _this.selmodel.getSelectedNode();
 				var pal = ws.project.palete;
-				pal.loadNodeDefaults(ws.file.getSymbolLoader(), addn);
+				pal.loadNodeDefaults(ws.file.getSymbolLoader(), add);
 				//var add = addn.deepClone();
 				//GLib.debug("ADD %s", add.toJsonString());
 				if (lt.model.el.n_items < 1) {
@@ -812,15 +812,12 @@ public class Xcls_PopoverAddObject : Object
 						new JsRender.Action.Add(
 							ws.file,
 							null,
-							Json.gobject_to_data(addn),
+							Json.gobject_to_data(add),
 							-1
 						
 						)
 					);
-					ws.file.tree = add;  
-			  	  	add.updated_count++;
-			   	 	var m = (GLib.ListStore) lt.model.el.model;
-					m.append(add);
+					 
 					lt.model.selectNode(add); 	
 					lt.changed();
 					lt.node_selected(add);
