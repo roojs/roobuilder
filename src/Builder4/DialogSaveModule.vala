@@ -88,7 +88,7 @@ public class DialogSaveModule : Object
 			    ); 
 				return;
 			}
-		    f.tree = Json.gobject_unserialize( typeof(JsRender.Node)
+		    f.tree = Json.gobject_unserialize( typeof(JsRender.Node),
 		    		Json.gobject_serialize(f.tree) 
 			) as JsRender.Node;
 			f.tree.clearOid(true);
