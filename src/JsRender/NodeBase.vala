@@ -45,7 +45,7 @@ namespace JsRender
 				return;
 			}
 			foreach (var child in this.children) {
-				child.clearOld(true);
+				child.clearOid(true);
 			}
 		}
 		
