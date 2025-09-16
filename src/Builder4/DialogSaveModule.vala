@@ -94,7 +94,7 @@ public class DialogSaveModule : Object
 			f.tree.clearOid(true);
 			f.tree.setFile(f);
 			f.tree.setStores(true);
-		    f.tree =  _this.data.deepClone();
+		
 		    f.save();
 		     project.addFile(f);
 		    // now we save it..
