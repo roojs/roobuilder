@@ -476,8 +476,8 @@ public class Xcls_PopoverAddObject : Object
 				pal.loadNodeDefaults(ws.file.getSymbolLoader(), ndata);
 			  
 				//data.set_text(tp,tp.length);   
-			
-				var 	str = ndata.toJsonString();
+				size_t l;
+				var 	str = Json.gobject_to_data(ndata.toJsonString(), out l);
 				GLib.debug("prepare  store: %s", str);
 				GLib.Value ov = GLib.Value(typeof(string));
 				ov.set_string(str);
