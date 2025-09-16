@@ -799,6 +799,8 @@ public class Xcls_PopoverAddObject : Object
 				// find left tree selected node
 				var ws =_this.mainwindow.windowstate;
 				var lt = ws.left_tree;
+				var lp = ws.left_props;
+				
 				
 				_this.el.hide();
 			  	var add = _this.selmodel.getSelectedNode();
@@ -814,7 +816,6 @@ public class Xcls_PopoverAddObject : Object
 							null,
 							Json.gobject_to_data(add),
 							-1
-						
 						)
 					);
 					 
@@ -826,10 +827,19 @@ public class Xcls_PopoverAddObject : Object
 				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
 				//var row = _this.view.getRowAt(x,y, out pos);
 				
-			
-				addto.appendChild(add);
-				_this.mainwindow.windowstate.left_props.changed();
-				_this.mainwindow.windowstate.left_tree.model.selectNode(add);
+				ws.file.action_manager.do(
+					new JsRender.Action.Add(
+						ws.file,
+						addto,
+						Json.gobject_to_data(add),
+						-1
+					)
+				);
+				
+				lp.changed();
+				lt.model.selectNode(add);
+				lt.changed();
+				lt.node_selected(add);
 			});
 		}
 
