@@ -326,7 +326,7 @@ namespace JsRender
 			if (this.file != null && this.oid != -1) {
 				this.file.nodes.unset(this.oid);
 			}
-			this.clearOid(); // clear it
+			this.clearOid(true); // clear it
 			this.file = null;
 			this.parent = null;
 		}
