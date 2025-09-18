@@ -592,7 +592,7 @@
            "\t\t\treturn false;\t",
            "\t\t}",
            "\t}",
-           " \tvar to_pos = -1; _",
+           " \tvar to_pos = -1; ",
            " \tswitch(pos) {",
            " \t\tcase \"over\":",
            "\t\t\tbreak;",

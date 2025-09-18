@@ -1232,7 +1232,7 @@ public class Xcls_WindowLeftTree : Object
 						return false;	
 					}
 				}
-			 	var to_pos = -1; _
+			 	var to_pos = -1; 
 			 	switch(pos) {
 			 		case "over":
 						break;
