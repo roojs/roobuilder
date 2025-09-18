@@ -1012,7 +1012,7 @@ public class Xcls_WindowLeftTree : Object
 					// still dragging same node
 			 
 					this.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  
-						v.get_string( ) as JsRender.Node;
+						v.get_string( )) as JsRender.Node;
 				}
 			    
 				var file = _this.main_window.windowstate.file;

@@ -701,7 +701,7 @@
            "\t\t// still dragging same node",
            " ",
            "\t\tthis.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  ",
-           "\t\t\tv.get_string( ) as JsRender.Node;",
+           "\t\t\tv.get_string( )) as JsRender.Node;",
            "\t}",
            "    ",
            "\tvar file = _this.main_window.windowstate.file;",
