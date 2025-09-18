@@ -1745,7 +1745,7 @@ public class Xcls_WindowLeftTree : Object
 				 	}
 			 	} catch (GLib.Error e) {}
 			    */
-			    expand.set_hide_expander( !node.hasChildren() );
+			    expand.set_hide_expander( node.children.size < 1 );
 			 	expand.set_list_row(lr);
 			 	
 			 	node.bind_property("iconResourceName",

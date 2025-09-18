@@ -1188,7 +1188,7 @@
              "\t \t}",
              " \t} catch (GLib.Error e) {}",
              "    */",
-             "    expand.set_hide_expander( !node.hasChildren() );",
+             "    expand.set_hide_expander( node.children.size < 1 );",
              " \texpand.set_list_row(lr);",
              " \t",
              " \tnode.bind_property(\"iconResourceName\",",
