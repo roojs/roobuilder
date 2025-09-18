@@ -800,7 +800,7 @@ public class Xcls_PopoverAddObject : Object
 				var ws =_this.mainwindow.windowstate;
 				var lt = ws.left_tree;
 				var lp = ws.left_props;
-				
+				size_t l;
 				
 				_this.el.hide();
 			  	var add = _this.selmodel.getSelectedNode();
@@ -810,36 +810,36 @@ public class Xcls_PopoverAddObject : Object
 				//GLib.debug("ADD %s", add.toJsonString());
 				if (lt.model.el.n_items < 1) {
 				
-					ws.file.action_manager.do(
+					var tadd = ws.file.action_manager.do(
 						new JsRender.Action.Add(
 							ws.file,
 							null,
-							Json.gobject_to_data(add),
+							Json.gobject_to_data(add, out l),
 							-1
 						)
-					);
+					) as JsRender.Node;
 					 
-					lt.model.selectNode(add); 	
+					lt.model.selectNode(tadd); 	
 					lt.changed();
-					lt.node_selected(add);
+					lt.node_selected(tadd);
 					return;
 				}
 				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
 				//var row = _this.view.getRowAt(x,y, out pos);
 				
-				ws.file.action_manager.do(
+				var nadd = ws.file.action_manager.do(
 					new JsRender.Action.Add(
 						ws.file,
 						addto,
-						Json.gobject_to_data(add),
+						Json.gobject_to_data(add, out l),
 						-1
 					)
-				);
-				
+				) as JsRender.Node;
+				 
 				lp.changed();
-				lt.model.selectNode(add);
+				lt.model.selectNode(nadd);
 				lt.changed();
-				lt.node_selected(add);
+				lt.node_selected(nadd);
 			});
 		}
 

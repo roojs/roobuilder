@@ -2306,7 +2306,7 @@ public class Xcls_LeftProps : Object
 						 
 					 
 					    prop.val = elbl.text;
-			        	 GLib.debug("calling changed");
+			        		 GLib.debug("calling changed");
 				        _this.changed();
 				       
 			        }
@@ -2349,7 +2349,7 @@ public class Xcls_LeftProps : Object
 				gc.pressed.connect(() => {
 				 	var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
 					 _this.stop_editor();
-				    _this.show_editor(_this.file, prop.parent, prop);
+				    _this.show_editor(_this.file, prop.parent as JsRender.Node, prop);
 				});
 				  
 				

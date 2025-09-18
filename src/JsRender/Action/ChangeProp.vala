@@ -1,7 +1,7 @@
 namespace JsRender
 {
     
-    public class Action.ChangeProp : Action {
+    public class Action.ChangeProp : ActionBase {
 
         int nodeOid;
         string originalPropJson;
@@ -36,37 +36,39 @@ namespace JsRender
                 this.file, this.nodeOid, this.originalPropJson);
         }
 
-        public override void do() {
+        public override NodeBase? do() {
             try {
                 // Deserialize the new NodeProp from JSON
                 var newProp = Json.gobject_from_data(typeof(NodeProp), this.newPropJson) as NodeProp;
                 if (newProp == null) {
                     GLib.debug("ChangeProp - failed to deserialize new NodeProp");
-                    return;
+                    return null;
                 }
                 
                 // Get the current NodeProp from the file
                 var nodeBase = this.file.nodes.get(this.nodeOid);
                 if (nodeBase == null || !(nodeBase is NodeProp)) {
                     GLib.debug("ChangeProp - NodeProp with OID %d not found", this.nodeOid);
-                    return;
+                    return null;
                 }
                 var currentProp = (NodeProp)nodeBase;
                 
-                // Update the current NodeProp with values from NodeBase properties only
-                currentProp.prop_name = newProp.prop_name;
-                currentProp.prop_val = newProp.prop_val;
-                currentProp.prop_type = newProp.prop_type;
-                currentProp.is_static = newProp.is_static;
+                // Update the current NodeProp with values from NodeProp properties
+                currentProp.name = newProp.name;
+                currentProp.val = newProp.val;
+                currentProp.rtype = newProp.rtype;
                 currentProp.doc = newProp.doc;
-                currentProp.node_type = newProp.node_type;
+                currentProp.ptype = newProp.ptype;
                 
                 // Note: We don't copy oid, parent, children, or file as these should remain the same
                 // The deserialized NodeProp will have different values for these system properties
                 
-            } catch (Error e) {
+                // Return the changed node
+                return currentProp;
+                
+            } catch (GLib.Error e) {
                 GLib.debug("ChangeProp failed: %s", e.message);
-                return;
+                return null;
             }
         }
 

@@ -5,9 +5,9 @@ namespace JsRender
 
         int nodeOid;
         int position = -1;
-        int lowestOid = -1;
+        //int lowestOid = -1;
 
-        public Remove(JsRender file, Node node) {
+        public Remove(JsRender file, NodeBase node) {
             base(file);
             this.nodeOid = node.oid;
             
@@ -21,25 +21,25 @@ namespace JsRender
             }
             
         }
-
-        public override void do( ) {
+		// always returns null
+        public override NodeBase? do( ) {
             
             // Get the node from OID
             var nodeBase = this.file.nodes.get(this.nodeOid);
             if (nodeBase == null || !(nodeBase is Node)) {
                 GLib.debug("Remove action - node with OID %d not found", this.nodeOid);
-                return;
+                return null;
             }
             var node = (Node)nodeBase;
 
             if (node.parent == null) {
                 GLib.debug("remove - parent is null?");
-                return;
+                return null;
             }
             
             if (this.position == -1) {
                 GLib.debug("remove - invalid position, cannot proceed");
-                return;
+                return null;
             }
             
             // Setup undo action with the correct position
@@ -58,6 +58,7 @@ namespace JsRender
             
             // Remove from parent's children list
             node.parent.children.remove(node);
+            return null; // 
         }
         public override void undo() {
             if (this.undoAction != null) {

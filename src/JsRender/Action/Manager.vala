@@ -13,10 +13,10 @@ namespace JsRender
         }
         
         // Execute an action and add it to the undo queue
-        public void do(ActionBase action)
+        public NodeBase? do(ActionBase action)
         {
-            // Execute the action
-            action.do();
+            // Execute the action and capture the result
+            var result = action.do();
             
             // Clear the redo queue when a new action is performed
             this.redoQueue.clear();
@@ -30,14 +30,17 @@ namespace JsRender
             if (this.undoQueue.size > this.maxQueueSize) {
                 this.undoQueue.remove_at(0); // Remove oldest action
             }
+            
+            // Return the result from the action
+            return result;
         }
         
         // Undo the last action
-        public void undo()
+        public NodeBase? undo()
         {
             if (this.undoQueue.size == 0) {
                 GLib.debug("Action.Manager: No actions to undo");
-                return;
+                return null;
             }
             
             // Pop the last action from undo queue
@@ -52,21 +55,24 @@ namespace JsRender
             // Emit signals
             this.onUndoUpdated(this.undoQueue.size > 0);
             this.onRedoUpdated(true);
+            
+            // Return null for undo operations as they don't return meaningful results
+            return null;
         }
         
         // Redo the last undone action
-        public void redo()
+        public NodeBase? redo()
         {
             if (this.redoQueue.size == 0) {
                 GLib.debug("Action.Manager: No actions to redo");
-                return;
+                return null;
             }
             
             // Pop the last action from redo queue
             var action = this.redoQueue.remove_at(this.redoQueue.size - 1);
             
-            // Call do on the action (which will re-execute it)
-            action.do();
+            // Call do on the action (which will re-execute it) and capture the result
+            var result = action.do();
             
             // Move it back to undo queue
             this.undoQueue.add(action);
@@ -74,6 +80,9 @@ namespace JsRender
             // Emit signals
             this.onRedoUpdated(this.redoQueue.size > 0);
             this.onUndoUpdated(true);
+            
+            // Return the result from the action
+            return result;
         }
         
         // Signals for undo/redo state changes

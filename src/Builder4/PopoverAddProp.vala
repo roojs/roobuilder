@@ -431,10 +431,12 @@ public class Xcls_PopoverAddProp : Object
 					GLib.debug("no clicking on expandables");
 					return;
 				}
-				
+				var f = _this.node.file;
+				size_t l;
+				var ws = _this.mainwindow.windowstate;
 				// if it's a node...
-				if (prop.add_node != null) {
-					var ws = _this.mainwindow.windowstate;
+				if (prop.node_type == JsRender.NodePropType.OBJECT) {
+			
 					var pal = ws.project.palete;
 					
 					pal.loadNodeDefaults(ws.file.getSymbolLoader(), prop.add_node);
@@ -444,20 +446,32 @@ public class Xcls_PopoverAddProp : Object
 					}
 					 GLib.debug("Add Child Node %s", prop.name);			
 					 _this.el.hide();
-					 var add = prop.add_node.deepClone();
-					_this.node.appendChild(add);
-					 _this.mainwindow.windowstate.left_props.changed();
-					 _this.mainwindow.windowstate.left_tree.model.selectNode(add);
+					
+					var add = f.action_manager.do( new JsRender.Action.Add(
+						f,
+						_this.node,
+						Json.gobject_to_data(prop, out l),
+						-1
+					)) as JsRender.Node;
+					
+					
+					 
+					ws.left_props.changed();
+					ws.left_tree.model.selectNode(add);
 					 
 					return;
 				}
 				
 				_this.el.hide();
-				GLib.debug("Add %s", prop.name);
-				var add = prop.dupe();
-				_this.node.add_prop(add);
-				 _this.mainwindow.windowstate.left_props.changed();
-			 	_this.mainwindow.windowstate.left_props.view.editProp(add);
+				var add = f.action_manager.do( new JsRender.Action.Add(
+					f,
+					_this.node,
+					Json.gobject_to_data(prop, out l),
+					-1
+				)) as JsRender.NodeProp;
+			 
+				ws.left_props.changed();
+			 	ws.left_props.view.editProp(add);
 				
 			
 				 //_this.mainwindow.windowstate.left_props.changed();

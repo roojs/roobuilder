@@ -17,13 +17,13 @@ namespace JsRender
             this.oldParentOid = node.parent != null ? node.parent.oid : -1;
         }
 
-        public override void do() {
+        public override NodeBase? do() {
             
             // Get the node from OID
             var nodeBase = this.file.nodes.get(this.nodeOid);
             if (nodeBase == null || !(nodeBase is Node)) {
                 GLib.debug("Move action - node with OID %d not found", this.nodeOid);
-                return;
+                return null;
             }
             var node = (Node)nodeBase;
             
@@ -31,20 +31,20 @@ namespace JsRender
             var newParentBase = this.file.nodes.get(this.newParentOid);
             if (newParentBase == null || !(newParentBase is Node)) {
                 GLib.debug("Move action - new parent with OID %d not found", this.newParentOid);
-                return;
+                return null;
             }
             var newParent = (Node)newParentBase;
             
             if (node.parent == null) {
                 GLib.debug("move - node has no parent");
-                return;
+                return null;
             }
             
             // Find the current position in the old parent
             this.oldPosition = node.parent.children.index_of(node);
             if (this.oldPosition == -1) {
                 GLib.debug("move - could not find node position in old parent");
-                return;
+                return null;
             }
             
             // Create undo action (Move back to original position)
@@ -66,6 +66,9 @@ namespace JsRender
             
             // Add to new parent's stores (no recursion needed for move)
             node.setStores(false);
+            
+            // Return the moved node
+            return node;
         }
 
         public override void undo() {

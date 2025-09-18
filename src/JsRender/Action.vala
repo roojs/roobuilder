@@ -12,7 +12,7 @@ namespace JsRender
 			this.file = file;
 		}
 	
-		public abstract void do();
+		public abstract NodeBase? do();
 		public abstract void undo();
  
 	}

@@ -27,13 +27,16 @@
 		    this.position = position;
 		}
 
-		public override void do() {
+		public override NodeBase? do() {
+		    NodeBase? node = null;
 		    
 		    try {
-				var node = Json.gobject_from_data(typeof(Node), this.nodeJson) as Node;
+		        // Deserialize the node from JSON
+		        node = Json.gobject_from_data(typeof(Node), this.nodeJson) as Node;
+		        
 				if (node == null) {
 					GLib.debug("Add action failed to deserialize node: null result");
-					return;
+					return null;
 				}
 		      	node.removeDuplicateOIDs(this.file);	          
 		       // Get the parent node from OID
@@ -41,19 +44,19 @@
 			        var parentBase = this.file.nodes.get(this.parentOid);
 			        if (parentBase == null || !(parentBase is Node)) {
 			            GLib.debug("Add action - parent with OID %d not found", this.parentOid);
-			            return;
+			            return null;
 			        }
 			        
 			        var parent = (Node)parentBase;
 			        if (this.position == -1) {
 		            // Append to the end
-				        parent.children.add(node);
-				    } else {
-				        // Insert at specific position
-				        parent.children.insert(this.position, node);
-				    }
+			            parent.children.add(node);
+			        } else {
+			            // Insert at specific position
+			            parent.children.insert(this.position, node);
+			        }
 		      	} else {
-		      		this.file.tree = node;
+		      		this.file.tree = node as Node;
 	      		}
 			        // Deserialize the node from JSON using gobject_from_data
 		       
@@ -73,8 +76,9 @@
 		        
 		    } catch (GLib.Error e) {
 		        GLib.debug("Add action failed to deserialize node: %s", e.message);
-		        return;
+		        return null;
 		    }
+		    return node;
 		}
 
 
