@@ -214,10 +214,12 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	// if id of child is '+' then it's a property of this..
 	protected void addPlusProperties()
 	{
-		if (this.node.readItems().size < 1) {
+		var cn = this.node.readObjects();
+		
+		if (cn.size < 1) {
 			return;
 		}
-		var iter = this.node.readItems().list_iterator();
+		var iter = cn.list_iterator();
 		while (iter.next()) {
 			var ci = iter.get();
 				
@@ -390,8 +392,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	protected  void addChildren()
 	{
 				//code
-		GLib.debug("addChildren %s, %d", this.node.fqn(), (int)this.node.readItems().size);
-		if (this.node.readItems().size < 1) {
+		
+		var cn = this.node.readObjects();
+		GLib.debug("addChildren %s, %d", this.node.fqn(), (int)cn.size);
+		if (cn.size < 1) {
 			return;
 		}
 		this.pane_number = 0;
@@ -403,7 +407,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		var nb_menu = "";
 			
 		 
-		foreach(var child in this.node.readItems()) {
+		foreach(var child in cn) {
 			
 			
 			 
