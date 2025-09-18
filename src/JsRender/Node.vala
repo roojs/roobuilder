@@ -182,6 +182,18 @@ public class JsRender.Node : NodeBase
 		return ((Node)this.parent).has_parent(n);
 	}
 	
+	public Gee.ArrayList<Node> readObjects()
+	{
+		var ret =  new Gee.ArrayList<Node>();
+		foreach(this.children as child) {
+			if (child.node_type == NodePropType.OBJECT) {
+				ret.add(child);
+			}
+		}
+		return ret;
+	
+	}
+	
 	
 	//public  Gee.ArrayList<Node> readItems()
 	//{
