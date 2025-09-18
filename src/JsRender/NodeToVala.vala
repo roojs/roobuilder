@@ -399,8 +399,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			return;
 		}
 		this.pane_number = 0;
-		var cols = this.node.has("* columns") ? int.max(1, int.parse(this.node.get_prop("* columns").val)) : 1;
-		var colpos = 0;
+ 
+ 
 		
  		var nb_child = "";
 		var nb_tab = "";
@@ -869,7 +869,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			this.addLine(this.inpad + "}");
 		}
 		
-		var iter = this.node.readItems().list_iterator();
+		var iter = this.node.readObjects().list_iterator();
 		 
 		while (iter.next()) {
 			this.addMultiLine(this.mungeChild(iter.get()));
