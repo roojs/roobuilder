@@ -869,7 +869,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			this.addLine(this.inpad + "}");
 		}
 		
-		var iter = this.node.readItems().list_iterator();
+		var iter = this.node.readObjects().list_iterator();
 		 
 		while (iter.next()) {
 			this.addMultiLine(this.mungeChild(iter.get()));
