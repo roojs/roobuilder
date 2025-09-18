@@ -1244,13 +1244,13 @@ public class Xcls_WindowLeftTree : Object
 				 		
 			 		case "above":
 			 			GLib.debug("Above - insertBefore");
-			 			var pos = node.parent.children.index_of(node)
+			 			to_pos = node.parent.children.index_of(node)
 			 			break;
 			 			
 			 		case "below":
 			 			GLib.debug("Below - insertAfter"); 		
 				 		
-				 		var pos = node.parent.children.index_of(node) +1
+				 		to_pos = node.parent.children.index_of(node) +1
 			 			break;
 				 		  
 			 		default:
