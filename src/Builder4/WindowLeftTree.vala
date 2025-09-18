@@ -1257,11 +1257,11 @@ public class Xcls_WindowLeftTree : Object
 			 	}
 			 	
 				_this.model.selectNode(null); 
-				
+				JsRender.Node tadd;
 				if (is_shift && _this.view.dragNode != null) {
 			
 			 		
-			 		var tadd = file.action_manager.do(
+			 		tadd = file.action_manager.do(
 						new JsRender.Action.Move(
 							file,
 							_this.view.dragNode,
@@ -1275,7 +1275,7 @@ public class Xcls_WindowLeftTree : Object
 				} else {
 				
 				
-			 		var tadd = file.action_manager.do(
+			 		tadd = file.action_manager.do(
 						new JsRender.Action.Add(
 							file,
 							_this.view.dragNode,
