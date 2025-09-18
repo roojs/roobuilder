@@ -638,7 +638,7 @@
            "\t",
            "\t",
            " \t\ttadd = file.action_manager.do(",
-           "\t\t\tnew JsRender.Action.Add(",
+           "\t\t\tnew JsRender.Action.Add.from_node(",
            "\t\t\t\tfile,",
            "\t\t\t\t_this.view.dragNode,",
            "\t\t\t\tnode,",

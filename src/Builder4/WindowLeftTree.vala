@@ -1278,7 +1278,7 @@ public class Xcls_WindowLeftTree : Object
 				
 				
 			 		tadd = file.action_manager.do(
-						new JsRender.Action.Add(
+						new JsRender.Action.Add.from_node(
 							file,
 							_this.view.dragNode,
 							node,
