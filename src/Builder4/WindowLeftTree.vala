@@ -1011,8 +1011,8 @@ public class Xcls_WindowLeftTree : Object
 				if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
 					// still dragging same node
 			 
-					this.lastDragNode = new JsRender.Node(); 
-					this.lastDragNode.loadFromJsonString(v.get_string(), 1);
+					this.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  
+						v.get_string( ) as JsRender.Node;
 				}
 			    
 				var file = _this.main_window.windowstate.file;
