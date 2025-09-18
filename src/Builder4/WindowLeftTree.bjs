@@ -506,7 +506,7 @@
            " \tif (this.lastDragString != v.get_string() || this.lastDragNode == null) {",
            "\t\t// still dragging same node",
            " ",
-           "\t\tthis.lastDragNode = Json.gobect_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node; ",
+           "\t\tthis.lastDragNode = Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node; ",
            "",
            "\t}",
            "    ",

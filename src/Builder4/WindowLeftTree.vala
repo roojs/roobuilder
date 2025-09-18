@@ -1146,7 +1146,7 @@ public class Xcls_WindowLeftTree : Object
 			 	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
 					// still dragging same node
 			 
-					this.lastDragNode = Json.gobect_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node; 
+					this.lastDragNode = Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node; 
 			
 				}
 			    
