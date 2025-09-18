@@ -181,7 +181,7 @@ public class JsRender.Node : NodeBase
 
 		return ((Node)this.parent).has_parent(n);
 	}
-	
+	//public  Gee.ArrayList<Node> readItems() << was this
 	public Gee.ArrayList<Node> readObjects()
 	{
 		var ret =  new Gee.ArrayList<Node>();
@@ -195,7 +195,7 @@ public class JsRender.Node : NodeBase
 	}
 	
 	
-	//public  Gee.ArrayList<Node> readItems()
+
 	//{
 	//	return this.items; // note should not modify add/remove from this directly..
 	//	
