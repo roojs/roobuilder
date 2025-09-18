@@ -107,9 +107,9 @@ namespace Palete
 			if (node.get_node_type () != Json.NodeType.OBJECT) {
 				return null;
 			}
-			var obj = node.get_object ();
 
-			var ret = Json.gobject_deserialize(typeof(JsRender.Node) , obj) as JsRender.Node;
+
+			var ret = Json.gobject_deserialize(typeof(JsRender.Node) , node) as JsRender.Node;
 
  
 			//ret.ref(); // not sure if needed -- but we had a case where ret became uninitialized?
