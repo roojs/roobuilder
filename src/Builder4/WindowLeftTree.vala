@@ -689,21 +689,13 @@ public class Xcls_WindowLeftTree : Object
 			
 			  
 				//data.set_text(tp,tp.length);   
-			
-				var 	str = ndata.toJsonString();
+				size_t l;
+				var 	str = Json.gobject_to_data(ndata, out l);
 				GLib.debug("prepare  store: %s", str);
 				GLib.Value ov = GLib.Value(typeof(string));
 				ov.set_string(str);
 			 	var cont = new Gdk.ContentProvider.for_value(ov);
-			    /*
-				GLib.Value v = GLib.Value(typeof(string));
-				//var str = drop.read_text( [ "text/plain" ] 0);
-				 
-					cont.get_value(ref v);
-				 
-				}
-				GLib.debug("set %s", v.get_string());
-			      */  
+			    
 			 	return cont;
 				 
 				 
@@ -1154,15 +1146,15 @@ public class Xcls_WindowLeftTree : Object
 			 	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
 					// still dragging same node
 			 
-					this.lastDragNode = new JsRender.Node(); 
-					this.lastDragNode.loadFromJsonString(v.get_string(), 1);
+					this.lastDragNode = Json.gobect_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node; 
+			
 				}
 			    
 			 	     
 			       
-			    var dropNode = new JsRender.Node(); 
-				dropNode.loadFromJsonString(v.get_string(), 2);
-				GLib.debug("dropped node %s", dropNode.toJsonString());
+			    var dropNode =  Json.gobect_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;
+			
+				GLib.debug("dropped node %s", v.get_string());
 				
 				var file = _this.main_window.windowstate.file;
 				var palete =  file.palete();
@@ -1173,21 +1165,27 @@ public class Xcls_WindowLeftTree : Object
 			 
 			    if (_this.model.el.n_items < 1) {
 			    	// FIXME check valid drop types?
-			    	if (!drop_on_to.contains("*top")) {
+			    		if (!drop_on_to.contains("*top")) {
 						GLib.debug("drop on to list does not contain top?");
 						return false;	
 					}
 					// add new node to top..
 					GLib.debug("adding to top");
 					
-					 var m = (GLib.ListStore) _this.model.el.model;
-					_this.main_window.windowstate.file.tree = dropNode;  
-					dropNode.updated_count++;
-			   
-					m.append(dropNode);
-					_this.model.selectNode(dropNode); 	
+					
+					var tadd = ws.file.action_manager.do(
+						new JsRender.Action.Add(
+							file,
+							null,
+							v.get_string(),
+							-1
+						)
+					) as JsRender.Node;
+					 
+					_this.model.selectNode(tadd); 	
 					_this.changed();
-					_this.node_selected(dropNode);
+					_this.node_selected(tadd);
+				  	  
 					return true; // no need to highlight?
 			     
 			    }
@@ -1234,58 +1232,66 @@ public class Xcls_WindowLeftTree : Object
 						return false;	
 					}
 				}
-			 	
+			 	var to_pos = -1; _
 			 	switch(pos) {
 			 		case "over":
-			
-				 		if (is_shift && _this.view.dragNode != null) {
-					 		_this.model.selectNode(null); 
-					 		_this.view.dragNode.remove();
-				 		}
-			 	 		node.appendChild(dropNode);			
-				 		dropNode.updated_count++;
-			 			_this.model.selectNode(dropNode); 
-			 			
-			 			_this.changed();				 		
-				 		return true;
+						break;
+				 		
+				 		
+				 		
 				 		
 			 		case "above":
 			 			GLib.debug("Above - insertBefore");
-			 		
-			
-				 		if (is_shift && _this.view.dragNode != null) {
-					 		_this.model.selectNode(null); 	 		
-					 		_this.view.dragNode.remove();
-				 		}
-						node.parentNode.insertBefore(dropNode, node);	 		
-						dropNode.updated_count++;
-			 			_this.model.selectNode(dropNode); 			
-			 			_this.changed();
-			 			return true;
+			 			var pos = node.parent.children.index_of(node)
+			 			break;
 			 			
 			 		case "below":
 			 			GLib.debug("Below - insertAfter"); 		
-				 		if (is_shift && _this.view.dragNode != null) {
-					 		_this.model.selectNode(null); 	 		
-					 		_this.view.dragNode.remove();
-				 		}
-				
-			 			
-			 			node.parentNode.insertAfter(dropNode, node);
-			 			dropNode.updated_count++;
-			 			_this.model.selectNode(dropNode);	
-			 			_this.changed();
-			 			// select it
-			 			return true;
-			 			
+				 		
+				 		var pos = node.parent.children.index_of(node) +1
+			 			break;
+				 		  
 			 		default:
 			 			// should not happen
 			 			return false;
 			 	}
 			 	
+				_this.model.selectNode(null); 
 				
-			     
+				if (is_shift && _this.view.dragNode != null) {
+			
+			 		
+			 		var tadd = ws.file.action_manager.do(
+						new JsRender.Action.Move(
+							file,
+							_this.view.dragNode,
+							node
+							to_pos
+						)
+					) as JsRender.Node;
+					 
 					
+			 		
+				} else {
+				
+				
+			 		var tadd = ws.file.action_manager.do(
+						new JsRender.Action.Add(
+							file,
+							_this.view.dragNode,
+							node
+							to_pos
+						)
+					) as JsRender.Node;
+				
+				
+				}
+			     
+				_this.model.selectNode(tadd); 	
+				_this.changed();
+				_this.node_selected(tadd);
+				 			 		
+				return true;	
 					
 			
 			});
