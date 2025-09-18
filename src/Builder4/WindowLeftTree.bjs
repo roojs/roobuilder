@@ -512,7 +512,7 @@
            "    ",
            " \t     ",
            "       ",
-           "    var dropNode =  Json.gobect_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;",
+           "    var dropNode =  Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;",
            "",
            "\tGLib.debug(\"dropped node %s\", v.get_string());",
            "\t",

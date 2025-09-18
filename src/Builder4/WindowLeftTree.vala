@@ -1152,7 +1152,7 @@ public class Xcls_WindowLeftTree : Object
 			    
 			 	     
 			       
-			    var dropNode =  Json.gobect_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;
+			    var dropNode =  Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;
 			
 				GLib.debug("dropped node %s", v.get_string());
 				
