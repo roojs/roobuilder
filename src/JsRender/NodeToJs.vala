@@ -366,11 +366,12 @@ namespace JsRender {
 			// look throught he chilren == looking for * prop.. -- fixme might not work..
 			
 			
-			if (!this.node.hasChildren()) {
+			
+			// look for '*props'
+			var items = this.node.readObjects(); 
+			if (items.size < 1) {
 				return;
 			}
-			// look for '*props'
-		   var items = this.node.readItems(); 
 			for (var ii =0; ii< items.size; ii++) {
 				var pl =  items.get(ii);
 				if (!pl.props.has_key("* prop")) {
