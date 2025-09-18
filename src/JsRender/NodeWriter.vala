@@ -129,12 +129,15 @@ namespace JsRender {
 
 			}
 				// loop children..
-																   
-			if (item.readItems().size < 1) {
+			var cn = item.readObjects();												   
+			if (cn.size < 1) {
 				return;
 			}
-			for(var i =0;i<item.readItems().size;i++) {
-				this.toValaName(item.readItems().get(i), depth+1);
+			var i=0;
+			foreach(var child in cn) {
+ 
+				this.toValaName(child, depth+1);
+				i++;
 			}
 						  
 		}
