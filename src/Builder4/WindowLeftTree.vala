@@ -1399,7 +1399,8 @@ public class Xcls_WindowLeftTree : Object
 				    // why dup_?
 				    
 			
-				    GLib.debug ("calling left_tree.node_selected %s", snode.toJsonString());
+				  //  GLib.debug ("calling left_tree.node_selected %s",
+				    //		snode.toJsonString());
 				    _this.node_selected(snode);
 				   
 				     
