@@ -135,7 +135,6 @@ namespace JsRender {
 			}
 			var i=0;
 			foreach(var child in cn) {
- 
 				this.toValaName(child, depth+1);
 				i++;
 			}
