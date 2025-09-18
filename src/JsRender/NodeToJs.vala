@@ -704,7 +704,7 @@ namespace JsRender {
 		public void iterChildren()
 		{
 			
-			var items = this.node.readItems();
+			var items = this.node.readObjects();
 			// finally munge the children...
 			if (items.size < 1) {
 				return;
