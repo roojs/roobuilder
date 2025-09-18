@@ -639,7 +639,7 @@
            "\t\t\tnew JsRender.Action.Add(",
            "\t\t\t\tfile,",
            "\t\t\t\t_this.view.dragNode,",
-           "\t\t\t\tnode",
+           "\t\t\t\tnode,",
            "\t\t\t\tto_pos",
            "\t\t\t)",
            "\t\t) as JsRender.Node;",

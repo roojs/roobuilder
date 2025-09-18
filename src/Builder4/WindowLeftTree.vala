@@ -1279,7 +1279,7 @@ public class Xcls_WindowLeftTree : Object
 						new JsRender.Action.Add(
 							file,
 							_this.view.dragNode,
-							node
+							node,
 							to_pos
 						)
 					) as JsRender.Node;
