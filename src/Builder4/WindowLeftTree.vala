@@ -1173,7 +1173,7 @@ public class Xcls_WindowLeftTree : Object
 					GLib.debug("adding to top");
 					
 					
-					var tadd = ws.file.action_manager.do(
+					var tadd = file.action_manager.do(
 						new JsRender.Action.Add(
 							file,
 							null,
@@ -1261,7 +1261,7 @@ public class Xcls_WindowLeftTree : Object
 				if (is_shift && _this.view.dragNode != null) {
 			
 			 		
-			 		var tadd = ws.file.action_manager.do(
+			 		var tadd = file.action_manager.do(
 						new JsRender.Action.Move(
 							file,
 							_this.view.dragNode,
@@ -1275,7 +1275,7 @@ public class Xcls_WindowLeftTree : Object
 				} else {
 				
 				
-			 		var tadd = ws.file.action_manager.do(
+			 		var tadd = file.action_manager.do(
 						new JsRender.Action.Add(
 							file,
 							_this.view.dragNode,
