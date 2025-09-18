@@ -1161,6 +1161,8 @@ public class Xcls_WindowLeftTree : Object
 				var ls = file.getSymbolLoader();
 				var drop_on_to = palete.getDropListFromSymbols(ls, dropNode.fqn());
 			   
+			   
+			   	JsRender.Node tadd;
 			    // if there are not items in the tree.. the we have to set isOver to true for anything..
 			 
 			    if (_this.model.el.n_items < 1) {
@@ -1173,7 +1175,7 @@ public class Xcls_WindowLeftTree : Object
 					GLib.debug("adding to top");
 					
 					
-					var tadd = file.action_manager.do(
+					tadd = file.action_manager.do(
 						new JsRender.Action.Add(
 							file,
 							null,
@@ -1257,7 +1259,7 @@ public class Xcls_WindowLeftTree : Object
 			 	}
 			 	
 				_this.model.selectNode(null); 
-				JsRender.Node tadd;
+			
 				if (is_shift && _this.view.dragNode != null) {
 			
 			 		
