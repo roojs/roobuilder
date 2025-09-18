@@ -3,7 +3,7 @@ namespace JsRender
 	public abstract class NodeBase : GLib.Object, Json.Serializable
 	{
 
-		protected NodePropType node_type { get; set; default = NodePropType.NONE; }
+		public NodePropType node_type { public get; protected set; default = NodePropType.NONE; }
 		// Core properties
 		public int oid { get; private set; default = -1; }
 		public NodeBase? parent { get; set; default = null; }
@@ -48,6 +48,7 @@ namespace JsRender
 				child.clearOid(true);
 			}
 		}
+		
 		
 		public bool hasOid() {
 			return this.oid != -1;
