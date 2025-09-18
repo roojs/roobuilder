@@ -1,4 +1,7 @@
 
+
+
+// base class for all the source code writers (mostly vala i think at present)
 namespace JsRender {
 	public abstract class NodeWriter : Object {
 	
