@@ -45,7 +45,9 @@ namespace Palete
 					GLib.File.new_for_path (appdir+ "/" + gn).make_directory ();
 					
 		        }
-		        GLib.FileUtils.set_contents(appdir+ "/" + gn + "/" +  name + ".json", data.toJsonString());
+		        size_t l;
+		        GLib.FileUtils.set_contents(appdir+ "/" + gn + "/" +  name + ".json",
+		        		Json.gobject_to_data(data,l)); 
 	    	} catch (GLib.Error e) {
 	    		GLib.debug("Error : %s", e.message);
     		}    
