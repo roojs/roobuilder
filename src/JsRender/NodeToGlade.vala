@@ -236,7 +236,7 @@ public class JsRender.NodeToGlade : Object {
 				cols = int.parse(colval.val);
 			}
 		}
-		var items = this.node.readItems();
+		var items = this.node.readObjects();
 		var is_native = gdata.implements.contains("Gtk.Native");
 		for (var i = 0; i < items.size; i++ ) {
 			var cn = items.get(i);
