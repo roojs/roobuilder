@@ -185,7 +185,7 @@ public class JsRender.Node : NodeBase
 	public Gee.ArrayList<Node> readObjects()
 	{
 		var ret =  new Gee.ArrayList<Node>();
-		foreach(this.children as child) {
+		foreach(var child in this.children) {
 			if (child.node_type == NodePropType.OBJECT) {
 				ret.add(child);
 			}
