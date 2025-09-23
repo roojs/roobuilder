@@ -6,6 +6,8 @@ namespace JsRender
         int nodeOid;
         string originalPropJson;
         string newPropJson;
+        // fixme this is not very efficent with objects - as it will serialize all the children
+        // we should probably only store old_* and new_* properties
         
         public ChangeProp(JsRender file, NodeProp nodeProp) {
             base(file);

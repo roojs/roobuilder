@@ -383,18 +383,26 @@ UI components should continue using `propstore` for list widgets, but property o
 2. Dont create child nodes for  '* prop' properties
 3. Update file loading to convert '* xns' and 'xtype' to prop_type
 4. Dont create child nodes with '* xns' and 'xtype' 
-3. Test file loading with existing projects
+3. Test file loading with existing projects0
 
 ### Phase 4: Create New UI Elements
 1. Create UI element for editing properties on child objects
-2. Integrate with existing property editing workflow
-3. Test property editing functionality
+ * this has been added to the interface in the bjs file as
+ * xtypedropdown for the class selection 
+   * this needs to be connected up so that when you first show the property area show() on the top
+      * it will fetch all the classes available to the system and fill in the list (only do this once as that list doesnt really change)
+        * need to find what method in the Palete might provide that.
+      * fill in the value when the show() is called on the top 
+  * proprow and propentry
+     * when node.prop_name is set, then fill in this value otherwise hide the whole row
+     * when the value of propentry is changed it should trigger a Action.ChangeProp (probably key up)
+     * it would be best if it was a delayed trigger - so that when editing has completed it really calls the changeprop - rather than calling all the time on each key press
+  * there is an additonal button with the label prop: .... that has an event - it should show that proprow
 
-### Phase 5: Update UI Components to Use Actions
-1. Update Builder4 components to use Actions for property operations
-2. Keep propstore for list widgets (already designed for this)
-3. Test property display and editing functionality
-4. Ensure UI responsiveness is maintained
+### Phase 5: Create some unit tests for the Node migration
+1. create a test in the tests directory that can be used to test if the node parsing of old files and new ones work
+
+ 
 
 ### Phase 6: Evaluate and Update Computed Properties
 1. Analyze usage of props/listeners computed properties
