@@ -380,7 +380,9 @@ UI components should continue using `propstore` for list widgets, but property o
 
 ### Phase 3: Update Legacy File Reading
 1. Update file loading to convert '* prop' to prop_name
-2. Remove nodes with '* prop' and create proper NodeProp children
+2. Dont create child nodes for  '* prop' properties
+3. Update file loading to convert '* xns' and 'xtype' to prop_type
+4. Dont create child nodes with '* xns' and 'xtype' 
 3. Test file loading with existing projects
 
 ### Phase 4: Create New UI Elements

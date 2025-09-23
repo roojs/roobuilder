@@ -67,7 +67,7 @@ namespace JsRender {
 
 		string toValaNS(Node item)
 		{
-			return item.get("xns") + ".";
+			return item.xns() + ".";
 		}
 		/**
 			fills in all the xvala_cls names into the nodes
@@ -97,12 +97,12 @@ namespace JsRender {
  
 
 			var ns =  this.toValaNS(item) ;
-			var cls = ns + item.get("xtype");
+			var cls = ns + item.xtype();
 			
 			item.xvala_cls = cls;
 			
 			string id = item.get("id").length > 0 ?
-				item.get("id") :  "%s%d".printf(item.get("xtype"), item.oid);
+				item.get("id") :  "%s%d".printf(item.xtype(), item.oid);
 
 			
 			

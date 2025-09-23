@@ -627,7 +627,7 @@ namespace JsRender {
 		       return "";
 		    }
 		    
-		    return ar.get("xns") + "." + ar.get("xtype");
+		    return ar.fqn();
 		                      
 		                        
 		}

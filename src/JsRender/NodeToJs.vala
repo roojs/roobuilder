@@ -176,8 +176,8 @@ namespace JsRender {
 			// work out remaining items...
 		 
 			// output xns / xtype first..
-			if (this.out_props.has_key("xtype")) {
-				var v = this.out_props.get("xtype");
+			if (this.node.hasXnsType()) {
+				var v = this.node.xtype();
 				 
 				this.node.setLine(this.cur_line, "p","xtype"); 
 				this.addJsLine(this.pad + "xtype" + " : " + v + suffix, ',');
@@ -227,8 +227,8 @@ namespace JsRender {
 			
 			//------- at this point it is the end of the code relating directly to the object..
 			
-			if (this.out_props.has_key("xns")) {
-				var v = this.out_props.get("xns");
+			if (this.node.hasXnsType()) {
+				var v = this.node.xns();
 				 
 				this.node.setLine(this.cur_line, "p","xns"); 
 				this.addJsLine(this.pad + "xns" + " : " + v + suffix, ',');
