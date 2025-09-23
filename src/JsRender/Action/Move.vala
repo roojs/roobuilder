@@ -17,7 +17,7 @@ namespace JsRender
             this.oldParentOid = node.parent != null ? node.parent.oid : -1;
         }
 
-        public override NodeBase? do() {
+        public override NodeBase? run() {
             
             // Get the node from OID
             var nodeBase = this.file.nodes.get(this.nodeOid);
@@ -73,7 +73,7 @@ namespace JsRender
 
         public override void undo() {
             if (this.undoAction != null) {
-                this.undoAction.do();
+                this.undoAction.run();
             }
         }
     }

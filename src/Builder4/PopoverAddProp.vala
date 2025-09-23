@@ -447,7 +447,7 @@ public class Xcls_PopoverAddProp : Object
 					 GLib.debug("Add Child Node %s", prop.name);			
 					 _this.el.hide();
 					
-					var add = f.action_manager.do( new JsRender.Action.Add(
+					var add = f.action_manager.run( new JsRender.Action.Add(
 						f,
 						_this.node,
 						Json.gobject_to_data(prop, out l),
@@ -463,7 +463,7 @@ public class Xcls_PopoverAddProp : Object
 				}
 				
 				_this.el.hide();
-				var add = f.action_manager.do( new JsRender.Action.Add(
+				var add = f.action_manager.run( new JsRender.Action.Add(
 					f,
 					_this.node,
 					Json.gobject_to_data(prop, out l),

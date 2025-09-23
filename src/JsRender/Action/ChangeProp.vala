@@ -36,7 +36,7 @@ namespace JsRender
                 this.file, this.nodeOid, this.originalPropJson);
         }
 
-        public override NodeBase? do() {
+        public override NodeBase? run() {
             try {
                 // Deserialize the new NodeProp from JSON
                 var newProp = Json.gobject_from_data(typeof(NodeProp), this.newPropJson) as NodeProp;
@@ -74,7 +74,7 @@ namespace JsRender
 
         public override void undo() {
             if (this.undoAction != null) {
-                this.undoAction.do();
+                this.undoAction.run();
             }
         }
     }

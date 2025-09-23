@@ -810,7 +810,7 @@ public class Xcls_PopoverAddObject : Object
 				//GLib.debug("ADD %s", add.toJsonString());
 				if (lt.model.el.n_items < 1) {
 				
-					var tadd = ws.file.action_manager.do(
+					var tadd = ws.file.action_manager.run(
 						new JsRender.Action.Add(
 							ws.file,
 							null,
@@ -827,7 +827,7 @@ public class Xcls_PopoverAddObject : Object
 				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
 				//var row = _this.view.getRowAt(x,y, out pos);
 				
-				var nadd = ws.file.action_manager.do(
+				var nadd = ws.file.action_manager.run(
 					new JsRender.Action.Add(
 						ws.file,
 						addto,

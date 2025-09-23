@@ -22,7 +22,7 @@ namespace JsRender
             
         }
 		// always returns null
-        public override NodeBase? do( ) {
+        public override NodeBase? run( ) {
             
             // Get the node from OID
             var nodeBase = this.file.nodes.get(this.nodeOid);
@@ -62,7 +62,7 @@ namespace JsRender
         }
         public override void undo() {
             if (this.undoAction != null) {
-                this.undoAction.do();
+                this.undoAction.run();
             }
         }
     }

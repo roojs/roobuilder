@@ -27,7 +27,7 @@
 		    this.position = position;
 		}
 
-		public override NodeBase? do() {
+		public override NodeBase? run() {
 		    NodeBase? node = null;
 		    
 		    try {
@@ -84,7 +84,7 @@
 
 		public override void undo() {
 		    if (this.undoAction != null) {
-		        this.undoAction.do();
+		        this.undoAction.run();
 		    }
 		}
 	}

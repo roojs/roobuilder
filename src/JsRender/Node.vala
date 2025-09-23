@@ -200,7 +200,8 @@ public class JsRender.Node : NodeBase
 	//	return this.items; // note should not modify add/remove from this directly..
 	//	
 	//}
-	public void setNodeLine(int line, Node node) {
+	public void setNodeLine(int line, Node node)
+	{
 		//print("Add node @ %d\n", line);
 		if (this.node_lines_map.has_key(line)) {
 			return;
@@ -259,7 +260,8 @@ public class JsRender.Node : NodeBase
 		
 		//GLib.debug("setLine %d, %s", line, type + ":" + prop);
 	}
-	public void sortLines() {
+	public void sortLines()
+	{
 		//print("sortLines\n");
 		this.lines.sort((a,b) => {   
 			return (int)a-(int)b;
@@ -385,11 +387,35 @@ public class JsRender.Node : NodeBase
 	
 	public bool hasXnsType()
 	{
-		if (this.props.get("xns") != null && this.props.get("xtype") != null) {
-			return true;
-			
+		// Check if prop_type contains namespace and type information
+		return this.prop_type != "" && this.prop_type.contains(".");
+	}
+	
+	// Backward compatibility methods for xns/xtype
+	public string xns()
+	{
+		if (!this.hasXnsType()) {
+			return "";
 		}
-		return false;
+		var parts = this.prop_type.split(".");
+		if (parts.length <= 1) {
+			return "";
+		}
+		// Most efficient: resize in place to remove last element
+		parts.resize(parts.length - 1);
+		return string.joinv(".", parts);
+	}
+	
+	public string xtype()
+	{
+		if (!this.hasXnsType()) {
+			return "";
+		}
+		var parts = this.prop_type.split(".");
+		if (parts.length == 0) {
+			return "";
+		}
+		return parts[parts.length - 1];
 	}
 	
 	public string FQN { // for sorting
@@ -397,44 +423,34 @@ public class JsRender.Node : NodeBase
 		private set  {}
 	}
 	public string NS { // for sorting
-		owned get { return this.props.has_key("xns") ? this.props.get("xns").val  : ""; }
+		owned get { return this.xns(); }
 		private set  {}
 	}
 	public string fqn()
 	{
-		if (!this.hasXnsType ()) {
+		if (!this.hasXnsType()) {
 			return "";
 		}
-		return this.props.get("xns").val + "." + this.props.get("xtype").val; 
-
+		return this.prop_type; 
 	}
 	public void setFqn(string name)
 	{
-		var ar = name.split(".");
-		var l = name.length - (ar[ar.length-1].length +1);
-		
-
-		
-		if (this.props.has_key("xtype")) {
-			this.props.get("xtype").val = ar[ar.length-1];
-		} else {
-			this.add_prop(new NodeProp.prop("xtype", "",  ar[ar.length-1]));		
-		}	
-		if (this.props.has_key("xns")) {
-			this.props.get("xns").val = name.substring(0, l);
-		} else {
-			this.add_prop(new NodeProp.raw("xns", "", name.substring(0, l)));		
-		}	
-		
+		// Store the full qualified name in prop_type
+		this.prop_type = name;
 		
 		//print("setFQN %s to %s\n", name , this.fqn());
-		               
-
 	}
 	// wrapper around get props that returns empty string if not found.
 	//overrides Glib.object.get (hence new)
 	public new string get(string key)
 	{
+		// Backward compatibility for xns/xtype
+		if (key == "xns") {
+			return this.xns();
+		}
+		if (key == "xtype") {
+			return this.xtype();
+		}
 		
 		var v = this.props.get(key);
 		return v == null ? "" : v.val;
@@ -453,9 +469,12 @@ public class JsRender.Node : NodeBase
 
 	public bool has(string key)
 	{
+		// Backward compatibility for xns/xtype
+		if (key == "xns" || key == "xtype") {
+			return this.hasXnsType();
+		}
+		
 		return this.props.has_key(key);
-		 
-	 
 	}
 	
 
@@ -483,7 +502,8 @@ public class JsRender.Node : NodeBase
 	}
 	 
 	/* creates javascript based on the rules */
-	public Node? findProp(string n) {
+	public Node? findProp(string n)
+	{
 		for(var i=0;i< this.children.size;i++) {
 			var child = (Node)this.children.get(i);
 			var p = child.get("* prop");
@@ -639,7 +659,7 @@ public class JsRender.Node : NodeBase
 				case PROP: 
 				case RAW: // should they be the same?
 				
-					props += "\n\t" + (prop.rtype != null && prop.rtype.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "") +
+					props += "\n\t" + (prop.rtype.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "") +
 						" <b>" + GLib.Markup.escape_text(i) +"</b> : " + 
 						(val.length > 0 ? GLib.Markup.escape_text(val.split("\n")[0]) : "");
 						
@@ -647,7 +667,7 @@ public class JsRender.Node : NodeBase
 					 
 				
 				case METHOD :
-					funcs += "\n\t" + (prop.rtype != null && prop.rtype.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "")  +
+					funcs += "\n\t" + (prop.rtype.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "")  +
 						" <b>" + GLib.Markup.escape_text(i) +"</b> : "  +
 						(val.length > 0 ? GLib.Markup.escape_text(val.split("\n")[0]) : "");
 					break;
@@ -908,13 +928,156 @@ public class JsRender.Node : NodeBase
 		
 	}
 	
-	public NodeProp? find_prop_by_name(string name) {
-		foreach (var prop in this.props.values) {
-			if (prop.name == name) {
-				return prop;
+	public NodeProp? find_prop_by_name(string name)
+	{
+		// Search through children with non-empty prop_name
+		foreach (var child in this.children) {
+			if (child is NodeProp) {
+				var prop = child as NodeProp;
+				if (prop.prop_name != "" && prop.name == name) {
+					return prop;
+				}
 			}
 		}
 		return null;
+	}
+	
+	// New property access methods for Phase 1
+	public void add_property(NodeProp prop)
+	{
+		// Add property as child with prop_name set
+		// Validate: prevent duplicate names unless property name ends with "[]"
+		if (this.has_property_key(prop) && !prop.name.has_suffix("[]")) {
+			GLib.warning("duplicate property key '%s' - cannot add - call has_property_key first", prop.name);
+			return;
+		}
+		
+		// Set parent reference
+		prop.parent = this;
+		
+		// Add to children array
+		this.children.add(prop);
+		
+		// Update updated_count
+		this.updated_count++;
+		
+		// Sort children
+		this.sortChildren();
+		
+		// Update propstore for UI widgets
+		this.propstore.append(prop);
+	}
+	
+	public void remove_property(NodeProp prop)
+	{
+		// Remove property from children array
+		this.children.remove(prop);
+		
+		// Update updated_count
+		this.updated_count++;
+		
+		// Update propstore for UI widgets
+		uint pos;
+		if (this.propstore.find(prop, out pos)) {
+			this.propstore.remove(pos);
+		}
+	}
+	
+	public bool has_property_key(NodeProp prop)
+	{
+		// Check if property exists in children array
+		// Validate: prevent duplicate names unless property name ends with "[]"
+		foreach (var child in this.children) {
+			if (child is NodeProp) {
+				var child_prop = child as NodeProp;
+				if (child_prop.prop_name != "" && child_prop.name == prop.name && child_prop.ptype == prop.ptype) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public Gee.ArrayList<NodeProp> get_properties()
+	{
+		// Return all children with non-empty prop_name
+		var ret = new Gee.ArrayList<NodeProp>();
+		foreach (var child in this.children) {
+			if (child is NodeProp) {
+				var prop = child as NodeProp;
+				if (prop.prop_name != "") {
+					ret.add(prop);
+				}
+			}
+		}
+		return ret;
+	}
+	
+	public Gee.ArrayList<NodeProp> get_listeners_list()
+	{
+		// Return all children with non-empty prop_name and ptype == LISTENER
+		var ret = new Gee.ArrayList<NodeProp>();
+		foreach (var child in this.children) {
+			if (child is NodeProp) {
+				var prop = child as NodeProp;
+				if (prop.prop_name != "" && prop.ptype == NodePropType.LISTENER) {
+					ret.add(prop);
+				}
+			}
+		}
+		return ret;
+	}
+	
+	public Gee.ArrayList<NodeProp> get_non_listener_properties()
+	{
+		// Return all children with non-empty prop_name and ptype != LISTENER
+		var ret = new Gee.ArrayList<NodeProp>();
+		foreach (var child in this.children) {
+			if (child is NodeProp) {
+				var prop = child as NodeProp;
+				if (prop.prop_name != "" && prop.ptype != NodePropType.LISTENER) {
+					ret.add(prop);
+				}
+			}
+		}
+		return ret;
+	}
+	
+	// Generic method to replace props/listeners if needed
+	public Gee.ArrayList<NodeProp> get_properties_by_type(NodePropType? filter_type = null)
+	{
+		// Return all children with non-empty prop_name
+		// Optionally filter by NodePropType
+		var ret = new Gee.ArrayList<NodeProp>();
+		foreach (var child in this.children) {
+			if (child is NodeProp) {
+				var prop = child as NodeProp;
+				if (prop.prop_name != "" && (filter_type == null || prop.ptype == filter_type)) {
+					ret.add(prop);
+				}
+			}
+		}
+		return ret;
+	}
+	
+	// Helper method to sort children
+	private void sortChildren()
+	{
+		// Sort children array by prop_name for properties, by node type for objects
+		this.children.sort((a, b) => {
+			if (a is NodeProp && b is NodeProp) {
+				var prop_a = a as NodeProp;
+				var prop_b = b as NodeProp;
+				return Posix.strcmp(prop_a.name, prop_b.name);
+			}
+			if (a is NodeProp) {
+				return -1; // properties first
+			}
+			if (b is NodeProp) {
+				return 1;  // objects after properties
+			}
+			return 0; // both are objects, maintain order
+		});
 	}
 	
 	int props_updated_count = -1;
@@ -927,18 +1090,20 @@ public class JsRender.Node : NodeBase
 			}
  			 this.props_cache = new Gee.HashMap<string,NodeProp>(); // the properties..
 
-			for(var i =  0; i < this.propstore.n_items; i++ ) {
-				var it = (NodeProp) this.propstore.get_item(i);
-				if (it.ptype != NodePropType.LISTENER) {
-				//	GLib.debug("props add key %s", it.to_index_key());
-	 				this.props_cache.set( it.to_index_key() , it);
-	 			}
- 			}
+			// Filter children where prop_name is not empty and ptype != LISTENER
+			foreach (var child in this.children) {
+				if (child is NodeProp) {
+					var prop = child as NodeProp;
+					if (prop.prop_name != "" && prop.ptype != NodePropType.LISTENER) {
+						this.props_cache.set(prop.to_index_key(), prop);
+					}
+				}
+			}
  			this.props_updated_count = this.updated_count;
  			return this.props_cache;
 		}
 		private set {
-			GLib.error("do not set listerners direclty");
+			GLib.error("do not set props directly");
 		}
 	}
 	
@@ -954,17 +1119,20 @@ public class JsRender.Node : NodeBase
  			
  			this.listeners_cache = new Gee.HashMap<string,NodeProp>(); // the properties..
 
-			for(var i =  0; i < this.propstore.n_items; i++ ) {
-				var it = (NodeProp) this.propstore.get_item(i);
-				if (it.ptype == NodePropType.LISTENER) {
-	 				this.listeners_cache.set( it.to_index_key() , it);
-	 			}
- 			}
+			// Filter children where prop_name is not empty and ptype == LISTENER
+			foreach (var child in this.children) {
+				if (child is NodeProp) {
+					var prop = child as NodeProp;
+					if (prop.prop_name != "" && prop.ptype == NodePropType.LISTENER) {
+						this.listeners_cache.set(prop.to_index_key(), prop);
+					}
+				}
+			}
  			this.listeners_updated_count = this.updated_count;
- 			return this.listeners_cache;;
+ 			return this.listeners_cache;
 		}
 		private set {
-			GLib.error("do not set listerners direclty");
+			GLib.error("do not set listeners directly");
 		}
 	}
 	private void sortProps ()

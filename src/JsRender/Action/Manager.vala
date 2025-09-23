@@ -13,10 +13,10 @@ namespace JsRender
         }
         
         // Execute an action and add it to the undo queue
-        public NodeBase? do(ActionBase action)
+        public NodeBase? run(ActionBase action)
         {
             // Execute the action and capture the result
-            var result = action.do();
+            var result = action.run();
             
             // Clear the redo queue when a new action is performed
             this.redoQueue.clear();
@@ -71,8 +71,8 @@ namespace JsRender
             // Pop the last action from redo queue
             var action = this.redoQueue.remove_at(this.redoQueue.size - 1);
             
-            // Call do on the action (which will re-execute it) and capture the result
-            var result = action.do();
+            // Call run on the action (which will re-execute it) and capture the result
+            var result = action.run();
             
             // Move it back to undo queue
             this.undoQueue.add(action);
