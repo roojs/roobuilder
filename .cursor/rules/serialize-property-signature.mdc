@@ -1,0 +1,41 @@
+---
+globs: *.vala
+description: Json.Serializable serialize_property method signature
+---
+
+# Json.Serializable serialize_property Method Signature
+
+The `serialize_property` method in Vala classes implementing `Json.Serializable` can return `null` and should be declared with the nullable return type.
+
+## Correct Signature
+
+```vala
+public Json.Node? serialize_property (string property_name, Value value, ParamSpec pspec)
+```
+
+## Examples in Codebase
+
+- [NodePropBase.vala](mdc:src/JsRender/NodePropBase.vala) - Returns `null` for extended class properties
+- [JsonSerialize.vala](mdc:src/Palete/JsonSerialize.vala) - Always returns `null`
+
+## Common Pattern
+
+```vala
+public Json.Node? serialize_property (string property_name, Value value, ParamSpec pspec) {
+    switch (property_name) {
+        case "property1":
+        case "property2":
+            return default_serialize_property (property_name, value, pspec);
+        default:
+            // Skip properties that don't belong to this class
+            return null;
+    }
+}
+```
+
+## Important Notes
+
+- The method can return `null` to skip serialization of certain properties
+- This is commonly used in base classes to only serialize their own properties
+- Extended classes should handle their own properties and return `null` for others
+- Always use `Json.Node?` (nullable) as the return type, not `Json.Node`

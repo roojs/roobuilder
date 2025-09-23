@@ -1,0 +1,91 @@
+---
+globs: *.vala
+description: Vala string array handling and best practices
+---
+
+# Vala String Array Handling
+
+Based on the [Vala Tutorial Arrays section](https://naaando.gitbooks.io/the-vala-tutorial/content/en/3-basics/3.1-data-types/arrays.html), follow these guidelines for string arrays in Vala:
+
+## Array Declaration and Initialization
+
+```vala
+// Declare and create string array
+string[] names = new string[10];
+string[] colors = { "red", "green", "blue" };
+
+// Get array length
+int count = names.length;
+```
+
+## Array Slicing
+
+```vala
+string[] original = { "a", "b", "c", "d", "e" };
+string[] slice = original[1:3];     // => { "b", "c" }
+
+// For unowned references (no copy)
+unowned string[] slice_ref = original[1:3];
+```
+
+## Dynamic Array Operations
+
+```vala
+// Start with empty array
+string[] items = {};
+
+// Append elements dynamically
+items += "first";
+items += "second";
+items += "third";
+
+// Resize array (keeps original content)
+items.resize(10);
+
+// Move elements within array
+items.move(1, 0, 2);  // moves 2 elements from position 1 to position 0
+```
+
+## String Array Joining
+
+```vala
+// Join array elements with separator
+string[] parts = { "namespace", "subnamespace", "type" };
+string result = string.joinv(".", parts);  // => "namespace.subnamespace.type"
+
+// For Gee.ArrayList<string>
+var list = new Gee.ArrayList<string>();
+list.add("part1");
+list.add("part2");
+string joined = string.joinv(".", list.to_array());
+```
+
+## Best Practices
+
+1. **Use `string.joinv()` for joining arrays** - More efficient than manual concatenation
+2. **Prefer `Gee.ArrayList<string>` for dynamic collections** - Better performance and more methods
+3. **Use unowned references when possible** - Avoids unnecessary copies
+4. **Check array bounds** - Vala doesn't do runtime bounds checking
+5. **Use `resize()` instead of recreating arrays** - More efficient for growing arrays
+
+## Common Patterns in This Codebase
+
+```vala
+// Splitting and rejoining (as seen in xns() method) - MOST EFFICIENT VERSION
+var parts = this.prop_type.split(".");
+if (parts.length <= 1) return "";
+// If original array not needed later, resize in place
+parts.resize(parts.length - 1);
+return string.joinv(".", parts);
+
+// Alternative: Use array slicing if original array is needed later
+// unowned string[] namespace_parts = parts[0:parts.length-1];
+// return string.joinv(".", namespace_parts);
+```
+
+## Performance Notes
+
+- Array reallocation grows in powers of 2 for efficiency
+- `.length` holds actual number of elements, not internal size
+- Use `unowned` references to avoid copies when possible
+- Consider `Gee.ArrayList` for frequent insertions/deletions
