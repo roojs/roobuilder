@@ -96,25 +96,43 @@ meson compile -C build
 
 When reviewing changes:
 
-1. **Check for BJS pairs** - If a Vala file has a corresponding BJS file, ensure changes were made to the BJS file
-2. **Verify compilation** - Ensure the BJS file compiles correctly
-3. **Look for manual edits** - Flag any direct edits to generated Vala files
-4. **Check consistency** - Ensure BJS and Vala files are in sync
+1. **MANDATORY: Check for BJS pairs** - If a Vala file has a corresponding BJS file, ensure changes were made to the BJS file
+2. **VERIFY: No direct Vala edits** - Flag ANY direct edits to generated Vala files as a CRITICAL ERROR
+3. **REQUIRE: BJS compilation** - Ensure the BJS file compiles correctly and produces clean output
+4. **ENFORCE: Consistency** - Ensure BJS and Vala files are in sync
+5. **VALIDATE: Clean output** - Verify that generated Vala files start with `static` declarations, not garbage
 
 ## Common Mistakes to Avoid
 
-### ❌ Wrong Approach
+### ❌ CRITICAL ERRORS - NEVER DO THESE
+
 ```bash
-# DON'T edit Vala files directly
+# ABSOLUTELY FORBIDDEN - Direct Vala editing
 vim src/Builder4/MainWindow.vala  # This will be overwritten!
+nano src/Builder4/PopoverAddProp.vala  # This will be lost!
+code src/Builder4/WindowLeftTree.vala  # This is generated!
 ```
 
-### ✅ Correct Approach
 ```bash
-# DO edit BJS files and compile them
+# WRONG - Copying garbage output directly
+/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > src/Builder4/MainWindow.vala
+# This copies debug info and file dumps!
+```
+
+### ✅ CORRECT APPROACH - ALWAYS DO THESE
+
+```bash
+# 1. Edit the BJS file (source of truth)
 vim src/Builder4/MainWindow.bjs
+
+# 2. Compile to temporary file
 /usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
-cp /tmp/generated_mainwindow.vala src/Builder4/MainWindow.vala
+
+# 3. Clean the output (remove garbage)
+sed -n '/^static/,$p' /tmp/generated_mainwindow.vala > /tmp/clean_mainwindow.vala
+
+# 4. Copy clean output to final location
+cp /tmp/clean_mainwindow.vala src/Builder4/MainWindow.vala
 ```
 
 ## Project Structure
@@ -139,4 +157,18 @@ The build system should:
 3. Update corresponding Vala files
 4. Continue with normal Vala compilation
 
-Remember: **BJS files are the source of truth for UI components. Always edit BJS files, never the generated Vala files directly.**
+## ⚠️ FINAL WARNING
+
+**ABSOLUTE RULE**: BJS files are the source of truth for UI components. 
+
+**NEVER** edit generated Vala files directly - they will be overwritten and your changes will be lost.
+
+**ALWAYS** edit BJS files and compile them properly with garbage removal.
+
+**VIOLATION** of this rule will result in:
+- Lost work
+- Broken builds  
+- Wasted time
+- Code inconsistencies
+
+**REMEMBER**: The AI will be instructed to flag any direct Vala file edits as critical errors when BJS files exist.

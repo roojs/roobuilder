@@ -15,10 +15,10 @@ namespace JsRender
  
 	// Protected properties with prop_ prefix
 		protected bool is_static { get; set; default = false; }
-		protected string prop_name { get; set; default = ""; }
-		protected string prop_val { get; set; default = ""; }
+		public string prop_name { get; set; default = ""; }
+		public string prop_val { get; set; default = ""; }
 		// for properties  - it's the type ?? for nodes? we use props?
-		protected string prop_type { get; set; default = ""; }	
+		public string prop_type { get; set; default = ""; }	
 		// Public properties
 
 		public string doc { get; set; default = ""; }

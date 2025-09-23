@@ -462,7 +462,7 @@ namespace Palete {
 
 					var ap=snp.convert(p, cls.fqn);
 					GLib.debug("Add Ctor property %s", ap.to_display_name());
-			 		ret.add_prop(ap);
+			 		ret.add_property(ap);
 				}
 			}
 			
@@ -480,7 +480,7 @@ namespace Palete {
 
 				var ap=snp.convert(p, cls.fqn);
 				GLib.debug("Add property (Ctor only)  %s", ap.to_display_name());
-				ret.add_prop(ap);
+				ret.add_property(ap);
 			}
 			
 			// manually set... - based on JSON defaults file?	
@@ -509,7 +509,7 @@ namespace Palete {
 				 	add = new JsRender.NodeProp.user(kt[1], kt[0], o.get_string_member(mn));
 					GLib.debug("Add property (listed in defaults - with value)  %s", add.to_display_name());
 		 		}
-				ret.add_prop(add);					 		
+				ret.add_property(add);					 		
 			});
 		
 		

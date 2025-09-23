@@ -897,36 +897,15 @@ public class JsRender.Node : NodeBase
 		
 	}   
    
-	public bool has_prop_key(NodeProp prop) 
+	public bool has_property_key(NodeProp prop) 
 	{
-		for(var i =  0; i < this.propstore.n_items; i++ ) {
-			var it = (NodeProp) this.propstore.get_item(i);
-			if (it.ptype == prop.ptype && it.to_index_key() == prop.to_index_key()) {
-				return true;
-			}
-			
-		}
-		return false;
-	   
+		// Use find_prop_by_name to check if property already exists
+		return this.find_prop_by_name(prop.name) != null;
 	}
 	
 	 
 	
 	
-	public void add_prop(NodeProp prop)
-	{
-		if (this.has_prop_key(prop) && !prop.to_index_key().has_suffix("[]")) {
-			GLib.warning("duplicate key' %s'- can not add - call has_prop_key first", prop.to_index_key());
-			return;
-		}
-		prop.parent = this;
-		this.propstore.append(prop);
-		this.sortProps();
-		
-		this.updated_count++;
-		
-		
-	}
 	
 	public NodeProp? find_prop_by_name(string name)
 	{
@@ -958,14 +937,12 @@ public class JsRender.Node : NodeBase
 		// Add to children array
 		this.children.add(prop);
 		
+		// Call setStores and setFile for proper initialization
+		prop.setStores();
+		prop.setFile(this.file);
+		
 		// Update updated_count
 		this.updated_count++;
-		
-		// Sort children
-		this.sortChildren();
-		
-		// Update propstore for UI widgets
-		this.propstore.append(prop);
 	}
 	
 	public void remove_property(NodeProp prop)
@@ -983,20 +960,6 @@ public class JsRender.Node : NodeBase
 		}
 	}
 	
-	public bool has_property_key(NodeProp prop)
-	{
-		// Check if property exists in children array
-		// Validate: prevent duplicate names unless property name ends with "[]"
-		foreach (var child in this.children) {
-			if (child is NodeProp) {
-				var child_prop = child as NodeProp;
-				if (child_prop.prop_name != "" && child_prop.name == prop.name && child_prop.ptype == prop.ptype) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 	
 	public Gee.ArrayList<NodeProp> get_properties()
 	{

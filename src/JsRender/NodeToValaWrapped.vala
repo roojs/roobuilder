@@ -219,7 +219,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			return;
 		}
 		
-		this.node.setLine(this.cur_line, "p", "* xtype");;
+		// No need to set xtype as property - it's now handled via prop_type
 		
 
 		// Notebookpage is a fake element 
@@ -378,14 +378,14 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 				
 
 			}
-			this.node.setLine(this.cur_line, "p", "* xtype");
+			// No need to set xtype as property - it's now handled via prop_type
 			this.addLine(this.ipad + "this.el = new " + this.node.fqn() + "( "+ string.joinv(", ",args) + " );") ;
 			return;
 			
 		}
 		// default ctor with no params..
 		 if (default_ctor != null && ctor != ".new" ) {
-		 	this.node.setLine(this.cur_line, "p", "* xtype");
+		 	// No need to set xtype as property - it's now handled via prop_type
 			
 			this.addLine(this.ipad + "this.el = new " + this.node.fqn() + ctor + "(  );") ;
 		 	return;

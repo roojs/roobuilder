@@ -85,7 +85,7 @@ public class Xcls_PopoverAddProp : Object
 			if (prop == null) {
 				continue;
 			}
-			if (node.has_prop_key(prop)) {
+			if (node.has_property_key(prop)) {
 				GLib.debug("Skip - has key already %s",  prop.name);
 				continue;			
 			}
@@ -421,7 +421,7 @@ public class Xcls_PopoverAddProp : Object
 			 
 			//	_this.select(np);
 				
-				if (!prop.name.contains("[]") && _this.node.has_prop_key(prop)) {
+				if (!prop.name.contains("[]") && _this.node.has_property_key(prop)) {
 					GLib.debug("node already has this key.");
 					return; // cant add it twice? --  
 				}

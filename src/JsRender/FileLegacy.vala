@@ -28,24 +28,59 @@ namespace JsRender {
         public void loadFromJson(Node node, Json.Object obj, int version) {
             obj.foreach_member((o , key, value) => {
                 //print(key+"\n");
-                if (key == "items") {
-                    var ar = value.get_array();
-                    ar.foreach_element( (are, ix, el) => {
-                        var child_node = new Node();
-                        child_node.parent = node;
-                        this.loadFromJson(child_node, el.get_object(), version);
-                        node.children.add(child_node);
-                    });
-                    return;
+                switch (key) {
+                    case "items":
+                        var ar = value.get_array();
+                        ar.foreach_element( (are, ix, el) => {
+                            var child_node = new Node();
+                            child_node.parent = node;
+                            this.loadFromJson(child_node, el.get_object(), version);
+                            node.children.add(child_node);
+                        });
+                        return;
+                    case "listeners":
+                        var li = value.get_object();
+                        li.foreach_member((lio , li_key, li_value) => {
+                            node.add_property(new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
+                        });
+                        return;
+                    case "* prop":
+                    case "*prop":
+                        // Convert '* prop' or '*prop' to prop_name instead of creating child node
+                        var prop_name = this.jsonNodeAsString(value);
+                        if (prop_name != "") {
+                            // Find the child node that should have this prop_name
+                            // For now, we'll set it on the current node if it's a child node
+                            if (node.parent != null) {
+                                // This is a child node, set its prop_name
+                                node.prop_name = prop_name;
+                            }
+                        }
+                        return;
+                    case "xtype":
+                        // Handle xns/xtype combination - collect both values first
+                        var xtype_val = this.jsonNodeAsString(value);
+                        var xns_val = "";
+                        
+                        // Get both values from the object
+                        if (obj.has_member("* xns")) {
+                            xns_val = this.jsonNodeAsString(obj.get_member("* xns"));
+                        }
+                         
+                        
+                        // Set prop_type as xns.xtype (only process once per object)
+                        if (xns_val != "" && xtype_val != "") {
+                            node.prop_type = xns_val + "." + xtype_val;
+                        }  
+                        return;
+                    case "* xns":
+                    case "*xns":  
+                        return; // ignore..
+
+                    default:
+                        // Handle regular properties
+                        break;
                 }
-                if (key == "listeners") {
-                    var li = value.get_object();
-                    li.foreach_member((lio , li_key, li_value) => {
-                        node.add_prop(new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
-                    });
-                    return;
-                }
-                
 
                 var rkey = key;
                 var sval = this.jsonNodeAsString(value);
@@ -55,7 +90,7 @@ namespace JsRender {
                 }
                 var n =  new NodeProp.from_json(rkey, sval);
                     
-                node.add_prop(n );
+                node.add_property(n );
             });
         }
         
@@ -90,6 +125,8 @@ namespace JsRender {
             }
             switch(key) {
                 case "*prop":
+                    // Don't convert to "* prop" - this will be handled specially in loadFromJson
+                    return "*prop";
                 case "*args":
                 case ".ctor":
                 case "|init":
