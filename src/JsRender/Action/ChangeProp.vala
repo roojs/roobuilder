@@ -1,7 +1,7 @@
 namespace JsRender
 {
     
-    public class Action.ChangeProp : ActionBase {
+    public class Action.ChangeProp : Action.Base {
 
         int nodeOid;
         string originalPropJson;

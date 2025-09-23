@@ -1,7 +1,7 @@
 	namespace JsRender
 	{
 
-	public class Action.Add : ActionBase {
+	public class Action.Add : Action.Base {
 
 		int parentOid;
 		string nodeJson;

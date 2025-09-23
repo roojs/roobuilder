@@ -2,8 +2,8 @@ namespace JsRender
 {
     public class Action.Manager : Object
     {
-        private Gee.ArrayList<ActionBase> undoQueue = new Gee.ArrayList<ActionBase>();
-        private Gee.ArrayList<ActionBase> redoQueue = new Gee.ArrayList<ActionBase>();
+        private Gee.ArrayList<Action.Base> undoQueue = new Gee.ArrayList<Action.Base>();
+        private Gee.ArrayList<Action.Base> redoQueue = new Gee.ArrayList<Action.Base>();
         
         public int maxQueueSize { get; set; default = 100; }
         
@@ -13,7 +13,7 @@ namespace JsRender
         }
         
         // Execute an action and add it to the undo queue
-        public NodeBase? run(ActionBase action)
+        public NodeBase? run(Action.Base action)
         {
             // Execute the action and capture the result
             var result = action.run();

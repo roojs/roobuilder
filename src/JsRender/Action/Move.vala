@@ -1,7 +1,7 @@
 namespace JsRender
 {
     
-    public class Action.Move : ActionBase {
+    public class Action.Move : Action.Base {
 
         int nodeOid;
         int newParentOid;

@@ -1,7 +1,7 @@
 namespace JsRender
 {
     
-    public class Action.Remove : ActionBase {
+    public class Action.Remove : Action.Base {
 
         int nodeOid;
         int position = -1;
