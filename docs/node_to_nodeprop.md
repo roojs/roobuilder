@@ -376,7 +376,7 @@ UI components should continue using `propstore` for list widgets, but property o
 1. **Update code generation classes to use new xns() and xtype() methods**
 2. **Test backward compatibility with existing code**
 3. **Update any remaining direct references to xns/xtype properties**
-4. **Remove xns and ntype property creation from setFqn() method**
+4. **Remove xns and xtype property creation from setFqn() method**
 
 ### Phase 3: Update Legacy File Reading
 1. Update file loading to convert '* prop' to prop_name
@@ -420,7 +420,7 @@ UI components should continue using `propstore` for list widgets, but property o
 - propstore kept for UI widgets (already designed for this change)
 - Clear separation between data storage (children) and UI display (propstore)
 - **Simplified namespace/type management with single prop_type field**
-- **Elimination of separate xns/ntype property nodes**
+- **Elimination of separate xns/xtype property nodes**
 
 ### Improved Maintainability
 - Simpler data management (children for data, propstore for UI)
@@ -434,7 +434,7 @@ UI components should continue using `propstore` for list widgets, but property o
 - More efficient property storage (children for data, propstore for UI)
 - Faster property access through direct children iteration
 - propstore only used where needed (UI widgets)
-- **Reduced memory usage by eliminating separate xns/ntype property nodes**
+- **Reduced memory usage by eliminating separate xns/xtype property nodes**
 - **Faster fqn() computation using direct prop_type access**
 
 ### Enhanced User Experience
