@@ -369,14 +369,19 @@ public class Xcls_PopoverProperty : Object
 					_this.prop.val
 				);
 			
-				if (_this.node.props.has_key(prop.to_index_key())) {
+				if (_this.node.has_property_key(prop)) {
 					_this.error.setError("Property already exists");
 					return;	
 				}
 				
 				
 				
-				_this.node.add_prop(prop);
+				_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
+					_this.node.file,
+					_this.node,
+					prop,
+					-1
+				));
 				// hide self
 				_this.prop = null; // skip checks..
 				_this.is_new = false;

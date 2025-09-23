@@ -602,11 +602,16 @@ public class Xcls_LeftProps : Object
 			 	_this.addpop.el.hide();
 			 	// is this userdef or special??
 			 	var add = new JsRender.NodeProp.prop("id");
-			 	if (_this.node.has_prop_key(add)) {
+			 	if (_this.node.has_property_key(add)) {
 				 	return;
 			 	}
 			 	
-			 	_this.node.add_prop( add );
+			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
+					_this.node.file,
+					_this.node,
+					add,
+					-1
+				));
 			 	
 			 	_this.view.editProp( add );
 			 	
@@ -669,11 +674,16 @@ public class Xcls_LeftProps : Object
 			  	_this.addpop.el.hide();
 			 	// is this userdef or special??
 			 	var add = new JsRender.NodeProp.special("pack", "add");
-			 	if (_this.node.has_prop_key(add)) {
+			 	if (_this.node.has_property_key(add)) {
 				 	return;
 			 	}
 			 	
-			 	_this.node.add_prop( add );
+			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
+					_this.node.file,
+					_this.node,
+					add,
+					-1
+				));
 			 	
 			 	_this.view.editProp( add );
 			 	
@@ -736,11 +746,16 @@ public class Xcls_LeftProps : Object
 			  	_this.addpop.el.hide();
 			 	// is this userdef or special??
 			 	var add = new JsRender.NodeProp.special("ctor");
-			 	if (_this.node.has_prop_key(add)) {
+			 	if (_this.node.has_property_key(add)) {
 				 	return;
 			 	}
 			 	
-			 	_this.node.add_prop( add );
+			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
+					_this.node.file,
+					_this.node,
+					add,
+					-1
+				));
 			 	
 			 	_this.view.editProp( add );
 			 	
@@ -802,11 +817,16 @@ public class Xcls_LeftProps : Object
 			  	_this.addpop.el.hide();
 			 	// is this userdef or special??
 			 	var add =  new JsRender.NodeProp.special("init","{\n\n}\n" ) ;
-			 	if (_this.node.has_prop_key(add)) {
+			 	if (_this.node.has_property_key(add)) {
 				 	return;
 			 	}
 			 	
-			 	_this.node.add_prop( add );
+			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
+					_this.node.file,
+					_this.node,
+					add,
+					-1
+				));
 			 	
 			 	_this.view.editProp( add );
 			});
@@ -867,11 +887,16 @@ public class Xcls_LeftProps : Object
 			 
 			 	// is this userdef or special??
 			 	var add =   new JsRender.NodeProp.prop("cms-id","string", "" ) ;
-			 	if (_this.node.has_prop_key(add)) {
+			 	if (_this.node.has_property_key(add)) {
 				 	return;
 			 	}
 			 	
-			 	_this.node.add_prop( add );
+			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
+					_this.node.file,
+					_this.node,
+					add,
+					-1
+				));
 			 	
 			 	_this.view.editProp( add );
 			    
@@ -1886,7 +1911,10 @@ public class Xcls_LeftProps : Object
 			this.el.clicked.connect( ( ) => {
 				var n = (JsRender.NodeProp) _this.selmodel.el.selected_item;
 				_this.deletemenu.el.hide();
-				_this.node.remove_prop(n);
+				_this.node.file.action_manager.run(new JsRender.Action.Remove(
+					_this.node.file,
+					n
+				));
 			 	_this.changed();
 			});
 		}
