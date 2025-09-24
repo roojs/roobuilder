@@ -399,24 +399,39 @@ UI components should continue using `propstore` for list widgets, but property o
      * it would be best if it was a delayed trigger - so that when editing has completed it really calls the changeprop - rather than calling all the time on each key press
   * there is an additonal button with the label prop: .... that has an event - it should show that proprow
 
-### Phase 5: Create some unit tests for the Node migration
-1. create a test in the tests directory that can be used to test if the node parsing of old files and new ones work
 
+
+### Phase 5: Remove wrappers in NodeProp
+ * NodeProp has wrapper around val/type/name/node_type - that are to be removed
+   * Change prop_* and node_type to protected 
+   * Add set_* methods for all these eg. set_prop_val to the NodeBase
+   * Remove all references to the setting and getting these properties and replace with
+      * getting - use direct access to NodeBase values prop_name 
+      * setting 
+        * if within class heirachy - directly set the value
+        * if outside use set_prop_val etc..
+            *note that this will be used to find reference to code that is setting values that is not supposed to do it (only code that should have write access is really the Legacy Loading and the Action Classes)
+         
+### Phase 6: Alter ChangeProp and modify access to Node
+1. rather than serializing the changes to NodeProp in Action.ChangeProp
+ * only store what has changed (only one property will change at each Call) do this by storing
+ * (old_str / new_str) or (old_type/new_type) and  change_type (new emun in new file Action.Change)
+ * Action.Change - can be    NAME / VAL / TYPE / DOC / NODE_TYPE
+ * fix the undo call to revert the change
  
-
-### Phase 6: Evaluate and Update Computed Properties
+### Phase 7: Evaluate and Update Computed Properties
 1. Analyze usage of props/listeners computed properties
 2. Determine if they're still needed or should be replaced with generic methods
 3. Update code generation classes accordingly
 4. Test generated code output
 
-### Phase 7: Remove Legacy Code
+### Phase 8: Remove Legacy Code
 1. Remove unused methods (dupeProps, old add_prop, etc.)
 2. Remove propstore_find from NodeBase (propstore kept for UI widgets)
 3. Clean up serialization code
 4. Remove backward compatibility wrappers if no longer needed
 
-### Phase 8: Testing and Validation
+### Phase 9: Testing and Validation
 1. Comprehensive testing of all functionality
 2. Performance testing with large projects
 3. Memory usage validation
