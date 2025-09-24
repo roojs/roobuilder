@@ -166,7 +166,7 @@ namespace JsRender {
 			var spad = this.pad.substring(0, this.pad.length-indent);
 			
 			if (this.node.props.has_key("* xinclude")) {
-				this.addJsLine("Roo.apply(" + this.node.props.get("* xinclude").val + "._tree(), {",0 );
+				this.addJsLine("Roo.apply(" + this.node.props.get("* xinclude").prop_val + "._tree(), {",0 );
 		 
 			} else {
 				this.addJsLine("{", 0);
@@ -490,10 +490,10 @@ namespace JsRender {
 			for (var i = 0; i< keys.size; i++) {
 				var prop = this.node.get_prop(keys.get(i));
 				//("ADD KEY %s\n", key);
-				var k = prop.name;
-				var ktype  = prop.rtype;
-				var kflag = prop.ptype;
-				var v = prop.val;
+				var k = prop.prop_name;
+				var ktype  = prop.prop_type;
+				var kflag = prop.node_type;
+				var v = prop.prop_val;
 				 
 				
 				//if (this.skip.contains(k) ) {
@@ -681,7 +681,7 @@ namespace JsRender {
 			 
 			for (var i = 0; i< keys.size; i++) {
 				var key = keys.get(i);
-				var val = this.node.listeners.get(key).val;
+				var val = this.node.listeners.get(key).prop_val;
 			
 		
 				 // 

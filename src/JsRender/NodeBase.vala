@@ -12,13 +12,13 @@ namespace JsRender
 		// New properties as requested
 		public Gee.ArrayList<NodeBase> children { get; set; default = new Gee.ArrayList<NodeBase>(); }
 
- 
+	
 	// Protected properties with prop_ prefix
 		protected bool is_static { get; set; default = false; }
-		public string prop_name { get; set; default = ""; }
-		public string prop_val { get; set; default = ""; }
+		public string prop_name { public get; protected set; default = ""; }
+		public string prop_val { public get; protected set; default = ""; }
 		// for properties  - it's the type ?? for nodes? we use props?
-		public string prop_type { get; set; default = ""; }	
+		public string prop_type { public get; protected set; default = ""; }
 		// Public properties
 
 		public string doc { get; set; default = ""; }
@@ -38,6 +38,23 @@ namespace JsRender
 		public void assignLegacyOid(int new_oid) {
 			this.oid = new_oid;
 		}
+		
+		// Property setter methods for controlled access
+		public void modify_prop_name(string value) {
+			this.prop_name = value;
+		}
+		
+		public void modify_prop_val(string value) {
+			this.prop_val = value;
+		}
+		
+		public void modify_prop_type(string value) {
+			this.prop_type = value;
+		}
+		
+	public void modify_node_type(NodePropType value) {
+		this.node_type = value;
+	}
 		
 		public void clearOid(bool recursive) {
 			this.oid = -1;
@@ -193,7 +210,7 @@ namespace JsRender
 				 
 				default:
 					// Skip properties that don't belong to NodeBase
-					return new Json.Node(Json.NodeType.NULL);
+					return null;
 			}
 		}
 
@@ -203,7 +220,7 @@ namespace JsRender
 				case "children":
 					value = GLib.Value (typeof(Gee.ArrayList));
 					if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-						value.set_object(new Gee.ArrayList<Node>());
+						//value.set_object(new Gee.ArrayList<Node>()); ?? default property value.
 						return false;
 					}
 					var children_list = new Gee.ArrayList<NodeBase>();

@@ -375,7 +375,7 @@ public class JsRender.Node : NodeBase
 		if (this.props.get("id") == null) {
 			return "uid-%d".printf(this.oid);
 		}
-		return this.props.get("id").val;
+		return this.props.get("id").prop_val;
 	}
 	
 	
@@ -453,7 +453,7 @@ public class JsRender.Node : NodeBase
 		}
 		
 		var v = this.props.get(key);
-		return v == null ? "" : v.val;
+		return v == null ? "" : v.prop_val;
 	}	
 		 
 	public  NodeProp? get_prop(string key)
@@ -650,16 +650,16 @@ public class JsRender.Node : NodeBase
 		foreach(var pk in keys) {
 			 
 			var prop = this.props.get(pk);
-			var i = prop.name.strip();
+			var i = prop.prop_name.strip();
 			
-			var val = prop.val;
+			var val = prop.prop_val;
 			val = val == null ? "" : val;
 			
-			switch(prop.ptype) {
+			switch(prop.node_type) {
 				case PROP: 
 				case RAW: // should they be the same?
 				
-					props += "\n\t" + (prop.rtype.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "") +
+					props += "\n\t" + (prop.prop_type.length > 0 ? GLib.Markup.escape_text(prop.prop_type)  : "") +
 						" <b>" + GLib.Markup.escape_text(i) +"</b> : " + 
 						(val.length > 0 ? GLib.Markup.escape_text(val.split("\n")[0]) : "");
 						
@@ -667,7 +667,7 @@ public class JsRender.Node : NodeBase
 					 
 				
 				case METHOD :
-					funcs += "\n\t" + (prop.rtype.length > 0 ? GLib.Markup.escape_text(prop.rtype)  : "")  +
+					funcs += "\n\t" + (prop.prop_type.length > 0 ? GLib.Markup.escape_text(prop.prop_type)  : "")  +
 						" <b>" + GLib.Markup.escape_text(i) +"</b> : "  +
 						(val.length > 0 ? GLib.Markup.escape_text(val.split("\n")[0]) : "");
 					break;
@@ -707,9 +707,9 @@ public class JsRender.Node : NodeBase
 		foreach(var pk in keys) {
 			 
 			var prop = this.listeners.get(pk);
-			var i =  prop.name.strip();
+			var i =  prop.prop_name.strip();
 			
-			var val = prop.val.strip();
+			var val = prop.prop_val.strip();
 			if (val == null || val.length < 1) {
 				continue;
 			}
@@ -900,7 +900,7 @@ public class JsRender.Node : NodeBase
 	public bool has_property_key(NodeProp prop) 
 	{
 		// Use find_prop_by_name to check if property already exists
-		return this.find_prop_by_name(prop.name) != null;
+		return this.find_prop_by_name(prop.prop_name) != null;
 	}
 	
 	 
@@ -913,7 +913,7 @@ public class JsRender.Node : NodeBase
 		foreach (var child in this.children) {
 			if (child is NodeProp) {
 				var prop = child as NodeProp;
-				if (prop.prop_name != "" && prop.name == name) {
+				if (prop.prop_name != "" && prop.prop_name == name) {
 					return prop;
 				}
 			}
@@ -926,8 +926,8 @@ public class JsRender.Node : NodeBase
 	{
 		// Add property as child with prop_name set
 		// Validate: prevent duplicate names unless property name ends with "[]"
-		if (this.has_property_key(prop) && !prop.name.has_suffix("[]")) {
-			GLib.warning("duplicate property key '%s' - cannot add - call has_property_key first", prop.name);
+		if (this.has_property_key(prop) && !prop.prop_name.has_suffix("[]")) {
+			GLib.warning("duplicate property key '%s' - cannot add - call has_property_key first", prop.prop_name);
 			return;
 		}
 		
@@ -983,7 +983,7 @@ public class JsRender.Node : NodeBase
 		foreach (var child in this.children) {
 			if (child is NodeProp) {
 				var prop = child as NodeProp;
-				if (prop.prop_name != "" && prop.ptype == NodePropType.LISTENER) {
+				if (prop.prop_name != "" && prop.node_type == NodePropType.LISTENER) {
 					ret.add(prop);
 				}
 			}
@@ -998,7 +998,7 @@ public class JsRender.Node : NodeBase
 		foreach (var child in this.children) {
 			if (child is NodeProp) {
 				var prop = child as NodeProp;
-				if (prop.prop_name != "" && prop.ptype != NodePropType.LISTENER) {
+				if (prop.prop_name != "" && prop.node_type != NodePropType.LISTENER) {
 					ret.add(prop);
 				}
 			}
@@ -1015,7 +1015,7 @@ public class JsRender.Node : NodeBase
 		foreach (var child in this.children) {
 			if (child is NodeProp) {
 				var prop = child as NodeProp;
-				if (prop.prop_name != "" && (filter_type == null || prop.ptype == filter_type)) {
+				if (prop.prop_name != "" && (filter_type == null || prop.node_type == filter_type)) {
 					ret.add(prop);
 				}
 			}
@@ -1031,7 +1031,7 @@ public class JsRender.Node : NodeBase
 			if (a is NodeProp && b is NodeProp) {
 				var prop_a = a as NodeProp;
 				var prop_b = b as NodeProp;
-				return Posix.strcmp(prop_a.name, prop_b.name);
+				return Posix.strcmp(prop_a.prop_name, prop_b.prop_name);
 			}
 			if (a is NodeProp) {
 				return -1; // properties first
@@ -1057,7 +1057,7 @@ public class JsRender.Node : NodeBase
 			foreach (var child in this.children) {
 				if (child is NodeProp) {
 					var prop = child as NodeProp;
-					if (prop.prop_name != "" && prop.ptype != NodePropType.LISTENER) {
+					if (prop.prop_name != "" && prop.node_type != NodePropType.LISTENER) {
 						this.props_cache.set(prop.to_index_key(), prop);
 					}
 				}
@@ -1086,7 +1086,7 @@ public class JsRender.Node : NodeBase
 			foreach (var child in this.children) {
 				if (child is NodeProp) {
 					var prop = child as NodeProp;
-					if (prop.prop_name != "" && prop.ptype == NodePropType.LISTENER) {
+					if (prop.prop_name != "" && prop.node_type == NodePropType.LISTENER) {
 						this.listeners_cache.set(prop.to_index_key(), prop);
 					}
 				}

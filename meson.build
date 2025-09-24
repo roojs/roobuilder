@@ -161,7 +161,6 @@ roobuilder_src = files([
    'src/Palete/JsonSerialize.vala',
    'src/Palete/SymbolRoo.vala',
    'src/WindowManager.vala',
-   'src/JsRender/NodePropBase.vala',
    'src/JsRender/NodeBase.vala',
    'src/JsRender/Action/Base.vala',
    'src/JsRender/Action/Add.vala',

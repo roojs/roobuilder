@@ -104,9 +104,9 @@ public class Xcls_PopoverProperty : Object
 	
 		
 		
-		_this.prop.name = this.kname.el.get_text().strip();
-		_this.prop.ptype = this.ptype.getValue();
-		_this.prop.rtype = this.ktype.el.get_text().strip();
+		_this.prop.modify_prop_name(this.kname.el.get_text().strip());
+		_this.prop.modify_node_type(this.ptype.getValue());
+		_this.prop.modify_prop_type(this.ktype.el.get_text().strip());
 		
 		  
 	}
@@ -122,7 +122,7 @@ public class Xcls_PopoverProperty : Object
 	    this.original_prop = prop.dupe();
 		this.is_new = is_new; 
 		var pref = is_new ? "Add " : "Modify ";
-		if (prop.ptype == JsRender.NodePropType.LISTENER) {
+		if (prop.node_type == JsRender.NodePropType.LISTENER) {
 			this.headertitle.el.label = pref + "Event Listener"; // cant really happen yet?
 		} else {
 			this.headertitle.el.label = pref + "Property";
@@ -130,10 +130,10 @@ public class Xcls_PopoverProperty : Object
 		this.prop = prop;
 		this.node = node;
 		
-		_this.kname.el.set_text(prop.name);
-		_this.ktype.el.set_text(prop.rtype);
+		_this.kname.el.set_text(prop.prop_name);
+		_this.ktype.el.set_text(prop.prop_type);
 		
-	 	_this.ptype.setValue(prop.ptype);
+	 	_this.ptype.setValue(prop.node_type);
 		// does node have this property...
 	
 	
@@ -366,7 +366,7 @@ public class Xcls_PopoverProperty : Object
 					_this.kname.el.get_text().strip(),
 					_this.ptype.getValue(),
 					_this.ktype.el.get_text().strip(),
-					_this.prop.val
+					_this.prop.prop_val
 				);
 			
 				if (_this.node.has_property_key(prop)) {

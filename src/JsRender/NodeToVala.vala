@@ -157,38 +157,38 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			// Key = TYPE:name
 		foreach(var prop in this.node.props.values) {
 		   
-			if (this.shouldIgnore(prop.name)) {
+			if (this.shouldIgnore(prop.prop_name)) {
 				continue;
 			}
 
 			// user defined method
-			if (prop.ptype == NodePropType.METHOD) {
+			if (prop.node_type == NodePropType.METHOD) {
 				continue;
 			}
-			if (prop.ptype == NodePropType.SPECIAL) {
+			if (prop.node_type == NodePropType.SPECIAL) {
 				continue;
 			}
 				
-			if (prop.ptype == NodePropType.SIGNAL) {
-				this.node.setLine(this.cur_line, "p", prop.name);
-				this.addLine(this.pad + "public signal " + prop.rtype + " " + prop.name  + " "  + prop.val + ";");
+			if (prop.node_type == NodePropType.SIGNAL) {
+				this.node.setLine(this.cur_line, "p", prop.prop_name);
+				this.addLine(this.pad + "public signal " + prop.prop_type + " " + prop.prop_name  + " "  + prop.prop_val + ";");
 				
-				this.ignore(prop.name);
+				this.ignore(prop.prop_name);
 				continue;
 			}
 			
-			GLib.debug("Got myvars: '%s' :  %s", cls.fqn, prop.name.strip());
+			GLib.debug("Got myvars: '%s' :  %s", cls.fqn, prop.prop_name.strip());
 			
-			if (prop.rtype.strip().length < 1) {
+			if (prop.prop_type.strip().length < 1) {
 				continue;
 			}
 			
-			var isUser = prop.ptype == NodePropType.USER;
+			var isUser = prop.node_type == NodePropType.USER;
 			if (this.node.fqn() == "Gtk.NotebookPage") {
 				isUser= true;
 			}
 			// is it a class property.. - if so we dont add it here..
-			var pp = cls.props.get(prop.name) ;
+			var pp = cls.props.get(prop.prop_name) ;
 			if (null != pp && !isUser) {
 				
 				//GLib.debug("class has prop - %s", pp ==null ? "NULL" : pp.name);
@@ -196,16 +196,16 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			}
 			 
 			
-			this.myvars.add(prop.name);
+			this.myvars.add(prop.prop_name);
 			prop.start_line = this.cur_line;
 			
-			this.node.setLine(this.cur_line, "p", prop.name);
+			this.node.setLine(this.cur_line, "p", prop.prop_name);
 			
-			this.addLine(this.pad + "public " + prop.rtype + " " + prop.name + ";"); // definer - does not include value.
+			this.addLine(this.pad + "public " + prop.prop_type + " " + prop.prop_name + ";"); // definer - does not include value.
 
 
 			prop.end_line = this.cur_line;				
-			this.ignore(prop.name);
+			this.ignore(prop.prop_name);
 			
 				
 		}
@@ -286,7 +286,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			 
 			var prop = this.node.props.get(k);
 			
-			var v = prop.val.strip();			
+			var v = prop.prop_val.strip();			
 			
 			if (v.length < 1) {
 				continue; 
@@ -297,16 +297,16 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				v= v.down();
 			}
 			//FIXME -- check for raw string.. "string XXXX"
-			var is_raw = prop.ptype == NodePropType.RAW;
+			var is_raw = prop.node_type == NodePropType.RAW;
 			
 			// what's the type.. - if it's a string.. then we quote it..
-			if (prop.rtype == "string" && !is_raw) {
+			if (prop.prop_type == "string" && !is_raw) {
 				 v = "\"" +  v.escape("") + "\"";
 			}
 			// if it's a string...
 			
 			prop.start_line = this.cur_line;
-			this.addLine(this.ipad + "this." + prop.name + " = " +   v +";");
+			this.addLine(this.ipad + "this." + prop.prop_name + " = " +   v +";");
 			prop.end_line = this.cur_line;
 		}
 	}
@@ -349,16 +349,16 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 
 			var prop = this.node.get_prop(p);
-			var v = prop.val;
+			var v = prop.prop_val;
 			
 			// user defined properties.
-			if (prop.ptype == NodePropType.USER) {
+			if (prop.node_type == NodePropType.USER) {
 				continue;
 			}
 				
 
 			
-			var is_raw = prop.ptype == NodePropType.RAW;
+			var is_raw = prop.node_type == NodePropType.RAW;
 			
 			// what's the type.. - if it's a string.. then we quote it..
 			if (val.rtype == "string" && !is_raw) {
@@ -399,7 +399,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			return;
 		}
 		this.pane_number = 0;
-		var cols = this.node.has("* columns") ? int.max(1, int.parse(this.node.get_prop("* columns").val)) : 1;
+		var cols = this.node.has("* columns") ? int.max(1, int.parse(this.node.get_prop("* columns").prop_val)) : 1;
 		var colpos = 0;
 		
  		var nb_child = "";
@@ -417,20 +417,20 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			}
 
 			// probably added in ctor..				
-			if (child.has("* prop") && this.shouldIgnoreWrapped(child.get_prop("* prop").val)) {
+			if (child.has("* prop") && this.shouldIgnoreWrapped(child.get_prop("* prop").prop_val)) {
 				continue;
 			}
 			// create the element..
 			  
 			
 			// this is only needed if it does not have an ID???
-			var childname = this.addPropSet(child, child.has("id") ? child.get_prop("id").val : "") ; 
+			var childname = this.addPropSet(child, child.has("id") ? child.get_prop("id").prop_val : "") ; 
 			if (!child.has("id") && this.this_el == "this.el.") {
 				this.addLine(this.ipad +  childname +".ref();"); 
 		 	}
 			if (child.has("* prop")) {
 				if (this.node.fqn() == "Gtk.NotebookPage") {
-					switch (child.get_prop("* prop").val) {
+					switch (child.get_prop("* prop").prop_val) {
 						case "child":
 							nb_child = childname + (this.this_el == "this.el." ? ".el" : "");
 							break;
@@ -447,21 +447,21 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				}
 			
 				// fixme special packing!??!?!
-				if (child.get_prop("* prop").val.contains("[]")) {
+				if (child.get_prop("* prop").prop_val.contains("[]")) {
 					// currently this is not used?
 					// and it will not add ref..
 					 
-					this.packChild(child, childname, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
+					this.packChild(child, childname, 0, 0, child.get_prop("* prop").prop_val);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				
 	
 				
-			  	this.ignoreWrapped(child.get_prop("* prop").val);
+			  	this.ignoreWrapped(child.get_prop("* prop").prop_val);
 				var el_name = this.this_el == "this.el." ? ".el" : "";
 				
 				
-				this.addLine(ipad + this.this_el  + child.get_prop("* prop").val + " = " + childname + el_name +";");
+				this.addLine(ipad + this.this_el  + child.get_prop("* prop").prop_val + " = " + childname + el_name +";");
 				
 				continue;
 			} 
@@ -469,7 +469,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			this.packChild(child, childname, cols, colpos);
 			
 			if (child.has("colspan")) {
-				colpos += int.parse(child.get_prop("colspan").val);
+				colpos += int.parse(child.get_prop("colspan").prop_val);
 			} else {
 				colpos += 1;
 			}
@@ -513,7 +513,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		var xargs = "";
 		if (child.has("* args")) {
 			
-			var ar = child.get_prop("* args").val.split(",");
+			var ar = child.get_prop("* args").prop_val.split(",");
 			for (var ari = 0 ; ari < ar.length; ari++ ) {
 				var arg = ar[ari].split(" ");
 				xargs += "," + arg[arg.length -1];
@@ -609,16 +609,16 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 			case "Gtk.Fixed":
 			case "Gtk.Layout":
-				var x = child.has("x") ?  child.get_prop("x").val  : "0";
-				var y = child.has("y") ?  child.get_prop("y").val  : "0";
+				var x = child.has("x") ?  child.get_prop("x").prop_val  : "0";
+				var y = child.has("y") ?  child.get_prop("y").prop_val  : "0";
 				this.addLine(@"$(ipad)$(this_el)put( $(childname)$(el_name), $(x), $(y) );");
 				return;
 				
 			
 
 			case "Gtk.Stack":
-				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
-				var title = child.has("stack_title") ?  child.get_prop("stack_title").val.escape()  : "";
+				var named = child.has("stack_name") ?  child.get_prop("stack_name").prop_val.escape() : "";
+				var title = child.has("stack_title") ?  child.get_prop("stack_title").prop_val.escape()  : "";
 				if (title.length > 0) {
 					this.addLine(@"$(ipad)$(this_el)add_titled( $(childname)$(el_name), \"$(named)\", \"$(title)\" );");
 					return;
@@ -630,7 +630,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				if (child.fqn() == "Gtk.NotebookPage") {
 					return;
 				}
-				var label = child.has("notebook_label") ?  child.get_prop("notebook_label").val.escape() : "";
+				var label = child.has("notebook_label") ?  child.get_prop("notebook_label").prop_val.escape() : "";
 				this.addLine(@"$(ipad)$(this_el)append_page( $(childname)$(el_name), new Gtk.Label(\"$(label)\");");
 				
 				return;
@@ -641,25 +641,25 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				return;
 			
 			case "Gtk.TreeViewColumn": //adding Renderers - I think these are all proprerties of the renderer used...
-				if (child.has("markup_column") && int.parse(child.get_prop("markup_column").val) > -1) {
-					var val = child.get_prop("markup_column").val;
+				if (child.has("markup_column") && int.parse(child.get_prop("markup_column").prop_val) > -1) {
+					var val = child.get_prop("markup_column").prop_val;
 					this.addLine(@"$(ipad)$(this_el)add_attribute( $(childname)$(el_name), \"markup\", $(val) );");
  
 				}
-				if (child.has("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
-					var val = child.get_prop("text_column").val;
+				if (child.has("text_column") && int.parse(child.get_prop("text_column").prop_val) > -1) {
+					var val = child.get_prop("text_column").prop_val;
 					this.addLine(@"$(ipad)$(this_el)add_attribute( $(childname)$(el_name), \"text\", $(val) );");
 				}
-				if (child.has("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").val) > -1) {
-					var val = child.get_prop("pixbuf_column").val;
+				if (child.has("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").prop_val) > -1) {
+					var val = child.get_prop("pixbuf_column").prop_val;
 					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"pixbuf\", $(val) );");
 				}
-				if (child.has("pixbuf_column") && int.parse(child.get_prop("active_column").val) > -1) {
-					var val = child.get_prop("active_column").val;
+				if (child.has("pixbuf_column") && int.parse(child.get_prop("active_column").prop_val) > -1) {
+					var val = child.get_prop("active_column").prop_val;
 					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"active\", $(val) );");
 				}
-				if (child.has("background_column") && int.parse(child.get_prop("background_column").val) > -1) {
-				var val = child.get_prop("background_column").val;
+				if (child.has("background_column") && int.parse(child.get_prop("background_column").prop_val) > -1) {
+				var val = child.get_prop("background_column").prop_val;
 					this.addLine(@"$(ipad)$(this_el).add_attribute( $(childname)$(el_name), \"background-rgba\", $(val) );");
 				}
 				this.addLine(this.ipad + "this.el.add( " + childname + ".el );");
@@ -670,7 +670,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 				if (propname == "buttons[]") {
 					var resp_id = int.parse(childname.replace("child_", ""));
 					if (child.has("* response_id")) { 
-						resp_id = int.parse(child.get_prop("* response_id").val);
+						resp_id = int.parse(child.get_prop("* response_id").prop_val);
 					}
 					this.addLine(@"$(ipad)$(this_el).add_action_widget( $(childname)$(el_name), $(resp_id) );");
 
@@ -716,7 +716,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			case "Gtk.Grid":
 				var x = "%d".printf(colpos % cols);
 				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
-				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
+				var w = child.has("colspan") ? child.get_prop("colspan").prop_val : "1";
 				var h = "1";
 				this.addLine(@"$(ipad)$(this_el)attach( $(childname)$(el_name), $x, $y, $w, $h );");
 				return;
@@ -752,7 +752,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 		var init =  this.node.get_prop("* init");
 		init.start_line = this.cur_line;
-		this.addMultiLine(ipad + this.padMultiline(ipad, init.val) );
+		this.addMultiLine(ipad + this.padMultiline(ipad, init.prop_val) );
 		init.end_line = this.cur_line;
 	 }
 	 protected void addListeners()
@@ -770,7 +770,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		while (iter.next()) {
 			var k = iter.get_key();
 			var prop = iter.get_value();
-			var v = prop.val;
+			var v = prop.prop_val;
 			
 			prop.start_line = this.cur_line;
 			this.node.setLine(this.cur_line, "l", k);
@@ -838,11 +838,11 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		var iter = this.node.props.map_iterator();
 		while(iter.next()) {
 			var prop = iter.get_value();
-			if (this.shouldIgnore(prop.name)) {
+			if (this.shouldIgnore(prop.prop_name)) {
 				continue;
 			}
 			// HOW TO DETERIME if its a method?            
-			if (prop.ptype != NodePropType.METHOD) {
+			if (prop.node_type != NodePropType.METHOD) {
 					//strbuilder("\n" + pad + "// skip " + k + " - not pipe \n"); 
 					continue;
 			}
@@ -852,8 +852,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 
 			prop.start_line = this.cur_line;
-			this.node.setLine(this.cur_line, "p", prop.name);
-			this.addMultiLine(this.pad + "public " + prop.rtype + " " +  prop.name + " " + this.padMultiline(this.pad, prop.val));;
+			this.node.setLine(this.cur_line, "p", prop.prop_name);
+			this.addMultiLine(this.pad + "public " + prop.prop_type + " " +  prop.prop_name + " " + this.padMultiline(this.pad, prop.prop_val));;
 			prop.end_line = this.cur_line;
 				
 		}

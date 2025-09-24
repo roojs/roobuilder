@@ -56,11 +56,11 @@ namespace JsRender
                 var currentProp = (NodeProp)nodeBase;
                 
                 // Update the current NodeProp with values from NodeProp properties
-                currentProp.name = newProp.name;
-                currentProp.val = newProp.val;
-                currentProp.rtype = newProp.rtype;
+                currentProp.modify_prop_name(newProp.prop_name);
+                currentProp.modify_prop_val(newProp.prop_val);
+                currentProp.modify_prop_type(newProp.prop_type);
                 currentProp.doc = newProp.doc;
-                currentProp.ptype = newProp.ptype;
+                currentProp.modify_node_type(newProp.node_type);
                 
                 // Note: We don't copy oid, parent, children, or file as these should remain the same
                 // The deserialized NodeProp will have different values for these system properties

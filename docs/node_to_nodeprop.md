@@ -400,7 +400,6 @@ UI components should continue using `propstore` for list widgets, but property o
   * there is an additonal button with the label prop: .... that has an event - it should show that proprow
 
 
-
 ### Phase 5: Remove wrappers in NodeProp
  * NodeProp has wrapper around val/type/name/node_type - that are to be removed
    * Change prop_* and node_type to protected 
@@ -411,6 +410,7 @@ UI components should continue using `propstore` for list widgets, but property o
         * if within class heirachy - directly set the value
         * if outside use set_prop_val etc..
             *note that this will be used to find reference to code that is setting values that is not supposed to do it (only code that should have write access is really the Legacy Loading and the Action Classes)
+        * if we find any code directly writing we should flag it up and decide if it can access the property using set - or should it be replace with Action.ChangeProp
          
 ### Phase 6: Alter ChangeProp and modify access to Node
 1. rather than serializing the changes to NodeProp in Action.ChangeProp

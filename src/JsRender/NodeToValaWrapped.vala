@@ -249,7 +249,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		
 		// FIXME -- these are all GTK3 - can be removed when I get rid of them..
 			case "Gtk.ComboBox":
-				var is_entry = this.node.has("has_entry") && this.node.get_prop("has_entry").val.down() == "true";
+				var is_entry = this.node.has("has_entry") && this.node.get_prop("has_entry").prop_val.down() == "true";
 				if (!is_entry) { 
 					break; // regular ctor.
 				}
@@ -263,10 +263,10 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 
 				// not sure if this works.. otherwise we have to go with varargs and count + vals...
 				if (this.node.has("* types")) {
-					args_str = this.node.get_prop("* types").val;
+					args_str = this.node.get_prop("* types").prop_val;
 				}
 				if (this.node.has("n_columns") && this.node.has("columns")) { // old value?
-					args_str = " { " + this.node.get_prop("columns").val + " } ";
+					args_str = " { " + this.node.get_prop("columns").prop_val + " } ";
 					this.ignoreWrapped("columns");
 					this.ignoreWrapped("n_columns");
 				}
@@ -339,7 +339,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 				if (propnode != null) {
 					// assume it's ok..
 					
-					var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").val : "");
+					var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").prop_val : "");
 					args += (pname + ".el") ;
 					if (!propnode.has("id")) {
 						this.addLine(this.ipad + pname +".ref();"); 

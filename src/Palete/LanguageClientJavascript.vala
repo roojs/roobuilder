@@ -285,7 +285,7 @@ namespace Palete {
 				while (citer.next()) {
 					var prop = citer.get_value();
 					// does the name start with ...
-					//if (parts[i].length > 0 && prop.name.index_of(parts[i],0) != 0) {
+					//if (parts[i].length > 0 && prop.prop_name.index_of(parts[i],0) != 0) {
 					//	continue;
 					//}
 					

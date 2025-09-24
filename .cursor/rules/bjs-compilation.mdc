@@ -31,20 +31,17 @@ Files with `.bjs` extensions need to be compiled using the roobuilder tool befor
 
 **Important**: Sometimes the BJS compiler output includes a file structure dump at the beginning. If the output starts with `File /...` (indicating a file path), this means the compiler is showing file changes and the output is not clean Vala code.
 
-**Solution**: Run the compiler **twice**:
-1. **First run**: May include file structure dump
-2. **Second run**: Should produce clean Vala code
+**Solution**: Automatically clean the output using sed to remove garbage:
 
 ```bash
-# First compilation (may include file structure dump)
+# Compile to temporary file
 /usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
 
-# Check if output starts with "File /" - if so, run again
-head -1 /tmp/generated_mainwindow.vala | grep -q "^File /" && \
-/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
+# Clean the output (remove garbage from beginning)
+sed -n '/^static/,$p' /tmp/generated_mainwindow.vala > /tmp/clean_mainwindow.vala
 
-# Now copy the clean output
-cp /tmp/generated_mainwindow.vala src/Builder4/MainWindow.vala
+# Copy clean output to final location
+cp /tmp/clean_mainwindow.vala src/Builder4/MainWindow.vala
 ```
 
 ## File Pairs in This Codebase
@@ -66,9 +63,10 @@ cp /tmp/generated_mainwindow.vala src/Builder4/MainWindow.vala
 ## Workflow for BJS Files
 
 1. **Edit the .bjs file** - Make your changes in the BJS source
-2. **Compile using roobuilder** - Run the compilation command
-3. **Copy generated code** - Copy from `/tmp/generated_[filename].vala` to the actual Vala file
-4. **Test compilation** - Ensure the project builds correctly
+2. **Compile using roobuilder** - Run the compilation command to temporary file
+3. **Clean the output** - Use sed to remove garbage from the beginning
+4. **Copy generated code** - Copy from `/tmp/clean_[filename].vala` to the actual Vala file
+5. **Test compilation** - Ensure the project builds correctly
 
 ## Example Workflow
 
@@ -76,20 +74,17 @@ cp /tmp/generated_mainwindow.vala src/Builder4/MainWindow.vala
 # 1. Edit the BJS file
 vim src/Builder4/MainWindow.bjs
 
-# 2. Compile it (first attempt)
+# 2. Compile to temporary file
 /usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
 
-# 3. Check if output is clean (no file structure dump)
-if head -1 /tmp/generated_mainwindow.vala | grep -q "^File /"; then
-    # Output contains file structure dump, compile again
-    /usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
-fi
+# 3. Clean the output (remove garbage from beginning)
+sed -n '/^static/,$p' /tmp/generated_mainwindow.vala > /tmp/clean_mainwindow.vala
 
-# 4. Copy the generated code
-cp /tmp/generated_mainwindow.vala src/Builder4/MainWindow.vala
+# 4. Copy clean output to final location
+cp /tmp/clean_mainwindow.vala src/Builder4/MainWindow.vala
 
 # 5. Build the project
-meson compile -C build
+ninja -C build
 ```
 
 ## Code Review Guidelines
@@ -117,6 +112,11 @@ code src/Builder4/WindowLeftTree.vala  # This is generated!
 # WRONG - Copying garbage output directly
 /usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > src/Builder4/MainWindow.vala
 # This copies debug info and file dumps!
+
+# WRONG - Not cleaning the output
+/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
+cp /tmp/generated_mainwindow.vala src/Builder4/MainWindow.vala
+# This copies garbage at the beginning!
 ```
 
 ### ✅ CORRECT APPROACH - ALWAYS DO THESE

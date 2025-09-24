@@ -89,7 +89,7 @@ public class Xcls_WindowRooView : Object
 	        return;
 	    }
 	    var prop = node.lineToProp(ln+1);
-	    print("prop : %s", prop == null ? "???" : prop.name);
+	    print("prop : %s", prop == null ? "???" : prop.prop_name);
 	        
 	        
 	    // ---------- this selects the tree's node...

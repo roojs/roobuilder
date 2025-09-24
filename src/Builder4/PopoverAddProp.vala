@@ -86,11 +86,11 @@ public class Xcls_PopoverAddProp : Object
 				continue;
 			}
 			if (node.has_property_key(prop)) {
-				GLib.debug("Skip - has key already %s",  prop.name);
+				GLib.debug("Skip - has key already %s",  prop.prop_name);
 				continue;			
 			}
 			//JsRender.NodeProp
-			GLib.debug("Prop add %s",  prop.name);
+			GLib.debug("Prop add %s",  prop.prop_name);
 		 	m.append(prop);
 	    }
 	    
@@ -421,7 +421,7 @@ public class Xcls_PopoverAddProp : Object
 			 
 			//	_this.select(np);
 				
-				if (!prop.name.contains("[]") && _this.node.has_property_key(prop)) {
+				if (!prop.prop_name.contains("[]") && _this.node.has_property_key(prop)) {
 					GLib.debug("node already has this key.");
 					return; // cant add it twice? --  
 				}
@@ -440,11 +440,11 @@ public class Xcls_PopoverAddProp : Object
 					var pal = ws.project.palete;
 					
 					pal.loadNodeDefaults(ws.file.getSymbolLoader(), prop.add_node);
-					if (!prop.name.contains("[]") && null != _this.node.findProp(prop.name)) {
-						GLib.debug("Add Child already contains child with %s", prop.name);	
+					if (!prop.prop_name.contains("[]") && null != _this.node.findProp(prop.prop_name)) {
+						GLib.debug("Add Child already contains child with %s", prop.prop_name);	
 						return;					
 					}
-					 GLib.debug("Add Child Node %s", prop.name);			
+					 GLib.debug("Add Child Node %s", prop.prop_name);			
 					 _this.el.hide();
 					
 					var add = f.action_manager.run( new JsRender.Action.Add(
@@ -564,8 +564,8 @@ public class Xcls_PopoverAddProp : Object
 	if (str.length < 1) { // no search.
 		return true;
 	}
-	if (j.name.down().contains(str) || 
-		j.rtype.down().contains(str)) {
+	if (j.prop_name.down().contains(str) || 
+		j.prop_type.down().contains(str)) {
 		return true;
 		
 	}
@@ -827,7 +827,7 @@ public class Xcls_PopoverAddProp : Object
 			
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
 				var np = (JsRender.NodeProp) lr.get_item();
-				GLib.debug("change  %s to %s", lbl.label, np.name);
+				GLib.debug("change  %s to %s", lbl.label, np.prop_name);
 				// bold or not.
 				lbl.label = np.to_property_option_markup(np.propertyof == _this.node.fqn());
 				lbl.tooltip_markup = np.to_property_option_tooltip();
@@ -916,7 +916,7 @@ public class Xcls_PopoverAddProp : Object
 			  if (lbl.label != "") { // do not update
 				 	return;
 			 	}
-				lbl.label = np.rtype;
+				lbl.label = np.prop_type;
 			 	 
 			});
 		}

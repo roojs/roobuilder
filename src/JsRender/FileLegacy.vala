@@ -53,7 +53,7 @@ namespace JsRender {
                             // For now, we'll set it on the current node if it's a child node
                             if (node.parent != null) {
                                 // This is a child node, set its prop_name
-                                node.prop_name = prop_name;
+                                node.modify_prop_name(prop_name);
                             }
                         }
                         return;
@@ -70,7 +70,7 @@ namespace JsRender {
                         
                         // Set prop_type as xns.xtype (only process once per object)
                         if (xns_val != "" && xtype_val != "") {
-                            node.prop_type = xns_val + "." + xtype_val;
+                            node.modify_prop_type(xns_val + "." + xtype_val);
                         }  
                         return;
                     case "* xns":

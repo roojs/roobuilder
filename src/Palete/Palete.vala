@@ -183,7 +183,7 @@ namespace Palete
 			 
 			GLib.debug("calling validate");    
 			// clear the buttons.
-		 	if (editor.prop.name == "xns" || editor.prop.name == "xtype") {
+		 	if (editor.prop.prop_name == "xns" || editor.prop.prop_name == "xtype") {
 				return  ;
 			}
  

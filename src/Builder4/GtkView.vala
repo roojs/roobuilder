@@ -143,7 +143,7 @@ public class Xcls_GtkView : Object
 	        return;
 	    }
 	    var prop = node.lineToProp(ln+1);
-	    print("prop : %s", prop == null ? "???" : prop.name);
+	    print("prop : %s", prop == null ? "???" : prop.prop_name);
 	        
 	        
 	    // ---------- this selects the tree's node...
@@ -591,17 +591,17 @@ public class Xcls_GtkView : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box189( _this );
+			var child_1 = new Xcls_Box8( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Box12( _this );
+			var child_2 = new Xcls_Box18( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box189 : Object
+	public class Xcls_Box8 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_GtkView  _this;
@@ -610,7 +610,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box189(Xcls_GtkView _owner )
+		public Xcls_Box8(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -618,7 +618,7 @@ public class Xcls_GtkView : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box295( _this );
+			var child_1 = new Xcls_Box9( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_sourceviewscroll( _this );
@@ -627,7 +627,7 @@ public class Xcls_GtkView : Object
 
 		// user defined functions
 	}
-	public class Xcls_Box295 : Object
+	public class Xcls_Box9 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_GtkView  _this;
@@ -636,7 +636,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box295(Xcls_GtkView _owner )
+		public Xcls_Box9(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -651,7 +651,7 @@ public class Xcls_GtkView : Object
 			this.el.append( _this.helper.el );
 			new Xcls_help_button( _this );
 			this.el.append( _this.help_button.el );
-			var child_3 = new Xcls_Scale299( _this );
+			var child_3 = new Xcls_Scale12( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
 		}
@@ -800,7 +800,7 @@ public class Xcls_GtkView : Object
 		// user defined functions
 	}
 
-	public class Xcls_Scale299 : Object
+	public class Xcls_Scale12 : Object
 	{
 		public Gtk.Scale el;
 		private Xcls_GtkView  _this;
@@ -809,7 +809,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Scale299(Xcls_GtkView _owner )
+		public Xcls_Scale12(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
@@ -911,10 +911,10 @@ public class Xcls_GtkView : Object
 			this.el.tab_width = 4;
 			new Xcls_buffer( _this );
 			this.el.set_buffer ( _this.buffer.el  );
-			var child_2 = new Xcls_EventControllerScroll377( _this );
+			var child_2 = new Xcls_EventControllerScroll16( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
-			var child_3 = new Xcls_GestureClick41( _this );
+			var child_3 = new Xcls_GestureClick17( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 
@@ -1291,7 +1291,7 @@ public class Xcls_GtkView : Object
 		}
 	}
 
-	public class Xcls_EventControllerScroll377 : Object
+	public class Xcls_EventControllerScroll16 : Object
 	{
 		public Gtk.EventControllerScroll el;
 		private Xcls_GtkView  _this;
@@ -1301,7 +1301,7 @@ public class Xcls_GtkView : Object
 		public double distance;
 
 		// ctor
-		public Xcls_EventControllerScroll377(Xcls_GtkView _owner )
+		public Xcls_EventControllerScroll16(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerScroll( Gtk.EventControllerScrollFlags.VERTICAL );
@@ -1338,7 +1338,7 @@ public class Xcls_GtkView : Object
 		// user defined functions
 	}
 
-	public class Xcls_GestureClick41 : Object
+	public class Xcls_GestureClick17 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_GtkView  _this;
@@ -1347,7 +1347,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick41(Xcls_GtkView _owner )
+		public Xcls_GestureClick17(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -1387,7 +1387,7 @@ public class Xcls_GtkView : Object
 
 
 
-	public class Xcls_Box12 : Object
+	public class Xcls_Box18 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_GtkView  _this;
@@ -1396,7 +1396,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box12(Xcls_GtkView _owner )
+		public Xcls_Box18(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1414,7 +1414,7 @@ public class Xcls_GtkView : Object
 			this.el.append( _this.nextBtn.el );
 			new Xcls_backBtn( _this );
 			this.el.append( _this.backBtn.el );
-			var child_5 = new Xcls_MenuButton18( _this );
+			var child_5 = new Xcls_MenuButton24( _this );
 			child_5.ref();
 			this.el.append( child_5.el );
 		}
@@ -1444,7 +1444,7 @@ public class Xcls_GtkView : Object
 			this.el.hexpand = true;
 			this.el.placeholder_text = "Press enter to search";
 			this.el.search_delay = 3;
-			var child_1 = new Xcls_EventControllerKey14( _this );
+			var child_1 = new Xcls_EventControllerKey20( _this );
 			child_1.ref();
 			this.el.add_controller(  child_1.el );
 
@@ -1492,7 +1492,7 @@ public class Xcls_GtkView : Object
 			
 		}
 	}
-	public class Xcls_EventControllerKey14 : Object
+	public class Xcls_EventControllerKey20 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Xcls_GtkView  _this;
@@ -1501,7 +1501,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey14(Xcls_GtkView _owner )
+		public Xcls_EventControllerKey20(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
@@ -1651,7 +1651,7 @@ public class Xcls_GtkView : Object
 		// user defined functions
 	}
 
-	public class Xcls_MenuButton18 : Object
+	public class Xcls_MenuButton24 : Object
 	{
 		public Gtk.MenuButton el;
 		private Xcls_GtkView  _this;
@@ -1661,7 +1661,7 @@ public class Xcls_GtkView : Object
 		public bool always_show_image;
 
 		// ctor
-		public Xcls_MenuButton18(Xcls_GtkView _owner )
+		public Xcls_MenuButton24(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.MenuButton();
@@ -1696,14 +1696,14 @@ public class Xcls_GtkView : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box20( _this );
+			var child_1 = new Xcls_Box26( _this );
 			child_1.ref();
 			this.el.set_child ( child_1.el  );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box20 : Object
+	public class Xcls_Box26 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_GtkView  _this;
@@ -1712,7 +1712,7 @@ public class Xcls_GtkView : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box20(Xcls_GtkView _owner )
+		public Xcls_Box26(Xcls_GtkView _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );

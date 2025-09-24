@@ -29,7 +29,7 @@ public class Xcls_LeftProps : Object
 	public bool loading;
 	public bool allow_edit;
 	public signal void show_add_props (string type);
-	public Action.Base? node_prop_action;
+	public JsRender.Action.Base? node_prop_action;
 	public signal bool stop_editor ();
 	public Xcls_MainWindow main_window;
 	public int last_error_counter;
@@ -256,7 +256,7 @@ public class Xcls_LeftProps : Object
 	        this.stop_editor();
 	        
 	            	
-	        switch(prop.ptype) {
+	        switch(prop.node_type) {
 	            case JsRender.NodePropType.LISTENER:
 	                this.node.listeners.unset(prop.to_index_key());
 	                break;
@@ -1756,7 +1756,7 @@ public class Xcls_LeftProps : Object
 					// Convert to string array for StringList
 					// Append each class to the StringList (only once)
 					foreach (var cls in classes) {
-						this.el.append(cls);
+						stringlist.append(cls);
 					}
 				}
 			}
@@ -1785,14 +1785,13 @@ public class Xcls_LeftProps : Object
 		public Xcls_FlattenListModel44(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.FlattenListModel( null );
+			var child_1 = new Xcls_StringList45( _this );
+			child_1.ref();
+			this.el = new Gtk.FlattenListModel( child_1.el );
 
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_StringList45( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
 		}
 
 		// user defined functions
@@ -1918,22 +1917,8 @@ public class Xcls_LeftProps : Object
 			this.el.visible = true;
 
 			//listeners
-			this.el.focus-in-event.connect( () => {
-				// Create Action.ChangeProp on focus
-				if (_this.node == null) {
-					return;
-				}
-				
-				// Store original prop_name for undo
-				_this.original_prop_name = _this.node.prop_name;
-				
-				// Create a custom action for Node property changes
-				// Note: Action.ChangeProp is for NodeProp objects, not Node properties
-				// For now, we'll handle this with direct property update and change event
-				_this.node_prop_action = null; // Placeholder for future Node property action
-				
-				return false;
-			});
+			this.el.notify["has_focus"].connect( () => {
+			 });
 			this.el.changed.connect( () => {
 				// Delayed trigger for property change
 				if (_this.node == null) {
@@ -1942,7 +1927,7 @@ public class Xcls_LeftProps : Object
 				
 				// Set node prop_name immediately
 				var prop_name = this.el.text.strip();
-				_this.node.prop_name = prop_name;
+				_this.node.modify_prop_name(prop_name);
 				
 				// Use timeout to delay the change event until editing is complete
 				GLib.Timeout.add_once(1000, () => {
@@ -2594,7 +2579,7 @@ public class Xcls_LeftProps : Object
 					// notify and save the changed value...
 				 	//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
 			         
-			        //prop.val = lbl.text;
+			        //prop.prop_val = lbl.text;
 			        //_this.updateIter(iter,prop);
 			        _this.changed();
 				});
@@ -2726,7 +2711,7 @@ public class Xcls_LeftProps : Object
 					    var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
 						 
 					 
-					    prop.val = elbl.text;
+					    prop.modify_prop_val(elbl.text);
 			        		 GLib.debug("calling changed");
 				        _this.changed();
 				       
@@ -2740,7 +2725,7 @@ public class Xcls_LeftProps : Object
 				  }
 					 var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
 				 	 _this.stop_editor();
-				 	 prop.val = sw.active ? "true" : "false";	 
+				 	 prop.modify_prop_val(sw.active ? "true" : "false");	 
 				 	 _this.changed();
 				 	 
 						 	 
@@ -2755,8 +2740,8 @@ public class Xcls_LeftProps : Object
 					    var model = (Gtk.StringList)cb.model;
 					    var new_val = model.get_string(cb.selected);
 					    
-					    // Check if prop.val has actually changed
-					    if (prop.val == new_val) {
+					    // Check if prop.prop_val has actually changed
+					    if (prop.prop_val == new_val) {
 						return;
 					    }
 					    
@@ -2764,13 +2749,13 @@ public class Xcls_LeftProps : Object
 					    var action = new JsRender.Action.ChangeProp(_this.file, prop);
 					    
 					    // Set the new value
-					    prop.val = new_val;
+					    prop.modify_prop_val(new_val);
 					    
 					    // Call changeTo with the updated prop and run through Action Manager
 					    action.changeTo(prop);
 					    _this.file.action_manager.run(action);
 					    
-					    GLib.debug("property set to %s", prop.val);
+					    GLib.debug("property set to %s", prop.prop_val);
 					    GLib.debug("calling changed");
 					    _this.changed();
 					}
@@ -2814,39 +2799,39 @@ public class Xcls_LeftProps : Object
 				 	 
 				}
 				
-				GLib.debug("bind %s", prop.name);
+				GLib.debug("bind %s", prop.prop_name);
 				if ( _this.node.fqn() == "") {
 			 		GLib.debug("node is missing fqn");
 				 	return;
 				}
 				
 				//GLib.debug("prop = %s", prop.get_type().name());
-				//GLib.debug("prop.val = %s", prop.val);
+				//GLib.debug("prop.prop_val = %s", prop.prop_val);
 				//GLib.debug("prop.key = %s", prop.to_display_name());
 				 
 			    var use_textarea =  prop.useTextArea();
-			    GLib.debug("use_textarea  for %s is %d", prop.name, use_textarea ? 1 : 0);
+			    GLib.debug("use_textarea  for %s is %d", prop.prop_name, use_textarea ? 1 : 0);
 			    var pal = _this.file.project.palete;
 			        
 			    string[] opts = {};
 			  
-			    var has_opts = prop.ptype.can_have_opt_list() ? 
+			    var has_opts = prop.node_type.can_have_opt_list() ? 
 			    	pal.typeOptions(
 			    		_this.file.getSymbolLoader(), 
 			    		_this.node.fqn(), 
-			    		prop.name, 
-			    		prop.rtype, 
+			    		prop.prop_name, 
+			    		prop.prop_type, 
 			    		out opts
 					) : false;
 			    
-			    if (!has_opts && prop.ptype == JsRender.NodePropType.RAW) {
+			    if (!has_opts && prop.node_type == JsRender.NodePropType.RAW) {
 			      	
 			      	use_textarea = true;
 			    }
 			    
 			    
 			    if (use_textarea) {
-			    		GLib.debug("set %s as a textarea", prop.name);
+			    		GLib.debug("set %s as a textarea", prop.prop_name);
 			    		prop.bind_property("val_short",
 			                    lbl, "label",
 			                   GLib.BindingFlags.SYNC_CREATE);
@@ -2858,10 +2843,10 @@ public class Xcls_LeftProps : Object
 			        return;
 			    	
 			    }
-			     if (prop.rtype.down() == "bool" || prop.rtype.down() == "boolean") {
+			     if (prop.prop_type.down() == "bool" || prop.prop_type.down() == "boolean") {
 			     	sw.show();
 			     	 
-			     	sw.set_active(prop.val.down() == "true" ? true : false);
+			     	sw.set_active(prop.prop_val.down() == "true" ? true : false);
 			     	
 					this.is_setting = false;        
 			 		return;
@@ -2874,7 +2859,7 @@ public class Xcls_LeftProps : Object
 			        // others... - fill in options for true/false?
 			           // GLib.debug (ktype.up());
 			    if (has_opts) {
-				    GLib.debug("options  for %s", prop.name);
+				    GLib.debug("options  for %s", prop.prop_name);
 					while(model.get_n_items() > 0) {
 						model.remove(0);
 					}
@@ -2885,7 +2870,7 @@ public class Xcls_LeftProps : Object
 					for(var i = 0; i < opts.length; i ++) {
 						model.append( opts[i]);
 						// not sure this is a great idea... 
-						if (opts[i].down() == prop.val.down()) {
+						if (opts[i].down() == prop.prop_val.down()) {
 							sel = i;
 						}
 					}
@@ -2895,11 +2880,11 @@ public class Xcls_LeftProps : Object
 					this.is_setting = false;        
 					return ;
 			    }
-			    GLib.debug("no options  for %s", prop.name);                              
+			    GLib.debug("no options  for %s", prop.prop_name);                              
 				// see if type is a Enum.
 				// triggers a changed event
 			 
-				elbl.set_text(prop.val);
+				elbl.set_text(prop.prop_val);
 			 
 				elbl.show();
 				this.is_setting = false;        		 

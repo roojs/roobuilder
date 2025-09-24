@@ -151,7 +151,7 @@ namespace Palete {
 				// this is based on Gtk using tabs (hence 1/2 chars);
 				offset += this.editor.node.node_pad.length;
 				// javascript listeners are indented 2 more spaces.
-				if (this.editor.prop.ptype == JsRender.NodePropType.LISTENER) {
+				if (this.editor.prop.node_type == JsRender.NodePropType.LISTENER) {
 					offset += 2;
 				}
 			} 

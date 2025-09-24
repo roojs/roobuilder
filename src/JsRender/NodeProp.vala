@@ -14,76 +14,7 @@ namespace JsRender
 
 
 
-		public string name { 
-			get {
-				return this.prop_name;  
-			}
-			set {
-				if (this.prop_name == value) {
-					return;
-				}
-				this.prop_name = value;
-			 
-				this.updated_count++;
-				if (this.parent != null) {
-					// causes props/ listeners array to get updated.
-					// TODO: Cast to proper Node type when available
-					// parent_node.updated_count++;
-				}
-			}
-		}  // can not be updated... ?? you have to remove / replace?
-		// property type (eg. listener / property etc..)
-		public NodePropType  ptype {		
-			get {
-				return this.node_type;  
-			}
-			set {
-				if (this.node_type == value) {
-					return;
-				}
-				this.node_type = value;
-				if (this.parent != null) {
-					// causes props/ listeners array to get updated.
-					// TODO: Cast to proper Node type when available
-					// parent_node.updated_count++;
-				}
-			}
-		}
-		public string rtype { 
-			get { 
-				return this.prop_type; 
-			}
-		 	set { 
-		 		if (this.prop_type == value) {
-		 			return;
-	 			}
-		 		this.prop_type = value; 
-				if (this.parent != null) {
-					// TODO: Cast to proper Node type when available
-					// this.parent.updated_count++;
-				}
-				 
-				this.updated_count++;
-	 		}
-		 } // return or type
-		
-		public string val { 
-			get {
-				return this.prop_val;
-			}
-			set {
-				if (this.prop_val == value) {
-					return;
-				}
-				this.prop_val = value;
-				
-				if (this.parent != null) {
-					// TODO: Cast to proper Node type when available
-					// this.parent.updated_count++;
-				}
-				this.updated_count++;
-			}
-		}
+		// Wrapper properties removed - use prop_name, node_type, prop_type, prop_val directly
 
 
 		// updated_count moved back to child class
@@ -105,11 +36,11 @@ namespace JsRender
 		public string sort_name {
 			owned get {
 				if (this.add_node == null) {
-					return this.name;
+					return this.prop_name;
 				}
 				// For now, just return the name when add_node is present
 				// TODO: Cast to proper Node type when available
-				return this.name + " [node]";
+				return this.prop_name + " [node]";
 			}
 			set {}
 		
@@ -129,18 +60,18 @@ namespace JsRender
 			}
 			// what types are we interested in checking?
 			// raw/ prop / user
-			if (this.ptype != NodePropType.PROP && this.ptype != NodePropType.USER) {
+			if (this.node_type != NodePropType.PROP && this.node_type != NodePropType.USER) {
 				return false;
 			}
-			if (this.name == "xtype" || this.name == "xns"  || this.name == "id" ) { // flaky..
+			if (this.prop_name == "xtype" || this.prop_name == "xns"  || this.prop_name == "id" ) { // flaky..
 				return false;
 			}
-			if (this.name == this.last_ptype_check) {
+			if (this.prop_name == this.last_ptype_check) {
 				return this.is_invalid_ptype;
 			}
 			
 			 
-			this.last_ptype_check = this.name;
+			this.last_ptype_check = this.prop_name;
 			
 			// var sl = file.getSymbolLoader(); // TODO: Fix when proper file type is available
 			//var sym = this.project.symbol_manager.getByFQN(this.parent.fqn());
@@ -168,10 +99,10 @@ namespace JsRender
 		// doc is now inherited from NodePropBase
 		public NodeProp(string name, NodePropType ptype, string rtype, string val) {
 			base(); // Call parent constructor
-			this.name = name;
-			this.ptype = ptype;
-			this.rtype = rtype;
-			this.val = val;
+			this.prop_name = name;
+			this.node_type = ptype;
+			this.prop_type = rtype;
+			this.prop_val = val;
 			this.childstore = new GLib.ListStore( typeof(NodeProp)); 
 		}
 		
@@ -180,32 +111,32 @@ namespace JsRender
 		 
 		
 		public string ptype_as_string {
-			get { return this.ptype.to_string(); }
+			get { return this.node_type.to_string(); }
 			private set {}
 		}
 		
 		
 		public bool equals(NodeProp p) 
 		{
-			return this.name == p.name 
+			return this.prop_name == p.prop_name 
 					&& 
-					this.ptype == p.ptype 
+					this.node_type == p.node_type 
 					&& 
-					this.rtype == p.rtype 
+					this.prop_type == p.prop_type 
 					&& 
-					this.val == p.val;
+					this.prop_val == p.prop_val;
 		}
 		
 		public NodeProp dupe()
 		{
-			return new NodeProp(this.name, this.ptype, this.rtype,  this.val);
+			return new NodeProp(this.prop_name, this.node_type, this.prop_type,  this.prop_val);
 		}
 		
 		
 		public NodeProp.from_json(string key, string inval)
 		{
 			base(); // Call parent constructor
-			this.val = inval;
+			this.prop_val = inval;
 			var kkv = key.strip().split(" ");
 			string[] kk = {};
 			for (var i = 0; i < kkv.length; i++) {
@@ -216,28 +147,28 @@ namespace JsRender
 			
 			switch(kk.length) {
 				case 1: 
-					this.name = kk[0];
-					this.ptype = NodePropType.PROP;
-					this.rtype = "";		
+					this.prop_name = kk[0];
+					this.node_type = NodePropType.PROP;
+					this.prop_type = "";		
 					return;
 				case 2: 
-					this.name = kk[1];
+					this.prop_name = kk[1];
 					if (kk[0].length > 1) {
 						// void fred (no type)
-						this.rtype = kk[0];
-						this.ptype = NodePropType.PROP;
+						this.prop_type = kk[0];
+						this.node_type = NodePropType.PROP;
 					} else {
 						// has a ptype.
 						
-						this.rtype = ""; // no return type, only a ptype indicator.
-						this.ptype = NodePropType.from_string(kk[0]);
+						this.prop_type = ""; // no return type, only a ptype indicator.
+						this.node_type = NodePropType.from_string(kk[0]);
 					}
 					return;
 				default: // 3 or more... (ignores spaces..)
 				case 3:
-					this.name =  kk[2];
-					this.ptype = NodePropType.from_string(kk[0]);
-					this.rtype = kk[1];
+					this.prop_name =  kk[2];
+					this.node_type = NodePropType.from_string(kk[0]);
+					this.prop_type = kk[1];
 					return;
 				
 			}
@@ -246,58 +177,58 @@ namespace JsRender
 		public string  to_json_key()
 		{
 			
-			if (this.rtype == null) { // not sure why this happens.!?
-				this.rtype = "";
+			if (this.prop_type == null) { // not sure why this happens.!?
+				this.prop_type = "";
 			}
-			var ortype = this.rtype +  (this.rtype.length > 0 ? " " : "");
-			var oabbr = NodePropType.to_abbr(this.ptype);
+			var ortype = this.prop_type +  (this.prop_type.length > 0 ? " " : "");
+			var oabbr = NodePropType.to_abbr(this.node_type);
 			if (oabbr.length > 0) {
 				oabbr += " ";
 			}
-			switch(this.ptype) {
+			switch(this.node_type) {
 				
 
 				case NodePropType.LISTENER : 
-					return this.name; 
+					return this.prop_name; 
 					
 				case NodePropType.PROP:
-					return ortype + this.name;			
+					return ortype + this.prop_name;			
 				
 				case NodePropType.RAW:
 				case NodePropType.METHOD:
 				case NodePropType.SIGNAL:			
 				case NodePropType.USER : 			
-					return oabbr + ortype + this.name;			
+					return oabbr + ortype + this.prop_name;			
 					
 
 
 				case NodePropType.SPECIAL: 			
-					return oabbr +   this.name;
+					return oabbr +   this.prop_name;
 		 		case NodePropType.NONE: // not used
 				case NodePropType.CTOR:
 					 return "";
 				 
 			}
-			return this.name;
+			return this.prop_name;
 		}
 		 
 		
 		public string  to_index_key()
 		{
-			switch(this.ptype) {
+			switch(this.node_type) {
 				case NodePropType.PROP:
 				case NodePropType.RAW:
 				case NodePropType.METHOD :
 				case NodePropType.SIGNAL :
 				case NodePropType.USER : 
-					return this.name;
+					return this.prop_name;
 				
 				case NodePropType.SPECIAL : 
-					return "* " + this.name;
+					return "* " + this.prop_name;
 					
 				// in seperate list..
 				case NodePropType.LISTENER : 
-					return  this.name;
+					return  this.prop_name;
 					
 		 		case NodePropType.NONE: // not used
 				case NodePropType.CTOR:
@@ -305,7 +236,7 @@ namespace JsRender
 
 					
 			}
-			return this.name;
+			return this.prop_name;
 		
 		}
 		// how it appears on the property list. -
@@ -332,7 +263,7 @@ namespace JsRender
 			}
 			owned get {
 				
-				 	return "<tt>" + GLib.Markup.escape_text(this.val) + "</tt>";
+				 	return "<tt>" + GLib.Markup.escape_text(this.prop_val) + "</tt>";
 			} 
 		
 		
@@ -352,11 +283,11 @@ namespace JsRender
 		public string to_display_name()
 		{
 			var bg = this.is_invalid_ptype ? "  bgcolor=\"red\"" : "";
-			var nm =  GLib.Markup.escape_text(this.name);
-			var rt =  GLib.Markup.escape_text(this.rtype);
-			//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+			var nm =  GLib.Markup.escape_text(this.prop_name);
+			var rt =  GLib.Markup.escape_text(this.prop_type);
+			//return (this.prop_type.length > 0 ? this.prop_type + " " : "") +  this.prop_name;
 			// before we showed "@" for signals
-			switch(this.ptype) {
+			switch(this.node_type) {
 				case NodePropType.PROP:
 					return  @"<span$bg>$nm</span>";
 					
@@ -385,7 +316,7 @@ namespace JsRender
 			
 					
 			}
-			return this.name;
+			return this.prop_name;
 	 	}
 	 	
 	 	public string to_tooltip_name_prop { 
@@ -400,19 +331,19 @@ namespace JsRender
 		public string to_tooltip_name()
 		{
 			
-			//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+			//return (this.prop_type.length > 0 ? this.prop_type + " " : "") +  this.prop_name;
 			// before we showed "@" for signals
-			switch(this.ptype) {
+			switch(this.node_type) {
 				case NodePropType.PROP:
 				case NodePropType.SIGNAL:
 				case NodePropType.RAW:
 				case NodePropType.SPECIAL : 
 				case NodePropType.LISTENER :
-					return GLib.Markup.escape_text(this.name) ;
+					return GLib.Markup.escape_text(this.prop_name) ;
 					
 				case NodePropType.METHOD :
 				case NodePropType.USER : 			
-					return  GLib.Markup.escape_text(this.rtype)  + " " + GLib.Markup.escape_text( this.name) ;
+					return  GLib.Markup.escape_text(this.prop_type)  + " " + GLib.Markup.escape_text( this.prop_name) ;
 				 	
 				
 					
@@ -422,16 +353,16 @@ namespace JsRender
 			
 					
 			}
-			return this.name;
+			return this.prop_name;
 	 	}
 	 	// used ot sort the dispaly list of properties.
 	 	public string to_sort_key()
 		{
-			var n = this.name;
+			var n = this.prop_name;
 			 
-			//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+			//return (this.prop_type.length > 0 ? this.prop_type + " " : "") +  this.prop_name;
 			// before we showed "@" for signals
-			switch(this.ptype) {
+			switch(this.node_type) {
 				case NodePropType.PROP:
 					return "5" +  n;
 					
@@ -452,20 +383,20 @@ namespace JsRender
 					
 				// in seperate list..
 				case NodePropType.LISTENER : 
-					return  "0" + this.name;
+					return  "0" + this.prop_name;
 				
 				case NodePropType.NONE: // not used
 				case NodePropType.CTOR:
 					 return "";
 					
 			}
-			return this.name;
+			return this.prop_name;
 	 	}
 		// this is really only used for stuct ctors at present 	
 		// which are only props (although RAW might be valid)
 	 	public string value_to_code()
 	 	{
-	 		switch (this.ptype) {
+	 		switch (this.node_type) {
 				case NodePropType.PROP:
 					break;
 					
@@ -477,19 +408,19 @@ namespace JsRender
 				case NodePropType.LISTENER : 
 				case NodePropType.NONE: // not used
 				case NodePropType.CTOR:			
-					return this.val;
+					return this.prop_val;
 			}
-			if (this.rtype.contains(".")) {
+			if (this.prop_type.contains(".")) {
 				// probalby an enum
-				return this.val;
+				return this.prop_val;
 			}
 			
 			
-			switch (this.rtype) {
+			switch (this.prop_type) {
 				case "string":
-					return "\"" + this.rtype.escape() + "\"";
+					return "\"" + this.prop_type.escape() + "\"";
 				case "bool":
-					return this.val.down();
+					return this.prop_val.down();
 				case "float":
 				case "double":
 				default:
@@ -498,7 +429,7 @@ namespace JsRender
 				
 			
 			}
-			return this.val;
+			return this.prop_val;
 	 	}
 	 	
 	 	
@@ -506,39 +437,39 @@ namespace JsRender
 		public string to_tooltip()
 		{
 			 
-			switch(this.ptype) {
+			switch(this.node_type) {
 				case NodePropType.PROP:
-					return this.rtype + " " + this.name + " = \"" + this.val + "\"";
+					return this.prop_type + " " + this.prop_name + " = \"" + this.prop_val + "\"";
 				case NodePropType.LISTENER : 
 					// thsi might look a bit odd on javascript?
-					return "on " + this.name + " " + this.val;
+					return "on " + this.prop_name + " " + this.prop_val;
 					
 				case NodePropType.RAW:
-					return  this.rtype + " " + this.name + " = " + this.val;
+					return  this.prop_type + " " + this.prop_name + " = " + this.prop_val;
 				case NodePropType.METHOD :
 					// functions - js    FRED  function () { }  <<< could probably be cleaner..
 					// functions - vala    FRED () { }
-					return  this.rtype + " " + this.name  + " "  + this.val;
+					return  this.prop_type + " " + this.prop_name  + " "  + this.prop_val;
 				case NodePropType.SIGNAL :
-					return  "signal: "  + this.rtype + " " + this.name  +  " " + this.val;
+					return  "signal: "  + this.prop_type + " " + this.prop_name  +  " " + this.prop_val;
 				case NodePropType.USER : 
-					return  "user defined: "  + this.rtype + " " + this.name  + " = "  + this.val;
+					return  "user defined: "  + this.prop_type + " " + this.prop_name  + " = "  + this.prop_val;
 				
 				case NodePropType.SPECIAL: 			
-					return  "special property: "  + this.rtype + " " + this.name  + " = " +   this.val;			
+					return  "special property: "  + this.prop_type + " " + this.prop_name  + " = " +   this.prop_val;			
 
 				case NodePropType.NONE: // not used
 				case NodePropType.CTOR:
 					 return "";
 			}
-			return this.name;
+			return this.prop_name;
 			 
 		}
 		
 		 
 		public string to_property_option_markup(bool isbold)
 		{
-			return isbold ?  "<b>" + this.name + "</b>" : this.name;
+			return isbold ?  "<b>" + this.prop_name + "</b>" : this.prop_name;
 		}
 		
 		public string to_property_option_tooltip()
@@ -549,8 +480,8 @@ namespace JsRender
 		
 		
 		public bool is(NodeProp comp) {
-			if (comp.ptype == NodePropType.LISTENER || this.ptype == NodePropType.LISTENER ) { 
-				return comp.ptype == this.ptype && comp.name == this.name;
+			if (comp.node_type == NodePropType.LISTENER || this.node_type == NodePropType.LISTENER ) { 
+				return comp.node_type == this.node_type && comp.prop_name == this.prop_name;
 			}
 			return comp.to_index_key() == this.to_index_key();
 		
@@ -560,10 +491,10 @@ namespace JsRender
 		/*
 		public NodeProp.listenerfromjson(string str, string inval)
 		{
-			this.val = inval;
-			this.name = str;
-			this.ptype = NodePropType.LISTENER;
-			this.rtype = "";
+			this.prop_val = inval;
+			this.prop_name = str;
+			this.node_type = NodePropType.LISTENER;
+			this.prop_type = "";
 			
 		}
 		*/
@@ -571,71 +502,71 @@ namespace JsRender
 		public NodeProp.prop(string name, string rtype = "", string val = "")
 		{
 			base(); // Call parent constructor
-			this.name = name;
-			this.ptype = NodePropType.PROP;
-			this.rtype = rtype;
-			this.val = val;
+			this.prop_name = name;
+			this.node_type = NodePropType.PROP;
+			this.prop_type = rtype;
+			this.prop_val = val;
 		}
 		public NodeProp.raw(string name, string rtype = "", string val = "")
 		{
 			base(); // Call parent constructor
-			this.name = name;
-			this.ptype = NodePropType.RAW;
-			this.rtype = rtype;
-			this.val = val;
+			this.prop_name = name;
+			this.node_type = NodePropType.RAW;
+			this.prop_type = rtype;
+			this.prop_val = val;
 		}
 		
 		public NodeProp.valamethod(string name, string rtype = "void", string val = "() {\n\n}")
 		{
 			base(); // Call parent constructor
-			this.name = name;
-			this.ptype = NodePropType.METHOD;
-			this.rtype = rtype;
-			this.val = val;
+			this.prop_name = name;
+			this.node_type = NodePropType.METHOD;
+			this.prop_type = rtype;
+			this.prop_val = val;
 		}
 		public NodeProp.jsmethod(string name,  string val = "function() {\n\n}")
 		{
 			base(); // Call parent constructor
-			this.name = name;
-			this.ptype = NodePropType.METHOD;
-			this.rtype = "";
-			this.val = val;
+			this.prop_name = name;
+			this.node_type = NodePropType.METHOD;
+			this.prop_type = "";
+			this.prop_val = val;
 		}
 		
 		// vala (and js) specials.. props etc.. - they only have name/value (not type) - type is in xns/xtype
 		public NodeProp.special(string name, string val = "")
 		{
 			base(); // Call parent constructor
-			this.name = name;
-			this.ptype = NodePropType.SPECIAL;
-			this.rtype = "";
-			this.val = val;
+			this.prop_name = name;
+			this.node_type = NodePropType.SPECIAL;
+			this.prop_type = "";
+			this.prop_val = val;
 		}
 		 
 		public NodeProp.listener(string name,   string val = "")
 		{
 			base(); // Call parent constructor
-			this.name = name;
-			this.ptype = NodePropType.LISTENER;
-			this.rtype = "";
-			this.val = val;
+			this.prop_name = name;
+			this.node_type = NodePropType.LISTENER;
+			this.prop_type = "";
+			this.prop_val = val;
 		}
 		 
 		public NodeProp.user(string name, string rtype = "", string val = "")
 		{
 			base(); // Call parent constructor
-			this.name = name;
-			this.ptype = NodePropType.USER;
-			this.rtype = rtype;
-			this.val = val;
+			this.prop_name = name;
+			this.node_type = NodePropType.USER;
+			this.prop_type = rtype;
+			this.prop_val = val;
 		}
 		public NodeProp.sig(string name, string rtype = "void", string val = "()")
 		{
 			base(); // Call parent constructor
-			this.name = name;
-			this.ptype = NodePropType.SIGNAL;
-			this.rtype = rtype;
-			this.val = val;
+			this.prop_name = name;
+			this.node_type = NodePropType.SIGNAL;
+			this.prop_type = rtype;
+			this.prop_val = val;
 		}
 		public void appendChild(NodeProp child)
 		{
@@ -657,17 +588,17 @@ namespace JsRender
 
 			//------------ things that require the text editor...
 			
-			if (this.ptype == NodePropType.LISTENER) {
+			if (this.node_type == NodePropType.LISTENER) {
 				use_textarea = true;
 			}
-			if (this.ptype == NodePropType.METHOD) { 
+			if (this.node_type == NodePropType.METHOD) { 
 				use_textarea = true;
 			}
 				
-			if ( this.name == "init" && this.ptype == NodePropType.SPECIAL) {
+			if ( this.prop_name == "init" && this.node_type == NodePropType.SPECIAL) {
 				use_textarea = true;
 			}
-			if (this.val.length > 40 || this.val.index_of("\n") > -1) { // long value...
+			if (this.prop_val.length > 40 || this.prop_val.index_of("\n") > -1) { // long value...
 				use_textarea = true;
 			}
 			

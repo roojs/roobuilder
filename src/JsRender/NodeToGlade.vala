@@ -231,9 +231,9 @@ public class JsRender.NodeToGlade : Object {
 		var left = 0, top = 0, cols = 1;
 		if (cls == "GtkGrid") {	
 		var colval = this.node.get_prop("* columns");
-			GLib.debug("Columns %s", colval == null ? "no columns" : colval.val);
+			GLib.debug("Columns %s", colval == null ? "no columns" : colval.prop_val);
 			if (colval != null) {
-				cols = int.parse(colval.val);
+				cols = int.parse(colval.prop_val);
 			}
 		}
 		var items = this.node.readObjects();
@@ -245,7 +245,7 @@ public class JsRender.NodeToGlade : Object {
 			var pname = "";
 			if (!is_native && cn.has("* prop")) { // && cn.get_prop("* prop").val == "child") {
 				childname = "property";
-				pname = cn.get_prop("* prop").val;
+				pname = cn.get_prop("* prop").prop_val;
 			}
 			 
 			var child  = this.create_element(childname);

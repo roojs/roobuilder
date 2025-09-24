@@ -210,7 +210,7 @@ namespace JsRender {
 		{
 			
 			if (node.props.has_key("* xinclude")) {
-				ret.add(node.props.get("* xinclude").val);
+				ret.add(node.props.get("* xinclude").prop_val);
 			}
 			for (var i =0; i < node.children.size; i++) {
 				this.findxincludes((Node)node.children.get(i), ret);
@@ -248,18 +248,18 @@ namespace JsRender {
 				
 				
 				var prop = iter.get_value();
-				var kname = prop.name;
-				var ktype = prop.rtype;
+				var kname = prop.prop_name;
+				var ktype = prop.prop_type;
 
 
-				if (prop.ptype == NodePropType.RAW) {
+				if (prop.node_type == NodePropType.RAW) {
 					continue;
 				}
 				// skip cms-id nodes...
 				if (kname == "html" && node.has("cms-id")) { 
 					continue;
 				}
-				var str = prop.val;
+				var str = prop.prop_val;
 				if (kname == "name") {
 					name_prefix = str;
 				}
@@ -267,14 +267,14 @@ namespace JsRender {
 				var chksum = GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip());
 				
 				if (this.doubleStringProps.index_of(kname) > -1) {
-					//GLib.debug("flag=%s type=%s name=%s : %s\n", prop.ptype.to_string(),ktype,kname,str);
+					//GLib.debug("flag=%s type=%s name=%s : %s\n", prop.node_type.to_string(),ktype,kname,str);
 					this.transStrings.set(str,  chksum);
 					named.set("_" + kname, chksum);
 					continue;
 				}
 				
 				if (ktype.down() == "string" && kname[0] == '_') {
-					GLib.debug("flag=%s type=%s name=%s : %s\n", prop.ptype.to_string(),ktype,kname,str);
+					GLib.debug("flag=%s type=%s name=%s : %s\n", prop.node_type.to_string(),ktype,kname,str);
 					this.transStrings.set(str,   chksum);
 					named.set(kname, chksum);
 					continue;

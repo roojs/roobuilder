@@ -593,7 +593,7 @@
 				var prop = node == null ? null : node.lineToProp(i+1);
 				print("%d: %s   :  %s\n", 
 					i+1, 
-					node == null ? "......"  : (prop == null ? "????????" : prop.name),
+					node == null ? "......"  : (prop == null ? "????????" : prop.prop_name),
 					str_ar[i]
 				);
 			}

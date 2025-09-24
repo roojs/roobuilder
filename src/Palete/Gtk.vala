@@ -502,7 +502,7 @@ namespace Palete {
 				if (props.has_key(mn)) {
 					add = snp.convert(props.get(mn), cls.fqn);
 					GLib.debug("Add property (listed in defaults)  %s", add.to_display_name());
-				 	add.val = o.get_string_member(mn);
+				 	add.modify_prop_val(o.get_string_member(mn));
 
 			 	} else {
  					var kt = mn.split(" ");
