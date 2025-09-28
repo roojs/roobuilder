@@ -111,7 +111,9 @@
 	
 		public BuilderApplication (  string[] args)
 		{
+			this.ref();
 			new WindowManager(this); // should reference as it set's the property here
+			
 			try {
 				_self = FileUtils.read_link("/proc/self/exe");
 			} catch (Error e) {
