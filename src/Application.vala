@@ -235,7 +235,7 @@
 		public static BuilderApplication  singleton(  string[]? args)
 		{
 			if (application==null && args != null) {
-				new BuilderApplication(  args);
+				application new BuilderApplication(  args);
 			
 			}
 			return application;
