@@ -218,7 +218,9 @@ namespace Palete {
 			
 			GLib.debug("updateBackground called with %d", reqid);
 			this.last_request_id = reqid;
-			var first_run = true;
+			var first_run = application != null;
+			 
+
 			while(this.running || first_run) {
 				GLib.debug("updateBackground napping for reqid  %d - current request = %d", reqid, this.last_request_id);
 				yield nap(500);
@@ -230,14 +232,17 @@ namespace Palete {
 					// new request has happened.
 					return null;
 				}
-	 			WindowManager.showSpinner("battery-low", "Waiting for compile to end");
+				if (application != null) {
+	 				WindowManager.showSpinner("battery-low", "Waiting for compile to end");
+				}
 				// ok to run.. - if not still running
 			}
 			
 			 
 			this.running = true;
-			WindowManager.showSpinner("battery-low-charging", "Starting Compile");
-			
+			if (application != null) {
+				WindowManager.showSpinner("battery-low-charging", "Starting Compile");
+			}
 			this.changed.clear();
 			//this.filemanager = new SymbolFileCollection();
 			if (!this.done_first_compile.contains(build_module)) {
@@ -245,7 +250,9 @@ namespace Palete {
 	 			this.done_first_compile.add(build_module);
  			}
  			yield this.create_valac_tree( build_module , true); 	
- 			WindowManager.showSpinner("battery-good-charging", "Compile Ended - updating DB");
+			if (application != null) {
+ 				WindowManager.showSpinner("battery-good-charging", "Compile Ended - updating DB");
+			}
 			var ar = new Gee.ArrayList<string>(); 			
  			if (this.last_request_id == reqid) {
 	 			
@@ -254,7 +261,9 @@ namespace Palete {
 					this.filemanager.factory_by_path(s).dump();
 				}
 			}
- 			WindowManager.showSpinner("", "Done");
+			if (application != null) {
+ 				WindowManager.showSpinner("", "Done");
+			}
 			// copy the errors so the thread can't use them anymore...
 			this.errors = this.report.verrors;
 			this.report = null;

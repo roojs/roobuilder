@@ -104,14 +104,13 @@
 		*/
 		//public AppSettings settings = null;
 
-
-
-		//public static Palete.ValaCompileQueue valacompilequeue;
+ 		//public static Palete.ValaCompileQueue valacompilequeue;
 
 	
 		public BuilderApplication (  string[] args)
 		{
-			new WindowManager(this); // should reference as it set's the property here
+ 			
+			application = this;
 			try {
 				_self = FileUtils.read_link("/proc/self/exe");
 			} catch (Error e) {
@@ -129,7 +128,7 @@
 			//BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
 			
 			
-			configDirectory();
+			BuilderApplication.configDirectory();
 		//	this.settings = AppSettings.factory();	
 			var opt_context = new OptionContext ("Application Builder");
 			
@@ -236,8 +235,7 @@
 		public static BuilderApplication  singleton(  string[]? args)
 		{
 			if (application==null && args != null) {
-				application = new BuilderApplication(  args);
- 
+				new BuilderApplication(  args);
 			
 			}
 			return application;
