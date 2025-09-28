@@ -677,7 +677,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 					return;
 				}
 			
-				this.addLine(@"$(ipad)$$(this_el)get_content_area().add( $(childname)$(el_name) );");
+				this.addLine(@"$(ipad)$(this_el)get_content_area().add( $(childname)$(el_name) );");
 				return;
 
 		
