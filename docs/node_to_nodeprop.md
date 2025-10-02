@@ -443,10 +443,8 @@ UI components should continue using `propstore` for list widgets, but property o
          
 ### Phase 6: Alter ChangeProp and modify access to Node ❌ **PENDING**
 1. ❌ rather than serializing the changes to NodeProp in Action.ChangeProp
- * ❌ only store what has changed (only one property will change at each Call) do this by storing
- * ❌ (old_str / new_str) or (old_type/new_type) and  change_type (new emun in new file Action.Change)
- * ❌ Action.Change - can be    NAME / VAL / TYPE / DOC / NODE_TYPE
- * ❌ fix the undo call to revert the change
+ * ❌ only store a flat version of the property
+
 
 **Implementation Status**: 
 - ❌ **CRITICAL ISSUE**: Action.ChangeProp still serializes full NodeProp objects (inefficient)
