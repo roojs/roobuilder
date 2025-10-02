@@ -14,18 +14,18 @@ namespace JsRender
 
 	
 	// Protected properties with prop_ prefix
-		protected bool is_static { get; set; default = false; }
-		public string prop_name { public get; protected set; default = ""; }
-		public string prop_val { public get; protected set; default = ""; }
-		// for properties  - it's the type ?? for nodes? we use props?
-		public string prop_type { public get; protected set; default = ""; }
-		// Public properties
+	protected bool is_static { get; set; default = false; }
+	public string prop_name { public get; protected set; default = ""; }
+	public string prop_val { public get; protected set; default = ""; }
+	// for properties  - it's the type ?? for nodes? we use props?
+	public string prop_type { public get; protected set; default = ""; }
+	// Public properties
 
-		public string doc { get; set; default = ""; }
-		
-		public JsRender? file { get; set; default = null; }
-	 
-		
+	public string doc { get; set; default = ""; }
+	
+	public JsRender? file { get; set; default = null; }
+ 
+	
 	// Constructor
 	protected NodeBase( )
 	{
@@ -34,26 +34,30 @@ namespace JsRender
 		
 	}
 	
-		
-		// OID management methods
-		public void assignLegacyOid(int new_oid) {
-			this.oid = new_oid;
-		}
-		
-		// Property setter methods for controlled access
-		public void modify_prop_name(string value) {
-			this.prop_name = value;
-		}
-		
-		public void modify_prop_val(string value) {
-			this.prop_val = value;
-		}
-		
-		public void modify_prop_type(string value) {
-			this.prop_type = value;
-		}
-		
-	public void modify_node_type(NodePropType value) {
+	// OID management methods
+	public void assignLegacyOid(int new_oid) 
+	{
+		this.oid = new_oid;
+	}
+	
+	// Property setter methods for controlled access
+	public void modify_prop_name(string value) 
+	{
+		this.prop_name = value;
+	}
+	
+	public void modify_prop_val(string value) 
+	{
+		this.prop_val = value;
+	}
+	
+	public void modify_prop_type(string value) 
+	{
+		this.prop_type = value;
+	}
+	
+	public void modify_node_type(NodePropType value) 
+	{
 		this.node_type = value;
 	}
 		
