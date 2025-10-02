@@ -4,18 +4,17 @@ namespace JsRender
     public class Action.ChangeProp : Action.Base {
 
         int nodeOid;
-        string originalPropJson;
-        string newPropJson;
-        // fixme this is not very efficent with objects - as it will serialize all the children
-        // we should probably only store old_* and new_* properties
+        string originalPropJson;  // Flat serialization only
+        string newPropJson;      // Flat serialization only
         
         public ChangeProp(JsRender file, NodeProp nodeProp) {
             base(file);
             this.nodeOid = nodeProp.oid;
             
-            // Serialize the original NodeProp
+            // Create flat copy for serialization
+            var flatProp = new NodeBase.new_from_prop(nodeProp);
             var generator = new Json.Generator();
-            generator.set_root(Json.gobject_serialize(nodeProp));
+            generator.set_root(Json.gobject_serialize(flatProp));
             this.originalPropJson = generator.to_data(null);
             this.newPropJson = "";
         }
@@ -28,9 +27,10 @@ namespace JsRender
         }
 
         public void changeTo(NodeProp nodeProp) {
-            // Serialize the new NodeProp
+            // Create flat copy for serialization
+            var flatProp = new NodeBase.new_from_prop(nodeProp);
             var generator = new Json.Generator();
-            generator.set_root(Json.gobject_serialize(nodeProp));
+            generator.set_root(Json.gobject_serialize(flatProp));
             this.newPropJson = generator.to_data(null);
             
             // Create undo action
