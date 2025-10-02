@@ -364,40 +364,62 @@ UI components should continue using `propstore` for list widgets, but property o
 
 ## Migration Strategy
 
-### Phase 1: Add New Methods and Actions
-1. Add new property access methods to Node class
-2. Implement children-based property filtering
-3. Use ChangeProp Action class for property operations
-4. Add property validation (duplicate name checking)
-5. **Add xns() and xtype() backward compatibility methods to Node class**
-6. **Update fqn(), hasXnsType(), get(), and has() methods to use prop_type**
+### Phase 1: Add New Methods and Actions ✅ **COMPLETED**
+1. ✅ Add new property access methods to Node class
+2. ✅ Implement children-based property filtering
+3. ✅ Use ChangeProp Action class for property operations
+4. ✅ Add property validation (duplicate name checking)
+5. ✅ **Add xns() and xtype() backward compatibility methods to Node class**
+6. ✅ **Update fqn(), hasXnsType(), get(), and has() methods to use prop_type**
 
-### Phase 2: XNS/NTYPE Migration
-1. **Update code generation classes to use new xns() and xtype() methods**
-2. **Test backward compatibility with existing code**
-3. **Update any remaining direct references to xns/xtype properties**
-4. **Remove xns and xtype property creation from setFqn() method**
+**Implementation Status**: All new methods implemented in Node.vala:
+- `add_property()`, `remove_property()`, `has_property_key()`
+- `get_properties()`, `get_listeners_list()`, `get_non_listener_properties()`
+- `get_properties_by_type()`, `find_prop_by_name()`
+- Property validation with duplicate name checking
+- Backward compatibility methods `xns()`, `xtype()`, `hasXnsType()`
 
-### Phase 3: Update Legacy File Reading
-1. Update file loading to convert '* prop' to prop_name
-2. Dont create child nodes for  '* prop' properties
-3. Update file loading to convert '* xns' and 'xtype' to prop_type
-4. Dont create child nodes with '* xns' and 'xtype' 
-3. Test file loading with existing projects0
+### Phase 2: XNS/NTYPE Migration ✅ **COMPLETED**
+1. ✅ **Update code generation classes to use new xns() and xtype() methods**
+2. ✅ **Test backward compatibility with existing code**
+3. ✅ **Update any remaining direct references to xns/xtype properties**
+4. ✅ **Remove xns and xtype property creation from setFqn() method**
 
-### Phase 4: Create New UI Elements
-1. Create UI element for editing properties on child objects
- * this has been added to the interface in the bjs file as
- * xtypedropdown for the class selection 
-   * this needs to be connected up so that when you first show the property area show() on the top
-      * it will fetch all the classes available to the system and fill in the list (only do this once as that list doesnt really change)
-        * need to find what method in the Palete might provide that.
-      * fill in the value when the show() is called on the top 
-  * proprow and propentry
-     * when node.prop_name is set, then fill in this value otherwise hide the whole row
-     * when the value of propentry is changed it should trigger a Action.ChangeProp (probably key up)
-     * it would be best if it was a delayed trigger - so that when editing has completed it really calls the changeprop - rather than calling all the time on each key press
-  * there is an additonal button with the label prop: .... that has an event - it should show that proprow
+**Implementation Status**: 
+- NodeToJs.vala, NodeWriter.vala updated to use new methods
+- prop_type field now stores combined "xns.xtype" value
+- Backward compatibility maintained throughout codebase
+
+### Phase 3: Update Legacy File Reading ✅ **COMPLETED**
+1. ✅ Update file loading to convert '* prop' to prop_name
+2. ✅ Dont create child nodes for  '* prop' properties
+3. ✅ Update file loading to convert '* xns' and 'xtype' to prop_type
+4. ✅ Dont create child nodes with '* xns' and 'xtype' 
+5. ✅ Test file loading with existing projects
+
+**Implementation Status**: FileLegacy.vala updated to handle:
+- '* prop' conversion to prop_name instead of creating child nodes
+- '* xns' and 'xtype' conversion to prop_type
+- Proper prop_name setting on child nodes
+
+### Phase 4: Create New UI Elements ✅ **COMPLETED**
+1. ✅ Create UI element for editing properties on child objects
+ * ✅ this has been added to the interface in the bjs file as
+ * ✅ xtypedropdown for the class selection 
+   * ✅ this needs to be connected up so that when you first show the property area show() on the top
+      * ✅ it will fetch all the classes available to the system and fill in the list (only do this once as that list doesnt really change)
+        * ✅ need to find what method in the Palete might provide that.
+      * ✅ fill in the value when the show() is called on the top 
+  * ✅ proprow and propentry
+     * ✅ when node.prop_name is set, then fill in this value otherwise hide the whole row
+     * ✅ when the value of propentry is changed it should trigger a Action.ChangeProp (probably key up)
+     * ✅ it would be best if it was a delayed trigger - so that when editing has completed it really calls the changeprop - rather than calling all the time on each key press
+  * ✅ there is an additonal button with the label prop: .... that has an event - it should show that proprow
+
+**Implementation Status**: WindowLeftProps.vala updated with:
+- xtypedropdown, proprow, propentry UI elements
+- Delayed trigger mechanism (1000ms timeout) for property changes
+- Integration with existing property editing workflow
 
 
 ### Phase 5: Remove wrappers in NodeProp
