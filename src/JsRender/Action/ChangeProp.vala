@@ -12,7 +12,7 @@ namespace JsRender
             this.nodeOid = nodeProp.oid;
             
             // Create flat copy for serialization
-            var flatProp = new NodeBase.new_from_prop(nodeProp);
+            var flatProp = new NodeProp.new_from_prop(nodeProp);
             var generator = new Json.Generator();
             generator.set_root(Json.gobject_serialize(flatProp));
             this.originalPropJson = generator.to_data(null);
@@ -28,7 +28,7 @@ namespace JsRender
 
         public void changeTo(NodeProp nodeProp) {
             // Create flat copy for serialization
-            var flatProp = new NodeBase.new_from_prop(nodeProp);
+            var flatProp = new NodeProp.new_from_prop(nodeProp);
             var generator = new Json.Generator();
             generator.set_root(Json.gobject_serialize(flatProp));
             this.newPropJson = generator.to_data(null);
