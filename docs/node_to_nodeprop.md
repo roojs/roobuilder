@@ -454,6 +454,52 @@ UI components should continue using `propstore` for list widgets, but property o
 - ❌ Store only flat property values instead of full serialization with children
 - ❌ Fix undo mechanism to revert specific changes
 - ❌ Support multiple property changes in single action
+
+**Implementation Details**:
+```vala
+// New constructor in NodeBase.vala
+public NodeBase.new_from_prop(NodeProp source) {
+    // Copy only flat properties, not children or complex relationships
+    this.prop_name = source.prop_name;
+    this.prop_val = source.prop_val;
+    this.prop_type = source.prop_type;
+    this.node_type = source.node_type;
+    this.doc = source.doc;
+    this.is_static = source.is_static;
+    // Do NOT copy: oid, parent, children, file
+}
+
+// Updated Action.ChangeProp.vala
+public class Action.ChangeProp : Action.Base {
+    int nodeOid;
+    string originalPropJson;  // Flat serialization only
+    string newPropJson;      // Flat serialization only
+    
+    public ChangeProp(JsRender file, NodeProp nodeProp) {
+        base(file);
+        this.nodeOid = nodeProp.oid;
+        
+        // Create flat copy for serialization
+        var flatProp = new NodeBase.new_from_prop(nodeProp);
+        var generator = new Json.Generator();
+        generator.set_root(Json.gobject_serialize(flatProp));
+        this.originalPropJson = generator.to_data(null);
+        this.newPropJson = "";
+    }
+    
+    public void changeTo(NodeProp nodeProp) {
+        // Create flat copy for serialization
+        var flatProp = new NodeBase.new_from_prop(nodeProp);
+        var generator = new Json.Generator();
+        generator.set_root(Json.gobject_serialize(flatProp));
+        this.newPropJson = generator.to_data(null);
+        
+        // Create undo action
+        this.undoAction = new Action.ChangeProp.from_json(
+            this.file, this.nodeOid, this.originalPropJson);
+    }
+}
+```
  
 ### Phase 7: Evaluate and Update Computed Properties 🔄 **PARTIALLY COMPLETE**
 1. ✅ Analyze usage of props/listeners computed properties
