@@ -441,19 +441,21 @@ UI components should continue using `propstore` for list widgets, but property o
 - 🔄 **TODO**: Audit codebase for unauthorized direct property writes
 - 🔄 **TODO**: Replace direct property access with setter methods where appropriate
          
-### Phase 6: Alter ChangeProp and modify access to Node ❌ **PENDING**
-1. ❌ rather than serializing the changes to NodeProp in Action.ChangeProp
- * ❌ implement a new constructor NodeBase.new_from_prop - that only copies flat values
- * ❌ only serialize this node, not the full node - to prevent a big tree etc.
- * ❌ this enables editing quite a few of the node prop details in one go
- * ❌ fix the undo call to revert the change
+### Phase 6: Alter ChangeProp and modify access to Node ✅ **COMPLETED**
+1. ✅ rather than serializing the changes to NodeProp in Action.ChangeProp
+   * ✅ implement a new constructor NodeBase.new_from_prop - that only copies flat values
+   * ✅ only serialize this node, not the full node - to prevent a big tree etc.
+   * ✅ this enables editing quite a few of the node prop details in one go
+   * ✅ fix the undo call to revert the change
 
 **Implementation Status**: 
-- ❌ **CRITICAL ISSUE**: Action.ChangeProp still serializes full NodeProp objects (inefficient)
-- ❌ Need to implement NodeBase.new_from_prop constructor for flat property copying
-- ❌ Store only flat property values instead of full serialization with children
-- ❌ Fix undo mechanism to revert specific changes
-- ❌ Support multiple property changes in single action
+- ✅ **COMPLETED**: NodeBase.new_from_prop constructor implemented for flat property copying
+- ✅ **COMPLETED**: NodeProp.new_from_prop constructor calls base constructor
+- ✅ **COMPLETED**: Node.new_from_prop constructor calls base constructor  
+- ✅ **COMPLETED**: Action.ChangeProp updated to use flat serialization approach
+- ✅ **COMPLETED**: Only flat property values stored instead of full serialization with children
+- ✅ **COMPLETED**: Undo mechanism implemented to revert specific changes
+- ✅ **COMPLETED**: Multiple property changes supported in single action via flat serialization
 
 **Implementation Details**:
 ```vala
@@ -608,19 +610,19 @@ public class Action.ChangeProp : Action.Base {
 
 ## Progress Summary
 
-### Overall Progress: ~60% Complete
+### Overall Progress: ~70% Complete
 
-**✅ Completed Phases (4/9):**
+**✅ Completed Phases (5/9):**
 - **Phase 1**: Add New Methods and Actions - **COMPLETED**
 - **Phase 2**: XNS/NTYPE Migration - **COMPLETED** 
 - **Phase 3**: Update Legacy File Reading - **COMPLETED**
 - **Phase 4**: Create New UI Elements - **COMPLETED**
+- **Phase 6**: Alter ChangeProp and modify access to Node - **COMPLETED**
 
 **🔄 In Progress (1/9):**
 - **Phase 5**: Remove wrappers in NodeProp - **IN PROGRESS**
 
-**❌ Pending Phases (4/9):**
-- **Phase 6**: Alter ChangeProp and modify access to Node - **PENDING**
+**❌ Pending Phases (3/9):**
 - **Phase 7**: Evaluate and Update Computed Properties - **PARTIALLY COMPLETE**
 - **Phase 8**: Remove Legacy Code - **PENDING**
 - **Phase 9**: Testing and Validation - **PENDING**
@@ -633,13 +635,13 @@ public class Action.ChangeProp : Action.Base {
 5. **Property Validation**: Duplicate name checking prevents invalid states
 
 ### Critical Issues to Address 🚨
-1. **Action.ChangeProp Inefficiency**: Still serializing entire NodeProp objects instead of storing only changes
+1. ✅ **Action.ChangeProp Optimization**: COMPLETED - Now uses flat serialization for efficient property changes
 2. **Legacy Code Cleanup**: Many old methods still present and need removal
 3. **Direct Property Access**: Need to audit and replace unauthorized direct property writes
 4. **Testing Gap**: No comprehensive testing of the refactored system
 
 ### Next Priority Actions 🎯
-1. **Complete Phase 6**: Optimize Action.ChangeProp for better performance and undo/redo
+1. ✅ **Complete Phase 6**: COMPLETED - Action.ChangeProp optimized with flat serialization
 2. **Audit Phase 5**: Find and replace unauthorized direct property access
 3. **Begin Phase 8**: Remove legacy methods and clean up code
 4. **Start Phase 9**: Implement comprehensive testing

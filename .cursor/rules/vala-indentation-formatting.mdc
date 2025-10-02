@@ -1,0 +1,261 @@
+---
+globs: *.vala
+description: Vala indentation and formatting rules
+---
+
+# Vala Indentation and Formatting Rules
+
+## Tab-Based Indentation
+
+**ALWAYS** use tabs for indentation in Vala files, not spaces. Each indentation level should be one tab character.
+
+### Indentation Rules
+
+1. **Class-level methods**: 1 tab indentation
+2. **Method bodies**: 2 tabs indentation  
+3. **Control structures**: Appropriate tab levels based on nesting
+4. **Switch statements**: Cases properly indented
+5. **Nested blocks**: Properly indented based on brace levels
+
+### Brace and Parenthesis Handling
+
+When a line contains both `}` and `{` (like `} catch (Error e) {`):
+- **Decrease indent** for closing braces first
+- **Increase indent** for opening braces after
+- **Count braces** on each line to determine proper indentation changes
+
+When a line contains parentheses `()`:
+- **Increase indent** for opening parentheses
+- **Decrease indent** for closing parentheses
+- **Count parentheses** on each line to determine proper indentation changes
+- **Handle nested expressions** with proper indentation levels
+
+### Examples
+
+#### ✅ Correct Indentation
+
+```vala
+public class MyClass : Object
+{
+	public void myMethod()
+	{
+		if (condition) {
+			doSomething();
+		} catch (Error e) {
+			handleError(e);
+		}
+	}
+	
+	public void switchExample(string value)
+	{
+		switch (value) {
+			case "option1":
+				handleOption1();
+				break;
+			case "option2":
+				handleOption2();
+				break;
+			default:
+				handleDefault();
+				break;
+		}
+	}
+	
+	public void complexExpression()
+	{
+		var result = someMethod(
+			parameter1,
+			parameter2,
+			anotherMethod(
+				nestedParam1,
+				nestedParam2
+			)
+		);
+	}
+}
+```
+
+#### ❌ Incorrect Indentation
+
+```vala
+// BAD - Using spaces instead of tabs
+public class MyClass : Object
+{
+    public void myMethod()
+    {
+        if (condition) {
+            doSomething();
+        } catch (Error e) {
+            handleError(e);
+        }
+    }
+}
+
+// BAD - Inconsistent indentation levels
+public class MyClass : Object
+{
+	public void myMethod()
+	{
+	if (condition) {
+		doSomething();
+	} catch (Error e) {
+	handleError(e);
+	}
+	}
+}
+
+// BAD - Poor parenthesis indentation
+public void complexExpression()
+{
+	var result = someMethod(
+	parameter1,
+	parameter2,
+	anotherMethod(
+	nestedParam1,
+	nestedParam2
+	)
+	);
+}
+```
+
+## Formatting Guidelines
+
+### Method Declarations
+- Place opening braces on new line after method declarations
+- Use consistent spacing around operators and keywords
+
+### Control Structures
+- Always use braces with control statements (if, for, while, etc.)
+- Place opening braces on new line after control statements
+- Properly indent nested structures
+
+### Switch Statements
+- Use switch/case for 3+ conditions checking the same variable
+- Properly indent case statements
+- Include break statements for each case
+
+### Try-Catch Blocks
+- Properly indent try and catch blocks
+- Handle `} catch {` patterns with correct indentation
+
+### Parentheses and Method Calls
+- Properly indent multi-line method calls
+- Align parameters with opening parenthesis
+- Handle nested method calls with appropriate indentation
+- Use consistent indentation for complex expressions
+
+## Code Review Checklist
+
+When reviewing Vala code, ensure:
+- [ ] All indentation uses tabs, not spaces
+- [ ] Consistent indentation levels throughout
+- [ ] Proper brace placement and indentation
+- [ ] Switch statements properly formatted
+- [ ] Try-catch blocks correctly indented
+- [ ] Multi-line method calls properly indented
+- [ ] Parentheses alignment is consistent
+- [ ] Nested expressions properly indented
+- [ ] No mixed spaces and tabs
+- [ ] Consistent spacing around operators
+
+## Benefits
+
+- **Consistency**: Uniform code style across the project
+- **Readability**: Clear visual hierarchy and structure
+- **Maintainability**: Easier to modify and debug code
+- **Professional appearance**: Clean, well-formatted code
+- **Team collaboration**: Consistent style reduces confusion
+
+## Tools
+
+Use the following Python script to fix indentation in Vala files:
+
+```python
+import re
+
+def fix_indentation(filename):
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    
+    # First pass: convert space indentation to tabs
+    converted_lines = []
+    for line in lines:
+        if line.strip():  # Skip empty lines
+            # Count leading spaces
+            leading_spaces = len(line) - len(line.lstrip(' '))
+            if leading_spaces > 0:
+                # Convert spaces to tabs (assuming 4 spaces = 1 tab)
+                tabs = leading_spaces // 4
+                remaining_spaces = leading_spaces % 4
+                # If there are remaining spaces, convert them to a tab as well
+                if remaining_spaces > 0:
+                    tabs += 1
+                new_line = '\t' * tabs + line.lstrip(' ')
+            else:
+                new_line = line
+        else:
+            new_line = line
+        converted_lines.append(new_line)
+    
+    # Second pass: apply proper indentation logic
+    fixed_lines = []
+    indent_level = 0
+    
+    for i, line in enumerate(converted_lines):
+        stripped = line.strip()
+        
+        # Skip empty lines
+        if not stripped:
+            fixed_lines.append('\n')
+            continue
+        
+        # Count indentation changes for this line
+        # Positive values increase indent, negative values decrease indent
+        open_braces = stripped.count('{')      # +1 for each
+        close_braces = stripped.count('}')     # -1 for each
+        open_parens = stripped.count('(')      # +1 for each
+        close_parens = stripped.count(')')     # -1 for each
+        
+        # Calculate net indent change for this line
+        indent_change = open_braces + open_parens - close_braces - close_parens
+        
+        # Secondary rule: If line starts with } or ), reduce indent by 1
+        # (This doesn't affect the ongoing count)
+        display_indent = indent_level
+        if stripped.startswith('}') or stripped.startswith(')'):
+            display_indent = max(0, indent_level - 1)
+        
+        # Create the line with adjusted indent
+        new_line = '\t' * display_indent + stripped + '\n'
+        fixed_lines.append(new_line)
+        
+        # Update indent level for next line (using original count)
+        indent_level += indent_change
+        indent_level = max(0, indent_level)  # Don't go negative
+    
+    with open(filename, 'w') as f:
+        f.writelines(fixed_lines)
+    
+    # Validation: Check for any lines starting with spaces
+    print('\\nValidating indentation...')
+    with open(filename, 'r') as f:
+        validation_lines = f.readlines()
+    
+    space_lines = []
+    for i, line in enumerate(validation_lines):
+        if line.strip() and line.startswith(' '):
+            space_lines.append((i+1, line.rstrip()))
+    
+    if space_lines:
+        print(f'ERROR: Found {len(space_lines)} lines starting with spaces:')
+        for line_num, line_content in space_lines[:10]:  # Show first 10
+            print(f'  Line {line_num}: {repr(line_content[:50])}')
+        if len(space_lines) > 10:
+            print(f'  ... and {len(space_lines) - 10} more lines')
+        return False
+    else:
+        print('SUCCESS: No lines start with spaces - file is properly formatted!')
+        return True
+```
+
+Remember: **Consistency and readability over brevity**. Well-formatted code is easier to read, maintain, and debug.

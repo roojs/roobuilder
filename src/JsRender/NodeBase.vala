@@ -7,142 +7,143 @@ namespace JsRender
 		// Core properties
 		public int oid { get; private set; default = -1; }
 		public NodeBase? parent { get; set; default = null; }
-		
-		
+
+
 		// New properties as requested
 		public Gee.ArrayList<NodeBase> children { get; set; default = new Gee.ArrayList<NodeBase>(); }
 
-	
-	// Protected properties with prop_ prefix
-	protected bool is_static { get; set; default = false; }
-	public string prop_name { public get; protected set; default = ""; }
-	public string prop_val { public get; protected set; default = ""; }
-	// for properties  - it's the type ?? for nodes? we use props?
-	public string prop_type { public get; protected set; default = ""; }
-	// Public properties
 
-	public string doc { get; set; default = ""; }
-	
-	public JsRender? file { get; set; default = null; }
- 
-	
-	// Constructor
-	protected NodeBase( )
-	{
-		// Properties are initialized with default values
-		//this.oid = uid_count++;
-		
-	}
-	
-	// OID management methods
-	public void assignLegacyOid(int new_oid) 
-	{
-		this.oid = new_oid;
-	}
-	
-	// Property setter methods for controlled access
-	public void modify_prop_name(string value) 
-	{
-		this.prop_name = value;
-	}
-	
-	public void modify_prop_val(string value) 
-	{
-		this.prop_val = value;
-	}
-	
-	public void modify_prop_type(string value) 
-	{
-		this.prop_type = value;
-	}
-	
-	public void modify_node_type(NodePropType value) 
-	{
-		this.node_type = value;
-	}
-	
-	public void clearOid(bool recursive) 
-	{
-		this.oid = -1;
-		if (!recursive) {
-			return;
-		}
-		foreach (var child in this.children) {
-			child.clearOid(true);
-		}
-	}
-	
-	
-	public bool hasOid() 
-	{
-		return this.oid != -1;
-	}
-	
-	// Legacy loading wrapper method
-	public void loadLegacy(Gee.ArrayList<NodeBase> legacy_children) 
-	{
-		this.children = legacy_children;
-		// Set parent references for all children
-		foreach (var child in this.children) {
-			child.parent = this;
-		}
-	}
-	// called on load - initializes oid /file / props / tree
-	public int setFile(JsRender file)
-	{
-		this.file = file;
+		// Protected properties with prop_ prefix
+		protected bool is_static { get; set; default = false; }
+		public string prop_name { public get; protected set; default = ""; }
+		public string prop_val { public get; protected set; default = ""; }
+		// for properties  - it's the type ?? for nodes? we use props?
+		public string prop_type { public get; protected set; default = ""; }
+		// Public properties
 
-		if (this.oid == -1) {
-			this.oid = file.nextOid();
+		public string doc { get; set; default = ""; }
+
+		public JsRender? file { get; set; default = null; }
+
+
+		// Constructor
+		protected NodeBase( )
+		{
+			// Properties are initialized with default values
+			//this.oid = uid_count++;
+
 		}
-		
-		// Add the node to the file's OID mapping
-		if (this.oid != -1) {
-			file.nodes.set(this.oid, (Node)this);
+
+
+		// OID management methods
+		public void assignLegacyOid(int new_oid)
+		{
+			this.oid = new_oid;
 		}
-		
-		var roid = this.oid;
-		foreach(var c in this.children) {
-			roid = int.max(roid, c.setFile(file));
+
+		// Property setter methods for controlled access
+		public void modify_prop_name(string value)
+		{
+			this.prop_name = value;
 		}
-		return roid;
-	}
-	
-	// Add this node to its parent's stores
-	public void setStores(bool recursive = true)
-	{
-		if (this.node_type == NodePropType.OBJECT && this.parent != null) {
-			this.parent.childstore.append(this as Node);
+
+		public void modify_prop_val(string value)
+		{
+			this.prop_val = value;
 		}
-		if (this.node_type != NodePropType.OBJECT && this.parent != null) {
-			this.parent.propstore.append(this as NodeProp);
+
+		public void modify_prop_type(string value)
+		{
+			this.prop_type = value;
 		}
-		
-		// Recursively set stores for all children (if requested)
-		if (recursive) {
-			foreach(var c in this.children) {
-				c.setStores();
+
+		public void modify_node_type(NodePropType value)
+		{
+			this.node_type = value;
+		}
+
+		public void clearOid(bool recursive)
+		{
+			this.oid = -1;
+			if (!recursive) {
+				return;
+			}
+			foreach (var child in this.children) {
+				child.clearOid(true);
 			}
 		}
-	}
-	
-	public void removeDuplicateOIDs(JsRender file) 
-	{
-		// Check if the node's OID already exists in the file
-		if (this.oid != -1 && file.nodes.has_key(this.oid)) {
-			GLib.debug("OID %d already exists, resetting to -1", this.oid);
-			this.oid = -1;
+
+
+		public bool hasOid()
+		{
+			return this.oid != -1;
 		}
-		
-		// Recursively check and clean OIDs in child nodes
-		foreach (var child in this.children) {
-			child.removeDuplicateOIDs(file);
+
+		// Legacy loading wrapper method
+		public void loadLegacy(Gee.ArrayList<NodeBase> legacy_children)
+		{
+			this.children = legacy_children;
+			// Set parent references for all children
+			foreach (var child in this.children) {
+				child.parent = this;
+			}
 		}
-	}
-		
-		
+		// called on load - initializes oid /file / props / tree
+		public int setFile(JsRender file)
+		{
+			this.file = file;
+
+			if (this.oid == -1) {
+				this.oid = file.nextOid();
+			}
+
+			// Add the node to the file's OID mapping
+			if (this.oid != -1) {
+				file.nodes.set(this.oid, (Node)this);
+			}
+
+			var roid = this.oid;
+			foreach(var c in this.children) {
+				roid = int.max(roid, c.setFile(file));
+			}
+			return roid;
+		}
+
+		// Add this node to its parent's stores
+		public void setStores(bool recursive = true)
+		{
+			if (this.node_type == NodePropType.OBJECT && this.parent != null) {
+				this.parent.childstore.append(this as Node);
+			}
+			if (this.node_type != NodePropType.OBJECT && this.parent != null) {
+				this.parent.propstore.append(this as NodeProp);
+			}
+
+			// Recursively set stores for all children (if requested)
+			if (recursive) {
+				foreach(var c in this.children) {
+					c.setStores();
+				}
+			}
+		}
+
+		public void removeDuplicateOIDs(JsRender file)
+		{
+			// Check if the node's OID already exists in the file
+			if (this.oid != -1 && file.nodes.has_key(this.oid)) {
+				GLib.debug("OID %d already exists, resetting to -1", this.oid);
+				this.oid = -1;
+			}
+
+			// Recursively check and clean OIDs in child nodes
+			foreach (var child in this.children) {
+				child.removeDuplicateOIDs(file);
+			}
+		}
+
+
 		// Note: getter/setter methods are automatically generated by Vala for properties
-		
+
 		// Json.Serializable implementation
 		public new void Json.Serializable.set_property (ParamSpec pspec, Value value) {
 			base.set_property (pspec.get_name (), value);
@@ -162,136 +163,136 @@ namespace JsRender
 		{
 			switch (property_name) {
 				case "children":
-					if (this.children.size < 0 ){
-						return new Json.Node(Json.NodeType.NULL);
-					}
-					var node = new Json.Node (Json.NodeType.ARRAY);
-					node.init_array (new Json.Array ());
-					var array = node.get_array ();
-					foreach (var child in this.children) {
-						array.add_element (Json.gobject_serialize (child as NodeBase));
-					}
-					return node;
+				if (this.children.size < 0 ){
+					return new Json.Node(Json.NodeType.NULL);
+				}
+				var node = new Json.Node (Json.NodeType.ARRAY);
+				node.init_array (new Json.Array ());
+				var array = node.get_array ();
+				foreach (var child in this.children) {
+					array.add_element (Json.gobject_serialize (child as NodeBase));
+				}
+				return node;
 				case "node-type":
 				case "prop-name":
 				case "prop-type":
 				case "return-type":
-				case "doc": 
+				case "doc":
 				case "oid":
 				case "is-static":
-					return default_serialize_property (property_name, value, pspec);
+				return default_serialize_property (property_name, value, pspec);
 				case "prop-val":
-					// Handle type detection and multi-line strings
-					var string_val = (string)value;
-					
-					// Check for multi-line strings first
-					if (string_val.index_of_char('\n', 0) >= 0) {
-						// String contains line breaks, convert to array
-						var node = new Json.Node(Json.NodeType.ARRAY);
-						var array = new Json.Array();
-						var lines = string_val.split("\n");
-						foreach (var line in lines) {
-							array.add_string_element(line);
-						}
-						node.init_array(array);
-						return node;
+				// Handle type detection and multi-line strings
+				var string_val = (string)value;
+
+				// Check for multi-line strings first
+				if (string_val.index_of_char('\n', 0) >= 0) {
+					// String contains line breaks, convert to array
+					var node = new Json.Node(Json.NodeType.ARRAY);
+					var array = new Json.Array();
+					var lines = string_val.split("\n");
+					foreach (var line in lines) {
+						array.add_string_element(line);
 					}
-					
-					// Type detection for single-line values
-					if (Lang.isBoolean(string_val)) {
-						var node = new Json.Node(Json.NodeType.VALUE);
-						node.set_boolean(string_val.down() == "false" ? false : true);
-						return node;
+					node.init_array(array);
+					return node;
+				}
+
+				// Type detection for single-line values
+				if (Lang.isBoolean(string_val)) {
+					var node = new Json.Node(Json.NodeType.VALUE);
+					node.set_boolean(string_val.down() == "false" ? false : true);
+					return node;
+				}
+
+				if (Lang.isNumber(string_val)) {
+					var node = new Json.Node(Json.NodeType.VALUE);
+					if (string_val.contains(".")) {
+						node.set_double(double.parse(string_val));
+					} else {
+						node.set_int(long.parse(string_val));
 					}
-					
-					if (Lang.isNumber(string_val)) {
-						var node = new Json.Node(Json.NodeType.VALUE);
-						if (string_val.contains(".")) {
-							node.set_double(double.parse(string_val));
-						} else {
-							node.set_int(long.parse(string_val));
-						}
-						return node;
-					}
-					
-					// Default to string serialization
-					return default_serialize_property (property_name, value, pspec);
-				 
+					return node;
+				}
+
+				// Default to string serialization
+				return default_serialize_property (property_name, value, pspec);
+
 				default:
-					// Skip properties that don't belong to NodeBase
-					return null;
+				// Skip properties that don't belong to NodeBase
+				return null;
 			}
 		}
 
-		public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node) 
+		public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
 		{
 			switch (property_name) {
 				case "children":
-					value = GLib.Value (typeof(Gee.ArrayList));
-					if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-						//value.set_object(new Gee.ArrayList<Node>()); ?? default property value.
-						return false;
-					}
-					var children_list = new Gee.ArrayList<NodeBase>();
-					property_node.get_array ().foreach_element ((array, index, element) => {
+				value = GLib.Value (typeof(Gee.ArrayList));
+				if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+					//value.set_object(new Gee.ArrayList<Node>()); ?? default property value.
+					return false;
+				}
+				var children_list = new Gee.ArrayList<NodeBase>();
+				property_node.get_array ().foreach_element ((array, index, element) => {
 						var jobj = array.get_object_element(index);
 						var jobtype = (NodePropType) jobj.get_int_member("nodetype");
 						var child = Json.gobject_deserialize (
-							jobtype == NodePropType.OBJECT ? typeof (Node) : typeof (NodeProp), 
+							jobtype == NodePropType.OBJECT ? typeof (Node) : typeof (NodeProp),
 							array.get_element(index)
 						) as NodeBase;
 						if (child != null) {
 							// If child oid is negative, assign a new one
-						 	child.parent = this;
+							child.parent = this;
 							children_list.add(child);
 						}
 					});
-					value.set_object(children_list);
-					return true;
-				 
-				
-					
+				value.set_object(children_list);
+				return true;
+
+
+
 				case "oid":
 				case "prop-name":
 				case "prop-type":
 				case "return-type":
-				case "doc":	
+				case "doc":
 				case "is-static":
-					return default_deserialize_property (property_name, out value, pspec, property_node);
+				return default_deserialize_property (property_name, out value, pspec, property_node);
 				case "prop-val":
-					// Handle different JSON types and convert back to string
-					if (property_node.get_node_type() == Json.NodeType.ARRAY) {
-						// Convert array back to string with line breaks
-						var array = property_node.get_array();
-						var string_parts = new Gee.ArrayList<string>();
-						for (var i = 0; i < array.get_length(); i++) {
-							string_parts.add(array.get_string_element(i));
-						}
-						var result = string.joinv("\n", string_parts.to_array());
-						value = GLib.Value(typeof(string));
-						value.set_string(result);
-						return true;
-					} else if (property_node.get_node_type() == Json.NodeType.VALUE) {
-						// Handle typed values (boolean, number) and convert to string
-						var val = property_node.get_value();
-						var string_val = GLib.Value(typeof(string));
-						val.transform(ref string_val);
-						value = string_val;
-						return true;
-					} else {
-						// Not an array or value, deserialize as normal string
-						return default_deserialize_property (property_name, out value, pspec, property_node);
+				// Handle different JSON types and convert back to string
+				if (property_node.get_node_type() == Json.NodeType.ARRAY) {
+					// Convert array back to string with line breaks
+					var array = property_node.get_array();
+					var string_parts = new Gee.ArrayList<string>();
+					for (var i = 0; i < array.get_length(); i++) {
+						string_parts.add(array.get_string_element(i));
 					}
-				
+					var result = string.joinv("\n", string_parts.to_array());
+					value = GLib.Value(typeof(string));
+					value.set_string(result);
+					return true;
+				} else if (property_node.get_node_type() == Json.NodeType.VALUE) {
+					// Handle typed values (boolean, number) and convert to string
+					var val = property_node.get_value();
+					var string_val = GLib.Value(typeof(string));
+					val.transform(ref string_val);
+					value = string_val;
+					return true;
+				} else {
+					// Not an array or value, deserialize as normal string
+					return default_deserialize_property (property_name, out value, pspec, property_node);
+				}
+
 				case "file":
 				case "parent":
-		           	 default:
-					// Skip properties that don't belong to NodeBase
-					 
-					return false;
+				default:
+				// Skip properties that don't belong to NodeBase
+
+				return false;
 			}
 		}
-		
+
 		// realized views.. .
 		public GLib.ListStore  childstore {
 			set;get ; default =  new GLib.ListStore( typeof(Node));
@@ -303,17 +304,17 @@ namespace JsRender
 		public int childstore_find(NodeBase child) {
 			uint pos;
 			return childstore.find_with_equal_func(child, (a, b) => {
-				return ((NodeBase)a).oid == ((NodeBase)b).oid;
-			},	out pos) ? (int)pos : -1;
+					return ((NodeBase)a).oid == ((NodeBase)b).oid;
+				},	out pos) ? (int)pos : -1;
 		}
 		public  int propstore_find(NodeProp child) {
 			uint pos;
 			return this.propstore.find_with_equal_func(child, (a, b) => {
-				return ((NodeProp)a).oid == ((NodeProp)b).oid;
-			}, out pos) ? (int)pos : -1;
+					return ((NodeProp)a).oid == ((NodeProp)b).oid;
+				}, out pos) ? (int)pos : -1;
 		}
-		
-		public Node? parentNode { 
+
+		public Node? parentNode {
 			private set {
 				this.parent = value;
 			}
@@ -330,7 +331,7 @@ namespace JsRender
 					c.removeFromStore();
 				}
 			}
-			
+
 			// Then remove this node from its parent's stores
 			if (this.parent != null) {
 				if (this.node_type == NodePropType.OBJECT) {
@@ -346,7 +347,7 @@ namespace JsRender
 				}
 			}
 		}
-		
+
 		// Remove this node from file-related mappings
 		public void removeFromFile() {
 			if (this.file != null && this.oid != -1) {

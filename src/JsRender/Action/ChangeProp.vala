@@ -11,10 +11,9 @@ namespace JsRender
             base(file);
             this.nodeOid = nodeProp.oid;
             
-            // Create flat copy for serialization
-            var flatProp = new NodeProp.new_from_prop(nodeProp);
+            // Create flat copy for serialization using new_from_prop constructor
             var generator = new Json.Generator();
-            generator.set_root(Json.gobject_serialize(flatProp));
+            generator.set_root(Json.gobject_serialize(new NodeProp.new_from_prop(nodeProp)));
             this.originalPropJson = generator.to_data(null);
             this.newPropJson = "";
         }
@@ -27,10 +26,9 @@ namespace JsRender
         }
 
         public void changeTo(NodeProp nodeProp) {
-            // Create flat copy for serialization
-            var flatProp = new NodeProp.new_from_prop(nodeProp);
+            // Create flat copy for serialization using new_from_prop constructor
             var generator = new Json.Generator();
-            generator.set_root(Json.gobject_serialize(flatProp));
+            generator.set_root(Json.gobject_serialize(new NodeProp.new_from_prop(nodeProp)));
             this.newPropJson = generator.to_data(null);
             
             // Create undo action
