@@ -40,10 +40,10 @@ namespace JsRender
 
         public override NodeBase? run() {
             try {
-                // Deserialize the new NodeProp from JSON
-                var newProp = Json.gobject_from_data(typeof(NodeProp), this.newPropJson) as NodeProp;
-                if (newProp == null) {
-                    GLib.debug("ChangeProp - failed to deserialize new NodeProp");
+                // Deserialize the flat NodeBase from JSON
+                var flatProp = Json.gobject_from_data(typeof(NodeBase), this.newPropJson) as NodeBase;
+                if (flatProp == null) {
+                    GLib.debug("ChangeProp - failed to deserialize flat NodeBase");
                     return null;
                 }
                 
@@ -55,15 +55,15 @@ namespace JsRender
                 }
                 var currentProp = (NodeProp)nodeBase;
                 
-                // Update the current NodeProp with values from NodeProp properties
-                currentProp.modify_prop_name(newProp.prop_name);
-                currentProp.modify_prop_val(newProp.prop_val);
-                currentProp.modify_prop_type(newProp.prop_type);
-                currentProp.doc = newProp.doc;
-                currentProp.modify_node_type(newProp.node_type);
+                // Update the current NodeProp with values from flat properties
+                currentProp.modify_prop_name(flatProp.prop_name);
+                currentProp.modify_prop_val(flatProp.prop_val);
+                currentProp.modify_prop_type(flatProp.prop_type);
+                currentProp.doc = flatProp.doc;
+                currentProp.modify_node_type(flatProp.node_type);
                 
                 // Note: We don't copy oid, parent, children, or file as these should remain the same
-                // The deserialized NodeProp will have different values for these system properties
+                // The flat NodeBase only contains the essential properties
                 
                 // Return the changed node
                 return currentProp;
