@@ -40,10 +40,10 @@ namespace JsRender
 
         public override NodeBase? run() {
             try {
-                // Deserialize the flat NodeBase from JSON
-                var flatProp = Json.gobject_from_data(typeof(NodeBase), this.newPropJson) as NodeBase;
+                // Deserialize the flat NodeProp from JSON
+                var flatProp = Json.gobject_from_data(typeof(NodeProp), this.newPropJson) as NodeProp;
                 if (flatProp == null) {
-                    GLib.debug("ChangeProp - failed to deserialize flat NodeBase");
+                    GLib.debug("ChangeProp - failed to deserialize flat NodeProp");
                     return null;
                 }
                 
@@ -63,7 +63,7 @@ namespace JsRender
                 currentProp.modify_node_type(flatProp.node_type);
                 
                 // Note: We don't copy oid, parent, children, or file as these should remain the same
-                // The flat NodeBase only contains the essential properties
+                // The flat NodeProp only contains the essential properties
                 
                 // Return the changed node
                 return currentProp;
