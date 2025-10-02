@@ -422,43 +422,74 @@ UI components should continue using `propstore` for list widgets, but property o
 - Integration with existing property editing workflow
 
 
-### Phase 5: Remove wrappers in NodeProp
- * NodeProp has wrapper around val/type/name/node_type - that are to be removed
-   * Change prop_* and node_type to protected 
-   * Add set_* methods for all these eg. set_prop_val to the NodeBase
-   * Remove all references to the setting and getting these properties and replace with
-      * getting - use direct access to NodeBase values prop_name 
-      * setting 
-        * if within class heirachy - directly set the value
-        * if outside use set_prop_val etc..
-            *note that this will be used to find reference to code that is setting values that is not supposed to do it (only code that should have write access is really the Legacy Loading and the Action Classes)
-        * if we find any code directly writing we should flag it up and decide if it can access the property using set - or should it be replace with Action.ChangeProp
+### Phase 5: Remove wrappers in NodeProp 🔄 **IN PROGRESS**
+ * ✅ NodeProp has wrapper around val/type/name/node_type - that are to be removed
+   * ✅ Change prop_* and node_type to protected 
+   * ✅ Add set_* methods for all these eg. set_prop_val to the NodeBase
+   * 🔄 Remove all references to the setting and getting these properties and replace with
+      * ✅ getting - use direct access to NodeBase values prop_name 
+      * 🔄 setting 
+        * ✅ if within class heirachy - directly set the value
+        * 🔄 if outside use set_prop_val etc..
+            * 🔄 note that this will be used to find reference to code that is setting values that is not supposed to do it (only code that should have write access is really the Legacy Loading and the Action Classes)
+        * 🔄 if we find any code directly writing we should flag it up and decide if it can access the property using set - or should it be replace with Action.ChangeProp
+
+**Implementation Status**: 
+- ✅ NodeProp.vala: Wrapper properties removed, now uses prop_name, node_type, prop_type, prop_val directly
+- ✅ NodeBase.vala: Protected properties with prop_ prefix implemented
+- ✅ Setter methods added: `modify_prop_name()`, `modify_prop_val()`, `modify_prop_type()`, `modify_node_type()`
+- 🔄 **TODO**: Audit codebase for unauthorized direct property writes
+- 🔄 **TODO**: Replace direct property access with setter methods where appropriate
          
-### Phase 6: Alter ChangeProp and modify access to Node
-1. rather than serializing the changes to NodeProp in Action.ChangeProp
- * only store what has changed (only one property will change at each Call) do this by storing
- * (old_str / new_str) or (old_type/new_type) and  change_type (new emun in new file Action.Change)
- * Action.Change - can be    NAME / VAL / TYPE / DOC / NODE_TYPE
- * fix the undo call to revert the change
+### Phase 6: Alter ChangeProp and modify access to Node ❌ **PENDING**
+1. ❌ rather than serializing the changes to NodeProp in Action.ChangeProp
+ * ❌ only store what has changed (only one property will change at each Call) do this by storing
+ * ❌ (old_str / new_str) or (old_type/new_type) and  change_type (new emun in new file Action.Change)
+ * ❌ Action.Change - can be    NAME / VAL / TYPE / DOC / NODE_TYPE
+ * ❌ fix the undo call to revert the change
+
+**Implementation Status**: 
+- ❌ **CRITICAL ISSUE**: Action.ChangeProp still serializes full NodeProp objects (inefficient)
+- ❌ Need to implement Action.Change enum (NAME/VAL/TYPE/DOC/NODE_TYPE)
+- ❌ Store only changed properties instead of full serialization
+- ❌ Fix undo mechanism to revert specific changes
  
-### Phase 7: Evaluate and Update Computed Properties
-1. Analyze usage of props/listeners computed properties
-2. Determine if they're still needed or should be replaced with generic methods
-3. Update code generation classes accordingly
-4. Test generated code output
+### Phase 7: Evaluate and Update Computed Properties 🔄 **PARTIALLY COMPLETE**
+1. ✅ Analyze usage of props/listeners computed properties
+2. ✅ Determine if they're still needed or should be replaced with generic methods
+3. ✅ Update code generation classes accordingly
+4. 🔄 Test generated code output
 
-### Phase 8: Remove Legacy Code
-1. Remove unused methods (dupeProps, old add_prop, etc.)
-2. Remove propstore_find from NodeBase (propstore kept for UI widgets)
-3. Clean up serialization code
-4. Remove backward compatibility wrappers if no longer needed
+**Implementation Status**:
+- ✅ props/listeners computed properties updated to use children filtering
+- ✅ Caching mechanism implemented with updated_count tracking
+- 🔄 **TODO**: Usage analysis to determine if generic methods can replace computed properties
 
-### Phase 9: Testing and Validation
-1. Comprehensive testing of all functionality
-2. Performance testing with large projects
-3. Memory usage validation
-4. UI responsiveness testing
-5. Undo/redo functionality testing
+### Phase 8: Remove Legacy Code ❌ **PENDING**
+1. ❌ Remove unused methods (dupeProps, old add_prop, etc.)
+2. ❌ Remove propstore_find from NodeBase (propstore kept for UI widgets)
+3. ❌ Clean up serialization code
+4. ❌ Remove backward compatibility wrappers if no longer needed
+
+**Implementation Status**:
+- ❌ **TODO**: Remove legacy methods: `dupeProps()`, old `add_prop()`, `remove_prop()`, `has_prop_key()`
+- ❌ **TODO**: Remove `propstore_find` from NodeBase
+- ❌ **TODO**: Clean up serialization code
+- ❌ **TODO**: Remove backward compatibility wrappers if no longer needed
+
+### Phase 9: Testing and Validation ❌ **PENDING**
+1. ❌ Comprehensive testing of all functionality
+2. ❌ Performance testing with large projects
+3. ❌ Memory usage validation
+4. ❌ UI responsiveness testing
+5. ❌ Undo/redo functionality testing
+
+**Implementation Status**:
+- ❌ **CRITICAL GAP**: No comprehensive testing of refactored system
+- ❌ **TODO**: Performance testing with large projects
+- ❌ **TODO**: Memory usage validation
+- ❌ **TODO**: UI responsiveness testing
+- ❌ **TODO**: Undo/redo functionality testing
 
 ## Benefits
 
