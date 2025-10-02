@@ -443,14 +443,17 @@ UI components should continue using `propstore` for list widgets, but property o
          
 ### Phase 6: Alter ChangeProp and modify access to Node ❌ **PENDING**
 1. ❌ rather than serializing the changes to NodeProp in Action.ChangeProp
- * ❌ only store a flat version of the property
-
+ * ❌ implement a new constructor NodeBase.new_from_prop - that only copies flat values
+ * ❌ only serialize this node, not the full node - to prevent a big tree etc.
+ * ❌ this enables editing quite a few of the node prop details in one go
+ * ❌ fix the undo call to revert the change
 
 **Implementation Status**: 
 - ❌ **CRITICAL ISSUE**: Action.ChangeProp still serializes full NodeProp objects (inefficient)
-- ❌ Need to implement Action.Change enum (NAME/VAL/TYPE/DOC/NODE_TYPE)
-- ❌ Store only changed properties instead of full serialization
+- ❌ Need to implement NodeBase.new_from_prop constructor for flat property copying
+- ❌ Store only flat property values instead of full serialization with children
 - ❌ Fix undo mechanism to revert specific changes
+- ❌ Support multiple property changes in single action
  
 ### Phase 7: Evaluate and Update Computed Properties 🔄 **PARTIALLY COMPLETE**
 1. ✅ Analyze usage of props/listeners computed properties
