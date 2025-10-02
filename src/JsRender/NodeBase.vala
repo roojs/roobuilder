@@ -60,50 +60,53 @@ namespace JsRender
 	{
 		this.node_type = value;
 	}
-		
-		public void clearOid(bool recursive) {
-			this.oid = -1;
-			if (!recursive) {
-				return;
-			}
-			foreach (var child in this.children) {
-				child.clearOid(true);
-			}
+	
+	public void clearOid(bool recursive) 
+	{
+		this.oid = -1;
+		if (!recursive) {
+			return;
+		}
+		foreach (var child in this.children) {
+			child.clearOid(true);
+		}
+	}
+	
+	
+	public bool hasOid() 
+	{
+		return this.oid != -1;
+	}
+	
+	// Legacy loading wrapper method
+	public void loadLegacy(Gee.ArrayList<NodeBase> legacy_children) 
+	{
+		this.children = legacy_children;
+		// Set parent references for all children
+		foreach (var child in this.children) {
+			child.parent = this;
+		}
+	}
+	// called on load - initializes oid /file / props / tree
+	public int setFile(JsRender file)
+	{
+		this.file = file;
+
+		if (this.oid == -1) {
+			this.oid = file.nextOid();
 		}
 		
-		
-		public bool hasOid() {
-			return this.oid != -1;
+		// Add the node to the file's OID mapping
+		if (this.oid != -1) {
+			file.nodes.set(this.oid, (Node)this);
 		}
 		
-		// Legacy loading wrapper method
-		public void loadLegacy(Gee.ArrayList<NodeBase> legacy_children) {
-			this.children = legacy_children;
-			// Set parent references for all children
-			foreach (var child in this.children) {
-				child.parent = this;
-			}
+		var roid = this.oid;
+		foreach(var c in this.children) {
+			roid = int.max(roid, c.setFile(file));
 		}
-		// called on load - initializes oid /file / props / tree
-		public int setFile(JsRender file)
-		{
-			this.file = file;
- 
-			if (this.oid == -1) {
-				this.oid = file.nextOid();
-			}
-			
-			// Add the node to the file's OID mapping
-			if (this.oid != -1) {
-				file.nodes.set(this.oid, (Node)this);
-			}
-			
-			var roid = this.oid;
-			foreach(var c in this.children) {
-				roid = int.max(roid, c.setFile(file));
-			}
-			return roid;
-		}
+		return roid;
+	}
 		
 		// Add this node to its parent's stores
 		public void setStores(bool recursive = true)
