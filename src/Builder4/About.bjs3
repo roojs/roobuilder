@@ -1,0 +1,80 @@
+{
+  "name" : "About",
+  "permname" : "",
+  "modOrder" : "",
+  "bjs-version" : 3,
+  "build-module" : "builder",
+  "tree" : {
+    "oid" : 1,
+    "children" : [
+      {
+        "node-type" : 3,
+        "oid" : 2,
+        "prop-name" : "authors",
+        "prop-val" : "{ \"Alan Knowles <alan@roojs.com>\" }"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 3,
+        "prop-name" : "modal",
+        "prop-val" : true,
+        "prop-type" : "bool"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 4,
+        "prop-name" : "program_name",
+        "prop-val" : "roobuilder"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 5,
+        "prop-name" : "copyright",
+        "prop-val" : "LGPL",
+        "prop-type" : "string"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 6,
+        "prop-name" : "license",
+        "prop-val" : "LGPL",
+        "prop-type" : "string"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 7,
+        "prop-name" : "logo_icon_name",
+        "prop-val" : "roobuilder",
+        "prop-type" : "string"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 8,
+        "prop-name" : "version",
+        "prop-val" : "5.0.9",
+        "prop-type" : "string"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 9,
+        "prop-name" : "website",
+        "prop-val" : "https://github.com/roojs/roobuilder"
+      },
+      {
+        "node-type" : 4,
+        "oid" : 10,
+        "prop-name" : "show",
+        "prop-val" : [
+          "(Gtk.Window parent) {",
+          "\tthis.el.application = parent.application;",
+          "\tthis.el.set_transient_for(parent);",
+          "\tthis.el.version = BuilderApplication.release_version;",
+          "\tthis.el.show();",
+          "}"
+        ],
+        "prop-type" : "void"
+      }
+    ],
+    "prop-type" : "Gtk.AboutDialog"
+  }
+}
