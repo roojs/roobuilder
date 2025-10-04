@@ -166,96 +166,126 @@ When reviewing Vala code, ensure:
 - **Professional appearance**: Clean, well-formatted code
 - **Team collaboration**: Consistent style reduces confusion
 
+## Switch/Case Indentation Rules
+
+Switch/case statements require special handling for proper indentation:
+
+### Switch Statement Indentation
+```vala
+// Correct switch indentation
+switch (value) {
+    case "option1":
+        handleOption1();
+        break;
+    case "option2":
+        handleOption2();
+        break;
+    default:
+        handleDefault();
+        break;
+}
+```
+
+### Indentation Rules for Switch/Case
+1. **Switch statement**: Opening brace on same line, body indented one level
+2. **Case statements**: Indented to same level as switch body (one level from switch)
+3. **Case body**: Indented one additional level from case statement
+4. **Break statements**: Indented to same level as case body
+5. **Closing brace**: At same level as switch statement
+
+### Enhanced Indentation Algorithm
+
+The indentation fixer uses a **three-pass algorithm**:
+
+1. **First Pass**: Convert spaces to tabs
+2. **Second Pass**: Apply basic brace/parenthesis indentation
+3. **Third Pass**: Handle switch/case specific indentation rules
+
+#### Switch/Case Detection Logic
+- **Switch Detection**: Lines starting with `switch ` are tracked
+- **Case Detection**: Lines starting with `case ` or `default` are indented to switch body level
+- **Switch Closure**: Closing `}` that returns to switch level closes the switch
+
 ## Tools
 
-Use the following Python script to fix indentation in Vala files:
+Use the enhanced Python script to fix indentation in Vala files with full switch/case support:
 
-```python
-import re
+```bash
+# Use the enhanced indentation fixer
+python3 tools/fix_indentation_enhanced.py <filename>
+```
 
-def fix_indentation(filename):
-    with open(filename, 'r') as f:
-        lines = f.readlines()
-    
-    # First pass: convert space indentation to tabs
-    converted_lines = []
-    for line in lines:
-        if line.strip():  # Skip empty lines
-            # Count leading spaces
-            leading_spaces = len(line) - len(line.lstrip(' '))
-            if leading_spaces > 0:
-                # Convert spaces to tabs (assuming 4 spaces = 1 tab)
-                tabs = leading_spaces // 4
-                remaining_spaces = leading_spaces % 4
-                # If there are remaining spaces, convert them to a tab as well
-                if remaining_spaces > 0:
-                    tabs += 1
-                new_line = '\t' * tabs + line.lstrip(' ')
-            else:
-                new_line = line
-        else:
-            new_line = line
-        converted_lines.append(new_line)
-    
-    # Second pass: apply proper indentation logic
-    fixed_lines = []
-    indent_level = 0
-    
-    for i, line in enumerate(converted_lines):
-        stripped = line.strip()
-        
-        # Skip empty lines
-        if not stripped:
-            fixed_lines.append('\n')
-            continue
-        
-        # Count indentation changes for this line
-        # Positive values increase indent, negative values decrease indent
-        open_braces = stripped.count('{')      # +1 for each
-        close_braces = stripped.count('}')     # -1 for each
-        open_parens = stripped.count('(')      # +1 for each
-        close_parens = stripped.count(')')     # -1 for each
-        
-        # Calculate net indent change for this line
-        indent_change = open_braces + open_parens - close_braces - close_parens
-        
-        # Secondary rule: If line starts with } or ), reduce indent by 1
-        # (This doesn't affect the ongoing count)
-        display_indent = indent_level
-        if stripped.startswith('}') or stripped.startswith(')'):
-            display_indent = max(0, indent_level - 1)
-        
-        # Create the line with adjusted indent
-        new_line = '\t' * display_indent + stripped + '\n'
-        fixed_lines.append(new_line)
-        
-        # Update indent level for next line (using original count)
-        indent_level += indent_change
-        indent_level = max(0, indent_level)  # Don't go negative
-    
-    with open(filename, 'w') as f:
-        f.writelines(fixed_lines)
-    
-    # Validation: Check for any lines starting with spaces
-    print('\\nValidating indentation...')
-    with open(filename, 'r') as f:
-        validation_lines = f.readlines()
-    
-    space_lines = []
-    for i, line in enumerate(validation_lines):
-        if line.strip() and line.startswith(' '):
-            space_lines.append((i+1, line.rstrip()))
-    
-    if space_lines:
-        print(f'ERROR: Found {len(space_lines)} lines starting with spaces:')
-        for line_num, line_content in space_lines[:10]:  # Show first 10
-            print(f'  Line {line_num}: {repr(line_content[:50])}')
-        if len(space_lines) > 10:
-            print(f'  ... and {len(space_lines) - 10} more lines')
-        return False
-    else:
-        print('SUCCESS: No lines start with spaces - file is properly formatted!')
-        return True
+The enhanced script (`tools/fix_indentation_enhanced.py`) provides:
+
+### Features
+- ✅ **Tab-based indentation** (converts spaces to tabs)
+- ✅ **Switch/case support** with proper case indentation
+- ✅ **Brace and parenthesis handling** with nested expressions
+- ✅ **Three-pass algorithm** for accurate indentation
+- ✅ **Validation** to ensure no spaces remain
+- ✅ **Error reporting** with line numbers
+
+### Usage Examples
+```bash
+# Fix a single file
+python3 tools/fix_indentation_enhanced.py src/MyClass.vala
+
+# Fix multiple files
+for file in src/*.vala; do
+    python3 tools/fix_indentation_enhanced.py "$file"
+done
+```
+
+### Switch/Case Examples
+
+#### ✅ Correct Switch Indentation
+```vala
+public void handleStatus(string status)
+{
+    switch (status) {
+        case "pending":
+            showPending();
+            break;
+        case "approved":
+            showApproved();
+            break;
+        case "rejected":
+            showRejected();
+            break;
+        default:
+            showUnknown();
+            break;
+    }
+}
+```
+
+#### ❌ Incorrect Switch Indentation
+```vala
+// BAD - Cases not properly indented
+switch (status) {
+case "pending":
+showPending();
+break;
+case "approved":
+showApproved();
+break;
+default:
+showUnknown();
+break;
+}
+
+// BAD - Inconsistent indentation
+switch (status) {
+    case "pending":
+        showPending();
+    break;
+    case "approved":
+        showApproved();
+    break;
+    default:
+        showUnknown();
+    break;
+}
 ```
 
 Remember: **Consistency and readability over brevity**. Well-formatted code is easier to read, maintain, and debug.

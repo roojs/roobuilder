@@ -163,6 +163,65 @@ switch (type) {
 - Can use `default` for fallback
 - Be careful with type comparison
 
+## Early Returns Pattern
+
+### ❌ Incorrect - Unnecessary else with return
+
+```vala
+// BAD - Unnecessary else clause when if-block returns
+if (this.bjs_version > 2) {
+    // New format - use direct deserialization
+    var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+    if (node != null) {
+        node.file = this;
+        value.set_object(node);
+        return true;
+    }
+} else {
+    // Legacy format - use FileLegacy for conversion
+    var legacy = new FileLegacy(this);
+    // ... legacy processing ...
+    if (this.tree != null) {
+        value.set_object(this.tree);
+        return true;
+    }
+}
+return false;
+```
+
+### ✅ Correct - Early returns eliminate else
+
+```vala
+// GOOD - Early returns eliminate unnecessary else
+if (this.bjs_version > 2) {
+    // New format - use direct deserialization
+    var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+    if (node != null) {
+        node.file = this;
+        value.set_object(node);
+        return true;
+    }
+    return false;
+}
+
+// Legacy format - use FileLegacy for conversion
+var legacy = new FileLegacy(this);
+// ... legacy processing ...
+if (this.tree != null) {
+    value.set_object(this.tree);
+    return true;
+}
+return false;
+```
+
+### Benefits of Early Returns
+
+1. **Reduced Nesting**: Flatter code structure
+2. **Improved Readability**: Less indentation, clearer flow
+3. **Easier Maintenance**: Each branch is independent
+4. **Guard Clauses**: Handle edge cases first
+5. **Consistent Pattern**: Standard approach for error handling
+
 ## Exception: When NOT to Convert
 
 ### ✅ Keep If-Else When:
@@ -170,6 +229,7 @@ switch (type) {
 2. **Complex conditions** (not just equality checks)
 3. **Different variables** being compared
 4. **Range checks** or **comparison operators**
+5. **When else clause doesn't end with return** (both branches continue execution)
 
 ```vala
 // GOOD - Keep if-else for complex conditions
@@ -196,6 +256,9 @@ When reviewing code, look for:
 2. **Simple equality checks** (==, ===, equals())
 3. **Same variable** being compared in all conditions
 4. **Opportunities for switch/case conversion**
+5. **Unnecessary else clauses** when if-blocks end with return
+6. **Nested if-else** that can be flattened with early returns
+7. **Guard clauses** that can eliminate else statements
 
 ## Refactoring Steps
 
@@ -254,6 +317,55 @@ switch (key) {
         // handle regular properties
         break;
 }
+```
+
+### Current problematic code in [JsRender.vala](mdc:src/JsRender/JsRender.vala):
+
+```vala
+// Lines 982-1007 - Should use early returns instead of else
+if (this.bjs_version > 2) {
+    // New format - use direct deserialization
+    var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+    if (node != null) {
+        node.file = this;
+        value.set_object(node);
+        return true;
+    }
+} else {
+    // Legacy format - use FileLegacy for conversion
+    var legacy = new FileLegacy(this);
+    // ... legacy processing ...
+    if (this.tree != null) {
+        value.set_object(this.tree);
+        return true;
+    }
+}
+return false;
+```
+
+### Should be refactored to:
+
+```vala
+// Use early returns to eliminate else clause
+if (this.bjs_version > 2) {
+    // New format - use direct deserialization
+    var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+    if (node != null) {
+        node.file = this;
+        value.set_object(node);
+        return true;
+    }
+    return false;
+}
+
+// Legacy format - use FileLegacy for conversion
+var legacy = new FileLegacy(this);
+// ... legacy processing ...
+if (this.tree != null) {
+    value.set_object(this.tree);
+    return true;
+}
+return false;
 ```
 
 Remember: **Switch/case is the preferred pattern for 3+ conditions checking the same variable with simple equality comparisons.**

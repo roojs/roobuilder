@@ -152,7 +152,9 @@ public class WindowManager : Json.Serializable, Object {
 		
 		// ?? restart = software-update-urgent - crash?
 
-		
+		if (app == null) {
+			return;
+		}
 		foreach (var win in wm().windows) {
 			if (icon != "") {
 				win.statusbar_compile_spinner.start(icon, tooltip);

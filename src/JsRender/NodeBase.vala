@@ -99,7 +99,7 @@ namespace JsRender
 
 			// Add the node to the file's OID mapping
 			if (this.oid != -1) {
-				file.nodes.set(this.oid, (Node)this);
+				file.nodes.set(this.oid, this);
 			}
 
 			var roid = this.oid;
@@ -115,14 +115,14 @@ namespace JsRender
 			if (this.node_type == NodePropType.OBJECT && this.parent != null) {
 				this.parent.childstore.append(this as Node);
 			}
-			if (this.node_type != NodePropType.OBJECT && this.parent != null) {
+			if (this is NodeProp && this.node_type != NodePropType.OBJECT && this.parent != null) {
 				this.parent.propstore.append(this as NodeProp);
 			}
 
 			// Recursively set stores for all children (if requested)
 			if (recursive) {
 				foreach(var c in this.children) {
-					c.setStores();
+					c.setStores(recursive);
 				}
 			}
 		}
@@ -161,10 +161,11 @@ namespace JsRender
 
 		public Json.Node serialize_property (string property_name, Value value, ParamSpec pspec)
 		{
+			GLib.debug("serialize_property %s", property_name);
 			switch (property_name) {
-				case "children":
-				if (this.children.size < 0 ){
-					return new Json.Node(Json.NodeType.NULL);
+					case "children":
+						if (this.children.size < 0 ){
+						return null;
 				}
 				var node = new Json.Node (Json.NodeType.ARRAY);
 				node.init_array (new Json.Array ());
@@ -173,25 +174,26 @@ namespace JsRender
 					array.add_element (Json.gobject_serialize (child as NodeBase));
 				}
 				return node;
-				case "node-type":
-				case "prop-name":
-				case "prop-type":
-				case "return-type":
-				case "doc":
-				case "oid":
-				case "is-static":
-				return default_serialize_property (property_name, value, pspec);
-				case "prop-val":
-				// Handle type detection and multi-line strings
-				var string_val = (string)value;
 
-				// Check for multi-line strings first
-				if (string_val.index_of_char('\n', 0) >= 0) {
-					// String contains line breaks, convert to array
-					var node = new Json.Node(Json.NodeType.ARRAY);
-					var array = new Json.Array();
-					var lines = string_val.split("\n");
-					foreach (var line in lines) {
+					case "node-type":
+					case "prop-name":
+					case "prop-type":
+					case "return-type":
+					case "doc":
+					case "oid":
+					case "is-static":
+						return default_serialize_property (property_name, value, pspec);
+					case "prop-val":
+						// Handle type detection and multi-line strings
+						var string_val = (string)value;
+
+						// Check for multi-line strings first
+						if (string_val.index_of_char('\n', 0) >= 0) {
+						// String contains line breaks, convert to array
+						var node = new Json.Node(Json.NodeType.ARRAY);
+						var array = new Json.Array();
+						var lines = string_val.split("\n");
+						foreach (var line in lines) {
 						array.add_string_element(line);
 					}
 					node.init_array(array);
@@ -218,20 +220,20 @@ namespace JsRender
 				// Default to string serialization
 				return default_serialize_property (property_name, value, pspec);
 
-				default:
-				// Skip properties that don't belong to NodeBase
-				return null;
+					default:
+						// Skip properties that don't belong to NodeBase
+						return null;
 			}
 		}
 
 		public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
 		{
 			switch (property_name) {
-				case "children":
-				value = GLib.Value (typeof(Gee.ArrayList));
-				if (property_node.get_node_type () != Json.NodeType.ARRAY) {
-					//value.set_object(new Gee.ArrayList<Node>()); ?? default property value.
-					return false;
+					case "children":
+						value = GLib.Value (typeof(Gee.ArrayList));
+						if (property_node.get_node_type () != Json.NodeType.ARRAY) {
+						//value.set_object(new Gee.ArrayList<Node>()); ?? default property value.
+						return false;
 				}
 				var children_list = new Gee.ArrayList<NodeBase>();
 				property_node.get_array ().foreach_element ((array, index, element) => {
@@ -240,7 +242,7 @@ namespace JsRender
 						var child = Json.gobject_deserialize (
 							jobtype == NodePropType.OBJECT ? typeof (Node) : typeof (NodeProp),
 							array.get_element(index)
-						) as NodeBase;
+							) as NodeBase;
 						if (child != null) {
 							// If child oid is negative, assign a new one
 							child.parent = this;
@@ -252,20 +254,20 @@ namespace JsRender
 
 
 
-				case "oid":
-				case "prop-name":
-				case "prop-type":
-				case "return-type":
-				case "doc":
-				case "is-static":
-				return default_deserialize_property (property_name, out value, pspec, property_node);
-				case "prop-val":
-				// Handle different JSON types and convert back to string
-				if (property_node.get_node_type() == Json.NodeType.ARRAY) {
-					// Convert array back to string with line breaks
-					var array = property_node.get_array();
-					var string_parts = new Gee.ArrayList<string>();
-					for (var i = 0; i < array.get_length(); i++) {
+					case "oid":
+					case "prop-name":
+					case "prop-type":
+					case "return-type":
+					case "doc":
+					case "is-static":
+						return default_deserialize_property (property_name, out value, pspec, property_node);
+					case "prop-val":
+						// Handle different JSON types and convert back to string
+						if (property_node.get_node_type() == Json.NodeType.ARRAY) {
+						// Convert array back to string with line breaks
+						var array = property_node.get_array();
+						var string_parts = new Gee.ArrayList<string>();
+						for (var i = 0; i < array.get_length(); i++) {
 						string_parts.add(array.get_string_element(i));
 					}
 					var result = string.joinv("\n", string_parts.to_array());
@@ -284,12 +286,12 @@ namespace JsRender
 					return default_deserialize_property (property_name, out value, pspec, property_node);
 				}
 
-				case "file":
-				case "parent":
-				default:
-				// Skip properties that don't belong to NodeBase
+					case "file":
+					case "parent":
+					default:
+						// Skip properties that don't belong to NodeBase
 
-				return false;
+						return false;
 			}
 		}
 

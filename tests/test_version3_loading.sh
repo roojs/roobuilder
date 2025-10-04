@@ -64,15 +64,15 @@ test_bjs_file() {
     local compile_error="$TEST_DIR/${filename%.bjs}_compile_error.log"
     
     # Check if local build exists
-    if [[ ! -f "./build/roobuilder" ]]; then
-        echo "  ERROR: Local build not found at ./build/roobuilder" | tee -a "$RESULTS_LOG"
+    if [[ ! -f "../build/roobuilder" ]]; then
+        echo "  ERROR: Local build not found at ../build/roobuilder" | tee -a "$RESULTS_LOG"
         echo "ERROR: $relative_path - Local build not found" >> "$ISSUES_LOG"
         ((ERROR_COUNT++))
         return 1
     fi
     
     # Run compilation with timeout (ignore critical warnings)
-    if timeout 30 ./build/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile "$file_path" > "$compile_output" 2> "$compile_error"; then
+    if timeout 30 ../build/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile "$file_path" > "$compile_output" 2> "$compile_error"; then
         # Check if output file was created and has content
         if [[ -f "$compile_output" && -s "$compile_output" ]]; then
             # Check if output starts with static (clean Vala code)

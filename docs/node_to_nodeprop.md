@@ -503,18 +503,45 @@ public class Action.ChangeProp : Action.Base {
 }
 ```
  
-### Phase 7: Evaluate and Update Computed Properties 🔄 **PARTIALLY COMPLETE**
+### Phase 7: Evaluate and Update Computed Properties ✅ **COMPLETED**
 1. ✅ Analyze usage of props/listeners computed properties
 2. ✅ Determine if they're still needed or should be replaced with generic methods
 3. ✅ Update code generation classes accordingly
-4. 🔄 Test generated code output
+4. ✅ Complete usage analysis and optimization
 
 **Implementation Status**:
 - ✅ props/listeners computed properties updated to use children filtering
 - ✅ Caching mechanism implemented with updated_count tracking
-- 🔄 **TODO**: Usage analysis to determine if generic methods can replace computed properties
+- ✅ Usage analysis completed - computed properties optimized for performance
+- ✅ Code generation classes updated to use new property access methods
 
-### Phase 8: Remove Legacy Code ❌ **PENDING**
+### Phase 8: Comprehensive Testing of Generated Code Output ❌ **PENDING**
+1. ❌ Fix command line generation to always produce clean Vala/JS output without junk
+2. ❌ Create automated test script for batch generation and comparison
+3. ❌ Test JavaScript serialization with web.Texon Pman/Shipping/*.bjs files
+4. ❌ Test Vala generation with roobuilder BJS files
+5. ❌ Test Vala generation with gitlive BJS files
+6. ❌ Generate comprehensive issue checklist from test results
+7. ❌ Review and categorize issues before addressing them
+
+**Implementation Status**:
+- ❌ **TODO**: Fix roobuilder command line to produce clean output (remove file structure dumps)
+- ❌ **TODO**: Create test script for automated batch generation
+- ❌ **TODO**: Test JavaScript generation with web.Texon Shipping module (100+ BJS files)
+- ❌ **TODO**: Test Vala generation with roobuilder Builder4 BJS files
+- ❌ **TODO**: Test Vala generation with gitlive BJS files
+- ❌ **TODO**: Generate detailed issue report with categorization
+- ❌ **TODO**: Review issues and create action plan for fixes
+
+**Test Strategy**:
+- **JavaScript Testing**: Use `/home/alan/gitlive/web.Texon/Pman/Shipping/*.bjs` files
+- **Vala Testing**: Use roobuilder and gitlive BJS files
+- **Output Validation**: Compare generated files with existing files
+- **Issue Tracking**: Create detailed checklist of problems found
+- **Methodical Approach**: Generate all files to temporary directories, analyze differences
+
+### Phase 9: Remove Legacy Code / outstanding fixes ❌ **PENDING**
+1. X sort out legacy file read of underscore properties?
 1. ❌ Remove unused methods (dupeProps, old add_prop, etc.)
 2. ❌ Remove propstore_find from NodeBase (propstore kept for UI widgets)
 3. ❌ Clean up serialization code
@@ -526,7 +553,7 @@ public class Action.ChangeProp : Action.Base {
 - ❌ **TODO**: Clean up serialization code
 - ❌ **TODO**: Remove backward compatibility wrappers if no longer needed
 
-### Phase 9: Testing and Validation ❌ **PENDING**
+### Phase 10: Final Testing and Validation ❌ **PENDING**
 1. ❌ Comprehensive testing of all functionality
 2. ❌ Performance testing with large projects
 3. ❌ Memory usage validation
@@ -604,28 +631,31 @@ public class Action.ChangeProp : Action.Base {
 3. **Week 4**: Phase 3 - Update legacy file reading
 4. **Week 5**: Phase 4 - Create new UI elements
 5. **Week 6-7**: Phase 5 - Update UI components to use Actions
-6. **Week 8**: Phase 6 - Evaluate and update computed properties
-7. **Week 9**: Phase 7 - Remove legacy code
-8. **Week 10-11**: Phase 8 - Testing and validation
+6. **Week 8**: Phase 6 - Alter ChangeProp and modify access to Node
+7. **Week 9**: Phase 7 - Evaluate and update computed properties
+8. **Week 10**: Phase 8 - Comprehensive testing of generated code output
+9. **Week 11**: Phase 9 - Remove legacy code
+10. **Week 12**: Phase 10 - Final testing and validation
 
 ## Progress Summary
 
-### Overall Progress: ~70% Complete
+### Overall Progress: ~75% Complete
 
-**✅ Completed Phases (5/9):**
+**✅ Completed Phases (6/10):**
 - **Phase 1**: Add New Methods and Actions - **COMPLETED**
 - **Phase 2**: XNS/NTYPE Migration - **COMPLETED** 
 - **Phase 3**: Update Legacy File Reading - **COMPLETED**
 - **Phase 4**: Create New UI Elements - **COMPLETED**
 - **Phase 6**: Alter ChangeProp and modify access to Node - **COMPLETED**
+- **Phase 7**: Evaluate and Update Computed Properties - **COMPLETED**
 
-**🔄 In Progress (1/9):**
+**🔄 In Progress (1/10):**
 - **Phase 5**: Remove wrappers in NodeProp - **IN PROGRESS**
 
-**❌ Pending Phases (3/9):**
-- **Phase 7**: Evaluate and Update Computed Properties - **PARTIALLY COMPLETE**
-- **Phase 8**: Remove Legacy Code - **PENDING**
-- **Phase 9**: Testing and Validation - **PENDING**
+**❌ Pending Phases (3/10):**
+- **Phase 8**: Comprehensive Testing of Generated Code Output - **PENDING**
+- **Phase 9**: Remove Legacy Code - **PENDING**
+- **Phase 10**: Final Testing and Validation - **PENDING**
 
 ### Key Achievements ✅
 1. **Architecture Successfully Simplified**: Single source of truth (children array) for both nodes and properties
@@ -642,9 +672,11 @@ public class Action.ChangeProp : Action.Base {
 
 ### Next Priority Actions 🎯
 1. ✅ **Complete Phase 6**: COMPLETED - Action.ChangeProp optimized with flat serialization
-2. **Audit Phase 5**: Find and replace unauthorized direct property access
-3. **Begin Phase 8**: Remove legacy methods and clean up code
-4. **Start Phase 9**: Implement comprehensive testing
+2. ✅ **Complete Phase 7**: COMPLETED - Computed properties optimized and code generation updated
+3. **Audit Phase 5**: Find and replace unauthorized direct property access
+4. **Begin Phase 8**: Comprehensive testing of generated code output
+5. **Start Phase 9**: Remove legacy methods and clean up code
+6. **Start Phase 10**: Final testing and validation
 
 ## Conclusion
 
