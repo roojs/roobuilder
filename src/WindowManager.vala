@@ -15,10 +15,7 @@ public class WindowManager : Json.Serializable, Object {
 	public WindowManager(BuilderApplication application) {
 		app = application;
 		app.window_manager = this;
-		
-		this.windows = new  Gee.ArrayList<Xcls_MainWindow>();
-		this.windowlist = new GLib.ListStore(typeof(WindowState));
-		
+ 
 		GLib.Timeout.add_seconds(30, () => {
 			wm().write();
 			return true;
@@ -289,8 +286,8 @@ public class WindowManager : Json.Serializable, Object {
 	}
 	
 	// move to 'window colletction?
-	public Gee.ArrayList<Xcls_MainWindow> windows { get; set; }
-	public GLib.ListStore windowlist;
+	public Gee.ArrayList<Xcls_MainWindow> windows { get; set; default = new Gee.ArrayList<Xcls_MainWindow>(); }
+	public GLib.ListStore windowlist { get; set; default = new GLib.ListStore(typeof(WindowState)); }
 	
  
     bool saveWindowPosition(Xcls_MainWindow win, Json.Object obj)

@@ -128,16 +128,12 @@ namespace JsRender {
 				item.xvala_id = this.file.file_without_namespace;
 
 			}
-				// loop children..
-			var cn = item.readObjects();												   
-			if (cn.size < 1) {
-				return;
+			foreach(var child in item.children) {
+				if (child is Node) {
+					this.toValaName(child as Node, depth+1);
+				}
 			}
-			var i=0;
-			foreach(var child in cn) {
-				this.toValaName(child, depth+1);
-				i++;
-			}
+			 
 						  
 		}
 		

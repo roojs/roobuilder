@@ -1676,7 +1676,7 @@
     "    ",
     "    ",
     "    if (this.node != null) {",
-    "    \tthis.node.dupeProps(); // ensures removeall will not do somethign silly",
+    "    \t//this.node.dupeProps(); // ensures removeall will not do somethign silly",
     "    \t",
     "    }",
     "    ",

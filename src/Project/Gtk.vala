@@ -492,33 +492,58 @@ namespace Project
 		void makeWindow()
 		{
 			this.writeFile("src/ui/ui.Window.bjs", """{
- "build_module" : "",
- "items" : [
-  {
-   "$ xns" : "Gtk",
-   "title" : "test",
-   "| void show" : "() { this.el.show(); }",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "* prop" : "child",
-     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-     "int spacing" : 0,
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "string label" : "Hello World",
-       "xtype" : "Label"
-      }
-     ],
-     "xtype" : "Box"
-    }
-   ],
-   "xtype" : "Window"
-  }
- ],
  "name" : "ui.Window",
- "gen_extended" : false
+ "bjs-version" : 3,
+ "gen-extended" : false,
+ "tree" : {
+  "prop-type" : "Gtk.Window",
+  "children" : [
+   {
+    "node-type" : 2,
+    "prop-name" : "title",
+    "prop-val" : "test"
+   },
+   {
+    "node-type" : 3,
+    "prop-name" : "show",
+    "prop-val" : [
+     "() { this.el.show(); }"
+    ],
+    "prop-type" : "void"
+   },
+   {
+    "node-type" : 0,
+    "prop-name" : "child",
+    "prop-type" : "Gtk.Box",
+    "children" : [
+     {
+      "node-type" : 2,
+      "prop-name" : "orientation",
+      "prop-val" : "Gtk.Orientation.HORIZONTAL",
+      "prop-type" : "Gtk.Orientation"
+     },
+     {
+      "node-type" : 2,
+      "prop-name" : "spacing",
+      "prop-val" : "0",
+      "prop-type" : "int"
+     },
+     {
+      "node-type" : 0,
+      "prop-type" : "Gtk.Label",
+      "children" : [
+       {
+        "node-type" : 2,
+        "prop-name" : "label",
+        "prop-val" : "Hello World",
+        "prop-type" : "string"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
 }
 """);
 	}

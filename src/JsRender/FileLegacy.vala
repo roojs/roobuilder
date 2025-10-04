@@ -28,6 +28,33 @@ namespace JsRender {
 
 		public void loadFromJson(Node node, Json.Object obj, int version)
 		{
+			// First pass: collect xns and xtype values to set prop_type
+			var xns_val = "";
+			var xtype_val = "";
+			
+			obj.foreach_member((o , key, value) => {
+				GLib.debug("First pass - processing key: '%s'", key);
+				switch (key) {
+					case "xtype":
+						xtype_val = this.jsonNodeAsString(value);
+						GLib.debug("First pass - found xtype: '%s'", xtype_val);
+						break;
+					case "* xns":
+					case "*xns":
+					case "$ xns":
+						xns_val = this.jsonNodeAsString(value);
+						GLib.debug("First pass - found xns: '%s'", xns_val);
+						break;
+				}
+			});
+			
+			// Set prop_type if both values are available
+			if (xns_val != "" && xtype_val != "") {
+				GLib.debug("Setting prop_type to: '%s'", xns_val + "." + xtype_val);
+				node.modify_prop_type(xns_val + "." + xtype_val);
+			}
+			
+			// Second pass: process all other properties
 			obj.foreach_member((o , key, value) => {
 					//print(key+"\n");
 					GLib.debug("loadFromJson %s", key);
@@ -39,6 +66,7 @@ namespace JsRender {
 								child_node.parent = node;
 								this.loadFromJson(child_node, el.get_object(), version);
 								node.children.add(child_node);
+								node.add_to_cache(child_node);
 							});
 						return;
 							case "listeners":
@@ -61,24 +89,10 @@ namespace JsRender {
 						}
 						return;
 							case "xtype":
-								// Handle xns/xtype combination - collect both values first
-								var xtype_val = this.jsonNodeAsString(value);
-								var xns_val = "";
-
-								// Get both values from the object
-								if (obj.has_member("* xns")) {
-								xns_val = this.jsonNodeAsString(obj.get_member("* xns"));
-						}
-
-
-						// Set prop_type as xns.xtype (only process once per object)
-						if (xns_val != "" && xtype_val != "") {
-							node.modify_prop_type(xns_val + "." + xtype_val);
-						}
-						return;
 							case "* xns":
 							case "*xns":
-								return; // ignore..
+							case "$ xns":
+								return; // ignore - already handled above
 
 							default:
 								// Handle regular properties

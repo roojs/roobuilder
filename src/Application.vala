@@ -113,7 +113,7 @@ public class BuilderApplication : Gtk.Application
 
 	public BuilderApplication (  string[] args)
 	{
-		new WindowManager(this); // should reference as it set's the property here
+		
 
 		try {
 			_self = FileUtils.read_link("/proc/self/exe");
@@ -201,6 +201,9 @@ public class BuilderApplication : Gtk.Application
 
 	protected override void activate ()
 	{
+		// windowmanager will now get 'not null'
+		new WindowManager(this); 
+		
 		var css = new Gtk.CssProvider();
 		css.load_from_resource("/css/roobuilder.css");
 

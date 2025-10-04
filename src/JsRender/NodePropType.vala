@@ -83,6 +83,26 @@ namespace JsRender
 			
 			}
 		}
+		public string to_ctype() // cache type
+		{
+			switch (this) {
+				case RAW: 		return "p";
+				case METHOD : 	return "p";	
+				case SIGNAL : 	return  "p"; // vala signal
+				case USER : 	return  "p"; // user defined.
+				case SPECIAL : return  "s"; // * prop| args | ctor | init
+		 		case LISTENER : return  "l";  // always raw...
+		 		// not used
+		 		case NONE:  return "";
+				case CTOR:  return "c";
+				case PROP:  return "p";
+				default: return "";
+			
+			}
+		}	
+ 
+		 
+		
 		
 		public static NodePropType[] alltypes()
 		{

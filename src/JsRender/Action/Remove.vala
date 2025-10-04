@@ -53,6 +53,7 @@ namespace JsRender
                 this.position);
             
             // Remove the node from stores and file mappings
+			node.parent.remove_from_cache(node);
             node.removeFromStore();
             node.removeFromFile();
             

@@ -5,12 +5,11 @@ namespace JsRender
 
 		public NodePropType node_type { public get; protected set; default = NodePropType.NONE; }
 		// Core properties
+		// order is important here.. - as it's how the bjs files are written..
+		
 		public int oid { get; private set; default = -1; }
 		public NodeBase? parent { get; set; default = null; }
 
-
-		// New properties as requested
-		public Gee.ArrayList<NodeBase> children { get; set; default = new Gee.ArrayList<NodeBase>(); }
 
 
 		// Protected properties with prop_ prefix
@@ -24,6 +23,8 @@ namespace JsRender
 		public string doc { get; set; default = ""; }
 
 		public JsRender? file { get; set; default = null; }
+		// New properties as requested
+		public Gee.ArrayList<NodeBase> children { get; set; default = new Gee.ArrayList<NodeBase>(); }
 
 
 		// Constructor
@@ -40,11 +41,53 @@ namespace JsRender
 		{
 			this.oid = new_oid;
 		}
-
+		protected Gee.HashMap<string,Gee.HashMap<string,NodeBase>> cache {
+			 get; 
+			 set; 
+			 default = new Gee.HashMap<string,Gee.HashMap<string,NodeBase>>(); 
+		}
+		public void remove_from_cache(NodeBase cnode)
+		{
+			if (cnode.prop_name == "" || cnode.parent == null) {
+				return;
+			}
+			var ctype = cnode.node_type.to_ctype();
+			if (ctype == "") {
+				return;
+			}
+			if (this.cache.has_key(ctype)) {
+				this.cache.get(ctype).unset(cnode.prop_name);
+			}
+		}
+		public void add_to_cache(NodeBase cnode)
+		{
+			if (cnode.prop_name == "" || cnode.parent == null) {
+				return;
+			}
+			var ctype = cnode.node_type.to_ctype();
+			if (ctype == "") {
+				return;
+			}
+			if (!this.cache.has_key(ctype)) {
+				this.cache.set(ctype, new Gee.HashMap<string,NodeBase>());
+			}
+			this.cache.get(ctype).set(cnode.prop_name, cnode);
+			
+		}
 		// Property setter methods for controlled access
 		public void modify_prop_name(string value)
 		{
+			
+			// we are going to use this to manage the 
+			this.parent.remove_from_cache(this);
+			 // listener_cache 
+			 //  property_cache
+			 // special cache?
 			this.prop_name = value;
+			this.parent.add_to_cache(this);
+
+
+
 		}
 
 		public void modify_prop_val(string value)
@@ -54,12 +97,16 @@ namespace JsRender
 
 		public void modify_prop_type(string value)
 		{
+			
+			
 			this.prop_type = value;
 		}
 
 		public void modify_node_type(NodePropType value)
 		{
+			this.parent.remove_from_cache(this);
 			this.node_type = value;
+			this.parent.add_to_cache(this);
 		}
 
 		public void clearOid(bool recursive)
@@ -163,66 +210,94 @@ namespace JsRender
 		{
 			GLib.debug("serialize_property %s", property_name);
 			switch (property_name) {
-					case "children":
-						if (this.children.size < 0 ){
+				case "children":
+					if (this.children.size < 1 ){
 						return null;
-				}
-				var node = new Json.Node (Json.NodeType.ARRAY);
-				node.init_array (new Json.Array ());
-				var array = node.get_array ();
-				foreach (var child in this.children) {
-					array.add_element (Json.gobject_serialize (child as NodeBase));
-				}
-				return node;
+					}
+					var node = new Json.Node (Json.NodeType.ARRAY);
+					node.init_array (new Json.Array ());
+					var array = node.get_array ();
+					foreach (var child in this.children) {
+						array.add_element (Json.gobject_serialize (child as NodeBase));
+					}
+					return node;
 
-					case "node-type":
-					case "prop-name":
-					case "prop-type":
-					case "return-type":
-					case "doc":
-					case "oid":
-					case "is-static":
-						return default_serialize_property (property_name, value, pspec);
-					case "prop-val":
-						// Handle type detection and multi-line strings
-						var string_val = (string)value;
+				case "node-type":
+					// Return null if default value (NONE = 0)
+					if (this.node_type == NodePropType.NONE) {
+						return null;
+					}
+					return default_serialize_property (property_name, value, pspec);
 
-						// Check for multi-line strings first
-						if (string_val.index_of_char('\n', 0) >= 0) {
+				case "oid":
+					// Return null if default value (-1)
+					if (this.oid == -1) {
+						return null;
+					}
+					return default_serialize_property (property_name, value, pspec);
+
+				case "prop-name":
+				case "prop-type":
+				case "doc":
+					// Return null if default value (empty string)
+					if (((string)value) == "") {
+						return null;
+					}
+					return default_serialize_property (property_name, value, pspec);
+
+				case "is-static":
+					// Return null if default value (false)
+					if (!this.is_static) {
+						return null;
+					}
+					return default_serialize_property (property_name, value, pspec);
+
+				case "prop-val":
+					// Handle type detection and multi-line strings
+					var string_val = (string)value;
+
+					// Return null if default value (empty string)
+					if (string_val == "") {
+						return null;
+					}
+
+					// Check for multi-line strings first
+					if (string_val.index_of_char('\n', 0) >= 0) {
 						// String contains line breaks, convert to array
 						var node = new Json.Node(Json.NodeType.ARRAY);
-						var array = new Json.Array();
+						node.init_array(new Json.Array());
+						var array = node.get_array();
 						var lines = string_val.split("\n");
 						foreach (var line in lines) {
-						array.add_string_element(line);
+							array.add_string_element(line);
+						}
+						return node;
 					}
-					node.init_array(array);
-					return node;
-				}
+			
 
-				// Type detection for single-line values
-				if (Lang.isBoolean(string_val)) {
-					var node = new Json.Node(Json.NodeType.VALUE);
-					node.set_boolean(string_val.down() == "false" ? false : true);
-					return node;
-				}
-
-				if (Lang.isNumber(string_val)) {
-					var node = new Json.Node(Json.NodeType.VALUE);
-					if (string_val.contains(".")) {
-						node.set_double(double.parse(string_val));
-					} else {
-						node.set_int(long.parse(string_val));
+					// Type detection for single-line values
+					if (Lang.isBoolean(string_val)) {
+						var node = new Json.Node(Json.NodeType.VALUE);
+						node.set_boolean(string_val.down() == "false" ? false : true);
+						return node;
 					}
-					return node;
-				}
 
-				// Default to string serialization
-				return default_serialize_property (property_name, value, pspec);
+					if (Lang.isNumber(string_val)) {
+						var node = new Json.Node(Json.NodeType.VALUE);
+						if (string_val.contains(".")) {
+							node.set_double(double.parse(string_val));
+						} else {
+							node.set_int(long.parse(string_val));
+						}
+						return node;
+					}
 
-					default:
-						// Skip properties that don't belong to NodeBase
-						return null;
+					// Default to string serialization
+					return default_serialize_property (property_name, value, pspec);
+
+				default:
+					// Skip properties that don't belong to NodeBase
+					return null;
 			}
 		}
 
@@ -247,6 +322,7 @@ namespace JsRender
 							// If child oid is negative, assign a new one
 							child.parent = this;
 							children_list.add(child);
+							this.add_to_cache(child);
 						}
 					});
 				value.set_object(children_list);
@@ -270,16 +346,14 @@ namespace JsRender
 						for (var i = 0; i < array.get_length(); i++) {
 						string_parts.add(array.get_string_element(i));
 					}
-					var result = string.joinv("\n", string_parts.to_array());
 					value = GLib.Value(typeof(string));
-					value.set_string(result);
+					value.set_string(string.joinv("\n", string_parts.to_array()));
 					return true;
 				} else if (property_node.get_node_type() == Json.NodeType.VALUE) {
 					// Handle typed values (boolean, number) and convert to string
 					var val = property_node.get_value();
-					var string_val = GLib.Value(typeof(string));
-					val.transform(ref string_val);
-					value = string_val;
+					value = GLib.Value(typeof(string));
+					val.transform(ref value);
 					return true;
 				} else {
 					// Not an array or value, deserialize as normal string

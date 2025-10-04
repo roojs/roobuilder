@@ -293,9 +293,8 @@ namespace JsRender {
 		{
 			if (this.xtype == "PlainFile") {
 				GLib.FileUtils.remove(this.path);
-				var new_path = GLib.Path.get_dirname(this.path) +"/" +  name ;;
-				this.project.renameFile(this, new_path);
-				this.path =  new_path;
+				this.path = GLib.Path.get_dirname(this.path) +"/" +  name;
+				this.project.renameFile(this, this.path);
 
 				return;
 			}
@@ -368,8 +367,6 @@ namespace JsRender {
 				ret += n.get(i).to_string();
 				len++;
 			}
-
-
 
 			return ret;
 
@@ -519,8 +516,7 @@ namespace JsRender {
 		try {
 			// Use Json.gobject_to_data for serialization
 			size_t length;
-			string content = Json.gobject_to_data(this, out length);
-			this.writeFile(this.path, content);
+			this.writeFile(this.path, Json.gobject_to_data(this, out length));
 
 		} catch(GLib.Error e) {
 			print("Save failed");
@@ -541,8 +537,7 @@ namespace JsRender {
 		//GLib.debug("UNDO store %d", this.version);
 		// Store tree as JSON string for undo
 		size_t length;
-		string tree_json = Json.gobject_to_data(this.tree, out length);
-		this.undo_json.set(this.version, tree_json);
+		this.undo_json.set(this.version, Json.gobject_to_data(this.tree, out length));
 		if (this.undo_json.has_key(this.version+1)) {
 			var n = this.version +1;
 			while (this.undo_json.has_key(n)) {
@@ -568,10 +563,9 @@ namespace JsRender {
 		} catch (GLib.Error e) {
 			return false;
 		}
-		var node = pa.get_root();
 		this.in_undo = true;
 		// Load tree using Json.Serializable deserialization
-		var deserialized = Json.gobject_deserialize(typeof(JsRender), node) as JsRender;
+		var deserialized = Json.gobject_deserialize(typeof(JsRender), pa.get_root()) as JsRender;
 		if (deserialized != null) {
 			this.copyPropertiesFrom(deserialized);
 		}
@@ -670,6 +664,10 @@ namespace JsRender {
 		// used to handle list of files in project editor (really Gtk only)
 		public bool compile_group_selected {
 			get {
+				if (this.project == null || !(this.project is Project.Gtk)) {
+					return false;
+				}
+
 				var gproj = (Project.Gtk) this.project;
 
 				if (gproj.active_cg == null) {
@@ -915,8 +913,6 @@ namespace JsRender {
 					throw new Error.INVALID_FORMAT("Invalid JSON format");
 				}
 
-				var root_obj = root_node.get_object();
-
 				// First, deserialize all properties to get basic info like bjs_version
 				var deserialized = Json.gobject_from_data(this.get_type(), content) as JsRender;
 				if (deserialized == null) {
@@ -933,7 +929,7 @@ namespace JsRender {
 					GLib.debug("Loading legacy BJS file (version %d): %s", this.bjs_version, this.path);
 					var legacy = new FileLegacy(this);
 					try {
-						legacy.loadItems(root_obj.get_array_member("items"), this.bjs_version);
+						legacy.loadItems(root_node.get_object().get_array_member("items"), this.bjs_version);
 					} catch (Error e) {
 						GLib.debug("Failed to load legacy items: %s", e.message);
 						throw new Error.INVALID_FORMAT("Failed to load legacy format: %s", e.message);
@@ -983,7 +979,7 @@ namespace JsRender {
 				switch (property_name) {
 						case "tree":
 							if (this.tree == null) {
-							return new Json.Node(Json.NodeType.NULL);
+							return null;
 					}
 
 					return Json.gobject_serialize(this.tree);
@@ -998,7 +994,7 @@ namespace JsRender {
 							return default_serialize_property (property_name, value, pspec);
 						default:
 							// Skip properties that don't belong to JsRender
-							return new Json.Node(Json.NodeType.NULL);
+							return null;
 				}
 			}
 
@@ -1011,10 +1007,21 @@ namespace JsRender {
 							return false;
 					}
 
+					// Check if this is a legacy file by looking for "items" array in the tree object
+					// Legacy files have an "items" array, new format files have "children" array
+					var tree_obj = property_node.get_object();
+					if (tree_obj.has_member("items")) {
+						// This is a legacy file - don't deserialize the tree here
+						// It will be handled by the legacy loading logic
+						value.set_object(null);
+						return true;
+					}
+
 					// New format only - use direct deserialization
 					var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
 					if (node != null) {
 						node.file = this;
+						value.set_object(node);
 						return true;
 					}
 					return false;

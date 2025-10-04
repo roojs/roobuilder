@@ -462,7 +462,8 @@ namespace Palete {
 
 					var ap=snp.convert(p, cls.fqn);
 					GLib.debug("Add Ctor property %s", ap.to_display_name());
-			 		ret.add_property(ap);
+			 		ret.children.add(ap); // note since we serailize unserialize before adding it 
+						//- no need to be clever with children
 				}
 			}
 			
@@ -480,7 +481,9 @@ namespace Palete {
 
 				var ap=snp.convert(p, cls.fqn);
 				GLib.debug("Add property (Ctor only)  %s", ap.to_display_name());
-				ret.add_property(ap);
+				ret.children.add(ap);
+				// note since we serailize unserialize before adding it 
+				//- no need to be clever with children
 			}
 			
 			// manually set... - based on JSON defaults file?	
@@ -509,7 +512,9 @@ namespace Palete {
 				 	add = new JsRender.NodeProp.user(kt[1], kt[0], o.get_string_member(mn));
 					GLib.debug("Add property (listed in defaults - with value)  %s", add.to_display_name());
 		 		}
-				ret.add_property(add);					 		
+				ret.children.add(add); 
+				// note since we serailize unserialize before adding it 
+				//- no need to be clever with children
 			});
 		
 		

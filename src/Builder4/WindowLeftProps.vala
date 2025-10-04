@@ -304,7 +304,7 @@ public class Xcls_LeftProps : Object
 	    
 	    
 	    if (this.node != null) {
-	    	this.node.dupeProps(); // ensures removeall will not do somethign silly
+	    	//this.node.dupeProps(); // ensures removeall will not do somethign silly
 	    	
 	    }
 	    

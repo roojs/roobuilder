@@ -167,10 +167,10 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		this.addLine();
 		this.addLine(this.pad + "// ctor");
 		
-		if (this.node.has("* args")) {
+		if (this.node.specials.has_key("* args")) {
 			// not sure what this is supposed to be ding..
 		
-			cargs_str =  this.node.get("* args");
+			cargs_str =  this.node.specials.get("* args").prop_val;
 			//var ar = this.node.get("* args");.split(",");
 			//for (var ari =0; ari < ar.length; ari++) {
 				//	cargs +=  (ar[ari].trim().split(" ").pop();
@@ -211,11 +211,11 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		 var sl =  this.file.getSymbolLoader();
 		var pal = this.file.project.palete;
  
-		
+		GLib.debug("addWrappedCtor %s", this.node.prop_type);
 		// ctor can still override.
-		if (this.node.has("* ctor")) {
+		if (this.node.specials.has_key("* ctor")) {
 			this.node.setLine(this.cur_line, "p", "* ctor");
-			this.addLine(this.ipad + "this.el = " + this.node.get("* ctor")+ ";");
+			this.addLine(this.ipad + "this.el = " + this.node.specials.get("* ctor").prop_val+ ";");
 			return;
 		}
 		
@@ -226,7 +226,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		// used to hold label and child...
 		 
 		// is the wrapped element a struct?		
-		var ncls = pal.getAny(sl, this.node.fqn());
+		var ncls = pal.getAny(sl, this.node.prop_type);
 		if (ncls != null && ncls.stype == Lsp.SymbolKind.Struct) {
 			// we can use regular setters to apply the values.
 			this.addLine(this.ipad + "this.el = " + this.node.fqn() + "();");
@@ -237,7 +237,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 
 		var ctor = ".new";
 		var args_str = "";
-		switch(this.node.fqn()) {
+		switch(this.node.prop_type) {
 		
 		
 			// GTK4
@@ -262,8 +262,8 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			case "Gtk.TreeStore":
 
 				// not sure if this works.. otherwise we have to go with varargs and count + vals...
-				if (this.node.has("* types")) {
-					args_str = this.node.get_prop("* types").prop_val;
+				if (this.node.specials.has_key("* types")) {
+					args_str = this.node.specials.get("* types").prop_val;
 				}
 				if (this.node.has("n_columns") && this.node.has("columns")) { // old value?
 					args_str = " { " + this.node.get_prop("columns").prop_val + " } ";
@@ -271,7 +271,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 					this.ignoreWrapped("n_columns");
 				}
 				
-				this.addLine(this.ipad + "this.el = new " + this.node.fqn() + ".newv( " + args_str + " );");
+				this.addLine(this.ipad + "this.el = new " + this.node.prop_type + ".newv( " + args_str + " );");
 				return;
  
 				

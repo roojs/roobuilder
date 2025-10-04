@@ -368,22 +368,18 @@ namespace JsRender {
 			
 			
 			// look for '*props'
-			var items = this.node.readObjects(); 
-			if (items.size < 1) {
-				return;
-			}
-			for (var ii =0; ii< items.size; ii++) {
-				var pl =  items.get(ii);
-				if (!pl.props.has_key("* prop")) {
-					//newitems.add(pl);
+			foreach(var child in this.node.children) {
+				if (!(child is Node)) {
 					continue;
 				}
-				
+				if (child.prop_name == "") {
+					continue; 
+				}
 				//print(JSON.stringify(pl,null,4));
 				// we have a prop...
 				//var prop = pl['*prop'] + '';
 				//delete pl['*prop'];
-				var prop = pl.get("* prop");
+				var prop = child.prop_name;
 				//print("got prop "+ prop + "\n");
 				
 				// name ends in [];
@@ -392,7 +388,7 @@ namespace JsRender {
 					
 					// munge property..??
 					
-					this.out_nodeprops.set(prop, pl);
+					this.out_nodeprops.set(prop, child as Node);
 					 
 					continue;
 				}
@@ -410,7 +406,7 @@ namespace JsRender {
 				}
 				
 				 
-				this.out_props_array.get(sprop).add( pl);
+				this.out_props_array.get(sprop).add( child as Node);
 		  		//this.ar_props.set(sprop, nstr);
 				 
 				
@@ -469,15 +465,17 @@ namespace JsRender {
 				print("failed to build regex");
 				return;
 			}
-			// sort the key's so they always get rendered in the same order..
-			
 			var keys = new Gee.ArrayList<string>();
-			var piter = this.node.props.map_iterator();
-			while (piter.next() ) {
-			
-
-				keys.add( piter.get_key()); // since are keys are nice and clean now..
+			// sort the key's so they always get rendered in the same order..
+			foreach(var child in this.node.props.values) {
+				if (!(child is NodeProp) || child.prop_name == "") {
+					continue;
+				}
+				if (child.node_type != NodePropType.SPECIAL) {
+					keys.add( child.prop_name);
+				}
 			}
+			 
 			
 			keys.sort((  a,  b) => {
 				return ((string)a).collate((string)b);
@@ -703,24 +701,25 @@ namespace JsRender {
 
 		public void iterChildren()
 		{
-			
-			var items = this.node.readObjects();
-			// finally munge the children...
-			if (items.size < 1) {
-				return;
-			}
-			var itms = "items : [\n";
-			//var n = 0;
-			for(var i = 0; i < items.size;i++) {
-				var ele = items.get(i);
-				if (ele.props.has_key("* prop")) {
+			var itms = "";
+			foreach(var child in this.node.children) {
+				if (!(child is Node)) {
 					continue;
 				}
+				if (child.prop_name != "") {
+					continue;
+				}
+				if (itms == "") {
+			 		 itms = "items : [\n";
+				}
+			 
 				 
-				this.out_children.add(ele);
+				this.out_children.add(child as Node);
 				
 			}
-			itms +=  "\n"+  this.pad + "]"  + "\n";
+			if (itms != "") {
+				itms +=  "\n"+  this.pad + "]"  + "\n";
+			}
 			//this.els.add(itms);
 		}
 

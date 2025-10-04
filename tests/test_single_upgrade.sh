@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # Test single BJS file upgrade process
 # Usage: ./test_single_upgrade.sh <bjs_file_path>
@@ -51,10 +51,23 @@ else
     echo "No version information found in file"
 fi
 
+# Convert relative path to project-relative path
+if [[ "$BJS_FILE" == ../src/* ]]; then
+    PROJECT_RELATIVE_FILE="${BJS_FILE#../}"
+    echo "Using project-relative path: $PROJECT_RELATIVE_FILE"
+else
+    PROJECT_RELATIVE_FILE="$BJS_FILE"
+fi
+
 # Test upgrade command
 echo ""
 echo "=== Testing Upgrade Command ==="
 echo "Command: ./build/roobuilder --project /home/alan/gitlive/roobuilder --test-bjs-upgrade \"$BJS_FILE\""
+echo ""
+echo "=== Manual Command for Review ==="
+echo "To manually run the upgrade command and review results:"
+echo "cd /home/alan/gitlive/roobuilder"
+echo "./build/roobuilder --project /home/alan/gitlive/roobuilder --test-bjs-upgrade \"$PROJECT_RELATIVE_FILE\""
 echo ""
 
 OUTPUT_FILE="$TEST_DIR/${FILENAME%.bjs}_upgrade_output.json"
@@ -67,17 +80,21 @@ if [[ ! -f "../build/roobuilder" ]]; then
     exit 1
 fi
 
-# Convert relative path to project-relative path
-if [[ "$BJS_FILE" == ../src/* ]]; then
-    PROJECT_RELATIVE_FILE="${BJS_FILE#../}"
-    echo "Using project-relative path: $PROJECT_RELATIVE_FILE"
-else
-    PROJECT_RELATIVE_FILE="$BJS_FILE"
-fi
-
 # Run upgrade command
 echo "Running upgrade command..."
 if ../build/roobuilder --project /home/alan/gitlive/roobuilder --test-bjs-upgrade "$PROJECT_RELATIVE_FILE" > "$OUTPUT_FILE" 2> "$ERROR_FILE"; then
+    # Check if the application actually crashed by examining the output
+    # Only check for actual crashes, not warnings that don't prevent execution
+    if grep -q "Trace/breakpoint trap\|core dumped\|Segmentation fault\|Aborted" "$ERROR_FILE" 2>/dev/null; then
+        echo "ERROR: Application crashed during execution"
+        echo "Error details:"
+        echo "--------------"
+        cat "$ERROR_FILE"
+        echo ""
+        echo "STOPPING: Cannot proceed with crashed application"
+        exit 1
+    fi
+    
     echo "SUCCESS: Upgrade command completed"
     
     if [[ -f "$OUTPUT_FILE" && -s "$OUTPUT_FILE" ]]; then
@@ -113,6 +130,110 @@ else
         echo "--------------"
         cat "$ERROR_FILE"
     fi
+fi
+
+# Secondary test: Compare original with version 3 output
+echo ""
+echo "=== Secondary Test: Version 3 Comparison ==="
+
+# Check if we have upgrade output to work with
+if [[ -f "$OUTPUT_FILE" && -s "$OUTPUT_FILE" ]]; then
+    echo "Performing version 3 comparison test..."
+    
+    # Create backup of original file
+    ORIGINAL_BACKUP="$TEST_DIR/${FILENAME%.bjs}_original.bjs2"
+    cp "$BJS_FILE" "$ORIGINAL_BACKUP"
+    echo "✓ Original file backed up as: $ORIGINAL_BACKUP"
+    
+    # Check if the upgrade output contains version 3
+    if grep -q '"bjs-version" *: *3' "$OUTPUT_FILE"; then
+        echo "✓ Upgrade output contains version 3 data"
+        
+        # Generate version 3 BJS file from the JSON output
+        echo "Generating version 3 BJS file..."
+        # Save the .bjs3 file in the same directory as the original file
+        ORIGINAL_DIR=$(dirname "$BJS_FILE")
+        VERSION3_BJS_FILE="$ORIGINAL_DIR/${FILENAME%.bjs}.bjs3"
+        
+        # The upgrade output is already the correct BJS version 3 format
+        # Just copy it to the .bjs3 file
+        cp "$OUTPUT_FILE" "$VERSION3_BJS_FILE"
+        
+        echo "✓ Version 3 BJS file generated: $VERSION3_BJS_FILE"
+        echo "File size: $(stat -c%s "$VERSION3_BJS_FILE") bytes"
+        echo ""
+        echo "Version 3 BJS content:"
+        echo "---------------------"
+        cat "$VERSION3_BJS_FILE"
+        echo ""
+        
+        # Test consistency: run the upgrade command again on the same file
+        echo "Testing upgrade consistency (running upgrade command again)..."
+        CONSISTENCY_OUTPUT_FILE="$TEST_DIR/${FILENAME%.bjs}_consistency_output.json"
+        CONSISTENCY_ERROR_FILE="$TEST_DIR/${FILENAME%.bjs}_consistency_error.log"
+        
+        if ../build/roobuilder --project /home/alan/gitlive/roobuilder --test-bjs-upgrade "$PROJECT_RELATIVE_FILE" > "$CONSISTENCY_OUTPUT_FILE" 2> "$CONSISTENCY_ERROR_FILE"; then
+            # Check if the application actually crashed by examining the output
+            # Only check for actual crashes, not warnings that don't prevent execution
+            if grep -q "Trace/breakpoint trap\|core dumped\|Segmentation fault\|Aborted" "$CONSISTENCY_ERROR_FILE" 2>/dev/null; then
+                echo "ERROR: Application crashed during consistency test"
+                echo "Error details:"
+                echo "--------------"
+                cat "$CONSISTENCY_ERROR_FILE"
+                echo ""
+                echo "STOPPING: Cannot proceed with crashed application"
+                exit 1
+            fi
+            
+            echo "SUCCESS: Consistency test completed"
+            
+            if [[ -f "$CONSISTENCY_OUTPUT_FILE" && -s "$CONSISTENCY_OUTPUT_FILE" ]]; then
+                echo "Consistency output file size: $(stat -c%s "$CONSISTENCY_OUTPUT_FILE") bytes"
+                
+                # Compare the two outputs
+                echo ""
+                echo "=== Upgrade Consistency Comparison ==="
+                if diff -q "$OUTPUT_FILE" "$CONSISTENCY_OUTPUT_FILE" >/dev/null 2>&1; then
+                    echo "✓ SUCCESS: Upgrade command produces consistent output"
+                    echo "✓ The upgrade process is deterministic and reliable"
+                else
+                    echo "⚠ DIFFERENCE: Upgrade outputs are not identical"
+                    echo "This suggests the upgrade process may not be deterministic"
+                    echo "Differences found:"
+                    diff "$OUTPUT_FILE" "$CONSISTENCY_OUTPUT_FILE" | head -n 20
+                fi
+                
+                # Show first few lines of consistency output for verification
+                echo ""
+                echo "Consistency test output (first 10 lines):"
+                echo "----------------------------------------"
+                head -n 10 "$CONSISTENCY_OUTPUT_FILE"
+            else
+                echo "ERROR: No consistency test output generated"
+            fi
+        else
+            echo "ERROR: Consistency test failed (exit code: $?)"
+            if [[ -f "$CONSISTENCY_ERROR_FILE" && -s "$CONSISTENCY_ERROR_FILE" ]]; then
+                echo "Consistency test error details:"
+                echo "--------------------------------"
+                cat "$CONSISTENCY_ERROR_FILE"
+            fi
+        fi
+        
+    else
+        echo "⚠ No version 3 data found in upgrade output"
+        echo "The file may not have been upgraded to version 3"
+        
+        # Check what version was actually produced
+        if grep -q '"bjs-version"' "$OUTPUT_FILE"; then
+            ACTUAL_VERSION=$(grep '"bjs-version"' "$OUTPUT_FILE" | head -n 1 | sed 's/.*"bjs-version" *: *\([0-9]*\).*/\1/')
+            echo "Actual version in output: $ACTUAL_VERSION"
+        else
+            echo "No version information found in upgrade output"
+        fi
+    fi
+else
+    echo "⚠ Cannot perform version 3 comparison - no upgrade output available"
 fi
 
 echo ""

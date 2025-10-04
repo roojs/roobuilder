@@ -236,10 +236,14 @@ public class JsRender.NodeToGlade : Object {
 				cols = int.parse(colval.prop_val);
 			}
 		}
-		var items = this.node.readObjects();
-		var is_native = gdata.implements.contains("Gtk.Native");
-		for (var i = 0; i < items.size; i++ ) {
-			var cn = items.get(i);
+
+ 		var is_native = gdata.implements.contains("Gtk.Native");
+
+		foreach(var nchild in this.node.children) {
+			if (!(nchild is Node)) {
+				continue;
+			}
+			var cn = nchild as Node;
 			
 			var childname = "child";
 			var pname = "";

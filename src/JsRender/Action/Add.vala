@@ -55,6 +55,7 @@
 			            // Insert at specific position
 			            parent.children.insert(this.position, node);
 			        }
+					parent.add_to_cache(node);
 		      	} else {
 		      		this.file.tree = node as Node;
 	      		}

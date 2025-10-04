@@ -119,8 +119,7 @@ namespace Palete {
 				
 				// this results in recursion.?
 				add.add_node = this.palete.fqnToNode(this.sl, cls.fqn);
-				add.add_node.add_property(new JsRender.NodeProp.special("prop", s.name));
-				par.childstore.append(add);
+				add.add_node.children.add(new JsRender.NodeProp.special("prop", s.name));
 			}
 
 			if (cls.stype != Lsp.SymbolKind.Interface && cls.stype != Lsp.SymbolKind.Class) {
@@ -146,8 +145,7 @@ namespace Palete {
 				var add = new JsRender.NodeProp.raw(s.name, cname, "");
 				// no propertyof ?
 				add.add_node = this.palete.fqnToNode(this.sl, cname);
-				add.add_node.add_property(new JsRender.NodeProp.special("prop", s.name));
-				par.childstore.append( add);
+				add.add_node.children.add(new JsRender.NodeProp.special("prop", s.name));
  
 			
 			}
