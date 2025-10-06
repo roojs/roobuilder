@@ -36,6 +36,7 @@ namespace JsRender {
 				GLib.debug("First pass - processing key: '%s'", key);
 				switch (key) {
 					case "xtype":
+					case "$ xtype":
 						xtype_val = this.jsonNodeAsString(value);
 						GLib.debug("First pass - found xtype: '%s'", xtype_val);
 						break;
@@ -72,8 +73,10 @@ namespace JsRender {
 							case "listeners":
 								var li = value.get_object();
 								li.foreach_member((lio , li_key, li_value) => {
-								node.children.add(new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
-							});
+									var child_node = new NodeProp.listener(li_key, this.jsonNodeAsString(li_value));
+									node.children.add(child_node);
+									node.add_to_cache(child_node);
+								});
 						return;
 							case "* prop":
 							case "*prop":
@@ -89,6 +92,7 @@ namespace JsRender {
 						}
 						return;
 							case "xtype":
+							case "$ xtype":
 							case "* xns":
 							case "*xns":
 							case "$ xns":
@@ -108,7 +112,7 @@ namespace JsRender {
 					var n =  new NodeProp.from_json(rkey, sval);
 
 					node.children.add(n); // we have to add it without all the bells and whitles
-
+					node.add_to_cache(n);
 				});
 		}
 

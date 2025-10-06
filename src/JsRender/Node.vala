@@ -150,6 +150,7 @@ public class JsRender.Node : NodeBase
 	public Node( )
 	{
 		base(); // Call parent constructor
+		this.node_type = NodePropType.OBJECT;
 		//this.items = new Gee.ArrayList<Node>();
 		//this._props = new Gee.HashMap<string,NodeProp>();
 		//this._listeners = new Gee.HashMap<string,NodeProp>(); // Nodeprop can include line numbers..
@@ -270,6 +271,49 @@ public class JsRender.Node : NodeBase
 		this.node_lines.sort((a,b) => {
 				return (int)a-(int)b;
 			});
+	}
+
+	public void dumpProps(string indent = "")
+	{
+		GLib.debug("dumpProps called for node: %s", this.fqn());
+		
+		// Print node type
+		print("%snodetype: %s : %s\n", indent, this.fqn(), this.prop_name);
+		
+		GLib.debug("Cache has %d types", this.cache.size);
+		
+		// Iterate through all cache entries
+		foreach (var cache_type in this.cache.keys) {
+			var cache_map = this.cache.get(cache_type);
+			GLib.debug("Cache type '%s' has %d entries", cache_type, cache_map.size);
+			if (cache_map.size < 1) {
+				GLib.debug("Skipping empty cache type: %s", cache_type);
+				continue;
+			}
+			var keys = new Gee.ArrayList<string>();
+			keys.add_all(cache_map.keys);
+			keys.sort();
+			foreach (var key in keys) {
+				var prop = cache_map.get(key) as NodeProp;
+					// Use cache type prefix (p, l, s) based on the cache type
+				print("%s%s %s = %s\n", indent, cache_type, prop.prop_name, prop.prop_val.split("\n")[0]);
+				
+			}
+		}
+		
+		GLib.debug("Node has %d children", this.children.size);
+		
+		// Recursively dump children
+		foreach (var child in this.children) {
+			if (!(child is Node) || child.node_type != NodePropType.OBJECT) {
+				GLib.debug("Skipping child: not a Node or not OBJECT type its as %s %s", 
+						child.get_class().get_name(), child.node_type.to_name());
+				continue;
+			}
+			GLib.debug("Dumping child node: %s", (child as Node).fqn());
+			(child as Node).dumpProps(indent + "  ");
+			
+		}
 	}
 	public Node? lineToNode(int line)
 	{

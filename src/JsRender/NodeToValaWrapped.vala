@@ -235,6 +235,11 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		
 		}
 
+		if (ncls == null) {
+			this.node.dumpProps();
+			GLib.error("Could not find class %s", this.node.prop_type);
+		}
+
 		var ctor = ".new";
 		var args_str = "";
 		switch(this.node.prop_type) {

@@ -46,9 +46,10 @@ namespace JsRender
 			 set; 
 			 default = new Gee.HashMap<string,Gee.HashMap<string,NodeBase>>(); 
 		}
+		
 		public void remove_from_cache(NodeBase cnode)
 		{
-			if (cnode.prop_name == "" || cnode.parent == null) {
+			if (cnode.prop_name == "") {
 				return;
 			}
 			var ctype = cnode.node_type.to_ctype();
@@ -61,7 +62,7 @@ namespace JsRender
 		}
 		public void add_to_cache(NodeBase cnode)
 		{
-			if (cnode.prop_name == "" || cnode.parent == null) {
+			if (cnode.prop_name == "") {
 				return;
 			}
 			var ctype = cnode.node_type.to_ctype();
@@ -71,6 +72,7 @@ namespace JsRender
 			if (!this.cache.has_key(ctype)) {
 				this.cache.set(ctype, new Gee.HashMap<string,NodeBase>());
 			}
+			GLib.debug("add_to_cache %s %s", ctype, cnode.prop_name);
 			this.cache.get(ctype).set(cnode.prop_name, cnode);
 			
 		}

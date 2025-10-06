@@ -886,7 +886,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			this.addLine(this.inpad + "}");
 		}
 		foreach(var child in this.node.children) {
-			GLib.debug("%d iterChild %s", child.oid, child.prop_type);
+			GLib.debug("%d iterChild %s %s %s", child.oid, child.node_type.to_ctype(), child.prop_name, child.prop_type);
 			if (child is Node && child.node_type == NodePropType.OBJECT) {
 				this.addMultiLine(this.mungeChild(child as Node));
 			}

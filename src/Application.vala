@@ -45,6 +45,7 @@ public class BuilderApplication : Gtk.Application
 		// { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
 		{ "test-symbol-json", 0, 0, OptionArg.STRING, ref opt_test_symbol_json, "dump Symbols to JSON (for testing Doc UI)", null },
 		{ "test-symbol-json-tree", 0, 0, OptionArg.NONE, ref opt_test_symbol_json_tree, "dump Symbol Tree to JSON (for testing Doc UI)", null },
+		{ "test-dump-props", 0, 0, OptionArg.STRING, ref opt_test_dump_props, "dump all cached properties from top node recursively", null },
 
 		{ null }
 	};
@@ -77,6 +78,7 @@ public class BuilderApplication : Gtk.Application
 	public static bool opt_test_bjs_compile_glade = false;
 	public static bool opt_test_meson = false;
 	public static bool opt_test_gir_parser = false;
+	public static string opt_test_dump_props;
 
 	public static string release_version {
 		get {
@@ -160,6 +162,8 @@ public class BuilderApplication : Gtk.Application
 		this.testLanguageServer(cur_project); // --language-server
 		this.testCompileBjs(cur_project);
 		this.testBjsUpgrade(cur_project);
+		this.testDumpProps(cur_project); // test dump props
+
 		this.testSymbolBuilder(cur_project); // symbol builder tests
 		this.listFiles(cur_project);
 		//this.testBjs(cur_project);
@@ -938,6 +942,45 @@ public class BuilderApplication : Gtk.Application
 			});
 		Resources.singleton().fetchStart();
 		loop.run();
+		GLib.Process.exit(Posix.EXIT_SUCCESS);
+	}
+
+	void testDumpProps(Project.Project? cur_project)
+	{
+		if (BuilderApplication.opt_test_dump_props == null) {
+			return;
+		}
+		GLib.debug("Run --test-dump-props");
+		if (cur_project == null) {
+			GLib.error("missing project, use --project to select which project");
+		}
+		
+		// Validate that the argument is a BJS file
+		if (!BuilderApplication.opt_test_dump_props.has_suffix(".bjs")) {
+			GLib.error("--test-dump-props argument must be a .bjs file, got: %s", BuilderApplication.opt_test_dump_props);
+		}
+		
+		var file = cur_project.getByRelPath(BuilderApplication.opt_test_dump_props);
+		if (file == null) {
+			GLib.error("missing file %s in project %s", BuilderApplication.opt_test_dump_props, cur_project.name);
+		}
+		
+		try {
+			file.loadFromBjs();
+		} catch(Error e) {
+			GLib.debug("Load from BJS failed: %s", e.message);
+		}
+		
+		// Call dumpProps on the top node (tree)
+		GLib.debug("Checking if file.tree is null for file: %s", file.name);
+		if (file.tree != null) {
+			GLib.debug("File tree is not null, calling dumpProps");
+			file.tree.dumpProps();
+		} else {
+			GLib.debug("File tree is null - dumping object has no properties found");
+			GLib.error("no tree found in file %s", file.name);
+		}
+		
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}
 
