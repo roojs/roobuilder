@@ -14,6 +14,7 @@ namespace JsRender
 
 		// Protected properties with prop_ prefix
 		protected bool is_static { get; set; default = false; }
+		// should we add private/protected?
 		public string prop_name { public get; protected set; default = ""; }
 		public string prop_val { public get; protected set; default = ""; }
 		// for properties  - it's the type ?? for nodes? we use props?

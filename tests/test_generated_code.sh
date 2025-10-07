@@ -15,7 +15,7 @@ LOG_FILE="$TEST_DIR/test_results.log"
 DIFF_FILE="$TEST_DIR/differences.log"
 
 # Results directory for failed tests (only created if there are differences)
-RESULTS_DIR="results"
+RESULTS_DIR="tests/results"
 
 # Colors for output
 RED='\033[0;31m'
@@ -94,15 +94,23 @@ compare_vala_generation() {
     
     local local_output="$TEST_DIR/${filename}_local.vala"
     local local_clean="$TEST_DIR/${filename}_local_clean.vala"
+    local local_debug="$TEST_DIR/${filename}_local.log"
     
-    if (cd "$ROOBUILDER_PROJECT" && timeout 30 "$LOCAL_ROOBUILDER" --project "$ROOBUILDER_PROJECT" --test-symbol-target roobuilder --test-bjs-compile "$relative_bjs_file") > "$local_output" 2>&1; then
+    if (cd "$ROOBUILDER_PROJECT" && timeout 30 "$LOCAL_ROOBUILDER" --project "$ROOBUILDER_PROJECT" --test-symbol-target roobuilder --debug --test-bjs-compile "$relative_bjs_file") > "$local_output" 2> "$local_debug"; then
         log "  ${GREEN}SUCCESS: Local roobuilder completed${NC}"
+        if [[ -s "$local_debug" ]]; then
+            log "  ${BLUE}Debug output captured: $local_debug${NC}"
+        fi
     else
         local exit_code=$?
         log "  ${RED}ERROR: Local roobuilder failed (exit code: $exit_code)${NC}"
         if [[ -s "$local_output" ]]; then
             log "  Error details:"
             head -n 10 "$local_output" | sed 's/^/    /'
+        fi
+        if [[ -s "$local_debug" ]]; then
+            log "  Debug output:"
+            head -n 10 "$local_debug" | sed 's/^/    /'
         fi
         return 1
     fi
@@ -139,14 +147,14 @@ compare_vala_generation() {
                     log "  ${RED}ISSUE: Local build differs from original (system matches original)${NC}"
                     
                     # Save results for local build failure (only generated file)
-                    save_comparison_results "$filename" "$original_vala" "$local_clean" "local_failed"
+                    save_comparison_results "$filename" "$original_vala" "$local_clean" "local_failed" "$local_debug"
                     return 1
                 else
                     log "  ${RED}ERROR: System roobuilder differs from original Vala file${NC}"
                     log "  ${RED}ISSUE: Current generated file doesn't match system roobuilder output${NC}"
                     
                     # Save results for system vs original failure (only system file)
-                    save_comparison_results "$filename" "$original_vala" "$system_clean" "system_failed"
+                    save_comparison_results "$filename" "$original_vala" "$system_clean" "system_failed" ""
                     return 1
                 fi
             else
@@ -157,7 +165,7 @@ compare_vala_generation() {
         fi
         
         # Save results for local build failure (only generated file)
-        save_comparison_results "$filename" "$original_vala" "$local_clean" "local_failed"
+        save_comparison_results "$filename" "$original_vala" "$local_clean" "local_failed" "$local_debug"
         return 1
     fi
 }
@@ -168,6 +176,7 @@ save_comparison_results() {
     local original_vala="$2"
     local generated_vala="$3"
     local failure_type="$4"
+    local debug_log="$5"
     
     log "  ${RED}FAILURE: Generated Vala differs from original${NC}"
     
@@ -179,10 +188,20 @@ save_comparison_results() {
         # Local build failed - only save generated file and diff
         cp "$generated_vala" "$RESULTS_DIR/${filename}_generated.vala"
         log "  ${YELLOW}Saved: ${filename}_generated.vala (local build output)${NC}"
+        # Save debug log if it exists
+        if [[ -n "$debug_log" && -f "$debug_log" ]]; then
+            cp "$debug_log" "$RESULTS_DIR/${filename}_generated.log"
+            log "  ${YELLOW}Saved: ${filename}_generated.log (local build debug output)${NC}"
+        fi
     elif [[ "$failure_type" == "system_failed" ]]; then
         # System/original failed - only save system file and diff
         cp "$generated_vala" "$RESULTS_DIR/${filename}_system.vala"
         log "  ${YELLOW}Saved: ${filename}_system.vala (system roobuilder output)${NC}"
+        # Save debug log if it exists
+        if [[ -n "$debug_log" && -f "$debug_log" ]]; then
+            cp "$debug_log" "$RESULTS_DIR/${filename}_system.log"
+            log "  ${YELLOW}Saved: ${filename}_system.log (system roobuilder debug output)${NC}"
+        fi
     fi
     
     # Create diff file with just the unified diff

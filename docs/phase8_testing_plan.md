@@ -337,3 +337,35 @@ The refactored Node to NodeProp system appears to have introduced critical issue
 5. Consider testing with a known working build for comparison
 
 **Status**: ❌ **BLOCKED** - Critical issues prevent further testing until symbol loading is fixed
+
+## Outstanding Issues
+
+### Constructor Properties Not Being Read and Used
+
+**Issue**: Constructor properties are not being properly read and used when building constructor arguments.
+
+**Evidence**: 
+- Gtk.DropTarget constructor: `new Gtk.DropTarget( null, null )` instead of `new Gtk.DropTarget( typeof(string), Gdk.DragAction.COPY | Gdk.DragAction.MOVE | Gdk.DragAction.ASK )`
+- Gtk.TreeListModel constructor: `new Gtk.TreeListModel( null, true, true, null )` instead of calling `this.updateModel(null)`
+- Debug output shows `building CTOR ARGS: [parameter]` but no corresponding "node 'has' [parameter]" messages
+- Constructor parameters are not being read from node properties
+
+**Root Cause**: 
+- Constructor building logic in `NodeToValaWrapped.vala` looks for properties with exact parameter names
+- Constructor parameters are not being found in `this.node.props.get(parameter_name)`
+- The logic falls through to default null values instead of reading actual parameter values
+- Different types of parameters (types, enums, method calls) are not being handled properly
+
+**Impact**: 
+- Constructors receive null parameters instead of actual values
+- Type information is lost (e.g., `typeof(string)` becomes `null`)
+- Method calls are not executed (e.g., `this.updateModel(null)` becomes direct constructor)
+- Generated code is incorrect and may not compile or function properly
+
+**Files Affected**:
+- `src/JsRender/NodeToValaWrapped.vala` (constructor building logic)
+- All BJS files with constructor parameters that reference child objects
+
+**Status**: ❌ **CRITICAL** - Multiple constructor types affected, needs comprehensive fix
+
+**Note**: Gtk.ListView constructor is now working correctly (factory parameter properly passed), but Gtk.DropTarget and Gtk.TreeListModel constructors still have issues with parameter reading.

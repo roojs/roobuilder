@@ -305,7 +305,7 @@ public class BuilderApplication : Gtk.Application
 					}
 
 
-					print("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
+					stderr.printf("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
 
 					if (dom== "GtkSourceView") { // seems to be some critical wanrings comming from gtksourceview related to insert?
 						return;
@@ -592,8 +592,10 @@ public class BuilderApplication : Gtk.Application
 		var str = file.toSourceCode();
 
 
+		//
+		print("%s", str);
+
 		if (!BuilderApplication.opt_debug) {
-			print("%s", str);
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 
@@ -601,14 +603,14 @@ public class BuilderApplication : Gtk.Application
 
 		size_t length;
 		string content = Json.gobject_to_data(file, out length);
-		print("%s", content);
+		stderr.printf("%s", content);
 
 
 		var str_ar = str.split("\n");
 		for(var i =0;i<str_ar.length;i++) {
 			var node = file.tree.lineToNode(i+1);
 			var prop = node == null ? null : node.lineToProp(i+1);
-			print("%d: %s   :  %s\n",
+			stderr.printf("%d: %s   :  %s\n",
 				i+1,
 				node == null ? "......"  : (prop == null ? "????????" : prop.prop_name),
 				str_ar[i]

@@ -208,14 +208,14 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 
 	void addWrappedCtor()
 	{
-		 var sl =  this.file.getSymbolLoader();
+		var sl =  this.file.getSymbolLoader();
 		var pal = this.file.project.palete;
  
 		GLib.debug("addWrappedCtor %s", this.node.prop_type);
 		// ctor can still override.
-		if (this.node.specials.has_key("* ctor")) {
-			this.node.setLine(this.cur_line, "p", "* ctor");
-			this.addLine(this.ipad + "this.el = " + this.node.specials.get("* ctor").prop_val+ ";");
+		if (this.node.specials.has_key("ctor")) {
+			this.node.setLine(this.cur_line, "p", "ctor");
+			this.addLine(this.ipad + "this.el = " + this.node.specials.get("ctor").prop_val+ ";");
 			return;
 		}
 		
@@ -267,8 +267,8 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 			case "Gtk.TreeStore":
 
 				// not sure if this works.. otherwise we have to go with varargs and count + vals...
-				if (this.node.specials.has_key("* types")) {
-					args_str = this.node.specials.get("* types").prop_val;
+				if (this.node.specials.has_key("types")) {
+					args_str = this.node.specials.get("types").prop_val;
 				}
 				if (this.node.has("n_columns") && this.node.has("columns")) { // old value?
 					args_str = " { " + this.node.get_prop("columns").prop_val + " } ";
@@ -299,7 +299,7 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 		//var default_ctor = pal.getAny(sl, this.node.fqn() + ctor);
  
 		 
-		GLib.debug("Got CTOR %s/%s/%s with n params %d", this.node.fqn() + ctor,
+		GLib.debug("Got CTOR oid=%d %s/%s/%s with n params %d", this.node.oid, this.node.fqn() + ctor,
 			default_ctor.name,default_ctor.fqn, default_ctor.param_ar.size); 
 		// use the default ctor - with arguments (from properties)
 		
@@ -317,46 +317,55 @@ public class JsRender.NodeToValaWrapped : NodeToVala {
 					n = "label";
 				}
 				
-			   // GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
+			    GLib.debug("building CTOR ARGS: %s", n);
 				if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;
 				}
+				var prop = this.node.props.get(n);
 				
-				if (this.node.has(n)) {  // node does not have a value
-					
-					this.ignoreWrapped(n);
-					this.ignore(n);
-					
-					var v = this.node.get(n);
+				GLib.debug("prop  %s is %s ", n, prop == null ? "null" : prop.get_class().get_name());
+				if (prop != null) {
+					GLib.debug("prop is %s", n);
+				 	if (prop.node_type != NodePropType.OBJECT) {  // node does not have a value
+						GLib.debug("node  'has' %s (not object)", n);
+						this.ignoreWrapped(n);
+						this.ignore(n);
+						
+						var v = this.node.props.get(n).prop_val;
 
-					if (param.rtype == "string") {
-						v = "\"" +  v.escape("") + "\"";
-					}
-					if (v == "TRUE" || v == "FALSE") {
-						v = v.down();
-					}
+						if (param.rtype == "string") {
+							v = "\"" +  v.escape("") + "\"";
+						}
+						if (v == "TRUE" || v == "FALSE") {
+							v = v.down();
+						}
 
-					
-					args += v;
-					continue;
-				}
-				var propnode = this.node.findProp(n);
-				if (propnode != null) {
-					// assume it's ok..
-					
-					var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").prop_val : "");
-					args += (pname + ".el") ;
-					if (!propnode.has("id")) {
-						this.addLine(this.ipad + pname +".ref();"); 
+						
+						args += v;
+						continue;
 					}
-					
-					
-					
-					this.ignoreWrapped(n);
-					
-					continue;
+					if (prop is Node && prop.node_type == NodePropType.OBJECT) {
+						// assume it's ok..
+
+						var propnode = prop as Node;
+						if (propnode == null) {
+							GLib.error("Could not find property %s", n);
+							return;
+						}
+						var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").prop_val : "");
+						args += (pname + ".el") ;
+						if (!propnode.has("id")) {
+							this.addLine(this.ipad + pname +".ref();"); 
+						}
+						
+						
+						
+						this.ignoreWrapped(n);
+						
+						continue;
+					}
+					GLib.debug("prop is somtthing else %s", n);
 				}
-					
 					 
 					
 					

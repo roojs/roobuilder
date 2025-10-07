@@ -56,3 +56,4 @@ repo/*
 .flatpak-builder/*
 .gdb_history
 .vscode/
+tests/results/*

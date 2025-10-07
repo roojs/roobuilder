@@ -30,7 +30,7 @@ namespace JsRender
 		
 		OBJECT; // node..
 		
-
+		// used where?
 		
 		public static string to_abbr(NodePropType intype)
 		{
@@ -79,6 +79,8 @@ namespace JsRender
 		 		case NONE:  return "None??";
 				case CTOR:  return "Constructor?";
 				case PROP:  return "Gtk/Roo Property";
+				case OBJECT:  return "Object";
+				 
 				default: return "oops";
 			
 			}
@@ -96,6 +98,7 @@ namespace JsRender
 		 		case NONE:  return "";
 				case CTOR:  return "c";
 				case PROP:  return "p";
+				case OBJECT:  return "p"; // this is used when adding an object to a cache
 				default: return "";
 			
 			}

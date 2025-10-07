@@ -341,9 +341,14 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		foreach(var p in props.keys) { 
 		 	var val = props.get(p);
 			GLib.debug("Check Write %s", p);
-			if (!this.node.has(p)) {
+			if (!this.node.props.has_key(p)) {
 				GLib.debug("Check Write %s - not found", p);
 
+				continue;
+			}
+			var prop = this.node.props.get(p) as NodeProp;
+			if (prop == null) {
+				GLib.debug("Check Write %s - its a node", p);
 				continue;
 			}
 			if (this.shouldIgnoreWrapped(p)) {
@@ -355,7 +360,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 			GLib.debug("Check Write %s", p);
 
-			var prop = this.node.get_prop(p);
+			
 			var v = prop.prop_val;
 			
 			// user defined properties.
@@ -522,7 +527,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	protected string addPropSet(Node child, string child_name) 
 	{	
 	 
-		
+		GLib.debug("addPropSet %s - %s", child.prop_type, child_name);
 		var xargs = "";
 		if (child.specials.has_key("* args")) {
 			
@@ -577,10 +582,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 		GLib.debug("packChild %s=>%s", this.node.fqn(), child.fqn());
 		// forcing no packing? - true or false? -should we just accept false?
-		if (child.specials.has_key("* pack") && child.specials.get("* pack").prop_val.down() == "false") {
+		if (child.specials.has_key("pack") && child.specials.get("pack").prop_val.down() == "false") {
 			return; // force no packing
 		}
-		if (child.specials.has_key("* pack") && child.specials.get("* pack").prop_val.down() == "true") {
+		if (child.specials.has_key("pack") && child.specials.get("pack").prop_val.down() == "true") {
 			return; // force no packing
 		}
 		var el_name = this.this_el == "this.el." ? ".el" : "";
@@ -589,8 +594,8 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		if (child.specials.has_key("* pack")) {
 			
 			string[]  packing =  { "add" };
-			if (child.specials.has_key("* pack")) {
-				packing = child.specials.get("* pack").prop_val.split(",");
+			if (child.specials.has_key("pack")) {
+				packing = child.specials.get("pack").prop_val.split(",");
 			}
 			
 			var pack = packing[0];
