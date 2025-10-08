@@ -71,10 +71,10 @@ namespace JsRender {
 			}
 			private set {}
 		}
-		public string parent = "";  // JS parent.
-		public string region = "";  // RooJS - insert region.
+		public string parent { get; set; default = ""; }  // JS parent.
+		public string region { get; set; default = ""; }  // RooJS - insert region.
 
-		public string title = "";  // a title.. ?? nickname.. ??? -
+		public string title { get; set; default = ""; }  // a title.. ?? nickname.. ??? -
 
 
 		private int _version = 1;   // should we increment this based on the node..?
@@ -977,24 +977,30 @@ namespace JsRender {
 			{
 				GLib.debug("serialize_property %s", property_name);
 				switch (property_name) {
-						case "tree":
-							if (this.tree == null) {
+					case "tree":
+						if (this.tree == null) {
 							return null;
-					}
+						}
 
-					return Json.gobject_serialize(this.tree);
-						case "bjs-version":
-						case "name":
-						case "gen-extended":
-						case "parent":
-						case "title":
-						case "permname":
-						case "modOrder":
-						case "build-module":
-							return default_serialize_property (property_name, value, pspec);
-						default:
-							// Skip properties that don't belong to JsRender
+						return Json.gobject_serialize(this.tree);
+					case "name":
+					case "parent":
+					case "title":
+					case "region":
+					case "permname":
+					case "modOrder":
+					case "build-module":
+						// Skip empty strings since defaults are set during deserialization
+						if (value.get_string() == "") {
 							return null;
+						}
+						return default_serialize_property (property_name, value, pspec);
+					case "bjs-version":
+					case "gen-extended":
+						return default_serialize_property (property_name, value, pspec);
+					default:
+						// Skip properties that don't belong to JsRender
+						return null;
 				}
 			}
 
