@@ -90,7 +90,7 @@ namespace JsRender {
 			//this.readArrayProps();
 			this.readListeners();
 
-			if (!this.node.props.has_key("* xinclude")) {
+			if (!this.node.specials.has_key("xinclude")) {
 				this.iterChildren();
 			}
 			
@@ -165,8 +165,8 @@ namespace JsRender {
 			this.top.node.setNodeLine(this.cur_line, this.node);
 			var spad = this.pad.substring(0, this.pad.length-indent);
 			
-			if (this.node.props.has_key("* xinclude")) {
-				this.addJsLine("Roo.apply(" + this.node.props.get("* xinclude").prop_val + "._tree(), {",0 );
+			if (this.node.specials.has_key("xinclude")) {
+				this.addJsLine("Roo.apply(" + this.node.specials.get("xinclude").prop_val + "._tree(), {",0 );
 		 
 			} else {
 				this.addJsLine("{", 0);
@@ -180,7 +180,7 @@ namespace JsRender {
 				var v = this.node.xtype();
 				 
 				this.node.setLine(this.cur_line, "p","xtype"); 
-				this.addJsLine(this.pad + "xtype" + " : " + v + suffix, ',');
+				this.addJsLine(this.pad + "xtype" + " : '" + v + suffix + "'", ',');
 			}
 			
 			// plain properties.
@@ -291,7 +291,7 @@ namespace JsRender {
 			}
 			this.node.setLine(this.cur_line, "e", "");
 			this.closeLine();
-			if (this.node.props.has_key("* xinclude")) {
+			if (this.node.specials.has_key("xinclude")) {
 				this.addJsLine(spad + "})",0);
 		 
 			} else {

@@ -289,10 +289,14 @@ namespace JsRender {
 			 }
 
 			// iterate children..
-			for (var i =0; i < node.children.size; i++) {
-				this.findTransStrings((Node)node.children.get(i) );
+			foreach(var child in node.children) {
+				if (!(child is Node)) {
+					continue;
+				}
+				
+				this.findTransStrings(child as Node);
 			}
-		
+			
 				
 		}  
 		
