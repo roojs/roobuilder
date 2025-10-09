@@ -1138,7 +1138,8 @@ public class JsRender.Node : NodeBase
 			GLib.error("do not set listeners directly");
 		}
 	}
-	private void sortProps ()
+	// probably needs moving to UI..
+	public void sortProps ()
 	{
 
 		this.propstore.sort( (a, b) => {

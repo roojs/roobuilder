@@ -515,53 +515,74 @@ public class Action.ChangeProp : Action.Base {
 - ✅ Usage analysis completed - computed properties optimized for performance
 - ✅ Code generation classes updated to use new property access methods
 
-### Phase 8: Comprehensive Testing of Generated Code Output ❌ **PENDING**
-1. ❌ Fix command line generation to always produce clean Vala/JS output without junk
-2. ❌ Create automated test script for batch generation and comparison
-3. ❌ Test JavaScript serialization with web.Texon Pman/Shipping/*.bjs files
-4. ❌ Test Vala generation with roobuilder BJS files
-5. ❌ Test Vala generation with gitlive BJS files
-6. ❌ Generate comprehensive issue checklist from test results
-7. ❌ Review and categorize issues before addressing them
+### Phase 8: Comprehensive Testing of Generated Code Output ✅ **COMPLETED**
+1. ✅ Fix command line generation to always produce clean Vala/JS output without junk
+2. ✅ Create automated test script for batch generation and comparison
+3. ✅ Test JavaScript serialization with web.Texon Pman/Shipping/*.bjs files
+4. ✅ Test Vala generation with roobuilder BJS files
+5. ✅ Test Vala generation with gitlive BJS files
+6. ✅ Generate comprehensive issue checklist from test results
+7. ✅ Review and categorize issues before addressing them
 
 **Implementation Status**:
-- ❌ **TODO**: Fix roobuilder command line to produce clean output (remove file structure dumps)
-- ❌ **TODO**: Create test script for automated batch generation
-- ❌ **TODO**: Test JavaScript generation with web.Texon Shipping module (100+ BJS files)
-- ❌ **TODO**: Test Vala generation with roobuilder Builder4 BJS files
-- ❌ **TODO**: Test Vala generation with gitlive BJS files
-- ❌ **TODO**: Generate detailed issue report with categorization
-- ❌ **TODO**: Review issues and create action plan for fixes
+- ✅ **COMPLETED**: Fixed roobuilder command line to produce clean output
+- ✅ **COMPLETED**: Created test script for automated batch generation
+- ✅ **COMPLETED**: Tested JavaScript generation with web.Texon Shipping module (100+ BJS files)
+- ✅ **COMPLETED**: Tested Vala generation with roobuilder Builder4 BJS files
+- ✅ **COMPLETED**: Tested Vala generation with gitlive BJS files
+- ✅ **COMPLETED**: Generated detailed issue report with categorization
+- ✅ **COMPLETED**: Reviewed issues and created action plan for fixes
 
-**Test Strategy**:
-- **JavaScript Testing**: Use `/home/alan/gitlive/web.Texon/Pman/Shipping/*.bjs` files
-- **Vala Testing**: Use roobuilder and gitlive BJS files
-- **Output Validation**: Compare generated files with existing files
-- **Issue Tracking**: Create detailed checklist of problems found
-- **Methodical Approach**: Generate all files to temporary directories, analyze differences
+**Test Results**:
+- **JavaScript Testing**: Successfully tested with `/home/alan/gitlive/web.Texon/Pman/Shipping/*.bjs` files
+- **Vala Testing**: Successfully tested with roobuilder and gitlive BJS files
+- **Output Validation**: Generated files compared with existing files - all issues resolved
+- **Issue Tracking**: Detailed checklist created and all issues addressed
+- **Overall Status**: All code generation working correctly after refactoring
 
-### Phase 9: Remove Legacy Code / outstanding fixes ❌ **PENDING**
-1. X sort out legacy file read of underscore properties?
-1. ❌ Remove unused methods (dupeProps, old add_prop, etc.)
-2. ❌ Remove propstore_find from NodeBase (propstore kept for UI widgets)
-3. ❌ Clean up serialization code
-4. ❌ Remove backward compatibility wrappers if no longer needed
+### Phase 9: Fix New UI Components - Model Update Issues ❌ **PENDING**
+
+**Objective**: Fix new UI components so that model is updated correctly
+
+**Significant Issues to Address**:
+1. ❌ New pulldown for type - not updating anything yet
+2. ❌ New prop_name editor is not updating left tree
+3. ❌ Class search would be better as a not 'starts with'
+4. ❌ Test drag drop, object add and property add
+5. ❌ Add logging to actions - so that we can debug the actions only taking place
+6. ❌ See if we can change the undo/redo to use the action manager
+
+**Implementation Status**:
+- ❌ **TODO**: Fix type pulldown to properly update model when changed
+- ❌ **TODO**: Fix prop_name editor to update left tree on changes
+- ❌ **TODO**: Improve class search to use 'contains' instead of 'starts with'
+- ❌ **TODO**: Test and verify drag/drop functionality
+- ❌ **TODO**: Test and verify object add functionality
+- ❌ **TODO**: Test and verify property add functionality
+- ❌ **TODO**: Add logging to action manager for debugging
+- ❌ **TODO**: Integrate undo/redo system with action manager
+
+**Priority Issues**:
+- **High**: Type pulldown not updating model
+- **High**: Prop_name editor not updating left tree
+- **Medium**: Class search improvement
+- **Medium**: Action logging for debugging
+- **Medium**: Undo/redo integration with action manager
+- **Low**: Test drag/drop, object add, property add functionality
+
+### Phase 10: Remove Legacy Code / Outstanding Fixes ❌ **PENDING**
+1. ❌ Sort out legacy file read of underscore properties
+2. ❌ Remove unused methods (dupeProps, old add_prop, etc.)
+3. ❌ Remove propstore_find from NodeBase (propstore kept for UI widgets)
+4. ❌ Clean up serialization code
+5. ❌ Remove backward compatibility wrappers if no longer needed
 
 **Implementation Status**:
 - ❌ **TODO**: Remove legacy methods: `dupeProps()`, old `add_prop()`, `remove_prop()`, `has_prop_key()`
 - ❌ **TODO**: Remove `propstore_find` from NodeBase
 - ❌ **TODO**: Clean up serialization code
 - ❌ **TODO**: Remove backward compatibility wrappers if no longer needed
-
-### Phase 10: Final Testing and Validation ❌ **PENDING**
-1. ❌ Comprehensive testing of all functionality
-2. ❌ Performance testing with large projects
-3. ❌ Memory usage validation
-4. ❌ UI responsiveness testing
-5. ❌ Undo/redo functionality testing
-
-**Implementation Status**:
-- ❌ **CRITICAL GAP**: No comprehensive testing of refactored system
+- ❌ **TODO**: Comprehensive testing of all functionality
 - ❌ **TODO**: Performance testing with large projects
 - ❌ **TODO**: Memory usage validation
 - ❌ **TODO**: UI responsiveness testing
@@ -634,28 +655,28 @@ public class Action.ChangeProp : Action.Base {
 6. **Week 8**: Phase 6 - Alter ChangeProp and modify access to Node
 7. **Week 9**: Phase 7 - Evaluate and update computed properties
 8. **Week 10**: Phase 8 - Comprehensive testing of generated code output
-9. **Week 11**: Phase 9 - Remove legacy code
-10. **Week 12**: Phase 10 - Final testing and validation
+9. **Week 11**: Phase 9 - Fix new UI components - model update issues
+10. **Week 12**: Phase 10 - Remove legacy code and final testing
 
 ## Progress Summary
 
-### Overall Progress: ~75% Complete
+### Overall Progress: ~80% Complete
 
-**✅ Completed Phases (6/10):**
+**✅ Completed Phases (7/10):**
 - **Phase 1**: Add New Methods and Actions - **COMPLETED**
 - **Phase 2**: XNS/NTYPE Migration - **COMPLETED** 
 - **Phase 3**: Update Legacy File Reading - **COMPLETED**
 - **Phase 4**: Create New UI Elements - **COMPLETED**
 - **Phase 6**: Alter ChangeProp and modify access to Node - **COMPLETED**
 - **Phase 7**: Evaluate and Update Computed Properties - **COMPLETED**
+- **Phase 8**: Comprehensive Testing of Generated Code Output - **COMPLETED**
 
 **🔄 In Progress (1/10):**
 - **Phase 5**: Remove wrappers in NodeProp - **IN PROGRESS**
 
-**❌ Pending Phases (3/10):**
-- **Phase 8**: Comprehensive Testing of Generated Code Output - **PENDING**
-- **Phase 9**: Remove Legacy Code - **PENDING**
-- **Phase 10**: Final Testing and Validation - **PENDING**
+**❌ Pending Phases (2/10):**
+- **Phase 9**: Fix New UI Components - Model Update Issues - **PENDING**
+- **Phase 10**: Remove Legacy Code / Outstanding Fixes - **PENDING**
 
 ### Key Achievements ✅
 1. **Architecture Successfully Simplified**: Single source of truth (children array) for both nodes and properties
@@ -666,21 +687,22 @@ public class Action.ChangeProp : Action.Base {
 
 ### Critical Issues to Address 🚨
 1. ✅ **Action.ChangeProp Optimization**: COMPLETED - Now uses flat serialization for efficient property changes
-2. **Legacy Code Cleanup**: Many old methods still present and need removal
-3. **Direct Property Access**: Need to audit and replace unauthorized direct property writes
-4. **Testing Gap**: No comprehensive testing of the refactored system
+2. ✅ **Testing Gap**: COMPLETED - Comprehensive testing of generated code output completed
+3. **UI Component Updates**: New UI components need fixes for model updates
+4. **Legacy Code Cleanup**: Many old methods still present and need removal
+5. **Direct Property Access**: Need to audit and replace unauthorized direct property writes
 
 ### Next Priority Actions 🎯
 1. ✅ **Complete Phase 6**: COMPLETED - Action.ChangeProp optimized with flat serialization
 2. ✅ **Complete Phase 7**: COMPLETED - Computed properties optimized and code generation updated
-3. **Audit Phase 5**: Find and replace unauthorized direct property access
-4. **Begin Phase 8**: Comprehensive testing of generated code output
-5. **Start Phase 9**: Remove legacy methods and clean up code
-6. **Start Phase 10**: Final testing and validation
+3. ✅ **Complete Phase 8**: COMPLETED - Comprehensive testing of generated code output
+4. **Audit Phase 5**: Find and replace unauthorized direct property access
+5. **Begin Phase 9**: Fix new UI components - model update issues
+6. **Start Phase 10**: Remove legacy methods and clean up code
 
 ## Conclusion
 
-This refactoring has made excellent progress on the core architectural changes and UI integration. The most complex parts (xns/xtype consolidation, legacy file migration, UI elements) are complete. The remaining work focuses on optimization, cleanup, and testing.
+This refactoring has made excellent progress on the core architectural changes, code generation testing, and UI integration. The most complex parts (xns/xtype consolidation, legacy file migration, UI elements, code generation testing) are complete. The remaining work focuses on fixing UI component model updates, optimization, and legacy code cleanup.
 
 The refactoring will significantly simplify the Node architecture by using the children array for both child nodes and properties, while keeping propstore for UI widgets. The integration with the Action system will provide full undo/redo support and better property validation. Additionally, the elimination of separate xns/ntype property nodes in favor of a single prop_type field will further simplify the architecture while maintaining backward compatibility.
 
@@ -691,6 +713,7 @@ Key success factors:
 - ✅ Maintaining propstore for UI widgets while using children for data operations
 - ✅ **Proper implementation of xns()/xtype() backward compatibility methods**
 - ✅ **Thorough testing of prop_type-based namespace/type management**
-- ❌ Comprehensive testing of all affected components
+- ✅ **Comprehensive testing of generated code output**
+- 🔄 **Fixing UI component model updates (Phase 9 in progress)**
 
 The benefits in terms of maintainability, performance, architectural consistency, and enhanced user experience make this a worthwhile investment. The xns/ntype consolidation will provide additional benefits in terms of code simplicity and performance.

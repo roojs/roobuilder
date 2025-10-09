@@ -172,6 +172,7 @@ namespace JsRender
 			// Recursively set stores for all children (if requested)
 			if (recursive) {
 				foreach(var c in this.children) {
+					c.parent = this; // just in case?
 					c.setStores(recursive);
 				}
 			}

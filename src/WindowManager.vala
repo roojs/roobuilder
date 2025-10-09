@@ -218,6 +218,8 @@ public class WindowManager : Json.Serializable, Object {
 	bool in_load = false;
 	public static void load()
 	{
+		return; // disabled at present.
+		
 		if (!GLib.FileUtils.test(wm().fn(), GLib.FileTest.EXISTS)) {
 			return;
 		}

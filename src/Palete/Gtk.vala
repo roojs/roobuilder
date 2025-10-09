@@ -548,8 +548,24 @@ namespace Palete {
 			
 			return @"($args) =>  {\n$retval\n}";
 		}
-		 
 		
+		public override Gee.ArrayList<string> getAllClassNames(SymbolLoader? sl)
+		{
+			var ret = new Gee.ArrayList<string>();
+			if (sl == null) {
+				return ret;
+			}
+			sl.loadClassCache();
+			foreach(var k in sl.classCache.keys) {
+				ret.add(k);
+			}
+			ret.sort((a, b) => {
+				return a.down().collate(b.down());
+			});
+			return ret;
+		}
+		
+	
     }
 }
  

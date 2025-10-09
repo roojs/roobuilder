@@ -209,12 +209,15 @@ namespace JsRender {
 		public Gee.ArrayList<string> findxincludes(Node node,   Gee.ArrayList<string> ret)
 		{
 			
-			if (node.props.has_key("* xinclude")) {
-				ret.add(node.props.get("* xinclude").prop_val);
+			if (node.specials.has_key("xinclude")) {
+				ret.add(node.specials.get("xinclude").prop_val);
 			}
-			for (var i =0; i < node.children.size; i++) {
-				this.findxincludes((Node)node.children.get(i), ret);
+			foreach(var child in node.children) {
+				if (child is Node) {
+					this.findxincludes(child as Node, ret);
+				}
 			}
+			 
 			return ret;
 				
 		}

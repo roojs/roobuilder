@@ -14,6 +14,7 @@ public class Xcls_LeftProps : Object
 	}
 	public Xcls_addpop addpop;
 	public Xcls_xtypedropdown xtypedropdown;
+	public Xcls_xtypestrings xtypestrings;
 	public Xcls_proprow proprow;
 	public Xcls_propentry propentry;
 	public Xcls_EditProps EditProps;
@@ -71,34 +72,6 @@ public class Xcls_LeftProps : Object
 	}
 
 	// user defined functions
-	public string keySortFormat (string key) {
-	    // listeners first - with 0
-	    // specials
-	    if (key[0] == '*') {
-	        return "1 " + key;
-	    }
-	    // functions
-	    
-	    var bits = key.split(" ");
-	    
-	    if (key[0] == '|') {
-	        return "2 " + bits[bits.length -1];
-	    }
-	    // signals
-	    if (key[0] == '@') {
-	        return "3 " + bits[bits.length -1];
-	    }
-	        
-	    // props
-	    if (key[0] == '#') {
-	        return "4 " + bits[bits.length -1];
-	    }
-	    // the rest..
-	    return "5 " + bits[bits.length -1];    
-	
-	
-	
-	}
 	public void updateErrors () {
 		var file = this.file;
 		if (file == null) {
@@ -160,78 +133,15 @@ public class Xcls_LeftProps : Object
 		
 	}
 	public void updatePropRowVisibility () {
+	
 		// Show proprow if node has prop_name set, hide otherwise
 		if (this.node != null && this.node.prop_name != "") {
 			this.proprow.el.visible = true;
-			this.propentry.el.text = this.node.prop_name;
+			this.propentry.el.buffer.set_text( this.node.prop_name.data);
 		} else {
 			this.proprow.el.visible = false;
-			this.propentry.el.text = "";
+			this.propentry.el.buffer.set_text("".data);
 		}
-	}
-	public string keyFormat (string val, string type) {
-	    
-	    // Glib.markup_escape_text(val);
-	
-	    if (type == "listener") {
-	        return "<span font_weight=\"bold\" color=\"#660000\">" + 
-	            GLib.Markup.escape_text(val) +
-	             "</span>";
-	    }
-	    // property..
-	    if (val.length < 1) {
-	        return "<span  color=\"#FF0000\">--empty--</span>";
-	    }
-	    
-	    //@ = signal
-	    //$ = property with 
-	    //# - object properties
-	    //* = special
-	    // all of these... - display value is last element..
-	    var ar = val.strip().split(" ");
-	    
-	    
-	    var dval = GLib.Markup.escape_text(ar[ar.length-1]);
-	    
-	    
-	    
-	    
-	    switch(val[0]) {
-	        case '@': // signal // just bold balck?
-	            if (dval[0] == '@') {
-	                dval = dval.substring(1);
-	            }
-	        
-	            return @"<span  font_weight=\"bold\">@ $dval</span>";        
-	        case '#': // object properties?
-	            if (dval[0] == '#') {
-	                dval = dval.substring(1);
-	            }
-	            return @"<span  font_weight=\"bold\">$dval</span>";
-	        case '*': // special
-	            if (dval[0] == '*') {
-	                dval = dval.substring(1);
-	            }
-	            return @"<span   color=\"#0000CC\" font_weight=\"bold\">$dval</span>";            
-	        case '$':
-	            if (dval[0] == '$') {
-	                dval = dval.substring(1);
-	            }
-	            return @"<span   style=\"italic\">$dval</span>";
-	       case '|': // user defined methods
-	            if (dval[0] == '|') {
-	                dval = dval.substring(1);
-	            }
-	            return @"<span color=\"#008000\" font_weight=\"bold\">$dval</span>";
-	            
-	              
-	            
-	        default:
-	            return dval;
-	    }
-	      
-	    
-	
 	}
 	public void deleteSelected () {
 	    
@@ -313,16 +223,19 @@ public class Xcls_LeftProps : Object
 	    this.node = node;
 	    this.file = file;
 	    
-	 
-	    this.model.el.remove_all();
+	 	
+	    //this.model.el.remove_all();
 	              
 	    //this.get('/RightEditor').el.hide();
 	    if (node ==null) {
+	    		_this.selmodel.el.set_model(new GLib.ListStore(typeof(JsRender.NodeProp)));
 	        GLib.debug("node is null return");
 	        return ;
 	    }
-	
-	    node.loadProps(this.model.el, file); 
+	    node.sortProps(); // should really be done by our ui...
+	    GLib.debug("size of nodeprops is %d", (int)node.propstore.n_items);
+		_this.selmodel.el.set_model(node.propstore);
+	   // node.loadProps(this.model.el, file); 
 	    
 	    
 	   //GLib.debug("clear selection\n");
@@ -1720,11 +1633,10 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			_this.xtypedropdown = this;
-			var child_1 = new Xcls_FlattenListModel44( _this );
-			child_1.ref();
+			new Xcls_xtypestrings( _this );
 			var child_2 = new Xcls_PropertyExpression46( _this );
 			child_2.ref();
-			this.el = new Gtk.DropDown( child_1.el, child_2.el );
+			this.el = new Gtk.DropDown( _this.xtypestrings.el, child_2.el );
 
 			// my vars (dec)
 
@@ -1741,21 +1653,20 @@ public class Xcls_LeftProps : Object
 				return;
 			}
 			
-			var stringlist = (Gtk.StringList) ((Gtk.FlattenListModel) this.el.model).model;
+			var stringlist = _this.xtypestrings.el;
 			
 			// Only populate if empty (fulfills 'once' requirement)
 			if (stringlist.get_n_items() == 0) {
 				// Get available classes from Palete (only once)
-				var classes = _this.file.project.palete.getChildListFromSymbols(
-					_this.file.getSymbolLoader(), 
-					"*top", 
-					false
+				var classes = _this.file.project.palete.getAllClassNames(
+					_this.file.getSymbolLoader()
 				);
 				
 				if (classes.size > 0) {
 					// Convert to string array for StringList
 					// Append each class to the StringList (only once)
 					foreach (var cls in classes) {
+						GLib.debug("add %s" , cls);
 						stringlist.append(cls);
 					}
 				}
@@ -1773,30 +1684,7 @@ public class Xcls_LeftProps : Object
 			}
 		}
 	}
-	public class Xcls_FlattenListModel44 : Object
-	{
-		public Gtk.FlattenListModel el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_FlattenListModel44(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			var child_1 = new Xcls_StringList45( _this );
-			child_1.ref();
-			this.el = new Gtk.FlattenListModel( child_1.el );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-	public class Xcls_StringList45 : Object
+	public class Xcls_xtypestrings : Object
 	{
 		public Gtk.StringList el;
 		private Xcls_LeftProps  _this;
@@ -1805,10 +1693,11 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringList45(Xcls_LeftProps _owner )
+		public Xcls_xtypestrings(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.StringList( null );
+			_this.xtypestrings = this;
+			this.el = new Gtk.StringList( {} );
 
 			// my vars (dec)
 
@@ -1817,7 +1706,6 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
-
 
 	public class Xcls_PropertyExpression46 : Object
 	{
@@ -1930,18 +1818,18 @@ public class Xcls_LeftProps : Object
 				_this.node.modify_prop_name(prop_name);
 				
 				// Use timeout to delay the change event until editing is complete
-				GLib.Timeout.add_once(1000, () => {
+				//GLib.Timeout.add_once(1000, () => {
 					// Check if prop_name hasn't changed after 1 second
-					if (_this.node.prop_name == prop_name) {
+					//if (_this.node != null && _this.node.prop_name == prop_name) {
 						// For Node properties, we don't have Action.ChangeProp
 						// since it's designed for NodeProp objects, not Node objects
 						// Direct property update is appropriate for simple string properties
 						
 						// Trigger change event only if value is stable
-						_this.changed();
-					}
+						//_this.changed();
+					//}
 					// If prop_name has changed, assume it was altered again - no change event
-				});
+				//});
 			});
 		}
 

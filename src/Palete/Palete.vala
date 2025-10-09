@@ -218,6 +218,7 @@ namespace Palete
 		public abstract Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader? sl, string in_rval, bool with_props);
 		public abstract Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string rval);
 		public abstract string symbolToSig(Symbol s);
+		public abstract Gee.ArrayList<string> getAllClassNames(SymbolLoader? sl);
 	}
 
 
