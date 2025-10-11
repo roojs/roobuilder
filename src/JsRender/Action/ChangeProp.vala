@@ -32,11 +32,12 @@ namespace JsRender
             this.newPropJson = "";
         }
         
-        public ChangeProp.from_json(JsRender file, int nodeOid, string originalPropJson) {
+        public ChangeProp.from_json(JsRender file, int nodeOid, string originalPropJson, bool isNode = false) {
             base(file);
             this.nodeOid = nodeOid;
             this.originalPropJson = originalPropJson;
             this.newPropJson = "";
+            this.isNode = isNode;
         }
 
         public void changeTo(NodeProp nodeProp) {
@@ -47,7 +48,18 @@ namespace JsRender
             
             // Create undo action
             this.undoAction = new Action.ChangeProp.from_json(
-                this.file, this.nodeOid, this.originalPropJson);
+                this.file, this.nodeOid, this.originalPropJson, false);
+        }
+
+        public void changeToNode(Node node) {
+            // Create flat copy for serialization using new_from_node_flat constructor
+            var generator = new Json.Generator();
+            generator.set_root(Json.gobject_serialize(new Node.new_from_node_flat(node)));
+            this.newPropJson = generator.to_data(null);
+            
+            // Create undo action
+            this.undoAction = new Action.ChangeProp.from_json(
+                this.file, this.nodeOid, this.originalPropJson, true);
         }
 
         public override NodeBase? run() {
