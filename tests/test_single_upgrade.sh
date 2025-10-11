@@ -11,7 +11,8 @@ fi
 
 BJS_FILE="$1"
 FILENAME=$(basename "$BJS_FILE")
-TEST_DIR="/tmp/single_upgrade_test_$(date +%Y%m%d_%H%M%S)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TEST_DIR="$SCRIPT_DIR/results"
 mkdir -p "$TEST_DIR"
 
 echo "=== Single BJS Upgrade Test ==="
