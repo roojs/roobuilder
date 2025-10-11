@@ -158,6 +158,18 @@ public class JsRender.Node : NodeBase
 		this.xvala_cls = "";
 		this.xvala_xcls = "";
 		this.xvala_id = "";
+	}
+
+	// Constructor for flat node copying (for Action.ChangeProp)
+	public Node.new_from_node_flat(Node source)
+	{
+		// Copy only flat properties, not children or complex relationships
+		this.prop_name = source.prop_name;
+		this.prop_val = source.prop_val;
+		this.prop_type = source.prop_type;
+		this.node_type = source.node_type;
+		this.doc = source.doc;
+		// Do NOT copy: oid, parent, children, file, propstore, or any other complex properties
 		this.line_start = -1;
 		this.line_end = -1;
 		this.lines = new Gee.ArrayList<int>();
