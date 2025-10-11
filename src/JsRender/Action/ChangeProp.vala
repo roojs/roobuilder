@@ -33,26 +33,19 @@ namespace JsRender
             this.isNode = isNode;
         }
 
-        public void changeTo(NodeProp nodeProp) {
-            // Create flat copy for serialization using new_from_prop constructor
+        public void changeTo(NodeBase nodeBase) {
+            // Determine type and create appropriate flat copy for serialization
             var generator = new Json.Generator();
-            generator.set_root(Json.gobject_serialize(new NodeProp.new_from_prop(nodeProp)));
+            if (nodeBase is Node) {
+                generator.set_root(Json.gobject_serialize(new Node.new_from_node_flat((Node)nodeBase)));
+            } else {
+                generator.set_root(Json.gobject_serialize(new NodeProp.new_from_prop((NodeProp)nodeBase)));
+            }
             this.newPropJson = generator.to_data(null);
             
             // Create undo action
             this.undoAction = new Action.ChangeProp.from_json(
-                this.file, this.nodeOid, this.originalPropJson, false);
-        }
-
-        public void changeToNode(Node node) {
-            // Create flat copy for serialization using new_from_node_flat constructor
-            var generator = new Json.Generator();
-            generator.set_root(Json.gobject_serialize(new Node.new_from_node_flat(node)));
-            this.newPropJson = generator.to_data(null);
-            
-            // Create undo action
-            this.undoAction = new Action.ChangeProp.from_json(
-                this.file, this.nodeOid, this.originalPropJson, true);
+                this.file, this.nodeOid, this.originalPropJson, this.isNode);
         }
 
         public override NodeBase? run() {
