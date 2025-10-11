@@ -651,6 +651,31 @@
          "xtype" : "PropertyExpression"
         }
        ],
+       "listeners" : {
+        "notify[\"selected\"]" : [
+         "() => {",
+         "\tif (_this.loading || _this.node == null) {",
+         "\t\treturn;",
+         "\t}",
+         "\tvar model = (Gtk.StringList)this.el.model;",
+         "\tvar new_fqn = model.get_string(this.el.selected);",
+         "\t",
+         "\t// Check if fqn has actually changed",
+         "\tif (_this.node.fqn() == new_fqn) {",
+         "\t\treturn;",
+         "\t}",
+         "\t",
+         "\t// Store old value for undo",
+         "\tvar old_fqn = _this.node.fqn();",
+         "\t",
+         "\t// Change the node's class type",
+         "\t_this.node.modify_prop_type(new_fqn);",
+         "\t",
+         "\tGLib.debug(\"Node class changed from %s to %s\", old_fqn, new_fqn);",
+         "\t_this.changed();",
+         "}"
+        ]
+       },
        "xtype" : "DropDown",
        "| void show" : [
         "() {",
