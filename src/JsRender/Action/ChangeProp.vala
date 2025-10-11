@@ -8,26 +8,19 @@ namespace JsRender
         string newPropJson;      // Flat serialization only
         bool isNode;  // Track whether we're working with Node or NodeProp
         
-        public ChangeProp(JsRender file, NodeProp nodeProp) {
+        public ChangeProp(JsRender file, NodeBase nodeBase) {
             base(file);
-            this.nodeOid = nodeProp.oid;
-            this.isNode = false;
+            this.nodeOid = nodeBase.oid;
             
-            // Create flat copy for serialization using new_from_prop constructor
+            // Determine type and create appropriate flat copy for serialization
             var generator = new Json.Generator();
-            generator.set_root(Json.gobject_serialize(new NodeProp.new_from_prop(nodeProp)));
-            this.originalPropJson = generator.to_data(null);
-            this.newPropJson = "";
-        }
-
-        public ChangeProp.from_node(JsRender file, Node node) {
-            base(file);
-            this.nodeOid = node.oid;
-            this.isNode = true;
-            
-            // Create flat copy for serialization using new_from_node_flat constructor
-            var generator = new Json.Generator();
-            generator.set_root(Json.gobject_serialize(new Node.new_from_node_flat(node)));
+            if (nodeBase is Node) {
+                this.isNode = true;
+                generator.set_root(Json.gobject_serialize(new Node.new_from_node_flat((Node)nodeBase)));
+            } else {
+                this.isNode = false;
+                generator.set_root(Json.gobject_serialize(new NodeProp.new_from_prop((NodeProp)nodeBase)));
+            }
             this.originalPropJson = generator.to_data(null);
             this.newPropJson = "";
         }
