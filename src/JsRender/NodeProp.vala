@@ -15,9 +15,14 @@ namespace JsRender
 	// Constructor for flat property copying (Phase 6)
 	public NodeProp.new_from_prop(NodeProp source)
 	{
-		base.new_from_base(source);
-		// NodeProp doesn't have additional flat properties beyond NodeBase
-		// All properties are inherited from NodeBase
+		// Copy only flat properties, not children or complex relationships
+		this.prop_name = source.prop_name;
+		this.prop_val = source.prop_val;
+		this.prop_type = source.prop_type;
+		this.node_type = source.node_type;
+		this.doc = source.doc;
+		this.is_static = source.is_static;
+		// Do NOT copy: oid, parent, children, file
 	}
 
 		// Wrapper properties removed - use prop_name, node_type, prop_type, prop_val directly
