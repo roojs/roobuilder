@@ -27,15 +27,7 @@ namespace JsRender
 		// New properties as requested
 		public Gee.ArrayList<NodeBase> children { get; set; default = new Gee.ArrayList<NodeBase>(); }
 
-
-	// Constructor
-	protected NodeBase( )
-	{
-		// Properties are initialized with default values
-		//this.oid = uid_count++;
-
-	}
-
+ 
 
 		// OID management methods
 		public void assignLegacyOid(int new_oid)
