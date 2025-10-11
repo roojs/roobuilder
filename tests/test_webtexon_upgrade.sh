@@ -83,7 +83,7 @@ if ../build/roobuilder --project "$PROJECT_DIR" --test-bjs-upgrade "$BJS_FILE" >
     if [[ -f "$OUTPUT_FILE" && -s "$OUTPUT_FILE" ]]; then
         echo "Output file size: $(stat -c%s "$OUTPUT_FILE") bytes"
         echo ""
-        echo "First 30 lines of upgraded JSON:"
+        echo "First 30 lines of upgraded BJS3 file:"
         echo "---------------------------------------"
         head -n 30 "$OUTPUT_FILE"
         echo ""
@@ -130,7 +130,7 @@ if [[ -f "$OUTPUT_FILE" && -s "$OUTPUT_FILE" ]]; then
     NEW_SIZE=$(stat -c%s "$OUTPUT_FILE" 2>/dev/null || echo "0")
     
     echo "Original BJS file size: $ORIGINAL_SIZE bytes"
-    echo "Upgraded BJS file size: $NEW_SIZE bytes"
+    echo "Upgraded BJS3 file size: $NEW_SIZE bytes"
     
     if [[ "$NEW_SIZE" -gt "$ORIGINAL_SIZE" ]]; then
         echo "✓ Upgraded file is larger (as expected for new format)"
