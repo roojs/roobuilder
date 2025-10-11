@@ -71,7 +71,7 @@ echo "=== Testing BJS Upgrade ==="
 echo "Command: ../build/roobuilder --project $PROJECT_DIR --test-bjs-upgrade $BJS_FILE"
 echo ""
 
-OUTPUT_FILE="$TEST_DIR/${FILENAME%.bjs}_upgraded.json"
+OUTPUT_FILE="$TEST_DIR/${FILENAME%.bjs}.bjs3"
 ERROR_FILE="$TEST_DIR/${FILENAME%.bjs}_upgrade_error.log"
 
 # Run upgrade
