@@ -410,6 +410,11 @@ UI components should continue using `propstore` for list widgets, but property o
       * ✅ it will fetch all the classes available to the system and fill in the list (only do this once as that list doesnt really change)
         * ✅ need to find what method in the Palete might provide that.
       * ✅ fill in the value when the show() is called on the top 
+   * ✅ Add event handler for class selection changes
+      * ✅ Create Action.ChangeProp for node class changes
+      * ✅ Use modify_prop_type() to change node's class
+      * ✅ Run through action_manager for undo/redo support
+      * ✅ **WORKS**: Class changing functionality is working correctly
   * ✅ proprow and propentry
      * ✅ when node.prop_name is set, then fill in this value otherwise hide the whole row
      * ✅ when the value of propentry is changed it should trigger a Action.ChangeProp (probably key up)
@@ -420,6 +425,7 @@ UI components should continue using `propstore` for list widgets, but property o
 - xtypedropdown, proprow, propentry UI elements
 - Delayed trigger mechanism (1000ms timeout) for property changes
 - Integration with existing property editing workflow
+- Class selector with Action.ChangeProp integration (completed in Phase 9)
 
 
 ### Phase 5: Remove wrappers in NodeProp 🔄 **IN PROGRESS**
@@ -540,20 +546,26 @@ public class Action.ChangeProp : Action.Base {
 - **Issue Tracking**: Detailed checklist created and all issues addressed
 - **Overall Status**: All code generation working correctly after refactoring
 
-### Phase 9: Fix New UI Components - Model Update Issues ❌ **PENDING**
+### Phase 9: Fix New UI Components - Model Update Issues 🔄 **IN PROGRESS**
 
 **Objective**: Fix new UI components so that model is updated correctly
 
 **Significant Issues to Address**:
-1. ❌ New pulldown for type - not updating anything yet
+1. ✅ New pulldown for type - now updating with Action.ChangeProp
 2. ❌ New prop_name editor is not updating left tree
 3. ❌ Class search would be better as a not 'starts with'
 4. ❌ Test drag drop, object add and property add
 5. ❌ Add logging to actions - so that we can debug the actions only taking place
 6. ❌ See if we can change the undo/redo to use the action manager
+7. ⚠️ **ISSUE**: Saving file after class change blanks out children nodes
+
 
 **Implementation Status**:
-- ❌ **TODO**: Fix type pulldown to properly update model when changed
+- ✅ **COMPLETED**: Type pulldown (xtypedropdown) now properly updates model using Action.ChangeProp
+  - Created Node.new_from_node_flat() for flat node serialization
+  - Generalized Action.ChangeProp to accept NodeBase (works for both Node and NodeProp)
+  - Added notify["selected"] listener with proper action integration
+  - ✅ **WORKS**: Class changing functionality working correctly with undo/redo
 - ❌ **TODO**: Fix prop_name editor to update left tree on changes
 - ❌ **TODO**: Improve class search to use 'contains' instead of 'starts with'
 - ❌ **TODO**: Test and verify drag/drop functionality
@@ -563,7 +575,6 @@ public class Action.ChangeProp : Action.Base {
 - ❌ **TODO**: Integrate undo/redo system with action manager
 
 **Priority Issues**:
-- **High**: Type pulldown not updating model
 - **High**: Prop_name editor not updating left tree
 - **Medium**: Class search improvement
 - **Medium**: Action logging for debugging
@@ -667,15 +678,15 @@ public class Action.ChangeProp : Action.Base {
 - **Phase 2**: XNS/NTYPE Migration - **COMPLETED** 
 - **Phase 3**: Update Legacy File Reading - **COMPLETED**
 - **Phase 4**: Create New UI Elements - **COMPLETED**
+- **Phase 5**: Remove wrappers in NodeProp - **COMPLETED***
 - **Phase 6**: Alter ChangeProp and modify access to Node - **COMPLETED**
 - **Phase 7**: Evaluate and Update Computed Properties - **COMPLETED**
 - **Phase 8**: Comprehensive Testing of Generated Code Output - **COMPLETED**
 
 **🔄 In Progress (1/10):**
-- **Phase 5**: Remove wrappers in NodeProp - **IN PROGRESS**
+- **Phase 9**: Fix New UI Components - Model Update Issues - **IN PROGRESS**
 
-**❌ Pending Phases (2/10):**
-- **Phase 9**: Fix New UI Components - Model Update Issues - **PENDING**
+**❌ Pending Phases (1/10):**
 - **Phase 10**: Remove Legacy Code / Outstanding Fixes - **PENDING**
 
 ### Key Achievements ✅
@@ -691,13 +702,13 @@ public class Action.ChangeProp : Action.Base {
 3. **UI Component Updates**: New UI components need fixes for model updates
 4. **Legacy Code Cleanup**: Many old methods still present and need removal
 5. **Direct Property Access**: Need to audit and replace unauthorized direct property writes
+6. ⚠️ **File Save Issue**: Saving file after significant changes causes children nodes to be blanked out (general issue)
 
 ### Next Priority Actions 🎯
 1. ✅ **Complete Phase 6**: COMPLETED - Action.ChangeProp optimized with flat serialization
 2. ✅ **Complete Phase 7**: COMPLETED - Computed properties optimized and code generation updated
 3. ✅ **Complete Phase 8**: COMPLETED - Comprehensive testing of generated code output
-4. **Audit Phase 5**: Find and replace unauthorized direct property access
-5. **Begin Phase 9**: Fix new UI components - model update issues
+4. 🔄 **Continue Phase 9**: IN PROGRESS - Type pulldown completed, working on remaining UI components
 6. **Start Phase 10**: Remove legacy methods and clean up code
 
 ## Conclusion

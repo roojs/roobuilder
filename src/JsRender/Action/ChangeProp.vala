@@ -57,54 +57,32 @@ namespace JsRender
                     return null;
                 }
                 
-                if (this.isNode) {
-                    // Handle Node changes
-                    if (!(nodeBase is Node)) {
-                        GLib.debug("ChangeProp - Expected Node but got %s", nodeBase.get_type().name());
-                        return null;
-                    }
-                    
-                    var flatNode = Json.gobject_from_data(typeof(Node), this.newPropJson) as Node;
-                    if (flatNode == null) {
-                        GLib.debug("ChangeProp - failed to deserialize flat Node");
-                        return null;
-                    }
-                    
-                    var currentNode = (Node)nodeBase;
-                    
-                    // Update the current Node with values from flat properties
-                    currentNode.modify_prop_name(flatNode.prop_name);
-                    currentNode.modify_prop_val(flatNode.prop_val);
-                    currentNode.modify_prop_type(flatNode.prop_type);
-                    currentNode.doc = flatNode.doc;
-                    currentNode.modify_node_type(flatNode.node_type);
-                    
-                    return currentNode;
-                    
-                } else {
-                    // Handle NodeProp changes
-                    if (!(nodeBase is NodeProp)) {
-                        GLib.debug("ChangeProp - Expected NodeProp but got %s", nodeBase.get_type().name());
-                        return null;
-                    }
-                    
-                    var flatProp = Json.gobject_from_data(typeof(NodeProp), this.newPropJson) as NodeProp;
-                    if (flatProp == null) {
-                        GLib.debug("ChangeProp - failed to deserialize flat NodeProp");
-                        return null;
-                    }
-                    
-                    var currentProp = (NodeProp)nodeBase;
-                    
-                    // Update the current NodeProp with values from flat properties
-                    currentProp.modify_prop_name(flatProp.prop_name);
-                    currentProp.modify_prop_val(flatProp.prop_val);
-                    currentProp.modify_prop_type(flatProp.prop_type);
-                    currentProp.doc = flatProp.doc;
-                    currentProp.modify_node_type(flatProp.node_type);
-                    
-                    return currentProp;
+                // Deserialize the appropriate type
+                var deserializeType = this.isNode ? typeof(Node) : typeof(NodeProp);
+                var flatBase = Json.gobject_from_data(deserializeType, this.newPropJson) as NodeBase;
+                if (flatBase == null) {
+                    GLib.debug("ChangeProp - failed to deserialize flat %s", deserializeType.name());
+                    return null;
                 }
+                
+                // Verify type matches expectation
+                if (this.isNode && !(nodeBase is Node)) {
+                    GLib.debug("ChangeProp - Expected Node but got %s", nodeBase.get_type().name());
+                    return null;
+                }
+                if (!this.isNode && !(nodeBase is NodeProp)) {
+                    GLib.debug("ChangeProp - Expected NodeProp but got %s", nodeBase.get_type().name());
+                    return null;
+                }
+                
+                // Update the current NodeBase with values from flat properties
+                nodeBase.modify_prop_name(flatBase.prop_name);
+                nodeBase.modify_prop_val(flatBase.prop_val);
+                nodeBase.modify_prop_type(flatBase.prop_type);
+                nodeBase.doc = flatBase.doc;
+                nodeBase.modify_node_type(flatBase.node_type);
+                
+                return nodeBase;
                 
             } catch (GLib.Error e) {
                 GLib.debug("ChangeProp failed: %s", e.message);

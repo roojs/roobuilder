@@ -622,119 +622,13 @@
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "bool hexpand" : true,
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "int margin_end" : 5,
-       "int margin_start" : 5,
-       "string label" : "Class",
-       "xtype" : "Label"
-      },
-      {
-       "$ xns" : "Gtk",
-       "bool enable_search" : true,
-       "bool hexpand" : true,
-       "id" : "xtypedropdown",
-       "items" : [
-        {
-         "$ strings" : "{}",
-         "$ xns" : "Gtk",
-         "* prop" : "model",
-         "id" : "xtypestrings",
-         "xtype" : "StringList"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "expression",
-         "GLib.Type this_type" : "typeof(Gtk.StringObject)",
-         "string property_name" : "string",
-         "xtype" : "PropertyExpression"
-        }
-       ],
-       "listeners" : {
-        "notify[\"selected\"]" : [
-         "() => {",
-         "\tif (_this.loading || _this.node == null) {",
-         "\t\treturn;",
-         "\t}",
-         "\tvar model = (Gtk.StringList)this.el.model;",
-         "\tvar new_fqn = model.get_string(this.el.selected);",
-         "\t",
-         "\t// Check if fqn has actually changed",
-         "\tif (_this.node.fqn() == new_fqn) {",
-         "\t\treturn;",
-         "\t}",
-         "\t",
-         "\t// Create Action.ChangeProp for the node",
-         "\tvar action = new JsRender.Action.ChangeProp.from_node(_this.file, _this.node);",
-         "\t",
-         "\t// Change the node's class type",
-         "\t_this.node.modify_prop_type(new_fqn);",
-         "\t",
-         "\t// Call changeToNode with the updated node and run through Action Manager",
-         "\taction.changeToNode(_this.node);",
-         "\t_this.file.action_manager.run(action);",
-         "\t",
-         "\tGLib.debug(\"Node class changed to %s\", new_fqn);",
-         "\t_this.changed();",
-         "}"
-        ]
-       },
-       "xtype" : "DropDown",
-       "| void show" : [
-        "() {",
-        "\t// Populate dropdown with available classes from Palete",
-        "\tif (_this.file == null || _this.file.project == null || _this.file.project.palete == null) {",
-        "\t\tGLib.debug(\"Cannot populate class dropdown - missing file/project/palete\");",
-        "\t\treturn;",
-        "\t}",
-        "\t",
-        "\tvar stringlist = _this.xtypestrings.el;",
-        "\t",
-        "\t// Only populate if empty (fulfills 'once' requirement)",
-        "\tif (stringlist.get_n_items() == 0) {",
-        "\t\t// Get available classes from Palete (only once)",
-        "\t\tvar classes = _this.file.project.palete.getAllClassNames(",
-        "\t\t\t_this.file.getSymbolLoader()",
-        "\t\t);",
-        "\t\t",
-        "\t\tif (classes.size > 0) {",
-        "\t\t\t// Convert to string array for StringList",
-        "\t\t\t// Append each class to the StringList (only once)",
-        "\t\t\tforeach (var cls in classes) {",
-        "\t\t\t\tGLib.debug(\"add %s\" , cls);",
-        "\t\t\t\tstringlist.append(cls);",
-        "\t\t\t}",
-        "\t\t}",
-        "\t}",
-        "\t",
-        "\t// Set current value if node has a class (this can happen multiple times)",
-        "\tif (_this.node != null && _this.node.fqn() != \"\") {",
-        "\t\t// Find and select the current class",
-        "\t\tfor (uint i = 0; i < stringlist.get_n_items(); i++) {",
-        "\t\t\tif (stringlist.get_string(i) == _this.node.fqn()) {",
-        "\t\t\t\tthis.el.selected = i;",
-        "\t\t\t\tbreak;",
-        "\t\t\t}",
-        "\t\t}",
-        "\t}",
-        "}"
-       ]
-      }
-     ],
-     "xtype" : "Box"
-    },
-    {
-     "$ xns" : "Gtk",
-     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-     "bool hexpand" : true,
      "id" : "proprow",
      "items" : [
       {
        "$ xns" : "Gtk",
        "int margin_end" : 5,
        "int margin_start" : 5,
-       "string label" : "Property Name",
+       "string label" : "Property Name :",
        "xtype" : "Label"
       },
       {
@@ -1547,6 +1441,106 @@
       }
      ],
      "xtype" : "ScrolledWindow"
+    },
+    {
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool hexpand" : true,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "bool enable_search" : true,
+       "bool hexpand" : true,
+       "id" : "xtypedropdown",
+       "items" : [
+        {
+         "$ strings" : "{}",
+         "$ xns" : "Gtk",
+         "* prop" : "model",
+         "id" : "xtypestrings",
+         "xtype" : "StringList"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "expression",
+         "GLib.Type this_type" : "typeof(Gtk.StringObject)",
+         "string property_name" : "string",
+         "xtype" : "PropertyExpression"
+        }
+       ],
+       "listeners" : {
+        "notify[\"selected\"]" : [
+         "() => {",
+         "\tif (_this.loading || _this.node == null) {",
+         "\t\treturn;",
+         "\t}",
+         "\tvar model = (Gtk.StringList)this.el.model;",
+         "\tvar new_fqn = model.get_string(this.el.selected);",
+         "\t",
+         "\t// Check if fqn has actually changed",
+         "\tif (_this.node.fqn() == new_fqn) {",
+         "\t\treturn;",
+         "\t}",
+         "\t",
+         "\t// Create Action.ChangeProp for the node",
+         "\tvar action = new JsRender.Action.ChangeProp(_this.file, _this.node);",
+         "\t",
+         "\t// Change the node's class type",
+         "\t_this.node.modify_prop_type(new_fqn);",
+         "\t",
+         "\t// Call changeTo with the updated node and run through Action Manager",
+         "\taction.changeTo(_this.node);",
+         "\t_this.file.action_manager.run(action);",
+         "\t",
+         "\tGLib.debug(\"Node class changed to %s\", new_fqn);",
+         "\t_this.changed();",
+         "}"
+        ]
+       },
+       "string tooltip_text" : "This is the class of the node - you can change - we currently dont validate if the new type would be valid though",
+       "xtype" : "DropDown",
+       "| void show" : [
+        "() {",
+        "\t// Populate dropdown with available classes from Palete",
+        "\tif (_this.file == null || _this.file.project == null || _this.file.project.palete == null) {",
+        "\t\tGLib.debug(\"Cannot populate class dropdown - missing file/project/palete\");",
+        "\t\treturn;",
+        "\t}",
+        "\t",
+        "\tvar stringlist = _this.xtypestrings.el;",
+        "\t",
+        "\t// Only populate if empty (fulfills 'once' requirement)",
+        "\tif (stringlist.get_n_items() == 0) {",
+        "\t\t// Get available classes from Palete (only once)",
+        "\t\tvar classes = _this.file.project.palete.getAllClassNames(",
+        "\t\t\t_this.file.getSymbolLoader()",
+        "\t\t);",
+        "\t\t",
+        "\t\tif (classes.size > 0) {",
+        "\t\t\t// Convert to string array for StringList",
+        "\t\t\t// Append each class to the StringList (only once)",
+        "\t\t\tforeach (var cls in classes) {",
+        "\t\t\t\tGLib.debug(\"add %s\" , cls);",
+        "\t\t\t\tstringlist.append(cls);",
+        "\t\t\t}",
+        "\t\t}",
+        "\t}",
+        "\t",
+        "\t// Set current value if node has a class (this can happen multiple times)",
+        "\tif (_this.node != null && _this.node.fqn() != \"\") {",
+        "\t\t// Find and select the current class",
+        "\t\tfor (uint i = 0; i < stringlist.get_n_items(); i++) {",
+        "\t\t\tif (stringlist.get_string(i) == _this.node.fqn()) {",
+        "\t\t\t\tthis.el.selected = i;",
+        "\t\t\t\tbreak;",
+        "\t\t\t}",
+        "\t\t}",
+        "\t}",
+        "}"
+       ]
+      }
+     ],
+     "xtype" : "Box"
     }
    ],
    "xtype" : "Box",

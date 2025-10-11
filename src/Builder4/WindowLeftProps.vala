@@ -13,8 +13,6 @@ public class Xcls_LeftProps : Object
 		return _LeftProps;
 	}
 	public Xcls_addpop addpop;
-	public Xcls_xtypedropdown xtypedropdown;
-	public Xcls_xtypestrings xtypestrings;
 	public Xcls_proprow proprow;
 	public Xcls_propentry propentry;
 	public Xcls_EditProps EditProps;
@@ -25,6 +23,8 @@ public class Xcls_LeftProps : Object
 	public Xcls_keycol keycol;
 	public Xcls_valcol valcol;
 	public Xcls_ContextMenu ContextMenu;
+	public Xcls_xtypedropdown xtypedropdown;
+	public Xcls_xtypestrings xtypestrings;
 
 	// my vars (def)
 	public bool loading;
@@ -62,13 +62,13 @@ public class Xcls_LeftProps : Object
 		var child_1 = new Xcls_Box1( _this );
 		child_1.ref();
 		this.el.append( child_1.el );
-		var child_2 = new Xcls_Box41( _this );
-		child_2.ref();
-		this.el.append( child_2.el );
 		new Xcls_proprow( _this );
 		this.el.append( _this.proprow.el );
 		new Xcls_EditProps( _this );
 		this.el.append( _this.EditProps.el );
+		var child_4 = new Xcls_Box256( _this );
+		child_4.ref();
+		this.el.append( child_4.el );
 	}
 
 	// user defined functions
@@ -1569,191 +1569,6 @@ public class Xcls_LeftProps : Object
 
 
 
-	public class Xcls_Box41 : Object
-	{
-		public Gtk.Box el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Box41(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.hexpand = true;
-			var child_1 = new Xcls_Label42( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
-			new Xcls_xtypedropdown( _this );
-			this.el.append( _this.xtypedropdown.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Label42 : Object
-	{
-		public Gtk.Label el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Label42(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Label( "Class" );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.margin_end = 5;
-			this.el.margin_start = 5;
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_xtypedropdown : Object
-	{
-		public Gtk.DropDown el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_xtypedropdown(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			_this.xtypedropdown = this;
-			new Xcls_xtypestrings( _this );
-			var child_2 = new Xcls_PropertyExpression45( _this );
-			child_2.ref();
-			this.el = new Gtk.DropDown( _this.xtypestrings.el, child_2.el );
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.enable_search = true;
-			this.el.hexpand = true;
-
-			//listeners
-			this.el.notify["selected"].connect( () => {
-				if (_this.loading || _this.node == null) {
-					return;
-				}
-				var model = (Gtk.StringList)this.el.model;
-				var new_fqn = model.get_string(this.el.selected);
-				
-				// Check if fqn has actually changed
-				if (_this.node.fqn() == new_fqn) {
-					return;
-				}
-				
-				// Store old value for undo
-				var old_fqn = _this.node.fqn();
-				
-				// Change the node's class type
-				_this.node.modify_prop_type(new_fqn);
-				
-				GLib.debug("Node class changed from %s to %s", old_fqn, new_fqn);
-				_this.changed();
-			});
-		}
-
-		// user defined functions
-		public void show () {
-			// Populate dropdown with available classes from Palete
-			if (_this.file == null || _this.file.project == null || _this.file.project.palete == null) {
-				GLib.debug("Cannot populate class dropdown - missing file/project/palete");
-				return;
-			}
-			
-			var stringlist = _this.xtypestrings.el;
-			
-			// Only populate if empty (fulfills 'once' requirement)
-			if (stringlist.get_n_items() == 0) {
-				// Get available classes from Palete (only once)
-				var classes = _this.file.project.palete.getAllClassNames(
-					_this.file.getSymbolLoader()
-				);
-				
-				if (classes.size > 0) {
-					// Convert to string array for StringList
-					// Append each class to the StringList (only once)
-					foreach (var cls in classes) {
-						GLib.debug("add %s" , cls);
-						stringlist.append(cls);
-					}
-				}
-			}
-			
-			// Set current value if node has a class (this can happen multiple times)
-			if (_this.node != null && _this.node.fqn() != "") {
-				// Find and select the current class
-				for (uint i = 0; i < stringlist.get_n_items(); i++) {
-					if (stringlist.get_string(i) == _this.node.fqn()) {
-						this.el.selected = i;
-						break;
-					}
-				}
-			}
-		}
-	}
-	public class Xcls_xtypestrings : Object
-	{
-		public Gtk.StringList el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_xtypestrings(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			_this.xtypestrings = this;
-			this.el = new Gtk.StringList( {} );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_PropertyExpression45 : Object
-	{
-		public Gtk.PropertyExpression el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_PropertyExpression45(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-
-
 	public class Xcls_proprow : Object
 	{
 		public Gtk.Box el;
@@ -1794,7 +1609,7 @@ public class Xcls_LeftProps : Object
 		public Xcls_Label47(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.Label( "Property Name" );
+			this.el = new Gtk.Label( "Property Name :" );
 
 			// my vars (dec)
 
@@ -2890,6 +2705,169 @@ public class Xcls_LeftProps : Object
 	}
 
 
+
+
+
+	public class Xcls_Box256 : Object
+	{
+		public Gtk.Box el;
+		private Xcls_LeftProps  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_Box256(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.hexpand = true;
+			new Xcls_xtypedropdown( _this );
+			this.el.append( _this.xtypedropdown.el );
+		}
+
+		// user defined functions
+	}
+	public class Xcls_xtypedropdown : Object
+	{
+		public Gtk.DropDown el;
+		private Xcls_LeftProps  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_xtypedropdown(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			_this.xtypedropdown = this;
+			new Xcls_xtypestrings( _this );
+			var child_2 = new Xcls_PropertyExpression260( _this );
+			child_2.ref();
+			this.el = new Gtk.DropDown( _this.xtypestrings.el, child_2.el );
+
+			// my vars (dec)
+
+			// set gobject values
+			this.el.enable_search = true;
+			this.el.hexpand = true;
+			this.el.tooltip_text = "This is the class of the node - you can change - we currently dont validate if the new type would be valid though";
+
+			//listeners
+			this.el.notify["selected"].connect( () => {
+				if (_this.loading || _this.node == null) {
+					return;
+				}
+				var model = (Gtk.StringList)this.el.model;
+				var new_fqn = model.get_string(this.el.selected);
+				
+				// Check if fqn has actually changed
+				if (_this.node.fqn() == new_fqn) {
+					return;
+				}
+				
+				// Create Action.ChangeProp for the node
+				var action = new JsRender.Action.ChangeProp(_this.file, _this.node);
+				
+				// Change the node's class type
+				_this.node.modify_prop_type(new_fqn);
+				
+				// Call changeTo with the updated node and run through Action Manager
+				action.changeTo(_this.node);
+				_this.file.action_manager.run(action);
+				
+				GLib.debug("Node class changed to %s", new_fqn);
+				_this.changed();
+			});
+		}
+
+		// user defined functions
+		public void show () {
+			// Populate dropdown with available classes from Palete
+			if (_this.file == null || _this.file.project == null || _this.file.project.palete == null) {
+				GLib.debug("Cannot populate class dropdown - missing file/project/palete");
+				return;
+			}
+			
+			var stringlist = _this.xtypestrings.el;
+			
+			// Only populate if empty (fulfills 'once' requirement)
+			if (stringlist.get_n_items() == 0) {
+				// Get available classes from Palete (only once)
+				var classes = _this.file.project.palete.getAllClassNames(
+					_this.file.getSymbolLoader()
+				);
+				
+				if (classes.size > 0) {
+					// Convert to string array for StringList
+					// Append each class to the StringList (only once)
+					foreach (var cls in classes) {
+						GLib.debug("add %s" , cls);
+						stringlist.append(cls);
+					}
+				}
+			}
+			
+			// Set current value if node has a class (this can happen multiple times)
+			if (_this.node != null && _this.node.fqn() != "") {
+				// Find and select the current class
+				for (uint i = 0; i < stringlist.get_n_items(); i++) {
+					if (stringlist.get_string(i) == _this.node.fqn()) {
+						this.el.selected = i;
+						break;
+					}
+				}
+			}
+		}
+	}
+	public class Xcls_xtypestrings : Object
+	{
+		public Gtk.StringList el;
+		private Xcls_LeftProps  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_xtypestrings(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			_this.xtypestrings = this;
+			this.el = new Gtk.StringList( {} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_PropertyExpression260 : Object
+	{
+		public Gtk.PropertyExpression el;
+		private Xcls_LeftProps  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_PropertyExpression260(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 
