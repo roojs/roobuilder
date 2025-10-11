@@ -64,33 +64,61 @@ namespace JsRender
 
         public override NodeBase? run() {
             try {
-                // Deserialize the flat NodeProp from JSON
-                var flatProp = Json.gobject_from_data(typeof(NodeProp), this.newPropJson) as NodeProp;
-                if (flatProp == null) {
-                    GLib.debug("ChangeProp - failed to deserialize flat NodeProp");
-                    return null;
-                }
-                
-                // Get the current NodeProp from the file
+                // Get the current node/prop from the file
                 var nodeBase = this.file.nodes.get(this.nodeOid);
-                if (nodeBase == null || !(nodeBase is NodeProp)) {
-                    GLib.debug("ChangeProp - NodeProp with OID %d not found", this.nodeOid);
+                if (nodeBase == null) {
+                    GLib.debug("ChangeProp - NodeBase with OID %d not found", this.nodeOid);
                     return null;
                 }
-                var currentProp = (NodeProp)nodeBase;
                 
-                // Update the current NodeProp with values from flat properties
-                currentProp.modify_prop_name(flatProp.prop_name);
-                currentProp.modify_prop_val(flatProp.prop_val);
-                currentProp.modify_prop_type(flatProp.prop_type);
-                currentProp.doc = flatProp.doc;
-                currentProp.modify_node_type(flatProp.node_type);
-                
-                // Note: We don't copy oid, parent, children, or file as these should remain the same
-                // The flat NodeProp only contains the essential properties
-                
-                // Return the changed node
-                return currentProp;
+                if (this.isNode) {
+                    // Handle Node changes
+                    if (!(nodeBase is Node)) {
+                        GLib.debug("ChangeProp - Expected Node but got %s", nodeBase.get_type().name());
+                        return null;
+                    }
+                    
+                    var flatNode = Json.gobject_from_data(typeof(Node), this.newPropJson) as Node;
+                    if (flatNode == null) {
+                        GLib.debug("ChangeProp - failed to deserialize flat Node");
+                        return null;
+                    }
+                    
+                    var currentNode = (Node)nodeBase;
+                    
+                    // Update the current Node with values from flat properties
+                    currentNode.modify_prop_name(flatNode.prop_name);
+                    currentNode.modify_prop_val(flatNode.prop_val);
+                    currentNode.modify_prop_type(flatNode.prop_type);
+                    currentNode.doc = flatNode.doc;
+                    currentNode.modify_node_type(flatNode.node_type);
+                    
+                    return currentNode;
+                    
+                } else {
+                    // Handle NodeProp changes
+                    if (!(nodeBase is NodeProp)) {
+                        GLib.debug("ChangeProp - Expected NodeProp but got %s", nodeBase.get_type().name());
+                        return null;
+                    }
+                    
+                    var flatProp = Json.gobject_from_data(typeof(NodeProp), this.newPropJson) as NodeProp;
+                    if (flatProp == null) {
+                        GLib.debug("ChangeProp - failed to deserialize flat NodeProp");
+                        return null;
+                    }
+                    
+                    var currentProp = (NodeProp)nodeBase;
+                    
+                    // Update the current NodeProp with values from flat properties
+                    currentProp.modify_prop_name(flatProp.prop_name);
+                    currentProp.modify_prop_val(flatProp.prop_val);
+                    currentProp.modify_prop_type(flatProp.prop_type);
+                    currentProp.doc = flatProp.doc;
+                    currentProp.modify_node_type(flatProp.node_type);
+                    
+                    return currentProp;
+                }
                 
             } catch (GLib.Error e) {
                 GLib.debug("ChangeProp failed: %s", e.message);
