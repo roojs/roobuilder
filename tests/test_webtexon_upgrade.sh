@@ -186,7 +186,7 @@ fi
 
 echo ""
 echo "Test results saved to: $TEST_DIR"
-echo "Upgraded BJS file: $OUTPUT_FILE"
+echo "Upgraded BJS3 file: $OUTPUT_FILE"
 if [[ -f "$ERROR_FILE" && -s "$ERROR_FILE" ]]; then
     echo "Error log: $ERROR_FILE"
 fi
