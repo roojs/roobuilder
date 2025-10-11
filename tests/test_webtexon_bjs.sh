@@ -12,7 +12,7 @@ BJS_FILE="${1:-$DEFAULT_FILE}"
 PROJECT_DIR="/home/alan/gitlive/web.Texon/Pman/Shipping"
 FILENAME=$(basename "$BJS_FILE")
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TEST_DIR="$SCRIPT_DIR/results/webtexon_bjs_$(date +%Y%m%d_%H%M%S)"
+TEST_DIR="$SCRIPT_DIR/results"
 mkdir -p "$TEST_DIR"
 
 echo "=== Web.Texon BJS File Test ==="
