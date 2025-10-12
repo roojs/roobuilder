@@ -1180,6 +1180,7 @@ public class Xcls_WindowLeftTree : Object
 							file,
 							null,
 							v.get_string(),
+							true,
 							-1
 						)
 					) as JsRender.Node;

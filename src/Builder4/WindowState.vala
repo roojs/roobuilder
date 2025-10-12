@@ -834,8 +834,12 @@ public class WindowState : Object
 	
 	public void showAddObject(Gtk.Widget btn, JsRender.Node? on_node)
 	{
+		// Don't show if tree has items but no node selected
+		if (on_node == null && this.left_tree.model.el.get_n_items() > 0) {
+			GLib.debug("Cannot add object: tree has items but no node is selected");
+			return;
+		}
 	 
-		 
 		this.add_props.hide();
 		 
 		this.add_props.el.set_position(Gtk.PositionType.RIGHT);

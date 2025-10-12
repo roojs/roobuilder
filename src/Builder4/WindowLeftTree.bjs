@@ -540,6 +540,7 @@
            "\t\t\t\tfile,",
            "\t\t\t\tnull,",
            "\t\t\t\tv.get_string(),",
+           "\t\t\t\ttrue,",
            "\t\t\t\t-1",
            "\t\t\t)",
            "\t\t) as JsRender.Node;",

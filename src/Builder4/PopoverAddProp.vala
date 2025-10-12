@@ -451,9 +451,9 @@ public class Xcls_PopoverAddProp : Object
 						f,
 						_this.node,
 						Json.gobject_to_data(prop, out l),
+						true,  // isNode - adding a Node (checked at line 438)
 						-1
 					)) as JsRender.Node;
-					
 					
 					 
 					ws.left_props.changed();
@@ -467,6 +467,7 @@ public class Xcls_PopoverAddProp : Object
 					f,
 					_this.node,
 					Json.gobject_to_data(prop, out l),
+					false,
 					-1
 				)) as JsRender.NodeProp;
 			 
@@ -831,8 +832,8 @@ public class Xcls_PopoverAddProp : Object
 				// bold or not.
 				lbl.label = np.to_property_option_markup(np.propertyof == _this.node.fqn());
 				lbl.tooltip_markup = np.to_property_option_tooltip();
-				 
-			    expand.set_hide_expander(  np.childstore.n_items < 1);
+				 // nots ure why childshotre should be null?
+			    expand.set_hide_expander(  np.childstore == null || np.childstore.n_items < 1);
 			 	expand.set_list_row(lr);
 			 
 			 	 

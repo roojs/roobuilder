@@ -385,9 +385,10 @@ namespace JsRender
 			}
 		}
 
-		// realized views.. .
+		// managed views.. .
+		// it's also used by addprop to store different types for the same property
 		public GLib.ListStore  childstore {
-			set;get ; default =  new GLib.ListStore( typeof(Node));
+			set; get ; default =  new GLib.ListStore( typeof(NodeBase)); // can store both types
 		}
 		// must be kept in sync with items
 		public GLib.ListStore  propstore {

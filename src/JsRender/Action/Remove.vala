@@ -5,12 +5,13 @@ namespace JsRender
 
         int nodeOid;
         int position = -1;
+		bool isNode = true;
         //int lowestOid = -1;
 
         public Remove(JsRender file, NodeBase node) {
             base(file);
             this.nodeOid = node.oid;
-            
+            this.isNode = node is Node;	
             // Find the position of the node in its parent's children
             if (node.parent != null) {
                 this.position = node.parent.children.index_of(node);
@@ -50,6 +51,7 @@ namespace JsRender
             
             this.undoAction = new Action.Add(
                 this.file, (Node)node.parent, nodeJson,
+                this.isNode,  // isNode - Remove only works on Node objects
                 this.position);
             
             // Remove the node from stores and file mappings

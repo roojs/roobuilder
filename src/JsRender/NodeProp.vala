@@ -102,7 +102,7 @@ namespace JsRender
 		public int end_line = 0;
 		
 		// used by display list..
-		public GLib.ListStore  childstore; // WILL BE USED FOR properties with mutliple types 
+		
 		public Node? add_node = null; // used when we list potentional nodes for properties in add list.
 
 		public string propertyof { get;   set; }
@@ -579,11 +579,11 @@ namespace JsRender
 			this.prop_type = rtype;
 			this.prop_val = val;
 		}
-		public void appendChild(NodeProp child)
-		{
-			this.childstore.append(child);
-
-		}
+		//public void appendChild(NodeProp child)
+		//{
+		//	this.childstore.append(child);
+//
+//		}
 		 
 		
 		/**

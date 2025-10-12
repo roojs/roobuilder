@@ -815,6 +815,7 @@ public class Xcls_PopoverAddObject : Object
 							ws.file,
 							null,
 							Json.gobject_to_data(add, out l),
+							true,
 							-1
 						)
 					) as JsRender.Node;
@@ -825,6 +826,11 @@ public class Xcls_PopoverAddObject : Object
 					return;
 				}
 				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
+				// Validate that we have a selected node to add to
+				if (addto == null) {
+					GLib.debug("Cannot add object: no node selected in tree");
+					return;
+				}
 				//var row = _this.view.getRowAt(x,y, out pos);
 				
 				var nadd = ws.file.action_manager.run(
@@ -832,6 +838,7 @@ public class Xcls_PopoverAddObject : Object
 						ws.file,
 						addto,
 						Json.gobject_to_data(add, out l),
+						true,
 						-1
 					)
 				) as JsRender.Node;

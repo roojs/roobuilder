@@ -6,19 +6,21 @@
 		int parentOid;
 		string nodeJson;
 		int position;
+		bool isNode = true;
 
 		
-		public Add(JsRender file, Node? parent, string nodeJson, int position = -1) {
+		public Add(JsRender file, Node? parent, string nodeJson, bool isNode, int position = -1) {
 		    base(file);
 		    this.parentOid = parent == null ? -1 : parent.oid;
 		    this.nodeJson = nodeJson;
 		    this.position = position;
+			this.isNode = isNode;
 		}
 		
 		public Add.from_node(JsRender file, Node parent, NodeBase node, int position = -1) {
 		    base(file);
 		    this.parentOid = parent.oid;
-		    
+		    this.isNode = node is Node;
 		    // Serialize the node to JSON string using Json.Generator
 		    var generator = new Json.Generator();
 		    generator.set_root(Json.gobject_serialize(node));
@@ -32,7 +34,8 @@
 		    
 		    try {
 		        // Deserialize the node from JSON
-		        node = Json.gobject_from_data(typeof(Node), this.nodeJson) as Node;
+				var type = this.isNode ? typeof(Node) : typeof(NodeProp);
+		        node = Json.gobject_from_data(type, this.nodeJson) as NodeBase;
 		        
 				if (node == null) {
 					GLib.debug("Add action failed to deserialize node: null result");
@@ -55,7 +58,11 @@
 			            // Insert at specific position
 			            parent.children.insert(this.position, node);
 			        }
+					// have to set parent - so that set stores works ok
+					node.parent = parent;
+					// only really needed for nodes which have prop_name set
 					parent.add_to_cache(node);
+
 		      	} else {
 		      		this.file.tree = node as Node;
 	      		}
