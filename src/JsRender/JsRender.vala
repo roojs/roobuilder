@@ -912,15 +912,20 @@ namespace JsRender {
 				if (root_node == null || root_node.get_node_type() != Json.NodeType.OBJECT) {
 					throw new Error.INVALID_FORMAT("Invalid JSON format");
 				}
-
-				// First, deserialize all properties to get basic info like bjs_version
-				var deserialized = Json.gobject_from_data(this.get_type(), content) as JsRender;
-				if (deserialized == null) {
-					throw new Error.INVALID_FORMAT("Failed to deserialize JsRender from JSON");
-				}
-
-				// Copy properties from deserialized object to this
-				this.copyPropertiesFrom(deserialized);
+				root_node.get_object().foreach_member((o , key, value) => {
+					var p = this.find_property(key);
+					if (p == null) {
+						GLib.debug("loadFromBjs - property %s not found", key);
+						return;
+					}
+					GLib.Value val;
+					if (!this.deserialize_property(key, out val, p, value)) {
+						GLib.debug("loadFromBjs - property %s not deserializable", key);
+						return;
+					}
+					this.set_property(p, val);
+					
+				}); 
 				GLib.debug("Loading new BJS file (version %d): %s", this.bjs_version, this.path);
 
 				// Check version to determine format
@@ -1010,27 +1015,27 @@ namespace JsRender {
 						case "tree":
 							value = GLib.Value (typeof(Node));
 							if (property_node.get_node_type () != Json.NodeType.OBJECT) {
+								return false;
+							}
+
+							// Check if this is a legacy file by looking for "items" array in the tree object
+							// Legacy files have an "items" array, new format files have "children" array
+							var tree_obj = property_node.get_object();
+							if (tree_obj.has_member("items")) {
+								// This is a legacy file - don't deserialize the tree here
+								// It will be handled by the legacy loading logic
+								value.set_object(null);
+								return true;
+							}
+
+							// New format only - use direct deserialization
+							var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+							if (node != null) {
+								node.file = this;
+								value.set_object(node);
+								return true;
+							}
 							return false;
-					}
-
-					// Check if this is a legacy file by looking for "items" array in the tree object
-					// Legacy files have an "items" array, new format files have "children" array
-					var tree_obj = property_node.get_object();
-					if (tree_obj.has_member("items")) {
-						// This is a legacy file - don't deserialize the tree here
-						// It will be handled by the legacy loading logic
-						value.set_object(null);
-						return true;
-					}
-
-					// New format only - use direct deserialization
-					var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
-					if (node != null) {
-						node.file = this;
-						value.set_object(node);
-						return true;
-					}
-					return false;
 						case "bjs-version":
 						case "name":
 						case "gen-extended":

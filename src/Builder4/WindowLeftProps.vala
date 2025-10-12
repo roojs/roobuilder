@@ -66,7 +66,7 @@ public class Xcls_LeftProps : Object
 		this.el.append( _this.proprow.el );
 		new Xcls_EditProps( _this );
 		this.el.append( _this.EditProps.el );
-		var child_4 = new Xcls_Box256( _this );
+		var child_4 = new Xcls_Box61( _this );
 		child_4.ref();
 		this.el.append( child_4.el );
 	}
@@ -240,11 +240,13 @@ public class Xcls_LeftProps : Object
 	    
 	   //GLib.debug("clear selection\n");
 	   
-	   	this.loading = false;
+	
 	    this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
 	    this.updateErrors();
 	    this.updatePropRowVisibility();
 	    this.xtypedropdown.show();
+	    
+	   	this.loading = false;
 	   // clear selection?
 	  //this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..
 	   
@@ -1588,7 +1590,7 @@ public class Xcls_LeftProps : Object
 
 			// set gobject values
 			this.el.hexpand = true;
-			var child_1 = new Xcls_Label47( _this );
+			var child_1 = new Xcls_Label42( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 			new Xcls_propentry( _this );
@@ -1597,7 +1599,7 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
-	public class Xcls_Label47 : Object
+	public class Xcls_Label42 : Object
 	{
 		public Gtk.Label el;
 		private Xcls_LeftProps  _this;
@@ -1606,7 +1608,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Label47(Xcls_LeftProps _owner )
+		public Xcls_Label42(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "Property Name :" );
@@ -1647,28 +1649,20 @@ public class Xcls_LeftProps : Object
 			 });
 			this.el.changed.connect( () => {
 				// Delayed trigger for property change
-				if (_this.node == null) {
+				if (_this.node == null || _this.loading) {
 					return;
 				}
 				
 				// Set node prop_name immediately
-				var prop_name = this.el.text.strip();
-				_this.node.modify_prop_name(prop_name);
-				
-				// Use timeout to delay the change event until editing is complete
-				//GLib.Timeout.add_once(1000, () => {
-					// Check if prop_name hasn't changed after 1 second
-					//if (_this.node != null && _this.node.prop_name == prop_name) {
-						// For Node properties, we don't have Action.ChangeProp
-						// since it's designed for NodeProp objects, not Node objects
-						// Direct property update is appropriate for simple string properties
-						
-						// Trigger change event only if value is stable
-						//_this.changed();
-					//}
-					// If prop_name has changed, assume it was altered again - no change event
-				//});
-			});
+				// note we undo is a bit weird on this one..
+				// we might want to have an action that is run and action_manager run when we close
+				// but let's leave for now as the prop is not updated much.
+			
+				var action = new JsRender.Action.ChangeProp(_this.file, _this.node);
+				action.prop_name = this.el.text.strip();
+				_this.file.action_manager.run(action);
+			
+			 });
 		}
 
 		// user defined functions
@@ -1737,10 +1731,10 @@ public class Xcls_LeftProps : Object
 			this.el.vexpand = true;
 			this.el.show_row_separators = true;
 			new Xcls_deletemenu( _this );
-			var child_3 = new Xcls_GestureClick55( _this );
+			var child_3 = new Xcls_GestureClick50( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
-			var child_4 = new Xcls_GestureClick56( _this );
+			var child_4 = new Xcls_GestureClick51( _this );
 			child_4.ref();
 			this.el.add_controller(  child_4.el );
 			new Xcls_keycol( _this );
@@ -1957,14 +1951,14 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box52( _this );
+			var child_1 = new Xcls_Box47( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box52 : Object
+	public class Xcls_Box47 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_LeftProps  _this;
@@ -1973,7 +1967,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box52(Xcls_LeftProps _owner )
+		public Xcls_Box47(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1981,14 +1975,14 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button53( _this );
+			var child_1 = new Xcls_Button48( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button53 : Object
+	public class Xcls_Button48 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_LeftProps  _this;
@@ -1997,7 +1991,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button53(Xcls_LeftProps _owner )
+		public Xcls_Button48(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -2007,7 +2001,7 @@ public class Xcls_LeftProps : Object
 			// set gobject values
 			this.el.has_frame = false;
 			this.el.label = "Delete";
-			var child_1 = new Xcls_Label54( _this );
+			var child_1 = new Xcls_Label49( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 
@@ -2025,7 +2019,7 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
-	public class Xcls_Label54 : Object
+	public class Xcls_Label49 : Object
 	{
 		public Gtk.Label el;
 		private Xcls_LeftProps  _this;
@@ -2034,7 +2028,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Label54(Xcls_LeftProps _owner )
+		public Xcls_Label49(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Label( "Delete Property / Method" );
@@ -2051,7 +2045,7 @@ public class Xcls_LeftProps : Object
 
 
 
-	public class Xcls_GestureClick55 : Object
+	public class Xcls_GestureClick50 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_LeftProps  _this;
@@ -2060,7 +2054,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick55(Xcls_LeftProps _owner )
+		public Xcls_GestureClick50(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -2108,7 +2102,7 @@ public class Xcls_LeftProps : Object
 		// user defined functions
 	}
 
-	public class Xcls_GestureClick56 : Object
+	public class Xcls_GestureClick51 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_LeftProps  _this;
@@ -2117,7 +2111,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick56(Xcls_LeftProps _owner )
+		public Xcls_GestureClick51(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -2261,7 +2255,7 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			_this.keycol = this;
-			var child_1 = new Xcls_SignalListItemFactory60( _this );
+			var child_1 = new Xcls_SignalListItemFactory55( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
 
@@ -2275,7 +2269,7 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory60 : Object
+	public class Xcls_SignalListItemFactory55 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_LeftProps  _this;
@@ -2284,7 +2278,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory60(Xcls_LeftProps _owner )
+		public Xcls_SignalListItemFactory55(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -2348,7 +2342,7 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			_this.valcol = this;
-			var child_1 = new Xcls_SignalListItemFactory62( _this );
+			var child_1 = new Xcls_SignalListItemFactory57( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Value", child_1.el );
 
@@ -2362,7 +2356,7 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory62 : Object
+	public class Xcls_SignalListItemFactory57 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_LeftProps  _this;
@@ -2372,7 +2366,7 @@ public class Xcls_LeftProps : Object
 		public bool is_setting;
 
 		// ctor
-		public Xcls_SignalListItemFactory62(Xcls_LeftProps _owner )
+		public Xcls_SignalListItemFactory57(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -2436,8 +2430,10 @@ public class Xcls_LeftProps : Object
 			        if (!_this.loading && !this.is_setting) {
 					    var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
 						 
-					 
-					    prop.modify_prop_val(elbl.text);
+					 var action = new JsRender.Action.ChangeProp(_this.file, prop);
+					  action.prop_val = elbl.text;
+					  _this.file.action_manager.run(action);
+			
 			        		 GLib.debug("calling changed");
 				        _this.changed();
 				       
@@ -2451,7 +2447,10 @@ public class Xcls_LeftProps : Object
 				  }
 					 var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
 				 	 _this.stop_editor();
-				 	 prop.modify_prop_val(sw.active ? "true" : "false");	 
+				 	  var action = new JsRender.Action.ChangeProp(_this.file, prop);
+					  action.prop_val = sw.active ? "true" : "false";
+					  _this.file.action_manager.run(action);
+					    
 				 	 _this.changed();
 				 	 
 						 	 
@@ -2473,12 +2472,8 @@ public class Xcls_LeftProps : Object
 					    
 					    // Create Action.ChangeProp before setting the value
 					    var action = new JsRender.Action.ChangeProp(_this.file, prop);
-					    
-					    // Set the new value
-					    prop.modify_prop_val(new_val);
-					    
-					    // Call changeTo with the updated prop and run through Action Manager
-					    action.changeTo(prop);
+					    action.prop_val = new_val;
+					  
 					    _this.file.action_manager.run(action);
 					    
 					    GLib.debug("property set to %s", prop.prop_val);
@@ -2644,14 +2639,14 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box64( _this );
+			var child_1 = new Xcls_Box59( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box64 : Object
+	public class Xcls_Box59 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_LeftProps  _this;
@@ -2660,7 +2655,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box64(Xcls_LeftProps _owner )
+		public Xcls_Box59(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -2668,14 +2663,14 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button65( _this );
+			var child_1 = new Xcls_Button60( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button65 : Object
+	public class Xcls_Button60 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_LeftProps  _this;
@@ -2684,7 +2679,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button65(Xcls_LeftProps _owner )
+		public Xcls_Button60(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -2708,7 +2703,7 @@ public class Xcls_LeftProps : Object
 
 
 
-	public class Xcls_Box256 : Object
+	public class Xcls_Box61 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_LeftProps  _this;
@@ -2717,7 +2712,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box256(Xcls_LeftProps _owner )
+		public Xcls_Box61(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -2746,7 +2741,7 @@ public class Xcls_LeftProps : Object
 			_this = _owner;
 			_this.xtypedropdown = this;
 			new Xcls_xtypestrings( _this );
-			var child_2 = new Xcls_PropertyExpression260( _this );
+			var child_2 = new Xcls_PropertyExpression64( _this );
 			child_2.ref();
 			this.el = new Gtk.DropDown( _this.xtypestrings.el, child_2.el );
 
@@ -2766,18 +2761,13 @@ public class Xcls_LeftProps : Object
 				var new_fqn = model.get_string(this.el.selected);
 				
 				// Check if fqn has actually changed
-				if (_this.node.fqn() == new_fqn) {
+				if (_this.node.prop_type == new_fqn) {
 					return;
 				}
 				
 				// Create Action.ChangeProp for the node
 				var action = new JsRender.Action.ChangeProp(_this.file, _this.node);
-				
-				// Change the node's class type
-				_this.node.modify_prop_type(new_fqn);
-				
-				// Call changeTo with the updated node and run through Action Manager
-				action.changeTo(_this.node);
+				action.prop_type =new_fqn;
 				_this.file.action_manager.run(action);
 				
 				GLib.debug("Node class changed to %s", new_fqn);
@@ -2847,7 +2837,7 @@ public class Xcls_LeftProps : Object
 		// user defined functions
 	}
 
-	public class Xcls_PropertyExpression260 : Object
+	public class Xcls_PropertyExpression64 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Xcls_LeftProps  _this;
@@ -2856,7 +2846,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression260(Xcls_LeftProps _owner )
+		public Xcls_PropertyExpression64(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );

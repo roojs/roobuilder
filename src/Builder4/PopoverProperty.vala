@@ -25,6 +25,7 @@ public class Xcls_PopoverProperty : Object
 	public bool is_new;
 	public Gtk.PositionType position;
 	public signal void success (Project.Project pr, JsRender.JsRender file);
+	public JsRender.Action.ChangeProp? action;
 	public string key_type;
 	public Xcls_MainWindow mainwindow;
 	public JsRender.Node node;
@@ -42,6 +43,7 @@ public class Xcls_PopoverProperty : Object
 		// my vars (dec)
 		this.is_new = false;
 		this.position = Gtk.PositionType.RIGHT;
+		this.action = null;
 		this.mainwindow = null;
 		this.original_prop = null;
 		this.prop = null;
@@ -58,8 +60,7 @@ public class Xcls_PopoverProperty : Object
 		
 		 	GLib.debug("popover closed");
 			if (_this.is_new) {
-				// dont allow hiding if we are creating a new one.
-				// on.hide will reshow it.
+			    // if it's new, the firing the closed button will triger the update
 				return;
 			}
 			if (_this.prop == null) {
@@ -71,9 +72,13 @@ public class Xcls_PopoverProperty : Object
 			}
 			
 		 
-		         	
-		         
-		  	this.updateProp();
+			
+			_this.action.prop_name = this.kname.el.get_text().strip();
+			_this.action.node_type = this.ptype.getValue();
+			_this.action.prop_type = this.ktype.el.get_text().strip();
+			_this.prop.file.action_manager.run(_this.action);
+		     
+		  
 		        
 			 
 		
@@ -99,17 +104,6 @@ public class Xcls_PopoverProperty : Object
 	}
 
 	// user defined functions
-	public void updateProp () {
-	 	GLib.debug("updateProp called");
-	
-		
-		
-		_this.prop.modify_prop_name(this.kname.el.get_text().strip());
-		_this.prop.modify_node_type(this.ptype.getValue());
-		_this.prop.modify_prop_type(this.ktype.el.get_text().strip());
-		
-		  
-	}
 	public void show (
 		Gtk.Widget btn, 
 		JsRender.Node node, 
@@ -129,6 +123,7 @@ public class Xcls_PopoverProperty : Object
 		}
 		this.prop = prop;
 		this.node = node;
+		this.action = is_new ? null : new JsRender.Action.ChangeProp(node.file, node);
 		
 		_this.kname.el.set_text(prop.prop_name);
 		_this.ktype.el.set_text(prop.prop_type);

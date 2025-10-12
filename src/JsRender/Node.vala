@@ -161,6 +161,7 @@ public class JsRender.Node : NodeBase
 	}
 
 	// Constructor for flat node copying (for Action.ChangeProp)
+	// it's only used to copy the major properties.
 	public Node.new_from_node_flat(Node source)
 	{
 		// Copy only flat properties, not children or complex relationships
@@ -170,13 +171,7 @@ public class JsRender.Node : NodeBase
 		this.node_type = source.node_type;
 		this.doc = source.doc;
 		// Do NOT copy: oid, parent, children, file, propstore, or any other complex properties
-		this.line_start = -1;
-		this.line_end = -1;
-		this.lines = new Gee.ArrayList<int>();
-		this.line_map = new Gee.HashMap<int,string>();
-		this.node_lines = new Gee.ArrayList<int>();
-		this.node_lines_map = new Gee.HashMap<int,Node>();
-		this.childstore = new GLib.ListStore( typeof(Node));
+		 
 
 		// Base class properties are initialized with default values
 	}
@@ -277,12 +272,18 @@ public class JsRender.Node : NodeBase
 	public void sortLines()
 	{
 		//print("sortLines\n");
+		if (this.lines == null) {
+			return;
+		}
 		this.lines.sort((a,b) => {
-				return (int)a-(int)b;
-			});
+			return (int)a-(int)b;
+		});
+		if (this.node_lines == null) {
+			return;
+		}
 		this.node_lines.sort((a,b) => {
-				return (int)a-(int)b;
-			});
+			return (int)a-(int)b;
+		});
 	}
 
 	public void dumpProps(string indent = "")

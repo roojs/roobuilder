@@ -4,6 +4,7 @@
  "items" : [
   {
    "# Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
+   "# JsRender.Action.ChangeProp? action" : "null",
    "# JsRender.Node node" : "",
    "# JsRender.NodeProp? original_prop" : "null",
    "# JsRender.NodeProp? prop" : "null",
@@ -275,8 +276,7 @@
      "",
      " \tGLib.debug(\"popover closed\");",
      "\tif (_this.is_new) {",
-     "\t\t// dont allow hiding if we are creating a new one.",
-     "\t\t// on.hide will reshow it.",
+     "\t    // if it's new, the firing the closed button will triger the update",
      "\t\treturn;",
      "\t}",
      "\tif (_this.prop == null) {",
@@ -288,9 +288,13 @@
      "\t}",
      "\t",
      " ",
-     "         \t",
-     "         ",
-     "  \tthis.updateProp();",
+     "\t",
+     "\t_this.action.prop_name = this.kname.el.get_text().strip();",
+     "\t_this.action.node_type = this.ptype.getValue();",
+     "\t_this.action.prop_type = this.ktype.el.get_text().strip();",
+     "\t_this.prop.file.action_manager.run(_this.action);",
+     "     ",
+     "  ",
      "        ",
      "\t ",
      "",
@@ -338,6 +342,7 @@
     "\t}",
     "\tthis.prop = prop;",
     "\tthis.node = node;",
+    "\tthis.action = is_new ? null : new JsRender.Action.ChangeProp(node.file, node);",
     "\t",
     "\t_this.kname.el.set_text(prop.prop_name);",
     "\t_this.ktype.el.set_text(prop.prop_type);",
@@ -401,20 +406,6 @@
     "\t//this.success = c.success;",
     " ",
     "}"
-   ],
-   "| void updateProp" : [
-    "() {",
-    " \tGLib.debug(\"updateProp called\");",
-    "",
-    "\t",
-    "\t",
-    "\t_this.prop.modify_prop_name(this.kname.el.get_text().strip());",
-    "\t_this.prop.modify_node_type(this.ptype.getValue());",
-    "\t_this.prop.modify_prop_type(this.ktype.el.get_text().strip());",
-    "\t",
-    "\t  ",
-    "}",
-    ""
    ]
   }
  ],

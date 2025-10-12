@@ -13,7 +13,7 @@ namespace JsRender
 
 
 		// Protected properties with prop_ prefix
-		protected bool is_static { get; set; default = false; }
+		public bool is_static { get;  protected set; default = false; }
 		// should we add private/protected?
 		public string prop_name { public get; protected set; default = ""; }
 		public string prop_val { public get; protected set; default = ""; }
@@ -50,7 +50,12 @@ namespace JsRender
 				return;
 			}
 			if (this.cache.has_key(ctype)) {
-				this.cache.get(ctype).unset(cnode.prop_name);
+				var key = cnode.prop_name;
+				if (key.has_suffix("[]")) {
+					key +=  "." + cnode.oid.to_string();
+				}
+
+				this.cache.get(ctype).unset(key);
 			}
 		}
 		public void add_to_cache(NodeBase cnode)
@@ -66,6 +71,10 @@ namespace JsRender
 				this.cache.set(ctype, new Gee.HashMap<string,NodeBase>());
 			}
 			GLib.debug("add_to_cache %s %s", ctype, cnode.prop_name);
+			var key = cnode.prop_name;
+			if (key.has_suffix("[]")) {
+				key += "." + cnode.oid.to_string();
+			}
 			this.cache.get(ctype).set(cnode.prop_name, cnode);
 			
 		}
@@ -92,11 +101,12 @@ namespace JsRender
 
 		public void modify_prop_type(string value)
 		{
-			
-			
 			this.prop_type = value;
 		}
-
+		public void modify_is_static(bool value)
+		{
+			this.is_static = value;
+		}
 		public void modify_node_type(NodePropType value)
 		{
 			this.parent.remove_from_cache(this);
@@ -221,7 +231,8 @@ namespace JsRender
 				case "node-type":
 					// Return null if default value (NONE = 0)
 					if (this.node_type == NodePropType.NONE) {
-						return null;
+						GLib.error("node-type is NONE");
+						//return null;
 					}
 					return default_serialize_property (property_name, value, pspec);
 
@@ -304,29 +315,38 @@ namespace JsRender
 						value = GLib.Value (typeof(Gee.ArrayList));
 						if (property_node.get_node_type () != Json.NodeType.ARRAY) {
 						//value.set_object(new Gee.ArrayList<Node>()); ?? default property value.
-						return false;
-				}
-				var children_list = new Gee.ArrayList<NodeBase>();
-				property_node.get_array ().foreach_element ((array, index, element) => {
-						var jobj = array.get_object_element(index);
-						var jobtype = (NodePropType) jobj.get_int_member("nodetype");
-						var child = Json.gobject_deserialize (
-							jobtype == NodePropType.OBJECT ? typeof (Node) : typeof (NodeProp),
-							array.get_element(index)
-							) as NodeBase;
-						if (child != null) {
-							// If child oid is negative, assign a new one
-							child.parent = this;
-							children_list.add(child);
-							this.add_to_cache(child);
+							return false;
 						}
-					});
-				value.set_object(children_list);
-				return true;
+						var children_list = new Gee.ArrayList<NodeBase>();
+						property_node.get_array ().foreach_element ((array, index, element) => {
+								var jobj = array.get_object_element(index);
+								if (!jobj.has_member("node-type")) {
+																
+									var generator = new Json.Generator();
+									var node = new Json.Node.alloc();
+									node.init_object(jobj);
+									generator.set_root(node);
+									GLib.error("no nodetype member in child %s", generator.to_data(null));
+								}
+								var jobtype = (NodePropType) jobj.get_int_member("node-type");
+								var child = Json.gobject_deserialize (
+									jobtype == NodePropType.OBJECT ? typeof (Node) : typeof (NodeProp),
+									array.get_element(index)
+									) as NodeBase;
+								if (child != null) {
+									// If child oid is negative, assign a new one
+									child.parent = this;
+									children_list.add(child);
+									this.add_to_cache(child);
+								}
+							});
+						value.set_object(children_list);
+						return true;
 
 
 
 					case "oid":
+					case "node-type":
 					case "prop-name":
 					case "prop-type":
 					case "return-type":
@@ -340,21 +360,21 @@ namespace JsRender
 						var array = property_node.get_array();
 						var string_parts = new Gee.ArrayList<string>();
 						for (var i = 0; i < array.get_length(); i++) {
-						string_parts.add(array.get_string_element(i));
-					}
-					value = GLib.Value(typeof(string));
-					value.set_string(string.joinv("\n", string_parts.to_array()));
-					return true;
-				} else if (property_node.get_node_type() == Json.NodeType.VALUE) {
-					// Handle typed values (boolean, number) and convert to string
-					var val = property_node.get_value();
-					value = GLib.Value(typeof(string));
-					val.transform(ref value);
-					return true;
-				} else {
-					// Not an array or value, deserialize as normal string
-					return default_deserialize_property (property_name, out value, pspec, property_node);
-				}
+								string_parts.add(array.get_string_element(i));
+							}
+							value = GLib.Value(typeof(string));
+							value.set_string(string.joinv("\n", string_parts.to_array()));
+							return true;
+						} else if (property_node.get_node_type() == Json.NodeType.VALUE) {
+							// Handle typed values (boolean, number) and convert to string
+							var val = property_node.get_value();
+							value = GLib.Value(typeof(string));
+							val.transform(ref value);
+							return true;
+						} else {
+							// Not an array or value, deserialize as normal string
+							return default_deserialize_property (property_name, out value, pspec, property_node);
+						}
 
 					case "file":
 					case "parent":

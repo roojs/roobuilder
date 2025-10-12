@@ -41,6 +41,7 @@ public class Editor : Object
 	public bool dirty;
 	public int pos_root_y;
 	public bool pos;
+	public JsRender.Action.ChangeProp? action;
 	public int last_error_counter;
 	public GtkSource.SearchContext searchcontext;
 	public int tag_counter;
@@ -62,6 +63,7 @@ public class Editor : Object
 		this.window = null;
 		this.dirty = false;
 		this.pos = false;
+		this.action = null;
 		this.last_error_counter = 0;
 		this.searchcontext = null;
 		this.tag_counter = 0;
@@ -105,7 +107,12 @@ public class Editor : Object
 		// find the text for the node..
 		if (_this.file.xtype != "PlainFile") {
 		   // in theory these properties have to exist!?!
-			this.prop.modify_prop_val(str);
+	
+		  	_this.action.prop_val = str;
+	 	 	_this.file.action_manager.run(_this.action);
+	
+	        	
+	
 			//this.window.windowstate.left_props.reload();
 		} else {
 			_this.file.setSource(  str );
@@ -157,6 +164,7 @@ public class Editor : Object
 		);
 	    if (file.xtype != "PlainFile") {
 	    	this.prop = prop;
+	    	this.action = new JsRender.Action.ChangeProp(file, prop);
 	        this.node = node;
 	
 	        // find the text for the node..
@@ -233,11 +241,12 @@ public class Editor : Object
 	 	if (_this.prop.prop_name == "xns" || _this.prop.prop_name == "xtype") {
 			return this.file.toSource(); ;
 		}
-		
-		var oldcode  = _this.prop.prop_val;
-		_this.prop.modify_prop_val(str);
+		_this.action.prop_val = str;
+	 	_this.action.run();
+	
+	 
 	    var ret = _this.file.toSource();
-	    _this.prop.modify_prop_val(oldcode);
+	 	_this.action.undo();
 	    return ret;
 	    
 	}
