@@ -691,11 +691,10 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 						resp_id = int.parse(child.specials.get("* response_id").prop_val);
 					}
 					this.addLine(@"$(ipad)$(this_el).add_action_widget( $(childname)$(el_name), $(resp_id) );");
-
 					return;
 				}
 			
-				this.addLine(@"$(ipad)$(this_el)get_content_area().add( $(childname)$(el_name) );");
+				this.addLine(@"$(ipad)$$(this_el)get_content_area().add( $(childname)$(el_name) );");
 				return;
 
 		
