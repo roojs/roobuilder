@@ -552,12 +552,17 @@ public class Action.ChangeProp : Action.Base {
 
 **Significant Issues to Address**:
 1. ✅ New pulldown for type - now updating with Action.ChangeProp
-2. ❌ New prop_name editor is not updating left tree
+2. ✅ New prop_name editor is not updating left tree
 3. ❌ Class search would be better as a not 'starts with'
 4. ❌ Test drag drop, object add and property add
+    * ✅ Add nodes works (dbl click)
+    * ✅ Add props works (dblclick)
+    * ❌ Drag add Node fails
+    * ❌ Drag Nodes  (not working)
+
 5. ❌ Add logging to actions - so that we can debug the actions only taking place
 6. ❌ See if we can change the undo/redo to use the action manager
-7. ⚠️ **ISSUE**: Saving file after class change blanks out children nodes
+7. ✅ Saving file after class change blanks out children nodes
 
 
 **Implementation Status**:
