@@ -950,18 +950,7 @@ namespace JsRender {
 				}
 				this.loaded = true;
 			}
-
-			private void copyPropertiesFrom(JsRender other) {
-				this.bjs_version = other.bjs_version;
-				this.name = other.name;
-				this.gen_extended = other.gen_extended;
-				this.parent = other.parent;
-				this.title = other.title;
-				this.permname = other.permname;
-				this.modOrder = other.modOrder;
-				this.build_module = other.build_module;
-				this.tree = other.tree;
-			}
+ 
 
 			// Json.Serializable implementation
 			public new void Json.Serializable.set_property (ParamSpec pspec, Value value) {
