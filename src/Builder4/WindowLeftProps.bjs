@@ -1463,6 +1463,12 @@
            "* prop" : "model",
            "id" : "xtypestrings",
            "xtype" : "StringList"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "filter",
+           "Gtk.CustomFilterFunc match_func" : "",
+           "xtype" : "CustomFilter"
           }
          ],
          "xtype" : "FilterListModel"
