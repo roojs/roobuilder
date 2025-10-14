@@ -1455,37 +1455,6 @@
         },
         {
          "$ xns" : "Gtk",
-         "* prop" : "modelx",
-         "items" : [
-          {
-           "$ strings" : "{}",
-           "$ xns" : "Gtk",
-           "* prop" : "model",
-           "id" : "xtypestrings",
-           "xtype" : "StringList"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "filter",
-           "Gtk.StringFilterMatchMode match_mode" : "Gtk.StringFilterMatchMode.SUBSTRING",
-           "bool ignore_case" : true,
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* prop" : "expression",
-             "GLib.Type this_type" : "typeof(Gtk.StringObject)",
-             "Gtk.Expression expression" : "null",
-             "string property_name" : "string",
-             "xtype" : "PropertyExpression"
-            }
-           ],
-           "xtype" : "StringFilter"
-          }
-         ],
-         "xtype" : "FilterListModel"
-        },
-        {
-         "$ xns" : "Gtk",
          "* prop" : "expression",
          "GLib.Type this_type" : "typeof(Gtk.StringObject)",
          "Gtk.Expression expression" : "null",
