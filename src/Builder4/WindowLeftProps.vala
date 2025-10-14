@@ -2897,7 +2897,7 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			this.el = new Gtk.CustomFilter(  (item) => {
-        var result = expression.evaluate (item);
+        var result = this.expression.evaluate (item);
         return result.get_string().down().contains (search_text.down());
     } );
 
