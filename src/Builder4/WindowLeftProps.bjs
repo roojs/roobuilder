@@ -1473,7 +1473,7 @@
              "* prop" : "expression",
              "GLib.ParamSpec pspec" : "null",
              "GLib.Type this_type" : "typeof(string)",
-             "Gtk.Expression expression" : "",
+             "Gtk.Expression expression" : "null",
              "string property_name" : "string",
              "xtype" : "PropertyExpression"
             }

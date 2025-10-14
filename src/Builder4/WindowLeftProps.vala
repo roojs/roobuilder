@@ -2919,7 +2919,7 @@ public class Xcls_LeftProps : Object
 		public Xcls_PropertyExpression681(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(string), , "string" );
+			this.el = new Gtk.PropertyExpression( typeof(string), null, "string" );
 
 			// my vars (dec)
 
