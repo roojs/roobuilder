@@ -1456,8 +1456,6 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "model",
-         "GLib.ListModel model" : "",
-         "Gtk.Filter filter" : "",
          "items" : [
           {
            "$ strings" : "{}",
