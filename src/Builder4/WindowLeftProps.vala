@@ -25,6 +25,7 @@ public class Xcls_LeftProps : Object
 	public Xcls_ContextMenu ContextMenu;
 	public Xcls_xtypedropdown xtypedropdown;
 	public Xcls_xtypestrings xtypestrings;
+	public Xcls_xtypestrings xtypestrings;
 
 	// my vars (def)
 	public bool loading;
@@ -2740,9 +2741,10 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			_this.xtypedropdown = this;
-			var child_1 = new Xcls_PropertyExpression64( _this );
-			child_1.ref();
-			this.el = new Gtk.DropDown( null, child_1.el );
+			new Xcls_xtypestrings( _this );
+			var child_2 = new Xcls_PropertyExpression64( _this );
+			child_2.ref();
+			this.el = new Gtk.DropDown( _this.xtypestrings.el, child_2.el );
 
 			// my vars (dec)
 
@@ -2750,9 +2752,9 @@ public class Xcls_LeftProps : Object
 			this.el.enable_search = true;
 			this.el.hexpand = true;
 			this.el.tooltip_text = "This is the class of the node - you can change - we currently dont validate if the new type would be valid though";
-			var child_2 = new Xcls_FilterListModel419( _this );
-			child_2.ref();
-			this.el.xmodel = child_2.el;
+			var child_3 = new Xcls_FilterListModel419( _this );
+			child_3.ref();
+			this.el.xmodel = child_3.el;
 
 			//listeners
 			this.el.notify["selected"].connect( () => {
@@ -2883,6 +2885,29 @@ public class Xcls_LeftProps : Object
 		// user defined functions
 	}
 
+
+	public class Xcls_xtypestrings : Object
+	{
+		public Gtk.StringList el;
+		private Xcls_LeftProps  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_xtypestrings(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			_this.xtypestrings = this;
+			this.el = new Gtk.StringList( {} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
 
 
 
