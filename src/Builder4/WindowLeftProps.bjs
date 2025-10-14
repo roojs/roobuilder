@@ -1447,6 +1447,13 @@
        "id" : "xtypedropdown",
        "items" : [
         {
+         "$ strings" : "{}",
+         "$ xns" : "Gtk",
+         "* prop" : "model",
+         "id" : "xtypestrings",
+         "xtype" : "StringList"
+        },
+        {
          "$ xns" : "Gtk",
          "* prop" : "modelx",
          "items" : [
