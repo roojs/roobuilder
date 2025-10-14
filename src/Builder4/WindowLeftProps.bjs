@@ -1465,14 +1465,14 @@
            "xtype" : "StringList"
           },
           {
-           "$ xns" : "Gtk",
-           "* prop" : "filter",
-           "Gtk.CustomFilterFunc match_func" : [
+           "$ Gtk.CustomFilterFunc match_func" : [
             " (item) => {",
             "        var result = this.expression.evaluate (item);",
             "        return result.get_string().down().contains (search_text.down());",
             "    }"
            ],
+           "$ xns" : "Gtk",
+           "* prop" : "filter",
            "xtype" : "CustomFilter"
           }
          ],
