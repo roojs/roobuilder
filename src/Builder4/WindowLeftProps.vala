@@ -2850,7 +2850,9 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			new Xcls_xtypestrings( _this );
-			this.el = new Gtk.FilterListModel( _this.xtypestrings.el, null );
+			var child_2 = new Xcls_CustomFilter484( _this );
+			child_2.ref();
+			this.el = new Gtk.FilterListModel( _this.xtypestrings.el, child_2.el );
 
 			// my vars (dec)
 
@@ -2873,6 +2875,28 @@ public class Xcls_LeftProps : Object
 			_this = _owner;
 			_this.xtypestrings = this;
 			this.el = new Gtk.StringList( {} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
+	public class Xcls_CustomFilter484 : Object
+	{
+		public Gtk.CustomFilter el;
+		private Xcls_LeftProps  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_CustomFilter484(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.CustomFilter(  );
 
 			// my vars (dec)
 
