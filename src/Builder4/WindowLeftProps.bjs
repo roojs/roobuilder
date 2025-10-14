@@ -1447,13 +1447,6 @@
        "id" : "xtypedropdown",
        "items" : [
         {
-         "$ strings" : "{}",
-         "$ xns" : "Gtk",
-         "* prop" : "xmodel",
-         "id" : "xtypestrings",
-         "xtype" : "StringList"
-        },
-        {
          "$ xns" : "Gtk",
          "* prop" : "expression",
          "GLib.Type this_type" : "typeof(Gtk.StringObject)",
