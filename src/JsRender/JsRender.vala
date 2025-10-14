@@ -566,9 +566,9 @@ namespace JsRender {
 		this.in_undo = true;
 		// Load tree using Json.Serializable deserialization
 		//var deserialized = Json.gobject_deserialize(typeof(JsRender), pa.get_root()) as JsRender;
-		if (deserialized != null) {
+		//if (deserialized != null) {
 	//		this.copyPropertiesFrom(deserialized);
-		}
+		//}
 		this.tree.updated_count = new_version;
 		this.in_undo = false;
 		return true;
