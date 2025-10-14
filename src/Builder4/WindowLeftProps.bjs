@@ -1455,7 +1455,7 @@
         },
         {
          "$ xns" : "Gtk",
-         "* prop" : "model",
+         "* prop" : "xmodel",
          "items" : [
           {
            "$ strings" : "{}",
