@@ -1465,7 +1465,7 @@
            "xtype" : "StringList"
           },
           {
-           "# Gtk.PropertyExpression? expression" : "new Gtk.PropertyExpression (typeof (Gtk.StringObject), null, \"string\");",
+           "# Gtk.PropertyExpression expression" : "new Gtk.PropertyExpression (typeof (Gtk.StringObject), null, \"string\");",
            "$ Gtk.CustomFilterFunc match_func" : [
             " (item) => {",
             "        var result = this.expression.evaluate (item);",
