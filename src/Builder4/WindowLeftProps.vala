@@ -2898,6 +2898,7 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			this.el = new Gtk.CustomFilter(  (item) => {
+ var search_text = _this.xtypedropdown.el.get_search_string();
    Value result = Value (typeof (string));
     this.expression.evaluate (item, ref result);
     string str = result.get_string ();
