@@ -1454,20 +1454,6 @@
          "xtype" : "PropertyExpression"
         },
         {
-         "$ xns" : "Gtk",
-         "* prop" : "xmodel",
-         "items" : [
-          {
-           "$ strings" : "{}",
-           "$ xns" : "Gtk",
-           "* prop" : "model",
-           "id" : "xtypestrings",
-           "xtype" : "StringList"
-          }
-         ],
-         "xtype" : "FilterListModel"
-        },
-        {
          "$ strings" : "{}",
          "$ xns" : "Gtk",
          "* prop" : "model",
