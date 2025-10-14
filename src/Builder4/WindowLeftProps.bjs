@@ -1459,6 +1459,13 @@
          "GLib.Type this_type" : "typeof(Gtk.StringObject)",
          "string property_name" : "string",
          "xtype" : "PropertyExpression"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "model",
+         "GLib.ListModel model" : "",
+         "Gtk.Filter filter" : "",
+         "xtype" : "FilterListModel"
         }
        ],
        "listeners" : {
