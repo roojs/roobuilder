@@ -168,7 +168,7 @@ namespace JsRender
 				this.insertIntoChildstore();
 			}
 			if (this is NodeProp && this.node_type != NodePropType.OBJECT && this.parent != null) {
-				this.insertIntoPropstore();
+				this.parent.propstore.append(this as NodeProp);
 			}
 
 			// Recursively set stores for all children (if requested)
