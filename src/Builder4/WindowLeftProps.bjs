@@ -1472,6 +1472,12 @@
             "    }"
            ],
            "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            "\tthis.expression = new Gtk.PropertyExpression (typeof (Gtk.StringObject), null, \"string\");",
+            "}",
+            ""
+           ],
            "* prop" : "filter",
            "xtype" : "CustomFilter"
           }

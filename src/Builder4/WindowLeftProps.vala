@@ -2904,6 +2904,12 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
+
+			// init method
+
+			{
+				this.expression = new Gtk.PropertyExpression (typeof (Gtk.StringObject), null, "string");
+			}
 		}
 
 		// user defined functions
