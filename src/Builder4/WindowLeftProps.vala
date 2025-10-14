@@ -25,7 +25,6 @@ public class Xcls_LeftProps : Object
 	public Xcls_ContextMenu ContextMenu;
 	public Xcls_xtypedropdown xtypedropdown;
 	public Xcls_xtypestrings xtypestrings;
-	public Xcls_xtypestrings xtypestrings;
 
 	// my vars (def)
 	public bool loading;
@@ -2741,10 +2740,11 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			_this.xtypedropdown = this;
-			new Xcls_xtypestrings( _this );
+			var child_1 = new Xcls_FilterListModel581( _this );
+			child_1.ref();
 			var child_2 = new Xcls_PropertyExpression64( _this );
 			child_2.ref();
-			this.el = new Gtk.DropDown( _this.xtypestrings.el, child_2.el );
+			this.el = new Gtk.DropDown( child_1.el, child_2.el );
 
 			// my vars (dec)
 
@@ -2828,29 +2828,6 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
-	public class Xcls_xtypestrings : Object
-	{
-		public Gtk.StringList el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_xtypestrings(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			_this.xtypestrings = this;
-			this.el = new Gtk.StringList( {} );
 
 			// my vars (dec)
 
