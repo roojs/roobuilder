@@ -550,7 +550,7 @@ namespace JsRender {
 
 	public bool undoStep(int step = -1) // undo back/next
 	{
-
+		return false; ///
 		if (!this.undo_json.has_key(this.version + step)) {
 			//GLib.debug("UNDO step %d failed - no version available", this.version + step);
 			return false;
@@ -565,9 +565,9 @@ namespace JsRender {
 		}
 		this.in_undo = true;
 		// Load tree using Json.Serializable deserialization
-		var deserialized = Json.gobject_deserialize(typeof(JsRender), pa.get_root()) as JsRender;
+		//var deserialized = Json.gobject_deserialize(typeof(JsRender), pa.get_root()) as JsRender;
 		if (deserialized != null) {
-			this.copyPropertiesFrom(deserialized);
+	//		this.copyPropertiesFrom(deserialized);
 		}
 		this.tree.updated_count = new_version;
 		this.in_undo = false;
