@@ -1474,7 +1474,7 @@
              "GLib.ParamSpec pspec" : "",
              "GLib.Type this_type" : "typeof(string)",
              "Gtk.Expression expression" : "",
-             "string property_name" : "",
+             "string property_name" : "string",
              "xtype" : "PropertyExpression"
             }
            ],
