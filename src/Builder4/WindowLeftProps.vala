@@ -26,6 +26,7 @@ public class Xcls_LeftProps : Object
 	public Xcls_xtypedropdown xtypedropdown;
 	public Xcls_xtypestrings xtypestrings;
 	public Xcls_xtypestrings xtypestrings;
+	public Xcls_xtypestrings xtypestrings;
 
 	// my vars (def)
 	public bool loading;
@@ -2904,6 +2905,29 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
+	public class Xcls_xtypestrings : Object
+	{
+		public Gtk.StringList el;
+		private Xcls_LeftProps  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_xtypestrings(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			_this.xtypestrings = this;
+			this.el = new Gtk.StringList( {} );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 

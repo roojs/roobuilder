@@ -1472,6 +1472,15 @@
          "* prop" : "model",
          "GLib.ListModel model" : "",
          "Gtk.Filter filter" : "",
+         "items" : [
+          {
+           "$ strings" : "{}",
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "id" : "xtypestrings",
+           "xtype" : "StringList"
+          }
+         ],
          "xtype" : "FilterListModel"
         }
        ],
