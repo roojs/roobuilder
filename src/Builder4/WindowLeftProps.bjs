@@ -1448,13 +1448,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* prop" : "expression",
-         "GLib.Type this_type" : "typeof(Gtk.StringObject)",
-         "string property_name" : "string",
-         "xtype" : "PropertyExpression"
-        },
-        {
-         "$ xns" : "Gtk",
          "* prop" : "model",
          "items" : [
           {

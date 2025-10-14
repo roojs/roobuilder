@@ -2742,9 +2742,7 @@ public class Xcls_LeftProps : Object
 			_this.xtypedropdown = this;
 			var child_1 = new Xcls_FilterListModel64( _this );
 			child_1.ref();
-			var child_2 = new Xcls_PropertyExpression63( _this );
-			child_2.ref();
-			this.el = new Gtk.DropDown( child_1.el, child_2.el );
+			this.el = new Gtk.DropDown( child_1.el, null );
 
 			// my vars (dec)
 
@@ -2815,28 +2813,6 @@ public class Xcls_LeftProps : Object
 			}
 		}
 	}
-	public class Xcls_PropertyExpression63 : Object
-	{
-		public Gtk.PropertyExpression el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_PropertyExpression63(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
-
-			// my vars (dec)
-
-			// set gobject values
-		}
-
-		// user defined functions
-	}
-
 	public class Xcls_FilterListModel64 : Object
 	{
 		public Gtk.FilterListModel el;
