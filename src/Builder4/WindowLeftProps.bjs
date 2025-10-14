@@ -1476,6 +1476,14 @@
           }
          ],
          "xtype" : "FilterListModel"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "expression",
+         "GLib.Type this_type" : "typeof(Gtk.StringObject)",
+         "Gtk.Expression expression" : "null",
+         "string property_name" : "string",
+         "xtype" : "PropertyExpression"
         }
        ],
        "listeners" : {
