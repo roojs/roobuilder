@@ -1448,7 +1448,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* prop" : "model",
+         "* prop" : "modelx",
          "items" : [
           {
            "$ strings" : "{}",
