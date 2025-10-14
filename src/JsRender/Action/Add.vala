@@ -58,7 +58,7 @@
 			            // Insert at specific position
 			            parent.children.insert(this.position, node);
 			        }
-					GLib.debug("Add action - parent with OID %d, node %s", this.parentOid, node.fqn());
+					GLib.debug("Add action - parent with OID %d, node %s", this.parentOid, node.prop_type);
 					// have to set parent - so that set stores works ok
 					node.parent = parent;
 					// only really needed for nodes which have prop_name set
