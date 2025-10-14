@@ -2891,6 +2891,7 @@ public class Xcls_LeftProps : Object
 
 
 		// my vars (def)
+		public Gtk.PropertyExpression? expression;
 
 		// ctor
 		public Xcls_CustomFilter484(Xcls_LeftProps _owner )
@@ -2902,6 +2903,7 @@ public class Xcls_LeftProps : Object
     } );
 
 			// my vars (dec)
+			this.expression = null;
 
 			// set gobject values
 

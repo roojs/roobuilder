@@ -1465,6 +1465,7 @@
            "xtype" : "StringList"
           },
           {
+           "# Gtk.PropertyExpression? expression" : "null",
            "$ Gtk.CustomFilterFunc match_func" : [
             " (item) => {",
             "        var result = this.expression.evaluate (item);",
