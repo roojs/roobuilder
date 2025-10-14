@@ -2872,7 +2872,9 @@ public class Xcls_LeftProps : Object
 		public Xcls_StringFilter66(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.StringFilter( null );
+			var child_1 = new Xcls_PropertyExpression110( _this );
+			child_1.ref();
+			this.el = new Gtk.StringFilter( child_1.el );
 
 			// my vars (dec)
 
@@ -2883,6 +2885,28 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
+	public class Xcls_PropertyExpression110 : Object
+	{
+		public Gtk.PropertyExpression el;
+		private Xcls_LeftProps  _this;
+
+
+		// my vars (def)
+
+		// ctor
+		public Xcls_PropertyExpression110(Xcls_LeftProps _owner )
+		{
+			_this = _owner;
+			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
+
+			// my vars (dec)
+
+			// set gobject values
+		}
+
+		// user defined functions
+	}
+
 
 
 
