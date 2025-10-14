@@ -1467,7 +1467,12 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "filter",
-           "Gtk.CustomFilterFunc match_func" : "",
+           "Gtk.CustomFilterFunc match_func" : [
+            " (item) => {",
+            "        var result = expression.evaluate (item);",
+            "        return result.get_string().down().contains (search_text.down());",
+            "    }"
+           ],
            "xtype" : "CustomFilter"
           }
          ],
