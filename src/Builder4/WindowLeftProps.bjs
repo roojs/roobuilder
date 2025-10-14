@@ -1471,7 +1471,6 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "expression",
-             "GLib.ParamSpec pspec" : "null",
              "GLib.Type this_type" : "typeof(string)",
              "Gtk.Expression expression" : "null",
              "string property_name" : "string",
