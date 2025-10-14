@@ -2854,8 +2854,6 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			new Xcls_xtypestrings( _this );
-			this.el.xmodel = _this.xtypestrings.el;
 		}
 
 		// user defined functions
