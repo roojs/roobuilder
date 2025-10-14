@@ -2898,9 +2898,11 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			this.el = new Gtk.CustomFilter(  (item) => {
-        var result = this.expression.evaluate (item);
-        return result.get_string().down().contains (search_text.down());
-    } );
+   Value result = Value (typeof (string));
+    this.expression.evaluate (item, ref result);
+    string str = result.get_string ();
+    return str.down ().contains (search_text.down ());
+} );
 
 			// my vars (dec)
 			this.expression = new Gtk.PropertyExpression (typeof (Gtk.StringObject), null, "string");;
