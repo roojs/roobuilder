@@ -1461,13 +1461,6 @@
          "xtype" : "StringList"
         },
         {
-         "$ strings" : "{}",
-         "$ xns" : "Gtk",
-         "* prop" : "model",
-         "id" : "xtypestrings",
-         "xtype" : "StringList"
-        },
-        {
          "$ xns" : "Gtk",
          "* prop" : "model",
          "GLib.ListModel model" : "",
