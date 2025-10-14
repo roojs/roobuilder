@@ -2903,15 +2903,9 @@ public class Xcls_LeftProps : Object
     } );
 
 			// my vars (dec)
-			this.expression = null;
+			this.expression = new Gtk.PropertyExpression (typeof (Gtk.StringObject), null, "string");;
 
 			// set gobject values
-
-			// init method
-
-			{
-				this.expression = new Gtk.PropertyExpression (typeof (Gtk.StringObject), null, "string");
-			}
 		}
 
 		// user defined functions
