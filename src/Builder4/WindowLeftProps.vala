@@ -2751,6 +2751,7 @@ public class Xcls_LeftProps : Object
 			this.el.enable_search = true;
 			this.el.hexpand = true;
 			this.el.tooltip_text = "This is the class of the node - you can change - we currently dont validate if the new type would be valid though";
+			this.el.search_match_mode = Gtk.StringFilterMatchMode.SUBSTRING;
 
 			//listeners
 			this.el.notify["selected"].connect( () => {
