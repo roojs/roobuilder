@@ -165,10 +165,10 @@ namespace JsRender
 		public void setStores(bool recursive = true)
 		{
 			if (this.node_type == NodePropType.OBJECT && this.parent != null) {
-				this.parent.childstore.append(this as Node);
+				this.insertIntoChildstore();
 			}
 			if (this is NodeProp && this.node_type != NodePropType.OBJECT && this.parent != null) {
-				this.parent.propstore.append(this as NodeProp);
+				this.insertIntoPropstore();
 			}
 
 			// Recursively set stores for all children (if requested)
@@ -178,6 +178,103 @@ namespace JsRender
 					c.setStores(recursive);
 				}
 			}
+		}
+
+		// Insert this node into parent's childstore at the correct position
+		private void insertIntoChildstore()
+		{
+			if (this.parent == null) {
+				return;
+			}
+
+			var parent = this.parent as Node;
+			if (parent == null) {
+				return;
+			}
+
+			// Find this node's position in the parent's children array
+			int my_position = -1;
+			for (int i = 0; i < parent.children.size; i++) {
+				if (parent.children.get(i).oid == this.oid) {
+					my_position = i;
+					break;
+				}
+			}
+
+			if (my_position == -1) {
+				// Not found in children array, append to end
+				parent.childstore.append(this as Node);
+				return;
+			}
+
+			// Walk backwards through children array to find insertion position
+			int insert_position = (int)parent.childstore.get_n_items();
+			for (int i = my_position - 1; i >= 0; i--) {
+				var sibling = parent.children.get(i);
+				if (sibling.node_type == NodePropType.OBJECT) {
+					// Check if this sibling is already in the childstore
+					var sibling_pos = parent.childstore_find(sibling);
+					if (sibling_pos != -1) {
+						// Found a sibling that's already in the store, insert after it
+						insert_position = sibling_pos + 1;
+						break;
+					}
+				}
+			}
+
+			// Insert at the calculated position
+			parent.childstore.insert(insert_position, this as Node);
+		}
+
+		// Insert this node into parent's propstore at the correct position
+		private void insertIntoPropstore()
+		{
+			if (this.parent == null) {
+				return;
+			}
+
+			var parent = this.parent as Node;
+			if (parent == null) {
+				return;
+			}
+
+			var nodeProp = this as NodeProp;
+			if (nodeProp == null) {
+				return;
+			}
+
+			// Find this node's position in the parent's children array
+			int my_position = -1;
+			for (int i = 0; i < parent.children.size; i++) {
+				if (parent.children.get(i).oid == this.oid) {
+					my_position = i;
+					break;
+				}
+			}
+
+			if (my_position == -1) {
+				// Not found in children array, append to end
+				parent.propstore.append(nodeProp);
+				return;
+			}
+
+			// Walk backwards through children array to find insertion position
+			int insert_position = (int)parent.propstore.get_n_items();
+			for (int i = my_position - 1; i >= 0; i--) {
+				var sibling = parent.children.get(i);
+				if (sibling is NodeProp) {
+					// Check if this sibling is already in the propstore
+					var sibling_pos = parent.propstore_find(sibling as NodeProp);
+					if (sibling_pos != -1) {
+						// Found a sibling that's already in the store, insert after it
+						insert_position = sibling_pos + 1;
+						break;
+					}
+				}
+			}
+
+			// Insert at the calculated position
+			parent.propstore.insert(insert_position, nodeProp);
 		}
 
 		public void removeDuplicateOIDs(JsRender file)
