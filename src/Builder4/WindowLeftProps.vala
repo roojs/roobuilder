@@ -2849,7 +2849,8 @@ public class Xcls_LeftProps : Object
 		public Xcls_FilterListModel419(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			this.el = new Gtk.FilterListModel( ,  );
+			new Xcls_xtypestrings( _this );
+			this.el = new Gtk.FilterListModel( _this.xtypestrings.el,  );
 
 			// my vars (dec)
 
