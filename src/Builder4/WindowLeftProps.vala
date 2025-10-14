@@ -2850,7 +2850,7 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			new Xcls_xtypestrings( _this );
-			this.el = new Gtk.FilterListModel( _this.xtypestrings.el,  );
+			this.el = new Gtk.FilterListModel( _this.xtypestrings.el, null );
 
 			// my vars (dec)
 
