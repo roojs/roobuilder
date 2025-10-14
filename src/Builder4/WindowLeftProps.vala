@@ -2903,7 +2903,7 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.match_mode = ;
+			this.el.match_mode = Gtk.StringFilterMatchMode.PREFIX;
 			this.el.ignore_case = true;
 		}
 
