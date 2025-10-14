@@ -1467,7 +1467,6 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "filter",
-           "Gtk.Expression expression" : "",
            "xtype" : "StringFilter"
           }
          ],
