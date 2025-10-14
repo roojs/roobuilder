@@ -2924,7 +2924,7 @@ public class Xcls_LeftProps : Object
 			// my vars (dec)
 
 			// set gobject values
-			this.el.pspec = ;
+			this.el.pspec = null;
 		}
 
 		// user defined functions
