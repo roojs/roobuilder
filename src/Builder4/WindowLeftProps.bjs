@@ -1463,21 +1463,6 @@
            "* prop" : "model",
            "id" : "xtypestrings",
            "xtype" : "StringList"
-          },
-          {
-           "# Gtk.PropertyExpression expression" : "new Gtk.PropertyExpression (typeof (Gtk.StringObject), null, \"string\");",
-           "$ Gtk.CustomFilterFunc match_func" : [
-            " (item) => {",
-            " var search_text = _this.xtypedropdown.el.get_search_string();",
-            "   Value result = Value (typeof (string));",
-            "    this.expression.evaluate (item, ref result);",
-            "    string str = result.get_string ();",
-            "    return str.down ().contains (search_text.down ());",
-            "}"
-           ],
-           "$ xns" : "Gtk",
-           "* prop" : "filter",
-           "xtype" : "CustomFilter"
           }
          ],
          "xtype" : "FilterListModel"
