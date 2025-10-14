@@ -1468,6 +1468,7 @@
            "$ xns" : "Gtk",
            "* prop" : "filter",
            "Gtk.StringFilterMatchMode match_mode" : "",
+           "bool ignore_case" : true,
            "items" : [
             {
              "$ xns" : "Gtk",

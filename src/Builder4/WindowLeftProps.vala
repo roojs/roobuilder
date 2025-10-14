@@ -2740,9 +2740,9 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			_this.xtypedropdown = this;
-			var child_1 = new Xcls_FilterListModel581( _this );
+			var child_1 = new Xcls_FilterListModel64( _this );
 			child_1.ref();
-			var child_2 = new Xcls_PropertyExpression64( _this );
+			var child_2 = new Xcls_PropertyExpression63( _this );
 			child_2.ref();
 			this.el = new Gtk.DropDown( child_1.el, child_2.el );
 
@@ -2815,7 +2815,7 @@ public class Xcls_LeftProps : Object
 			}
 		}
 	}
-	public class Xcls_PropertyExpression64 : Object
+	public class Xcls_PropertyExpression63 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Xcls_LeftProps  _this;
@@ -2824,7 +2824,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression64(Xcls_LeftProps _owner )
+		public Xcls_PropertyExpression63(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );
@@ -2837,7 +2837,7 @@ public class Xcls_LeftProps : Object
 		// user defined functions
 	}
 
-	public class Xcls_FilterListModel581 : Object
+	public class Xcls_FilterListModel64 : Object
 	{
 		public Gtk.FilterListModel el;
 		private Xcls_LeftProps  _this;
@@ -2846,11 +2846,11 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_FilterListModel581(Xcls_LeftProps _owner )
+		public Xcls_FilterListModel64(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			new Xcls_xtypestrings( _this );
-			var child_2 = new Xcls_StringFilter638( _this );
+			var child_2 = new Xcls_StringFilter66( _this );
 			child_2.ref();
 			this.el = new Gtk.FilterListModel( _this.xtypestrings.el, child_2.el );
 
@@ -2884,7 +2884,7 @@ public class Xcls_LeftProps : Object
 		// user defined functions
 	}
 
-	public class Xcls_StringFilter638 : Object
+	public class Xcls_StringFilter66 : Object
 	{
 		public Gtk.StringFilter el;
 		private Xcls_LeftProps  _this;
@@ -2893,10 +2893,10 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_StringFilter638(Xcls_LeftProps _owner )
+		public Xcls_StringFilter66(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_PropertyExpression681( _this );
+			var child_1 = new Xcls_PropertyExpression67( _this );
 			child_1.ref();
 			this.el = new Gtk.StringFilter( child_1.el );
 
@@ -2904,11 +2904,12 @@ public class Xcls_LeftProps : Object
 
 			// set gobject values
 			this.el.match_mode = ;
+			this.el.ignore_case = true;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_PropertyExpression681 : Object
+	public class Xcls_PropertyExpression67 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Xcls_LeftProps  _this;
@@ -2917,7 +2918,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression681(Xcls_LeftProps _owner )
+		public Xcls_PropertyExpression67(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(string), null, "string" );
