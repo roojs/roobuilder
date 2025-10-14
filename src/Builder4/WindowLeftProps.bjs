@@ -1463,6 +1463,12 @@
            "* prop" : "model",
            "id" : "xtypestrings",
            "xtype" : "StringList"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "filter",
+           "Gtk.Expression expression" : "",
+           "xtype" : "StringFilter"
           }
          ],
          "xtype" : "FilterListModel"
