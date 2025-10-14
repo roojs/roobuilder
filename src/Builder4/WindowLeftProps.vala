@@ -2740,10 +2740,9 @@ public class Xcls_LeftProps : Object
 		{
 			_this = _owner;
 			_this.xtypedropdown = this;
-			new Xcls_xtypestrings( _this );
-			var child_2 = new Xcls_PropertyExpression64( _this );
-			child_2.ref();
-			this.el = new Gtk.DropDown( _this.xtypestrings.el, child_2.el );
+			var child_1 = new Xcls_PropertyExpression64( _this );
+			child_1.ref();
+			this.el = new Gtk.DropDown( null, child_1.el );
 
 			// my vars (dec)
 
@@ -2751,6 +2750,8 @@ public class Xcls_LeftProps : Object
 			this.el.enable_search = true;
 			this.el.hexpand = true;
 			this.el.tooltip_text = "This is the class of the node - you can change - we currently dont validate if the new type would be valid though";
+			new Xcls_xtypestrings( _this );
+			this.el.xmodel = _this.xtypestrings.el;
 
 			//listeners
 			this.el.notify["selected"].connect( () => {

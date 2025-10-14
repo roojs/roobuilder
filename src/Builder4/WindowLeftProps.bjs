@@ -1449,7 +1449,7 @@
         {
          "$ strings" : "{}",
          "$ xns" : "Gtk",
-         "* prop" : "model",
+         "* prop" : "xmodel",
          "id" : "xtypestrings",
          "xtype" : "StringList"
         },
