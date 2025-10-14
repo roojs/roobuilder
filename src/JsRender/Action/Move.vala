@@ -9,8 +9,8 @@ namespace JsRender
         int oldParentOid;
         int oldPosition = -1;
         
-        public Move(JsRender file, Node node, Node newParent, int newPosition = -1) {
-            base(file);
+        public Move(Node node, Node newParent, int newPosition = -1) {
+            base(node.file);
             this.nodeOid = node.oid;
             this.newParentOid = newParent.oid;
             this.newPosition = newPosition;
@@ -48,7 +48,7 @@ namespace JsRender
             }
             
             // Create undo action (Move back to original position)
-            this.undoAction = new Action.Move(this.file, node, (Node)node.parent, this.oldPosition);
+            this.undoAction = new Action.Move(node, (Node)node.parent, this.oldPosition);
             
             // Remove from old parent's stores (no recursion needed for move)
             node.removeFromStore(false);

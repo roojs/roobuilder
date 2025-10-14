@@ -1139,7 +1139,7 @@ public class Xcls_WindowLeftTree : Object
 					0 != (_this.main_window.keyboard.get_modifier_state() 
 						& Gdk.ModifierType.CONTROL_MASK);
 			    
-			    
+				
 				
 			 	 
 			 	// -- get position..
@@ -1150,9 +1150,13 @@ public class Xcls_WindowLeftTree : Object
 			
 				}
 			    
-			 	     
+			     
 			       
 			    var dropNode =  Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;
+			    
+			    
+			 	// how do we know if the dropped node is from the same file?
+			 	// FIXME !!!!
 			
 				GLib.debug("dropped node %s", v.get_string());
 				
@@ -1266,8 +1270,7 @@ public class Xcls_WindowLeftTree : Object
 			 		
 			 		tadd = file.action_manager.run(
 						new JsRender.Action.Move(
-							file,
-							_this.view.dragNode,
+							dropNode,
 							node,
 							to_pos
 						)
@@ -1281,7 +1284,7 @@ public class Xcls_WindowLeftTree : Object
 			 		tadd = file.action_manager.run(
 						new JsRender.Action.Add.from_node(
 							file,
-							_this.view.dragNode,
+							dropNode,
 							node,
 							to_pos
 						)
@@ -1522,17 +1525,19 @@ public class Xcls_WindowLeftTree : Object
 		     	GLib.debug("delete Selected - no node slected?");
 			     return;
 		     }
-		    _this.selmodel.el.unselect_all();
-		    if (node.parent != null) {
-				node.remove();
-			 	GLib.debug("delete Selected - done");
-				_this.changed();
-				return;
-			}
-			this.updateModel(null);
-			_this.main_window.windowstate.file.tree = null;
+		
+			_this.selmodel.el.unselect_all();
+			node.file.action_manager.run( new JsRender.Action.Remove(node));    
+		
+			GLib.debug("delete Selected - done");
 			_this.changed();
-			_this.node_selected(null);
+				
+				
+				
+		//	this.updateModel(null);
+		//	_this.main_window.windowstate.file.tree = null;
+		//	_this.changed();
+		// ??	_this.node_selected(null);
 		/*    
 		    print("DELETE SELECTED?");
 		    //_this.view.blockChanges = true;

@@ -645,6 +645,11 @@ public class BuilderApplication : Gtk.Application
 			GLib.debug("Load items failed");
 		}
 
+		// Validate parent-child relationships before output
+		if (file.tree != null) {
+			file.tree.validate();
+		}
+
 		// Serialize the file and print it
 		size_t length;
 		string content = Json.gobject_to_data(file, out length);

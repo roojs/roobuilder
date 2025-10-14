@@ -8,8 +8,8 @@ namespace JsRender
 		bool isNode = true;
         //int lowestOid = -1;
 
-        public Remove(JsRender file, NodeBase node) {
-            base(file);
+        public Remove(  NodeBase node) {
+            base(node.file);
             this.nodeOid = node.oid;
             this.isNode = node is Node;	
             // Find the position of the node in its parent's children
@@ -54,13 +54,15 @@ namespace JsRender
                 this.isNode,  // isNode - Remove only works on Node objects
                 this.position);
             
+
             // Remove the node from stores and file mappings
 			node.parent.remove_from_cache(node);
             node.removeFromStore();
-            node.removeFromFile();
+            node.parent.children.remove(node);
+
+            node.removeFromFile(); // will clear parent..
             
             // Remove from parent's children list
-            node.parent.children.remove(node);
             return null; // 
         }
         public override void undo() {

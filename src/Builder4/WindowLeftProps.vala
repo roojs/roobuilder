@@ -2009,10 +2009,7 @@ public class Xcls_LeftProps : Object
 			this.el.clicked.connect( ( ) => {
 				var n = (JsRender.NodeProp) _this.selmodel.el.selected_item;
 				_this.deletemenu.el.hide();
-				_this.node.file.action_manager.run(new JsRender.Action.Remove(
-					_this.node.file,
-					n
-				));
+				_this.node.file.action_manager.run(new JsRender.Action.Remove( n ));
 			 	_this.changed();
 			});
 		}
@@ -2741,7 +2738,7 @@ public class Xcls_LeftProps : Object
 			_this = _owner;
 			_this.xtypedropdown = this;
 			new Xcls_xtypestrings( _this );
-			var child_2 = new Xcls_PropertyExpression118( _this );
+			var child_2 = new Xcls_PropertyExpression64( _this );
 			child_2.ref();
 			this.el = new Gtk.DropDown( _this.xtypestrings.el, child_2.el );
 
@@ -2838,7 +2835,7 @@ public class Xcls_LeftProps : Object
 		// user defined functions
 	}
 
-	public class Xcls_PropertyExpression118 : Object
+	public class Xcls_PropertyExpression64 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Xcls_LeftProps  _this;
@@ -2847,7 +2844,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression118(Xcls_LeftProps _owner )
+		public Xcls_PropertyExpression64(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );

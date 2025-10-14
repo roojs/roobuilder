@@ -25,7 +25,13 @@ namespace JsRender
 
 		public JsRender? file { get; set; default = null; }
 		// New properties as requested
-		public Gee.ArrayList<NodeBase> children { get; set; default = new Gee.ArrayList<NodeBase>(); }
+		public Gee.ArrayList<NodeBase> children { 
+			get; 
+			set; 
+			default = new Gee.ArrayList<NodeBase>((a, b) => {
+				return ((NodeBase)a).oid == ((NodeBase)b).oid;
+			}); 
+		}
 
  
 
@@ -193,16 +199,15 @@ namespace JsRender
 			}
 
 			// Find this node's position in the parent's children array
-			int my_position = -1;
-			for (int i = 0; i < parent.children.size; i++) {
-				if (parent.children.get(i).oid == this.oid) {
-					my_position = i;
-					break;
-				}
+			int my_position = parent.children.index_of(this);
+
+			if (!parent.children.contains(this)) {
+				// This should never happen - node not found in parent's children array
+				GLib.error("Node with OID %d not found in parent's children array", this.oid);
 			}
 
-			if (my_position == -1) {
-				// Not found in children array, append to end
+			// If this child is in the last position, we can just append
+			if (my_position == parent.children.size - 1) {
 				parent.childstore.append(this as Node);
 				return;
 			}
@@ -211,71 +216,26 @@ namespace JsRender
 			int insert_position = (int)parent.childstore.get_n_items();
 			for (int i = my_position - 1; i >= 0; i--) {
 				var sibling = parent.children.get(i);
-				if (sibling.node_type == NodePropType.OBJECT) {
-					// Check if this sibling is already in the childstore
-					var sibling_pos = parent.childstore_find(sibling);
-					if (sibling_pos != -1) {
-						// Found a sibling that's already in the store, insert after it
-						insert_position = sibling_pos + 1;
-						break;
-					}
+				if (sibling.node_type != NodePropType.OBJECT) {
+					continue;
 				}
+				
+				// Check if this sibling is already in the childstore
+				var sibling_pos = parent.childstore_find(sibling);
+				if (sibling_pos == -1) {
+					// This should never happen - sibling object not found in childstore
+					GLib.error("Sibling object with OID %d found in children array but not in childstore", sibling.oid);
+				}
+				
+				// Found a sibling that's already in the store, insert after it
+				insert_position = sibling_pos + 1;
+				break;
 			}
 
 			// Insert at the calculated position
 			parent.childstore.insert(insert_position, this as Node);
 		}
 
-		// Insert this node into parent's propstore at the correct position
-		private void insertIntoPropstore()
-		{
-			if (this.parent == null) {
-				return;
-			}
-
-			var parent = this.parent as Node;
-			if (parent == null) {
-				return;
-			}
-
-			var nodeProp = this as NodeProp;
-			if (nodeProp == null) {
-				return;
-			}
-
-			// Find this node's position in the parent's children array
-			int my_position = -1;
-			for (int i = 0; i < parent.children.size; i++) {
-				if (parent.children.get(i).oid == this.oid) {
-					my_position = i;
-					break;
-				}
-			}
-
-			if (my_position == -1) {
-				// Not found in children array, append to end
-				parent.propstore.append(nodeProp);
-				return;
-			}
-
-			// Walk backwards through children array to find insertion position
-			int insert_position = (int)parent.propstore.get_n_items();
-			for (int i = my_position - 1; i >= 0; i--) {
-				var sibling = parent.children.get(i);
-				if (sibling is NodeProp) {
-					// Check if this sibling is already in the propstore
-					var sibling_pos = parent.propstore_find(sibling as NodeProp);
-					if (sibling_pos != -1) {
-						// Found a sibling that's already in the store, insert after it
-						insert_position = sibling_pos + 1;
-						break;
-					}
-				}
-			}
-
-			// Insert at the calculated position
-			parent.propstore.insert(insert_position, nodeProp);
-		}
 
 		public void removeDuplicateOIDs(JsRender file)
 		{
@@ -485,11 +445,15 @@ namespace JsRender
 		// managed views.. .
 		// it's also used by addprop to store different types for the same property
 		public GLib.ListStore  childstore {
-			set; get ; default =  new GLib.ListStore( typeof(NodeBase)); // can store both types
+			set; 
+			get ; 
+			default =  new GLib.ListStore( typeof(NodeBase)); // can store both types
 		}
 		// must be kept in sync with items
 		public GLib.ListStore  propstore {
-			set;get ; default =  new GLib.ListStore( typeof(NodeProp));
+			set;
+			get ; 
+			default =  new GLib.ListStore( typeof(NodeProp));
 		}
 		public int childstore_find(NodeBase child) {
 			uint pos;
@@ -504,7 +468,7 @@ namespace JsRender
 				}, out pos) ? (int)pos : -1;
 		}
 
-		public Node? parentNode {
+		public Node? parentNode {  // ?? is this used ? - as we are not protecting parent at present.
 			private set {
 				this.parent = value;
 			}
@@ -514,28 +478,32 @@ namespace JsRender
 		}
 
 		// Remove this node from its parent's stores
-		public void removeFromStore(bool recursive = true) {
+		public void removeFromStore(bool recursive = true) 
+		{
 			// First, recursively remove all children from their stores (if requested)
 			if (recursive) {
 				foreach(var c in this.children) {
 					c.removeFromStore();
 				}
 			}
-
+			var pos = -1;
 			// Then remove this node from its parent's stores
-			if (this.parent != null) {
-				if (this.node_type == NodePropType.OBJECT) {
-					var pos = this.parent.childstore_find(this);
-					if (pos != -1) {
-						this.parent.childstore.remove(pos);
-					}
-				} else {
-					var pos = this.parent.propstore_find(this as NodeProp);
-					if (pos != -1) {
-						this.parent.propstore.remove(pos);
-					}
-				}
+			if (this.parent == null) {
+				return;
 			}
+			if (this.node_type == NodePropType.OBJECT) {
+				pos = this.parent.childstore_find(this);
+				if (pos != -1) {
+					this.parent.childstore.remove(pos);
+				}
+				return;
+			}
+			pos = this.parent.propstore_find(this as NodeProp);
+			if (pos != -1) {
+				this.parent.propstore.remove(pos);
+			}
+		
+		
 		}
 
 		// Remove this node from file-related mappings
@@ -546,6 +514,21 @@ namespace JsRender
 			this.clearOid(true); // clear it
 			this.file = null;
 			this.parent = null;
+		}
+
+		// Validate parent-child relationships
+		// Note: Currently only used by upgrade process
+		public void validate()
+		{
+			// Check that all children have this node as their parent
+			foreach (var child in this.children) {
+				if (child.parent == null || child.parent.oid != this.oid) {
+					GLib.error("Child with OID %d has incorrect parent reference. Expected OID %d, got %s", 
+						child.oid, this.oid, child.parent != null ? child.parent.oid.to_string() : "null");
+				}
+				// Recursively validate children
+				child.validate();
+			}
 		}
 	}
 }

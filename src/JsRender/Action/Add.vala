@@ -81,7 +81,7 @@
 		        
 		        
 		        // Setup undo action after the node has been added (so Remove knows the position)
-		        this.undoAction = new Action.Remove(this.file, node);
+		        this.undoAction = new Action.Remove(node);
 		        
 		    } catch (GLib.Error e) {
 		        GLib.debug("Add action failed to deserialize node: %s", e.message);
