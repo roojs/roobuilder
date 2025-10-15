@@ -1840,7 +1840,7 @@ public class Xcls_LeftProps : Object
 				 	if (prop.parent == null) {
 				 		return;
 			 		}
-			    	_this.show_editor(_this.file, prop.parentNode, prop);
+			    	_this.show_editor(_this.file, prop.parent as JsRender.Node, prop);
 				
 				}
 				

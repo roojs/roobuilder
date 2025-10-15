@@ -110,7 +110,7 @@ public class Xcls_PopoverAddObject : Object
 	}
 	public void hide () {
 	 
-		this.el.hide();
+		this.el.visible = false;
 	}
 	public class Xcls_Box1 : Object
 	{
@@ -509,11 +509,11 @@ public class Xcls_PopoverAddObject : Object
 			 	
 			    var paintable = new Gtk.WidgetPaintable(widget);
 			    this.el.set_icon(paintable, 0,0);
-			    
+			    _this.hide();//instant?
 			  
 			    // the delay enables the drag to work!!!
 			    GLib.Timeout.add(100, () => {
-			 	    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
+			 	 //   _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
 			 	    return false;
 			    });
 			 

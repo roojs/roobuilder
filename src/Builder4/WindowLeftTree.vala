@@ -615,8 +615,8 @@ public class Xcls_WindowLeftTree : Object
 			    
 			    var node =  row_widget.get_data<JsRender.Node>("node");
 			    if (node == null) {
-			    	GLib.warning("No node found from widget");
-			    	return;
+						GLib.warning("No node found from widget");
+						return;
 				}
 				
 				
@@ -626,9 +626,13 @@ public class Xcls_WindowLeftTree : Object
 			     
 				GLib.debug("Prssed %d", (int)  this.el.get_current_button());
 				//_this.deletemenu.el.set_parent(_this.view.el);
+				// no idea what the real interface for this is supposed to be, but setting it twice always causes critical..
+				// moved to realize
+				if (_this.LeftTreeMenu.el.parent != null) {
+					GLib.debug("clearing parent");
+					_this.LeftTreeMenu.el.unparent();
+				}
 				_this.LeftTreeMenu.el.set_parent(_this.view.el);
-				
-				
 				//Gtk.Allocation rect;
 				//_this.view.el.get_allocation(out rect);
 			 	//_this.deletemenu.el.set_has_arrow(false);
@@ -796,6 +800,11 @@ public class Xcls_WindowLeftTree : Object
 			this.el.accept.connect( (drop) => {
 			
 				GLib.debug("got DropTarget:accept");
+				if (drop == null) {
+					GLib.debug("got DropTarget:accept = false");
+					return false;
+				}
+				GLib.debug("got DropTarget:accept = true");
 			  
 				return true;
 			});
@@ -889,13 +898,13 @@ public class Xcls_WindowLeftTree : Object
 						pos = "over";
 					} else {
 				 		 
-				 		if (!drop_on_to.contains(node.parentNode.fqn() ) && !is_control) {
+				 		if (!drop_on_to.contains(node.parent.prop_type ) && !is_control) {
 							//GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
 				 			pos = "over";
 			 			} else {
 							//GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
 							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.parentNode.oid == _this.view.dragNode.oid || node.parentNode.has_parent(_this.view.dragNode)) {
+					 			if (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode)) {
 						 			GLib.debug("shift drop not self not allowed");
 					 				this.addHighlight(null, "");
 									return Gdk.DragAction.ASK;
@@ -972,13 +981,17 @@ public class Xcls_WindowLeftTree : Object
 				}
 			   	
 			     
-			       
+			 	var file = _this.main_window.windowstate.file;      
 			    var dropNode =  Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;
 			    var src_oid = -1;
 			    try {
 			    		var js = Json.from_string(v.get_string());
-			     	src_oid = (int) js.get_object().get_int_member("oid");
-			 	
+			    		if ( js.get_object().has_member("oid")) { 
+			     		src_oid = (int) js.get_object().get_int_member("oid");
+			     		dropNode = file.nodes.get(src_oid) as JsRender.Node;
+			 		} else {
+			 			dropNode.file = file;
+					}
 			 	}catch (GLib.Error e) {
 			 	
 			 	}// how do we know if the dropped node is from the same file?
@@ -986,7 +999,7 @@ public class Xcls_WindowLeftTree : Object
 			
 				GLib.debug("dropped node %s", v.get_string());
 				
-				var file = _this.main_window.windowstate.file;
+			
 				var palete =  file.palete();
 				var ls = file.getSymbolLoader();
 				var drop_on_to = palete.getDropListFromSymbols(ls, dropNode.fqn());
@@ -1038,12 +1051,12 @@ public class Xcls_WindowLeftTree : Object
 					if (node.parent == null) {
 						pos = "over";
 					} else {
-				 		if (!drop_on_to.contains(node.parentNode.fqn())  && !is_control) {
+				 		if (!drop_on_to.contains(node.parent.prop_type)  && !is_control) {
 							pos = "over";
 			 			} else {
-							GLib.debug("drop  contains %s - using %s" , node.parentNode.fqn(), pos);
+							GLib.debug("drop  contains %s - using %s" , node.parent.prop_type, pos);
 							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.parentNode.oid == _this.view.dragNode.oid || node.parentNode.has_parent(_this.view.dragNode)) {
+					 			if (node.oid != -1 && (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode))) {
 						 			GLib.debug("shift drop not self not allowed");
 			  						return false;	
 					 			}
@@ -1061,7 +1074,7 @@ public class Xcls_WindowLeftTree : Object
 						return false;
 			
 					}
-					if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
+					if (node.oid != -1 && (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode))) {
 			 			GLib.debug("shift drop not self not allowed");
 						return false;	
 					}
@@ -1095,7 +1108,8 @@ public class Xcls_WindowLeftTree : Object
 			 	
 				_this.model.selectNode(null); 
 			
-				if (is_shift && _this.view.dragNode != null || src_oid < 0) {
+				// can only move nodes that are in our tree.
+				if (is_shift && _this.view.dragNode != null && dropNode.oid > -1) {
 			
 			 		
 			 		tadd = file.action_manager.run(
@@ -1114,7 +1128,7 @@ public class Xcls_WindowLeftTree : Object
 			 		tadd = file.action_manager.run(
 						new JsRender.Action.Add.from_node(
 							file,
-							file.nodes.get(src_oid), // get the original object..
+							dropNode, // get the original object..
 							new_parent,
 							to_pos
 						)
@@ -1761,7 +1775,7 @@ public class Xcls_WindowLeftTree : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
-			_this.LeftTreeMenu.el.hide();
+			_this.LeftTreeMenu.el.visible = false;
 			 _this.model.deleteSelected();
 			_this.changed();
 			});
@@ -1792,7 +1806,7 @@ public class Xcls_WindowLeftTree : Object
 
 			//listeners
 			this.el.clicked.connect( () => {
-			_this.LeftTreeMenu.el.hide();
+			_this.LeftTreeMenu.el.visible = false;
 			     DialogSaveTemplate.singleton().showIt(
 			            (Gtk.Window) _this.el.get_root (), 
 			            _this.main_window.windowstate.file.palete(), 
@@ -1829,7 +1843,7 @@ public class Xcls_WindowLeftTree : Object
 			//listeners
 			this.el.clicked.connect( () => {
 			    
-			    _this.LeftTreeMenu.el.hide();
+			    _this.LeftTreeMenu.el.visible = false;
 			    var node = _this.getActiveElement();
 			      
 			     

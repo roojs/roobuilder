@@ -95,11 +95,11 @@
              " \t",
              "    var paintable = new Gtk.WidgetPaintable(widget);",
              "    this.el.set_icon(paintable, 0,0);",
-             "    ",
+             "    _this.hide();//instant?",
              "  ",
              "    // the delay enables the drag to work!!!",
              "    GLib.Timeout.add(100, () => {",
-             " \t    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. ",
+             " \t //   _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. ",
              " \t    return false;",
              "    });",
              " ",
@@ -598,7 +598,7 @@
    "| void hide" : [
     "() {",
     " ",
-    "\tthis.el.hide();",
+    "\tthis.el.visible = false;",
     "}",
     ""
    ],

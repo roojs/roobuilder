@@ -1413,7 +1413,7 @@
         "\t\t \tif (prop.parent == null) {",
         "\t\t \t\treturn;",
         "\t \t\t}",
-        "\t    \t_this.show_editor(_this.file, prop.parentNode, prop);",
+        "\t    \t_this.show_editor(_this.file, prop.parent as JsRender.Node, prop);",
         "\t\t",
         "\t\t}",
         "\t\t",
