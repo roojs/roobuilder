@@ -413,20 +413,7 @@ public class JsRender.Node : NodeBase
 
 
 	}
-			/*
-			public void dumpProps(string indent = "")
-			{
-				print("%s:\n" , this.fqn());
-				foreach(int el in this.lines) {
-					print("%d: %s%s\n", el, indent, this.line_map.get(el));
-				}
-				foreach(Node n in this.items) {
-					n.dumpProps(indent + "  ");
-				}
-			}
-			*/
-
-
+			 
 
 	public string uid()
 	{
@@ -624,55 +611,7 @@ public class JsRender.Node : NodeBase
 
 	}
 
-	// really old files...
-/* 
-	public string upgradeKey(string key, string val)
-	{
-		// convert V1 to V2
-		if (key.length < 1) {
-			return key;
-		}
-		switch(key) {
-			case "*prop":
-			case "*args":
-			case ".ctor":
-			case "|init":
-			return "* " + key.substring(1);
-
-			case "pack":
-			return "* " + key;
-		}
-		if (key[0] == '.') { // v2 does not start with '.' ?
-			var bits = key.substring(1).split(":");
-			if (bits[0] == "signal") {
-				return "@" + string.joinv(" ", bits).substring(bits[0].length);
-			}
-			return "# " + string.joinv(" ", bits);
-		}
-		if (key[0] != '|' || key[1] == ' ') { // might be a v2 file..
-			return key;
-		}
-		var bits = key.substring(1).split(":");
-		// two types '$' or '|' << for methods..
-		// javascript
-		if  (Regex.match_simple ("^function\\s*(", val.strip())) {
-			return "| " + key.substring(1);
-		}
-		// vala function..
-
-		if  (Regex.match_simple ("^\\(", val.strip())) {
-
-			return "| " + string.joinv(" ", bits);
-		}
-
-		// guessing it's a property..
-		return "$ " + string.joinv(" ", bits);
-
-
-
-	}
-
-*/
+ 
 
 
 
@@ -938,33 +877,7 @@ public class JsRender.Node : NodeBase
 		this.sortProps();
 
 	}
-	// used to replace propstore, so it does not get wiped by editing a node
-								/*
-								public void dupeProps()
-								{
-									GLib.debug("dupeProps START");
-									var oldstore = this.propstore;
-									this.propstore = new GLib.ListStore(typeof(NodeProp));;
-									for(var i =  0; i < oldstore.n_items; i++ ) {
-										var it = (NodeProp) oldstore.get_item(i);
-										this.propstore.append(it);
-									}
-									GLib.debug("dupeProps END");
-								}
-								*/
-// should not be used??? -
-/* 
-	public void remove_prop(NodeProp prop)
-	{
-		uint pos;
-		if (!this.propstore.find(prop, out pos)) {
-			return;
-		}
-		this.propstore.remove(pos);
-		this.updated_count++;
-
-	}
-		*/
+ 
 
 	public bool has_property_key(NodeProp prop)
 	{
@@ -984,98 +897,7 @@ public class JsRender.Node : NodeBase
 		var r = this.props.get(name);
 		return (r is  NodeProp) ? r as NodeProp : null;
 		 
-	}
-/* 
-	// New property access methods for Phase 1
-	public void add_property(NodeProp prop)
-	{
-		// Add property as child with prop_name set
-		// Validate: prevent duplicate names unless property name ends with "[]"
-		if (this.has_property_key(prop) && !prop.prop_name.has_suffix("[]")) {
-			GLib.warning("duplicate property key '%s' - cannot add - call has_property_key first", prop.prop_name);
-			return;
-		}
-
-		// Set parent reference
-		prop.parent = this;
-
-		// Add to children array
-		this.children.add(prop);
-
-		// Call setStores and setFile for proper initialization
-		prop.setStores();
-		prop.setFile(this.file);
-
-		// Update updated_count
-		this.updated_count++;
-	}
-*/
-/* 
-	public void remove_property(NodeProp prop)
-	{
-		// Remove property from children array
-		this.children.remove(prop);
-
-		// Update updated_count
-		this.updated_count++;
-
-		// Update propstore for UI widgets
-		uint pos;
-		if (this.propstore.find(prop, out pos)) {
-			this.propstore.remove(pos);
-		}
-	}
-*/
-/*  // props.values?
-	public Gee.ArrayList<NodeProp> get_properties()
-	{
-		// Return all children with non-empty prop_name
-		var ret = new Gee.ArrayList<NodeProp>();
-		foreach (var child in this.children) {
-			if (child is NodeProp) {
-				var prop = child as NodeProp;
-				if (prop.prop_name != "") {
-					ret.add(prop);
-				}
-			}
-		}
-		return ret;
-	}
-		*/
-/* 
-// listeners.values?
-	public Gee.ArrayList<NodeProp> get_listeners_list()
-	{
-		// Return all children with non-empty prop_name and ptype == LISTENER
-		var ret = new Gee.ArrayList<NodeProp>();
-		foreach (var child in this.children) {
-			if (child is NodeProp) {
-				var prop = child as NodeProp;
-				if (prop.prop_name != "" && prop.node_type == NodePropType.LISTENER) {
-					ret.add(prop);
-				}
-			}
-		}
-		return ret;
-	}
-		*/
-// ?? is this used?
-/* 
-	public Gee.ArrayList<NodeProp> get_non_listener_properties()
-	{
-		// Return all children with non-empty prop_name and ptype != LISTENER
-		var ret = new Gee.ArrayList<NodeProp>();
-		foreach (var child in this.children) {
-			if (child is NodeProp) {
-				var prop = child as NodeProp;
-				if (prop.prop_name != "" && prop.node_type != NodePropType.LISTENER) {
-					ret.add(prop);
-				}
-			}
-		}
-		return ret;
-	}
-*/
+	} 
 	// Generic method to replace props/listeners if needed
 	public Gee.ArrayList<NodeProp> get_properties_by_type(NodePropType? filter_type = null)
 	{

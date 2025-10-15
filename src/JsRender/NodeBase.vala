@@ -467,16 +467,7 @@ namespace JsRender
 					return ((NodeProp)a).oid == ((NodeProp)b).oid;
 				}, out pos) ? (int)pos : -1;
 		}
-		/*  this causes problems as it's serailizable
-		public Node? parentNode {  // ?? is this used ? - as we are not protecting parent at present.
-			private set {
-				this.parent = value;
-			}
-			get {
-				return this.parent is Node ? ((Node)this.parent) : null;
-			}
-		}
-		*/ 
+		 
 		// Remove this node from its parent's stores
 		public void removeFromStore(bool recursive = true) 
 		{

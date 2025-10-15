@@ -552,57 +552,7 @@ public class Action.ChangeProp : Action.Base {
 
 **Significant Issues to Address**:
 1. ✅ New pulldown for type - now updating with Action.ChangeProp
-2.{
-  "node-type" : 9,
-  "oid" : 20,
-  "prop-type" : "Roo.form.TextField",
-  "children" : [
-	{
-	  "node-type" : 8,
-	  "oid" : 21,
-	  "prop-name" : "specialkey",
-	  "prop-val" : [
-		"function (_self, e)",
-		"{",
-		"    if (e.getKey() == 13) {",
-		"        _this.display_name.setValue(_this.name.getValue());",
-		"        //_this.dialog.el.mask(\"Saving\");",
-		"        _this.form.doAction(\"submit\");",
-		"   }",
-		"}"
-	  ]
-	},
-	{
-	  "node-type" : 8,
-	  "oid" : 22,
-	  "prop-name" : "render",
-	  "prop-val" : [
-		"function (_self)",
-		"{",
-		"    _this.name = this;",
-		"}"
-	  ]
-	},
-	{
-	  "node-type" : 2,
-	  "oid" : 23,
-	  "prop-name" : "fieldLabel",
-	  "prop-val" : "Name"
-	},
-	{
-	  "node-type" : 2,
-	  "oid" : 24,
-	  "prop-name" : "width",
-	  "prop-val" : 200
-	},
-	{
-	  "node-type" : 2,
-	  "oid" : 25,
-	  "prop-name" : "name",
-	  "prop-val" : "name"
-	}
-  ]
-} ✅ New prop_name editor is not updating left tree
+2. ✅ New prop_name editor is not updating left tree
 3. ✅ Class search would be better as a not 'starts with'
 4. ❌ Test drag drop, object add and property add
     * ✅ Add nodes works (dbl click)
