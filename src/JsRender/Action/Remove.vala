@@ -50,7 +50,9 @@ namespace JsRender
             string nodeJson = generator.to_data(null);
             
             this.undoAction = new Action.Add(
-                this.file, (Node)node.parent, nodeJson,
+                this.file, 
+				nodeJson,
+				(Node)node.parent,
                 this.isNode,  // isNode - Remove only works on Node objects
                 this.position);
             

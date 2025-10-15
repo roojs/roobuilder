@@ -549,8 +549,8 @@ public class Xcls_LeftProps : Object
 			 	
 			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
 					_this.node.file,
-					_this.node,
 					add,
+					_this.node,
 					-1
 				));
 			 	
@@ -621,8 +621,8 @@ public class Xcls_LeftProps : Object
 			 	
 			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
 					_this.node.file,
-					_this.node,
 					add,
+					_this.node,
 					-1
 				));
 			 	
@@ -693,8 +693,8 @@ public class Xcls_LeftProps : Object
 			 	
 			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
 					_this.node.file,
-					_this.node,
 					add,
+					_this.node,
 					-1
 				));
 			 	
@@ -764,8 +764,8 @@ public class Xcls_LeftProps : Object
 			 	
 			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
 					_this.node.file,
-					_this.node,
 					add,
+					_this.node,
 					-1
 				));
 			 	
@@ -893,8 +893,8 @@ public class Xcls_LeftProps : Object
 			 	
 			 	_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
 					_this.node.file,
-					_this.node,
 					add,
+					_this.node,
 					-1
 				));
 			 	

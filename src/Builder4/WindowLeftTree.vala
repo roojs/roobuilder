@@ -796,186 +796,7 @@ public class Xcls_WindowLeftTree : Object
 			this.el.accept.connect( (drop) => {
 			
 				GLib.debug("got DropTarget:accept");
-			 
-			// NOT REALLY NEEDED? = put stuff in drop?
-			
-			
-			/* (  ctx, x, y, time)  => {
-			      //Seed.print("TARGET: drag-drop");
-			   
-			   
-			    var src = Gtk.drag_get_source_widget(ctx);
-			     
-			   if (src != this.el) {
-			   
-			    
-			       
-			       this.drag_in_motion = false;   
-			            // request data that will be recieved by the recieve...              
-			        Gtk.drag_get_data
-			        (
-			                this.el,         // will receive 'drag-data-received' signal 
-			                ctx,        // represents the current state of the DnD 
-			                Gdk.Atom.intern("application/json",true),    // the target type we want 
-			                time            // time stamp 
-			        );
-			
-			         
-			        // No target offered by source => error
-			   
-			
-			         return  false;
-			     }
-			     
-			     // handle drop around self..
-			     
-			                  
-			            
-			    //print("GETTING POS");
-			    var  targetData = "";
-			    
-			    Gtk.TreePath path;
-			    Gtk.TreeViewDropPosition pos;
-			    var isOver = _this.view.el.get_dest_row_at_pos(this.drag_x,this.drag_y, out path, out pos);
-			    
-			    // if there are not items in the tree.. the we have to set isOver to true for anything..
-			    var isEmpty = false;
-			    if (_this.model.el.iter_n_children(null) < 1) {
-			        print("got NO children?\n");
-			        isOver = true; //??? 
-			        isEmpty = true;
-			        pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
-			    }
-			    
-			     
-			     
-			    //var action = Gdk.DragAction.COPY;
-			        // unless we are copying!!! ctl button..
-			    
-			    var action = (ctx.get_actions() & Gdk.DragAction.MOVE) > 0 ?
-			                 Gdk.DragAction.COPY  : Gdk.DragAction.MOVE ;
-			                // Gdk.DragAction.MOVE : Gdk.DragAction.COPY ;
-			
-			      
-			    if (_this.model.el.iter_n_children(null) < 1) {
-			        // no children.. -- asume it's ok..
-			        
-			        targetData = "|%d|".printf((int)Gtk.TreeViewDropPosition.INTO_OR_AFTER);
-			         
-			        // continue through to allow drop...
-			
-			    } else {
-			                
-			                
-			    
-			                
-			                
-			                //print("ISOVER? " + isOver);
-			        if (!isOver) {
-			            
-			            Gtk.drag_finish (ctx, false, false, time);        // drop failed..
-			            return true; // not over apoint!?! - no action on drop or motion..
-			        }
-			                
-			        // drag node is parent of child..
-			        //console.log("SRC TREEPATH: " + src.treepath);
-			        //console.log("TARGET TREEPATH: " + data.path.to_string());
-			        
-			        // nned to check a  few here..
-			        //Gtk.TreeViewDropPosition.INTO_OR_AFTER
-			        //Gtk.TreeViewDropPosition.INTO_OR_BEFORE
-			        //Gtk.TreeViewDropPosition.AFTER
-			        //Gtk.TreeViewDropPosition.BEFORE
-			        
-			        // locally dragged items to not really use the 
-			        var selection_text = this.dragData;
-			        
-			        
-			        
-			        if (selection_text == null || selection_text.length < 1) {
-			            //print("Error  - drag selection text returned NULL");
-			          
-			             Gtk.drag_finish (ctx, false, false, time);        // drop failed..
-			             return true; /// -- fixme -- this is not really correct..
-			        }                
-			                
-			                // see if we are dragging into ourself?
-			                print ("got selection text of  " + selection_text);
-			        
-			        var target_path = path.to_string();
-			        //print("target_path="+target_path);
-			
-			        // 
-			        if (selection_text  == target_path) {
-			            print("self drag ?? == we should perhaps allow copy onto self..\n");
-			            
-			             Gtk.drag_finish (ctx, false, false, time);        // drop failed..
-			
-			             return true; /// -- fixme -- this is not really correct..
-			
-			        }
-			                
-			        // check that 
-			        //print("DUMPING DATA");
-			        //console.dump(data);
-			        // path, pos
-			        
-			        //print(data.path.to_string() +' => '+  data.pos);
-			        
-			        // dropList is a list of xtypes that this node could be dropped on.
-			        // it is set up when we start to drag..
-			        
-			        
-			        targetData = _this.model.findDropNodeByPath( path.to_string(), this.dropList, pos);
-			            
-			        print("targetDAta: " + targetData +"\n");
-			        
-			        if (targetData.length < 1) {
-			            //print("Can not find drop node path");
-			             
-			            Gtk.drag_finish (ctx, false, false, time);        // drop failed..
-			            return true;
-			        }
-			                    
-			                
-			                
-			                // continue on to allow drop..
-			  }
-			        // at this point, drag is not in motion... -- as checked above... - so it's a real drop event..
-			
-			
-			     var delete_selection_data = false;
-			        
-			    if (action == Gdk.DragAction.ASK)  {
-			        // Ask the user to move or copy, then set the ctx action. 
-			    }
-			
-			    if (action == Gdk.DragAction.MOVE) {
-			        delete_selection_data = true;
-			    }
-			      
-			                // drag around.. - reorder..
-			    _this.model.moveNode(targetData, action);
-			        
-			       
-			        
-			        
-			        
-			        // we can send stuff to souce here...
-			
-			
-			// do we always say failure, so we handle the reall drop?
-			    Gtk.drag_finish (ctx, false, false,time); //delete_selection_data, time);
-			
-			    return true;
-			 
-			 
-			 
-			 
-			 
-			 
-			}
-			*/
+			  
 				return true;
 			});
 			this.el.motion.connect( (  x, y) => {
@@ -1149,13 +970,18 @@ public class Xcls_WindowLeftTree : Object
 					this.lastDragNode = Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node; 
 			
 				}
-			    
+			   	
 			     
 			       
 			    var dropNode =  Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;
-			    
-			    
-			 	// how do we know if the dropped node is from the same file?
+			    var src_oid = -1;
+			    try {
+			    		var js = Json.from_string(v.get_string());
+			     	src_oid = (int) js.get_object().get_int_member("oid");
+			 	
+			 	}catch (GLib.Error e) {
+			 	
+			 	}// how do we know if the dropped node is from the same file?
 			 	// FIXME !!!!
 			
 				GLib.debug("dropped node %s", v.get_string());
@@ -1182,8 +1008,8 @@ public class Xcls_WindowLeftTree : Object
 					tadd = file.action_manager.run(
 						new JsRender.Action.Add(
 							file,
+							v.get_string(),	
 							null,
-							v.get_string(),
 							true,
 							-1
 						)
@@ -1206,7 +1032,8 @@ public class Xcls_WindowLeftTree : Object
 				}
 			 	
 				var node =  row_widget.get_data<JsRender.Node>("node");
-			
+				var new_parent = node;
+				
 			 	if (pos == "above" || pos == "below") {
 					if (node.parent == null) {
 						pos = "over";
@@ -1239,6 +1066,7 @@ public class Xcls_WindowLeftTree : Object
 						return false;	
 					}
 				}
+				
 			 	var to_pos = -1; 
 			 	switch(pos) {
 			 		case "over":
@@ -1250,12 +1078,14 @@ public class Xcls_WindowLeftTree : Object
 			 		case "above":
 			 			GLib.debug("Above - insertBefore");
 			 			to_pos = node.parent.children.index_of(node);
+			 			new_parent = node.parent as JsRender.Node;
 			 			break;
 			 			
 			 		case "below":
 			 			GLib.debug("Below - insertAfter"); 		
 				 		
 				 		to_pos = node.parent.children.index_of(node) +1;
+				 		new_parent = node.parent as JsRender.Node;
 			 			break;
 				 		  
 			 		default:
@@ -1265,13 +1095,13 @@ public class Xcls_WindowLeftTree : Object
 			 	
 				_this.model.selectNode(null); 
 			
-				if (is_shift && _this.view.dragNode != null) {
+				if (is_shift && _this.view.dragNode != null || src_oid < 0) {
 			
 			 		
 			 		tadd = file.action_manager.run(
 						new JsRender.Action.Move(
 							dropNode,
-							node,
+							new_parent,
 							to_pos
 						)
 					) as JsRender.Node;
@@ -1284,8 +1114,8 @@ public class Xcls_WindowLeftTree : Object
 			 		tadd = file.action_manager.run(
 						new JsRender.Action.Add.from_node(
 							file,
-							dropNode,
-							node,
+							file.nodes.get(src_oid), // get the original object..
+							new_parent,
 							to_pos
 						)
 					) as JsRender.Node;

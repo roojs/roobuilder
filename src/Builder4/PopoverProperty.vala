@@ -373,8 +373,9 @@ public class Xcls_PopoverProperty : Object
 				
 				_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
 					_this.node.file,
-					_this.node,
 					prop,
+					_this.node,
+					
 					-1
 				));
 				// hide self

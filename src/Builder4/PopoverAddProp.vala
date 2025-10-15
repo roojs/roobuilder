@@ -449,8 +449,8 @@ public class Xcls_PopoverAddProp : Object
 					
 					var add = f.action_manager.run( new JsRender.Action.Add(
 						f,
-						_this.node,
 						Json.gobject_to_data(prop, out l),
+						_this.node,
 						true,  // isNode - adding a Node (checked at line 438)
 						-1
 					)) as JsRender.Node;
@@ -465,8 +465,8 @@ public class Xcls_PopoverAddProp : Object
 				_this.el.hide();
 				var add = f.action_manager.run( new JsRender.Action.Add(
 					f,
+					Json.gobject_to_data(prop, out l),	
 					_this.node,
-					Json.gobject_to_data(prop, out l),
 					false,
 					-1
 				)) as JsRender.NodeProp;

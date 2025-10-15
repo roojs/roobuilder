@@ -813,8 +813,8 @@ public class Xcls_PopoverAddObject : Object
 					var tadd = ws.file.action_manager.run(
 						new JsRender.Action.Add(
 							ws.file,
-							null,
 							Json.gobject_to_data(add, out l),
+							null,
 							true,
 							-1
 						)
@@ -836,8 +836,8 @@ public class Xcls_PopoverAddObject : Object
 				var nadd = ws.file.action_manager.run(
 					new JsRender.Action.Add(
 						ws.file,
-						addto,
 						Json.gobject_to_data(add, out l),
+						addto,
 						true,
 						-1
 					)

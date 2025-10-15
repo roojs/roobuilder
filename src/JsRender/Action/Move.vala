@@ -17,7 +17,8 @@ namespace JsRender
             this.oldParentOid = node.parent != null ? node.parent.oid : -1;
         }
 
-        public override NodeBase? run() {
+        public override NodeBase? run() 
+		{
             
             // Get the node from OID
             var nodeBase = this.file.nodes.get(this.nodeOid);
@@ -63,7 +64,8 @@ namespace JsRender
             } else {
                 newParent.children.insert(this.newPosition, node);
             }
-            
+            GLib.debug("Move action - adding node with OID %d to new parent with OID %d @ position %d", 
+					node.oid, newParent.oid, this.newPosition);
             // Add to new parent's stores (no recursion needed for move)
             node.setStores(false);
             
