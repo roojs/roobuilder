@@ -603,18 +603,18 @@ public class Action.ChangeProp : Action.Base {
 	}
   ]
 } ✅ New prop_name editor is not updating left tree
-3. ❌ Class search would be better as a not 'starts with'
+3. ✅ Class search would be better as a not 'starts with'
 4. ❌ Test drag drop, object add and property add
     * ✅ Add nodes works (dbl click)
     * ✅ Add props works (dblclick)
-    * ❌ Drag add Node fails (from object list)
-	* Drag from other window?
+    * ✅ Drag add Node fails (from object list)
+	* ❌Drag from other window? - need to check if drag is active on current window...
 		
-    * ❌ Drag Nodes  (not working)
+    * ✅ Drag Nodes  (not working)
 		* ✅ Drag Copy Works
 		* ✅ Drag Move?
 	* ✅ Remove Node?
-5. ❌ Add logging to actions - so that we can debug the actions only taking place
+5. ✅ Add logging to actions - so that we can debug the actions only taking place
 6. ❌ See if we can change the undo/redo to use the action manager
 7. ✅ Saving file after class change blanks out children nodes
 8. ❌ tree has expanders on nodes without children
