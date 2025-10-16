@@ -408,7 +408,7 @@ public class CodeInfo : Object
 			// set gobject values
 			this.el.enable_search = true;
 			this.el.hexpand = true;
-			this.el.search_match_mode = ;
+			this.el.search_match_mode = Gtk.StringFilterMatchMode.SUBSTRING;
 
 			//listeners
 			this.el.notify["selected"].connect( () => {
