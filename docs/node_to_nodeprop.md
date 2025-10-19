@@ -558,7 +558,9 @@ public class Action.ChangeProp : Action.Base {
     * ✅ Add nodes works (dbl click)
     * ✅ Add props works (dblclick)
     * ✅ Drag add Node fails (from object list)
-	* ❌Drag from other window? - need to check if drag is active on current window...
+	* ❌Drag from other window? - need to check if drag is active on current window...	
+	    Just need to detect if drag is active
+
 		
     * ✅ Drag Nodes  (not working)
 		* ✅ Drag Copy Works
