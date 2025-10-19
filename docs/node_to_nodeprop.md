@@ -564,10 +564,11 @@ public class Action.ChangeProp : Action.Base {
 		* ✅ Drag Copy Works
 		* ✅ Drag Move?
 	* ✅ Remove Node?
+	* ❌ edit property (save) - is adding a node.
 5. ✅ Add logging to actions - so that we can debug the actions only taking place
-6. ❌ See if we can change the undo/redo to use the action manager
+6. ✅ See if we can change the undo/redo to use the action manager
 7. ✅ Saving file after class change blanks out children nodes
-8. ❌ tree has expanders on nodes without children
+8. ✅ tree has expanders on nodes without children
 9. ? verify the 'other's work..
 
 **Implementation Status**:

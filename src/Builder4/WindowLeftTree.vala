@@ -1567,37 +1567,8 @@ public class Xcls_WindowLeftTree : Object
 				
 				node.set_data<Gtk.Widget>("tree-row", expand.get_parent().get_parent());
 				expand.get_parent().get_parent().set_data<JsRender.Node>("node", node);
-				
-			   //GLib.debug("node is %s", node.get_type().name());
-			// was item (1) in old layout
 			
-				
-			 
-			 	 /* 
-			 	var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
-			    var clsname = node.fqn();
-			    
-			    var clsb = clsname.split(".");
-			    var sub = clsb.length > 1 ? clsb[1].down()  : "";
-			     
-			    var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
-			    try { 
-			    	 
-			    		 
-					if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
-					    img.set_from_file(fn);
-					 	 
-				 	} else {
-				 		img.set_from_paintable(
-						 	ic.lookup_icon (
-						 		"media-playback-stop", null,  16,1, 
-				    			 Gtk.TextDirection.NONE, 0
-			    			)
-						 );
-				 	}
-			 	} catch (GLib.Error e) {}
-			    */
-			    expand.set_hide_expander( node.children.size < 1 );
+			    expand.set_hide_expander( node.childstore.get_n_items() < 1 );
 			 	expand.set_list_row(lr);
 			 	
 			 	node.bind_property("iconResourceName",
