@@ -554,13 +554,11 @@ public class Action.ChangeProp : Action.Base {
 1. ✅ New pulldown for type - now updating with Action.ChangeProp
 2. ✅ New prop_name editor is not updating left tree
 3. ✅ Class search would be better as a not 'starts with'
-4. ❌ Test drag drop, object add and property add
+4. ✅ Test drag drop, object add and property add
     * ✅ Add nodes works (dbl click)
     * ✅ Add props works (dblclick)
     * ✅ Drag add Node fails (from object list)
-	* ❌Drag from other window? - need to check if drag is active on current window...	
-	    Just need to detect if drag is active
-
+	* ✅Drag from other window? - need to check if drag is active on current window...	
 		
     * ✅ Drag Nodes  (not working)
 		* ✅ Drag Copy Works

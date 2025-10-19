@@ -156,9 +156,8 @@ namespace JsRender
 			}
 
 			// Add the node to the file's OID mapping
-			if (this.oid != -1) {
-				file.nodes.set(this.oid, this);
-			}
+			file.nodes.set(this.oid, this);
+			
 
 			var roid = this.oid;
 			foreach(var c in this.children) {
@@ -271,7 +270,7 @@ namespace JsRender
 
 		public Json.Node serialize_property (string property_name, Value value, ParamSpec pspec)
 		{
-			GLib.debug("serialize_property %s", property_name);
+			//GLib.debug("serialize_property %s", property_name); (a bit excessive)
 			switch (property_name) {
 				case "children":
 					if (this.children.size < 1 ){

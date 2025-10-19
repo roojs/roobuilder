@@ -718,10 +718,8 @@
              "listeners" : {
               "clicked" : [
                "( ) => {",
-               "\tvar n = (JsRender.NodeProp) _this.selmodel.el.selected_item;",
                "\t_this.deletemenu.el.hide();",
-               "\t_this.node.file.action_manager.run(new JsRender.Action.Remove( n ));",
-               " \t_this.changed();",
+               "\t_this.deleteSelected();",
                "}",
                ""
               ]
@@ -844,6 +842,16 @@
           "\treturn   (JsRender.NodeProp) this.el.get_item(row);",
           "",
           "\t ",
+          "}"
+         ],
+         "| JsRender.NodeProp? getSelectedProp" : [
+          "() {",
+          " if (this.el.selected_item == null) {",
+          "\t\treturn null;",
+          "  }\t",
+          "  ",
+          "   return (JsRender.NodeProp)this.el.selected_item;",
+          "  ",
           "}"
          ],
          "| int propToRow" : [
@@ -1199,36 +1207,6 @@
          ],
          "title" : "Value",
          "xtype" : "ColumnViewColumn"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : false,
-         "id" : "ContextMenu",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "child",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-           "int spacing" : 0,
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "label" : "Delete",
-             "listeners" : {
-              "activate" : [
-               "  ( )  =>{",
-               "\t_this.deleteSelected();",
-               "\t",
-               "}"
-              ]
-             },
-             "xtype" : "Button"
-            }
-           ],
-           "xtype" : "Box"
-          }
-         ],
-         "xtype" : "Popover"
         }
        ],
        "string name" : "leftprops-view",
@@ -1534,40 +1512,23 @@
    "| void deleteSelected" : [
     " () {",
     "    ",
-    "\t\treturn;",
-    "\t\t/*",
-    "        ",
-    "        Gtk.TreeIter iter;",
-    "        Gtk.TreeModel mod;",
-    "        ",
-    "        var s = this.view.el.get_selection();",
-    "        s.get_selected(out mod, out iter);",
-    "             ",
-    "              ",
-    "        GLib.Value gval;",
-    "        mod.get_value(iter, 0 , out gval);",
-    "        var prop = (JsRender.NodeProp)gval;",
+    "\t\t",
+    "\t\t  ",
+    "        var prop = _this.selmodel.getSelectedProp();",
+    "         ",
     "        if (prop == null) {",
-    "\t        this.load(this.file, this.node);    ",
-    "        \treturn;",
-    "    \t}",
+    "        \t// ? why",
+    "\t       // this.load(this.file, this.node);    ",
+    "        \t\treturn;",
+    "\t\t}",
+    "\t\t",
     "    \t// stop editor after fetching property - otherwise prop is null.",
     "        this.stop_editor();",
-    "        ",
-    "            \t",
-    "        switch(prop.node_type) {",
-    "            case JsRender.NodePropType.LISTENER:",
-    "                this.node.listeners.unset(prop.to_index_key());",
-    "                break;",
-    "                ",
-    "            default:",
-    "                this.node.props.unset(prop.to_index_key());",
-    "                break;",
-    "        }",
-    "        this.load(this.file, this.node);",
-    "        ",
+    "        _this.file.action_manager.run(",
+    "        \t   new JsRender.Action.Remove(prop)",
+    "    \t   );",
     "        _this.changed();",
-    "        */",
+    "        ",
     "}"
    ],
    "| void load" : [

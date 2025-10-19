@@ -94,6 +94,11 @@ public class Xcls_PopoverProperty : Object
 				return;
 		
 			}
+			if (this.prop == null) {
+				// oocur on adding new properti - in theory we should be catching this by is_new?
+		
+				return;
+			}
 			if (this.original_prop != null && !this.prop.equals(this.original_prop)) {
 				// this is convoluted..
 				_this.mainwindow.windowstate.left_props.changed(); 
@@ -123,7 +128,7 @@ public class Xcls_PopoverProperty : Object
 		}
 		this.prop = prop;
 		this.node = node;
-		this.action = is_new ? null : new JsRender.Action.ChangeProp(node.file, node);
+		this.action = is_new ? null : new JsRender.Action.ChangeProp(node.file, prop);
 		
 		_this.kname.el.set_text(prop.prop_name);
 		_this.ktype.el.set_text(prop.prop_type);

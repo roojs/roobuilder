@@ -986,7 +986,7 @@ public class Xcls_WindowLeftTree : Object
 			    var src_oid = -1;
 			    try {
 			    		var js = Json.from_string(v.get_string());
-			    		if ( js.get_object().has_member("oid")) { 
+			    		if (_this.view.dragNode !=null &&  js.get_object().has_member("oid")) { 
 			     		src_oid = (int) js.get_object().get_int_member("oid");
 			     		dropNode = file.nodes.get(src_oid) as JsRender.Node;
 			 		} else {
@@ -1107,6 +1107,8 @@ public class Xcls_WindowLeftTree : Object
 			 	}
 			 	
 				_this.model.selectNode(null); 
+			
+			 
 			
 				// can only move nodes that are in our tree.
 				if (is_shift && _this.view.dragNode != null && dropNode.oid > -1) {

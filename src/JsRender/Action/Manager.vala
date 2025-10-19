@@ -75,7 +75,7 @@ namespace JsRender
             var result = action.run();
             
             // Move it back to undo queue
-            this.undoQueue.add(action);
+            this.undoQueue.add(action.undoAction);
             
             // Emit signals
             this.onRedoUpdated(this.redoQueue.size > 0);

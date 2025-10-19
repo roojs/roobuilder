@@ -5,7 +5,7 @@ namespace JsRender
 	{
 
 		protected JsRender file;
-        protected Action.Base? undoAction {set;get;default = null;}
+        public Action.Base? undoAction {protected set; get; default = null;}
         
         
 		protected Base(JsRender file) 

@@ -1013,8 +1013,8 @@ namespace JsRender {
 							if (tree_obj.has_member("items")) {
 								// This is a legacy file - don't deserialize the tree here
 								// It will be handled by the legacy loading logic
-								value.set_object(null);
-								return true;
+								//value.set_object(null);
+								return false;
 							}
 
 							// New format only - use direct deserialization

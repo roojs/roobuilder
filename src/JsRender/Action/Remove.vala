@@ -7,7 +7,7 @@ namespace JsRender
         int position = -1;
 		bool isNode = true;
         //int lowestOid = -1;
-
+ 
         public Remove(  NodeBase node) {
             base(node.file);
             this.nodeOid = node.oid;
@@ -26,12 +26,11 @@ namespace JsRender
         public override NodeBase? run( ) {
             
             // Get the node from OID
-            var nodeBase = this.file.nodes.get(this.nodeOid);
-            if (nodeBase == null || !(nodeBase is Node)) {
-                GLib.debug("Remove action - node with OID %d not found", this.nodeOid);
+            var node = this.file.nodes.get(this.nodeOid);
+            if (node == null ) {
+                GLib.error("Remove action - node with OID %d not found", this.nodeOid);
                 return null;
             }
-            var node = (Node)nodeBase;
 
             if (node.parent == null) {
                 GLib.debug("remove - parent is null?");

@@ -22,7 +22,6 @@ public class Xcls_LeftProps : Object
 	public Xcls_model model;
 	public Xcls_keycol keycol;
 	public Xcls_valcol valcol;
-	public Xcls_ContextMenu ContextMenu;
 	public Xcls_xtypedropdown xtypedropdown;
 	public Xcls_xtypestrings xtypestrings;
 
@@ -145,40 +144,23 @@ public class Xcls_LeftProps : Object
 	}
 	public void deleteSelected () {
 	    
-			return;
-			/*
-	        
-	        Gtk.TreeIter iter;
-	        Gtk.TreeModel mod;
-	        
-	        var s = this.view.el.get_selection();
-	        s.get_selected(out mod, out iter);
-	             
-	              
-	        GLib.Value gval;
-	        mod.get_value(iter, 0 , out gval);
-	        var prop = (JsRender.NodeProp)gval;
+			
+			  
+	        var prop = _this.selmodel.getSelectedProp();
+	         
 	        if (prop == null) {
-		        this.load(this.file, this.node);    
-	        	return;
-	    	}
+	        	// ? why
+		       // this.load(this.file, this.node);    
+	        		return;
+			}
+			
 	    	// stop editor after fetching property - otherwise prop is null.
 	        this.stop_editor();
-	        
-	            	
-	        switch(prop.node_type) {
-	            case JsRender.NodePropType.LISTENER:
-	                this.node.listeners.unset(prop.to_index_key());
-	                break;
-	                
-	            default:
-	                this.node.props.unset(prop.to_index_key());
-	                break;
-	        }
-	        this.load(this.file, this.node);
-	        
+	        _this.file.action_manager.run(
+	        	   new JsRender.Action.Remove(prop)
+	    	   );
 	        _this.changed();
-	        */
+	        
 	}
 	public void removeErrors () {
 			if (this.error_widgets == null || this.error_widgets.size < 1) {
@@ -1741,7 +1723,6 @@ public class Xcls_LeftProps : Object
 			this.el.append_column ( _this.keycol.el  );
 			new Xcls_valcol( _this );
 			this.el.append_column ( _this.valcol.el  );
-			new Xcls_ContextMenu( _this );
 		}
 
 		// user defined functions
@@ -2007,10 +1988,8 @@ public class Xcls_LeftProps : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
-				var n = (JsRender.NodeProp) _this.selmodel.el.selected_item;
 				_this.deletemenu.el.hide();
-				_this.node.file.action_manager.run(new JsRender.Action.Remove( n ));
-			 	_this.changed();
+				_this.deleteSelected();
 			});
 		}
 
@@ -2197,6 +2176,14 @@ public class Xcls_LeftProps : Object
 		public void startEditing (JsRender.NodeProp prop) {
 			// should we call select?? - caller does int (from windowstate)
 			
+		}
+		public JsRender.NodeProp? getSelectedProp () {
+		 if (this.el.selected_item == null) {
+				return null;
+		  }	
+		  
+		   return (JsRender.NodeProp)this.el.selected_item;
+		  
 		}
 		public void selectProp (JsRender.NodeProp prop) {
 			for (var i = 0 ; i < this.el.n_items; i++) {
@@ -2616,86 +2603,6 @@ public class Xcls_LeftProps : Object
 
 		// user defined functions
 	}
-
-
-	public class Xcls_ContextMenu : Object
-	{
-		public Gtk.Popover el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_ContextMenu(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			_this.ContextMenu = this;
-			this.el = new Gtk.Popover();
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_Box59( _this );
-			child_1.ref();
-			this.el.child = child_1.el;
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Box59 : Object
-	{
-		public Gtk.Box el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Box59(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
-
-			// my vars (dec)
-
-			// set gobject values
-			var child_1 = new Xcls_Button60( _this );
-			child_1.ref();
-			this.el.append( child_1.el );
-		}
-
-		// user defined functions
-	}
-	public class Xcls_Button60 : Object
-	{
-		public Gtk.Button el;
-		private Xcls_LeftProps  _this;
-
-
-		// my vars (def)
-
-		// ctor
-		public Xcls_Button60(Xcls_LeftProps _owner )
-		{
-			_this = _owner;
-			this.el = new Gtk.Button();
-
-			// my vars (dec)
-
-			// set gobject values
-			this.el.label = "Delete";
-
-			//listeners
-			this.el.activate.connect( ( )  =>{
-				_this.deleteSelected();
-				
-			});
-		}
-
-		// user defined functions
-	}
-
 
 
 
