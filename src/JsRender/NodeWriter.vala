@@ -101,8 +101,8 @@ namespace JsRender {
 			
 			item.xvala_cls = cls;
 			
-			string id = item.get("id").length > 0 ?
-				item.get("id") :  "%s%d".printf(item.xtype(), item.oid);
+			string id = item.get_prop_value("id").length > 0 ?
+				item.get_prop_value("id") :  "%s%d".printf(item.xtype(), item.oid);
 
 			
 			

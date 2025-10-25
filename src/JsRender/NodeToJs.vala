@@ -522,7 +522,7 @@ namespace JsRender {
 					 
 
 					this.out_props.set("html", "Pman.Cms.content(" + 
-						this.node.quoteString(this.file.name + "::" + this.node.get("cms-id")) +
+						this.node.quoteString(this.file.name + "::" + this.node.get_prop_value("cms-id")) +
 						 ", " +
 						this.node.quoteString(v) +
 						 ")");

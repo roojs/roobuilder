@@ -214,7 +214,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				this.ignoreWrapped(n);
 				this.ignore(n);
 				
-				var v = this.node.get(n);
+				var v = this.node.get_prop_value(n);
 
 				if (param.rtype == "string") {
 					v = "\"" +  v.escape("") + "\"";

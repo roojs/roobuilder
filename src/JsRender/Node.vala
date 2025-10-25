@@ -487,8 +487,8 @@ public class JsRender.Node : NodeBase
 		//print("setFQN %s to %s\n", name , this.fqn());
 	}
 	// wrapper around get props that returns empty string if not found.
-	//overrides Glib.object.get (hence new)
-	public new string get(string key)
+	// optimized to use cached HashMaps instead of looping through children
+	public string get_prop_value(string key)
 	{
 		// Backward compatibility for xns/xtype
 		if (key == "xns") {
@@ -497,14 +497,30 @@ public class JsRender.Node : NodeBase
 		if (key == "xtype") {
 			return this.xtype();
 		}
-		foreach(var child in this.children) {
-			
-			if (child.prop_name == key) {
-				return child.prop_val;
-			}
+		
+		// Check props HashMap first (most common)
+		if (this.props.has_key(key)) {
+			return this.props.get(key).prop_val;
+		}
+		/* 
+		// Check listeners HashMap
+		if (this.listeners.has_key(key)) {
+			return this.listeners.get(key).prop_val;
 		}
 		
+		// Check specials HashMap
+		if (this.specials.has_key(key)) {
+			return this.specials.get(key).prop_val;
+		}
+			*/
+		
 		return "";
+	}
+
+	// Convenience wrapper that automatically escapes text for markup
+	public string get_prop_value_esc(string key)
+	{
+		return GLib.Markup.escape_text(this.get_prop_value(key));
 	}
 
 	public  NodeProp? get_prop(string key)
@@ -532,30 +548,7 @@ public class JsRender.Node : NodeBase
 		return this.props.has_key(key);
 	}
 
-
-	public void  remove()
-	{
-		if (this.parent == null) {
-			GLib.debug("remove - parent is null?");
-			return;
-		}
-		var nlist = new Gee.ArrayList<Node>();
-		for (var i =0;i < ((Node)this.parent).children.size; i++) {
-			if (((Node)this.parent).children.get(i) == this) {
-				continue;
-			}
-			nlist.add((Node)((Node)this.parent).children.get(i));
-		}
-		uint pos;
-		if ( this.parent.childstore.find(this, out pos)) {
-			this.parent.childstore.remove(pos);
-		}
-		((Node)this.parent).updated_count++;
-		((Node)this.parent).children = nlist;
-		this.parent = null;
-
-	}
-
+ 
 			/* creates javascript based on the rules */
 	public Node? findProp(string n)
 	{
@@ -777,40 +770,40 @@ public class JsRender.Node : NodeBase
 
 		if (fqn == "Roo.bootstrap.Element" && this.has("tag")) {
 			txt = {};
-			txt += GLib.Markup.escape_text(this.get("tag").up());
+			txt += this.get_prop_value_esc("tag").up();
 		}
 
 		//if (c.xtype)	  { txt.push(c.xtype); }
 
-		if (this.has("id"))	 { txt += ("<b>[id=" + GLib.Markup.escape_text(this.get("id")) + "]</b>"); }
-		if (this.has("fieldLabel")){ txt += ("[" + GLib.Markup.escape_text(this.get("fieldLabel")) + "]"); }
-		if (this.has("boxLabel"))  { txt += ("[" + GLib.Markup.escape_text(this.get("boxLabel"))+ "]"); }
+		if (this.has("id"))	 { txt += ("<b>[id=" + this.get_prop_value_esc("id") + "]</b>"); }
+		if (this.has("fieldLabel")){ txt += ("[" + this.get_prop_value_esc("fieldLabel") + "]"); }
+		if (this.has("boxLabel"))  { txt += ("[" + this.get_prop_value_esc("boxLabel")+ "]"); }
 
 
-		if (this.has("layout"))	{ txt += ("<i>" + GLib.Markup.escape_text(this.get("layout")) + "</i>"); }
-		if (this.has("title"))	 { txt += ("<b>" + GLib.Markup.escape_text(this.get("title")) + "</b>"); }
-		if (this.has("html") && this.get("html").length > 0)	 {
-			var ht = this.get("html").split("\n");
+		if (this.has("layout"))	{ txt += ("<i>" + this.get_prop_value_esc("layout") + "</i>"); }
+		if (this.has("title"))	 { txt += ("<b>" + this.get_prop_value_esc("title") + "</b>"); }
+		if (this.has("html") && this.get_prop_value("html").length > 0)	 {
+			var ht = this.get_prop_value("html").split("\n");
 			if (ht.length > 1) {
 				txt += ("<b>" + GLib.Markup.escape_text(ht[0]) + "...</b>");
 			} else {
-				txt += ("<b>" + GLib.Markup.escape_text(this.get("html")) + "</b>");
+				txt += ("<b>" + this.get_prop_value_esc("html") + "</b>");
 			}
 		}
-		if (this.has("label"))	 { txt += ("<b>" + GLib.Markup.escape_text(this.get("label"))+ "</b>"); }
-		if (this.has("header"))   { txt += ("<b>" + GLib.Markup.escape_text(this.get("header")) + "</b>"); }
-		if (this.has("legend"))	 { txt += ("<b>" + GLib.Markup.escape_text(this.get("legend")) + "</b>"); }
-		if (this.has("text"))	  { txt += ("<b>" + GLib.Markup.escape_text(this.get("text")) + "</b>"); }
-		if (this.has("name"))	  { txt += ("<b>" + GLib.Markup.escape_text(this.get("name"))+ "</b>"); }
-		if (this.has("region"))	{ txt += ("<i>(" + GLib.Markup.escape_text(this.get("region")) + ")</i>"); }
-		if (this.has("dataIndex")){ txt += ("[" + GLib.Markup.escape_text(this.get("dataIndex")) + "]"); }
+		if (this.has("label"))	 { txt += ("<b>" + this.get_prop_value_esc("label")+ "</b>"); }
+		if (this.has("header"))   { txt += ("<b>" + this.get_prop_value_esc("header") + "</b>"); }
+		if (this.has("legend"))	 { txt += ("<b>" + this.get_prop_value_esc("legend") + "</b>"); }
+		if (this.has("text"))	  { txt += ("<b>" + this.get_prop_value_esc("text") + "</b>"); }
+		if (this.has("name"))	  { txt += ("<b>" + this.get_prop_value_esc("name")+ "</b>"); }
+		if (this.has("region"))	{ txt += ("<i>(" + this.get_prop_value_esc("region") + ")</i>"); }
+		if (this.has("dataIndex")){ txt += ("[" + this.get_prop_value_esc("dataIndex") + "]"); }
 		// class is quite important on bootstrap..
-		if (this.has("cls")){ txt += ("<b>[cls=" + GLib.Markup.escape_text(this.get("cls")) + "]</b>"); }
+		if (this.has("cls")){ txt += ("<b>[cls=" + this.get_prop_value_esc("cls") + "]</b>"); }
 
 		// other 'specials?'
 		if (fqn == "Roo.bootstrap.Link") {
-			txt += ("<b>href=" + (this.has("name") ?  GLib.Markup.escape_text(this.get("name")) : "?" ) + "</b>");
-			if (this.has("fa")){ txt += ("<b>[fa=" + GLib.Markup.escape_text(this.get("fa")) + "]</b>"); }
+			txt += ("<b>href=" + (this.has("name") ?  this.get_prop_value_esc("name") : "?" ) + "</b>");
+			if (this.has("fa")){ txt += ("<b>[fa=" + this.get_prop_value_esc("fa") + "]</b>"); }
 		}
 
 
@@ -877,7 +870,6 @@ public class JsRender.Node : NodeBase
 		this.sortProps();
 
 	}
- 
 
 	public bool has_property_key(NodeProp prop)
 	{
@@ -914,27 +906,7 @@ public class JsRender.Node : NodeBase
 		}
 		return ret;
 	}
-
-	// Helper method to sort children
-	// ?? is this used?
-	private void sortChildren()
-	{
-		// Sort children array by prop_name for properties, by node type for objects
-		this.children.sort((a, b) => {
-				if (a is NodeProp && b is NodeProp) {
-					var prop_a = a as NodeProp;
-					var prop_b = b as NodeProp;
-					return Posix.strcmp(prop_a.prop_name, prop_b.prop_name);
-				}
-				if (a is NodeProp) {
-					return -1; // properties first
-				}
-				if (b is NodeProp) {
-					return 1;  // objects after properties
-				}
-				return 0; // both are objects, maintain order
-			});
-	}
+ 
 	public Gee.HashMap<string,NodeBase> props {
 		owned get {
 			if (this.cache.has_key("p")) {
