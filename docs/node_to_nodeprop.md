@@ -546,7 +546,7 @@ public class Action.ChangeProp : Action.Base {
 - **Issue Tracking**: Detailed checklist created and all issues addressed
 - **Overall Status**: All code generation working correctly after refactoring
 
-### Phase 9: Fix New UI Components - Model Update Issues 🔄 **IN PROGRESS**
+### Phase 9: Fix New UI Components - Model Update Issues ✅ **COMPLETED**
 
 **Objective**: Fix new UI components so that model is updated correctly
 
@@ -577,38 +577,52 @@ public class Action.ChangeProp : Action.Base {
   - Generalized Action.ChangeProp to accept NodeBase (works for both Node and NodeProp)
   - Added notify["selected"] listener with proper action integration
   - ✅ **WORKS**: Class changing functionality working correctly with undo/redo
-- ❌ **TODO**: Fix prop_name editor to update left tree on changes
-- ❌ **TODO**: Improve class search to use 'contains' instead of 'starts with'
-- ❌ **TODO**: Test and verify drag/drop functionality
-- ❌ **TODO**: Test and verify object add functionality
-- ❌ **TODO**: Test and verify property add functionality
-- ❌ **TODO**: Add logging to action manager for debugging
-- ❌ **TODO**: Integrate undo/redo system with action manager
+- ✅ **COMPLETED**: Prop_name editor now updates left tree on changes
+- ✅ **COMPLETED**: Class search improved to use 'contains' instead of 'starts with'
+- ✅ **COMPLETED**: Drag/drop functionality tested and verified
+- ✅ **COMPLETED**: Object add functionality tested and verified
+- ✅ **COMPLETED**: Property add functionality tested and verified
+- ✅ **COMPLETED**: Action logging added for debugging
+- ✅ **COMPLETED**: Undo/redo system integrated with action manager
 
-**Priority Issues**:
-- **High**: Prop_name editor not updating left tree
-- **Medium**: Class search improvement
-- **Medium**: Action logging for debugging
-- **Medium**: Undo/redo integration with action manager
-- **Low**: Test drag/drop, object add, property add functionality
+**All Issues Resolved**:
+- ✅ Prop_name editor now updates left tree correctly
+- ✅ Class search improved with 'contains' functionality
+- ✅ Action logging implemented for debugging
+- ✅ Undo/redo system fully integrated with action manager
+- ✅ All drag/drop, object add, and property add functionality verified
 
 ### Phase 10: Remove Legacy Code / Outstanding Fixes ❌ **PENDING**
 1. ❌ Sort out legacy file read of underscore properties
-2. ❌ Remove unused methods (dupeProps, old add_prop, etc.)
-3. ❌ Remove propstore_find from NodeBase (propstore kept for UI widgets)
-4. ❌ Clean up serialization code
-5. ❌ Remove backward compatibility wrappers if no longer needed
+2. ❌ Remove unused methods (sortProps, propstore_find)
+3. ❌ Clean up serialization code
+4. ❌ Remove backward compatibility wrappers if no longer needed
+
+**Note**: Comprehensive testing tasks deferred to future phase. Focus on code cleanup.
 
 **Implementation Status**:
-- ❌ **TODO**: Remove legacy methods: `dupeProps()`, old `add_prop()`, `remove_prop()`, `has_prop_key()`
-- ❌ **TODO**: Remove `propstore_find` from NodeBase
+- ❌ **TODO**: Remove legacy methods: `sortProps()` from Node.vala, `propstore_find()` from NodeBase.vala
 - ❌ **TODO**: Clean up serialization code
+- ❌ **TODO**: Address underscore properties handling in FileLegacy.vala
 - ❌ **TODO**: Remove backward compatibility wrappers if no longer needed
-- ❌ **TODO**: Comprehensive testing of all functionality
-- ❌ **TODO**: Performance testing with large projects
-- ❌ **TODO**: Memory usage validation
-- ❌ **TODO**: UI responsiveness testing
-- ❌ **TODO**: Undo/redo functionality testing
+
+**Deferred Tasks**:
+- Comprehensive testing of all functionality
+- Performance testing with large projects
+- Memory usage validation
+- UI responsiveness testing
+- Undo/redo functionality testing
+
+### Files Requiring Cleanup
+
+**Node.vala** - Remove legacy methods:
+- `sortProps()` method (confirmed exists at line 977)
+
+**NodeBase.vala** - Remove:
+- `propstore_find()` method (confirmed exists at line 463)
+
+**FileLegacy.vala** - Address underscore properties handling
+- Review and fix any issues with underscore property processing
 
 ## Benefits
 
@@ -682,9 +696,9 @@ public class Action.ChangeProp : Action.Base {
 
 ## Progress Summary
 
-### Overall Progress: ~80% Complete
+### Overall Progress: ~85% Complete
 
-**✅ Completed Phases (7/10):**
+**✅ Completed Phases (8/10):**
 - **Phase 1**: Add New Methods and Actions - **COMPLETED**
 - **Phase 2**: XNS/NTYPE Migration - **COMPLETED** 
 - **Phase 3**: Update Legacy File Reading - **COMPLETED**
@@ -693,9 +707,10 @@ public class Action.ChangeProp : Action.Base {
 - **Phase 6**: Alter ChangeProp and modify access to Node - **COMPLETED**
 - **Phase 7**: Evaluate and Update Computed Properties - **COMPLETED**
 - **Phase 8**: Comprehensive Testing of Generated Code Output - **COMPLETED**
+- **Phase 9**: Fix New UI Components - Model Update Issues - **COMPLETED**
 
-**🔄 In Progress (1/10):**
-- **Phase 9**: Fix New UI Components - Model Update Issues - **IN PROGRESS**
+**🔄 In Progress (0/10):**
+- None
 
 **❌ Pending Phases (1/10):**
 - **Phase 10**: Remove Legacy Code / Outstanding Fixes - **PENDING**
@@ -719,12 +734,12 @@ public class Action.ChangeProp : Action.Base {
 1. ✅ **Complete Phase 6**: COMPLETED - Action.ChangeProp optimized with flat serialization
 2. ✅ **Complete Phase 7**: COMPLETED - Computed properties optimized and code generation updated
 3. ✅ **Complete Phase 8**: COMPLETED - Comprehensive testing of generated code output
-4. 🔄 **Continue Phase 9**: IN PROGRESS - Type pulldown completed, working on remaining UI components
-6. **Start Phase 10**: Remove legacy methods and clean up code
+4. ✅ **Complete Phase 9**: COMPLETED - All UI components working correctly
+5. **Start Phase 10**: Remove legacy methods and clean up code
 
 ## Conclusion
 
-This refactoring has made excellent progress on the core architectural changes, code generation testing, and UI integration. The most complex parts (xns/xtype consolidation, legacy file migration, UI elements, code generation testing) are complete. The remaining work focuses on fixing UI component model updates, optimization, and legacy code cleanup.
+This refactoring has made excellent progress on the core architectural changes, code generation testing, and UI integration. The most complex parts (xns/xtype consolidation, legacy file migration, UI elements, code generation testing, UI component fixes) are complete. The remaining work focuses on legacy code cleanup and optimization.
 
 The refactoring will significantly simplify the Node architecture by using the children array for both child nodes and properties, while keeping propstore for UI widgets. The integration with the Action system will provide full undo/redo support and better property validation. Additionally, the elimination of separate xns/ntype property nodes in favor of a single prop_type field will further simplify the architecture while maintaining backward compatibility.
 
@@ -736,6 +751,6 @@ Key success factors:
 - ✅ **Proper implementation of xns()/xtype() backward compatibility methods**
 - ✅ **Thorough testing of prop_type-based namespace/type management**
 - ✅ **Comprehensive testing of generated code output**
-- 🔄 **Fixing UI component model updates (Phase 9 in progress)**
+- ✅ **Fixing UI component model updates (Phase 9 completed)**
 
 The benefits in terms of maintainability, performance, architectural consistency, and enhanced user experience make this a worthwhile investment. The xns/ntype consolidation will provide additional benefits in terms of code simplicity and performance.
