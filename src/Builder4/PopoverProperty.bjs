@@ -66,6 +66,7 @@
            "() => {",
            "\tif (!_this.is_new) {",
            "\t\t_this.el.hide();",
+           "\t\treturn; // hide() picks up update",
            "\t}",
            "\t",
            "\t// check if text is not empty..",

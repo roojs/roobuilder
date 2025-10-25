@@ -348,6 +348,7 @@ public class Xcls_PopoverProperty : Object
 			this.el.clicked.connect( () => {
 				if (!_this.is_new) {
 					_this.el.hide();
+					return; // hide() picks up update
 				}
 				
 				// check if text is not empty..
