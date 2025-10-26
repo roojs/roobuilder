@@ -591,7 +591,7 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		var el_name = this.this_el == "this.el." ? ".el" : "";
 		var this_el = this.this_el;
 		// BC really - don't want to support this anymore.
-		if (child.specials.has_key("* pack")) {
+		if (child.specials.has_key("pack")) {
 			
 			string[]  packing =  { "add" };
 			if (child.specials.has_key("pack")) {
