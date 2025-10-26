@@ -32,6 +32,7 @@ public class BuilderApplication : Gtk.Application
 		{ "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
 		{ "test-bjs-compile", 0, 0, OptionArg.STRING, ref opt_test_bjs_compile, "convert bjs file (use all to convert all of them and compare output)", null },
 		{ "test-bjs-upgrade", 0, 0, OptionArg.STRING, ref opt_test_bjs_upgrade, "read bjs file and print serialized version", null },
+		{ "test-bjs-downgrade", 0, 0, OptionArg.STRING, ref opt_test_bjs_downgrade, "write bjs file in old format (version 2)", null },
 		{ "test-bjs-glade", 0, 0, OptionArg.NONE, ref opt_test_bjs_compile_glade, "output glade", null },
 		//            { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },
 		//            { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
@@ -56,6 +57,7 @@ public class BuilderApplication : Gtk.Application
 	public static string opt_compile_output;
 	public static string opt_test_bjs_compile;
 	public static string opt_test_bjs_upgrade;
+	public static string opt_test_bjs_downgrade;
 	public static string opt_test_bjs_compile_target;
 
 	//	public static string opt_test_fqn;
@@ -115,7 +117,7 @@ public class BuilderApplication : Gtk.Application
 
 	public BuilderApplication (  string[] args)
 	{
-		
+
 
 		try {
 			_self = FileUtils.read_link("/proc/self/exe");
@@ -162,6 +164,7 @@ public class BuilderApplication : Gtk.Application
 		this.testLanguageServer(cur_project); // --language-server
 		this.testCompileBjs(cur_project);
 		this.testBjsUpgrade(cur_project);
+		this.testBjsDowngrade(cur_project);
 		this.testDumpProps(cur_project); // test dump props
 
 		this.testSymbolBuilder(cur_project); // symbol builder tests
@@ -654,6 +657,39 @@ public class BuilderApplication : Gtk.Application
 		size_t length;
 		string content = Json.gobject_to_data(file, out length);
 		print("%s", content);
+
+		GLib.Process.exit(Posix.EXIT_SUCCESS);
+	}
+	void testBjsDowngrade(Project.Project? cur_project)
+	{
+		if (BuilderApplication.opt_test_bjs_downgrade == null) {
+			return;
+		}
+		GLib.debug("Run --test-bjs-downgrade");
+		if (cur_project == null) {
+			GLib.error("missing project, use --project to select which project");
+		}
+
+		// Validate that the argument is a BJS file
+		if (!BuilderApplication.opt_test_bjs_downgrade.has_suffix(".bjs")) {
+			GLib.error("--test-bjs-downgrade argument must be a .bjs file, got: %s", BuilderApplication.opt_test_bjs_downgrade);
+		}
+
+		var file = cur_project.getByRelPath(BuilderApplication.opt_test_bjs_downgrade);
+		if (file == null) {
+			GLib.error("missing file %s in project %s", BuilderApplication.opt_test_bjs_downgrade, cur_project.name);
+		}
+
+		try {
+			file.loadFromBjs();
+		} catch(Error e) {
+			GLib.error("Load items failed: %s", e.message);
+		}
+
+		// Convert to legacy format and print
+		var legacy = new JsRender.FileLegacy(file);
+		var json_str = legacy.toLegacyFormat();
+		print("%s", json_str);
 
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}

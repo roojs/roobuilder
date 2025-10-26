@@ -324,36 +324,27 @@ namespace JsRender
 						return null;
 					}
 
-					// Check for multi-line strings first
-					if (string_val.index_of_char('\n', 0) >= 0) {
-						// String contains line breaks, convert to array
-						var node = new Json.Node(Json.NodeType.ARRAY);
-						node.init_array(new Json.Array());
-						var array = node.get_array();
-						var lines = string_val.split("\n");
-						foreach (var line in lines) {
-							array.add_string_element(line);
-						}
-						return node;
-					}
-			
+				// Check for multi-line strings first
+				if (string_val.index_of_char('\n', 0) >= 0) {
+					return this.propValueToJsonNode();
+				}
 
-					// Type detection for single-line values
-					if (Lang.isBoolean(string_val)) {
-						var node = new Json.Node(Json.NodeType.VALUE);
-						node.set_boolean(string_val.down() == "false" ? false : true);
-						return node;
-					}
+				// Type detection for single-line values
+				if (Lang.isBoolean(string_val)) {
+					var node = new Json.Node(Json.NodeType.VALUE);
+					node.set_boolean(string_val.down() == "false" ? false : true);
+					return node;
+				}
 
-					if (Lang.isNumber(string_val)) {
-						var node = new Json.Node(Json.NodeType.VALUE);
-						if (string_val.contains(".")) {
-							node.set_double(double.parse(string_val));
-						} else {
-							node.set_int(long.parse(string_val));
-						}
-						return node;
+				if (Lang.isNumber(string_val)) {
+					var node = new Json.Node(Json.NodeType.VALUE);
+					if (string_val.contains(".")) {
+						node.set_double(double.parse(string_val));
+					} else {
+						node.set_int(long.parse(string_val));
 					}
+					return node;
+				}
 
 					// Default to string serialization
 					return default_serialize_property (property_name, value, pspec);
@@ -362,6 +353,28 @@ namespace JsRender
 					// Skip properties that don't belong to NodeBase
 					return null;
 			}
+		}
+
+		// Helper method to convert prop_val string to JSON node with multi-line array support
+		public Json.Node propValueToJsonNode()
+		{
+			// Check for multi-line strings first
+			if (this.prop_val.index_of_char('\n', 0) >= 0) {
+				// String contains line breaks, convert to array
+				var node = new Json.Node(Json.NodeType.ARRAY);
+				node.init_array(new Json.Array());
+				var array = node.get_array();
+				var lines = this.prop_val.split("\n");
+				foreach (var line in lines) {
+					array.add_string_element(line);
+				}
+				return node;
+			}
+
+			// Single line value - return as string
+			var node = new Json.Node(Json.NodeType.VALUE);
+			node.set_string(this.prop_val);
+			return node;
 		}
 
 		public bool deserialize_property (string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
@@ -375,27 +388,27 @@ namespace JsRender
 						}
 						var children_list = new Gee.ArrayList<NodeBase>();
 						property_node.get_array ().foreach_element ((array, index, element) => {
-								var jobj = array.get_object_element(index);
-								if (!jobj.has_member("node-type")) {
-																
-									var generator = new Json.Generator();
-									var node = new Json.Node.alloc();
-									node.init_object(jobj);
-									generator.set_root(node);
-									GLib.error("no nodetype member in child %s", generator.to_data(null));
-								}
-								var jobtype = (NodePropType) jobj.get_int_member("node-type");
-								var child = Json.gobject_deserialize (
-									jobtype == NodePropType.OBJECT ? typeof (Node) : typeof (NodeProp),
-									array.get_element(index)
-									) as NodeBase;
-								if (child != null) {
-									// If child oid is negative, assign a new one
-									child.parent = this;
-									children_list.add(child);
-									this.add_to_cache(child);
-								}
-							});
+							var jobj = array.get_object_element(index);
+							if (!jobj.has_member("node-type")) {
+
+								var generator = new Json.Generator();
+								var node = new Json.Node.alloc();
+								node.init_object(jobj);
+								generator.set_root(node);
+								GLib.error("no nodetype member in child %s", generator.to_data(null));
+							}
+							var jobtype = (NodePropType) jobj.get_int_member("node-type");
+							var child = Json.gobject_deserialize (
+								jobtype == NodePropType.OBJECT ? typeof (Node) : typeof (NodeProp),
+								array.get_element(index)
+								) as NodeBase;
+							if (child != null) {
+								// If child oid is negative, assign a new one
+								child.parent = this;
+								children_list.add(child);
+								this.add_to_cache(child);
+							}
+						});
 						value.set_object(children_list);
 						return true;
 
@@ -416,21 +429,21 @@ namespace JsRender
 						var array = property_node.get_array();
 						var string_parts = new Gee.ArrayList<string>();
 						for (var i = 0; i < array.get_length(); i++) {
-								string_parts.add(array.get_string_element(i));
-							}
-							value = GLib.Value(typeof(string));
-							value.set_string(string.joinv("\n", string_parts.to_array()));
-							return true;
-						} else if (property_node.get_node_type() == Json.NodeType.VALUE) {
-							// Handle typed values (boolean, number) and convert to string
-							var val = property_node.get_value();
-							value = GLib.Value(typeof(string));
-							val.transform(ref value);
-							return true;
-						} else {
-							// Not an array or value, deserialize as normal string
-							return default_deserialize_property (property_name, out value, pspec, property_node);
-						}
+						string_parts.add(array.get_string_element(i));
+					}
+					value = GLib.Value(typeof(string));
+					value.set_string(string.joinv("\n", string_parts.to_array()));
+					return true;
+				} else if (property_node.get_node_type() == Json.NodeType.VALUE) {
+					// Handle typed values (boolean, number) and convert to string
+					var val = property_node.get_value();
+					value = GLib.Value(typeof(string));
+					val.transform(ref value);
+					return true;
+				} else {
+					// Not an array or value, deserialize as normal string
+					return default_deserialize_property (property_name, out value, pspec, property_node);
+				}
 
 					case "file":
 					case "parent":
