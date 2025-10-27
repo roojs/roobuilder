@@ -615,8 +615,8 @@ public class Xcls_WindowLeftTree : Object
 			    
 			    var node =  row_widget.get_data<JsRender.Node>("node");
 			    if (node == null) {
-			    	GLib.warning("No node found from widget");
-			    	return;
+						GLib.warning("No node found from widget");
+						return;
 				}
 				
 				
@@ -626,9 +626,13 @@ public class Xcls_WindowLeftTree : Object
 			     
 				GLib.debug("Prssed %d", (int)  this.el.get_current_button());
 				//_this.deletemenu.el.set_parent(_this.view.el);
+				// no idea what the real interface for this is supposed to be, but setting it twice always causes critical..
+				// moved to realize
+				if (_this.LeftTreeMenu.el.parent != null) {
+					GLib.debug("clearing parent");
+					_this.LeftTreeMenu.el.unparent();
+				}
 				_this.LeftTreeMenu.el.set_parent(_this.view.el);
-				
-				
 				//Gtk.Allocation rect;
 				//_this.view.el.get_allocation(out rect);
 			 	//_this.deletemenu.el.set_has_arrow(false);
@@ -689,21 +693,13 @@ public class Xcls_WindowLeftTree : Object
 			
 			  
 				//data.set_text(tp,tp.length);   
-			
-				var 	str = ndata.toJsonString();
+				size_t l;
+				var 	str = Json.gobject_to_data(ndata, out l);
 				GLib.debug("prepare  store: %s", str);
 				GLib.Value ov = GLib.Value(typeof(string));
 				ov.set_string(str);
 			 	var cont = new Gdk.ContentProvider.for_value(ov);
-			    /*
-				GLib.Value v = GLib.Value(typeof(string));
-				//var str = drop.read_text( [ "text/plain" ] 0);
-				 
-					cont.get_value(ref v);
-				 
-				}
-				GLib.debug("set %s", v.get_string());
-			      */  
+			    
 			 	return cont;
 				 
 				 
@@ -804,186 +800,12 @@ public class Xcls_WindowLeftTree : Object
 			this.el.accept.connect( (drop) => {
 			
 				GLib.debug("got DropTarget:accept");
-			 
-			// NOT REALLY NEEDED? = put stuff in drop?
-			
-			
-			/* (  ctx, x, y, time)  => {
-			      //Seed.print("TARGET: drag-drop");
-			   
-			   
-			    var src = Gtk.drag_get_source_widget(ctx);
-			     
-			   if (src != this.el) {
-			   
-			    
-			       
-			       this.drag_in_motion = false;   
-			            // request data that will be recieved by the recieve...              
-			        Gtk.drag_get_data
-			        (
-			                this.el,         // will receive 'drag-data-received' signal 
-			                ctx,        // represents the current state of the DnD 
-			                Gdk.Atom.intern("application/json",true),    // the target type we want 
-			                time            // time stamp 
-			        );
-			
-			         
-			        // No target offered by source => error
-			   
-			
-			         return  false;
-			     }
-			     
-			     // handle drop around self..
-			     
-			                  
-			            
-			    //print("GETTING POS");
-			    var  targetData = "";
-			    
-			    Gtk.TreePath path;
-			    Gtk.TreeViewDropPosition pos;
-			    var isOver = _this.view.el.get_dest_row_at_pos(this.drag_x,this.drag_y, out path, out pos);
-			    
-			    // if there are not items in the tree.. the we have to set isOver to true for anything..
-			    var isEmpty = false;
-			    if (_this.model.el.iter_n_children(null) < 1) {
-			        print("got NO children?\n");
-			        isOver = true; //??? 
-			        isEmpty = true;
-			        pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
-			    }
-			    
-			     
-			     
-			    //var action = Gdk.DragAction.COPY;
-			        // unless we are copying!!! ctl button..
-			    
-			    var action = (ctx.get_actions() & Gdk.DragAction.MOVE) > 0 ?
-			                 Gdk.DragAction.COPY  : Gdk.DragAction.MOVE ;
-			                // Gdk.DragAction.MOVE : Gdk.DragAction.COPY ;
-			
-			      
-			    if (_this.model.el.iter_n_children(null) < 1) {
-			        // no children.. -- asume it's ok..
-			        
-			        targetData = "|%d|".printf((int)Gtk.TreeViewDropPosition.INTO_OR_AFTER);
-			         
-			        // continue through to allow drop...
-			
-			    } else {
-			                
-			                
-			    
-			                
-			                
-			                //print("ISOVER? " + isOver);
-			        if (!isOver) {
-			            
-			            Gtk.drag_finish (ctx, false, false, time);        // drop failed..
-			            return true; // not over apoint!?! - no action on drop or motion..
-			        }
-			                
-			        // drag node is parent of child..
-			        //console.log("SRC TREEPATH: " + src.treepath);
-			        //console.log("TARGET TREEPATH: " + data.path.to_string());
-			        
-			        // nned to check a  few here..
-			        //Gtk.TreeViewDropPosition.INTO_OR_AFTER
-			        //Gtk.TreeViewDropPosition.INTO_OR_BEFORE
-			        //Gtk.TreeViewDropPosition.AFTER
-			        //Gtk.TreeViewDropPosition.BEFORE
-			        
-			        // locally dragged items to not really use the 
-			        var selection_text = this.dragData;
-			        
-			        
-			        
-			        if (selection_text == null || selection_text.length < 1) {
-			            //print("Error  - drag selection text returned NULL");
-			          
-			             Gtk.drag_finish (ctx, false, false, time);        // drop failed..
-			             return true; /// -- fixme -- this is not really correct..
-			        }                
-			                
-			                // see if we are dragging into ourself?
-			                print ("got selection text of  " + selection_text);
-			        
-			        var target_path = path.to_string();
-			        //print("target_path="+target_path);
-			
-			        // 
-			        if (selection_text  == target_path) {
-			            print("self drag ?? == we should perhaps allow copy onto self..\n");
-			            
-			             Gtk.drag_finish (ctx, false, false, time);        // drop failed..
-			
-			             return true; /// -- fixme -- this is not really correct..
-			
-			        }
-			                
-			        // check that 
-			        //print("DUMPING DATA");
-			        //console.dump(data);
-			        // path, pos
-			        
-			        //print(data.path.to_string() +' => '+  data.pos);
-			        
-			        // dropList is a list of xtypes that this node could be dropped on.
-			        // it is set up when we start to drag..
-			        
-			        
-			        targetData = _this.model.findDropNodeByPath( path.to_string(), this.dropList, pos);
-			            
-			        print("targetDAta: " + targetData +"\n");
-			        
-			        if (targetData.length < 1) {
-			            //print("Can not find drop node path");
-			             
-			            Gtk.drag_finish (ctx, false, false, time);        // drop failed..
-			            return true;
-			        }
-			                    
-			                
-			                
-			                // continue on to allow drop..
-			  }
-			        // at this point, drag is not in motion... -- as checked above... - so it's a real drop event..
-			
-			
-			     var delete_selection_data = false;
-			        
-			    if (action == Gdk.DragAction.ASK)  {
-			        // Ask the user to move or copy, then set the ctx action. 
-			    }
-			
-			    if (action == Gdk.DragAction.MOVE) {
-			        delete_selection_data = true;
-			    }
-			      
-			                // drag around.. - reorder..
-			    _this.model.moveNode(targetData, action);
-			        
-			       
-			        
-			        
-			        
-			        // we can send stuff to souce here...
-			
-			
-			// do we always say failure, so we handle the reall drop?
-			    Gtk.drag_finish (ctx, false, false,time); //delete_selection_data, time);
-			
-			    return true;
-			 
-			 
-			 
-			 
-			 
-			 
-			}
-			*/
+				if (drop == null) {
+					GLib.debug("got DropTarget:accept = false");
+					return false;
+				}
+				GLib.debug("got DropTarget:accept = true");
+			  
 				return true;
 			});
 			this.el.motion.connect( (  x, y) => {
@@ -1019,8 +841,8 @@ public class Xcls_WindowLeftTree : Object
 				if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
 					// still dragging same node
 			 
-					this.lastDragNode = new JsRender.Node(); 
-					this.lastDragNode.loadFromJsonString(v.get_string(), 1);
+					this.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  
+						v.get_string( )) as JsRender.Node;
 				}
 			    
 				var file = _this.main_window.windowstate.file;
@@ -1076,13 +898,13 @@ public class Xcls_WindowLeftTree : Object
 						pos = "over";
 					} else {
 				 		 
-				 		if (!drop_on_to.contains(node.parent.fqn() ) && !is_control) {
+				 		if (!drop_on_to.contains(node.parent.prop_type ) && !is_control) {
 							//GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
 				 			pos = "over";
 			 			} else {
 							//GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
 							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
+					 			if (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode)) {
 						 			GLib.debug("shift drop not self not allowed");
 					 				this.addHighlight(null, "");
 									return Gdk.DragAction.ASK;
@@ -1147,47 +969,69 @@ public class Xcls_WindowLeftTree : Object
 					0 != (_this.main_window.keyboard.get_modifier_state() 
 						& Gdk.ModifierType.CONTROL_MASK);
 			    
-			    
+				
 				
 			 	 
 			 	// -- get position..
 			 	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
 					// still dragging same node
 			 
-					this.lastDragNode = new JsRender.Node(); 
-					this.lastDragNode.loadFromJsonString(v.get_string(), 1);
+					this.lastDragNode = Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node; 
+			
 				}
-			    
-			 	     
-			       
-			    var dropNode = new JsRender.Node(); 
-				dropNode.loadFromJsonString(v.get_string(), 2);
-				GLib.debug("dropped node %s", dropNode.toJsonString());
+			   	
+			     
+			 	var file = _this.main_window.windowstate.file;      
+			    var dropNode =  Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;
+			    var src_oid = -1;
+			    try {
+			    		var js = Json.from_string(v.get_string());
+			    		if (_this.view.dragNode !=null &&  js.get_object().has_member("oid")) { 
+			     		src_oid = (int) js.get_object().get_int_member("oid");
+			     		dropNode = file.nodes.get(src_oid) as JsRender.Node;
+			 		} else {
+			 			dropNode.file = file;
+					}
+			 	}catch (GLib.Error e) {
+			 	
+			 	}// how do we know if the dropped node is from the same file?
+			 	// FIXME !!!!
+			
+				GLib.debug("dropped node %s", v.get_string());
 				
-				var file = _this.main_window.windowstate.file;
+			
 				var palete =  file.palete();
 				var ls = file.getSymbolLoader();
 				var drop_on_to = palete.getDropListFromSymbols(ls, dropNode.fqn());
 			   
+			   
+			   	JsRender.Node tadd;
 			    // if there are not items in the tree.. the we have to set isOver to true for anything..
 			 
 			    if (_this.model.el.n_items < 1) {
 			    	// FIXME check valid drop types?
-			    	if (!drop_on_to.contains("*top")) {
+			    		if (!drop_on_to.contains("*top")) {
 						GLib.debug("drop on to list does not contain top?");
 						return false;	
 					}
 					// add new node to top..
 					GLib.debug("adding to top");
 					
-					 var m = (GLib.ListStore) _this.model.el.model;
-					_this.main_window.windowstate.file.tree = dropNode;  
-					dropNode.updated_count++;
-			   
-					m.append(dropNode);
-					_this.model.selectNode(dropNode); 	
+					
+					tadd = file.action_manager.run(
+						new JsRender.Action.Add(
+							file,
+							v.get_string(),	
+							null,
+							true,
+							-1
+						)
+					) as JsRender.Node;
+					 
+					_this.model.selectNode(tadd); 	
 					_this.changed();
-					_this.node_selected(dropNode);
+					_this.node_selected(tadd);
+				  	  
 					return true; // no need to highlight?
 			     
 			    }
@@ -1201,17 +1045,18 @@ public class Xcls_WindowLeftTree : Object
 				}
 			 	
 				var node =  row_widget.get_data<JsRender.Node>("node");
-			
+				var new_parent = node;
+				
 			 	if (pos == "above" || pos == "below") {
 					if (node.parent == null) {
 						pos = "over";
 					} else {
-				 		if (!drop_on_to.contains(node.parent.fqn())  && !is_control) {
+				 		if (!drop_on_to.contains(node.parent.prop_type)  && !is_control) {
 							pos = "over";
 			 			} else {
-							GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+							GLib.debug("drop  contains %s - using %s" , node.parent.prop_type, pos);
 							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.parent.oid == _this.view.dragNode.oid || node.parent.has_parent(_this.view.dragNode)) {
+					 			if (node.oid != -1 && (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode))) {
 						 			GLib.debug("shift drop not self not allowed");
 			  						return false;	
 					 			}
@@ -1229,63 +1074,76 @@ public class Xcls_WindowLeftTree : Object
 						return false;
 			
 					}
-					if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
+					if (node.oid != -1 && (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode))) {
 			 			GLib.debug("shift drop not self not allowed");
 						return false;	
 					}
 				}
-			 	
+				
+			 	var to_pos = -1; 
 			 	switch(pos) {
 			 		case "over":
-			
-				 		if (is_shift && _this.view.dragNode != null) {
-					 		_this.model.selectNode(null); 
-					 		_this.view.dragNode.remove();
-				 		}
-			 	 		node.appendChild(dropNode);			
-				 		dropNode.updated_count++;
-			 			_this.model.selectNode(dropNode); 
-			 			
-			 			_this.changed();				 		
-				 		return true;
+						break;
+				 		
+				 		
+				 		
 				 		
 			 		case "above":
 			 			GLib.debug("Above - insertBefore");
-			 		
-			
-				 		if (is_shift && _this.view.dragNode != null) {
-					 		_this.model.selectNode(null); 	 		
-					 		_this.view.dragNode.remove();
-				 		}
-						node.parent.insertBefore(dropNode, node);	 		
-						dropNode.updated_count++;
-			 			_this.model.selectNode(dropNode); 			
-			 			_this.changed();
-			 			return true;
+			 			to_pos = node.parent.children.index_of(node);
+			 			new_parent = node.parent as JsRender.Node;
+			 			break;
 			 			
 			 		case "below":
 			 			GLib.debug("Below - insertAfter"); 		
-				 		if (is_shift && _this.view.dragNode != null) {
-					 		_this.model.selectNode(null); 	 		
-					 		_this.view.dragNode.remove();
-				 		}
-				
-			 			
-			 			node.parent.insertAfter(dropNode, node);
-			 			dropNode.updated_count++;
-			 			_this.model.selectNode(dropNode);	
-			 			_this.changed();
-			 			// select it
-			 			return true;
-			 			
+				 		
+				 		to_pos = node.parent.children.index_of(node) +1;
+				 		new_parent = node.parent as JsRender.Node;
+			 			break;
+				 		  
 			 		default:
 			 			// should not happen
 			 			return false;
 			 	}
 			 	
-				
-			     
+				_this.model.selectNode(null); 
+			
+			 
+			
+				// can only move nodes that are in our tree.
+				if (is_shift && _this.view.dragNode != null && dropNode.oid > -1) {
+			
+			 		
+			 		tadd = file.action_manager.run(
+						new JsRender.Action.Move(
+							dropNode,
+							new_parent,
+							to_pos
+						)
+					) as JsRender.Node;
+					 
 					
+			 		
+				} else {
+				
+				
+			 		tadd = file.action_manager.run(
+						new JsRender.Action.Add.from_node(
+							file,
+							dropNode, // get the original object..
+							new_parent,
+							to_pos
+						)
+					) as JsRender.Node;
+				
+				
+				}
+			     
+				_this.model.selectNode(tadd); 	
+				_this.changed();
+				_this.node_selected(tadd);
+				 			 		
+				return true;	
 					
 			
 			});
@@ -1391,7 +1249,8 @@ public class Xcls_WindowLeftTree : Object
 				    // why dup_?
 				    
 			
-				    GLib.debug ("calling left_tree.node_selected %s", snode.toJsonString());
+				  //  GLib.debug ("calling left_tree.node_selected %s",
+				    //		snode.toJsonString());
 				    _this.node_selected(snode);
 				   
 				     
@@ -1512,17 +1371,19 @@ public class Xcls_WindowLeftTree : Object
 		     	GLib.debug("delete Selected - no node slected?");
 			     return;
 		     }
-		    _this.selmodel.el.unselect_all();
-		    if (node.parent != null) {
-				node.remove();
-			 	GLib.debug("delete Selected - done");
-				_this.changed();
-				return;
-			}
-			this.updateModel(null);
-			_this.main_window.windowstate.file.tree = null;
+		
+			_this.selmodel.el.unselect_all();
+			node.file.action_manager.run( new JsRender.Action.Remove(node));    
+		
+			GLib.debug("delete Selected - done");
 			_this.changed();
-			_this.node_selected(null);
+				
+				
+				
+		//	this.updateModel(null);
+		//	_this.main_window.windowstate.file.tree = null;
+		//	_this.changed();
+		// ??	_this.node_selected(null);
 		/*    
 		    print("DELETE SELECTED?");
 		    //_this.view.blockChanges = true;
@@ -1706,37 +1567,8 @@ public class Xcls_WindowLeftTree : Object
 				
 				node.set_data<Gtk.Widget>("tree-row", expand.get_parent().get_parent());
 				expand.get_parent().get_parent().set_data<JsRender.Node>("node", node);
-				
-			   //GLib.debug("node is %s", node.get_type().name());
-			// was item (1) in old layout
 			
-				
-			 
-			 	 /* 
-			 	var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
-			    var clsname = node.fqn();
-			    
-			    var clsb = clsname.split(".");
-			    var sub = clsb.length > 1 ? clsb[1].down()  : "";
-			     
-			    var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
-			    try { 
-			    	 
-			    		 
-					if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
-					    img.set_from_file(fn);
-					 	 
-				 	} else {
-				 		img.set_from_paintable(
-						 	ic.lookup_icon (
-						 		"media-playback-stop", null,  16,1, 
-				    			 Gtk.TextDirection.NONE, 0
-			    			)
-						 );
-				 	}
-			 	} catch (GLib.Error e) {}
-			    */
-			    expand.set_hide_expander( !node.hasChildren() );
+			    expand.set_hide_expander( node.childstore.get_n_items() < 1 );
 			 	expand.set_list_row(lr);
 			 	
 			 	node.bind_property("iconResourceName",
@@ -1916,7 +1748,7 @@ public class Xcls_WindowLeftTree : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
-			_this.LeftTreeMenu.el.hide();
+			_this.LeftTreeMenu.el.visible = false;
 			 _this.model.deleteSelected();
 			_this.changed();
 			});
@@ -1947,7 +1779,7 @@ public class Xcls_WindowLeftTree : Object
 
 			//listeners
 			this.el.clicked.connect( () => {
-			_this.LeftTreeMenu.el.hide();
+			_this.LeftTreeMenu.el.visible = false;
 			     DialogSaveTemplate.singleton().showIt(
 			            (Gtk.Window) _this.el.get_root (), 
 			            _this.main_window.windowstate.file.palete(), 
@@ -1984,7 +1816,7 @@ public class Xcls_WindowLeftTree : Object
 			//listeners
 			this.el.clicked.connect( () => {
 			    
-			    _this.LeftTreeMenu.el.hide();
+			    _this.LeftTreeMenu.el.visible = false;
 			    var node = _this.getActiveElement();
 			      
 			     

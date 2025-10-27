@@ -45,7 +45,9 @@ namespace Palete
 					GLib.File.new_for_path (appdir+ "/" + gn).make_directory ();
 					
 		        }
-		        GLib.FileUtils.set_contents(appdir+ "/" + gn + "/" +  name + ".json", data.toJsonString());
+		        size_t l;
+		        GLib.FileUtils.set_contents(appdir + "/" + gn + "/" +  name + ".json",
+		        		Json.gobject_to_data(data,out l)); 
 	    	} catch (GLib.Error e) {
 	    		GLib.debug("Error : %s", e.message);
     		}    
@@ -105,13 +107,12 @@ namespace Palete
 			if (node.get_node_type () != Json.NodeType.OBJECT) {
 				return null;
 			}
-			var obj = node.get_object ();
-
-			var ret = new JsRender.Node();
 
 
-			ret.loadFromJson(obj, 1);
-			ret.ref(); // not sure if needed -- but we had a case where ret became uninitialized?
+			var ret = Json.gobject_deserialize(typeof(JsRender.Node) , node) as JsRender.Node;
+
+ 
+			//ret.ref(); // not sure if needed -- but we had a case where ret became uninitialized?
 		
 			return ret;
 		}
@@ -182,7 +183,7 @@ namespace Palete
 			 
 			GLib.debug("calling validate");    
 			// clear the buttons.
-		 	if (editor.prop.name == "xns" || editor.prop.name == "xtype") {
+		 	if (editor.prop.prop_name == "xns" || editor.prop.prop_name == "xtype") {
 				return  ;
 			}
  
@@ -217,6 +218,7 @@ namespace Palete
 		public abstract Gee.ArrayList<string> getChildListFromSymbols(SymbolLoader? sl, string in_rval, bool with_props);
 		public abstract Gee.ArrayList<string> getDropListFromSymbols(SymbolLoader? sl, string rval);
 		public abstract string symbolToSig(Symbol s);
+		public abstract Gee.ArrayList<string> getAllClassNames(SymbolLoader? sl);
 	}
 
 

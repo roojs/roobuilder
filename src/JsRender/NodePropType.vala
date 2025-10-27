@@ -25,9 +25,12 @@ namespace JsRender
 
 		
 		// listerens can definatly overlap as they are stored in a seperate list. << no need to use this for listeners?
-		LISTENER;
+		LISTENER,
 		
-
+		
+		OBJECT; // node..
+		
+		// used where?
 		
 		public static string to_abbr(NodePropType intype)
 		{
@@ -76,10 +79,33 @@ namespace JsRender
 		 		case NONE:  return "None??";
 				case CTOR:  return "Constructor?";
 				case PROP:  return "Gtk/Roo Property";
+				case OBJECT:  return "Object";
+				 
 				default: return "oops";
 			
 			}
 		}
+		public string to_ctype() // cache type
+		{
+			switch (this) {
+				case RAW: 		return "p";
+				case METHOD : 	return "p";	
+				case SIGNAL : 	return  "p"; // vala signal
+				case USER : 	return  "p"; // user defined.
+				case SPECIAL : return  "s"; // * prop| args | ctor | init
+		 		case LISTENER : return  "l";  // always raw...
+		 		// not used
+		 		case NONE:  return "";
+				case CTOR:  return "c";
+				case PROP:  return "p";
+				case OBJECT:  return "p"; // this is used when adding an object to a cache
+				default: return "";
+			
+			}
+		}	
+ 
+		 
+		
 		
 		public static NodePropType[] alltypes()
 		{

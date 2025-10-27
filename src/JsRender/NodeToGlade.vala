@@ -177,7 +177,7 @@ public class JsRender.NodeToGlade : Object {
 			//GLib.debug ("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
 			
     		// skip items we have already handled..
-    		if  (!this.node.has(pviter.get_key())) {
+    		if  (!this.node.props.has_key(pviter.get_key())) {
 				continue;
 			}
 			var k = pviter.get_key();	
@@ -190,7 +190,7 @@ public class JsRender.NodeToGlade : Object {
 				continue;
 			}
 			
-			var val = this.node.get(pviter.get_key()).strip();	
+			var val = this.node.get_prop_value(pviter.get_key()).strip();	
 			// for Enums - we change it to lowercase, and remove all the previous bits.. hopefully might work.
 			if (prop.rtype.contains(".") && val.contains(".")) {
 				var typ =  file.project.palete.getAny(sl, prop.rtype);
@@ -230,22 +230,26 @@ public class JsRender.NodeToGlade : Object {
 		// children..
 		var left = 0, top = 0, cols = 1;
 		if (cls == "GtkGrid") {	
-		var colval = this.node.get_prop("* columns");
-			GLib.debug("Columns %s", colval == null ? "no columns" : colval.val);
+		var colval = this.node.specials.get("columns");
+			GLib.debug("Columns %s", colval == null ? "no columns" : colval.prop_val);
 			if (colval != null) {
-				cols = int.parse(colval.val);
+				cols = int.parse(colval.prop_val);
 			}
 		}
-		var items = this.node.readItems();
-		var is_native = gdata.implements.contains("Gtk.Native");
-		for (var i = 0; i < items.size; i++ ) {
-			var cn = items.get(i);
+
+ 		var is_native = gdata.implements.contains("Gtk.Native");
+
+		foreach(var nchild in this.node.children) {
+			if (!(nchild is Node)) {
+				continue;
+			}
+			var cn = nchild as Node;
 			
 			var childname = "child";
 			var pname = "";
-			if (!is_native && cn.has("* prop")) { // && cn.get_prop("* prop").val == "child") {
+			if (!is_native && cn.prop_name != "") { // && cn.get_prop("* prop").val == "child") {
 				childname = "property";
-				pname = cn.get_prop("* prop").val;
+				pname = cn.prop_name;
 			}
 			 
 			var child  = this.create_element(childname);

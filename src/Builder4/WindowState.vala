@@ -683,7 +683,22 @@ public class WindowState : Object
 		
 		this.win.project = file.project;
 		this.project = file.project;
+		
+		// Disconnect from previous file's action manager if it exists
+		if (this.file != null && this.file.action_manager != null) {
+			this.file.action_manager.onUndoUpdated.disconnect(this.win.updateUndo);
+			this.file.action_manager.onRedoUpdated.disconnect(this.win.updateRedo);
+		}
+		
 		this.file = file;
+		
+		// Connect to action manager signals for undo/redo button sensitivity
+		this.file.action_manager.onUndoUpdated.connect(this.win.updateUndo);
+		this.file.action_manager.onRedoUpdated.connect(this.win.updateRedo);
+		
+		// Set initial button sensitivity (disable both immediately)
+		this.win.updateUndo(false);
+		this.win.updateRedo(false);
 
 		 
 		
@@ -819,8 +834,12 @@ public class WindowState : Object
 	
 	public void showAddObject(Gtk.Widget btn, JsRender.Node? on_node)
 	{
+		// Don't show if tree has items but no node selected
+		if (on_node == null && this.left_tree.model.el.get_n_items() > 0) {
+			GLib.debug("Cannot add object: tree has items but no node is selected");
+			return;
+		}
 	 
-		 
 		this.add_props.hide();
 		 
 		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
@@ -908,8 +927,4 @@ public class WindowState : Object
 		}
 
 	}
-  
- 
 }
-
-	

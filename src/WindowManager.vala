@@ -152,7 +152,9 @@ public class WindowManager : Json.Serializable, Object {
 		
 		// ?? restart = software-update-urgent - crash?
 
-		
+		if (app == null) {
+			return;
+		}
 		foreach (var win in wm().windows) {
 			if (icon != "") {
 				win.statusbar_compile_spinner.start(icon, tooltip);
@@ -219,6 +221,8 @@ public class WindowManager : Json.Serializable, Object {
 	bool in_load = false;
 	public static void load()
 	{
+		return; // disabled at present.
+		
 		if (!GLib.FileUtils.test(wm().fn(), GLib.FileTest.EXISTS)) {
 			return;
 		}
@@ -287,8 +291,8 @@ public class WindowManager : Json.Serializable, Object {
 	}
 	
 	// move to 'window colletction?
-	public Gee.ArrayList<Xcls_MainWindow> windows { get; set; }
-	public GLib.ListStore windowlist;
+	public Gee.ArrayList<Xcls_MainWindow> windows { get; set; default = new Gee.ArrayList<Xcls_MainWindow>(); }
+	public GLib.ListStore windowlist { get; set; default = new GLib.ListStore(typeof(WindowState)); }
 	
  
     bool saveWindowPosition(Xcls_MainWindow win, Json.Object obj)

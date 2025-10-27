@@ -43,7 +43,7 @@ public class Xcls_PopoverAddObject : Object
 		this.el.height_request = 800;
 		this.el.hexpand = false;
 		this.el.position = Gtk.PositionType.RIGHT;
-		var child_1 = new Xcls_Box405( _this );
+		var child_1 = new Xcls_Box1( _this );
 		child_1.ref();
 		this.el.set_child ( child_1.el  );
 	}
@@ -110,9 +110,9 @@ public class Xcls_PopoverAddObject : Object
 	}
 	public void hide () {
 	 
-		this.el.hide();
+		this.el.visible = false;
 	}
-	public class Xcls_Box405 : Object
+	public class Xcls_Box1 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_PopoverAddObject  _this;
@@ -121,7 +121,7 @@ public class Xcls_PopoverAddObject : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box405(Xcls_PopoverAddObject _owner )
+		public Xcls_Box1(Xcls_PopoverAddObject _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -236,12 +236,12 @@ public class Xcls_PopoverAddObject : Object
 			// set gobject values
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			var child_2 = new Xcls_DragSource843( _this );
+			var child_2 = new Xcls_DragSource5( _this );
 			child_2.ref();
 			this.el.add_controller(  child_2.el );
 			new Xcls_maincol( _this );
 			this.el.append_column ( _this.maincol.el  );
-			var child_4 = new Xcls_GestureClick850( _this );
+			var child_4 = new Xcls_GestureClick12( _this );
 			child_4.ref();
 			this.el.add_controller(  child_4.el );
 		}
@@ -436,7 +436,7 @@ public class Xcls_PopoverAddObject : Object
 		
 		 }
 	}
-	public class Xcls_DragSource843 : Object
+	public class Xcls_DragSource5 : Object
 	{
 		public Gtk.DragSource el;
 		private Xcls_PopoverAddObject  _this;
@@ -445,7 +445,7 @@ public class Xcls_PopoverAddObject : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_DragSource843(Xcls_PopoverAddObject _owner )
+		public Xcls_DragSource5(Xcls_PopoverAddObject _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.DragSource();
@@ -476,8 +476,8 @@ public class Xcls_PopoverAddObject : Object
 				pal.loadNodeDefaults(ws.file.getSymbolLoader(), ndata);
 			  
 				//data.set_text(tp,tp.length);   
-			
-				var 	str = ndata.toJsonString();
+				size_t l;
+				var 	str = Json.gobject_to_data(ndata, out l);
 				GLib.debug("prepare  store: %s", str);
 				GLib.Value ov = GLib.Value(typeof(string));
 				ov.set_string(str);
@@ -509,11 +509,11 @@ public class Xcls_PopoverAddObject : Object
 			 	
 			    var paintable = new Gtk.WidgetPaintable(widget);
 			    this.el.set_icon(paintable, 0,0);
-			    
+			    _this.hide();//instant?
 			  
 			    // the delay enables the drag to work!!!
 			    GLib.Timeout.add(100, () => {
-			 	    _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
+			 	 //   _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
 			 	    return false;
 			    });
 			 
@@ -681,7 +681,7 @@ public class Xcls_PopoverAddObject : Object
 		{
 			_this = _owner;
 			_this.maincol = this;
-			var child_1 = new Xcls_SignalListItemFactory849( _this );
+			var child_1 = new Xcls_SignalListItemFactory11( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Drag to add Object", child_1.el );
 
@@ -694,7 +694,7 @@ public class Xcls_PopoverAddObject : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory849 : Object
+	public class Xcls_SignalListItemFactory11 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_PopoverAddObject  _this;
@@ -703,7 +703,7 @@ public class Xcls_PopoverAddObject : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory849(Xcls_PopoverAddObject _owner )
+		public Xcls_SignalListItemFactory11(Xcls_PopoverAddObject _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -772,7 +772,7 @@ public class Xcls_PopoverAddObject : Object
 	}
 
 
-	public class Xcls_GestureClick850 : Object
+	public class Xcls_GestureClick12 : Object
 	{
 		public Gtk.GestureClick el;
 		private Xcls_PopoverAddObject  _this;
@@ -781,7 +781,7 @@ public class Xcls_PopoverAddObject : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_GestureClick850(Xcls_PopoverAddObject _owner )
+		public Xcls_GestureClick12(Xcls_PopoverAddObject _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.GestureClick();
@@ -799,30 +799,54 @@ public class Xcls_PopoverAddObject : Object
 				// find left tree selected node
 				var ws =_this.mainwindow.windowstate;
 				var lt = ws.left_tree;
+				var lp = ws.left_props;
+				size_t l;
 				
 				_this.el.hide();
-			  	var addn = _this.selmodel.getSelectedNode();
+			  	var add = _this.selmodel.getSelectedNode();
 				var pal = ws.project.palete;
-				pal.loadNodeDefaults(ws.file.getSymbolLoader(), addn);
-				var add = addn.deepClone();
-				GLib.debug("ADD %s", add.toJsonString());
+				pal.loadNodeDefaults(ws.file.getSymbolLoader(), add);
+				//var add = addn.deepClone();
+				//GLib.debug("ADD %s", add.toJsonString());
 				if (lt.model.el.n_items < 1) {
-					ws.file.tree = add;  
-			  	  	add.updated_count++;
-			   	 	var m = (GLib.ListStore) lt.model.el.model;
-					m.append(add);
-					lt.model.selectNode(add); 	
+				
+					var tadd = ws.file.action_manager.run(
+						new JsRender.Action.Add(
+							ws.file,
+							Json.gobject_to_data(add, out l),
+							null,
+							true,
+							-1
+						)
+					) as JsRender.Node;
+					 
+					lt.model.selectNode(tadd); 	
 					lt.changed();
-					lt.node_selected(add);
+					lt.node_selected(tadd);
 					return;
 				}
 				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
+				// Validate that we have a selected node to add to
+				if (addto == null) {
+					GLib.debug("Cannot add object: no node selected in tree");
+					return;
+				}
 				//var row = _this.view.getRowAt(x,y, out pos);
 				
-			
-				addto.appendChild(add);
-				_this.mainwindow.windowstate.left_props.changed();
-				_this.mainwindow.windowstate.left_tree.model.selectNode(add);
+				var nadd = ws.file.action_manager.run(
+					new JsRender.Action.Add(
+						ws.file,
+						Json.gobject_to_data(add, out l),
+						addto,
+						true,
+						-1
+					)
+				) as JsRender.Node;
+				 
+				lp.changed();
+				lt.model.selectNode(nadd);
+				lt.changed();
+				lt.node_selected(nadd);
 			});
 		}
 

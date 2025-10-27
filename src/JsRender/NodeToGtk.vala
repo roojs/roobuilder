@@ -193,7 +193,7 @@ public class JsRender.NodeToGtk : Object {
 				var vt = ps.value_type;
 				if (vt.is_enum()) {
 					
-					var raw_val = this.node.get(k).strip();
+					var raw_val = this.node.get_prop_value(k).strip();
 					var rv_s = raw_val.split(".");
 					if (rv_s.length > 0) {
 						raw_val = rv_s[rv_s.length-1];					
@@ -221,13 +221,13 @@ public class JsRender.NodeToGtk : Object {
 
 			
 
-			var val = this.toValue(this.node.get(k).strip(), type);
+			var val = this.toValue(this.node.get_prop_value(k).strip(), type);
 			if (val == null) {
 				print("skip (failed to transform value %s type = %s from %s\n", 
-					cls + "." + k, type,  this.node.get(k).strip());
+					cls + "." + k, type,  this.node.get_prop_value(k).strip());
 				continue;
 			}
-			print ("set_property ( %s , %s / %s)\n", k, this.node.get(k).strip(), val.strdup_contents());
+			print ("set_property ( %s , %s / %s)\n", k, this.node.get_prop_value(k).strip(), val.strdup_contents());
 			
 			
 			ret.set_property(k, val);  

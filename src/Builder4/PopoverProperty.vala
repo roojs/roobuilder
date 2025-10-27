@@ -25,6 +25,7 @@ public class Xcls_PopoverProperty : Object
 	public bool is_new;
 	public Gtk.PositionType position;
 	public signal void success (Project.Project pr, JsRender.JsRender file);
+	public JsRender.Action.ChangeProp? action;
 	public string key_type;
 	public Xcls_MainWindow mainwindow;
 	public JsRender.Node node;
@@ -42,6 +43,7 @@ public class Xcls_PopoverProperty : Object
 		// my vars (dec)
 		this.is_new = false;
 		this.position = Gtk.PositionType.RIGHT;
+		this.action = null;
 		this.mainwindow = null;
 		this.original_prop = null;
 		this.prop = null;
@@ -58,8 +60,7 @@ public class Xcls_PopoverProperty : Object
 		
 		 	GLib.debug("popover closed");
 			if (_this.is_new) {
-				// dont allow hiding if we are creating a new one.
-				// on.hide will reshow it.
+			    // if it's new, the firing the closed button will triger the update
 				return;
 			}
 			if (_this.prop == null) {
@@ -71,9 +72,13 @@ public class Xcls_PopoverProperty : Object
 			}
 			
 		 
-		         	
-		         
-		  	this.updateProp();
+			
+			_this.action.prop_name = this.kname.el.get_text().strip();
+			_this.action.node_type = this.ptype.getValue();
+			_this.action.prop_type = this.ktype.el.get_text().strip();
+			_this.prop.file.action_manager.run(_this.action);
+		     
+		  
 		        
 			 
 		
@@ -89,6 +94,11 @@ public class Xcls_PopoverProperty : Object
 				return;
 		
 			}
+			if (this.prop == null) {
+				// oocur on adding new properti - in theory we should be catching this by is_new?
+		
+				return;
+			}
 			if (this.original_prop != null && !this.prop.equals(this.original_prop)) {
 				// this is convoluted..
 				_this.mainwindow.windowstate.left_props.changed(); 
@@ -99,17 +109,6 @@ public class Xcls_PopoverProperty : Object
 	}
 
 	// user defined functions
-	public void updateProp () {
-	 	GLib.debug("updateProp called");
-	
-		
-		
-		_this.prop.name = this.kname.el.get_text().strip();
-		_this.prop.ptype = this.ptype.getValue();
-		_this.prop.rtype = this.ktype.el.get_text().strip();
-		
-		  
-	}
 	public void show (
 		Gtk.Widget btn, 
 		JsRender.Node node, 
@@ -122,18 +121,19 @@ public class Xcls_PopoverProperty : Object
 	    this.original_prop = prop.dupe();
 		this.is_new = is_new; 
 		var pref = is_new ? "Add " : "Modify ";
-		if (prop.ptype == JsRender.NodePropType.LISTENER) {
+		if (prop.node_type == JsRender.NodePropType.LISTENER) {
 			this.headertitle.el.label = pref + "Event Listener"; // cant really happen yet?
 		} else {
 			this.headertitle.el.label = pref + "Property";
 		}
 		this.prop = prop;
 		this.node = node;
+		this.action = is_new ? null : new JsRender.Action.ChangeProp(node.file, prop);
 		
-		_this.kname.el.set_text(prop.name);
-		_this.ktype.el.set_text(prop.rtype);
+		_this.kname.el.set_text(prop.prop_name);
+		_this.ktype.el.set_text(prop.prop_type);
 		
-	 	_this.ptype.setValue(prop.ptype);
+	 	_this.ptype.setValue(prop.node_type);
 		// does node have this property...
 	
 	
@@ -348,6 +348,7 @@ public class Xcls_PopoverProperty : Object
 			this.el.clicked.connect( () => {
 				if (!_this.is_new) {
 					_this.el.hide();
+					return; // hide() picks up update
 				}
 				
 				// check if text is not empty..
@@ -366,17 +367,23 @@ public class Xcls_PopoverProperty : Object
 					_this.kname.el.get_text().strip(),
 					_this.ptype.getValue(),
 					_this.ktype.el.get_text().strip(),
-					_this.prop.val
+					_this.prop.prop_val
 				);
 			
-				if (_this.node.props.has_key(prop.to_index_key())) {
+				if (_this.node.has_property_key(prop)) {
 					_this.error.setError("Property already exists");
 					return;	
 				}
 				
 				
 				
-				_this.node.add_prop(prop);
+				_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(
+					_this.node.file,
+					prop,
+					_this.node,
+					
+					-1
+				));
 				// hide self
 				_this.prop = null; // skip checks..
 				_this.is_new = false;

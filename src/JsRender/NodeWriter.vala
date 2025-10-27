@@ -1,4 +1,7 @@
 
+
+
+// base class for all the source code writers (mostly vala i think at present)
 namespace JsRender {
 	public abstract class NodeWriter : Object {
 	
@@ -64,7 +67,7 @@ namespace JsRender {
 
 		string toValaNS(Node item)
 		{
-			return item.get("xns") + ".";
+			return item.xns() + ".";
 		}
 		/**
 			fills in all the xvala_cls names into the nodes
@@ -94,12 +97,12 @@ namespace JsRender {
  
 
 			var ns =  this.toValaNS(item) ;
-			var cls = ns + item.get("xtype");
+			var cls = ns + item.xtype();
 			
 			item.xvala_cls = cls;
 			
-			string id = item.get("id").length > 0 ?
-				item.get("id") :  "%s%d".printf(item.get("xtype"), item.oid);
+			string id = item.get_prop_value("id").length > 0 ?
+				item.get_prop_value("id") :  "%s%d".printf(item.xtype(), item.oid);
 
 			
 			
@@ -125,14 +128,12 @@ namespace JsRender {
 				item.xvala_id = this.file.file_without_namespace;
 
 			}
-				// loop children..
-																   
-			if (item.readItems().size < 1) {
-				return;
+			foreach(var child in item.children) {
+				if (child is Node) {
+					this.toValaName(child as Node, depth+1);
+				}
 			}
-			for(var i =0;i<item.readItems().size;i++) {
-				this.toValaName(item.readItems().get(i), depth+1);
-			}
+			 
 						  
 		}
 		

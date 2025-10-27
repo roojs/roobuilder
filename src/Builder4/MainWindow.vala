@@ -280,6 +280,14 @@ public class Xcls_MainWindow : Object
 	    w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);
 	     
 	}
+	public void updateRedo (bool has_redo) {
+	
+		this.btn_redo.el.sensitive = has_redo;
+	}
+	public void updateUndo (bool has_undo) {
+	
+		this.btn_undo.el.sensitive = has_undo;
+	}
 	public class Xcls_headerbar : Object
 	{
 		public Gtk.HeaderBar el;
@@ -405,20 +413,10 @@ public class Xcls_MainWindow : Object
 				GLib.debug("undo clicked");
 				if (_this.windowstate.file.xtype == "PlainFile") {
 					_this.windowstate.code_editor_tab.buffer.el.undo();
-				}
-				if (!_this.windowstate.file.undoStep(-1)) {
 					return;
 				}
-				
+				_this.windowstate.file.action_manager.undo();
 				 
-				_this.windowstate.switchState (WindowState.State.PREVIEW); 
-				// this triggers loadItems..
-				_this.windowstate.left_tree.model.loadFile(
-					_this.windowstate.file);
-				 
-			
-				
-			 
 			
 				// load it everywhere
 			});
@@ -454,18 +452,12 @@ public class Xcls_MainWindow : Object
 				GLib.debug("undo clicked");
 				if (_this.windowstate.file.xtype == "PlainFile") {
 					_this.windowstate.code_editor_tab.buffer.el.redo();
-				}
-				if (!_this.windowstate.file.undoStep(1)) {
 					return;
 				}
 				
-				 
-				_this.windowstate.switchState (WindowState.State.PREVIEW); 
-				// this triggers loadItems..
-				_this.windowstate.left_tree.model.loadFile(
-					_this.windowstate.file);
-				 
-			
+				
+				
+				_this.windowstate.file.action_manager.redo();
 				
 			 
 			

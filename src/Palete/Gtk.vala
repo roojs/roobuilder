@@ -462,7 +462,8 @@ namespace Palete {
 
 					var ap=snp.convert(p, cls.fqn);
 					GLib.debug("Add Ctor property %s", ap.to_display_name());
-			 		ret.add_prop(ap);
+			 		ret.children.add(ap); // note since we serailize unserialize before adding it 
+						//- no need to be clever with children
 				}
 			}
 			
@@ -480,7 +481,9 @@ namespace Palete {
 
 				var ap=snp.convert(p, cls.fqn);
 				GLib.debug("Add property (Ctor only)  %s", ap.to_display_name());
-				ret.add_prop(ap);
+				ret.children.add(ap);
+				// note since we serailize unserialize before adding it 
+				//- no need to be clever with children
 			}
 			
 			// manually set... - based on JSON defaults file?	
@@ -502,14 +505,16 @@ namespace Palete {
 				if (props.has_key(mn)) {
 					add = snp.convert(props.get(mn), cls.fqn);
 					GLib.debug("Add property (listed in defaults)  %s", add.to_display_name());
-				 	add.val = o.get_string_member(mn);
+				 	add.modify_prop_val(o.get_string_member(mn));
 
 			 	} else {
  					var kt = mn.split(" ");
 				 	add = new JsRender.NodeProp.user(kt[1], kt[0], o.get_string_member(mn));
 					GLib.debug("Add property (listed in defaults - with value)  %s", add.to_display_name());
 		 		}
-				ret.add_prop(add);					 		
+				ret.children.add(add); 
+				// note since we serailize unserialize before adding it 
+				//- no need to be clever with children
 			});
 		
 		
@@ -543,8 +548,24 @@ namespace Palete {
 			
 			return @"($args) =>  {\n$retval\n}";
 		}
-		 
 		
+		public override Gee.ArrayList<string> getAllClassNames(SymbolLoader? sl)
+		{
+			var ret = new Gee.ArrayList<string>();
+			if (sl == null) {
+				return ret;
+			}
+			sl.loadClassCache();
+			foreach(var k in sl.classCache.keys) {
+				ret.add(k);
+			}
+			ret.sort((a, b) => {
+				return a.down().collate(b.down());
+			});
+			return ret;
+		}
+		
+	
     }
 }
  

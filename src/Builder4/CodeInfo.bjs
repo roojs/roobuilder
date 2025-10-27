@@ -87,6 +87,7 @@
           {
            "# bool selecting" : false,
            "$ xns" : "Gtk",
+           "Gtk.StringFilterMatchMode search_match_mode" : "Gtk.StringFilterMatchMode.SUBSTRING",
            "bool enable_search" : true,
            "bool hexpand" : true,
            "id" : "combo",

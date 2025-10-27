@@ -91,53 +91,8 @@ namespace JsRender {
 		
         public  override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
         {
-            
-				 
-			GLib.debug("load Items!");
-			if (this.tree != null) {
-				return;
-			}
-			GLib.debug("load " + this.path);
-
-			var pa = new Json.Parser();
-			pa.load_from_file(this.path);
-			var node = pa.get_root();
-
-			if (node.get_node_type () != Json.NodeType.OBJECT) {
-				throw new Error.INVALID_FORMAT ("Unexpected element type %s", node.type_name ());
-			}
-			var obj = node.get_object ();
-		
-		
-			this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
-			this.name = this.jsonHasOrEmpty(obj, "name");
-			this.parent = this.jsonHasOrEmpty(obj, "parent");
-			this.permname = this.jsonHasOrEmpty(obj, "permname");
-			this.title = this.jsonHasOrEmpty(obj, "title");
-			this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
-			if (obj.has_member("gen_extended")) { // should check type really..
-				this.gen_extended = obj.get_boolean_member("gen_extended");
-			}
-			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
-			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
-
-			
-			// load items[0] ??? into tree...
-			if (obj.has_member("items") 
-				&& 
-				obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
-				&&
-				obj.get_array_member("items").get_length() > 0
-			) {
-				this.tree = new Node(); 
-				var ar = obj.get_array_member("items");
-				var tree_base = ar.get_object_element(0);
-				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
-			}
-			this.loaded = true;
-			this.toSource(); // force it to number the lines...
-
-            
+            this.loadFromBjs();
+            this.toSource(); // force it to number the lines...
         }
         
 		public override string targetName()
@@ -254,13 +209,15 @@ namespace JsRender {
 		public Gee.ArrayList<string> findxincludes(Node node,   Gee.ArrayList<string> ret)
 		{
 			
-			if (node.props.has_key("* xinclude")) {
-				ret.add(node.props.get("* xinclude").val);
+			if (node.specials.has_key("xinclude")) {
+				ret.add(node.specials.get("xinclude").prop_val);
 			}
-			var items = node.readItems();
-			for (var i =0; i < items.size; i++) {
-				this.findxincludes(items.get(i), ret);
+			foreach(var child in node.children) {
+				if (child is Node) {
+					this.findxincludes(child as Node, ret);
+				}
 			}
+			 
 			return ret;
 				
 		}
@@ -294,18 +251,18 @@ namespace JsRender {
 				
 				
 				var prop = iter.get_value();
-				var kname = prop.name;
-				var ktype = prop.rtype;
+				var kname = prop.prop_name;
+				var ktype = prop.prop_type;
 
 
-				if (prop.ptype == NodePropType.RAW) {
+				if (prop.node_type == NodePropType.RAW) {
 					continue;
 				}
 				// skip cms-id nodes...
 				if (kname == "html" && node.has("cms-id")) { 
 					continue;
 				}
-				var str = prop.val;
+				var str = prop.prop_val;
 				if (kname == "name") {
 					name_prefix = str;
 				}
@@ -313,14 +270,14 @@ namespace JsRender {
 				var chksum = GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip());
 				
 				if (this.doubleStringProps.index_of(kname) > -1) {
-					//GLib.debug("flag=%s type=%s name=%s : %s\n", prop.ptype.to_string(),ktype,kname,str);
+					//GLib.debug("flag=%s type=%s name=%s : %s\n", prop.node_type.to_string(),ktype,kname,str);
 					this.transStrings.set(str,  chksum);
 					named.set("_" + kname, chksum);
 					continue;
 				}
 				
 				if (ktype.down() == "string" && kname[0] == '_') {
-					GLib.debug("flag=%s type=%s name=%s : %s\n", prop.ptype.to_string(),ktype,kname,str);
+					GLib.debug("flag=%s type=%s name=%s : %s\n", prop.node_type.to_string(),ktype,kname,str);
 					this.transStrings.set(str,   chksum);
 					named.set(kname, chksum);
 					continue;
@@ -334,12 +291,15 @@ namespace JsRender {
 				}
 			 }
 
-			var items = node.readItems();
 			// iterate children..
-			for (var i =0; i < items.size; i++) {
-				this.findTransStrings(items.get(i) );
+			foreach(var child in node.children) {
+				if (!(child is Node)) {
+					continue;
+				}
+				
+				this.findTransStrings(child as Node);
 			}
-		
+			
 				
 		}  
 		

@@ -214,7 +214,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 				this.ignoreWrapped(n);
 				this.ignore(n);
 				
-				var v = this.node.get(n);
+				var v = this.node.get_prop_value(n);
 
 				if (param.rtype == "string") {
 					v = "\"" +  v.escape("") + "\"";
@@ -230,7 +230,7 @@ public class  JsRender.NodeToValaExtended : NodeToVala {
 			if (propnode != null) {
 				// assume it's ok..
 				
-				var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").val : "");
+				var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").prop_val : "");
 				obj_args.set(n, pname);
 				 
 				if (!propnode.has("id")) {

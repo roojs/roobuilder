@@ -480,9 +480,22 @@ namespace Palete {
 			
 			return @"function ($args) {\n$retval\n}";
 		}
-		
-		
-		
+			
+		public override Gee.ArrayList<string> getAllClassNames(SymbolLoader? sl)
+		{
+			this.load();
+			var ret = new Gee.ArrayList<string>();
+			foreach(var k in this.classes.keys) {
+				ret.add(k);
+			}
+			ret.sort((a, b) => {
+				return a.down().collate(b.down());
+			});
+			return ret;
+		}
+	
+	
+	
     }
     
     
@@ -490,4 +503,4 @@ namespace Palete {
 		
     
 }
- 
+
