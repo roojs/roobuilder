@@ -169,11 +169,13 @@ public class WindowState : Object
 			}
 		
 			GLib.debug("LEFT TREE: Changed fired\n");
-			this.file.save();
-			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-				   this.window_rooview.requestRedraw();
+			this.file.save(); // Synchronous - fast file I/O
+			
+			// Async source regeneration
+			if (this.left_tree.getActiveFile().xtype == "Roo") {
+				this.window_rooview.requestRedrawAsync.begin();
 			} else {
-				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
+				this.window_gladeview.loadFile(this.left_tree.getActiveFile());
 			}
 			 
 		});
