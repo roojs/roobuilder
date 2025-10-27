@@ -985,6 +985,7 @@
               "        return;",
               "    }",
               "   ",
+              "    // Generate source synchronously for now (legacy loadFile method)",
               "    var str = _this.file.toSource();",
               "\tbuf.begin_user_action(); // is it really needed?",
               "\t// work out what has changed",
