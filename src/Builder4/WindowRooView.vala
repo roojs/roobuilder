@@ -153,7 +153,7 @@ public class Xcls_WindowRooView : Object
 	public async void requestRedrawAsync()
 	{
 	    yield this.sourceview.loadFileAsync();
-	    if (!this.view.skip_preview_generation) {
+	    if (!this.skip_preview_generation) {
 	        this.view.renderJS(false);
 	    }
 	}
