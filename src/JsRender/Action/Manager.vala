@@ -34,6 +34,8 @@ namespace JsRender
                 this.undoQueue.remove_at(0); // Remove oldest action
             }
             
+            this.action_lock.unlock();
+            
             // Return the result from the action
             return result;
         }

@@ -41,6 +41,7 @@ public class Xcls_WindowRooView : Object
 	public int last_search_end;
 	public GtkSource.SearchContext searchcontext;
 	public JsRender.JsRender file;
+	public bool skip_preview_generation { get; set; default = false; }
 
 	// ctor
 	public Xcls_WindowRooView()
@@ -760,6 +761,12 @@ public class Xcls_WindowRooView : Object
 		    // this is the public redraw call..
 		    // we refresh in a loop privately..
 		    var autodraw = _this.AutoRedraw.el.active;
+		    
+		    // Skip preview generation if flag is set
+		    if (this.skip_preview_generation) {
+		        return;
+		    }
+		    
 		    if (!autodraw && !force) {
 		        print("Skipping redraw - no force, and autodraw off");
 		        return;
