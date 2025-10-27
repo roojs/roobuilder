@@ -1,0 +1,256 @@
+---
+globs: test_*.sh,test_*.py,test_*.vala,*_test.*,*_test_*
+description: Test file organization and placement guidelines
+---
+
+# Test Files Organization
+
+## Test Directory Structure
+
+**ALL test files must be placed in the `tests/` directory** to maintain a clean project structure and proper organization.
+
+### ✅ Correct Test File Locations
+
+```
+tests/
+├── test_single_bjs.sh           # Single file BJS testing
+├── test_single_upgrade.sh       # Single file upgrade testing
+├── test_version3_loading.sh     # Version 3 loading tests
+├── test_upgrade_process.sh      # Upgrade process tests
+├── test_generated_code.sh       # Generated code validation
+├── sample_working_gladeui.vala  # Sample test files
+└── README.md                    # Test documentation
+```
+
+### ❌ Incorrect Test File Locations
+
+```
+# DON'T put test files in project root
+test_single_bjs.sh              # Wrong location
+test_upgrade_process.sh         # Wrong location
+
+# DON'T put test files in src/
+src/test_*.sh                   # Wrong location
+src/tests/                      # Wrong location
+```
+
+## Test File Naming Conventions
+
+### Bash Test Scripts
+
+```bash
+# Pattern: test_<functionality>.sh
+test_single_bjs.sh              # Test single BJS file
+test_single_upgrade.sh          # Test single upgrade
+test_version3_loading.sh        # Test version 3 loading
+test_upgrade_process.sh         # Test upgrade process
+test_generated_code.sh          # Test code generation
+test_compilation.sh             # Test compilation
+test_symbol_loading.sh          # Test symbol loading
+```
+
+### Vala Test Files
+
+```vala
+// Pattern: test_<component>.vala or sample_<description>.vala
+test_node.vala                  // Test Node class
+test_nodeprop.vala              // Test NodeProp class
+sample_working_gladeui.vala     // Sample working file
+test_serialization.vala         // Test serialization
+```
+
+### Python Test Files
+
+```python
+# Pattern: test_<module>.py
+test_brace_formatting.py        # Test brace formatting
+test_indentation.py             # Test indentation
+test_file_processing.py         # Test file processing
+```
+
+## Test Script Requirements
+
+### Shebang and Debug Mode
+
+```bash
+#!/bin/bash -x
+
+# Always use -x for debugging visibility
+# This shows command execution and variable expansion
+```
+
+### Path Handling from tests/ Directory
+
+```bash
+# Correct path references from tests/ directory
+if [[ ! -f "../build/roobuilder" ]]; then
+    echo "ERROR: Local build not found at ../build/roobuilder"
+    exit 1
+fi
+
+# Use relative paths for project files
+../build/roobuilder --project /home/alan/gitlive/roobuilder --test-bjs-upgrade "$file"
+
+# Reference source files with relative paths
+BJS_FILE="../src/Builder4/About.bjs"
+```
+
+### Test Directory Structure
+
+```bash
+# Create test results in /tmp with timestamp
+TEST_DIR="/tmp/test_$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$TEST_DIR"
+
+# Separate output files
+OUTPUT_FILE="$TEST_DIR/${filename}_output.log"
+ERROR_FILE="$TEST_DIR/${filename}_error.log"
+RESULTS_LOG="$TEST_DIR/test_results.log"
+```
+
+## Test File Organization
+
+### By Functionality
+
+```
+tests/
+├── compilation/                 # Compilation tests
+│   ├── test_single_bjs.sh
+│   ├── test_batch_compilation.sh
+│   └── test_error_handling.sh
+├── upgrade/                     # Upgrade tests
+│   ├── test_single_upgrade.sh
+│   ├── test_upgrade_process.sh
+│   └── test_version_detection.sh
+├── validation/                  # Validation tests
+│   ├── test_generated_code.sh
+│   ├── test_output_consistency.sh
+│   └── test_file_integrity.sh
+└── samples/                     # Sample files
+    ├── sample_working_gladeui.vala
+    ├── sample_version1.bjs
+    └── sample_version2.bjs
+```
+
+### By Test Type
+
+```
+tests/
+├── unit/                        # Unit tests
+│   ├── test_node.vala
+│   ├── test_nodeprop.vala
+│   └── test_serialization.vala
+├── integration/                 # Integration tests
+│   ├── test_compilation.sh
+│   ├── test_upgrade.sh
+│   └── test_end_to_end.sh
+├── regression/                  # Regression tests
+│   ├── test_known_issues.sh
+│   └── test_fixed_bugs.sh
+└── performance/                 # Performance tests
+    ├── test_large_files.sh
+    └── test_memory_usage.sh
+```
+
+## Test Execution Guidelines
+
+### Running Tests from tests/ Directory
+
+```bash
+# Always run tests from the tests/ directory
+cd /home/alan/gitlive/roobuilder/tests
+
+# Run single test
+./test_single_upgrade.sh ../src/Builder4/About.bjs
+
+# Run all tests
+for test in test_*.sh; do
+    echo "Running $test..."
+    ./"$test"
+done
+```
+
+### Test Dependencies
+
+```bash
+# Check for required dependencies
+if [[ ! -f "../build/roobuilder" ]]; then
+    echo "ERROR: Build required. Run: ninja -C build"
+    exit 1
+fi
+
+if [[ ! -d "../src" ]]; then
+    echo "ERROR: Source directory not found"
+    exit 1
+fi
+```
+
+## Test Documentation
+
+### README.md in tests/ Directory
+
+```markdown
+# Testing Guide
+
+## Running Tests
+
+All tests should be run from the `tests/` directory:
+
+```bash
+cd tests
+./test_single_upgrade.sh ../src/Builder4/About.bjs
+```
+
+## Test Categories
+
+- **Unit Tests**: Individual component testing
+- **Integration Tests**: End-to-end functionality
+- **Regression Tests**: Prevent known issues
+- **Performance Tests**: Speed and memory usage
+
+## Test Results
+
+Test results are saved to `/tmp/test_<timestamp>/` directories.
+```
+
+## Benefits of Proper Organization
+
+1. **Clean Project Structure**: Keeps test files separate from source code
+2. **Easy Maintenance**: All tests in one location
+3. **Clear Dependencies**: Obvious path relationships
+4. **Better CI/CD**: Easier to run test suites
+5. **Team Collaboration**: Clear where to find/add tests
+6. **Documentation**: Easier to document test procedures
+
+## Migration Guidelines
+
+### Moving Existing Test Files
+
+```bash
+# Move test files to tests/ directory
+mv test_*.sh tests/
+
+# Update any hardcoded paths in moved files
+# Change: ./build/roobuilder
+# To:     ../build/roobuilder
+
+# Change: src/Builder4/About.bjs
+# To:     ../src/Builder4/About.bjs
+```
+
+### Updating References
+
+```bash
+# Update any scripts that reference test files
+# Change: ./test_single_bjs.sh
+# To:     ./tests/test_single_bjs.sh
+```
+
+## Enforcement
+
+- **Code Review**: Check that test files are in `tests/` directory
+- **CI/CD**: Run tests from `tests/` directory
+- **Documentation**: Update any references to test file locations
+- **Team Guidelines**: Ensure all team members follow this structure
+
+Remember: **All test files belong in the `tests/` directory** for proper organization and maintainability.

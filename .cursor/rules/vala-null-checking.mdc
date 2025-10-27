@@ -1,0 +1,130 @@
+---
+globs: *.vala
+description: Vala null checking best practices and when null checks are unnecessary
+---
+
+# Vala Null Checking Best Practices
+
+## When Null Checks Are Unnecessary
+
+In Vala, if a property or variable is **not** defined as nullable (doesn't have `?`), then it **cannot be null** and null checks are pointless and should be avoided.
+
+### ❌ Incorrect - Unnecessary null checks
+
+```vala
+// Property is NOT nullable - cannot be null
+public string name { get; set; default = ""; }
+
+// This null check is pointless and should be removed
+if (this.name != null) {
+    // This code will always execute
+    doSomething(this.name);
+}
+
+// This is also pointless
+if (this.name == null) {
+    // This code will never execute
+    return;
+}
+```
+
+### ✅ Correct - No null checks needed
+
+```vala
+// Property is NOT nullable - cannot be null
+public string name { get; set; default = ""; }
+
+// Direct usage without null checks
+doSomething(this.name);
+
+// Or with default value handling
+var displayName = this.name.length > 0 ? this.name : "Unnamed";
+```
+
+## When Null Checks Are Required
+
+Only check for null when the property or variable is **nullable** (has `?`).
+
+### ✅ Correct - Null checks for nullable types
+
+```vala
+// Property IS nullable - can be null
+public string? description { get; set; default = null; }
+
+// Null check is necessary and correct
+if (this.description != null) {
+    doSomething(this.description);
+}
+
+// Or use null coalescing
+var displayDesc = this.description ?? "No description";
+```
+
+## Common Patterns
+
+### Object Properties
+```vala
+// Non-nullable - no null check needed
+public Node parent { get; set; }
+
+// Direct usage
+this.parent.updateCount++;
+
+// Nullable - null check required
+public Node? child { get; set; default = null; }
+
+// Proper null checking
+if (this.child != null) {
+    this.child.updateCount++;
+}
+```
+
+### Method Parameters
+```vala
+// Non-nullable parameter - no null check needed
+public void processNode(Node node) {
+    node.updateCount++; // Safe to use directly
+}
+
+// Nullable parameter - null check required
+public void processOptionalNode(Node? node) {
+    if (node != null) {
+        node.updateCount++;
+    }
+}
+```
+
+## Performance Impact
+
+Unnecessary null checks:
+- Add runtime overhead
+- Clutter the code
+- Can confuse other developers
+- May indicate misunderstanding of Vala's type system
+
+## Code Review Guidelines
+
+When reviewing Vala code, look for:
+1. Null checks on non-nullable types (remove them)
+2. Missing null checks on nullable types (add them)
+3. Consistent use of null coalescing (`??`) for nullable types
+4. Proper handling of optional parameters and return values
+
+## Examples from This Codebase
+
+```vala
+// From Node.vala - prop_type is non-nullable
+protected string prop_type { get; set; default = ""; }
+
+// ❌ Don't do this
+if (this.prop_type != null && this.prop_type.contains(".")) {
+    // ...
+}
+
+// ✅ Do this instead
+if (this.prop_type.contains(".")) {
+    // ...
+}
+```
+
+Remember: Vala's type system prevents null access violations at compile time for non-nullable types, so trust the compiler and avoid unnecessary null checks.

@@ -1,0 +1,115 @@
+---
+globs: *.vala,*.c,*.h,*.js,*.ts,*.tsx,*.py,*.java,*.go,*.rs
+description: Avoid creating temporary variables that are only used once in nearby code
+---
+
+# Avoid Unnecessary Temporary Variables
+
+## Rule: Don't create temporary variables for single-use values
+
+Avoid creating temporary variables when the value is only used once in nearby code. This reduces noise and makes code more concise.
+
+### ❌ Bad Examples
+
+```vala
+// Unnecessary temporary variable
+var json_node = rd.get_element(i);
+var ticket = Json.gobject_deserialize (typeof (RooTicket), json_node) as RooTicket;
+
+// Unnecessary temporary variable
+var obj = rd.get_object_element(i);
+var json_node = new Json.Node (Json.NodeType.OBJECT);
+json_node.set_object (obj);
+```
+
+```javascript
+// Unnecessary temporary variable
+const data = response.get_data();
+const result = processData(data);
+
+// Unnecessary temporary variable
+const user = getUserById(id);
+return user.name;
+```
+
+```python
+# Unnecessary temporary variable
+data = request.get_json()
+result = process_data(data)
+
+# Unnecessary temporary variable
+user = get_user_by_id(user_id)
+return user.name
+```
+
+### ✅ Good Examples
+
+```vala
+// Direct usage - more concise
+var ticket = Json.gobject_deserialize (typeof (RooTicket), rd.get_element(i)) as RooTicket;
+
+// Direct usage - cleaner
+var ticket = Json.gobject_deserialize (typeof (RooTicket), response.get_member("data")) as RooTicket;
+```
+
+```javascript
+// Direct usage - more concise
+const result = processData(response.get_data());
+
+// Direct usage - cleaner
+return getUserById(id).name;
+```
+
+```python
+# Direct usage - more concise
+result = process_data(request.get_json())
+
+# Direct usage - cleaner
+return get_user_by_id(user_id).name
+```
+
+## Exceptions
+
+Create temporary variables when:
+
+1. **Improving readability**: When the expression is complex and a variable name clarifies intent
+2. **Debugging**: When you need to inspect the intermediate value
+3. **Performance**: When the expression is expensive and used multiple times
+4. **Type safety**: When you need to ensure a specific type before proceeding
+5. **Error handling**: When you need to check for null/undefined before using the value
+
+### ✅ Acceptable Examples
+
+```vala
+// Good: Complex expression with clarifying variable name
+var user_data = response.get_object_member("user").get_object_member("profile");
+var ticket = Json.gobject_deserialize (typeof (RooTicket), user_data) as RooTicket;
+
+// Good: Error checking before usage
+var data = response.get_member("data");
+if (data == null) {
+    throw new Error("Missing data field");
+}
+var ticket = Json.gobject_deserialize (typeof (RooTicket), data) as RooTicket;
+```
+
+```javascript
+// Good: Complex expression with clarifying variable name
+const userProfile = response.data.user.profile;
+const result = processUserProfile(userProfile);
+
+// Good: Error checking before usage
+const data = response.get_data();
+if (!data) {
+    throw new Error("No data received");
+}
+const result = processData(data);
+```
+
+## Benefits
+
+- **Reduces noise**: Less visual clutter in code
+- **Improves readability**: Direct usage is often clearer
+- **Reduces memory usage**: Fewer temporary allocations
+- **Faster execution**: Fewer variable assignments
+- **Cleaner diffs**: Smaller, more focused changes

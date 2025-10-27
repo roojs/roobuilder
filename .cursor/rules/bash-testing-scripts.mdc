@@ -1,0 +1,257 @@
+---
+globs: tests/*.sh,test_*.sh
+description: Bash testing script guidelines and best practices
+---
+
+# Bash Testing Script Guidelines
+
+## Always Use Debug Mode
+
+**ALWAYS** use `#!/bin/bash -x` in the shebang line for testing scripts to enable debug output and see what's happening during execution.
+
+### ✅ Correct Shebang
+
+```bash
+#!/bin/bash -x
+
+# Test script with debug output
+echo "Starting test..."
+```
+
+### ❌ Incorrect Shebang
+
+```bash
+#!/bin/bash
+
+# Test script without debug output
+echo "Starting test..."
+```
+
+## Why Use -x Flag
+
+The `-x` flag provides:
+- **Command tracing**: Shows each command as it's executed
+- **Variable expansion**: Shows actual values of variables
+- **Debugging visibility**: Makes it easy to see where scripts fail
+- **Execution flow**: Clear understanding of script logic
+- **Error isolation**: Quickly identify problematic commands
+
+## Testing Script Structure
+
+### Basic Template
+
+```bash
+#!/bin/bash -x
+
+# Test script template
+# Usage: ./script_name.sh [arguments]
+
+# Set up test environment
+TEST_DIR="/tmp/test_$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$TEST_DIR"
+
+# Check prerequisites
+if [[ ! -f "../build/roobuilder" ]]; then
+    echo "ERROR: Local build not found"
+    exit 1
+fi
+
+# Run tests
+echo "Running test..."
+
+# Clean up
+echo "Test complete"
+```
+
+## Path Handling
+
+### Working from tests/ directory
+
+When scripts are in the `tests/` directory, use relative paths:
+
+```bash
+# Correct - from tests/ directory
+if [[ ! -f "../build/roobuilder" ]]; then
+    echo "ERROR: Local build not found at ../build/roobuilder"
+    exit 1
+fi
+
+# Run commands with relative paths
+../build/roobuilder --project /home/alan/gitlive/roobuilder --test-bjs-upgrade "$file"
+```
+
+### File Path Resolution
+
+```bash
+# Get absolute path for clarity
+ABSOLUTE_FILE=$(realpath "$BJS_FILE")
+echo "Testing: $ABSOLUTE_FILE"
+
+# Use relative paths for project files
+if [[ "$BJS_FILE" == src/* ]]; then
+    echo "✓ File is in src/ directory"
+fi
+```
+
+## Error Handling
+
+### Proper Exit Codes
+
+```bash
+# Function should return proper exit codes
+test_function() {
+    local file="$1"
+    
+    if [[ ! -f "$file" ]]; then
+        echo "ERROR: File not found: $file"
+        return 1
+    fi
+    
+    # Test logic here
+    return 0
+}
+
+# Check return codes
+if ! test_function "$file"; then
+    echo "Test failed for $file"
+    exit 1
+fi
+```
+
+### Timeout Handling
+
+```bash
+# Use timeout for potentially hanging commands
+if timeout 30 ../build/roobuilder --project /home/alan/gitlive/roobuilder --test-bjs-compile "$file" > "$output" 2> "$error"; then
+    echo "SUCCESS: Command completed"
+else
+    local exit_code=$?
+    echo "ERROR: Command failed (exit code: $exit_code)"
+    if [[ -f "$error" && -s "$error" ]]; then
+        echo "Error details:"
+        cat "$error"
+    fi
+fi
+```
+
+## Output Management
+
+### Logging Strategy
+
+```bash
+# Create test results directory
+TEST_DIR="/tmp/test_$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$TEST_DIR"
+
+# Separate output and error files
+OUTPUT_FILE="$TEST_DIR/${filename}_output.log"
+ERROR_FILE="$TEST_DIR/${filename}_error.log"
+
+# Use tee for both console and file output
+echo "Testing: $file" | tee -a "$RESULTS_LOG"
+```
+
+### Debug Output Control
+
+```bash
+# Show first few lines of output for verification
+if [[ -f "$OUTPUT_FILE" && -s "$OUTPUT_FILE" ]]; then
+    echo "Output file size: $(stat -c%s "$OUTPUT_FILE") bytes"
+    echo "First 10 lines of output:"
+    echo "-------------------------"
+    head -n 10 "$OUTPUT_FILE"
+fi
+```
+
+## Test Organization
+
+### Single File Testing
+
+```bash
+#!/bin/bash -x
+
+# Test single file first
+if [[ $# -eq 0 ]]; then
+    echo "Usage: $0 <bjs_file_path>"
+    echo "Example: $0 ../src/Builder4/About.bjs"
+    exit 1
+fi
+
+BJS_FILE="$1"
+echo "Testing single file: $BJS_FILE"
+```
+
+### Batch Testing
+
+```bash
+#!/bin/bash -x
+
+# Test all files with stop-on-failure
+for file in "${FILES[@]}"; do
+    echo "Testing: $file"
+    if ! test_file "$file"; then
+        echo "STOPPING: Test failed for $file"
+        break
+    fi
+done
+```
+
+## Common Patterns
+
+### Version Checking
+
+```bash
+# Check for version information
+if grep -q "bjs_version" "$file"; then
+    VERSION=$(grep "bjs_version" "$file" | head -n 1 | sed 's/.*bjs_version.*: *\([0-9]*\).*/\1/')
+    echo "Version found: $VERSION"
+else
+    echo "No version information found"
+fi
+```
+
+### File Validation
+
+```bash
+# Check file exists and has content
+if [[ ! -f "$file" ]]; then
+    echo "ERROR: File not found: $file"
+    exit 1
+fi
+
+FILE_SIZE=$(stat -c%s "$file" 2>/dev/null || echo "0")
+if [[ "$FILE_SIZE" -eq 0 ]]; then
+    echo "ERROR: Empty file"
+    exit 1
+fi
+```
+
+## Benefits of -x Flag
+
+1. **Immediate feedback**: See exactly what's happening
+2. **Easy debugging**: Spot errors quickly
+3. **Variable inspection**: See actual values
+4. **Flow understanding**: Follow execution path
+5. **Error isolation**: Identify problematic lines
+6. **Learning tool**: Understand script behavior
+
+## Example Usage
+
+```bash
+# Run test with debug output
+cd /home/alan/gitlive/roobuilder/tests
+./test_single_upgrade.sh ../src/Builder4/About.bjs
+
+# Output will show:
+# + [[ 1 -eq 0 ]]
+# + BJS_FILE=../src/Builder4/About.bjs
+# + echo 'Testing single file: ../src/Builder4/About.bjs'
+# Testing single file: ../src/Builder4/About.bjs
+# + [[ ! -f ../src/Builder4/About.bjs ]]
+# + stat -c%s ../src/Builder4/About.bjs
+# + FILE_SIZE=700
+# + echo 'File size: 700 bytes'
+# File size: 700 bytes
+```
+
+Remember: **Always use `#!/bin/bash -x` for testing scripts** to maintain visibility and debugging capability.

@@ -1,0 +1,371 @@
+---
+description: Convert multiple if-else statements to switch/case when there are more than 2 conditions
+globs: *.vala,*.js,*.ts,*.tsx,*.java,*.c,*.cpp,*.cs,*.php
+---
+
+# If-Else to Switch/Case Conversion Rule
+
+## When to Convert If-Else to Switch/Case
+
+**ALWAYS** convert multiple if-else statements to switch/case when there are **more than 2 conditions** checking the same variable or expression.
+
+## Why Convert?
+
+1. **Better Performance**: Switch statements are often optimized by compilers
+2. **Improved Readability**: Switch/case is more readable for multiple conditions
+3. **Easier Maintenance**: Adding new cases is simpler
+4. **Reduced Nesting**: Flatter code structure
+5. **Consistent Pattern**: Standard approach for multiple value checks
+
+## Examples
+
+### ❌ Incorrect - Multiple if-else statements
+
+```vala
+// BAD - More than 2 conditions, should use switch
+if (key == "items") {
+    // handle items
+} else if (key == "listeners") {
+    // handle listeners
+} else if (key == "* prop") {
+    // handle prop
+} else if (key == "* xns") {
+    // handle xns
+} else if (key == "xtype") {
+    // handle xtype
+} else {
+    // handle default
+}
+```
+
+```javascript
+// BAD - More than 2 conditions, should use switch
+if (status === "pending") {
+    showPending();
+} else if (status === "approved") {
+    showApproved();
+} else if (status === "rejected") {
+    showRejected();
+} else if (status === "cancelled") {
+    showCancelled();
+} else {
+    showUnknown();
+}
+```
+
+```java
+// BAD - More than 2 conditions, should use switch
+if (type.equals("string")) {
+    return processString(value);
+} else if (type.equals("number")) {
+    return processNumber(value);
+} else if (type.equals("boolean")) {
+    return processBoolean(value);
+} else if (type.equals("array")) {
+    return processArray(value);
+} else {
+    return processDefault(value);
+}
+```
+
+### ✅ Correct - Switch/case statements
+
+```vala
+// GOOD - Switch/case for multiple conditions
+switch (key) {
+    case "items":
+        // handle items
+        break;
+    case "listeners":
+        // handle listeners
+        break;
+    case "* prop":
+        // handle prop
+        break;
+    case "* xns":
+        // handle xns
+        break;
+    case "xtype":
+        // handle xtype
+        break;
+    default:
+        // handle default
+        break;
+}
+```
+
+```javascript
+// GOOD - Switch/case for multiple conditions
+switch (status) {
+    case "pending":
+        showPending();
+        break;
+    case "approved":
+        showApproved();
+        break;
+    case "rejected":
+        showRejected();
+        break;
+    case "cancelled":
+        showCancelled();
+        break;
+    default:
+        showUnknown();
+        break;
+}
+```
+
+```java
+// GOOD - Switch/case for multiple conditions
+switch (type) {
+    case "string":
+        return processString(value);
+    case "number":
+        return processNumber(value);
+    case "boolean":
+        return processBoolean(value);
+    case "array":
+        return processArray(value);
+    default:
+        return processDefault(value);
+}
+```
+
+## Language-Specific Notes
+
+### Vala
+- Use `switch` with `case` and `break`
+- Can use `default` for fallback
+- Switch expressions are supported in newer Vala versions
+
+### JavaScript/TypeScript
+- Use `switch` with `case` and `break`
+- Can use `default` for fallback
+- Consider using `switch` expressions in modern JavaScript
+
+### Java
+- Use `switch` with `case` and `break`
+- Can use `default` for fallback
+- Switch expressions available in Java 14+
+
+### C/C++
+- Use `switch` with `case` and `break`
+- Can use `default` for fallback
+- Be careful with fall-through behavior
+
+### C#
+- Use `switch` with `case` and `break`
+- Can use `default` for fallback
+- Switch expressions available in C# 8+
+
+### PHP
+- Use `switch` with `case` and `break`
+- Can use `default` for fallback
+- Be careful with type comparison
+
+## Early Returns Pattern
+
+### ❌ Incorrect - Unnecessary else with return
+
+```vala
+// BAD - Unnecessary else clause when if-block returns
+if (this.bjs_version > 2) {
+    // New format - use direct deserialization
+    var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+    if (node != null) {
+        node.file = this;
+        value.set_object(node);
+        return true;
+    }
+} else {
+    // Legacy format - use FileLegacy for conversion
+    var legacy = new FileLegacy(this);
+    // ... legacy processing ...
+    if (this.tree != null) {
+        value.set_object(this.tree);
+        return true;
+    }
+}
+return false;
+```
+
+### ✅ Correct - Early returns eliminate else
+
+```vala
+// GOOD - Early returns eliminate unnecessary else
+if (this.bjs_version > 2) {
+    // New format - use direct deserialization
+    var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+    if (node != null) {
+        node.file = this;
+        value.set_object(node);
+        return true;
+    }
+    return false;
+}
+
+// Legacy format - use FileLegacy for conversion
+var legacy = new FileLegacy(this);
+// ... legacy processing ...
+if (this.tree != null) {
+    value.set_object(this.tree);
+    return true;
+}
+return false;
+```
+
+### Benefits of Early Returns
+
+1. **Reduced Nesting**: Flatter code structure
+2. **Improved Readability**: Less indentation, clearer flow
+3. **Easier Maintenance**: Each branch is independent
+4. **Guard Clauses**: Handle edge cases first
+5. **Consistent Pattern**: Standard approach for error handling
+
+## Exception: When NOT to Convert
+
+### ✅ Keep If-Else When:
+1. **Only 2 conditions** (if-else is simpler)
+2. **Complex conditions** (not just equality checks)
+3. **Different variables** being compared
+4. **Range checks** or **comparison operators**
+5. **When else clause doesn't end with return** (both branches continue execution)
+
+```vala
+// GOOD - Keep if-else for complex conditions
+if (user.isAdmin() && hasPermission) {
+    // admin logic
+} else if (user.isModerator() && hasPermission) {
+    // moderator logic
+} else {
+    // regular user logic
+}
+
+// GOOD - Keep if-else for only 2 conditions
+if (status == "active") {
+    showActive();
+} else {
+    showInactive();
+}
+```
+
+## Code Review Guidelines
+
+When reviewing code, look for:
+1. **3 or more if-else conditions** checking the same variable
+2. **Simple equality checks** (==, ===, equals())
+3. **Same variable** being compared in all conditions
+4. **Opportunities for switch/case conversion**
+5. **Unnecessary else clauses** when if-blocks end with return
+6. **Nested if-else** that can be flattened with early returns
+7. **Guard clauses** that can eliminate else statements
+
+## Refactoring Steps
+
+1. **Identify the pattern**: Multiple if-else with same variable
+2. **Extract the variable**: Make sure it's the same variable in all conditions
+3. **Convert to switch**: Replace if-else with switch/case
+4. **Add break statements**: Ensure proper flow control
+5. **Add default case**: Handle unexpected values
+6. **Test thoroughly**: Ensure behavior is identical
+
+## Performance Benefits
+
+- **Compiler optimization**: Switch statements are often optimized
+- **Jump tables**: More efficient than sequential if-else
+- **Branch prediction**: Better CPU branch prediction
+- **Code size**: Often results in smaller compiled code
+
+## Examples from This Codebase
+
+### Current problematic code in [FileLegacy.vala](mdc:src/JsRender/FileLegacy.vala):
+
+```vala
+// Lines 31-91 - Should be converted to switch/case
+if (key == "items") {
+    // handle items
+} else if (key == "listeners") {
+    // handle listeners  
+} else if (key == "* prop" || key == "*prop") {
+    // handle prop
+} else if (key == "* xns" || key == "* xtype") {
+    // handle xns/xtype
+} else {
+    // handle regular properties
+}
+```
+
+### Should be converted to:
+
+```vala
+switch (key) {
+    case "items":
+        // handle items
+        break;
+    case "listeners":
+        // handle listeners
+        break;
+    case "* prop":
+    case "*prop":
+        // handle prop
+        break;
+    case "* xns":
+    case "xtype":
+        // handle xns/xtype
+        break;
+    default:
+        // handle regular properties
+        break;
+}
+```
+
+### Current problematic code in [JsRender.vala](mdc:src/JsRender/JsRender.vala):
+
+```vala
+// Lines 982-1007 - Should use early returns instead of else
+if (this.bjs_version > 2) {
+    // New format - use direct deserialization
+    var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+    if (node != null) {
+        node.file = this;
+        value.set_object(node);
+        return true;
+    }
+} else {
+    // Legacy format - use FileLegacy for conversion
+    var legacy = new FileLegacy(this);
+    // ... legacy processing ...
+    if (this.tree != null) {
+        value.set_object(this.tree);
+        return true;
+    }
+}
+return false;
+```
+
+### Should be refactored to:
+
+```vala
+// Use early returns to eliminate else clause
+if (this.bjs_version > 2) {
+    // New format - use direct deserialization
+    var node = Json.gobject_deserialize(typeof(Node), property_node) as Node;
+    if (node != null) {
+        node.file = this;
+        value.set_object(node);
+        return true;
+    }
+    return false;
+}
+
+// Legacy format - use FileLegacy for conversion
+var legacy = new FileLegacy(this);
+// ... legacy processing ...
+if (this.tree != null) {
+    value.set_object(this.tree);
+    return true;
+}
+return false;
+```
+
+Remember: **Switch/case is the preferred pattern for 3+ conditions checking the same variable with simple equality comparisons.**

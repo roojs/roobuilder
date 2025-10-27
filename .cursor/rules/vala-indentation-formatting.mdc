@@ -1,0 +1,291 @@
+---
+globs: *.vala
+description: Vala indentation and formatting rules
+---
+
+# Vala Indentation and Formatting Rules
+
+## Tab-Based Indentation
+
+**ALWAYS** use tabs for indentation in Vala files, not spaces. Each indentation level should be one tab character.
+
+### Indentation Rules
+
+1. **Class-level methods**: 1 tab indentation
+2. **Method bodies**: 2 tabs indentation  
+3. **Control structures**: Appropriate tab levels based on nesting
+4. **Switch statements**: Cases properly indented
+5. **Nested blocks**: Properly indented based on brace levels
+
+### Brace and Parenthesis Handling
+
+When a line contains both `}` and `{` (like `} catch (Error e) {`):
+- **Decrease indent** for closing braces first
+- **Increase indent** for opening braces after
+- **Count braces** on each line to determine proper indentation changes
+
+When a line contains parentheses `()`:
+- **Increase indent** for opening parentheses
+- **Decrease indent** for closing parentheses
+- **Count parentheses** on each line to determine proper indentation changes
+- **Handle nested expressions** with proper indentation levels
+
+### Examples
+
+#### ✅ Correct Indentation
+
+```vala
+public class MyClass : Object
+{
+	public void myMethod()
+	{
+		if (condition) {
+			doSomething();
+		} catch (Error e) {
+			handleError(e);
+		}
+	}
+	
+	public void switchExample(string value)
+	{
+		switch (value) {
+			case "option1":
+				handleOption1();
+				break;
+			case "option2":
+				handleOption2();
+				break;
+			default:
+				handleDefault();
+				break;
+		}
+	}
+	
+	public void complexExpression()
+	{
+		var result = someMethod(
+			parameter1,
+			parameter2,
+			anotherMethod(
+				nestedParam1,
+				nestedParam2
+			)
+		);
+	}
+}
+```
+
+#### ❌ Incorrect Indentation
+
+```vala
+// BAD - Using spaces instead of tabs
+public class MyClass : Object
+{
+    public void myMethod()
+    {
+        if (condition) {
+            doSomething();
+        } catch (Error e) {
+            handleError(e);
+        }
+    }
+}
+
+// BAD - Inconsistent indentation levels
+public class MyClass : Object
+{
+	public void myMethod()
+	{
+	if (condition) {
+		doSomething();
+	} catch (Error e) {
+	handleError(e);
+	}
+	}
+}
+
+// BAD - Poor parenthesis indentation
+public void complexExpression()
+{
+	var result = someMethod(
+	parameter1,
+	parameter2,
+	anotherMethod(
+	nestedParam1,
+	nestedParam2
+	)
+	);
+}
+```
+
+## Formatting Guidelines
+
+### Method Declarations
+- Place opening braces on new line after method declarations
+- Use consistent spacing around operators and keywords
+
+### Control Structures
+- Always use braces with control statements (if, for, while, etc.)
+- Place opening braces on new line after control statements
+- Properly indent nested structures
+
+### Switch Statements
+- Use switch/case for 3+ conditions checking the same variable
+- Properly indent case statements
+- Include break statements for each case
+
+### Try-Catch Blocks
+- Properly indent try and catch blocks
+- Handle `} catch {` patterns with correct indentation
+
+### Parentheses and Method Calls
+- Properly indent multi-line method calls
+- Align parameters with opening parenthesis
+- Handle nested method calls with appropriate indentation
+- Use consistent indentation for complex expressions
+
+## Code Review Checklist
+
+When reviewing Vala code, ensure:
+- [ ] All indentation uses tabs, not spaces
+- [ ] Consistent indentation levels throughout
+- [ ] Proper brace placement and indentation
+- [ ] Switch statements properly formatted
+- [ ] Try-catch blocks correctly indented
+- [ ] Multi-line method calls properly indented
+- [ ] Parentheses alignment is consistent
+- [ ] Nested expressions properly indented
+- [ ] No mixed spaces and tabs
+- [ ] Consistent spacing around operators
+
+## Benefits
+
+- **Consistency**: Uniform code style across the project
+- **Readability**: Clear visual hierarchy and structure
+- **Maintainability**: Easier to modify and debug code
+- **Professional appearance**: Clean, well-formatted code
+- **Team collaboration**: Consistent style reduces confusion
+
+## Switch/Case Indentation Rules
+
+Switch/case statements require special handling for proper indentation:
+
+### Switch Statement Indentation
+```vala
+// Correct switch indentation
+switch (value) {
+    case "option1":
+        handleOption1();
+        break;
+    case "option2":
+        handleOption2();
+        break;
+    default:
+        handleDefault();
+        break;
+}
+```
+
+### Indentation Rules for Switch/Case
+1. **Switch statement**: Opening brace on same line, body indented one level
+2. **Case statements**: Indented to same level as switch body (one level from switch)
+3. **Case body**: Indented one additional level from case statement
+4. **Break statements**: Indented to same level as case body
+5. **Closing brace**: At same level as switch statement
+
+### Enhanced Indentation Algorithm
+
+The indentation fixer uses a **three-pass algorithm**:
+
+1. **First Pass**: Convert spaces to tabs
+2. **Second Pass**: Apply basic brace/parenthesis indentation
+3. **Third Pass**: Handle switch/case specific indentation rules
+
+#### Switch/Case Detection Logic
+- **Switch Detection**: Lines starting with `switch ` are tracked
+- **Case Detection**: Lines starting with `case ` or `default` are indented to switch body level
+- **Switch Closure**: Closing `}` that returns to switch level closes the switch
+
+## Tools
+
+Use the enhanced Python script to fix indentation in Vala files with full switch/case support:
+
+```bash
+# Use the enhanced indentation fixer
+python3 tools/fix_indentation_enhanced.py <filename>
+```
+
+The enhanced script (`tools/fix_indentation_enhanced.py`) provides:
+
+### Features
+- ✅ **Tab-based indentation** (converts spaces to tabs)
+- ✅ **Switch/case support** with proper case indentation
+- ✅ **Brace and parenthesis handling** with nested expressions
+- ✅ **Three-pass algorithm** for accurate indentation
+- ✅ **Validation** to ensure no spaces remain
+- ✅ **Error reporting** with line numbers
+
+### Usage Examples
+```bash
+# Fix a single file
+python3 tools/fix_indentation_enhanced.py src/MyClass.vala
+
+# Fix multiple files
+for file in src/*.vala; do
+    python3 tools/fix_indentation_enhanced.py "$file"
+done
+```
+
+### Switch/Case Examples
+
+#### ✅ Correct Switch Indentation
+```vala
+public void handleStatus(string status)
+{
+    switch (status) {
+        case "pending":
+            showPending();
+            break;
+        case "approved":
+            showApproved();
+            break;
+        case "rejected":
+            showRejected();
+            break;
+        default:
+            showUnknown();
+            break;
+    }
+}
+```
+
+#### ❌ Incorrect Switch Indentation
+```vala
+// BAD - Cases not properly indented
+switch (status) {
+case "pending":
+showPending();
+break;
+case "approved":
+showApproved();
+break;
+default:
+showUnknown();
+break;
+}
+
+// BAD - Inconsistent indentation
+switch (status) {
+    case "pending":
+        showPending();
+    break;
+    case "approved":
+        showApproved();
+    break;
+    default:
+        showUnknown();
+    break;
+}
+```
+
+Remember: **Consistency and readability over brevity**. Well-formatted code is easier to read, maintain, and debug.
