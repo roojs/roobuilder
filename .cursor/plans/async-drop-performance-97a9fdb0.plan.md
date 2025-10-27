@@ -12,102 +12,234 @@ From the log analysis, the 4.4-second drop operation breaks down as:
 
 The main bottleneck is the preview HTML generation which happens synchronously during the drop.
 
-## Solution
+## Solution Strategy
 
 ### 1. Defer Preview Generation (Option 1.a)
 
-Make preview generation asynchronous/deferred until actually needed. The preview is only shown when the user switches to the preview tab, so we don't need to generate it immediately on every drop.
+Skip preview generation during drops - it's only needed when user switches to preview tab.
 
-**Key insight**: `renderJS(force)` sets `refreshRequired = true`, then `runRefresh()` (called every 2 seconds) actually generates the preview. We should skip this during drop operations.
+### 2. Thread Source Code Generation (Option 2.b with threading)
 
-### 2. Make File Save Asynchronous (Option 2.b)
+Generate source code in background thread to avoid blocking UI.
 
-Make the file save operation asynchronous so it doesn't block the UI during the drop operation.
+### 3. Lock at Action Level
 
-### 3. Trigger Source Highlighting After Async Operations
-
-Since callers expect to highlight the selected node in source text after updates, we need to ensure `nodeSelected()` is called after the source code is regenerated.
+Add mutex to `Action.Manager` to prevent tree modifications while source generation is running in background thread.
 
 ## Implementation Steps
 
-### Step 1: Add flag to skip preview generation during drops
+### Step 1: Add mutex to Action.Manager
+
+**File**: `src/JsRender/Action/Manager.vala` (lines 1-100)
+
+Add thread-safe locking:
+
+```vala
+public class Action.Manager : Object
+{
+    private GLib.Mutex action_lock = GLib.Mutex();
+    
+    public NodeBase? run(Action.Base action)
+    {
+        // Wait if source is being generated
+        this.action_lock.lock();
+        var result = action.run();
+        this.action_lock.unlock();
+        return result;
+    }
+    
+    public void lock_for_source_generation() {
+        this.action_lock.lock();
+    }
+    
+    public void unlock_after_source_generation() {
+        this.action_lock.unlock();
+    }
+}
+```
+
+### Step 2: Add skip_preview_generation flag
 
 **File**: `src/Builder4/WindowRooView.vala` (lines 758-770)
 
-Add a flag to temporarily disable preview generation:
+Add flag to skip expensive preview:
 
-- Add `public bool skip_preview_generation` property
-- Modify `renderJS()` to check this flag and return early if set
-- This prevents the expensive `toSourcePreview()` call
+```vala
+public bool skip_preview_generation { get; set; default = false; }
 
-### Step 2: Modify drop handler to defer preview
+public void renderJS(bool force) {
+    if (this.skip_preview_generation) {
+        return; // Skip preview generation
+    }
+    // ... existing code
+}
+```
+
+### Step 3: Create threaded source generation methods
+
+**File**: `src/JsRender/Roo.vala` (around line 349)
+
+Add async threaded version:
+
+```vala
+public async string toSourceAsync() {
+    SourceFunc callback = toSourceAsync.callback;
+    string result = "";
+    
+    // Lock the action manager to prevent modifications
+    this.action_manager.lock_for_source_generation();
+    
+    new Thread<string>("thread-source-gen", () => {
+        result = this.toSource();
+        Idle.add((owned) callback);
+        return result;
+    });
+    
+    yield;
+    
+    // Unlock after generation
+    this.action_manager.unlock_after_source_generation();
+    return result;
+}
+```
+
+**File**: `src/JsRender/Gtk.vala` (similar pattern)
+
+Add same async threaded version for Gtk files.
+
+### Step 4: Create async loadFile for source view
+
+**File**: `src/Builder4/WindowRooView.vala` (around line 1447)
+
+Add async version that uses threaded generation:
+
+```vala
+public async void loadFileAsync() {
+    this.loading = true;
+    
+    var buf = this.el.get_buffer();
+    Gtk.TextIter s, e;
+    buf.get_start_iter(out s);
+    buf.get_end_iter(out e);
+    var old = buf.get_text(s, e, true);
+    
+    // Generate source in background thread
+    var str = yield _this.file.toSourceAsync();
+    
+    // Update buffer in main thread
+    // ... existing diff and update logic ...
+    
+    this.loading = false;
+}
+```
+
+### Step 5: Modify drop handler to use async operations
 
 **File**: `src/Builder4/WindowLeftTree.vala` (lines 1142-1145)
 
-After drop completes:
+Update drop completion:
 
-- Set `window_rooview.view.skip_preview_generation = true`
-- Call `_this.changed()` (triggers async file save)
-- Call `_this.node_selected(tadd)` (triggers source view update)
-- Schedule preview generation for later with `GLib.Timeout.add()`
-- Reset `skip_preview_generation = false` after delay
+```vala
+_this.model.selectNode(tadd);
+_this.changed(); // Saves file synchronously (fast)
 
-### Step 3: Make file save async
+// Skip preview generation during drop
+if (_this.main_window.windowstate.file.xtype == "Roo") {
+    _this.main_window.windowstate.window_rooview.skip_preview_generation = true;
+}
 
-**File**: `src/JsRender/JsRender.vala` (lines 510-524)
+// Trigger async source generation and highlighting
+_this.node_selected_async.begin(tadd, (obj, res) => {
+    _this.node_selected_async.end(res);
+    
+    // Re-enable preview after delay
+    GLib.Timeout.add_seconds(2, () => {
+        if (_this.main_window.windowstate.file.xtype == "Roo") {
+            _this.main_window.windowstate.window_rooview.skip_preview_generation = false;
+            _this.main_window.windowstate.window_rooview.view.renderJS(false);
+        }
+        return false;
+    });
+});
+```
 
-Convert `save()` to async method:
+### Step 6: Create async node_selected handler
 
-- Change signature to `public async void save()`
-- Use `Idle.add()` to defer actual file write
-- Emit completion signal when done
+**File**: `src/Builder4/WindowLeftTree.vala`
 
-### Step 4: Update changed() handler to handle async save
+Add async version:
+
+```vala
+public async void node_selected_async(Node sel) {
+    // Update source view with threaded generation
+    if (this.main_window.windowstate.file.xtype == "Roo") {
+        yield this.main_window.windowstate.window_rooview.sourceview.loadFileAsync();
+        this.main_window.windowstate.window_rooview.sourceview.nodeSelected(sel, true);
+    } else {
+        // Gtk files - similar pattern
+    }
+}
+```
+
+### Step 7: Update WindowState changed handler
 
 **File**: `src/Builder4/WindowState.vala` (lines 166-179)
 
-Modify the `changed` signal handler:
+Keep file save synchronous (it's fast), but make source generation async:
 
-- Call `file.save.begin()` instead of `file.save()`
-- Use callback to trigger `requestRedraw()` after save completes
-- This ensures source code is regenerated before highlighting
+```vala
+this.left_tree.changed.connect(() => {
+    if (!this.win.btn_tree.el.visible) {
+        return;
+    }
+    
+    GLib.debug("LEFT TREE: Changed fired\n");
+    this.file.save(); // Synchronous - fast file I/O
+    
+    // Async source regeneration
+    if (this.left_tree.getActiveFile().xtype == "Roo") {
+        this.window_rooview.requestRedrawAsync.begin();
+    } else {
+        this.window_gladeview.loadFile(this.left_tree.getActiveFile());
+    }
+});
+```
 
-### Step 5: Ensure nodeSelected waits for source generation
+### Step 8: Add async requestRedraw
 
-**File**: `src/Builder4/WindowRooView.vala` (lines 1564-1619)
+**File**: `src/Builder4/WindowRooView.vala`
 
-Add check in `nodeSelected()`:
+```vala
+public async void requestRedrawAsync() {
+    yield this.sourceview.loadFileAsync();
+    if (!this.view.skip_preview_generation) {
+        this.view.renderJS(false);
+    }
+}
+```
 
-- If source is still being generated, defer the highlighting
-- Use a small timeout to retry until source is ready
-- This ensures the line numbers are correct for highlighting
+## Thread Safety Guarantees
 
-## Key Changes Summary
+1. **Action.Manager mutex**: Prevents any tree modifications while source is being generated
+2. **Lock scope**: Covers entire source generation process
+3. **UI remains responsive**: Actions queue up but don't block UI thread
+4. **Data consistency**: Tree structure is frozen during background generation
 
-1. **WindowRooView.vala**: Add `skip_preview_generation` flag to defer expensive preview
-2. **WindowLeftTree.vala**: Set flag during drop, schedule preview for later
-3. **JsRender.vala**: Add mutex locking for thread-safe node access
-4. **Roo.vala/Gtk.vala**: Add threaded `toSourceAsync()` and `toSourcePreviewAsync()` methods
-5. **WindowState.vala**: Use async source generation in changed handler
-6. **WindowRooView.vala**: Add async versions of requestRedraw and loadFile that use threads
-7. **Thread Safety**: Mutex locks prevent node modifications during source generation
+## Expected Performance
 
-## Expected Performance Improvement
+- **Drop operation**: 4.4s → ~200ms (immediate UI response)
+- **Source generation**: Happens in background (~300ms)
+- **Preview generation**: Deferred 2+ seconds or until tab switch
+- **File save**: Synchronous but fast (~10ms)
 
-- Drop operation: **4.4s → ~500ms** (immediate UI response)
-- Preview generation: Deferred until needed or after 2-second delay
-- File save: Non-blocking (happens in background)
-- Source highlighting: Works correctly after async operations complete
-
-## Testing
-
-After implementation, test:
+## Testing Checklist
 
 1. Drop a node - should be instant
-2. Check that file is saved correctly
-3. Verify source highlighting works
-4. Switch to preview tab - should generate preview on demand
-5. Multiple rapid drops - should queue properly
+2. Verify file saves correctly
+3. Check source highlighting appears after ~300ms
+4. Try rapid drops - should queue properly
+5. Switch to preview tab - generates on demand
+6. Verify no crashes from race conditions
 
 ### To-dos
 

@@ -1,6 +1,7 @@
 namespace JsRender {
 
-	public class FileLegacy : Object {
+	public class FileLegacy : Object
+	{
 		private JsRender file;
 
 		public FileLegacy(JsRender file) 
