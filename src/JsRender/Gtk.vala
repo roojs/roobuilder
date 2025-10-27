@@ -166,15 +166,36 @@ namespace JsRender {
 	    }
 	    
 	    // this is only used by dumping code...
-	    public override string toSource() // no seed support currently.
-	    {
+    public override string toSource() // no seed support currently.
+    {
 		 
 			 return  this.toSourceCode();
-	        
-	        
-	    }
+        
+        
+    }
+    
+    public async string toSourceAsync()
+    {
+        SourceFunc callback = toSourceAsync.callback;
+        string result = "";
+        
+        // Lock the action manager to prevent modifications
+        this.action_manager.lock_for_source_generation();
+        
+        new Thread<string>("thread-source-gen", () => {
+            result = this.toSource();
+            Idle.add((owned) callback);
+            return result;
+        });
+        
+        yield;
+        
+        // Unlock after generation
+        this.action_manager.unlock_after_source_generation();
+        return result;
+    }
 	
-	    public override void save() 
+    public override void save()
 	    {
 	        this.saveBJS();
 	        // this.saveJS(); - disabled at present.. project settings will probably enable this later..
