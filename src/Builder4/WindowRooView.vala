@@ -771,7 +771,7 @@ public class Xcls_WindowRooView : Object
 		    var autodraw = _this.AutoRedraw.el.active;
 		    
 		    // Skip preview generation if flag is set
-		    if (this.skip_preview_generation) {
+		    if (_this.skip_preview_generation) {
 		        return;
 		    }
 		    
