@@ -14,6 +14,7 @@
    "id" : "WindowRooView",
    "int last_error_counter" : 0,
    "int last_search_end" : 0,
+   "bool skip_preview_generation" : false,
    "items" : [
     {
      "$ xns" : "Gtk",
@@ -1748,6 +1749,14 @@
     "() {",
     "    this.view.renderJS(false);",
     "    this.sourceview.loadFile();   ",
+    "}"
+   ],
+   "| async void requestRedrawAsync" : [
+    "() {",
+    "    yield this.sourceview.loadFileAsync();",
+    "    if (!this.view.skip_preview_generation) {",
+    "        this.view.renderJS(false);",
+    "    }",
     "}"
    ],
    "| void scroll_to_line" : [
