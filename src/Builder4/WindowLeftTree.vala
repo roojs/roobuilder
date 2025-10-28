@@ -1138,13 +1138,19 @@ public class Xcls_WindowLeftTree : Object
 				
 				
 				}
-		     GLib.debug("done action");
-		_this.model.selectNode(tadd); 
-		GLib.debug("calling changed");
-		_this.changed();
-			_this.node_selected(tadd);
-			GLib.debug("end  drag");
-			return true;
+			     GLib.debug("done action");
+				// Defer UI updates to prevent perceived lag
+				GLib.Timeout.add(100, () => {
+				    GLib.debug("deferred selectNode");
+				    _this.model.selectNode(tadd); 
+				    GLib.debug("deferred calling changed");
+				    _this.changed();
+				    _this.node_selected(tadd);
+				    GLib.debug("deferred end drag");
+				    return false; // Don't repeat
+				});
+				GLib.debug("end  drag - returning immediately");
+				return true;	
 					
 			
 			});
