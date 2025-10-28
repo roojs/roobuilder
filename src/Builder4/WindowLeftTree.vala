@@ -14,11 +14,11 @@ public class Xcls_WindowLeftTree : Object
 	}
 	public Xcls_viewwin viewwin;
 	public Xcls_view view;
-	public Xcls_drop drop;
 	public Xcls_selmodel selmodel;
 	public Xcls_model model;
 	public Xcls_maincol maincol;
 	public Xcls_LeftTreeMenu LeftTreeMenu;
+	public Xcls_drop drop;
 
 	// my vars (def)
 	public signal bool before_node_change ();
@@ -252,6 +252,12 @@ public class Xcls_WindowLeftTree : Object
 			new Xcls_view( _this );
 			this.el.child = _this.view.el;
 			new Xcls_LeftTreeMenu( _this );
+			new Xcls_drop( _this );
+			this.el.add_controller(  _this.drop.el );
+
+			//listeners
+			this.el.realize.connect( () => { GLib.debug("ScrolledWindow: realize signal"); });
+			this.el.map.connect( () => { GLib.debug("ScrolledWindow: map signal"); });
 		}
 
 		// user defined functions
@@ -301,13 +307,11 @@ public class Xcls_WindowLeftTree : Object
 			var child_5 = new Xcls_EventControllerKey8( _this );
 			child_5.ref();
 			this.el.add_controller(  child_5.el );
-			new Xcls_drop( _this );
-			this.el.add_controller(  _this.drop.el );
 			new Xcls_maincol( _this );
 			this.el.append_column ( _this.maincol.el  );
-			var child_8 = new Xcls_ColumnViewColumn14( _this );
-			child_8.ref();
-			this.el.append_column ( child_8.el  );
+			var child_7 = new Xcls_ColumnViewColumn13( _this );
+			child_7.ref();
+			this.el.append_column ( child_7.el  );
 
 			// init method
 
@@ -678,6 +682,7 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.prepare.connect( (x, y) => {
 			
+			   GLib.debug("DragSource: prepare called");
 				
 				
 			///	( drag_context, data, info, time) => {
@@ -705,7 +710,7 @@ public class Xcls_WindowLeftTree : Object
 				 
 			});
 			this.el.drag_begin.connect( ( drag )  => {
-				GLib.debug("SOURCE: drag-begin");
+				GLib.debug("DragSource: drag-begin called");
 				 
 			    // find what is selected in our tree...
 			    var data = _this.selmodel.getSelectedNode();
@@ -768,417 +773,6 @@ public class Xcls_WindowLeftTree : Object
 		}
 
 		// user defined functions
-	}
-
-	public class Xcls_drop : Object
-	{
-		public Gtk.DropTarget el;
-		private Xcls_WindowLeftTree  _this;
-
-
-		// my vars (def)
-		public Gtk.Widget? highlightWidget;
-		public JsRender.Node? lastDragNode;
-		public string lastDragString;
-
-		// ctor
-		public Xcls_drop(Xcls_WindowLeftTree _owner )
-		{
-			_this = _owner;
-			_this.drop = this;
-			this.el = new Gtk.DropTarget ( typeof(string) ,
-		Gdk.DragAction.COPY   | Gdk.DragAction.MOVE | Gdk.DragAction.ASK   );
-
-			// my vars (dec)
-			this.highlightWidget = null;
-			this.lastDragNode = null;
-			this.lastDragString = "\"\"";
-
-			// set gobject values
-
-			//listeners
-			this.el.accept.connect( (drop) => {
-			
-				GLib.debug("got DropTarget:accept");
-				if (drop == null) {
-					GLib.debug("got DropTarget:accept = false");
-					return false;
-				}
-				GLib.debug("got DropTarget:accept = true");
-			  
-				return true;
-			});
-			this.el.motion.connect( (  x, y) => {
-			 
-				var is_shift = 
-					0 != (_this.main_window.keyboard.get_modifier_state()
-					& Gdk.ModifierType.SHIFT_MASK);
-			
-				var is_control = // contol overrides our rules for dropping
-					0 != (_this.main_window.keyboard.get_modifier_state() 
-						& Gdk.ModifierType.CONTROL_MASK);
-			    
-			    
-				
-				//GLib.debug("shift is    %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
-				string pos; // over / before / after..
-			
-			    GLib.debug("got drag motion");
-			
-			    GLib.Value v = GLib.Value(typeof(string));
-			   	//var str = drop.read_text( [ "text/plain" ] 0);
-			   	var cont = this.el.current_drop.get_drag().content ;
-			   	try {
-			  		cont.get_value(ref v);
-				} catch (GLib.Error e) {
-				   // GLib.debug("failed to get drag value");
-					return Gdk.DragAction.ASK;	 
-				
-				}
-			 
-				//GLib.debug("got %s", v.get_string());
-				  
-				if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
-					// still dragging same node
-			 
-					this.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  
-						v.get_string( )) as JsRender.Node;
-				}
-			    
-				var file = _this.main_window.windowstate.file;
-				var palete =  file.palete();
-				var ls = file.getSymbolLoader();
-				var drop_on_to = palete.getDropListFromSymbols(ls, this.lastDragNode.fqn());
-			   
-			 
-			     
-			     string[] str = {};
-			     foreach(var dp in drop_on_to) {
-			     	str += dp;
-			 	}
-			 	GLib.debug("droplist: %s", string.joinv(", ", str));
-			     
-			     
-			    // if there are not items in the tree.. the we have to set isOver to true for anything..
-			 
-			    if (_this.model.el.n_items < 1) {
-			   	 	// FIXME check valid drop types?
-			    		if (!drop_on_to.contains("*top")) {
-			    			this.addHighlight(null, "");	
-						return Gdk.DragAction.ASK;
-					};
-					this.addHighlight(_this.view.el, "over");
-			
-					return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY; // no need to highlight?
-			     
-			    }
-			    
-			    
-			
-			 	 
-			    // if path of source and dest are inside each other..
-			    // need to add source info to drag?
-			    // the fail();
-			 	 var row_widget = _this.view.getRowWidgetAt( x,y, out pos);    
-			// 	var row = _this.view.getRowAt(x,y, out pos);
-			 	//GLib.debug("check is over %d, %d, %s", (int)x,(int)y, pos);
-			
-			 	if (row_widget == null) {
-					this.addHighlight(null, "");	
-					return Gdk.DragAction.ASK;
-			 	}
-			 	var node = row_widget.get_data<JsRender.Node>("node");
-				
-				//GLib.debug("Drop over node: %s", node.fqn());
-				
-			
-			 	if (pos == "above" || pos == "below") {
-					if (node.parent == null) {
-						//GLib.debug("no parent try center");
-						pos = "over";
-					} else {
-				 		 
-				 		if (!drop_on_to.contains(node.parent.prop_type ) && !is_control) {
-							//GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
-				 			pos = "over";
-			 			} else {
-							//GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
-							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode)) {
-						 			GLib.debug("shift drop not self not allowed");
-					 				this.addHighlight(null, "");
-									return Gdk.DragAction.ASK;
-					 			}
-					 			
-					 		}
-							
-						}
-						
-						
-						
-			 		}
-			 		
-			 		
-			 	}
-			 	if (pos == "over") {
-				 	if (!drop_on_to.contains(node.fqn())) {
-						//GLib.debug("drop on does not contain %s - try center" , node.fqn());
-						if (!is_control) {
-							this.addHighlight(null, ""); 
-							return Gdk.DragAction.ASK;
-						} 
-						this.addHighlight(row_widget, pos); 
-						return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
-					}
-					if (_this.view.dragNode  != null && is_shift) {
-			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
-				 			//GLib.debug("shift drop not self not allowed");
-			 				if (!is_control) {
-								this.addHighlight(null, ""); 	
-								return Gdk.DragAction.ASK;
-							} 
-							this.addHighlight(row_widget, pos); 
-							
-							return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;
-			 			}
-					}
-			 			
-				}
-			 	
-			 	
-			 	    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
-			
-				this.addHighlight(row_widget, pos); 
-				return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
-			});
-			this.el.leave.connect( ( ) => {
-				this.addHighlight(null,"");
-			
-			});
-			this.el.drop.connect( (v, x, y) => {
-				GLib.debug("drop event");
-				// must get the pos before we clear the hightlihg.
-			 	var pos = "";
-			 	var row_widget = _this.view.getRowWidgetAt(x,y, out pos);
-				this.addHighlight(null,"");
-			 
-			 	var is_shift = 
-					0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK);
-				
-				var is_control = // contol overrides our rules for dropping
-					0 != (_this.main_window.keyboard.get_modifier_state() 
-						& Gdk.ModifierType.CONTROL_MASK);
-			    
-				
-				
-			 	 
-			 	// -- get position..
-			 	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
-					// still dragging same node
-			 
-					this.lastDragNode = Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node; 
-			
-				}
-			   	
-			     
-			 	var file = _this.main_window.windowstate.file;      
-			    var dropNode =  Json.gobject_from_data(typeof(JsRender.Node), v.get_string()) as JsRender.Node;
-			    var src_oid = -1;
-			    try {
-			    		var js = Json.from_string(v.get_string());
-			    		if (_this.view.dragNode !=null &&  js.get_object().has_member("oid")) { 
-			     		src_oid = (int) js.get_object().get_int_member("oid");
-			     		dropNode = file.nodes.get(src_oid) as JsRender.Node;
-			 		} else {
-			 			dropNode.file = file;
-					}
-			 	}catch (GLib.Error e) {
-			 	
-			 	}// how do we know if the dropped node is from the same file?
-			 	// FIXME !!!!
-			
-				GLib.debug("dropped node %s", v.get_string());
-				
-			
-				var palete =  file.palete();
-				var ls = file.getSymbolLoader();
-				var drop_on_to = palete.getDropListFromSymbols(ls, dropNode.fqn());
-			   
-			   
-			   	JsRender.Node tadd;
-			    // if there are not items in the tree.. the we have to set isOver to true for anything..
-			 
-			    if (_this.model.el.n_items < 1) {
-			    	// FIXME check valid drop types?
-			    		if (!drop_on_to.contains("*top")) {
-						GLib.debug("drop on to list does not contain top?");
-						return false;	
-					}
-					// add new node to top..
-					GLib.debug("adding to top");
-					
-					
-					tadd = file.action_manager.run(
-						new JsRender.Action.Add(
-							file,
-							v.get_string(),	
-							null,
-							true,
-							-1
-						)
-					) as JsRender.Node;
-					 
-					_this.model.selectNode(tadd); 	
-					_this.changed();
-					_this.node_selected(tadd);
-				  	  
-					return true; // no need to highlight?
-			     
-			    }
-			
-			
-			
-			
-				if (row_widget == null) {
-					GLib.debug("could not get row %d,%d, %s", (int)x,(int)y,pos);
-					return   false; //Gdk.DragAction.COPY;
-				}
-			 	
-				var node =  row_widget.get_data<JsRender.Node>("node");
-				var new_parent = node;
-				
-			 	if (pos == "above" || pos == "below") {
-					if (node.parent == null) {
-						pos = "over";
-					} else {
-				 		if (!drop_on_to.contains(node.parent.prop_type)  && !is_control) {
-							pos = "over";
-			 			} else {
-							GLib.debug("drop  contains %s - using %s" , node.parent.prop_type, pos);
-							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.oid != -1 && (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode))) {
-						 			GLib.debug("shift drop not self not allowed");
-			  						return false;	
-					 			}
-					 			
-					 		}
-							
-							
-						}
-			 		}
-			 		
-			 	}
-			 	if (pos == "over") {
-				 	if (!drop_on_to.contains(node.fqn()) && !is_control) {
-						GLib.debug("drop on does not contain %s - try center" , node.fqn());
-						return false;
-			
-					}
-					if (node.oid != -1 && (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode))) {
-			 			GLib.debug("shift drop not self not allowed");
-						return false;	
-					}
-				}
-				
-			 	var to_pos = -1; 
-			 	switch(pos) {
-			 		case "over":
-						break;
-				 		
-				 		
-				 		
-				 		
-			 		case "above":
-			 			GLib.debug("Above - insertBefore");
-			 			to_pos = node.parent.children.index_of(node);
-			 			new_parent = node.parent as JsRender.Node;
-			 			break;
-			 			
-			 		case "below":
-			 			GLib.debug("Below - insertAfter"); 		
-				 		
-				 		to_pos = node.parent.children.index_of(node) +1;
-				 		new_parent = node.parent as JsRender.Node;
-			 			break;
-				 		  
-			 		default:
-			 			// should not happen
-			 			return false;
-			 	}
-			 	
-				_this.model.selectNode(null); 
-			
-				GLib.debug("creating action");
-				
-				// can only move nodes that are in our tree.
-				if (is_shift && _this.view.dragNode != null && dropNode.oid > -1) {
-			
-			 		
-			 		tadd = file.action_manager.run(
-						new JsRender.Action.Move(
-							dropNode,
-							new_parent,
-							to_pos
-						)
-					) as JsRender.Node;
-					 
-					
-			 		
-				} else {
-				
-				
-			 		tadd = file.action_manager.run(
-						new JsRender.Action.Add.from_node(
-							file,
-							dropNode, // get the original object..
-							new_parent,
-							to_pos
-						)
-					) as JsRender.Node;
-				
-				
-				}
-			     GLib.debug("done action");
-				// Defer UI updates to prevent perceived lag
-				GLib.Timeout.add(100, () => {
-				    GLib.debug("deferred selectNode");
-				    _this.model.selectNode(tadd); 
-				    GLib.debug("deferred calling changed");
-				    _this.changed();
-				    _this.node_selected(tadd);
-				    GLib.debug("deferred end drag");
-				    return false; // Don't repeat
-				});
-				GLib.debug("end  drag - returning immediately");
-				return true;	
-					
-			
-			});
-		}
-
-		// user defined functions
-		public void addHighlight (Gtk.Widget? w, string hl) {
-			if (this.highlightWidget != null) {
-				var ww  = this.highlightWidget;
-				//GLib.debug("clear drag from previous highlight");
-				if (ww.has_css_class("drag-below")) {
-					 ww.remove_css_class("drag-below");
-				}
-				if (ww.has_css_class("drag-above")) {
-					 ww.remove_css_class("drag-above");
-				}
-				if (ww.has_css_class("drag-over")) {
-					 ww.remove_css_class("drag-over");
-				}
-			}
-			if (w != null) {
-				//GLib.debug("add drag=%s to widget", hl);	
-				if (!w.has_css_class("drag-" + hl)) {
-					w.add_css_class("drag-" + hl);
-				}
-			}
-			this.highlightWidget = w;
-		}
 	}
 
 	public class Xcls_selmodel : Object
@@ -1496,7 +1090,7 @@ public class Xcls_WindowLeftTree : Object
 		{
 			_this = _owner;
 			_this.maincol = this;
-			var child_1 = new Xcls_SignalListItemFactory13( _this );
+			var child_1 = new Xcls_SignalListItemFactory12( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
 
@@ -1510,7 +1104,7 @@ public class Xcls_WindowLeftTree : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory13 : Object
+	public class Xcls_SignalListItemFactory12 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_WindowLeftTree  _this;
@@ -1519,7 +1113,7 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory13(Xcls_WindowLeftTree _owner )
+		public Xcls_SignalListItemFactory12(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -1597,7 +1191,7 @@ public class Xcls_WindowLeftTree : Object
 	}
 
 
-	public class Xcls_ColumnViewColumn14 : Object
+	public class Xcls_ColumnViewColumn13 : Object
 	{
 		public Gtk.ColumnViewColumn el;
 		private Xcls_WindowLeftTree  _this;
@@ -1606,10 +1200,10 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_ColumnViewColumn14(Xcls_WindowLeftTree _owner )
+		public Xcls_ColumnViewColumn13(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
-			var child_1 = new Xcls_SignalListItemFactory15( _this );
+			var child_1 = new Xcls_SignalListItemFactory14( _this );
 			child_1.ref();
 			this.el = new Gtk.ColumnViewColumn( "Add", child_1.el );
 
@@ -1621,7 +1215,7 @@ public class Xcls_WindowLeftTree : Object
 
 		// user defined functions
 	}
-	public class Xcls_SignalListItemFactory15 : Object
+	public class Xcls_SignalListItemFactory14 : Object
 	{
 		public Gtk.SignalListItemFactory el;
 		private Xcls_WindowLeftTree  _this;
@@ -1630,7 +1224,7 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_SignalListItemFactory15(Xcls_WindowLeftTree _owner )
+		public Xcls_SignalListItemFactory14(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.SignalListItemFactory();
@@ -1696,14 +1290,14 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Box17( _this );
+			var child_1 = new Xcls_Box16( _this );
 			child_1.ref();
 			this.el.child = child_1.el;
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Box17 : Object
+	public class Xcls_Box16 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_WindowLeftTree  _this;
@@ -1712,7 +1306,7 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box17(Xcls_WindowLeftTree _owner )
+		public Xcls_Box16(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1720,20 +1314,20 @@ public class Xcls_WindowLeftTree : Object
 			// my vars (dec)
 
 			// set gobject values
-			var child_1 = new Xcls_Button18( _this );
+			var child_1 = new Xcls_Button17( _this );
 			child_1.ref();
 			this.el.append( child_1.el );
-			var child_2 = new Xcls_Button19( _this );
+			var child_2 = new Xcls_Button18( _this );
 			child_2.ref();
 			this.el.append( child_2.el );
-			var child_3 = new Xcls_Button20( _this );
+			var child_3 = new Xcls_Button19( _this );
 			child_3.ref();
 			this.el.append( child_3.el );
 		}
 
 		// user defined functions
 	}
-	public class Xcls_Button18 : Object
+	public class Xcls_Button17 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_WindowLeftTree  _this;
@@ -1742,7 +1336,7 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button18(Xcls_WindowLeftTree _owner )
+		public Xcls_Button17(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -1764,7 +1358,7 @@ public class Xcls_WindowLeftTree : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button19 : Object
+	public class Xcls_Button18 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_WindowLeftTree  _this;
@@ -1773,7 +1367,7 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button19(Xcls_WindowLeftTree _owner )
+		public Xcls_Button18(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -1800,7 +1394,7 @@ public class Xcls_WindowLeftTree : Object
 		// user defined functions
 	}
 
-	public class Xcls_Button20 : Object
+	public class Xcls_Button19 : Object
 	{
 		public Gtk.Button el;
 		private Xcls_WindowLeftTree  _this;
@@ -1809,7 +1403,7 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Button20(Xcls_WindowLeftTree _owner )
+		public Xcls_Button19(Xcls_WindowLeftTree _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Button();
@@ -1878,6 +1472,450 @@ public class Xcls_WindowLeftTree : Object
 	}
 
 
+
+	public class Xcls_drop : Object
+	{
+		public Gtk.DropTargetAsync el;
+		private Xcls_WindowLeftTree  _this;
+
+
+		// my vars (def)
+		public Gtk.Widget? highlightWidget;
+		public JsRender.Node? lastDragNode;
+		public string lastDragString;
+
+		// ctor
+		public Xcls_drop(Xcls_WindowLeftTree _owner )
+		{
+			_this = _owner;
+			_this.drop = this;
+			this.el = new Gtk.DropTargetAsync (
+		new Gdk.ContentFormats.for_gtype(typeof(string)),
+		Gdk.DragAction.COPY | Gdk.DragAction.MOVE | Gdk.DragAction.ASK
+);
+
+			// my vars (dec)
+			this.highlightWidget = null;
+			this.lastDragNode = null;
+			this.lastDragString = "\"\"";
+
+			// set gobject values
+
+			//listeners
+			this.el.accept.connect( (drop) => {
+			
+			  GLib.debug("DropTargetAsync: accept called");
+			  GLib.debug("DropTargetAsync: accept returning true");
+			  return true;
+			});
+			this.el.drag_motion.connect( (drop, x, y) => {
+			 
+				var is_shift = 
+					0 != (_this.main_window.keyboard.get_modifier_state()
+					& Gdk.ModifierType.SHIFT_MASK);
+			
+				var is_control = // contol overrides our rules for dropping
+					0 != (_this.main_window.keyboard.get_modifier_state() 
+						& Gdk.ModifierType.CONTROL_MASK);
+			    
+			    
+				
+				//GLib.debug("shift is    %s", _this.keystate.is_shift > 0 ? "SHIFT" : "-");
+				string pos; // over / before / after..
+			
+			    GLib.debug("got drag motion");
+			
+			    // Get the string value from the drop
+			    GLib.Value v = GLib.Value(typeof(string));
+			    var cont = drop.get_drag().content;
+			    try {
+			        cont.get_value(ref v);
+			    } catch (GLib.Error e) {
+			        return Gdk.DragAction.ASK;
+			    }
+			 
+				//GLib.debug("got %s", v.get_string());
+				  
+				if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
+					// still dragging same node
+			 
+					try {
+						this.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  
+							v.get_string( )) as JsRender.Node;
+					} catch (GLib.Error e) {
+						return Gdk.DragAction.ASK;
+					}
+				}
+			    
+				var file = _this.main_window.windowstate.file;
+				var palete =  file.palete();
+				var ls = file.getSymbolLoader();
+				var drop_on_to = palete.getDropListFromSymbols(ls, this.lastDragNode.fqn());
+			   
+			 
+			     
+			     string[] str = {};
+			     foreach(var dp in drop_on_to) {
+			     	str += dp;
+			 	}
+			 	GLib.debug("droplist: %s", string.joinv(", ", str));
+			     
+			     
+			    // if there are not items in the tree.. the we have to set isOver to true for anything..
+			 
+			    if (_this.model.el.n_items < 1) {
+			   	 	// FIXME check valid drop types?
+			    		if (!drop_on_to.contains("*top")) {
+			    			this.addHighlight(null, "");	
+						return Gdk.DragAction.ASK;
+					};
+					this.addHighlight(_this.view.el, "over");
+			
+					return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY; // no need to highlight?
+			     
+			    }
+			    
+			    
+			
+			 	 
+			    // if path of source and dest are inside each other..
+			    // need to add source info to drag?
+			    // the fail();
+			 	 var row_widget = _this.view.getRowWidgetAt( x,y, out pos);    
+			// 	var row = _this.view.getRowAt(x,y, out pos);
+			 	//GLib.debug("check is over %d, %d, %s", (int)x,(int)y, pos);
+			
+			 	if (row_widget == null) {
+					this.addHighlight(null, "");	
+					return Gdk.DragAction.ASK;
+			 	}
+			 	var node = row_widget.get_data<JsRender.Node>("node");
+				
+				//GLib.debug("Drop over node: %s", node.fqn());
+				
+			
+			 	if (pos == "above" || pos == "below") {
+					if (node.parent == null) {
+						//GLib.debug("no parent try center");
+						pos = "over";
+					} else {
+				 		 
+				 		if (!drop_on_to.contains(node.parent.prop_type ) && !is_control) {
+							//GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
+				 			pos = "over";
+			 			} else {
+							//GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+							// Only check self-drop prevention if dragNode is set (same-window drag)
+							if (_this.view.dragNode  != null && is_shift) {
+					 			if (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode)) {
+						 			GLib.debug("shift drop not self not allowed");
+					 				this.addHighlight(null, "");
+									return Gdk.DragAction.ASK;
+					 			}
+					 			
+					 		}
+							
+						}
+						
+						
+						
+			 		}
+			 		
+			 		
+			 	}
+			 	if (pos == "over") {
+				 	if (!drop_on_to.contains(node.fqn())) {
+						//GLib.debug("drop on does not contain %s - try center" , node.fqn());
+						if (!is_control) {
+							this.addHighlight(null, ""); 
+							return Gdk.DragAction.ASK;
+						} 
+						this.addHighlight(row_widget, pos); 
+						return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
+					}
+					// Only check self-drop prevention if dragNode is set (same-window drag) and shift is pressed
+					if (_this.view.dragNode  != null && is_shift) {
+			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
+				 			//GLib.debug("shift drop not self not allowed");
+			 				if (!is_control) {
+								this.addHighlight(null, ""); 	
+								return Gdk.DragAction.ASK;
+							} 
+							this.addHighlight(row_widget, pos); 
+							
+							return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;
+			 			}
+					}
+			 			
+				}
+			 	
+			 	
+			 	    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
+			
+				this.addHighlight(row_widget, pos); 
+				return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
+			});
+			this.el.drag_leave.connect( (drop) => {
+				this.addHighlight(null,"");
+			
+			});
+			this.el.drop.connect( (drop, x, y) => {
+				GLib.debug("drop event");
+				// must get the pos before we clear the hightlihg.
+			 	var pos = "";
+			 	var row_widget = _this.view.getRowWidgetAt(x,y, out pos);
+				this.addHighlight(null,"");
+			 
+			 	var is_shift = 
+					0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK);
+				
+				var is_control = // contol overrides our rules for dropping
+					0 != (_this.main_window.keyboard.get_modifier_state() 
+						& Gdk.ModifierType.CONTROL_MASK);
+			    
+				
+				
+			 	// Get the string value from the drop
+			 	GLib.Value v = GLib.Value(typeof(string));
+			 	var cont = drop.get_drag().content;
+			 	try {
+			 		cont.get_value(ref v);
+			 	} catch (GLib.Error e) {
+			 		return false;
+			 	}
+			 	var v_str = v.get_string();
+				
+			 	// -- get position..
+			 	if (this.lastDragString != v_str || this.lastDragNode == null) {
+					// still dragging same node
+			 
+					try {
+						this.lastDragNode = Json.gobject_from_data(typeof(JsRender.Node), v_str) as JsRender.Node; 
+					} catch (GLib.Error e) {
+						GLib.warning("Failed to deserialize node from drag data");
+						return false;
+					}
+			
+				}
+			   	
+			     
+			 	var file = _this.main_window.windowstate.file;      
+			    var dropNode = (JsRender.Node?) null;
+			    try {
+			    	dropNode = Json.gobject_from_data(typeof(JsRender.Node), v_str) as JsRender.Node;
+			    } catch (GLib.Error e) {
+			    	GLib.warning("Failed to deserialize dropNode from drag data");
+			    	drop.finish(Gdk.DragAction.COPY);
+			    	return false;
+			    }
+			    if (dropNode == null) {
+			    	GLib.warning("Failed to create dropNode from drag data");
+			    	drop.finish(Gdk.DragAction.COPY);
+			    	return false;
+			    }
+			    var src_oid = -1;
+			    try {
+			    		var js = Json.from_string(v_str);
+			    		if (_this.view.dragNode !=null &&  js.get_object().has_member("oid")) { 
+			     		src_oid = (int) js.get_object().get_int_member("oid");
+			     		dropNode = file.nodes.get(src_oid) as JsRender.Node;
+			 		} else {
+			 			dropNode.file = file;
+					}
+			 	}catch (GLib.Error e) {
+			 	
+			 	}// how do we know if the dropped node is from the same file?
+			 	// FIXME !!!!
+			
+				GLib.debug("dropped node %s", v_str);
+				
+			
+				var palete =  file.palete();
+				var ls = file.getSymbolLoader();
+				var drop_on_to = palete.getDropListFromSymbols(ls, dropNode.fqn());
+			   
+			   
+			   	JsRender.Node tadd;
+			    // if there are not items in the tree.. the we have to set isOver to true for anything..
+			 
+			    if (_this.model.el.n_items < 1) {
+			    	// FIXME check valid drop types?
+			    		if (!drop_on_to.contains("*top")) {
+						GLib.debug("drop on to list does not contain top?");
+						return false;	
+					}
+					// add new node to top..
+					GLib.debug("adding to top");
+					
+					
+					tadd = file.action_manager.run(
+						new JsRender.Action.Add(
+							file,
+							v_str,	
+							null,
+							true,
+							-1
+						)
+					) as JsRender.Node;
+					 
+					_this.model.selectNode(tadd); 	
+					_this.changed();
+					_this.node_selected(tadd);
+				  	  
+					return true; // no need to highlight?
+			     
+			    }
+			
+			
+			
+			
+				if (row_widget == null) {
+					GLib.debug("could not get row %d,%d, %s", (int)x,(int)y,pos);
+					return   false; //Gdk.DragAction.COPY;
+				}
+			 	
+				var node =  row_widget.get_data<JsRender.Node>("node");
+				var new_parent = node;
+				
+			 	if (pos == "above" || pos == "below") {
+					if (node.parent == null) {
+						pos = "over";
+					} else {
+				 		if (!drop_on_to.contains(node.parent.prop_type)  && !is_control) {
+							pos = "over";
+			 			} else {
+							GLib.debug("drop  contains %s - using %s" , node.parent.prop_type, pos);
+							if (_this.view.dragNode  != null && is_shift) {
+					 			if (node.oid != -1 && (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode))) {
+						 			GLib.debug("shift drop not self not allowed");
+			  						return false;	
+					 			}
+					 			
+					 		}
+							
+							
+						}
+			 		}
+			 		
+			 	}
+			 	if (pos == "over") {
+				 	if (!drop_on_to.contains(node.fqn()) && !is_control) {
+						GLib.debug("drop on does not contain %s - try center" , node.fqn());
+						return false;
+			
+					}
+					if (node.oid != -1 && (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode))) {
+			 			GLib.debug("shift drop not self not allowed");
+						return false;	
+					}
+				}
+				
+			 	var to_pos = -1; 
+			 	switch(pos) {
+			 		case "over":
+						break;
+				 		
+				 		
+				 		
+				 		
+			 		case "above":
+			 			GLib.debug("Above - insertBefore");
+			 			to_pos = node.parent.children.index_of(node);
+			 			new_parent = node.parent as JsRender.Node;
+			 			break;
+			 			
+			 		case "below":
+			 			GLib.debug("Below - insertAfter"); 		
+				 		
+				 		to_pos = node.parent.children.index_of(node) +1;
+				 		new_parent = node.parent as JsRender.Node;
+			 			break;
+				 		  
+			 		default:
+			 			// should not happen
+			 			return false;
+			 	}
+			 	
+				_this.model.selectNode(null); 
+			
+				GLib.debug("creating action");
+				
+				// can only move nodes that are in our tree.
+				if (is_shift && _this.view.dragNode != null && dropNode.oid > -1) {
+			
+			 		
+			 		tadd = file.action_manager.run(
+						new JsRender.Action.Move(
+							dropNode,
+							new_parent,
+							to_pos
+						)
+					) as JsRender.Node;
+					 
+					
+			 		
+				} else {
+				
+				
+			 		tadd = file.action_manager.run(
+						new JsRender.Action.Add.from_node(
+							file,
+							dropNode, // get the original object..
+							new_parent,
+							to_pos
+						)
+					) as JsRender.Node;
+				
+				
+				}
+			     GLib.debug("done action");
+				// Defer UI updates to prevent perceived lag
+				GLib.Timeout.add(100, () => {
+				    GLib.debug("deferred selectNode");
+				    _this.model.selectNode(tadd); 
+				    GLib.debug("deferred calling changed");
+				    _this.changed();
+				    _this.node_selected(tadd);
+				    GLib.debug("deferred end drag");
+				    return false; // Don't repeat
+				});
+				GLib.debug("end  drag - finishing drop");
+				drop.finish(is_shift ? Gdk.DragAction.MOVE : Gdk.DragAction.COPY);
+				GLib.debug("end  drag - returning immediately");
+				return true;	
+					
+			
+			});
+			this.el.drag_enter.connect( (drop, x, y) => {
+				GLib.debug("drag_enter called");
+				return Gdk.DragAction.ASK;
+			});
+		}
+
+		// user defined functions
+		public void addHighlight (Gtk.Widget? w, string hl) {
+			if (this.highlightWidget != null) {
+				var ww  = this.highlightWidget;
+				//GLib.debug("clear drag from previous highlight");
+				if (ww.has_css_class("drag-below")) {
+					 ww.remove_css_class("drag-below");
+				}
+				if (ww.has_css_class("drag-above")) {
+					 ww.remove_css_class("drag-above");
+				}
+				if (ww.has_css_class("drag-over")) {
+					 ww.remove_css_class("drag-over");
+				}
+			}
+			if (w != null) {
+				//GLib.debug("add drag=%s to widget", hl);	
+				if (!w.has_css_class("drag-" + hl)) {
+					w.add_css_class("drag-" + hl);
+				}
+			}
+			this.highlightWidget = w;
+		}
+	}
 
 
 }
