@@ -1401,6 +1401,7 @@
          "\t\t\tthis.addHighlight(row_widget, pos); ",
          "\t\t\treturn is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;\t\t",
          "\t\t}",
+         "\t\t// Only check self-drop prevention if dragNode is set (same-window drag) and shift is pressed",
          "\t\tif (_this.view.dragNode  != null && is_shift) {",
          " \t\t\tif (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {",
          "\t \t\t\t//GLib.debug(\"shift drop not self not allowed\");",
