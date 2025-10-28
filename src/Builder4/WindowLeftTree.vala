@@ -1139,30 +1139,14 @@ public class Xcls_WindowLeftTree : Object
 				
 				}
 			     
-			_this.model.selectNode(tadd); 	
-			_this.changed(); // Saves file synchronously (fast)
-			
-			// Skip preview generation during drop
-			if (_this.main_window.windowstate.file.xtype == "Roo") {
-				_this.main_window.windowstate.window_rooview.skip_preview_generation = true;
-			}
-			
-			// Trigger async source generation and highlighting
-			_this.node_selected(tadd);
-			
-			// Re-enable preview after delay
-			GLib.Timeout.add_seconds(2, () => {
-				if (_this.main_window.windowstate.file.xtype == "Roo") {
-					_this.main_window.windowstate.window_rooview.skip_preview_generation = false;
-					_this.main_window.windowstate.window_rooview.view.renderJS(false);
-				}
-				return false;
-			});
-			 			 		
-			return true;	
+				_this.model.selectNode(tadd); 	
+				_this.changed();
+				_this.node_selected(tadd);
+				 			 		
+				return true;	
 					
 			
-		});
+			});
 		}
 
 		// user defined functions
