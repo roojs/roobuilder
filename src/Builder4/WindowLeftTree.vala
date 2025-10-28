@@ -1108,8 +1108,8 @@ public class Xcls_WindowLeftTree : Object
 			 	
 				_this.model.selectNode(null); 
 			
-			 
-			
+				GLib.debug("creating action");
+				
 				// can only move nodes that are in our tree.
 				if (is_shift && _this.view.dragNode != null && dropNode.oid > -1) {
 			
@@ -1138,11 +1138,12 @@ public class Xcls_WindowLeftTree : Object
 				
 				
 				}
-			     
-				_this.model.selectNode(tadd); 	
+			     GLib.debug("done action");
+				_this.model.selectNode(tadd); 
+				GLib.debug("calling changed");
 				_this.changed();
 				_this.node_selected(tadd);
-				 			 		
+				GLib.debug("end  drag");
 				return true;	
 					
 			
