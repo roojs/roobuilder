@@ -1139,9 +1139,12 @@ public class Xcls_WindowLeftTree : Object
 				
 				}
 			     GLib.debug("done action");
-				_this.model.selectNode(tadd); 
-				GLib.debug("calling changed");
-				_this.changed();
+			GLib.debug("before selectNode");
+			_this.model.selectNode(tadd); 
+			GLib.debug("after selectNode");
+			GLib.debug("calling changed");
+			_this.changed();
+			GLib.debug("after changed");
 				_this.node_selected(tadd);
 				GLib.debug("end  drag");
 				return true;	
