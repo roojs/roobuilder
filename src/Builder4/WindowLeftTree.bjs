@@ -222,15 +222,17 @@
           "drag_cancel" : [
            "(drag, reason) => {",
            "",
+           "\tGLib.debug(\"DragSource: drag-cancel called, reason: %u\", (uint)reason);",
            "\t_this.view.dragNode = null;",
-           "\treturn true;",
+           "\treturn false; // Don't prevent default cancel behavior",
            "}",
            ""
           ],
           "drag_end" : [
            "(drag, delete_data) => {",
            "",
-           "_this.view.dragNode = null;",
+           "\tGLib.debug(\"DragSource: drag-end called, delete_data: %s\", delete_data ? \"true\" : \"false\");",
+           "\t_this.view.dragNode = null;",
            "}",
            ""
           ],

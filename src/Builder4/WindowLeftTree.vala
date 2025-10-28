@@ -677,8 +677,9 @@ public class Xcls_WindowLeftTree : Object
 			//listeners
 			this.el.drag_cancel.connect( (drag, reason) => {
 			
+				GLib.debug("DragSource: drag-cancel called, reason: %u", (uint)reason);
 				_this.view.dragNode = null;
-				return true;
+				return false; // Don't prevent default cancel behavior
 			});
 			this.el.prepare.connect( (x, y) => {
 			
@@ -732,7 +733,8 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.drag_end.connect( (drag, delete_data) => {
 			
-			_this.view.dragNode = null;
+				GLib.debug("DragSource: drag-end called, delete_data: %s", delete_data ? "true" : "false");
+				_this.view.dragNode = null;
 			});
 		}
 
