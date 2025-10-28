@@ -1542,9 +1542,17 @@ public class Xcls_WindowLeftTree : Object
 					try {
 						this.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  
 							v.get_string( )) as JsRender.Node;
+						this.lastDragString = v.get_string();
 					} catch (GLib.Error e) {
+						GLib.warning("Failed to deserialize node in drag_motion: %s", e.message);
 						return Gdk.DragAction.ASK;
 					}
+				}
+			    
+				// Validate that we have a valid node to drag
+				if (this.lastDragNode == null) {
+					GLib.warning("lastDragNode is null in drag_motion");
+					return Gdk.DragAction.ASK;
 				}
 			    
 				var file = _this.main_window.windowstate.file;
