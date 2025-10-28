@@ -1373,6 +1373,7 @@
          "\t \t\t\tpos = \"over\";",
          " \t\t\t} else {",
          "\t\t\t\t//GLib.debug(\"drop  contains %s - using %s\" , node.parent.fqn(), pos);",
+         "\t\t\t\t// Only check self-drop prevention if dragNode is set (same-window drag)",
          "\t\t\t\tif (_this.view.dragNode  != null && is_shift) {",
          "\t\t \t\t\tif (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode)) {",
          "\t\t\t \t\t\tGLib.debug(\"shift drop not self not allowed\");",
