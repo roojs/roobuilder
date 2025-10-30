@@ -173,7 +173,7 @@ public class WindowState : Object
 			
 			// Async source regeneration
 			if (this.left_tree.getActiveFile().xtype == "Roo") {
-				this.window_rooview.requestRedrawAsync.begin();
+				this.window_rooview.requestRedraw(); //Async.begin();
 			} else {
 				this.window_gladeview.loadFile(this.left_tree.getActiveFile());
 			}
