@@ -59,6 +59,14 @@
          "string placeholder_text" : "type to filter results",
          "uint search_delay" : 1000,
          "xtype" : "SearchEntry"
+        },
+        {
+          "$ xns" : "Gtk",
+          "bool hexpand" : false,
+          "id" : "is_async",
+          "* ctor" : "new Gtk.CheckButton.with_label(\"Async\")",
+          "bool visible" : false,
+          "xtype" : "CheckButton"
         }
        ],
        "xtype" : "Box"

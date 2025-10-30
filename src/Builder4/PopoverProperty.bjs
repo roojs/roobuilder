@@ -1,437 +1,914 @@
 {
- "build_module" : "builder",
- "gen_extended" : false,
- "items" : [
-  {
-   "# Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
-   "# JsRender.Action.ChangeProp? action" : "null",
-   "# JsRender.Node node" : "",
-   "# JsRender.NodeProp? original_prop" : "null",
-   "# JsRender.NodeProp? prop" : "null",
-   "# Xcls_MainWindow mainwindow" : "null",
-   "# string key_type" : "",
-   "# string old_keyname" : "",
-   "$ xns" : "Gtk",
-   "* ctor" : "new Gtk.Popover()",
-   "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
-   "bool autohide" : true,
-   "bool done" : false,
-   "bool is_new" : false,
-   "id" : "PopoverProperty",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "set_child",
-     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-     "bool homogeneous" : false,
-     "items" : [
+  "name" : "PopoverProperty",
+  "bjs-version" : 3,
+  "tree" : {
+    "node-type" : 9,
+    "oid" : 1,
+    "prop-type" : "Gtk.Popover",
+    "children" : [
       {
-       "$ xns" : "Gtk",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "id" : "header",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "bool always_show_image" : true,
-         "bool hexpand" : true,
-         "id" : "cancelbtn",
-         "listeners" : {
-          "clicked" : [
-           "() => {",
-           "\t_this.prop = null;",
-           "\t_this.is_new = false;",
-           "\t_this.kname.el.set_text(\"Cancel\");",
-           "\t_this.el.hide();",
-           "\t",
-           "}"
-          ]
-         },
-         "string label" : "Cancel",
-         "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "bool hexpand" : true,
-         "id" : "headertitle",
-         "string label" : "Add / Edit property",
-         "xtype" : "Label"
-        },
-        {
-         "$ xns" : "Gtk",
-         "bool always_show_image" : true,
-         "bool hexpand" : true,
-         "id" : "savebtn",
-         "listeners" : {
-          "clicked" : [
-           "() => {",
-           "\tif (!_this.is_new) {",
-           "\t\t_this.el.hide();",
-           "\t\treturn; // hide() picks up update",
-           "\t}",
-           "\t",
-           "\t// check if text is not empty..",
-           "\tif ( _this.kname.el.get_text().strip().length < 1) {",
-           "\t",
-           "\t\t// error should already be showing?",
-           "\t\treturn;",
-           "\t}",
-           "\t ",
-           "\t// since we can't add listeners?!?!?",
-           "\t// only check props.",
-           "\t// check if property already exists in node.\t",
-           "",
-           "",
-           "\tvar prop = new JsRender.NodeProp(",
-           "\t\t_this.kname.el.get_text().strip(),",
-           "\t\t_this.ptype.getValue(),",
-           "\t\t_this.ktype.el.get_text().strip(),",
-           "\t\t_this.prop.prop_val",
-           "\t);",
-           "",
-           "\t// apply async flag for Vala methods if visible",
-           "\tif (_this.is_async.el.get_visible()) {",
-           "\t\tprop.modify_is_async(_this.is_async.el.active);",
-           "\t}",
-           "",
-           "\tif (_this.node.has_property_key(prop)) {",
-           "\t\t_this.error.setError(\"Property already exists\");",
-           "\t\treturn;\t",
-           "\t}",
-           "\t",
-           "\t",
-           "\t",
-           "\t_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(",
-           "\t\t_this.node.file,",
-           "\t\tprop,",
-           "\t\t_this.node,",
-           "\t\t",
-           "\t\t-1",
-           "\t));",
-           "\t// hide self",
-           "\t_this.prop = null; // skip checks..",
-           "\t_this.is_new = false;",
-           "\t_this.el.hide();",
-           " \t_this.mainwindow.windowstate.left_props.changed();",
-           "\t_this.mainwindow.windowstate.left_props.view.editProp(prop);",
-           "",
-           "\t",
-           "\t",
-           "}"
-          ]
-         },
-         "string label" : "Add Property",
-         "xtype" : "Button"
-        }
-       ],
-       "xtype" : "Box"
+        "node-type" : 6,
+        "oid" : 2,
+        "prop-name" : "position",
+        "prop-val" : "Gtk.PositionType.RIGHT",
+        "prop-type" : "Gtk.PositionType"
       },
       {
-       "$ visible" : true,
-       "$ xns" : "Gtk",
-       "Gtk.Align halign" : "Gtk.Align.START",
-       "Gtk.Justification justify" : "Gtk.Justification.LEFT",
-       "int margin_top" : 12,
-       "label" : "Property Type (eg. property or method)",
-       "x_options" : 4,
-       "xtype" : "Label"
+        "node-type" : 6,
+        "oid" : 3,
+        "prop-name" : "action",
+        "prop-val" : "null",
+        "prop-type" : "JsRender.Action.ChangeProp?"
       },
       {
-       "$ xns" : "Gtk",
-       "bool show_arrow" : true,
-       "id" : "ptype",
-       "items" : [
-        {
-         "$ strings" : "JsRender.NodePropType.get_pulldown_list()",
-         "$ xns" : "Gtk",
-         "* prop" : "model",
-         "xtype" : "StringList"
-        }
-       ],
-       "listeners" : {
-        "notify[\"selected\"]" : [
-         "() => {",
-         "",
-         "\t_this.el.grab_focus(); // stop prevent autohide breaking.",
-         " }"
+        "node-type" : 6,
+        "oid" : 4,
+        "prop-name" : "node",
+        "prop-type" : "JsRender.Node"
+      },
+      {
+        "node-type" : 6,
+        "oid" : 5,
+        "prop-name" : "original_prop",
+        "prop-val" : "null",
+        "prop-type" : "JsRender.NodeProp?"
+      },
+      {
+        "node-type" : 6,
+        "oid" : 6,
+        "prop-name" : "prop",
+        "prop-val" : "null",
+        "prop-type" : "JsRender.NodeProp?"
+      },
+      {
+        "node-type" : 6,
+        "oid" : 7,
+        "prop-name" : "mainwindow",
+        "prop-val" : "null",
+        "prop-type" : "Xcls_MainWindow"
+      },
+      {
+        "node-type" : 6,
+        "oid" : 8,
+        "prop-name" : "key_type",
+        "prop-type" : "string"
+      },
+      {
+        "node-type" : 6,
+        "oid" : 9,
+        "prop-name" : "old_keyname",
+        "prop-type" : "string"
+      },
+      {
+        "node-type" : 7,
+        "oid" : 10,
+        "prop-name" : "ctor",
+        "prop-val" : "new Gtk.Popover()"
+      },
+      {
+        "node-type" : 5,
+        "oid" : 11,
+        "prop-name" : "success",
+        "prop-val" : "(Project.Project pr, JsRender.JsRender file)",
+        "prop-type" : "void"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 12,
+        "prop-name" : "autohide",
+        "prop-val" : true,
+        "prop-type" : "bool"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 13,
+        "prop-name" : "done",
+        "prop-val" : false,
+        "prop-type" : "bool"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 14,
+        "prop-name" : "is_new",
+        "prop-val" : false,
+        "prop-type" : "bool"
+      },
+      {
+        "node-type" : 2,
+        "oid" : 15,
+        "prop-name" : "id",
+        "prop-val" : "PopoverProperty"
+      },
+      {
+        "node-type" : 9,
+        "oid" : 16,
+        "prop-type" : "Gtk.Box",
+        "children" : [
+          {
+            "node-type" : 7,
+            "oid" : 17,
+            "prop-name" : "pack",
+            "prop-val" : "set_child"
+          },
+          {
+            "node-type" : 2,
+            "oid" : 18,
+            "prop-name" : "orientation",
+            "prop-val" : "Gtk.Orientation.VERTICAL",
+            "prop-type" : "Gtk.Orientation"
+          },
+          {
+            "node-type" : 2,
+            "oid" : 19,
+            "prop-name" : "homogeneous",
+            "prop-val" : false,
+            "prop-type" : "bool"
+          },
+          {
+            "node-type" : 9,
+            "oid" : 20,
+            "prop-type" : "Gtk.Box",
+            "children" : [
+              {
+                "node-type" : 2,
+                "oid" : 21,
+                "prop-name" : "orientation",
+                "prop-val" : "Gtk.Orientation.HORIZONTAL",
+                "prop-type" : "Gtk.Orientation"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 22,
+                "prop-name" : "id",
+                "prop-val" : "header"
+              },
+              {
+                "node-type" : 9,
+                "oid" : 23,
+                "prop-type" : "Gtk.Button",
+                "children" : [
+                  {
+                    "node-type" : 2,
+                    "oid" : 24,
+                    "prop-name" : "always_show_image",
+                    "prop-val" : true,
+                    "prop-type" : "bool"
+                  },
+                  {
+                    "node-type" : 2,
+                    "oid" : 25,
+                    "prop-name" : "hexpand",
+                    "prop-val" : true,
+                    "prop-type" : "bool"
+                  },
+                  {
+                    "node-type" : 2,
+                    "oid" : 26,
+                    "prop-name" : "id",
+                    "prop-val" : "cancelbtn"
+                  },
+                  {
+                    "node-type" : 8,
+                    "oid" : 27,
+                    "prop-name" : "clicked",
+                    "prop-val" : [
+                      "() => {",
+                      "\t_this.prop = null;",
+                      "\t_this.is_new = false;",
+                      "\t_this.kname.el.set_text(\"Cancel\");",
+                      "\t_this.el.hide();",
+                      "\t",
+                      "}"
+                    ]
+                  },
+                  {
+                    "node-type" : 2,
+                    "oid" : 28,
+                    "prop-name" : "label",
+                    "prop-val" : "Cancel",
+                    "prop-type" : "string"
+                  }
+                ]
+              },
+              {
+                "node-type" : 9,
+                "oid" : 29,
+                "prop-type" : "Gtk.Label",
+                "children" : [
+                  {
+                    "node-type" : 2,
+                    "oid" : 30,
+                    "prop-name" : "hexpand",
+                    "prop-val" : true,
+                    "prop-type" : "bool"
+                  },
+                  {
+                    "node-type" : 2,
+                    "oid" : 31,
+                    "prop-name" : "id",
+                    "prop-val" : "headertitle"
+                  },
+                  {
+                    "node-type" : 2,
+                    "oid" : 32,
+                    "prop-name" : "label",
+                    "prop-val" : "Add / Edit property",
+                    "prop-type" : "string"
+                  }
+                ]
+              },
+              {
+                "node-type" : 9,
+                "oid" : 33,
+                "prop-type" : "Gtk.Button",
+                "children" : [
+                  {
+                    "node-type" : 2,
+                    "oid" : 34,
+                    "prop-name" : "always_show_image",
+                    "prop-val" : true,
+                    "prop-type" : "bool"
+                  },
+                  {
+                    "node-type" : 2,
+                    "oid" : 35,
+                    "prop-name" : "hexpand",
+                    "prop-val" : true,
+                    "prop-type" : "bool"
+                  },
+                  {
+                    "node-type" : 2,
+                    "oid" : 36,
+                    "prop-name" : "id",
+                    "prop-val" : "savebtn"
+                  },
+                  {
+                    "node-type" : 8,
+                    "oid" : 37,
+                    "prop-name" : "clicked",
+                    "prop-val" : [
+                      "() => {",
+                      "\tif (!_this.is_new) {",
+                      "\t\t_this.el.hide();",
+                      "\t\treturn; // hide() picks up update",
+                      "\t}",
+                      "\t",
+                      "\t// check if text is not empty..",
+                      "\tif ( _this.kname.el.get_text().strip().length < 1) {",
+                      "\t",
+                      "\t\t// error should already be showing?",
+                      "\t\treturn;",
+                      "\t}",
+                      "\t ",
+                      "\t// since we can't add listeners?!?!?",
+                      "\t// only check props.",
+                      "\t// check if property already exists in node.\t",
+                      "",
+                      "",
+                      "\tvar prop = new JsRender.NodeProp(",
+                      "\t\t_this.kname.el.get_text().strip(),",
+                      "\t\t_this.ptype.getValue(),",
+                      "\t\t_this.ktype.el.get_text().strip(),",
+                      "\t\t_this.prop.prop_val",
+                      "\t);",
+                      "",
+                      "\t// apply async flag for Vala methods if visible",
+                      "\tif (_this.is_async.el.get_visible()) {",
+                      "\t\tprop.modify_is_async(_this.is_async.el.active);",
+                      "\t}",
+                      "",
+                      "\tif (_this.node.has_property_key(prop)) {",
+                      "\t\t_this.error.setError(\"Property already exists\");",
+                      "\t\treturn;\t",
+                      "\t}",
+                      "\t",
+                      "\t",
+                      "\t",
+                      "\t_this.node.file.action_manager.run(new JsRender.Action.Add.from_node(",
+                      "\t\t_this.node.file,",
+                      "\t\tprop,",
+                      "\t\t_this.node,",
+                      "\t\t",
+                      "\t\t-1",
+                      "\t));",
+                      "\t// hide self",
+                      "\t_this.prop = null; // skip checks..",
+                      "\t_this.is_new = false;",
+                      "\t_this.el.hide();",
+                      " \t_this.mainwindow.windowstate.left_props.changed();",
+                      "\t_this.mainwindow.windowstate.left_props.view.editProp(prop);",
+                      "",
+                      "\t",
+                      "\t",
+                      "}"
+                    ]
+                  },
+                  {
+                    "node-type" : 2,
+                    "oid" : 38,
+                    "prop-name" : "label",
+                    "prop-val" : "Add Property",
+                    "prop-type" : "string"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node-type" : 9,
+            "oid" : 39,
+            "prop-type" : "Gtk.Label",
+            "children" : [
+              {
+                "node-type" : 3,
+                "oid" : 40,
+                "prop-name" : "visible",
+                "prop-val" : true
+              },
+              {
+                "node-type" : 2,
+                "oid" : 41,
+                "prop-name" : "halign",
+                "prop-val" : "Gtk.Align.START",
+                "prop-type" : "Gtk.Align"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 42,
+                "prop-name" : "justify",
+                "prop-val" : "Gtk.Justification.LEFT",
+                "prop-type" : "Gtk.Justification"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 43,
+                "prop-name" : "margin_top",
+                "prop-val" : 12,
+                "prop-type" : "int"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 44,
+                "prop-name" : "label",
+                "prop-val" : "Property Type (eg. property or method)"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 45,
+                "prop-name" : "x_options",
+                "prop-val" : 4
+              }
+            ]
+          },
+          {
+            "node-type" : 9,
+            "oid" : 46,
+            "prop-type" : "Gtk.DropDown",
+            "children" : [
+              {
+                "node-type" : 2,
+                "oid" : 47,
+                "prop-name" : "show_arrow",
+                "prop-val" : true,
+                "prop-type" : "bool"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 48,
+                "prop-name" : "id",
+                "prop-val" : "ptype"
+              },
+              {
+                "node-type" : 9,
+                "oid" : 49,
+                "prop-name" : "model",
+                "prop-type" : "Gtk.StringList",
+                "children" : [
+                  {
+                    "node-type" : 3,
+                    "oid" : 50,
+                    "prop-name" : "strings",
+                    "prop-val" : "JsRender.NodePropType.get_pulldown_list()"
+                  }
+                ]
+              },
+              {
+                "node-type" : 8,
+                "oid" : 51,
+                "prop-name" : "notify[\"selected\"]",
+                "prop-val" : [
+                  "() => {",
+                  "",
+                  "\t_this.el.grab_focus(); // stop prevent autohide breaking.",
+                  " }"
+                ]
+              },
+              {
+                "node-type" : 4,
+                "oid" : 52,
+                "prop-name" : "getValue",
+                "prop-val" : [
+                  "() {",
+                  "\tvar sl = this.el.model as Gtk.StringList;",
+                  "\tvar str = sl.get_string(this.el.selected);",
+                  "\treturn JsRender.NodePropType.nameToType(str);",
+                  "}"
+                ],
+                "prop-type" : "JsRender.NodePropType"
+              },
+              {
+                "node-type" : 4,
+                "oid" : 53,
+                "prop-name" : "setValue",
+                "prop-val" : [
+                  "(JsRender.NodePropType ty) {",
+                  "\tvar str = ty.to_name();",
+                  "\tvar sl = this.el.model as Gtk.StringList;",
+                  "\tfor(var i = 0; i < sl.get_n_items(); i++) {",
+                  "\t\tif(sl.get_string(i) == str) {",
+                  "\t\t\tthis.el.set_selected(i);",
+                  "\t\t\tbreak;",
+                  "\t\t}",
+                  "\t}",
+                  "\t",
+                  "}"
+                ],
+                "prop-type" : "void"
+              }
+            ]
+          },
+          {
+            "node-type" : 9,
+            "oid" : 54,
+            "prop-type" : "Gtk.CheckButton",
+            "children" : [
+              {
+                "node-type" : 2,
+                "oid" : 55,
+                "prop-name" : "id",
+                "prop-val" : "is_async"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 56,
+                "prop-name" : "visible",
+                "prop-val" : true,
+                "prop-type" : "bool",
+                "doc" : "Whether the widget is visible."
+              },
+              {
+                "node-type" : 7,
+                "oid" : 57,
+                "prop-name" : "ctor",
+                "prop-val" : "new Gtk.CheckButton.with_label(\"Async\")"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 58,
+                "prop-name" : "hexpand",
+                "prop-val" : true,
+                "prop-type" : "bool",
+                "doc" : "Whether to expand horizontally."
+              },
+              {
+                "node-type" : 2,
+                "oid" : 59,
+                "prop-name" : "halign",
+                "prop-val" : "Gtk.Align.START",
+                "prop-type" : "Gtk.Align",
+                "doc" : "How to distribute horizontal space if widget gets extra space."
+              }
+            ]
+          },
+          {
+            "node-type" : 9,
+            "oid" : 60,
+            "prop-type" : "Gtk.Label",
+            "children" : [
+              {
+                "node-type" : 3,
+                "oid" : 61,
+                "prop-name" : "visible",
+                "prop-val" : true
+              },
+              {
+                "node-type" : 2,
+                "oid" : 62,
+                "prop-name" : "halign",
+                "prop-val" : "Gtk.Align.START",
+                "prop-type" : "Gtk.Align"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 63,
+                "prop-name" : "justify",
+                "prop-val" : "Gtk.Justification.LEFT",
+                "prop-type" : "Gtk.Justification"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 64,
+                "prop-name" : "margin_top",
+                "prop-val" : 12,
+                "prop-type" : "int"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 65,
+                "prop-name" : "label",
+                "prop-val" : "Type or Return Type"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 66,
+                "prop-name" : "x_options",
+                "prop-val" : 4
+              }
+            ]
+          },
+          {
+            "node-type" : 9,
+            "oid" : 67,
+            "prop-type" : "Gtk.Entry",
+            "children" : [
+              {
+                "node-type" : 3,
+                "oid" : 68,
+                "prop-name" : "visible",
+                "prop-val" : true
+              },
+              {
+                "node-type" : 2,
+                "oid" : 69,
+                "prop-name" : "id",
+                "prop-val" : "ktype"
+              }
+            ]
+          },
+          {
+            "node-type" : 9,
+            "oid" : 70,
+            "prop-type" : "Gtk.Label",
+            "children" : [
+              {
+                "node-type" : 3,
+                "oid" : 71,
+                "prop-name" : "visible",
+                "prop-val" : true
+              },
+              {
+                "node-type" : 2,
+                "oid" : 72,
+                "prop-name" : "halign",
+                "prop-val" : "Gtk.Align.START",
+                "prop-type" : "Gtk.Align"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 73,
+                "prop-name" : "justify",
+                "prop-val" : "Gtk.Justification.LEFT",
+                "prop-type" : "Gtk.Justification"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 74,
+                "prop-name" : "margin_top",
+                "prop-val" : 12,
+                "prop-type" : "int"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 75,
+                "prop-name" : "label",
+                "prop-val" : "Name"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 76,
+                "prop-name" : "tooltip_text",
+                "prop-val" : "center, north, south, east, west"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 77,
+                "prop-name" : "x_options",
+                "prop-val" : 4
+              }
+            ]
+          },
+          {
+            "node-type" : 9,
+            "oid" : 78,
+            "prop-type" : "Gtk.Entry",
+            "children" : [
+              {
+                "node-type" : 3,
+                "oid" : 79,
+                "prop-name" : "visible",
+                "prop-val" : true
+              },
+              {
+                "node-type" : 2,
+                "oid" : 80,
+                "prop-name" : "id",
+                "prop-val" : "kname"
+              },
+              {
+                "node-type" : 9,
+                "oid" : 81,
+                "prop-type" : "Gtk.EventControllerFocus",
+                "children" : [
+                  {
+                    "node-type" : 8,
+                    "oid" : 82,
+                    "prop-name" : "leave",
+                    "prop-val" : [
+                      "( ) => {",
+                      "",
+                      "    _this.error.setError(\"\");",
+                      "\tvar val = _this.kname.el.get_text().strip(); ",
+                      "\tif (val.length < 1) {",
+                      "\t\t_this.error.setError(\"Name can not be empty\");",
+                      "\t}",
+                      "",
+                      "}",
+                      ""
+                    ]
+                  }
+                ]
+              },
+              {
+                "node-type" : 9,
+                "oid" : 83,
+                "prop-type" : "Gtk.EventControllerKey",
+                "children" : [
+                  {
+                    "node-type" : 8,
+                    "oid" : 84,
+                    "prop-name" : "key_released",
+                    "prop-val" : [
+                      "(keyval, keycode, state) => {",
+                      "",
+                      "    _this.error.setError(\"\");",
+                      "\tvar val = _this.kname.el.get_text().strip(); ",
+                      "\tif (val.length < 1) {",
+                      "\t\t_this.error.setError(\"Name can not be empty\");",
+                      "\t}",
+                      "",
+                      "}",
+                      ""
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node-type" : 9,
+            "oid" : 85,
+            "prop-type" : "Gtk.Label",
+            "children" : [
+              {
+                "node-type" : 3,
+                "oid" : 86,
+                "prop-name" : "visible",
+                "prop-val" : true
+              },
+              {
+                "node-type" : 2,
+                "oid" : 87,
+                "prop-name" : "halign",
+                "prop-val" : "Gtk.Align.START",
+                "prop-type" : "Gtk.Align"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 88,
+                "prop-name" : "justify",
+                "prop-val" : "Gtk.Justification.LEFT",
+                "prop-type" : "Gtk.Justification"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 89,
+                "prop-name" : "use_markup",
+                "prop-val" : true,
+                "prop-type" : "bool"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 90,
+                "prop-name" : "id",
+                "prop-val" : "error"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 91,
+                "prop-name" : "margin_top",
+                "prop-val" : 0,
+                "prop-type" : "int"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 92,
+                "prop-name" : "label",
+                "prop-val" : "<span color=\"red\">Error Message</span>"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 93,
+                "prop-name" : "tooltip_text",
+                "prop-val" : "center, north, south, east, west"
+              },
+              {
+                "node-type" : 2,
+                "oid" : 94,
+                "prop-name" : "x_options",
+                "prop-val" : 4
+              },
+              {
+                "node-type" : 4,
+                "oid" : 95,
+                "prop-name" : "setError",
+                "prop-val" : [
+                  "(string err)   {",
+                  "\tif (err == \"\") {",
+                  "\t\tthis.el.label = \"\";",
+                  "\t} else {",
+                  "",
+                  "\t\t",
+                  "\t\tthis.el.label = \"<span color=\\\"red\\\">\" + err + \"</span>\";",
+                  "\t}",
+                  "}",
+                  ""
+                ],
+                "prop-type" : "void"
+              }
+            ]
+          }
         ]
-       },
-       "xtype" : "DropDown",
-       "| JsRender.NodePropType getValue" : [
-        "() {",
-        "\tvar sl = this.el.model as Gtk.StringList;",
-        "\tvar str = sl.get_string(this.el.selected);",
-        "\treturn JsRender.NodePropType.nameToType(str);",
-        "}"
-       ],
-       "| void setValue" : [
-        "(JsRender.NodePropType ty) {",
-        "\tvar str = ty.to_name();",
-        "\tvar sl = this.el.model as Gtk.StringList;",
-        "\tfor(var i = 0; i < sl.get_n_items(); i++) {",
-        "\t\tif(sl.get_string(i) == str) {",
-        "\t\t\tthis.el.set_selected(i);",
-        "\t\t\tbreak;",
-        "\t\t}",
-        "\t}",
-        "\t",
-        "}"
-       ]
       },
       {
-       "$ visible" : true,
-       "$ xns" : "Gtk",
-       "id" : "is_async",
-       "label" : "async",
-       "xtype" : "CheckButton"
+        "node-type" : 8,
+        "oid" : 96,
+        "prop-name" : "closed",
+        "prop-val" : [
+          "() => {",
+          "",
+          " \tGLib.debug(\"popover closed\");",
+          "\tif (_this.is_new) {",
+          "\t    // if it's new, the firing the closed button will triger the update",
+          "\t\treturn;",
+          "\t}",
+          "\tif (_this.prop == null) {",
+          "\t\t// hide and dont update.",
+          "\t\treturn;",
+          "\t}",
+          "\tif (this.kname.el.get_text().strip().length < 1) {",
+          "\t\treturn;",
+          "\t}",
+          "\t",
+          " ",
+          "\t",
+          "\t_this.action.prop_name = this.kname.el.get_text().strip();",
+          "\t_this.action.node_type = this.ptype.getValue();",
+          "\t_this.action.prop_type = this.ktype.el.get_text().strip();",
+          "\tif (this.is_async.el.get_visible()) {",
+          "\t\t_this.action.is_async = this.is_async.el.active;",
+          "\t}",
+          "\t\t_this.prop.file.action_manager.run(_this.action);",
+          "     ",
+          "  ",
+          "        ",
+          "\t ",
+          "",
+          "",
+          "  ",
+          "} "
+        ]
       },
       {
-       "$ visible" : true,
-       "$ xns" : "Gtk",
-       "Gtk.Align halign" : "Gtk.Align.START",
-       "Gtk.Justification justify" : "Gtk.Justification.LEFT",
-       "int margin_top" : 12,
-       "label" : "Type or Return Type",
-       "x_options" : 4,
-       "xtype" : "Label"
+        "node-type" : 8,
+        "oid" : 97,
+        "prop-name" : "hide",
+        "prop-val" : [
+          "() => {",
+          "  \tGLib.debug(\"popover hidden\");",
+          "\tif (_this.is_new || this.kname.el.get_text().strip().length < 1) {",
+          "\t\t// dont allow hiding if we are creating a new one.",
+          "\t\tGLib.debug(\"prevent hiding as its new or text is empty\"); ",
+          "\t\tthis.el.show();",
+          "\t\treturn;",
+          "",
+          "\t}",
+          "\tif (this.prop == null) {",
+          "\t\t// oocur on adding new properti - in theory we should be catching this by is_new?",
+          "",
+          "\t\treturn;",
+          "\t}",
+          "\tif (this.original_prop != null && !this.prop.equals(this.original_prop)) {",
+          "\t\t// this is convoluted..",
+          "\t\t_this.mainwindow.windowstate.left_props.changed(); ",
+          "\t}",
+          "\t",
+          "\t",
+          "}"
+        ]
       },
       {
-       "$ visible" : true,
-       "$ xns" : "Gtk",
-       "id" : "ktype",
-       "xtype" : "Entry"
-      },
-      {
-       "$ visible" : true,
-       "$ xns" : "Gtk",
-       "Gtk.Align halign" : "Gtk.Align.START",
-       "Gtk.Justification justify" : "Gtk.Justification.LEFT",
-       "int margin_top" : 12,
-       "label" : "Name",
-       "tooltip_text" : "center, north, south, east, west",
-       "x_options" : 4,
-       "xtype" : "Label"
-      },
-      {
-       "$ visible" : true,
-       "$ xns" : "Gtk",
-       "id" : "kname",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "listeners" : {
-          "leave" : [
-           "( ) => {",
-           "",
-           "    _this.error.setError(\"\");",
-           "\tvar val = _this.kname.el.get_text().strip(); ",
-           "\tif (val.length < 1) {",
-           "\t\t_this.error.setError(\"Name can not be empty\");",
-           "\t}",
-           "",
-           "}",
-           ""
-          ]
-         },
-         "xtype" : "EventControllerFocus"
-        },
-        {
-         "$ xns" : "Gtk",
-         "listeners" : {
-          "key_released" : [
-           "(keyval, keycode, state) => {",
-           "",
-           "    _this.error.setError(\"\");",
-           "\tvar val = _this.kname.el.get_text().strip(); ",
-           "\tif (val.length < 1) {",
-           "\t\t_this.error.setError(\"Name can not be empty\");",
-           "\t}",
-           "",
-           "}",
-           ""
-          ]
-         },
-         "xtype" : "EventControllerKey"
-        }
-       ],
-       "xtype" : "Entry"
-      },
-      {
-       "$ visible" : true,
-       "$ xns" : "Gtk",
-       "Gtk.Align halign" : "Gtk.Align.START",
-       "Gtk.Justification justify" : "Gtk.Justification.LEFT",
-       "bool use_markup" : true,
-       "id" : "error",
-       "int margin_top" : 0,
-       "label" : "<span color=\"red\">Error Message</span>",
-       "tooltip_text" : "center, north, south, east, west",
-       "x_options" : 4,
-       "xtype" : "Label",
-       "| void setError" : [
-        "(string err)   {",
-        "\tif (err == \"\") {",
-        "\t\tthis.el.label = \"\";",
-        "\t} else {",
-        "",
-        "\t\t",
-        "\t\tthis.el.label = \"<span color=\\\"red\\\">\" + err + \"</span>\";",
-        "\t}",
-        "}",
-        ""
-       ]
+        "node-type" : 4,
+        "oid" : 98,
+        "prop-name" : "show",
+        "prop-val" : [
+          "(",
+          "\tGtk.Widget btn, ",
+          "\tJsRender.Node node, ",
+          "\tJsRender.NodeProp prop, ",
+          "\tint y,",
+          "\tbool is_new = false",
+          "\t ) ",
+          "{",
+          "\t",
+          "    this.original_prop = prop.dupe();",
+          "\tthis.is_new = is_new; ",
+          "\tvar pref = is_new ? \"Add \" : \"Modify \";",
+          "\tif (prop.node_type == JsRender.NodePropType.LISTENER) {",
+          "\t\tthis.headertitle.el.label = pref + \"Event Listener\"; // cant really happen yet?",
+          "\t} else {",
+          "\t\tthis.headertitle.el.label = pref + \"Property\";",
+          "\t}",
+          "\tthis.prop = prop;",
+          "\tthis.node = node;",
+          "\tthis.action = is_new ? null : new JsRender.Action.ChangeProp(node.file, prop);",
+          "\t",
+          "\t_this.kname.el.set_text(prop.prop_name);",
+          "\t_this.ktype.el.set_text(prop.prop_type);",
+          "\t",
+          "\t_this.ptype.setValue(prop.node_type);",
+          "\tthis.is_async.el.visible = (prop.node_type == JsRender.NodePropType.METHOD) && (_this.node.file.language == \"vala\");",
+          "\tthis.is_async.el.active = prop.is_async;",
+          "\t// does node have this property...",
+          "",
+          "",
+          "\t_this.node = node;",
+          "\t//console.log('show all');",
+          "\t",
+          "\tGLib.debug(\"set parent = %s\", btn.get_type().name());",
+          "\tvar par = btn.get_parent();",
+          "\t",
+          "\tif (par == null) {",
+          "\t\tGLib.debug(\"parent of that is null - not showing\");",
+          "\t\treturn;",
+          "\t}",
+          "\tif (this.el.parent == null) {",
+          "\t\tthis.el.set_parent(btn);",
+          "\t}",
+          "\tvar  r = Gdk.Rectangle() {",
+          "\t\t\tx = btn.get_width(), // align left...",
+          "\t\t\ty = 0,",
+          "\t\t\twidth = 1,",
+          "\t\t\theight = 1",
+          "\t\t};",
+          "\t//Gtk.Allocation rect;",
+          "\t//btn.get_allocation(out rect);",
+          "    this.el.set_pointing_to(r);",
+          "    ",
+          "",
+          "\t ",
+          "\tif (y > -1) {",
+          "\t\t ",
+          "\t\t r = Gdk.Rectangle() {",
+          "\t\t\tx = btn.get_width(), // align left...",
+          "\t\t\ty = y,",
+          "\t\t\twidth = 1,",
+          "\t\t\theight = 1",
+          "\t\t};",
+          "\t\tthis.el.set_pointing_to( r);",
+          "\t}",
+          "\t",
+          "\t",
+          "",
+          "\t//this.el.set_position(Gtk.PositionType.TOP);",
+          "",
+          "\t// window + header?",
+          "\t GLib.debug(\"SHOWALL - POPIP\\n\");",
+          "\t",
+          "\tthis.kname.el.grab_focus();",
+          "\tthis.savebtn.el.set_label(\"Save\");",
+          "\tthis.cancelbtn.el.visible = false;",
+          "\tif (this.is_new) {",
+          "\t\tthis.savebtn.el.set_label(\"Add Property\");",
+          "\t\tthis.cancelbtn.el.visible = true;",
+          "\t}",
+          "\tthis.error.setError(\"\");",
+          "\tthis.el.show();",
+          "\t//this.success = c.success;",
+          " ",
+          "}"
+        ],
+        "prop-type" : "void"
       }
-     ],
-     "xtype" : "Box"
-    }
-   ],
-   "listeners" : {
-    "closed" : [
-     "() => {",
-     "",
-     " \tGLib.debug(\"popover closed\");",
-     "\tif (_this.is_new) {",
-     "\t    // if it's new, the firing the closed button will triger the update",
-     "\t\treturn;",
-     "\t}",
-     "\tif (_this.prop == null) {",
-     "\t\t// hide and dont update.",
-     "\t\treturn;",
-     "\t}",
-     "\tif (this.kname.el.get_text().strip().length < 1) {",
-     "\t\treturn;",
-     "\t}",
-     "\t",
-     " ",
-     "\t",
-     "\t_this.action.prop_name = this.kname.el.get_text().strip();",
-     "\t_this.action.node_type = this.ptype.getValue();",
-     "\t_this.action.prop_type = this.ktype.el.get_text().strip();",
-     "\tif (this.is_async.el.get_visible()) {",
-     "\t\t_this.action.is_async = this.is_async.el.active;",
-     "\t}",
-     "\t\t_this.prop.file.action_manager.run(_this.action);",
-     "     ",
-     "  ",
-     "        ",
-     "\t ",
-     "",
-     "",
-     "  ",
-     "} "
-    ],
-    "hide" : [
-     "() => {",
-     "  \tGLib.debug(\"popover hidden\");",
-     "\tif (_this.is_new || this.kname.el.get_text().strip().length < 1) {",
-     "\t\t// dont allow hiding if we are creating a new one.",
-     "\t\tGLib.debug(\"prevent hiding as its new or text is empty\"); ",
-     "\t\tthis.el.show();",
-     "\t\treturn;",
-     "",
-     "\t}",
-     "\tif (this.prop == null) {",
-     "\t\t// oocur on adding new properti - in theory we should be catching this by is_new?",
-     "",
-     "\t\treturn;",
-     "\t}",
-     "\tif (this.original_prop != null && !this.prop.equals(this.original_prop)) {",
-     "\t\t// this is convoluted..",
-     "\t\t_this.mainwindow.windowstate.left_props.changed(); ",
-     "\t}",
-     "\t",
-     "\t",
-     "}"
     ]
-   },
-   "xtype" : "Popover",
-   "| void show" : [
-    "(",
-    "\tGtk.Widget btn, ",
-    "\tJsRender.Node node, ",
-    "\tJsRender.NodeProp prop, ",
-    "\tint y,",
-    "\tbool is_new = false",
-    "\t ) ",
-    "{",
-    "\t",
-    "    this.original_prop = prop.dupe();",
-    "\tthis.is_new = is_new; ",
-    "\tvar pref = is_new ? \"Add \" : \"Modify \";",
-    "\tif (prop.node_type == JsRender.NodePropType.LISTENER) {",
-    "\t\tthis.headertitle.el.label = pref + \"Event Listener\"; // cant really happen yet?",
-    "\t} else {",
-    "\t\tthis.headertitle.el.label = pref + \"Property\";",
-    "\t}",
-    "\tthis.prop = prop;",
-    "\tthis.node = node;",
-    "\tthis.action = is_new ? null : new JsRender.Action.ChangeProp(node.file, prop);",
-    "\t",
-    "\t_this.kname.el.set_text(prop.prop_name);",
-    "\t_this.ktype.el.set_text(prop.prop_type);",
-    "\t",
-    "\t_this.ptype.setValue(prop.node_type);",
-    "\tthis.is_async.el.visible = (prop.node_type == JsRender.NodePropType.METHOD) && (_this.node.file.language == \"vala\");",
-    "\tthis.is_async.el.active = prop.is_async;",
-    "\t// does node have this property...",
-    "",
-    "",
-    "\t_this.node = node;",
-    "\t//console.log('show all');",
-    "\t",
-    "\tGLib.debug(\"set parent = %s\", btn.get_type().name());",
-    "\tvar par = btn.get_parent();",
-    "\t",
-    "\tif (par == null) {",
-    "\t\tGLib.debug(\"parent of that is null - not showing\");",
-    "\t\treturn;",
-    "\t}",
-    "\tif (this.el.parent == null) {",
-    "\t\tthis.el.set_parent(btn);",
-    "\t}",
-    "\tvar  r = Gdk.Rectangle() {",
-    "\t\t\tx = btn.get_width(), // align left...",
-    "\t\t\ty = 0,",
-    "\t\t\twidth = 1,",
-    "\t\t\theight = 1",
-    "\t\t};",
-    "\t//Gtk.Allocation rect;",
-    "\t//btn.get_allocation(out rect);",
-    "    this.el.set_pointing_to(r);",
-    "    ",
-    "",
-    "\t ",
-    "\tif (y > -1) {",
-    "\t\t ",
-    "\t\t r = Gdk.Rectangle() {",
-    "\t\t\tx = btn.get_width(), // align left...",
-    "\t\t\ty = y,",
-    "\t\t\twidth = 1,",
-    "\t\t\theight = 1",
-    "\t\t};",
-    "\t\tthis.el.set_pointing_to( r);",
-    "\t}",
-    "\t",
-    "\t",
-    "",
-    "\t//this.el.set_position(Gtk.PositionType.TOP);",
-    "",
-    "\t// window + header?",
-    "\t GLib.debug(\"SHOWALL - POPIP\\n\");",
-    "\t",
-    "\tthis.kname.el.grab_focus();",
-    "\tthis.savebtn.el.set_label(\"Save\");",
-    "\tthis.cancelbtn.el.visible = false;",
-    "\tif (this.is_new) {",
-    "\t\tthis.savebtn.el.set_label(\"Add Property\");",
-    "\t\tthis.cancelbtn.el.visible = true;",
-    "\t}",
-    "\tthis.error.setError(\"\");",
-    "\tthis.el.show();",
-    "\t//this.success = c.success;",
-    " ",
-    "}"
-   ]
   }
- ],
- "name" : "PopoverProperty"
 }
