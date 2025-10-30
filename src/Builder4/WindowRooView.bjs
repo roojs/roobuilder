@@ -14,6 +14,7 @@
    "id" : "WindowRooView",
    "int last_error_counter" : 0,
    "int last_search_end" : 0,
+   "bool skip_preview_generation" : false,
    "items" : [
     {
      "$ xns" : "Gtk",
@@ -277,6 +278,12 @@
             "    // this is the public redraw call..",
             "    // we refresh in a loop privately..",
             "    var autodraw = _this.AutoRedraw.el.active;",
+            "    ",
+            "    // Skip preview generation if flag is set",
+            "    if (_this.skip_preview_generation) {",
+            "        return;",
+            "    }",
+            "    ",
             "    if (!autodraw && !force) {",
             "        print(\"Skipping redraw - no force, and autodraw off\");",
             "        return;",
@@ -978,6 +985,7 @@
               "        return;",
               "    }",
               "   ",
+              "    // Generate source synchronously for now (legacy loadFile method)",
               "    var str = _this.file.toSource();",
               "\tbuf.begin_user_action(); // is it really needed?",
               "\t// work out what has changed",
@@ -1748,6 +1756,14 @@
     "() {",
     "    this.view.renderJS(false);",
     "    this.sourceview.loadFile();   ",
+    "}"
+   ],
+   "| async void requestRedrawAsync" : [
+    "() {",
+    "    yield this.sourceview.loadFileAsync();",
+    "    if (!this.view.skip_preview_generation) {",
+    "        this.view.renderJS(false);",
+    "    }",
     "}"
    ],
    "| void scroll_to_line" : [

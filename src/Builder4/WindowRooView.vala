@@ -41,6 +41,7 @@ public class Xcls_WindowRooView : Object
 	public int last_search_end;
 	public GtkSource.SearchContext searchcontext;
 	public JsRender.JsRender file;
+	public bool skip_preview_generation { get; set; default = false; }
 
 	// ctor
 	public Xcls_WindowRooView()
@@ -147,6 +148,14 @@ public class Xcls_WindowRooView : Object
 	public void requestRedraw () {
 	    this.view.renderJS(false);
 	    this.sourceview.loadFile();   
+	}
+	
+	public async void requestRedrawAsync()
+	{
+	    yield this.sourceview.loadFileAsync();
+	    if (!this.skip_preview_generation) {
+	        this.view.renderJS(false);
+	    }
 	}
 	public void forwardSearch (bool change_focus) {
 	
@@ -760,6 +769,12 @@ public class Xcls_WindowRooView : Object
 		    // this is the public redraw call..
 		    // we refresh in a loop privately..
 		    var autodraw = _this.AutoRedraw.el.active;
+		    
+		    // Skip preview generation if flag is set
+		    if (_this.skip_preview_generation) {
+		        return;
+		    }
+		    
 		    if (!autodraw && !force) {
 		        print("Skipping redraw - no force, and autodraw off");
 		        return;
@@ -1561,6 +1576,108 @@ public class Xcls_WindowRooView : Object
 		    this.loading = false; 
 		    _this.buffer.dirty = false;
 		}
+		
+		public async void loadFileAsync()
+		{
+		    this.loading = true;
+		    
+		    var buf = this.el.get_buffer();
+		    Gtk.TextIter s, e;
+		    buf.get_start_iter(out s);
+		    buf.get_end_iter(out e);
+		    var old = buf.get_text(s, e, true);
+		    
+		    if (_this.file == null || _this.file.xtype != "Roo") {
+		        this.loading = false;
+		        return;
+		    }
+		    
+		    // Generate source in background thread
+		    var str = yield _this.file.toSourceAsync();
+		    
+		    // Update buffer in main thread
+		    buf.begin_user_action();
+		    var old_ar = old.split("\n");
+		    var new_ar = str.split("\n");
+		    var no_change_start = 0;
+		    var no_change_new_end = new_ar.length;
+		    var no_change_old_end = old_ar.length;
+		    
+		    for (var i = 0; i < old_ar.length; i++) {
+		        no_change_start = i;
+		        if (i == new_ar.length) {
+		            break;
+		        }
+		        
+		        if (old_ar[i] == new_ar[i]) {
+		            continue;
+		        }
+		        
+		        // single line changes
+		        if (i+1 < old_ar.length && i+1 < new_ar.length) {
+		            if (old_ar[i+1] != new_ar[i+1]) {
+		                break;
+		            }
+		            GLib.debug("change 1 line %d => %s", i, new_ar[i]);
+		            buf.get_iter_at_line(out s, i);
+		            buf.get_iter_at_line(out e, i+1);
+		            buf.delete(ref s, ref e);
+		            buf.insert(ref s, new_ar[i] + "\n", new_ar[i].length+1);
+		            continue;
+		        }
+		        
+		        break;
+		    }
+		    
+		    // clean ends
+		    while (no_change_old_end > 0 && old_ar[no_change_old_end -1] == "") {
+		        no_change_old_end--;
+		    }
+		    while (no_change_new_end > 0 && new_ar[no_change_new_end -1] == "") {
+		        no_change_new_end--;
+		    }
+		    
+		    for (var oi = no_change_old_end -1, ni = no_change_new_end -1; 
+		            oi > no_change_start && ni > no_change_start; oi--, ni--) {
+		        if (old_ar[oi] == new_ar[ni]) {
+		            continue;
+		        }
+		        
+		        no_change_new_end = ni + 1;
+		        no_change_old_end = oi + 1;
+		        break;
+		    }
+		    
+		    // build the string we are about to add
+		    var ns = "";
+		    for (var i = no_change_start; i < no_change_new_end; i++) {
+		        ns += new_ar[i] + "\n";
+		    }
+		    buf.get_iter_at_line(out s, no_change_start);
+		    
+		    // delete the old lines
+		    if (no_change_old_end != no_change_start) {
+		        GLib.debug("remove @%d - %d", no_change_start, no_change_old_end);
+		        buf.get_iter_at_line(out e, no_change_old_end);
+		        buf.delete(ref s, ref e);
+		    }
+		    
+		    GLib.debug("insert @%d : %d lines", no_change_start, ns.split("\n").length);
+		    if (ns.length > 0) {
+		        buf.insert(ref s, ns, ns.length);
+		    }
+		    buf.end_user_action();
+		    
+		    var lm = GtkSource.LanguageManager.get_default();
+		    ((GtkSource.Buffer)(buf)).set_language(lm.get_language(_this.file.language));
+		    
+		    _this.main_window.windowstate.updateErrorMarksAll();
+		    _this.buffer.in_cursor_change = false;
+		    
+		    this.loading = false;
+		    _this.buffer.dirty = false;
+		}
+		
 		public void nodeSelected (JsRender.Node? sel, bool scroll) {
 		  
 		    

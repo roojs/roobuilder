@@ -4,6 +4,7 @@ namespace JsRender
     {
         private Gee.ArrayList<Action.Base> undoQueue = new Gee.ArrayList<Action.Base>();
         private Gee.ArrayList<Action.Base> redoQueue = new Gee.ArrayList<Action.Base>();
+        private GLib.Mutex action_lock = GLib.Mutex();
         
         public int maxQueueSize { get; set; default = 100; }
         
@@ -15,6 +16,8 @@ namespace JsRender
         // Execute an action and add it to the undo queue
         public NodeBase? run(Action.Base action)
         {
+            // Wait if source is being generated
+            this.action_lock.lock();
             // Execute the action and capture the result
             var result = action.run();
             
@@ -31,6 +34,8 @@ namespace JsRender
                 this.undoQueue.remove_at(0); // Remove oldest action
             }
             
+            this.action_lock.unlock();
+            
             // Return the result from the action
             return result;
         }
@@ -38,8 +43,11 @@ namespace JsRender
         // Undo the last action
         public NodeBase? undo()
         {
+            this.action_lock.lock();
+            
             if (this.undoQueue.size == 0) {
                 GLib.debug("Action.Manager: No actions to undo");
+                this.action_lock.unlock();
                 return null;
             }
             
@@ -56,6 +64,8 @@ namespace JsRender
             this.onUndoUpdated(this.undoQueue.size > 0);
             this.onRedoUpdated(true);
             
+            this.action_lock.unlock();
+            
             // Return null for undo operations as they don't return meaningful results
             return null;
         }
@@ -63,8 +73,11 @@ namespace JsRender
         // Redo the last undone action
         public NodeBase? redo()
         {
+            this.action_lock.lock();
+            
             if (this.redoQueue.size == 0) {
                 GLib.debug("Action.Manager: No actions to redo");
+                this.action_lock.unlock();
                 return null;
             }
             
@@ -81,8 +94,20 @@ namespace JsRender
             this.onRedoUpdated(this.redoQueue.size > 0);
             this.onUndoUpdated(true);
             
+            this.action_lock.unlock();
+            
             // Return the result from the action
             return result;
+        }
+        
+        public void lock_for_source_generation()
+        {
+            this.action_lock.lock();
+        }
+        
+        public void unlock_after_source_generation()
+        {
+            this.action_lock.unlock();
         }
         
         // Signals for undo/redo state changes

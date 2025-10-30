@@ -88,6 +88,11 @@
            "\t\t_this.prop.prop_val",
            "\t);",
            "",
+           "\t// apply async flag for Vala methods if visible",
+           "\tif (_this.is_async.el.get_visible()) {",
+           "\t\tprop.modify_is_async(_this.is_async.el.active);",
+           "\t}",
+           "",
            "\tif (_this.node.has_property_key(prop)) {",
            "\t\t_this.error.setError(\"Property already exists\");",
            "\t\treturn;\t",
@@ -171,6 +176,13 @@
         "\t",
         "}"
        ]
+      },
+      {
+       "$ visible" : true,
+       "$ xns" : "Gtk",
+       "id" : "is_async",
+       "label" : "async",
+       "xtype" : "CheckButton"
       },
       {
        "$ visible" : true,
@@ -294,7 +306,10 @@
      "\t_this.action.prop_name = this.kname.el.get_text().strip();",
      "\t_this.action.node_type = this.ptype.getValue();",
      "\t_this.action.prop_type = this.ktype.el.get_text().strip();",
-     "\t_this.prop.file.action_manager.run(_this.action);",
+     "\tif (this.is_async.el.get_visible()) {",
+     "\t\t_this.action.is_async = this.is_async.el.active;",
+     "\t}",
+     "\t\t_this.prop.file.action_manager.run(_this.action);",
      "     ",
      "  ",
      "        ",
@@ -354,7 +369,9 @@
     "\t_this.kname.el.set_text(prop.prop_name);",
     "\t_this.ktype.el.set_text(prop.prop_type);",
     "\t",
-    " \t_this.ptype.setValue(prop.node_type);",
+    "\t_this.ptype.setValue(prop.node_type);",
+    "\tthis.is_async.el.visible = (prop.node_type == JsRender.NodePropType.METHOD) && (_this.node.file.language == \"vala\");",
+    "\tthis.is_async.el.active = prop.is_async;",
     "\t// does node have this property...",
     "",
     "",

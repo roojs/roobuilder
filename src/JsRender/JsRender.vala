@@ -1060,16 +1060,19 @@ namespace JsRender {
 
 
 
-			public abstract string language_id();
-			public abstract void save();
-			public abstract void saveHTML(string html);
-			public abstract string toSource() ;
-			public abstract string toSourceCode(bool force=false) ; // used by commandline tester..
-			public abstract void setSource(string str);
-			public abstract string toSourcePreview() ;
-			public abstract void removeFiles() ;
-			public abstract void  findTransStrings(Node? node );
-			public abstract string toGlade();
+		public abstract string language_id();
+		public abstract void save();
+		public abstract void saveHTML(string html);
+		public abstract string toSource() ;
+		public abstract string toSourceCode(bool force=false) ; // used by commandline tester..
+		public virtual async string toSourceAsync() {
+			return this.toSource();
+		}
+		public abstract void setSource(string str);
+		public abstract string toSourcePreview() ;
+		public abstract void removeFiles() ;
+		public abstract void  findTransStrings(Node? node );
+		public abstract string toGlade();
 			public abstract string targetName();
 			public abstract void loadItems() throws GLib.Error;
 

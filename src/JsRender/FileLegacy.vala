@@ -1,6 +1,7 @@
 namespace JsRender {
 
-	public class FileLegacy : Object {
+	public class FileLegacy : Object
+	{
 		private JsRender file;
 
 		public FileLegacy(JsRender file) 
@@ -98,7 +99,7 @@ namespace JsRender {
 						case "$ xns":
 							return; // ignore - already handled above
 
-						default:
+					default:
 							// Handle regular properties
 							break;
 					}
@@ -109,7 +110,17 @@ namespace JsRender {
 					if (version == 1) {
 						rkey = this.upgradeKey(key, sval);
 					}
+					// Legacy async method: key like "| async void methodName"
+					bool is_async_key = false;
+					if (rkey.has_prefix("|") && rkey.index_of(" async ") >= 0) {
+						is_async_key = true;
+						// remove the async token before parsing
+						rkey = rkey.replace(" async ", " ");
+					}
 					var n =  new NodeProp.from_json(rkey, sval);
+					if (is_async_key) {
+						n.modify_is_async(true);
+					}
 
 					node.children.add(n); // we have to add it without all the bells and whitles
 					node.add_to_cache(n);
@@ -259,7 +270,8 @@ namespace JsRender {
 							key = "$ " + prop.prop_name;
 							break;
 						case NodePropType.METHOD:
-							key = "| " + prop.prop_name;
+							key = "| " + (prop.is_async ? | " async" :"") +
+							 	 + prop.prop_type + " " + prop.prop_name;
 							break;
 						case NodePropType.SPECIAL:
 							key = "* " + prop.prop_name;
