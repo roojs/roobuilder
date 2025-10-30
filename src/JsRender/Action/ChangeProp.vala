@@ -44,59 +44,43 @@ namespace JsRender
 			this.number_changes = number_changes;
 			this.isNode = isNode;
 		}
-		public string prop_type {
-			set { 
-				if (this.string_old.get("prop_type") == value) {
-					this.string_changes.unset("prop_type");
-					return;
-				}
-				this.string_changes.set("prop_type", value);
+		// helpers to consolidate update logic
+		private void string_update(string name, string value)
+		{
+			if (this.string_old.get(name) == value) {
+				this.string_changes.unset(name);
+				return;
 			}
+			this.string_changes.set(name, value);
+		}
+		private void number_update(string name, int value)
+		{
+			if (this.number_old.get(name) == value) {
+				this.number_changes.unset(name);
+				return;
+			}
+			this.number_changes.set(name, value);
+		}
+		public string prop_type {
+			set { this.string_update("prop_type", value); }
 		}
 		public NodePropType node_type {
-			set { 
-				if (this.number_old.get("node_type") == (int)value) {
-					this.number_changes.unset("node_type");
-					return;
-				}
-				this.number_changes.set("node_type", (int)value);
-			}
+			set { this.number_update("node_type", (int)value); }
 		}
 		public string prop_name {
-			set { 
-				if (this.string_old.get("prop_name") == value) {
-					this.string_changes.unset("prop_name");
-					return;
-				}
-				this.string_changes.set("prop_name", value);
-			}
+			set { this.string_update("prop_name", value); }
 		}
 		public string prop_val {
-			set { 
-				if (this.string_old.get("prop_val") == value) {
-					this.string_changes.unset("prop_val");
-					return;
-				}
-				this.string_changes.set("prop_val", value);
-			}
+			set { this.string_update("prop_val", value); }
 		}
 		public string doc {
-			set { 
-				if (this.string_old.get("doc") == value) {
-					this.string_changes.unset("doc");
-					return;
-				}
-				this.string_changes.set("doc", value);
-			}
+			set { this.string_update("doc", value); }
 		}
 		public bool is_static {
-			set { 
-				if (this.number_old.get("is_static") == (value ? 1 : 0)) {
-					this.number_changes.unset("is_static");
-					return;
-				}
-				this.number_changes.set("is_static", value ? 1 : 0 );
-			}
+			set { this.number_update("is_static", value ? 1 : 0); }
+		}
+		public bool is_async {
+			set { this.number_update("is_async", value ? 1 : 0); }
 		}
 		private void save_old_values()
 		{
@@ -107,6 +91,7 @@ namespace JsRender
 			this.number_old.set("node_type", nodeBase.node_type);
 			this.string_old.set("doc", nodeBase.doc);
 			this.number_old.set("is_static", nodeBase.is_static ? 1 : 0);
+			this.number_old.set("is_async", nodeBase.is_async ? 1 : 0);
 		}
  
 
@@ -139,6 +124,9 @@ namespace JsRender
 						break;
 					case "is_static":
 						nodeBase.modify_is_static(value == 1);
+						break;
+					case "is_async":
+						nodeBase.modify_is_async(value == 1);
 						break;
 				}
 			}

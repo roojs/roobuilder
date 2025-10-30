@@ -874,7 +874,9 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 
 			prop.start_line = this.cur_line;
 			this.node.setLine(this.cur_line, "p", prop.prop_name);
-			this.addMultiLine(this.pad + "public " + prop.prop_type + " " +  prop.prop_name + " " + this.padMultiline(this.pad, prop.prop_val));;
+			this.addMultiLine(this.pad + 
+				"public " + (prop.is_async ? "async " : "") + prop.prop_type +
+					" " +  prop.prop_name + " " + this.padMultiline(this.pad, prop.prop_val));;
 			prop.end_line = this.cur_line;
 				
 		}

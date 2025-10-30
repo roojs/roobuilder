@@ -14,6 +14,7 @@ namespace JsRender
 
 		// Protected properties with prop_ prefix
 		public bool is_static { get;  protected set; default = false; }
+		public bool is_async { get;  protected set; default = false; }
 		// should we add private/protected?
 		public string prop_name { public get; protected set; default = ""; }
 		public string prop_val { public get; protected set; default = ""; }
@@ -112,6 +113,10 @@ namespace JsRender
 		public void modify_is_static(bool value)
 		{
 			this.is_static = value;
+		}
+		public void modify_is_async(bool value)
+		{
+			this.is_async = value;
 		}
 		public void modify_node_type(NodePropType value)
 		{
@@ -315,6 +320,13 @@ namespace JsRender
 					}
 					return default_serialize_property (property_name, value, pspec);
 
+				case "is-async":
+					// Return null if default value (false)
+					if (!this.is_async) {
+						return null;
+					}
+					return default_serialize_property (property_name, value, pspec);
+
 				case "prop-val":
 					// Handle type detection and multi-line strings
 					var string_val = (string)value;
@@ -421,6 +433,7 @@ namespace JsRender
 					case "return-type":
 					case "doc":
 					case "is-static":
+					case "is-async":
 						return default_deserialize_property (property_name, out value, pspec, property_node);
 					case "prop-val":
 						// Handle different JSON types and convert back to string

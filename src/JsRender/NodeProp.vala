@@ -22,6 +22,7 @@ namespace JsRender
 		this.node_type = source.node_type;
 		this.doc = source.doc;
 		this.is_static = source.is_static;
+		this.is_async = source.is_async;
 		// Do NOT copy: oid, parent, children, file
 	}
 
@@ -135,12 +136,17 @@ namespace JsRender
 					&& 
 					this.prop_type == p.prop_type 
 					&& 
-					this.prop_val == p.prop_val;
+					this.prop_val == p.prop_val
+					&&
+					this.is_async == p.is_async;
 		}
 		
 		public NodeProp dupe()
 		{
-			return new NodeProp(this.prop_name, this.node_type, this.prop_type,  this.prop_val);
+			var duped = new NodeProp(this.prop_name, 
+				this.node_type, this.prop_type,  this.prop_val);
+			duped.modify_is_async(this.is_async);
+			return duped;
 		}
 		
 		
@@ -306,7 +312,8 @@ namespace JsRender
 					return @"<span style=\"italic\">$nm</span>";
 					
 				case NodePropType.METHOD :
-					return @"<i>$rt</i> <span color=\"#008000\" font_weight=\"bold\">$nm</span>";
+					var asy = this.is_async ? " <span color=\"#729fcf\">AS</span>" : "";
+					return @"$asy<i>$rt</i> <span color=\"#008000\" font_weight=\"bold\">$nm</span>";
 				 	
 				case NodePropType.SIGNAL : // purpley
 					return @"<span color=\"#ea00d6\" font_weight=\"bold\">$nm</span>";
@@ -353,6 +360,9 @@ namespace JsRender
 					return GLib.Markup.escape_text(this.prop_name) ;
 					
 				case NodePropType.METHOD :
+					return  GLib.Markup.escape_text(
+						(this.is_async ? "async " : "") + 
+						`this.prop_type + " " + this.prop_name) ;
 				case NodePropType.USER : 			
 					return  GLib.Markup.escape_text(this.prop_type)  + " " + GLib.Markup.escape_text( this.prop_name) ;
 				 	
@@ -460,7 +470,8 @@ namespace JsRender
 				case NodePropType.METHOD :
 					// functions - js    FRED  function () { }  <<< could probably be cleaner..
 					// functions - vala    FRED () { }
-					return  this.prop_type + " " + this.prop_name  + " "  + this.prop_val;
+					return  (this.is_async ? "async " : "")) + 
+						this.prop_type + " " + this.prop_name  + " "  + this.prop_val;
 				case NodePropType.SIGNAL :
 					return  "signal: "  + this.prop_type + " " + this.prop_name  +  " " + this.prop_val;
 				case NodePropType.USER : 
