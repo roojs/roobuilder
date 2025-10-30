@@ -15,7 +15,7 @@ int main (string[] args) {
 
 	var app =  BuilderApplication.singleton(  args);
 	  
-    Gtk.init ();
+    Gtk.init (ref args);
     GtkSource.init();
 	Adw.init();
 	
