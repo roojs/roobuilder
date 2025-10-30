@@ -362,7 +362,7 @@ namespace JsRender
 				case NodePropType.METHOD :
 					return  GLib.Markup.escape_text(
 						(this.is_async ? "async " : "") + 
-						`this.prop_type + " " + this.prop_name) ;
+						this.prop_type + " " + this.prop_name) ;
 				case NodePropType.USER : 			
 					return  GLib.Markup.escape_text(this.prop_type)  + " " + GLib.Markup.escape_text( this.prop_name) ;
 				 	
@@ -470,7 +470,7 @@ namespace JsRender
 				case NodePropType.METHOD :
 					// functions - js    FRED  function () { }  <<< could probably be cleaner..
 					// functions - vala    FRED () { }
-					return  (this.is_async ? "async " : "")) + 
+					return  (this.is_async ? "async " : "") + 
 						this.prop_type + " " + this.prop_name  + " "  + this.prop_val;
 				case NodePropType.SIGNAL :
 					return  "signal: "  + this.prop_type + " " + this.prop_name  +  " " + this.prop_val;

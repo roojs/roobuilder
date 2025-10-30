@@ -270,8 +270,8 @@ namespace JsRender {
 							key = "$ " + prop.prop_name;
 							break;
 						case NodePropType.METHOD:
-							key = "| " + (prop.is_async ? | " async" :"") +
-							 	 + prop.prop_type + " " + prop.prop_name;
+							key = "| " + (prop.is_async ?  " async" :"") +
+							 	  prop.prop_type + " " + prop.prop_name;
 							break;
 						case NodePropType.SPECIAL:
 							key = "* " + prop.prop_name;
