@@ -402,13 +402,14 @@ public class WindowState : Object
 		});
 	
 		this.left_props.changed.connect(() => {
+			// Save first to ensure Vala regeneration before UI reload
+			this.file.save();
 			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-				   this.window_rooview.requestRedraw();
+				this.window_rooview.requestRedraw();
 			} else {
-				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
+				this.window_gladeview.loadFile(this.left_tree.getActiveFile());
 			}
 			//this.left_tree.model.updateSelected();
-			this.file.save();
 
 			 
 		});

@@ -65,7 +65,7 @@ public class Xcls_LeftProps : Object
 		this.el.append( _this.proprow.el );
 		new Xcls_EditProps( _this );
 		this.el.append( _this.EditProps.el );
-		var child_4 = new Xcls_Box61( _this );
+		var child_4 = new Xcls_Box58( _this );
 		child_4.ref();
 		this.el.append( child_4.el );
 	}
@@ -1643,6 +1643,7 @@ public class Xcls_LeftProps : Object
 				var action = new JsRender.Action.ChangeProp(_this.file, _this.node);
 				action.prop_name = this.el.text.strip();
 				_this.file.action_manager.run(action);
+				_this.changed();
 			
 			 });
 		}
@@ -2306,6 +2307,7 @@ public class Xcls_LeftProps : Object
 			// was item (1) in old layout
 			 
 			
+			
 			});
 		}
 
@@ -2607,7 +2609,7 @@ public class Xcls_LeftProps : Object
 
 
 
-	public class Xcls_Box61 : Object
+	public class Xcls_Box58 : Object
 	{
 		public Gtk.Box el;
 		private Xcls_LeftProps  _this;
@@ -2616,7 +2618,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_Box61(Xcls_LeftProps _owner )
+		public Xcls_Box58(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -2645,7 +2647,7 @@ public class Xcls_LeftProps : Object
 			_this = _owner;
 			_this.xtypedropdown = this;
 			new Xcls_xtypestrings( _this );
-			var child_2 = new Xcls_PropertyExpression64( _this );
+			var child_2 = new Xcls_PropertyExpression61( _this );
 			child_2.ref();
 			this.el = new Gtk.DropDown( _this.xtypestrings.el, child_2.el );
 
@@ -2742,7 +2744,7 @@ public class Xcls_LeftProps : Object
 		// user defined functions
 	}
 
-	public class Xcls_PropertyExpression64 : Object
+	public class Xcls_PropertyExpression61 : Object
 	{
 		public Gtk.PropertyExpression el;
 		private Xcls_LeftProps  _this;
@@ -2751,7 +2753,7 @@ public class Xcls_LeftProps : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_PropertyExpression64(Xcls_LeftProps _owner )
+		public Xcls_PropertyExpression61(Xcls_LeftProps _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.PropertyExpression( typeof(Gtk.StringObject), null, "string" );

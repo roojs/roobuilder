@@ -651,7 +651,8 @@
          "",
          "\tvar action = new JsRender.Action.ChangeProp(_this.file, _this.node);",
          "\taction.prop_name = this.el.text.strip();",
-         "\t_this.file.action_manager.run(action);",
+        "\t_this.file.action_manager.run(action);",
+        "\t_this.changed();",
          "",
          " }"
         ],
