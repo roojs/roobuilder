@@ -183,10 +183,15 @@ public class Xcls_MainWindow : Object
 	
 	
 		var s = this.el.get_surface() as Gdk.X11.Surface;
+		if (s == null) {
+			return; // wayland or surface not available
+		}
 		var xw = s.get_xid();
 		
 		var di = s.get_display() as Gdk.X11.Display;
-		
+		if (di == null) {
+			return; // display not available
+		}
 		unowned X.Display xd = di.get_xdisplay();
 		if (w >0 && h > 0) {
 			xd.move_resize_window(xw, x,y, w, h);
@@ -235,6 +240,9 @@ public class Xcls_MainWindow : Object
 		w = 0; 
 		h = 0;
 		var s =  this.el.get_surface() as Gdk.X11.Surface;
+		if (s == null) {
+			return false; // no change - wayland or surface not available
+		}
 		var xw = s.get_xid();
 		
 		var di = (Gdk.X11.Display) s.get_display() ;

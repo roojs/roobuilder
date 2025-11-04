@@ -49,6 +49,9 @@ public class CodeInfo : Object
 			// what are the coords of the parent?
 			X.WindowAttributes wa;
 			var mws = this.win.el.get_surface() as Gdk.X11.Surface;
+			if (mws == null) {
+				return; // wayland or surface not available
+			}
 			var mw_xw = mws.get_xid();
 			
 			var di = (Gdk.X11.Display) mws.get_display() ;
@@ -61,10 +64,15 @@ public class CodeInfo : Object
 			mw_xd.get_window_attributes(mw_xw, out  wa);
 			
 			var s = this.el.get_surface() as Gdk.X11.Surface;
+			if (s == null) {
+				return; // wayland or surface not available
+			}
 			var xw = s.get_xid();
 			
 			var si = s.get_display() as Gdk.X11.Display;
-			
+			if (si == null) {
+				return; // display not available
+			}
 			unowned X.Display xd = si.get_xdisplay();
 			xd.move_window(xw, wa.x+60, wa.y+100);
 			GLib.debug("Move to %d, %d",  wa.x+60, wa.y+100);

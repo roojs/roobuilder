@@ -3,7 +3,8 @@ project('roobuilder', 'vala', 'c',
   license: 'LGPL',
   default_options: [
     'default_library=static',
-    'c_std=gnu11'       # for C subprojects
+    'c_std=gnu11',       # for C subprojects
+    'prefix=/usr'
   ]
 )
 gnome = import('gnome')
