@@ -2,8 +2,8 @@ namespace Palete {
 	
 	
 	public class SymbolFileCollection {
-		public Gee.HashMap<string, SymbolFile>? files = null;
-		public Gee.HashMap<int, SymbolFile>? id_to_file = null;
+		public Gee.HashMap<string, SymbolFile> files { get; set; default = new Gee.HashMap<string, SymbolFile>(); }
+		public Gee.HashMap<int, SymbolFile> id_to_file { get; set; default = new Gee.HashMap<int, SymbolFile>(); }
 		public SymbolLoader loader;
 		
 		public string  file_ids {
@@ -17,12 +17,10 @@ namespace Palete {
 			set {}
 		}
 		
-		public  SymbolFileCollection()
-		{
-			this.files = new Gee.HashMap<string, SymbolFile>();
-			this.id_to_file = new Gee.HashMap<int, SymbolFile>();
- 			this.loader = new SymbolLoader(this);
-		}
+	public  SymbolFileCollection()
+	{
+		this.loader = new SymbolLoader(this);
+	}
 		 
 		public  SymbolFile factory(JsRender.JsRender file) 
 		{
@@ -122,10 +120,15 @@ namespace Palete {
 				GLib.debug("add path %s",path);
 				this.factory_by_path(path);	
 			}
+			// Collect keys to remove first (can't modify while iterating)
+			var to_remove = new Gee.ArrayList<string>();
 			foreach(var cf in this.files.keys) {
 				if (!afiles.contains(cf)) {
-					this.files.unset(cf);
+					to_remove.add(cf);
 				}
+			}
+			foreach(var cf in to_remove) {
+				this.files.unset(cf);
 			}
 
 		}

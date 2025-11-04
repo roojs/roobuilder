@@ -706,7 +706,8 @@ public class WindowState : Object
 		 
 		
 		file.getLanguageServer().document_open(file);
-		WindowManager.showSpinner("spinner", "document open sent");	
+		WindowManager.showSpinner("spinner", "document open sent");
+		file.update_symbol_tree();
 			
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();

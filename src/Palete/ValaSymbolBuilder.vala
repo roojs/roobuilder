@@ -65,7 +65,13 @@ namespace Palete {
 		{
 			//this.queued_changes.set(file.targetName(), new SymbolFile.new_file(file));
 
+			GLib.debug("updateTreeFromFile called for %s", file.path);
 			var mod = this.scan_project.firstBuildModuleWith(file);
+			if (mod == "") {
+				GLib.debug("updateTreeFromFile: no build module found for %s", file.path);
+				return;
+			}
+			GLib.debug("updateTreeFromFile: calling updateTree with module %s for %s", mod, file.path);
 			this.updateTree(mod);
 
 

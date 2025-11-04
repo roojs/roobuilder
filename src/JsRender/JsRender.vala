@@ -137,11 +137,13 @@ namespace JsRender {
 		public signal void symbol_tree_updated( );
 		public void update_symbol_tree()
 		{
+			GLib.debug("update_symbol_tree called for %s", this.path);
 			// use interfaces if we can get this to suppor tmore...
 			var pr = (Project.Gtk)this.project;
 			if (pr != null) {
+				GLib.debug("running updateTreeFromFile for %s", this.path);
 				pr.symbol_builder.updateTreeFromFile(this);
-			}
+			} 
 
 		}
 		public async void wait_for_start_of_tree_update()

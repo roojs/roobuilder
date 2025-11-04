@@ -191,6 +191,7 @@ namespace Palete
 			//_this.prop.val = str;
 			editor.node.updated_count++;
 			editor.file.getLanguageServer().document_change(editor.file);
+			editor.file.update_symbol_tree();
 			editor.node.updated_count++;
 			//_this.prop.val = oldcode;
 			
