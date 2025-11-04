@@ -38,12 +38,15 @@ namespace JsRender {
 				switch (key) {
 					case "xtype":
 					case "$ xtype":
+					case "string xtype":
 						xtype_val = this.jsonNodeAsString(value);
 						GLib.debug("First pass - found xtype: '%s'", xtype_val);
 						break;
 					case "* xns":
 					case "*xns":
 					case "$ xns":
+					case "xns":
+					case "string xns":
 						xns_val = this.jsonNodeAsString(value);
 						GLib.debug("First pass - found xns: '%s'", xns_val);
 						break;
@@ -54,8 +57,14 @@ namespace JsRender {
 			if (xns_val != "" && xtype_val != "") {
 				GLib.debug("Setting prop_type to: '%s'", xns_val + "." + xtype_val);
 				node.modify_prop_type(xns_val + "." + xtype_val);
+			} else {
+				var json_node = new Json.Node(Json.NodeType.OBJECT);
+				json_node.set_object(obj);
+				var generator = new Json.Generator();
+				generator.set_root(json_node);
+				GLib.debug("node: %s", generator.to_data(null));
+				GLib.error("Failed to set prop_type - xns_val: '%s' xtype_val: '%s'", xns_val, xtype_val);
 			}
-			
 			// Second pass: process all other properties
 			obj.foreach_member((o , key, value) => {
 					//print(key+"\n");
@@ -96,7 +105,10 @@ namespace JsRender {
 						case "$ xtype":
 						case "* xns":
 						case "*xns":
+						case "xns":
 						case "$ xns":
+						case "string xns":
+						case "string xtype":
 							return; // ignore - already handled above
 
 					default:

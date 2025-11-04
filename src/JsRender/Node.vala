@@ -307,15 +307,17 @@ public class JsRender.Node : NodeBase
 			keys.add_all(cache_map.keys);
 			keys.sort();
 			foreach (var key in keys) {
-				var prop = cache_map.get(key) as NodeProp;
-				if (prop == null) {
-					GLib.warning("Cache entry '%s' in cache type '%s' is not a NodeProp", key, cache_type);
+				var cached = cache_map.get(key);
+				if (cached == null) {
+					GLib.warning("Cache entry '%s' in cache type '%s' is null", key, cache_type);
 					continue;
 				}
-				// Use cache type prefix (p, l, s) based on the cache type
-				var val_display = prop.prop_val.split("\n")[0];
-				print("%s%s %s = %s\n", indent, cache_type, prop.prop_name, val_display);
-				
+				var node = cached as Node;
+				if (node != null && node.node_type == NodePropType.OBJECT) {
+					continue;
+				}
+				var prop = cached as NodeProp;
+				print("%s%s %s = %s\n", indent, cache_type, prop.prop_name, prop.prop_val.split("\n")[0]);
 			}
 		}
 		
