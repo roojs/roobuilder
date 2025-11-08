@@ -503,6 +503,7 @@ public class Xcls_PopoverAddObject : Object
 			});
 			this.el.drag_end.connect( (drag, delete_data) => {
 				_this.hide();
+				this.el.set_icon(null, 0, 0);
 			
 			});
 		}

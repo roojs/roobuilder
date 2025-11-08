@@ -295,6 +295,7 @@
                         "prop-val" : [
                           "(drag, delete_data) => {",
                           "\t_this.hide();",
+                          "\tthis.el.set_icon(null, 0, 0);",
                           "",
                           "}",
                           ""
