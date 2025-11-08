@@ -33,7 +33,8 @@ Removed several startup initialization steps from `Application.activate()`.
 
 4. **`w.initChildren()` call:**
    - Replaced with direct `windowstate` creation
-   - `initChildren()` was creating `windowstate` inside `MainWindow`
+   - `initChildren()` only does: `if (this.windowstate == null) { this.windowstate = new WindowState(this); }`
+   - So this change is functionally equivalent, just different timing
 
 5. **`showPopoverFiles()` call (already commented):**
    ```vala
@@ -134,9 +135,10 @@ One of these removed initializations was likely:
 - Initializing components that add drag/drop targets
 
 **Most likely culprits:**
-1. **`initChildren()`** - Might initialize other components
-2. **`WindowManager.load()`** - Might restore window state that affects layout
-3. **`ValaSymbolGirBuilder`** - Might create background threads/widgets
+1. **`WindowManager.load()`** - Might restore window state that affects layout/widget hierarchy
+2. **`ValaSymbolGirBuilder`** - Might create background threads/widgets that interfere
+3. **`BuilderApplication.settings`** - Might initialize components that affect drag/drop
+4. **`initChildren()`** - Timing difference (but functionally same as direct creation)
 
 ---
 
