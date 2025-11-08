@@ -143,13 +143,13 @@ public class WindowState : Object
 		this.left_tree.el.show();
 		   
 		// ROLLED BACK: Signal handlers disabled - will restore step by step
-		// Step 13: before_node_change signal handler - disabled
-		// this.left_tree.before_node_change.connect(() => {
-		// 	if (this.left_tree.view != null && this.left_tree.view.lastEventSource == "editor") {
-		// 		return true;
-		// 	}
-		// 	return this.leftTreeBeforeChange();
-		// });
+		// Step 13: before_node_change signal handler
+		this.left_tree.before_node_change.connect(() => {
+			if (this.left_tree.view != null && this.left_tree.view.lastEventSource == "editor") {
+				return true;
+			}
+			return this.leftTreeBeforeChange();
+		});
 		// Step 12: node_selected signal handlers
 		this.left_tree.node_selected.connect((sel) => {
 			if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
