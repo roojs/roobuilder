@@ -90,8 +90,8 @@ public class WindowState : Object
 		this.webkitViewInit();
 
 		// dialogs
-		// Step 2: Dialogs/popovers - disabled
-		// this.fileDetailsInit();
+		// Step 2: Dialogs/popovers
+		this.fileDetailsInit();
 
 		// Step 3: Template select - disabled
 		// this.template_select = new DialogTemplateSelect();
