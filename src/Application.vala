@@ -223,6 +223,10 @@ public class BuilderApplication : Gtk.Application
 		// TESTING: Add back #1 - Settings initialization
 		BuilderApplication.settings = new Settings();
 		
+		// TESTING: Add back #2 - ValaSymbolGirBuilder
+		var gb = new Palete.ValaSymbolGirBuilder(true);
+		gb.ref();
+		
 		// WindowManager (minimal - needed for window creation)
 		new WindowManager(this);
 		
