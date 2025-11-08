@@ -221,11 +221,6 @@ public class BuilderApplication : Gtk.Application
 			);
 		BuilderApplication.settings = new Settings();
 
-		var gb = new Palete.ValaSymbolGirBuilder(true);
-		gb.ref();
-
-
-
 		WindowManager.load();
 		if (	WindowManager.size() > 0) {
 			return;
@@ -242,6 +237,14 @@ public class BuilderApplication : Gtk.Application
 
 
 		w.show();
+		
+		// Defer ValaSymbolGirBuilder creation until after window is shown
+		// This prevents the dialog from interfering with drag-and-drop initialization
+		GLib.Idle.add(() => {
+			var gb = new Palete.ValaSymbolGirBuilder(true);
+			gb.ref();
+			return false; // Don't repeat
+		});
 
 
 

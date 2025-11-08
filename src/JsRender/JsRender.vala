@@ -137,7 +137,12 @@ namespace JsRender {
 		public signal void symbol_tree_updated( );
 		public void update_symbol_tree()
 		{
-			GLib.debug("update_symbol_tree called for %s", this.path);
+			GLib.debug("update_symbol_tree called for %s : %s", this.xtype, this.relpath);
+			// Only update symbol tree for Gtk projects, not Roo projects
+			if (this.xtype == "Roo") {
+				GLib.debug("update_symbol_tree: skipping Roo file %s", this.path);
+				return;
+			}
 			// use interfaces if we can get this to suppor tmore...
 			var pr = (Project.Gtk)this.project;
 			if (pr != null) {

@@ -44,6 +44,8 @@ namespace Palete {
 			if (with_dialog) {
 				 
 				lp = new LoadingProgress();
+				// Ensure dialog is attached to application (explicitly set it)
+				lp.el.application = BuilderApplication.singleton(null);
 				lp.el.present();
 				lp.el.title = "Reading GIR files";
 				lp.bar.el.fraction = 0.0f;
