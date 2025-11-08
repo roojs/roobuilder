@@ -66,53 +66,64 @@ public class WindowState : Object
 
 		// left elements..
 		this.leftTreeInit();
-		this.propsListInit();
+		
+		// ROLLED BACK TO STEP 1: Only statusbar, everything else disabled
+		// Step 7: Properties panel - will add back step by step
+		// this.propsListInit();
 
 		// on clutter space...
-		this.projectEditInit();
-		this.codeEditInit();
+		// this.projectEditInit();
+		// Step 5: Code editor - disabled
+		// this.codeEditInit();
 		//this.codePopoverEditInit();
 		//this.projectListInit();
 		//this.fileViewInit();
 
 		// adding stuff
-		this.objectAddInit();
-		this.propsAddInit();
+		// this.objectAddInit();
+		// this.propsAddInit();
 
 
 		// previews...
-		this.gtkViewInit();
-		this.webkitViewInit();
+		// Step 6: Preview views - disabled
+		// this.gtkViewInit();
+		// this.webkitViewInit();
 
 		// dialogs
+		// Step 2: Dialogs/popovers - disabled
+		// this.fileDetailsInit();
 
- 		this.fileDetailsInit();
-
-
-		this.template_select = new DialogTemplateSelect();
-		this.children_loaded = true;
+		// Step 3: Template select - disabled
+		// this.template_select = new DialogTemplateSelect();
+		// this.children_loaded = true;
 		
 		
 		 
 		//BuilderApplication.valasource.compiled.connect(this.showCompileResult); 
 		
 		
-		this.compile_results = new  Xcls_ValaCompileResults(); // the poup dialogs with results in.
-		this.compile_results.window = this.win;
+		// Step 4: Compile results - disabled
+		// this.compile_results = new  Xcls_ValaCompileResults();
+		// this.compile_results.window = this.win;
 		//BuilderApplication.valasource.compile_output.connect(this.compile_results.addLine);
 		
-		this.win.statusbar_compilestatus_label.el.hide();
-		this.win.statusbar_run.el.hide();
+		// Step 1: Restore status bar (with null checks since splitview not created yet)
+		if (this.win.statusbar_compilestatus_label != null) {
+			this.win.statusbar_compilestatus_label.el.hide();
+		}
+		if (this.win.statusbar_run != null) {
+			this.win.statusbar_run.el.hide();
+		}
   
-  		// not a popover anymore !
-		this.popover_files = new DialogFiles();
-		 this.popover_files.win = this.win;
-	    this.popover_files.el.application = this.win.el.application;
-	    this.popover_files.el.set_transient_for( this.win.el );
+  		// Step 2: Dialogs/popovers - disabled
+  		// this.popover_files = new DialogFiles();
+		//  this.popover_files.win = this.win;
+	    // this.popover_files.el.application = this.win.el.application;
+	    // this.popover_files.el.set_transient_for( this.win.el );
  
- 		this.popover_codeinfo = new CodeInfo();
- 		this.popover_codeinfo.win = this.win;
- 		FakeServer.server();
+		// this.popover_codeinfo = new CodeInfo();
+		// this.popover_codeinfo.win = this.win;
+		// FakeServer.server();
 	}
 
  
@@ -125,60 +136,57 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		this.win.leftpane.el.remove(this.win.editpane.el);
-    	//this.win.tree.el.remove(this.left_tree.el);
-		this.win.leftpane.el.append(this.left_tree.el);
-	    
-	
-		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
+		// Step 8: Restore splitview structure - tree goes in win.tree.el (inside editpane)
+		// The structure is: leftpane -> editpane (Paned) -> tree (start) and props (end)
+		// So we add left_tree to win.tree.el, not directly to leftpane
+		this.win.tree.el.append(this.left_tree.el);
 		this.left_tree.el.show();
 		   
-		this.left_tree.before_node_change.connect(() => {
-			// if the node change is caused by the editor (code preview)
-			if (this.left_tree.view.lastEventSource == "editor") {
-				return true;
-			}
-			return this.leftTreeBeforeChange();
-
-		});
-		// node selected -- only by clicking?
-		this.left_tree.node_selected.connect((sel) => {
-			//if (source == "editor") {
-			//	return;
-			//}
-			if (!this.win.btn_tree.el.visible) {
-				return;
-			}
-			if (this.file.xtype == "Roo") { 
-				this.window_rooview.sourceview.nodeSelected(sel,true); // foce scroll.
-			} else {
-				this.window_gladeview.sourceview.nodeSelected(sel, true);
-			}
-		});
-		
-		this.left_tree.node_selected.connect((sel) => {
-			if (!this.win.btn_tree.el.visible) {
-				return;
-			}
-			this.leftTreeNodeSelected(sel);
-		});
-	 
-		this.left_tree.changed.connect(() => {
-			if (!this.win.btn_tree.el.visible) {
-				return;
-			}
-		
-			GLib.debug("LEFT TREE: Changed fired\n");
-			this.file.save(); // Synchronous - fast file I/O
-			
-			// Async source regeneration
-			if (this.left_tree.getActiveFile().xtype == "Roo") {
-				this.window_rooview.requestRedraw(); //Async.begin();
-			} else {
-				this.window_gladeview.loadFile(this.left_tree.getActiveFile());
-			}
-			 
-		});
+		// ROLLED BACK: Signal handlers disabled - will restore step by step
+		// Step 13: before_node_change signal handler - disabled
+		// this.left_tree.before_node_change.connect(() => {
+		// 	if (this.left_tree.view != null && this.left_tree.view.lastEventSource == "editor") {
+		// 		return true;
+		// 	}
+		// 	return this.leftTreeBeforeChange();
+		// });
+		// Step 12: node_selected signal handlers - disabled
+		// this.left_tree.node_selected.connect((sel) => {
+		// 	if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
+		// 		return;
+		// 	}
+		// 	if (this.file != null && this.file.xtype == "Roo" && this.window_rooview != null) { 
+		// 		this.window_rooview.sourceview.nodeSelected(sel,true);
+		// 	} else if (this.window_gladeview != null) {
+		// 		this.window_gladeview.sourceview.nodeSelected(sel, true);
+		// 	}
+		// });
+		// 
+		// this.left_tree.node_selected.connect((sel) => {
+		// 	if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
+		// 		return;
+		// 	}
+		// 	this.leftTreeNodeSelected(sel);
+		// });
+		// Step 11: changed signal handler - disabled
+		// this.left_tree.changed.connect(() => {
+		// 	if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
+		// 		return;
+		// 	}
+		// 
+		// 	GLib.debug("LEFT TREE: Changed fired\n");
+		// 	if (this.file == null) {
+		// 		return;
+		// 	}
+		// 	this.file.save();
+		// 	
+		// 	var activeFile = this.left_tree.getActiveFile();
+		// 	if (activeFile != null && activeFile.xtype == "Roo" && this.window_rooview != null) {
+		// 		this.window_rooview.requestRedraw();
+		// 	} else if (activeFile != null && this.window_gladeview != null) {
+		// 		this.window_gladeview.loadFile(activeFile);
+		// 	}
+		// });
 		 
 	}
 	
@@ -212,7 +220,7 @@ public class WindowState : Object
 		//if (this.state != State.CODE) {
 			//this.left_props.finish_editing();
 			
-			if (this.state == State.CODE) {
+			if (this.state == State.CODE && this.code_editor_tab != null) {
 				this.code_editor_tab.saveContents();
 				this.switchState(State.PREVIEW);
 			}
@@ -231,26 +239,30 @@ public class WindowState : Object
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
+		// Stripped down for drag/drop testing - method disabled (will be restored in Step 15)
+		return;
 		
-		// do we really want to flip paletes if differnt nodes are selected
-		// showing palete should be deliberate thing..
-		 
-	 
-		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
-
-		this.add_props.hide(); // always hide add node/add listener if we change node.
-		this.rightpalete.hide();
-		
-		this.left_props.load(this.left_tree.getActiveFile(), sel);
-		
-		var outerpane = this.win.mainpane.el;
-		var innerpane = this.win.editpane.el;
-  		
-  		 if (this.win.editpane.el.parent != null && sel != null) {
-  			// select another node... no change to show hide/resize
-  			return;
-		}
-  				 
+		// Original code commented out:
+		// // do we really want to flip paletes if differnt nodes are selected
+		// // showing palete should be deliberate thing..
+		//  
+		// 
+		// print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
+		// 
+		// this.add_props.hide(); // always hide add node/add listener if we change node.
+		// this.rightpalete.hide();
+		// 
+		// this.left_props.load(this.left_tree.getActiveFile(), sel);
+		// 
+		// var outerpane = this.win.mainpane.el;
+		// var innerpane = this.win.editpane.el;
+  		// 
+  		//  if (this.win.editpane.el.parent != null && sel != null) {
+  		// 	// select another node... no change to show hide/resize
+  		// 	return;
+		// }
+  		// 	
+		/* 
 		if (sel == null) {
 		    // remove win.editpane from leftpane
 		    // remove lefttree from from win.tree 
@@ -369,14 +381,17 @@ public class WindowState : Object
 
 	public void propsListInit()
 	{
-	
+		// Step 7: Restore properties panel (hidden)
 		this.left_props =new Xcls_LeftProps();
 		this.left_props.ref();
 		this.left_props.main_window = this.win;
 		this.win.props.el.append(this.left_props.el);
 		this.left_props.el.show();
-	
+		
 		this.left_props.show_editor.connect( (file, node, prop) => {
+			if (this.code_editor_tab == null) {
+				return;
+			}
 			this.switchState(State.CODE);
 			
 			
@@ -389,9 +404,12 @@ public class WindowState : Object
 			
 			
 		});
-
+ 
    		// not sure if this is needed - as closing the popvoer should save it.
 		this.left_props.stop_editor.connect( () => {
+			if (this.code_editor_tab == null) {
+				return false;
+			}
 			var ret =  this.code_editor_tab.saveContents();
 			if (!ret) {
 				return false;
@@ -400,20 +418,24 @@ public class WindowState : Object
 			 
 			return ret;
 		});
-	
+		
 		this.left_props.changed.connect(() => {
 			// Save first to ensure Vala regeneration before UI reload
+			if (this.file == null) {
+				return;
+			}
 			this.file.save();
-			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
+			var activeFile = this.left_tree.getActiveFile();
+			if (activeFile != null && activeFile.xtype == "Roo" && this.window_rooview != null) {
 				this.window_rooview.requestRedraw();
-			} else {
-				this.window_gladeview.loadFile(this.left_tree.getActiveFile());
+			} else if (activeFile != null && this.window_gladeview != null) {
+				this.window_gladeview.loadFile(activeFile);
 			}
 			//this.left_tree.model.updateSelected();
 
 			 
 		});
-	 
+ 
 
 	}
 
@@ -547,6 +569,12 @@ public class WindowState : Object
 
 	public void codeEditInit()
 	{
+		// Step 5: Restore code editor (hidden)
+		// Note: codeeditviewbox is part of splitview structure, which isn't created yet
+		// So we skip initialization if it doesn't exist
+		if (this.win.codeeditviewbox == null) {
+			return;
+		}
 		this.code_editor_tab  = new  Editor();
 		//this.code_editor.ref();  /// really?
 		this.win.codeeditviewbox.el.append(this.code_editor_tab.el);
@@ -557,12 +585,16 @@ public class WindowState : Object
 		// editor.save...
 
 		this.code_editor_tab.save.connect( () => {
+			if (this.file == null) {
+				return;
+			}
 			this.file.save();
 			//this.left_tree.model.updateSelected();
-			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
+			var activeFile = this.left_tree.getActiveFile();
+			if (activeFile != null && activeFile.xtype == "Roo" && this.window_rooview != null) {
 				   this.window_rooview.requestRedraw();
-			} else {
-				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
+			} else if (activeFile != null && this.window_gladeview != null) {
+				  this.window_gladeview.loadFile(activeFile);
 			}
 			 
 			
@@ -789,6 +821,7 @@ public class WindowState : Object
 	// ---------  webkit view
 	public void webkitViewInit()
 	{
+		// Step 6: Restore webkit view (hidden)
 		this.window_rooview  =new Xcls_WindowRooView();
 		this.window_rooview.main_window = this.win;
 		this.window_rooview.ref();

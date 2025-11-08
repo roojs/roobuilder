@@ -1,4 +1,7 @@
-static Xcls_WindowLeftTree  _WindowLeftTree;
+/*
+ * Compile: valac --pkg gtk4 tree_test.vala -o /tmp/tree_test
+ * Run: /tmp/tree_test
+ */
 
 public class TestNode : GLib.Object {
 	public string text { get; set; }
@@ -20,18 +23,10 @@ public class TestNode : GLib.Object {
 	}
 }
 
-public class Xcls_WindowLeftTree : Object
+public class Xcls_TreeTestWindow : Object
 {
 	public Gtk.Box el;
-	private Xcls_WindowLeftTree  _this;
-
-	public static Xcls_WindowLeftTree singleton()
-	{
-		if (_WindowLeftTree == null) {
-		    _WindowLeftTree= new Xcls_WindowLeftTree();
-		}
-		return _WindowLeftTree;
-	}
+	private Xcls_TreeTestWindow  _this;
 
 	public Xcls_ListView12 ListView12;
 	public Xcls_viewwin viewwin;
@@ -45,15 +40,9 @@ public class Xcls_WindowLeftTree : Object
 	// my vars (def)
 	public GLib.ListStore root_store;
 	public TestNode? drag_node;
-	public Gee.ArrayList<Gtk.Widget>? error_widgets;
-	public Xcls_MainWindow? main_window;
-	public int last_error_counter;
-	public signal bool before_node_change ();
-	public signal void changed ();
-	public signal void node_selected (JsRender.Node? node);
 
 	// ctor
-	public Xcls_WindowLeftTree()
+	public Xcls_TreeTestWindow()
 	{
 		_this = this;
 		this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -61,21 +50,25 @@ public class Xcls_WindowLeftTree : Object
 		// my vars (dec)
 		this.root_store = new GLib.ListStore(typeof(TestNode));
 		this.drag_node = null;
-		this.error_widgets = null;
-		this.main_window = null;
-		this.last_error_counter = -1;
 
 		// set gobject values
 		this.el.hexpand = true;
 		this.el.vexpand = true;
 		
-		// CSS is now loaded from resources/css/roobuilder.css
-		// this.setupCSS();
+		// Setup error handler
+		GLib.Log.set_default_handler((dom, lvl, msg) => {
+			stderr.printf("%s: %s : %s\n", 
+				(new DateTime.now_local()).format("%H:%M:%S.%f"), 
+				lvl.to_string(), 
+				msg);
+		});
 		
-		// STRIPPED DOWN: Remove ListView12, only keep viewwin (ScrolledWindow + ColumnView)
-		// var child_1 = new Xcls_ListView12( _this );
-		// child_1.ref();
-		// this.el.append( child_1.el );
+		// Setup CSS
+		this.setupCSS();
+		
+		var child_1 = new Xcls_ListView12( _this );
+		child_1.ref();
+		this.el.append( child_1.el );
 		new Xcls_viewwin( _this );
 		this.el.append( _this.viewwin.el );
 		
@@ -159,39 +152,15 @@ public class Xcls_WindowLeftTree : Object
 		var node3 = new TestNode("Node 3");
 		this.root_store.append(node3);
 	}
-
-	public JsRender.Node? getActiveElement () {
-		var node = _this.selmodel.getSelectedNode();
-		// Temporarily return null since TestNode != JsRender.Node
-		// This will need to be fixed when we add real JsRender.Node support
-		return null;
-	}
-
-	public JsRender.JsRender? getActiveFile () {
-		// Return null for now - stub implementation
-		return null;
-	}
-
-	public void onresize () {
-		// Empty stub for now
-	}
-
-	public void removeErrors() {
-		// Stub for now
-	}
-
-	public void updateErrors() {
-		// Stub for now
-	}
 }
 
 public class Xcls_viewwin : Object
 {
 	public Gtk.ScrolledWindow el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_viewwin(Xcls_WindowLeftTree _owner )
+	public Xcls_viewwin(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		_this.viewwin = this;
@@ -220,7 +189,7 @@ public class Xcls_viewwin : Object
 public class Xcls_view : Object
 {
 	public Gtk.ColumnView el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// my vars (def)
 	public bool blockChanges;
@@ -230,7 +199,7 @@ public class Xcls_view : Object
 	public bool headers_visible;
 
 	// ctor
-	public Xcls_view(Xcls_WindowLeftTree _owner )
+	public Xcls_view(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		_this.view = this;
@@ -248,25 +217,23 @@ public class Xcls_view : Object
 		this.el.name = "left-tree-view";
 		this.el.hexpand = false;
 		this.el.vexpand = true;
-		// STRIPPED DOWN: Keep only DragSource for drag, remove other controllers
-		// var child_2 = new Xcls_GestureClick32( _this );
-		// child_2.ref();
-		// this.el.add_controller(  child_2.el );
-		// var child_3 = new Xcls_GestureClick35( _this );
-		// child_3.ref();
-		// this.el.add_controller(  child_3.el );
+		var child_2 = new Xcls_GestureClick32( _this );
+		child_2.ref();
+		this.el.add_controller(  child_2.el );
+		var child_3 = new Xcls_GestureClick35( _this );
+		child_3.ref();
+		this.el.add_controller(  child_3.el );
 		var child_4 = new Xcls_DragSource( _this );
 		child_4.ref();
 		this.el.add_controller(  child_4.el );
-		// var child_5 = new Xcls_EventControllerKey44( _this );
-		// child_5.ref();
-		// this.el.add_controller(  child_5.el );
+		var child_5 = new Xcls_EventControllerKey44( _this );
+		child_5.ref();
+		this.el.add_controller(  child_5.el );
 		new Xcls_maincol( _this );
 		this.el.append_column ( _this.maincol.el  );
-		// STRIPPED DOWN: Remove second column
-		// var child_7 = new Xcls_ColumnViewColumn70( _this );
-		// child_7.ref();
-		// this.el.append_column ( child_7.el  );
+		var child_7 = new Xcls_ColumnViewColumn70( _this );
+		child_7.ref();
+		this.el.append_column ( child_7.el  );
 	}
 
 	// user defined functions
@@ -316,10 +283,10 @@ public class Xcls_view : Object
 public class Xcls_DragSource : Object
 {
 	public Gtk.DragSource el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_DragSource(Xcls_WindowLeftTree _owner )
+	public Xcls_DragSource(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		this.el = new Gtk.DragSource();
@@ -330,7 +297,7 @@ public class Xcls_DragSource : Object
 		//listeners
 		this.el.drag_begin.connect( (drag) => {
 			GLib.debug("DragSource: drag-begin called");
-			var data = _this.selmodel.getSelectedNodeInternal();
+			var data = _this.selmodel.getSelectedNode();
 			if (data == null) {
 				return  ;
 			}
@@ -350,7 +317,7 @@ public class Xcls_DragSource : Object
 		});
 		this.el.prepare.connect( (x, y) => {
 			GLib.debug("DragSource: prepare called");
-			var ndata = _this.selmodel.getSelectedNodeInternal();
+			var ndata = _this.selmodel.getSelectedNode();
 			if (ndata == null) {
 				GLib.debug("return empty string - no selection..");
 				return null;
@@ -368,10 +335,10 @@ public class Xcls_DragSource : Object
 public class Xcls_selmodel : Object
 {
 	public Gtk.SingleSelection el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_selmodel(Xcls_WindowLeftTree _owner )
+	public Xcls_selmodel(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		_this.selmodel = this;
@@ -384,43 +351,26 @@ public class Xcls_selmodel : Object
 
 		//listeners
 		this.el.selection_changed.connect( (position, n_items) => {
-			if (_this.view.blockChanges) {
-				return;
-			}
-			var snode = _this.selmodel.getSelectedNodeInternal();
-			if (snode == null) {
-				_this.node_selected(null);
-				return;
-			}
-			// Temporarily emit null since TestNode != JsRender.Node
-			// This will need to be fixed when we add real JsRender.Node support
-			_this.node_selected(null);
 		});
 	}
 
 	// user defined functions
-	public TestNode? getSelectedNodeInternal() {
+	public TestNode? getSelectedNode() {
 		if (this.el.selected_item == null) {
 			return null;
 		}
 		var tr = (Gtk.TreeListRow)this.el.selected_item;
 		return (TestNode)tr.get_item();
 	}
-	
-	public JsRender.Node? getSelectedNode() {
-		// Temporarily return null since TestNode != JsRender.Node
-		// This will need to be fixed when we add real JsRender.Node support
-		return null;
-	}
 }
 
 public class Xcls_model : Object
 {
 	public Gtk.TreeListModel el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_model(Xcls_WindowLeftTree _owner )
+	public Xcls_model(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		_this.model = this;
@@ -443,64 +393,15 @@ public class Xcls_model : Object
 		_this.selmodel.el.set_model(this.el);
 		return this.el;
 	}
-
-	public void selectNode(JsRender.Node? node) {
-		// Temporarily do nothing since TestNode != JsRender.Node
-		// This will need to be fixed when we add real JsRender.Node support
-		if (node == null) {
-			var s = _this.view.el.model as Gtk.SingleSelection;
-			s.selected = Gtk.INVALID_LIST_POSITION;
-		}
-	}
-	
-	public void selectNodeInternal(TestNode? node) {
-		var s = _this.view.el.model as Gtk.SingleSelection;
-		if (node == null) {
-			s.selected = Gtk.INVALID_LIST_POSITION;
-			return;
-		}
-		// Find the row for this node
-		var row = this.nodeToRow(node);
-		if (row < 0) {
-			GLib.debug("Could not find node");
-			s.selected = Gtk.INVALID_LIST_POSITION;
-			return;
-		}
-		GLib.debug("Select %d", row);
-		s.set_selected(row);
-		_this.view.el.scroll_to(row, null, Gtk.ListScrollFlags.SELECT, null);
-	}
-
-	public int nodeToRow(TestNode node) {
-		var s = _this.view.el.model as Gtk.SingleSelection;
-		for (var i = 0; i < s.n_items; i++) {
-			var lr = s.get_item(i) as Gtk.TreeListRow;
-			var nn = (lr.get_item() as TestNode);
-			if (nn != null && nn.oid == node.oid) {
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	public void loadFile(JsRender.JsRender? f) {
-		// Stub for now - will be implemented later
-		GLib.debug("loadFile called (stub)");
-	}
-
-	public void deleteSelected() {
-		// Stub for now
-		GLib.debug("deleteSelected called (stub)");
-	}
 }
 
 public class Xcls_maincol : Object
 {
 	public Gtk.ColumnViewColumn el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_maincol(Xcls_WindowLeftTree _owner )
+	public Xcls_maincol(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		_this.maincol = this;
@@ -550,7 +451,7 @@ public class Xcls_maincol : Object
 public class Xcls_drop : Object
 {
 	public Gtk.DropTargetAsync el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// my vars (def)
 	public Gtk.Widget? highlightWidget;
@@ -558,7 +459,7 @@ public class Xcls_drop : Object
 	public string lastDragString;
 
 	// ctor
-	public Xcls_drop(Xcls_WindowLeftTree _owner )
+	public Xcls_drop(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		_this.drop = this;
@@ -606,7 +507,7 @@ public class Xcls_drop : Object
 				return Gdk.DragAction.COPY;
 			}
 			
-			var row_widget = _this.view.getRowWidgetAt( x,y, out pos);
+			var row_widget = _this.view.getRowWidgetAt( x, y, out pos);
 			if (row_widget == null) {
 				this.addHighlight(null, "");
 				return Gdk.DragAction.COPY;
@@ -620,7 +521,8 @@ public class Xcls_drop : Object
 		this.el.drop.connect( (drop, x, y) => {
 			GLib.debug("drop event");
 			var pos = "";
-			var row_widget = _this.view.getRowWidgetAt(x,y, out pos);
+			
+			var row_widget = _this.view.getRowWidgetAt(x, y, out pos);
 			this.addHighlight(null,"");
 			
 			GLib.Value v = GLib.Value(typeof(string));
@@ -634,7 +536,6 @@ public class Xcls_drop : Object
 			
 			var new_node = new TestNode(text);
 			_this.root_store.append(new_node);
-			_this.changed();
 			
 			drop.finish(Gdk.DragAction.COPY);
 			return true;
@@ -671,10 +572,10 @@ public class Xcls_drop : Object
 public class Xcls_GestureClick32 : Object
 {
 	public Gtk.GestureClick el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_GestureClick32(Xcls_WindowLeftTree _owner )
+	public Xcls_GestureClick32(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		this.el = new Gtk.GestureClick();
@@ -688,17 +589,15 @@ public class Xcls_GestureClick32 : Object
 			_this.view.lastEventSource = "tree";
 		});
 	}
-
-	// user defined functions
 }
 
 public class Xcls_GestureClick35 : Object
 {
 	public Gtk.GestureClick el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_GestureClick35(Xcls_WindowLeftTree _owner )
+	public Xcls_GestureClick35(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		this.el = new Gtk.GestureClick();
@@ -710,17 +609,15 @@ public class Xcls_GestureClick35 : Object
 		this.el.pressed.connect( (n_press, x, y) => {
 		});
 	}
-
-	// user defined functions
 }
 
 public class Xcls_EventControllerKey44 : Object
 {
 	public Gtk.EventControllerKey el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_EventControllerKey44(Xcls_WindowLeftTree _owner )
+	public Xcls_EventControllerKey44(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		this.el = new Gtk.EventControllerKey();
@@ -733,17 +630,15 @@ public class Xcls_EventControllerKey44 : Object
 			return true;
 		});
 	}
-
-	// user defined functions
 }
 
 public class Xcls_ColumnViewColumn70 : Object
 {
 	public Gtk.ColumnViewColumn el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_ColumnViewColumn70(Xcls_WindowLeftTree _owner )
+	public Xcls_ColumnViewColumn70(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		var child_1 = new Xcls_SignalListItemFactory73( _this );
@@ -753,17 +648,15 @@ public class Xcls_ColumnViewColumn70 : Object
 		// set gobject values
 		this.el.fixed_width = 25;
 	}
-
-	// user defined functions
 }
 
 public class Xcls_SignalListItemFactory73 : Object
 {
 	public Gtk.SignalListItemFactory el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_SignalListItemFactory73(Xcls_WindowLeftTree _owner )
+	public Xcls_SignalListItemFactory73(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		this.el = new Gtk.SignalListItemFactory();
@@ -788,49 +681,43 @@ public class Xcls_SignalListItemFactory73 : Object
 			img.set_visible(true);
 		});
 	}
-
-	// user defined functions
 }
 
 public class Xcls_ListView12 : Object
 {
 	public Gtk.ListView el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_ListView12(Xcls_WindowLeftTree _owner )
+	public Xcls_ListView12(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		var child_1 = new Xcls_SignalListItemFactory13( _this );
 		child_1.ref();
 		this.el = new Gtk.ListView( null, child_1.el );
 	}
-
-	// user defined functions
 }
 
 public class Xcls_SignalListItemFactory13 : Object
 {
 	public Gtk.SignalListItemFactory el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_SignalListItemFactory13(Xcls_WindowLeftTree _owner )
+	public Xcls_SignalListItemFactory13(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		this.el = new Gtk.SignalListItemFactory();
 	}
-
-	// user defined functions
 }
 
 public class Xcls_LeftTreeMenu : Object
 {
 	public Gtk.Popover el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_LeftTreeMenu(Xcls_WindowLeftTree _owner )
+	public Xcls_LeftTreeMenu(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		_this.LeftTreeMenu = this;
@@ -841,17 +728,15 @@ public class Xcls_LeftTreeMenu : Object
 		child_1.ref();
 		this.el.child = child_1.el;
 	}
-
-	// user defined functions
 }
 
 public class Xcls_Box85 : Object
 {
 	public Gtk.Box el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_Box85(Xcls_WindowLeftTree _owner )
+	public Xcls_Box85(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -861,17 +746,15 @@ public class Xcls_Box85 : Object
 		child_1.ref();
 		this.el.append( child_1.el );
 	}
-
-	// user defined functions
 }
 
 public class Xcls_Button88 : Object
 {
 	public Gtk.Button el;
-	private Xcls_WindowLeftTree  _this;
+	private Xcls_TreeTestWindow  _this;
 
 	// ctor
-	public Xcls_Button88(Xcls_WindowLeftTree _owner )
+	public Xcls_Button88(Xcls_TreeTestWindow _owner )
 	{
 		_this = _owner;
 		this.el = new Gtk.Button();
@@ -885,7 +768,86 @@ public class Xcls_Button88 : Object
 			_this.LeftTreeMenu.el.visible = false;
 		});
 	}
-
-	// user defined functions
 }
 
+int main(string[] args) {
+	var app = new Gtk.Application("org.test.treedragdrop", GLib.ApplicationFlags.DEFAULT_FLAGS);
+	
+	app.activate.connect(() => {
+		var window = new Gtk.Window();
+		window.title = "Tree Drag Drop Test with Splitpane";
+		window.set_default_size(800, 600);
+		window.application = app;
+		
+		// Create a Paned (splitpane) to test if splitpane structure affects drag/drop
+		var paned = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
+		paned.position = 400; // Split at 400px
+		
+		// Left side: Tree
+		// Reproduce roobuilder structure: Paned → Box (tree) → Box (inner) → ScrolledWindow
+		// Add an extra Box layer to match roobuilder's structure
+		var tree = new Xcls_TreeTestWindow();
+		var inner_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+		inner_box.hexpand = true;
+		inner_box.vexpand = true;
+		// Move the tree's children to inner_box
+		// tree.el contains: ListView12 and viewwin (ScrolledWindow)
+		var child = tree.el.get_first_child();
+		while (child != null) {
+			var next = child.get_next_sibling();
+			tree.el.remove(child);
+			inner_box.append(child);
+			child = next;
+		}
+		// Now: Paned → tree.el (Box) → inner_box (Box) → ScrolledWindow
+		tree.el.append(inner_box);
+		paned.start_child = tree.el;
+		
+		// Right side: Properties panel with ScrolledWindow + ColumnView (like roobuilder's LeftProps)
+		// This matches roobuilder's structure which has TWO ScrolledWindows and TWO ColumnViews in the Paned
+		var props_panel = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+		props_panel.hexpand = true;
+		props_panel.vexpand = true;
+		
+		// Add a ScrolledWindow with ColumnView (like LeftProps.EditProps)
+		var props_scrolled = new Gtk.ScrolledWindow();
+		props_scrolled.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+		props_scrolled.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+		props_scrolled.hexpand = true;
+		props_scrolled.vexpand = true;
+		
+		// Create a simple ColumnView for props (like LeftProps.view)
+		var props_selection = new Gtk.SingleSelection(null);
+		var props_column_view = new Gtk.ColumnView(props_selection);
+		props_column_view.name = "leftprops-view";
+		props_column_view.hexpand = true;
+		props_column_view.vexpand = true;
+		
+		// Simple factory for props ColumnView
+		var props_factory = new Gtk.SignalListItemFactory();
+		props_factory.setup.connect((listitem) => {
+			var label = new Gtk.Label("Property");
+			((Gtk.ListItem)listitem).set_child(label);
+		});
+		props_factory.bind.connect((listitem) => {
+			var label = (Gtk.Label)((Gtk.ListItem)listitem).get_child();
+			label.set_label("Property Item");
+		});
+		
+		var props_column = new Gtk.ColumnViewColumn("Properties", props_factory);
+		props_column.expand = true;
+		props_column_view.append_column(props_column);
+		
+		props_scrolled.child = props_column_view;
+		props_panel.append(props_scrolled);
+		
+		paned.end_child = props_panel;
+		
+		window.set_child(paned);
+		
+		window.ref();
+		window.show();
+	});
+	
+	return app.run(args);
+}

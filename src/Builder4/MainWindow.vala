@@ -86,12 +86,15 @@ public class Xcls_MainWindow : Object
 		this.project = null;
 
 		// set gobject values
+		// Step 8: Restore splitview structure (but keep tree as direct child for now - will move in Step 9)
 		this.el.title = "Roo Application Builder";
 		this.el.default_height = 850;
 		this.el.default_width = 1200;
-		new Xcls_headerbar( _this );
-		this.el.set_titlebar ( _this.headerbar.el  );
+		// new Xcls_headerbar( _this );
+		// this.el.set_titlebar ( _this.headerbar.el  );
 		new Xcls_splitview( _this );
+		// Step 8: Set splitview as window child, but tree will be moved to leftpane in Step 9
+		// For now, we'll keep tree as direct child and update in Step 9
 		this.el.child = _this.splitview.el;
 
 		// init method
@@ -101,21 +104,33 @@ public class Xcls_MainWindow : Object
 		//listeners
 		this.el.close_request.connect( ( ) => {
 			 
-			 if (_this.statusbar.handler_id > -1) {
-			 	Resources.singleton().disconnect(_this.statusbar.handler_id);
-			 }
+			 // Stripped down - commented out statusbar check
+			 // if (_this.statusbar.handler_id > -1) {
+			 // 	Resources.singleton().disconnect(_this.statusbar.handler_id);
+			 // }
 			 
-			 this.windowstate.file.getLanguageServer().document_close(
-			 	this.windowstate.file
-		 	);
+			 // Stripped down - handle null file
+			 if (this.windowstate.file != null) {
+			 	this.windowstate.file.getLanguageServer().document_close(
+			 		this.windowstate.file
+			 	);
+			 }
+			 // Original code:
+			 // this.windowstate.file.getLanguageServer().document_close(
+			 // 	this.windowstate.file
+			 // );
 			 
 			 WindowManager.remove(this);
 			 WindowManager.save();
 			 
 			 if (WindowManager.size()  < 1) {
 			 	try {
-					this.windowstate.file.getLanguageServer().exit();
+			 		if (this.windowstate.file != null) {
+						this.windowstate.file.getLanguageServer().exit();
+					}
 				} catch(Error e) {}
+				// Original code:
+				// this.windowstate.file.getLanguageServer().exit();
 				
 				BuilderApplication.singleton(  null ).quit();
 			 }
@@ -123,15 +138,16 @@ public class Xcls_MainWindow : Object
 			
 		});
 		this.el.show.connect( ( ) => {
-		    // hide the file editing..
-		   
-		    //this.hideViewEditing();
-		    // this is updated by windowstate - we try and fill it in..
-		     _this.statusbar.el.hide();
-		     //_this.statusbar_errors.el.hide();
-		    //_this.statusbar_warnings.el.hide();
-		    //_this.statusbar_depricated.el.hide();
-		    _this.statusbar_compile_spinner.el.hide();
+		    // Step 8: Statusbar is now available as part of splitview structure
+		    if (_this.statusbar != null) {
+		    	_this.statusbar.el.hide();
+		    	_this.statusbar_compile_spinner.el.hide();
+		    }
+		    // Test: Ensure sidebar is hidden at startup
+		    if (_this.sidebar != null && _this.splitview != null) {
+		    	_this.splitview.el.show_sidebar = false;
+		    	_this.splitview.el.collapsed = true;
+		    }
 		  
 		    Resources.singleton().checkResources();
 		    var display = this.el.get_display();
@@ -229,9 +245,10 @@ public class Xcls_MainWindow : Object
 	public void show () {
 	   
 	    this.el.show();
-	    if (this.windowstate.file  == null) {
-	    	this.windowstate.showPopoverFiles(this.open_projects_btn.el, null, false);
-	    }
+	    // File popover disabled for drag/drop testing - will restore in later step
+	    // if (this.windowstate.file  == null) {
+	    // 	this.windowstate.showPopoverFiles(this.open_projects_btn.el, null, false);
+	    // }
 	}
 	public bool getSize (out int x, out int y, out uint w, out uint h) {
 	

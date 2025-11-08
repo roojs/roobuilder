@@ -1,0 +1,203 @@
+#codeinfo-tree ,
+#left-tree-view { 
+    font-size: 12px;
+}	
+
+.drag-over  { 
+    background-color:#88a3bc; 
+}
+.drag-below  {   
+     border-bottom-width: 8px; 
+     border-bottom-style: solid;
+     border-bottom-color: #88a3bc;
+}
+.drag-above  {
+     border-top-width: 8px;
+     border-top-style: solid;
+     border-top-color: #88a3bc;
+}
+.node-err  {
+     border-top-width: 5px;
+     border-top-style: solid;
+     border-top-color: red;
+     border-bottom-width: 5px; 
+     border-bottom-style: solid;
+     border-bottom-color: red;
+}
+.node-warn  {
+     border-top-width: 5px;
+     border-top-style: solid;
+     border-top-color: #ABF4EB;
+     border-bottom-width: 5px; 
+     border-bottom-style: solid;
+     border-bottom-color: #ABF4EB;
+}
+.node-depr  {
+     border-top-width: 5px;
+     border-top-style: solid;
+     border-top-color: #EEA9FF;
+     border-bottom-width: 5px; 
+     border-bottom-style: solid;
+     border-bottom-color: #EEA9FF;
+}
+
+#codeinfo-tree indent,
+#codeinfo-tree expander,
+#left-tree-view indent,
+#left-tree-view expander
+{
+    -gtk-icon-size : 6px;
+     min-width: 6px;
+}
+
+#codeinfo-tree cell,
+#left-tree-view cell {
+	padding-top: 3px;
+	padding-bottom: 3px;
+} 
+
+#project-list { 
+    font-size: 12px;
+}
+
+
+#leftprops-view { 
+    font-size: 12px;
+}
+	 
+#leftprops-view  dropdown button { 
+	min-height: 16px;			 
+	outline-offset : 0;
+}
+#leftprops-view cell dropdown label  {
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+#leftprops-view cell   { 
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+#leftprops-view cell label,  
+#leftprops-view cell editablelable {
+	padding-top:4px;
+	padding-bottom:4px;
+}
+
+#compile-results-view { 
+    font: 10px monospace ;
+}
+
+#gtkview-search-entry { 
+    font: 10px monospace ;
+}
+#gtkview-view-layout { 
+    background-color: #ccc; 
+}
+#roo-search-entry { 
+    background-color: #ccc; 
+}
+
+
+#editor-navigation indent,
+#editor-navigation expander
+{
+    -gtk-icon-size : 10px;
+     min-width: 10px;
+}
+#editor-navigation { 
+    font-size: 12px;
+}
+#editor-navigation cell {
+	padding-top: 2px;
+	padding-bottom: 2px;
+} 
+
+#editor-navigation .selected-row {
+    background-color:#88a3bc; 
+} 
+/**
+    language symbols?
+*/
+.lang-class-symbolic ,
+.lang-constructor-symbolic {
+	font-weight: bold;
+}
+.lang-method-symbolic {
+	color : #029f2b;
+	font-weight: bold;
+}
+
+.lang-property-symbolic,
+.lang-field-symbolic {
+	color : #1111ff;
+}
+.lang-enummember-symbolic {
+	color : #666;
+
+}
+
+.lang-class-symbolic.in-active-symbol,
+.lang-constructor-symbolic.in-active-symbol,
+.lang-method-symbolic.in-active-symbol,
+.lang-property-symbolic.in-active-symbol,
+.lang-field-symbolic.in-active-symbol,
+.lang-enummember-symbolic.in-active-symbol
+{
+	font-weight: normal;
+	font-style : italic;
+}
+ 
+
+tooltip {
+    padding: 1px;
+    margin: 0px 0px 0px 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    border-color: #eee;
+    background-image: none;
+    background-color: #fff;
+    color: #000;
+    border-bottom: 4px solid #ccc;
+    border-right: 4px solid #aaa;
+   border-top: 4px solid #eee;
+    border-left: 4px solid #ddd;
+}
+
+tooltip * {
+    background-color: #fff;
+    padding: 3px 3px 3px 3px;
+    margin: 0px 0px 0px 0px;
+    border-width: 1px;
+    color: #000;
+
+}
+
+
+ gridview { 
+	background : #666;
+	color : #fff;
+}
+gridview child  {
+	border: 1px solid #999;
+}
+
+
+#file-list { font-size: 12px;}
+#file-list indent {
+    -gtk-icon-size : 2px;
+}
+#file-list indent:nth-last-child(2)  {
+    min-width: 24px;
+}
+
+button.small {
+    min-height:12px;
+    min-width: 12px;;
+    padding: 2px 4px;
+    font-size: 0.8em;
+    border-radius: 1px;
+    margin: 1px;  
+}
