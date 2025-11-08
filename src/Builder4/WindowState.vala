@@ -67,9 +67,9 @@ public class WindowState : Object
 		// left elements..
 		this.leftTreeInit();
 		
-		// ROLLED BACK TO STEP 1: Only statusbar, everything else disabled
-		// Step 7: Properties panel - will add back step by step
-		// this.propsListInit();
+		// Step 1: Statusbar only - drag/drop working ✓
+		// Step 7: Add properties panel (has ColumnView + ScrolledWindow - may interfere)
+		this.propsListInit();
 
 		// on clutter space...
 		// this.projectEditInit();
@@ -381,12 +381,21 @@ public class WindowState : Object
 
 	public void propsListInit()
 	{
-		// Step 7: Restore properties panel (hidden)
+		// Step 7: Restore properties panel (collapsed to 0 width)
 		this.left_props =new Xcls_LeftProps();
 		this.left_props.ref();
 		this.left_props.main_window = this.win;
 		this.win.props.el.append(this.left_props.el);
 		this.left_props.el.show();
+		
+		// Collapse props panel to 0 width by setting editpane position to max
+		// This ensures the props panel doesn't interfere with drag/drop
+		GLib.Idle.add(() => {
+			if (this.win.editpane.el.max_position > 0) {
+				this.win.editpane.el.set_position(this.win.editpane.el.max_position);
+			}
+			return GLib.Source.REMOVE;
+		});
 		
 		this.left_props.show_editor.connect( (file, node, prop) => {
 			if (this.code_editor_tab == null) {
