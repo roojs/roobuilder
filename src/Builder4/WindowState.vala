@@ -72,7 +72,8 @@ public class WindowState : Object
 		this.propsListInit();
 
 		// on clutter space...
-		// this.projectEditInit();
+		// Step 16: Project edit initialization
+		this.projectEditInit();
 		// Step 5: Code editor
 		this.codeEditInit();
 		//this.codePopoverEditInit();
