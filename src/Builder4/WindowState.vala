@@ -93,9 +93,9 @@ public class WindowState : Object
 		// Step 2: Dialogs/popovers
 		this.fileDetailsInit();
 
-		// Step 3: Template select - disabled
-		// this.template_select = new DialogTemplateSelect();
-		// this.children_loaded = true;
+		// Step 3: Template select
+		this.template_select = new DialogTemplateSelect();
+		this.children_loaded = true;
 		
 		
 		 
