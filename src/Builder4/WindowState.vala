@@ -102,10 +102,11 @@ public class WindowState : Object
 		//BuilderApplication.valasource.compiled.connect(this.showCompileResult); 
 		
 		
-		// Step 4: Compile results - disabled
-		// this.compile_results = new  Xcls_ValaCompileResults();
-		// this.compile_results.window = this.win;
-		//BuilderApplication.valasource.compile_output.connect(this.compile_results.addLine);
+		// Step 4: Compile results
+		this.compile_results = new  Xcls_ValaCompileResults();
+		this.compile_results.window = this.win;
+		// Note: valasource.compile_output connection commented out - valasource may not exist
+		// BuilderApplication.valasource.compile_output.connect(this.compile_results.addLine);
 		
 		// Step 1: Restore status bar (with null checks since splitview not created yet)
 		if (this.win.statusbar_compilestatus_label != null) {
