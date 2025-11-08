@@ -168,25 +168,25 @@ public class WindowState : Object
 		// 	}
 		// 	this.leftTreeNodeSelected(sel);
 		// });
-		// Step 11: changed signal handler - disabled
-		// this.left_tree.changed.connect(() => {
-		// 	if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
-		// 		return;
-		// 	}
-		// 
-		// 	GLib.debug("LEFT TREE: Changed fired\n");
-		// 	if (this.file == null) {
-		// 		return;
-		// 	}
-		// 	this.file.save();
-		// 	
-		// 	var activeFile = this.left_tree.getActiveFile();
-		// 	if (activeFile != null && activeFile.xtype == "Roo" && this.window_rooview != null) {
-		// 		this.window_rooview.requestRedraw();
-		// 	} else if (activeFile != null && this.window_gladeview != null) {
-		// 		this.window_gladeview.loadFile(activeFile);
-		// 	}
-		// });
+		// Step 11: changed signal handler
+		this.left_tree.changed.connect(() => {
+			if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
+				return;
+			}
+ 
+			GLib.debug("LEFT TREE: Changed fired\n");
+			if (this.file == null) {
+				return;
+			}
+			this.file.save();
+			
+			var activeFile = this.left_tree.getActiveFile();
+			if (activeFile != null && activeFile.xtype == "Roo" && this.window_rooview != null) {
+				this.window_rooview.requestRedraw();
+			} else if (activeFile != null && this.window_gladeview != null) {
+				this.window_gladeview.loadFile(activeFile);
+			}
+		});
 		 
 	}
 	
