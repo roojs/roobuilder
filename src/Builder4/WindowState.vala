@@ -150,24 +150,24 @@ public class WindowState : Object
 		// 	}
 		// 	return this.leftTreeBeforeChange();
 		// });
-		// Step 12: node_selected signal handlers - disabled
-		// this.left_tree.node_selected.connect((sel) => {
-		// 	if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
-		// 		return;
-		// 	}
-		// 	if (this.file != null && this.file.xtype == "Roo" && this.window_rooview != null) { 
-		// 		this.window_rooview.sourceview.nodeSelected(sel,true);
-		// 	} else if (this.window_gladeview != null) {
-		// 		this.window_gladeview.sourceview.nodeSelected(sel, true);
-		// 	}
-		// });
-		// 
-		// this.left_tree.node_selected.connect((sel) => {
-		// 	if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
-		// 		return;
-		// 	}
-		// 	this.leftTreeNodeSelected(sel);
-		// });
+		// Step 12: node_selected signal handlers
+		this.left_tree.node_selected.connect((sel) => {
+			if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
+				return;
+			}
+			if (this.file != null && this.file.xtype == "Roo" && this.window_rooview != null) { 
+				this.window_rooview.sourceview.nodeSelected(sel,true);
+			} else if (this.window_gladeview != null) {
+				this.window_gladeview.sourceview.nodeSelected(sel, true);
+			}
+		});
+		
+		this.left_tree.node_selected.connect((sel) => {
+			if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
+				return;
+			}
+			this.leftTreeNodeSelected(sel);
+		});
 		// Step 11: changed signal handler
 		this.left_tree.changed.connect(() => {
 			if (this.win.btn_tree == null || !this.win.btn_tree.el.visible) {
