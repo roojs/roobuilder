@@ -76,8 +76,8 @@ public class WindowState : Object
 		// Step 5: Code editor
 		this.codeEditInit();
 		//this.codePopoverEditInit();
-		//this.projectListInit();
-		//this.fileViewInit();
+		// Step 14: File loading functionality - methods don't exist, skipping
+		// (File dialog is handled by DialogFiles singleton, which we disabled at startup)
 
 		// adding stuff
 		// this.objectAddInit();
@@ -239,10 +239,16 @@ public class WindowState : Object
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
-		// Stripped down for drag/drop testing - method disabled (will be restored in Step 15)
+		// Step 15: Restore leftTreeNodeSelected - enable basic functionality first
+		// Load properties panel when node is selected
+		if (sel != null && this.left_props != null) {
+			this.left_props.load(this.left_tree.getActiveFile(), sel);
+		}
+		
+		// Skip complex layout manipulation for now - props panel is already collapsed to 0 width
 		return;
 		
-		// Original code commented out:
+		// Original code commented out (complex layout manipulation):
 		// // do we really want to flip paletes if differnt nodes are selected
 		// // showing palete should be deliberate thing..
 		//  
