@@ -85,9 +85,9 @@ public class WindowState : Object
 
 
 		// previews...
-		// Step 6: Preview views - disabled
-		// this.gtkViewInit();
-		// this.webkitViewInit();
+		// Step 6: Preview views
+		this.gtkViewInit();
+		this.webkitViewInit();
 
 		// dialogs
 		// Step 2: Dialogs/popovers - disabled
