@@ -220,6 +220,9 @@ public class BuilderApplication : Gtk.Application
 			Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
 			);
 		
+		// TESTING: Add back #1 - Settings initialization
+		BuilderApplication.settings = new Settings();
+		
 		// WindowManager (minimal - needed for window creation)
 		new WindowManager(this);
 		
