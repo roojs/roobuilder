@@ -44,6 +44,8 @@ namespace Palete {
 			if (with_dialog) {
 				 
 				lp = new LoadingProgress();
+				// Ensure dialog is attached to application (explicitly set it)
+				lp.el.application = BuilderApplication.singleton(null);
 				lp.el.present();
 				lp.el.title = "Reading GIR files";
 				lp.bar.el.fraction = 0.0f;
@@ -51,10 +53,6 @@ namespace Palete {
 					GLib.MainContext.default().iteration(true);
 				}
 			}
-			
-			// DISABLED: Actual building/parsing to test drag-and-drop
-			// Keep dialog show/hide but skip the actual work
-			/*
 			this.filemanager = new SymbolFileCollection();
 			// cant find a better way to work out where these dir's are..
 			// probably need to config this somehow..
@@ -81,11 +79,6 @@ namespace Palete {
 			}
 			
 			SQ.Database.backupDB();
-			*/
-			
-			// Still create filemanager (might be needed for other code)
-			this.filemanager = new SymbolFileCollection();
-			
 			if (lp != null) {
 				lp.el.hide();
 				while(GLib.MainContext.default().pending()) {

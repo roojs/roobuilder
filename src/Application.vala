@@ -223,10 +223,6 @@ public class BuilderApplication : Gtk.Application
 		// TESTING: Add back #1 - Settings initialization
 		BuilderApplication.settings = new Settings();
 		
-		// TESTING: Add back #2 - ValaSymbolGirBuilder
-		var gb = new Palete.ValaSymbolGirBuilder(true);
-		gb.ref();
-		
 		// WindowManager (minimal - needed for window creation)
 		new WindowManager(this);
 		
@@ -242,8 +238,16 @@ public class BuilderApplication : Gtk.Application
 		// Initialize only the tree (minimal WindowState.init)
 		w.windowstate.init();
 		
-		// Show window
+		// Show window FIRST
 		w.show();
+		
+		// TESTING: Add back #2 - ValaSymbolGirBuilder AFTER window is shown
+		// Use Idle to defer until after window is fully displayed
+		GLib.Idle.add(() => {
+			var gb = new Palete.ValaSymbolGirBuilder(true);
+			gb.ref();
+			return false; // Don't repeat
+		});
 	}
 
 	public static BuilderApplication  singleton(  string[]? args)
