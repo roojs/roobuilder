@@ -208,43 +208,35 @@ public class BuilderApplication : Gtk.Application
 
 	protected override void activate ()
 	{
-		// windowmanager will now get 'not null'
-		new WindowManager(this); 
+		// MINIMAL STARTUP: Only create window and show it
+		// Remove all other initialization code
 		
+		// CSS loading (minimal - needed for tree drag/drop styling)
 		var css = new Gtk.CssProvider();
 		css.load_from_resource("/css/roobuilder.css");
-
 		Gtk.StyleContext.add_provider_for_display(
 			Gdk.Display.get_default(),
 			css	,
 			Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
 			);
-		BuilderApplication.settings = new Settings();
-
-		var gb = new Palete.ValaSymbolGirBuilder(true);
-		gb.ref();
-
-
-
-		WindowManager.load();
-		if (	WindowManager.size() > 0) {
-			return;
-		}
+		
+		// WindowManager (minimal - needed for window creation)
+		new WindowManager(this);
+		
+		// Create window
 		var w = new Xcls_MainWindow();
-		w.initChildren();
-
-
+		
+		// Create windowstate (minimal - needed for tree initialization)
+		w.windowstate = new WindowState(w);
+		
+		// Add to WindowManager (minimal)
 		WindowManager.add(w);
-
-		// it looks like showall after children causes segfault on ubuntu 14.4
+		
+		// Initialize only the tree (minimal WindowState.init)
 		w.windowstate.init();
-		//	w.windowstate.showPopoverFiles(w.open_projects_btn.el, null, false);
-
-
+		
+		// Show window
 		w.show();
-
-
-
 	}
 
 	public static BuilderApplication  singleton(  string[]? args)

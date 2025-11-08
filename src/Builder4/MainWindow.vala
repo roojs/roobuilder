@@ -86,16 +86,16 @@ public class Xcls_MainWindow : Object
 		this.project = null;
 
 		// set gobject values
-		// Step 8: Restore splitview structure (but keep tree as direct child for now - will move in Step 9)
+		// MIDPOINT: Headerbar + splitview structure (minimal) + tree
 		this.el.title = "Roo Application Builder";
 		this.el.default_height = 850;
 		this.el.default_width = 1200;
-		// Step 17: Enable header bar (includes sidebar hide/show buttons)
-		new Xcls_headerbar( _this );
-		this.el.set_titlebar ( _this.headerbar.el  );
+		// Enable headerbar (toolbar) with minimal code
+		var a = new Gtk.HeaderBar();
+		a.ref(); // Keep a reference
+		this.el.set_titlebar(a);
+		// Add minimal splitview structure (no sidebar, no complex widgets)
 		new Xcls_splitview( _this );
-		// Step 8: Set splitview as window child, but tree will be moved to leftpane in Step 9
-		// For now, we'll keep tree as direct child and update in Step 9
 		this.el.child = _this.splitview.el;
 
 		// init method
@@ -333,13 +333,12 @@ public class Xcls_MainWindow : Object
 
 			// set gobject values
 			this.el.show_title_buttons = false;
-			// DISABLED: Most headerbar content for drag/drop testing
-			// var child_1 = new Xcls_Box2( _this );
-			// child_1.ref();
-			// this.el.pack_start ( child_1.el  );
-			// var child_2 = new Xcls_Box6( _this );
-			// child_2.ref();
-			// this.el.pack_end ( child_2.el  );
+			var child_1 = new Xcls_Box2( _this );
+			child_1.ref();
+			this.el.pack_start ( child_1.el  );
+			var child_2 = new Xcls_Box6( _this );
+			child_2.ref();
+			this.el.pack_end ( child_2.el  );
 		}
 
 		// user defined functions

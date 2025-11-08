@@ -1,5 +1,5 @@
 /*
- * Compile: valac --pkg gtk4 tree_test.vala -o /tmp/tree_test
+ * Compile: valac --pkg gtk4 --pkg libadwaita-1 tree_test.vala -o /tmp/tree_test
  * Run: /tmp/tree_test
  */
 
@@ -774,56 +774,117 @@ int main(string[] args) {
 	var app = new Gtk.Application("org.test.treedragdrop", GLib.ApplicationFlags.DEFAULT_FLAGS);
 	
 	app.activate.connect(() => {
-		var window = new Gtk.Window();
-		window.title = "Tree Drag Drop Test with Splitpane";
+		// REPRODUCE ROOBUILDER ORDER: Use ApplicationWindow and create tree AFTER showing
+		var window = new Gtk.ApplicationWindow(app);
+		window.title = "Tree Drag Drop Test - Reproducing roobuilder order";
 		window.set_default_size(800, 600);
-		window.application = app;
 		
-		// Create a Paned (splitpane) to test if splitpane structure affects drag/drop
-		var paned = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
-		paned.position = 400; // Split at 400px
+		// Step 1: Set headerbar FIRST (like roobuilder)
+		var headerbar = new Gtk.HeaderBar();
+		headerbar.ref(); // Keep a reference
+		window.set_titlebar(headerbar);
 		
-		// Left side: Tree
-		// Reproduce roobuilder structure: Paned → Box (tree) → Box (inner) → ScrolledWindow
-		// Add an extra Box layer to match roobuilder's structure
-		var tree = new Xcls_TreeTestWindow();
-		var inner_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-		inner_box.hexpand = true;
-		inner_box.vexpand = true;
-		// Move the tree's children to inner_box
-		// tree.el contains: ListView12 and viewwin (ScrolledWindow)
-		var child = tree.el.get_first_child();
-		while (child != null) {
-			var next = child.get_next_sibling();
-			tree.el.remove(child);
-			inner_box.append(child);
-			child = next;
-		}
-		// Now: Paned → tree.el (Box) → inner_box (Box) → ScrolledWindow
-		tree.el.append(inner_box);
-		paned.start_child = tree.el;
+		// Step 2: Use Adw.OverlaySplitView like roobuilder (instead of Gtk.Paned)
+		var splitview = new Adw.OverlaySplitView();
+		splitview.collapsed = true;
+		splitview.show_sidebar = false;
 		
-		// Right side: Properties panel with ScrolledWindow + ColumnView (like roobuilder's LeftProps)
-		// This matches roobuilder's structure which has TWO ScrolledWindows and TWO ColumnViews in the Paned
+		// Add sidebar like roobuilder
+		var sidebar = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+		sidebar.hexpand = true;
+		sidebar.vexpand = true;
+		splitview.sidebar = sidebar;
+		
+		// Add EventControllerKey like roobuilder (EventControllerKey98)
+		var key_controller = new Gtk.EventControllerKey();
+		key_controller.key_released.connect((keyval, keycode, state) => {
+			// Empty handler like roobuilder
+		});
+		splitview.add_controller(key_controller);
+		
+		// Step 3: Create VBox → MainPane → LeftPane → EditPane structure (like roobuilder)
+		var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+		vbox.hexpand = true;
+		vbox.vexpand = false;
+		
+		var mainpane = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
+		mainpane.position = 200;
+		
+		// Add accept_position signal handler like roobuilder
+		mainpane.accept_position.connect(() => {
+			return true;
+		});
+		
+		var leftpane = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+		leftpane.hexpand = true;
+		leftpane.vexpand = true;
+		
+		var editpane = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
+		
+		// Add accept_position and move_handle signal handlers like roobuilder
+		editpane.accept_position.connect(() => {
+			return true;
+		});
+		editpane.move_handle.connect((scroll) => {
+			GLib.debug("Move handle");
+			return true;
+		});
+		
+		// Create tree Box (like roobuilder's win.tree.el) - tree is appended to this Box
+		var tree_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+		tree_box.hexpand = true;
+		tree_box.vexpand = true;
+		editpane.start_child = tree_box;
+		
+		leftpane.append(editpane);
+		mainpane.start_child = leftpane;
+		
+		var rightpane = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+		rightpane.hexpand = true;
+		rightpane.vexpand = true;
+		
+		// Add rooviewbox and codeeditviewbox like roobuilder
+		var rooviewbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+		rooviewbox.hexpand = true;
+		rooviewbox.vexpand = true;
+		rightpane.append(rooviewbox);
+		
+		var codeeditviewbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+		codeeditviewbox.hexpand = true;
+		codeeditviewbox.vexpand = true;
+		rightpane.append(codeeditviewbox);
+		
+		mainpane.end_child = rightpane;
+		
+		vbox.append(mainpane);
+		
+		// Add statusbar (Box21) like roobuilder - appended to vbox after mainpane
+		var statusbar_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+		statusbar_box.vexpand = false;
+		var statusbar = new Gtk.ProgressBar();
+		statusbar.show_text = true;
+		statusbar_box.append(statusbar);
+		vbox.append(statusbar_box);
+		
+		splitview.content = vbox;
+		
+		// Right side: Properties panel (like roobuilder)
 		var props_panel = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		props_panel.hexpand = true;
 		props_panel.vexpand = true;
 		
-		// Add a ScrolledWindow with ColumnView (like LeftProps.EditProps)
 		var props_scrolled = new Gtk.ScrolledWindow();
 		props_scrolled.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 		props_scrolled.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 		props_scrolled.hexpand = true;
 		props_scrolled.vexpand = true;
 		
-		// Create a simple ColumnView for props (like LeftProps.view)
 		var props_selection = new Gtk.SingleSelection(null);
 		var props_column_view = new Gtk.ColumnView(props_selection);
 		props_column_view.name = "leftprops-view";
 		props_column_view.hexpand = true;
 		props_column_view.vexpand = true;
 		
-		// Simple factory for props ColumnView
 		var props_factory = new Gtk.SignalListItemFactory();
 		props_factory.setup.connect((listitem) => {
 			var label = new Gtk.Label("Property");
@@ -841,12 +902,44 @@ int main(string[] args) {
 		props_scrolled.child = props_column_view;
 		props_panel.append(props_scrolled);
 		
-		paned.end_child = props_panel;
+		editpane.end_child = props_panel;
 		
-		window.set_child(paned);
+		window.set_child(splitview);
 		
+		// Step 4: Show window FIRST (like roobuilder)
 		window.ref();
 		window.show();
+		
+		// Step 5: Create tree AFTER window is shown (like roobuilder's initChildren() → windowstate.init())
+		// This reproduces the problematic initialization order
+		// Capture variables for Idle callback
+		var captured_editpane = editpane;
+		GLib.Idle.add(() => {
+			var tree = new Xcls_TreeTestWindow();
+			var inner_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+			inner_box.hexpand = true;
+			inner_box.vexpand = true;
+			
+			// Move the tree's children to inner_box
+			var child = tree.el.get_first_child();
+			while (child != null) {
+				var next = child.get_next_sibling();
+				tree.el.remove(child);
+				inner_box.append(child);
+				child = next;
+			}
+			tree.el.append(inner_box);
+			
+			// Add tree to tree_box (like roobuilder: win.tree.el.append(left_tree.el))
+			// The tree_box is already set as start_child of editpane
+			var captured_tree_box = captured_editpane.start_child as Gtk.Box;
+			if (captured_tree_box != null) {
+				captured_tree_box.append(tree.el);
+				tree.el.show();
+			}
+			
+			return GLib.Source.REMOVE;
+		});
 	});
 	
 	return app.run(args);
