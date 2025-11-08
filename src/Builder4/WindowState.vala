@@ -73,8 +73,8 @@ public class WindowState : Object
 
 		// on clutter space...
 		// this.projectEditInit();
-		// Step 5: Code editor - disabled
-		// this.codeEditInit();
+		// Step 5: Code editor
+		this.codeEditInit();
 		//this.codePopoverEditInit();
 		//this.projectListInit();
 		//this.fileViewInit();
