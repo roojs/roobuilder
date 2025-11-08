@@ -252,7 +252,7 @@
                         "node-type" : 3,
                         "oid" : 36,
                         "prop-name" : "actions",
-                        "prop-val" : "Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ",
+                        "prop-val" : "Gdk.DragAction.COPY ",
                         "prop-type" : "Gdk.DragAction[]"
                       },
                       {
