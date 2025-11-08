@@ -1473,7 +1473,7 @@ public class Xcls_WindowLeftTree : Object
 
 	public class Xcls_drop : Object
 	{
-		public Gtk.DropTargetAsync el;
+		public Gtk.DropTarget el;
 		private Xcls_WindowLeftTree  _this;
 
 
@@ -1487,8 +1487,8 @@ public class Xcls_WindowLeftTree : Object
 		{
 			_this = _owner;
 			_this.drop = this;
-			this.el = new Gtk.DropTargetAsync (
-		new Gdk.ContentFormats.for_gtype(typeof(string)),
+			this.el = new Gtk.DropTarget (
+		typeof(string),
 		Gdk.DragAction.COPY | Gdk.DragAction.MOVE
 );
 
@@ -1500,13 +1500,7 @@ public class Xcls_WindowLeftTree : Object
 			// set gobject values
 
 			//listeners
-			this.el.accept.connect( (drop) => {
-			
-			  GLib.debug("DropTargetAsync: accept called");
-			  GLib.debug("DropTargetAsync: accept returning true");
-			  return true;
-			});
-			this.el.drag_motion.connect( (drop, x, y) => {
+			this.el.motion.connect( (value, x, y) => {
 			 
 				var is_shift = 
 					0 != (_this.main_window.keyboard.get_modifier_state()
@@ -1524,23 +1518,17 @@ public class Xcls_WindowLeftTree : Object
 			    GLib.debug("got drag motion");
 			
 			    // Get the string value from the drop
-			    GLib.Value v = GLib.Value(typeof(string));
-			    var cont = drop.get_drag().content;
-			    try {
-			        cont.get_value(ref v);
-			    } catch (GLib.Error e) {
-			        return Gdk.DragAction.MOVE;
-			}
+			    var v_str = value.get_string();
 			 
-				//GLib.debug("got %s", v.get_string());
+				//GLib.debug("got %s", v_str);
 				  
-				if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
+				if (this.lastDragString != v_str || this.lastDragNode == null) {
 					// still dragging same node
 			 
 					try {
 						this.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  
-							v.get_string( )) as JsRender.Node;
-						this.lastDragString = v.get_string();
+							v_str) as JsRender.Node;
+						this.lastDragString = v_str;
 					} catch (GLib.Error e) {
 						GLib.warning("Failed to deserialize node in drag_motion: %s", e.message);
 						return Gdk.DragAction.MOVE;
@@ -1661,11 +1649,15 @@ public class Xcls_WindowLeftTree : Object
 				this.addHighlight(row_widget, pos); 
 				return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 			});
-			this.el.drag_leave.connect( (drop) => {
+			this.el.leave.connect( (value) => {
 				this.addHighlight(null,"");
 			
 			});
-			this.el.drop.connect( (drop, x, y) => {
+			this.el.enter.connect( (value, x, y) => {
+				GLib.debug("drag_enter called");
+				return Gdk.DragAction.MOVE;
+			});
+			this.el.drop.connect( (value, x, y) => {
 				GLib.debug("drop event");
 				// must get the pos before we clear the hightlihg.
 			 	var pos = "";
@@ -1682,15 +1674,7 @@ public class Xcls_WindowLeftTree : Object
 				
 				
 			 	// Get the string value from the drop
-			 	GLib.Value v = GLib.Value(typeof(string));
-			 	var cont = drop.get_drag().content;
-			 	try {
-			 		cont.get_value(ref v);
-			 	} catch (GLib.Error e) {
-			 		drop.finish(0);
-			 		return false;
-			 	}
-			 	var v_str = v.get_string();
+			 	var v_str = value.get_string();
 				
 			 	// -- get position..
 			 	if (this.lastDragString != v_str || this.lastDragNode == null) {
@@ -1700,7 +1684,6 @@ public class Xcls_WindowLeftTree : Object
 						this.lastDragNode = Json.gobject_from_data(typeof(JsRender.Node), v_str) as JsRender.Node; 
 					} catch (GLib.Error e) {
 						GLib.warning("Failed to deserialize node from drag data");
-						drop.finish(0);
 						return false;
 					}
 			
@@ -1713,12 +1696,10 @@ public class Xcls_WindowLeftTree : Object
 			    	dropNode = Json.gobject_from_data(typeof(JsRender.Node), v_str) as JsRender.Node;
 			    } catch (GLib.Error e) {
 			    	GLib.warning("Failed to deserialize dropNode from drag data");
-			    	drop.finish(0);
 			    	return false;
 			    }
 			    if (dropNode == null) {
 			    	GLib.warning("Failed to create dropNode from drag data");
-			    	drop.finish(0);
 			    	return false;
 			    }
 			    var src_oid = -1;
@@ -1750,7 +1731,7 @@ public class Xcls_WindowLeftTree : Object
 			    	// FIXME check valid drop types?
 			    		if (!drop_on_to.contains("*top")) {
 						GLib.debug("drop on to list does not contain top?");
-						drop.finish(0);
+						
 						return false;	
 					}
 					// add new node to top..
@@ -1780,7 +1761,7 @@ public class Xcls_WindowLeftTree : Object
 			
 				if (row_widget == null) {
 					GLib.debug("could not get row %d,%d, %s", (int)x,(int)y,pos);
-					drop.finish(0);
+					
 					return   false; //Gdk.DragAction.COPY;
 				}
 			 	
@@ -1798,7 +1779,7 @@ public class Xcls_WindowLeftTree : Object
 							if (_this.view.dragNode  != null && is_shift) {
 					 			if (node.oid != -1 && (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode))) {
 						 			GLib.debug("shift drop not self not allowed");
-			  						drop.finish(0);
+			  						
 			  						return false;	
 					 			}
 					 			
@@ -1812,13 +1793,13 @@ public class Xcls_WindowLeftTree : Object
 			 	if (pos == "over") {
 				 	if (!drop_on_to.contains(node.fqn()) && !is_control) {
 						GLib.debug("drop on does not contain %s - try center" , node.fqn());
-						drop.finish(0);
+						
 						return false;
 			
 					}
 					if (node.oid != -1 && (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode))) {
 			 			GLib.debug("shift drop not self not allowed");
-						drop.finish(0);
+						
 						return false;	
 					}
 				}
@@ -1846,7 +1827,7 @@ public class Xcls_WindowLeftTree : Object
 				 		  
 			 		default:
 			 			// should not happen
-			 			drop.finish(0);
+			 			
 			 			return false;
 			 	}
 			 	
@@ -1894,15 +1875,11 @@ public class Xcls_WindowLeftTree : Object
 				    return false; // Don't repeat
 				});
 				GLib.debug("end  drag - finishing drop");
-				drop.finish(is_shift ? Gdk.DragAction.MOVE : Gdk.DragAction.COPY);
+				
 				GLib.debug("end  drag - returning immediately");
 				return true;	
 					
 			
-			});
-			this.el.drag_enter.connect( (drop, x, y) => {
-				GLib.debug("drag_enter called");
-				return Gdk.DragAction.MOVE;
 			});
 		}
 

@@ -494,9 +494,9 @@ public class Xcls_PopoverAddObject : Object
 			    this.el.set_icon(paintable, 0,0);
 			 
 			  
-			    // the delay enables the drag to work!!!
+			    // Delay hiding popover to allow drag to fully initialize
 			    GLib.Idle.add( () => {
-			 	  _this.hide(); // we have to hide!! - otehr wise drag doesnt work now. 
+			 	  _this.hide();
 			 	    return false;
 			    });
 			 
