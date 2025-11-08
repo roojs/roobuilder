@@ -859,7 +859,7 @@ int main(string[] args) {
 		vbox.append(mainpane);
 		
 		// Add statusbar (Box21) like roobuilder - appended to vbox after mainpane
-		var statusbar_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+		var statusbarNode 1b_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
 		statusbar_box.vexpand = false;
 		var statusbar = new Gtk.ProgressBar();
 		statusbar.show_text = true;
