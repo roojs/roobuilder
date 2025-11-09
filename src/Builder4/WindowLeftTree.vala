@@ -343,8 +343,21 @@ public class Xcls_WindowLeftTree : Object
 			//	(int)bounds.get_width(), (int)bounds.get_height()
 			//	);
 			var ypos = y - bounds.get_y();
-			//GLib.debug("rel ypos = %d", (int)ypos);	
-			var rpos = 100.0 * (ypos / bounds.get_height());
+			var row_height = bounds.get_height();
+			// Check if row has borders (drag-below or drag-above classes)
+			var has_border = row.has_css_class("drag-below") || row.has_css_class("drag-above");
+			var border_size = has_border ? 16.0 : 0.0;
+			var content_height = row_height - (border_size * 2); // top and bottom borders
+			if (content_height < 1) {
+				content_height = row_height; // fallback if row is too small
+			}
+			// Adjust ypos to account for top border only if border exists
+			var adjusted_ypos = has_border ? (ypos - border_size) : ypos;
+			if (adjusted_ypos < 0) {
+				adjusted_ypos = 0;
+			}
+			//GLib.debug("rel ypos = %d, row_height=%.1f, content_height=%.1f, adjusted_ypos=%.1f, has_border=%s", (int)ypos, row_height, content_height, adjusted_ypos, has_border ? "true" : "false");	
+			var rpos = 100.0 * (adjusted_ypos / content_height);
 			//GLib.debug("rel pos = %d %%", (int)rpos);
 			pos = "over";
 			
@@ -1481,6 +1494,8 @@ public class Xcls_WindowLeftTree : Object
 		public Gtk.Widget? highlightWidget;
 		public JsRender.Node? lastDragNode;
 		public string lastDragString;
+		public string drop_pos;
+		public int drop_nid;
 
 		// ctor
 		public Xcls_drop(Xcls_WindowLeftTree _owner )
@@ -1496,6 +1511,8 @@ public class Xcls_WindowLeftTree : Object
 			this.highlightWidget = null;
 			this.lastDragNode = null;
 			this.lastDragString = "\"\"";
+			this.drop_pos = "\"\"";
+			this.drop_nid = -1;
 
 			// set gobject values
 
@@ -1587,7 +1604,7 @@ public class Xcls_WindowLeftTree : Object
 			    // the fail();
 			 	 var row_widget = _this.view.getRowWidgetAt( x,y, out pos);    
 			// 	var row = _this.view.getRowAt(x,y, out pos);
-			 	//GLib.debug("check is over %d, %d, %s", (int)x,(int)y, pos);
+			 	GLib.debug("drag_motion: getRowWidgetAt returned pos='%s' at (%d,%d)", pos, (int)x, (int)y);
 			
 			 	if (row_widget == null) {
 					this.addHighlight(null, "");	
@@ -1600,15 +1617,15 @@ public class Xcls_WindowLeftTree : Object
 			
 			 	if (pos == "above" || pos == "below") {
 					if (node.parent == null) {
-						//GLib.debug("no parent try center");
+						GLib.debug("drag_motion: no parent, changing pos from '%s' to 'over'", pos);
 						pos = "over";
 					} else {
 				 		 
 				 		if (!drop_on_to.contains(node.parent.prop_type ) && !is_control) {
-							//GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
+							GLib.debug("drag_motion: drop_on_to does not contain %s, changing pos from '%s' to 'over'" , node.parent.prop_type, pos);
 				 			pos = "over";
 			 			} else {
-							//GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+							GLib.debug("drag_motion: drop_on_to contains %s, keeping pos='%s'" , node.parent.prop_type, pos);
 							// Only check self-drop prevention if dragNode is set (same-window drag)
 							if (_this.view.dragNode  != null && is_shift) {
 					 			if (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode)) {
@@ -1656,6 +1673,11 @@ public class Xcls_WindowLeftTree : Object
 			 	
 			 	    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
 			
+				GLib.debug("drag_motion: final pos='%s', node=%s", pos, node != null ? node.fqn() : "null");
+				// Store the last drag position and target node OID for use in drop event
+				this.drop_pos = pos;
+				this.drop_nid = node != null && node.oid > -1 ? node.oid : -1;
+				GLib.debug("drag_motion: stored pos='%s', target node oid=%d", pos, this.drop_nid);
 				this.addHighlight(row_widget, pos); 
 				return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
 			});
@@ -1665,9 +1687,18 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.drop.connect( (drop, x, y) => {
 				GLib.debug("drop event");
-				// must get the pos before we clear the hightlihg.
-			 	var pos = "";
-			 	var row_widget = _this.view.getRowWidgetAt(x,y, out pos);
+				// Use the last position from drag_motion instead of recalculating
+				GLib.debug("drop: using stored pos='%s', target node oid=%d from drag_motion", this.drop_pos, this.drop_nid);
+				// Look up the target node by OID
+				var file = _this.main_window.windowstate.file;
+				var nodeBase = this.drop_nid > -1 ? file.nodes.get(this.drop_nid) : null;
+				// Cancel drop if stored values are not valid
+				if (!(nodeBase is JsRender.Node) || this.drop_pos == "") {
+					GLib.debug("drop: stored values not valid (pos='%s', node oid=%d), canceling drop", this.drop_pos, this.drop_nid);
+					drop.finish(0);
+					return false;
+				}
+				var node = (JsRender.Node)nodeBase;
 				this.addHighlight(null,"");
 			 
 			 	var is_shift = 
@@ -1705,7 +1736,6 @@ public class Xcls_WindowLeftTree : Object
 				}
 			   	
 			     
-			 	var file = _this.main_window.windowstate.file;      
 			    var dropNode = (JsRender.Node?) null;
 			    try {
 			    	dropNode = Json.gobject_from_data(typeof(JsRender.Node), v_str) as JsRender.Node;
@@ -1776,23 +1806,19 @@ public class Xcls_WindowLeftTree : Object
 			
 			
 			
-				if (row_widget == null) {
-					GLib.debug("could not get row %d,%d, %s", (int)x,(int)y,pos);
-					drop.finish(0);
-					return   false; //Gdk.DragAction.COPY;
-				}
 			 	
-				var node =  row_widget.get_data<JsRender.Node>("node");
 				var new_parent = node;
 				
-			 	if (pos == "above" || pos == "below") {
+			 	if (this.drop_pos == "above" || this.drop_pos == "below") {
 					if (node.parent == null) {
-						pos = "over";
+						GLib.debug("drop: no parent, changing pos from '%s' to 'over'", this.drop_pos);
+						this.drop_pos = "over";
 					} else {
 				 		if (!drop_on_to.contains(node.parent.prop_type)  && !is_control) {
-							pos = "over";
+							GLib.debug("drop: drop_on_to does not contain %s, changing pos from '%s' to 'over'" , node.parent.prop_type, this.drop_pos);
+							this.drop_pos = "over";
 			 			} else {
-							GLib.debug("drop  contains %s - using %s" , node.parent.prop_type, pos);
+							GLib.debug("drop: drop_on_to contains %s, keeping pos='%s'" , node.parent.prop_type, this.drop_pos);
 							if (_this.view.dragNode  != null && is_shift) {
 					 			if (node.oid != -1 && (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode))) {
 						 			GLib.debug("shift drop not self not allowed");
@@ -1807,7 +1833,7 @@ public class Xcls_WindowLeftTree : Object
 			 		}
 			 		
 			 	}
-			 	if (pos == "over") {
+			 	if (this.drop_pos == "over") {
 				 	if (!drop_on_to.contains(node.fqn()) && !is_control) {
 						GLib.debug("drop on does not contain %s - try center" , node.fqn());
 						drop.finish(0);
@@ -1821,8 +1847,9 @@ public class Xcls_WindowLeftTree : Object
 					}
 				}
 				
+				GLib.debug("drop: final pos='%s', node=%s", this.drop_pos, node != null ? node.fqn() : "null");
 			 	var to_pos = -1; 
-			 	switch(pos) {
+			 	switch(this.drop_pos) {
 			 		case "over":
 						break;
 				 		
@@ -1832,14 +1859,15 @@ public class Xcls_WindowLeftTree : Object
 			 		case "above":
 			 			GLib.debug("Above - insertBefore");
 			 			to_pos = node.parent.children.index_of(node);
+			 			GLib.debug("Above - node index in parent.children=%d, to_pos=%d, parent has %d children", node.parent.children.index_of(node), to_pos, (int)node.parent.children.size);
 			 			new_parent = node.parent as JsRender.Node;
 			 			break;
 			 			
 			 		case "below":
 			 			GLib.debug("Below - insertAfter"); 		
-				 		
-				 		to_pos = node.parent.children.index_of(node) +1;
-				 		new_parent = node.parent as JsRender.Node;
+			 			
+			 			to_pos = node.parent.children.index_of(node) +1;
+			 			new_parent = node.parent as JsRender.Node;
 			 			break;
 				 		  
 			 		default:
@@ -1850,12 +1878,13 @@ public class Xcls_WindowLeftTree : Object
 			 	
 				_this.model.selectNode(null); 
 			
-				GLib.debug("creating action");
+				GLib.debug("creating action: to_pos=%d, new_parent.oid=%d", to_pos, new_parent != null ? new_parent.oid : -1);
 				
 				// can only move nodes that are in our tree.
 				if (is_shift && _this.view.dragNode != null && dropNode.oid > -1) {
 			
 			 		
+			 		GLib.debug("Using Move action with to_pos=%d", to_pos);
 			 		tadd = file.action_manager.run(
 						new JsRender.Action.Move(
 							dropNode,
@@ -1869,6 +1898,7 @@ public class Xcls_WindowLeftTree : Object
 				} else {
 				
 				
+			 		GLib.debug("Using Add action with to_pos=%d", to_pos);
 			 		tadd = file.action_manager.run(
 						new JsRender.Action.Add.from_node(
 							file,
@@ -1900,6 +1930,9 @@ public class Xcls_WindowLeftTree : Object
 			});
 			this.el.drag_enter.connect( (drop, x, y) => {
 				GLib.debug("drag_enter called");
+				// Reset stored drag position for new drag operation
+				this.drop_pos = "";
+				this.drop_nid = -1;
 				return Gdk.DragAction.MOVE;
 			});
 		}

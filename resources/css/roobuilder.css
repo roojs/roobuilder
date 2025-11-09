@@ -7,13 +7,17 @@
     background-color:#88a3bc; 
 }
 .drag-below  {   
-     border-bottom-width: 8px; 
+     border-bottom-width: 16px; 
      border-bottom-style: solid;
-     border-bottom-color: #88a3bc;
+     border-bottom-color: #88bc88;
+     background-color: rgba(136, 163, 188, 0.5);
 }
+
+
 .drag-above  {
-     border-top-width: 8px;
+     border-top-width: 16px;
      border-top-style: solid;
+	 background-color: rgba(136, 163, 188, 0.5);
      border-top-color: #88a3bc;
 }
 .node-err  {

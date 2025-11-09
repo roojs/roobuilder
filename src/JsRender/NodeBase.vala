@@ -210,17 +210,30 @@ namespace JsRender
 				GLib.error("Node with OID %d not found in parent's children array", this.oid);
 			}
 
+			GLib.debug("insertIntoChildstore: node OID %d at position %d in parent.children (size=%d), childstore has %u items", 
+				this.oid, my_position, (int)parent.children.size, parent.childstore.get_n_items());
+
+			// If this child is in the first position, insert at position 0
+			if (my_position == 0) {
+				GLib.debug("insertIntoChildstore: inserting at position 0 (first child)");
+				parent.childstore.insert(0, this as Node);
+				return;
+			}
+
 			// If this child is in the last position, we can just append
 			if (my_position == parent.children.size - 1) {
+				GLib.debug("insertIntoChildstore: appending at end (last child)");
 				parent.childstore.append(this as Node);
 				return;
 			}
 
 			// Walk backwards through children array to find insertion position
-			int insert_position = (int)parent.childstore.get_n_items();
+			int insert_position = -1; // -1 means we haven't found a sibling yet
+			GLib.debug("insertIntoChildstore: starting search for insertion position");
 			for (int i = my_position - 1; i >= 0; i--) {
 				var sibling = parent.children.get(i);
 				if (sibling.node_type != NodePropType.OBJECT) {
+					GLib.debug("insertIntoChildstore: skipping non-OBJECT sibling at position %d", i);
 					continue;
 				}
 				
@@ -233,10 +246,19 @@ namespace JsRender
 				
 				// Found a sibling that's already in the store, insert after it
 				insert_position = sibling_pos + 1;
+				GLib.debug("insertIntoChildstore: found OBJECT sibling at children[%d] (OID %d) in childstore at position %d, will insert at %d", 
+					i, sibling.oid, sibling_pos, insert_position);
 				break;
 			}
 
+			// If no OBJECT sibling was found before this node, insert at position 0
+			if (insert_position == -1) {
+				GLib.debug("insertIntoChildstore: no OBJECT siblings found before position %d, inserting at position 0", my_position);
+				insert_position = 0;
+			}
+
 			// Insert at the calculated position
+			GLib.debug("insertIntoChildstore: inserting node OID %d at childstore position %d", this.oid, insert_position);
 			parent.childstore.insert(insert_position, this as Node);
 		}
 
