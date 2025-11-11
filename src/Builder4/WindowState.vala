@@ -125,8 +125,8 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		// editpane doesn't exist in stripped-down version, so just append tree
-		// this.win.leftpane.el.remove(this.win.editpane.el);
+		// Restored for Step 6: Properties Panel - remove editpane before appending tree
+		this.win.leftpane.el.remove(this.win.editpane.el);
     	//this.win.tree.el.remove(this.left_tree.el);
 		this.win.leftpane.el.append(this.left_tree.el);
 	    
@@ -241,26 +241,21 @@ public class WindowState : Object
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
-		// Simplified for stripped-down version - most functionality disabled
-		// do we really want to flip paletes if differnt nodes are selected
-		// showing palete should be deliberate thing..
+		// Restored for Step 6: Properties Panel - load properties for selected node
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
 		// this.add_props.hide(); // always hide add node/add listener if we change node.
 		// this.rightpalete.hide();
-		// Simplified for stripped-down version - getActiveFile() removed
-		// this.left_props.load(this.left_tree.getActiveFile(), sel);
-		GLib.debug("leftTreeNodeSelected called but most functionality disabled in stripped-down version");
+		this.left_props.load(this.left_tree.getActiveFile(), sel);
 	}
 
 	public void propsListInit()
 	{
-		// Simplified for stripped-down version - editpane/props removed
-		// this.left_props =new Xcls_LeftProps();
-		// this.left_props.ref();
-		// this.left_props.main_window = this.win;
-		// this.win.props.el.append(this.left_props.el);
-		// this.left_props.el.show();
-		GLib.debug("propsListInit called but disabled in stripped-down version");
+		// Restored for Step 6: Properties Panel
+		this.left_props =new Xcls_LeftProps();
+		this.left_props.ref();
+		this.left_props.main_window = this.win;
+		this.win.props.el.append(this.left_props.el);
+		this.left_props.el.show();
 	}
 
 	//-------------  projects edit

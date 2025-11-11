@@ -878,9 +878,9 @@ public class Xcls_MainWindow : Object
 		// set gobject values
 		this.el.hexpand = true;
 		this.el.vexpand = true;
-		// Don't create editpane for stripped-down version
-		// new Xcls_editpane( _this );
-		// this.el.append( _this.editpane.el );
+		// Restored editpane for Step 6: Properties Panel
+		new Xcls_editpane( _this );
+		this.el.append( _this.editpane.el );
 		}
 
 		// user defined functions
