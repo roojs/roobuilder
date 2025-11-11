@@ -838,14 +838,15 @@ public class Xcls_MainWindow : Object
 			// my vars (dec)
 			this.lastWidth = 0;
 
-			// set gobject values
-			this.el.hexpand = true;
-			this.el.vexpand = true;
-			this.el.position = 200;
-			new Xcls_leftpane( _this );
-			this.el.start_child = _this.leftpane.el;
-			new Xcls_rightpane( _this );
-			this.el.end_child = _this.rightpane.el;
+		// set gobject values
+		this.el.hexpand = true;
+		this.el.vexpand = true;
+		this.el.position = 200;
+		new Xcls_leftpane( _this );
+		this.el.start_child = _this.leftpane.el;
+		// Hide rightpane for stripped-down version
+		// new Xcls_rightpane( _this );
+		// this.el.end_child = _this.rightpane.el;
 
 			//listeners
 			this.el.accept_position.connect( ( ) => {
@@ -873,11 +874,12 @@ public class Xcls_MainWindow : Object
 
 			// my vars (dec)
 
-			// set gobject values
-			this.el.hexpand = true;
-			this.el.vexpand = true;
-			new Xcls_editpane( _this );
-			this.el.append( _this.editpane.el );
+		// set gobject values
+		this.el.hexpand = true;
+		this.el.vexpand = true;
+		// Don't create editpane for stripped-down version
+		// new Xcls_editpane( _this );
+		// this.el.append( _this.editpane.el );
 		}
 
 		// user defined functions

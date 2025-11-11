@@ -125,7 +125,8 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		this.win.leftpane.el.remove(this.win.editpane.el);
+		// editpane doesn't exist in stripped-down version, so just append tree
+		// this.win.leftpane.el.remove(this.win.editpane.el);
     	//this.win.tree.el.remove(this.left_tree.el);
 		this.win.leftpane.el.append(this.left_tree.el);
 	    
@@ -133,52 +134,11 @@ public class WindowState : Object
 		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show();
 		   
-		this.left_tree.before_node_change.connect(() => {
-			// if the node change is caused by the editor (code preview)
-			if (this.left_tree.view.lastEventSource == "editor") {
-				return true;
-			}
-			return this.leftTreeBeforeChange();
-
-		});
-		// node selected -- only by clicking?
-		this.left_tree.node_selected.connect((sel) => {
-			//if (source == "editor") {
-			//	return;
-			//}
-			if (!this.win.btn_tree.el.visible) {
-				return;
-			}
-			if (this.file.xtype == "Roo") { 
-				this.window_rooview.sourceview.nodeSelected(sel,true); // foce scroll.
-			} else {
-				this.window_gladeview.sourceview.nodeSelected(sel, true);
-			}
-		});
-		
-		this.left_tree.node_selected.connect((sel) => {
-			if (!this.win.btn_tree.el.visible) {
-				return;
-			}
-			this.leftTreeNodeSelected(sel);
-		});
-	 
-		this.left_tree.changed.connect(() => {
-			if (!this.win.btn_tree.el.visible) {
-				return;
-			}
-		
-			GLib.debug("LEFT TREE: Changed fired\n");
-			this.file.save(); // Synchronous - fast file I/O
-			
-			// Async source regeneration
-			if (this.left_tree.getActiveFile().xtype == "Roo") {
-				this.window_rooview.requestRedraw(); //Async.begin();
-			} else {
-				this.window_gladeview.loadFile(this.left_tree.getActiveFile());
-			}
-			 
-		});
+		// Removed signal connections for stripped-down version:
+		// - before_node_change (depends on leftTreeBeforeChange, file operations)
+		// - node_selected (depends on editor views, file operations)
+		// - changed (depends on file.save(), view updates)
+		// Keep only basic tree initialization
 		 
 	}
 	
