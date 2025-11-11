@@ -208,9 +208,11 @@ public class WindowState : Object
 
 	public bool leftTreeBeforeChange()
 	{
+		// Restored for Step 6: Properties Panel - finish editing before tree change
 		// in theory code editor has to hide before tree change occurs.
 		//if (this.state != State.CODE) {
-			//this.left_props.finish_editing();
+			// Note: finish_editing() doesn't exist in WindowLeftProps, so commented out
+			// this.left_props.finish_editing();
 			
 			if (this.state == State.CODE) {
 				this.code_editor_tab.saveContents();
