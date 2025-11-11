@@ -1865,7 +1865,7 @@ public class Xcls_WindowLeftTree : Object
 			 			
 			 		case "below":
 			 			GLib.debug("Below - insertAfter"); 		
-			 			
+				 		
 			 			to_pos = node.parent.children.index_of(node) +1;
 			 			new_parent = node.parent as JsRender.Node;
 			 			break;
