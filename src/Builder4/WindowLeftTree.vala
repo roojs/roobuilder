@@ -1742,14 +1742,31 @@ public class Xcls_WindowLeftTree : Object
 			    }
 				GLib.debug("dropped node %s", v_str);
 				
-				// Simplified drop logic for stripped-down version
+				// Restored for Step 2: Post-Drop Behavior - get file reference
+				var file = _this.getActiveFile();
+				if (file == null) {
+					GLib.warning("No active file for drop operation");
+					drop.finish(0);
+					return false;
+				}
+				
+				// Restored for Step 2: Post-Drop Behavior - use action_manager
+				JsRender.Node tadd;
 				// If tree is empty, add to root
 				if (_this.model.el.n_items < 1) {
 					GLib.debug("adding to top");
-					root_store.append(dropNode);
-					_this.model.selectNode(dropNode);
+					tadd = file.action_manager.run(
+						new JsRender.Action.Add(
+							file,
+							v_str,
+							null,
+							true,
+							-1
+						)
+					) as JsRender.Node;
+					_this.model.selectNode(tadd);
 					_this.changed();
-					_this.node_selected(dropNode);
+					_this.node_selected(tadd);
 					drop.finish(Gdk.DragAction.MOVE);
 					return true;
 				}
@@ -1801,42 +1818,78 @@ public class Xcls_WindowLeftTree : Object
 				}
 				
 				GLib.debug("drop: final pos='%s', node=%s", this.drop_pos, node != null ? node.fqn() : "null");
+			 	var to_pos = -1; 
+			 	switch(this.drop_pos) {
+			 		case "over":
+						break;
+				 		
+			 		case "above":
+			 			GLib.debug("Above - insertBefore");
+			 			to_pos = node.parent.children.index_of(node);
+			 			new_parent = node.parent as JsRender.Node;
+			 			break;
+			 			
+			 		case "below":
+			 			GLib.debug("Below - insertAfter"); 		
+				 		
+			 			to_pos = node.parent.children.index_of(node) +1;
+			 			new_parent = node.parent as JsRender.Node;
+			 			break;
+				 		  
+			 		default:
+			 			// should not happen
+			 			drop.finish(0);
+			 			return false;
+			 	}
+			 	
+				_this.model.selectNode(null); 
+			
+				GLib.debug("creating action: to_pos=%d, new_parent.oid=%d", to_pos, new_parent != null ? new_parent.oid : -1);
 				
-				// Handle drop based on position - simplified for stripped-down version
-				if (this.drop_pos == "over") {
-					// Add as child
-					dropNode.parent = node;
-					node.childstore.append(dropNode);
-				} else if (this.drop_pos == "above" || this.drop_pos == "below") {
-					// Insert before/after in parent's children
-					if (node.parent == null) {
-						// Add to root
-						uint idx;
-						if (root_store.find(node, out idx)) {
-							var pos = this.drop_pos == "above" ? idx : idx + 1;
-							dropNode.parent = null;
-							root_store.insert(pos, dropNode);
-						}
-					} else {
-						// Insert in parent's childstore
-						uint idx;
-						if (node.parent.childstore.find(node, out idx)) {
-							var pos = this.drop_pos == "above" ? idx : idx + 1;
-							dropNode.parent = node.parent;
-							node.parent.childstore.insert(pos, dropNode);
-						}
-					}
+				// Restored for Step 2: Post-Drop Behavior - use action_manager
+				// can only move nodes that are in our tree.
+				if (is_shift && _this.view.dragNode != null && dropNode.oid > -1) {
+			
+			 		GLib.debug("Using Move action with to_pos=%d", to_pos);
+			 		tadd = file.action_manager.run(
+						new JsRender.Action.Move(
+							dropNode,
+							new_parent,
+							to_pos
+						)
+					) as JsRender.Node;
+					 
+					
+			 		
+				} else {
+				
+				
+			 		GLib.debug("Using Add action with to_pos=%d", to_pos);
+			 		tadd = file.action_manager.run(
+						new JsRender.Action.Add.from_node(
+							file,
+							dropNode, // get the original object..
+							new_parent,
+							to_pos
+						)
+					) as JsRender.Node;
+				
+				
 				}
-				
-				// If moving (shift), remove from old location
-				if (is_shift && _this.view.dragNode != null) {
-					_this.removeNodeFromStore(_this.view.dragNode);
-				}
-				
-				_this.model.selectNode(dropNode);
-				_this.changed();
-				_this.node_selected(dropNode);
+			     GLib.debug("done action");
+				// Restored for Step 2: Post-Drop Behavior - deferred UI updates
+				GLib.Timeout.add(100, () => {
+				    GLib.debug("deferred selectNode");
+				    _this.model.selectNode(tadd); 
+				    GLib.debug("deferred calling changed");
+				    _this.changed();
+				    _this.node_selected(tadd);
+				    GLib.debug("deferred end drag");
+				    return false; // Don't repeat
+				});
+				GLib.debug("end  drag - finishing drop");
 				drop.finish(is_shift ? Gdk.DragAction.MOVE : Gdk.DragAction.COPY);
+				GLib.debug("end  drag - returning immediately");
 				return true;	
 					
 			

@@ -134,11 +134,10 @@ public class WindowState : Object
 		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show();
 		   
-		// Restored signal connections for Step 1: File Loading
+		// Restored signal connections for Step 2: Post-Drop Behavior
 		this.left_tree.before_node_change.connect(this.leftTreeBeforeChange);
 		this.left_tree.node_selected.connect(this.leftTreeNodeSelected);
-		// leftTreeChanged commented out for Step 1 - will restore in later step
-		// this.left_tree.changed.connect(this.leftTreeChanged);
+		this.left_tree.changed.connect(this.leftTreeChanged);
 		
 		// Auto-load test file for Step 1: File Loading
 		GLib.Idle.add(() => {
@@ -229,6 +228,16 @@ public class WindowState : Object
 	
 	int tree_width = 300;
 	int props_width = 300;
+	
+	public void leftTreeChanged()
+	{
+		// Restored for Step 2: Post-Drop Behavior
+		if (this.file == null) {
+			return;
+		}
+		GLib.debug("LEFT TREE: Changed fired - saving file");
+		this.file.save();
+	}
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
