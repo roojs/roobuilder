@@ -388,15 +388,14 @@ public class WindowState : Object
 
 	public void codeEditInit()
 	{
-		// Simplified for stripped-down version - codeeditviewbox removed
-		// this.code_editor_tab = new Editor();
-		// this.code_editor_tab.window = this.win;
-		// this.win.codeeditviewbox.el.append(this.code_editor_tab.el);
-		// this.win.codeeditviewbox.el.hide();
-		// this.code_editor_tab.save.connect( () => {
-		// 	this.file.save();
-		// });
-		GLib.debug("codeEditInit called but disabled in stripped-down version");
+		// Restored for Step 7: Editor Views
+		this.code_editor_tab = new Editor();
+		this.code_editor_tab.window = this.win;
+		this.win.codeeditviewbox.el.append(this.code_editor_tab.el);
+		this.win.codeeditviewbox.el.hide();
+		this.code_editor_tab.save.connect( () => {
+			this.file.save();
+		});
 	}
 	 
 	
@@ -614,24 +613,22 @@ public class WindowState : Object
 	// ---------  webkit view
 	public void gtkViewInit()
 	{
-		// Simplified for stripped-down version - gladeviewbox removed
-		// this.window_gladeview = new Xcls_WindowGladeView();
-		// this.window_gladeview.ref();
-		// this.window_gladeview.windowstate = this;
-		// this.win.gladeviewbox.el.append(this.window_gladeview.el);
-		GLib.debug("gtkViewInit called but disabled in stripped-down version");
+		// Restored for Step 7: Editor Views
+		this.window_gladeview = new Xcls_GtkView();
+		this.window_gladeview.ref();
+		this.window_gladeview.main_window = this.win;
+		// GtkView is appended to rooviewbox in fileViewOpen() based on project type
 	}
 
 	public void webkitViewInit()
 	{
-		// Simplified for stripped-down version - rooviewbox removed
-		// this.window_rooview = new Xcls_WindowRooView();
-		// this.window_rooview.main_window = this.win;
-		// this.window_rooview.ref();
-		// this.win.rooviewbox.el.append(this.window_rooview.el);
-		// this.window_rooview.el.show();
-		// this.win.rooviewbox.el.hide();
-		GLib.debug("webkitViewInit called but disabled in stripped-down version");
+		// Restored for Step 7: Editor Views
+		this.window_rooview = new Xcls_WindowRooView();
+		this.window_rooview.main_window = this.win;
+		this.window_rooview.ref();
+		this.win.rooviewbox.el.append(this.window_rooview.el);
+		this.window_rooview.el.show();
+		this.win.rooviewbox.el.hide();
 	}
 	
 	public void showProps(Gtk.Widget btn, JsRender.NodePropType sig_or_listen)
