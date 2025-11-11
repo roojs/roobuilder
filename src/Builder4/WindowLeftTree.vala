@@ -253,17 +253,18 @@ public class Xcls_WindowLeftTree : Object
 		*/
 	     
 	}
-	public JsRender.Node? getActiveElement () { // return path to actie node.
+	public DummyNode? getActiveElement () { // return path to actie node.
 	
 	     
 		return _this.selmodel.getSelectedNode();
 	    
 	    
 	}
-	public JsRender.JsRender getActiveFile () {
+	// Removed getActiveFile() for stripped-down version
+	/* public JsRender.JsRender getActiveFile () {
 	    return this.main_window.windowstate.file;
 	    
-	}
+	} */
 	public class Xcls_ListView12 : Object
 	{
 		public Gtk.ListView el;
@@ -1572,7 +1573,7 @@ public class Xcls_WindowLeftTree : Object
 
 		// my vars (def)
 		public Gtk.Widget? highlightWidget;
-		public JsRender.Node? lastDragNode;
+		public DummyNode? lastDragNode;
 		public string lastDragString;
 		public string drop_pos;
 		public int drop_nid;
@@ -1633,8 +1634,8 @@ public class Xcls_WindowLeftTree : Object
 					// still dragging same node
 			 
 					try {
-						this.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  
-							v.get_string( )) as JsRender.Node;
+						this.lastDragNode = Json.gobject_from_data(typeof( DummyNode),  
+							v.get_string( )) as DummyNode;
 						this.lastDragString = v.get_string();
 					} catch (GLib.Error e) {
 						GLib.warning("Failed to deserialize node in drag_motion: %s", e.message);
@@ -1690,7 +1691,7 @@ public class Xcls_WindowLeftTree : Object
 					this.addHighlight(null, "");	
 					return Gdk.DragAction.MOVE;
 			 	}
-			 	var node = row_widget.get_data<JsRender.Node>("node");
+				var node = row_widget.get_data<DummyNode>("node");
 				
 				//GLib.debug("Drop over node: %s", node.fqn());
 				
