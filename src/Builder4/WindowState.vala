@@ -189,192 +189,28 @@ public class WindowState : Object
 	int tree_width = 300;
 	int props_width = 300;
 	
-	public void leftTreeNodeSelected(JsRender.Node? sel)
+	public void leftTreeNodeSelected(DummyNode? sel)
 	{
-		
+		// Simplified for stripped-down version - most functionality disabled
 		// do we really want to flip paletes if differnt nodes are selected
 		// showing palete should be deliberate thing..
-		 
-	 
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
-
-		this.add_props.hide(); // always hide add node/add listener if we change node.
-		this.rightpalete.hide();
-		
-		this.left_props.load(this.left_tree.getActiveFile(), sel);
-		
-		var outerpane = this.win.mainpane.el;
-		var innerpane = this.win.editpane.el;
-  		
-  		 if (this.win.editpane.el.parent != null && sel != null) {
-  			// select another node... no change to show hide/resize
-  			return;
-		}
-  				 
-		if (sel == null) {
-		    // remove win.editpane from leftpane
-		    // remove lefttree from from win.tree 
-		    // add win.tree to leftpane
-		    if (this.win.editpane.el.parent != null) {
-		    	this.props_width =  outerpane.get_position() - innerpane.get_position();
-		    	this.tree_width = innerpane.get_position();
-		        GLib.debug("HIDE: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
-		        
-		    	this.win.leftpane.el.remove(this.win.editpane.el);
-		    	this.win.tree.el.remove(this.left_tree.el);
-		    	this.win.leftpane.el.append(this.left_tree.el);
-	    	}
-		    
-		
-			//GLib.debug("Hide Properties");
-			outerpane.show(); // make sure it's visiable..
-			this.left_props.el.hide();
-			GLib.debug("set position: %d", this.tree_width);
- 			outerpane.set_position(this.tree_width);
-			//outerpane.set_position(int.max(250,innerpane.get_position()));
-			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
-			return;
-		}
-		
-		// at this point we are showing the outer only,
-		
-		
-		
-		
-		this.tree_width = outerpane.get_position();
-		
-		GLib.debug("SHOW: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
-		      
-		// remove this.ldeftree from this.win.leftpane
-		this.win.leftpane.el.remove(this.left_tree.el);
-		this.win.tree.el.append(this.left_tree.el);
-		this.win.leftpane.el.append(this.win.editpane.el);
-		
-		
-		
-		
-		GLib.debug("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
-		// at start (hidden) - outer  = 400 inner = 399
-		// expanded out -> outer = 686, inner = 399 
-		//this.win.props.el.pack_start(this.left_props.el,true, true,0);
-		this.left_props.el.show();		//if (!this.left_props.el.visible) {
-		 
-  			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
-  			outerpane.set_position(this.tree_width + this.props_width);
-  			innerpane.set_position(this.tree_width);
-  			/* var cw = outerpane.el.get_position();
-  			var rw = int.min(this.left_props.el.width_request, 150);
-  			print("outerpos : %d, innerpos : %d", cw + rw, cw);
-  			
-  			innerpane.set_position(cw); */
-  			this.left_props.el.show();
-		
-		//}
-		
-		 
-		
-		
-		
-
-		
-		
-		// if either of these are active.. then we should update them??
-		
-		
-		
-   /**
-   
-   make outerpane = {current width of left pane} + width of props
-   make innerpane = {current width of left pane}
-   
-   
-   
-   
-   
-   var outerpane = _this.main_window.leftpane.el;
-   var pane = _this.main_window.editpane.el;
-   
-  
-   
-    var try_size = (i * 25) + 60; // est. 20px per line + 40px header
-    GLib.Timeout.add_seconds(1, () => { 
-		// max 80%...
-		pane.set_position( 
-		     ((try_size * 1.0f) /  (pane.max_position * 1.0f))  > 0.8f  ? 
-		    (int) (pane.max_position * 0.2f) :
-		    pane.max_position-try_size);
-	    return GLib.Source.REMOVE;
-	});
-	*/
-		
-		
-		/*
-		switch (this.state) {
-		 
-			case State.CODE:
-				 this.switchState(State.PREVIEW);
-			 
-				break;
-			   
-							
-		}
-		*/
- 
-		 
-
+		// this.add_props.hide(); // always hide add node/add listener if we change node.
+		// this.rightpalete.hide();
+		// Simplified for stripped-down version - getActiveFile() removed
+		// this.left_props.load(this.left_tree.getActiveFile(), sel);
+		GLib.debug("leftTreeNodeSelected called but most functionality disabled in stripped-down version");
 	}
-
-
-
 
 	public void propsListInit()
 	{
-	
-		this.left_props =new Xcls_LeftProps();
-		this.left_props.ref();
-		this.left_props.main_window = this.win;
-		this.win.props.el.append(this.left_props.el);
-		this.left_props.el.show();
-	
-		this.left_props.show_editor.connect( (file, node, prop) => {
-			this.switchState(State.CODE);
-			
-			
-			this.code_editor_tab.show(
-				file,
-				node,
-				prop
-			);
-			///this.markBuf();
-			
-			
-		});
-
-   		// not sure if this is needed - as closing the popvoer should save it.
-		this.left_props.stop_editor.connect( () => {
-			var ret =  this.code_editor_tab.saveContents();
-			if (!ret) {
-				return false;
-			}
-			this.switchState(State.PREVIEW);
-			 
-			return ret;
-		});
-	
-		this.left_props.changed.connect(() => {
-			// Save first to ensure Vala regeneration before UI reload
-			this.file.save();
-			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-				this.window_rooview.requestRedraw();
-			} else {
-				this.window_gladeview.loadFile(this.left_tree.getActiveFile());
-			}
-			//this.left_tree.model.updateSelected();
-
-			 
-		});
-	 
-
+		// Simplified for stripped-down version - editpane/props removed
+		// this.left_props =new Xcls_LeftProps();
+		// this.left_props.ref();
+		// this.left_props.main_window = this.win;
+		// this.win.props.el.append(this.left_props.el);
+		// this.left_props.el.show();
+		GLib.debug("propsListInit called but disabled in stripped-down version");
 	}
 
 	//-------------  projects edit
@@ -507,29 +343,15 @@ public class WindowState : Object
 
 	public void codeEditInit()
 	{
-		this.code_editor_tab  = new  Editor();
-		//this.code_editor.ref();  /// really?
-		this.win.codeeditviewbox.el.append(this.code_editor_tab.el);
-		
-		this.win.codeeditviewbox.el.hide();
-		this.code_editor_tab.window = this.win;
- 
-		// editor.save...
-
-		this.code_editor_tab.save.connect( () => {
-			this.file.save();
-			//this.left_tree.model.updateSelected();
-			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-				   this.window_rooview.requestRedraw();
-			} else {
-				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
-			}
-			 
-			
-			 // we do not need to call spawn... - as it's already called by the editor?
-			 
-		});
-		
+		// Simplified for stripped-down version - codeeditviewbox removed
+		// this.code_editor_tab = new Editor();
+		// this.code_editor_tab.window = this.win;
+		// this.win.codeeditviewbox.el.append(this.code_editor_tab.el);
+		// this.win.codeeditviewbox.el.hide();
+		// this.code_editor_tab.save.connect( () => {
+		// 	this.file.save();
+		// });
+		GLib.debug("codeEditInit called but disabled in stripped-down version");
 	}
 	 
 	
@@ -583,23 +405,20 @@ public class WindowState : Object
 		this.switchState (State.PREVIEW); 
 		 
 		if ( line> -1 ) {
+			// Simplified for stripped-down version - selectNode disabled
 			// fixme - show the editing tab.
 			// node and prop?
-			var node = file.lineToNode(line);
-			if (node != null) {
-				this.left_tree.model.selectNode(node);
-				var prop = node.lineToProp(line);
-				
-				if (prop == null) {
-					GLib.debug("could not find prop at line %d", line);
-					return;
-				}
- 				 this.left_props.view.editProp(prop);
-				
-				
-				
-				return;
-			} 
+			// var node = file.lineToNode(line);
+			// if (node != null) {
+			// 	this.left_tree.model.selectNode(node);
+			// 	var prop = node.lineToProp(line);
+			// 	if (prop == null) {
+			// 		GLib.debug("could not find prop at line %d", line);
+			// 		return;
+			// 	}
+			// 	this.left_props.view.editProp(prop);
+			// 	return;
+			// }
 			
 			if (this.project.xtype == "Gtk") {
 				this.window_gladeview.scroll_to_line(line);
@@ -609,12 +428,12 @@ public class WindowState : Object
 			
 			return;
 		} 
-		var node = file.lineToNode(line);
-		if (node != null) {
-			this.left_tree.model.selectNode(node);
-			//var prop = node.lineToProp(line);
-			return;
-		} 
+		// Simplified for stripped-down version - selectNode disabled
+		// var node = file.lineToNode(line);
+		// if (node != null) {
+		// 	this.left_tree.model.selectNode(node);
+		// 	return;
+		// } 
 	
 		this.window_rooview.scroll_to_line(line);
 		
@@ -682,8 +501,9 @@ public class WindowState : Object
 		
 			this.switchState (State.PREVIEW); 
 			this.win.btn_tree.el.show();
+			// Simplified for stripped-down version - loadFile() removed
 			// this triggers loadItems..
-			this.left_tree.model.loadFile(file);
+			// this.left_tree.model.loadFile(file);
 			 
 
 		}
@@ -747,74 +567,81 @@ public class WindowState : Object
  */
 	 
 	// ---------  webkit view
-	public void webkitViewInit()
-	{
-		this.window_rooview  =new Xcls_WindowRooView();
-		this.window_rooview.main_window = this.win;
-		this.window_rooview.ref();
-		this.win.rooviewbox.el.append(this.window_rooview.el);
-		
-		this.window_rooview.el.show();
-		this.win.rooviewbox.el.hide();
-	
-	}
-
-	// ------ Gtk  - view
-
 	public void gtkViewInit()
 	{
-
-		
-		
-		this.window_gladeview  =new Xcls_GtkView( );
-		this.window_gladeview.ref();
-		this.window_gladeview.main_window = this.win;
- 
+		// Simplified for stripped-down version - gladeviewbox removed
+		// this.window_gladeview = new Xcls_WindowGladeView();
+		// this.window_gladeview.ref();
+		// this.window_gladeview.windowstate = this;
+		// this.win.gladeviewbox.el.append(this.window_gladeview.el);
+		GLib.debug("gtkViewInit called but disabled in stripped-down version");
 	}
-	
 
-	
+	public void webkitViewInit()
+	{
+		// Simplified for stripped-down version - rooviewbox removed
+		// this.window_rooview = new Xcls_WindowRooView();
+		// this.window_rooview.main_window = this.win;
+		// this.window_rooview.ref();
+		// this.win.rooviewbox.el.append(this.window_rooview.el);
+		// this.window_rooview.el.show();
+		// this.win.rooviewbox.el.hide();
+		GLib.debug("webkitViewInit called but disabled in stripped-down version");
+	}
 	
 	public void showProps(Gtk.Widget btn, JsRender.NodePropType sig_or_listen)
 	{
-		var ae =  this.left_tree.getActiveElement();
-		if (ae == null) {
-				return;
-		}
-		this.rightpalete.hide(); 
-		if (this.add_props.el.parent == null) {
-			this.add_props.el.set_parent(btn);
-		}
-		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
-	 
-		this.add_props.show(
-			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
-			 sig_or_listen, //this.state == State.LISTENER ? "signals" : "props",
-			ae,
-			btn
-			
-		);
+		// Simplified for stripped-down version - commented out
+		// var ae =  this.left_tree.getActiveElement();
+		// if (ae == null) {
+		// 	return;
+		// }
+		// this.rightpalete.hide(); 
+		// if (this.add_props.el.parent == null) {
+		// 	this.add_props.el.set_parent(btn);
+		// }
+		// this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+		// this.add_props.show(
+		// 	this.win.project.palete,
+		// 	sig_or_listen,
+		// 	ae,
+		// 	btn
+		// );
+		GLib.debug("showProps called but disabled in stripped-down version");
+	}
+	
+	public void showAddProp(Gtk.Widget btn, string sig_or_listen, DummyNode? ae)
+	{
+		// Simplified for stripped-down version - commented out
+		// if (this.add_props.el.parent == null) {
+		// 	this.add_props.el.set_parent(btn);
+		// }
+		// this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+		// this.add_props.show(
+		// 	this.win.project.palete,
+		// 	sig_or_listen,
+		// 	ae,
+		// 	btn
+		// );
+		GLib.debug("showAddProp called but disabled in stripped-down version");
 	}
 	
 	public void showAddObject(Gtk.Widget btn, JsRender.Node? on_node)
 	{
+		// Simplified for stripped-down version - commented out
 		// Don't show if tree has items but no node selected
-		if (on_node == null && this.left_tree.model.el.get_n_items() > 0) {
-			GLib.debug("Cannot add object: tree has items but no node is selected");
-			return;
-		}
-	 
-		this.add_props.hide();
-		 
-		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
-		
-		//this.rightpalete.el.set_parent(btn);
- 
-		this.rightpalete.show(
-			this.left_tree.getActiveFile().palete(), 
-			on_node == null ? "*top" : on_node.fqn(),
-			btn
-		);
+		// if (on_node == null && this.left_tree.model.el.get_n_items() > 0) {
+		// 	GLib.debug("Cannot add object: tree has items but no node is selected");
+		// 	return;
+		// }
+		// this.add_props.hide();
+		// this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+		// this.rightpalete.show(
+		// 	this.left_tree.getActiveFile().palete(), 
+		// 	on_node == null ? "*top" : on_node.fqn(),
+		// 	btn
+		// );
+		GLib.debug("showAddObject called but disabled in stripped-down version");
 	}
 	 
 		  
@@ -840,13 +667,14 @@ public class WindowState : Object
 				
 				this.code_editor_tab.reset();
 				 
-				if (this.left_tree.getActiveFile() != null) {
-					 if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-						 this.window_rooview.createThumb();
-					 } else {
-						  this.window_gladeview.createThumb();
-					  }
-				}
+				// Simplified for stripped-down version - getActiveFile() removed
+				// if (this.left_tree.getActiveFile() != null) {
+				// 	if (this.left_tree.getActiveFile().xtype == "Roo" ) {
+				// 		this.window_rooview.createThumb();
+				// 	} else {
+				// 		this.window_gladeview.createThumb();
+				// 	}
+				// }
 				// normally we are going from preview to another state.
 				// and different windows hide the preview in differnt ways..
 				break;

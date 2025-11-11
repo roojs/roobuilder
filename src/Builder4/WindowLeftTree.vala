@@ -894,17 +894,20 @@ public class Xcls_WindowLeftTree : Object
 					   return  ;
 					 }
 			
-					  if (!_this.before_node_change( ) ) {
-						 _this.view.blockChanges = true;
-						 _this.selmodel.el.unselect_all();
-						 _this.view.blockChanges = false;
-						 
-						 return;
-					 }
-					 if (_this.main_window.windowstate.file == null) {
-				   		GLib.debug("SKIPPING select windowstate file is not set...");     
-						return;
-					 } 
+					 // Simplified for stripped-down version - skip before_node_change check
+					 // if (!_this.before_node_change( ) ) {
+					 //	 _this.view.blockChanges = true;
+					 //	 _this.selmodel.el.unselect_all();
+					 //	 _this.view.blockChanges = false;
+					 //	 
+					 //	 return;
+					 // }
+					 
+					 // Simplified for stripped-down version - skip file check
+					 // if (_this.main_window.windowstate.file == null) {
+					 //   	GLib.debug("SKIPPING select windowstate file is not set...");     
+					 //	return;
+					 // } 
 					 
 					 //var render = this.get('/LeftTree').getRenderer();                
 					GLib.debug("LEFT TREE -> view -> selection changed called");
@@ -1070,7 +1073,8 @@ public class Xcls_WindowLeftTree : Object
 		     }
 		
 			_this.selmodel.el.unselect_all();
-			node.file.action_manager.run( new JsRender.Action.Remove(node));    
+			// Simplified for stripped-down version - just remove from store
+			_this.removeNodeFromStore(node);
 		
 			GLib.debug("delete Selected - done");
 			_this.changed();
@@ -1319,7 +1323,7 @@ public class Xcls_WindowLeftTree : Object
 			
 			 	var img = (Gtk.Image) ((Gtk.ListItem)listitem).get_child(); 
 			 	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-				var node = (JsRender.Node) lr.get_item();
+				var node = (DummyNode) lr.get_item();
 				
 			  
 			    var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
@@ -1330,13 +1334,15 @@ public class Xcls_WindowLeftTree : Object
 					)
 				 );
 				 
-			 	var fqn = node.fqn();
-			 	var ws = _this.main_window.windowstate;
-			 	var pal = ws.project.palete;
-			 	var sl = ws.file.getSymbolLoader();
-			    var cn = pal.getChildListFromSymbols(sl, fqn, false);
-			    
-				img.set_visible(cn.size > 0 ? true : false);
+			 	// Simplified for stripped-down version - disable palete/symbol loader calls
+			 	// var fqn = node.fqn();
+			 	// var ws = _this.main_window.windowstate;
+			 	// var pal = ws.project.palete;
+			 	// var sl = ws.file.getSymbolLoader();
+			 	// var cn = pal.getChildListFromSymbols(sl, fqn, false);
+			 	
+			 	// Always hide the expand icon for dummy nodes
+				img.set_visible(false);
 			 	 
 			});
 		}
@@ -1453,16 +1459,15 @@ public class Xcls_WindowLeftTree : Object
 			this.el.label = "Save as Template";
 
 			//listeners
-			this.el.clicked.connect( () => {
-			_this.LeftTreeMenu.el.visible = false;
-			     DialogSaveTemplate.singleton().showIt(
-			            (Gtk.Window) _this.el.get_root (), 
-			            _this.main_window.windowstate.file.palete(), 
-			            _this.getActiveElement()
-			    );
-			     
-			    
-			});
+			// LeftTreeMenu removed for stripped-down version
+			// this.el.clicked.connect( () => {
+			// 	_this.LeftTreeMenu.el.visible = false;
+			// 	DialogSaveTemplate.singleton().showIt(
+			// 		(Gtk.Window) _this.el.get_root (), 
+			// 		_this.main_window.windowstate.file.palete(), 
+			// 		_this.getActiveElement()
+			// 	);
+			// });
 		}
 
 		// user defined functions
@@ -1489,57 +1494,17 @@ public class Xcls_WindowLeftTree : Object
 			this.el.label = "Save as Module";
 
 			//listeners
-			this.el.clicked.connect( () => {
-			    
-			    _this.LeftTreeMenu.el.visible = false;
-			    var node = _this.getActiveElement();
-			      
-			     
-			     var sm = DialogSaveModule.singleton();
-			     
-			     
-			    sm.showIt(
-			            (Gtk.Window) _this.el.get_root (), 
-			            _this.main_window.windowstate.project, 
-			            node
-			     );
-			     /*
-			     gtk4 migration - disabled this part.. probably not used muchanyway
-			     
-			     
-			     if (name.length < 1) {
-			            return;
-			  
-			     }
-			     node.set_prop( new JsRender.NodeProp.special("xinclude", name));
-			     node.items.clear();
-			
-			
-			    var s = _this.view.el.get_selection();
-			    
-			    print("GET  SELECTED?");
-			    Gtk.TreeIter iter;
-			    Gtk.TreeModel mod;
-			
-			    
-			    if (!s.get_selected(out mod, out iter)) {
-			        return; // nothing seleted..
-			    }
-			    Gtk.TreeIter citer;
-			    var n_cn = mod.iter_n_children(iter) -1;
-			    for (var i = n_cn; i > -1; i--) {
-			        mod.iter_nth_child(out citer, iter, i);
-			        
-			
-			        print("removing node from Tree\n");    
-			    
-			        _this.model.el.remove(ref citer);
-			    }
-			    _this.changed();
-			    _this.node_selected(node, "tree");
-			     */
-			    
-			});
+			// LeftTreeMenu removed for stripped-down version
+			// this.el.clicked.connect( () => {
+			// 	_this.LeftTreeMenu.el.visible = false;
+			// 	var node = _this.getActiveElement();
+			// 	var sm = DialogSaveModule.singleton();
+			// 	sm.showIt(
+			// 		(Gtk.Window) _this.el.get_root (), 
+			// 		_this.main_window.windowstate.project, 
+			// 		node
+			// 	);
+			// });
 		}
 
 		// user defined functions
@@ -1574,8 +1539,8 @@ public class Xcls_WindowLeftTree : Object
 			}
 		} else {
 			// Remove from parent's childstore
-			var idx = node.parent.childstore.find(node);
-			if (idx >= 0) {
+			uint idx;
+			if (node.parent.childstore.find(node, out idx)) {
 				node.parent.childstore.remove(idx);
 			}
 		}
@@ -1846,16 +1811,16 @@ public class Xcls_WindowLeftTree : Object
 					// Insert before/after in parent's children
 					if (node.parent == null) {
 						// Add to root
-						var idx = root_store.find(node);
-						if (idx >= 0) {
+						uint idx;
+						if (root_store.find(node, out idx)) {
 							var pos = this.drop_pos == "above" ? idx : idx + 1;
 							dropNode.parent = null;
 							root_store.insert(pos, dropNode);
 						}
 					} else {
 						// Insert in parent's childstore
-						var idx = node.parent.childstore.find(node);
-						if (idx >= 0) {
+						uint idx;
+						if (node.parent.childstore.find(node, out idx)) {
 							var pos = this.drop_pos == "above" ? idx : idx + 1;
 							dropNode.parent = node.parent;
 							node.parent.childstore.insert(pos, dropNode);

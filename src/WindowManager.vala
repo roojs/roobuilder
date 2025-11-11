@@ -135,7 +135,8 @@ public class WindowManager : Json.Serializable, Object {
 			 
 			//GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
 			ww.updateErrors();
-			ww.windowstate.left_tree.updateErrors();
+			// Simplified for stripped-down version - updateErrors() removed
+			// ww.windowstate.left_tree.updateErrors();
 			ww.windowstate.left_props.updateErrors();
 			
 		}

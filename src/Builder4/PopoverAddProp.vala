@@ -484,9 +484,10 @@ public class Xcls_PopoverAddProp : Object
 					)) as JsRender.Node;
 					
 					 
-					ws.left_props.changed();
-					ws.left_tree.model.selectNode(add);
-					 
+					// Simplified for stripped-down version - PopoverAddProp integration disabled
+					// ws.left_props.changed();
+					// ws.left_tree.model.selectNode(add);
+					GLib.debug("PopoverAddProp: selectNode disabled in stripped-down version");
 					return;
 				}
 				

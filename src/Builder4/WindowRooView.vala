@@ -97,7 +97,8 @@ public class Xcls_WindowRooView : Object
 	    // ---------- this selects the tree's node...
 	    
 	    var ltree = _this.main_window.windowstate.left_tree;
-	   ltree.model.selectNode(node);
+	   // Simplified for stripped-down version - selectNode disabled
+	   // ltree.model.selectNode(node);
 	        
 	    //_this.sourceview.allow_node_scroll = false; /// block node scrolling..
 		       
@@ -1767,9 +1768,10 @@ public class Xcls_WindowRooView : Object
 			        return;
 			    }
 			    this.in_cursor_change  = true;
-			    var ltree = _this.main_window.windowstate.left_tree;
-			    ltree.model.selectNode(node);
-			    this.in_cursor_change  = false;
+			    // Simplified for stripped-down version - selectNode disabled
+			    // var ltree = _this.main_window.windowstate.left_tree;
+			    // ltree.model.selectNode(node);
+			    // this.in_cursor_change  = false;
 			});
 		}
 

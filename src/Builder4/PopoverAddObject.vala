@@ -804,33 +804,34 @@ public class Xcls_PopoverAddObject : Object
 						)
 					) as JsRender.Node;
 					 
-					lt.model.selectNode(tadd); 	
-					lt.changed();
-					lt.node_selected(tadd);
+					// Simplified for stripped-down version - PopoverAddObject integration disabled
+					// lt.model.selectNode(tadd); 	
+					// lt.changed();
+					// lt.node_selected(tadd);
+					GLib.debug("PopoverAddObject: add to empty tree disabled in stripped-down version");
 					return;
 				}
-				var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
-				// Validate that we have a selected node to add to
-				if (addto == null) {
-					GLib.debug("Cannot add object: no node selected in tree");
-					return;
-				}
-				//var row = _this.view.getRowAt(x,y, out pos);
-				
-				var nadd = ws.file.action_manager.run(
-					new JsRender.Action.Add(
-						ws.file,
-						Json.gobject_to_data(add, out l),
-						addto,
-						true,
-						-1
-					)
-				) as JsRender.Node;
-				 
-				lp.changed();
-				lt.model.selectNode(nadd);
-				lt.changed();
-				lt.node_selected(nadd);
+				// Simplified for stripped-down version - PopoverAddObject integration disabled
+				// var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();	
+				// // Validate that we have a selected node to add to
+				// if (addto == null) {
+				// 	GLib.debug("Cannot add object: no node selected in tree");
+				// 	return;
+				// }
+				// var nadd = ws.file.action_manager.run(
+				// 	new JsRender.Action.Add(
+				// 		ws.file,
+				// 		Json.gobject_to_data(add, out l),
+				// 		addto,
+				// 		true,
+				// 		-1
+				// 	)
+				// ) as JsRender.Node;
+				// lp.changed();
+				// lt.model.selectNode(nadd);
+				// lt.changed();
+				// lt.node_selected(nadd);
+				GLib.debug("PopoverAddObject: add to selected node disabled in stripped-down version");
 			});
 		}
 

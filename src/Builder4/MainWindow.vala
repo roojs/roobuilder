@@ -229,9 +229,10 @@ public class Xcls_MainWindow : Object
 	public void show () {
 	   
 	    this.el.show();
-	    if (this.windowstate.file  == null) {
-	    	this.windowstate.showPopoverFiles(this.open_projects_btn.el, null, false);
-	    }
+	    // Simplified for stripped-down version - bypass file dialog for testing
+	    // if (this.windowstate.file  == null) {
+	    // 	this.windowstate.showPopoverFiles(this.open_projects_btn.el, null, false);
+	    // }
 	}
 	public bool getSize (out int x, out int y, out uint w, out uint h) {
 	
