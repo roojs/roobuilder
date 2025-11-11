@@ -339,8 +339,8 @@ public class Xcls_WindowLeftTree : Object
 			this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 			new Xcls_view( _this );
 			this.el.child = _this.view.el;
-			// Removed LeftTreeMenu for stripped-down version
-			// new Xcls_LeftTreeMenu( _this );
+			// Restored LeftTreeMenu for Step 4: Context Menu
+			new Xcls_LeftTreeMenu( _this );
 			new Xcls_drop( _this );
 			this.el.add_controller(  _this.drop.el );
 
@@ -711,17 +711,17 @@ public class Xcls_WindowLeftTree : Object
 			     
 			     
 				GLib.debug("Prssed %d", (int)  this.el.get_current_button());
-				// LeftTreeMenu removed for stripped-down version
-				// if (_this.LeftTreeMenu.el.parent != null) {
-				// 	GLib.debug("clearing parent");
-				// 	_this.LeftTreeMenu.el.unparent();
-				// }
-				// _this.LeftTreeMenu.el.set_parent(_this.view.el);
-				// _this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM);
-				// _this.LeftTreeMenu.el.set_offset( 
-				// 	(int)x  ,
-				// 	(int)y - (int)_this.view.el.get_height());
-				// _this.LeftTreeMenu.el.popup();
+				// Restored LeftTreeMenu for Step 4: Context Menu
+				if (_this.LeftTreeMenu.el.parent != null) {
+					GLib.debug("clearing parent");
+					_this.LeftTreeMenu.el.unparent();
+				}
+				_this.LeftTreeMenu.el.set_parent(_this.view.el);
+				_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM);
+				_this.LeftTreeMenu.el.set_offset( 
+					(int)x  ,
+					(int)y - (int)_this.view.el.get_height());
+				_this.LeftTreeMenu.el.popup();
 			      
 			});
 		}
@@ -1457,15 +1457,15 @@ public class Xcls_WindowLeftTree : Object
 			this.el.label = "Save as Template";
 
 			//listeners
-			// LeftTreeMenu removed for stripped-down version
-			// this.el.clicked.connect( () => {
-			// 	_this.LeftTreeMenu.el.visible = false;
-			// 	DialogSaveTemplate.singleton().showIt(
-			// 		(Gtk.Window) _this.el.get_root (), 
-			// 		_this.main_window.windowstate.file.palete(), 
-			// 		_this.getActiveElement()
-			// 	);
-			// });
+			// Restored for Step 4: Context Menu
+			this.el.clicked.connect( () => {
+				_this.LeftTreeMenu.el.visible = false;
+				DialogSaveTemplate.singleton().showIt(
+					(Gtk.Window) _this.el.get_root (), 
+					_this.main_window.windowstate.file.palete(), 
+					_this.getActiveElement()
+				);
+			});
 		}
 
 		// user defined functions
@@ -1492,17 +1492,17 @@ public class Xcls_WindowLeftTree : Object
 			this.el.label = "Save as Module";
 
 			//listeners
-			// LeftTreeMenu removed for stripped-down version
-			// this.el.clicked.connect( () => {
-			// 	_this.LeftTreeMenu.el.visible = false;
-			// 	var node = _this.getActiveElement();
-			// 	var sm = DialogSaveModule.singleton();
-			// 	sm.showIt(
-			// 		(Gtk.Window) _this.el.get_root (), 
-			// 		_this.main_window.windowstate.project, 
-			// 		node
-			// 	);
-			// });
+			// Restored for Step 4: Context Menu
+			this.el.clicked.connect( () => {
+				_this.LeftTreeMenu.el.visible = false;
+				var node = _this.getActiveElement();
+				var sm = DialogSaveModule.singleton();
+				sm.showIt(
+					(Gtk.Window) _this.el.get_root (), 
+					_this.main_window.windowstate.project, 
+					node
+				);
+			});
 		}
 
 		// user defined functions
