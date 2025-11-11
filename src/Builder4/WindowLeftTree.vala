@@ -893,20 +893,20 @@ public class Xcls_WindowLeftTree : Object
 					   return  ;
 					 }
 			
-					 // Simplified for stripped-down version - skip before_node_change check
-					 // if (!_this.before_node_change( ) ) {
-					 //	 _this.view.blockChanges = true;
-					 //	 _this.selmodel.el.unselect_all();
-					 //	 _this.view.blockChanges = false;
-					 //	 
-					 //	 return;
-					 // }
+					 // Restored for Step 5: Signal Connections
+					 if (!_this.before_node_change( ) ) {
+						 _this.view.blockChanges = true;
+						 _this.selmodel.el.unselect_all();
+						 _this.view.blockChanges = false;
+						 
+						 return;
+					 }
 					 
-					 // Simplified for stripped-down version - skip file check
-					 // if (_this.main_window.windowstate.file == null) {
-					 //   	GLib.debug("SKIPPING select windowstate file is not set...");     
-					 //	return;
-					 // } 
+					 // Restored for Step 5: Signal Connections
+					 if (_this.main_window.windowstate.file == null) {
+					   	GLib.debug("SKIPPING select windowstate file is not set...");     
+						return;
+					 } 
 					 
 					 //var render = this.get('/LeftTree').getRenderer();                
 					GLib.debug("LEFT TREE -> view -> selection changed called");
