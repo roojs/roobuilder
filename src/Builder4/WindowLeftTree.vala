@@ -59,7 +59,7 @@ public class Xcls_WindowLeftTree : Object
 	public int last_error_counter;
 	public signal bool before_node_change ();
 	public signal void changed ();
-	public signal void node_selected (JsRender.Node? node);
+	public signal void node_selected (DummyNode? node);
 
 	// ctor
 	public Xcls_WindowLeftTree()
@@ -355,7 +355,7 @@ public class Xcls_WindowLeftTree : Object
 
 		// my vars (def)
 		public bool blockChanges;
-		public JsRender.Node? dragNode;
+		public DummyNode? dragNode;
 		public string lastEventSource;
 		public Gtk.CssProvider css;
 		public bool button_is_pressed;
@@ -961,18 +961,18 @@ public class Xcls_WindowLeftTree : Object
 		}
 
 		// user defined functions
-		public JsRender.Node? getSelectedNode () {
+		public DummyNode? getSelectedNode () {
 		  if (this.el.selected_item == null) {
 				return null;
 		  }	
-		   
+		  
 		  
 		   var tr = (Gtk.TreeListRow)this.el.selected_item;
 		  
-		   return (JsRender.Node)tr.get_item();
+		   return (DummyNode)tr.get_item();
 			 
 		}
-		public JsRender.Node getNodeAt (uint row) {
+		public DummyNode getNodeAt (uint row) {
 		
 		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
 		   
@@ -980,7 +980,7 @@ public class Xcls_WindowLeftTree : Object
 		   GLib.debug("get_item (2) = %s", a.get_type().name());
 		  	
 		   
-		   return (JsRender.Node)tr.get_item();
+		   return (DummyNode)tr.get_item();
 			 
 		}
 	}
@@ -1040,7 +1040,7 @@ public class Xcls_WindowLeftTree : Object
 		 
 		            
 		} */
-		public int nodeToRow (JsRender.Node node) 
+		public int nodeToRow (DummyNode node) 
 		{
 		 
 			var s = _this.view.el.model as Gtk.SingleSelection;
@@ -1048,7 +1048,7 @@ public class Xcls_WindowLeftTree : Object
 				//GLib.debug("check node %s", s.get_item(i).get_type().name());
 				var lr = s.get_item(i) as Gtk.TreeListRow;
 				//GLib.debug("check node %s", lr.get_item().get_type().name());
-				var nn = (lr.get_item() as JsRender.Node);
+				var nn = (lr.get_item() as DummyNode);
 				if (nn != null && nn.oid == node.oid) {
 					return i;
 					
@@ -1148,7 +1148,7 @@ public class Xcls_WindowLeftTree : Object
 		    _this.view.blockChanges = false;
 		    */
 		}
-		public void selectNode (JsRender.Node?  node) 
+		public void selectNode (DummyNode?  node) 
 		{
 			var s = _this.view.el.model as Gtk.SingleSelection;
 			if (node == null) {
@@ -1258,27 +1258,21 @@ public class Xcls_WindowLeftTree : Object
 				var lbl = (Gtk.Label) img.get_next_sibling();
 				
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-				var node = (JsRender.Node) lr.get_item();
+				var node = (DummyNode) lr.get_item();
 				if (node == null || node.fqn() == "") {
 					return;
 				}
 				
 				node.set_data<Gtk.Widget>("tree-row", expand.get_parent().get_parent());
-				expand.get_parent().get_parent().set_data<JsRender.Node>("node", node);
+				expand.get_parent().get_parent().set_data<DummyNode>("node", node);
 			
 			    expand.set_hide_expander( node.childstore.get_n_items() < 1 );
 			 	expand.set_list_row(lr);
 			 	
-			 	node.bind_property("iconResourceName",
-			                    img, "resource",
-			                   GLib.BindingFlags.SYNC_CREATE);
-			 	
-			 	node.bind_property("nodeTitleProp",
-			                    lbl, "label",
-			                   GLib.BindingFlags.SYNC_CREATE);
-			 	node.bind_property("nodeTipProp",
-			                    lbl, "tooltip_markup",
-			                   GLib.BindingFlags.SYNC_CREATE);
+			 	// Set properties directly for DummyNode
+			 	img.resource = node.iconResourceName;
+			 	lbl.label = node.nodeTitleProp;
+			 	lbl.tooltip_markup = node.nodeTipProp;
 			 	// bind image...
 			 	
 			});
