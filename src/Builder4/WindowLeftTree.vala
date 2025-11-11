@@ -75,10 +75,10 @@ public class Xcls_WindowLeftTree : Object
 		// set gobject values
 		this.el.hexpand = true;
 		this.el.vexpand = true;
-		// Removed ListView12 (error list) for stripped-down version
-		// var child_1 = new Xcls_ListView12( _this );
-		// child_1.ref();
-		// this.el.append( child_1.el );
+		// Restored ListView12 (error list) for Step 3: Error Handling
+		var child_1 = new Xcls_ListView12( _this );
+		child_1.ref();
+		this.el.append( child_1.el );
 		new Xcls_viewwin( _this );
 		this.el.append( _this.viewwin.el );
 		
@@ -116,8 +116,8 @@ public class Xcls_WindowLeftTree : Object
 		this.model.updateModel(root_store);
 	} */
 	
-	// Removed updateErrors() for stripped-down version
-	/* public void updateErrors () {
+	// Restored updateErrors() for Step 3: Error Handling
+	public void updateErrors () {
 		var file = this.getActiveFile();
 		if (file == null) {
 			return;
@@ -166,8 +166,8 @@ public class Xcls_WindowLeftTree : Object
 			}
 			
 		}
-		
-	} */
+		this.last_error_counter = file.error_counter;
+	}
 	
 	// Removed removeErrors() for stripped-down version
 	/* public void removeErrors () {
@@ -1013,13 +1013,11 @@ public class Xcls_WindowLeftTree : Object
 		    // if it's still null?
 		    if (f.tree == null) {
 				_this.main_window.windowstate.showAddObject(_this.view.el, null);
-		    	// updateErrors() commented out for Step 1 - will restore in Step 3
-		    	// _this.updateErrors();
+		    	_this.updateErrors();
 		        return;
 		    }
 		  	m.append(f.tree);
-			// updateErrors() commented out for Step 1 - will restore in Step 3
-			// _this.updateErrors();
+			_this.updateErrors();
 		 
 		    _this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
 		   
