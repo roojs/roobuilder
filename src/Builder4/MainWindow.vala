@@ -845,9 +845,9 @@ public class Xcls_MainWindow : Object
 		this.el.position = 200;
 		new Xcls_leftpane( _this );
 		this.el.start_child = _this.leftpane.el;
-		// Hide rightpane for stripped-down version
-		// new Xcls_rightpane( _this );
-		// this.el.end_child = _this.rightpane.el;
+		// Restored rightpane for Step 7: Editor Views
+		new Xcls_rightpane( _this );
+		this.el.end_child = _this.rightpane.el;
 
 			//listeners
 			this.el.accept_position.connect( ( ) => {
