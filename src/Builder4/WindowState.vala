@@ -125,13 +125,11 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		// Restored for Step 6: Properties Panel - remove editpane before appending tree
-		this.win.leftpane.el.remove(this.win.editpane.el);
-    	//this.win.tree.el.remove(this.left_tree.el);
-		this.win.leftpane.el.append(this.left_tree.el);
+		// Restored for Step 6: Properties Panel - replace tree widget in editpane, keep editpane
+		// The editpane contains both tree (start_child) and props (end_child)
+		// Set our tree as the start_child of the editpane (replaces any existing tree)
+		this.win.editpane.el.start_child = this.left_tree.el;
 	    
-	
-		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show();
 		   
 		// Restored signal connections for Step 2: Post-Drop Behavior
