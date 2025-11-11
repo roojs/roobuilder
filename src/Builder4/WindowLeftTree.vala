@@ -1649,41 +1649,8 @@ public class Xcls_WindowLeftTree : Object
 					return Gdk.DragAction.MOVE;
 				}
 			    
-				var file = _this.main_window.windowstate.file;
-				var palete =  file.palete();
-				var ls = file.getSymbolLoader();
-				var drop_on_to = palete.getDropListFromSymbols(ls, this.lastDragNode.fqn());
-			   
-			 
-			     
-			     string[] str = {};
-			     foreach(var dp in drop_on_to) {
-			     	str += dp;
-			 	}
-			 	GLib.debug("droplist: %s", string.joinv(", ", str));
-			     
-			     
-			    // if there are not items in the tree.. the we have to set isOver to true for anything..
-			 
-			    if (_this.model.el.n_items < 1) {
-			   	 	// FIXME check valid drop types?
-			    		if (!drop_on_to.contains("*top")) {
-			    			this.addHighlight(null, "");	
-						return Gdk.DragAction.MOVE;
-					};
-					this.addHighlight(_this.view.el, "over");
-			
-					return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY; // no need to highlight?
-			     
-			    }
-			    
-			    
-			
-			 	 
-			    // if path of source and dest are inside each other..
-			    // need to add source info to drag?
-			    // the fail();
-			 	 var row_widget = _this.view.getRowWidgetAt( x,y, out pos);    
+				// Simplified drag_motion for stripped-down version - no file/palete operations
+				var row_widget = _this.view.getRowWidgetAt( x,y, out pos);    
 			// 	var row = _this.view.getRowAt(x,y, out pos);
 			 	GLib.debug("drag_motion: getRowWidgetAt returned pos='%s' at (%d,%d)", pos, (int)x, (int)y);
 			
