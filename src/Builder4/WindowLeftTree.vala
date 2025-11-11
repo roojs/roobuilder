@@ -83,7 +83,11 @@ public class Xcls_WindowLeftTree : Object
 		this.el.append( _this.viewwin.el );
 		
 		// Create dummy data after viewwin is created
-		this.createDummyData();
+		// Note: model is created in viewwin, so we call createDummyData after viewwin
+		GLib.Idle.add(() => {
+			this.createDummyData();
+			return false;
+		});
 	}
 
 	// user defined functions
@@ -637,7 +641,7 @@ public class Xcls_WindowLeftTree : Object
 					return;
 				}
 				
-				var node =   row_widget.get_data<JsRender.Node>("node");
+				var node =   row_widget.get_data<DummyNode>("node");
 				if (node == null) {
 					GLib.warning("No node found bound to widget");
 					return;
@@ -645,25 +649,11 @@ public class Xcls_WindowLeftTree : Object
 			
 				 
 				 
-				if (_this.view.getColAt(x,y) > 0 ) {
-					GLib.debug("add colum clicked.");
-				    var fqn = node.fqn();
-			
-				    var pal = ws.project.palete;
-				 	var sl = ws.file.getSymbolLoader();
-					var cn = pal.getChildListFromSymbols(sl, fqn, false);
-			
-			  		if (cn.size < 1) {
-			  			return ;
-					}
-			
-					ws.leftTreeBeforeChange();
-					//_this.view.el.get_selection().select_path(res);
-					GLib.debug("Button Pressed - start show window");
-					ws.showAddObject(_this.view.el, node);
-					GLib.debug("Button Pressed - finsihed show window");
-				 	return ;
-				}
+				// Column add functionality removed for stripped-down version
+				// if (_this.view.getColAt(x,y) > 0 ) {
+				// 	GLib.debug("add colum clicked.");
+				// 	return;
+				// }
 				
 				 
 				 
@@ -710,7 +700,7 @@ public class Xcls_WindowLeftTree : Object
 				    return;
 			    }
 			    
-			    var node =  row_widget.get_data<JsRender.Node>("node");
+			    var node =  row_widget.get_data<DummyNode>("node");
 			    if (node == null) {
 						GLib.warning("No node found from widget");
 						return;
@@ -722,25 +712,17 @@ public class Xcls_WindowLeftTree : Object
 			     
 			     
 				GLib.debug("Prssed %d", (int)  this.el.get_current_button());
-				//_this.deletemenu.el.set_parent(_this.view.el);
-				// no idea what the real interface for this is supposed to be, but setting it twice always causes critical..
-				// moved to realize
-				if (_this.LeftTreeMenu.el.parent != null) {
-					GLib.debug("clearing parent");
-					_this.LeftTreeMenu.el.unparent();
-				}
-				_this.LeftTreeMenu.el.set_parent(_this.view.el);
-				//Gtk.Allocation rect;
-				//_this.view.el.get_allocation(out rect);
-			 	//_this.deletemenu.el.set_has_arrow(false);
-				_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 
-				
-					
-				_this.LeftTreeMenu.el.set_offset( 
-						(int)x  ,
-						(int)y - (int)_this.view.el.get_height());
-			
-			    _this.LeftTreeMenu.el.popup();
+				// LeftTreeMenu removed for stripped-down version
+				// if (_this.LeftTreeMenu.el.parent != null) {
+				// 	GLib.debug("clearing parent");
+				// 	_this.LeftTreeMenu.el.unparent();
+				// }
+				// _this.LeftTreeMenu.el.set_parent(_this.view.el);
+				// _this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM);
+				// _this.LeftTreeMenu.el.set_offset( 
+				// 	(int)x  ,
+				// 	(int)y - (int)_this.view.el.get_height());
+				// _this.LeftTreeMenu.el.popup();
 			      
 			});
 		}
@@ -1565,6 +1547,40 @@ public class Xcls_WindowLeftTree : Object
 
 
 
+	// Helper function to find node by OID recursively
+	private DummyNode? findNodeInChildren(DummyNode parent, int oid) {
+		for (uint i = 0; i < parent.childstore.get_n_items(); i++) {
+			var n = (DummyNode)parent.childstore.get_item(i);
+			if (n.oid == oid) {
+				return n;
+			}
+			var found = findNodeInChildren(n, oid);
+			if (found != null) return found;
+		}
+		return null;
+	}
+	
+	// Helper function to remove node from store
+	private void removeNodeFromStore(DummyNode node) {
+		if (node.parent == null) {
+			// Remove from root store
+			var root_store = (GLib.ListStore)this.model.el.model;
+			for (uint i = 0; i < root_store.get_n_items(); i++) {
+				var n = (DummyNode)root_store.get_item(i);
+				if (n.oid == node.oid) {
+					root_store.remove(i);
+					return;
+				}
+			}
+		} else {
+			// Remove from parent's childstore
+			var idx = node.parent.childstore.find(node);
+			if (idx >= 0) {
+				node.parent.childstore.remove(idx);
+			}
+		}
+	}
+
 	public class Xcls_drop : Object
 	{
 		public Gtk.DropTargetAsync el;
@@ -1660,71 +1676,23 @@ public class Xcls_WindowLeftTree : Object
 			 	}
 				var node = row_widget.get_data<DummyNode>("node");
 				
-				//GLib.debug("Drop over node: %s", node.fqn());
-				
-			
-			 	if (pos == "above" || pos == "below") {
-					if (node.parent == null) {
-						GLib.debug("drag_motion: no parent, changing pos from '%s' to 'over'", pos);
-						pos = "over";
-					} else {
-				 		 
-				 		if (!drop_on_to.contains(node.parent.prop_type ) && !is_control) {
-							GLib.debug("drag_motion: drop_on_to does not contain %s, changing pos from '%s' to 'over'" , node.parent.prop_type, pos);
-				 			pos = "over";
-			 			} else {
-							GLib.debug("drag_motion: drop_on_to contains %s, keeping pos='%s'" , node.parent.prop_type, pos);
-							// Only check self-drop prevention if dragNode is set (same-window drag)
-							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode)) {
-						 			GLib.debug("shift drop not self not allowed");
-					 				this.addHighlight(null, "");
-									return Gdk.DragAction.MOVE;
-					 			}
-					 			
-					 		}
-							
-						}
-						
-						
-						
-			 		}
-			 		
-			 		
-			 	}
-			 	if (pos == "over") {
-				 	if (!drop_on_to.contains(node.fqn())) {
-						//GLib.debug("drop on does not contain %s - try center" , node.fqn());
-						if (!is_control) {
-							this.addHighlight(null, ""); 
-							return Gdk.DragAction.MOVE;
-						} 
-						this.addHighlight(row_widget, pos); 
-						return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
-					}
-					// Only check self-drop prevention if dragNode is set (same-window drag) and shift is pressed
-					if (_this.view.dragNode  != null && is_shift) {
-			 			if (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode)) {
-				 			//GLib.debug("shift drop not self not allowed");
-			 				if (!is_control) {
-								this.addHighlight(null, ""); 	
-								return Gdk.DragAction.MOVE;
-							} 
-							this.addHighlight(row_widget, pos); 
-							
-							return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;
-			 			}
-					}
-			 			
+				if (node == null) {
+					this.addHighlight(null, "");
+					return Gdk.DragAction.MOVE;
 				}
-			 	
-			 	
-			 	    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
-			
-				GLib.debug("drag_motion: final pos='%s', node=%s", pos, node != null ? node.fqn() : "null");
+				
+				// Simplified: allow drop on any node, just check self-drop prevention
+				if (_this.view.dragNode != null && is_shift) {
+					if (node.oid == _this.view.dragNode.oid) {
+						GLib.debug("shift drop not self not allowed");
+						this.addHighlight(null, "");
+						return Gdk.DragAction.MOVE;
+					}
+				}
+				
 				// Store the last drag position and target node OID for use in drop event
 				this.drop_pos = pos;
-				this.drop_nid = node != null && node.oid > -1 ? node.oid : -1;
+				this.drop_nid = node.oid;
 				GLib.debug("drag_motion: stored pos='%s', target node oid=%d", pos, this.drop_nid);
 				this.addHighlight(row_widget, pos); 
 				return is_shift ?  Gdk.DragAction.MOVE :  Gdk.DragAction.COPY;		
@@ -1737,16 +1705,26 @@ public class Xcls_WindowLeftTree : Object
 				GLib.debug("drop event");
 				// Use the last position from drag_motion instead of recalculating
 				GLib.debug("drop: using stored pos='%s', target node oid=%d from drag_motion", this.drop_pos, this.drop_nid);
-				// Look up the target node by OID
-				var file = _this.main_window.windowstate.file;
-				var nodeBase = this.drop_nid > -1 ? file.nodes.get(this.drop_nid) : null;
+				// Find target node by OID in model
+				DummyNode? targetNode = null;
+				var root_store = (GLib.ListStore)_this.model.el.model;
+				for (uint i = 0; i < root_store.get_n_items(); i++) {
+					var n = (DummyNode)root_store.get_item(i);
+					if (n.oid == this.drop_nid) {
+						targetNode = n;
+						break;
+					}
+					// Search children recursively
+					targetNode = _this.findNodeInChildren(n, this.drop_nid);
+					if (targetNode != null) break;
+				}
 				// Cancel drop if stored values are not valid
-				if (!(nodeBase is JsRender.Node) || this.drop_pos == "") {
+				if (targetNode == null || this.drop_pos == "") {
 					GLib.debug("drop: stored values not valid (pos='%s', node oid=%d), canceling drop", this.drop_pos, this.drop_nid);
 					drop.finish(0);
 					return false;
 				}
-				var node = (JsRender.Node)nodeBase;
+				var node = targetNode;
 				this.addHighlight(null,"");
 			 
 			 	var is_shift = 
@@ -1774,7 +1752,7 @@ public class Xcls_WindowLeftTree : Object
 					// still dragging same node
 			 
 					try {
-						this.lastDragNode = Json.gobject_from_data(typeof(JsRender.Node), v_str) as JsRender.Node; 
+						this.lastDragNode = Json.gobject_from_data(typeof(DummyNode), v_str) as DummyNode; 
 					} catch (GLib.Error e) {
 						GLib.warning("Failed to deserialize node from drag data");
 						drop.finish(0);
@@ -1784,9 +1762,9 @@ public class Xcls_WindowLeftTree : Object
 				}
 			   	
 			     
-			    var dropNode = (JsRender.Node?) null;
+			    var dropNode = (DummyNode?) null;
 			    try {
-			    	dropNode = Json.gobject_from_data(typeof(JsRender.Node), v_str) as JsRender.Node;
+			    	dropNode = Json.gobject_from_data(typeof(DummyNode), v_str) as DummyNode;
 			    } catch (GLib.Error e) {
 			    	GLib.warning("Failed to deserialize dropNode from drag data");
 			    	drop.finish(0);
@@ -1797,59 +1775,19 @@ public class Xcls_WindowLeftTree : Object
 			    	drop.finish(0);
 			    	return false;
 			    }
-			    var src_oid = -1;
-			    try {
-			    		var js = Json.from_string(v_str);
-			    		if (_this.view.dragNode !=null &&  js.get_object().has_member("oid")) { 
-			     		src_oid = (int) js.get_object().get_int_member("oid");
-			     		dropNode = file.nodes.get(src_oid) as JsRender.Node;
-			 		} else {
-			 			dropNode.file = file;
-					}
-			 	}catch (GLib.Error e) {
-			 	
-			 	}// how do we know if the dropped node is from the same file?
-			 	// FIXME !!!!
-			
 				GLib.debug("dropped node %s", v_str);
 				
-			
-				var palete =  file.palete();
-				var ls = file.getSymbolLoader();
-				var drop_on_to = palete.getDropListFromSymbols(ls, dropNode.fqn());
-			   
-			   
-			   	JsRender.Node tadd;
-			    // if there are not items in the tree.. the we have to set isOver to true for anything..
-			 
-			    if (_this.model.el.n_items < 1) {
-			    	// FIXME check valid drop types?
-			    		if (!drop_on_to.contains("*top")) {
-						GLib.debug("drop on to list does not contain top?");
-						drop.finish(0);
-						return false;	
-					}
-					// add new node to top..
+				// Simplified drop logic for stripped-down version
+				// If tree is empty, add to root
+				if (_this.model.el.n_items < 1) {
 					GLib.debug("adding to top");
-					
-					
-					tadd = file.action_manager.run(
-						new JsRender.Action.Add(
-							file,
-							v_str,	
-							null,
-							true,
-							-1
-						)
-					) as JsRender.Node;
-					 
-					_this.model.selectNode(tadd); 	
+					root_store.append(dropNode);
+					_this.model.selectNode(dropNode);
 					_this.changed();
-					_this.node_selected(tadd);
-				  	  
-					return true; // no need to highlight?
-			     
-			    }
+					_this.node_selected(dropNode);
+					drop.finish(Gdk.DragAction.MOVE);
+					return true;
+				}
 			
 			
 			
@@ -1862,13 +1800,14 @@ public class Xcls_WindowLeftTree : Object
 						GLib.debug("drop: no parent, changing pos from '%s' to 'over'", this.drop_pos);
 						this.drop_pos = "over";
 					} else {
-				 		if (!drop_on_to.contains(node.parent.prop_type)  && !is_control) {
-							GLib.debug("drop: drop_on_to does not contain %s, changing pos from '%s' to 'over'" , node.parent.prop_type, this.drop_pos);
+				 		// Simplified: removed drop_on_to and is_control checks
+				 		if (false) {
+							GLib.debug("drop: changing pos from '%s' to 'over'" , this.drop_pos);
 							this.drop_pos = "over";
 			 			} else {
-							GLib.debug("drop: drop_on_to contains %s, keeping pos='%s'" , node.parent.prop_type, this.drop_pos);
+							GLib.debug("drop: keeping pos='%s'" , this.drop_pos);
 							if (_this.view.dragNode  != null && is_shift) {
-					 			if (node.oid != -1 && (node.parent.oid == _this.view.dragNode.oid || ((JsRender.Node)node.parent).has_parent(_this.view.dragNode))) {
+					 			if (node.oid != -1 && (node.parent.oid == _this.view.dragNode.oid)) {
 						 			GLib.debug("shift drop not self not allowed");
 			  						drop.finish(0);
 			  						return false;	
@@ -1882,13 +1821,14 @@ public class Xcls_WindowLeftTree : Object
 			 		
 			 	}
 			 	if (this.drop_pos == "over") {
-				 	if (!drop_on_to.contains(node.fqn()) && !is_control) {
-						GLib.debug("drop on does not contain %s - try center" , node.fqn());
+				 	// Simplified: removed drop_on_to and is_control checks
+				 	if (false) {
+						GLib.debug("drop on does not contain - try center");
 						drop.finish(0);
 						return false;
 			
 					}
-					if (node.oid != -1 && (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode))) {
+					if (node.oid != -1 && (node.oid == _this.view.dragNode.oid)) {
 			 			GLib.debug("shift drop not self not allowed");
 						drop.finish(0);
 						return false;	
@@ -1896,82 +1836,42 @@ public class Xcls_WindowLeftTree : Object
 				}
 				
 				GLib.debug("drop: final pos='%s', node=%s", this.drop_pos, node != null ? node.fqn() : "null");
-			 	var to_pos = -1; 
-			 	switch(this.drop_pos) {
-			 		case "over":
-						break;
-				 		
-				 		
-				 		
-				 		
-			 		case "above":
-			 			GLib.debug("Above - insertBefore");
-			 			to_pos = node.parent.children.index_of(node);
-			 			GLib.debug("Above - node index in parent.children=%d, to_pos=%d, parent has %d children", node.parent.children.index_of(node), to_pos, (int)node.parent.children.size);
-			 			new_parent = node.parent as JsRender.Node;
-			 			break;
-			 			
-			 		case "below":
-			 			GLib.debug("Below - insertAfter"); 		
-				 		
-			 			to_pos = node.parent.children.index_of(node) +1;
-			 			new_parent = node.parent as JsRender.Node;
-			 			break;
-				 		  
-			 		default:
-			 			// should not happen
-			 			drop.finish(0);
-			 			return false;
-			 	}
-			 	
-				_this.model.selectNode(null); 
-			
-				GLib.debug("creating action: to_pos=%d, new_parent.oid=%d", to_pos, new_parent != null ? new_parent.oid : -1);
 				
-				// can only move nodes that are in our tree.
-				if (is_shift && _this.view.dragNode != null && dropNode.oid > -1) {
-			
-			 		
-			 		GLib.debug("Using Move action with to_pos=%d", to_pos);
-			 		tadd = file.action_manager.run(
-						new JsRender.Action.Move(
-							dropNode,
-							new_parent,
-							to_pos
-						)
-					) as JsRender.Node;
-					 
-					
-			 		
-				} else {
-				
-				
-			 		GLib.debug("Using Add action with to_pos=%d", to_pos);
-			 		tadd = file.action_manager.run(
-						new JsRender.Action.Add.from_node(
-							file,
-							dropNode, // get the original object..
-							new_parent,
-							to_pos
-						)
-					) as JsRender.Node;
-				
-				
+				// Handle drop based on position - simplified for stripped-down version
+				if (this.drop_pos == "over") {
+					// Add as child
+					dropNode.parent = node;
+					node.childstore.append(dropNode);
+				} else if (this.drop_pos == "above" || this.drop_pos == "below") {
+					// Insert before/after in parent's children
+					if (node.parent == null) {
+						// Add to root
+						var idx = root_store.find(node);
+						if (idx >= 0) {
+							var pos = this.drop_pos == "above" ? idx : idx + 1;
+							dropNode.parent = null;
+							root_store.insert(pos, dropNode);
+						}
+					} else {
+						// Insert in parent's childstore
+						var idx = node.parent.childstore.find(node);
+						if (idx >= 0) {
+							var pos = this.drop_pos == "above" ? idx : idx + 1;
+							dropNode.parent = node.parent;
+							node.parent.childstore.insert(pos, dropNode);
+						}
+					}
 				}
-			     GLib.debug("done action");
-				// Defer UI updates to prevent perceived lag
-				GLib.Timeout.add(100, () => {
-				    GLib.debug("deferred selectNode");
-				    _this.model.selectNode(tadd); 
-				    GLib.debug("deferred calling changed");
-				    _this.changed();
-				    _this.node_selected(tadd);
-				    GLib.debug("deferred end drag");
-				    return false; // Don't repeat
-				});
-				GLib.debug("end  drag - finishing drop");
+				
+				// If moving (shift), remove from old location
+				if (is_shift && _this.view.dragNode != null) {
+					_this.removeNodeFromStore(_this.view.dragNode);
+				}
+				
+				_this.model.selectNode(dropNode);
+				_this.changed();
+				_this.node_selected(dropNode);
 				drop.finish(is_shift ? Gdk.DragAction.MOVE : Gdk.DragAction.COPY);
-				GLib.debug("end  drag - returning immediately");
 				return true;	
 					
 			
