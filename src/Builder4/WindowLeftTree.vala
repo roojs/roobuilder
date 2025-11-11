@@ -1,7 +1,7 @@
 static Xcls_WindowLeftTree  _WindowLeftTree;
 
-// Simple dummy node class for testing drag/drop
-public class DummyNode : GLib.Object {
+// Removed DummyNode class for Step 1: File Loading - using JsRender.Node instead
+/* public class DummyNode : GLib.Object {
 	public string text { get; set; }
 	public GLib.ListStore childstore { get; private set; }
 	public DummyNode? parent { get; set; }
@@ -31,7 +31,7 @@ public class DummyNode : GLib.Object {
 	public string nodeTipProp {
 		get { return this.text; }
 	}
-}
+} */
 
 public class Xcls_WindowLeftTree : Object
 {
@@ -59,7 +59,7 @@ public class Xcls_WindowLeftTree : Object
 	public int last_error_counter;
 	public signal bool before_node_change ();
 	public signal void changed ();
-	public signal void node_selected (DummyNode? node);
+	public signal void node_selected (JsRender.Node? node);
 
 	// ctor
 	public Xcls_WindowLeftTree()
@@ -82,16 +82,16 @@ public class Xcls_WindowLeftTree : Object
 		new Xcls_viewwin( _this );
 		this.el.append( _this.viewwin.el );
 		
-		// Create dummy data after viewwin is created
-		// Note: model is created in viewwin, so we call createDummyData after viewwin
-		GLib.Idle.add(() => {
-			this.createDummyData();
-			return false;
-		});
+		// Removed createDummyData() for Step 1: File Loading - file will be auto-loaded in WindowState
+		// File loading is now handled by WindowState.init() auto-loading
+		// GLib.Idle.add(() => {
+		// 	this.createDummyData();
+		// 	return false;
+		// });
 	}
 
-	// user defined functions
-	public void createDummyData() {
+	// Removed createDummyData() for Step 1: File Loading
+	/* public void createDummyData() {
 		// Create simple dummy nodes for testing drag/drop
 		var root_store = new GLib.ListStore(typeof(DummyNode));
 		
@@ -114,7 +114,7 @@ public class Xcls_WindowLeftTree : Object
 		
 		// Update model with dummy data
 		this.model.updateModel(root_store);
-	}
+	} */
 	
 	// Removed updateErrors() for stripped-down version
 	/* public void updateErrors () {
@@ -257,18 +257,17 @@ public class Xcls_WindowLeftTree : Object
 		*/
 	     
 	}
-	public DummyNode? getActiveElement () { // return path to actie node.
+	public JsRender.Node? getActiveElement () { // return path to actie node.
 	
 	     
 		return _this.selmodel.getSelectedNode();
 	    
 	    
 	}
-	// Removed getActiveFile() for stripped-down version
-	/* public JsRender.JsRender getActiveFile () {
+	public JsRender.JsRender getActiveFile () {
 	    return this.main_window.windowstate.file;
 	    
-	} */
+	}
 	public class Xcls_ListView12 : Object
 	{
 		public Gtk.ListView el;
@@ -360,7 +359,7 @@ public class Xcls_WindowLeftTree : Object
 
 		// my vars (def)
 		public bool blockChanges;
-		public DummyNode? dragNode;
+		public JsRender.Node? dragNode;
 		public string lastEventSource;
 		public Gtk.CssProvider css;
 		public bool button_is_pressed;
@@ -641,7 +640,7 @@ public class Xcls_WindowLeftTree : Object
 					return;
 				}
 				
-				var node =   row_widget.get_data<DummyNode>("node");
+				var node =   row_widget.get_data<JsRender.Node>("node");
 				if (node == null) {
 					GLib.warning("No node found bound to widget");
 					return;
@@ -700,7 +699,7 @@ public class Xcls_WindowLeftTree : Object
 				    return;
 			    }
 			    
-			    var node =  row_widget.get_data<DummyNode>("node");
+			    var node =  row_widget.get_data<JsRender.Node>("node");
 			    if (node == null) {
 						GLib.warning("No node found from widget");
 						return;
@@ -947,7 +946,7 @@ public class Xcls_WindowLeftTree : Object
 		}
 
 		// user defined functions
-		public DummyNode? getSelectedNode () {
+		public JsRender.Node? getSelectedNode () {
 		  if (this.el.selected_item == null) {
 				return null;
 		  }	
@@ -955,10 +954,10 @@ public class Xcls_WindowLeftTree : Object
 		  
 		   var tr = (Gtk.TreeListRow)this.el.selected_item;
 		  
-		   return (DummyNode)tr.get_item();
+		   return (JsRender.Node)tr.get_item();
 			 
 		}
-		public DummyNode getNodeAt (uint row) {
+		public JsRender.Node getNodeAt (uint row) {
 		
 		   var tr = (Gtk.TreeListRow)this.el.get_item(row);
 		   
@@ -966,7 +965,7 @@ public class Xcls_WindowLeftTree : Object
 		   GLib.debug("get_item (2) = %s", a.get_type().name());
 		  	
 		   
-		   return (DummyNode)tr.get_item();
+		   return (JsRender.Node)tr.get_item();
 			 
 		}
 	}
@@ -991,8 +990,8 @@ public class Xcls_WindowLeftTree : Object
 		}
 
 		// user defined functions
-		// Removed loadFile() for stripped-down version - using createDummyData() instead
-		/* public void loadFile (JsRender.JsRender f) {
+		// Restored loadFile() for Step 1: File Loading
+		public void loadFile (JsRender.JsRender f) {
 		    //console.dump(f);
 		    
 		    _this.drop.highlightWidget = null;
@@ -1014,19 +1013,21 @@ public class Xcls_WindowLeftTree : Object
 		    // if it's still null?
 		    if (f.tree == null) {
 				_this.main_window.windowstate.showAddObject(_this.view.el, null);
-		    	_this.updateErrors();
+		    	// updateErrors() commented out for Step 1 - will restore in Step 3
+		    	// _this.updateErrors();
 		        return;
 		    }
 		  	m.append(f.tree);
-			_this.updateErrors();
+			// updateErrors() commented out for Step 1 - will restore in Step 3
+			// _this.updateErrors();
 		 
 		    _this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
 		   
 		    return;
 		 
 		            
-		} */
-		public int nodeToRow (DummyNode node) 
+		}
+		public int nodeToRow (JsRender.Node node) 
 		{
 		 
 			var s = _this.view.el.model as Gtk.SingleSelection;
@@ -1034,7 +1035,7 @@ public class Xcls_WindowLeftTree : Object
 				//GLib.debug("check node %s", s.get_item(i).get_type().name());
 				var lr = s.get_item(i) as Gtk.TreeListRow;
 				//GLib.debug("check node %s", lr.get_item().get_type().name());
-				var nn = (lr.get_item() as DummyNode);
+				var nn = (lr.get_item() as JsRender.Node);
 				if (nn != null && nn.oid == node.oid) {
 					return i;
 					
@@ -1046,11 +1047,11 @@ public class Xcls_WindowLeftTree : Object
 		}
 		public Gtk.TreeListModel updateModel (GLib.ListStore? m) {
 			this.el = new Gtk.TreeListModel(
-				m != null ? m : new GLib.ListStore(typeof(DummyNode)), // Using DummyNode for stripped-down version
+				m != null ? m : new GLib.ListStore(typeof(JsRender.Node)), // Restored JsRender.Node for Step 1
 				false, // passthru
 				true, // autexpand
 				(item) => {
-					return ((DummyNode)item).childstore;
+					return ((JsRender.Node)item).childstore;
 				
 				}
 			);
@@ -1135,7 +1136,7 @@ public class Xcls_WindowLeftTree : Object
 		    _this.view.blockChanges = false;
 		    */
 		}
-		public void selectNode (DummyNode?  node) 
+		public void selectNode (JsRender.Node?  node) 
 		{
 			var s = _this.view.el.model as Gtk.SingleSelection;
 			if (node == null) {
@@ -1245,21 +1246,21 @@ public class Xcls_WindowLeftTree : Object
 				var lbl = (Gtk.Label) img.get_next_sibling();
 				
 				var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-				var node = (DummyNode) lr.get_item();
+				var node = (JsRender.Node) lr.get_item();
 				if (node == null || node.fqn() == "") {
 					return;
 				}
 				
 				node.set_data<Gtk.Widget>("tree-row", expand.get_parent().get_parent());
-				expand.get_parent().get_parent().set_data<DummyNode>("node", node);
+				expand.get_parent().get_parent().set_data<JsRender.Node>("node", node);
 			
 			    expand.set_hide_expander( node.childstore.get_n_items() < 1 );
 			 	expand.set_list_row(lr);
 			 	
-			 	// Set properties directly for DummyNode
-			 	img.resource = node.iconResourceName;
-			 	lbl.label = node.nodeTitleProp;
-			 	lbl.tooltip_markup = node.nodeTipProp;
+			 	// Restored bind_property calls for JsRender.Node
+			 	node.bind_property("iconResourceName", img, "resource", BindingFlags.SYNC_CREATE);
+			 	node.bind_property("nodeTitleProp", lbl, "label", BindingFlags.SYNC_CREATE);
+			 	node.bind_property("nodeTipProp", lbl, "tooltip_markup", BindingFlags.SYNC_CREATE);
 			 	// bind image...
 			 	
 			});
@@ -1323,7 +1324,7 @@ public class Xcls_WindowLeftTree : Object
 			
 			 	var img = (Gtk.Image) ((Gtk.ListItem)listitem).get_child(); 
 			 	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-				var node = (DummyNode) lr.get_item();
+				var node = (JsRender.Node) lr.get_item();
 				
 			  
 			    var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
@@ -1334,15 +1335,14 @@ public class Xcls_WindowLeftTree : Object
 					)
 				 );
 				 
-			 	// Simplified for stripped-down version - disable palete/symbol loader calls
-			 	// var fqn = node.fqn();
-			 	// var ws = _this.main_window.windowstate;
-			 	// var pal = ws.project.palete;
-			 	// var sl = ws.file.getSymbolLoader();
-			 	// var cn = pal.getChildListFromSymbols(sl, fqn, false);
-			 	
-			 	// Always hide the expand icon for dummy nodes
-				img.set_visible(false);
+			 	// Restored palete/symbol loader calls for Step 1
+			 	var fqn = node.fqn();
+			 	var ws = _this.main_window.windowstate;
+			 	var pal = ws.project.palete;
+			 	var sl = ws.file.getSymbolLoader();
+			    var cn = pal.getChildListFromSymbols(sl, fqn, false);
+			    
+				img.set_visible(cn.size > 0 ? true : false);
 			 	 
 			});
 		}
@@ -1513,9 +1513,9 @@ public class Xcls_WindowLeftTree : Object
 
 
 	// Helper function to find node by OID recursively
-	private DummyNode? findNodeInChildren(DummyNode parent, int oid) {
+	private JsRender.Node? findNodeInChildren(JsRender.Node parent, int oid) {
 		for (uint i = 0; i < parent.childstore.get_n_items(); i++) {
-			var n = (DummyNode)parent.childstore.get_item(i);
+			var n = (JsRender.Node)parent.childstore.get_item(i);
 			if (n.oid == oid) {
 				return n;
 			}
@@ -1526,12 +1526,12 @@ public class Xcls_WindowLeftTree : Object
 	}
 	
 	// Helper function to remove node from store
-	private void removeNodeFromStore(DummyNode node) {
+	private void removeNodeFromStore(JsRender.Node node) {
 		if (node.parent == null) {
 			// Remove from root store
 			var root_store = (GLib.ListStore)this.model.el.model;
 			for (uint i = 0; i < root_store.get_n_items(); i++) {
-				var n = (DummyNode)root_store.get_item(i);
+				var n = (JsRender.Node)root_store.get_item(i);
 				if (n.oid == node.oid) {
 					root_store.remove(i);
 					return;
@@ -1554,7 +1554,7 @@ public class Xcls_WindowLeftTree : Object
 
 		// my vars (def)
 		public Gtk.Widget? highlightWidget;
-		public DummyNode? lastDragNode;
+		public JsRender.Node? lastDragNode;
 		public string lastDragString;
 		public string drop_pos;
 		public int drop_nid;
@@ -1615,8 +1615,8 @@ public class Xcls_WindowLeftTree : Object
 					// still dragging same node
 			 
 					try {
-						this.lastDragNode = Json.gobject_from_data(typeof( DummyNode),  
-							v.get_string( )) as DummyNode;
+						this.lastDragNode = Json.gobject_from_data(typeof( JsRender.Node),  
+							v.get_string( )) as JsRender.Node;
 						this.lastDragString = v.get_string();
 					} catch (GLib.Error e) {
 						GLib.warning("Failed to deserialize node in drag_motion: %s", e.message);
@@ -1630,7 +1630,7 @@ public class Xcls_WindowLeftTree : Object
 					return Gdk.DragAction.MOVE;
 				}
 			    
-				// Simplified drag_motion for stripped-down version - no file/palete operations
+				// Restored drag_motion for Step 1: File Loading
 				var row_widget = _this.view.getRowWidgetAt( x,y, out pos);    
 			// 	var row = _this.view.getRowAt(x,y, out pos);
 			 	GLib.debug("drag_motion: getRowWidgetAt returned pos='%s' at (%d,%d)", pos, (int)x, (int)y);
@@ -1639,7 +1639,7 @@ public class Xcls_WindowLeftTree : Object
 					this.addHighlight(null, "");	
 					return Gdk.DragAction.MOVE;
 			 	}
-				var node = row_widget.get_data<DummyNode>("node");
+				var node = row_widget.get_data<JsRender.Node>("node");
 				
 				if (node == null) {
 					this.addHighlight(null, "");
@@ -1671,10 +1671,10 @@ public class Xcls_WindowLeftTree : Object
 				// Use the last position from drag_motion instead of recalculating
 				GLib.debug("drop: using stored pos='%s', target node oid=%d from drag_motion", this.drop_pos, this.drop_nid);
 				// Find target node by OID in model
-				DummyNode? targetNode = null;
+				JsRender.Node? targetNode = null;
 				var root_store = (GLib.ListStore)_this.model.el.model;
 				for (uint i = 0; i < root_store.get_n_items(); i++) {
-					var n = (DummyNode)root_store.get_item(i);
+					var n = (JsRender.Node)root_store.get_item(i);
 					if (n.oid == this.drop_nid) {
 						targetNode = n;
 						break;
@@ -1717,7 +1717,7 @@ public class Xcls_WindowLeftTree : Object
 					// still dragging same node
 			 
 					try {
-						this.lastDragNode = Json.gobject_from_data(typeof(DummyNode), v_str) as DummyNode; 
+						this.lastDragNode = Json.gobject_from_data(typeof(JsRender.Node), v_str) as JsRender.Node; 
 					} catch (GLib.Error e) {
 						GLib.warning("Failed to deserialize node from drag data");
 						drop.finish(0);
@@ -1727,9 +1727,9 @@ public class Xcls_WindowLeftTree : Object
 				}
 			   	
 			     
-			    var dropNode = (DummyNode?) null;
+			    var dropNode = (JsRender.Node?) null;
 			    try {
-			    	dropNode = Json.gobject_from_data(typeof(DummyNode), v_str) as DummyNode;
+			    	dropNode = Json.gobject_from_data(typeof(JsRender.Node), v_str) as JsRender.Node;
 			    } catch (GLib.Error e) {
 			    	GLib.warning("Failed to deserialize dropNode from drag data");
 			    	drop.finish(0);

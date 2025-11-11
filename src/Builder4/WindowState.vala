@@ -134,12 +134,53 @@ public class WindowState : Object
 		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show();
 		   
-		// Removed signal connections for stripped-down version:
-		// - before_node_change (depends on leftTreeBeforeChange, file operations)
-		// - node_selected (depends on editor views, file operations)
-		// - changed (depends on file.save(), view updates)
-		// Keep only basic tree initialization
+		// Restored signal connections for Step 1: File Loading
+		this.left_tree.before_node_change.connect(this.leftTreeBeforeChange);
+		this.left_tree.node_selected.connect(this.leftTreeNodeSelected);
+		// leftTreeChanged commented out for Step 1 - will restore in later step
+		// this.left_tree.changed.connect(this.leftTreeChanged);
+		
+		// Auto-load test file for Step 1: File Loading
+		GLib.Idle.add(() => {
+			this.autoLoadTestFile();
+			return false;
+		});
 		 
+	}
+	
+	// Auto-load test file for Step 1: File Loading
+	private void autoLoadTestFile() {
+		var test_file_path = "/home/alan/gitlive/web.Texon/Pman/Shipping/Pman.Dialog.Material.bjs";
+		
+		// Determine project path (parent directory of file)
+		var project_path = GLib.Path.get_dirname(test_file_path);
+		
+		// Get or create project (assume Roo type based on path)
+		Project.Project? proj = null;
+		try {
+			proj = Project.Project.getProjectByPath(project_path);
+			if (proj == null) {
+				// Create new Roo project
+				proj = Project.Project.factory("Roo", project_path);
+			}
+		} catch (Project.Error e) {
+			GLib.warning("Failed to get/create project: %s", e.message);
+			return;
+		}
+		
+		// Load the file
+		var file = proj.loadFileOnly(test_file_path);
+		if (file == null) {
+			GLib.warning("Failed to load file: %s", test_file_path);
+			return;
+		}
+		
+		// Set project and file
+		this.project = proj;
+		this.file = file;
+		
+		// Load file into tree
+		this.left_tree.model.loadFile(file);
 	}
 	
 	public void updateErrorMarksAll() 
@@ -189,7 +230,7 @@ public class WindowState : Object
 	int tree_width = 300;
 	int props_width = 300;
 	
-	public void leftTreeNodeSelected(DummyNode? sel)
+	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
 		// Simplified for stripped-down version - most functionality disabled
 		// do we really want to flip paletes if differnt nodes are selected
@@ -501,9 +542,9 @@ public class WindowState : Object
 		
 			this.switchState (State.PREVIEW); 
 			this.win.btn_tree.el.show();
-			// Simplified for stripped-down version - loadFile() removed
+			// Restored loadFile() for Step 1: File Loading
 			// this triggers loadItems..
-			// this.left_tree.model.loadFile(file);
+			this.left_tree.model.loadFile(file);
 			 
 
 		}
@@ -610,7 +651,7 @@ public class WindowState : Object
 		GLib.debug("showProps called but disabled in stripped-down version");
 	}
 	
-	public void showAddProp(Gtk.Widget btn, string sig_or_listen, DummyNode? ae)
+	public void showAddProp(Gtk.Widget btn, string sig_or_listen, JsRender.Node? ae)
 	{
 		// Simplified for stripped-down version - commented out
 		// if (this.add_props.el.parent == null) {
