@@ -1,5 +1,38 @@
 static Xcls_WindowLeftTree  _WindowLeftTree;
 
+// Simple dummy node class for testing drag/drop
+public class DummyNode : GLib.Object {
+	public string text { get; set; }
+	public GLib.ListStore childstore { get; private set; }
+	public DummyNode? parent { get; set; }
+	public int oid { get; private set; }
+	
+	private static int next_oid = 1;
+	
+	public DummyNode(string text) {
+		this.text = text;
+		this.childstore = new GLib.ListStore(typeof(DummyNode));
+		this.oid = next_oid++;
+	}
+	
+	// Methods to match JsRender.Node interface for tree display
+	public string fqn() {
+		return this.text;
+	}
+	
+	public string iconResourceName {
+		get { return "/icons/node.svg"; }
+	}
+	
+	public string nodeTitleProp {
+		get { return this.text; }
+	}
+	
+	public string nodeTipProp {
+		get { return this.text; }
+	}
+}
+
 public class Xcls_WindowLeftTree : Object
 {
 	public Gtk.Box el;
@@ -42,15 +75,45 @@ public class Xcls_WindowLeftTree : Object
 		// set gobject values
 		this.el.hexpand = true;
 		this.el.vexpand = true;
-		var child_1 = new Xcls_ListView12( _this );
-		child_1.ref();
-		this.el.append( child_1.el );
+		// Removed ListView12 (error list) for stripped-down version
+		// var child_1 = new Xcls_ListView12( _this );
+		// child_1.ref();
+		// this.el.append( child_1.el );
 		new Xcls_viewwin( _this );
 		this.el.append( _this.viewwin.el );
+		
+		// Create dummy data after viewwin is created
+		this.createDummyData();
 	}
 
 	// user defined functions
-	public void updateErrors () {
+	public void createDummyData() {
+		// Create simple dummy nodes for testing drag/drop
+		var root_store = new GLib.ListStore(typeof(DummyNode));
+		
+		var node1 = new DummyNode("Node 1");
+		root_store.append(node1);
+		
+		var node1a = new DummyNode("Node 1a");
+		node1a.parent = node1;
+		node1.childstore.append(node1a);
+		
+		var node1b = new DummyNode("Node 1b");
+		node1b.parent = node1;
+		node1.childstore.append(node1b);
+		
+		var node2 = new DummyNode("Node 2");
+		root_store.append(node2);
+		
+		var node3 = new DummyNode("Node 3");
+		root_store.append(node3);
+		
+		// Update model with dummy data
+		this.model.updateModel(root_store);
+	}
+	
+	// Removed updateErrors() for stripped-down version
+	/* public void updateErrors () {
 		var file = this.getActiveFile();
 		if (file == null) {
 			return;
@@ -100,7 +163,28 @@ public class Xcls_WindowLeftTree : Object
 			
 		}
 		
-	}
+	} */
+	
+	// Removed removeErrors() for stripped-down version
+	/* public void removeErrors () {
+		if (this.error_widgets == null || this.error_widgets.size < 1) {
+	 		return;
+		}
+		foreach(var child in this.error_widgets) {
+		
+			if (child.has_css_class("node-err")) {
+				child.remove_css_class("node-err");
+			}
+			if (child.has_css_class("node-warn")) {
+				child.remove_css_class("node-warn");
+			}
+			if (child.has_css_class("node-depr")) {
+				child.remove_css_class("node-depr");
+			}
+		}
+		this.error_widgets = null;
+	} */
+	
 	public void onresize () {
 	 
 		 
@@ -251,7 +335,8 @@ public class Xcls_WindowLeftTree : Object
 			this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 			new Xcls_view( _this );
 			this.el.child = _this.view.el;
-			new Xcls_LeftTreeMenu( _this );
+			// Removed LeftTreeMenu for stripped-down version
+			// new Xcls_LeftTreeMenu( _this );
 			new Xcls_drop( _this );
 			this.el.add_controller(  _this.drop.el );
 
@@ -920,7 +1005,8 @@ public class Xcls_WindowLeftTree : Object
 		}
 
 		// user defined functions
-		public void loadFile (JsRender.JsRender f) {
+		// Removed loadFile() for stripped-down version - using createDummyData() instead
+		/* public void loadFile (JsRender.JsRender f) {
 		    //console.dump(f);
 		    
 		    _this.drop.highlightWidget = null;
@@ -953,7 +1039,7 @@ public class Xcls_WindowLeftTree : Object
 		    return;
 		 
 		            
-		}
+		} */
 		public int nodeToRow (JsRender.Node node) 
 		{
 		 
@@ -974,11 +1060,11 @@ public class Xcls_WindowLeftTree : Object
 		}
 		public Gtk.TreeListModel updateModel (GLib.ListStore? m) {
 			this.el = new Gtk.TreeListModel(
-				m != null ? m : new GLib.ListStore(typeof(JsRender.Node)), //..... << that's our store..
+				m != null ? m : new GLib.ListStore(typeof(DummyNode)), // Using DummyNode for stripped-down version
 				false, // passthru
 				true, // autexpand
 				(item) => {
-					return ((JsRender.Node)item).childstore;
+					return ((DummyNode)item).childstore;
 				
 				}
 			);
