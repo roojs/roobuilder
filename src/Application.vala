@@ -669,11 +669,7 @@ public class BuilderApplication : Gtk.Application
 			GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_munge, cur_project.name);
 		}
 
-		try {
-			file.loadItems();
-		} catch(Error e) {
-			GLib.error("Load items failed: %s", e.message);
-		}
+		file.loadItems();
 
 		// Generate source code
 		var source_code = file.toSourceCode();
