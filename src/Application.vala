@@ -656,7 +656,7 @@ public class BuilderApplication : Gtk.Application
 				try {
 					this.mungeBjsReal(cur_project);
 				} catch (GLib.Error e) {
-					GLib.error("Failed to munge BJS file: %s", e.message);
+					GLib.error("%s", e.message);
 				}
 			});
 		loop.run();
