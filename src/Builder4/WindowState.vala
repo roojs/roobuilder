@@ -300,7 +300,13 @@ public class WindowState : Object
 		        GLib.debug("HIDE: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
 		        
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
-		    	this.win.tree.el.remove(this.left_tree.el);
+		    	// Only remove from win.tree.el if tree is actually there (not if it's still in leftpane)
+		    	if (this.left_tree.el.get_parent() == this.win.tree.el) {
+		    		this.win.tree.el.remove(this.left_tree.el);
+		    	} else if (this.left_tree.el.get_parent() == this.win.leftpane.el) {
+		    		// Tree is still in leftpane, remove it first
+		    		this.win.leftpane.el.remove(this.left_tree.el);
+		    	}
 		    	this.win.leftpane.el.append(this.left_tree.el);
 	    	}
 		    
