@@ -86,20 +86,19 @@ namespace JsRender {
 			 
 		}
 		
-		public   override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
-		{
-				
-				var vtime = GLib.File.new_for_path(this.path).query_info( 
-					FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
-				
-				if (this.loaded && vtime == this.vtime) {
-					return;
-				}
-			    GLib.FileUtils.get_contents(this.path, out this.contents);
-			    this.vtime = GLib.File.new_for_path(this.path).query_info( 
-					FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
-			    this.loaded = true;
-		}
+	public   override void  loadItems() throws GLib.Error // : function(cb, sync) == original was async.
+	{
+			var vtime = GLib.File.new_for_path(this.path).query_info( 
+				FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+			
+			if (this.loaded && vtime == this.vtime) {
+				return;
+			}
+		    GLib.FileUtils.get_contents(this.path, out this.contents);
+		    this.vtime = GLib.File.new_for_path(this.path).query_info( 
+				FileAttribute.TIME_MODIFIED, 0).get_modification_date_time().to_unix();
+		    this.loaded = true;
+	}
      
         
 		
