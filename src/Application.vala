@@ -12,9 +12,10 @@ public class BuilderApplication : Gtk.Application
 	//
 	const OptionEntry[] options = {
 
-
-
-		{ "project", 0, 0, OptionArg.STRING, ref opt_compile_project, "select a project", null },
+		// Project options
+		{ "project", 'p', 0, OptionArg.STRING, ref opt_compile_project, "select a project", null },
+		{ "compile-group", 'g', 0, OptionArg.STRING, ref opt_compile_group, "target binary or library for vala code", null },
+		{ "bjs-munge", 'w', 0, OptionArg.STRING, ref opt_bjs_munge, "Compile bjs file into vala or js and update the source file", null },
 		//	{ "target", 0, 0, OptionArg.STRING, ref opt_compile_target, "Target to build", null },
 		{ "skip-linking", 0, 0, OptionArg.NONE, ref opt_skip_linking, "Do not link the files and make a binary - used to do syntax checking", null },
 		{ "skip-file", 0, 0, OptionArg.STRING, ref opt_compile_skip ,"For test compiles do not add this (usually used in conjunction with add-file ", null },
@@ -37,12 +38,11 @@ public class BuilderApplication : Gtk.Application
 		//            { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },
 		//            { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
 		{ "test-language-server", 0, 0, OptionArg.STRING, ref opt_test_language_server, "run language server on this file", null },
-		{ "test-symbol-target", 0, 0, OptionArg.STRING, ref opt_test_symbol_target, "run symbol database test on this compile group (use 'none' with Roo)", null },
 		{ "test-symbol-db-dump-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_file, "symbol database dump file after loading (needs full path)", null },
 		{ "test-symbol-db-json-file", 0, 0, OptionArg.STRING, ref opt_test_symbol_json_file, "symbol database dump file to JSON after loading (needs full path)", null },
 		{ "test-symbol-fqn", 0, 0, OptionArg.STRING, ref opt_test_symbol_dump_fqn, "show droplists / children from a fqn using new Symbol code", null },
 		{ "test-gir-parser", 0, 0, OptionArg.NONE, ref opt_test_gir_parser, "Test Gir Parser (run with --debug)", null },
-		{ "test-meson", 0, 0, OptionArg.NONE, ref opt_test_meson, "Test wriging meson and resources files - needs project and test-symbol-target", null },
+		{ "test-meson", 0, 0, OptionArg.NONE, ref opt_test_meson, "Test wriging meson and resources files - needs project and compile-group", null },
 		// { "test-fqn", 0, 0, OptionArg.STRING, ref opt_test_fqn, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
 		{ "test-symbol-json", 0, 0, OptionArg.STRING, ref opt_test_symbol_json, "dump Symbols to JSON (for testing Doc UI)", null },
 		{ "test-symbol-json-tree", 0, 0, OptionArg.NONE, ref opt_test_symbol_json_tree, "dump Symbol Tree to JSON (for testing Doc UI)", null },
@@ -56,13 +56,14 @@ public class BuilderApplication : Gtk.Application
 	public static string opt_compile_add;
 	public static string opt_compile_output;
 	public static string opt_test_bjs_compile;
+	public static string opt_bjs_munge;
 	public static string opt_test_bjs_upgrade;
 	public static string opt_test_bjs_downgrade;
 	public static string opt_test_bjs_compile_target;
 
 	//	public static string opt_test_fqn;
 	public static string opt_test_language_server;
-	public static string opt_test_symbol_target;
+	public static string opt_compile_group;
 	public static string opt_test_symbol_dump_file;
 	public static string opt_test_symbol_json_file;
 	public static string opt_test_symbol_dump_fqn;
@@ -163,6 +164,11 @@ public class BuilderApplication : Gtk.Application
 		//this.testFqn(cur_project); // --drop-list
 		this.testLanguageServer(cur_project); // --language-server
 		this.testCompileBjs(cur_project);
+		try {
+			this.mungeBjs(cur_project);
+		} catch (GLib.Error e) {
+			GLib.error("%s", e.message);
+		}
 		this.testBjsUpgrade(cur_project);
 		this.testBjsDowngrade(cur_project);
 		this.testDumpProps(cur_project); // test dump props
@@ -481,14 +487,14 @@ public class BuilderApplication : Gtk.Application
 			GLib.error("missing project, use --project to select which project");
 		}
 		if (cur_project.xtype == "Gtk" ) {
-			if (opt_test_symbol_target == null) {
-				GLib.error("you must specify a compile target using --test-symbol-target when testing Gtk bjs generation");
+			if (opt_compile_group == null) {
+				GLib.error("you must specify a compile group using --compile-group when testing Gtk bjs generation");
 			}
 			//
 			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 			var loop = new MainLoop();
 
-			sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, 0, (o,r )  => {
+			sb.updateBackground.begin(BuilderApplication.opt_compile_group, 0, (o,r )  => {
 					sb.updateBackground.end(r);
 					this.testCompileBjsReal(cur_project);
 				});
@@ -625,6 +631,67 @@ public class BuilderApplication : Gtk.Application
 
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}
+
+	void mungeBjs(Project.Project? cur_project) throws GLib.Error
+	{
+		if (BuilderApplication.opt_bjs_munge == null) {
+			return;
+		}
+		GLib.debug("Run --bjs-munge");
+		if (cur_project == null) {
+			GLib.error("missing project, use --project to select which project");
+		}
+		if (cur_project.xtype != "Gtk") {
+			this.mungeBjsReal(cur_project);
+			return;
+		}
+		if (opt_compile_group == null) {
+			GLib.error("you must specify a compile group using --compile-group when munging Gtk bjs files");
+		}
+		var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
+		var loop = new MainLoop();
+
+		sb.updateBackground.begin(BuilderApplication.opt_compile_group, 0, (o,r )  => {
+				sb.updateBackground.end(r);
+				try {
+					this.mungeBjsReal(cur_project);
+				} catch (GLib.Error e) {
+					stderr.printf("Error: %s\n", e.message);
+					GLib.Process.exit(Posix.EXIT_FAILURE);
+				}
+			});
+		loop.run();
+
+	}
+
+	void mungeBjsReal(Project.Project? cur_project) throws GLib.Error
+	{
+		GLib.debug("Run --bjs-munge (real)");
+
+		// Validate that the argument is a BJS file
+		if (!BuilderApplication.opt_bjs_munge.has_suffix(".bjs")) {
+			GLib.error("--bjs-munge argument must be a .bjs file, got: %s", BuilderApplication.opt_bjs_munge);
+		}
+
+		var file = cur_project.getByRelPath(BuilderApplication.opt_bjs_munge);
+		if (file == null) {
+			GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_munge, cur_project.name);
+		}
+
+		file.loadItems();
+
+		// Generate source code
+		var source_code = file.toSourceCode();
+		
+		// Write to target file (vala or js)
+		var target_file = file.targetName();
+		GLib.message("Writing compiled output to: %s", target_file);
+		file.writeFile(target_file, source_code);
+
+		 
+		GLib.Process.exit(Posix.EXIT_SUCCESS);
+	}
+
 	void testBjsUpgrade(Project.Project? cur_project)
 	{
 		if (BuilderApplication.opt_test_bjs_upgrade == null) {
@@ -776,7 +843,7 @@ public class BuilderApplication : Gtk.Application
 			}
 			return;
 		}
-		if (BuilderApplication.opt_test_symbol_target == null ) {
+		if (BuilderApplication.opt_compile_group == null ) {
 			return;
 		}
 
@@ -807,7 +874,7 @@ public class BuilderApplication : Gtk.Application
 
 		var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 
-		sb.updateBackground.begin(BuilderApplication.opt_test_symbol_target, 0,  (o,r )  => {
+		sb.updateBackground.begin(BuilderApplication.opt_compile_group, 0,  (o,r )  => {
 				sb.updateBackground.end(r);
 
 				if (BuilderApplication.opt_test_symbol_dump_file != null) {
@@ -849,7 +916,7 @@ public class BuilderApplication : Gtk.Application
 
 	void dumpSymbol(Project.Project? cur_project)
 	{
-		var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
+		var sl = cur_project.getSymbolLoader(BuilderApplication.opt_compile_group);
 		var pal  = cur_project.palete;
 		pal.load();
 		var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
@@ -877,7 +944,7 @@ public class BuilderApplication : Gtk.Application
 	}
 	void dumpSymbolJSON(Project.Project? cur_project)
 	{
-		var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
+		var sl = cur_project.getSymbolLoader(BuilderApplication.opt_compile_group);
 		var pal  = cur_project.palete;
 		var fqn = BuilderApplication.opt_test_symbol_json;
 		// write to /home/xxx/.Buider/docs/{name}.json ??
@@ -936,7 +1003,7 @@ public class BuilderApplication : Gtk.Application
 
 	void dumpSymbolJSONTree(Project.Project? cur_project)
 	{
-		var sl = cur_project.getSymbolLoader(BuilderApplication.opt_test_symbol_target);
+		var sl = cur_project.getSymbolLoader(BuilderApplication.opt_compile_group);
 
 		// write to /home/xxx/.Buider/docs/{name}.json ??
 		var ar = sl.classCacheToJSON();
