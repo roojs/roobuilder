@@ -675,14 +675,13 @@ public class WindowState : Object
 	{
 		var existing = WindowManager.getFromFile(file);
 		
-		if (existing != null) {
+		if (existing != null && (this.file == null || this.file.path != file.path)) {
 			existing.el.present();
 			existing.windowstate.gotoLine(line);
 			return;
 		}
 		
-		if (new_window) {
-	
+		if (new_window && existing == null) {
 			this.popover_files.el.hide();
 			var w = WindowManager.addFromFile(file, line);
 			w.btn_header.el.show();
@@ -704,6 +703,13 @@ public class WindowState : Object
 		
 		this.file = file;
 		
+		// Check if file has changed on disk and prepare for reload if needed
+		if (file.vtime != 0 && file.vtime_ondisk > file.vtime) {
+			file.vtime = 0;
+			file.tree = null;
+			file.loaded = false;
+		}
+		
 		// Connect to action manager signals for undo/redo button sensitivity
 		this.file.action_manager.onUndoUpdated.connect(this.win.updateUndo);
 		this.file.action_manager.onRedoUpdated.connect(this.win.updateRedo);
@@ -724,7 +730,9 @@ public class WindowState : Object
 			this.win.btn_tree.el.hide();
 			try {
 				file.loadItems();
-			} catch (Error e) {}
+			} catch (Error e) {
+				GLib.debug("fileViewOpen: loadItems() error for PlainFile %s: %s", file.path, e.message);
+			}
 			this.code_editor_tab.show(file, null, null);
 			 
 		} else {

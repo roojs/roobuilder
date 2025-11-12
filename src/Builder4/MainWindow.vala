@@ -118,6 +118,19 @@ public class Xcls_MainWindow : Object
 			return true;
 			
 		});
+		this.el.notify["is-active"].connect( ( ) => {
+		    // Check if window is now active (has focus)
+		    if (!this.el.is_active || this.windowstate == null || this.windowstate.file == null) {
+		      return;
+		    }
+		    // Check if file has changed on disk since last save
+		    var f = this.windowstate.file;
+		    if (f.vtime == 0 || f.vtime_ondisk <= f.vtime) {
+		      return;
+		    }
+		    // File has changed, reload it (fileViewOpen will handle reload preparation)
+		    this.windowstate.fileViewOpen(f, false, 0);
+		  });
 		this.el.show.connect( ( ) => {
 		    // hide the file editing..
 		   
