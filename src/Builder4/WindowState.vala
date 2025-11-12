@@ -137,11 +137,11 @@ public class WindowState : Object
 		this.left_tree.node_selected.connect(this.leftTreeNodeSelected);
 		this.left_tree.changed.connect(this.leftTreeChanged);
 		
-		// Auto-load test file for Step 1: File Loading
-		GLib.Idle.add(() => {
-			this.autoLoadTestFile();
-			return false;
-		});
+		// Auto-load test file for Step 1: File Loading - DISABLED for Step 8.1: File Dialog
+		// GLib.Idle.add(() => {
+		// 	this.autoLoadTestFile();
+		// 	return false;
+		// });
 		 
 	}
 	
