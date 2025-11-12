@@ -262,7 +262,7 @@
                         "prop-val" : [
                           "( drag )  => {",
                           "\tGLib.debug(\"SOURCE: drag-begin\");",
-                          "\t ",
+                          "\t",
                           "    // find what is selected in our tree...",
                           "   var data = _this.selmodel.getSelectedNode();",
                           "\tif (data == null) {",

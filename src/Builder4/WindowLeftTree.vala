@@ -1840,7 +1840,8 @@ public class Xcls_WindowLeftTree : Object
 						return false;
 			
 					}
-					if (node.oid != -1 && (node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode))) {
+					if (_this.view.dragNode != null && node.oid != -1 && 
+						(node.oid == _this.view.dragNode.oid || node.has_parent(_this.view.dragNode))) {
 			 			GLib.debug("shift drop not self not allowed");
 						drop.finish(0);
 						return false;	
