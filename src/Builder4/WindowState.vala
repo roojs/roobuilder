@@ -133,7 +133,26 @@ public class WindowState : Object
 		this.left_tree.el.show();
 		   
 		// Restored signal connections for Step 2: Post-Drop Behavior
-		this.left_tree.before_node_change.connect(this.leftTreeBeforeChange);
+		this.left_tree.before_node_change.connect(() => {
+			// if the node change is caused by the editor (code preview)
+			if (this.left_tree.view.lastEventSource == "editor") {
+				return true;
+			}
+			return this.leftTreeBeforeChange();
+		});
+		// node selected -- only by clicking?
+		// Restored for Step 8: Full Feature Set - scroll to node in source view
+		this.left_tree.node_selected.connect((sel) => {
+			if (!this.win.btn_tree.el.visible) {
+				return;
+			}
+			if (this.file != null && this.file.xtype == "Roo") { 
+				this.window_rooview.sourceview.nodeSelected(sel,true); // foce scroll.
+			} else if (this.file != null) {
+				this.window_gladeview.sourceview.nodeSelected(sel, true);
+			}
+		});
+		
 		this.left_tree.node_selected.connect(this.leftTreeNodeSelected);
 		this.left_tree.changed.connect(() => {
 			if (!this.win.btn_tree.el.visible) {
@@ -152,11 +171,11 @@ public class WindowState : Object
 			}
 		});
 		
-		// Auto-load test file for Step 1: File Loading
-		GLib.Idle.add(() => {
-			this.autoLoadTestFile();
-			return false;
-		});
+		// Auto-load test file for Step 1: File Loading - DISABLED when file dialog is restored
+		// GLib.Idle.add(() => {
+		// 	this.autoLoadTestFile();
+		// 	return false;
+		// });
 		 
 	}
 	
