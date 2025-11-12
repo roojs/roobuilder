@@ -237,7 +237,7 @@ public class WindowState : Object
 	int tree_width = 300;
 	int props_width = 300;
 	
-	private void hidePropsPanel()
+	public void hidePropsPanel()
 	{
 		if (!this.win.props.el.visible) {
 			return;
@@ -265,7 +265,7 @@ public class WindowState : Object
 		outerpane.set_position(this.tree_width);
 	}
 	
-	private void showPropsPanel()
+	public void showPropsPanel()
 	{
 		if (this.win.props.el.visible) {
 			return;
@@ -865,9 +865,6 @@ public class WindowState : Object
 		}
 	 
 		this.add_props.hide();
-		
-		// Hide props panel when showing add object popover
-		this.hidePropsPanel();
 		 
 		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
 		
