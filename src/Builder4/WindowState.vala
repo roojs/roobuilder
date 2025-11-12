@@ -729,14 +729,14 @@ public class WindowState : Object
 				
 				this.code_editor_tab.reset();
 				 
-				// Simplified for stripped-down version - getActiveFile() removed
-				// if (this.left_tree.getActiveFile() != null) {
-				// 	if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-				// 		this.window_rooview.createThumb();
-				// 	} else {
-				// 		this.window_gladeview.createThumb();
-				// 	}
-				// }
+				// Restored for Step 8.6: switchState() Enhancements - create thumbnails
+				if (this.left_tree.getActiveFile() != null) {
+					if (this.left_tree.getActiveFile().xtype == "Roo" ) {
+						this.window_rooview.createThumb();
+					} else {
+						this.window_gladeview.createThumb();
+					}
+				}
 				// normally we are going from preview to another state.
 				// and different windows hide the preview in differnt ways..
 				break;
