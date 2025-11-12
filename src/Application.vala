@@ -164,7 +164,11 @@ public class BuilderApplication : Gtk.Application
 		//this.testFqn(cur_project); // --drop-list
 		this.testLanguageServer(cur_project); // --language-server
 		this.testCompileBjs(cur_project);
-		this.mungeBjs(cur_project);
+		try {
+			this.mungeBjs(cur_project);
+		} catch (GLib.Error e) {
+			GLib.error("%s", e.message);
+		}
 		this.testBjsUpgrade(cur_project);
 		this.testBjsDowngrade(cur_project);
 		this.testDumpProps(cur_project); // test dump props
