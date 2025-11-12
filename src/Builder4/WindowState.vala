@@ -129,8 +129,12 @@ public class WindowState : Object
 		// Keep editpane always in leftpane, tree always in win.tree.el
 		// Use hide/show to control visibility instead of remove/append
 		this.win.tree.el.append(this.left_tree.el);
+		// Ensure leftpane and editpane are visible
+		this.win.leftpane.el.show();
 		this.win.editpane.el.show(); // editpane always visible
 		this.win.props.el.hide(); // props hidden initially
+		// Set initial editpane position to show only tree (hide props area)
+		this.win.editpane.el.set_position(this.tree_width);
 	    
 		this.left_tree.el.show();
 		   
