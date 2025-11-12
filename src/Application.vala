@@ -681,11 +681,7 @@ public class BuilderApplication : Gtk.Application
 		// Write to target file (vala or js)
 		var target_file = file.targetName();
 		GLib.message("Writing compiled output to: %s", target_file);
-		try {
-			file.writeFile(target_file, source_code);
-		} catch (GLib.Error e) {
-			GLib.error("Failed to write target file %s: %s", target_file, e.message);
-		}
+		file.writeFile(target_file, source_code);
 
 		 
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
