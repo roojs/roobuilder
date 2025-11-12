@@ -133,7 +133,14 @@ public class WindowState : Object
 		this.left_tree.el.show();
 		   
 		// Restored signal connections for Step 2: Post-Drop Behavior
-		this.left_tree.before_node_change.connect(this.leftTreeBeforeChange);
+		// Restored for Step 8.3: Editor Source Check - check if change is from editor
+		this.left_tree.before_node_change.connect(() => {
+			// if the node change is caused by the editor (code preview)
+			if (this.left_tree.view.lastEventSource == "editor") {
+				return true;
+			}
+			return this.leftTreeBeforeChange();
+		});
 		// Restored for Step 8.2: Node Selection Scrolling - scroll to node in source view
 		this.left_tree.node_selected.connect((sel) => {
 			if (!this.win.btn_tree.el.visible) {
