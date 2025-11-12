@@ -153,7 +153,22 @@ public class WindowState : Object
 			}
 		});
 		this.left_tree.node_selected.connect(this.leftTreeNodeSelected);
-		this.left_tree.changed.connect(this.leftTreeChanged);
+		// Restored for Step 8.7: Changed Signal Enhancements - async source regeneration
+		this.left_tree.changed.connect(() => {
+			if (!this.win.btn_tree.el.visible) {
+				return;
+			}
+		
+			GLib.debug("LEFT TREE: Changed fired\n");
+			this.file.save(); // Synchronous - fast file I/O
+			
+			// Async source regeneration
+			if (this.left_tree.getActiveFile().xtype == "Roo") {
+				this.window_rooview.requestRedraw(); //Async.begin();
+			} else {
+				this.window_gladeview.loadFile(this.left_tree.getActiveFile());
+			}
+		});
 		
 		// Auto-load test file for Step 1: File Loading - DISABLED for Step 8.1: File Dialog
 		// GLib.Idle.add(() => {
@@ -247,15 +262,7 @@ public class WindowState : Object
 	int tree_width = 300;
 	int props_width = 300;
 	
-	public void leftTreeChanged()
-	{
-		// Restored for Step 2: Post-Drop Behavior
-		if (this.file == null) {
-			return;
-		}
-		GLib.debug("LEFT TREE: Changed fired - saving file");
-		this.file.save();
-	}
+	// Removed leftTreeChanged() - functionality moved inline to changed.connect() for Step 8.7
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
