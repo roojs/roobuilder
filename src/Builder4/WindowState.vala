@@ -125,12 +125,20 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		this.win.leftpane.el.remove(this.win.editpane.el);
-    	//this.win.tree.el.remove(this.left_tree.el);
-		this.win.leftpane.el.append(this.left_tree.el);
+		// Refactored: Use stable widget hierarchy with hide/show pattern
+		// Keep editpane always in leftpane, tree always in win.tree.el
+		// Use hide/show to control visibility instead of remove/append
+		this.win.tree.el.append(this.left_tree.el);
+		// Ensure leftpane and editpane are visible
+		this.win.leftpane.el.show();
+		this.win.editpane.el.show(); // editpane always visible
+		this.win.tree.el.show(); // ensure tree container is visible
+		this.win.props.el.hide(); // props hidden initially
+		// Set initial editpane position to show only tree (hide props area)
+		// Use sensible default width (300px) for tree panel
+		this.tree_width = 300; // sensible default width
+		this.win.editpane.el.set_position(this.tree_width);
 	    
-	
-		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show();
 		   
 		this.left_tree.before_node_change.connect(() => {
