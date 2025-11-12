@@ -125,11 +125,12 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		// Restored for Step 8.8: Pane Visibility Management - initial tree placement matches master
-		// Initially, tree is added directly to leftpane (not editpane)
-		// When a node is selected, tree moves to win.tree.el and editpane is shown
-		this.win.leftpane.el.remove(this.win.editpane.el);
-		this.win.leftpane.el.append(this.left_tree.el);
+		// Refactored: Use stable widget hierarchy with hide/show pattern
+		// Keep editpane always in leftpane, tree always in win.tree.el
+		// Use hide/show to control visibility instead of remove/append
+		this.win.tree.el.append(this.left_tree.el);
+		this.win.editpane.el.show(); // editpane always visible
+		this.win.props.el.hide(); // props hidden initially
 	    
 		this.left_tree.el.show();
 		   
@@ -267,8 +268,9 @@ public class WindowState : Object
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
-		// Restored for Step 6: Properties Panel - load properties for selected node
-		// Restored for Step 8.8: Pane Visibility Management
+		// Refactored: Use stable widget hierarchy with hide/show pattern
+		// Keep editpane always in leftpane, tree always in win.tree.el
+		// Use hide/show to control visibility instead of remove/append
 		// do we really want to flip paletes if differnt nodes are selected
 		// showing palete should be deliberate thing..
 		 
@@ -281,7 +283,7 @@ public class WindowState : Object
 		
 		this.left_props.load(this.left_tree.getActiveFile(), sel);
 		
-		// Restored for Step 8.8: Pane Visibility Management
+		// Refactored: Use hide/show pattern instead of remove/append
 		var outerpane = this.win.mainpane.el;
 		var innerpane = this.win.editpane.el;
   		
@@ -291,47 +293,35 @@ public class WindowState : Object
 		}
   				 
 		if (sel == null) {
-		    // remove win.editpane from leftpane
-		    // remove lefttree from from win.tree 
-		    // add win.tree to leftpane
+		    // No node selected - hide props panel, adjust editpane position
 		    if (this.win.editpane.el.parent != null) {
 		    	this.props_width =  outerpane.get_position() - innerpane.get_position();
 		    	this.tree_width = innerpane.get_position();
 		        GLib.debug("HIDE: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
-		        
-		    	this.win.leftpane.el.remove(this.win.editpane.el);
-		    	// Only remove from win.tree.el if tree is actually there (not if it's still in leftpane)
-		    	if (this.left_tree.el.get_parent() == this.win.tree.el) {
-		    		this.win.tree.el.remove(this.left_tree.el);
-		    	} else if (this.left_tree.el.get_parent() == this.win.leftpane.el) {
-		    		// Tree is still in leftpane, remove it first
-		    		this.win.leftpane.el.remove(this.left_tree.el);
-		    	}
-		    	this.win.leftpane.el.append(this.left_tree.el);
 	    	}
 		    
-			//GLib.debug("Hide Properties");
-			outerpane.show(); // make sure it's visiable..
+			// Hide properties panel
+			outerpane.show(); // make sure it's visible
+			this.win.props.el.hide(); // hide props panel
 			this.left_props.el.hide();
 			GLib.debug("set position: %d", this.tree_width);
+			// Adjust editpane position to hide props area
+			innerpane.set_position(this.tree_width);
 			outerpane.set_position(this.tree_width);
 			return;
 		}
 		
-		// at this point we are showing the outer only,
+		// Node selected - show props panel, adjust editpane position
 		this.tree_width = outerpane.get_position();
 		
 		GLib.debug("SHOW: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
 		      
-		// remove this.lefttree from this.win.leftpane
-		this.win.leftpane.el.remove(this.left_tree.el);
-		this.win.tree.el.append(this.left_tree.el);
-		this.win.leftpane.el.append(this.win.editpane.el);
-		
-		// make sure outerpane is visible
+		// Show properties panel
 		outerpane.show();
+		this.win.props.el.show(); // show props panel
 		this.left_props.el.show();
 		GLib.debug("set position: %d", this.tree_width + this.props_width);
+		// Adjust editpane position to show both tree and props
 		outerpane.set_position(this.tree_width + this.props_width);
 		innerpane.set_position(this.tree_width);
 	}
