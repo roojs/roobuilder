@@ -669,10 +669,6 @@ public class BuilderApplication : Gtk.Application
 			GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_munge, cur_project.name);
 		}
 
-		if (file is JsRender.PlainFile) {
-			GLib.error("--bjs-munge cannot be used on plain files");
-		}
-
 		try {
 			file.loadItems();
 		} catch(Error e) {
