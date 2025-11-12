@@ -648,11 +648,26 @@ public class Xcls_WindowLeftTree : Object
 			
 				 
 				 
-				// Column add functionality removed for stripped-down version
-				// if (_this.view.getColAt(x,y) > 0 ) {
-				// 	GLib.debug("add colum clicked.");
-				// 	return;
-				// }
+				// Restored for Step 9: PopoverAddObject Integration - column add functionality
+				if (_this.view.getColAt(x,y) > 0 ) {
+					GLib.debug("add colum clicked.");
+				    var fqn = node.fqn();
+			
+				    var pal = ws.project.palete;
+				 	var sl = ws.file.getSymbolLoader();
+					var cn = pal.getChildListFromSymbols(sl, fqn, false);
+			
+			  		if (cn.size < 1) {
+			  			return ;
+					}
+			
+					ws.leftTreeBeforeChange();
+					//_this.view.el.get_selection().select_path(res);
+					GLib.debug("Button Pressed - start show window");
+					ws.showAddObject(_this.view.el, node);
+					GLib.debug("Button Pressed - finsihed show window");
+				 	return ;
+				}
 				
 				 
 				 
