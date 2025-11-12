@@ -15,6 +15,7 @@ public class BuilderApplication : Gtk.Application
 		// Project options
 		{ "project", 'p', 0, OptionArg.STRING, ref opt_compile_project, "select a project", null },
 		{ "compile-group", 'g', 0, OptionArg.STRING, ref opt_compile_group, "target binary or library for vala code", null },
+		{ "bjs-munge", 'w', 0, OptionArg.STRING, ref opt_bjs_munge, "Compile bjs file into vala or js and update the source file", null },
 		//	{ "target", 0, 0, OptionArg.STRING, ref opt_compile_target, "Target to build", null },
 		{ "skip-linking", 0, 0, OptionArg.NONE, ref opt_skip_linking, "Do not link the files and make a binary - used to do syntax checking", null },
 		{ "skip-file", 0, 0, OptionArg.STRING, ref opt_compile_skip ,"For test compiles do not add this (usually used in conjunction with add-file ", null },
@@ -31,7 +32,6 @@ public class BuilderApplication : Gtk.Application
 		{ "list-projects", 0, 0,  OptionArg.NONE, ref opt_list_projects, "List Projects", null },
 		{ "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
 		{ "test-bjs-compile", 0, 0, OptionArg.STRING, ref opt_test_bjs_compile, "convert bjs file (use all to convert all of them and compare output)", null },
-		{ "bjs-munge", 'w', 0, OptionArg.STRING, ref opt_bjs_munge, "Compile bjs file into vala or js and update the source file", null },
 		{ "test-bjs-upgrade", 0, 0, OptionArg.STRING, ref opt_test_bjs_upgrade, "read bjs file and print serialized version", null },
 		{ "test-bjs-downgrade", 0, 0, OptionArg.STRING, ref opt_test_bjs_downgrade, "write bjs file in old format (version 2)", null },
 		{ "test-bjs-glade", 0, 0, OptionArg.NONE, ref opt_test_bjs_compile_glade, "output glade", null },
