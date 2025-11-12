@@ -125,12 +125,20 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		this.win.leftpane.el.remove(this.win.editpane.el);
-    	//this.win.tree.el.remove(this.left_tree.el);
-		this.win.leftpane.el.append(this.left_tree.el);
+		// Refactored: Use stable widget hierarchy with hide/show pattern
+		// Keep editpane always in leftpane, tree always in win.tree.el
+		// Use hide/show to control visibility instead of remove/append
+		this.win.tree.el.append(this.left_tree.el);
+		// Ensure leftpane and editpane are visible
+		this.win.leftpane.el.show();
+		this.win.editpane.el.show(); // editpane always visible
+		this.win.tree.el.show(); // ensure tree container is visible
+		this.win.props.el.hide(); // props hidden initially
+		// Set initial editpane position to show only tree (hide props area)
+		// Use sensible default width (300px) for tree panel
+		this.tree_width = 300; // sensible default width
+		this.win.editpane.el.set_position(this.tree_width);
 	    
-	
-		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show();
 		   
 		this.left_tree.before_node_change.connect(() => {
@@ -231,11 +239,12 @@ public class WindowState : Object
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
-		
+		// Refactored: Use stable widget hierarchy with hide/show pattern
+		// Keep editpane always in leftpane, tree always in win.tree.el
+		// Use hide/show to control visibility instead of remove/append
 		// do we really want to flip paletes if differnt nodes are selected
 		// showing palete should be deliberate thing..
 		 
-	 
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
 
 		this.add_props.hide(); // always hide add node/add listener if we change node.
@@ -243,6 +252,7 @@ public class WindowState : Object
 		
 		this.left_props.load(this.left_tree.getActiveFile(), sel);
 		
+		// Refactored: Use hide/show pattern instead of remove/append
 		var outerpane = this.win.mainpane.el;
 		var innerpane = this.win.editpane.el;
   		
@@ -252,25 +262,25 @@ public class WindowState : Object
 		}
   				 
 		if (sel == null) {
-		    // remove win.editpane from leftpane
-		    // remove lefttree from from win.tree 
-		    // add win.tree to leftpane
+		    // No node selected - hide props panel, adjust editpane position
 		    if (this.win.editpane.el.parent != null) {
 		    	this.props_width =  outerpane.get_position() - innerpane.get_position();
 		    	this.tree_width = innerpane.get_position();
 		        GLib.debug("HIDE: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
 		        
-		    	this.win.leftpane.el.remove(this.win.editpane.el);
-		    	this.win.tree.el.remove(this.left_tree.el);
-		    	this.win.leftpane.el.append(this.left_tree.el);
+		    	// Refactored: Use hide/show instead of remove/append
+		    	// No widget reparenting needed - widgets stay in stable hierarchy
 	    	}
 		    
 		
-			//GLib.debug("Hide Properties");
-			outerpane.show(); // make sure it's visiable..
+			// Hide properties panel
+			outerpane.show(); // make sure it's visible
+			this.win.props.el.hide(); // hide props panel
 			this.left_props.el.hide();
 			GLib.debug("set position: %d", this.tree_width);
- 			outerpane.set_position(this.tree_width);
+			// Adjust editpane position to hide props area
+			innerpane.set_position(this.tree_width);
+			outerpane.set_position(this.tree_width);
 			//outerpane.set_position(int.max(250,innerpane.get_position()));
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
@@ -285,31 +295,14 @@ public class WindowState : Object
 		
 		GLib.debug("SHOW: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
 		      
-		// remove this.ldeftree from this.win.leftpane
-		this.win.leftpane.el.remove(this.left_tree.el);
-		this.win.tree.el.append(this.left_tree.el);
-		this.win.leftpane.el.append(this.win.editpane.el);
-		
-		
-		
-		
-		GLib.debug("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
-		// at start (hidden) - outer  = 400 inner = 399
-		// expanded out -> outer = 686, inner = 399 
-		//this.win.props.el.pack_start(this.left_props.el,true, true,0);
-		this.left_props.el.show();		//if (!this.left_props.el.visible) {
-		 
-  			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
-  			outerpane.set_position(this.tree_width + this.props_width);
-  			innerpane.set_position(this.tree_width);
-  			/* var cw = outerpane.el.get_position();
-  			var rw = int.min(this.left_props.el.width_request, 150);
-  			print("outerpos : %d, innerpos : %d", cw + rw, cw);
-  			
-  			innerpane.set_position(cw); */
-  			this.left_props.el.show();
-		
-		//}
+		// Show properties panel
+		outerpane.show();
+		this.win.props.el.show(); // show props panel
+		this.left_props.el.show();
+		GLib.debug("set position: %d", this.tree_width + this.props_width);
+		// Adjust editpane position to show both tree and props
+		outerpane.set_position(this.tree_width + this.props_width);
+		innerpane.set_position(this.tree_width);
 		
 		 
 		
