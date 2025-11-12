@@ -637,21 +637,21 @@ public class BuilderApplication : Gtk.Application
 		if (cur_project == null) {
 			GLib.error("missing project, use --project to select which project");
 		}
-		if (cur_project.xtype == "Gtk" && opt_compile_group == null) {
-			GLib.error("you must specify a compile group using --compile-group when munging Gtk bjs files");
-		}
-		if (cur_project.xtype == "Gtk") {
-			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
-			var loop = new MainLoop();
-
-			sb.updateBackground.begin(BuilderApplication.opt_compile_group, 0, (o,r )  => {
-					sb.updateBackground.end(r);
-					this.mungeBjsReal(cur_project);
-				});
-			loop.run();
+		if (cur_project.xtype != "Gtk") {
+			this.mungeBjsReal(cur_project);
 			return;
 		}
-		this.mungeBjsReal(cur_project);
+		if (opt_compile_group == null) {
+			GLib.error("you must specify a compile group using --compile-group when munging Gtk bjs files");
+		}
+		var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
+		var loop = new MainLoop();
+
+		sb.updateBackground.begin(BuilderApplication.opt_compile_group, 0, (o,r )  => {
+				sb.updateBackground.end(r);
+				this.mungeBjsReal(cur_project);
+			});
+		loop.run();
 
 	}
 
