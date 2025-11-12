@@ -637,11 +637,10 @@ public class BuilderApplication : Gtk.Application
 		if (cur_project == null) {
 			GLib.error("missing project, use --project to select which project");
 		}
-		if (cur_project.xtype == "Gtk" ) {
-			if (opt_compile_group == null) {
-				GLib.error("you must specify a compile group using --compile-group when munging Gtk bjs files");
-			}
-			//
+		if (cur_project.xtype == "Gtk" && opt_compile_group == null) {
+			GLib.error("you must specify a compile group using --compile-group when munging Gtk bjs files");
+		}
+		if (cur_project.xtype == "Gtk") {
 			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
 			var loop = new MainLoop();
 
@@ -692,10 +691,7 @@ public class BuilderApplication : Gtk.Application
 			GLib.error("Failed to write target file %s: %s", target_file, e.message);
 		}
 
-		// Save the BJS file itself (using standard jsrender methods)
-		file.saveBJS();
-		GLib.message("Updated BJS file: %s", file.path);
-
+		 
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}
 
