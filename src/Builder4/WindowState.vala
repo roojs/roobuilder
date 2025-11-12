@@ -134,6 +134,17 @@ public class WindowState : Object
 		   
 		// Restored signal connections for Step 2: Post-Drop Behavior
 		this.left_tree.before_node_change.connect(this.leftTreeBeforeChange);
+		// Restored for Step 8.2: Node Selection Scrolling - scroll to node in source view
+		this.left_tree.node_selected.connect((sel) => {
+			if (!this.win.btn_tree.el.visible) {
+				return;
+			}
+			if (this.file != null && this.file.xtype == "Roo") { 
+				this.window_rooview.sourceview.nodeSelected(sel,true); // foce scroll.
+			} else if (this.file != null) {
+				this.window_gladeview.sourceview.nodeSelected(sel, true);
+			}
+		});
 		this.left_tree.node_selected.connect(this.leftTreeNodeSelected);
 		this.left_tree.changed.connect(this.leftTreeChanged);
 		
