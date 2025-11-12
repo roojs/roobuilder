@@ -655,7 +655,7 @@ public class BuilderApplication : Gtk.Application
 
 	}
 
-	void mungeBjsReal(Project.Project? cur_project)
+	void mungeBjsReal(Project.Project? cur_project) throws GLib.Error
 	{
 		GLib.debug("Run --bjs-munge (real)");
 
