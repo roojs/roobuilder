@@ -94,6 +94,30 @@ namespace JsRender {
 		}
 		public int64 vtime = 0; // the version modifiection time
 
+		/**
+		 * Get the current modification time of the file on disk
+		 * Returns 0 if file doesn't exist or error occurs
+		 */
+		public int64 vtime_ondisk {
+			get {
+				if (this.path == null || this.path == "") {
+					return 0;
+				}
+				try {
+					if (!GLib.FileUtils.test(this.path, GLib.FileTest.EXISTS)) {
+						return 0;
+					}
+					return GLib.File.new_for_path(this.path).query_info(
+						FileAttribute.TIME_MODIFIED, 
+						GLib.FileQueryInfoFlags.NONE, 
+						null
+					).get_modification_date_time().to_unix();
+				} catch (GLib.Error e) {
+					GLib.debug("vtime_ondisk error for %s: %s", this.path, e.message);
+					return 0;
+				}
+			}
+		}
 
 		public string permname { get; set; default = ""; }
 		public string language;
@@ -145,7 +169,7 @@ namespace JsRender {
 			}
 			// use interfaces if we can get this to suppor tmore...
 			var pr = (Project.Gtk)this.project;
-			if (pr != null) {
+			if (pr != null && pr.xtype == "Gtk") {
 				GLib.debug("running updateTreeFromFile for %s", this.path);
 				pr.symbol_builder.updateTreeFromFile(this);
 			} 
@@ -647,8 +671,6 @@ namespace JsRender {
 			data_out.put_string(contents, null);
 			data_out.close(null);
 		}
-
-
 
 		public  Node? lineToNode(int line)
 		{

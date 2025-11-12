@@ -118,6 +118,22 @@ public class Xcls_MainWindow : Object
 			return true;
 			
 		});
+		this.el.notify["is-active"].connect( ( ) => {
+		    GLib.debug("Window focus: notify is-active called - is_active=%s", this.el.is_active ? "true" : "false");
+		    // Check if window is now active (has focus)
+		    if (!this.el.is_active || this.windowstate == null || this.windowstate.file == null) {
+		      return;
+		    }
+		    // Check if file has changed on disk since last save
+		    var f = this.windowstate.file;
+		    GLib.debug("Window focus: checking file %s - vtime=%lld, vtime_ondisk=%lld", f.path, f.vtime, f.vtime_ondisk);
+		    if (f.vtime == 0 || f.vtime_ondisk <= f.vtime) {
+		      return;
+		    }
+		    GLib.debug("Window focus: file %s has changed on disk (ondisk=%lld > saved=%lld), reloading", f.path, f.vtime_ondisk, f.vtime);
+		    // File has changed, reload it (fileViewOpen will handle reload preparation)
+		    this.windowstate.fileViewOpen(f, false, 0);
+		  });
 		this.el.show.connect( ( ) => {
 		    // hide the file editing..
 		   
