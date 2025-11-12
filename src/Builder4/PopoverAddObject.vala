@@ -477,7 +477,7 @@ public class Xcls_PopoverAddObject : Object
 			});
 			this.el.drag_begin.connect( ( drag )  => {
 				GLib.debug("SOURCE: drag-begin");
-				 
+				
 			    // find what is selected in our tree...
 			   var data = _this.selmodel.getSelectedNode();
 				if (data == null) {
