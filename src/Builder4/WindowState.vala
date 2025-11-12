@@ -266,11 +266,64 @@ public class WindowState : Object
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
 		// Restored for Step 6: Properties Panel - load properties for selected node
+		// do we really want to flip paletes if differnt nodes are selected
+		// showing palete should be deliberate thing..
+		 
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
+
 		// Restored for Step 8: Full Feature Set - hide popovers when node changes
 		this.add_props.hide(); // always hide add node/add listener if we change node.
 		// Note: rightpalete.hide() excluded - rightpalete is PopoverAddObject (Step 9)
+		// this.rightpalete.hide();
+		
 		this.left_props.load(this.left_tree.getActiveFile(), sel);
+		
+		// Restored for Step 8: Full Feature Set - pane visibility management
+		var outerpane = this.win.mainpane.el;
+		var innerpane = this.win.editpane.el;
+  		
+  		if (this.win.editpane.el.parent != null && sel != null) {
+  			// select another node... no change to show hide/resize
+  			return;
+		}
+  				 
+		if (sel == null) {
+		    // remove win.editpane from leftpane
+		    // remove lefttree from from win.tree 
+		    // add win.tree to leftpane
+		    if (this.win.editpane.el.parent != null) {
+		    	this.props_width =  outerpane.get_position() - innerpane.get_position();
+		    	this.tree_width = innerpane.get_position();
+		        GLib.debug("HIDE: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
+		        
+		    	this.win.leftpane.el.remove(this.win.editpane.el);
+		    	this.win.tree.el.remove(this.left_tree.el);
+		    	this.win.leftpane.el.append(this.left_tree.el);
+	    	}
+		    
+			//GLib.debug("Hide Properties");
+			outerpane.show(); // make sure it's visiable..
+			this.left_props.el.hide();
+			GLib.debug("set position: %d", this.tree_width);
+			outerpane.set_position(this.tree_width);
+			return;
+		}
+		
+		// at this point we are showing the outer only,
+		this.tree_width = outerpane.get_position();
+		
+		GLib.debug("SHOW: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
+		      
+		// remove this.lefttree from this.win.leftpane
+		this.win.leftpane.el.remove(this.left_tree.el);
+		this.win.tree.el.append(this.left_tree.el);
+		this.win.leftpane.el.append(this.win.editpane.el);
+		
+		// make sure outerpane is visible
+		outerpane.show();
+		this.left_props.el.show();
+		GLib.debug("set position: %d", this.tree_width + this.props_width);
+		outerpane.set_position(this.tree_width + this.props_width);
 	}
 
 	public void propsListInit()
