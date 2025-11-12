@@ -135,8 +135,9 @@ public class WindowState : Object
 		this.win.tree.el.show(); // ensure tree container is visible
 		this.win.props.el.hide(); // props hidden initially
 		// Set initial editpane position to show only tree (hide props area)
-		// Use a large value to effectively hide the props panel
-		this.win.editpane.el.set_position(10000); // large value to show only start_child
+		// Use sensible default width (400px) for tree panel
+		this.tree_width = 400; // sensible default width
+		this.win.editpane.el.set_position(this.tree_width);
 	    
 		this.left_tree.el.show();
 		   
