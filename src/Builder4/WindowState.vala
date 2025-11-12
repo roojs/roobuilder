@@ -237,6 +237,58 @@ public class WindowState : Object
 	int tree_width = 300;
 	int props_width = 300;
 	
+	private void hidePropsPanel()
+	{
+		if (!this.win.props.el.visible) {
+			return;
+		}
+		
+		var outerpane = this.win.mainpane.el;
+		var innerpane = this.win.editpane.el;
+		
+		// Save props_width and tree_width before hiding
+		if (this.win.editpane.el.parent != null) {
+			var calculated_props_width = outerpane.get_position() - innerpane.get_position();
+			// Only save props_width if it's positive (props panel was actually visible)
+			if (calculated_props_width > 0) {
+				this.props_width = calculated_props_width;
+			}
+			this.tree_width = innerpane.get_position();
+		}
+		
+		this.win.props.el.hide();
+		this.left_props.el.hide();
+		
+		// Adjust pane positions to hide props area
+		outerpane.show();
+		innerpane.set_position(this.tree_width);
+		outerpane.set_position(this.tree_width);
+	}
+	
+	private void showPropsPanel()
+	{
+		if (this.win.props.el.visible) {
+			return;
+		}
+		
+		var outerpane = this.win.mainpane.el;
+		var innerpane = this.win.editpane.el;
+		
+		this.tree_width = outerpane.get_position();
+		// Ensure props_width is valid (positive and reasonable)
+		if (this.props_width <= 0 || this.props_width > 2000) {
+			this.props_width = 300; // default width if invalid
+		}
+		
+		// Show properties panel
+		outerpane.show();
+		this.win.props.el.show();
+		this.left_props.el.show();
+		// Adjust editpane position to show both tree and props
+		outerpane.set_position(this.tree_width + this.props_width);
+		innerpane.set_position(this.tree_width);
+	}
+	
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
 		// Refactored: Use stable widget hierarchy with hide/show pattern
@@ -253,56 +305,20 @@ public class WindowState : Object
 		this.left_props.load(this.left_tree.getActiveFile(), sel);
 		
 		// Refactored: Use hide/show pattern instead of remove/append
-		var outerpane = this.win.mainpane.el;
-		var innerpane = this.win.editpane.el;
-  		
-  		 if (this.win.editpane.el.parent != null && sel != null) {
-  			// select another node... no change to show hide/resize
+  		 if (this.win.editpane.el.parent != null && sel != null && this.win.props.el.visible) {
+  			// select another node... no change to show hide/resize (props panel already visible)
   			return;
 		}
   				 
 		if (sel == null) {
-		    // No node selected - hide props panel, adjust editpane position
-		    if (this.win.editpane.el.parent != null) {
-		    	this.props_width =  outerpane.get_position() - innerpane.get_position();
-		    	this.tree_width = innerpane.get_position();
-		        GLib.debug("HIDE: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
-		        
-		    	// Refactored: Use hide/show instead of remove/append
-		    	// No widget reparenting needed - widgets stay in stable hierarchy
-	    	}
-		    
-		
-			// Hide properties panel
-			outerpane.show(); // make sure it's visible
-			this.win.props.el.hide(); // hide props panel
-			this.left_props.el.hide();
-			GLib.debug("set position: %d", this.tree_width);
-			// Adjust editpane position to hide props area
-			innerpane.set_position(this.tree_width);
-			outerpane.set_position(this.tree_width);
-			//outerpane.set_position(int.max(250,innerpane.get_position()));
-			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
+		    // No node selected - hide props panel
+		    this.hidePropsPanel();
 			return;
 		}
 		
 		// at this point we are showing the outer only,
-		
-		
-		
-		
-		this.tree_width = outerpane.get_position();
-		
-		GLib.debug("SHOW: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
-		      
 		// Show properties panel
-		outerpane.show();
-		this.win.props.el.show(); // show props panel
-		this.left_props.el.show();
-		GLib.debug("set position: %d", this.tree_width + this.props_width);
-		// Adjust editpane position to show both tree and props
-		outerpane.set_position(this.tree_width + this.props_width);
-		innerpane.set_position(this.tree_width);
+		this.showPropsPanel();
 		
 		 
 		
@@ -810,10 +826,21 @@ public class WindowState : Object
 	
 	public void showProps(Gtk.Widget btn, JsRender.NodePropType sig_or_listen)
 	{
+		// Ensure props panel is visible before showing popover
+		// This is needed because the props panel might be hidden if no node was previously selected
+		this.showPropsPanel();
+		
 		var ae =  this.left_tree.getActiveElement();
 		if (ae == null) {
-				return;
+			// No active element - just show props panel (already shown above)
+			// Load props with null node to show empty state
+			this.left_props.load(this.left_tree.getActiveFile(), null);
+			return;
 		}
+		
+		// Load props for the active element
+		this.left_props.load(this.left_tree.getActiveFile(), ae);
+		
 		this.rightpalete.hide(); 
 		if (this.add_props.el.parent == null) {
 			this.add_props.el.set_parent(btn);
@@ -838,6 +865,9 @@ public class WindowState : Object
 		}
 	 
 		this.add_props.hide();
+		
+		// Hide props panel when showing add object popover
+		this.hidePropsPanel();
 		 
 		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
 		

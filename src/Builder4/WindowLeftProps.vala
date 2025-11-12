@@ -360,8 +360,6 @@ public class Xcls_LeftProps : Object
 
 			//listeners
 			this.el.clicked.connect( ( ) => {
-			    
-			 
 			   _this.main_window.windowstate.showProps(
 			   		_this.view.el, 
 			   		JsRender.NodePropType.LISTENER
