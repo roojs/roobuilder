@@ -651,23 +651,24 @@ public class WindowState : Object
 	
 	public void showProps(Gtk.Widget btn, JsRender.NodePropType sig_or_listen)
 	{
-		// Simplified for stripped-down version - commented out
-		// var ae =  this.left_tree.getActiveElement();
-		// if (ae == null) {
-		// 	return;
-		// }
+		// Restored for Step 8.4: showProps() Functionality
+		var ae =  this.left_tree.getActiveElement();
+		if (ae == null) {
+			return;
+		}
+		// Note: rightpalete.hide() excluded - rightpalete is PopoverAddObject (Step 9)
 		// this.rightpalete.hide(); 
-		// if (this.add_props.el.parent == null) {
-		// 	this.add_props.el.set_parent(btn);
-		// }
-		// this.add_props.el.set_position(Gtk.PositionType.RIGHT);
-		// this.add_props.show(
-		// 	this.win.project.palete,
-		// 	sig_or_listen,
-		// 	ae,
-		// 	btn
-		// );
-		GLib.debug("showProps called but disabled in stripped-down version");
+		if (this.add_props.el.parent == null) {
+			this.add_props.el.set_parent(btn);
+		}
+		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+	 
+		this.add_props.show(
+			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
+			sig_or_listen, //this.state == State.LISTENER ? "signals" : "props",
+			ae,
+			btn
+		);
 	}
 	
 	public void showAddProp(Gtk.Widget btn, string sig_or_listen, JsRender.Node? ae)
