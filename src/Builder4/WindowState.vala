@@ -284,9 +284,9 @@ public class WindowState : Object
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
 
 		// Restored for Step 8.8: Full Feature Set - hide popovers when node changes
+		// Restored for Step 9: PopoverAddObject Integration
 		this.add_props.hide(); // always hide add node/add listener if we change node.
-		// Note: rightpalete.hide() excluded - rightpalete is PopoverAddObject (Step 9)
-		// this.rightpalete.hide();
+		this.rightpalete.hide();
 		
 		this.left_props.load(this.left_tree.getActiveFile(), sel);
 		
@@ -719,12 +719,12 @@ public class WindowState : Object
 	public void showProps(Gtk.Widget btn, JsRender.NodePropType sig_or_listen)
 	{
 		// Restored for Step 8.4: showProps() Functionality
+		// Restored for Step 9: PopoverAddObject Integration
 		var ae =  this.left_tree.getActiveElement();
 		if (ae == null) {
 			return;
 		}
-		// Note: rightpalete.hide() excluded - rightpalete is PopoverAddObject (Step 9)
-		// this.rightpalete.hide(); 
+		this.rightpalete.hide(); 
 		if (this.add_props.el.parent == null) {
 			this.add_props.el.set_parent(btn);
 		}
@@ -757,20 +757,24 @@ public class WindowState : Object
 	
 	public void showAddObject(Gtk.Widget btn, JsRender.Node? on_node)
 	{
-		// Simplified for stripped-down version - commented out
+		// Restored for Step 9: PopoverAddObject Integration
 		// Don't show if tree has items but no node selected
-		// if (on_node == null && this.left_tree.model.el.get_n_items() > 0) {
-		// 	GLib.debug("Cannot add object: tree has items but no node is selected");
-		// 	return;
-		// }
-		// this.add_props.hide();
-		// this.add_props.el.set_position(Gtk.PositionType.RIGHT);
-		// this.rightpalete.show(
-		// 	this.left_tree.getActiveFile().palete(), 
-		// 	on_node == null ? "*top" : on_node.fqn(),
-		// 	btn
-		// );
-		GLib.debug("showAddObject called but disabled in stripped-down version");
+		if (on_node == null && this.left_tree.model.el.get_n_items() > 0) {
+			GLib.debug("Cannot add object: tree has items but no node is selected");
+			return;
+		}
+	 
+		this.add_props.hide();
+		 
+		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+		
+		//this.rightpalete.el.set_parent(btn);
+ 
+		this.rightpalete.show(
+			this.left_tree.getActiveFile().palete(), 
+			on_node == null ? "*top" : on_node.fqn(),
+			btn
+		);
 	}
 	 
 		  
