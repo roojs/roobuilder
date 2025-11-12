@@ -158,22 +158,27 @@ After successfully stripping down roobuilder to a minimal working state with `Wi
 
 ---
 
-### Step 8: PopoverAddObject Integration
+### Step 8: PopoverAddObject Integration (LAST STEP - HAS KNOWN ISSUES)
 **Goal:** Restore object addition popover
+
+**Status:** ⚠️ **KNOWN ISSUES** - Secondary drag-and-drop from popover has issues that need to be dealt with separately
 
 **Changes:**
 - Restore `PopoverAddObject` signal connections
 - Restore `showAddObject()` calls
 - Restore palete integration
 - Restore node addition via drag from palete
+- Restore column click to trigger popover
 
 **Testing:**
 - Open add object popover
 - Add objects via drag-and-drop from palete
 - Test tree drag-and-drop with popover active
-- **Checkpoint:** Does drag-and-drop still work?
+- **Known Issue:** Secondary drag-and-drop from popover fails - needs separate investigation
 
 **Git:** `git commit -m "restore-step-8-popoveraddobject" && git tag restore-step-8-popoveraddobject`
+
+**Note:** This step has known issues with secondary drag-and-drop operations from the popover. These should be investigated and fixed separately after completing the main restoration process.
 
 ---
 
