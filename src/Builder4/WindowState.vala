@@ -135,7 +135,22 @@ public class WindowState : Object
 		// Restored signal connections for Step 2: Post-Drop Behavior
 		this.left_tree.before_node_change.connect(this.leftTreeBeforeChange);
 		this.left_tree.node_selected.connect(this.leftTreeNodeSelected);
-		this.left_tree.changed.connect(this.leftTreeChanged);
+		this.left_tree.changed.connect(() => {
+			if (!this.win.btn_tree.el.visible) {
+				return;
+			}
+		
+			GLib.debug("LEFT TREE: Changed fired\n");
+			this.file.save(); // Synchronous - fast file I/O
+			
+			// Restored for Step 8: Full Feature Set - async source regeneration
+			// Async source regeneration
+			if (this.left_tree.getActiveFile().xtype == "Roo") {
+				this.window_rooview.requestRedraw(); //Async.begin();
+			} else {
+				this.window_gladeview.loadFile(this.left_tree.getActiveFile());
+			}
+		});
 		
 		// Auto-load test file for Step 1: File Loading
 		GLib.Idle.add(() => {
@@ -229,22 +244,13 @@ public class WindowState : Object
 	int tree_width = 300;
 	int props_width = 300;
 	
-	public void leftTreeChanged()
-	{
-		// Restored for Step 2: Post-Drop Behavior
-		if (this.file == null) {
-			return;
-		}
-		GLib.debug("LEFT TREE: Changed fired - saving file");
-		this.file.save();
-	}
-	
 	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
 		// Restored for Step 6: Properties Panel - load properties for selected node
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
-		// this.add_props.hide(); // always hide add node/add listener if we change node.
-		// this.rightpalete.hide();
+		// Restored for Step 8: Full Feature Set - hide popovers when node changes
+		this.add_props.hide(); // always hide add node/add listener if we change node.
+		// Note: rightpalete.hide() excluded - rightpalete is PopoverAddObject (Step 9)
 		this.left_props.load(this.left_tree.getActiveFile(), sel);
 	}
 
@@ -633,39 +639,41 @@ public class WindowState : Object
 	
 	public void showProps(Gtk.Widget btn, JsRender.NodePropType sig_or_listen)
 	{
-		// Simplified for stripped-down version - commented out
-		// var ae =  this.left_tree.getActiveElement();
-		// if (ae == null) {
-		// 	return;
-		// }
+		// Restored for Step 8: Full Feature Set
+		var ae =  this.left_tree.getActiveElement();
+		if (ae == null) {
+			return;
+		}
+		// Note: rightpalete.hide() excluded - rightpalete is PopoverAddObject (Step 9)
 		// this.rightpalete.hide(); 
-		// if (this.add_props.el.parent == null) {
-		// 	this.add_props.el.set_parent(btn);
-		// }
-		// this.add_props.el.set_position(Gtk.PositionType.RIGHT);
-		// this.add_props.show(
-		// 	this.win.project.palete,
-		// 	sig_or_listen,
-		// 	ae,
-		// 	btn
-		// );
-		GLib.debug("showProps called but disabled in stripped-down version");
+		if (this.add_props.el.parent == null) {
+			this.add_props.el.set_parent(btn);
+		}
+		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+	 
+		this.add_props.show(
+			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
+			sig_or_listen, //this.state == State.LISTENER ? "signals" : "props",
+			ae,
+			btn
+		);
 	}
 	
 	public void showAddProp(Gtk.Widget btn, string sig_or_listen, JsRender.Node? ae)
 	{
-		// Simplified for stripped-down version - commented out
-		// if (this.add_props.el.parent == null) {
-		// 	this.add_props.el.set_parent(btn);
-		// }
-		// this.add_props.el.set_position(Gtk.PositionType.RIGHT);
-		// this.add_props.show(
-		// 	this.win.project.palete,
-		// 	sig_or_listen,
-		// 	ae,
-		// 	btn
-		// );
-		GLib.debug("showAddProp called but disabled in stripped-down version");
+		// Restored for Step 8: Full Feature Set
+		if (this.add_props.el.parent == null) {
+			this.add_props.el.set_parent(btn);
+		}
+		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+		// Convert string to NodePropType
+		var ptype = sig_or_listen == "signals" ? JsRender.NodePropType.LISTENER : JsRender.NodePropType.PROP;
+		this.add_props.show(
+			this.win.project.palete,
+			ptype,
+			ae,
+			btn
+		);
 	}
 	
 	public void showAddObject(Gtk.Widget btn, JsRender.Node? on_node)
@@ -709,14 +717,14 @@ public class WindowState : Object
 				
 				this.code_editor_tab.reset();
 				 
-				// Simplified for stripped-down version - getActiveFile() removed
-				// if (this.left_tree.getActiveFile() != null) {
-				// 	if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-				// 		this.window_rooview.createThumb();
-				// 	} else {
-				// 		this.window_gladeview.createThumb();
-				// 	}
-				// }
+				// Restored for Step 8: Full Feature Set
+				if (this.left_tree.getActiveFile() != null) {
+					if (this.left_tree.getActiveFile().xtype == "Roo" ) {
+						this.window_rooview.createThumb();
+					} else {
+						this.window_gladeview.createThumb();
+					}
+				}
 				// normally we are going from preview to another state.
 				// and different windows hide the preview in differnt ways..
 				break;
