@@ -158,7 +158,25 @@ After successfully stripping down roobuilder to a minimal working state with `Wi
 
 ---
 
-### Step 8: PopoverAddObject Integration (LAST STEP - HAS KNOWN ISSUES)
+### Step 8: Full Feature Set (EXCEPT PopoverAddObject)
+**Goal:** Restore any remaining features except PopoverAddObject
+
+**Changes:**
+- Restore any remaining commented-out code
+- Restore file dialog on startup (if needed)
+- Restore any other missing features
+- **EXCLUDE:** PopoverAddObject integration (moved to Step 9)
+
+**Testing:**
+- Full application testing (without popover)
+- Test all drag-and-drop scenarios
+- **Checkpoint:** Does drag-and-drop work in all cases?
+
+**Git:** `git commit -m "restore-step-8-full-features" && git tag restore-step-8-full-features`
+
+---
+
+### Step 9: PopoverAddObject Integration (LAST STEP - HAS KNOWN ISSUES)
 **Goal:** Restore object addition popover
 
 **Status:** ⚠️ **KNOWN ISSUES** - Secondary drag-and-drop from popover has issues that need to be dealt with separately
@@ -176,26 +194,9 @@ After successfully stripping down roobuilder to a minimal working state with `Wi
 - Test tree drag-and-drop with popover active
 - **Known Issue:** Secondary drag-and-drop from popover fails - needs separate investigation
 
-**Git:** `git commit -m "restore-step-8-popoveraddobject" && git tag restore-step-8-popoveraddobject`
+**Git:** `git commit -m "restore-step-9-popoveraddobject" && git tag restore-step-9-popoveraddobject`
 
 **Note:** This step has known issues with secondary drag-and-drop operations from the popover. These should be investigated and fixed separately after completing the main restoration process.
-
----
-
-### Step 9: Full Feature Set
-**Goal:** Restore any remaining features
-
-**Changes:**
-- Restore any remaining commented-out code
-- Restore file dialog on startup (if needed)
-- Restore any other missing features
-
-**Testing:**
-- Full application testing
-- Test all drag-and-drop scenarios
-- **Checkpoint:** Does drag-and-drop work in all cases?
-
-**Git:** `git commit -m "restore-step-9-full-features" && git tag restore-step-9-full-features`
 
 ---
 
