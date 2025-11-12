@@ -628,7 +628,7 @@ public class BuilderApplication : Gtk.Application
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}
 
-	void mungeBjs(Project.Project? cur_project)
+	void mungeBjs(Project.Project? cur_project) throws GLib.Error
 	{
 		if (BuilderApplication.opt_bjs_munge == null) {
 			return;
@@ -638,11 +638,7 @@ public class BuilderApplication : Gtk.Application
 			GLib.error("missing project, use --project to select which project");
 		}
 		if (cur_project.xtype != "Gtk") {
-			try {
-				this.mungeBjsReal(cur_project);
-			} catch (GLib.Error e) {
-				GLib.error("Failed to munge BJS file: %s", e.message);
-			}
+			this.mungeBjsReal(cur_project);
 			return;
 		}
 		if (opt_compile_group == null) {
@@ -656,7 +652,8 @@ public class BuilderApplication : Gtk.Application
 				try {
 					this.mungeBjsReal(cur_project);
 				} catch (GLib.Error e) {
-					GLib.error("%s", e.message);
+					stderr.printf("Error: %s\n", e.message);
+					GLib.Process.exit(Posix.EXIT_FAILURE);
 				}
 			});
 		loop.run();
