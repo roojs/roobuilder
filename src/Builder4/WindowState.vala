@@ -673,18 +673,19 @@ public class WindowState : Object
 	
 	public void showAddProp(Gtk.Widget btn, string sig_or_listen, JsRender.Node? ae)
 	{
-		// Simplified for stripped-down version - commented out
-		// if (this.add_props.el.parent == null) {
-		// 	this.add_props.el.set_parent(btn);
-		// }
-		// this.add_props.el.set_position(Gtk.PositionType.RIGHT);
-		// this.add_props.show(
-		// 	this.win.project.palete,
-		// 	sig_or_listen,
-		// 	ae,
-		// 	btn
-		// );
-		GLib.debug("showAddProp called but disabled in stripped-down version");
+		// Restored for Step 8.5: showAddProp() Functionality
+		if (this.add_props.el.parent == null) {
+			this.add_props.el.set_parent(btn);
+		}
+		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+		// Convert string to NodePropType
+		var ptype = sig_or_listen == "signals" ? JsRender.NodePropType.LISTENER : JsRender.NodePropType.PROP;
+		this.add_props.show(
+			this.win.project.palete,
+			ptype,
+			ae,
+			btn
+		);
 	}
 	
 	public void showAddObject(Gtk.Widget btn, JsRender.Node? on_node)
