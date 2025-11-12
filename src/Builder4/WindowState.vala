@@ -125,10 +125,11 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		// Restored for Step 6: Properties Panel - replace tree widget in editpane, keep editpane
-		// The editpane contains both tree (start_child) and props (end_child)
-		// Set our tree as the start_child of the editpane (replaces any existing tree)
-		this.win.editpane.el.start_child = this.left_tree.el;
+		// Restored for Step 8: Full Feature Set - initial tree placement matches master
+		// Initially, tree is added directly to leftpane (not editpane)
+		// When a node is selected, tree moves to win.tree.el and editpane is shown
+		this.win.leftpane.el.remove(this.win.editpane.el);
+		this.win.leftpane.el.append(this.left_tree.el);
 	    
 		this.left_tree.el.show();
 		   
