@@ -731,6 +731,7 @@ public class WindowState : Object
 			try {
 				file.loadItems();
 			} catch (Error e) {
+				GLib.debug("fileViewOpen: loadItems() error for PlainFile %s: %s", file.path, e.message);
 			}
 			this.code_editor_tab.show(file, null, null);
 			 
