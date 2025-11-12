@@ -638,7 +638,11 @@ public class BuilderApplication : Gtk.Application
 			GLib.error("missing project, use --project to select which project");
 		}
 		if (cur_project.xtype != "Gtk") {
-			this.mungeBjsReal(cur_project);
+			try {
+				this.mungeBjsReal(cur_project);
+			} catch (GLib.Error e) {
+				GLib.error("Failed to munge BJS file: %s", e.message);
+			}
 			return;
 		}
 		if (opt_compile_group == null) {
