@@ -649,7 +649,11 @@ public class BuilderApplication : Gtk.Application
 
 		sb.updateBackground.begin(BuilderApplication.opt_compile_group, 0, (o,r )  => {
 				sb.updateBackground.end(r);
-				this.mungeBjsReal(cur_project);
+				try {
+					this.mungeBjsReal(cur_project);
+				} catch (GLib.Error e) {
+					GLib.error("Failed to munge BJS file: %s", e.message);
+				}
 			});
 		loop.run();
 
