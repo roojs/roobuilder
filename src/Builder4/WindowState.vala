@@ -728,14 +728,10 @@ public class WindowState : Object
 			this.win.codeeditviewbox.el.show();
 			this.switchState (State.CODEONLY); 
 			this.win.btn_tree.el.hide();
-			GLib.debug("fileViewOpen: calling loadItems() for PlainFile %s", file.path);
 			try {
 				file.loadItems();
-				GLib.debug("fileViewOpen: loadItems() completed for PlainFile %s", file.path);
 			} catch (Error e) {
-				GLib.debug("fileViewOpen: loadItems() error for PlainFile %s: %s", file.path, e.message);
 			}
-			GLib.debug("fileViewOpen: calling code_editor_tab.show() for PlainFile %s", file.path);
 			this.code_editor_tab.show(file, null, null);
 			 
 		} else {
