@@ -403,9 +403,10 @@ namespace JsRender {
 
 		}
 
-		Gdk.Pixbuf screenshot = null;
-		Gdk.Pixbuf screenshot92 = null;
-		Gdk.Pixbuf screenshot368 = null;
+	Gdk.Pixbuf screenshot = null;
+	Gdk.Pixbuf screenshot92 = null;
+	Gdk.Pixbuf screenshot368 = null;
+	string? screenshotFilename = null;
 
 		public Gdk.Pixbuf? getIcon(int size = 0) {
 			var fname = this.getIconFileName( );
@@ -470,11 +471,12 @@ namespace JsRender {
 
 
 		}
-		public void widgetToIcon(global::Gtk.Widget widget) {
+	public void widgetToIcon(global::Gtk.Widget widget) {
 
-			this.screenshot92 = null;
-			this.screenshot368 = null;
-			this.screenshot = null;
+		this.screenshot92 = null;
+		this.screenshot368 = null;
+		this.screenshot = null;
+		this.screenshotFilename = null;
 
 			try {
 
@@ -509,28 +511,35 @@ namespace JsRender {
 		}
 
 
-		public string getIconFileName(bool check_exists = false)
-		{
+	public string getIconFileName(bool check_exists = false)
+	{
 
-			var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path);
+		var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path);
 
-			var dir = BuilderApplication.configDirectory() + "/icons";
-			try {
-				if (!FileUtils.test(dir, FileTest.IS_DIR)) {
-					File.new_for_path(dir).make_directory();
-				}
-			} catch (GLib.Error e) {
-				// eakk.. what to do here...
+		var dir = BuilderApplication.configDirectory() + "/icons";
+		try {
+			if (!FileUtils.test(dir, FileTest.IS_DIR)) {
+				File.new_for_path(dir).make_directory();
 			}
-			var fname = dir + "/" + m5 + ".png";
-
-			if (check_exists && !FileUtils.test(fname, FileTest.EXISTS)) {
-				return "";
-			}
-
-			return fname;
-
+		} catch (GLib.Error e) {
+			// eakk.. what to do here...
 		}
+		var fname = dir + "/" + m5 + ".png";
+
+		if (check_exists) {
+			if (this.screenshotFilename == null) {
+				if (FileUtils.test(fname, FileTest.EXISTS)) {
+					this.screenshotFilename = fname;
+				} else {
+					this.screenshotFilename = "";
+				}
+			}
+			return this.screenshotFilename;
+		}
+
+		return fname;
+
+	}
 
 
 		public void saveBJS()
