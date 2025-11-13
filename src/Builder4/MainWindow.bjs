@@ -1733,10 +1733,6 @@
              "xtype" : "ColumnView"
             }
            ],
-           "string tooltip_text" : [
-            "dbl-click - opens in NEW window                        ",
-            "shift--dbl-click opens in this window"
-           ],
            "string xns" : "Gtk",
            "string xtype" : "ScrolledWindow"
           }
