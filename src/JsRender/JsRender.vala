@@ -406,7 +406,7 @@ namespace JsRender {
 	Gdk.Pixbuf screenshot = null;
 	Gdk.Pixbuf screenshot92 = null;
 	Gdk.Pixbuf screenshot368 = null;
-	string? screenshotFilename = null;
+	Gdk.Pixbuf? screenshotImage = null;
 
 		public Gdk.Pixbuf? getIcon(int size = 0) {
 			var fname = this.getIconFileName( );
@@ -511,12 +511,8 @@ namespace JsRender {
 		}
 
 
-	public string getIconFileName(bool check_exists = false)
+	public string getIconFileName()
 	{
-
-		if (check_exists && this.screenshotFilename != null) {
-			return this.screenshotFilename;
-		}
 
 		var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path);
 
@@ -530,13 +526,29 @@ namespace JsRender {
 		}
 		var fname = dir + "/" + m5 + ".png";
 
-		if (check_exists) {
-			this.screenshotFilename = FileUtils.test(fname, FileTest.EXISTS) ? fname : "";
-			return this.screenshotFilename;
-		}
-
 		return fname;
 
+	}
+
+	public string? getImage()
+	{
+		if (this.screenshotImage != null) {
+			return this.screenshotImage != null ? this.getIconFileName() : null;
+		}
+
+		var fname = this.getIconFileName();
+		if (!FileUtils.test(fname, FileTest.EXISTS)) {
+			this.screenshotImage = null;
+			return null;
+		}
+
+		try {
+			this.screenshotImage = new Gdk.Pixbuf.from_file(fname);
+			return fname;
+		} catch (GLib.Error e) {
+			this.screenshotImage = null;
+			return null;
+		}
 	}
 
 
