@@ -792,7 +792,7 @@ public class Xcls_MainWindow : Object
 			this.el.content = _this.vbox.el;
 			new Xcls_sidebar( _this );
 			this.el.sidebar = _this.sidebar.el;
-			var child_3 = new Xcls_EventControllerKey404( _this );
+			var child_3 = new Xcls_EventControllerKey403( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
 		}
@@ -3163,7 +3163,6 @@ public class Xcls_MainWindow : Object
 			this.el.has_frame = true;
 			this.el.hexpand = true;
 			this.el.vexpand = true;
-			this.el.tooltip_text = "dbl-click - opens in NEW window                        \nshift--dbl-click opens in this window";
 			this.el.visible = false;
 			new Xcls_treeview( _this );
 			this.el.child = _this.treeview.el;
@@ -3688,7 +3687,7 @@ public class Xcls_MainWindow : Object
 
 
 
-	public class Xcls_EventControllerKey404 : Object
+	public class Xcls_EventControllerKey403 : Object
 	{
 		public Gtk.EventControllerKey el;
 		private Xcls_MainWindow  _this;
@@ -3697,7 +3696,7 @@ public class Xcls_MainWindow : Object
 		// my vars (def)
 
 		// ctor
-		public Xcls_EventControllerKey404(Xcls_MainWindow _owner )
+		public Xcls_EventControllerKey403(Xcls_MainWindow _owner )
 		{
 			_this = _owner;
 			this.el = new Gtk.EventControllerKey();
