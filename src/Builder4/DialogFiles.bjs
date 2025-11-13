@@ -3,18 +3,18 @@
   "bjs-version" : 3,
   "tree" : {
     "node-type" : 9,
-    "oid" : 1,
+    "oid" : 334,
     "prop-type" : "Gtk.Window",
     "children" : [
       {
         "node-type" : 6,
-        "oid" : 2,
+        "oid" : 335,
         "prop-name" : "win",
         "prop-type" : "Xcls_MainWindow"
       },
       {
         "node-type" : 7,
-        "oid" : 3,
+        "oid" : 336,
         "prop-name" : "init",
         "prop-val" : [
           "{",
@@ -55,140 +55,140 @@
       },
       {
         "node-type" : 2,
-        "oid" : 4,
+        "oid" : 337,
         "prop-name" : "missing_thumb_pixbuf",
         "prop-type" : "Gdk.Pixbuf"
       },
       {
         "node-type" : 2,
-        "oid" : 5,
+        "oid" : 338,
         "prop-name" : "image_cache",
         "prop-type" : "Gee.HashMap<string,Gdk.Pixbuf>"
       },
       {
         "node-type" : 2,
-        "oid" : 6,
+        "oid" : 339,
         "prop-name" : "selectedProject",
         "prop-type" : "Project.Project"
       },
       {
         "node-type" : 2,
-        "oid" : 7,
+        "oid" : 340,
         "prop-name" : "in_onprojectselected",
         "prop-val" : false,
         "prop-type" : "bool"
       },
       {
         "node-type" : 2,
-        "oid" : 8,
+        "oid" : 341,
         "prop-name" : "is_loading",
         "prop-val" : false,
         "prop-type" : "bool"
       },
       {
         "node-type" : 2,
-        "oid" : 9,
+        "oid" : 342,
         "prop-name" : "modal",
         "prop-val" : true,
         "prop-type" : "bool"
       },
       {
         "node-type" : 2,
-        "oid" : 10,
+        "oid" : 343,
         "prop-name" : "new_window",
         "prop-val" : false,
         "prop-type" : "bool"
       },
       {
         "node-type" : 2,
-        "oid" : 11,
+        "oid" : 344,
         "prop-name" : "default_height",
         "prop-val" : 550,
         "prop-type" : "int"
       },
       {
         "node-type" : 2,
-        "oid" : 12,
+        "oid" : 345,
         "prop-name" : "default_width",
         "prop-val" : 1000,
         "prop-type" : "int"
       },
       {
         "node-type" : 9,
-        "oid" : 13,
+        "oid" : 346,
         "prop-name" : "child",
         "prop-type" : "Gtk.Box",
         "children" : [
           {
             "node-type" : 3,
-            "oid" : 14,
+            "oid" : 347,
             "prop-name" : "homogeneous",
             "prop-val" : false
           },
           {
             "node-type" : 2,
-            "oid" : 15,
+            "oid" : 348,
             "prop-name" : "orientation",
             "prop-val" : "Gtk.Orientation.VERTICAL",
             "prop-type" : "Gtk.Orientation"
           },
           {
             "node-type" : 2,
-            "oid" : 16,
+            "oid" : 349,
             "prop-name" : "expand",
             "prop-val" : true,
             "prop-type" : "bool"
           },
           {
             "node-type" : 2,
-            "oid" : 17,
+            "oid" : 350,
             "prop-name" : "margin_bottom",
             "prop-val" : 10,
             "prop-type" : "int"
           },
           {
             "node-type" : 2,
-            "oid" : 18,
+            "oid" : 351,
             "prop-name" : "margin_end",
             "prop-val" : 10,
             "prop-type" : "int"
           },
           {
             "node-type" : 2,
-            "oid" : 19,
+            "oid" : 352,
             "prop-name" : "margin_start",
             "prop-val" : 10,
             "prop-type" : "int"
           },
           {
             "node-type" : 2,
-            "oid" : 20,
+            "oid" : 353,
             "prop-name" : "margin_top",
             "prop-val" : 10,
             "prop-type" : "int"
           },
           {
             "node-type" : 9,
-            "oid" : 21,
+            "oid" : 354,
             "prop-type" : "Gtk.Box",
             "children" : [
               {
                 "node-type" : 2,
-                "oid" : 22,
+                "oid" : 355,
                 "prop-name" : "orientation",
                 "prop-val" : "Gtk.Orientation.VERTICAL",
                 "prop-type" : "Gtk.Orientation"
               },
               {
                 "node-type" : 2,
-                "oid" : 23,
+                "oid" : 356,
                 "prop-name" : "hexpand",
                 "prop-val" : true,
                 "prop-type" : "bool"
               },
               {
                 "node-type" : 2,
-                "oid" : 24,
+                "oid" : 357,
                 "prop-name" : "spacing",
                 "prop-val" : 0,
                 "prop-type" : "int"
@@ -197,65 +197,65 @@
           },
           {
             "node-type" : 9,
-            "oid" : 25,
+            "oid" : 358,
             "prop-type" : "Gtk.Paned",
             "children" : [
               {
                 "node-type" : 2,
-                "oid" : 26,
+                "oid" : 359,
                 "prop-name" : "orientation",
                 "prop-val" : "Gtk.Orientation.HORIZONTAL",
                 "prop-type" : "Gtk.Orientation"
               },
               {
                 "node-type" : 2,
-                "oid" : 27,
+                "oid" : 360,
                 "prop-name" : "hexpand",
                 "prop-val" : true,
                 "prop-type" : "bool"
               },
               {
                 "node-type" : 2,
-                "oid" : 28,
+                "oid" : 361,
                 "prop-name" : "homogeneous",
                 "prop-val" : false,
                 "prop-type" : "bool"
               },
               {
                 "node-type" : 2,
-                "oid" : 29,
+                "oid" : 362,
                 "prop-name" : "vexpand",
                 "prop-val" : true,
                 "prop-type" : "bool"
               },
               {
                 "node-type" : 2,
-                "oid" : 30,
+                "oid" : 363,
                 "prop-name" : "id",
                 "prop-val" : "mainpane"
               },
               {
                 "node-type" : 2,
-                "oid" : 31,
+                "oid" : 364,
                 "prop-name" : "position",
                 "prop-val" : 220,
                 "prop-type" : "int"
               },
               {
                 "node-type" : 2,
-                "oid" : 32,
+                "oid" : 365,
                 "prop-name" : "spacing",
                 "prop-val" : 0,
                 "prop-type" : "int"
               },
               {
                 "node-type" : 9,
-                "oid" : 33,
+                "oid" : 366,
                 "prop-type" : "Gtk.EventControllerKey",
                 "children" : [
                   {
                     "node-type" : 8,
-                    "oid" : 34,
+                    "oid" : 367,
                     "prop-name" : "key_pressed",
                     "prop-val" : [
                       "(keyval, keycode, state) => {",
@@ -286,43 +286,43 @@
               },
               {
                 "node-type" : 9,
-                "oid" : 35,
+                "oid" : 368,
                 "prop-name" : "start_child",
                 "prop-type" : "Gtk.Box",
                 "children" : [
                   {
                     "node-type" : 2,
-                    "oid" : 36,
+                    "oid" : 369,
                     "prop-name" : "orientation",
                     "prop-val" : "Gtk.Orientation.VERTICAL",
                     "prop-type" : "Gtk.Orientation"
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 37,
+                    "oid" : 370,
                     "prop-type" : "Gtk.SearchEntry",
                     "children" : [
                       {
                         "node-type" : 2,
-                        "oid" : 38,
+                        "oid" : 371,
                         "prop-name" : "hexpand",
                         "prop-val" : true,
                         "prop-type" : "bool"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 39,
+                        "oid" : 372,
                         "prop-name" : "id",
                         "prop-val" : "projectsearch"
                       },
                       {
                         "node-type" : 9,
-                        "oid" : 40,
+                        "oid" : 373,
                         "prop-type" : "Gtk.EventControllerKey",
                         "children" : [
                           {
                             "node-type" : 8,
-                            "oid" : 41,
+                            "oid" : 374,
                             "prop-name" : "key_released",
                             "prop-val" : [
                               "(/* uint */ keyval, /* uint */ keycode, /* Gdk.ModifierType */ state) =>  {",
@@ -337,7 +337,7 @@
                       },
                       {
                         "node-type" : 8,
-                        "oid" : 42,
+                        "oid" : 375,
                         "prop-name" : "search_changed",
                         "prop-val" : [
                           "( ) => {",
@@ -355,7 +355,7 @@
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 43,
+                        "oid" : 376,
                         "prop-name" : "search_delay",
                         "prop-val" : 500,
                         "prop-type" : "uint"
@@ -364,12 +364,12 @@
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 44,
+                    "oid" : 377,
                     "prop-type" : "Gtk.ScrolledWindow",
                     "children" : [
                       {
                         "node-type" : 7,
-                        "oid" : 45,
+                        "oid" : 378,
                         "prop-name" : "init",
                         "prop-val" : [
                           "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
@@ -378,142 +378,142 @@
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 46,
+                        "oid" : 379,
                         "prop-name" : "expand",
                         "prop-val" : true,
                         "prop-type" : "bool"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 47,
+                        "oid" : 380,
                         "prop-name" : "has_frame",
                         "prop-val" : true,
                         "prop-type" : "bool"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 48,
+                        "oid" : 381,
                         "prop-name" : "hexpand",
                         "prop-val" : true,
                         "prop-type" : "bool"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 49,
+                        "oid" : 382,
                         "prop-name" : "vexpand",
                         "prop-val" : true,
                         "prop-type" : "bool"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 50,
+                        "oid" : 383,
                         "prop-name" : "id",
                         "prop-val" : "projectscroll"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 51,
+                        "oid" : 384,
                         "prop-name" : "width_request",
                         "prop-val" : 150,
                         "prop-type" : "int"
                       },
                       {
                         "node-type" : 9,
-                        "oid" : 52,
+                        "oid" : 385,
                         "prop-name" : "child",
                         "prop-type" : "Gtk.ColumnView",
                         "children" : [
                           {
                             "node-type" : 2,
-                            "oid" : 53,
+                            "oid" : 386,
                             "prop-name" : "css",
                             "prop-type" : "Gtk.CssProvider"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 54,
+                            "oid" : 387,
                             "prop-name" : "id",
                             "prop-val" : "project_list"
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 55,
+                            "oid" : 388,
                             "prop-name" : "model",
                             "prop-type" : "Gtk.SingleSelection",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 56,
+                                "oid" : 389,
                                 "prop-name" : "autoselect",
                                 "prop-val" : false,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 57,
+                                "oid" : 390,
                                 "prop-name" : "can_unselect",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 58,
+                                "oid" : 391,
                                 "prop-name" : "id",
                                 "prop-val" : "projectselection"
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 59,
+                                "oid" : 392,
                                 "prop-name" : "model",
                                 "prop-type" : "Gtk.FilterListModel",
                                 "children" : [
                                   {
                                     "node-type" : 2,
-                                    "oid" : 60,
+                                    "oid" : 393,
                                     "prop-name" : "id",
                                     "prop-val" : "projectfiltermodel"
                                   },
                                   {
                                     "node-type" : 9,
-                                    "oid" : 61,
+                                    "oid" : 394,
                                     "prop-name" : "model",
                                     "prop-type" : "Gtk.SortListModel",
                                     "children" : [
                                       {
                                         "node-type" : 2,
-                                        "oid" : 62,
+                                        "oid" : 395,
                                         "prop-name" : "incremental",
                                         "prop-val" : true,
                                         "prop-type" : "bool"
                                       },
                                       {
                                         "node-type" : 2,
-                                        "oid" : 63,
+                                        "oid" : 396,
                                         "prop-name" : "id",
                                         "prop-val" : "projectsort"
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 64,
+                                        "oid" : 397,
                                         "prop-name" : "model",
                                         "prop-type" : "GLib.ListStore",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 65,
+                                            "oid" : 398,
                                             "prop-name" : "item_type",
                                             "prop-val" : "typeof(Project.Project)",
                                             "prop-type" : "GLib.Type"
                                           },
                                           {
                                             "node-type" : 2,
-                                            "oid" : 66,
+                                            "oid" : 399,
                                             "prop-name" : "id",
                                             "prop-val" : "projectmodel"
                                           },
                                           {
                                             "node-type" : 4,
-                                            "oid" : 67,
+                                            "oid" : 400,
                                             "prop-name" : "remove",
                                             "prop-val" : [
                                               "(Project.Project p) {",
@@ -535,26 +535,26 @@
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 68,
+                                        "oid" : 401,
                                         "prop-name" : "sorter",
                                         "prop-type" : "Gtk.StringSorter",
                                         "children" : [
                                           {
                                             "node-type" : 9,
-                                            "oid" : 69,
+                                            "oid" : 402,
                                             "prop-name" : "expression",
                                             "prop-type" : "Gtk.PropertyExpression",
                                             "children" : [
                                               {
                                                 "node-type" : 2,
-                                                "oid" : 70,
+                                                "oid" : 403,
                                                 "prop-name" : "this_type",
                                                 "prop-val" : "typeof(Project.Project)",
                                                 "prop-type" : "GLib.Type"
                                               },
                                               {
                                                 "node-type" : 2,
-                                                "oid" : 71,
+                                                "oid" : 404,
                                                 "prop-name" : "property_name",
                                                 "prop-val" : "name",
                                                 "prop-type" : "string"
@@ -567,32 +567,32 @@
                                   },
                                   {
                                     "node-type" : 9,
-                                    "oid" : 72,
+                                    "oid" : 405,
                                     "prop-name" : "filter",
                                     "prop-type" : "Gtk.StringFilter",
                                     "children" : [
                                       {
                                         "node-type" : 2,
-                                        "oid" : 73,
+                                        "oid" : 406,
                                         "prop-name" : "id",
                                         "prop-val" : "projectlistfilter"
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 74,
+                                        "oid" : 407,
                                         "prop-name" : "expression",
                                         "prop-type" : "Gtk.PropertyExpression",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 75,
+                                            "oid" : 408,
                                             "prop-name" : "this_type",
                                             "prop-val" : "typeof(Project.Project)",
                                             "prop-type" : "GLib.Type"
                                           },
                                           {
                                             "node-type" : 2,
-                                            "oid" : 76,
+                                            "oid" : 409,
                                             "prop-name" : "property_name",
                                             "prop-val" : "name",
                                             "prop-type" : "string"
@@ -605,7 +605,7 @@
                               },
                               {
                                 "node-type" : 8,
-                                "oid" : 77,
+                                "oid" : 410,
                                 "prop-name" : "notify[\"selected\"]",
                                 "prop-val" : [
                                   "(position, n_items) => {",
@@ -645,31 +645,31 @@
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 78,
+                            "oid" : 411,
                             "prop-type" : "Gtk.ColumnViewColumn",
                             "children" : [
                               {
                                 "node-type" : 7,
-                                "oid" : 79,
+                                "oid" : 412,
                                 "prop-name" : "pack",
                                 "prop-val" : "append_column"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 80,
+                                "oid" : 413,
                                 "prop-name" : "expand",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 81,
+                                "oid" : 414,
                                 "prop-name" : "factory",
                                 "prop-type" : "Gtk.SignalListItemFactory",
                                 "children" : [
                                   {
                                     "node-type" : 8,
-                                    "oid" : 82,
+                                    "oid" : 415,
                                     "prop-name" : "bind",
                                     "prop-val" : [
                                       "(listitem) => {",
@@ -689,7 +689,7 @@
                                   },
                                   {
                                     "node-type" : 8,
-                                    "oid" : 83,
+                                    "oid" : 416,
                                     "prop-name" : "setup",
                                     "prop-val" : [
                                       "(item) => {",
@@ -710,7 +710,7 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 84,
+                                "oid" : 417,
                                 "prop-name" : "title",
                                 "prop-val" : "Project",
                                 "prop-type" : "string"
@@ -719,12 +719,12 @@
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 85,
+                            "oid" : 418,
                             "prop-type" : "Gtk.GestureClick",
                             "children" : [
                               {
                                 "node-type" : 8,
-                                "oid" : 86,
+                                "oid" : 419,
                                 "prop-name" : "pressed",
                                 "prop-val" : [
                                   "(n_press, x, y) => {",
@@ -756,7 +756,7 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 87,
+                                "oid" : 420,
                                 "prop-name" : "button",
                                 "prop-val" : 3,
                                 "prop-type" : "uint"
@@ -765,7 +765,7 @@
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 88,
+                            "oid" : 421,
                             "prop-name" : "name",
                             "prop-val" : "project-list",
                             "prop-type" : "string"
@@ -774,88 +774,88 @@
                       },
                       {
                         "node-type" : 9,
-                        "oid" : 89,
+                        "oid" : 422,
                         "prop-type" : "Gtk.Popover",
                         "children" : [
                           {
                             "node-type" : 7,
-                            "oid" : 90,
+                            "oid" : 423,
                             "prop-name" : "pack",
                             "prop-val" : false
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 91,
+                            "oid" : 424,
                             "prop-name" : "id",
                             "prop-val" : "LeftTreeMenu"
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 92,
+                            "oid" : 425,
                             "prop-name" : "child",
                             "prop-type" : "Gtk.Box",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 93,
+                                "oid" : 426,
                                 "prop-name" : "orientation",
                                 "prop-val" : "Gtk.Orientation.VERTICAL",
                                 "prop-type" : "Gtk.Orientation"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 94,
+                                "oid" : 427,
                                 "prop-name" : "spacing",
                                 "prop-val" : 0,
                                 "prop-type" : "int"
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 95,
+                                "oid" : 428,
                                 "prop-type" : "Gtk.Button",
                                 "children" : [
                                   {
                                     "node-type" : 2,
-                                    "oid" : 96,
+                                    "oid" : 429,
                                     "prop-name" : "has_frame",
                                     "prop-val" : false,
                                     "prop-type" : "bool"
                                   },
                                   {
                                     "node-type" : 9,
-                                    "oid" : 97,
+                                    "oid" : 430,
                                     "prop-name" : "child",
                                     "prop-type" : "Gtk.Box",
                                     "children" : [
                                       {
                                         "node-type" : 2,
-                                        "oid" : 98,
+                                        "oid" : 431,
                                         "prop-name" : "orientation",
                                         "prop-val" : "Gtk.Orientation.HORIZONTAL",
                                         "prop-type" : "Gtk.Orientation"
                                       },
                                       {
                                         "node-type" : 2,
-                                        "oid" : 99,
+                                        "oid" : 432,
                                         "prop-name" : "spacing",
                                         "prop-val" : 0,
                                         "prop-type" : "int"
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 100,
+                                        "oid" : 433,
                                         "prop-type" : "Gtk.Image",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 101,
+                                            "oid" : 434,
                                             "prop-name" : "margin_end",
                                             "prop-val" : 4,
                                             "prop-type" : "int"
                                           },
                                           {
                                             "node-type" : 2,
-                                            "oid" : 102,
+                                            "oid" : 435,
                                             "prop-name" : "icon_name",
                                             "prop-val" : "emblem-system",
                                             "prop-type" : "string"
@@ -864,12 +864,12 @@
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 103,
+                                        "oid" : 436,
                                         "prop-type" : "Gtk.Label",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 104,
+                                            "oid" : 437,
                                             "prop-name" : "label",
                                             "prop-val" : "Project Properties",
                                             "prop-type" : "string"
@@ -880,7 +880,7 @@
                                   },
                                   {
                                     "node-type" : 8,
-                                    "oid" : 105,
+                                    "oid" : 438,
                                     "prop-name" : "clicked",
                                     "prop-val" : [
                                       " ( ) => {",
@@ -897,25 +897,25 @@
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 106,
+                                "oid" : 439,
                                 "prop-type" : "Gtk.Button",
                                 "children" : [
                                   {
                                     "node-type" : 2,
-                                    "oid" : 107,
+                                    "oid" : 440,
                                     "prop-name" : "has_frame",
                                     "prop-val" : false,
                                     "prop-type" : "bool"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 108,
+                                    "oid" : 441,
                                     "prop-name" : "label",
                                     "prop-val" : "Rename (not yet)"
                                   },
                                   {
                                     "node-type" : 8,
-                                    "oid" : 109,
+                                    "oid" : 442,
                                     "prop-name" : "clicked",
                                     "prop-val" : [
                                       "  () => {",
@@ -930,57 +930,57 @@
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 110,
+                                "oid" : 443,
                                 "prop-type" : "Gtk.Button",
                                 "children" : [
                                   {
                                     "node-type" : 6,
-                                    "oid" : 111,
+                                    "oid" : 444,
                                     "prop-name" : "confirm",
                                     "prop-type" : "DialogConfirm"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 112,
+                                    "oid" : 445,
                                     "prop-name" : "has_frame",
                                     "prop-val" : false,
                                     "prop-type" : "bool"
                                   },
                                   {
                                     "node-type" : 9,
-                                    "oid" : 113,
+                                    "oid" : 446,
                                     "prop-name" : "child",
                                     "prop-type" : "Gtk.Box",
                                     "children" : [
                                       {
                                         "node-type" : 2,
-                                        "oid" : 114,
+                                        "oid" : 447,
                                         "prop-name" : "orientation",
                                         "prop-val" : "Gtk.Orientation.HORIZONTAL",
                                         "prop-type" : "Gtk.Orientation"
                                       },
                                       {
                                         "node-type" : 2,
-                                        "oid" : 115,
+                                        "oid" : 448,
                                         "prop-name" : "spacing",
                                         "prop-val" : 0,
                                         "prop-type" : "int"
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 116,
+                                        "oid" : 449,
                                         "prop-type" : "Gtk.Image",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 117,
+                                            "oid" : 450,
                                             "prop-name" : "margin_end",
                                             "prop-val" : 4,
                                             "prop-type" : "int"
                                           },
                                           {
                                             "node-type" : 2,
-                                            "oid" : 118,
+                                            "oid" : 451,
                                             "prop-name" : "icon_name",
                                             "prop-val" : "user-trash",
                                             "prop-type" : "string"
@@ -989,12 +989,12 @@
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 119,
+                                        "oid" : 452,
                                         "prop-type" : "Gtk.Label",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 120,
+                                            "oid" : 453,
                                             "prop-name" : "label",
                                             "prop-val" : "Delete Project",
                                             "prop-type" : "string"
@@ -1005,13 +1005,13 @@
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 121,
+                                    "oid" : 454,
                                     "prop-name" : "label",
                                     "prop-val" : "Remove from Builder"
                                   },
                                   {
                                     "node-type" : 8,
-                                    "oid" : 122,
+                                    "oid" : 455,
                                     "prop-name" : "clicked",
                                     "prop-val" : [
                                       "  () => {",
@@ -1062,105 +1062,105 @@
               },
               {
                 "node-type" : 9,
-                "oid" : 123,
+                "oid" : 456,
                 "prop-name" : "end_child",
                 "prop-type" : "Gtk.Paned",
                 "children" : [
                   {
                     "node-type" : 2,
-                    "oid" : 124,
+                    "oid" : 457,
                     "prop-name" : "orientation",
                     "prop-val" : "Gtk.Orientation.HORIZONTAL",
                     "prop-type" : "Gtk.Orientation"
                   },
                   {
                     "node-type" : 2,
-                    "oid" : 125,
+                    "oid" : 458,
                     "prop-name" : "visible",
                     "prop-val" : false,
                     "prop-type" : "bool"
                   },
                   {
                     "node-type" : 2,
-                    "oid" : 126,
+                    "oid" : 459,
                     "prop-name" : "id",
                     "prop-val" : "filepane"
                   },
                   {
                     "node-type" : 2,
-                    "oid" : 127,
+                    "oid" : 460,
                     "prop-name" : "position",
                     "prop-val" : 200,
                     "prop-type" : "int"
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 128,
+                    "oid" : 461,
                     "prop-name" : "end_child",
                     "prop-type" : "Gtk.Box",
                     "children" : [
                       {
                         "node-type" : 2,
-                        "oid" : 129,
+                        "oid" : 462,
                         "prop-name" : "orientation",
                         "prop-val" : "Gtk.Orientation.VERTICAL",
                         "prop-type" : "Gtk.Orientation"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 130,
+                        "oid" : 463,
                         "prop-name" : "hexpand",
                         "prop-val" : true,
                         "prop-type" : "bool"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 131,
+                        "oid" : 464,
                         "prop-name" : "vexpand",
                         "prop-val" : true,
                         "prop-type" : "bool"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 132,
+                        "oid" : 465,
                         "prop-name" : "spacing",
                         "prop-val" : 0,
                         "prop-type" : "int"
                       },
                       {
                         "node-type" : 9,
-                        "oid" : 133,
+                        "oid" : 466,
                         "prop-type" : "Gtk.Box",
                         "children" : [
                           {
                             "node-type" : 2,
-                            "oid" : 134,
+                            "oid" : 467,
                             "prop-name" : "orientation",
                             "prop-val" : "Gtk.Orientation.HORIZONTAL",
                             "prop-type" : "Gtk.Orientation"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 135,
+                            "oid" : 468,
                             "prop-name" : "hexpand",
                             "prop-val" : true,
                             "prop-type" : "bool"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 136,
+                            "oid" : 469,
                             "prop-name" : "spacing",
                             "prop-val" : 0,
                             "prop-type" : "int"
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 137,
+                            "oid" : 470,
                             "prop-type" : "Gtk.SearchEntry",
                             "children" : [
                               {
                                 "node-type" : 7,
-                                "oid" : 138,
+                                "oid" : 471,
                                 "prop-name" : "init",
                                 "prop-val" : [
                                   " ",
@@ -1177,26 +1177,26 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 139,
+                                "oid" : 472,
                                 "prop-name" : "css",
                                 "prop-type" : "Gtk.CssProvider"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 140,
+                                "oid" : 473,
                                 "prop-name" : "hexpand",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 141,
+                                "oid" : 474,
                                 "prop-name" : "id",
                                 "prop-val" : "searchbox"
                               },
                               {
                                 "node-type" : 8,
-                                "oid" : 142,
+                                "oid" : 475,
                                 "prop-name" : "search_changed",
                                 "prop-val" : [
                                   "( ) => {",
@@ -1210,21 +1210,21 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 143,
+                                "oid" : 476,
                                 "prop-name" : "name",
                                 "prop-val" : "popover-files-iconsearch",
                                 "prop-type" : "string"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 144,
+                                "oid" : 477,
                                 "prop-name" : "placeholder_text",
                                 "prop-val" : "type to filter results",
                                 "prop-type" : "string"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 145,
+                                "oid" : 478,
                                 "prop-name" : "search_delay",
                                 "prop-val" : 1000,
                                 "prop-type" : "uint"
@@ -1233,25 +1233,25 @@
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 146,
+                            "oid" : 479,
                             "prop-type" : "Gtk.ToggleButton",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 147,
+                                "oid" : 480,
                                 "prop-name" : "active",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 148,
+                                "oid" : 481,
                                 "prop-name" : "id",
                                 "prop-val" : "filter_symlink"
                               },
                               {
                                 "node-type" : 8,
-                                "oid" : 149,
+                                "oid" : 482,
                                 "prop-name" : "toggled",
                                 "prop-val" : [
                                   "() =>  {",
@@ -1264,14 +1264,14 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 150,
+                                "oid" : 483,
                                 "prop-name" : "label",
                                 "prop-val" : "Linked Files",
                                 "prop-type" : "string"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 151,
+                                "oid" : 484,
                                 "prop-name" : "tooltip_text",
                                 "prop-val" : "Hide or Show Files that are included in the project via Symbolic Links",
                                 "prop-type" : "string"
@@ -1282,12 +1282,12 @@
                       },
                       {
                         "node-type" : 9,
-                        "oid" : 152,
+                        "oid" : 485,
                         "prop-type" : "Gtk.ScrolledWindow",
                         "children" : [
                           {
                             "node-type" : 7,
-                            "oid" : 153,
+                            "oid" : 486,
                             "prop-name" : "init",
                             "prop-val" : [
                               "  this.el.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);",
@@ -1296,51 +1296,51 @@
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 154,
+                            "oid" : 487,
                             "prop-name" : "has_frame",
                             "prop-val" : true,
                             "prop-type" : "bool"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 155,
+                            "oid" : 488,
                             "prop-name" : "hexpand",
                             "prop-val" : true,
                             "prop-type" : "bool"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 156,
+                            "oid" : 489,
                             "prop-name" : "vexpand",
                             "prop-val" : true,
                             "prop-type" : "bool"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 157,
+                            "oid" : 490,
                             "prop-name" : "id",
                             "prop-val" : "iconscroll"
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 158,
+                            "oid" : 491,
                             "prop-name" : "child",
                             "prop-type" : "Gtk.GridView",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 159,
+                                "oid" : 492,
                                 "prop-name" : "id",
                                 "prop-val" : "gridview"
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 160,
+                                "oid" : 493,
                                 "prop-type" : "Gtk.GestureClick",
                                 "children" : [
                                   {
                                     "node-type" : 8,
-                                    "oid" : 161,
+                                    "oid" : 494,
                                     "prop-name" : "pressed",
                                     "prop-val" : [
                                       "(n_press, x, y) => {",
@@ -1371,83 +1371,83 @@
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 162,
+                                "oid" : 495,
                                 "prop-name" : "model",
                                 "prop-type" : "Gtk.SingleSelection",
                                 "children" : [
                                   {
                                     "node-type" : 3,
-                                    "oid" : 163,
+                                    "oid" : 496,
                                     "prop-name" : "selected",
                                     "prop-val" : " Gtk.INVALID_LIST_POSITION",
                                     "prop-type" : "uint"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 164,
+                                    "oid" : 497,
                                     "prop-name" : "autoselect",
                                     "prop-val" : false,
                                     "prop-type" : "bool"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 165,
+                                    "oid" : 498,
                                     "prop-name" : "can_unselect",
                                     "prop-val" : true,
                                     "prop-type" : "bool"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 166,
+                                    "oid" : 499,
                                     "prop-name" : "id",
                                     "prop-val" : "iconsel"
                                   },
                                   {
                                     "node-type" : 9,
-                                    "oid" : 167,
+                                    "oid" : 500,
                                     "prop-name" : "model",
                                     "prop-type" : "Gtk.FilterListModel",
                                     "children" : [
                                       {
                                         "node-type" : 2,
-                                        "oid" : 168,
+                                        "oid" : 501,
                                         "prop-name" : "id",
                                         "prop-val" : "iconfiltermodel"
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 169,
+                                        "oid" : 502,
                                         "prop-name" : "model",
                                         "prop-type" : "Gtk.SortListModel",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 170,
+                                            "oid" : 503,
                                             "prop-name" : "id",
                                             "prop-val" : "gridsort"
                                           },
                                           {
                                             "node-type" : 9,
-                                            "oid" : 171,
+                                            "oid" : 504,
                                             "prop-name" : "model",
                                             "prop-type" : "GLib.ListStore",
                                             "children" : [
                                               {
                                                 "node-type" : 2,
-                                                "oid" : 172,
+                                                "oid" : 505,
                                                 "prop-name" : "item_type",
                                                 "prop-val" : "typeof(JsRender.JsRender)",
                                                 "prop-type" : "GLib.Type"
                                               },
                                               {
                                                 "node-type" : 2,
-                                                "oid" : 173,
+                                                "oid" : 506,
                                                 "prop-name" : "id",
                                                 "prop-val" : "gridmodel"
                                               },
                                               {
                                                 "node-type" : 4,
-                                                "oid" : 174,
+                                                "oid" : 507,
                                                 "prop-name" : "remove",
                                                 "prop-val" : [
                                                   "(JsRender.JsRender p) {",
@@ -1468,33 +1468,33 @@
                                           },
                                           {
                                             "node-type" : 9,
-                                            "oid" : 175,
+                                            "oid" : 508,
                                             "prop-name" : "sorter",
                                             "prop-type" : "Gtk.StringSorter",
                                             "children" : [
                                               {
                                                 "node-type" : 2,
-                                                "oid" : 176,
+                                                "oid" : 509,
                                                 "prop-name" : "ignore_case",
                                                 "prop-val" : true,
                                                 "prop-type" : "bool"
                                               },
                                               {
                                                 "node-type" : 9,
-                                                "oid" : 177,
+                                                "oid" : 510,
                                                 "prop-name" : "expression",
                                                 "prop-type" : "Gtk.PropertyExpression",
                                                 "children" : [
                                                   {
                                                     "node-type" : 2,
-                                                    "oid" : 178,
+                                                    "oid" : 511,
                                                     "prop-name" : "this_type",
                                                     "prop-val" : "typeof(JsRender.JsRender)",
                                                     "prop-type" : "GLib.Type"
                                                   },
                                                   {
                                                     "node-type" : 2,
-                                                    "oid" : 179,
+                                                    "oid" : 512,
                                                     "prop-name" : "property_name",
                                                     "prop-val" : "name",
                                                     "prop-type" : "string"
@@ -1507,13 +1507,13 @@
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 180,
+                                        "oid" : 513,
                                         "prop-name" : "filter",
                                         "prop-type" : "Gtk.CustomFilter",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 181,
+                                            "oid" : 514,
                                             "prop-name" : "match_func",
                                             "prop-val" : [
                                               "(item) => { ",
@@ -1544,7 +1544,7 @@
                                           },
                                           {
                                             "node-type" : 2,
-                                            "oid" : 182,
+                                            "oid" : 515,
                                             "prop-name" : "id",
                                             "prop-val" : "iconfilter"
                                           }
@@ -1554,7 +1554,7 @@
                                   },
                                   {
                                     "node-type" : 8,
-                                    "oid" : 183,
+                                    "oid" : 516,
                                     "prop-name" : "notify[\"selected\"]",
                                     "prop-val" : [
                                       "() => {",
@@ -1577,7 +1577,7 @@
                                   },
                                   {
                                     "node-type" : 4,
-                                    "oid" : 184,
+                                    "oid" : 517,
                                     "prop-name" : "selectedFile",
                                     "prop-val" : [
                                       "() {",
@@ -1596,13 +1596,13 @@
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 185,
+                                "oid" : 518,
                                 "prop-name" : "factory",
                                 "prop-type" : "Gtk.SignalListItemFactory",
                                 "children" : [
                                   {
                                     "node-type" : 8,
-                                    "oid" : 186,
+                                    "oid" : 519,
                                     "prop-name" : "bind",
                                     "prop-val" : [
                                       "(listitem) => {",
@@ -1630,7 +1630,12 @@
                                       "           GLib.BindingFlags.SYNC_CREATE);",
                                       "",
                                       "\t*/",
-                                      "    img.set_from_file(item.getIconFileName());",
+                                      "    var thumb_img = item.getImage();",
+                                      "    if (thumb_img != null) {",
+                                      "\t\timg.set_from_paintable(thumb_img.get_paintable());",
+                                      "    } else {",
+                                      "\t\timg.set_from_file(item.getIconFileName());",
+                                      "    }",
                                       "    ",
                                       "\t  ",
                                       "}",
@@ -1639,7 +1644,7 @@
                                   },
                                   {
                                     "node-type" : 8,
-                                    "oid" : 187,
+                                    "oid" : 520,
                                     "prop-name" : "setup",
                                     "prop-val" : [
                                       "(item) => {",
@@ -1657,7 +1662,10 @@
                                       "\tb.query_tooltip.connect((x, y, keyboard_tooltip, tooltip) => {",
                                       "\t\tvar j = (JsRender.JsRender) gi.get_item();",
                                       "\t\t",
-                                      "\t\tvar ti = new Gtk.Image.from_file ( j.getIconFileName());",
+                                      "\t\tvar ti = j.getImage();",
+                                      "\t\tif (ti == null) {",
+                                      "\t\t\treturn false;",
+                                      "\t\t}",
                                       "\t\tti.pixel_size = 368;",
                                       "\t\ttooltip.set_custom( ti );",
                                       "\t\treturn true;",
@@ -1678,64 +1686,64 @@
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 188,
+                    "oid" : 521,
                     "prop-name" : "start_child",
                     "prop-type" : "Gtk.Box",
                     "children" : [
                       {
                         "node-type" : 2,
-                        "oid" : 189,
+                        "oid" : 522,
                         "prop-name" : "orientation",
                         "prop-val" : "Gtk.Orientation.VERTICAL",
                         "prop-type" : "Gtk.Orientation"
                       },
                       {
                         "node-type" : 9,
-                        "oid" : 190,
+                        "oid" : 523,
                         "prop-type" : "Gtk.Box",
                         "children" : [
                           {
                             "node-type" : 2,
-                            "oid" : 191,
+                            "oid" : 524,
                             "prop-name" : "orientation",
                             "prop-val" : "Gtk.Orientation.HORIZONTAL",
                             "prop-type" : "Gtk.Orientation"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 192,
+                            "oid" : 525,
                             "prop-name" : "hexpand",
                             "prop-val" : true,
                             "prop-type" : "bool"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 193,
+                            "oid" : 526,
                             "prop-name" : "spacing",
                             "prop-val" : 0,
                             "prop-type" : "int"
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 194,
+                            "oid" : 527,
                             "prop-type" : "Gtk.ToggleButton",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 195,
+                                "oid" : 528,
                                 "prop-name" : "active",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 196,
+                                "oid" : 529,
                                 "prop-name" : "id",
                                 "prop-val" : "filter_vala"
                               },
                               {
                                 "node-type" : 8,
-                                "oid" : 197,
+                                "oid" : 530,
                                 "prop-name" : "toggled",
                                 "prop-val" : [
                                   "() =>  {",
@@ -1746,14 +1754,14 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 198,
+                                "oid" : 531,
                                 "prop-name" : "label",
                                 "prop-val" : "Vala",
                                 "prop-type" : "string"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 199,
+                                "oid" : 532,
                                 "prop-name" : "css_classes",
                                 "prop-val" : "{ \"small\" }",
                                 "prop-type" : "string[]"
@@ -1762,25 +1770,25 @@
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 200,
+                            "oid" : 533,
                             "prop-type" : "Gtk.ToggleButton",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 201,
+                                "oid" : 534,
                                 "prop-name" : "active",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 202,
+                                "oid" : 535,
                                 "prop-name" : "id",
                                 "prop-val" : "filter_c"
                               },
                               {
                                 "node-type" : 8,
-                                "oid" : 203,
+                                "oid" : 536,
                                 "prop-name" : "toggled",
                                 "prop-val" : [
                                   "() =>  {",
@@ -1791,14 +1799,14 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 204,
+                                "oid" : 537,
                                 "prop-name" : "label",
                                 "prop-val" : "C",
                                 "prop-type" : "string"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 205,
+                                "oid" : 538,
                                 "prop-name" : "css_classes",
                                 "prop-val" : "{ \"small\" }",
                                 "prop-type" : "string[]"
@@ -1807,25 +1815,25 @@
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 206,
+                            "oid" : 539,
                             "prop-type" : "Gtk.ToggleButton",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 207,
+                                "oid" : 540,
                                 "prop-name" : "active",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 208,
+                                "oid" : 541,
                                 "prop-name" : "id",
                                 "prop-val" : "filter_css"
                               },
                               {
                                 "node-type" : 8,
-                                "oid" : 209,
+                                "oid" : 542,
                                 "prop-name" : "toggled",
                                 "prop-val" : [
                                   "() =>  {",
@@ -1836,14 +1844,14 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 210,
+                                "oid" : 543,
                                 "prop-name" : "label",
                                 "prop-val" : "CSS",
                                 "prop-type" : "string"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 211,
+                                "oid" : 544,
                                 "prop-name" : "css_classes",
                                 "prop-val" : "{ \"small\" }",
                                 "prop-type" : "string[]"
@@ -1852,25 +1860,25 @@
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 212,
+                            "oid" : 545,
                             "prop-type" : "Gtk.ToggleButton",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 213,
+                                "oid" : 546,
                                 "prop-name" : "active",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 214,
+                                "oid" : 547,
                                 "prop-name" : "id",
                                 "prop-val" : "filter_js"
                               },
                               {
                                 "node-type" : 8,
-                                "oid" : 215,
+                                "oid" : 548,
                                 "prop-name" : "toggled",
                                 "prop-val" : [
                                   "() =>  {",
@@ -1881,14 +1889,14 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 216,
+                                "oid" : 549,
                                 "prop-name" : "label",
                                 "prop-val" : "JS",
                                 "prop-type" : "string"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 217,
+                                "oid" : 550,
                                 "prop-name" : "css_classes",
                                 "prop-val" : "{ \"small\" }",
                                 "prop-type" : "string[]"
@@ -1897,25 +1905,25 @@
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 218,
+                            "oid" : 551,
                             "prop-type" : "Gtk.ToggleButton",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 219,
+                                "oid" : 552,
                                 "prop-name" : "active",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 220,
+                                "oid" : 553,
                                 "prop-name" : "id",
                                 "prop-val" : "filter_php"
                               },
                               {
                                 "node-type" : 8,
-                                "oid" : 221,
+                                "oid" : 554,
                                 "prop-name" : "toggled",
                                 "prop-val" : [
                                   "() =>  {",
@@ -1926,14 +1934,14 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 222,
+                                "oid" : 555,
                                 "prop-name" : "label",
                                 "prop-val" : "PHP",
                                 "prop-type" : "string"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 223,
+                                "oid" : 556,
                                 "prop-name" : "css_classes",
                                 "prop-val" : "{ \"small\" }",
                                 "prop-type" : "string[]"
@@ -1942,25 +1950,25 @@
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 224,
+                            "oid" : 557,
                             "prop-type" : "Gtk.ToggleButton",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 225,
+                                "oid" : 558,
                                 "prop-name" : "active",
                                 "prop-val" : true,
                                 "prop-type" : "bool"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 226,
+                                "oid" : 559,
                                 "prop-name" : "id",
                                 "prop-val" : "filter_other"
                               },
                               {
                                 "node-type" : 8,
-                                "oid" : 227,
+                                "oid" : 560,
                                 "prop-name" : "toggled",
                                 "prop-val" : [
                                   "() =>  {",
@@ -1971,14 +1979,14 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 228,
+                                "oid" : 561,
                                 "prop-name" : "label",
                                 "prop-val" : "Other",
                                 "prop-type" : "string"
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 229,
+                                "oid" : 562,
                                 "prop-name" : "css_classes",
                                 "prop-val" : "{ \"small\" }",
                                 "prop-type" : "string[]"
@@ -1989,76 +1997,76 @@
                       },
                       {
                         "node-type" : 9,
-                        "oid" : 230,
+                        "oid" : 563,
                         "prop-type" : "Gtk.ScrolledWindow",
                         "children" : [
                           {
                             "node-type" : 7,
-                            "oid" : 231,
+                            "oid" : 564,
                             "prop-name" : "init",
                             "prop-val" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 232,
+                            "oid" : 565,
                             "prop-name" : "has_frame",
                             "prop-val" : true,
                             "prop-type" : "bool"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 233,
+                            "oid" : 566,
                             "prop-name" : "hexpand",
                             "prop-val" : true,
                             "prop-type" : "bool"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 234,
+                            "oid" : 567,
                             "prop-name" : "vexpand",
                             "prop-val" : true,
                             "prop-type" : "bool"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 235,
+                            "oid" : 568,
                             "prop-name" : "visible",
                             "prop-val" : true,
                             "prop-type" : "bool"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 236,
+                            "oid" : 569,
                             "prop-name" : "id",
                             "prop-val" : "treescroll"
                           },
                           {
                             "node-type" : 2,
-                            "oid" : 237,
+                            "oid" : 570,
                             "prop-name" : "width_request",
                             "prop-val" : 200,
                             "prop-type" : "int"
                           },
                           {
                             "node-type" : 9,
-                            "oid" : 238,
+                            "oid" : 571,
                             "prop-name" : "child",
                             "prop-type" : "Gtk.ColumnView",
                             "children" : [
                               {
                                 "node-type" : 2,
-                                "oid" : 239,
+                                "oid" : 572,
                                 "prop-name" : "id",
                                 "prop-val" : "treeview"
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 240,
+                                "oid" : 573,
                                 "prop-type" : "Gtk.GestureClick",
                                 "children" : [
                                   {
                                     "node-type" : 8,
-                                    "oid" : 241,
+                                    "oid" : 574,
                                     "prop-name" : "pressed",
                                     "prop-val" : [
                                       "(n_press, x, y) => {",
@@ -2090,70 +2098,70 @@
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 242,
+                                "oid" : 575,
                                 "prop-name" : "model",
                                 "prop-type" : "Gtk.SingleSelection",
                                 "children" : [
                                   {
                                     "node-type" : 2,
-                                    "oid" : 243,
+                                    "oid" : 576,
                                     "prop-name" : "autoselect",
                                     "prop-val" : false,
                                     "prop-type" : "bool"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 244,
+                                    "oid" : 577,
                                     "prop-name" : "can_unselect",
                                     "prop-val" : true,
                                     "prop-type" : "bool"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 245,
+                                    "oid" : 578,
                                     "prop-name" : "id",
                                     "prop-val" : "treeselmodel"
                                   },
                                   {
                                     "node-type" : 9,
-                                    "oid" : 246,
+                                    "oid" : 579,
                                     "prop-name" : "model",
                                     "prop-type" : "Gtk.FilterListModel",
                                     "children" : [
                                       {
                                         "node-type" : 2,
-                                        "oid" : 247,
+                                        "oid" : 580,
                                         "prop-name" : "id",
                                         "prop-val" : "treefiltermodel"
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 248,
+                                        "oid" : 581,
                                         "prop-name" : "model",
                                         "prop-type" : "Gtk.SortListModel",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 249,
+                                            "oid" : 582,
                                             "prop-name" : "incremental",
                                             "prop-val" : true,
                                             "prop-type" : "bool"
                                           },
                                           {
                                             "node-type" : 2,
-                                            "oid" : 250,
+                                            "oid" : 583,
                                             "prop-name" : "id",
                                             "prop-val" : "treelistsort"
                                           },
                                           {
                                             "node-type" : 9,
-                                            "oid" : 251,
+                                            "oid" : 584,
                                             "prop-name" : "model",
                                             "prop-type" : "Gtk.TreeListModel",
                                             "children" : [
                                               {
                                                 "node-type" : 2,
-                                                "oid" : 252,
+                                                "oid" : 585,
                                                 "prop-name" : "create_func",
                                                 "prop-val" : [
                                                   "(item) => {",
@@ -2165,40 +2173,40 @@
                                               },
                                               {
                                                 "node-type" : 2,
-                                                "oid" : 253,
+                                                "oid" : 586,
                                                 "prop-name" : "autoexpand",
                                                 "prop-val" : true,
                                                 "prop-type" : "bool"
                                               },
                                               {
                                                 "node-type" : 2,
-                                                "oid" : 254,
+                                                "oid" : 587,
                                                 "prop-name" : "passthrough",
                                                 "prop-val" : false,
                                                 "prop-type" : "bool"
                                               },
                                               {
                                                 "node-type" : 2,
-                                                "oid" : 255,
+                                                "oid" : 588,
                                                 "prop-name" : "id",
                                                 "prop-val" : "treelistmodel"
                                               },
                                               {
                                                 "node-type" : 9,
-                                                "oid" : 256,
+                                                "oid" : 589,
                                                 "prop-name" : "root",
                                                 "prop-type" : "GLib.ListStore",
                                                 "children" : [
                                                   {
                                                     "node-type" : 2,
-                                                    "oid" : 257,
+                                                    "oid" : 590,
                                                     "prop-name" : "item_type",
                                                     "prop-val" : "typeof(JsRender.JsRender)",
                                                     "prop-type" : "GLib.Type"
                                                   },
                                                   {
                                                     "node-type" : 2,
-                                                    "oid" : 258,
+                                                    "oid" : 591,
                                                     "prop-name" : "id",
                                                     "prop-val" : "treemodel"
                                                   }
@@ -2208,39 +2216,39 @@
                                           },
                                           {
                                             "node-type" : 9,
-                                            "oid" : 259,
+                                            "oid" : 592,
                                             "prop-name" : "sorter",
                                             "prop-type" : "Gtk.TreeListRowSorter",
                                             "children" : [
                                               {
                                                 "node-type" : 9,
-                                                "oid" : 260,
+                                                "oid" : 593,
                                                 "prop-name" : "sorter",
                                                 "prop-type" : "Gtk.StringSorter",
                                                 "children" : [
                                                   {
                                                     "node-type" : 2,
-                                                    "oid" : 261,
+                                                    "oid" : 594,
                                                     "prop-name" : "ignore_case",
                                                     "prop-val" : true,
                                                     "prop-type" : "bool"
                                                   },
                                                   {
                                                     "node-type" : 9,
-                                                    "oid" : 262,
+                                                    "oid" : 595,
                                                     "prop-name" : "expression",
                                                     "prop-type" : "Gtk.PropertyExpression",
                                                     "children" : [
                                                       {
                                                         "node-type" : 2,
-                                                        "oid" : 263,
+                                                        "oid" : 596,
                                                         "prop-name" : "this_type",
                                                         "prop-val" : "typeof(JsRender.JsRender) ",
                                                         "prop-type" : "GLib.Type"
                                                       },
                                                       {
                                                         "node-type" : 2,
-                                                        "oid" : 264,
+                                                        "oid" : 597,
                                                         "prop-name" : "property_name",
                                                         "prop-val" : "name",
                                                         "prop-type" : "string"
@@ -2255,13 +2263,13 @@
                                       },
                                       {
                                         "node-type" : 9,
-                                        "oid" : 265,
+                                        "oid" : 598,
                                         "prop-name" : "filter",
                                         "prop-type" : "Gtk.CustomFilter",
                                         "children" : [
                                           {
                                             "node-type" : 2,
-                                            "oid" : 266,
+                                            "oid" : 599,
                                             "prop-name" : "match_func",
                                             "prop-val" : [
                                               "(item) => { ",
@@ -2399,7 +2407,7 @@
                                           },
                                           {
                                             "node-type" : 2,
-                                            "oid" : 267,
+                                            "oid" : 600,
                                             "prop-name" : "id",
                                             "prop-val" : "treefilter"
                                           }
@@ -2409,7 +2417,7 @@
                                   },
                                   {
                                     "node-type" : 8,
-                                    "oid" : 268,
+                                    "oid" : 601,
                                     "prop-name" : "notify[\"selected\"]",
                                     "prop-val" : [
                                       "() => {",
@@ -2440,7 +2448,7 @@
                                   },
                                   {
                                     "node-type" : 4,
-                                    "oid" : 269,
+                                    "oid" : 602,
                                     "prop-name" : "selectedFile",
                                     "prop-val" : [
                                       "() {",
@@ -2459,12 +2467,12 @@
                               },
                               {
                                 "node-type" : 9,
-                                "oid" : 270,
+                                "oid" : 603,
                                 "prop-type" : "Gtk.ColumnViewColumn",
                                 "children" : [
                                   {
                                     "node-type" : 7,
-                                    "oid" : 271,
+                                    "oid" : 604,
                                     "prop-name" : "init",
                                     "prop-val" : [
                                       "{",
@@ -2478,39 +2486,39 @@
                                   },
                                   {
                                     "node-type" : 7,
-                                    "oid" : 272,
+                                    "oid" : 605,
                                     "prop-name" : "pack",
                                     "prop-val" : "append_column"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 273,
+                                    "oid" : 606,
                                     "prop-name" : "expand",
                                     "prop-val" : true,
                                     "prop-type" : "bool"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 274,
+                                    "oid" : 607,
                                     "prop-name" : "resizable",
                                     "prop-val" : true,
                                     "prop-type" : "bool"
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 275,
+                                    "oid" : 608,
                                     "prop-name" : "id",
                                     "prop-val" : "name"
                                   },
                                   {
                                     "node-type" : 9,
-                                    "oid" : 276,
+                                    "oid" : 609,
                                     "prop-name" : "factory",
                                     "prop-type" : "Gtk.SignalListItemFactory",
                                     "children" : [
                                       {
                                         "node-type" : 8,
-                                        "oid" : 277,
+                                        "oid" : 610,
                                         "prop-name" : "bind",
                                         "prop-val" : [
                                           "(listitem) => {",
@@ -2564,7 +2572,7 @@
                                       },
                                       {
                                         "node-type" : 8,
-                                        "oid" : 278,
+                                        "oid" : 611,
                                         "prop-name" : "setup",
                                         "prop-val" : [
                                           "(listitem) => {",
@@ -2596,7 +2604,7 @@
                                   },
                                   {
                                     "node-type" : 2,
-                                    "oid" : 279,
+                                    "oid" : 612,
                                     "prop-name" : "title",
                                     "prop-val" : "General Files",
                                     "prop-type" : "string"
@@ -2605,7 +2613,7 @@
                               },
                               {
                                 "node-type" : 2,
-                                "oid" : 280,
+                                "oid" : 613,
                                 "prop-name" : "name",
                                 "prop-val" : "file-list",
                                 "prop-type" : "string"
@@ -2624,37 +2632,37 @@
       },
       {
         "node-type" : 9,
-        "oid" : 281,
+        "oid" : 614,
         "prop-name" : "titlebar",
         "prop-type" : "Gtk.HeaderBar",
         "children" : [
           {
             "node-type" : 7,
-            "oid" : 282,
+            "oid" : 615,
             "prop-name" : "title",
             "prop-val" : "Select Project / File"
           },
           {
             "node-type" : 2,
-            "oid" : 283,
+            "oid" : 616,
             "prop-name" : "show_title_buttons",
             "prop-val" : false,
             "prop-type" : "bool"
           },
           {
             "node-type" : 9,
-            "oid" : 284,
+            "oid" : 617,
             "prop-type" : "Gtk.Button",
             "children" : [
               {
                 "node-type" : 7,
-                "oid" : 285,
+                "oid" : 618,
                 "prop-name" : "pack",
                 "prop-val" : "pack_end"
               },
               {
                 "node-type" : 8,
-                "oid" : 286,
+                "oid" : 619,
                 "prop-name" : "clicked",
                 "prop-val" : [
                   "( ) => {",
@@ -2680,14 +2688,14 @@
               },
               {
                 "node-type" : 2,
-                "oid" : 287,
+                "oid" : 620,
                 "prop-name" : "icon_name",
                 "prop-val" : "window-close-symbolic",
                 "prop-type" : "string"
               },
               {
                 "node-type" : 2,
-                "oid" : 288,
+                "oid" : 621,
                 "prop-name" : "label",
                 "prop-val" : "Close / Cancel",
                 "prop-type" : "string"
@@ -2696,56 +2704,56 @@
           },
           {
             "node-type" : 9,
-            "oid" : 289,
+            "oid" : 622,
             "prop-type" : "Gtk.Button",
             "children" : [
               {
                 "node-type" : 7,
-                "oid" : 290,
+                "oid" : 623,
                 "prop-name" : "pack",
                 "prop-val" : "pack_start"
               },
               {
                 "node-type" : 2,
-                "oid" : 291,
+                "oid" : 624,
                 "prop-name" : "id",
                 "prop-val" : "btn_newproj"
               },
               {
                 "node-type" : 9,
-                "oid" : 292,
+                "oid" : 625,
                 "prop-name" : "child",
                 "prop-type" : "Gtk.Box",
                 "children" : [
                   {
                     "node-type" : 3,
-                    "oid" : 293,
+                    "oid" : 626,
                     "prop-name" : "orientation",
                     "prop-val" : "Gtk.Orientation.HORIZONTAL",
                     "prop-type" : "Gtk.Orientation"
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 294,
+                    "oid" : 627,
                     "prop-type" : "Gtk.Image",
                     "children" : [
                       {
                         "node-type" : 3,
-                        "oid" : 295,
+                        "oid" : 628,
                         "prop-name" : "icon_size",
                         "prop-val" : "Gtk.IconSize.NORMAL",
                         "prop-type" : "Gtk.IconSize"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 296,
+                        "oid" : 629,
                         "prop-name" : "margin_end",
                         "prop-val" : 4,
                         "prop-type" : "int"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 297,
+                        "oid" : 630,
                         "prop-name" : "icon_name",
                         "prop-val" : "folder-new",
                         "prop-type" : "string"
@@ -2754,19 +2762,19 @@
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 298,
+                    "oid" : 631,
                     "prop-type" : "Gtk.Label",
                     "children" : [
                       {
                         "node-type" : 3,
-                        "oid" : 299,
+                        "oid" : 632,
                         "prop-name" : "halign",
                         "prop-val" : "Gtk.Align.START",
                         "prop-type" : "Gtk.Align"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 300,
+                        "oid" : 633,
                         "prop-name" : "label",
                         "prop-val" : "New Project",
                         "prop-type" : "string"
@@ -2777,7 +2785,7 @@
               },
               {
                 "node-type" : 8,
-                "oid" : 301,
+                "oid" : 634,
                 "prop-name" : "clicked",
                 "prop-val" : [
                   "  ( ) => {",
@@ -2803,7 +2811,7 @@
               },
               {
                 "node-type" : 4,
-                "oid" : 302,
+                "oid" : 635,
                 "prop-name" : "onCreated",
                 "prop-val" : [
                   "() {",
@@ -2818,56 +2826,56 @@
           },
           {
             "node-type" : 9,
-            "oid" : 303,
+            "oid" : 636,
             "prop-type" : "Gtk.Button",
             "children" : [
               {
                 "node-type" : 7,
-                "oid" : 304,
+                "oid" : 637,
                 "prop-name" : "pack",
                 "prop-val" : "pack_start"
               },
               {
                 "node-type" : 2,
-                "oid" : 305,
+                "oid" : 638,
                 "prop-name" : "id",
                 "prop-val" : "btn_addfile"
               },
               {
                 "node-type" : 9,
-                "oid" : 306,
+                "oid" : 639,
                 "prop-name" : "child",
                 "prop-type" : "Gtk.Box",
                 "children" : [
                   {
                     "node-type" : 2,
-                    "oid" : 307,
+                    "oid" : 640,
                     "prop-name" : "orientation",
                     "prop-val" : "Gtk.Orientation.HORIZONTAL",
                     "prop-type" : "Gtk.Orientation"
                   },
                   {
                     "node-type" : 2,
-                    "oid" : 308,
+                    "oid" : 641,
                     "prop-name" : "spacing",
                     "prop-val" : 0,
                     "prop-type" : "int"
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 309,
+                    "oid" : 642,
                     "prop-type" : "Gtk.Image",
                     "children" : [
                       {
                         "node-type" : 2,
-                        "oid" : 310,
+                        "oid" : 643,
                         "prop-name" : "margin_end",
                         "prop-val" : 4,
                         "prop-type" : "int"
                       },
                       {
                         "node-type" : 2,
-                        "oid" : 311,
+                        "oid" : 644,
                         "prop-name" : "icon_name",
                         "prop-val" : "document-new",
                         "prop-type" : "string"
@@ -2876,12 +2884,12 @@
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 312,
+                    "oid" : 645,
                     "prop-type" : "Gtk.Label",
                     "children" : [
                       {
                         "node-type" : 2,
-                        "oid" : 313,
+                        "oid" : 646,
                         "prop-name" : "label",
                         "prop-val" : "New File",
                         "prop-type" : "string"
@@ -2892,7 +2900,7 @@
               },
               {
                 "node-type" : 8,
-                "oid" : 314,
+                "oid" : 647,
                 "prop-name" : "clicked",
                 "prop-val" : [
                   " () => {",
@@ -2914,56 +2922,56 @@
           },
           {
             "node-type" : 9,
-            "oid" : 315,
+            "oid" : 648,
             "prop-type" : "Gtk.Button",
             "children" : [
               {
                 "node-type" : 7,
-                "oid" : 316,
+                "oid" : 649,
                 "prop-name" : "pack",
                 "prop-val" : "pack_start"
               },
               {
                 "node-type" : 2,
-                "oid" : 317,
+                "oid" : 650,
                 "prop-name" : "confirm",
                 "prop-val" : "null",
                 "prop-type" : "DialogConfirm"
               },
               {
                 "node-type" : 2,
-                "oid" : 318,
+                "oid" : 651,
                 "prop-name" : "id",
                 "prop-val" : "btn_delfile"
               },
               {
                 "node-type" : 9,
-                "oid" : 319,
+                "oid" : 652,
                 "prop-name" : "child",
                 "prop-type" : "Gtk.Box",
                 "children" : [
                   {
                     "node-type" : 2,
-                    "oid" : 320,
+                    "oid" : 653,
                     "prop-name" : "orientation",
                     "prop-val" : "Gtk.Orientation.HORIZONTAL",
                     "prop-type" : "Gtk.Orientation"
                   },
                   {
                     "node-type" : 2,
-                    "oid" : 321,
+                    "oid" : 654,
                     "prop-name" : "spacing",
                     "prop-val" : 0,
                     "prop-type" : "int"
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 322,
+                    "oid" : 655,
                     "prop-type" : "Gtk.Image",
                     "children" : [
                       {
                         "node-type" : 2,
-                        "oid" : 323,
+                        "oid" : 656,
                         "prop-name" : "icon_name",
                         "prop-val" : "user-trash",
                         "prop-type" : "string"
@@ -2972,12 +2980,12 @@
                   },
                   {
                     "node-type" : 9,
-                    "oid" : 324,
+                    "oid" : 657,
                     "prop-type" : "Gtk.Label",
                     "children" : [
                       {
                         "node-type" : 2,
-                        "oid" : 325,
+                        "oid" : 658,
                         "prop-name" : "label",
                         "prop-val" : "Delete File",
                         "prop-type" : "string"
@@ -2988,7 +2996,7 @@
               },
               {
                 "node-type" : 8,
-                "oid" : 326,
+                "oid" : 659,
                 "prop-name" : "clicked",
                 "prop-val" : [
                   "  ( ) => {",
@@ -3050,25 +3058,25 @@
       },
       {
         "node-type" : 2,
-        "oid" : 327,
+        "oid" : 660,
         "prop-name" : "name",
         "prop-val" : "DialogFiles"
       },
       {
         "node-type" : 2,
-        "oid" : 328,
+        "oid" : 661,
         "prop-name" : "lastfilter",
         "prop-type" : "string"
       },
       {
         "node-type" : 2,
-        "oid" : 329,
+        "oid" : 662,
         "prop-name" : "title",
         "prop-val" : "Select Project / File"
       },
       {
         "node-type" : 4,
-        "oid" : 330,
+        "oid" : 663,
         "prop-name" : "load",
         "prop-val" : [
           "() {",
@@ -3098,7 +3106,7 @@
       },
       {
         "node-type" : 4,
-        "oid" : 331,
+        "oid" : 664,
         "prop-name" : "onProjectSelected",
         "prop-val" : [
           "(Project.Project? project) ",
@@ -3159,7 +3167,7 @@
       },
       {
         "node-type" : 4,
-        "oid" : 332,
+        "oid" : 665,
         "prop-name" : "selectProject",
         "prop-val" : [
           "(Project.Project? project) {",
@@ -3191,7 +3199,7 @@
       },
       {
         "node-type" : 4,
-        "oid" : 333,
+        "oid" : 666,
         "prop-name" : "show",
         "prop-val" : [
           "(Project.Project? project, bool new_window) {",

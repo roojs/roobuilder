@@ -3097,18 +3097,17 @@ public class Xcls_MainWindow : Object
 					if (item == null || item.file == null) {
 						return false;
 					}
-					var thumb_file = item.file.getIconFileName(true);
-					if (thumb_file == "") {
+					var thumb_img = item.file.getImage();
+					if (thumb_img == null) {
 						tooltip.set_text(item.file.relpath);
 						return true;
 					}
 					var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 4);
-					var img = new Gtk.Image.from_file(thumb_file);
-					img.pixel_size = 368;
+					thumb_img.pixel_size = 368;
 					var name_lbl = new Gtk.Label(item.file.relpath);
 					name_lbl.wrap = true;
 					name_lbl.max_width_chars = 50;
-					vbox.append(img);
+					vbox.append(thumb_img);
 					vbox.append(name_lbl);
 					tooltip.set_custom(vbox);
 					return true;
@@ -3129,9 +3128,6 @@ public class Xcls_MainWindow : Object
 			 	}
 			 	
 			 	lb.label = item.file.relpath;
-				item.file.bind_property("path",
-					lb, "tooltip_text",
-					GLib.BindingFlags.SYNC_CREATE);
 			
 			});
 		}
@@ -3602,21 +3598,20 @@ public class Xcls_MainWindow : Object
 					if (jr == null) {
 						return false;
 					}
-					var thumb_file = jr.getIconFileName(true);
+					var thumb_img = jr.getImage();
 					var hint_text = "dbl-click - opens in NEW window\nshift+dbl-click opens in this window";
-					if (thumb_file == "") {
+					if (thumb_img == null) {
 						tooltip.set_text(jr.path + "\n\n" + hint_text);
 						return true;
 					}
 					var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 4);
-					var img = new Gtk.Image.from_file(thumb_file);
-					img.pixel_size = 368;
+					thumb_img.pixel_size = 368;
 					var name_lbl = new Gtk.Label(jr.path);
 					name_lbl.wrap = true;
 					name_lbl.max_width_chars = 50;
 					var hint_lbl = new Gtk.Label(hint_text);
 					hint_lbl.wrap = true;
-					vbox.append(img);
+					vbox.append(thumb_img);
 					vbox.append(name_lbl);
 					vbox.append(hint_lbl);
 					tooltip.set_custom(vbox);
@@ -3667,9 +3662,6 @@ public class Xcls_MainWindow : Object
 			
 				//GLib.debug("change  %s to %s", lbl.label, np.name);
 				lbl.label = jr.name; // for dir's we could hsow the sub path..
-				jr.bind_property("path",
-					lbl, "tooltip_text",
-					GLib.BindingFlags.SYNC_CREATE);
 			
 				expand.set_hide_expander(  jr.xtype != "Dir" );
 				expand.set_list_row(lr);
