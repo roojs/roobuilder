@@ -3605,7 +3605,7 @@ public class Xcls_MainWindow : Object
 					var thumb_file = jr.getIconFileName(true);
 					var hint_text = "dbl-click - opens in NEW window\nshift+dbl-click opens in this window";
 					if (thumb_file == "") {
-						tooltip.set_text(jr.path + "\n" + hint_text);
+						tooltip.set_text(jr.path + "\n\n" + hint_text);
 						return true;
 					}
 					var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 4);
