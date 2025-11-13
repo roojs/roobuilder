@@ -509,7 +509,7 @@ namespace JsRender {
 		}
 
 
-		public string getIconFileName( )
+		public string getIconFileName(bool check_exists = false)
 		{
 
 			var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path);
@@ -524,6 +524,9 @@ namespace JsRender {
 			}
 			var fname = dir + "/" + m5 + ".png";
 
+			if (check_exists && !FileUtils.test(fname, FileTest.EXISTS)) {
+				return "";
+			}
 
 			return fname;
 
