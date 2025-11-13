@@ -531,11 +531,7 @@ namespace JsRender {
 		var fname = dir + "/" + m5 + ".png";
 
 		if (check_exists) {
-			if (FileUtils.test(fname, FileTest.EXISTS)) {
-				this.screenshotFilename = fname;
-			} else {
-				this.screenshotFilename = "";
-			}
+			this.screenshotFilename = FileUtils.test(fname, FileTest.EXISTS) ? fname : "";
 			return this.screenshotFilename;
 		}
 
