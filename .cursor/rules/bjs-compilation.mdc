@@ -15,34 +15,44 @@ description: BJS file compilation and Vala file editing restrictions
 
 Files with `.bjs` extensions need to be compiled using the roobuilder tool before the corresponding Vala files can be used.
 
+### Command-Line Options
+
+- `-p, --project` - Select a project (required)
+- `-g, --compile-group` - Target binary or library for vala code (required for Gtk projects)
+- `-w, --bjs-munge` - Compile bjs file into vala or js and update the source file (required)
+
 ### Compilation Command
 
+**For non-Gtk projects:**
 ```bash
-/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
+roobuilder --project /home/alan/gitlive/roobuilder --bjs-munge src/Builder4/MainWindow.bjs
+```
+
+**For Gtk projects (requires compile-group):**
+```bash
+roobuilder --project /home/alan/gitlive/roobuilder --compile-group roobuilder --bjs-munge src/Builder4/MainWindow.bjs
 ```
 
 ### General Pattern
 
+**Non-Gtk projects:**
 ```bash
-/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile [BJS_FILE_PATH] > /tmp/generated_[filename].vala
+roobuilder --project [PROJECT_PATH] --bjs-munge [BJS_FILE_PATH]
 ```
 
-### Handling File Structure Dumps
-
-**Important**: Sometimes the BJS compiler output includes a file structure dump at the beginning. If the output starts with `File /...` (indicating a file path), this means the compiler is showing file changes and the output is not clean Vala code.
-
-**Solution**: Automatically clean the output using sed to remove garbage:
-
+**Gtk projects:**
 ```bash
-# Compile to temporary file
-/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
-
-# Clean the output (remove garbage from beginning)
-sed -n '/^static/,$p' /tmp/generated_mainwindow.vala > /tmp/clean_mainwindow.vala
-
-# Copy clean output to final location
-cp /tmp/clean_mainwindow.vala src/Builder4/MainWindow.vala
+roobuilder --project [PROJECT_PATH] --compile-group [TARGET_BINARY_OR_LIBRARY] --bjs-munge [BJS_FILE_PATH]
 ```
+
+### Automatic File Writing
+
+The `--bjs-munge` command automatically:
+1. Compiles the BJS file to Vala or JS source code
+2. Writes the output directly to the target file (no manual redirection needed)
+3. Handles all file operations internally
+
+**No manual cleanup or file copying is required** - the command handles everything automatically.
 
 ## File Pairs in This Codebase
 
@@ -63,27 +73,32 @@ cp /tmp/clean_mainwindow.vala src/Builder4/MainWindow.vala
 ## Workflow for BJS Files
 
 1. **Edit the .bjs file** - Make your changes in the BJS source
-2. **Compile using roobuilder** - Run the compilation command to temporary file
-3. **Clean the output** - Use sed to remove garbage from the beginning
-4. **Copy generated code** - Copy from `/tmp/clean_[filename].vala` to the actual Vala file
-5. **Test compilation** - Ensure the project builds correctly
+2. **Compile using roobuilder** - Run the `--bjs-munge` command (automatically writes to target file)
+3. **Test compilation** - Ensure the project builds correctly
 
 ## Example Workflow
 
+**For non-Gtk projects:**
 ```bash
 # 1. Edit the BJS file
 vim src/Builder4/MainWindow.bjs
 
-# 2. Compile to temporary file
-/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
+# 2. Compile and update the target file automatically
+roobuilder --project /home/alan/gitlive/roobuilder --bjs-munge src/Builder4/MainWindow.bjs
 
-# 3. Clean the output (remove garbage from beginning)
-sed -n '/^static/,$p' /tmp/generated_mainwindow.vala > /tmp/clean_mainwindow.vala
+# 3. Build the project
+ninja -C build
+```
 
-# 4. Copy clean output to final location
-cp /tmp/clean_mainwindow.vala src/Builder4/MainWindow.vala
+**For Gtk projects:**
+```bash
+# 1. Edit the BJS file
+vim src/Builder4/MainWindow.bjs
 
-# 5. Build the project
+# 2. Compile and update the target file automatically (requires compile-group)
+roobuilder --project /home/alan/gitlive/roobuilder --compile-group roobuilder --bjs-munge src/Builder4/MainWindow.bjs
+
+# 3. Build the project
 ninja -C build
 ```
 
@@ -93,9 +108,9 @@ When reviewing changes:
 
 1. **MANDATORY: Check for BJS pairs** - If a Vala file has a corresponding BJS file, ensure changes were made to the BJS file
 2. **VERIFY: No direct Vala edits** - Flag ANY direct edits to generated Vala files as a CRITICAL ERROR
-3. **REQUIRE: BJS compilation** - Ensure the BJS file compiles correctly and produces clean output
+3. **REQUIRE: BJS compilation** - Ensure the BJS file compiles correctly using `--bjs-munge`
 4. **ENFORCE: Consistency** - Ensure BJS and Vala files are in sync
-5. **VALIDATE: Clean output** - Verify that generated Vala files start with `static` declarations, not garbage
+5. **VALIDATE: Correct options** - Verify that `--project` (and `--compile-group` for Gtk projects) are used correctly
 
 ## Common Mistakes to Avoid
 
@@ -109,30 +124,37 @@ code src/Builder4/WindowLeftTree.vala  # This is generated!
 ```
 
 ```bash
-# WRONG - Copying garbage output directly
-/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > src/Builder4/MainWindow.vala
-# This copies debug info and file dumps!
+# WRONG - Using old test command (deprecated)
+roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs
+# This is a test command and doesn't update the source file!
 
-# WRONG - Not cleaning the output
-/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
-cp /tmp/generated_mainwindow.vala src/Builder4/MainWindow.vala
-# This copies garbage at the beginning!
+# WRONG - Missing required options
+roobuilder --bjs-munge src/Builder4/MainWindow.bjs
+# Missing --project option!
+
+# WRONG - Missing compile-group for Gtk projects
+roobuilder --project /home/alan/gitlive/roobuilder --bjs-munge src/Builder4/MainWindow.bjs
+# Missing --compile-group for Gtk projects!
 ```
 
 ### ✅ CORRECT APPROACH - ALWAYS DO THESE
 
+**For non-Gtk projects:**
 ```bash
 # 1. Edit the BJS file (source of truth)
 vim src/Builder4/MainWindow.bjs
 
-# 2. Compile to temporary file
-/usr/bin/roobuilder --project /home/alan/gitlive/roobuilder --test-symbol-target roobuilder --test-bjs-compile src/Builder4/MainWindow.bjs > /tmp/generated_mainwindow.vala
+# 2. Compile and update automatically
+roobuilder --project /home/alan/gitlive/roobuilder --bjs-munge src/Builder4/MainWindow.bjs
+```
 
-# 3. Clean the output (remove garbage)
-sed -n '/^static/,$p' /tmp/generated_mainwindow.vala > /tmp/clean_mainwindow.vala
+**For Gtk projects:**
+```bash
+# 1. Edit the BJS file (source of truth)
+vim src/Builder4/MainWindow.bjs
 
-# 4. Copy clean output to final location
-cp /tmp/clean_mainwindow.vala src/Builder4/MainWindow.vala
+# 2. Compile and update automatically (with compile-group)
+roobuilder --project /home/alan/gitlive/roobuilder --compile-group roobuilder --bjs-munge src/Builder4/MainWindow.bjs
 ```
 
 ## Project Structure
@@ -163,7 +185,7 @@ The build system should:
 
 **NEVER** edit generated Vala files directly - they will be overwritten and your changes will be lost.
 
-**ALWAYS** edit BJS files and compile them properly with garbage removal.
+**ALWAYS** edit BJS files and compile them using the `--bjs-munge` command.
 
 **VIOLATION** of this rule will result in:
 - Lost work
