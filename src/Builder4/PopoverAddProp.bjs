@@ -312,7 +312,7 @@
            "* init" : [
             "{",
             "\t this.el.set_sorter(  new Gtk.StringSorter(",
-            "\t \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"name\")",
+            "\t \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"prop-name\")",
             " \t));",
             "\t\t",
             "}",
@@ -394,7 +394,7 @@
            "* init" : [
             "{",
             "\t this.el.set_sorter(  new Gtk.StringSorter(",
-            "\t \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"rtype\")",
+            "\t \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"prop-type\")",
             " \t));",
             "\t\t",
             "}",
