@@ -168,8 +168,8 @@ namespace JsRender {
 				return;
 			}
 			// use interfaces if we can get this to suppor tmore...
-			var pr = (Project.Gtk)this.project;
-			if (pr != null && pr.xtype == "Gtk") {
+			var pr = this.project is Project.Gtk ? (Project.Gtk)this.project : null;
+			if (pr != null) {
 				GLib.debug("running updateTreeFromFile for %s", this.path);
 				pr.symbol_builder.updateTreeFromFile(this);
 			} 
