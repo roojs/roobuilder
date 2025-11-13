@@ -758,16 +758,15 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 	protected void addInit()
 	{
 
-		
-		if (!this.node.specials.has_key("* init")) {
-				return;
+		if (!this.node.specials.has_key("init")) {
+			return;
 		}
 		this.addLine();
 		this.addLine(ipad + "// init method");
 		this.addLine();
 		this.node.setLine(this.cur_line, "p", "init");
 		
-		var init =  this.node.specials.get("* init") as NodeProp;
+		var init = this.node.specials.get("init") as NodeProp;
 		init.start_line = this.cur_line;
 		this.addMultiLine(ipad + this.padMultiline(ipad, init.prop_val) );
 		init.end_line = this.cur_line;

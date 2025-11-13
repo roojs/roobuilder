@@ -171,6 +171,115 @@ src/Builder4/
 └── PopoverAddObject.vala   ← Generated (don't edit)
 ```
 
+## BJS File Format Versions
+
+### BJS Version 3 (Current Format)
+
+**All new BJS files should use version 3 format.** This is the current standard format that provides better structure and maintainability.
+
+#### Key Characteristics
+
+1. **File Structure**: Uses `"bjs-version": 3` in the root object
+2. **Node Structure**: Uses `"node-type"` enum values to distinguish between different node types:
+   - `"node-type": 9` - Object nodes (Gtk widgets, etc.)
+   - `"node-type": 7` - Special properties (init, pack, etc.)
+   - `"node-type": 6` - User-defined properties
+   - `"node-type": 2` - Standard properties
+3. **Children Array**: Objects have a `"children"` array containing child nodes and properties
+4. **Special Properties**: Special properties like `init` are stored as child nodes with:
+   - `"node-type": 7` (SPECIAL)
+   - `"prop-name": "init"` (or other special name)
+   - `"prop-val": [...]` (array of code lines)
+
+#### Example: BJS v3 Format - Init Method
+
+```json
+{
+  "node-type": 9,
+  "oid": 131,
+  "prop-type": "GtkSource.Buffer",
+  "children": [
+    {
+      "node-type": 7,
+      "oid": 132,
+      "prop-name": "init",
+      "prop-val": [
+        "",
+        "this.el.create_tag (\"ERR\", \"weight\", Pango.Weight.BOLD, \"background\", \"pink\");",
+        "this.el.create_tag (\"WARN\", \"weight\", Pango.Weight.BOLD, \"background\", \"#ABF4EB\");",
+        "this.el.create_tag (\"DEPR\", \"weight\", Pango.Weight.BOLD, \"background\", \"#EEA9FF\");",
+        "",
+        ""
+      ]
+    },
+    {
+      "node-type": 7,
+      "oid": 133,
+      "prop-name": "pack",
+      "prop-val": "set_buffer"
+    }
+  ]
+}
+```
+
+### Old BJS Format (Legacy)
+
+**Legacy format files are automatically converted when loaded**, but new files should NOT use this format.
+
+#### Key Characteristics
+
+1. **File Structure**: Uses `"items"` array at root level (instead of `"children"`)
+2. **Direct Properties**: Special properties like `init` are stored as direct properties with `"* init"` key
+3. **No node-type**: Properties are distinguished by key prefixes:
+   - `"* init"` - Init method
+   - `"* pack"` - Pack method
+   - `"$ xns"` - Namespace
+   - Regular keys - Standard properties
+
+#### Example: Old Format - Init Method
+
+```json
+{
+  "$ xns": "GtkSource",
+  "* init": [
+    "",
+    "var buf = this.el;",
+    "buf.create_tag (\"ERR\", \"weight\", Pango.Weight.BOLD, \"background\", \"pink\");",
+    "buf.create_tag (\"WARN\", \"weight\", Pango.Weight.BOLD, \"background\", \"#ABF4EB\");",
+    "buf.create_tag (\"DEPR\", \"weight\", Pango.Weight.BOLD, \"background\", \"#EEA9FF\");",
+    "",
+    ""
+  ],
+  "* pack": "set_buffer",
+  "id": "buffer"
+}
+```
+
+### Differences Summary
+
+| Feature | BJS v3 Format | Old Format |
+|---------|---------------|------------|
+| Version field | `"bjs-version": 3` | `"bjs-version": 1` or `2` (or missing) |
+| Structure | `"children"` array | `"items"` array |
+| Node types | Explicit `"node-type"` enum | Implied by key prefixes |
+| Init method | Child node: `node-type: 7, prop-name: "init"` | Direct property: `"* init"` |
+| Special properties | Child nodes with `node-type: 7` | Direct properties with `"* "` prefix |
+| Namespace | `prop-type` field (e.g., `"GtkSource.Buffer"`) | `"$ xns"` and `"xtype"` properties |
+
+### Important Notes
+
+1. **NodeToVala Compatibility**: The code generator (`NodeToVala.vala`) now only supports BJS v3 format for special properties. It looks for `"init"` (not `"* init"`) in the specials map.
+
+2. **Automatic Conversion**: Old format files are automatically converted to v3 format when loaded, but you should update them manually to ensure proper structure.
+
+3. **Always Use v3 Format**: When creating new BJS files or editing existing ones, always use BJS v3 format structure.
+
+4. **Init Method Format**: In BJS v3, init methods must be:
+   - A child node (not a direct property)
+   - `"node-type": 7` (SPECIAL)
+   - `"prop-name": "init"` (without asterisk)
+   - `"prop-val": [...]` (array of code lines)
+
 ## Integration with Build System
 
 The build system should:

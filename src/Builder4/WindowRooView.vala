@@ -237,6 +237,7 @@ public class Xcls_WindowRooView : Object
 	
 	}
 	public async void requestRedrawAsync () {
+	    // this is not used currently...
 	    //yield _this.sourceview.loadFileAsync();
 	    if (!_this.skip_preview_generation) {
 	        this.view.renderJS(false);
@@ -654,6 +655,25 @@ public class Xcls_WindowRooView : Object
 
 			// set gobject values
 			this.el.vexpand = true;
+
+			// init method
+
+			{
+			    // this may not work!?
+			    var settings =  this.el.get_settings();
+			    settings.enable_developer_extras = true;
+			   
+			    GLib.Timeout.add_seconds(1,  ()  =>{
+			         //print("run refresh?");
+			         if (this.el == null) {
+			            return false;
+			         }
+			         this.runRefresh(); 
+			         return true;
+			     });
+			    
+			    
+			}
 
 			//listeners
 			this.el.script_dialog.connect( (dialog) => {
@@ -1231,6 +1251,23 @@ public class Xcls_WindowRooView : Object
 			this.el.digits = 0;
 			this.el.sensitive = true;
 
+			// init method
+
+			{
+				//this.el.set_range(6,30);
+			 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
+			 	BuilderApplication.settings.editor_font_size_updated.connect(
+			 		() => {
+			 			BuilderApplication.settings.editor_font_size_inchange = true;
+			 		//	GLib.debug("update range");
+			 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
+			 		 	BuilderApplication.settings.editor_font_size_inchange = false;
+			 		}
+				);
+				
+			 
+			}
+
 			//listeners
 			this.el.change_value.connect( (st, val ) => {
 				if (BuilderApplication.settings.editor_font_size_inchange) {
@@ -1315,6 +1352,61 @@ public class Xcls_WindowRooView : Object
 			var child_3 = new Xcls_GestureClick146( _this );
 			child_3.ref();
 			this.el.add_controller(  child_3.el );
+
+			// init method
+
+			{
+			
+				 
+			
+				this.loading = true;
+				//var buf = this.el.get_buffer();
+				//buf.notify.connect(this.onCursorChanged);
+			
+			
+				var attrs = new GtkSource.MarkAttributes();
+				attrs.set_icon_name ( "dialog-error");    
+				attrs.query_tooltip_text.connect(( mark) => {
+					//print("tooltip query? %s\n", mark.name);
+					return mark.name;
+				});
+			
+				this.el.set_mark_attributes ("ERR", attrs, 1);
+			
+				 var wattrs = new GtkSource.MarkAttributes();
+				wattrs.set_icon_name ( "dialog-warning");    
+				wattrs.query_tooltip_text.connect(( mark) => {
+					//print("tooltip query? %s\n", mark.name);
+					return mark.name;
+				});
+			
+				this.el.set_mark_attributes ("WARN", wattrs, 1);
+			
+			
+			
+				 var dattrs = new GtkSource.MarkAttributes();
+				dattrs.set_icon_name ( "dialog-information");    
+				dattrs.query_tooltip_text.connect(( mark) => {
+					//print("tooltip query? %s\n", mark.name);
+					return mark.name;
+				});
+			
+				this.el.set_mark_attributes ("DEPR", dattrs, 1);
+			
+			
+				var gattrs = new GtkSource.MarkAttributes();
+				var  grey =   Gdk.RGBA();
+				grey.parse ( "#ccc");
+				gattrs.set_background ( grey);
+			
+			
+				this.el.set_mark_attributes ("grey", gattrs, 1);
+			
+			
+			 
+			
+			
+				}
 
 			//listeners
 			this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
@@ -1740,6 +1832,21 @@ public class Xcls_WindowRooView : Object
 			this.last_line = -1;
 
 			// set gobject values
+
+			// init method
+
+			this.el.create_tag ("bold", "weight", Pango.Weight.BOLD);
+			this.el.create_tag ("type", "weight", Pango.Weight.BOLD, "foreground", "#204a87");
+			this.el.create_tag ("keyword", "weight", Pango.Weight.BOLD, "foreground", "#a40000");
+			this.el.create_tag ("text", "weight", Pango.Weight.NORMAL, "foreground", "#729fcf");
+			this.el.create_tag ("number", "weight", Pango.Weight.BOLD, "foreground", "#ad7fa8");
+			this.el.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
+			this.el.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
+			this.el.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
+			
+			this.el.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "pink");
+			this.el.create_tag ("WARN", "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
+			this.el.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
 
 			//listeners
 			this.el.cursor_moved.connect( ( ) => {
@@ -2271,6 +2378,12 @@ public class Xcls_WindowRooView : Object
 
 			// set gobject values
 			this.el.label = "Case Sensitive";
+
+			// init method
+
+			{
+				this.el.show();
+			}
 		}
 
 		// user defined functions
@@ -2295,6 +2408,12 @@ public class Xcls_WindowRooView : Object
 
 			// set gobject values
 			this.el.label = "Regex";
+
+			// init method
+
+			{
+				this.el.show();
+			}
 		}
 
 		// user defined functions
@@ -2319,6 +2438,12 @@ public class Xcls_WindowRooView : Object
 
 			// set gobject values
 			this.el.label = "Multi-line (add \\n)";
+
+			// init method
+
+			{
+				this.el.show();
+			}
 		}
 
 		// user defined functions
