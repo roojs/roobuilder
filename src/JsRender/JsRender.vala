@@ -406,7 +406,7 @@ namespace JsRender {
 	Gdk.Pixbuf screenshot = null;
 	Gdk.Pixbuf screenshot92 = null;
 	Gdk.Pixbuf screenshot368 = null;
-	Gdk.Pixbuf? screenshotImage = null;
+	global::Gtk.Image? screenshotImage = null;
 
 		public Gdk.Pixbuf? getIcon(int size = 0) {
 			var fname = this.getIconFileName( );
@@ -457,6 +457,7 @@ namespace JsRender {
 			this.screenshot92 = null;
 			this.screenshot368 = null;
 			this.screenshot = null;
+			this.screenshotImage = null;
 			try {
 				GLib.debug("Wirte %s", this.getIconFileName( ));
 				pixbuf.save(this.getIconFileName( ),"png");
@@ -476,7 +477,7 @@ namespace JsRender {
 		this.screenshot92 = null;
 		this.screenshot368 = null;
 		this.screenshot = null;
-		this.screenshotFilename = null;
+		this.screenshotImage = null;
 
 			try {
 
@@ -530,23 +531,24 @@ namespace JsRender {
 
 	}
 
-	public string? getImage()
+	public global::Gtk.Image? getImage()
 	{
 		if (this.screenshotImage != null) {
-			return this.screenshotImage != null ? this.getIconFileName() : null;
+			if (this.screenshotImage.get_parent() != null) {
+				this.screenshotImage.unparent();
+			}
+			return this.screenshotImage;
 		}
 
 		var fname = this.getIconFileName();
 		if (!FileUtils.test(fname, FileTest.EXISTS)) {
-			this.screenshotImage = null;
 			return null;
 		}
 
 		try {
-			this.screenshotImage = new Gdk.Pixbuf.from_file(fname);
-			return fname;
+			this.screenshotImage = new global::Gtk.Image.from_file(fname);
+			return this.screenshotImage;
 		} catch (GLib.Error e) {
-			this.screenshotImage = null;
 			return null;
 		}
 	}
