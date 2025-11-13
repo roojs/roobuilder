@@ -403,9 +403,10 @@ namespace JsRender {
 
 		}
 
-		Gdk.Pixbuf screenshot = null;
-		Gdk.Pixbuf screenshot92 = null;
-		Gdk.Pixbuf screenshot368 = null;
+	Gdk.Pixbuf screenshot = null;
+	Gdk.Pixbuf screenshot92 = null;
+	Gdk.Pixbuf screenshot368 = null;
+	global::Gtk.Image? screenshotImage = null;
 
 		public Gdk.Pixbuf? getIcon(int size = 0) {
 			var fname = this.getIconFileName( );
@@ -456,6 +457,7 @@ namespace JsRender {
 			this.screenshot92 = null;
 			this.screenshot368 = null;
 			this.screenshot = null;
+			this.screenshotImage = null;
 			try {
 				GLib.debug("Wirte %s", this.getIconFileName( ));
 				pixbuf.save(this.getIconFileName( ),"png");
@@ -470,11 +472,12 @@ namespace JsRender {
 
 
 		}
-		public void widgetToIcon(global::Gtk.Widget widget) {
+	public void widgetToIcon(global::Gtk.Widget widget) {
 
-			this.screenshot92 = null;
-			this.screenshot368 = null;
-			this.screenshot = null;
+		this.screenshot92 = null;
+		this.screenshot368 = null;
+		this.screenshot = null;
+		this.screenshotImage = null;
 
 			try {
 
@@ -509,25 +512,46 @@ namespace JsRender {
 		}
 
 
-		public string getIconFileName( )
-		{
+	public string getIconFileName()
+	{
 
-			var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path);
+		var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path);
 
-			var dir = BuilderApplication.configDirectory() + "/icons";
-			try {
-				if (!FileUtils.test(dir, FileTest.IS_DIR)) {
-					File.new_for_path(dir).make_directory();
-				}
-			} catch (GLib.Error e) {
-				// eakk.. what to do here...
+		var dir = BuilderApplication.configDirectory() + "/icons";
+		try {
+			if (!FileUtils.test(dir, FileTest.IS_DIR)) {
+				File.new_for_path(dir).make_directory();
 			}
-			var fname = dir + "/" + m5 + ".png";
-
-
-			return fname;
-
+		} catch (GLib.Error e) {
+			// eakk.. what to do here...
 		}
+		var fname = dir + "/" + m5 + ".png";
+
+		return fname;
+
+	}
+
+	public global::Gtk.Image? getImage()
+	{
+		if (this.screenshotImage != null) {
+			if (this.screenshotImage.get_parent() != null) {
+				this.screenshotImage.unparent();
+			}
+			return this.screenshotImage;
+		}
+
+		var fname = this.getIconFileName();
+		if (!FileUtils.test(fname, FileTest.EXISTS)) {
+			return null;
+		}
+
+		try {
+			this.screenshotImage = new global::Gtk.Image.from_file(fname);
+			return this.screenshotImage;
+		} catch (GLib.Error e) {
+			return null;
+		}
+	}
 
 
 		public void saveBJS()
