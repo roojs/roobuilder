@@ -312,6 +312,12 @@ public class Xcls_WindowLeftTree : Object
 			var child_7 = new Xcls_ColumnViewColumn70( _this );
 			child_7.ref();
 			this.el.append_column ( child_7.el  );
+
+			// init method
+
+			{
+			   
+			}
 		}
 
 		// user defined functions
@@ -557,8 +563,9 @@ public class Xcls_WindowLeftTree : Object
 					return;
 				}
 			
-				 
-				 
+				// Select the node to allow click-triggered events to occur
+				_this.model.selectNode(node);
+			
 				if (_this.view.getColAt(x,y) > 0 ) {
 					GLib.debug("add colum clicked.");
 				    var fqn = node.fqn();
@@ -571,11 +578,14 @@ public class Xcls_WindowLeftTree : Object
 			  			return ;
 					}
 			
-					ws.leftTreeBeforeChange();
-					//_this.view.el.get_selection().select_path(res);
-					GLib.debug("Button Pressed - start show window");
-					ws.showAddObject(_this.view.el, node);
-					GLib.debug("Button Pressed - finsihed show window");
+					// Show popover in idle to allow selection to process
+					GLib.Idle.add(() => {
+						ws.leftTreeBeforeChange();
+						GLib.debug("Button Pressed - start show window");
+						ws.showAddObject(_this.view.el, node);
+						GLib.debug("Button Pressed - finsihed show window");
+						return false;
+					});
 				 	return ;
 				}
 				
