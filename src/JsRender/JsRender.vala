@@ -514,6 +514,10 @@ namespace JsRender {
 	public string getIconFileName(bool check_exists = false)
 	{
 
+		if (check_exists && this.screenshotFilename != null) {
+			return this.screenshotFilename;
+		}
+
 		var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path);
 
 		var dir = BuilderApplication.configDirectory() + "/icons";
@@ -527,12 +531,10 @@ namespace JsRender {
 		var fname = dir + "/" + m5 + ".png";
 
 		if (check_exists) {
-			if (this.screenshotFilename == null) {
-				if (FileUtils.test(fname, FileTest.EXISTS)) {
-					this.screenshotFilename = fname;
-				} else {
-					this.screenshotFilename = "";
-				}
+			if (FileUtils.test(fname, FileTest.EXISTS)) {
+				this.screenshotFilename = fname;
+			} else {
+				this.screenshotFilename = "";
 			}
 			return this.screenshotFilename;
 		}
