@@ -1696,7 +1696,7 @@
                    "\t\tvar thumb_file = jr.getIconFileName(true);",
                    "\t\tvar hint_text = \"dbl-click - opens in NEW window\\nshift+dbl-click opens in this window\";",
                    "\t\tif (thumb_file == \"\") {",
-                   "\t\t\ttooltip.set_text(jr.path + \"\\n\" + hint_text);",
+                   "\t\t\ttooltip.set_text(jr.path + \"\\n\\n\" + hint_text);",
                    "\t\t\treturn true;",
                    "\t\t}",
                    "\t\tvar vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 4);",
