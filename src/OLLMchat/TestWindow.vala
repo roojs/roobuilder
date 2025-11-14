@@ -61,7 +61,7 @@ namespace OLLMchat
 
 			// Create default Ollama client
 			var client = new Ollama.Client() {
-				url = "http://19:11434/api"
+				url = "http://192.168.88.14:11434/api"
 			};
 
 			// Create chat widget with client
