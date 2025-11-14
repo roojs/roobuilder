@@ -2,7 +2,7 @@ namespace OLLMchat.Ollama
 {
 	public class Tool : Object, Json.Serializable
 	{
-		public string type { get; set; default = "function"; }
+		public string tool_type { get; set; default = "function"; }
 		public ToolFunction function { get; set; }
 
 		public Tool(ToolFunction? func = null)
