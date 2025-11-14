@@ -10,6 +10,7 @@ namespace OLLMchat.Ollama
 		public Gee.ArrayList<BaseCall> calls { get; set; }
 		public StreamCallback? stream_callback { get; set; }
 		public bool debug { get; set; default = false; }
+		public ChatResponse? streaming_response { get; set; default = null; }
 
 		public Client()
 		{

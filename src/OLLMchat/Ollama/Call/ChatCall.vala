@@ -11,7 +11,6 @@ namespace OLLMchat.Ollama
 		public string? keep_alive { get; set; }
 
 		public Gee.ArrayList<MessageInterface> messages { get; set; default = new Gee.ArrayList<MessageInterface>(); }
-		private ChatResponse? streaming_response;
 		public Json.Object? message {
 			owned get
 			{
