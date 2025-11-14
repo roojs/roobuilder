@@ -456,6 +456,8 @@ namespace OLLMchat.Ollama {
 
 ## Phase 2: User Interface Implementation
 
+**Note**: Classes that will be exposed externally (like `ChatWidget`, `Ollama.Client`, etc.) should include comprehensive documentation comments using Vala's documentation syntax (`/** */`). This documentation will be used for API reference generation and IDE tooltips.
+
 ### 2.1 Reusable Chat Widget (`UI/ChatWidget.vala`)
 
 **Purpose**: Create a reusable widget that can be embedded anywhere in the project.
