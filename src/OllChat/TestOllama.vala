@@ -6,7 +6,7 @@ namespace OLLMchat
 			stderr.printf("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
 		});
 
-		string server_url = args.length > 1 ? args[1] : "http://localhost:11434/api";
+		string server_url = args.length > 1 ? args[1] : "http://192.168.88.14:11434/api";
 		if (!server_url.has_suffix("/api")) {
 			if (!server_url.has_suffix("/")) {
 				server_url += "/";
