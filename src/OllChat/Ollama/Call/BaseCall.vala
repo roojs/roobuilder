@@ -173,16 +173,14 @@ namespace OLLMchat.Ollama
 			return root;
 		}
 
-		protected Gee.ArrayList<T> parse_array<T>(Json.Array array, Type type)
+		protected Gee.ArrayList<Model> parse_models_array(Json.Array array)
 		{
-			var items = new Gee.ArrayList<T>();
+			var items = new Gee.ArrayList<Model>();
 
 			for (int i = 0; i < array.get_length(); i++) {
-				var item_obj = Json.gobject_from_data(type, array.get_element(i).print(false), -1) as T;
+				var item_obj = Json.gobject_from_data(typeof(Model), array.get_element(i).print(false), -1) as Model;
 				if (item_obj != null) {
-					if (item_obj is BaseResponse) {
-						((BaseResponse)item_obj).client = this.client;
-					}
+					item_obj.client = this.client;
 					items.add(item_obj);
 				}
 			}
@@ -190,7 +188,7 @@ namespace OLLMchat.Ollama
 			return items;
 		}
 
-		protected async Gee.ArrayList<T> get_models<T>(string field_name, Type type) throws Error
+		protected async Gee.ArrayList<Model> get_models(string field_name) throws Error
 		{
 			var bytes = yield this.send_request(false);
 			var root = this.parse_response(bytes);
@@ -204,7 +202,7 @@ namespace OLLMchat.Ollama
 				throw new Error.FAILED(@"Response missing '$(field_name)' field");
 			}
 
-			return this.parse_array<T>(root_obj.get_array_member(field_name), type);
+			return this.parse_models_array(root_obj.get_array_member(field_name));
 		}
 	}
 }

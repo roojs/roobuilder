@@ -10,7 +10,7 @@ namespace OLLMchat.Ollama
 
 		public async Gee.ArrayList<Model> exec_models() throws Error
 		{
-			return yield this.get_models<Model>("models", typeof(Model));
+			return yield this.get_models("models");
 		}
 	}
 }
