@@ -1,3 +1,23 @@
+/*
+Compilation:
+valac --pkg libsoup-3.0 --pkg json-glib-1.0 --pkg gee-0.8 \
+      --target-glib=2.70 \
+      TestOllama.vala \
+      Ollama/OllamaBase.vala \
+      Ollama/MessageInterface.vala \
+      Ollama/Client.vala \
+      Ollama/Call/BaseCall.vala \
+      Ollama/Call/ChatCall.vala \
+      Ollama/Call/ModelsCall.vala \
+      Ollama/Call/PsCall.vala \
+      Ollama/Response/BaseResponse.vala \
+      Ollama/Response/ChatResponse.vala \
+      Ollama/Response/Model.vala \
+      Ollama/Tool/Tool.vala \
+      Ollama/Tool/Function.vala \
+      -o /tmp/test-ollama
+*/
+
 namespace OLLMchat
 {
 	int main(string[] args)
@@ -18,7 +38,7 @@ namespace OLLMchat
 		client.url = server_url;
 		client.debug = true;
 		client.stream_callback = (partial, response) => {
-			stdout.write(partial.data);
+			stdout.write(partial);
 			stdout.flush();
 		};
 
