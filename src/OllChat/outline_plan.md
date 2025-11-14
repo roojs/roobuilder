@@ -160,20 +160,58 @@ namespace OLLMchat.Ollama {
 **Properties**:
 ```vala
 public string model { get; set; }
-public Gee.ArrayList<ChatResponse> messages { get; set; }  // References to ChatResponse objects
 public Gee.ArrayList<Tool>? tools { get; set; }
 public bool stream { get; set; }
 public string? format { get; set; }
 public Json.Object? options { get; set; }
 public bool think { get; set; }
 public string? keep_alive { get; set; }
+
+// Internal field (not get/set property, not serialized)
+protected Gee.ArrayList<ChatResponse> messages;  // References to ChatResponse objects
+
+// Fake property for serialization - converts ChatResponse objects to API message format
+public Json.Array? messages_serialized { get; set; }
 ```
 
 **Serialization Note**:
-- The `messages` array contains `ChatResponse` objects (which have `role` and `content` properties)
-- When serializing `ChatCall` to JSON for the API, `serialize_property()` must convert `ChatResponse` objects back to the message format expected by the API: `{role: "...", content: "..."}`
+- The internal `messages` field contains `ChatResponse` objects (not a get/set property, so not automatically serialized)
+- The `messages_serialized` property is a "fake" get/set property that will be serialized
+- In `serialize_property()`, when `messages_serialized` is accessed, generate it from the internal `messages` field by converting `ChatResponse` objects to the API message format: `{role: "...", content: "..."}`
 - The API expects messages as: `[{role: "user", content: "..."}, {role: "assistant", content: "..."}]`
 - No separate `Message` class needed - ChatResponse already has the flattened role and content
+
+**Serialization Implementation**:
+```vala
+public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+{
+	if (property_name == "messages_serialized") {
+		// Convert internal messages field (ChatResponse objects) to API format
+		var array = new Json.Array();
+		foreach (var response in this.messages) {
+			var msg_obj = new Json.Object();
+			msg_obj.set_string_member("role", response.role);
+			msg_obj.set_string_member("content", response.content);
+			array.add_object_element(msg_obj);
+		}
+		var node = new Json.Node(Json.NodeType.ARRAY);
+		node.set_array(array);
+		return node;
+	}
+	// For API, rename messages_serialized to "messages"
+	if (property_name == "messages_serialized") {
+		// This will be handled above, but we need to rename it
+		// Actually, we should check if Json.Serializable supports renaming
+		// If not, we might need to use a different approach
+	}
+	return default_serialize_property(property_name, value, pspec);
+}
+```
+
+**Alternative Approach** (if property renaming isn't supported):
+- Use a property named `messages` (get/set) that returns a Json.Array
+- In the getter, convert from internal `messages` field (ChatResponse objects) to Json.Array format
+- Setter can be empty or convert back to ChatResponse objects
 
 ### 1.4 Base Response Class (`Ollama/Response/BaseResponse.vala`)
 **Source**: `Net_Ollama/Response.php`
