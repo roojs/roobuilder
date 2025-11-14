@@ -4,8 +4,6 @@ namespace OLLMchat.Ollama
 	{
 		public string model { get; set; default = ""; }
 		public string created_at { get; set; default = ""; }
-		public string role { get; set; default = ""; }
-		public string content { get; set; default = ""; }
 		public string thinking { get; set; default = ""; }
 		public bool is_thinking { get; set; default = false; }
 		public bool done { get; set; default = false; }

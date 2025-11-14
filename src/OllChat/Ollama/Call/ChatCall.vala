@@ -12,24 +12,6 @@ namespace OLLMchat.Ollama
 
 		public Gee.ArrayList<OllamaBase> messages { get; set; }
 		private ChatResponse? streaming_response;
-		public Json.Object? message { 
-			get {
-				var array = new Json.Array();
-				foreach (var m in this.messages) {
-					
-					
-					var msg_obj = new Json.Object();
-					msg_obj.set_string_member("role", m.role);
-					msg_obj.set_string_member("content", m.content);
-					array.add_object_element(msg_obj);
-					
-				}
-				var node = new Json.Node(Json.NodeType.ARRAY);
-				node.set_array(array);
-				return node;
-			} 
-			set; 
-		}
 
 		public ChatCall(Client client) : base(client)
 		{
@@ -45,28 +27,24 @@ namespace OLLMchat.Ollama
 
 		public override Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
+			if (property_name == "message") {
+				return null;
+			}
+
 			if (property_name == "messages") {
-				return this.serialize_messages();
+				var array = new Json.Array();
+				foreach (var m in this.messages) {
+					var msg_obj = new Json.Object();
+					msg_obj.set_string_member("role", m.role);
+					msg_obj.set_string_member("content", m.content);
+					array.add_object_element(msg_obj);
+				}
+				var node = new Json.Node(Json.NodeType.ARRAY);
+				node.set_array(array);
+				return node;
 			}
 
 			return base.serialize_property(property_name, value, pspec);
-		}
-
-		private Json.Node? serialize_messages()
-		{
-			var array = new Json.Array();
-			foreach (var m in this.messages) {
-				 
-				 
-				var msg_obj = new Json.Object();
-				msg_obj.set_string_member("role", m.role);
-				msg_obj.set_string_member("content", m.content);
-				array.add_object_element(msg_obj);
-				
-			}
-			var node = new Json.Node(Json.NodeType.ARRAY);
-			node.set_array(array);
-			return node;
 		}
 
 		public bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
