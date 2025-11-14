@@ -51,10 +51,10 @@ namespace OLLMchat.Ollama
 				node.init_array(new Json.Array());
 				var array = node.get_array();
 				foreach (var m in this.messages) {
-					var msg_obj = new Json.Object();
-					msg_obj.set_string_member("role", m.chat_role);
-					msg_obj.set_string_member("content", m.chat_content);
-					array.add_object_element(msg_obj);
+					var msg_node = m.message;
+					if (msg_node != null) {
+						array.add_element(msg_node);
+					}
 				}
 				return node;
 			}
