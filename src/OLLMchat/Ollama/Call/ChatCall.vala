@@ -23,8 +23,9 @@ namespace OLLMchat.Ollama
 			set {}
 		}
 
-		public ChatCall(Client client) : base(client)
+		public ChatCall(Client client)
 		{
+			base(client);
 			this.url_endpoint = "chat";
 			this.http_method = "POST";
 		}

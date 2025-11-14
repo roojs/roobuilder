@@ -2,8 +2,9 @@ namespace OLLMchat.Ollama
 {
 	public class PsCall : BaseCall
 	{
-		public PsCall(Client client) : base(client)
+		public PsCall(Client client)
 		{
+			base(client);
 			this.url_endpoint = "ps";
 			this.http_method = "GET";
 		}

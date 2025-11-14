@@ -29,8 +29,9 @@ namespace OLLMchat.Ollama
 			}
 		}
 
-		public ChatResponse(Client? client = null) : base(client)
+		public ChatResponse(Client? client = null)
 		{
+			base(client);
 		}
 
 		public bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)

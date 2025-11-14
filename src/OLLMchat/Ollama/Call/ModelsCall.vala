@@ -2,8 +2,9 @@ namespace OLLMchat.Ollama
 {
 	public class ModelsCall : BaseCall
 	{
-		public ModelsCall(Client client) : base(client)
+		public ModelsCall(Client client)
 		{
+			base(client);
 			this.url_endpoint = "tags";
 			this.http_method = "GET";
 		}

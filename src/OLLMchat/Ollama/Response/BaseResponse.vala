@@ -4,8 +4,9 @@ namespace OLLMchat.Ollama
 	{
 		protected string id = "";
 
-		protected BaseResponse(Client? client = null) : base(client)
+		protected BaseResponse(Client? client = null)
 		{
+			base(client);
 		}
 	}
 }

@@ -19,8 +19,9 @@ namespace OLLMchat.Ollama
 		public string? expires_at { get; set; }
 		public int context_length { get; set; default = 0; }
 
-		public Model(Client? client = null) : base(client)
+		public Model(Client? client = null)
 		{
+			base(client);
 		}
 	}
 }
