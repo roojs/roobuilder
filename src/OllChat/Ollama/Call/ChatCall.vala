@@ -51,8 +51,7 @@ namespace OLLMchat.Ollama
 				node.init_array(new Json.Array());
 				var array = node.get_array();
 				foreach (var m in this.messages) {
-					var msg_node = m.message;
-					if (msg_node != null) {
+				 
 						array.add_element(msg_node);
 					}
 				}
