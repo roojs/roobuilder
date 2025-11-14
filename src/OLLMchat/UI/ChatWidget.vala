@@ -158,7 +158,7 @@ namespace OLLMchat.UI
 			this.current_chat = call;
 
 			// Create and set cancellable on call for stop functionality
-			call.cancellable = new Cancellable();
+			call.cancellable = new GLib.Cancellable();
 
 			// Send chat request asynchronously
 			this.send_chat_request.begin(call);

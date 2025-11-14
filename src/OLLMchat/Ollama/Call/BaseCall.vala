@@ -4,7 +4,7 @@ namespace OLLMchat.Ollama
 	{
 		protected string url_endpoint;
 		protected string http_method = "POST";
-		public Cancellable? cancellable { get; set; default = null; }
+		public GLib.Cancellable? cancellable { get; set; default = null; }
 
 		protected BaseCall(Client client) 
 		{
