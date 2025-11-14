@@ -1,6 +1,6 @@
 /*
 Compilation:
-valac --pkg libsoup-3.0 --pkg json-glib-1.0 --pkg gee-0.8 \
+valac --pkg libsoup-3.0 --pkg json-glib-1.0 --pkg gee-0.8 --pkg gio-2.0 \
       --target-glib=2.70 \
       --directory /tmp/vala-build \
       TestOllama.vala \
@@ -23,9 +23,14 @@ namespace OLLMchat
 {
 	MainLoop? main_loop = null;
 
-	void on_stream(string partial, Ollama.ChatResponse response)
+	void on_stream(string partial, bool is_thinking, Ollama.ChatResponse response)
 	{
-		stdout.write(partial.data);
+		if (is_thinking) {
+			// Optionally handle thinking differently, or just output it
+			stdout.write(partial.data);
+		} else {
+			stdout.write(partial.data);
+		}
 		stdout.flush();
 	}
 
@@ -55,16 +60,15 @@ namespace OLLMchat
 		}
 
 		stdout.printf("Sending query to Ollama...\n");
-		stdout.printf("Query: Write a small vala program\n\n");
+		var query = "Write a small vala program using gtk4 to show a window with a scrolled window inside is a windowlefttree and a few tree nodes - cat";
+		stdout.printf("Query: %s\n\n", query);
 		stdout.printf("Response:\n");
 
-		var chat_call = new Ollama.ChatCall(client);
-		chat_call.model = model_name;
-
-		var user_message = new Ollama.ChatResponse(client);
-		user_message.chat_role = "user";
-		user_message.chat_content = "Write a small vala program";
-		chat_call.add_message(user_message);
+		var chat_call = new Ollama.ChatCall(client) {
+			model = model_name,
+			chat_role = "user",
+			chat_content = query
+		};
 
 		var response = yield client.chat(chat_call);
 

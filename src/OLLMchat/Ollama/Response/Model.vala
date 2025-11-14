@@ -6,7 +6,7 @@ namespace OLLMchat.Ollama
 		public string modified_at { get; set; default = ""; }
 		public int64 size { get; set; default = 0; }
 		public string digest { get; set; default = ""; }
-		public Json.Object? details { get; set; default = null; }
+		//public string details { get; set; default = null; } // fixme
 
 		public int64 size_vram { get; set; default = 0; }
 		public int64 total_duration { get; set; default = 0; }
@@ -19,23 +19,21 @@ namespace OLLMchat.Ollama
 		public string? expires_at { get; set; }
 		public int context_length { get; set; default = 0; }
 
-		public Model(Client? client = null)
-		{
-			base(client);
-		}
+	public Model(Client? client = null)
+	{
+		base(client);
+	}
 
 		public bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
 		{
-			if (property_name == "details") {
-				if (property_node.get_node_type() == Json.NodeType.OBJECT) {
-					this.details = property_node.get_object();
-				} else {
-					this.details = null;
-				}
-				value = Value(typeof(Json.Object));
-				value.set_boxed(this.details);
+			// Handle "details" property - ignore JSON value and set empty string
+			/*if (property_name == "details") {
+				this.details = "";
+				value = Value(pspec.value_type);
+				value.set_string("");
 				return true;
-			}
+			}*/
+			// Let default handler process other properties
 			return default_deserialize_property(property_name, out value, pspec, property_node);
 		}
 	}

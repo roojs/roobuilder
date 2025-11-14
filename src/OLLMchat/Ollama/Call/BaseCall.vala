@@ -29,7 +29,8 @@ namespace OLLMchat.Ollama
 			}
 
 			var url = this.build_url();
-			var session = new Soup.Session();
+			this.client.session = (this.client.session) == null ? new Soup.Session() : this.client.session;
+			
 			var message = new Soup.Message(this.http_method, url);
 
 			if (this.client.api_key != null && this.client.api_key != "") {
@@ -42,7 +43,7 @@ namespace OLLMchat.Ollama
 
 			GLib.debug("Request URL: %s", url);
 
-			var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
+			var bytes = yield this.client.session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
 
 			if (message.status_code != 200) {
 				throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
@@ -59,11 +60,10 @@ namespace OLLMchat.Ollama
 			return generator.to_data(null);
 		}
 
-		public override Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
+		public override Json.Node  serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			if (property_name == "chat_role" || property_name == "chat_content" || property_name == "client") {
-				var node = new Json.Node(Json.NodeType.NULL);
-				return node;
+				return null;
 			}
 			return base.serialize_property(property_name, value, pspec);
 		}
@@ -77,33 +77,23 @@ namespace OLLMchat.Ollama
 
 		protected delegate void StreamingChunkCallback(Json.Object chunk);
 
-		protected async void handle_streaming_response(Soup.Session session, Soup.Message message, bool is_json_format, StreamingChunkCallback on_chunk) throws Error
-		{
-			var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
-
-			if (message.status_code != 200) {
-				throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
-			}
-
-			var response_data = (string)bytes.get_data();
-			var lines = response_data.split("\n");
-
-			if (is_json_format) {
-				foreach (var line in lines) {
-					var trimmed = line.strip();
-					if (trimmed != "") {
-						this.process_json_chunk(trimmed, on_chunk);
-					}
-				}
-			} else {
-				foreach (var line in lines) {
-					var trimmed = line.strip();
-					if (trimmed != "") {
-						this.process_json_chunk(trimmed, on_chunk);
-					}
-				}
-			}
+	protected async void handle_streaming_response(Soup.Session session, Soup.Message message, StreamingChunkCallback on_chunk) throws Error
+	{
+		// Use send_async() to get InputStream for true streaming
+		// In Vala's libsoup-3.0 bindings, send_async() is already async and returns InputStream directly
+		var input_stream = yield session.send_async(message, GLib.Priority.DEFAULT, null);
+		
+		if (message.status_code != 200) {
+			throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
 		}
+		
+		if (input_stream == null) {
+			throw new OllamaError.FAILED("Failed to get response input stream");
+		}
+		
+		// Process the stream line by line as data arrives
+		yield this.process_json_streaming(input_stream, on_chunk);
+	}
 
 		private async void process_json_streaming(InputStream input_stream, StreamingChunkCallback on_chunk) throws Error
 		{
@@ -163,31 +153,31 @@ namespace OLLMchat.Ollama
 			return (string)chunk[0:bytes_read];
 		}
 
-		private void process_json_chunk(string chunk_str, StreamingChunkCallback on_chunk)
-		{
-			if (chunk_str == null || chunk_str == "") {
-				return;
-			}
-
-			var trimmed = chunk_str.strip();
-			if (trimmed == "" || !trimmed.has_suffix("}")) {
-				return;
-			}
-
-			var parser = new Json.Parser();
-			try {
-				parser.load_from_data(trimmed, -1);
-				var chunk_node = parser.get_root();
-				if (chunk_node == null || chunk_node.get_node_type() != Json.NodeType.OBJECT) {
-					return;
-				}
-
-				var chunk_obj = chunk_node.get_object();
-				on_chunk(chunk_obj);
-			} catch (Error e) {
-				GLib.debug("Error parsing JSON chunk: %s (chunk: %s)", e.message, trimmed);
-			}
+	private void process_json_chunk(string chunk_str, StreamingChunkCallback on_chunk)
+	{
+		if (chunk_str == null || chunk_str == "") {
+			return;
 		}
+
+		var trimmed = chunk_str.strip();
+		if (trimmed == "" || !trimmed.has_suffix("}")) {
+			return;
+		}
+
+		var parser = new Json.Parser();
+		try {
+			parser.load_from_data(trimmed, -1);
+			var chunk_node = parser.get_root();
+			if (chunk_node == null || chunk_node.get_node_type() != Json.NodeType.OBJECT) {
+				return;
+			}
+
+			var chunk_obj = chunk_node.get_object();
+			on_chunk(chunk_obj);
+		} catch (Error e) {
+			// Silently skip invalid JSON chunks
+		}
+	}
 
 		protected Json.Node parse_response(Bytes bytes) throws Error
 		{

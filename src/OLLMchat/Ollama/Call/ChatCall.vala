@@ -9,46 +9,55 @@ namespace OLLMchat.Ollama
 		public Json.Object? options { get; set; }
 		public bool think { get; set; default = false; }
 		public string? keep_alive { get; set; }
+		public ChatResponse? streaming_response { get; set; default = null; }
 
 		public Gee.ArrayList<MessageInterface> messages { get; set; default = new Gee.ArrayList<MessageInterface>(); }
-		public Json.Object? message {
-			owned get
-			{
-				var msg_obj = new Json.Object();
-				msg_obj.set_string_member("role", this.chat_role);
-				msg_obj.set_string_member("content", this.chat_content);
-				return msg_obj;
-			}
+		public Json.Object message()  
+		{
+			var msg_obj = new Json.Object();
+			msg_obj.set_string_member("role", this.chat_role);
+			msg_obj.set_string_member("content", this.chat_content);
+			return msg_obj;
 		}
-
+		
 		public ChatCall(Client client)
 		{
 			base(client);
 			this.url_endpoint = "chat";
 			this.http_method = "POST";
 		}
-
-		public void add_message(ChatResponse message)
-		{
-			this.messages.add(message);
-		}
-
+		// this is only called by response - not by the user
+		  
 		public override Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
+			// Exclude chat_role and chat_content - they should only appear in message object or messages array
+			if (property_name == "chat-role" || property_name == "chat-content") {
+				return null;
+			}
+
 			if (property_name == "message") {
-				var node = new Json.Node(Json.NodeType.NULL);
-				return node;
+				return null; 
+				 
 			}
 
 			if (property_name == "messages") {
-				var node = new Json.Node(Json.NodeType.ARRAY);
-				node.init_array(new Json.Array());
-				var array = node.get_array();
-				foreach (var m in this.messages) {
-					array.add_object_element(m.message);
-					 
+				// Only serialize messages array if it has more than 1 item (conversation history)
+				if (this.messages.size > 0) {
+					var node = new Json.Node(Json.NodeType.ARRAY);
+					node.init_array(new Json.Array());
+					var array = node.get_array();
+					foreach (var m in this.messages) {
+						array.add_object_element(m.message());
+					}
+					return node;
 				}
-				return node;
+				// Return null to exclude messages array when there's 0 or 1 message
+				// (single message is handled by "message" property above)
+				return null;
+			}
+
+			if (property_name == "streaming_response") {
+				return null;
 			}
 
 			return base.serialize_property(property_name, value, pspec);
@@ -86,9 +95,9 @@ namespace OLLMchat.Ollama
 					this.tools.add(tool);
 				}
 			}
-
+			this.messages.add(this);
 			if (this.stream) {
-				this.streaming_response = new ChatResponse(this.client);
+				//this.streaming_response = new ChatResponse(this.client);
 				return yield this.execute_streaming();
 			}
 
@@ -111,6 +120,8 @@ namespace OLLMchat.Ollama
 			if (response_obj == null) {
 				throw new OllamaError.FAILED("Failed to parse response");
 			}
+			 
+			this.messages.add(response_obj);
 
 			response_obj.client = this.client;
 			return response_obj;
@@ -118,20 +129,17 @@ namespace OLLMchat.Ollama
 
 		private async ChatResponse execute_streaming() throws Error
 		{
-			if (this.streaming_response == null) {
-				throw new OllamaError.FAILED("Streaming response not initialized");
-			}
-
+			 
 			var url = this.build_url();
 			var session = new Soup.Session();
 			var request_body = this.get_request_body();
 			var message = this.create_streaming_message(url, request_body);
+			 
 
 			GLib.debug("Request URL: %s", url);
 			GLib.debug("Request Body: %s", request_body);
 
-			var is_json_format = (this.format == "json");
-			yield this.handle_streaming_response(session, message, is_json_format, (chunk) => {
+			yield this.handle_streaming_response(session, message, (chunk) => {
 				this.process_streaming_chunk(chunk);
 			});
 
@@ -151,17 +159,23 @@ namespace OLLMchat.Ollama
 		}
 
 
-		private void process_streaming_chunk(Json.Object chunk)
-		{
-			if (this.streaming_response == null) {
-				return;
-			}
+	private void process_streaming_chunk(Json.Object chunk)
+	{
+		if (this.streaming_response == null) {
+			this.streaming_response = new ChatResponse(this.client); 
+			this.messages.add(this.streaming_response);
+		}
 
-			var new_text = this.streaming_response.addChunk(chunk);
+		this.streaming_response.addChunk(chunk);
 
-			if (this.client.stream_callback != null) {
-				this.client.stream_callback(new_text, this.streaming_response);
+		// Call callback if there's new content (either regular content or thinking)
+		if (this.client.stream_callback != null) {
+			if (this.streaming_response.new_thinking.length > 0) {
+				this.client.stream_callback(this.streaming_response.new_thinking, true, this.streaming_response);
+			} else if (this.streaming_response.new_content.length > 0) {
+				this.client.stream_callback(this.streaming_response.new_content, false, this.streaming_response);
 			}
 		}
+	}
 	}
 }

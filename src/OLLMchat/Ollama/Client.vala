@@ -1,6 +1,6 @@
 namespace OLLMchat.Ollama
 {
-	public delegate void StreamCallback(string new_text, ChatResponse response);
+	public delegate void StreamCallback(string new_text, bool is_thinking, ChatResponse response);
 
 	public class Client : Object
 	{
@@ -12,6 +12,8 @@ namespace OLLMchat.Ollama
 		public bool debug { get; set; default = false; }
 		public ChatResponse? streaming_response { get; set; default = null; }
 
+		public Soup.Session? session = null;
+
 		public Client()
 		{
 			this.tools = new Gee.ArrayList<Tool>();
@@ -22,6 +24,7 @@ namespace OLLMchat.Ollama
 		{
 			var result = yield call.exec_chat();
 			this.calls.add(call);
+
 			return result;
 		}
 
