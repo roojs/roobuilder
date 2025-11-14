@@ -30,13 +30,7 @@ namespace OLLMchat.Ollama
 
 		public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
-			switch (property_name) {
-				case "id":
-				case "response":
-					return null;
-				default:
-					return default_serialize_property(property_name, value, pspec);
-			}
+			return default_serialize_property(property_name, value, pspec);
 		}
 
 		protected string build_url()
