@@ -101,7 +101,9 @@ namespace OLLMchat.Ollama
 				line_buffer.erase(0, -1);
 
 				for (int i = 0; i < lines.length - 1; i++) {
-					this.process_json_line(lines[i], on_chunk);
+					if (lines[i] != "") {
+						this.process_json_chunk(lines[i], on_chunk);
+					}
 				}
 
 				if (lines.length > 0) {
@@ -110,7 +112,10 @@ namespace OLLMchat.Ollama
 			}
 
 			if (line_buffer.len > 0) {
-				this.process_json_line(line_buffer.str.strip(), on_chunk);
+				var final_line = line_buffer.str.strip();
+				if (final_line != "") {
+					this.process_json_chunk(final_line, on_chunk);
+				}
 			}
 		}
 
@@ -136,15 +141,6 @@ namespace OLLMchat.Ollama
 			}
 
 			return (string)chunk[0:bytes_read];
-		}
-
-		private void process_json_line(string line, StreamingChunkCallback on_chunk)
-		{
-			if (line == "") {
-				return;
-			}
-
-			this.process_json_chunk(line, on_chunk);
 		}
 
 		private void process_json_chunk(string chunk_str, StreamingChunkCallback on_chunk)
