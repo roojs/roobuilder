@@ -121,10 +121,7 @@ namespace OLLMchat.Ollama
 
 			var url = this.build_url();
 			var session = new Soup.Session();
-			var json_node = Json.gobject_serialize(this);
-			var generator = new Json.Generator();
-			generator.set_root(json_node);
-			var request_body = generator.to_data(null);
+			var request_body = this.get_request_body();
 			var message = this.create_streaming_message(url, request_body);
 
 			GLib.debug("Request URL: %s", url);

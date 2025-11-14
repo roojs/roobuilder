@@ -50,13 +50,17 @@ namespace OLLMchat.Ollama
 			return bytes;
 		}
 
-		private void set_request_body(Soup.Message message)
+		protected string get_request_body()
 		{
 			var json_node = Json.gobject_serialize(this);
 			var generator = new Json.Generator();
 			generator.set_root(json_node);
-			var request_body = generator.to_data(null);
+			return generator.to_data(null);
+		}
 
+		private void set_request_body(Soup.Message message)
+		{
+			var request_body = this.get_request_body();
 			message.set_request_body_from_bytes("application/json", new Bytes(request_body.data));
 			GLib.debug("Request Body: %s", request_body);
 		}
