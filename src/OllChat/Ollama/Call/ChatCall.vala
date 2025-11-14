@@ -111,5 +111,14 @@ namespace OLLMchat.Ollama
 
 			throw new Error.FAILED("Failed to parse response");
 		}
+
+		public async ChatResponse exec_chat() throws Error
+		{
+			var result = yield this.execute() as ChatResponse;
+			if (result == null) {
+				throw new Error.FAILED("Chat call returned null");
+			}
+			return result;
+		}
 	}
 }

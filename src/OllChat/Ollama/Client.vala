@@ -19,10 +19,7 @@ namespace OLLMchat.Ollama
 
 		public async ChatResponse chat(ChatCall call) throws Error
 		{
-			var result = yield call.execute() as ChatResponse;
-			if (result == null) {
-				throw new Error.FAILED("Chat call returned null");
-			}
+			var result = yield call.exec_chat();
 			this.calls.add(call);
 			return result;
 		}
@@ -30,10 +27,7 @@ namespace OLLMchat.Ollama
 		public async Gee.ArrayList<Model> models() throws Error
 		{
 			var call = new ModelsCall(this);
-			var result = yield call.execute() as Gee.ArrayList<Model>;
-			if (result == null) {
-				throw new Error.FAILED("Models call returned null");
-			}
+			var result = yield call.exec_models();
 			this.calls.add(call);
 			return result;
 		}
@@ -41,10 +35,7 @@ namespace OLLMchat.Ollama
 		public async Gee.ArrayList<Model> ps() throws Error
 		{
 			var call = new PsCall(this);
-			var result = yield call.execute() as Gee.ArrayList<Model>;
-			if (result == null) {
-				throw new Error.FAILED("Ps call returned null");
-			}
+			var result = yield call.exec_ps();
 			this.calls.add(call);
 			return result;
 		}

@@ -33,5 +33,14 @@ namespace OLLMchat.Ollama
 
 			return models;
 		}
+
+		public async Gee.ArrayList<Model> exec_ps() throws Error
+		{
+			var result = yield this.execute() as Gee.ArrayList<Model>;
+			if (result == null) {
+				throw new Error.FAILED("Ps call returned null");
+			}
+			return result;
+		}
 	}
 }
