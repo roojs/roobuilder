@@ -3,8 +3,8 @@ namespace OLLMchat.Ollama
 	public abstract class OllamaBase : Object, Json.Serializable
 	{
 		protected Client? client;
-		public string role = ""
-		public string content { get; set; default = ""; }
+		public string chat_role = "";
+		public string chat_content = "";
 
 		protected OllamaBase(Client? client = null)
 		{
