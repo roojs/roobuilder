@@ -719,6 +719,17 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 
 ### 4.2 Testing Checklist
 
+**Stage 1 - Command-Line Test (TestOllama.vala)**:
+- [ ] Connect to Ollama server (configurable URL, default: `http://localhost:11434`)
+- [ ] Call `ps()` to list running models
+- [ ] Display model information (name, size, VRAM, total_duration)
+- [ ] Send chat query with streaming
+- [ ] Verify streaming callback outputs partial content as it arrives
+- [ ] Display complete response (thinking, content, done, done_reason)
+- [ ] Test with debug mode enabled
+- [ ] Test error handling (server down, invalid model)
+
+**Stage 2+ - UI Testing**:
 - [ ] Connect to local Ollama server
 - [ ] Send simple message and receive response
 - [ ] Verify streaming works (tokens appear incrementally)
