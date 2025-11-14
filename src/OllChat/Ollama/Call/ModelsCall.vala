@@ -8,8 +8,11 @@ namespace OLLMchat.Ollama
 			this.http_method = "GET";
 		}
 
-		protected override Object? process(Json.Node root) throws Error
+		public async Gee.ArrayList<Model> exec_models() throws Error
 		{
+			var bytes = yield this.send_request(false);
+			var root = this.parse_response(bytes);
+
 			if (root.get_node_type() != Json.NodeType.OBJECT) {
 				throw new Error.FAILED("Invalid JSON response");
 			}
@@ -32,15 +35,6 @@ namespace OLLMchat.Ollama
 			}
 
 			return models;
-		}
-
-		public async Gee.ArrayList<Model> exec_models() throws Error
-		{
-			var result = yield this.execute() as Gee.ArrayList<Model>;
-			if (result == null) {
-				throw new Error.FAILED("Models call returned null");
-			}
-			return result;
 		}
 	}
 }

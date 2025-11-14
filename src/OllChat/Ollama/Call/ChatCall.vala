@@ -43,7 +43,7 @@ namespace OLLMchat.Ollama
 			}
 		}
 
-		public override async Object? execute() throws Error
+		public async ChatResponse exec_chat() throws Error
 		{
 			if (this.model == "") {
 				throw new Error.INVALID_ARGUMENT("Model is required");
@@ -64,61 +64,64 @@ namespace OLLMchat.Ollama
 
 			if (this.stream) {
 				this.streaming_response = new ChatResponse(this.client);
-			}
-
-			return yield base.execute();
-		}
-
-		protected override bool should_stream()
-		{
-			return this.stream;
-		}
-
-		protected override bool is_json_format()
-		{
-			return (this.format == "json");
-		}
-
-		protected override void process_streaming_chunk(Json.Object chunk)
-		{
-			if (this.streaming_response == null) {
-				return;
-			}
-
-			var new_text = this.streaming_response.addChunk(chunk);
-
-			if (this.client.stream_callback != null) {
-				this.client.stream_callback(new_text, this.streaming_response);
+				return yield this.execute_streaming();
+			} else {
+				return yield this.execute_non_streaming();
 			}
 		}
 
-		protected override Object? get_streaming_result()
+		private async ChatResponse execute_non_streaming() throws Error
 		{
-			return this.streaming_response;
-		}
+			var bytes = yield this.send_request(true);
+			var root = this.parse_response(bytes);
 
-		protected override Object? process(Json.Node root) throws Error
-		{
 			if (root.get_node_type() != Json.NodeType.OBJECT) {
 				throw new Error.FAILED("Invalid JSON response");
 			}
 
 			var response_obj = Json.gobject_from_data(typeof(ChatResponse), root.print(false), -1) as ChatResponse;
-			if (response_obj != null) {
-				response_obj.client = this.client;
-				return response_obj;
+			if (response_obj == null) {
+				throw new Error.FAILED("Failed to parse response");
 			}
 
-			throw new Error.FAILED("Failed to parse response");
+			response_obj.client = this.client;
+			return response_obj;
 		}
 
-		public async ChatResponse exec_chat() throws Error
+		private async ChatResponse execute_streaming() throws Error
 		{
-			var result = yield this.execute() as ChatResponse;
-			if (result == null) {
-				throw new Error.FAILED("Chat call returned null");
+			if (this.streaming_response == null) {
+				throw new Error.FAILED("Streaming response not initialized");
 			}
-			return result;
+
+			var url = this.build_url();
+			var session = new Soup.Session();
+			var message = new Soup.Message(this.http_method, url);
+
+			if (this.client.api_key != null && this.client.api_key != "") {
+				message.request_headers.append("Authorization", @"Bearer $(this.client.api_key)");
+			}
+
+			var json_node = Json.gobject_serialize(this);
+			var generator = new Json.Generator();
+			generator.set_root(json_node);
+			var request_body = generator.to_data(null);
+
+			message.set_request_body_from_bytes("application/json", new Bytes(request_body.data));
+
+			GLib.debug("Request URL: %s", url);
+			GLib.debug("Request Body: %s", request_body);
+
+			var is_json_format = (this.format == "json");
+			yield this.handle_streaming_response(session, message, is_json_format, (chunk) => {
+				var new_text = this.streaming_response.addChunk(chunk);
+
+				if (this.client.stream_callback != null) {
+					this.client.stream_callback(new_text, this.streaming_response);
+				}
+			});
+
+			return this.streaming_response;
 		}
 	}
 }
