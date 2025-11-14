@@ -14,6 +14,7 @@ Create a standalone OLL Chat application that connects to an Ollama server, prov
 ```
 src/OllChat/
 ├── OLLMchat.vala              # Main entry point (standalone app)
+├── TestOllama.vala            # Command-line test program (Stage 1 end goal)
 ├── Ollama/
 │   ├── Client.vala            # Main client class (converted from Net_Ollama)
 │   ├── Call/
