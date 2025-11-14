@@ -19,11 +19,11 @@ namespace OLLMchat.Ollama
 		{
 			get
 			{
-				var msg_obj = new Json.Object();
+				var node = new Json.Node(Json.NodeType.OBJECT);
+				node.init_object(new Json.Object());
+				var msg_obj = node.get_object();
 				msg_obj.set_string_member("role", this.chat_role);
 				msg_obj.set_string_member("content", this.chat_content);
-				var node = new Json.Node(Json.NodeType.OBJECT);
-				node.set_object(msg_obj);
 				return node;
 			}
 			set
