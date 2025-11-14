@@ -51,17 +51,7 @@ namespace OLLMchat.Ollama
 			return base_url + this.url_endpoint;
 		}
 
-		protected virtual bool should_stream()
-		{
-			return false;
-		}
-
-		protected virtual bool is_json_format()
-		{
-			return false;
-		}
-
-		public async Object? execute() throws Error
+		protected async Bytes send_request(bool needs_body) throws Error
 		{
 			if (this.client == null) {
 				throw new Error.INVALID_ARGUMENT("Client is null");
@@ -75,7 +65,7 @@ namespace OLLMchat.Ollama
 				message.request_headers.append("Authorization", @"Bearer $(this.client.api_key)");
 			}
 
-			if (this.http_method == "POST") {
+			if (needs_body && this.http_method == "POST") {
 				var json_node = Json.gobject_serialize(this);
 				var generator = new Json.Generator();
 				generator.set_root(json_node);
@@ -83,38 +73,22 @@ namespace OLLMchat.Ollama
 
 				message.set_request_body_from_bytes("application/json", new Bytes(request_body.data));
 
-				if (this.client.debug) {
-					stdout.printf("Request URL: %s\n", url);
-					stdout.printf("Request Body: %s\n", request_body);
-				}
+				GLib.debug("Request URL: %s", url);
+				GLib.debug("Request Body: %s", request_body);
 			} else {
-				if (this.client.debug) {
-					stdout.printf("Request URL: %s\n", url);
-				}
+				GLib.debug("Request URL: %s", url);
 			}
 
-			if (this.should_stream()) {
-				return yield this.execute_streaming(session, message);
-			} else {
-				var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
+			var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
 
-				if (message.status_code != 200) {
-					throw new Error.FAILED(@"HTTP error: $(message.status_code)");
-				}
-
-				var parser = new Json.Parser();
-				parser.load_from_data((string)bytes.get_data(), -1);
-
-				var root = parser.get_root();
-				if (root == null) {
-					throw new Error.FAILED("Invalid JSON response");
-				}
-
-				return this.process(root);
+			if (message.status_code != 200) {
+				throw new Error.FAILED(@"HTTP error: $(message.status_code)");
 			}
+
+			return bytes;
 		}
 
-		private async Object? execute_streaming(Soup.Session session, Soup.Message message) throws Error
+		protected async void handle_streaming_response(Soup.Session session, Soup.Message message, bool is_json_format, void on_chunk(Json.Object chunk)) throws Error
 		{
 			yield session.send_async(message, GLib.Priority.DEFAULT, null);
 
@@ -126,7 +100,6 @@ namespace OLLMchat.Ollama
 			var bytes = response_body.flatten();
 			var input_stream = new MemoryInputStream.from_bytes(bytes);
 
-			var is_json_format = this.is_json_format();
 			var line_buffer = new StringBuilder();
 
 			while (true) {
@@ -156,12 +129,10 @@ namespace OLLMchat.Ollama
 							var chunk_node = parser.get_root();
 							if (chunk_node != null && chunk_node.get_node_type() == Json.NodeType.OBJECT) {
 								var chunk_obj = chunk_node.get_object();
-								this.process_streaming_chunk(chunk_obj);
+								on_chunk(chunk_obj);
 							}
 						} catch (Error e) {
-							if (this.client.debug) {
-								stdout.printf("Error parsing JSON chunk: %s\n", e.message);
-							}
+							GLib.debug("Error parsing JSON chunk: %s", e.message);
 						}
 					}
 
@@ -175,12 +146,10 @@ namespace OLLMchat.Ollama
 						var chunk_node = parser.get_root();
 						if (chunk_node != null && chunk_node.get_node_type() == Json.NodeType.OBJECT) {
 							var chunk_obj = chunk_node.get_object();
-							this.process_streaming_chunk(chunk_obj);
+							on_chunk(chunk_obj);
 						}
 					} catch (Error e) {
-						if (this.client.debug) {
-							stdout.printf("Error parsing JSON chunk: %s\n", e.message);
-						}
+						GLib.debug("Error parsing JSON chunk: %s", e.message);
 					}
 				}
 			}
@@ -194,28 +163,26 @@ namespace OLLMchat.Ollama
 						var chunk_node = parser.get_root();
 						if (chunk_node != null && chunk_node.get_node_type() == Json.NodeType.OBJECT) {
 							var chunk_obj = chunk_node.get_object();
-							this.process_streaming_chunk(chunk_obj);
+							on_chunk(chunk_obj);
 						}
 					} catch (Error e) {
-						if (this.client.debug) {
-							stdout.printf("Error parsing final JSON chunk: %s\n", e.message);
-						}
+						GLib.debug("Error parsing final JSON chunk: %s", e.message);
 					}
 				}
 			}
-
-			return this.get_streaming_result();
 		}
 
-		protected virtual void process_streaming_chunk(Json.Object chunk)
+		protected Json.Node parse_response(Bytes bytes) throws Error
 		{
-		}
+			var parser = new Json.Parser();
+			parser.load_from_data((string)bytes.get_data(), -1);
 
-		protected virtual Object? get_streaming_result()
-		{
-			return null;
-		}
+			var root = parser.get_root();
+			if (root == null) {
+				throw new Error.FAILED("Invalid JSON response");
+			}
 
-		protected abstract Object? process(Json.Node root) throws Error;
+			return root;
+		}
 	}
 }
