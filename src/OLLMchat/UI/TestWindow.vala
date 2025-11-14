@@ -1,17 +1,25 @@
-/* Compile with:
-valac \
-	--pkg gtk4 \
-	--pkg libsoup-3.0 \
-	--pkg json-glib \
-	--target-glib=2.70 \
-	TestWindow.vala \
-	ChatWidget.vala \
-	ChatView.vala \
-	ChatInput.vala \
-	../MarkdownProcessor.vala \
-	../Ollama/*.vala \
-	../Ollama/**/*.vala \
-	-o test-window
+/* Compilation:
+valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib --pkg gee-0.8 --pkg gio-2.0 \
+      --target-glib=2.70 \
+      --directory /tmp/vala-build \
+      TestWindow.vala \
+      ChatWidget.vala \
+      ChatView.vala \
+      ChatInput.vala \
+      ../MarkdownProcessor.vala \
+      ../Ollama/OllamaBase.vala \
+      ../Ollama/MessageInterface.vala \
+      ../Ollama/Client.vala \
+      ../Ollama/Call/BaseCall.vala \
+      ../Ollama/Call/ChatCall.vala \
+      ../Ollama/Call/ModelsCall.vala \
+      ../Ollama/Call/PsCall.vala \
+      ../Ollama/Response/BaseResponse.vala \
+      ../Ollama/Response/ChatResponse.vala \
+      ../Ollama/Response/Model.vala \
+      ../Ollama/Tool/Tool.vala \
+      ../Ollama/Tool/Function.vala \
+      -o /tmp/test-window
 */
 
 namespace OLLMchat.UI
