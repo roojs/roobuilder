@@ -428,7 +428,7 @@ public class ChatInput : Gtk.Box
 
 **Streaming Callback**:
 ```vala
-private void on_stream_chunk(string new_text, ChatResponse response)
+private void on_stream_chunk(string new_text, Ollama.ChatResponse response)
 {
 	chat_view.append_assistant_chunk(new_text);
 	
