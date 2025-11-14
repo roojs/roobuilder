@@ -41,8 +41,9 @@ namespace OLLMchat.UI
 			this.chat_widget = new ChatWidget();
 
 			// Create default Ollama client and set on widget
-			var client = new Ollama.Client();
-			client.url = "http://localhost:11434/api";
+			var client = new Ollama.Client() {
+				url = "http://localhost:11434/api"
+			};
 			this.chat_widget.client = client;
 			this.chat_widget.model = "llama2";
 
