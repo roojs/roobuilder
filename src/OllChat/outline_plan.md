@@ -725,6 +725,12 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 ## Implementation Order
 
 ### Step 1: API Client (Phase 1)
+
+**Reference Implementation**: `/home/alan/gitlive/web.roojsolutions/Pman/Roojs/Test/Ollama.php`
+
+This PHP test file demonstrates the complete API client functionality that should be replicated in Vala. The end goal of Stage 1 is to create a command-line test program that does exactly the same thing.
+
+**Implementation Steps**:
 1. Create `Ollama/Client.vala` class with basic structure
 2. Implement `Ollama/Call/BaseCall.vala` with HTTP request handling
 3. Implement `Ollama/Call/ChatCall.vala` with message handling
@@ -734,7 +740,24 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 7. Implement `Ollama/Response/Model.vala` for model information
 8. Implement `Ollama/Tool/Tool.vala` and `Ollama/Tool/Function.vala` for function calling
 9. Add streaming support to `BaseCall`
-10. Test API client independently (can use simple test program)
+10. **Create command-line test program** (`OllChat/TestOllama.vala`) that replicates the PHP test:
+    - Initialize Ollama client with URL, debug mode, and streaming callback
+    - Call `ps()` to get running models
+    - Display model information (name, size, VRAM, total_duration)
+    - Send a chat query with streaming
+    - Output partial content as it streams (via callback)
+    - Display complete response (thinking, content, done status, done_reason)
+11. Test API client with the command-line program
+
+**Command-Line Test Program Requirements**:
+- Accept server URL as argument (default: `http://localhost:11434`)
+- Enable debug mode
+- Set up streaming callback that outputs partial content as it arrives
+- Call `ps()` to list running models
+- Display model details
+- Send a test chat query using the first running model
+- Display streaming output in real-time
+- Show final response summary
 
 ### Step 2: Basic UI (Phase 2)
 1. Create `ChatView` with simple text display (no markdown yet)
