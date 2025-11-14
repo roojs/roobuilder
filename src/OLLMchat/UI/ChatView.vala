@@ -25,14 +25,15 @@ namespace OLLMchat.UI
 		 */
 		public ChatView()
 		{
-			this.text_view = new Gtk.TextView();
-			this.text_view.editable = false;
-			this.text_view.cursor_visible = false;
-			this.text_view.wrap_mode = Gtk.WrapMode.WORD;
-			this.text_view.margin_start = 10;
-			this.text_view.margin_end = 10;
-			this.text_view.margin_top = 10;
-			this.text_view.margin_bottom = 10;
+			this.text_view = new Gtk.TextView() {
+				editable = false,
+				cursor_visible = false,
+				wrap_mode = Gtk.WrapMode.WORD,
+				margin_start = 10,
+				margin_end = 10,
+				margin_top = 10,
+				margin_bottom = 10
+			};
 
 			this.buffer = this.text_view.buffer;
 			this.set_child(this.text_view);
