@@ -108,19 +108,17 @@ namespace OLLMchat.Ollama {
 namespace OLLMchat.Ollama {
 	public abstract class BaseCall : Object, Json.Serializable
 	{
-		protected string url_endpoint { get; set; }  // Internal: endpoint path (not serialized)
-		protected string http_method { get; set; default = "POST"; }  // Internal: HTTP method (not serialized)
-		protected Client? client;  // Internal: reference to client (not serialized)
+		// Internal fields (not get/set properties, not serialized)
+		protected string url_endpoint;  // Endpoint path
+		protected string http_method = "POST";  // HTTP method
+		protected Client? client;  // Reference to client
 		
-		// serialize_property() will exclude url_endpoint, http_method, client, etc.
-		// Only serialize properties that should be sent to API
+		// serialize_property() will only serialize get/set properties
+		// Internal fields (url_endpoint, http_method, client) are not properties, so they won't be serialized
 		public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
-			// Exclude internal properties
+			// Exclude any internal properties that shouldn't be sent to API
 			switch (property_name) {
-				case "url_endpoint":
-				case "http_method":
-				case "client":
 				case "id":
 				case "response":
 					return null;  // Exclude from serialization
@@ -131,6 +129,8 @@ namespace OLLMchat.Ollama {
 	}
 }
 ```
+
+**Note**: Internal fields that are not serialized should be regular fields (not get/set properties). Only properties that need to be sent to the API should be get/set properties.
 
 **Note**: Unlike the PHP version which used underscore prefixes (`_url`, `_method`) to exclude properties from serialization, Vala's `Json.Serializable` interface allows us to use normal property names and control serialization through `serialize_property()` method with switch cases.
 
