@@ -36,6 +36,8 @@ src/OllChat/
 ### 1.1 Core Client Class (`Ollama/Client.vala`)
 **Source**: `Net_Ollama.php`
 
+**Namespace**: `OLLMchat.Ollama`
+
 **Key Features to Convert**:
 - URL configuration (default: `http://localhost:11434/api`)
 - API key support (optional)
@@ -50,14 +52,21 @@ src/OllChat/
 - Implement async methods for API calls
 - Support streaming with `Soup.MessageBody` callbacks
 
+**Namespace**: `OLLMchat.Ollama`
+
 **Properties**:
 ```vala
-public string url { get; set; }
-public string? api_key { get; set; }
-public Gee.ArrayList<Tool> tools { get; set; }
-public Gee.ArrayList<BaseCall> calls { get; set; }
-public delegate void StreamCallback(string new_text, ChatResponse response);
-public bool debug { get; set; }
+namespace OLLMchat.Ollama {
+	public class Client : Object
+	{
+		public string url { get; set; }
+		public string? api_key { get; set; }
+		public Gee.ArrayList<Tool> tools { get; set; }
+		public Gee.ArrayList<BaseCall> calls { get; set; }
+		public delegate void StreamCallback(string new_text, ChatResponse response);
+		public bool debug { get; set; }
+	}
+}
 ```
 
 ### 1.2 Base Call Class (`Ollama/Call/BaseCall.vala`)
@@ -77,11 +86,18 @@ public bool debug { get; set; }
 - Implement streaming with `Soup.MessageBody` and line-by-line JSON parsing
 - Buffer incomplete JSON chunks until newline received
 
+**Namespace**: `OLLMchat.Ollama`
+
 **Properties**:
 ```vala
-protected string _url { get; set; }
-protected string _method { get; set; default = "POST"; }
-protected string[] exclude { get; set; }
+namespace OLLMchat.Ollama {
+	public abstract class BaseCall : Object
+	{
+		protected string _url { get; set; }
+		protected string _method { get; set; default = "POST"; }
+		protected string[] exclude { get; set; }
+	}
+}
 ```
 
 ### 1.3 Chat Call (`Ollama/Call/ChatCall.vala`)
@@ -96,6 +112,8 @@ protected string[] exclude { get; set; }
 - Options object (runtime parameters)
 - Think flag (for thinking output)
 - Keep-alive duration
+
+**Namespace**: `OLLMchat.Ollama`
 
 **Vala Implementation**:
 - Extend `BaseCall`
@@ -132,11 +150,15 @@ public class Message : Object
 - Reference to client instance
 - Universal constructor from JSON data
 
+**Namespace**: `OLLMchat.Ollama`
+
 **Vala Implementation**:
 - Use `Json.Serializable` interface
 - Deserialize from `Json.Node`
 
 ### 1.5 Chat Response (`Ollama/Response/ChatResponse.vala`)
+
+**Namespace**: `OLLMchat.Ollama`
 **Source**: `Net_Ollama/Response/Chat.php`
 
 **Key Features**:
@@ -457,10 +479,10 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 ## Implementation Order
 
 ### Step 1: API Client (Phase 1)
-1. Create `OllamaClient` class with basic structure
-2. Implement `BaseCall` with HTTP request handling
-3. Implement `ChatCall` with message handling
-4. Implement `BaseResponse` and `ChatResponse`
+1. Create `Ollama/Client.vala` class with basic structure
+2. Implement `Ollama/Call/BaseCall.vala` with HTTP request handling
+3. Implement `Ollama/Call/ChatCall.vala` with message handling
+4. Implement `Ollama/Response/BaseResponse.vala` and `Ollama/Response/ChatResponse.vala`
 5. Add streaming support to `BaseCall`
 6. Test API client independently (can use simple test program)
 
@@ -518,13 +540,59 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 - Buffer incomplete JSON chunks until newline received
 - Use efficient text buffer operations (replace range, not full buffer)
 
+## Phase 5: Widget Extraction and Reusability
+
+### 5.1 Widget Design Principles
+
+**Self-Contained**:
+- Widget manages its own Ollama client instance
+- No external dependencies beyond GTK and Ollama client classes
+- All configuration through public properties
+
+**Embeddable**:
+- Extends `Gtk.Box` so it can be added to any container
+- Standard GTK widget lifecycle
+- Proper size allocation and expansion
+
+**Configurable**:
+- Public properties for server URL, API key, model
+- Signals for external integration (message_sent, response_received, error_occurred)
+- Public methods for programmatic control
+
+### 5.2 Integration Points
+
+**In Main Project**:
+- Widget can be added to any window or dialog
+- Can be used in sidebars, panels, or dedicated chat areas
+- Signals allow parent widgets to react to chat events
+
+**Example Integration**:
+```vala
+// In main project code
+var chat = new OLLMchat.ChatWidget();
+chat.model = "llama2";
+chat.response_received.connect((text) => {
+	print("Received: %s\n", text);
+});
+some_panel.append(chat);
+```
+
+### 5.3 Testing Widget Independence
+
+- [ ] Widget works standalone (in test window)
+- [ ] Widget can be embedded in different containers
+- [ ] Widget signals fire correctly
+- [ ] Widget properties can be set externally
+- [ ] Widget cleans up resources properly
+
 ## Future Enhancements (Post-MVP)
 
 1. **Full Markdown Support**: Complete markdown rendering with code highlighting
 2. **Function Calling**: Implement tool/function calling support
-3. **Model Selection**: UI to select different models
-4. **Settings**: Configure server URL, API key, etc.
+3. **Model Selection**: UI to select different models (dropdown in widget)
+4. **Settings**: Configure server URL, API key, etc. (via properties or settings dialog)
 5. **History**: Save and load conversation history
 6. **Multiple Conversations**: Tab-based or window-based multiple chats
 7. **Syntax Highlighting**: For code blocks in markdown
+8. **Widget Customization**: Themes, font sizes, colors via properties
 
