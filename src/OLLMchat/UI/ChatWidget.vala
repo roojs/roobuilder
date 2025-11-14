@@ -178,33 +178,29 @@ namespace OLLMchat.UI
 				} else {
 					error_msg = e.message;
 				}
-				this.chat_view.append_error(error_msg);
-				this.error_occurred(error_msg);
-				this.chat_input.set_streaming(false);
-				this.is_streaming_active = false;
-				this.current_chat = null;
-			} catch (IOError e) {
+				this.handle_error(error_msg);
+			} catch (GLib.IOError e) {
 				string error_msg = "";
-				if (e.code == IOError.CONNECTION_REFUSED) {
+				if (e.code == GLib.IOError.CONNECTION_REFUSED) {
 					error_msg = "Connection refused. Please ensure the Ollama server is running.";
-				} else if (e.code == IOError.TIMED_OUT) {
+				} else if (e.code == GLib.IOError.TIMED_OUT) {
 					error_msg = "Request timed out. Please check your network connection.";
 				} else {
 					error_msg = @"Network error: $(e.message)";
 				}
-				this.chat_view.append_error(error_msg);
-				this.error_occurred(error_msg);
-				this.chat_input.set_streaming(false);
-				this.is_streaming_active = false;
-				this.current_chat = null;
-			} catch (Error e) {
-				string error_msg = @"Error: $(e.message)";
-				this.chat_view.append_error(error_msg);
-				this.error_occurred(error_msg);
-				this.chat_input.set_streaming(false);
-				this.is_streaming_active = false;
-				this.current_chat = null;
+				this.handle_error(error_msg);
+			} catch (GLib.Error e) {
+				this.handle_error(@"Error: $(e.message)");
 			}
+		}
+
+		private void handle_error(string error_msg)
+		{
+			this.chat_view.append_error(error_msg);
+			this.error_occurred(error_msg);
+			this.chat_input.set_streaming(false);
+			this.is_streaming_active = false;
+			this.current_chat = null;
 		}
 
 		private void on_stop_clicked()
