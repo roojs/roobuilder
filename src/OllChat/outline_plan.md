@@ -304,13 +304,15 @@ public string addChunk(Json.Object chunk)
 namespace OLLMchat.Ollama {
 	public class ModelsCall : BaseCall
 	{
-		public Gee.ArrayList<Model> models { get; set; }
+		// Internal field (not get/set property, not serialized)
+		protected Gee.ArrayList<Model> models;
 		
 		public ModelsCall(Client client)
 		{
 			base(client);
 			this.url_endpoint = "tags";
 			this.http_method = "GET";
+			this.models = new Gee.ArrayList<Model>();
 		}
 	}
 }
@@ -346,13 +348,15 @@ public async Gee.ArrayList<Model> models() throws Error
 namespace OLLMchat.Ollama {
 	public class PsCall : BaseCall
 	{
-		public Gee.ArrayList<Model> running_models { get; set; }
+		// Internal field (not get/set property, not serialized)
+		protected Gee.ArrayList<Model> running_models;
 		
 		public PsCall(Client client)
 		{
 			base(client);
 			this.url_endpoint = "ps";
 			this.http_method = "GET";
+			this.running_models = new Gee.ArrayList<Model>();
 		}
 	}
 }
