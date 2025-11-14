@@ -95,11 +95,7 @@ namespace OLLMchat.UI
 
 			// Find last double line break
 			int last_double_break = this.raw_content.last_index_of("\n\n");
-			if (last_double_break == -1) {
-				last_double_break = 0;
-			} else {
-				last_double_break += 2; // Skip the \n\n
-			}
+			last_double_break = last_double_break == -1 ? 0 : last_double_break + 2; // Skip the \n\n if found
 
 			// If we've hit a new \n\n, render everything up to that point
 			if (last_double_break > this.last_chunk_start) {
