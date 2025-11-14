@@ -121,7 +121,10 @@ namespace OLLMchat.Ollama
 
 			var url = this.build_url();
 			var session = new Soup.Session();
-			var request_body = this.get_request_body();
+			var json_node = Json.gobject_serialize(this);
+			var generator = new Json.Generator();
+			generator.set_root(json_node);
+			var request_body = generator.to_data(null);
 			var message = this.create_streaming_message(url, request_body);
 
 			GLib.debug("Request URL: %s", url);
@@ -147,13 +150,6 @@ namespace OLLMchat.Ollama
 			return message;
 		}
 
-		private string get_request_body()
-		{
-			var json_node = Json.gobject_serialize(this);
-			var generator = new Json.Generator();
-			generator.set_root(json_node);
-			return generator.to_data(null);
-		}
 
 		private void process_streaming_chunk(Json.Object chunk)
 		{
