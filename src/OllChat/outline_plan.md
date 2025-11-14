@@ -769,15 +769,64 @@ This PHP test file demonstrates the complete API client functionality that shoul
     - Display complete response (thinking, content, done status, done_reason)
 11. Test API client with the command-line program
 
-**Command-Line Test Program Requirements**:
-- Accept server URL as argument (default: `http://localhost:11434`)
-- Enable debug mode
-- Set up streaming callback that outputs partial content as it arrives
+**Command-Line Test Program Requirements** (`TestOllama.vala`):
+- Accept server URL as command-line argument (default: `http://localhost:11434`)
+- Enable debug mode on client
+- Set up streaming callback that outputs partial content as it arrives (using `stdout.write()` and `stdout.flush()`)
 - Call `ps()` to list running models
-- Display model details
+- Display model details (name, size, VRAM, total_duration)
+- If no running models, exit with message
 - Send a test chat query using the first running model
-- Display streaming output in real-time
-- Show final response summary
+- Display streaming output in real-time via callback
+- Show final response summary (thinking, content, done, done_reason)
+
+**Test Program Structure**:
+```vala
+namespace OLLMchat {
+	int main(string[] args)
+	{
+		// Parse command-line arguments for server URL
+		string server_url = args.length > 1 ? args[1] : "http://localhost:11434";
+		
+		// Initialize Ollama client with debug and streaming callback
+		var client = new Ollama.Client();
+		client.url = server_url;
+		client.debug = true;
+		client.stream_callback = (partial, response) => {
+			stdout.write(partial.data);
+			stdout.flush();
+		};
+		
+		// Call ps() to get running models
+		// Display model information
+		// Send test chat query
+		// Display final response summary
+		
+		return 0;
+	}
+}
+```
+
+**Expected Output** (matching PHP test):
+```
+--- Running Models (ps) ---
+Model: llama2
+  Size: 3825819519 bytes
+  VRAM: 3825819519 bytes
+  Total Duration: 1234567890 ns
+
+Sending query to Ollama...
+Query: Write a small vala program...
+
+Response:
+[streaming output appears here as tokens arrive]
+
+--- Complete Response ---
+Thinking: [thinking content if any]
+Content: [full response content]
+Done: true
+Done Reason: stop
+```
 
 ### Step 2: Basic UI (Phase 2)
 1. Create `ChatView` with simple text display (no markdown yet)
