@@ -168,10 +168,27 @@ public bool think { get; set; }
 public string? keep_alive { get; set; }
 
 // Internal field (not get/set property, not serialized)
-protected Gee.ArrayList<ChatResponse> messages;  // References to ChatResponse objects
+protected Gee.ArrayList<ChatResponse> _messages;  // References to ChatResponse objects (underscore to avoid name conflict)
 
 // Fake property for serialization - converts ChatResponse objects to API message format
-public Json.Array? messages_serialized { get; set; }
+public Json.Array messages
+{
+	get {
+		// Convert internal _messages field to API format
+		var array = new Json.Array();
+		foreach (var response in this._messages) {
+			var msg_obj = new Json.Object();
+			msg_obj.set_string_member("role", response.role);
+			msg_obj.set_string_member("content", response.content);
+			array.add_object_element(msg_obj);
+		}
+		return array;
+	}
+	set {
+		// If deserializing, convert from API format back to ChatResponse objects
+		// This might not be needed if we only serialize (not deserialize from API)
+	}
+}
 ```
 
 **Serialization Note**:
