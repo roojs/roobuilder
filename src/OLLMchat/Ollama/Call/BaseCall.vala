@@ -5,8 +5,9 @@ namespace OLLMchat.Ollama
 		protected string url_endpoint;
 		protected string http_method = "POST";
 
-		protected BaseCall(Client client) : base(client)
+		protected BaseCall(Client client) 
 		{
+			base(client);
 		}
 
 		protected string build_url()
