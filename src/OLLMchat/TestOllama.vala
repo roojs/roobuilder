@@ -2,6 +2,7 @@
 Compilation:
 valac --pkg libsoup-3.0 --pkg json-glib-1.0 --pkg gee-0.8 \
       --target-glib=2.70 \
+      --directory /tmp/vala-build \
       TestOllama.vala \
       Ollama/OllamaBase.vala \
       Ollama/MessageInterface.vala \
