@@ -155,11 +155,12 @@ namespace OLLMchat.Ollama {
 - Auto-enable streaming if callback is set on client
 - Merge client-level tools into call tools
 - **Streaming format handling**: Check if `format == "json"` to determine if line-by-line JSON parsing is needed
+- **Custom serialization**: Implement `serialize_property()` to convert `ChatResponse` objects in messages array to API message format
 
 **Properties**:
 ```vala
 public string model { get; set; }
-public Gee.ArrayList<Message> messages { get; set; }
+public Gee.ArrayList<ChatResponse> messages { get; set; }  // References to ChatResponse objects
 public Gee.ArrayList<Tool>? tools { get; set; }
 public bool stream { get; set; }
 public string? format { get; set; }
@@ -168,14 +169,11 @@ public bool think { get; set; }
 public string? keep_alive { get; set; }
 ```
 
-**Message Structure**:
-```vala
-public class Message : Object
-{
-	public string role { get; set; }  // "user", "assistant", "system"
-	public string content { get; set; }
-}
-```
+**Serialization Note**:
+- The `messages` array contains `ChatResponse` objects (which have `role` and `content` properties)
+- When serializing `ChatCall` to JSON for the API, `serialize_property()` must convert `ChatResponse` objects back to the message format expected by the API: `{role: "...", content: "..."}`
+- The API expects messages as: `[{role: "user", content: "..."}, {role: "assistant", content: "..."}]`
+- No separate `Message` class needed - ChatResponse already has the flattened role and content
 
 ### 1.4 Base Response Class (`Ollama/Response/BaseResponse.vala`)
 **Source**: `Net_Ollama/Response.php`
@@ -199,8 +197,8 @@ public class Message : Object
 **Key Features**:
 - Model name
 - Created timestamp
-- Message object (role + content)
-- Content string (flattened)
+- Role string (flattened from message object - "user", "assistant", "system")
+- Content string (flattened from message object)
 - Thinking output
 - Done flag and reason
 - Duration metrics
@@ -212,6 +210,8 @@ public class Message : Object
 - Implement `Json.Serializable` for serialization
 - Track content incrementally during streaming
 - Return new text from each chunk for UI updates
+- **No separate Message object**: Role and content are flattened directly into ChatResponse (as in PHP version)
+- When deserializing from API response, extract role and content from the `message` object in JSON
 
 **Properties**:
 ```vala
