@@ -57,3 +57,5 @@ repo/*
 .gdb_history
 .vscode/
 tests/results/*
+.cursorindexingignore
+.specstory/
