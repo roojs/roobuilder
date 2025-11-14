@@ -12,8 +12,7 @@ namespace OLLMchat.Ollama
 
 		public Gee.ArrayList<MessageInterface> messages { get; set; default = new Gee.ArrayList<MessageInterface>(); }
 		private ChatResponse? streaming_response;
-		public Json.Object? message
-		{
+		public Json.Object? message {
 			get
 			{
 				var msg_obj = new Json.Object();
@@ -21,9 +20,7 @@ namespace OLLMchat.Ollama
 				msg_obj.set_string_member("content", this.chat_content);
 				return msg_obj;
 			}
-			set
-			{
-			}
+			set {}
 		}
 
 		public ChatCall(Client client) : base(client)
