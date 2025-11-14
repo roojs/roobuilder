@@ -61,8 +61,9 @@ namespace OLLMchat.Ollama
 		{
 			if (property_name == "messages") {
 				//this.deserialize_messages(property_node);
+				this.messages = new Gee.ArrayList<MessageInterface>();
 				value = Value(typeof(Gee.ArrayList));
-				value.set_object(this.messages); // nice and empty.
+				value.set_object(this.messages); // nice and empty
 				return true;
 			}
 
