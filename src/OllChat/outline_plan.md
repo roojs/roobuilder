@@ -792,25 +792,31 @@ public Json.Node? serialize_property(string property_name, Value value, ParamSpe
 
 **Example - Converting ChatResponse to Message Format (ChatCall)**:
 ```vala
-public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+// Internal field (not get/set property, not serialized)
+protected Gee.ArrayList<ChatResponse> _messages;
+
+// Fake get/set property for serialization - named "messages" to match API
+public Json.Array messages
 {
-	if (property_name == "messages") {
-		// Convert ChatResponse objects to API message format
+	get {
+		// Convert internal _messages field (ChatResponse objects) to API format
 		var array = new Json.Array();
-		var messages_list = (Gee.ArrayList<ChatResponse>)value;
-		foreach (var response in messages_list) {
+		foreach (var response in this._messages) {
 			var msg_obj = new Json.Object();
 			msg_obj.set_string_member("role", response.role);
 			msg_obj.set_string_member("content", response.content);
 			array.add_object_element(msg_obj);
 		}
-		var node = new Json.Node(Json.NodeType.ARRAY);
-		node.set_array(array);
-		return node;
+		return array;
 	}
-	return default_serialize_property(property_name, value, pspec);
+	set {
+		// If deserializing, convert from API format back to ChatResponse objects
+		// This might not be needed if we only serialize (not deserialize from API)
+	}
 }
 ```
+
+**Note**: The property name `messages` matches what the API expects, and the getter converts the internal `_messages` field (ChatResponse objects) to the API's message format. Since the internal field uses an underscore prefix (`_messages`), there's no name conflict with the property.
 
 ### HTTP Requests
 - Use `Soup.Session` and `Soup.Message` for HTTP
