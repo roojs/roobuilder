@@ -10,51 +10,54 @@ namespace OLLMchat.Ollama
 		public bool think { get; set; default = false; }
 		public string? keep_alive { get; set; }
 
-		protected Gee.ArrayList<OllamaBase> _messages;
+		public Gee.ArrayList<OllamaBase> messages { get; set; }
 		private ChatResponse? streaming_response;
-		protected string message_role = "";
-		protected string message_content = "";
 		public Json.Object? message { get; set; }
 
 		public ChatCall(Client client) : base(client)
 		{
 			this.url_endpoint = "chat";
 			this.http_method = "POST";
-			this._messages = new Gee.ArrayList<OllamaBase>();
+			this.messages = new Gee.ArrayList<OllamaBase>();
 		}
 
 		public void add_message(ChatResponse message)
 		{
-			this._messages.add(message);
+			this.messages.add(message);
 		}
 
-		public Json.Array messages
+		public override Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
-			get
-			{
-				var array = new Json.Array();
-				foreach (var response in this._messages) {
-					if (response is ChatResponse) {
-						var chat_response = response as ChatResponse;
-						var msg_obj = new Json.Object();
-						msg_obj.set_string_member("role", chat_response.role);
-						msg_obj.set_string_member("content", chat_response.content);
-						array.add_object_element(msg_obj);
-					}
+			if (property_name == "messages") {
+				return this.serialize_messages();
+			}
+
+			return base.serialize_property(property_name, value, pspec);
+		}
+
+		private Json.Node? serialize_messages()
+		{
+			var array = new Json.Array();
+			foreach (var response in this.messages) {
+				if (response is ChatResponse) {
+					var chat_response = response as ChatResponse;
+					var msg_obj = new Json.Object();
+					msg_obj.set_string_member("role", chat_response.role);
+					msg_obj.set_string_member("content", chat_response.content);
+					array.add_object_element(msg_obj);
 				}
-				return array;
 			}
-			set
-			{
-			}
+			var node = new Json.Node(Json.NodeType.ARRAY);
+			node.set_array(array);
+			return node;
 		}
 
 		public bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
 		{
 			if (property_name == "messages") {
 				this.deserialize_messages(property_node);
-				value = Value(typeof(Json.Array));
-				value.set_boxed(new Json.Array());
+				value = Value(typeof(Gee.ArrayList));
+				value.set_object(this.messages);
 				return true;
 			}
 
@@ -68,7 +71,7 @@ namespace OLLMchat.Ollama
 			}
 
 			var messages_array = property_node.get_array();
-			this._messages = new Gee.ArrayList<OllamaBase>();
+			this.messages = new Gee.ArrayList<OllamaBase>();
 
 			for (int i = 0; i < messages_array.get_length(); i++) {
 				var message_node = messages_array.get_element(i);
@@ -80,13 +83,10 @@ namespace OLLMchat.Ollama
 				var role = message_obj.has_member("role") ? message_obj.get_string_member("role") : "";
 				var content = message_obj.has_member("content") ? message_obj.get_string_member("content") : "";
 
-				this.message_role = role;
-				this.message_content = content;
-
 				var chat_response = new ChatResponse(this.client);
 				chat_response.role = role;
 				chat_response.content = content;
-				this._messages.add(chat_response);
+				this.messages.add(chat_response);
 			}
 		}
 
