@@ -73,12 +73,12 @@ typedef struct _OllMchatOllamaBaseCallSendRequestData OllMchatOllamaBaseCallSend
 #define __vala_JsonNode_free0(var) ((var == NULL) ? NULL : (var = (_vala_JsonNode_free (var), NULL)))
 typedef void (*OLLMchatOllamaBaseCallStreamingChunkCallback) (JsonObject* chunk, gpointer user_data);
 typedef struct _OllMchatOllamaBaseCallHandleStreamingResponseData OllMchatOllamaBaseCallHandleStreamingResponseData;
+#define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
 #define _g_string_free0(var) ((var == NULL) ? NULL : (var = (g_string_free (var, TRUE), NULL)))
 typedef struct _OllMchatOllamaBaseCallProcessJsonStreamingData OllMchatOllamaBaseCallProcessJsonStreamingData;
 typedef struct _OllMchatOllamaBaseCallProcessStreamingData OllMchatOllamaBaseCallProcessStreamingData;
 typedef struct _OllMchatOllamaBaseCallReadChunkData OllMchatOllamaBaseCallReadChunkData;
 #define _json_object_unref0(var) ((var == NULL) ? NULL : (var = (json_object_unref (var), NULL)))
-#define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
 
 #define OLL_MCHAT_OLLAMA_TYPE_BASE_RESPONSE (oll_mchat_ollama_base_response_get_type ())
 #define OLL_MCHAT_OLLAMA_BASE_RESPONSE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), OLL_MCHAT_OLLAMA_TYPE_BASE_RESPONSE, OLLMchatOllamaBaseResponse))
@@ -228,45 +228,30 @@ struct _OllMchatOllamaBaseCallProcessJsonStreamingData {
 	gpointer on_chunk_target;
 	GString* line_buffer;
 	GString* _tmp0_;
-	gchar* chunk_str;
-	gchar* _tmp1_;
-	const gchar* _tmp2_;
-	GString* _tmp3_;
-	const gchar* _tmp4_;
-	gchar** lines;
-	GString* _tmp5_;
-	const gchar* _tmp6_;
-	gchar** _tmp7_;
-	gchar** _tmp8_;
-	gint lines_length1;
-	gint _lines_size_;
-	GString* _tmp9_;
-	gint i;
-	gboolean _tmp10_;
-	gint _tmp11_;
-	gchar** _tmp12_;
-	gint _tmp12__length1;
-	gchar** _tmp13_;
-	gint _tmp13__length1;
-	const gchar* _tmp14_;
-	gchar** _tmp15_;
-	gint _tmp15__length1;
-	const gchar* _tmp16_;
-	gchar** _tmp17_;
-	gint _tmp17__length1;
-	GString* _tmp18_;
-	gchar** _tmp19_;
-	gint _tmp19__length1;
-	gchar** _tmp20_;
-	gint _tmp20__length1;
-	const gchar* _tmp21_;
-	GString* _tmp22_;
+	GDataInputStream* data_input;
+	GDataInputStream* _tmp1_;
+	gchar* line;
+	gchar* _tmp2_;
+	GDataInputStream* _tmp3_;
+	gchar* _tmp4_;
+	gchar* _tmp5_;
+	GError* e;
+	GError* _tmp6_;
+	GError* _tmp7_;
+	GError* _tmp8_;
+	const gchar* _tmp9_;
+	gchar* trimmed;
+	const gchar* _tmp10_;
+	gchar* _tmp11_;
+	const gchar* _tmp12_;
+	const gchar* _tmp13_;
+	GString* _tmp14_;
 	gchar* final_line;
-	GString* _tmp23_;
-	const gchar* _tmp24_;
-	gchar* _tmp25_;
-	const gchar* _tmp26_;
-	const gchar* _tmp27_;
+	GString* _tmp15_;
+	const gchar* _tmp16_;
+	gchar* _tmp17_;
+	const gchar* _tmp18_;
+	const gchar* _tmp19_;
 	GError* _inner_error0_;
 };
 
@@ -411,13 +396,6 @@ static void oll_mchat_ollama_base_call_process_streaming_finish (OLLMchatOllamaB
                                                           GError** error);
 static void oll_mchat_ollama_base_call_process_json_streaming_data_free (gpointer _data);
 static gboolean oll_mchat_ollama_base_call_process_json_streaming_co (OllMchatOllamaBaseCallProcessJsonStreamingData* _data_);
-static void oll_mchat_ollama_base_call_read_chunk (OLLMchatOllamaBaseCall* self,
-                                            GInputStream* input_stream,
-                                            GAsyncReadyCallback _callback_,
-                                            gpointer _user_data_);
-static gchar* oll_mchat_ollama_base_call_read_chunk_finish (OLLMchatOllamaBaseCall* self,
-                                                     GAsyncResult* _res_,
-                                                     GError** error);
 static void oll_mchat_ollama_base_call_process_json_streaming_ready (GObject* source_object,
                                                               GAsyncResult* _res_,
                                                               gpointer _user_data_);
@@ -427,6 +405,13 @@ static void oll_mchat_ollama_base_call_process_json_chunk (OLLMchatOllamaBaseCal
                                                     gpointer on_chunk_target);
 static void oll_mchat_ollama_base_call_process_streaming_data_free (gpointer _data);
 static gboolean oll_mchat_ollama_base_call_process_streaming_co (OllMchatOllamaBaseCallProcessStreamingData* _data_);
+static void oll_mchat_ollama_base_call_read_chunk (OLLMchatOllamaBaseCall* self,
+                                            GInputStream* input_stream,
+                                            GAsyncReadyCallback _callback_,
+                                            gpointer _user_data_);
+static gchar* oll_mchat_ollama_base_call_read_chunk_finish (OLLMchatOllamaBaseCall* self,
+                                                     GAsyncResult* _res_,
+                                                     GError** error);
 static void oll_mchat_ollama_base_call_process_streaming_ready (GObject* source_object,
                                                          GAsyncResult* _res_,
                                                          gpointer _user_data_);
@@ -459,13 +444,6 @@ static void oll_mchat_ollama_base_call_get_models_ready (GObject* source_object,
                                                   gpointer _user_data_);
 static void oll_mchat_ollama_base_call_finalize (GObject * obj);
 static GType oll_mchat_ollama_base_call_get_type_once (void);
-static void _vala_array_destroy (gpointer array,
-                          gssize array_length,
-                          GDestroyNotify destroy_func);
-static void _vala_array_free (gpointer array,
-                       gssize array_length,
-                       GDestroyNotify destroy_func);
-static gssize _vala_array_length (gpointer array);
 
 OLLMchatOllamaBaseCall*
 oll_mchat_ollama_base_call_construct (GType object_type,
@@ -1054,6 +1032,12 @@ oll_mchat_ollama_base_call_process_json_streaming_ready (GObject* source_object,
 	oll_mchat_ollama_base_call_process_json_streaming_co (_data_);
 }
 
+static gpointer
+_g_error_copy0 (gpointer self)
+{
+	return self ? g_error_copy (self) : NULL;
+}
+
 static gchar*
 string_strip (const gchar* self)
 {
@@ -1082,89 +1066,83 @@ oll_mchat_ollama_base_call_process_json_streaming_co (OllMchatOllamaBaseCallProc
 	_state_0:
 	_data_->_tmp0_ = g_string_new ("");
 	_data_->line_buffer = _data_->_tmp0_;
+	_data_->_tmp1_ = g_data_input_stream_new (_data_->input_stream);
+	_data_->data_input = _data_->_tmp1_;
 	while (TRUE) {
-		_data_->_state_ = 1;
-		oll_mchat_ollama_base_call_read_chunk (_data_->self, _data_->input_stream, oll_mchat_ollama_base_call_process_json_streaming_ready, _data_);
-		return FALSE;
-		_state_1:
-		_data_->_tmp1_ = oll_mchat_ollama_base_call_read_chunk_finish (_data_->self, _data_->_res_, &_data_->_inner_error0_);
-		_data_->chunk_str = _data_->_tmp1_;
+		_data_->line = NULL;
+		{
+			_data_->_tmp3_ = _data_->data_input;
+			_data_->_state_ = 1;
+			g_data_input_stream_read_line_async (_data_->_tmp3_, G_PRIORITY_DEFAULT, NULL, oll_mchat_ollama_base_call_process_json_streaming_ready, _data_);
+			return FALSE;
+			_state_1:
+			_data_->_tmp4_ = g_data_input_stream_read_line_finish (_data_->_tmp3_, _data_->_res_, NULL, &_data_->_inner_error0_);
+			_data_->_tmp2_ = _data_->_tmp4_;
+			if (G_UNLIKELY (_data_->_inner_error0_ != NULL)) {
+				goto __catch0_g_error;
+			}
+			_data_->_tmp5_ = _data_->_tmp2_;
+			_data_->_tmp2_ = NULL;
+			_g_free0 (_data_->line);
+			_data_->line = _data_->_tmp5_;
+			_g_free0 (_data_->_tmp2_);
+		}
+		goto __finally0;
+		__catch0_g_error:
+		{
+			_data_->e = _data_->_inner_error0_;
+			_data_->_inner_error0_ = NULL;
+			_data_->_tmp6_ = _data_->e;
+			if (_data_->_tmp6_->code == 1) {
+				_g_error_free0 (_data_->e);
+				_g_free0 (_data_->line);
+				break;
+			}
+			_data_->_tmp7_ = _data_->e;
+			_data_->_tmp8_ = _g_error_copy0 (_data_->_tmp7_);
+			_data_->_inner_error0_ = _data_->_tmp8_;
+			_g_error_free0 (_data_->e);
+			goto __finally0;
+		}
+		__finally0:
 		if (G_UNLIKELY (_data_->_inner_error0_ != NULL)) {
 			g_task_return_error (_data_->_async_result, _data_->_inner_error0_);
+			_g_free0 (_data_->line);
+			_g_object_unref0 (_data_->data_input);
 			_g_string_free0 (_data_->line_buffer);
 			g_object_unref (_data_->_async_result);
 			return FALSE;
 		}
-		_data_->_tmp2_ = _data_->chunk_str;
-		if (_data_->_tmp2_ == NULL) {
-			_g_free0 (_data_->chunk_str);
+		_data_->_tmp9_ = _data_->line;
+		if (_data_->_tmp9_ == NULL) {
+			_g_free0 (_data_->line);
 			break;
 		}
-		_data_->_tmp3_ = _data_->line_buffer;
-		_data_->_tmp4_ = _data_->chunk_str;
-		g_string_append (_data_->_tmp3_, _data_->_tmp4_);
-		_data_->_tmp5_ = _data_->line_buffer;
-		_data_->_tmp6_ = _data_->_tmp5_->str;
-		_data_->_tmp8_ = _data_->_tmp7_ = g_strsplit (_data_->_tmp6_, "\n", 0);
-		_data_->lines = _data_->_tmp8_;
-		_data_->lines_length1 = _vala_array_length (_data_->_tmp7_);
-		_data_->_lines_size_ = _data_->lines_length1;
-		_data_->_tmp9_ = _data_->line_buffer;
-		g_string_erase (_data_->_tmp9_, (gssize) 0, (gssize) -1);
-		{
-			_data_->i = 0;
-			{
-				_data_->_tmp10_ = TRUE;
-				while (TRUE) {
-					if (!_data_->_tmp10_) {
-						_data_->_tmp11_ = _data_->i;
-						_data_->i = _data_->_tmp11_ + 1;
-					}
-					_data_->_tmp10_ = FALSE;
-					_data_->_tmp12_ = _data_->lines;
-					_data_->_tmp12__length1 = _data_->lines_length1;
-					if (!(_data_->i < (_data_->_tmp12__length1 - 1))) {
-						break;
-					}
-					_data_->_tmp13_ = _data_->lines;
-					_data_->_tmp13__length1 = _data_->lines_length1;
-					_data_->_tmp14_ = _data_->_tmp13_[_data_->i];
-					if (g_strcmp0 (_data_->_tmp14_, "") != 0) {
-						_data_->_tmp15_ = _data_->lines;
-						_data_->_tmp15__length1 = _data_->lines_length1;
-						_data_->_tmp16_ = _data_->_tmp15_[_data_->i];
-						oll_mchat_ollama_base_call_process_json_chunk (_data_->self, _data_->_tmp16_, _data_->on_chunk, _data_->on_chunk_target);
-					}
-				}
-			}
+		_data_->_tmp10_ = _data_->line;
+		_data_->_tmp11_ = string_strip (_data_->_tmp10_);
+		_data_->trimmed = _data_->_tmp11_;
+		_data_->_tmp12_ = _data_->trimmed;
+		if (g_strcmp0 (_data_->_tmp12_, "") != 0) {
+			_data_->_tmp13_ = _data_->trimmed;
+			oll_mchat_ollama_base_call_process_json_chunk (_data_->self, _data_->_tmp13_, _data_->on_chunk, _data_->on_chunk_target);
 		}
-		_data_->_tmp17_ = _data_->lines;
-		_data_->_tmp17__length1 = _data_->lines_length1;
-		if (_data_->_tmp17__length1 > 0) {
-			_data_->_tmp18_ = _data_->line_buffer;
-			_data_->_tmp19_ = _data_->lines;
-			_data_->_tmp19__length1 = _data_->lines_length1;
-			_data_->_tmp20_ = _data_->lines;
-			_data_->_tmp20__length1 = _data_->lines_length1;
-			_data_->_tmp21_ = _data_->_tmp19_[_data_->_tmp20__length1 - 1];
-			g_string_append (_data_->_tmp18_, _data_->_tmp21_);
-		}
-		_data_->lines = (_vala_array_free (_data_->lines, _data_->lines_length1, (GDestroyNotify) g_free), NULL);
-		_g_free0 (_data_->chunk_str);
+		_g_free0 (_data_->trimmed);
+		_g_free0 (_data_->line);
 	}
-	_data_->_tmp22_ = _data_->line_buffer;
-	if (_data_->_tmp22_->len > ((gssize) 0)) {
-		_data_->_tmp23_ = _data_->line_buffer;
-		_data_->_tmp24_ = _data_->_tmp23_->str;
-		_data_->_tmp25_ = string_strip (_data_->_tmp24_);
-		_data_->final_line = _data_->_tmp25_;
-		_data_->_tmp26_ = _data_->final_line;
-		if (g_strcmp0 (_data_->_tmp26_, "") != 0) {
-			_data_->_tmp27_ = _data_->final_line;
-			oll_mchat_ollama_base_call_process_json_chunk (_data_->self, _data_->_tmp27_, _data_->on_chunk, _data_->on_chunk_target);
+	_data_->_tmp14_ = _data_->line_buffer;
+	if (_data_->_tmp14_->len > ((gssize) 0)) {
+		_data_->_tmp15_ = _data_->line_buffer;
+		_data_->_tmp16_ = _data_->_tmp15_->str;
+		_data_->_tmp17_ = string_strip (_data_->_tmp16_);
+		_data_->final_line = _data_->_tmp17_;
+		_data_->_tmp18_ = _data_->final_line;
+		if (g_strcmp0 (_data_->_tmp18_, "") != 0) {
+			_data_->_tmp19_ = _data_->final_line;
+			oll_mchat_ollama_base_call_process_json_chunk (_data_->self, _data_->_tmp19_, _data_->on_chunk, _data_->on_chunk_target);
 		}
 		_g_free0 (_data_->final_line);
 	}
+	_g_object_unref0 (_data_->data_input);
 	_g_string_free0 (_data_->line_buffer);
 	g_task_return_pointer (_data_->_async_result, _data_, NULL);
 	if (_data_->_state_ != 0) {
@@ -1480,7 +1458,7 @@ oll_mchat_ollama_base_call_process_json_chunk (OLLMchatOllamaBaseCall* self,
 		_inner_error0_ = NULL;
 		_tmp12_ = e;
 		_tmp13_ = _tmp12_->message;
-		g_debug ("BaseCall.vala:171: Error parsing JSON chunk: %s", _tmp13_);
+		g_debug ("BaseCall.vala:172: Error parsing JSON chunk: %s", _tmp13_);
 		_g_error_free0 (e);
 	}
 	__finally0:
@@ -1831,42 +1809,5 @@ oll_mchat_ollama_base_call_get_type (void)
 		g_once_init_leave (&oll_mchat_ollama_base_call_type_id__once, oll_mchat_ollama_base_call_type_id);
 	}
 	return oll_mchat_ollama_base_call_type_id__once;
-}
-
-static void
-_vala_array_destroy (gpointer array,
-                     gssize array_length,
-                     GDestroyNotify destroy_func)
-{
-	if ((array != NULL) && (destroy_func != NULL)) {
-		gssize i;
-		for (i = 0; i < array_length; i = i + 1) {
-			if (((gpointer*) array)[i] != NULL) {
-				destroy_func (((gpointer*) array)[i]);
-			}
-		}
-	}
-}
-
-static void
-_vala_array_free (gpointer array,
-                  gssize array_length,
-                  GDestroyNotify destroy_func)
-{
-	_vala_array_destroy (array, array_length, destroy_func);
-	g_free (array);
-}
-
-static gssize
-_vala_array_length (gpointer array)
-{
-	gssize length;
-	length = 0;
-	if (array) {
-		while (((gpointer*) array)[length]) {
-			length++;
-		}
-	}
-	return length;
 }
 

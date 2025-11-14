@@ -97,25 +97,26 @@ namespace OLLMchat.Ollama
 		private async void process_json_streaming(InputStream input_stream, StreamingChunkCallback on_chunk) throws Error
 		{
 			var line_buffer = new StringBuilder();
+			var data_input = new DataInputStream(input_stream);
 
 			while (true) {
-				var chunk_str = yield this.read_chunk(input_stream);
-				if (chunk_str == null) {
+				string? line = null;
+				try {
+					line = yield data_input.read_line_async(GLib.Priority.DEFAULT, null);
+				} catch (Error e) {
+					if (e.code == 1) {
+						break;
+					}
+					throw e;
+				}
+
+				if (line == null) {
 					break;
 				}
 
-				line_buffer.append(chunk_str);
-				var lines = line_buffer.str.split("\n");
-				line_buffer.erase(0, -1);
-
-				for (int i = 0; i < lines.length - 1; i++) {
-					if (lines[i] != "") {
-						this.process_json_chunk(lines[i], on_chunk);
-					}
-				}
-
-				if (lines.length > 0) {
-					line_buffer.append(lines[lines.length - 1]);
+				var trimmed = line.strip();
+				if (trimmed != "") {
+					this.process_json_chunk(trimmed, on_chunk);
 				}
 			}
 
