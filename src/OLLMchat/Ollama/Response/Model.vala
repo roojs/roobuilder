@@ -23,6 +23,21 @@ namespace OLLMchat.Ollama
 		{
 			base(client);
 		}
+
+		public bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
+		{
+			if (property_name == "details") {
+				if (property_node.get_node_type() == Json.NodeType.OBJECT) {
+					value = Value(typeof(Json.Object));
+					value.set_object(property_node.get_object());
+					return true;
+				}
+				value = Value(typeof(Json.Object));
+				value.set_object(null);
+				return true;
+			}
+			return default_deserialize_property(property_name, out value, pspec, property_node);
+		}
 	}
 }
 
