@@ -66,18 +66,10 @@ namespace OLLMchat.Ollama
 			}
 
 			if (needs_body && this.http_method == "POST") {
-				var json_node = Json.gobject_serialize(this);
-				var generator = new Json.Generator();
-				generator.set_root(json_node);
-				var request_body = generator.to_data(null);
-
-				message.set_request_body_from_bytes("application/json", new Bytes(request_body.data));
-
-				GLib.debug("Request URL: %s", url);
-				GLib.debug("Request Body: %s", request_body);
-			} else {
-				GLib.debug("Request URL: %s", url);
+				this.set_request_body(message);
 			}
+
+			GLib.debug("Request URL: %s", url);
 
 			var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
 
@@ -86,6 +78,17 @@ namespace OLLMchat.Ollama
 			}
 
 			return bytes;
+		}
+
+		private void set_request_body(Soup.Message message)
+		{
+			var json_node = Json.gobject_serialize(this);
+			var generator = new Json.Generator();
+			generator.set_root(json_node);
+			var request_body = generator.to_data(null);
+
+			message.set_request_body_from_bytes("application/json", new Bytes(request_body.data));
+			GLib.debug("Request Body: %s", request_body);
 		}
 
 		protected delegate void StreamingChunkCallback(Json.Object chunk);
@@ -102,75 +105,88 @@ namespace OLLMchat.Ollama
 			var bytes = response_body.flatten();
 			var input_stream = new MemoryInputStream.from_bytes(bytes);
 
+			if (is_json_format) {
+				yield this.process_json_streaming(input_stream, on_chunk);
+			} else {
+				yield this.process_streaming(input_stream, on_chunk);
+			}
+		}
+
+		private async void process_json_streaming(InputStream input_stream, StreamingChunkCallback on_chunk) throws Error
+		{
 			var line_buffer = new StringBuilder();
 
 			while (true) {
-				uint8[] chunk = new uint8[4096];
-				ssize_t bytes_read = yield input_stream.read_async(chunk, GLib.Priority.DEFAULT, null);
-
-				if (bytes_read <= 0) {
+				var chunk_str = yield this.read_chunk(input_stream);
+				if (chunk_str == null) {
 					break;
 				}
 
-				var chunk_str = (string)chunk[0:bytes_read];
+				line_buffer.append(chunk_str);
+				var lines = line_buffer.str.split("\n");
+				line_buffer.erase(0, -1);
 
-				if (is_json_format) {
-					line_buffer.append(chunk_str);
-					var lines = line_buffer.str.split("\n");
-					line_buffer.erase(0, -1);
+				for (int i = 0; i < lines.length - 1; i++) {
+					this.process_json_line(lines[i], on_chunk);
+				}
 
-					for (int i = 0; i < lines.length - 1; i++) {
-						var line = lines[i].strip();
-						if (line == "") {
-							continue;
-						}
-
-						var parser = new Json.Parser();
-						try {
-							parser.load_from_data(line, -1);
-							var chunk_node = parser.get_root();
-							if (chunk_node != null && chunk_node.get_node_type() == Json.NodeType.OBJECT) {
-								var chunk_obj = chunk_node.get_object();
-								on_chunk(chunk_obj);
-							}
-						} catch (Error e) {
-							GLib.debug("Error parsing JSON chunk: %s", e.message);
-						}
-					}
-
-					if (lines.length > 0) {
-						line_buffer.append(lines[lines.length - 1]);
-					}
-				} else {
-					var parser = new Json.Parser();
-					try {
-						parser.load_from_data(chunk_str, -1);
-						var chunk_node = parser.get_root();
-						if (chunk_node != null && chunk_node.get_node_type() == Json.NodeType.OBJECT) {
-							var chunk_obj = chunk_node.get_object();
-							on_chunk(chunk_obj);
-						}
-					} catch (Error e) {
-						GLib.debug("Error parsing JSON chunk: %s", e.message);
-					}
+				if (lines.length > 0) {
+					line_buffer.append(lines[lines.length - 1]);
 				}
 			}
 
-			if (is_json_format && line_buffer.len > 0) {
-				var line = line_buffer.str.strip();
-				if (line != "") {
-					var parser = new Json.Parser();
-					try {
-						parser.load_from_data(line, -1);
-						var chunk_node = parser.get_root();
-						if (chunk_node != null && chunk_node.get_node_type() == Json.NodeType.OBJECT) {
-							var chunk_obj = chunk_node.get_object();
-							on_chunk(chunk_obj);
-						}
-					} catch (Error e) {
-						GLib.debug("Error parsing final JSON chunk: %s", e.message);
-					}
+			if (line_buffer.len > 0) {
+				this.process_json_line(line_buffer.str.strip(), on_chunk);
+			}
+		}
+
+		private async void process_streaming(InputStream input_stream, StreamingChunkCallback on_chunk) throws Error
+		{
+			while (true) {
+				var chunk_str = yield this.read_chunk(input_stream);
+				if (chunk_str == null) {
+					break;
 				}
+
+				this.process_json_chunk(chunk_str, on_chunk);
+			}
+		}
+
+		private async string? read_chunk(InputStream input_stream) throws Error
+		{
+			uint8[] chunk = new uint8[4096];
+			ssize_t bytes_read = yield input_stream.read_async(chunk, GLib.Priority.DEFAULT, null);
+
+			if (bytes_read <= 0) {
+				return null;
+			}
+
+			return (string)chunk[0:bytes_read];
+		}
+
+		private void process_json_line(string line, StreamingChunkCallback on_chunk)
+		{
+			if (line == "") {
+				return;
+			}
+
+			this.process_json_chunk(line, on_chunk);
+		}
+
+		private void process_json_chunk(string chunk_str, StreamingChunkCallback on_chunk)
+		{
+			var parser = new Json.Parser();
+			try {
+				parser.load_from_data(chunk_str, -1);
+				var chunk_node = parser.get_root();
+				if (chunk_node == null || chunk_node.get_node_type() != Json.NodeType.OBJECT) {
+					return;
+				}
+
+				var chunk_obj = chunk_node.get_object();
+				on_chunk(chunk_obj);
+			} catch (Error e) {
+				GLib.debug("Error parsing JSON chunk: %s", e.message);
 			}
 		}
 
