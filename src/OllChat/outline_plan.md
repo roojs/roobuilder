@@ -87,12 +87,14 @@ namespace OLLMchat.Ollama {
 - Abstract base class for all API calls
 - HTTP method handling (GET/POST)
 - URL endpoint construction
-- Parameter serialization (excluding internal properties)
+- Parameter serialization (excluding internal properties via Json.Serializable)
 - Streaming support with callback mechanism
 - JSON chunk processing from stream (only when format=json)
 
 **Vala Implementation**:
 - Abstract class with `execute()` and `process()` methods
+- Implement `Json.Serializable` interface
+- Use `serialize_property()` to control which properties are serialized (no need for underscore prefixes)
 - Use `Soup.Message` for HTTP requests
 - Implement streaming with `Soup.MessageBody`
 - **Line-by-line JSON parsing**: Only required when `format: "json"` is set in the request
@@ -104,14 +106,33 @@ namespace OLLMchat.Ollama {
 **Properties**:
 ```vala
 namespace OLLMchat.Ollama {
-	public abstract class BaseCall : Object
+	public abstract class BaseCall : Object, Json.Serializable
 	{
-		protected string _url { get; set; }
-		protected string _method { get; set; default = "POST"; }
-		protected string[] exclude { get; set; }
+		protected string url_endpoint { get; set; }  // Internal: endpoint path (not serialized)
+		protected string http_method { get; set; default = "POST"; }  // Internal: HTTP method (not serialized)
+		protected Client? client;  // Internal: reference to client (not serialized)
+		
+		// serialize_property() will exclude url_endpoint, http_method, client, etc.
+		// Only serialize properties that should be sent to API
+		public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		{
+			// Exclude internal properties
+			switch (property_name) {
+				case "url_endpoint":
+				case "http_method":
+				case "client":
+				case "id":
+				case "response":
+					return null;  // Exclude from serialization
+				default:
+					return default_serialize_property(property_name, value, pspec);
+			}
+		}
 	}
 }
 ```
+
+**Note**: Unlike the PHP version which used underscore prefixes (`_url`, `_method`) to exclude properties from serialization, Vala's `Json.Serializable` interface allows us to use normal property names and control serialization through `serialize_property()` method with switch cases.
 
 ### 1.3 Chat Call (`Ollama/Call/ChatCall.vala`)
 **Source**: `Net_Ollama/Call/Chat.php`
@@ -232,7 +253,7 @@ public string addChunk(Json.Object chunk)
 
 **Vala Implementation**:
 - Extend `BaseCall`
-- Set `_url = "tags"` and `_method = "GET"`
+- Set `url_endpoint = "tags"` and `http_method = "GET"` in constructor
 - Process response to return `Gee.ArrayList<Model>`
 
 **Properties**:
@@ -240,10 +261,14 @@ public string addChunk(Json.Object chunk)
 namespace OLLMchat.Ollama {
 	public class ModelsCall : BaseCall
 	{
-		protected string _url { get; set; default = "tags"; }
-		protected string _method { get; set; default = "GET"; }
-		
 		public Gee.ArrayList<Model> models { get; set; }
+		
+		public ModelsCall(Client client)
+		{
+			base(client);
+			this.url_endpoint = "tags";
+			this.http_method = "GET";
+		}
 	}
 }
 ```
@@ -270,7 +295,7 @@ public async Gee.ArrayList<Model> models() throws Error
 
 **Vala Implementation**:
 - Extend `BaseCall`
-- Set `_url = "ps"` and `_method = "GET"`
+- Set `url_endpoint = "ps"` and `http_method = "GET"` in constructor
 - Process response to return `Gee.ArrayList<Model>` with runtime data
 
 **Properties**:
@@ -278,13 +303,19 @@ public async Gee.ArrayList<Model> models() throws Error
 namespace OLLMchat.Ollama {
 	public class PsCall : BaseCall
 	{
-		protected string _url { get; set; default = "ps"; }
-		protected string _method { get; set; default = "GET"; }
-		
 		public Gee.ArrayList<Model> running_models { get; set; }
+		
+		public PsCall(Client client)
+		{
+			base(client);
+			this.url_endpoint = "ps";
+			this.http_method = "GET";
+		}
 	}
 }
 ```
+<｜tool▁calls▁begin｜><｜tool▁call▁begin｜>
+read_file
 
 **Client Method**:
 ```vala
@@ -707,8 +738,24 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 
 ### JSON Serialization
 - Use `Json.Serializable` interface for request/response objects
-- Implement `serialize_property()` for custom serialization
+- Implement `serialize_property()` with switch cases to control which properties are serialized
+- **No underscore prefixes needed**: Unlike PHP version, we use normal property names and exclude via `serialize_property()` returning `null`
 - Use `Json.gobject_serialize()` and `Json.gobject_from_data()` for conversion
+
+**Example**:
+```vala
+public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+{
+	switch (property_name) {
+		case "internal_prop1":
+		case "internal_prop2":
+		case "client_reference":
+			return null;  // Exclude from JSON
+		default:
+			return default_serialize_property(property_name, value, pspec);
+	}
+}
+```
 
 ### HTTP Requests
 - Use `Soup.Session` and `Soup.Message` for HTTP
