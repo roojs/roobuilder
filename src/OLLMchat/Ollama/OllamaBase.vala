@@ -1,5 +1,10 @@
 namespace OLLMchat.Ollama
 {
+	public errordomain OllamaError {
+		INVALID_ARGUMENT,
+		FAILED
+	}
+
 	public abstract class OllamaBase : Object, Json.Serializable
 	{
 		protected Client? client;
@@ -28,7 +33,7 @@ namespace OLLMchat.Ollama
 			return val;
 		}
 
-		public virtual Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public virtual Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			return default_serialize_property(property_name, value, pspec);
 		}

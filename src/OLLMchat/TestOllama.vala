@@ -20,6 +20,89 @@ valac --pkg libsoup-3.0 --pkg json-glib-1.0 --pkg gee-0.8 \
 
 namespace OLLMchat
 {
+	MainLoop? main_loop = null;
+
+	void on_stream(string partial, Ollama.ChatResponse response)
+	{
+		stdout.write(partial.data);
+		stdout.flush();
+	}
+
+	void on_ps_complete(Object? obj, AsyncResult res)
+	{
+		var client = obj as Ollama.Client;
+		if (main_loop == null) {
+			return;
+		}
+
+		try {
+			var models = client.ps.end(res);
+			if (models.size == 0) {
+				stdout.printf("No running models found.\n");
+				main_loop.quit();
+				return;
+			}
+
+			foreach (var model in models) {
+				stdout.printf("Model: %s\n", model.name != "" ? model.name : model.model);
+				stdout.printf("  Size: %lld bytes\n", model.size);
+				stdout.printf("  VRAM: %lld bytes\n", model.size_vram);
+				stdout.printf("  Total Duration: %lld ns\n", model.total_duration);
+				stdout.printf("\n");
+			}
+
+			var first_model = models[0];
+			var model_name = first_model.name != "" ? first_model.name : first_model.model;
+			if (model_name == null || model_name == "") {
+				stdout.printf("No valid model name found.\n");
+				main_loop.quit();
+				return;
+			}
+
+			stdout.printf("Sending query to Ollama...\n");
+			stdout.printf("Query: Write a small vala program\n\n");
+			stdout.printf("Response:\n");
+
+			var chat_call = new Ollama.ChatCall(client);
+			chat_call.model = model_name;
+
+			var user_message = new Ollama.ChatResponse(client);
+			user_message.chat_role = "user";
+			user_message.chat_content = "Write a small vala program";
+			chat_call.add_message(user_message);
+
+			client.chat.begin(chat_call, on_chat_complete);
+		} catch (Error e) {
+			stderr.printf("Error listing models: %s\n", e.message);
+			main_loop.quit();
+		}
+	}
+
+	void on_chat_complete(Object? obj, AsyncResult res)
+	{
+		var client = obj as Ollama.Client;
+		if (main_loop == null) {
+			return;
+		}
+
+		try {
+			var response = client.chat.end(res);
+
+			stdout.printf("\n\n--- Complete Response ---\n");
+			if (response.thinking != "") {
+				stdout.printf("Thinking: %s\n", response.thinking);
+			}
+			stdout.printf("Content: %s\n", response.chat_content);
+			stdout.printf("Done: %s\n", response.done.to_string());
+			if (response.done_reason != null) {
+				stdout.printf("Done Reason: %s\n", response.done_reason);
+			}
+		} catch (Error e) {
+			stderr.printf("Error in chat: %s\n", e.message);
+		}
+		main_loop.quit();
+	}
+
 	int main(string[] args)
 	{
 		GLib.Log.set_default_handler((dom, lvl, msg) => {
@@ -37,77 +120,15 @@ namespace OLLMchat
 		var client = new Ollama.Client();
 		client.url = server_url;
 		client.debug = true;
-		client.stream_callback = (partial, response) => {
-			stdout.write(partial);
-			stdout.flush();
-		};
+		client.stream_callback = on_stream;
 
-		var loop = new MainLoop();
+		main_loop = new MainLoop();
 
 		try {
 			stdout.printf("--- Running Models (ps) ---\n");
-			client.ps.begin((obj, res) => {
-				try {
-					var models = client.ps.end(res);
-					if (models.size == 0) {
-						stdout.printf("No running models found.\n");
-						loop.quit();
-						return;
-					}
+			client.ps.begin(on_ps_complete);
 
-					foreach (var model in models) {
-						stdout.printf("Model: %s\n", model.name != "" ? model.name : model.model);
-						stdout.printf("  Size: %lld bytes\n", model.size);
-						stdout.printf("  VRAM: %lld bytes\n", model.size_vram);
-						stdout.printf("  Total Duration: %lld ns\n", model.total_duration);
-						stdout.printf("\n");
-					}
-
-					var first_model = models[0];
-					var model_name = first_model.name != "" ? first_model.name : first_model.model;
-					if (model_name == null || model_name == "") {
-						stdout.printf("No valid model name found.\n");
-						loop.quit();
-						return;
-					}
-
-					stdout.printf("Sending query to Ollama...\n");
-					stdout.printf("Query: Write a small vala program\n\n");
-					stdout.printf("Response:\n");
-
-					var chat_call = new Ollama.ChatCall(client);
-					chat_call.model = model_name;
-
-					var user_message = new Ollama.ChatResponse(client);
-					user_message.role = "user";
-					user_message.content = "Write a small vala program";
-					chat_call.add_message(user_message);
-
-					client.chat.begin(chat_call, (obj, res) => {
-						try {
-							var response = client.chat.end(res);
-
-							stdout.printf("\n\n--- Complete Response ---\n");
-							if (response.thinking != "") {
-								stdout.printf("Thinking: %s\n", response.thinking);
-							}
-							stdout.printf("Content: %s\n", response.content);
-							stdout.printf("Done: %s\n", response.done.to_string());
-							if (response.done_reason != null) {
-								stdout.printf("Done Reason: %s\n", response.done_reason);
-							}
-						} catch (Error e) {
-							stderr.printf("Error in chat: %s\n", e.message);
-						}
-						loop.quit();
-					});
-				} catch (Error e) {
-					stderr.printf("Error listing models: %s\n", e.message);
-					loop.quit();
-				}
-			});
-
-			loop.run();
+			main_loop.run();
 		} catch (Error e) {
 			stderr.printf("Error: %s\n", e.message);
 			return 1;

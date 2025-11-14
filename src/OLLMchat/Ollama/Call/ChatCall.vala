@@ -71,7 +71,7 @@ namespace OLLMchat.Ollama
 		public async ChatResponse exec_chat() throws Error
 		{
 			if (this.model == "") {
-				throw new Error.INVALID_ARGUMENT("Model is required");
+				throw new OllamaError.INVALID_ARGUMENT("Model is required");
 			}
 
 			if (this.client.stream_callback != null) {
@@ -102,12 +102,15 @@ namespace OLLMchat.Ollama
 			var root = this.parse_response(bytes);
 
 			if (root.get_node_type() != Json.NodeType.OBJECT) {
-				throw new Error.FAILED("Invalid JSON response");
+				throw new OllamaError.FAILED("Invalid JSON response");
 			}
 
-			var response_obj = Json.gobject_from_data(typeof(ChatResponse), root.print(false), -1) as ChatResponse;
+			var generator = new Json.Generator();
+			generator.set_root(root);
+			var json_str = generator.to_data(null);
+			var response_obj = Json.gobject_from_data(typeof(ChatResponse), json_str, -1) as ChatResponse;
 			if (response_obj == null) {
-				throw new Error.FAILED("Failed to parse response");
+				throw new OllamaError.FAILED("Failed to parse response");
 			}
 
 			response_obj.client = this.client;
@@ -117,7 +120,7 @@ namespace OLLMchat.Ollama
 		private async ChatResponse execute_streaming() throws Error
 		{
 			if (this.streaming_response == null) {
-				throw new Error.FAILED("Streaming response not initialized");
+				throw new OllamaError.FAILED("Streaming response not initialized");
 			}
 
 			var url = this.build_url();

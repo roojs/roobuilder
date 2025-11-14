@@ -25,7 +25,7 @@ namespace OLLMchat.Ollama
 		protected async Bytes send_request(bool needs_body) throws Error
 		{
 			if (this.client == null) {
-				throw new Error.INVALID_ARGUMENT("Client is null");
+				throw new OllamaError.INVALID_ARGUMENT("Client is null");
 			}
 
 			var url = this.build_url();
@@ -45,7 +45,7 @@ namespace OLLMchat.Ollama
 			var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
 
 			if (message.status_code != 200) {
-				throw new Error.FAILED(@"HTTP error: $(message.status_code)");
+				throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
 			}
 
 			return bytes;
@@ -73,11 +73,10 @@ namespace OLLMchat.Ollama
 			yield session.send_async(message, GLib.Priority.DEFAULT, null);
 
 			if (message.status_code != 200) {
-				throw new Error.FAILED(@"HTTP error: $(message.status_code)");
+				throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
 			}
 
-			var response_body = message.response_body;
-			var bytes = response_body.flatten();
+			var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
 			var input_stream = new MemoryInputStream.from_bytes(bytes);
 
 			if (is_json_format) {
@@ -183,7 +182,11 @@ namespace OLLMchat.Ollama
 			var items = new Gee.ArrayList<Model>();
 
 			for (int i = 0; i < array.get_length(); i++) {
-				var item_obj = Json.gobject_from_data(typeof(Model), array.get_element(i).print(false), -1) as Model;
+				var element_node = array.get_element(i);
+				var generator = new Json.Generator();
+				generator.set_root(element_node);
+				var json_str = generator.to_data(null);
+				var item_obj = Json.gobject_from_data(typeof(Model), json_str, -1) as Model;
 				if (item_obj == null) {
 					continue;
 				}
@@ -200,12 +203,12 @@ namespace OLLMchat.Ollama
 			var root = this.parse_response(bytes);
 
 			if (root.get_node_type() != Json.NodeType.OBJECT) {
-				throw new Error.FAILED("Invalid JSON response");
+				throw new OllamaError.FAILED("Invalid JSON response");
 			}
 
 			var root_obj = root.get_object();
 			if (!root_obj.has_member(field_name)) {
-				throw new Error.FAILED(@"Response missing '$(field_name)' field");
+				throw new OllamaError.FAILED(@"Response missing '$(field_name)' field");
 			}
 
 			return this.parse_models_array(root_obj.get_array_member(field_name));
