@@ -85,12 +85,23 @@ namespace OLLMchat.Ollama
 				throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
 			}
 
-			var input_stream = new MemoryInputStream.from_bytes(bytes);
+			var response_data = (string)bytes.get_data();
+			var lines = response_data.split("\n");
 
 			if (is_json_format) {
-				yield this.process_json_streaming(input_stream, on_chunk);
+				foreach (var line in lines) {
+					var trimmed = line.strip();
+					if (trimmed != "") {
+						this.process_json_chunk(trimmed, on_chunk);
+					}
+				}
 			} else {
-				yield this.process_streaming(input_stream, on_chunk);
+				foreach (var line in lines) {
+					var trimmed = line.strip();
+					if (trimmed != "") {
+						this.process_json_chunk(trimmed, on_chunk);
+					}
+				}
 			}
 		}
 
