@@ -35,7 +35,7 @@ namespace OLLMchat.Ollama
 		public async Gee.ArrayList<Model> ps() throws Error
 		{
 			var call = new PsCall(this);
-			var result = yield call.exec_ps();
+			var result = yield call.exec_models();
 			this.calls.add(call);
 			return result;
 		}
