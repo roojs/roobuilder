@@ -9,8 +9,9 @@ namespace OLLMchat.UI
 	 * 
 	 * @since 1.0
 	 */
-	public class ChatView : Gtk.ScrolledWindow
+	public class ChatView : Gtk.Box
 	{
+		private Gtk.ScrolledWindow scrolled_window;
 		private Gtk.TextView text_view;
 		private Gtk.TextBuffer buffer;
 		private string raw_content = "";
@@ -25,6 +26,8 @@ namespace OLLMchat.UI
 		 */
 		public ChatView()
 		{
+			Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
+
 			this.text_view = new Gtk.TextView() {
 				editable = false,
 				cursor_visible = false,
@@ -36,9 +39,13 @@ namespace OLLMchat.UI
 			};
 
 			this.buffer = this.text_view.buffer;
-			this.set_child(this.text_view);
-			this.hexpand = true;
-			this.vexpand = true;
+
+			this.scrolled_window = new Gtk.ScrolledWindow() {
+				hexpand = true,
+				vexpand = true
+			};
+			this.scrolled_window.set_child(this.text_view);
+			this.append(this.scrolled_window);
 		}
 
 		/**

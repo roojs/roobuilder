@@ -26,7 +26,7 @@ namespace OLLMchat
 {
 	int main(string[] args)
 	{
-		var app = new Gtk.Application("org.roojs.roobuilder.test", ApplicationFlags.FLAGS_NONE);
+		var app = new Gtk.Application("org.roojs.roobuilder.test", GLib.ApplicationFlags.DEFAULT_FLAGS);
 
 		app.activate.connect(() => {
 			var window = new TestWindow();
@@ -61,7 +61,8 @@ namespace OLLMchat
 
 			// Create default Ollama client
 			var client = new Ollama.Client() {
-				url = "http://192.168.88.14:11434/api"
+				url = "http://192.168.88.14:11434/api",
+				model = "MichelRosselli/GLM-4.5-Air:Q4_K_M"
 			};
 
 			// Create chat widget with client

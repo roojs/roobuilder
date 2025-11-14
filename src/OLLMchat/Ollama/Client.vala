@@ -6,6 +6,7 @@ namespace OLLMchat.Ollama
 	{
 		public string url { get; set; default = "http://localhost:11434/api"; }
 		public string? api_key { get; set; }
+		public string model { get; set; default = ""; }
 		public Gee.ArrayList<Tool> tools { get; set; }
 		public Gee.ArrayList<BaseCall> calls { get; set; }
 		public StreamCallback? stream_callback { get; set; }

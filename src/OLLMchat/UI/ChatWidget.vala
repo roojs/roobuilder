@@ -140,6 +140,7 @@ namespace OLLMchat.UI
 
 			// Create chat call
 			var call = new Ollama.ChatCall(this.client);
+			call.model = this.client.model;
 
 			// Add conversation history from current chat (if it exists and has messages)
 			if (this.current_chat != null && this.current_chat.messages.size > 0) {
@@ -167,7 +168,7 @@ namespace OLLMchat.UI
 		private async void send_chat_request(Ollama.ChatCall call)
 		{
 			try {
-				var response = yield this.client.chat(call);
+				yield this.client.chat(call);
 				// Response is handled by streaming callback
 			} catch (Ollama.OllamaError e) {
 				string error_msg = "";
