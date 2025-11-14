@@ -14,7 +14,7 @@ namespace OLLMchat.UI
 		private ChatView chat_view;
 		private ChatInput chat_input;
 		public Ollama.Client client { get; private set; }
-		private Ollama.ChatCall? current_call = null;
+		private Ollama.ChatCall? current_chat = null;
 		private Cancellable? current_cancellable = null;
 		private bool is_streaming_active = false;
 
@@ -94,7 +94,7 @@ namespace OLLMchat.UI
 		public void clear_chat()
 		{
 			this.chat_view.clear();
-			this.current_call = null;
+			this.current_chat = null;
 		}
 
 		private void setup_streaming_callback()
@@ -143,9 +143,9 @@ namespace OLLMchat.UI
 			// Create chat call
 			var call = new Ollama.ChatCall(this.client);
 
-			// Add conversation history from current call (if it exists and has messages)
-			if (this.current_call != null && this.current_call.messages.size > 0) {
-				foreach (var msg in this.current_call.messages) {
+			// Add conversation history from current chat (if it exists and has messages)
+			if (this.current_chat != null && this.current_chat.messages.size > 0) {
+				foreach (var msg in this.current_chat.messages) {
 					call.messages.add(msg);
 				}
 			}
@@ -157,7 +157,7 @@ namespace OLLMchat.UI
 			// Set streaming state
 			this.chat_input.set_streaming(true);
 			this.is_streaming_active = true;
-			this.current_call = call;
+			this.current_chat = call;
 
 			// Create cancellable for stop functionality
 			this.current_cancellable = new Cancellable();
@@ -184,7 +184,7 @@ namespace OLLMchat.UI
 				this.error_occurred(error_msg);
 				this.chat_input.set_streaming(false);
 				this.is_streaming_active = false;
-				this.current_call = null;
+				this.current_chat = null;
 				this.current_cancellable = null;
 			} catch (IOError e) {
 				string error_msg = "";
@@ -199,7 +199,7 @@ namespace OLLMchat.UI
 				this.error_occurred(error_msg);
 				this.chat_input.set_streaming(false);
 				this.is_streaming_active = false;
-				this.current_call = null;
+				this.current_chat = null;
 				this.current_cancellable = null;
 			} catch (Error e) {
 				string error_msg = @"Error: $(e.message)";
@@ -207,7 +207,7 @@ namespace OLLMchat.UI
 				this.error_occurred(error_msg);
 				this.chat_input.set_streaming(false);
 				this.is_streaming_active = false;
-				this.current_call = null;
+				this.current_chat = null;
 				this.current_cancellable = null;
 			}
 		}
@@ -225,8 +225,7 @@ namespace OLLMchat.UI
 			this.chat_view.finalize_assistant_message();
 			this.chat_input.set_streaming(false);
 
-			// Clear current call tracking
-			this.current_call = null;
+			// Clear cancellable (keep current_chat for conversation history)
 			this.current_cancellable = null;
 		}
 	}
