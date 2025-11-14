@@ -60,7 +60,7 @@ namespace OLLMchat.Ollama
 		public bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
 		{
 			if (property_name == "messages") {
-				this.deserialize_messages(property_node);
+				//this.deserialize_messages(property_node);
 				value = Value(typeof(Gee.ArrayList));
 				value.set_object(this.messages);
 				return true;
@@ -68,33 +68,7 @@ namespace OLLMchat.Ollama
 
 			return default_deserialize_property(property_name, out value, pspec, property_node);
 		}
-
-		private void deserialize_messages(Json.Node property_node)
-		{
-			if (property_node.get_node_type() != Json.NodeType.ARRAY) {
-				return;
-			}
-
-			var messages_array = property_node.get_array();
-			this.messages = new Gee.ArrayList<MessageInterface>();
-
-			for (int i = 0; i < messages_array.get_length(); i++) {
-				var message_node = messages_array.get_element(i);
-				if (message_node.get_node_type() != Json.NodeType.OBJECT) {
-					continue;
-				}
-
-				var message_obj = message_node.get_object();
-				var role = message_obj.has_member("role") ? message_obj.get_string_member("role") : "";
-				var content = message_obj.has_member("content") ? message_obj.get_string_member("content") : "";
-
-				var chat_response = new ChatResponse(this.client);
-				chat_response.chat_role = role;
-				chat_response.chat_content = content;
-				this.messages.add(chat_response);
-			}
-		}
-
+ 
 		public async ChatResponse exec_chat() throws Error
 		{
 			if (this.model == "") {
