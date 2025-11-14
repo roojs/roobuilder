@@ -6,7 +6,7 @@ namespace OLLMchat.Ollama
 		public string modified_at { get; set; default = ""; }
 		public int64 size { get; set; default = 0; }
 		public string digest { get; set; default = ""; }
-		public Json.Object? details { get; set; }
+		public Json.Object? details { get; set; default = null; }
 
 		public int64 size_vram { get; set; default = 0; }
 		public int64 total_duration { get; set; default = 0; }

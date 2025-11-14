@@ -70,13 +70,12 @@ namespace OLLMchat.Ollama
 
 		protected async void handle_streaming_response(Soup.Session session, Soup.Message message, bool is_json_format, StreamingChunkCallback on_chunk) throws Error
 		{
-			yield session.send_async(message, GLib.Priority.DEFAULT, null);
+			var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
 
 			if (message.status_code != 200) {
 				throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
 			}
 
-			var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
 			var input_stream = new MemoryInputStream.from_bytes(bytes);
 
 			if (is_json_format) {
