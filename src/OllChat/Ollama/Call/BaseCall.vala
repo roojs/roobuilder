@@ -193,5 +193,22 @@ namespace OLLMchat.Ollama
 
 			return items;
 		}
+
+		protected async Gee.ArrayList<T> get_models<T>(string field_name, Type type) throws Error
+		{
+			var bytes = yield this.send_request(false);
+			var root = this.parse_response(bytes);
+
+			if (root.get_node_type() != Json.NodeType.OBJECT) {
+				throw new Error.FAILED("Invalid JSON response");
+			}
+
+			var root_obj = root.get_object();
+			if (!root_obj.has_member(field_name)) {
+				throw new Error.FAILED(@"Response missing '$(field_name)' field");
+			}
+
+			return this.parse_array<T>(root_obj.get_array_member(field_name), type);
+		}
 	}
 }
