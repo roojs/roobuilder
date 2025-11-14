@@ -13,26 +13,27 @@ Create a standalone OLL Chat application that connects to an Ollama server, prov
 ### Directory Structure
 ```
 src/OllChat/
-├── OLLMchat.vala              # Main entry point
-├── Client/
-│   ├── OllamaClient.vala      # Main client class (converted from Net_Ollama)
+├── OLLMchat.vala              # Main entry point (standalone app)
+├── Ollama/
+│   ├── Client.vala            # Main client class (converted from Net_Ollama)
 │   ├── Call/
 │   │   ├── BaseCall.vala      # Abstract base call class
 │   │   └── ChatCall.vala      # Chat API call implementation
 │   └── Response/
 │       ├── BaseResponse.vala  # Base response class
-│       └── ChatResponse.vala # Chat response with streaming support
+│       └── ChatResponse.vala   # Chat response with streaming support
 ├── UI/
-│   ├── ChatWindow.vala        # Main window class
+│   ├── ChatWindow.vala        # Main window class (for standalone app)
+│   ├── ChatWidget.vala        # Reusable chat widget (extends Gtk.Box)
 │   ├── ChatView.vala          # Markdown text view for chat output
 │   └── ChatInput.vala         # Text entry with send button
 └── Utils/
-    └── MarkdownRenderer.vala  # Markdown rendering utilities
+    └── MarkdownProcessor.vala # Markdown rendering utilities (already exists)
 ```
 
 ## Phase 1: Convert PHP Ollama API Client to Vala
 
-### 1.1 Core Client Class (`OllamaClient.vala`)
+### 1.1 Core Client Class (`Ollama/Client.vala`)
 **Source**: `Net_Ollama.php`
 
 **Key Features to Convert**:
@@ -59,7 +60,7 @@ public delegate void StreamCallback(string new_text, ChatResponse response);
 public bool debug { get; set; }
 ```
 
-### 1.2 Base Call Class (`Call/BaseCall.vala`)
+### 1.2 Base Call Class (`Ollama/Call/BaseCall.vala`)
 **Source**: `Net_Ollama/Call.php`
 
 **Key Features**:
@@ -83,7 +84,7 @@ protected string _method { get; set; default = "POST"; }
 protected string[] exclude { get; set; }
 ```
 
-### 1.3 Chat Call (`Call/ChatCall.vala`)
+### 1.3 Chat Call (`Ollama/Call/ChatCall.vala`)
 **Source**: `Net_Ollama/Call/Chat.php`
 
 **Key Features**:
@@ -123,7 +124,7 @@ public class Message : Object
 }
 ```
 
-### 1.4 Base Response Class (`Response/BaseResponse.vala`)
+### 1.4 Base Response Class (`Ollama/Response/BaseResponse.vala`)
 **Source**: `Net_Ollama/Response.php`
 
 **Key Features**:
@@ -135,7 +136,7 @@ public class Message : Object
 - Use `Json.Serializable` interface
 - Deserialize from `Json.Node`
 
-### 1.5 Chat Response (`Response/ChatResponse.vala`)
+### 1.5 Chat Response (`Ollama/Response/ChatResponse.vala`)
 **Source**: `Net_Ollama/Response/Chat.php`
 
 **Key Features**:
@@ -189,7 +190,73 @@ public string addChunk(Json.Object chunk)
 
 ## Phase 2: User Interface Implementation
 
-### 2.1 Main Window (`UI/ChatWindow.vala`)
+### 2.1 Reusable Chat Widget (`UI/ChatWidget.vala`)
+
+**Purpose**: Create a reusable widget that can be embedded anywhere in the project.
+
+**Base Class**: `Gtk.Box` (vertical orientation)
+
+**Key Features**:
+- Self-contained chat interface
+- Can be added to any GTK container
+- Exposes signals for external integration
+- Manages its own Ollama client instance
+
+**Structure**:
+```vala
+namespace OLLMchat {
+	public class ChatWidget : Gtk.Box
+	{
+		private ChatView chat_view;
+		private ChatInput chat_input;
+		private Ollama.Client client;
+		
+		// Public signals for external use
+		public signal void message_sent(string text);
+		public signal void response_received(string text);
+		public signal void error_occurred(string error);
+		
+		// Public properties for configuration
+		public string server_url { get; set; default = "http://localhost:11434/api"; }
+		public string? api_key { get; set; }
+		public string model { get; set; default = "llama2"; }
+		
+		public ChatWidget()
+		{
+			// Initialize as vertical box
+			// Create chat_view and chat_input
+			// Initialize Ollama client
+			// Connect internal signals
+		}
+		
+		// Public methods for external control
+		public void send_message(string text)
+		{
+			// Send message programmatically
+		}
+		
+		public void clear_chat()
+		{
+			// Clear chat history
+		}
+		
+		public void set_model(string model_name)
+		{
+			// Change model
+		}
+	}
+}
+```
+
+**Usage Example**:
+```vala
+var chat_widget = new OLLMchat.ChatWidget();
+chat_widget.model = "llama2";
+chat_widget.server_url = "http://localhost:11434/api";
+some_container.append(chat_widget);
+```
+
+### 2.2 Main Window (`UI/ChatWindow.vala`)
 
 **Layout**:
 - Vertical box (`Gtk.Box`) containing:
@@ -313,28 +380,14 @@ public class ChatInput : Gtk.Box
 }
 ```
 
-### 2.4 Markdown Rendering (`Utils/MarkdownRenderer.vala`)
+### 2.4 Markdown Rendering (`Utils/MarkdownProcessor.vala`)
 
-**Purpose**: Convert markdown text to formatted text for display
+**Note**: A `MarkdownProcessor` class already exists in the codebase. This can be used or adapted for markdown rendering in the chat view.
 
-**Options**:
-1. Use a Vala/GObject markdown library if available
-2. Simple formatting (bold, italic, code blocks) for initial version
-3. For full markdown: consider `libmarkdown` or similar
-
-**Initial Implementation**:
-- Basic markdown parsing (headers, bold, italic, code blocks)
-- Can be enhanced later with full markdown library
-
-**Method**:
-```vala
-public static string render_markdown(string markdown)
-{
-	// Convert markdown to formatted text
-	// Apply text tags for styling
-	// Return formatted string with Pango markup or text tags
-}
-```
+**Usage**:
+- Use `MarkdownProcessor.get_default().markup_string()` to convert markdown to Pango markup
+- The existing processor handles: bold, italic, underline, code blocks, URLs, email links
+- Can be extended if additional markdown features are needed
 
 ## Phase 3: Integration and Streaming
 
