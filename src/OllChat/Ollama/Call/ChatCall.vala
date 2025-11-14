@@ -73,8 +73,19 @@ namespace OLLMchat.Ollama
 				throw new Error.INVALID_ARGUMENT("Model is required");
 			}
 
-			this.setup_streaming();
-			this.merge_client_tools();
+			if (this.client.stream_callback != null) {
+				this.stream = true;
+			}
+
+			if (this.client.tools != null && this.client.tools.size > 0) {
+				if (this.tools == null) {
+					this.tools = new Gee.ArrayList<Tool>();
+				}
+
+				foreach (var tool in this.client.tools) {
+					this.tools.add(tool);
+				}
+			}
 
 			if (this.stream) {
 				this.streaming_response = new ChatResponse(this.client);
@@ -82,28 +93,6 @@ namespace OLLMchat.Ollama
 			}
 
 			return yield this.execute_non_streaming();
-		}
-
-		private void setup_streaming()
-		{
-			if (this.client.stream_callback != null) {
-				this.stream = true;
-			}
-		}
-
-		private void merge_client_tools()
-		{
-			if (this.client.tools == null || this.client.tools.size == 0) {
-				return;
-			}
-
-			if (this.tools == null) {
-				this.tools = new Gee.ArrayList<Tool>();
-			}
-
-			foreach (var tool in this.client.tools) {
-				this.tools.add(tool);
-			}
 		}
 
 		private async ChatResponse execute_non_streaming() throws Error
