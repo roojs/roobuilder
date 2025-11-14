@@ -12,7 +12,24 @@ namespace OLLMchat.Ollama
 
 		public Gee.ArrayList<OllamaBase> messages { get; set; }
 		private ChatResponse? streaming_response;
-		public Json.Object? message { get; set; }
+		public Json.Object? message { 
+			get {
+				var array = new Json.Array();
+				foreach (var m in this.messages) {
+					
+					
+					var msg_obj = new Json.Object();
+					msg_obj.set_string_member("role", m.role);
+					msg_obj.set_string_member("content", m.content);
+					array.add_object_element(msg_obj);
+					
+				}
+				var node = new Json.Node(Json.NodeType.ARRAY);
+				node.set_array(array);
+				return node;
+			} 
+			set; 
+		}
 
 		public ChatCall(Client client) : base(client)
 		{
@@ -38,14 +55,14 @@ namespace OLLMchat.Ollama
 		private Json.Node? serialize_messages()
 		{
 			var array = new Json.Array();
-			foreach (var response in this.messages) {
-				if (response is ChatResponse) {
-					var chat_response = response as ChatResponse;
-					var msg_obj = new Json.Object();
-					msg_obj.set_string_member("role", chat_response.role);
-					msg_obj.set_string_member("content", chat_response.content);
-					array.add_object_element(msg_obj);
-				}
+			foreach (var m in this.messages) {
+				 
+				 
+				var msg_obj = new Json.Object();
+				msg_obj.set_string_member("role", m.role);
+				msg_obj.set_string_member("content", m.content);
+				array.add_object_element(msg_obj);
+				
 			}
 			var node = new Json.Node(Json.NodeType.ARRAY);
 			node.set_array(array);
