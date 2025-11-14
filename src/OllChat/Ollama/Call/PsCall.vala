@@ -22,19 +22,32 @@ namespace OLLMchat.Ollama
 				throw new Error.FAILED("Response missing 'models' field");
 			}
 
-			var models_array = root_obj.get_array_member("models");
+			return this.parse_models_array(root_obj.get_array_member("models"));
+		}
+
+		private Gee.ArrayList<Model> parse_models_array(Json.Array models_array)
+		{
 			var models = new Gee.ArrayList<Model>();
 
 			for (int i = 0; i < models_array.get_length(); i++) {
-				var model_node = models_array.get_element(i);
-				var model_obj = Json.gobject_from_data(typeof(Model), model_node.print(false), -1) as Model;
-				if (model_obj != null) {
-					model_obj.client = this.client;
-					models.add(model_obj);
+				var model = this.parse_model(models_array.get_element(i));
+				if (model != null) {
+					models.add(model);
 				}
 			}
 
 			return models;
+		}
+
+		private Model? parse_model(Json.Node model_node)
+		{
+			var model_obj = Json.gobject_from_data(typeof(Model), model_node.print(false), -1) as Model;
+			if (model_obj == null) {
+				return null;
+			}
+
+			model_obj.client = this.client;
+			return model_obj;
 		}
 	}
 }

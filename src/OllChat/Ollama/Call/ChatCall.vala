@@ -49,24 +49,36 @@ namespace OLLMchat.Ollama
 				throw new Error.INVALID_ARGUMENT("Model is required");
 			}
 
-			if (this.client.stream_callback != null) {
-				this.stream = true;
-			}
-
-			if (this.client.tools != null && this.client.tools.size > 0) {
-				if (this.tools == null) {
-					this.tools = new Gee.ArrayList<Tool>();
-				}
-				foreach (var tool in this.client.tools) {
-					this.tools.add(tool);
-				}
-			}
+			this.setup_streaming();
+			this.merge_client_tools();
 
 			if (this.stream) {
 				this.streaming_response = new ChatResponse(this.client);
 				return yield this.execute_streaming();
-			} else {
-				return yield this.execute_non_streaming();
+			}
+
+			return yield this.execute_non_streaming();
+		}
+
+		private void setup_streaming()
+		{
+			if (this.client.stream_callback != null) {
+				this.stream = true;
+			}
+		}
+
+		private void merge_client_tools()
+		{
+			if (this.client.tools == null || this.client.tools.size == 0) {
+				return;
+			}
+
+			if (this.tools == null) {
+				this.tools = new Gee.ArrayList<Tool>();
+			}
+
+			foreach (var tool in this.client.tools) {
+				this.tools.add(tool);
 			}
 		}
 
@@ -96,6 +108,21 @@ namespace OLLMchat.Ollama
 
 			var url = this.build_url();
 			var session = new Soup.Session();
+			var message = this.create_streaming_message(url);
+
+			GLib.debug("Request URL: %s", url);
+			GLib.debug("Request Body: %s", this.get_request_body());
+
+			var is_json_format = (this.format == "json");
+			yield this.handle_streaming_response(session, message, is_json_format, (chunk) => {
+				this.process_streaming_chunk(chunk);
+			});
+
+			return this.streaming_response;
+		}
+
+		private Soup.Message create_streaming_message(string url)
+		{
 			var message = new Soup.Message(this.http_method, url);
 
 			if (this.client.api_key != null && this.client.api_key != "") {
@@ -108,20 +135,28 @@ namespace OLLMchat.Ollama
 			var request_body = generator.to_data(null);
 
 			message.set_request_body_from_bytes("application/json", new Bytes(request_body.data));
+			return message;
+		}
 
-			GLib.debug("Request URL: %s", url);
-			GLib.debug("Request Body: %s", request_body);
+		private string get_request_body()
+		{
+			var json_node = Json.gobject_serialize(this);
+			var generator = new Json.Generator();
+			generator.set_root(json_node);
+			return generator.to_data(null);
+		}
 
-			var is_json_format = (this.format == "json");
-			yield this.handle_streaming_response(session, message, is_json_format, (chunk) => {
-				var new_text = this.streaming_response.addChunk(chunk);
+		private void process_streaming_chunk(Json.Object chunk)
+		{
+			if (this.streaming_response == null) {
+				return;
+			}
 
-				if (this.client.stream_callback != null) {
-					this.client.stream_callback(new_text, this.streaming_response);
-				}
-			});
+			var new_text = this.streaming_response.addChunk(chunk);
 
-			return this.streaming_response;
+			if (this.client.stream_callback != null) {
+				this.client.stream_callback(new_text, this.streaming_response);
+			}
 		}
 	}
 }
