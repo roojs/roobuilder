@@ -4,7 +4,7 @@ namespace OLLMchat.Ollama
 	{
 		public abstract string chat_role { get; set; }
 		public abstract string chat_content { get; set; }
-		public abstract Json.Object? message { get; }
+		public abstract Json.Object? message { owned get; }
 	}
 }
 

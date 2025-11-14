@@ -37,7 +37,8 @@ namespace OLLMchat.Ollama
 		public override Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			if (property_name == "message") {
-				return null;
+				var node = new Json.Node(Json.NodeType.NULL);
+				return node;
 			}
 
 			if (property_name == "messages") {
