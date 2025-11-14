@@ -37,15 +37,13 @@ namespace OLLMchat.UI
 			this.title = "OLL Chat Test";
 			this.set_default_size(800, 600);
 
-			// Create chat widget
-			this.chat_widget = new ChatWidget();
-
-			// Create default Ollama client and set on widget
+			// Create default Ollama client
 			var client = new Ollama.Client() {
 				url = "http://localhost:11434/api"
 			};
-			this.chat_widget.client = client;
-			this.chat_widget.model = "llama2";
+
+			// Create chat widget with client
+			this.chat_widget = new ChatWidget(client);
 
 			// Connect widget signals for testing (optional: print to stdout)
 			this.chat_widget.message_sent.connect((text) => {
