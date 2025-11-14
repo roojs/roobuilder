@@ -154,13 +154,18 @@ namespace OLLMchat.Ollama
 
 		private void process_json_chunk(string chunk_str, StreamingChunkCallback on_chunk)
 		{
-			if (!chunk_str.has_suffix("}")) {
+			if (chunk_str == null || chunk_str == "") {
+				return;
+			}
+
+			var trimmed = chunk_str.strip();
+			if (trimmed == "" || !trimmed.has_suffix("}")) {
 				return;
 			}
 
 			var parser = new Json.Parser();
 			try {
-				parser.load_from_data(chunk_str, -1);
+				parser.load_from_data(trimmed, -1);
 				var chunk_node = parser.get_root();
 				if (chunk_node == null || chunk_node.get_node_type() != Json.NodeType.OBJECT) {
 					return;
@@ -169,7 +174,7 @@ namespace OLLMchat.Ollama
 				var chunk_obj = chunk_node.get_object();
 				on_chunk(chunk_obj);
 			} catch (Error e) {
-				GLib.debug("Error parsing JSON chunk: %s", e.message);
+				GLib.debug("Error parsing JSON chunk: %s (chunk: %s)", e.message, trimmed);
 			}
 		}
 
