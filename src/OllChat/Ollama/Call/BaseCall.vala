@@ -179,10 +179,11 @@ namespace OLLMchat.Ollama
 
 			for (int i = 0; i < array.get_length(); i++) {
 				var item_obj = Json.gobject_from_data(typeof(Model), array.get_element(i).print(false), -1) as Model;
-				if (item_obj != null) {
-					item_obj.client = this.client;
-					items.add(item_obj);
+				if (item_obj == null) {
+					continue;
 				}
+				item_obj.client = this.client;
+				items.add(item_obj);
 			}
 
 			return items;
