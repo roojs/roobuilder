@@ -89,13 +89,15 @@ namespace OLLMchat.Ollama {
 - URL endpoint construction
 - Parameter serialization (excluding internal properties)
 - Streaming support with callback mechanism
-- JSON chunk processing from stream
+- JSON chunk processing from stream (only when format=json)
 
 **Vala Implementation**:
 - Abstract class with `execute()` and `process()` methods
 - Use `Soup.Message` for HTTP requests
-- Implement streaming with `Soup.MessageBody` and line-by-line JSON parsing
-- Buffer incomplete JSON chunks until newline received
+- Implement streaming with `Soup.MessageBody`
+- **Line-by-line JSON parsing**: Only required when `format: "json"` is set in the request
+- When format is not JSON, handle streaming response differently (may be plain text or different format)
+- Buffer incomplete chunks until complete line/object received
 
 **Namespace**: `OLLMchat.Ollama`
 
@@ -131,6 +133,7 @@ namespace OLLMchat.Ollama {
 - Implement `execute()` and `process()` methods
 - Auto-enable streaming if callback is set on client
 - Merge client-level tools into call tools
+- **Streaming format handling**: Check if `format == "json"` to determine if line-by-line JSON parsing is needed
 
 **Properties**:
 ```vala
@@ -720,8 +723,19 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 ### Performance Considerations
 - Chunk-based rendering prevents full re-render on each token
 - Only process markdown for current chunk
-- Buffer incomplete JSON chunks until newline received
+- Buffer incomplete chunks until complete line/object received (only when format=json)
 - Use efficient text buffer operations (replace range, not full buffer)
+
+### Streaming Format Handling
+- **When `format: "json"` is set**: Use line-by-line JSON parsing
+  - Each line is a complete JSON object
+  - Parse each line as JSON and extract content
+  - Buffer incomplete lines until newline received
+  
+- **When `format` is not set or is not "json"**: Handle streaming differently
+  - May receive plain text chunks or different format
+  - Process chunks as they arrive without line-by-line JSON parsing
+  - Implementation depends on actual Ollama API behavior for non-JSON streaming
 
 ## Phase 5: Widget Extraction and Reusability
 
