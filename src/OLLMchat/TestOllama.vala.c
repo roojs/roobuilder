@@ -77,6 +77,7 @@ typedef struct _OLLMchatOllamaBaseResponseClass OLLMchatOllamaBaseResponseClass;
 
 typedef struct _OLLMchatOllamaChatResponse OLLMchatOllamaChatResponse;
 typedef struct _OLLMchatOllamaChatResponseClass OLLMchatOllamaChatResponseClass;
+#define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 
 #define OLL_MCHAT_OLLAMA_TYPE_CLIENT (oll_mchat_ollama_client_get_type ())
 #define OLL_MCHAT_OLLAMA_CLIENT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), OLL_MCHAT_OLLAMA_TYPE_CLIENT, OLLMchatOllamaClient))
@@ -87,7 +88,6 @@ typedef struct _OLLMchatOllamaChatResponseClass OLLMchatOllamaChatResponseClass;
 
 typedef struct _OLLMchatOllamaClient OLLMchatOllamaClient;
 typedef struct _OLLMchatOllamaClientClass OLLMchatOllamaClientClass;
-#define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 
 #define OLL_MCHAT_OLLAMA_TYPE_MODEL (oll_mchat_ollama_model_get_type ())
 #define OLL_MCHAT_OLLAMA_MODEL(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), OLL_MCHAT_OLLAMA_TYPE_MODEL, OLLMchatOllamaModel))
@@ -127,10 +127,11 @@ typedef struct _OLLMchatOllamaChatCallClass OLLMchatOllamaChatCallClass;
 
 typedef struct _OLLMchatOllamaMessageInterface OLLMchatOllamaMessageInterface;
 typedef struct _OLLMchatOllamaMessageInterfaceIface OLLMchatOllamaMessageInterfaceIface;
-#define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
+typedef struct _OllMchatRunTestData OllMchatRunTestData;
 #define _g_date_time_unref0(var) ((var == NULL) ? NULL : (var = (g_date_time_unref (var), NULL)))
 typedef void (*OLLMchatOllamaStreamCallback) (const gchar* new_text, OLLMchatOllamaChatResponse* response, gpointer user_data);
 #define _g_main_loop_unref0(var) ((var == NULL) ? NULL : (var = (g_main_loop_unref (var), NULL)))
+#define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
 
 struct _OLLMchatOllamaMessageInterfaceIface {
 	GTypeInterface parent_iface;
@@ -139,6 +140,118 @@ struct _OLLMchatOllamaMessageInterfaceIface {
 	const gchar* (*get_chat_content) (OLLMchatOllamaMessageInterface* self);
 	void (*set_chat_content) (OLLMchatOllamaMessageInterface* self, const gchar* value);
 	JsonObject* (*get_message) (OLLMchatOllamaMessageInterface* self);
+};
+
+struct _OllMchatRunTestData {
+	int _state_;
+	GObject* _source_object_;
+	GAsyncResult* _res_;
+	GTask* _async_result;
+	OLLMchatOllamaClient* client;
+	FILE* _tmp0_;
+	GeeArrayList* models;
+	GeeArrayList* _tmp1_;
+	GeeArrayList* _tmp2_;
+	gint _tmp3_;
+	gint _tmp4_;
+	FILE* _tmp5_;
+	GeeArrayList* _model_list;
+	GeeArrayList* _tmp6_;
+	gint _model_size;
+	GeeArrayList* _tmp7_;
+	gint _tmp8_;
+	gint _tmp9_;
+	gint _model_index;
+	gint _tmp10_;
+	gint _tmp11_;
+	OLLMchatOllamaModel* model;
+	GeeArrayList* _tmp12_;
+	gpointer _tmp13_;
+	const gchar* _tmp14_;
+	OLLMchatOllamaModel* _tmp15_;
+	const gchar* _tmp16_;
+	const gchar* _tmp17_;
+	OLLMchatOllamaModel* _tmp18_;
+	const gchar* _tmp19_;
+	const gchar* _tmp20_;
+	OLLMchatOllamaModel* _tmp21_;
+	const gchar* _tmp22_;
+	const gchar* _tmp23_;
+	FILE* _tmp24_;
+	FILE* _tmp25_;
+	OLLMchatOllamaModel* _tmp26_;
+	gint64 _tmp27_;
+	gint64 _tmp28_;
+	FILE* _tmp29_;
+	OLLMchatOllamaModel* _tmp30_;
+	gint64 _tmp31_;
+	gint64 _tmp32_;
+	FILE* _tmp33_;
+	OLLMchatOllamaModel* _tmp34_;
+	gint64 _tmp35_;
+	gint64 _tmp36_;
+	FILE* _tmp37_;
+	OLLMchatOllamaModel* first_model;
+	GeeArrayList* _tmp38_;
+	gpointer _tmp39_;
+	const gchar* _tmp40_;
+	OLLMchatOllamaModel* _tmp41_;
+	const gchar* _tmp42_;
+	const gchar* _tmp43_;
+	OLLMchatOllamaModel* _tmp44_;
+	const gchar* _tmp45_;
+	const gchar* _tmp46_;
+	OLLMchatOllamaModel* _tmp47_;
+	const gchar* _tmp48_;
+	const gchar* _tmp49_;
+	gchar* model_name;
+	gchar* _tmp50_;
+	gboolean _tmp51_;
+	const gchar* _tmp52_;
+	const gchar* _tmp53_;
+	FILE* _tmp54_;
+	FILE* _tmp55_;
+	FILE* _tmp56_;
+	FILE* _tmp57_;
+	OLLMchatOllamaChatCall* chat_call;
+	OLLMchatOllamaChatCall* _tmp58_;
+	OLLMchatOllamaChatCall* _tmp59_;
+	const gchar* _tmp60_;
+	OLLMchatOllamaChatResponse* user_message;
+	OLLMchatOllamaChatResponse* _tmp61_;
+	OLLMchatOllamaChatResponse* _tmp62_;
+	OLLMchatOllamaChatResponse* _tmp63_;
+	OLLMchatOllamaChatCall* _tmp64_;
+	OLLMchatOllamaChatResponse* _tmp65_;
+	OLLMchatOllamaChatResponse* response;
+	OLLMchatOllamaChatCall* _tmp66_;
+	OLLMchatOllamaChatResponse* _tmp67_;
+	FILE* _tmp68_;
+	OLLMchatOllamaChatResponse* _tmp69_;
+	const gchar* _tmp70_;
+	const gchar* _tmp71_;
+	FILE* _tmp72_;
+	OLLMchatOllamaChatResponse* _tmp73_;
+	const gchar* _tmp74_;
+	const gchar* _tmp75_;
+	FILE* _tmp76_;
+	OLLMchatOllamaChatResponse* _tmp77_;
+	const gchar* _tmp78_;
+	const gchar* _tmp79_;
+	FILE* _tmp80_;
+	OLLMchatOllamaChatResponse* _tmp81_;
+	gboolean _tmp82_;
+	gboolean _tmp83_;
+	gchar* _tmp84_;
+	gchar* _tmp85_;
+	OLLMchatOllamaChatResponse* _tmp86_;
+	const gchar* _tmp87_;
+	const gchar* _tmp88_;
+	FILE* _tmp89_;
+	OLLMchatOllamaChatResponse* _tmp90_;
+	const gchar* _tmp91_;
+	const gchar* _tmp92_;
+	GError* _inner_error0_;
 };
 
 VALA_EXTERN GMainLoop* oll_mchat_main_loop;
@@ -152,10 +265,15 @@ VALA_EXTERN GType oll_mchat_ollama_chat_response_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (OLLMchatOllamaChatResponse, g_object_unref)
 VALA_EXTERN void oll_mchat_on_stream (const gchar* partial,
                           OLLMchatOllamaChatResponse* response);
-VALA_EXTERN void oll_mchat_on_ps_complete (GObject* obj,
-                               GAsyncResult* res);
+static void oll_mchat_run_test_data_free (gpointer _data);
 VALA_EXTERN GType oll_mchat_ollama_client_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (OLLMchatOllamaClient, g_object_unref)
+VALA_EXTERN void oll_mchat_run_test (OLLMchatOllamaClient* client,
+                         GAsyncReadyCallback _callback_,
+                         gpointer _user_data_);
+VALA_EXTERN void oll_mchat_run_test_finish (GAsyncResult* _res_,
+                                GError** error);
+static gboolean oll_mchat_run_test_co (OllMchatRunTestData* _data_);
 VALA_EXTERN GType oll_mchat_ollama_model_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (OLLMchatOllamaModel, g_object_unref)
 VALA_EXTERN void oll_mchat_ollama_client_ps (OLLMchatOllamaClient* self,
@@ -164,6 +282,9 @@ VALA_EXTERN void oll_mchat_ollama_client_ps (OLLMchatOllamaClient* self,
 VALA_EXTERN GeeArrayList* oll_mchat_ollama_client_ps_finish (OLLMchatOllamaClient* self,
                                                  GAsyncResult* _res_,
                                                  GError** error);
+static void oll_mchat_run_test_ready (GObject* source_object,
+                               GAsyncResult* _res_,
+                               gpointer _user_data_);
 VALA_EXTERN const gchar* oll_mchat_ollama_model_get_name (OLLMchatOllamaModel* self);
 VALA_EXTERN const gchar* oll_mchat_ollama_model_get_model (OLLMchatOllamaModel* self);
 VALA_EXTERN gint64 oll_mchat_ollama_model_get_size (OLLMchatOllamaModel* self);
@@ -196,11 +317,6 @@ VALA_EXTERN void oll_mchat_ollama_client_chat (OLLMchatOllamaClient* self,
 VALA_EXTERN OLLMchatOllamaChatResponse* oll_mchat_ollama_client_chat_finish (OLLMchatOllamaClient* self,
                                                                  GAsyncResult* _res_,
                                                                  GError** error);
-VALA_EXTERN void oll_mchat_on_chat_complete (GObject* obj,
-                                 GAsyncResult* res);
-static void _oll_mchat_on_chat_complete_gasync_ready_callback (GObject* source_object,
-                                                        GAsyncResult* res,
-                                                        gpointer self);
 VALA_EXTERN const gchar* oll_mchat_ollama_chat_response_get_thinking (OLLMchatOllamaChatResponse* self);
 VALA_EXTERN const gchar* oll_mchat_ollama_message_interface_get_chat_content (OLLMchatOllamaMessageInterface* self);
 VALA_EXTERN gboolean oll_mchat_ollama_chat_response_get_done (OLLMchatOllamaChatResponse* self);
@@ -227,9 +343,11 @@ static void _oll_mchat_on_stream_oll_mchat_ollama_stream_callback (const gchar* 
 VALA_EXTERN void oll_mchat_ollama_client_set_stream_callback (OLLMchatOllamaClient* self,
                                                   OLLMchatOllamaStreamCallback value,
                                                   gpointer value_target);
-static void _oll_mchat_on_ps_complete_gasync_ready_callback (GObject* source_object,
-                                                      GAsyncResult* res,
-                                                      gpointer self);
+static void __lambda6_ (GObject* obj,
+                 GAsyncResult* res);
+static void ___lambda6__gasync_ready_callback (GObject* source_object,
+                                        GAsyncResult* res,
+                                        gpointer self);
 
 static guint8*
 string_get_data (const gchar* self,
@@ -282,284 +400,59 @@ oll_mchat_on_stream (const gchar* partial,
 	fflush (_tmp4_);
 }
 
+static void
+oll_mchat_run_test_data_free (gpointer _data)
+{
+	OllMchatRunTestData* _data_;
+	_data_ = _data;
+	_g_object_unref0 (_data_->client);
+	g_slice_free (OllMchatRunTestData, _data_);
+}
+
 static gpointer
 _g_object_ref0 (gpointer self)
 {
 	return self ? g_object_ref (self) : NULL;
 }
 
-static void
-_oll_mchat_on_chat_complete_gasync_ready_callback (GObject* source_object,
-                                                   GAsyncResult* res,
-                                                   gpointer self)
+void
+oll_mchat_run_test (OLLMchatOllamaClient* client,
+                    GAsyncReadyCallback _callback_,
+                    gpointer _user_data_)
 {
-	oll_mchat_on_chat_complete (source_object, res);
+	OllMchatRunTestData* _data_;
+	OLLMchatOllamaClient* _tmp0_;
+	g_return_if_fail (client != NULL);
+	_data_ = g_slice_new0 (OllMchatRunTestData);
+	_data_->_async_result = g_task_new (NULL, NULL, _callback_, _user_data_);
+	g_task_set_task_data (_data_->_async_result, _data_, oll_mchat_run_test_data_free);
+	_tmp0_ = _g_object_ref0 (client);
+	_g_object_unref0 (_data_->client);
+	_data_->client = _tmp0_;
+	oll_mchat_run_test_co (_data_);
 }
 
 void
-oll_mchat_on_ps_complete (GObject* obj,
-                          GAsyncResult* res)
+oll_mchat_run_test_finish (GAsyncResult* _res_,
+                           GError** error)
 {
-	OLLMchatOllamaClient* client = NULL;
-	OLLMchatOllamaClient* _tmp0_;
-	GMainLoop* _tmp1_;
-	GError* _inner_error0_ = NULL;
-	g_return_if_fail (res != NULL);
-	_tmp0_ = _g_object_ref0 (OLL_MCHAT_OLLAMA_IS_CLIENT (obj) ? ((OLLMchatOllamaClient*) obj) : NULL);
-	client = _tmp0_;
-	_tmp1_ = oll_mchat_main_loop;
-	if (_tmp1_ == NULL) {
-		_g_object_unref0 (client);
+	OllMchatRunTestData* _data_;
+	_data_ = g_task_propagate_pointer (G_TASK (_res_), error);
+	if (NULL == _data_) {
 		return;
 	}
-	{
-		GeeArrayList* models = NULL;
-		OLLMchatOllamaClient* _tmp2_;
-		GeeArrayList* _tmp3_;
-		GeeArrayList* _tmp4_;
-		gint _tmp5_;
-		gint _tmp6_;
-		OLLMchatOllamaModel* first_model = NULL;
-		GeeArrayList* _tmp41_;
-		gpointer _tmp42_;
-		const gchar* _tmp43_ = NULL;
-		OLLMchatOllamaModel* _tmp44_;
-		const gchar* _tmp45_;
-		const gchar* _tmp46_;
-		gchar* model_name = NULL;
-		gchar* _tmp53_;
-		gboolean _tmp54_ = FALSE;
-		const gchar* _tmp55_;
-		FILE* _tmp59_;
-		FILE* _tmp60_;
-		FILE* _tmp61_;
-		OLLMchatOllamaChatCall* chat_call = NULL;
-		OLLMchatOllamaClient* _tmp62_;
-		OLLMchatOllamaChatCall* _tmp63_;
-		OLLMchatOllamaChatCall* _tmp64_;
-		const gchar* _tmp65_;
-		OLLMchatOllamaChatResponse* user_message = NULL;
-		OLLMchatOllamaClient* _tmp66_;
-		OLLMchatOllamaChatResponse* _tmp67_;
-		OLLMchatOllamaChatResponse* _tmp68_;
-		OLLMchatOllamaChatResponse* _tmp69_;
-		OLLMchatOllamaChatCall* _tmp70_;
-		OLLMchatOllamaChatResponse* _tmp71_;
-		OLLMchatOllamaClient* _tmp72_;
-		OLLMchatOllamaChatCall* _tmp73_;
-		_tmp2_ = client;
-		_tmp3_ = oll_mchat_ollama_client_ps_finish (_tmp2_, res, &_inner_error0_);
-		models = _tmp3_;
-		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-			goto __catch0_g_error;
-		}
-		_tmp4_ = models;
-		_tmp5_ = gee_abstract_collection_get_size ((GeeAbstractCollection*) _tmp4_);
-		_tmp6_ = _tmp5_;
-		if (_tmp6_ == 0) {
-			FILE* _tmp7_;
-			GMainLoop* _tmp8_;
-			_tmp7_ = stdout;
-			fprintf (_tmp7_, "No running models found.\n");
-			_tmp8_ = oll_mchat_main_loop;
-			g_main_loop_quit (_tmp8_);
-			_g_object_unref0 (models);
-			_g_object_unref0 (client);
-			return;
-		}
-		{
-			GeeArrayList* _model_list = NULL;
-			GeeArrayList* _tmp9_;
-			gint _model_size = 0;
-			GeeArrayList* _tmp10_;
-			gint _tmp11_;
-			gint _tmp12_;
-			gint _model_index = 0;
-			_tmp9_ = models;
-			_model_list = _tmp9_;
-			_tmp10_ = _model_list;
-			_tmp11_ = gee_abstract_collection_get_size ((GeeAbstractCollection*) _tmp10_);
-			_tmp12_ = _tmp11_;
-			_model_size = _tmp12_;
-			_model_index = -1;
-			while (TRUE) {
-				gint _tmp13_;
-				gint _tmp14_;
-				OLLMchatOllamaModel* model = NULL;
-				GeeArrayList* _tmp15_;
-				gpointer _tmp16_;
-				const gchar* _tmp17_ = NULL;
-				OLLMchatOllamaModel* _tmp18_;
-				const gchar* _tmp19_;
-				const gchar* _tmp20_;
-				FILE* _tmp27_;
-				FILE* _tmp28_;
-				OLLMchatOllamaModel* _tmp29_;
-				gint64 _tmp30_;
-				gint64 _tmp31_;
-				FILE* _tmp32_;
-				OLLMchatOllamaModel* _tmp33_;
-				gint64 _tmp34_;
-				gint64 _tmp35_;
-				FILE* _tmp36_;
-				OLLMchatOllamaModel* _tmp37_;
-				gint64 _tmp38_;
-				gint64 _tmp39_;
-				FILE* _tmp40_;
-				_model_index = _model_index + 1;
-				_tmp13_ = _model_index;
-				_tmp14_ = _model_size;
-				if (!(_tmp13_ < _tmp14_)) {
-					break;
-				}
-				_tmp15_ = _model_list;
-				_tmp16_ = gee_abstract_list_get ((GeeAbstractList*) _tmp15_, _model_index);
-				model = (OLLMchatOllamaModel*) _tmp16_;
-				_tmp18_ = model;
-				_tmp19_ = oll_mchat_ollama_model_get_name (_tmp18_);
-				_tmp20_ = _tmp19_;
-				if (g_strcmp0 (_tmp20_, "") != 0) {
-					OLLMchatOllamaModel* _tmp21_;
-					const gchar* _tmp22_;
-					const gchar* _tmp23_;
-					_tmp21_ = model;
-					_tmp22_ = oll_mchat_ollama_model_get_name (_tmp21_);
-					_tmp23_ = _tmp22_;
-					_tmp17_ = _tmp23_;
-				} else {
-					OLLMchatOllamaModel* _tmp24_;
-					const gchar* _tmp25_;
-					const gchar* _tmp26_;
-					_tmp24_ = model;
-					_tmp25_ = oll_mchat_ollama_model_get_model (_tmp24_);
-					_tmp26_ = _tmp25_;
-					_tmp17_ = _tmp26_;
-				}
-				_tmp27_ = stdout;
-				fprintf (_tmp27_, "Model: %s\n", _tmp17_);
-				_tmp28_ = stdout;
-				_tmp29_ = model;
-				_tmp30_ = oll_mchat_ollama_model_get_size (_tmp29_);
-				_tmp31_ = _tmp30_;
-				fprintf (_tmp28_, "  Size: %lld bytes\n", _tmp31_);
-				_tmp32_ = stdout;
-				_tmp33_ = model;
-				_tmp34_ = oll_mchat_ollama_model_get_size_vram (_tmp33_);
-				_tmp35_ = _tmp34_;
-				fprintf (_tmp32_, "  VRAM: %lld bytes\n", _tmp35_);
-				_tmp36_ = stdout;
-				_tmp37_ = model;
-				_tmp38_ = oll_mchat_ollama_model_get_total_duration (_tmp37_);
-				_tmp39_ = _tmp38_;
-				fprintf (_tmp36_, "  Total Duration: %lld ns\n", _tmp39_);
-				_tmp40_ = stdout;
-				fprintf (_tmp40_, "\n");
-				_g_object_unref0 (model);
-			}
-		}
-		_tmp41_ = models;
-		_tmp42_ = gee_abstract_list_get ((GeeAbstractList*) _tmp41_, 0);
-		first_model = (OLLMchatOllamaModel*) _tmp42_;
-		_tmp44_ = first_model;
-		_tmp45_ = oll_mchat_ollama_model_get_name (_tmp44_);
-		_tmp46_ = _tmp45_;
-		if (g_strcmp0 (_tmp46_, "") != 0) {
-			OLLMchatOllamaModel* _tmp47_;
-			const gchar* _tmp48_;
-			const gchar* _tmp49_;
-			_tmp47_ = first_model;
-			_tmp48_ = oll_mchat_ollama_model_get_name (_tmp47_);
-			_tmp49_ = _tmp48_;
-			_tmp43_ = _tmp49_;
-		} else {
-			OLLMchatOllamaModel* _tmp50_;
-			const gchar* _tmp51_;
-			const gchar* _tmp52_;
-			_tmp50_ = first_model;
-			_tmp51_ = oll_mchat_ollama_model_get_model (_tmp50_);
-			_tmp52_ = _tmp51_;
-			_tmp43_ = _tmp52_;
-		}
-		_tmp53_ = g_strdup (_tmp43_);
-		model_name = _tmp53_;
-		_tmp55_ = model_name;
-		if (_tmp55_ == NULL) {
-			_tmp54_ = TRUE;
-		} else {
-			const gchar* _tmp56_;
-			_tmp56_ = model_name;
-			_tmp54_ = g_strcmp0 (_tmp56_, "") == 0;
-		}
-		if (_tmp54_) {
-			FILE* _tmp57_;
-			GMainLoop* _tmp58_;
-			_tmp57_ = stdout;
-			fprintf (_tmp57_, "No valid model name found.\n");
-			_tmp58_ = oll_mchat_main_loop;
-			g_main_loop_quit (_tmp58_);
-			_g_free0 (model_name);
-			_g_object_unref0 (first_model);
-			_g_object_unref0 (models);
-			_g_object_unref0 (client);
-			return;
-		}
-		_tmp59_ = stdout;
-		fprintf (_tmp59_, "Sending query to Ollama...\n");
-		_tmp60_ = stdout;
-		fprintf (_tmp60_, "Query: Write a small vala program\n\n");
-		_tmp61_ = stdout;
-		fprintf (_tmp61_, "Response:\n");
-		_tmp62_ = client;
-		_tmp63_ = oll_mchat_ollama_chat_call_new (_tmp62_);
-		chat_call = _tmp63_;
-		_tmp64_ = chat_call;
-		_tmp65_ = model_name;
-		oll_mchat_ollama_chat_call_set_model (_tmp64_, _tmp65_);
-		_tmp66_ = client;
-		_tmp67_ = oll_mchat_ollama_chat_response_new (_tmp66_);
-		user_message = _tmp67_;
-		_tmp68_ = user_message;
-		oll_mchat_ollama_message_interface_set_chat_role ((OLLMchatOllamaMessageInterface*) _tmp68_, "user");
-		_tmp69_ = user_message;
-		oll_mchat_ollama_message_interface_set_chat_content ((OLLMchatOllamaMessageInterface*) _tmp69_, "Write a small vala program");
-		_tmp70_ = chat_call;
-		_tmp71_ = user_message;
-		oll_mchat_ollama_chat_call_add_message (_tmp70_, _tmp71_);
-		_tmp72_ = client;
-		_tmp73_ = chat_call;
-		oll_mchat_ollama_client_chat (_tmp72_, _tmp73_, _oll_mchat_on_chat_complete_gasync_ready_callback, NULL);
-		_g_object_unref0 (user_message);
-		_g_object_unref0 (chat_call);
-		_g_free0 (model_name);
-		_g_object_unref0 (first_model);
-		_g_object_unref0 (models);
-	}
-	goto __finally0;
-	__catch0_g_error:
-	{
-		GError* e = NULL;
-		FILE* _tmp74_;
-		GError* _tmp75_;
-		const gchar* _tmp76_;
-		GMainLoop* _tmp77_;
-		e = _inner_error0_;
-		_inner_error0_ = NULL;
-		_tmp74_ = stderr;
-		_tmp75_ = e;
-		_tmp76_ = _tmp75_->message;
-		fprintf (_tmp74_, "Error listing models: %s\n", _tmp76_);
-		_tmp77_ = oll_mchat_main_loop;
-		g_main_loop_quit (_tmp77_);
-		_g_error_free0 (e);
-	}
-	__finally0:
-	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-		_g_object_unref0 (client);
-		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error0_->message, g_quark_to_string (_inner_error0_->domain), _inner_error0_->code);
-		g_clear_error (&_inner_error0_);
-		return;
-	}
-	_g_object_unref0 (client);
+}
+
+static void
+oll_mchat_run_test_ready (GObject* source_object,
+                          GAsyncResult* _res_,
+                          gpointer _user_data_)
+{
+	OllMchatRunTestData* _data_;
+	_data_ = _user_data_;
+	_data_->_source_object_ = source_object;
+	_data_->_res_ = _res_;
+	oll_mchat_run_test_co (_data_);
 }
 
 static gchar*
@@ -579,120 +472,230 @@ bool_to_string (gboolean self)
 	}
 }
 
-void
-oll_mchat_on_chat_complete (GObject* obj,
-                            GAsyncResult* res)
+static gboolean
+oll_mchat_run_test_co (OllMchatRunTestData* _data_)
 {
-	OLLMchatOllamaClient* client = NULL;
-	OLLMchatOllamaClient* _tmp0_;
-	GMainLoop* _tmp1_;
-	GMainLoop* _tmp32_;
-	GError* _inner_error0_ = NULL;
-	g_return_if_fail (res != NULL);
-	_tmp0_ = _g_object_ref0 (OLL_MCHAT_OLLAMA_IS_CLIENT (obj) ? ((OLLMchatOllamaClient*) obj) : NULL);
-	client = _tmp0_;
-	_tmp1_ = oll_mchat_main_loop;
-	if (_tmp1_ == NULL) {
-		_g_object_unref0 (client);
-		return;
+	switch (_data_->_state_) {
+		case 0:
+		goto _state_0;
+		case 1:
+		goto _state_1;
+		case 2:
+		goto _state_2;
+		default:
+		g_assert_not_reached ();
+	}
+	_state_0:
+	_data_->_tmp0_ = stdout;
+	fprintf (_data_->_tmp0_, "--- Running Models (ps) ---\n");
+	_data_->_state_ = 1;
+	oll_mchat_ollama_client_ps (_data_->client, oll_mchat_run_test_ready, _data_);
+	return FALSE;
+	_state_1:
+	_data_->_tmp1_ = oll_mchat_ollama_client_ps_finish (_data_->client, _data_->_res_, &_data_->_inner_error0_);
+	_data_->models = _data_->_tmp1_;
+	if (G_UNLIKELY (_data_->_inner_error0_ != NULL)) {
+		g_task_return_error (_data_->_async_result, _data_->_inner_error0_);
+		g_object_unref (_data_->_async_result);
+		return FALSE;
+	}
+	_data_->_tmp2_ = _data_->models;
+	_data_->_tmp3_ = gee_abstract_collection_get_size ((GeeAbstractCollection*) _data_->_tmp2_);
+	_data_->_tmp4_ = _data_->_tmp3_;
+	if (_data_->_tmp4_ == 0) {
+		_data_->_tmp5_ = stdout;
+		fprintf (_data_->_tmp5_, "No running models found.\n");
+		_g_object_unref0 (_data_->models);
+		g_task_return_pointer (_data_->_async_result, _data_, NULL);
+		if (_data_->_state_ != 0) {
+			while (!g_task_get_completed (_data_->_async_result)) {
+				g_main_context_iteration (g_task_get_context (_data_->_async_result), TRUE);
+			}
+		}
+		g_object_unref (_data_->_async_result);
+		return FALSE;
 	}
 	{
-		OLLMchatOllamaChatResponse* response = NULL;
-		OLLMchatOllamaClient* _tmp2_;
-		OLLMchatOllamaChatResponse* _tmp3_;
-		FILE* _tmp4_;
-		OLLMchatOllamaChatResponse* _tmp5_;
-		const gchar* _tmp6_;
-		const gchar* _tmp7_;
-		FILE* _tmp12_;
-		OLLMchatOllamaChatResponse* _tmp13_;
-		const gchar* _tmp14_;
-		const gchar* _tmp15_;
-		FILE* _tmp16_;
-		OLLMchatOllamaChatResponse* _tmp17_;
-		gboolean _tmp18_;
-		gboolean _tmp19_;
-		gchar* _tmp20_;
-		gchar* _tmp21_;
-		OLLMchatOllamaChatResponse* _tmp22_;
-		const gchar* _tmp23_;
-		const gchar* _tmp24_;
-		_tmp2_ = client;
-		_tmp3_ = oll_mchat_ollama_client_chat_finish (_tmp2_, res, &_inner_error0_);
-		response = _tmp3_;
-		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-			goto __catch0_g_error;
+		_data_->_tmp6_ = _data_->models;
+		_data_->_model_list = _data_->_tmp6_;
+		_data_->_tmp7_ = _data_->_model_list;
+		_data_->_tmp8_ = gee_abstract_collection_get_size ((GeeAbstractCollection*) _data_->_tmp7_);
+		_data_->_tmp9_ = _data_->_tmp8_;
+		_data_->_model_size = _data_->_tmp9_;
+		_data_->_model_index = -1;
+		while (TRUE) {
+			_data_->_model_index = _data_->_model_index + 1;
+			_data_->_tmp10_ = _data_->_model_index;
+			_data_->_tmp11_ = _data_->_model_size;
+			if (!(_data_->_tmp10_ < _data_->_tmp11_)) {
+				break;
+			}
+			_data_->_tmp12_ = _data_->_model_list;
+			_data_->_tmp13_ = gee_abstract_list_get ((GeeAbstractList*) _data_->_tmp12_, _data_->_model_index);
+			_data_->model = (OLLMchatOllamaModel*) _data_->_tmp13_;
+			_data_->_tmp15_ = _data_->model;
+			_data_->_tmp16_ = oll_mchat_ollama_model_get_name (_data_->_tmp15_);
+			_data_->_tmp17_ = _data_->_tmp16_;
+			if (g_strcmp0 (_data_->_tmp17_, "") != 0) {
+				_data_->_tmp18_ = _data_->model;
+				_data_->_tmp19_ = oll_mchat_ollama_model_get_name (_data_->_tmp18_);
+				_data_->_tmp20_ = _data_->_tmp19_;
+				_data_->_tmp14_ = _data_->_tmp20_;
+			} else {
+				_data_->_tmp21_ = _data_->model;
+				_data_->_tmp22_ = oll_mchat_ollama_model_get_model (_data_->_tmp21_);
+				_data_->_tmp23_ = _data_->_tmp22_;
+				_data_->_tmp14_ = _data_->_tmp23_;
+			}
+			_data_->_tmp24_ = stdout;
+			fprintf (_data_->_tmp24_, "Model: %s\n", _data_->_tmp14_);
+			_data_->_tmp25_ = stdout;
+			_data_->_tmp26_ = _data_->model;
+			_data_->_tmp27_ = oll_mchat_ollama_model_get_size (_data_->_tmp26_);
+			_data_->_tmp28_ = _data_->_tmp27_;
+			fprintf (_data_->_tmp25_, "  Size: %lld bytes\n", _data_->_tmp28_);
+			_data_->_tmp29_ = stdout;
+			_data_->_tmp30_ = _data_->model;
+			_data_->_tmp31_ = oll_mchat_ollama_model_get_size_vram (_data_->_tmp30_);
+			_data_->_tmp32_ = _data_->_tmp31_;
+			fprintf (_data_->_tmp29_, "  VRAM: %lld bytes\n", _data_->_tmp32_);
+			_data_->_tmp33_ = stdout;
+			_data_->_tmp34_ = _data_->model;
+			_data_->_tmp35_ = oll_mchat_ollama_model_get_total_duration (_data_->_tmp34_);
+			_data_->_tmp36_ = _data_->_tmp35_;
+			fprintf (_data_->_tmp33_, "  Total Duration: %lld ns\n", _data_->_tmp36_);
+			_data_->_tmp37_ = stdout;
+			fprintf (_data_->_tmp37_, "\n");
+			_g_object_unref0 (_data_->model);
 		}
-		_tmp4_ = stdout;
-		fprintf (_tmp4_, "\n\n--- Complete Response ---\n");
-		_tmp5_ = response;
-		_tmp6_ = oll_mchat_ollama_chat_response_get_thinking (_tmp5_);
-		_tmp7_ = _tmp6_;
-		if (g_strcmp0 (_tmp7_, "") != 0) {
-			FILE* _tmp8_;
-			OLLMchatOllamaChatResponse* _tmp9_;
-			const gchar* _tmp10_;
-			const gchar* _tmp11_;
-			_tmp8_ = stdout;
-			_tmp9_ = response;
-			_tmp10_ = oll_mchat_ollama_chat_response_get_thinking (_tmp9_);
-			_tmp11_ = _tmp10_;
-			fprintf (_tmp8_, "Thinking: %s\n", _tmp11_);
+	}
+	_data_->_tmp38_ = _data_->models;
+	_data_->_tmp39_ = gee_abstract_list_get ((GeeAbstractList*) _data_->_tmp38_, 0);
+	_data_->first_model = (OLLMchatOllamaModel*) _data_->_tmp39_;
+	_data_->_tmp41_ = _data_->first_model;
+	_data_->_tmp42_ = oll_mchat_ollama_model_get_name (_data_->_tmp41_);
+	_data_->_tmp43_ = _data_->_tmp42_;
+	if (g_strcmp0 (_data_->_tmp43_, "") != 0) {
+		_data_->_tmp44_ = _data_->first_model;
+		_data_->_tmp45_ = oll_mchat_ollama_model_get_name (_data_->_tmp44_);
+		_data_->_tmp46_ = _data_->_tmp45_;
+		_data_->_tmp40_ = _data_->_tmp46_;
+	} else {
+		_data_->_tmp47_ = _data_->first_model;
+		_data_->_tmp48_ = oll_mchat_ollama_model_get_model (_data_->_tmp47_);
+		_data_->_tmp49_ = _data_->_tmp48_;
+		_data_->_tmp40_ = _data_->_tmp49_;
+	}
+	_data_->_tmp50_ = g_strdup (_data_->_tmp40_);
+	_data_->model_name = _data_->_tmp50_;
+	_data_->_tmp52_ = _data_->model_name;
+	if (_data_->_tmp52_ == NULL) {
+		_data_->_tmp51_ = TRUE;
+	} else {
+		_data_->_tmp53_ = _data_->model_name;
+		_data_->_tmp51_ = g_strcmp0 (_data_->_tmp53_, "") == 0;
+	}
+	if (_data_->_tmp51_) {
+		_data_->_tmp54_ = stdout;
+		fprintf (_data_->_tmp54_, "No valid model name found.\n");
+		_g_free0 (_data_->model_name);
+		_g_object_unref0 (_data_->first_model);
+		_g_object_unref0 (_data_->models);
+		g_task_return_pointer (_data_->_async_result, _data_, NULL);
+		if (_data_->_state_ != 0) {
+			while (!g_task_get_completed (_data_->_async_result)) {
+				g_main_context_iteration (g_task_get_context (_data_->_async_result), TRUE);
+			}
 		}
-		_tmp12_ = stdout;
-		_tmp13_ = response;
-		_tmp14_ = oll_mchat_ollama_message_interface_get_chat_content ((OLLMchatOllamaMessageInterface*) _tmp13_);
-		_tmp15_ = _tmp14_;
-		fprintf (_tmp12_, "Content: %s\n", _tmp15_);
-		_tmp16_ = stdout;
-		_tmp17_ = response;
-		_tmp18_ = oll_mchat_ollama_chat_response_get_done (_tmp17_);
-		_tmp19_ = _tmp18_;
-		_tmp20_ = bool_to_string (_tmp19_);
-		_tmp21_ = _tmp20_;
-		fprintf (_tmp16_, "Done: %s\n", _tmp21_);
-		_g_free0 (_tmp21_);
-		_tmp22_ = response;
-		_tmp23_ = oll_mchat_ollama_chat_response_get_done_reason (_tmp22_);
-		_tmp24_ = _tmp23_;
-		if (_tmp24_ != NULL) {
-			FILE* _tmp25_;
-			OLLMchatOllamaChatResponse* _tmp26_;
-			const gchar* _tmp27_;
-			const gchar* _tmp28_;
-			_tmp25_ = stdout;
-			_tmp26_ = response;
-			_tmp27_ = oll_mchat_ollama_chat_response_get_done_reason (_tmp26_);
-			_tmp28_ = _tmp27_;
-			fprintf (_tmp25_, "Done Reason: %s\n", _tmp28_);
+		g_object_unref (_data_->_async_result);
+		return FALSE;
+	}
+	_data_->_tmp55_ = stdout;
+	fprintf (_data_->_tmp55_, "Sending query to Ollama...\n");
+	_data_->_tmp56_ = stdout;
+	fprintf (_data_->_tmp56_, "Query: Write a small vala program\n\n");
+	_data_->_tmp57_ = stdout;
+	fprintf (_data_->_tmp57_, "Response:\n");
+	_data_->_tmp58_ = oll_mchat_ollama_chat_call_new (_data_->client);
+	_data_->chat_call = _data_->_tmp58_;
+	_data_->_tmp59_ = _data_->chat_call;
+	_data_->_tmp60_ = _data_->model_name;
+	oll_mchat_ollama_chat_call_set_model (_data_->_tmp59_, _data_->_tmp60_);
+	_data_->_tmp61_ = oll_mchat_ollama_chat_response_new (_data_->client);
+	_data_->user_message = _data_->_tmp61_;
+	_data_->_tmp62_ = _data_->user_message;
+	oll_mchat_ollama_message_interface_set_chat_role ((OLLMchatOllamaMessageInterface*) _data_->_tmp62_, "user");
+	_data_->_tmp63_ = _data_->user_message;
+	oll_mchat_ollama_message_interface_set_chat_content ((OLLMchatOllamaMessageInterface*) _data_->_tmp63_, "Write a small vala program");
+	_data_->_tmp64_ = _data_->chat_call;
+	_data_->_tmp65_ = _data_->user_message;
+	oll_mchat_ollama_chat_call_add_message (_data_->_tmp64_, _data_->_tmp65_);
+	_data_->_tmp66_ = _data_->chat_call;
+	_data_->_state_ = 2;
+	oll_mchat_ollama_client_chat (_data_->client, _data_->_tmp66_, oll_mchat_run_test_ready, _data_);
+	return FALSE;
+	_state_2:
+	_data_->_tmp67_ = oll_mchat_ollama_client_chat_finish (_data_->client, _data_->_res_, &_data_->_inner_error0_);
+	_data_->response = _data_->_tmp67_;
+	if (G_UNLIKELY (_data_->_inner_error0_ != NULL)) {
+		g_task_return_error (_data_->_async_result, _data_->_inner_error0_);
+		_g_object_unref0 (_data_->user_message);
+		_g_object_unref0 (_data_->chat_call);
+		_g_free0 (_data_->model_name);
+		_g_object_unref0 (_data_->first_model);
+		_g_object_unref0 (_data_->models);
+		g_object_unref (_data_->_async_result);
+		return FALSE;
+	}
+	_data_->_tmp68_ = stdout;
+	fprintf (_data_->_tmp68_, "\n\n--- Complete Response ---\n");
+	_data_->_tmp69_ = _data_->response;
+	_data_->_tmp70_ = oll_mchat_ollama_chat_response_get_thinking (_data_->_tmp69_);
+	_data_->_tmp71_ = _data_->_tmp70_;
+	if (g_strcmp0 (_data_->_tmp71_, "") != 0) {
+		_data_->_tmp72_ = stdout;
+		_data_->_tmp73_ = _data_->response;
+		_data_->_tmp74_ = oll_mchat_ollama_chat_response_get_thinking (_data_->_tmp73_);
+		_data_->_tmp75_ = _data_->_tmp74_;
+		fprintf (_data_->_tmp72_, "Thinking: %s\n", _data_->_tmp75_);
+	}
+	_data_->_tmp76_ = stdout;
+	_data_->_tmp77_ = _data_->response;
+	_data_->_tmp78_ = oll_mchat_ollama_message_interface_get_chat_content ((OLLMchatOllamaMessageInterface*) _data_->_tmp77_);
+	_data_->_tmp79_ = _data_->_tmp78_;
+	fprintf (_data_->_tmp76_, "Content: %s\n", _data_->_tmp79_);
+	_data_->_tmp80_ = stdout;
+	_data_->_tmp81_ = _data_->response;
+	_data_->_tmp82_ = oll_mchat_ollama_chat_response_get_done (_data_->_tmp81_);
+	_data_->_tmp83_ = _data_->_tmp82_;
+	_data_->_tmp84_ = bool_to_string (_data_->_tmp83_);
+	_data_->_tmp85_ = _data_->_tmp84_;
+	fprintf (_data_->_tmp80_, "Done: %s\n", _data_->_tmp85_);
+	_g_free0 (_data_->_tmp85_);
+	_data_->_tmp86_ = _data_->response;
+	_data_->_tmp87_ = oll_mchat_ollama_chat_response_get_done_reason (_data_->_tmp86_);
+	_data_->_tmp88_ = _data_->_tmp87_;
+	if (_data_->_tmp88_ != NULL) {
+		_data_->_tmp89_ = stdout;
+		_data_->_tmp90_ = _data_->response;
+		_data_->_tmp91_ = oll_mchat_ollama_chat_response_get_done_reason (_data_->_tmp90_);
+		_data_->_tmp92_ = _data_->_tmp91_;
+		fprintf (_data_->_tmp89_, "Done Reason: %s\n", _data_->_tmp92_);
+	}
+	_g_object_unref0 (_data_->response);
+	_g_object_unref0 (_data_->user_message);
+	_g_object_unref0 (_data_->chat_call);
+	_g_free0 (_data_->model_name);
+	_g_object_unref0 (_data_->first_model);
+	_g_object_unref0 (_data_->models);
+	g_task_return_pointer (_data_->_async_result, _data_, NULL);
+	if (_data_->_state_ != 0) {
+		while (!g_task_get_completed (_data_->_async_result)) {
+			g_main_context_iteration (g_task_get_context (_data_->_async_result), TRUE);
 		}
-		_g_object_unref0 (response);
 	}
-	goto __finally0;
-	__catch0_g_error:
-	{
-		GError* e = NULL;
-		FILE* _tmp29_;
-		GError* _tmp30_;
-		const gchar* _tmp31_;
-		e = _inner_error0_;
-		_inner_error0_ = NULL;
-		_tmp29_ = stderr;
-		_tmp30_ = e;
-		_tmp31_ = _tmp30_->message;
-		fprintf (_tmp29_, "Error in chat: %s\n", _tmp31_);
-		_g_error_free0 (e);
-	}
-	__finally0:
-	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-		_g_object_unref0 (client);
-		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error0_->message, g_quark_to_string (_inner_error0_->domain), _inner_error0_->code);
-		g_clear_error (&_inner_error0_);
-		return;
-	}
-	_tmp32_ = oll_mchat_main_loop;
-	g_main_loop_quit (_tmp32_);
-	_g_object_unref0 (client);
+	g_object_unref (_data_->_async_result);
+	return FALSE;
 }
 
 static const char*
@@ -762,11 +765,49 @@ _oll_mchat_on_stream_oll_mchat_ollama_stream_callback (const gchar* new_text,
 }
 
 static void
-_oll_mchat_on_ps_complete_gasync_ready_callback (GObject* source_object,
-                                                 GAsyncResult* res,
-                                                 gpointer self)
+__lambda6_ (GObject* obj,
+            GAsyncResult* res)
 {
-	oll_mchat_on_ps_complete (source_object, res);
+	GMainLoop* _tmp3_;
+	GError* _inner_error0_ = NULL;
+	g_return_if_fail (res != NULL);
+	{
+		oll_mchat_run_test_finish (res, &_inner_error0_);
+		if (G_UNLIKELY (_inner_error0_ != NULL)) {
+			goto __catch0_g_error;
+		}
+	}
+	goto __finally0;
+	__catch0_g_error:
+	{
+		GError* e = NULL;
+		FILE* _tmp0_;
+		GError* _tmp1_;
+		const gchar* _tmp2_;
+		e = _inner_error0_;
+		_inner_error0_ = NULL;
+		_tmp0_ = stderr;
+		_tmp1_ = e;
+		_tmp2_ = _tmp1_->message;
+		fprintf (_tmp0_, "Error: %s\n", _tmp2_);
+		_g_error_free0 (e);
+	}
+	__finally0:
+	if (G_UNLIKELY (_inner_error0_ != NULL)) {
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error0_->message, g_quark_to_string (_inner_error0_->domain), _inner_error0_->code);
+		g_clear_error (&_inner_error0_);
+		return;
+	}
+	_tmp3_ = oll_mchat_main_loop;
+	g_main_loop_quit (_tmp3_);
+}
+
+static void
+___lambda6__gasync_ready_callback (GObject* source_object,
+                                   GAsyncResult* res,
+                                   gpointer self)
+{
+	__lambda6_ (source_object, res);
 }
 
 static gint
@@ -781,7 +822,7 @@ oll_mchat_main (gchar** args,
 	OLLMchatOllamaClient* _tmp9_;
 	const gchar* _tmp10_;
 	GMainLoop* _tmp11_;
-	GError* _inner_error0_ = NULL;
+	GMainLoop* _tmp12_;
 	gint result;
 	g_log_set_default_handler (___lambda5__glog_func, NULL);
 	if (args_length1 > 1) {
@@ -821,43 +862,9 @@ oll_mchat_main (gchar** args,
 	_tmp11_ = g_main_loop_new (NULL, FALSE);
 	_g_main_loop_unref0 (oll_mchat_main_loop);
 	oll_mchat_main_loop = _tmp11_;
-	{
-		FILE* _tmp12_;
-		GMainLoop* _tmp13_;
-		_tmp12_ = stdout;
-		fprintf (_tmp12_, "--- Running Models (ps) ---\n");
-		oll_mchat_ollama_client_ps (client, _oll_mchat_on_ps_complete_gasync_ready_callback, NULL);
-		_tmp13_ = oll_mchat_main_loop;
-		g_main_loop_run (_tmp13_);
-	}
-	goto __finally0;
-	__catch0_g_error:
-	{
-		GError* e = NULL;
-		FILE* _tmp14_;
-		GError* _tmp15_;
-		const gchar* _tmp16_;
-		e = _inner_error0_;
-		_inner_error0_ = NULL;
-		_tmp14_ = stderr;
-		_tmp15_ = e;
-		_tmp16_ = _tmp15_->message;
-		fprintf (_tmp14_, "Error: %s\n", _tmp16_);
-		result = 1;
-		_g_error_free0 (e);
-		_g_object_unref0 (client);
-		_g_free0 (server_url);
-		return result;
-	}
-	__finally0:
-	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-		gint _tmp17_ = -1;
-		_g_object_unref0 (client);
-		_g_free0 (server_url);
-		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error0_->message, g_quark_to_string (_inner_error0_->domain), _inner_error0_->code);
-		g_clear_error (&_inner_error0_);
-		return _tmp17_;
-	}
+	oll_mchat_run_test (client, ___lambda6__gasync_ready_callback, NULL);
+	_tmp12_ = oll_mchat_main_loop;
+	g_main_loop_run (_tmp12_);
 	result = 0;
 	_g_object_unref0 (client);
 	_g_free0 (server_url);
