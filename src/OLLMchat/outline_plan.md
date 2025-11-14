@@ -30,10 +30,10 @@ src/OllChat/
 │       ├── Tool.vala          # Tool definition for function calling
 │       └── Function.vala      # Function definition within tool
 ├── UI/
-│   ├── ChatWindow.vala        # Main window class (for standalone app)
+│   ├── TestWindow.vala        # Test window class (for testing widgets, includes main)
 │   ├── ChatWidget.vala        # Reusable chat widget (extends Gtk.Box)
 │   ├── ChatView.vala          # Markdown text view for chat output
-│   └── ChatInput.vala         # Text entry with send button
+│   └── ChatInput.vala         # Multiline text input with send/stop button
 └── Utils/
     └── MarkdownProcessor.vala # Markdown rendering utilities (already exists)
 ```
@@ -466,46 +466,130 @@ namespace OLLMchat.Ollama {
 - Self-contained chat interface
 - Can be added to any GTK container
 - Exposes signals for external integration
-- Manages its own Ollama client instance
+- Accepts Ollama client instance from caller (via get/set property)
 
 **Structure**:
 ```vala
 namespace OLLMchat {
+	/**
+	 * Reusable chat widget that can be embedded anywhere in the project.
+	 * 
+	 * This widget provides a complete chat interface with markdown rendering
+	 * and streaming support. The caller should pass an Ollama.Client instance
+	 * via the client property, allowing external control and reuse of client
+	 * instances.
+	 * 
+	 * @since 1.0
+	 */
 	public class ChatWidget : Gtk.Box
 	{
 		private ChatView chat_view;
 		private ChatInput chat_input;
-		private Ollama.Client client;
+		
+		/**
+		 * The Ollama client instance used for API calls.
+		 * 
+		 * The caller should set this property with an existing client instance.
+		 * If not set, a default client will be created internally.
+		 * 
+		 * @since 1.0
+		 */
+		public Ollama.Client? client { get; set; }
 		
 		// Public signals for external use
+		/**
+		 * Emitted when a message is sent by the user.
+		 * 
+		 * @param text The message text that was sent
+		 * @since 1.0
+		 */
 		public signal void message_sent(string text);
+		
+		/**
+		 * Emitted when a response is received from the assistant.
+		 * 
+		 * @param text The complete response text
+		 * @since 1.0
+		 */
 		public signal void response_received(string text);
+		
+		/**
+		 * Emitted when an error occurs during chat operations.
+		 * 
+		 * @param error The error message
+		 * @since 1.0
+		 */
 		public signal void error_occurred(string error);
 		
 		// Public properties for configuration
+		/**
+		 * Server URL for the Ollama API.
+		 * 
+		 * Default: "http://localhost:11434/api"
+		 * 
+		 * @since 1.0
+		 */
 		public string server_url { get; set; default = "http://localhost:11434/api"; }
+		
+		/**
+		 * Optional API key for authentication.
+		 * 
+		 * @since 1.0
+		 */
 		public string? api_key { get; set; }
+		
+		/**
+		 * Model name to use for chat requests.
+		 * 
+		 * Default: "llama2"
+		 * 
+		 * @since 1.0
+		 */
 		public string model { get; set; default = "llama2"; }
 		
+		/**
+		 * Creates a new ChatWidget instance.
+		 * 
+		 * The caller should set the client property after construction
+		 * if they want to use an existing client instance.
+		 * 
+		 * @since 1.0
+		 */
 		public ChatWidget()
 		{
 			// Initialize as vertical box
 			// Create chat_view and chat_input
-			// Initialize Ollama client
+			// Create default Ollama client if not provided
 			// Connect internal signals
 		}
 		
-		// Public methods for external control
+		/**
+		 * Sends a message programmatically.
+		 * 
+		 * @param text The message text to send
+		 * @since 1.0
+		 */
 		public void send_message(string text)
 		{
 			// Send message programmatically
 		}
 		
+		/**
+		 * Clears the chat history.
+		 * 
+		 * @since 1.0
+		 */
 		public void clear_chat()
 		{
 			// Clear chat history
 		}
 		
+		/**
+		 * Changes the model used for chat requests.
+		 * 
+		 * @param model_name The name of the model to use
+		 * @since 1.0
+		 */
 		public void set_model(string model_name)
 		{
 			// Change model
@@ -516,35 +600,59 @@ namespace OLLMchat {
 
 **Usage Example**:
 ```vala
+// Create client instance
+var client = new OLLMchat.Ollama.Client();
+client.url = "http://localhost:11434/api";
+
+// Create widget and set client
 var chat_widget = new OLLMchat.ChatWidget();
+chat_widget.client = client;  // Pass client instance
 chat_widget.model = "llama2";
-chat_widget.server_url = "http://localhost:11434/api";
 some_container.append(chat_widget);
 ```
 
-### 2.2 Main Window (`UI/ChatWindow.vala`)
+### 2.2 Test Window (`UI/TestWindow.vala`)
 
 **Layout**:
 - Vertical box (`Gtk.Box`) containing:
   - Chat view area (scrollable, expandable)
-  - Input area (horizontal box with entry and send button)
+  - Input area (multiline text box)
+  - Button row (right-aligned, contains stop/send button and future features)
 
 **Key Features**:
 - Window title: "OLL Chat"
 - Resizable window
 - Proper GTK styling
 
-**Purpose**: Standalone application window (uses `ChatWidget` internally)
+**Purpose**: Test window for testing widgets (uses `ChatWidget` internally). This is not part of the eventual library - it's just a container for testing purposes.
 
 **Structure**:
 ```vala
+// Compile with: valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib --target-glib=2.70 TestWindow.vala [other files] -o test-window
+
 namespace OLLMchat {
-	public class ChatWindow : Gtk.Window
+	int main(string[] args)
+	{
+		var app = new Gtk.Application("org.roojs.roobuilder.test", ApplicationFlags.FLAGS_NONE);
+		
+		app.activate.connect(() => {
+			var window = new TestWindow();
+			app.add_window(window);
+			window.present();
+		});
+		
+		return app.run(args);
+	}
+	
+	public class TestWindow : Gtk.Window
 	{
 		private ChatWidget chat_widget;
 		
-		public ChatWindow()
+		public TestWindow()
 		{
+			this.title = "OLL Chat Test";
+			this.set_default_size(800, 600);
+			
 			// Initialize window
 			// Create and add ChatWidget
 			// Connect widget signals if needed
@@ -554,7 +662,7 @@ namespace OLLMchat {
 }
 ```
 
-**Note**: The standalone window is a simple wrapper around `ChatWidget`, making it easy to test the widget independently.
+**Note**: This test window is a simple wrapper around `ChatWidget`, making it easy to test the widget independently. It includes a `main()` function and compile instructions at the top of the file.
 
 ### 2.2 Chat View (`UI/ChatView.vala`)
 
@@ -618,31 +726,47 @@ public void finalize_assistant_message()
 ### 2.3 Chat Input (`UI/ChatInput.vala`)
 
 **Components**:
-- `Gtk.Entry` for text input
-- `Gtk.Button` labeled "Send"
+- `Gtk.TextView` with `Gtk.TextBuffer` for multiline text input
+- `Gtk.Button` that switches between "Send" and "Stop" states
 
 **Key Features**:
+- Multiline text input support
 - Clear input after sending
-- Disable send button while request is in progress
-- Handle Enter key to send (optional enhancement)
+- Button switches to "Stop" while request is in progress
+- Stop button disconnects the stream and sets it to null
+- Handle Enter key to send (Ctrl+Enter or Shift+Enter for newline)
+- Button row is right-aligned (will accommodate future features)
 
 **Layout**:
 ```vala
 public class ChatInput : Gtk.Box
 {
-	private Gtk.Entry entry;
-	private Gtk.Button send_button;
+	private Gtk.TextView text_view;
+	private Gtk.TextBuffer buffer;
+	private Gtk.Button action_button;  // "Send" or "Stop"
+	private bool is_streaming = false;
 	
 	public signal void send_clicked(string text);
+	public signal void stop_clicked();
 	
 	public ChatInput()
 	{
-		// Horizontal box with entry and button
+		// Vertical box containing:
+		//   - Text view for multiline input
+		//   - Horizontal box (right-aligned) with action button
 		// Connect button clicked signal
-		// Connect entry activate signal (Enter key)
+		// Connect text view key events (Enter to send, Ctrl+Enter for newline)
+	}
+	
+	public void set_streaming(bool streaming)
+	{
+		// Switch button between "Send" and "Stop" states
+		// Disable/enable text input as needed
 	}
 }
 ```
+
+**Note**: When sending a second chat message, the widget will use the 'reply' feature, automatically including the conversation history from previous messages.
 
 ### 2.4 Markdown Rendering (`Utils/MarkdownProcessor.vala`)
 
@@ -659,8 +783,8 @@ public class ChatInput : Gtk.Box
 
 **Flow**:
 1. User types message and clicks Send
-2. `ChatWindow.send_message()` called
-3. Create `ChatCall` with message
+2. `ChatWidget.send_message()` called (or triggered from ChatInput)
+3. Create `ChatCall` with message (includes conversation history for reply feature)
 4. Set streaming callback on client
 5. Call `client.chat()` which returns async
 6. As chunks arrive:
@@ -669,16 +793,34 @@ public class ChatInput : Gtk.Box
    - Callback invoked with new text
    - `ChatView.append_assistant_chunk()` updates UI
 7. When `done == true`, finalize message
+8. If user clicks Stop button during streaming:
+   - Disconnect the stream
+   - Set stream reference to null
+   - Switch button back to "Send" state
 
 **Streaming Callback**:
 ```vala
+private Soup.MessageBody? current_stream = null;  // Track active stream
+
 private void on_stream_chunk(string new_text, Ollama.ChatResponse response)
 {
 	chat_view.append_assistant_chunk(new_text);
 	
 	if (response.done) {
 		chat_view.finalize_assistant_message();
-		chat_input.set_enabled(true);
+		chat_input.set_streaming(false);
+		current_stream = null;
+	}
+}
+
+private void on_stop_clicked()
+{
+	if (current_stream != null) {
+		// Disconnect the stream
+		current_stream.abort();
+		current_stream = null;
+		chat_input.set_streaming(false);
+		chat_view.finalize_assistant_message();
 	}
 }
 ```
@@ -830,11 +972,12 @@ Done Reason: stop
 
 ### Step 2: Basic UI (Phase 2)
 1. Create `ChatView` with simple text display (no markdown yet)
-2. Create `ChatInput` with entry and button
+2. Create `ChatInput` with multiline text view and send/stop button
 3. Create `ChatWidget` (extends `Gtk.Box`) combining view and input
-4. Create `ChatWindow` as simple wrapper around `ChatWidget`
+4. Create `TestWindow` as simple wrapper around `ChatWidget` (includes main function)
 5. Connect UI components
 6. Test basic message sending and display
+7. Implement stop functionality (disconnect stream, set to null)
 
 ### Step 3: Streaming Integration (Phase 3)
 1. Connect streaming callback
