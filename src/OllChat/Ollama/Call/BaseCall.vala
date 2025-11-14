@@ -176,5 +176,20 @@ namespace OLLMchat.Ollama
 
 			return root;
 		}
+
+		protected Gee.ArrayList<T> parse_array<T>(Json.Array array, Type type) where T : BaseResponse
+		{
+			var items = new Gee.ArrayList<T>();
+
+			for (int i = 0; i < array.get_length(); i++) {
+				var item_obj = Json.gobject_from_data(type, array.get_element(i).print(false), -1) as T;
+				if (item_obj != null) {
+					item_obj.client = this.client;
+					items.add(item_obj);
+				}
+			}
+
+			return items;
+		}
 	}
 }
