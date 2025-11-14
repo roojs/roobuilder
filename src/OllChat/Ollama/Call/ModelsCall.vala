@@ -8,31 +8,9 @@ namespace OLLMchat.Ollama
 			this.http_method = "GET";
 		}
 
-		public override async Object? execute() throws Error
+		protected override Object? process(Json.Node root) throws Error
 		{
-			if (this.client == null) {
-				throw new Error.INVALID_ARGUMENT("Client is null");
-			}
-
-			var url = this.build_url();
-			var session = new Soup.Session();
-			var message = new Soup.Message(this.http_method, url);
-
-			if (this.client.api_key != null && this.client.api_key != "") {
-				message.request_headers.append("Authorization", @"Bearer $(this.client.api_key)");
-			}
-
-			var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
-
-			if (message.status_code != 200) {
-				throw new Error.FAILED(@"HTTP error: $(message.status_code)");
-			}
-
-			var parser = new Json.Parser();
-			parser.load_from_data((string)bytes.get_data(), -1);
-
-			var root = parser.get_root();
-			if (root == null || root.get_node_type() != Json.NodeType.OBJECT) {
+			if (root.get_node_type() != Json.NodeType.OBJECT) {
 				throw new Error.FAILED("Invalid JSON response");
 			}
 
@@ -57,4 +35,3 @@ namespace OLLMchat.Ollama
 		}
 	}
 }
-
