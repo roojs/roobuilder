@@ -35,8 +35,8 @@ namespace OLLMchat.Ollama
 				var array = new Json.Array();
 				foreach (var m in this.messages) {
 					var msg_obj = new Json.Object();
-					msg_obj.set_string_member("role", m.role);
-					msg_obj.set_string_member("content", m.content);
+					msg_obj.set_string_member("role", m.chat_role);
+					msg_obj.set_string_member("content", m.chat_content);
 					array.add_object_element(msg_obj);
 				}
 				var node = new Json.Node(Json.NodeType.ARRAY);
@@ -79,8 +79,8 @@ namespace OLLMchat.Ollama
 				var content = message_obj.has_member("content") ? message_obj.get_string_member("content") : "";
 
 				var chat_response = new ChatResponse(this.client);
-				chat_response.role = role;
-				chat_response.content = content;
+				chat_response.chat_role = role;
+				chat_response.chat_content = content;
 				this.messages.add(chat_response);
 			}
 		}

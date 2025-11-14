@@ -39,11 +39,11 @@ namespace OLLMchat.Ollama
 			}
 
 			if (message_obj.has_member("role")) {
-				this.role = message_obj.get_string_member("role");
+				this.chat_role = message_obj.get_string_member("role");
 			}
 
 			if (message_obj.has_member("content")) {
-				this.content = message_obj.get_string_member("content");
+				this.chat_content = message_obj.get_string_member("content");
 			}
 		}
 
@@ -78,7 +78,7 @@ namespace OLLMchat.Ollama
 				return "";
 			}
 
-			this.content += chunk_content;
+			this.chat_content += chunk_content;
 			return chunk_content;
 		}
 
@@ -89,7 +89,7 @@ namespace OLLMchat.Ollama
 				return "";
 			}
 
-			this.content += chunk_content;
+			this.chat_content += chunk_content;
 			return chunk_content;
 		}
 
