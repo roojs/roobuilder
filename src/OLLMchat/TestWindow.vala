@@ -26,6 +26,11 @@ namespace OLLMchat
 {
 	int main(string[] args)
 	{
+		// Set up debug handler to print all GLib.debug output to stderr
+		GLib.Log.set_default_handler((dom, lvl, msg) => {
+			stderr.printf("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
+		});
+
 		var app = new Gtk.Application("org.roojs.roobuilder.test", GLib.ApplicationFlags.DEFAULT_FLAGS);
 
 		app.activate.connect(() => {
@@ -66,9 +71,11 @@ namespace OLLMchat
 			};
 
 			// Create chat widget with client
-			this.chat_widget = new UI.ChatWidget(client);
+			this.chat_widget = new UI.ChatWidget(client) {
+				default_message = "Write a small vala program using gtk4 to show a window with a scrolled window inside is a windowlefttree and a few tree nodes - cat"
+			};
 
-			// Connect widget signals for testing (optional: print to stdout)
+		// Connect widget signals for testing (optional: print to stdout)
 			this.chat_widget.message_sent.connect((text) => {
 				stdout.printf("Message sent: %s\n", text);
 			});

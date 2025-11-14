@@ -17,7 +17,22 @@ namespace OLLMchat.UI
 		private bool is_streaming = false;
 
 		/**
-		 * Emitted when the send button is clicked or Enter is pressed.
+		* Default message text to display in the input field.
+		* 
+		* @since 1.0
+		*/
+		public string default_message
+		{
+			private get { return "";   }
+			set {
+				GLib.debug("[ChatInput] default_message setter called with '%s' (length=%d)", value, value.length);
+				this.buffer.set_text(value, -1);
+			
+			}
+		}
+
+		/**
+	 * Emitted when the send button is clicked or Enter is pressed.
 		 * 
 		 * @param text The message text to send
 		 * @since 1.0
@@ -31,26 +46,30 @@ namespace OLLMchat.UI
 		 */
 		public signal void stop_clicked();
 
-		/**
-		 * Creates a new ChatInput instance.
-		 * 
-		 * @since 1.0
-		 */
-		public ChatInput()
-		{
-			Object(orientation: Gtk.Orientation.VERTICAL, spacing: 5);
+	/**
+	 * Creates a new ChatInput instance.
+	 * 
+	 * @since 1.0
+	 */
+	public ChatInput()
+	{
+		Object(orientation: Gtk.Orientation.VERTICAL, spacing: 5);
 
-			// Create text view for multiline input
-			this.text_view = new Gtk.TextView() {
-				wrap_mode = Gtk.WrapMode.WORD,
-				margin_start = 10,
-				margin_end = 10,
-				margin_top = 5,
-				margin_bottom = 5
-			};
-			this.text_view.set_size_request(-1, 100); // Set minimum height
+		GLib.debug("[ChatInput] Constructor called, default_message='%s' (length=%d)", this.default_message, this.default_message.length);
 
-			this.buffer = this.text_view.buffer;
+		// Create buffer with default message text
+		this.buffer = new Gtk.TextBuffer(null);
+		this.buffer.set_text(this.default_message, -1);
+
+		// Create text view with buffer
+		this.text_view = new Gtk.TextView.with_buffer(this.buffer) {
+			wrap_mode = Gtk.WrapMode.WORD,
+			margin_start = 10,
+			margin_end = 10,
+			margin_top = 5,
+			margin_bottom = 5
+		};
+		this.text_view.set_size_request(-1, 100); // Set minimum height
 
 			// Create scrolled window for text view
 			var scrolled = new Gtk.ScrolledWindow() {
@@ -74,11 +93,11 @@ namespace OLLMchat.UI
 
 			this.append(button_box);
 
-			// Connect key press event for Enter key handling
-			var controller = new Gtk.EventControllerKey();
-			controller.key_pressed.connect(this.on_key_pressed);
-			this.text_view.add_controller(controller);
-		}
+		// Connect key press event for Enter key handling
+		var controller = new Gtk.EventControllerKey();
+		controller.key_pressed.connect(this.on_key_pressed);
+		this.text_view.add_controller(controller);
+	}
 
 		/**
 		 * Sets the streaming state, updating button label and input state.
@@ -100,18 +119,33 @@ namespace OLLMchat.UI
 			}
 		}
 
-		/**
-		 * Clears the input text view.
-		 * 
-		 * @since 1.0
-		 */
-		public void clear_input()
-		{
-			Gtk.TextIter start_iter, end_iter;
-			this.buffer.get_start_iter(out start_iter);
-			this.buffer.get_end_iter(out end_iter);
-			this.buffer.delete(ref start_iter, ref end_iter);
-		}
+	/**
+	 * Clears the input text view.
+	 * 
+	 * @since 1.0
+	 */
+	public void clear_input()
+	{
+		Gtk.TextIter start_iter, end_iter;
+		this.buffer.get_start_iter(out start_iter);
+		this.buffer.get_end_iter(out end_iter);
+		this.buffer.delete(ref start_iter, ref end_iter);
+	}
+
+	/**
+	 * Sets the default text in the input field.
+	 * 
+	 * @param text The default text to display
+	 * @since 1.0
+	 */
+	public void set_default_text(string text)
+	{
+		Gtk.TextIter start_iter, end_iter;
+		this.buffer.get_start_iter(out start_iter);
+		this.buffer.get_end_iter(out end_iter);
+		this.buffer.delete(ref start_iter, ref end_iter);
+		this.buffer.insert(ref start_iter, text, -1);
+	}
 
 		private void on_button_clicked()
 		{

@@ -82,10 +82,31 @@ namespace OLLMchat.Ollama
 	{
 		// Use send_async() to get InputStream for true streaming
 		// In Vala's libsoup-3.0 bindings, send_async() is already async and returns InputStream directly
-		var input_stream = yield session.send_async(message, GLib.Priority.DEFAULT, this.cancellable);
+		InputStream? input_stream = null;
+		try {
+			input_stream = yield session.send_async(message, GLib.Priority.DEFAULT, this.cancellable);
+		} catch (GLib.IOError e) {
+			if (e.code == GLib.IOError.CANCELLED) {
+				// User cancelled - this is expected, don't throw
+				return;
+			}
+			throw e;
+		}
 		
 		if (message.status_code != 200) {
-			throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
+			switch (message.status_code) {
+				case 400:
+					throw new OllamaError.FAILED("Bad request. Please check your request parameters.");
+				case 401:
+					throw new OllamaError.FAILED("Unauthorized. Please check your API key.");
+				case 404:
+					throw new OllamaError.FAILED("Endpoint not found. Please check the server URL.");
+			default:
+				if (message.status_code >= 500) {
+					throw new OllamaError.FAILED(@"Server error ($(message.status_code)). The server may be experiencing issues.");
+				}
+				throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
+			}
 		}
 		
 		if (input_stream == null) {
@@ -93,42 +114,58 @@ namespace OLLMchat.Ollama
 		}
 		
 		// Process the stream line by line as data arrives
-		yield this.process_json_streaming(input_stream, on_chunk);
+		try {
+			yield this.process_json_streaming(input_stream, on_chunk);
+		} catch (GLib.IOError e) {
+			if (e.code == GLib.IOError.CANCELLED) {
+				// User cancelled during streaming - this is expected, don't throw
+				return;
+			}
+			throw e;
+		}
 	}
 
-		private async void process_json_streaming(InputStream input_stream, StreamingChunkCallback on_chunk) throws Error
-		{
-			var line_buffer = new StringBuilder();
-			var data_input = new DataInputStream(input_stream);
+	private async void process_json_streaming(InputStream input_stream, StreamingChunkCallback on_chunk) throws Error
+	{
+		var line_buffer = new StringBuilder();
+		var data_input = new DataInputStream(input_stream);
 
-			while (true) {
-				string? line = null;
-				try {
-					line = yield data_input.read_line_async(GLib.Priority.DEFAULT, this.cancellable);
-				} catch (Error e) {
-					if (e.code == 1) {
-						break;
-					}
-					throw e;
-				}
-
-				if (line == null) {
+		while (true) {
+			string? line = null;
+			try {
+				line = yield data_input.read_line_async(GLib.Priority.DEFAULT, this.cancellable);
+			} catch (GLib.IOError e) {
+				if (e.code == GLib.IOError.CANCELLED) {
+					// User cancelled - break gracefully
 					break;
 				}
-
-				var trimmed = line.strip();
-				if (trimmed != "") {
-					this.process_json_chunk(trimmed, on_chunk);
+				// Re-throw other IO errors
+				throw e;
+			} catch (Error e) {
+				// Handle other errors (EOF, etc.)
+				if (e.code == 1) {
+					break;
 				}
+				throw e;
 			}
 
-			if (line_buffer.len > 0) {
-				var final_line = line_buffer.str.strip();
-				if (final_line != "") {
-					this.process_json_chunk(final_line, on_chunk);
-				}
+			if (line == null) {
+				break;
+			}
+
+			var trimmed = line.strip();
+			if (trimmed != "") {
+				this.process_json_chunk(trimmed, on_chunk);
 			}
 		}
+
+		if (line_buffer.len > 0) {
+			var final_line = line_buffer.str.strip();
+			if (final_line != "") {
+				this.process_json_chunk(final_line, on_chunk);
+			}
+		}
+	}
 
 		private async void process_streaming(InputStream input_stream, StreamingChunkCallback on_chunk) throws Error
 		{
@@ -156,27 +193,25 @@ namespace OLLMchat.Ollama
 
 	private void process_json_chunk(string chunk_str, StreamingChunkCallback on_chunk)
 	{
-		if (chunk_str == null || chunk_str == "") {
-			return;
-		}
-
 		var trimmed = chunk_str.strip();
 		if (trimmed == "" || !trimmed.has_suffix("}")) {
 			return;
 		}
-
 		var parser = new Json.Parser();
 		try {
 			parser.load_from_data(trimmed, -1);
 			var chunk_node = parser.get_root();
 			if (chunk_node == null || chunk_node.get_node_type() != Json.NodeType.OBJECT) {
+				GLib.debug("Skipping non-object JSON chunk: %s", trimmed.substring(0, trimmed.length > 100 ? 100 : trimmed.length));
 				return;
 			}
+ 
 
-			var chunk_obj = chunk_node.get_object();
-			on_chunk(chunk_obj);
+			on_chunk(chunk_node.get_object());
 		} catch (Error e) {
-			// Silently skip invalid JSON chunks
+			// Log JSON parsing errors
+			GLib.debug("Failed to parse JSON chunk: %s. Error: %s", trimmed.substring(0, trimmed.length > 100 ? 100 : trimmed.length), e.message);
+			// Skip invalid JSON chunks - they might be partial or malformed
 		}
 	}
 

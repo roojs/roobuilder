@@ -129,22 +129,41 @@ namespace OLLMchat.Ollama
 
 		private async ChatResponse execute_streaming() throws Error
 		{
-			 
-			var url = this.build_url();
-			var session = new Soup.Session();
-			var request_body = this.get_request_body();
-			var message = this.create_streaming_message(url, request_body);
-			 
+			// Initialize streaming_response before starting stream to ensure it's never null
+			if (this.streaming_response == null) {
+				this.streaming_response = new ChatResponse(this.client);
+				this.messages.add(this.streaming_response);
+			}
 
-			GLib.debug("Request URL: %s", url);
-			GLib.debug("Request Body: %s", request_body);
+		var url = this.build_url();
+		var session = new Soup.Session();
+		var request_body = this.get_request_body();
+		var message = this.create_streaming_message(url, request_body);
 
+		GLib.debug("Request URL: %s", url);
+		GLib.debug("Request Body: %s", request_body);
+
+		try {
 			yield this.handle_streaming_response(session, message, (chunk) => {
 				this.process_streaming_chunk(chunk);
 			});
-
-			return this.streaming_response;
+		} catch (GLib.IOError e) {
+			if (e.code == GLib.IOError.CANCELLED) {
+				// User cancelled - ensure response is marked as done
+				this.streaming_response.done = true;
+				// Return the response even if cancelled (may be partial)
+				return this.streaming_response;
+			}
+			// Re-throw other IO errors
+			throw e;
+		} catch (Error e) {
+			// Mark as done and re-throw
+			this.streaming_response.done = true;
+			throw e;
 		}
+
+		return this.streaming_response;
+	}
 
 		private Soup.Message create_streaming_message(string url, string request_body)
 		{
@@ -161,19 +180,35 @@ namespace OLLMchat.Ollama
 
 	private void process_streaming_chunk(Json.Object chunk)
 	{
+		// Ensure streaming_response exists (should be initialized in execute_streaming, but double-check)
 		if (this.streaming_response == null) {
-			this.streaming_response = new ChatResponse(this.client); 
+			this.streaming_response = new ChatResponse(this.client);
 			this.messages.add(this.streaming_response);
 		}
 
-		this.streaming_response.addChunk(chunk);
+		// Process chunk - addChunk may throw, so catch and handle errors
+		try {
+			this.streaming_response.addChunk(chunk);
+		} catch (Error e) {
+			// Log error but continue processing
+			GLib.debug("Error processing streaming chunk: %s", e.message);
+			// Mark as done on error to prevent further processing
+			this.streaming_response.done = true;
+			return;
+		}
 
 		// Call callback if there's new content (either regular content or thinking)
-		if (this.client.stream_callback != null) {
-			if (this.streaming_response.new_thinking.length > 0) {
-				this.client.stream_callback(this.streaming_response.new_thinking, true, this.streaming_response);
-			} else if (this.streaming_response.new_content.length > 0) {
-				this.client.stream_callback(this.streaming_response.new_content, false, this.streaming_response);
+		// Only call if response exists and callback is set
+		if (this.streaming_response != null && this.client != null && this.client.stream_callback != null) {
+			try {
+				if (this.streaming_response.new_thinking.length > 0) {
+					this.client.stream_callback(this.streaming_response.new_thinking, true, this.streaming_response);
+				} else if (this.streaming_response.new_content.length > 0) {
+					this.client.stream_callback(this.streaming_response.new_content, false, this.streaming_response);
+				}
+			} catch (Error e) {
+				// Log callback errors but don't stop streaming
+				GLib.debug("Error in streaming callback: %s", e.message);
 			}
 		}
 	}

@@ -14,11 +14,18 @@ namespace OLLMchat.UI
 		private ChatView chat_view;
 		private ChatInput chat_input;
 		public Ollama.Client client { get; private set; }
-		private Ollama.ChatCall? current_chat = null;
+		public Ollama.ChatCall? current_chat { get; private set; default = null; }
 		private bool is_streaming_active = false;
 
 		/**
-		 * Emitted when a message is sent by the user.
+		* Default message text to display in the input field.
+		* 
+		* @since 1.0
+		*/
+		public string default_message { get; set; default = ""; }
+
+		/**
+	 	* Emitted when a message is sent by the user.
 		 * 
 		 * @param text The message text that was sent
 		 * @since 1.0
@@ -47,28 +54,37 @@ namespace OLLMchat.UI
 		 * @param client The Ollama client instance to use for API calls
 		 * @since 1.0
 		 */
-		public ChatWidget(Ollama.Client client)
-		{
-			Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
+	public ChatWidget(Ollama.Client client)
+	{
+		Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
 
-			this.client = client;
-			this.setup_streaming_callback();
+		this.client = client;
+		this.setup_streaming_callback();
 
-			// Create chat view
-			this.chat_view = new ChatView() {
-				hexpand = true,
-				vexpand = true
-			};
-			this.append(this.chat_view);
+		// Create chat view with reference to this widget
+		this.chat_view = new ChatView(this) {
+			hexpand = true,
+			vexpand = true
+		};
+		this.append(this.chat_view);
 
-			// Create chat input
-			this.chat_input = new ChatInput() {
-				vexpand = false
-			};
-			this.chat_input.send_clicked.connect(this.on_send_clicked);
-			this.chat_input.stop_clicked.connect(this.on_stop_clicked);
-			this.append(this.chat_input);
-		}
+		// Create chat input
+		this.chat_input = new ChatInput() {
+			vexpand = false
+		};
+		this.chat_input.send_clicked.connect(this.on_send_clicked);
+		this.chat_input.stop_clicked.connect(this.on_stop_clicked);
+		this.append(this.chat_input);
+
+		// Connect to notify signal to propagate default_message when property is set
+		// messy but usefull for testing.
+		this.notify["default-message"].connect(() => {
+			GLib.debug("[ChatWidget] default_message property set to '%s' (length=%d)", this.default_message, this.default_message.length);
+			if (this.chat_input != null) {
+				this.chat_input.default_message = this.default_message;
+			}
+		});
+	}
 
 		/**
 		 * Sends a message programmatically.
@@ -96,34 +112,49 @@ namespace OLLMchat.UI
 			this.current_chat = null;
 		}
 
-		private void setup_streaming_callback()
-		{
-			this.client.stream_callback = (new_text, is_thinking, response) => {
-				// Check if streaming is still active (might have been stopped)
-				if (!this.is_streaming_active) {
-					return;
-				}
-
-				if (!response.done) {
-					if (is_thinking) {
-						// For now, we'll skip thinking output in the UI
-						// Could be displayed differently if needed
-						return;
-					}
-
-					this.chat_view.append_assistant_chunk(new_text);
-					return;
-				}
-
-				// Response is done
-				this.chat_view.finalize_assistant_message();
-				this.chat_input.set_streaming(false);
-				this.is_streaming_active = false;
-
-				// Emit response received signal
-				this.response_received(response.chat_content);
-			};
+	private void setup_streaming_callback()
+	{
+		this.client.stream_callback = (new_text, is_thinking, response) => {
+		// Check if streaming is still active (might have been stopped)
+		if (!this.is_streaming_active) {
+			return;
 		}
+
+		// Ensure response is valid
+		if (response == null) {
+			GLib.debug("Streaming callback received null response");
+			return;
+		}
+
+		try {
+			// Handle incomplete responses
+			if (!response.done) {
+			if (is_thinking) {
+				// Show thinking text in green - pass response to clear waiting indicator properly
+				this.chat_view.append_thinking(new_text, response);
+				return;
+			}
+				// Show content text - pass response as message
+				this.chat_view.append_message(new_text, response);
+				return;
+			}
+
+			// Response is done
+			this.chat_view.finalize_assistant_message();
+			this.chat_input.set_streaming(false);
+			this.is_streaming_active = false;
+
+			// Emit response received signal
+			this.response_received(response.chat_content);
+		} catch (Error e) {
+			// Handle errors in callback gracefully
+			GLib.debug("Error in streaming callback: %s", e.message);
+			// Clean up state on error
+			this.cleanup_streaming_state();
+			this.chat_view.finalize_assistant_message();
+		}
+	};
+	}
 
 		private void on_send_clicked(string text)
 		{
@@ -131,16 +162,18 @@ namespace OLLMchat.UI
 				return;
 			}
 
+			// Create chat call
+			var call = new Ollama.ChatCall(this.client);
+			call.model = this.client.model;
+			call.chat_role = "user";
+			call.chat_content = text;
+
 			// Display user message
-			this.chat_view.append_user_message(text);
+			this.chat_view.append_message(text, call);
 			this.chat_input.clear_input();
 
 			// Emit message sent signal
 			this.message_sent(text);
-
-			// Create chat call
-			var call = new Ollama.ChatCall(this.client);
-			call.model = this.client.model;
 
 			// Add conversation history from current chat (if it exists and has messages)
 			if (this.current_chat != null && this.current_chat.messages.size > 0) {
@@ -149,14 +182,16 @@ namespace OLLMchat.UI
 				}
 			}
 
-			// Add current user message
-			call.chat_role = "user";
-			call.chat_content = text;
+			// Add current user message to history
+			call.messages.add(call);
 
 			// Set streaming state
 			this.chat_input.set_streaming(true);
 			this.is_streaming_active = true;
 			this.current_chat = call;
+
+			// Show waiting indicator
+			this.chat_view.show_waiting_indicator();
 
 			// Create and set cancellable on call for stop functionality
 			call.cancellable = new GLib.Cancellable();
@@ -165,59 +200,109 @@ namespace OLLMchat.UI
 			this.send_chat_request.begin(call);
 		}
 
-		private async void send_chat_request(Ollama.ChatCall call)
-		{
-			try {
-				yield this.client.chat(call);
-				// Response is handled by streaming callback
-			} catch (Ollama.OllamaError e) {
-				string error_msg = "";
-				if (e is Ollama.OllamaError.INVALID_ARGUMENT) {
-					error_msg = @"Invalid request: $(e.message)";
-				} else if (e is Ollama.OllamaError.FAILED) {
-					error_msg = @"Request failed: $(e.message)";
-				} else {
-					error_msg = e.message;
-				}
-				this.handle_error(error_msg);
-			} catch (GLib.IOError e) {
-				string error_msg = "";
-				if (e.code == GLib.IOError.CONNECTION_REFUSED) {
-					error_msg = "Connection refused. Please ensure the Ollama server is running.";
-				} else if (e.code == GLib.IOError.TIMED_OUT) {
-					error_msg = "Request timed out. Please check your network connection.";
-				} else {
+	private async void send_chat_request(Ollama.ChatCall call)
+	{
+		try {
+			yield this.client.chat(call);
+			// Response is handled by streaming callback
+		} catch (GLib.IOError e) {
+			// Check if this was a user-initiated cancellation
+			if (e.code == GLib.IOError.CANCELLED) {
+				// User cancelled - don't show error, just clean up state
+				this.cleanup_streaming_state();
+				return;
+			}
+			// Handle other IO errors with specific messages
+			string error_msg = "";
+			switch (e.code) {
+				case GLib.IOError.CONNECTION_REFUSED:
+					error_msg = "Connection refused. Please ensure the Ollama server is running at " + this.client.url + ".";
+					break;
+				case GLib.IOError.TIMED_OUT:
+					error_msg = "Request timed out. Please check your network connection and try again.";
+					break;
+				case GLib.IOError.HOST_UNREACHABLE:
+					error_msg = "Host unreachable. Please check your network connection and server URL.";
+					break;
+				case GLib.IOError.NETWORK_UNREACHABLE:
+					error_msg = "Network unreachable. Please check your internet connection.";
+					break;
+				default:
 					error_msg = @"Network error: $(e.message)";
-				}
-				this.handle_error(error_msg);
-			} catch (GLib.Error e) {
-				this.handle_error(@"Error: $(e.message)");
+					break;
 			}
-		}
-
-		private void handle_error(string error_msg)
-		{
-			this.chat_view.append_error(error_msg);
-			this.error_occurred(error_msg);
-			this.chat_input.set_streaming(false);
-			this.is_streaming_active = false;
-			this.current_chat = null;
-		}
-
-		private void on_stop_clicked()
-		{
-			// Mark streaming as inactive to prevent callbacks from updating UI
-			this.is_streaming_active = false;
-
-			// Cancel the call's cancellable
-			if (this.current_chat != null && this.current_chat.cancellable != null) {
-				this.current_chat.cancellable.cancel();
+			this.handle_error(error_msg);
+		} catch (Ollama.OllamaError e) {
+			// Provide specific error messages for different error types
+			string error_msg = "";
+			if (e is Ollama.OllamaError.INVALID_ARGUMENT) {
+				error_msg = @"Invalid request: $(e.message). Please check your request parameters.";
+			} else if (e is Ollama.OllamaError.FAILED) {
+				error_msg = @"Request failed: $(e.message)";
+			} else {
+				error_msg = @"Error: $(e.message)";
 			}
+			this.handle_error(error_msg);
+		} catch (GLib.Error e) {
+			// Generic error handling
+			this.handle_error(@"Unexpected error: $(e.message)");
+		}
+	}
 
-			// Finalize current message
+	private void handle_error(string error_msg)
+	{
+		// Finalize any ongoing assistant message before showing error
+		if (this.is_streaming_active) {
 			this.chat_view.finalize_assistant_message();
-			this.chat_input.set_streaming(false);
 		}
+		
+		// Clear any partial response content if streaming was active
+		// This ensures we don't show incomplete responses
+		if (this.current_chat != null && this.current_chat.streaming_response != null) {
+			var response = this.current_chat.streaming_response;
+			// If response has no meaningful content, we can consider removing it
+			// But for now, we'll keep it as it may have partial content the user wants to see
+		}
+		
+		this.chat_view.append_error(error_msg);
+		this.error_occurred(error_msg);
+		this.cleanup_streaming_state();
+		
+		// Note: current_chat is preserved to maintain conversation history
+		// User can retry or continue the conversation after the error
+	}
+
+	private void cleanup_streaming_state()
+	{
+		// Reset all streaming-related state
+		this.chat_input.set_streaming(false);
+		this.is_streaming_active = false;
+		// Don't clear current_chat here - preserve conversation history even on error
+		// Only clear if explicitly requested via clear_chat()
+	}
+
+	private void on_stop_clicked()
+	{
+		// Mark streaming as inactive to prevent callbacks from updating UI
+		this.is_streaming_active = false;
+
+		// Cancel the call's cancellable
+		if (this.current_chat != null && this.current_chat.cancellable != null) {
+			try {
+				this.current_chat.cancellable.cancel();
+			} catch (Error e) {
+				// Log but don't fail if cancellation fails
+				GLib.debug("Error cancelling request: %s", e.message);
+			}
+		}
+
+		// Finalize current message
+		this.chat_view.finalize_assistant_message();
+		this.chat_input.set_streaming(false);
+		
+		// Note: We preserve current_chat to maintain conversation history
+		// The user can continue the conversation after stopping
+	}
 	}
 }
 
