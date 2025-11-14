@@ -111,14 +111,16 @@ namespace OLLMchat.UI
 			this.conversation_history = new Gee.ArrayList<Ollama.MessageInterface>();
 
 			// Create chat view
-			this.chat_view = new ChatView();
-			this.chat_view.hexpand = true;
-			this.chat_view.vexpand = true;
+			this.chat_view = new ChatView() {
+				hexpand = true,
+				vexpand = true
+			};
 			this.append(this.chat_view);
 
 			// Create chat input
-			this.chat_input = new ChatInput();
-			this.chat_input.vexpand = false;
+			this.chat_input = new ChatInput() {
+				vexpand = false
+			};
 			this.chat_input.send_clicked.connect(this.on_send_clicked);
 			this.chat_input.stop_clicked.connect(this.on_stop_clicked);
 			this.append(this.chat_input);
@@ -180,11 +182,10 @@ namespace OLLMchat.UI
 		private void ensure_client()
 		{
 			if (this._client == null) {
-				this._client = new Ollama.Client();
-				this._client.url = this.server_url;
-				if (this.api_key != null) {
-					this._client.api_key = this.api_key;
-				}
+				this._client = new Ollama.Client() {
+					url = this.server_url,
+					api_key = this.api_key
+				};
 				this.setup_streaming_callback();
 			}
 		}

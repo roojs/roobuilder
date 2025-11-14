@@ -41,28 +41,31 @@ namespace OLLMchat.UI
 			Object(orientation: Gtk.Orientation.VERTICAL, spacing: 5);
 
 			// Create text view for multiline input
-			this.text_view = new Gtk.TextView();
-			this.text_view.wrap_mode = Gtk.WrapMode.WORD;
-			this.text_view.margin_start = 10;
-			this.text_view.margin_end = 10;
-			this.text_view.margin_top = 5;
-			this.text_view.margin_bottom = 5;
+			this.text_view = new Gtk.TextView() {
+				wrap_mode = Gtk.WrapMode.WORD,
+				margin_start = 10,
+				margin_end = 10,
+				margin_top = 5,
+				margin_bottom = 5
+			};
 			this.text_view.set_size_request(-1, 100); // Set minimum height
 
 			this.buffer = this.text_view.buffer;
 
 			// Create scrolled window for text view
-			var scrolled = new Gtk.ScrolledWindow();
+			var scrolled = new Gtk.ScrolledWindow() {
+				vexpand = false
+			};
 			scrolled.set_child(this.text_view);
-			scrolled.vexpand = false;
 			scrolled.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
 			this.append(scrolled);
 
 			// Create button box (right-aligned)
-			var button_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 5);
-			button_box.set_margin_end(10);
-			button_box.set_margin_bottom(5);
-			button_box.halign = Gtk.Align.END;
+			var button_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 5) {
+				margin_end = 10,
+				margin_bottom = 5,
+				halign = Gtk.Align.END
+			};
 
 			// Create action button (Send/Stop)
 			this.action_button = new Gtk.Button.with_label("Send");
