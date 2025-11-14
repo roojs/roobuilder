@@ -1,6 +1,6 @@
 namespace OLLMchat.Ollama
 {
-	public class ChatCall : BaseCall
+	public class ChatCall : BaseCall, MessageInterface
 	{
 		public string model { get; set; default = ""; }
 		public Gee.ArrayList<Tool>? tools { get; set; }
@@ -10,7 +10,7 @@ namespace OLLMchat.Ollama
 		public bool think { get; set; default = false; }
 		public string? keep_alive { get; set; }
 
-		public Gee.ArrayList<OllamaBase> messages { get; set; }
+		public Gee.ArrayList<MessageInterface> messages { get; set; }
 		private ChatResponse? streaming_response;
 		public Json.Object? message
 		{
@@ -30,7 +30,7 @@ namespace OLLMchat.Ollama
 		{
 			this.url_endpoint = "chat";
 			this.http_method = "POST";
-			this.messages = new Gee.ArrayList<OllamaBase>();
+			this.messages = new Gee.ArrayList<MessageInterface>();
 		}
 
 		public void add_message(ChatResponse message)
@@ -81,7 +81,7 @@ namespace OLLMchat.Ollama
 			}
 
 			var messages_array = property_node.get_array();
-			this.messages = new Gee.ArrayList<OllamaBase>();
+			this.messages = new Gee.ArrayList<MessageInterface>();
 
 			for (int i = 0; i < messages_array.get_length(); i++) {
 				var message_node = messages_array.get_element(i);

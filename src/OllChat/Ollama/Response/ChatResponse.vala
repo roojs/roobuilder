@@ -1,6 +1,6 @@
 namespace OLLMchat.Ollama
 {
-	public class ChatResponse : BaseResponse
+	public class ChatResponse : BaseResponse, MessageInterface
 	{
 		public string model { get; set; default = ""; }
 		public string created_at { get; set; default = ""; }
@@ -15,16 +15,14 @@ namespace OLLMchat.Ollama
 		public int eval_count { get; set; default = 0; }
 		public int64 eval_duration { get; set; default = 0; }
 
-		public Json.Node? message
+		public Json.Object? message
 		{
 			get
 			{
-				var node = new Json.Node(Json.NodeType.OBJECT);
-				node.init_object(new Json.Object());
-				var msg_obj = node.get_object();
+				var msg_obj = new Json.Object();
 				msg_obj.set_string_member("role", this.chat_role);
 				msg_obj.set_string_member("content", this.chat_content);
-				return node;
+				return msg_obj;
 			}
 			set
 			{
