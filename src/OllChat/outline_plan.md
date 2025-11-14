@@ -694,7 +694,15 @@ private void on_stream_chunk(string new_text, Ollama.ChatResponse response)
 
 ### 4.1 Compilation Setup
 
-**Standalone Compilation**:
+**Stage 1 Test Program Compilation** (command-line, no GTK):
+```bash
+valac --pkg libsoup-3.0 --pkg json-glib \
+	--target-glib=2.70 \
+	-OllChat/TestOllama.vala OllChat/Ollama/*.vala OllChat/Ollama/**/*.vala \
+	-o test-ollama
+```
+
+**Standalone App Compilation** (with GTK UI):
 - Create simple compile script or meson build file
 - Dependencies: GTK4, libsoup, json-glib
 - Output: `ollchat` binary
@@ -703,7 +711,7 @@ private void on_stream_chunk(string new_text, Ollama.ChatResponse response)
 ```bash
 valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 	--target-glib=2.70 \
-	-OllChat/*.vala OllChat/Ollama/*.vala OllChat/Ollama/**/*.vala OllChat/UI/*.vala OllChat/Utils/*.vala \
+	-OllChat/OLLMchat.vala OllChat/Ollama/*.vala OllChat/Ollama/**/*.vala OllChat/UI/*.vala OllChat/Utils/*.vala \
 	-o ollchat
 ```
 
@@ -725,7 +733,7 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 
 ## Implementation Order
 
-### Step 1: API Client (Phase 1)
+### Step 1: API Client (Phase 1) - Reference: `Pman/Roojs/Test/Ollama.php`
 
 **Reference Implementation**: `/home/alan/gitlive/web.roojsolutions/Pman/Roojs/Test/Ollama.php`
 
