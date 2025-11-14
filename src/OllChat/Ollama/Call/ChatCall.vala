@@ -116,7 +116,6 @@ namespace OLLMchat.Ollama
 		private async Object? execute_streaming(Soup.Session session, Soup.Message message) throws Error
 		{
 			var response = new ChatResponse(this.client);
-			var buffer = new StringBuilder();
 
 			yield session.send_async(message, GLib.Priority.DEFAULT, null);
 
@@ -125,7 +124,8 @@ namespace OLLMchat.Ollama
 			}
 
 			var response_body = message.response_body;
-			var input_stream = new MemoryInputStream.from_bytes(response_body.flatten());
+			var bytes = response_body.flatten();
+			var input_stream = new MemoryInputStream.from_bytes(bytes);
 
 			var is_json_format = (this.format == "json");
 			var line_buffer = new StringBuilder();
