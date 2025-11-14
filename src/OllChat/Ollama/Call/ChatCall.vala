@@ -108,10 +108,11 @@ namespace OLLMchat.Ollama
 
 			var url = this.build_url();
 			var session = new Soup.Session();
-			var message = this.create_streaming_message(url);
+			var request_body = this.get_request_body();
+			var message = this.create_streaming_message(url, request_body);
 
 			GLib.debug("Request URL: %s", url);
-			GLib.debug("Request Body: %s", this.get_request_body());
+			GLib.debug("Request Body: %s", request_body);
 
 			var is_json_format = (this.format == "json");
 			yield this.handle_streaming_response(session, message, is_json_format, (chunk) => {
@@ -121,18 +122,13 @@ namespace OLLMchat.Ollama
 			return this.streaming_response;
 		}
 
-		private Soup.Message create_streaming_message(string url)
+		private Soup.Message create_streaming_message(string url, string request_body)
 		{
 			var message = new Soup.Message(this.http_method, url);
 
 			if (this.client.api_key != null && this.client.api_key != "") {
 				message.request_headers.append("Authorization", @"Bearer $(this.client.api_key)");
 			}
-
-			var json_node = Json.gobject_serialize(this);
-			var generator = new Json.Generator();
-			generator.set_root(json_node);
-			var request_body = generator.to_data(null);
 
 			message.set_request_body_from_bytes("application/json", new Bytes(request_body.data));
 			return message;
