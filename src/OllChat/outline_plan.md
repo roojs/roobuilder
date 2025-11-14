@@ -18,10 +18,16 @@ src/OllChat/
 │   ├── Client.vala            # Main client class (converted from Net_Ollama)
 │   ├── Call/
 │   │   ├── BaseCall.vala      # Abstract base call class
-│   │   └── ChatCall.vala      # Chat API call implementation
-│   └── Response/
-│       ├── BaseResponse.vala  # Base response class
-│       └── ChatResponse.vala   # Chat response with streaming support
+│   │   ├── ChatCall.vala      # Chat API call implementation
+│   │   ├── ModelsCall.vala    # List available models
+│   │   └── PsCall.vala        # List running models
+│   ├── Response/
+│   │   ├── BaseResponse.vala  # Base response class
+│   │   ├── ChatResponse.vala   # Chat response with streaming support
+│   │   └── Model.vala         # Model information response
+│   └── Tool/
+│       ├── Tool.vala          # Tool definition for function calling
+│       └── Function.vala      # Function definition within tool
 ├── UI/
 │   ├── ChatWindow.vala        # Main window class (for standalone app)
 │   ├── ChatWidget.vala        # Reusable chat widget (extends Gtk.Box)
@@ -65,6 +71,11 @@ namespace OLLMchat.Ollama {
 		public Gee.ArrayList<BaseCall> calls { get; set; }
 		public delegate void StreamCallback(string new_text, ChatResponse response);
 		public bool debug { get; set; }
+		
+		// API methods
+		public async ChatResponse chat(ChatCall.Params params) throws Error;
+		public async Gee.ArrayList<Model> models() throws Error;
+		public async Gee.ArrayList<Model> ps() throws Error;
 	}
 }
 ```
@@ -205,10 +216,175 @@ public string addChunk(Json.Object chunk)
 }
 ```
 
-### 1.6 Tool Classes (Optional - for future function calling)
+### 1.6 Models API Call (`Ollama/Call/ModelsCall.vala`)
+**Source**: `Net_Ollama/Call/Models.php`
+
+**Namespace**: `OLLMchat.Ollama`
+
+**Key Features**:
+- Lists all available models on the server
+- Uses GET method
+- Endpoint: `/api/tags`
+- Returns array of Model response objects
+
+**Vala Implementation**:
+- Extend `BaseCall`
+- Set `_url = "tags"` and `_method = "GET"`
+- Process response to return `Gee.ArrayList<Model>`
+
+**Properties**:
+```vala
+namespace OLLMchat.Ollama {
+	public class ModelsCall : BaseCall
+	{
+		protected string _url { get; set; default = "tags"; }
+		protected string _method { get; set; default = "GET"; }
+		
+		public Gee.ArrayList<Model> models { get; set; }
+	}
+}
+```
+
+**Client Method**:
+```vala
+public async Gee.ArrayList<Model> models() throws Error
+{
+	var call = new ModelsCall(this);
+	return call.execute();
+}
+```
+
+### 1.7 Ps API Call (`Ollama/Call/PsCall.vala`)
+**Source**: `Net_Ollama/Call/Ps.php`
+
+**Namespace**: `OLLMchat.Ollama`
+
+**Key Features**:
+- Lists currently running models
+- Uses GET method
+- Endpoint: `/api/ps`
+- Returns array of Model response objects with runtime information
+
+**Vala Implementation**:
+- Extend `BaseCall`
+- Set `_url = "ps"` and `_method = "GET"`
+- Process response to return `Gee.ArrayList<Model>` with runtime data
+
+**Properties**:
+```vala
+namespace OLLMchat.Ollama {
+	public class PsCall : BaseCall
+	{
+		protected string _url { get; set; default = "ps"; }
+		protected string _method { get; set; default = "GET"; }
+		
+		public Gee.ArrayList<Model> running_models { get; set; }
+	}
+}
+```
+
+**Client Method**:
+```vala
+public async Gee.ArrayList<Model> ps() throws Error
+{
+	var call = new PsCall(this);
+	return call.execute();
+}
+```
+
+### 1.8 Model Response (`Ollama/Response/Model.vala`)
+**Source**: `Net_Ollama/Response/Model.php`
+
+**Namespace**: `OLLMchat.Ollama`
+
+**Key Features**:
+- Model name
+- Modification timestamp
+- Model size and digest
+- Model details (format, family, parameter_size, quantization_level)
+- Runtime information (for ps endpoint): VRAM size, durations, token counts, context length, expiration
+
+**Vala Implementation**:
+- Extend `BaseResponse`
+- Implement `Json.Serializable` for serialization
+- Handle both tags and ps endpoint data
+
+**Properties**:
+```vala
+namespace OLLMchat.Ollama {
+	public class Model : BaseResponse
+	{
+		public string name { get; set; }
+		public string modified_at { get; set; }
+		public int64 size { get; set; }
+		public string digest { get; set; }
+		public Json.Object? details { get; set; }
+		
+		// Runtime information (from ps endpoint)
+		public int64 size_vram { get; set; }
+		public int64 total_duration { get; set; }
+		public int64 load_duration { get; set; }
+		public int prompt_eval_count { get; set; }
+		public int64 prompt_eval_duration { get; set; }
+		public int eval_count { get; set; }
+		public int64 eval_duration { get; set; }
+		public string? model { get; set; }  // Model identifier from ps
+		public string? expires_at { get; set; }
+		public int context_length { get; set; }
+	}
+}
+```
+
+### 1.9 Tool Classes (`Ollama/Tool.vala` and `Ollama/Tool/Function.vala`)
 **Source**: `Net_Ollama/Tool.php` and `Net_Ollama/Tool/Function.php`
 
-**Note**: Can be implemented later if function calling is needed. For initial version, focus on basic chat.
+**Namespace**: `OLLMchat.Ollama`
+
+**Key Features**:
+- Tool definition for function calling
+- Tool type (default: "function")
+- Function definition with name, description, and parameters
+
+**Vala Implementation**:
+- Implement `Json.Serializable` for serialization
+- Support function calling in chat requests
+
+**Tool Structure**:
+```vala
+namespace OLLMchat.Ollama {
+	public class Tool : Object, Json.Serializable
+	{
+		public string type { get; set; default = "function"; }
+		public ToolFunction function { get; set; }
+		
+		public Tool(ToolFunction? func = null)
+		{
+			if (func != null) {
+				this.function = func;
+			}
+		}
+	}
+}
+```
+
+**Tool.Function Structure**:
+```vala
+namespace OLLMchat.Ollama {
+	public class ToolFunction : Object, Json.Serializable
+	{
+		public string name { get; set; default = ""; }
+		public string description { get; set; default = ""; }
+		public Json.Object? parameters { get; set; }
+		
+		public ToolFunction(Json.Object? params = null)
+		{
+			this.parameters = params;
+		}
+	}
+}
+```
+
+**Note**: Tools can be added to the client's tools array and will be automatically included in chat requests. They can also be specified per-chat-call.
 
 ## Phase 2: User Interface Implementation
 
@@ -475,6 +651,9 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 - [ ] Test with multiple messages (conversation history)
 - [ ] Test error handling (server down, invalid model)
 - [ ] Test UI responsiveness during streaming
+- [ ] Test models() API to list available models
+- [ ] Test ps() API to list running models
+- [ ] Test tool/function calling (if implemented in UI)
 
 ## Implementation Order
 
@@ -483,8 +662,12 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 2. Implement `Ollama/Call/BaseCall.vala` with HTTP request handling
 3. Implement `Ollama/Call/ChatCall.vala` with message handling
 4. Implement `Ollama/Response/BaseResponse.vala` and `Ollama/Response/ChatResponse.vala`
-5. Add streaming support to `BaseCall`
-6. Test API client independently (can use simple test program)
+5. Implement `Ollama/Call/ModelsCall.vala` for listing models
+6. Implement `Ollama/Call/PsCall.vala` for listing running models
+7. Implement `Ollama/Response/Model.vala` for model information
+8. Implement `Ollama/Tool/Tool.vala` and `Ollama/Tool/Function.vala` for function calling
+9. Add streaming support to `BaseCall`
+10. Test API client independently (can use simple test program)
 
 ### Step 2: Basic UI (Phase 2)
 1. Create `ChatView` with simple text display (no markdown yet)
@@ -588,11 +771,12 @@ some_panel.append(chat);
 ## Future Enhancements (Post-MVP)
 
 1. **Full Markdown Support**: Complete markdown rendering with code highlighting
-2. **Function Calling**: Implement tool/function calling support
-3. **Model Selection**: UI to select different models (dropdown in widget)
+2. **Function Calling UI**: Implement UI for tool/function calling (tools are already supported in API)
+3. **Model Selection**: UI to select different models (dropdown in widget, populated from models() API)
 4. **Settings**: Configure server URL, API key, etc. (via properties or settings dialog)
 5. **History**: Save and load conversation history
 6. **Multiple Conversations**: Tab-based or window-based multiple chats
 7. **Syntax Highlighting**: For code blocks in markdown
 8. **Widget Customization**: Themes, font sizes, colors via properties
+9. **Model Management**: UI to view model details, sizes, and running models
 
