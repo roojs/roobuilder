@@ -268,29 +268,27 @@ some_container.append(chat_widget);
 - Resizable window
 - Proper GTK styling
 
+**Purpose**: Standalone application window (uses `ChatWidget` internally)
+
 **Structure**:
 ```vala
-public class ChatWindow : Gtk.Window
-{
-	private ChatView chat_view;
-	private ChatInput chat_input;
-	private OllamaClient client;
-	
-	public ChatWindow()
+namespace OLLMchat {
+	public class ChatWindow : Gtk.Window
 	{
-		// Initialize window
-		// Create chat_view and chat_input
-		// Connect send button to send_message()
-	}
-	
-	private void send_message(string text)
-	{
-		// Add user message to chat view
-		// Call client.chat() with streaming
-		// Update chat view as tokens arrive
+		private ChatWidget chat_widget;
+		
+		public ChatWindow()
+		{
+			// Initialize window
+			// Create and add ChatWidget
+			// Connect widget signals if needed
+			this.set_child(chat_widget);
+		}
 	}
 }
 ```
+
+**Note**: The standalone window is a simple wrapper around `ChatWidget`, making it easy to test the widget independently.
 
 ### 2.2 Chat View (`UI/ChatView.vala`)
 
@@ -439,9 +437,11 @@ private void on_stream_chunk(string new_text, ChatResponse response)
 ```bash
 valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 	--target-glib=2.70 \
-	-OllChat/*.vala OllChat/**/*.vala \
+	-OllChat/*.vala OllChat/Ollama/*.vala OllChat/Ollama/**/*.vala OllChat/UI/*.vala OllChat/Utils/*.vala \
 	-o ollchat
 ```
+
+**Note**: The widget can also be compiled as part of the main project by including the relevant files in the main project's build system.
 
 ### 4.2 Testing Checklist
 
@@ -465,11 +465,12 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 6. Test API client independently (can use simple test program)
 
 ### Step 2: Basic UI (Phase 2)
-1. Create `ChatWindow` with basic layout
+1. Create `ChatView` with simple text display (no markdown yet)
 2. Create `ChatInput` with entry and button
-3. Create `ChatView` with simple text display (no markdown yet)
-4. Connect UI components
-5. Test basic message sending and display
+3. Create `ChatWidget` (extends `Gtk.Box`) combining view and input
+4. Create `ChatWindow` as simple wrapper around `ChatWidget`
+5. Connect UI components
+6. Test basic message sending and display
 
 ### Step 3: Streaming Integration (Phase 3)
 1. Connect streaming callback
@@ -486,6 +487,13 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 2. UI improvements
 3. Full testing
 4. Documentation
+
+### Step 6: Widget Extraction (Post-MVP)
+1. Ensure `ChatWidget` is fully self-contained
+2. Test widget in different contexts (embedded in other windows)
+3. Document widget API (public properties, signals, methods)
+4. Create example usage documentation
+5. Verify widget can be used independently of standalone app
 
 ## Technical Notes
 
