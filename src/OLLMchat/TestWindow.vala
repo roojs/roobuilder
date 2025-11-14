@@ -3,26 +3,26 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib-1.0 --pkg gee-0.8 --pkg gio-2
       --target-glib=2.70 \
       --directory /tmp/vala-build \
       TestWindow.vala \
-      ChatWidget.vala \
-      ChatView.vala \
-      ChatInput.vala \
-      ../MarkdownProcessor.vala \
-      ../Ollama/OllamaBase.vala \
-      ../Ollama/MessageInterface.vala \
-      ../Ollama/Client.vala \
-      ../Ollama/Call/BaseCall.vala \
-      ../Ollama/Call/ChatCall.vala \
-      ../Ollama/Call/ModelsCall.vala \
-      ../Ollama/Call/PsCall.vala \
-      ../Ollama/Response/BaseResponse.vala \
-      ../Ollama/Response/ChatResponse.vala \
-      ../Ollama/Response/Model.vala \
-      ../Ollama/Tool/Tool.vala \
-      ../Ollama/Tool/Function.vala \
+      UI/ChatWidget.vala \
+      UI/ChatView.vala \
+      UI/ChatInput.vala \
+      MarkdownProcessor.vala \
+      Ollama/OllamaBase.vala \
+      Ollama/MessageInterface.vala \
+      Ollama/Client.vala \
+      Ollama/Call/BaseCall.vala \
+      Ollama/Call/ChatCall.vala \
+      Ollama/Call/ModelsCall.vala \
+      Ollama/Call/PsCall.vala \
+      Ollama/Response/BaseResponse.vala \
+      Ollama/Response/ChatResponse.vala \
+      Ollama/Response/Model.vala \
+      Ollama/Tool/Tool.vala \
+      Ollama/Tool/Function.vala \
       -o /tmp/test-window
 */
 
-namespace OLLMchat.UI
+namespace OLLMchat 
 {
 	int main(string[] args)
 	{
@@ -47,7 +47,7 @@ namespace OLLMchat.UI
 	 */
 	public class TestWindow : Gtk.Window
 	{
-		private ChatWidget chat_widget;
+		private UI.ChatWidget chat_widget;
 
 		/**
 		 * Creates a new TestWindow instance.
@@ -65,7 +65,7 @@ namespace OLLMchat.UI
 			};
 
 			// Create chat widget with client
-			this.chat_widget = new ChatWidget(client);
+			this.chat_widget = new UI.ChatWidget(client);
 
 			// Connect widget signals for testing (optional: print to stdout)
 			this.chat_widget.message_sent.connect((text) => {
