@@ -14,16 +14,16 @@ namespace OLLMchat.Ollama
 		public int64 prompt_eval_duration { get; set; default = 0; }
 		public int eval_count { get; set; default = 0; }
 		public int64 eval_duration { get; set; default = 0; }
+		public string new_content { get; set; default = ""; }
+		public string new_thinking { get; set; default = ""; }
 
-		public Json.Object? message
+		public Json.Object message()
 		{
-			owned get
-			{
-				var msg_obj = new Json.Object();
-				msg_obj.set_string_member("role", this.chat_role);
-				msg_obj.set_string_member("content", this.chat_content);
-				return msg_obj;
-			}
+			var msg_obj = new Json.Object();
+			msg_obj.set_string_member("role", this.chat_role);
+			msg_obj.set_string_member("content", this.chat_content);
+			return msg_obj;
+		
 		}
 
 		public ChatResponse(Client? client = null)
@@ -61,128 +61,83 @@ namespace OLLMchat.Ollama
 
 		public string addChunk(Json.Object chunk)
 		{
-			var new_text = this.extract_content(chunk);
-			this.update_metadata(chunk);
-			return new_text;
+			// Reset new content properties for this chunk
+			this.new_content = "";
+			this.new_thinking = "";
+			this.is_thinking = false;
+			// Loop through object properties and handle content extraction and metadata updates
+			chunk.foreach_member((obj, name, node) => {
+				switch (name) {
+					// Handle integer fields
+					case "total_duration":
+						this.total_duration = chunk.get_int_member("total_duration");
+						break;
+					case "load_duration":
+						this.load_duration = chunk.get_int_member("load_duration");
+						break;
+					case "prompt_eval_duration":
+						this.prompt_eval_duration = chunk.get_int_member("prompt_eval_duration");
+						break;
+					case "eval_duration":
+						this.eval_duration = chunk.get_int_member("eval_duration");
+						break;
+					case "prompt_eval_count":
+						this.prompt_eval_count = (int)chunk.get_int_member("prompt_eval_count");
+						break;
+					case "eval_count":
+						this.eval_count = (int)chunk.get_int_member("eval_count");
+						break;
+					// Handle boolean fields
+					case "done":
+						this.done = chunk.get_boolean_member("done");
+						break;
+					// Handle object fields
+					case "message":
+						this.add_message_chunk(chunk.get_object_member("message"));
+						break;
+					// Handle string fields
+					case "done_reason":
+						this.done_reason = chunk.get_string_member("done_reason");
+						break;
+					case "model":
+						this.model = chunk.get_string_member("model");
+						break;
+					case "created_at":
+						this.created_at = chunk.get_string_member("created_at");
+						break;
+					default:
+						break;
+				}
+			});
+			
+			// Return the content that was extracted (either regular content or thinking)
+			return this.new_thinking.length > 0 ? this.new_thinking : this.new_content;
 		}
 
-		private string extract_content(Json.Object chunk)
+		private void add_message_chunk(Json.Object  message_obj)
 		{
-			if (chunk.has_member("message")) {
-				return this.extract_content_from_message(chunk.get_object_member("message"));
-			}
-
-			if (chunk.has_member("content")) {
-				return this.extract_content_direct(chunk);
-			}
-
-			return "";
-		}
-
-		private string extract_content_from_message(Json.Object? message_obj)
-		{
-			if (message_obj == null || !message_obj.has_member("content")) {
-				return "";
-			}
-
-			var chunk_content = message_obj.get_string_member("content");
-			if (chunk_content == null) {
-				return "";
-			}
-
-			this.chat_content += chunk_content;
-			return chunk_content;
-		}
-
-		private string extract_content_direct(Json.Object chunk)
-		{
-			var chunk_content = chunk.get_string_member("content");
-			if (chunk_content == null) {
-				return "";
-			}
-
-			this.chat_content += chunk_content;
-			return chunk_content;
-		}
-
-		private void update_metadata(Json.Object chunk)
-		{
-			this.update_thinking(chunk);
-			this.update_done_status(chunk);
-			this.update_model_info(chunk);
-			this.update_timestamps(chunk);
-			this.update_durations(chunk);
-			this.update_token_counts(chunk);
-		}
-
-		private void update_thinking(Json.Object chunk)
-		{
-			if (!chunk.has_member("thinking")) {
-				return;
-			}
-
-			var thinking_content = chunk.get_string_member("thinking");
-			if (thinking_content == null) {
-				return;
-			}
-
-			this.thinking += thinking_content;
-			this.is_thinking = true;
-		}
-
-		private void update_done_status(Json.Object chunk)
-		{
-			if (chunk.has_member("done")) {
-				this.done = chunk.get_boolean_member("done");
-			}
-
-			if (chunk.has_member("done_reason")) {
-				this.done_reason = chunk.get_string_member("done_reason");
-			}
-		}
-
-		private void update_model_info(Json.Object chunk)
-		{
-			if (chunk.has_member("model")) {
-				this.model = chunk.get_string_member("model");
-			}
-		}
-
-		private void update_timestamps(Json.Object chunk)
-		{
-			if (chunk.has_member("created_at")) {
-				this.created_at = chunk.get_string_member("created_at");
-			}
-		}
-
-		private void update_durations(Json.Object chunk)
-		{
-			if (chunk.has_member("total_duration")) {
-				this.total_duration = chunk.get_int_member("total_duration");
-			}
-
-			if (chunk.has_member("load_duration")) {
-				this.load_duration = chunk.get_int_member("load_duration");
-			}
-
-			if (chunk.has_member("prompt_eval_duration")) {
-				this.prompt_eval_duration = chunk.get_int_member("prompt_eval_duration");
-			}
-
-			if (chunk.has_member("eval_duration")) {
-				this.eval_duration = chunk.get_int_member("eval_duration");
-			}
-		}
-
-		private void update_token_counts(Json.Object chunk)
-		{
-			if (chunk.has_member("prompt_eval_count")) {
-				this.prompt_eval_count = (int)chunk.get_int_member("prompt_eval_count");
-			}
-
-			if (chunk.has_member("eval_count")) {
-				this.eval_count = (int)chunk.get_int_member("eval_count");
-			}
+		 
+			
+			message_obj.foreach_member((obj, name, node) => {
+				switch (name) {
+					case "role":
+						this.chat_role = message_obj.get_string_member("role");
+						break;
+					case "content":
+						this.new_content= message_obj.get_string_member("content");
+						this.chat_content += this.new_content;
+						 
+						break;
+					case "thinking":
+						this.new_thinking   = message_obj.get_string_member("thinking");
+						this.thinking += this.new_thinking ;
+						this.is_thinking = true;
+						 
+						break;
+					default:
+						break;
+				}
+			});
 		}
 	}
 }
