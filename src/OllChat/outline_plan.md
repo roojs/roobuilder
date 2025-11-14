@@ -139,7 +139,7 @@ namespace OLLMchat.Ollama {
 
 **Key Features**:
 - Model name (required)
-- Messages array (chat history)
+- Messages array (chat history - contains ChatResponse objects, not separate Message objects)
 - Tools array (optional)
 - Stream flag (auto-enabled if callback set)
 - Format option (JSON schema)
@@ -742,7 +742,7 @@ valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib \
 - **No underscore prefixes needed**: Unlike PHP version, we use normal property names and exclude via `serialize_property()` returning `null`
 - Use `Json.gobject_serialize()` and `Json.gobject_from_data()` for conversion
 
-**Example**:
+**Example - Excluding Properties**:
 ```vala
 public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
 {
@@ -754,6 +754,28 @@ public Json.Node? serialize_property(string property_name, Value value, ParamSpe
 		default:
 			return default_serialize_property(property_name, value, pspec);
 	}
+}
+```
+
+**Example - Converting ChatResponse to Message Format (ChatCall)**:
+```vala
+public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+{
+	if (property_name == "messages") {
+		// Convert ChatResponse objects to API message format
+		var array = new Json.Array();
+		var messages_list = (Gee.ArrayList<ChatResponse>)value;
+		foreach (var response in messages_list) {
+			var msg_obj = new Json.Object();
+			msg_obj.set_string_member("role", response.role);
+			msg_obj.set_string_member("content", response.content);
+			array.add_object_element(msg_obj);
+		}
+		var node = new Json.Node(Json.NodeType.ARRAY);
+		node.set_array(array);
+		return node;
+	}
+	return default_serialize_property(property_name, value, pspec);
 }
 ```
 
