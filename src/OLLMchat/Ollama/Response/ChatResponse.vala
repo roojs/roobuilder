@@ -24,9 +24,6 @@ namespace OLLMchat.Ollama
 				msg_obj.set_string_member("content", this.chat_content);
 				return msg_obj;
 			}
-			set
-			{
-			}
 		}
 
 		public ChatResponse(Client? client = null)

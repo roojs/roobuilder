@@ -20,7 +20,6 @@ namespace OLLMchat.Ollama
 				msg_obj.set_string_member("content", this.chat_content);
 				return msg_obj;
 			}
-			set {}
 		}
 
 		public ChatCall(Client client)
@@ -35,7 +34,7 @@ namespace OLLMchat.Ollama
 			this.messages.add(message);
 		}
 
-		public override Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public override Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			if (property_name == "message") {
 				return null;

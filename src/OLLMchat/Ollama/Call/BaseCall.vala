@@ -171,7 +171,7 @@ namespace OLLMchat.Ollama
 
 			var root = parser.get_root();
 			if (root == null) {
-				throw new Error.FAILED("Invalid JSON response");
+				throw new OllamaError.FAILED("Invalid JSON response");
 			}
 
 			return root;
