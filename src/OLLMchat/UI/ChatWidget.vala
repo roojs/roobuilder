@@ -15,7 +15,6 @@ namespace OLLMchat.UI
 		private ChatInput chat_input;
 		public Ollama.Client client { get; private set; }
 		private Ollama.ChatCall? current_call = null;
-		private Ollama.ChatCall? last_completed_call = null;
 		private Cancellable? current_cancellable = null;
 		private bool is_streaming_active = false;
 
@@ -95,7 +94,7 @@ namespace OLLMchat.UI
 		public void clear_chat()
 		{
 			this.chat_view.clear();
-			this.last_completed_call = null;
+			this.current_call = null;
 		}
 
 		private void setup_streaming_callback()
@@ -106,25 +105,25 @@ namespace OLLMchat.UI
 					return;
 				}
 
-				if (is_thinking) {
-					// For now, we'll skip thinking output in the UI
-					// Could be displayed differently if needed
+				if (!response.done) {
+					if (is_thinking) {
+						// For now, we'll skip thinking output in the UI
+						// Could be displayed differently if needed
+						return;
+					}
+
+					this.chat_view.append_assistant_chunk(new_text);
 					return;
 				}
 
-				this.chat_view.append_assistant_chunk(new_text);
+				// Response is done
+				this.chat_view.finalize_assistant_message();
+				this.chat_input.set_streaming(false);
+				this.is_streaming_active = false;
+				this.current_cancellable = null;
 
-				if (response.done) {
-					this.chat_view.finalize_assistant_message();
-					this.chat_input.set_streaming(false);
-					this.is_streaming_active = false;
-					this.last_completed_call = this.current_call;
-					this.current_call = null;
-					this.current_cancellable = null;
-
-					// Emit response received signal
-					this.response_received(response.chat_content);
-				}
+				// Emit response received signal
+				this.response_received(response.chat_content);
 			};
 		}
 
@@ -144,9 +143,9 @@ namespace OLLMchat.UI
 			// Create chat call
 			var call = new Ollama.ChatCall(this.client);
 
-			// Add conversation history from last completed call
-			if (this.last_completed_call != null) {
-				foreach (var msg in this.last_completed_call.messages) {
+			// Add conversation history from current call (if it exists and has messages)
+			if (this.current_call != null && this.current_call.messages.size > 0) {
+				foreach (var msg in this.current_call.messages) {
 					call.messages.add(msg);
 				}
 			}
