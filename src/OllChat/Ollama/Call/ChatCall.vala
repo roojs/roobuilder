@@ -10,7 +10,7 @@ namespace OLLMchat.Ollama
 		public bool think { get; set; default = false; }
 		public string? keep_alive { get; set; }
 
-		public Gee.ArrayList<MessageInterface> messages { get; set; }
+		public Gee.ArrayList<MessageInterface> messages { get; set; default = new Gee.ArrayList<MessageInterface>(); }
 		private ChatResponse? streaming_response;
 		public Json.Object? message
 		{
@@ -30,7 +30,6 @@ namespace OLLMchat.Ollama
 		{
 			this.url_endpoint = "chat";
 			this.http_method = "POST";
-			this.messages = new Gee.ArrayList<MessageInterface>();
 		}
 
 		public void add_message(ChatResponse message)
