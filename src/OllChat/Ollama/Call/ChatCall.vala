@@ -12,16 +12,14 @@ namespace OLLMchat.Ollama
 
 		public Gee.ArrayList<OllamaBase> messages { get; set; }
 		private ChatResponse? streaming_response;
-		public Json.Node? message
+		public Json.Object? message
 		{
 			get
 			{
 				var msg_obj = new Json.Object();
 				msg_obj.set_string_member("role", this.chat_role);
 				msg_obj.set_string_member("content", this.chat_content);
-				var node = new Json.Node(Json.NodeType.OBJECT);
-				node.set_object(msg_obj);
-				return node;
+				return msg_obj;
 			}
 			set
 			{
