@@ -15,7 +15,6 @@ namespace OLLMchat.UI
 		private ChatInput chat_input;
 		public Ollama.Client client { get; private set; }
 		private Ollama.ChatCall? current_chat = null;
-		private Cancellable? current_cancellable = null;
 		private bool is_streaming_active = false;
 
 		/**
@@ -120,7 +119,6 @@ namespace OLLMchat.UI
 				this.chat_view.finalize_assistant_message();
 				this.chat_input.set_streaming(false);
 				this.is_streaming_active = false;
-				this.current_cancellable = null;
 
 				// Emit response received signal
 				this.response_received(response.chat_content);
@@ -159,8 +157,8 @@ namespace OLLMchat.UI
 			this.is_streaming_active = true;
 			this.current_chat = call;
 
-			// Create cancellable for stop functionality
-			this.current_cancellable = new Cancellable();
+			// Create and set cancellable on call for stop functionality
+			call.cancellable = new Cancellable();
 
 			// Send chat request asynchronously
 			this.send_chat_request.begin(call);
@@ -185,7 +183,6 @@ namespace OLLMchat.UI
 				this.chat_input.set_streaming(false);
 				this.is_streaming_active = false;
 				this.current_chat = null;
-				this.current_cancellable = null;
 			} catch (IOError e) {
 				string error_msg = "";
 				if (e.code == IOError.CONNECTION_REFUSED) {
@@ -200,7 +197,6 @@ namespace OLLMchat.UI
 				this.chat_input.set_streaming(false);
 				this.is_streaming_active = false;
 				this.current_chat = null;
-				this.current_cancellable = null;
 			} catch (Error e) {
 				string error_msg = @"Error: $(e.message)";
 				this.chat_view.append_error(error_msg);
@@ -208,7 +204,6 @@ namespace OLLMchat.UI
 				this.chat_input.set_streaming(false);
 				this.is_streaming_active = false;
 				this.current_chat = null;
-				this.current_cancellable = null;
 			}
 		}
 
@@ -217,16 +212,14 @@ namespace OLLMchat.UI
 			// Mark streaming as inactive to prevent callbacks from updating UI
 			this.is_streaming_active = false;
 
-			if (this.current_cancellable != null) {
-				this.current_cancellable.cancel();
+			// Cancel the call's cancellable
+			if (this.current_chat != null && this.current_chat.cancellable != null) {
+				this.current_chat.cancellable.cancel();
 			}
 
 			// Finalize current message
 			this.chat_view.finalize_assistant_message();
 			this.chat_input.set_streaming(false);
-
-			// Clear cancellable (keep current_chat for conversation history)
-			this.current_cancellable = null;
 		}
 	}
 }

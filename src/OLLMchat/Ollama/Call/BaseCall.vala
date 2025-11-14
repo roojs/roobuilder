@@ -4,6 +4,7 @@ namespace OLLMchat.Ollama
 	{
 		protected string url_endpoint;
 		protected string http_method = "POST";
+		public Cancellable? cancellable { get; set; default = null; }
 
 		protected BaseCall(Client client) 
 		{
@@ -81,7 +82,7 @@ namespace OLLMchat.Ollama
 	{
 		// Use send_async() to get InputStream for true streaming
 		// In Vala's libsoup-3.0 bindings, send_async() is already async and returns InputStream directly
-		var input_stream = yield session.send_async(message, GLib.Priority.DEFAULT, null);
+		var input_stream = yield session.send_async(message, GLib.Priority.DEFAULT, this.cancellable);
 		
 		if (message.status_code != 200) {
 			throw new OllamaError.FAILED(@"HTTP error: $(message.status_code)");
@@ -103,7 +104,7 @@ namespace OLLMchat.Ollama
 			while (true) {
 				string? line = null;
 				try {
-					line = yield data_input.read_line_async(GLib.Priority.DEFAULT, null);
+					line = yield data_input.read_line_async(GLib.Priority.DEFAULT, this.cancellable);
 				} catch (Error e) {
 					if (e.code == 1) {
 						break;
