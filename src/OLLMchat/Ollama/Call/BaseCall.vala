@@ -59,6 +59,15 @@ namespace OLLMchat.Ollama
 			return generator.to_data(null);
 		}
 
+		public override Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
+		{
+			if (property_name == "chat_role" || property_name == "chat_content" || property_name == "client") {
+				var node = new Json.Node(Json.NodeType.NULL);
+				return node;
+			}
+			return base.serialize_property(property_name, value, pspec);
+		}
+
 		private void set_request_body(Soup.Message message)
 		{
 			var request_body = this.get_request_body();
