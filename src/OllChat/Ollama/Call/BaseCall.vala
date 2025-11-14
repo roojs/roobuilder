@@ -145,6 +145,10 @@ namespace OLLMchat.Ollama
 
 		private void process_json_chunk(string chunk_str, StreamingChunkCallback on_chunk)
 		{
+			if (!chunk_str.has_suffix("}")) {
+				return;
+			}
+
 			var parser = new Json.Parser();
 			try {
 				parser.load_from_data(chunk_str, -1);
