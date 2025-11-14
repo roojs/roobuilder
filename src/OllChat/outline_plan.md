@@ -192,43 +192,12 @@ public Json.Array messages
 ```
 
 **Serialization Note**:
-- The internal `messages` field contains `ChatResponse` objects (not a get/set property, so not automatically serialized)
-- The `messages_serialized` property is a "fake" get/set property that will be serialized
-- In `serialize_property()`, when `messages_serialized` is accessed, generate it from the internal `messages` field by converting `ChatResponse` objects to the API message format: `{role: "...", content: "..."}`
+- The internal `_messages` field contains `ChatResponse` objects (not a get/set property, so not automatically serialized)
+- The `messages` property is a "fake" get/set property that will be serialized
+- The getter converts `ChatResponse` objects from `_messages` to the API message format: `{role: "...", content: "..."}`
 - The API expects messages as: `[{role: "user", content: "..."}, {role: "assistant", content: "..."}]`
 - No separate `Message` class needed - ChatResponse already has the flattened role and content
-
-**Serialization Implementation**:
-```vala
-public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
-{
-	if (property_name == "messages_serialized") {
-		// Convert internal messages field (ChatResponse objects) to API format
-		var array = new Json.Array();
-		foreach (var response in this.messages) {
-			var msg_obj = new Json.Object();
-			msg_obj.set_string_member("role", response.role);
-			msg_obj.set_string_member("content", response.content);
-			array.add_object_element(msg_obj);
-		}
-		var node = new Json.Node(Json.NodeType.ARRAY);
-		node.set_array(array);
-		return node;
-	}
-	// For API, rename messages_serialized to "messages"
-	if (property_name == "messages_serialized") {
-		// This will be handled above, but we need to rename it
-		// Actually, we should check if Json.Serializable supports renaming
-		// If not, we might need to use a different approach
-	}
-	return default_serialize_property(property_name, value, pspec);
-}
-```
-
-**Alternative Approach** (if property renaming isn't supported):
-- Use a property named `messages` (get/set) that returns a Json.Array
-- In the getter, convert from internal `messages` field (ChatResponse objects) to Json.Array format
-- Setter can be empty or convert back to ChatResponse objects
+- The property name `messages` matches what the API expects, so no renaming is needed
 
 ### 1.4 Base Response Class (`Ollama/Response/BaseResponse.vala`)
 **Source**: `Net_Ollama/Response.php`
