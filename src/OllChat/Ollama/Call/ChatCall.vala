@@ -16,13 +16,9 @@ namespace OLLMchat.Ollama
 		{
 			get
 			{
-				if (this.messages.size == 0) {
-					return null;
-				}
-				var m = this.messages.get(0);
 				var msg_obj = new Json.Object();
-				msg_obj.set_string_member("role", m.chat_role);
-				msg_obj.set_string_member("content", m.chat_content);
+				msg_obj.set_string_member("role", this.chat_role);
+				msg_obj.set_string_member("content", this.chat_content);
 				var node = new Json.Node(Json.NodeType.OBJECT);
 				node.set_object(msg_obj);
 				return node;
