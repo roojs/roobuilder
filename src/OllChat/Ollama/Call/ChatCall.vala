@@ -49,7 +49,12 @@ namespace OLLMchat.Ollama
 				node.init_array(new Json.Array());
 				var array = node.get_array();
 				foreach (var m in this.messages) {
-					array.add_element(msg_node);
+					var msg_obj = m.message;
+					if (msg_obj != null) {
+						var msg_node = new Json.Node(Json.NodeType.OBJECT);
+						msg_node.set_object(msg_obj);
+						array.add_element(msg_node);
+					}
 				}
 				return node;
 			}
