@@ -15,6 +15,22 @@ namespace OLLMchat.Ollama
 		public int eval_count { get; set; default = 0; }
 		public int64 eval_duration { get; set; default = 0; }
 
+		public Json.Node? message
+		{
+			get
+			{
+				var msg_obj = new Json.Object();
+				msg_obj.set_string_member("role", this.chat_role);
+				msg_obj.set_string_member("content", this.chat_content);
+				var node = new Json.Node(Json.NodeType.OBJECT);
+				node.set_object(msg_obj);
+				return node;
+			}
+			set
+			{
+			}
+		}
+
 		public ChatResponse(Client? client = null) : base(client)
 		{
 		}
