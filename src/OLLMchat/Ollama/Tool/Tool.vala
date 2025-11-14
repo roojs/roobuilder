@@ -29,7 +29,7 @@ namespace OLLMchat.Ollama
 			return val;
 		}
 
-		public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			return default_serialize_property(property_name, value, pspec);
 		}

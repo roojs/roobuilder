@@ -17,7 +17,7 @@ namespace OLLMchat.Ollama
 
 		public Json.Object? message
 		{
-			get
+			owned get
 			{
 				var msg_obj = new Json.Object();
 				msg_obj.set_string_member("role", this.chat_role);

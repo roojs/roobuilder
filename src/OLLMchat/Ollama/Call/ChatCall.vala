@@ -13,7 +13,7 @@ namespace OLLMchat.Ollama
 		public Gee.ArrayList<MessageInterface> messages { get; set; default = new Gee.ArrayList<MessageInterface>(); }
 		private ChatResponse? streaming_response;
 		public Json.Object? message {
-			get
+			owned get
 			{
 				var msg_obj = new Json.Object();
 				msg_obj.set_string_member("role", this.chat_role);
