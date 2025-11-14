@@ -217,8 +217,8 @@ public string? keep_alive { get; set; }
 ```vala
 public string model { get; set; }
 public string created_at { get; set; }
-public string role { get; set; }
-public string content { get; set; default = ""; }
+public string role { get; set; }  // Flattened from message.role
+public string content { get; set; default = ""; }  // Flattened from message.content
 public string thinking { get; set; default = ""; }
 public bool is_thinking { get; set; }
 public bool done { get; set; }
@@ -230,6 +230,11 @@ public int64 prompt_eval_duration { get; set; }
 public int eval_count { get; set; }
 public int64 eval_duration { get; set; }
 ```
+
+**Deserialization**:
+- When receiving API response, extract `role` and `content` from the `message` object in JSON
+- Set them directly as properties on ChatResponse (flattened structure)
+- Example: If API returns `{message: {role: "assistant", content: "..."}}`, extract to `this.role = "assistant"` and `this.content = "..."`
 
 **Key Method**:
 ```vala
