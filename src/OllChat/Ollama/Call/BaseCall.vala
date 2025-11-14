@@ -88,7 +88,9 @@ namespace OLLMchat.Ollama
 			return bytes;
 		}
 
-		protected async void handle_streaming_response(Soup.Session session, Soup.Message message, bool is_json_format, void on_chunk(Json.Object chunk)) throws Error
+		protected delegate void StreamingChunkCallback(Json.Object chunk);
+
+		protected async void handle_streaming_response(Soup.Session session, Soup.Message message, bool is_json_format, StreamingChunkCallback on_chunk) throws Error
 		{
 			yield session.send_async(message, GLib.Priority.DEFAULT, null);
 
