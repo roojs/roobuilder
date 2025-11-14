@@ -11,6 +11,7 @@ namespace OLLMchat.Ollama
 		public string? keep_alive { get; set; }
 
 		protected Gee.ArrayList<ChatResponse> _messages;
+		private ChatResponse? streaming_response;
 
 		public ChatCall(Client client) : base(client)
 		{
@@ -44,10 +45,6 @@ namespace OLLMchat.Ollama
 
 		public override async Object? execute() throws Error
 		{
-			if (this.client == null) {
-				throw new Error.INVALID_ARGUMENT("Client is null");
-			}
-
 			if (this.model == "") {
 				throw new Error.INVALID_ARGUMENT("Model is required");
 			}
@@ -65,165 +62,54 @@ namespace OLLMchat.Ollama
 				}
 			}
 
-			var url = this.build_url();
-			var session = new Soup.Session();
-			var message = new Soup.Message(this.http_method, url);
-
-			if (this.client.api_key != null && this.client.api_key != "") {
-				message.request_headers.append("Authorization", @"Bearer $(this.client.api_key)");
-			}
-
-			var json_node = Json.gobject_serialize(this);
-			var generator = new Json.Generator();
-			generator.set_root(json_node);
-			var request_body = generator.to_data(null);
-
-			message.set_request_body_from_bytes("application/json", new Bytes(request_body.data));
-
-			if (this.client.debug) {
-				stdout.printf("Request URL: %s\n", url);
-				stdout.printf("Request Body: %s\n", request_body);
-			}
-
 			if (this.stream) {
-				return yield this.execute_streaming(session, message);
-			} else {
-				var bytes = yield session.send_and_read_async(message, GLib.Priority.DEFAULT, null);
+				this.streaming_response = new ChatResponse(this.client);
+			}
 
-				if (message.status_code != 200) {
-					throw new Error.FAILED(@"HTTP error: $(message.status_code)");
-				}
+			return yield base.execute();
+		}
 
-				var parser = new Json.Parser();
-				parser.load_from_data((string)bytes.get_data(), -1);
+		protected override bool should_stream()
+		{
+			return this.stream;
+		}
 
-				var root = parser.get_root();
-				if (root == null || root.get_node_type() != Json.NodeType.OBJECT) {
-					throw new Error.FAILED("Invalid JSON response");
-				}
+		protected override bool is_json_format()
+		{
+			return (this.format == "json");
+		}
 
-				var root_obj = root.get_object();
-				var response_obj = Json.gobject_from_data(typeof(ChatResponse), root.print(false), -1) as ChatResponse;
-				if (response_obj != null) {
-					response_obj.client = this.client;
-					return response_obj;
-				}
+		protected override void process_streaming_chunk(Json.Object chunk)
+		{
+			if (this.streaming_response == null) {
+				return;
+			}
 
-				throw new Error.FAILED("Failed to parse response");
+			var new_text = this.streaming_response.addChunk(chunk);
+
+			if (this.client.stream_callback != null) {
+				this.client.stream_callback(new_text, this.streaming_response);
 			}
 		}
 
-		private async Object? execute_streaming(Soup.Session session, Soup.Message message) throws Error
+		protected override Object? get_streaming_result()
 		{
-			var response = new ChatResponse(this.client);
+			return this.streaming_response;
+		}
 
-			yield session.send_async(message, GLib.Priority.DEFAULT, null);
-
-			if (message.status_code != 200) {
-				throw new Error.FAILED(@"HTTP error: $(message.status_code)");
+		protected override Object? process(Json.Node root) throws Error
+		{
+			if (root.get_node_type() != Json.NodeType.OBJECT) {
+				throw new Error.FAILED("Invalid JSON response");
 			}
 
-			var response_body = message.response_body;
-			var bytes = response_body.flatten();
-			var input_stream = new MemoryInputStream.from_bytes(bytes);
-
-			var is_json_format = (this.format == "json");
-			var line_buffer = new StringBuilder();
-
-			while (true) {
-				uint8[] chunk = new uint8[4096];
-				ssize_t bytes_read = yield input_stream.read_async(chunk, GLib.Priority.DEFAULT, null);
-
-				if (bytes_read <= 0) {
-					break;
-				}
-
-				var chunk_str = (string)chunk[0:bytes_read];
-				buffer.append(chunk_str);
-
-				if (is_json_format) {
-					line_buffer.append(chunk_str);
-					var lines = line_buffer.str.split("\n");
-					line_buffer.erase(0, -1);
-
-					for (int i = 0; i < lines.length - 1; i++) {
-						var line = lines[i].strip();
-						if (line == "") {
-							continue;
-						}
-
-						var parser = new Json.Parser();
-						try {
-							parser.load_from_data(line, -1);
-							var chunk_node = parser.get_root();
-							if (chunk_node != null && chunk_node.get_node_type() == Json.NodeType.OBJECT) {
-								var chunk_obj = chunk_node.get_object();
-								var new_text = response.addChunk(chunk_obj);
-
-								if (this.client.stream_callback != null) {
-									this.client.stream_callback(new_text, response);
-								}
-
-								if (response.done) {
-									return response;
-								}
-							}
-						} catch (Error e) {
-							if (this.client.debug) {
-								stdout.printf("Error parsing JSON chunk: %s\n", e.message);
-							}
-						}
-					}
-
-					if (lines.length > 0) {
-						line_buffer.append(lines[lines.length - 1]);
-					}
-				} else {
-					var parser = new Json.Parser();
-					try {
-						parser.load_from_data(chunk_str, -1);
-						var chunk_node = parser.get_root();
-						if (chunk_node != null && chunk_node.get_node_type() == Json.NodeType.OBJECT) {
-							var chunk_obj = chunk_node.get_object();
-							var new_text = response.addChunk(chunk_obj);
-
-							if (this.client.stream_callback != null) {
-								this.client.stream_callback(new_text, response);
-							}
-
-							if (response.done) {
-								return response;
-							}
-						}
-					} catch (Error e) {
-						if (this.client.debug) {
-							stdout.printf("Error parsing JSON chunk: %s\n", e.message);
-						}
-					}
-				}
+			var response_obj = Json.gobject_from_data(typeof(ChatResponse), root.print(false), -1) as ChatResponse;
+			if (response_obj != null) {
+				response_obj.client = this.client;
+				return response_obj;
 			}
 
-			if (is_json_format && line_buffer.len > 0) {
-				var line = line_buffer.str.strip();
-				if (line != "") {
-					var parser = new Json.Parser();
-					try {
-						parser.load_from_data(line, -1);
-						var chunk_node = parser.get_root();
-						if (chunk_node != null && chunk_node.get_node_type() == Json.NodeType.OBJECT) {
-							var chunk_obj = chunk_node.get_object();
-							response.addChunk(chunk_obj);
-						}
-					} catch (Error e) {
-						if (this.client.debug) {
-							stdout.printf("Error parsing final JSON chunk: %s\n", e.message);
-						}
-					}
-				}
-			}
-
-			return response;
+			throw new Error.FAILED("Failed to parse response");
 		}
 	}
 }
-
