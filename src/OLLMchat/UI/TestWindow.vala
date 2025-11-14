@@ -1,5 +1,5 @@
 /* Compilation:
-valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib --pkg gee-0.8 --pkg gio-2.0 \
+valac --pkg gtk4 --pkg libsoup-3.0 --pkg json-glib-1.0 --pkg gee-0.8 --pkg gio-2.0 \
       --target-glib=2.70 \
       --directory /tmp/vala-build \
       TestWindow.vala \
