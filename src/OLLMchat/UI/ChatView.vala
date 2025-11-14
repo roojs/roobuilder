@@ -100,41 +100,38 @@ namespace OLLMchat.UI
 				last_double_break += 2; // Skip the \n\n
 			}
 
-			// Extract current chunk (from last \n\n to end)
-			string current_chunk = this.raw_content.substring(last_double_break);
-			string previous_chunks = this.raw_content.substring(0, last_double_break);
-
-			// Render previous chunks if needed (only on first chunk or when we hit a \n\n)
+			// If we've hit a new \n\n, render everything up to that point
 			if (last_double_break > this.last_chunk_start) {
-				// We've completed a chunk, render everything up to now
-				string to_render = this.raw_content.substring(0, last_double_break);
-				string rendered = MarkdownProcessor.get_default().markup_string(to_render);
+				// Render completed chunks (from last_chunk_start to last_double_break)
+				string completed_chunks = this.raw_content.substring(this.last_chunk_start, last_double_break - this.last_chunk_start);
+				string rendered_completed = MarkdownProcessor.get_default().markup_string(completed_chunks);
 
-				// Replace from start of assistant message to last chunk mark
-				Gtk.TextIter start_iter;
+				// Insert rendered completed chunks
+				Gtk.TextIter insert_pos;
 				if (this.last_chunk_mark != null) {
-					this.buffer.get_iter_at_mark(out start_iter, this.last_chunk_mark);
+					this.buffer.get_iter_at_mark(out insert_pos, this.last_chunk_mark);
 				} else {
-					this.buffer.get_end_iter(out start_iter);
+					this.buffer.get_end_iter(out insert_pos);
 				}
 
-				Gtk.TextIter end_iter;
-				this.buffer.get_end_iter(out end_iter);
-
-				// Delete old content and insert rendered
-				this.buffer.delete(ref start_iter, ref end_iter);
-				this.buffer.insert_markup(ref start_iter, rendered, -1);
+				this.buffer.insert_markup(ref insert_pos, rendered_completed, -1);
 
 				// Update mark position
-				this.buffer.get_end_iter(out end_iter);
-				this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+				this.buffer.get_end_iter(out insert_pos);
+				if (this.last_chunk_mark != null) {
+					this.buffer.move_mark(this.last_chunk_mark, insert_pos);
+				} else {
+					this.last_chunk_mark = this.buffer.create_mark(null, insert_pos, true);
+				}
+
 				this.last_chunk_start = last_double_break;
 			}
 
-			// Render current chunk
+			// Render current chunk (from last \n\n to end)
+			string current_chunk = this.raw_content.substring(last_double_break);
 			string rendered_chunk = MarkdownProcessor.get_default().markup_string(current_chunk);
 
-			// Insert/update current chunk
+			// Replace current chunk in buffer
 			Gtk.TextIter chunk_start;
 			if (this.last_chunk_mark != null) {
 				this.buffer.get_iter_at_mark(out chunk_start, this.last_chunk_mark);
