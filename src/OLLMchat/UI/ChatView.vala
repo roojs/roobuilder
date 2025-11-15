@@ -83,7 +83,7 @@ namespace OLLMchat.UI
 			// Add user message with simple formatting
 			Gtk.TextIter end_iter;
 			this.buffer.get_end_iter(out end_iter);
-			this.buffer.insert_markup(ref end_iter, "<b>You:</b> ", -1);
+			this.buffer.insert_markup(ref end_iter, "<b>You:</b>\n", -1);
 			this.buffer.get_end_iter(out end_iter);
 			this.buffer.insert(ref end_iter, text, -1);
 			this.buffer.get_end_iter(out end_iter);
@@ -115,8 +115,28 @@ namespace OLLMchat.UI
 				this.clear_waiting_indicator(response);
 			}
 
+			// Initialize assistant message if needed
+			if (!this.is_assistant_message) {
+				this.is_assistant_message = true;
+				this.raw_content = "";
+				this.last_chunk_start = 0;
+				this.is_current_chunk_thinking = response.is_thinking;
+
+				Gtk.TextIter end_iter;
+				this.buffer.get_end_iter(out end_iter);
+				this.buffer.insert_markup(ref end_iter, "<b>Assistant:</b>\n", -1);
+				this.buffer.get_end_iter(out end_iter);
+				this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+				this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+			}
+
 			// Check if chunk type changed (thinking vs content)
 			if (response.is_thinking != this.is_current_chunk_thinking) {
+				// Chunk type changed - insert extra newline before starting new chunk type
+				Gtk.TextIter end_iter;
+				this.buffer.get_end_iter(out end_iter);
+				this.buffer.insert(ref end_iter, "\n\n", -1);
+				
 				// Chunk type changed - reset to start new chunk type
 				this.last_chunk_start = this.raw_content.length;
 				this.is_current_chunk_thinking = response.is_thinking;
@@ -163,9 +183,11 @@ namespace OLLMchat.UI
 				this.buffer.get_end_iter(out chunk_end);
 				this.buffer.delete(ref insert_pos, ref chunk_end);
 
-				// Insert rendered completed chunks with appropriate color
+				// Insert rendered completed chunks with appropriate color and italic for thinking
 				string color = this.is_current_chunk_thinking ? "green" : "blue";
-				this.buffer.insert_markup(ref insert_pos, @"<span color=\"$(color)\">$(rendered_completed)</span>", -1);
+				string italic_tag = this.is_current_chunk_thinking ? "<i>" : "";
+				string italic_close_tag = this.is_current_chunk_thinking ? "</i>" : "";
+				this.buffer.insert_markup(ref insert_pos, @"<span color=\"$(color)\">$(italic_tag)$(rendered_completed)$(italic_close_tag)</span>", -1);
 
 				// Update mark position to end of completed chunks
 				this.buffer.get_end_iter(out insert_pos);
@@ -208,11 +230,13 @@ namespace OLLMchat.UI
 			Gtk.TextIter chunk_end;
 			this.buffer.get_end_iter(out chunk_end);
 
-			// Delete old current chunk and insert new plain text chunk with appropriate color
+			// Delete old current chunk and insert new plain text chunk with appropriate color and italic for thinking
 			this.buffer.delete(ref chunk_start, ref chunk_end);
 			string escaped_chunk = GLib.Markup.escape_text(current_chunk);
 			string color = this.is_current_chunk_thinking ? "green" : "blue";
-			this.buffer.insert_markup(ref chunk_start, @"<span color=\"$(color)\">$(escaped_chunk)</span>", -1);
+			string italic_tag = this.is_current_chunk_thinking ? "<i>" : "";
+			string italic_close_tag = this.is_current_chunk_thinking ? "</i>" : "";
+			this.buffer.insert_markup(ref chunk_start, @"<span color=\"$(color)\">$(italic_tag)$(escaped_chunk)$(italic_close_tag)</span>", -1);
 
 			// Update last_chunk_mark to end of inserted current chunk for next iteration
 			this.buffer.get_end_iter(out chunk_end);
@@ -255,7 +279,9 @@ namespace OLLMchat.UI
 
 				this.buffer.delete(ref start_iter, ref end_iter);
 				string color = this.is_current_chunk_thinking ? "green" : "blue";
-				this.buffer.insert_markup(ref start_iter, @"<span color=\"$(color)\">$(rendered)</span>", -1);
+				string italic_tag = this.is_current_chunk_thinking ? "<i>" : "";
+				string italic_close_tag = this.is_current_chunk_thinking ? "</i>" : "";
+				this.buffer.insert_markup(ref start_iter, @"<span color=\"$(color)\">$(italic_tag)$(rendered)$(italic_close_tag)</span>", -1);
 			}
 
 			// Add final newline
@@ -339,17 +365,17 @@ namespace OLLMchat.UI
 
 				Gtk.TextIter end_iter;
 				this.buffer.get_end_iter(out end_iter);
-				this.buffer.insert_markup(ref end_iter, "<b>Assistant:</b> ", -1);
+				this.buffer.insert_markup(ref end_iter, "<b>Assistant:</b>\n", -1);
 				this.buffer.get_end_iter(out end_iter);
 				this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
 				this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
 			}
 
-			// Append thinking text in green
+			// Append thinking text in green with italic formatting
 			Gtk.TextIter end_iter;
 			this.buffer.get_end_iter(out end_iter);
 			string escaped_text = GLib.Markup.escape_text(text);
-			this.buffer.insert_markup(ref end_iter, @"<span color=\"green\">$(escaped_text)</span>", -1);
+			this.buffer.insert_markup(ref end_iter, @"<span color=\"green\"><i>$(escaped_text)</i></span>", -1);
 			this.buffer.get_end_iter(out end_iter);
 			if (this.last_chunk_mark != null) {
 				this.buffer.move_mark(this.last_chunk_mark, end_iter);
@@ -392,7 +418,7 @@ namespace OLLMchat.UI
 			Gtk.TextIter end_iter;
 			this.buffer.get_end_iter(out end_iter);
 			int before_insert = end_iter.get_offset();
-			this.buffer.insert_markup(ref end_iter, "<b>Assistant:</b> ", -1);
+			this.buffer.insert_markup(ref end_iter, "<b>Assistant:</b>\n", -1);
 			this.buffer.get_end_iter(out end_iter);
 			int after_label = end_iter.get_offset();
 			this.waiting_mark = this.buffer.create_mark(null, end_iter, true);

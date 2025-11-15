@@ -65,18 +65,23 @@ namespace OLLMchat
 			this.set_default_size(800, 600);
 
 			// Read configuration from ~/.local/roobuilder/ollama.json
-			var home_dir = GLib.Environment.get_home_dir();
-			var config_path = Path.build_filename(home_dir, ".local", "roobuilder", "ollama.json");
-			
-			var client = new Ollama.Client();
-			
+			// Example file content:
+			/* 
+{
+	"url": "http://192.168.88.14:11434/api",
+	"model": "MichelRosselli/GLM-4.5-Air:Q4_K_M",
+	"api_key": "your-api-key-here"
+}
+			 */
 			var parser = new Json.Parser();
-			parser.load_from_file(config_path);
-			var root = parser.get_root();
-			var obj = root.get_object();
-			client.url = obj.get_string_member("url");
-			client.model = obj.get_string_member("model");
-			client.api_key = obj.get_string_member("api_key");
+			parser.load_from_file(Path.build_filename(
+				GLib.Environment.get_home_dir(), ".local", "share", "roobuilder", "ollama.json"));
+			var obj = parser.get_root().get_object();
+			var client = new Ollama.Client() {
+				url = obj.get_string_member("url"),
+				model = obj.get_string_member("model"),
+				api_key = obj.get_string_member("api_key")
+			};
 
 			// Create chat widget with client
 			this.chat_widget = new UI.ChatWidget(client) {
