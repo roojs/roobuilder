@@ -32,6 +32,7 @@ namespace OLLMchat.UI
 		private GtkSource.View? current_source_view = null;
 		private GtkSource.Buffer? current_source_buffer = null;
 		private Gtk.TextChildAnchor? code_block_anchor = null;
+		private Gtk.TextMark? code_block_end_mark = null;
 
 		/**
 		 * Creates a new ChatView instance.
@@ -456,6 +457,10 @@ namespace OLLMchat.UI
 			this.current_source_view = null;
 			this.current_source_buffer = null;
 			this.code_block_anchor = null;
+			if (this.code_block_end_mark != null) {
+				this.buffer.delete_mark(this.code_block_end_mark);
+				this.code_block_end_mark = null;
+			}
 			this.clear_waiting_indicator();
 		}
 
@@ -740,17 +745,21 @@ namespace OLLMchat.UI
 			source_view.set_buffer(source_buffer);
 			
 			// Connect to buffer changes to ensure TextView scrolls correctly
-			// When SourceView content changes, scroll it to bottom first, then scroll TextView
+			// When SourceView content changes, scroll TextView to show the bottom of the SourceView
 			source_buffer.changed.connect(() => {
 				// Use Idle to scroll after layout is updated
 				GLib.Idle.add(() => {
-					// First, scroll SourceView to bottom to ensure it shows latest content
-					Gtk.TextIter source_end;
-					source_buffer.get_end_iter(out source_end);
-					source_view.scroll_to_iter(source_end, 0.0, false, 0.0, 1.0);
-					
-					// Then scroll TextView to bottom to show the bottom of SourceView
-					this.scroll_to_bottom();
+					// Scroll to the end mark which is positioned right after the SourceView widget
+					// This ensures we show the bottom of the SourceView as it grows
+					if (this.code_block_end_mark != null) {
+						Gtk.TextIter mark_iter;
+						this.buffer.get_iter_at_mark(out mark_iter, this.code_block_end_mark);
+						// Scroll with vertical alignment at bottom (1.0) to show bottom of SourceView
+						this.text_view.scroll_to_iter(mark_iter, 0.0, false, 0.0, 1.0);
+					} else {
+						// Fallback: scroll to bottom
+						this.scroll_to_bottom();
+					}
 					return false;
 				});
 			});
@@ -795,6 +804,14 @@ namespace OLLMchat.UI
 			// Create child anchor and insert Frame (containing SourceView)
 			this.code_block_anchor = this.buffer.create_child_anchor(insert_pos);
 			this.text_view.add_child_at_anchor(frame, this.code_block_anchor);
+			
+			// Insert a placeholder line after the anchor to mark the end of the code block
+			// This helps with scrolling - we can scroll to this mark instead of end of buffer
+			Gtk.TextIter after_anchor;
+			this.buffer.get_iter_at_child_anchor(out after_anchor, this.code_block_anchor);
+			after_anchor.forward_char(); // Move past the anchor
+			this.buffer.insert(ref after_anchor, "\n", -1);
+			this.code_block_end_mark = this.buffer.create_mark(null, after_anchor, true);
 
 			// Get TextView width and account for margins to set SourceView width
 			var text_view_width = this.text_view.get_width();
@@ -833,8 +850,14 @@ namespace OLLMchat.UI
 		private void close_code_block()
 		{
 			// Update marks to point after the code block
+			// Use code_block_end_mark if available, otherwise use end of buffer
 			Gtk.TextIter end_iter;
-			this.buffer.get_end_iter(out end_iter);
+			if (this.code_block_end_mark != null) {
+				this.buffer.get_iter_at_mark(out end_iter, this.code_block_end_mark);
+			} else {
+				this.buffer.get_end_iter(out end_iter);
+			}
+			
 			if (this.current_chunk_mark != null) {
 				this.buffer.move_mark(this.current_chunk_mark, end_iter);
 			} else {
@@ -844,6 +867,12 @@ namespace OLLMchat.UI
 				this.buffer.move_mark(this.last_chunk_mark, end_iter);
 			} else {
 				this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+			}
+
+			// Clean up code block marks
+			if (this.code_block_end_mark != null) {
+				this.buffer.delete_mark(this.code_block_end_mark);
+				this.code_block_end_mark = null;
 			}
 
 			// SourceView widget will remain in TextView, just stop writing to it
