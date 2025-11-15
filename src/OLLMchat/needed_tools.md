@@ -204,40 +204,238 @@ Each tool section includes:
 
 ---
 
+## Architecture
+
+### Tool Class Structure
+
+Each tool will be implemented as a separate class in the `OLLMchat/Tools` directory. All tools will inherit from a base interface/class that provides:
+
+1. **`name`**: Returns the tool name (e.g., "read_file", "edit_file")
+2. **`description`**: Returns a detailed description of what the tool does
+3. **`parameters`**: Returns a string containing parameter documentation in a standardized format
+4. **`execute`**: Executes the tool's functionality and returns results
+
+### Base Interface/Class
+
+The base class (`OLLMchat.Tools.BaseTool` or `OLLMchat.Tools.ToolInterface`) will:
+
+- Define abstract methods for `name()`, `description()`, `parameters()`, and `execute()`
+- Provide a method to convert the tool metadata into a JSON tool description compatible with Ollama's function calling API
+- Parse the `parameters()` string format and convert it to JSON schema format
+
+### Parameter Documentation Format
+
+Parameters will be documented using a standardized string format inspired by JSDoc/Valadoc:
+
+```
+@param parameter_name {type} [required|optional] Parameter description here
+```
+
+**Format Details**:
+- `parameter_name`: The name of the parameter (used as the key in JSON schema)
+- `{type}`: The parameter type (e.g., `string`, `integer`, `boolean`, `array`, `object`)
+- `[required]` or `[optional]`: Indicates if the parameter is required or optional
+- Description: A clear description of what the parameter does
+
+**Examples**:
+```
+@param file_path {string} [required] The path to the file to read
+@param start_line {integer} [optional] The starting line number to read from
+@param end_line {integer} [optional] The ending line number to read to
+@param read_entire_file {boolean} [optional] Whether to read the entire file
+```
+
+**Note**: This format is similar to Valadoc's `@param` syntax but includes explicit type information and required/optional indicators needed for JSON schema generation. Valadoc typically infers types from method signatures, but for tool definitions we need explicit type information. The parameter name is included to match JSON schema property names.
+
+### Base Class Implementation
+
+The base class will parse the `parameters()` string and convert it to a JSON schema object:
+
+```vala
+namespace OLLMchat.Tools
+{
+	/**
+	 * Base interface for all tools that can be used with Ollama function calling.
+	 * 
+	 * Each tool implementation should provide:
+	 * - A unique name
+	 * - A detailed description
+	 * - Parameter documentation in the standardized format
+	 * - An execute method that performs the tool's function
+	 */
+	public abstract class BaseTool : Object
+	{
+		/**
+		 * Returns the tool name (e.g., "read_file", "edit_file")
+		 */
+		public abstract string name { get; }
+		
+		/**
+		 * Returns a detailed description of what the tool does
+		 */
+		public abstract string description { get; }
+		
+		/**
+		 * Returns parameter documentation in the standardized format:
+		 * "@param parameter_name {type} [required|optional] Description"
+		 */
+		public abstract string parameters { get; }
+		
+		/**
+		 * Executes the tool with the given parameters.
+		 * 
+		 * @param params JSON object containing the tool parameters
+		 * @return JSON object containing the tool execution results
+		 */
+		public abstract Json.Object execute(Json.Object params) throws Error;
+		
+		/**
+		 * Converts this tool's metadata into an Ollama ToolFunction definition.
+		 * 
+		 * This method parses the parameters() string and converts it to JSON schema format.
+		 */
+		public Ollama.ToolFunction to_tool_function()
+		{
+			var func = new Ollama.ToolFunction();
+			func.name = this.name;
+			func.description = this.description;
+			func.parameters = this.parse_parameters_to_json_schema();
+			return func;
+		}
+		
+		/**
+		 * Parses the parameters() string and converts it to JSON schema format.
+		 * 
+		 * Parses lines like:
+		 * "@param file_path {string} [required] The path to the file"
+		 * 
+		 * Into JSON schema:
+		 * {
+		 *   "type": "object",
+		 *   "properties": {
+		 *     "file_path": {
+		 *       "type": "string",
+		 *       "description": "The path to the file"
+		 *     }
+		 *   },
+		 *   "required": ["file_path"]
+		 * }
+		 * 
+		 * The parser will:
+		 * - Extract parameter names from each @param line
+		 * - Extract type information and convert to JSON schema types (string -> "string", integer -> "integer", etc.)
+		 * - Determine required vs optional parameters
+		 * - Build the properties object with type and description for each parameter
+		 * - Build the required array containing names of required parameters
+		 */
+		protected Json.Object parse_parameters_to_json_schema()
+		{
+			// Implementation will parse the @param format and build JSON schema
+			// This will handle:
+			// - Extracting parameter names from "@param name {type} [required|optional] Description"
+			// - Converting type strings to JSON schema types
+			// - Building the properties object
+			// - Building the required array
+		}
+	}
+}
+```
+
+### Tool Implementation Example
+
+Each tool will be a separate class that extends `BaseTool`:
+
+```vala
+namespace OLLMchat.Tools
+{
+	/**
+	 * Tool for reading file contents.
+	 */
+	public class ReadFileTool : BaseTool
+	{
+		public override string name { get { return "read_file"; } }
+		
+		public override string description { get {
+			return """Read the contents of a file (and the outline).
+
+When using this tool to gather information, it's your responsibility to ensure you have the COMPLETE context. Each time you call this command you should:
+1) Assess if contents viewed are sufficient to proceed with the task.
+2) Take note of lines not shown.
+3) If file contents viewed are insufficient, and you suspect they may be in lines not shown, proactively call the tool again to view those lines.
+4) When in doubt, call this tool again to gather more information. Partial file views may miss critical dependencies, imports, or functionality.
+
+If reading a range of lines is not enough, you may choose to read the entire file.
+Reading entire files is often wasteful and slow, especially for large files (i.e. more than a few hundred lines). So you should use this option sparingly.
+Reading the entire file is not allowed in most cases. You are only allowed to read the entire file if it has been edited or manually attached to the conversation by the user.""";
+		} }
+		
+		public override string parameters { get {
+			return """@param file_path {string} [required] The path to the file to read
+@param start_line {integer} [optional] The starting line number to read from
+@param end_line {integer} [optional] The ending line number to read to
+@param read_entire_file {boolean} [optional] Whether to read the entire file. Only allowed if the file has been edited or manually attached to the conversation by the user.""";
+		} }
+		
+		public override Json.Object execute(Json.Object params) throws Error
+		{
+			// Implementation: Read file and return results
+			// Extract parameters from params JSON object
+			// Perform file reading operation
+			// Return results as JSON object
+		}
+	}
+}
+```
+
+### Tool Registration
+
+Tools can be registered with the Ollama client:
+
+```vala
+// Create tool instances
+var read_file_tool = new OLLMchat.Tools.ReadFileTool();
+var edit_file_tool = new OLLMchat.Tools.EditFileTool();
+
+// Convert to Ollama ToolFunction and add to client
+var tool1 = new OLLMchat.Ollama.Tool();
+tool1.function = read_file_tool.to_tool_function();
+client.tools.add(tool1);
+
+var tool2 = new OLLMchat.Ollama.Tool();
+tool2.function = edit_file_tool.to_tool_function();
+client.tools.add(tool2);
+```
+
 ## Implementation Considerations
 
 ### Tool Integration with Ollama
 
 These tools are designed to be used with Ollama's function calling capabilities. Each tool should:
 
-1. **Be defined as an Ollama Tool**: Use the `OLLMchat.Ollama.Tool` and `OLLMchat.Ollama.ToolFunction` classes to create tool definitions
-2. **Follow JSON Schema**: The parameters should match the JSON schema definitions above
-3. **Return Structured Results**: Tool execution results should be formatted appropriately for the LLM to understand
-4. **Handle Errors**: Tools should return error information in a structured format
+1. **Extend BaseTool**: Implement the base interface with name, description, parameters, and execute methods
+2. **Follow Parameter Format**: Use the standardized `@param {type} [required|optional] Description` format
+3. **Return Structured Results**: Tool execution results should be formatted as JSON objects
+4. **Handle Errors**: Tools should throw errors or return error information in a structured format
 
 ### Tool Execution Flow
 
-1. **Tool Definition**: Create tool definitions using `Tool` and `ToolFunction` classes
-2. **Tool Registration**: Add tools to `Client.tools` array or pass to specific `ChatCall`
-3. **Function Calling**: When Ollama requests a tool call, execute the appropriate tool
-4. **Result Formatting**: Format tool results and send back to Ollama as a function result message
+1. **Tool Definition**: Create tool classes extending `BaseTool`
+2. **Tool Registration**: Convert tools to `Ollama.ToolFunction` using `to_tool_function()` and add to `Client.tools` array
+3. **Function Calling**: When Ollama requests a tool call, find the appropriate tool by name and call `execute()`
+4. **Result Formatting**: Format tool results as JSON and send back to Ollama as a function result message
 5. **Response Handling**: Ollama will process the tool results and continue the conversation
 
-### Example Tool Definition
+### Directory Structure
 
-```vala
-// Example: Define the read_file tool
-var read_file_tool = new OLLMchat.Ollama.Tool();
-var read_file_func = new OLLMchat.Ollama.ToolFunction();
-
-read_file_func.name = "read_file";
-read_file_func.description = "Read the contents of a file (and the outline)...";
-read_file_func.parameters = /* JSON schema object */;
-
-read_file_tool.function = read_file_func;
-
-// Add to client
-client.tools.add(read_file_tool);
+```
+src/OLLMchat/
+├── Tools/
+│   ├── BaseTool.vala           # Base interface/class for all tools
+│   ├── ReadFileTool.vala       # Read file tool implementation
+│   ├── EditFileTool.vala       # Edit file tool implementation
+│   ├── RunTerminalCommandTool.vala  # Terminal command tool
+│   ├── CodebaseSearchTool.vala # Codebase search tool
+│   └── WebSearchTool.vala      # Web search tool
 ```
 
 ### Priority Order
