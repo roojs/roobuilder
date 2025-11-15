@@ -25,6 +25,13 @@ namespace OLLMchat.UI
 		private Gtk.TextMark? waiting_mark = null;
 		private uint waiting_timer = 0;
 		private int waiting_dots = 0;
+		private bool in_code_block = false;
+		private bool pending_code_block_open = false;
+		private string pending_language_text = "";
+		private string? code_block_language = null;
+		private GtkSource.View? current_source_view = null;
+		private GtkSource.Buffer? current_source_buffer = null;
+		private Gtk.TextChildAnchor? code_block_anchor = null;
 
 		/**
 		 * Creates a new ChatView instance.
@@ -107,7 +114,7 @@ namespace OLLMchat.UI
 			// Cast to ChatResponse - chunks always come from ChatResponse
 			var response = (Ollama.ChatResponse) message;
 
-			GLib.debug("[ChatView] append_assistant_chunk: new_text='%s' (length=%d), is_waiting=%s, is_thinking=%s", new_text, new_text.length, this.is_waiting.to_string(), response.is_thinking.to_string());
+			GLib.debug("[ChatView] append_assistant_chunk: new_text='%s' (length=%d), is_waiting=%s, is_thinking=%s, in_code_block=%s", new_text, new_text.length, this.is_waiting.to_string(), response.is_thinking.to_string(), this.in_code_block.to_string());
 
 			// If we were waiting, clear waiting indicator (which will reset state)
 			if (this.is_waiting) {
@@ -130,6 +137,113 @@ namespace OLLMchat.UI
 				this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
 			}
 
+			// Check for code block markers in new_text
+			string remaining_text = new_text;
+			
+			// If we're pending a code block open, accumulate text until we see a newline
+			if (this.pending_code_block_open) {
+				int newline_pos = remaining_text.index_of("\n");
+				if (newline_pos != -1) {
+					// Found newline - extract language and open code block
+					this.pending_language_text += remaining_text.substring(0, newline_pos);
+					string lang_part = this.pending_language_text.strip();
+					
+					this.code_block_language = lang_part;
+					this.in_code_block = true;
+					this.pending_code_block_open = false;
+					this.pending_language_text = "";
+					this.open_code_block(lang_part);
+					
+					// Continue processing from after the newline
+					remaining_text = remaining_text.substring(newline_pos + 1);
+				} else {
+					// No newline yet - accumulate text and wait
+					this.pending_language_text += remaining_text;
+					remaining_text = "";
+				}
+			}
+			
+			while (remaining_text.length > 0) {
+				int marker_pos = remaining_text.index_of("```");
+				if (marker_pos == -1) {
+					// No more markers, process remaining text
+					if (this.in_code_block && this.current_source_buffer != null) {
+						// Append to SourceView buffer
+						Gtk.TextIter end_iter;
+						this.current_source_buffer.get_end_iter(out end_iter);
+						this.current_source_buffer.insert(ref end_iter, remaining_text, -1);
+						// Scroll TextView to bottom after adding content to SourceView
+						this.scroll_to_bottom();
+					} else {
+						// Process normally through existing logic
+						this.process_text_chunk(remaining_text, response);
+					}
+					break;
+				}
+
+				// Process text before marker
+				if (marker_pos > 0) {
+					string before_marker = remaining_text.substring(0, marker_pos);
+					if (this.in_code_block && this.current_source_buffer != null) {
+						// Append to SourceView buffer
+						Gtk.TextIter end_iter;
+						this.current_source_buffer.get_end_iter(out end_iter);
+						this.current_source_buffer.insert(ref end_iter, before_marker, -1);
+						// Scroll TextView to bottom after adding content to SourceView
+						this.scroll_to_bottom();
+					} else {
+						// Process normally
+						this.process_text_chunk(before_marker, response);
+					}
+				}
+
+				// Handle marker
+				if (!this.in_code_block && !this.pending_code_block_open) {
+					// Opening marker - check if we have a newline in this chunk
+					int lang_start = marker_pos + 3;
+					int lang_end = remaining_text.index_of("\n", lang_start);
+					if (lang_end != -1) {
+						// Newline found - extract language immediately
+						string lang_part = remaining_text.substring(lang_start, lang_end - lang_start).strip();
+						
+						this.code_block_language = lang_part;
+						this.in_code_block = true;
+						this.open_code_block(lang_part);
+						
+						// Update remaining_text to skip marker, language, and newline
+						remaining_text = remaining_text.substring(lang_end + 1);
+					} else {
+						// No newline yet - mark as pending and accumulate language text
+						this.pending_code_block_open = true;
+						this.pending_language_text = remaining_text.substring(lang_start);
+						remaining_text = "";
+					}
+				} else {
+					// Closing marker
+					this.in_code_block = false;
+					this.pending_code_block_open = false;
+					this.pending_language_text = "";
+					this.close_code_block();
+					this.code_block_language = null;
+					
+					// Update remaining_text to skip closing marker
+					if (marker_pos + 3 < remaining_text.length) {
+						remaining_text = remaining_text.substring(marker_pos + 3);
+					} else {
+						remaining_text = "";
+					}
+				}
+			}
+
+			this.scroll_to_bottom();
+		}
+
+		/**
+		 * Processes a text chunk through the normal markdown rendering pipeline.
+		 * This is the original append_assistant_chunk logic extracted for reuse.
+		 */
+		private void process_text_chunk(string new_text, Ollama.ChatResponse response)
+		{
 			// Check if chunk type changed (thinking vs content)
 			if (response.is_thinking != this.is_current_chunk_thinking) {
 				// Chunk type changed - insert extra newline before starting new chunk type
@@ -245,8 +359,6 @@ namespace OLLMchat.UI
 			} else {
 				this.last_chunk_mark = this.buffer.create_mark(null, chunk_end, true);
 			}
-
-			this.scroll_to_bottom();
 		}
 
 		/**
@@ -260,6 +372,23 @@ namespace OLLMchat.UI
 		{
 			if (!this.is_assistant_message) {
 				return;
+			}
+
+			// If we're pending a code block open, open it now (language might be empty)
+			if (this.pending_code_block_open) {
+				string lang_part = this.pending_language_text.strip();
+				this.code_block_language = lang_part;
+				this.in_code_block = true;
+				this.pending_code_block_open = false;
+				this.pending_language_text = "";
+				this.open_code_block(lang_part);
+			}
+
+			// If we're still in a code block, close it
+			if (this.in_code_block) {
+				this.in_code_block = false;
+				this.close_code_block();
+				this.code_block_language = null;
 			}
 
 			// Render any remaining content
@@ -295,6 +424,11 @@ namespace OLLMchat.UI
 			this.last_chunk_start = 0;
 			this.last_chunk_mark = null;
 			this.current_chunk_mark = null;
+			this.in_code_block = false;
+			this.code_block_language = null;
+			this.current_source_view = null;
+			this.current_source_buffer = null;
+			this.code_block_anchor = null;
 			this.clear_waiting_indicator();
 
 			this.scroll_to_bottom();
@@ -317,6 +451,13 @@ namespace OLLMchat.UI
 			this.is_assistant_message = false;
 			this.last_chunk_mark = null;
 			this.current_chunk_mark = null;
+			this.in_code_block = false;
+			this.pending_code_block_open = false;
+			this.pending_language_text = "";
+			this.code_block_language = null;
+			this.current_source_view = null;
+			this.current_source_buffer = null;
+			this.code_block_anchor = null;
 			this.clear_waiting_indicator();
 		}
 
@@ -542,6 +683,159 @@ namespace OLLMchat.UI
 			Gtk.TextIter end_iter;
 			this.buffer.get_end_iter(out end_iter);
 			this.text_view.scroll_to_iter(end_iter, 0.0, false, 0.0, 0.0);
+		}
+
+		/**
+		 * Maps language identifiers to GtkSource language IDs.
+		 * Handles common mistakes like 'val' -> 'vala'.
+		 * 
+		 * @param lang_id The language identifier from markdown code block
+		 * @return The mapped language ID for GtkSource, or null if not found
+		 */
+		private string? map_language_id(string lang_id)
+		{
+			// Map common mistakes
+			if (lang_id == "val") {
+				GLib.debug("[ChatView] map_language_id: Mapping 'val' -> 'vala'");
+				return "vala";
+			}
+			// Return as-is, GtkSource will handle validation
+			GLib.debug("[ChatView] map_language_id: Using language '%s' as-is", lang_id);
+			return lang_id;
+		}
+
+		/**
+		 * Creates a SourceView widget for code blocks.
+		 * 
+		 * @param language_id The language identifier for syntax highlighting
+		 * @return A configured SourceView widget
+		 */
+		private GtkSource.View create_source_view(string? language_id)
+		{
+			// Create buffer with language if specified
+			GtkSource.Buffer source_buffer;
+			if (language_id != null && language_id != "") {
+				var mapped_id = this.map_language_id(language_id);
+				var lang_manager = GtkSource.LanguageManager.get_default();
+				var language = lang_manager.get_language(mapped_id);
+				if (language != null) {
+					GLib.debug("[ChatView] create_source_view: Found language '%s' (mapped from '%s')", mapped_id, language_id);
+					source_buffer = new GtkSource.Buffer.with_language(language);
+				} else {
+					GLib.debug("[ChatView] create_source_view: Language '%s' (mapped from '%s') not found, using plain buffer", mapped_id, language_id);
+					source_buffer = new GtkSource.Buffer(null);
+				}
+			} else {
+				GLib.debug("[ChatView] create_source_view: No language specified, using plain buffer");
+				source_buffer = new GtkSource.Buffer(null);
+			}
+
+			// Create view
+			var source_view = new GtkSource.View() {
+				editable = false,
+				cursor_visible = false,
+				show_line_numbers = false,
+				hexpand = true,
+				vexpand = false,
+				css_classes = { "code-editor" }
+			};
+			source_view.set_buffer(source_buffer);
+
+			// Set monospace font for code display using CSS
+			var css_provider = new Gtk.CssProvider();
+			css_provider.load_from_data(".code-editor { font-family: monospace; }".data);
+			source_view.get_style_context().add_provider(css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+			return source_view;
+		}
+
+		/**
+		 * Handles opening a code block by creating and inserting a SourceView widget.
+		 */
+		private void open_code_block(string language_id)
+		{
+			// Create SourceView widget
+			this.current_source_view = this.create_source_view(language_id);
+			this.current_source_buffer = (GtkSource.Buffer) this.current_source_view.buffer;
+
+			// Wrap in Frame for visibility and styling
+			var frame = new Gtk.Frame(null) {
+				hexpand = true,
+				margin_start = 5,
+				margin_end = 5,
+				margin_top = 5,
+				margin_bottom = 5
+			};
+			frame.set_child(this.current_source_view);
+
+			// Get current position in TextView
+			Gtk.TextIter insert_pos;
+			if (this.current_chunk_mark != null) {
+				this.buffer.get_iter_at_mark(out insert_pos, this.current_chunk_mark);
+			} else if (this.last_chunk_mark != null) {
+				this.buffer.get_iter_at_mark(out insert_pos, this.last_chunk_mark);
+			} else {
+				this.buffer.get_end_iter(out insert_pos);
+			}
+
+			// Create child anchor and insert Frame (containing SourceView)
+			this.code_block_anchor = this.buffer.create_child_anchor(insert_pos);
+			this.text_view.add_child_at_anchor(frame, this.code_block_anchor);
+
+			// Get TextView width and account for margins to set SourceView width
+			var text_view_width = this.text_view.get_width();
+			
+			// Account for TextView margins and Frame margins
+			var text_margin_start = this.text_view.margin_start;
+			var text_margin_end = this.text_view.margin_end;
+			var frame_margin_start = frame.margin_start;
+			var frame_margin_end = frame.margin_end;
+			
+			// Calculate available width for SourceView
+			// If width not yet available, use a reasonable default or let it expand
+			var available_width = -1;
+			if (text_view_width > 1) {
+				available_width = text_view_width - text_margin_start - text_margin_end - frame_margin_start - frame_margin_end;
+			}
+			
+			// Set reasonable size for code block
+			this.current_source_view.height_request = 200;
+			this.current_source_view.width_request = available_width > 0 ? available_width : -1;
+			frame.set_visible(true);
+			this.current_source_view.set_visible(true);
+			
+			GLib.debug("[ChatView] open_code_block: TextView width=%d, margins=(%d,%d), frame margins=(%d,%d), SourceView width=%d", 
+				text_view_width, text_margin_start, text_margin_end, frame_margin_start, frame_margin_end, this.current_source_view.width_request);
+			
+			// Debug: ensure buffer is visible
+			Gtk.TextIter start_iter, end_iter;
+			this.current_source_buffer.get_bounds(out start_iter, out end_iter);
+			GLib.debug("[ChatView] open_code_block: Created SourceView, language=%s, buffer has %d chars", language_id, end_iter.get_offset());
+		}
+
+		/**
+		 * Handles closing a code block by cleaning up state.
+		 */
+		private void close_code_block()
+		{
+			// Update marks to point after the code block
+			Gtk.TextIter end_iter;
+			this.buffer.get_end_iter(out end_iter);
+			if (this.current_chunk_mark != null) {
+				this.buffer.move_mark(this.current_chunk_mark, end_iter);
+			} else {
+				this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+			}
+			if (this.last_chunk_mark != null) {
+				this.buffer.move_mark(this.last_chunk_mark, end_iter);
+			} else {
+				this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+			}
+
+			// SourceView widget will remain in TextView, just stop writing to it
+			this.current_source_view = null;
+			this.current_source_buffer = null;
+			this.code_block_anchor = null;
 		}
 	}
 }
