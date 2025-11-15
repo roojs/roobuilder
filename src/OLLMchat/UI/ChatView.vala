@@ -169,11 +169,10 @@ namespace OLLMchat.UI
 					// No more markers, process remaining text
 					if (this.in_code_block && this.current_source_buffer != null) {
 						// Append to SourceView buffer
+						// Scrolling is handled by the buffer.changed signal
 						Gtk.TextIter end_iter;
 						this.current_source_buffer.get_end_iter(out end_iter);
 						this.current_source_buffer.insert(ref end_iter, remaining_text, -1);
-						// Scroll TextView to bottom after adding content to SourceView
-						this.scroll_to_bottom();
 					} else {
 						// Process normally through existing logic
 						this.process_text_chunk(remaining_text, response);
@@ -186,11 +185,10 @@ namespace OLLMchat.UI
 					string before_marker = remaining_text.substring(0, marker_pos);
 					if (this.in_code_block && this.current_source_buffer != null) {
 						// Append to SourceView buffer
+						// Scrolling is handled by the buffer.changed signal
 						Gtk.TextIter end_iter;
 						this.current_source_buffer.get_end_iter(out end_iter);
 						this.current_source_buffer.insert(ref end_iter, before_marker, -1);
-						// Scroll TextView to bottom after adding content to SourceView
-						this.scroll_to_bottom();
 					} else {
 						// Process normally
 						this.process_text_chunk(before_marker, response);
