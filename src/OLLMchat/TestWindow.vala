@@ -70,27 +70,13 @@ namespace OLLMchat
 			
 			var client = new Ollama.Client();
 			
-			if (FileUtils.test(config_path, FileTest.EXISTS)) {
-				var parser = new Json.Parser();
-				try {
-					parser.load_from_file(config_path);
-					var root = parser.get_root();
-					if (root != null && root.get_node_type() == Json.NodeType.OBJECT) {
-						var obj = root.get_object();
-						if (obj.has_member("url")) {
-							client.url = obj.get_string_member("url");
-						}
-						if (obj.has_member("model")) {
-							client.model = obj.get_string_member("model");
-						}
-						if (obj.has_member("api_key")) {
-							client.api_key = obj.get_string_member("api_key");
-						}
-					}
-				} catch (Error e) {
-					stderr.printf("Error loading config: %s\n", e.message);
-				}
-			}
+			var parser = new Json.Parser();
+			parser.load_from_file(config_path);
+			var root = parser.get_root();
+			var obj = root.get_object();
+			client.url = obj.get_string_member("url");
+			client.model = obj.get_string_member("model");
+			client.api_key = obj.get_string_member("api_key");
 
 			// Create chat widget with client
 			this.chat_widget = new UI.ChatWidget(client) {
