@@ -740,6 +740,19 @@ namespace OLLMchat.UI
 				css_classes = { "code-editor" }
 			};
 			source_view.set_buffer(source_buffer);
+			
+			// Connect to buffer changes to scroll SourceView to bottom and then scroll TextView
+			source_buffer.changed.connect(() => {
+				// Scroll SourceView to bottom
+				Gtk.TextIter end_iter;
+				source_buffer.get_end_iter(out end_iter);
+				source_view.scroll_to_iter(end_iter, 0.0, false, 0.0, 1.0);
+				// Then scroll TextView to bottom
+				GLib.Idle.add(() => {
+					this.scroll_to_bottom();
+					return false;
+				});
+			});
 
 			// Set monospace font for code display using CSS
 			var css_provider = new Gtk.CssProvider();
