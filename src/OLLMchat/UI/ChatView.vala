@@ -69,17 +69,11 @@ namespace OLLMchat.UI
 		 * Appends a message to the chat view.
 		 * 
 		 * @param text The message text to display
-		 * @param message The MessageInterface object (ChatCall for user messages, ChatResponse for assistant messages)
+		 * @param message The MessageInterface object (ChatResponse for assistant messages)
 		 * @since 1.0
 		 */
-		public void append_message(string text, Ollama.MessageInterface message)
+		public void append_user_message(string text, Ollama.MessageInterface message)
 		{
-			if (message.chat_role != "user") {
-				// Assistant message - use append_assistant_chunk logic
-				this.append_assistant_chunk(text, message);
-				return;
-			}
-
 			// Finalize any ongoing assistant message
 			if (this.is_assistant_message) {
 				this.finalize_assistant_message();
@@ -100,6 +94,18 @@ namespace OLLMchat.UI
 			this.scroll_to_bottom();
 		}
 
+		private void append_message(string text, Ollama.MessageInterface message)
+		{
+			if (message is Ollama.ChatResponse) {
+				// Assistant message - use append_assistant_chunk logic
+				this.append_assistant_chunk(text, message);
+				return;
+			}
+
+			// ChatCall (user message) - delegate to public method
+			this.append_user_message(text, message);
+		}
+
 		/**
 		 * Appends a streaming chunk from the assistant.
 		 * 
@@ -110,7 +116,7 @@ namespace OLLMchat.UI
 		 * @param message The MessageInterface object (ChatResponse for assistant messages)
 		 * @since 1.0
 		 */
-		private void append_assistant_chunk(string new_text, Ollama.MessageInterface message)
+		public void append_assistant_chunk(string new_text, Ollama.MessageInterface message)
 		{
 			// Cast to ChatResponse - chunks always come from ChatResponse
 			var response = (Ollama.ChatResponse) message;

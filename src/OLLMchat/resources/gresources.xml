@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/ollmchat-agents">
+    <file>ollmchat-agents/code-assistant/introduction.md</file>
+    <file>ollmchat-agents/code-assistant/communication.md</file>
+    <file>ollmchat-agents/code-assistant/tool_calling.md</file>
+    <file>ollmchat-agents/code-assistant/search_and_reading.md</file>
+    <file>ollmchat-agents/code-assistant/making_code_changes.md</file>
+    <file>ollmchat-agents/code-assistant/debugging.md</file>
+    <file>ollmchat-agents/code-assistant/calling_external_apis.md</file>
+    <file>ollmchat-agents/code-assistant/citation_format.md</file>
+  </gresource>
+</gresources>
+
+

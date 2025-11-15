@@ -6,6 +6,7 @@ valac --pkg libsoup-3.0 --pkg json-glib-1.0 --pkg gee-0.8 --pkg gio-2.0 \
       TestOllama.vala \
       Ollama/OllamaBase.vala \
       Ollama/MessageInterface.vala \
+      Ollama/Message.vala \
       Ollama/Client.vala \
       Ollama/Call/BaseCall.vala \
       Ollama/Call/ChatCall.vala \
@@ -16,6 +17,8 @@ valac --pkg libsoup-3.0 --pkg json-glib-1.0 --pkg gee-0.8 --pkg gio-2.0 \
       Ollama/Response/Model.vala \
       Ollama/Tool/Tool.vala \
       Ollama/Tool/Function.vala \
+      Prompt/BaseAgentPrompt.vala \
+      Prompt/CodeAssistant.vala \
       -o /tmp/test-ollama
 */
 
@@ -64,19 +67,14 @@ namespace OLLMchat
 		stdout.printf("Query: %s\n\n", query);
 		stdout.printf("Response:\n");
 
-		var chat_call = new Ollama.ChatCall(client) {
-			model = model_name,
-			chat_role = "user",
-			chat_content = query
-		};
-
-		var response = yield client.chat(chat_call);
+		client.model = model_name;
+		var response = yield client.chat(query);
 
 		stdout.printf("\n\n--- Complete Response ---\n");
 		if (response.thinking != "") {
 			stdout.printf("Thinking: %s\n", response.thinking);
 		}
-		stdout.printf("Content: %s\n", response.chat_content);
+		stdout.printf("Content: %s\n", response.message.content);
 		stdout.printf("Done: %s\n", response.done.to_string());
 		if (response.done_reason != null) {
 			stdout.printf("Done Reason: %s\n", response.done_reason);
@@ -89,18 +87,27 @@ namespace OLLMchat
 			stderr.printf("%s: %s : %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), lvl.to_string(), msg);
 		});
 
-		string server_url = args.length > 1 ? args[1] : "http://192.168.88.14:11434/api";
-		if (!server_url.has_suffix("/api")) {
-			if (!server_url.has_suffix("/")) {
-				server_url += "/";
-			}
-			server_url += "api";
-		}
-
-		var client = new Ollama.Client();
-		client.url = server_url;
-		client.debug = true;
-		client.stream_callback = on_stream;
+		// Read configuration from ~/.local/share/roobuilder/ollama.json
+		// Example file content:
+		/* 
+{
+	"url": "http://192.168.88.14:11434/api",
+	"model": "MichelRosselli/GLM-4.5-Air:Q4_K_M",
+	"api_key": "your-api-key-here"
+}
+		 */
+		var parser = new Json.Parser();
+		parser.load_from_file(Path.build_filename(
+			GLib.Environment.get_home_dir(), ".local", "share", "roobuilder", "ollama.json"));
+		var obj = parser.get_root().get_object();
+		var client = new Ollama.Client() {
+			url = obj.get_string_member("url"),
+			model = obj.get_string_member("model"),
+			api_key = obj.get_string_member("api_key"),
+			stream = true,
+			think = true
+		};
+		client.stream_chunk.connect(on_stream);
 
 		main_loop = new MainLoop();
 

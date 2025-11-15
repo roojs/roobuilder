@@ -64,13 +64,15 @@ namespace OLLMchat
 			this.title = "OLL Chat Test";
 			this.set_default_size(800, 600);
 
-			// Read configuration from ~/.local/roobuilder/ollama.json
+			// Read configuration from ~/.local/share/roobuilder/ollama.json
 			// Example file content:
 			/* 
 {
 	"url": "http://192.168.88.14:11434/api",
 	"model": "MichelRosselli/GLM-4.5-Air:Q4_K_M",
-	"api_key": "your-api-key-here"
+	"api_key": "your-api-key-here",
+	"stream": true,
+	"think": true
 }
 			 */
 			var parser = new Json.Parser();
@@ -80,7 +82,9 @@ namespace OLLMchat
 			var client = new Ollama.Client() {
 				url = obj.get_string_member("url"),
 				model = obj.get_string_member("model"),
-				api_key = obj.get_string_member("api_key")
+				api_key = obj.get_string_member("api_key"),
+				stream = obj.has_member("stream") ? obj.get_boolean_member("stream") : false,
+				think = obj.has_member("think") ? obj.get_boolean_member("think") : false
 			};
 
 			// Create chat widget with client

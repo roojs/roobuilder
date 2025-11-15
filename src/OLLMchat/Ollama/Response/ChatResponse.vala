@@ -2,6 +2,13 @@ namespace OLLMchat.Ollama
 {
 	public class ChatResponse : BaseResponse, MessageInterface
 	{
+		public Message message { get; set; }
+		
+		public string chat_content {
+			get { return this.message.content; }
+			set {   }
+		}
+		
 		public string model { get; set; default = ""; }
 		public string created_at { get; set; default = ""; }
 		public string thinking { get; set; default = ""; }
@@ -17,16 +24,7 @@ namespace OLLMchat.Ollama
 		public string new_content { get; set; default = ""; }
 		public string new_thinking { get; set; default = ""; }
 
-		public Json.Object message()
-		{
-			var msg_obj = new Json.Object();
-			msg_obj.set_string_member("role", this.chat_role);
-			msg_obj.set_string_member("content", this.chat_content);
-			return msg_obj;
-		
-		}
-
-		public ChatResponse(Client? client = null)
+		public ChatResponse(Client client)
 		{
 			base(client);
 		}
@@ -37,26 +35,12 @@ namespace OLLMchat.Ollama
 				return default_deserialize_property(property_name, out value, pspec, property_node);
 			}
 
-			this.extract_message_properties(property_node);
+			this.message = Json.gobject_deserialize(typeof(Message), property_node) as Message;
+			this.message.message_interface = this;
+			
 			value = Value(typeof(string));
 			value.set_string("");
 			return true;
-		}
-
-		private void extract_message_properties(Json.Node property_node)
-		{
-			var message_obj = property_node.get_object();
-			if (message_obj == null) {
-				return;
-			}
-
-			if (message_obj.has_member("role")) {
-				this.chat_role = message_obj.get_string_member("role");
-			}
-
-			if (message_obj.has_member("content")) {
-				this.chat_content = message_obj.get_string_member("content");
-			}
 		}
 
 		public string addChunk(Json.Object chunk)
@@ -114,30 +98,38 @@ namespace OLLMchat.Ollama
 			return this.new_thinking.length > 0 ? this.new_thinking : this.new_content;
 		}
 
-		private void add_message_chunk(Json.Object  message_obj)
+		private void add_message_chunk(Json.Object message_obj)
 		{
-		 
+			// Convert Json.Object to Json.Node and deserialize
+			var message_node = new Json.Node(Json.NodeType.OBJECT);
+			message_node.set_object(message_obj);
+			var msg = Json.gobject_deserialize(typeof(Message), message_node) as Message;
+			msg.message_interface = this;
 			
-			message_obj.foreach_member((obj, name, node) => {
-				switch (name) {
-					case "role":
-						this.chat_role = message_obj.get_string_member("role");
-						break;
-					case "content":
-						this.new_content= message_obj.get_string_member("content");
-						this.chat_content += this.new_content;
-						 
-						break;
-					case "thinking":
-						this.new_thinking   = message_obj.get_string_member("thinking");
-						this.thinking += this.new_thinking ;
-						this.is_thinking = true;
-						 
-						break;
-					default:
-						break;
-				}
-			});
+			// If message is null, use the deserialized object directly
+			if (this.message == null) {
+				this.message = msg;
+				this.new_content = msg.content;
+				this.new_thinking = msg.thinking;
+				this.thinking = msg.thinking;
+				this.is_thinking = msg.thinking != "";
+				return;
+			}
+			
+			// Update existing message
+			if (msg.content != "") {
+				this.new_content = msg.content;
+				this.message.content += this.new_content;
+			}
+			
+			if (msg.thinking != "") {
+				this.new_thinking = msg.thinking;
+				this.message.thinking += this.new_thinking;
+				this.thinking += this.new_thinking;
+				this.is_thinking = true;
+			}
+			
+			this.message.role = msg.role;
 		}
 	}
 }
