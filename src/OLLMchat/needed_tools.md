@@ -364,7 +364,9 @@ namespace OLLMchat.Tools
 	{
 		public override string name = "read_file";
 		
-		public override string description = """\nRead the contents of a file (and the outline).
+		public override string description = """
+		
+Read the contents of a file (and the outline).
 
 When using this tool to gather information, it's your responsibility to ensure you have the COMPLETE context. Each time you call this command you should:
 1) Assess if contents viewed are sufficient to proceed with the task.
@@ -374,12 +376,18 @@ When using this tool to gather information, it's your responsibility to ensure y
 
 If reading a range of lines is not enough, you may choose to read the entire file.
 Reading entire files is often wasteful and slow, especially for large files (i.e. more than a few hundred lines). So you should use this option sparingly.
-Reading the entire file is not allowed in most cases. You are only allowed to read the entire file if it has been edited or manually attached to the conversation by the user.""";
+Reading the entire file is not allowed in most cases. You are only allowed to read the entire file if it has been edited or manually attached to the conversation by the user.
+
+""";
 		
-		public override string parameters = """\n@param file_path {string} [required] The path to the file to read
+		public override string parameters = """
+		
+@param file_path {string} [required] The path to the file to read
 @param start_line {integer} [optional] The starting line number to read from
 @param end_line {integer} [optional] The ending line number to read to
-@param read_entire_file {boolean} [optional] Whether to read the entire file. Only allowed if the file has been edited or manually attached to the conversation by the user.""";
+@param read_entire_file {boolean} [optional] Whether to read the entire file. Only allowed if the file has been edited or manually attached to the conversation by the user.
+
+""";
 		
 		public override Json.Object execute(Json.Object params) throws Error
 		{
