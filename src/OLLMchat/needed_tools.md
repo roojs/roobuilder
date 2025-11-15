@@ -266,18 +266,27 @@ namespace OLLMchat.Tools
 	public abstract class BaseTool : Object
 	{
 		/**
-		 * Returns the tool name (e.g., "read_file", "edit_file")
+		 * The tool name (e.g., "read_file", "edit_file")
+		 * 
+		 * Subclasses must define this as a const field:
+		 * public const string name = "tool_name";
 		 */
 		public abstract string name { get; }
 		
 		/**
-		 * Returns a detailed description of what the tool does
+		 * A detailed description of what the tool does
+		 * 
+		 * Subclasses must define this as a const field:
+		 * public const string description = "...";
 		 */
 		public abstract string description { get; }
 		
 		/**
-		 * Returns parameter documentation in the standardized format:
+		 * Parameter documentation in the standardized format:
 		 * "@param parameter_name {type} [required|optional] Description"
+		 * 
+		 * Subclasses must define this as a const field:
+		 * public const string parameters = "@param ...";
 		 */
 		public abstract string parameters { get; }
 		
@@ -353,10 +362,9 @@ namespace OLLMchat.Tools
 	 */
 	public class ReadFileTool : BaseTool
 	{
-		public override string name { get { return "read_file"; } }
+		public const string name = "read_file";
 		
-		public override string description { get {
-			return """Read the contents of a file (and the outline).
+		public const string description = """Read the contents of a file (and the outline).
 
 When using this tool to gather information, it's your responsibility to ensure you have the COMPLETE context. Each time you call this command you should:
 1) Assess if contents viewed are sufficient to proceed with the task.
@@ -367,14 +375,16 @@ When using this tool to gather information, it's your responsibility to ensure y
 If reading a range of lines is not enough, you may choose to read the entire file.
 Reading entire files is often wasteful and slow, especially for large files (i.e. more than a few hundred lines). So you should use this option sparingly.
 Reading the entire file is not allowed in most cases. You are only allowed to read the entire file if it has been edited or manually attached to the conversation by the user.""";
-		} }
 		
-		public override string parameters { get {
-			return """@param file_path {string} [required] The path to the file to read
+		public const string parameters = """@param file_path {string} [required] The path to the file to read
 @param start_line {integer} [optional] The starting line number to read from
 @param end_line {integer} [optional] The ending line number to read to
 @param read_entire_file {boolean} [optional] Whether to read the entire file. Only allowed if the file has been edited or manually attached to the conversation by the user.""";
-		} }
+		
+		// Implement abstract properties to return const values
+		public override string name { get { return ReadFileTool.name; } }
+		public override string description { get { return ReadFileTool.description; } }
+		public override string parameters { get { return ReadFileTool.parameters; } }
 		
 		public override Json.Object execute(Json.Object params) throws Error
 		{
