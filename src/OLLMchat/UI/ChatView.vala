@@ -740,12 +740,16 @@ namespace OLLMchat.UI
 			source_view.set_buffer(source_buffer);
 			
 			// Connect to buffer changes to ensure TextView scrolls correctly
-			// We don't scroll SourceView internally - let it grow naturally
-			// Instead, we scroll the TextView to show the bottom after SourceView grows
+			// When SourceView content changes, scroll it to bottom first, then scroll TextView
 			source_buffer.changed.connect(() => {
 				// Use Idle to scroll after layout is updated
 				GLib.Idle.add(() => {
-					// Scroll TextView to bottom to show the latest content
+					// First, scroll SourceView to bottom to ensure it shows latest content
+					Gtk.TextIter source_end;
+					source_buffer.get_end_iter(out source_end);
+					source_view.scroll_to_iter(source_end, 0.0, false, 0.0, 1.0);
+					
+					// Then scroll TextView to bottom to show the bottom of SourceView
 					this.scroll_to_bottom();
 					return false;
 				});
