@@ -157,6 +157,7 @@ namespace OLLMchat.UI
 			this.current_markdown_content = "";
 			this.current_markdown_start = 0;
 			this.last_chunk_start = 0;
+			this.processed_content_length = 0;
 			this.is_thinking = response.is_thinking;
 			this.content_state = ContentState.NONE;
 
@@ -174,6 +175,14 @@ namespace OLLMchat.UI
 		*/
 		private void process_new_chunk(string content, Ollama.ChatResponse response)
 		{
+			// Check if content has actually grown
+			if (content.length <= this.processed_content_length) {
+				return;
+			}
+			
+			// Extract only new content
+			string new_content = content.substring(this.processed_content_length);
+			
 			// Check if state changed (thinking vs content)
 			bool state_changed = (this.is_thinking != response.is_thinking);
 			
@@ -186,7 +195,7 @@ namespace OLLMchat.UI
 			this.is_thinking = response.is_thinking;
 			
 			// Process the incoming text - split into lines
-			string[] lines = content.split("\n");
+			string[] lines = new_content.split("\n");
 			
 			// Process all complete lines (with newlines)
 			for (int i = 0; i < lines.length - 1; i++) {
@@ -200,6 +209,9 @@ namespace OLLMchat.UI
 			if (remaining_text != "") {
 				this.process_add_text(remaining_text, response);
 			}
+			
+			// Update processed content length
+			this.processed_content_length = content.length;
 		}
 		
 		/**
@@ -306,6 +318,13 @@ namespace OLLMchat.UI
 			string last_line = this.get_last_complete_line();
 			
 			if (last_line.has_prefix("```")) {
+				// Extract language before ending content block
+				string language = "";
+				if (last_line.length > 3) {
+					language = last_line.substring(3).strip();
+				}
+				this.code_block_language = language;
+				
 				this.current_markdown_content += "\n";
 				this.end_block(response); // End content block first
 				this.content_state = ContentState.CODE_BLOCK;
