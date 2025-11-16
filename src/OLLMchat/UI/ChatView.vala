@@ -183,11 +183,11 @@ namespace OLLMchat.UI
 					this.is_thinking.to_string(), response.is_thinking.to_string(), this.content_state.to_string());
 				// End the current block if we're in one (end_block uses current is_thinking for formatting)
 				if (this.content_state != ContentState.NONE) {
-					this.end_block(response);
-					// Add a line break to visually separate the old block from the new one
-					Gtk.TextIter end_iter;
-					this.buffer.get_end_iter(out end_iter);
-					this.buffer.insert(ref end_iter, "\n", -1);
+				this.end_block(response);
+				// Add extra line breaks to visually separate the old block from the new one
+				Gtk.TextIter end_iter;
+				this.buffer.get_end_iter(out end_iter);
+				this.buffer.insert(ref end_iter, "\n\n", -1);
 					GLib.debug("ChatView.process_new_chunk: After end_block, content_state=%s", this.content_state.to_string());
 				}
 				// Update thinking state AFTER ending block (so block is formatted with old status)
@@ -284,7 +284,8 @@ namespace OLLMchat.UI
 		*/
 		private void process_new_line_code_block(Ollama.ChatResponse response)
 		{
-			if (!this.last_line.has_prefix("```")) {
+			// Check for closing code block marker (trim first to handle spaces before ```)
+			if (!this.last_line.strip().has_prefix("```")) {
 				// Insert newline into source buffer (current_markdown_content not used for code blocks)
 				if (this.current_source_buffer != null) {
 					Gtk.TextIter end_iter;
@@ -360,12 +361,13 @@ namespace OLLMchat.UI
 		* Handles newline when in CONTENT state.
 		*/
 		private void process_new_line_content(Ollama.ChatResponse response)
-			{
-			if (this.last_line.has_prefix("```")) {
+		{
+			// Check for code block marker (trim first to handle spaces before ```)
+			if (this.last_line.strip().has_prefix("```")) {
 				// Extract language before ending content block
 				string language = "";
-				if (this.last_line.length > 3) {
-					language = this.last_line.substring(3).strip();
+				if (this.last_line.strip().length > 3) {
+					language = this.last_line.strip().substring(3).strip();
 				}
 				GLib.debug("ChatView.process_new_line_content: Extracted language from last_line='%s', language='%s'", this.last_line, language);
 				// Use language mapping kludge to get reasonable language value
@@ -435,10 +437,10 @@ namespace OLLMchat.UI
 					// Use the language already extracted in process_new_line_content
 					// (code_block_language should already be set)
 					if (this.code_block_language == null) {
-						// Fallback: extract from last_line if not already set
+						// Fallback: extract from last_line if not already set (trim first to handle spaces)
 						string language = "";
-						if (this.last_line.length > 3) {
-							language = this.last_line.substring(3).strip();
+						if (this.last_line.strip().length > 3) {
+							language = this.last_line.strip().substring(3).strip();
 						}
 						var mapped_language = this.map_language_id(language);
 						this.code_block_language = mapped_language ?? language;
@@ -948,8 +950,8 @@ namespace OLLMchat.UI
 				available_width = text_view_width - text_margin_start - text_margin_end - frame_margin_start - frame_margin_end;
 			}
 			
-			// Set reasonable size for code block
-			this.current_source_view.height_request = 200;
+			// Set reasonable size for code block (smaller for single-line content)
+			this.current_source_view.height_request = 25;
 			this.current_source_view.width_request = available_width > 0 ? available_width : -1;
 			frame.set_visible(true);
 			this.current_source_view.set_visible(true);
