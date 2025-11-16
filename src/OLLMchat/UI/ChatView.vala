@@ -391,28 +391,32 @@ namespace OLLMchat.UI
 					Gtk.TextIter end_iter;
 					this.buffer.get_end_iter(out end_iter);
 					
+					// Always move marks to current end position (create if null, move if exists)
 					if (this.current_chunk_mark == null) {
 						this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					} else {
+						this.buffer.move_mark(this.current_chunk_mark, end_iter);
 					}
 					if (this.last_chunk_mark == null) {
-						this.buffer.get_end_iter(out end_iter);
 						this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					} else {
+						this.buffer.move_mark(this.last_chunk_mark, end_iter);
 					}
 					this.last_chunk_start = 0;
 					return;
-					
-			case ContentState.CODE_BLOCK:
-				// Extract language from last line (should be ```language)
-				string language = "";
-				if (this.last_line.length > 3) {
-					language = this.last_line.substring(3).strip();
-				}
-				// Use language mapping kludge to get reasonable language value
-				var mapped_language = this.map_language_id(language);
-				this.code_block_language = mapped_language ?? language;
-				this.open_code_block(this.code_block_language);
-				return;
-					
+						
+				case ContentState.CODE_BLOCK:
+					// Extract language from last line (should be ```language)
+					string language = "";
+					if (this.last_line.length > 3) {
+						language = this.last_line.substring(3).strip();
+					}
+					// Use language mapping kludge to get reasonable language value
+					var mapped_language = this.map_language_id(language);
+					this.code_block_language = mapped_language ?? language;
+					this.open_code_block(this.code_block_language);
+					return;
+						
 				case ContentState.NONE:
 					// Nothing to start
 					return;
