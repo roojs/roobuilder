@@ -367,9 +367,11 @@ namespace OLLMchat.UI
 				if (this.last_line.length > 3) {
 					language = this.last_line.substring(3).strip();
 				}
+				GLib.debug("ChatView.process_new_line_content: Extracted language from last_line='%s', language='%s'", this.last_line, language);
 				// Use language mapping kludge to get reasonable language value
 				var mapped_language = this.map_language_id(language);
 				this.code_block_language = mapped_language ?? language;
+				GLib.debug("ChatView.process_new_line_content: Set code_block_language='%s'", this.code_block_language ?? "");
 				
 					// Remove the marker from current_markdown_content (it was added via process_add_text)
 					// Simply remove the last last_line.length characters
@@ -430,16 +432,20 @@ namespace OLLMchat.UI
 					return;
 						
 				case ContentState.CODE_BLOCK:
-					// Extract language from last line (should be ```language)
-					string language = "";
-					if (this.last_line.length > 3) {
-						language = this.last_line.substring(3).strip();
+					// Use the language already extracted in process_new_line_content
+					// (code_block_language should already be set)
+					if (this.code_block_language == null) {
+						// Fallback: extract from last_line if not already set
+						string language = "";
+						if (this.last_line.length > 3) {
+							language = this.last_line.substring(3).strip();
+						}
+						var mapped_language = this.map_language_id(language);
+						this.code_block_language = mapped_language ?? language;
 					}
-					// Use language mapping kludge to get reasonable language value
-					var mapped_language = this.map_language_id(language);
-					this.code_block_language = mapped_language ?? language;
-					this.open_code_block(this.code_block_language);
-					return;
+					GLib.debug("ChatView.start_block: Opening code block with language='%s'", this.code_block_language ?? "");
+					this.open_code_block(this.code_block_language ?? "");
+				return;
 						
 				case ContentState.NONE:
 					// Nothing to start
