@@ -1229,47 +1229,21 @@ namespace OLLMchat.UI
 				return;
 			}
 
-			// If we're pending a code block open, open it now (language might be empty)
-			if (this.pending_code_block_open) {
-				string lang_part = this.pending_language_text.strip();
-				this.code_block_language = lang_part;
-				this.in_code_block = true;
-				this.pending_code_block_open = false;
-				this.pending_language_text = "";
-				this.open_code_block(lang_part);
+			// End current block if we're in one
+			if (this.content_state != ContentState.NONE) {
+				if (response != null) {
+					this.end_block(response);
+				}
 			}
 
-		// If we're still in a code block, close it
-		if (this.in_code_block) {
-			this.in_code_block = false;
-			this.close_code_block();
-			this.code_block_language = null;
-		}
-
-			// Render any remaining content
-			if (this.raw_content.length > this.last_chunk_start) {
-				string remaining = this.raw_content.substring(this.last_chunk_start);
-				string rendered = MarkdownProcessor.get_default().markup_string(remaining);
-
-				Gtk.TextIter start_iter;
-				if (this.last_chunk_mark != null) {
-					this.buffer.get_iter_at_mark(out start_iter, this.last_chunk_mark);
-				} else {
-					this.buffer.get_end_iter(out start_iter);
-				}
-
-				Gtk.TextIter end_iter;
-				this.buffer.get_end_iter(out end_iter);
-
-				this.buffer.delete(ref start_iter, ref end_iter);
-				string color = this.is_current_chunk_thinking ? "green" : "blue";
-				string italic_tag = this.is_current_chunk_thinking ? "<i>" : "";
-				string italic_close_tag = this.is_current_chunk_thinking ? "</i>" : "";
-				this.buffer.insert_markup(ref start_iter, @"<span color=\"$(color)\">$(italic_tag)$(rendered)$(italic_close_tag)</span>", -1);
+			// If we're still in a code block, close it
+			if (this.content_state == ContentState.CODE_BLOCK) {
+				this.close_code_block();
+				this.code_block_language = null;
 			}
 
 			// Display performance metrics if response is available and done
-			if (response.done && response.eval_duration > 0) {
+			if (response != null && response.done && response.eval_duration > 0) {
 				Gtk.TextIter end_iter;
 				this.buffer.get_end_iter(out end_iter);
 				this.buffer.insert_markup(ref end_iter,
@@ -1291,17 +1265,21 @@ namespace OLLMchat.UI
 
 			// Reset state
 			this.is_assistant_message = false;
-			this.raw_content = "";
+			this.current_markdown_content = "";
+			this.current_markdown_start = 0;
 			this.last_chunk_start = 0;
+			this.processed_content_length = 0;
 			this.last_chunk_mark = null;
 			this.current_chunk_mark = null;
-			this.in_code_block = false;
+			this.content_state = ContentState.NONE;
 			this.code_block_language = null;
-			this.processed_lines_count = 0;
-			this.processed_content_length = 0;
 			this.current_source_view = null;
 			this.current_source_buffer = null;
 			this.code_block_anchor = null;
+			if (this.code_block_end_mark != null) {
+				this.buffer.delete_mark(this.code_block_end_mark);
+				this.code_block_end_mark = null;
+			}
 			this.clear_waiting_indicator();
 
 			this.scroll_to_bottom();
@@ -1319,14 +1297,14 @@ namespace OLLMchat.UI
 			this.buffer.get_end_iter(out end_iter);
 			this.buffer.delete(ref start_iter, ref end_iter);
 
-			this.raw_content = "";
+			this.current_markdown_content = "";
+			this.current_markdown_start = 0;
 			this.last_chunk_start = 0;
+			this.processed_content_length = 0;
 			this.is_assistant_message = false;
 			this.last_chunk_mark = null;
 			this.current_chunk_mark = null;
-			this.in_code_block = false;
-			this.pending_code_block_open = false;
-			this.pending_language_text = "";
+			this.content_state = ContentState.NONE;
 			this.code_block_language = null;
 			this.current_source_view = null;
 			this.current_source_buffer = null;
@@ -1372,37 +1350,29 @@ namespace OLLMchat.UI
 
 			if (!this.is_assistant_message) {
 				// Start new assistant message
-				this.is_assistant_message = true;
-				this.raw_content = "";
-				this.last_chunk_start = 0;
+			this.is_assistant_message = true;
+			this.current_markdown_content = "";
+			this.current_markdown_start = 0;
+			this.last_chunk_start = 0;
+			this.processed_content_length = 0;
+			this.is_thinking = true;
+			this.content_state = ContentState.THINKING;
 
-				Gtk.TextIter end_iter;
-				this.buffer.get_end_iter(out end_iter);
-				this.buffer.insert_markup(ref end_iter, "<b>Assistant:</b>\n", -1);
-				this.buffer.get_end_iter(out end_iter);
-				this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
-				this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
-			}
-
-			// Append thinking text in green with italic formatting
 			Gtk.TextIter end_iter;
 			this.buffer.get_end_iter(out end_iter);
-			string escaped_text = GLib.Markup.escape_text(text);
-			this.buffer.insert_markup(ref end_iter, @"<span color=\"green\"><i>$(escaped_text)</i></span>", -1);
+			this.buffer.insert_markup(ref end_iter, "<b>Assistant:</b>\n", -1);
 			this.buffer.get_end_iter(out end_iter);
-			if (this.last_chunk_mark != null) {
-				this.buffer.move_mark(this.last_chunk_mark, end_iter);
-			} else {
-				this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
-			}
-			if (this.current_chunk_mark != null) {
-				this.buffer.move_mark(this.current_chunk_mark, end_iter);
-			} else {
-				this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
-			}
-
-			this.scroll_to_bottom();
+			this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+			this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+			this.start_block(response);
 		}
+
+		// Append thinking text in green with italic formatting
+		this.current_markdown_content += text;
+		this.update_block();
+
+		this.scroll_to_bottom();
+	}
 
 		/**
 		 * Shows an animated "waiting..." indicator.
@@ -1484,19 +1454,19 @@ namespace OLLMchat.UI
 			if (response == null) {
 				return;
 			}
-		// 
+			
 			this.is_assistant_message = true;
-			this.raw_content = "";
+			this.current_markdown_content = "";
+			this.current_markdown_start = 0;
 			this.last_chunk_start = 0;
-			this.is_current_chunk_thinking = response.is_thinking;
+			this.processed_content_length = 0;
+			this.is_thinking = response.is_thinking;
+			this.content_state = ContentState.NONE;
 
 			Gtk.TextIter current_end;
 			this.buffer.get_end_iter(out current_end);
 			this.last_chunk_mark = this.buffer.create_mark(null, current_end, true);
 			this.current_chunk_mark = this.buffer.create_mark(null, current_end, true);
-		
-
-			this.is_waiting = false;
 		}
 
 		private bool update_waiting_dots()
