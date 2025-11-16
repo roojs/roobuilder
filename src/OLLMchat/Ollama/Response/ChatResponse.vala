@@ -3,6 +3,7 @@ namespace OLLMchat.Ollama
 	public class ChatResponse : BaseResponse, MessageInterface
 	{
 		public Message message { get; set; }
+		public ChatCall? call { get; set; default = null; }
 		
 		public string chat_content {
 			get { return this.message.content; }
@@ -24,29 +25,64 @@ namespace OLLMchat.Ollama
 		public string new_content { get; set; default = ""; }
 		public string new_thinking { get; set; default = ""; }
 
-		public ChatResponse(Client client)
+		// Computed properties (hidden from serialization/deserialization)
+		public double total_duration_s {
+			get { return (double)this.total_duration / 1e9; }
+		}
+
+		public double eval_duration_s {
+			get { return (double)this.eval_duration / 1e9; }
+		}
+
+		public double tokens_per_second {
+			get {
+				if (this.eval_duration_s > 0) {
+					return (double)this.eval_count / this.eval_duration_s;
+				}
+				return 0.0;
+			}
+		}
+
+		public ChatResponse(Client client, ChatCall call)
 		{
 			base(client);
+			this.call = call;
+		}
+
+		public override Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
+		{
+			switch (property_name) {
+				case "total_duration_s":
+				case "eval_duration_s":
+				case "tokens_per_second":
+				case "call":
+					// Exclude computed properties and call (circular reference) from serialization
+					return null;
+				default:
+					return base.serialize_property(property_name, value, pspec);
+			}
 		}
 
 		public bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
 		{
-			if (property_name != "message") {
-				return default_deserialize_property(property_name, out value, pspec, property_node);
+			switch (property_name) {
+				case "message":
+					this.message = Json.gobject_deserialize(typeof(Message), property_node) as Message;
+					this.message.message_interface = this;
+					value = Value(typeof(string));
+					value.set_string("");
+					return true;
+				
+				case "total_duration_s":
+				case "eval_duration_s":
+				case "tokens_per_second":
+					// Exclude computed properties from deserialization
+					value = Value(pspec.value_type);
+					return true;
+				
+				default:
+					return default_deserialize_property(property_name, out value, pspec, property_node);
 			}
-
-			this.message = Json.gobject_deserialize(typeof(Message), property_node) as Message;
-			this.message.message_interface = this;
-			
-			// Debug: output received message
-			GLib.debug("ChatResponse.deserialize_property: Received message: role='%s', content='%s'%s",
-				this.message.role,
-				this.message.content.length > 100 ? this.message.content.substring(0, 100) + "..." : this.message.content,
-				this.message.thinking != "" ? @", thinking='$(this.message.thinking.length > 50 ? this.message.thinking.substring(0, 50) + "..." : this.message.thinking)'" : "");
-			
-			value = Value(typeof(string));
-			value.set_string("");
-			return true;
 		}
 
 		public string addChunk(Json.Object chunk)
@@ -55,6 +91,7 @@ namespace OLLMchat.Ollama
 			this.new_content = "";
 			this.new_thinking = "";
 			this.is_thinking = false;
+			
 			// Loop through object properties and handle content extraction and metadata updates
 			chunk.foreach_member((obj, name, node) => {
 				switch (name) {
@@ -112,13 +149,7 @@ namespace OLLMchat.Ollama
 			var msg = Json.gobject_deserialize(typeof(Message), message_node) as Message;
 			msg.message_interface = this;
 			
-			// Debug: output streaming message chunk
-			GLib.debug("ChatResponse.add_message_chunk: Received chunk: role='%s', content='%s'%s",
-				msg.role,
-				msg.content != "" ? (msg.content.length > 50 ? msg.content.substring(0, 50) + "..." : msg.content) : "(empty)",
-				msg.thinking != "" ? @", thinking='$(msg.thinking.length > 50 ? msg.thinking.substring(0, 50) + "..." : msg.thinking)'" : "");
-			
-			// If message is null, use the deserialized object directly
+			// If message is null, this is the first chunk - use the deserialized object directly
 			if (this.message == null) {
 				this.message = msg;
 				this.new_content = msg.content;
@@ -142,6 +173,18 @@ namespace OLLMchat.Ollama
 			}
 			
 			this.message.role = msg.role;
+		}
+
+		/**
+		 * Creates a reply ChatCall with conversation history and executes it.
+		 * Adds the previous user message and this assistant response to the messages array, then executes the call.
+		 * 
+		 * @param text The new user message text
+		 * @return The ChatResponse from executing the reply call
+		 */
+		public async ChatResponse reply(string text) throws Error
+		{
+			return yield this.call.reply(text, this);
 		}
 	}
 }

@@ -11,7 +11,6 @@ namespace OLLMchat.Ollama
 		public bool think { get; set; default = false; }
 		public string? keep_alive { get; set; }
 		public Gee.ArrayList<Tool> tools { get; set; default = new Gee.ArrayList<Tool>(); }
-		public Gee.ArrayList<BaseCall> calls { get; set; default = new Gee.ArrayList<BaseCall>(); }
 		public ChatResponse? streaming_response { get; set; default = null; }
 		public Prompt.BaseAgentPrompt prompt_assistant { get; set; default = new Prompt.BaseAgentPrompt(); }
 
@@ -38,7 +37,6 @@ namespace OLLMchat.Ollama
 			this.prompt_assistant.fill(call, text);
 			
 			var result = yield call.exec_chat();
-			this.calls.add(call);
 
 			return result;
 		}
@@ -47,7 +45,6 @@ namespace OLLMchat.Ollama
 		{
 			var call = new ModelsCall(this);
 			var result = yield call.exec_models();
-			this.calls.add(call);
 			return result;
 		}
 
@@ -55,7 +52,6 @@ namespace OLLMchat.Ollama
 		{
 			var call = new PsCall(this);
 			var result = yield call.exec_models();
-			this.calls.add(call);
 			return result;
 		}
 	}

@@ -89,7 +89,8 @@ namespace OLLMchat
 
 			// Create chat widget with client
 			this.chat_widget = new UI.ChatWidget(client) {
-				default_message = "Write a small vala program using gtk4 to show a window with a scrolled window inside is a windowlefttree and a few tree nodes - cat"
+			//	default_message = "Write a small vala program using gtk4 to show a window with a scrolled window inside is a windowlefttree and a few tree nodes - cat"
+				default_message = "Write a small vala program using gtk4 to show hello world"
 			};
 
 		// Connect widget signals for testing (optional: print to stdout)

@@ -134,7 +134,7 @@ namespace OLLMchat.UI
 				}
 
 				// Response is done
-				this.chat_view.finalize_assistant_message();
+				this.chat_view.finalize_assistant_message(response);
 				this.chat_input.set_streaming(false);
 				this.is_streaming_active = false;
 
@@ -158,7 +158,7 @@ namespace OLLMchat.UI
 
 			// KLUDGE: Create a temporary ChatCall for displaying the user message
 			// This is a workaround just so the interface works - the actual ChatCall
-			// will be created later in client.chat() and added to client.calls
+			// will be created later in client.chat()
 			var user_call = new Ollama.ChatCall(this.client) {
 				chat_content = text
 			};
@@ -190,16 +190,32 @@ namespace OLLMchat.UI
 		var cancellable = new GLib.Cancellable();
 		
 		try {
-			var response = yield this.client.chat(text, cancellable);
+			Ollama.ChatResponse response;
 			
-			// Get the last call to store as current_chat
-			if (this.client.calls.size > 0) {
-				var last_call = this.client.calls[this.client.calls.size - 1];
-				if (last_call is Ollama.ChatCall) {
-					this.current_chat = (Ollama.ChatCall) last_call;
-					this.current_chat.cancellable = cancellable;
+			// If we have a previous chat with a response, use reply() instead of chat()
+			if (this.current_chat != null && 
+				this.current_chat.streaming_response != null && 
+				this.current_chat.streaming_response.done &&
+				this.current_chat.streaming_response.call != null) {
+				// Use reply to continue the conversation
+				this.current_chat.cancellable = cancellable;
+				response = yield this.current_chat.streaming_response.reply(text);
+				// Update current_chat from response (should be the same call)
+				if (response.call != null && response.call is Ollama.ChatCall) {
+					this.current_chat = (Ollama.ChatCall) response.call;
 				}
+				return;
 			}
+			// First message or no previous response - use regular chat()
+			response = yield this.client.chat(text, cancellable);
+			
+			// Get the call from the response instead of tracking calls array
+			if (response.call != null && response.call is Ollama.ChatCall) {
+				this.current_chat = (Ollama.ChatCall) response.call;
+				this.current_chat.cancellable = cancellable;
+			}
+			
+			
 			// Response is handled by streaming callback
 		} catch (GLib.IOError e) {
 			// Check if this was a user-initiated cancellation

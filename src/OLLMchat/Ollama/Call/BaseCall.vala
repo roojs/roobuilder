@@ -208,8 +208,12 @@ namespace OLLMchat.Ollama
 				GLib.debug("Skipping non-object JSON chunk: %s", trimmed.substring(0, trimmed.length > 100 ? 100 : trimmed.length));
 				return;
 			}
- 
-
+			if (((ChatCall)this).streaming_response.message == null) {
+				GLib.debug("First streaming response: %s", trimmed);
+			}
+			if (chunk_node.get_object().get_boolean_member("done") == true) {
+				GLib.debug("Last streaming response: %s", trimmed);
+			}				
 			on_chunk(chunk_node.get_object());
 		} catch (Error e) {
 			// Log JSON parsing errors

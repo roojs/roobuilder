@@ -121,6 +121,42 @@ namespace OLLMchat.Ollama
 			return true;
 		}
  
+		/**
+		 * Sets up this ChatCall as a reply to a previous conversation and executes it.
+		 * Appends the previous assistant response and new user message to the messages array, then calls exec_chat().
+		 * 
+		 * @param new_text The new user message text
+		 * @param previous_response The previous ChatResponse from the assistant
+		 * @return The ChatResponse from executing the chat call
+		 */
+		public async ChatResponse reply(string new_text, ChatResponse previous_response) throws Error
+		{
+			// Append the assistant's response from the previous call
+			this.messages.add(new Message(this, "assistant", previous_response.message.content,
+				 previous_response.message.thinking));
+			
+
+			// Append the new user message
+			this.messages.add(new Message(this, "user", new_text));
+
+			GLib.debug("ChatCall.reply: Sending %d message(s):", this.messages.size);
+			for (int i = 0; i < this.messages.size; i++) {
+				var msg = this.messages[i];
+				GLib.debug("  Message %d: role='%s', content='%s'%s", 
+					i + 1, 
+					msg.role, 
+					msg.content.length > 100 ? msg.content.substring(0, 100) + "..." : msg.content,
+					msg.thinking != "" ? @", thinking='$(msg.thinking.length > 50 ? msg.thinking.substring(0, 50) + "..." : msg.thinking)'" : "");
+			}
+			
+			if (this.stream) {
+				//this.streaming_response = new ChatResponse(this.client);
+				return yield this.execute_streaming();
+			}
+
+			return yield this.execute_non_streaming();
+		}
+
 		public async ChatResponse exec_chat() throws Error
 		{
 			if (this.model == "") {
@@ -172,6 +208,7 @@ namespace OLLMchat.Ollama
 			}
 
 			response_obj.client = this.client;
+			response_obj.call = this;
 			return response_obj;
 		}
 
@@ -179,7 +216,7 @@ namespace OLLMchat.Ollama
 		{
 			// Initialize streaming_response before starting stream to ensure it's never null
 			if (this.streaming_response == null) {
-				this.streaming_response = new ChatResponse(this.client);
+				this.streaming_response = new ChatResponse(this.client, this);
 			}
 
 			var url = this.build_url();
@@ -229,7 +266,7 @@ namespace OLLMchat.Ollama
 		{
 			// Ensure streaming_response exists (should be initialized in execute_streaming, but double-check)
 			if (this.streaming_response == null) {
-				this.streaming_response = new ChatResponse(this.client);
+				this.streaming_response = new ChatResponse(this.client, this);
 			}
 
 			// Process chunk - addChunk may throw, so catch and handle errors

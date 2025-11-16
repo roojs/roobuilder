@@ -46,6 +46,7 @@
     }
 
     private enum MarkupPriority {
+        INDENTED_CODE = 0,
         URL_MARKDOWN = 1,
         EMAIL = 2,
         URL = 3,
@@ -144,6 +145,7 @@
         var escaped_text = GLib.Markup.escape_text (text, text.length);
         var matches = new Gee.ArrayList<MarkupMatch ?> ();
 
+        collect_indented_code_matches (escaped_text, matches);
         collect_url_markdown_matches (escaped_text, matches);
         collect_email_matches (escaped_text, matches);
         collect_url_matches (escaped_text, matches);
@@ -153,6 +155,43 @@
         var filtered_matches = filter_and_sort_matches (matches);
 
         return apply_matches (escaped_text, filtered_matches);
+    }
+
+    private void collect_indented_code_matches (string text, Gee.ArrayList<MarkupMatch ?> matches) {
+        // Process text line by line - each line starting with 4 spaces is pre-formatted
+        int current_pos = 0;
+        
+        while (current_pos < text.length) {
+            // Find next newline or end of text
+            int line_end = text.index_of_char ('\n', current_pos);
+            if (line_end == -1) {
+                line_end = text.length;
+            }
+            
+            int line_start = current_pos;
+            int line_length = line_end - line_start;
+            
+            // Check if line starts with 4 spaces
+            if (line_length >= 4 && text.substring (line_start, 4) == "    ") {
+                // Include the newline character if present
+                int line_end_with_newline = line_end + 1;
+                if (line_end_with_newline > text.length) {
+                    line_end_with_newline = text.length;
+                }
+                
+                // Extract the line content
+                string line_content = text.substring (line_start, line_end_with_newline - line_start);
+                // Wrap in <tt> tags for pre-formatted text
+                string replacement = @"<tt>$line_content</tt>";
+                matches.add (MarkupMatch (line_start, line_end_with_newline, line_content, replacement, MarkupPriority.INDENTED_CODE));
+            }
+            
+            // Move to next line (include newline character if present)
+            current_pos = line_end + 1;
+            if (current_pos > text.length) {
+                current_pos = text.length;
+            }
+        }
     }
 
     private void collect_url_markdown_matches (string text, Gee.ArrayList<MarkupMatch ?> matches) {

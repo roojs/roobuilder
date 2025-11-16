@@ -1348,8 +1348,8 @@ namespace OLLMchat.UI
 				this.clear_waiting_indicator(response);
 			}
 
-			if (!this.is_assistant_message) {
-				// Start new assistant message
+		if (!this.is_assistant_message) {
+			// Start new assistant message
 			this.is_assistant_message = true;
 			this.current_markdown_content = "";
 			this.current_markdown_start = 0;
@@ -1364,7 +1364,9 @@ namespace OLLMchat.UI
 			this.buffer.get_end_iter(out end_iter);
 			this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
 			this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
-			this.start_block(response);
+			if (response != null) {
+				this.start_block(response);
+			}
 		}
 
 		// Append thinking text in green with italic formatting

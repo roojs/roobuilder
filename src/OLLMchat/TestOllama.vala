@@ -63,7 +63,8 @@ namespace OLLMchat
 		}
 
 		stdout.printf("Sending query to Ollama...\n");
-		var query = "Write a small vala program using gtk4 to show a window with a scrolled window inside is a windowlefttree and a few tree nodes - cat";
+		//var query = "Write a small vala program using gtk4 to show a window with a scrolled window inside is a windowlefttree and a few tree nodes - cat";
+		var query = "Write a small vala program using gtk4 to show hello world";
 		stdout.printf("Query: %s\n\n", query);
 		stdout.printf("Response:\n");
 
@@ -78,6 +79,24 @@ namespace OLLMchat
 		stdout.printf("Done: %s\n", response.done.to_string());
 		if (response.done_reason != null) {
 			stdout.printf("Done Reason: %s\n", response.done_reason);
+		}
+
+		// Test reply functionality
+		stdout.printf("\n\n--- Testing Reply ---\n");
+		var reply_query = "can you make the hello world in red";
+		stdout.printf("Reply Query: %s\n\n", reply_query);
+		stdout.printf("Reply Response:\n");
+
+		var reply_response = yield response.reply(reply_query);
+
+		stdout.printf("\n\n--- Complete Reply Response ---\n");
+		if (reply_response.thinking != "") {
+			stdout.printf("Thinking: %s\n", reply_response.thinking);
+		}
+		stdout.printf("Content: %s\n", reply_response.message.content);
+		stdout.printf("Done: %s\n", reply_response.done.to_string());
+		if (reply_response.done_reason != null) {
+			stdout.printf("Done Reason: %s\n", reply_response.done_reason);
 		}
 	}
 

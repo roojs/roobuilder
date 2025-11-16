@@ -59,3 +59,4 @@ repo/*
 tests/results/*
 .cursorindexingignore
 .specstory/
+src/OLLAchat/build/*

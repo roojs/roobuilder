@@ -26,6 +26,30 @@ deps = [
   valac.find_library('posix'),
 ]
 
+# Dependencies for test-window (includes GTK UI)
+test_window_deps = [
+  dependency('gtk4'),
+  dependency('gtksourceview-5'),
+  dependency('gee-0.8'),
+  dependency('gio-2.0'),
+  dependency('glib-2.0'),
+  dependency('gobject-2.0'),
+  dependency('json-glib-1.0'),
+  dependency('libsoup-3.0'),
+  valac.find_library('posix'),
+]
+
+# Dependencies for test-ollama (command-line only)
+test_ollama_deps = [
+  dependency('gee-0.8'),
+  dependency('gio-2.0'),
+  dependency('glib-2.0'),
+  dependency('gobject-2.0'),
+  dependency('json-glib-1.0'),
+  dependency('libsoup-3.0'),
+  valac.find_library('posix'),
+]
+
 # Compile resources for prompt system
 ollmchat_resources = gnome.compile_resources(
   'ollmchat-resources',
@@ -64,10 +88,36 @@ ollmchat_prompt_lib = library('ollmchat-prompt',
   install: false
 )
 
-# Build as executable for testing (optional)
-ollmchat_prompt_test = executable('ollmchat-prompt-test',
-  dependencies: deps,
-  sources: [ollmchat_ollama_src, ollmchat_prompt_src, ollmchat_resources],
+# UI source files (for test-window)
+ollmchat_ui_src = files([
+  'UI/ChatWidget.vala',
+  'UI/ChatView.vala',
+  'UI/ChatInput.vala',
+  'MarkdownProcessor.vala',
+])
+
+# Build test-ollama executable (command-line test)
+test_ollama = executable('test-ollama',
+  dependencies: test_ollama_deps,
+  sources: [
+    'TestOllama.vala',
+    ollmchat_ollama_src,
+    ollmchat_prompt_src,
+    ollmchat_resources,
+  ],
+  install: false
+)
+
+# Build test-window executable (GTK UI test)
+test_window = executable('test-window',
+  dependencies: test_window_deps,
+  sources: [
+    'TestWindow.vala',
+    ollmchat_ollama_src,
+    ollmchat_prompt_src,
+    ollmchat_ui_src,
+    ollmchat_resources,
+  ],
   install: false
 )
 
