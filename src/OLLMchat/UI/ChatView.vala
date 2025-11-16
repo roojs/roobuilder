@@ -26,8 +26,8 @@ namespace OLLMchat.UI
 		private string current_markdown_content = "";
 		private string last_line = "";
 		private int last_chunk_start = 0;
-		private Gtk.TextMark? last_chunk_mark = null;
-		private Gtk.TextMark? current_chunk_mark = null;
+		private Gtk.TextMark? current_block_start = null;
+		private Gtk.TextMark? current_block_end = null;
 		private bool is_assistant_message = false;
 		private bool is_thinking = false;
 		private ContentState content_state = ContentState.NONE;
@@ -162,8 +162,8 @@ namespace OLLMchat.UI
 			this.buffer.get_end_iter(out end_iter);
 			this.buffer.insert_markup(ref end_iter, "<b>Assistant:</b>\n", -1);
 			this.buffer.get_end_iter(out end_iter);
-			this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
-			this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+			this.current_block_start = this.buffer.create_mark(null, end_iter, true);
+			this.current_block_end = this.buffer.create_mark(null, end_iter, true);
 		}
 
 		/**
@@ -392,15 +392,15 @@ namespace OLLMchat.UI
 					this.buffer.get_end_iter(out end_iter);
 					
 					// Always move marks to current end position (create if null, move if exists)
-					if (this.current_chunk_mark == null) {
-						this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					if (this.current_block_end == null) {
+						this.current_block_end = this.buffer.create_mark(null, end_iter, true);
 					} else {
-						this.buffer.move_mark(this.current_chunk_mark, end_iter);
+						this.buffer.move_mark(this.current_block_end, end_iter);
 					}
-					if (this.last_chunk_mark == null) {
-						this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					if (this.current_block_start == null) {
+						this.current_block_start = this.buffer.create_mark(null, end_iter, true);
 					} else {
-						this.buffer.move_mark(this.last_chunk_mark, end_iter);
+						this.buffer.move_mark(this.current_block_start, end_iter);
 					}
 					this.last_chunk_start = 0;
 					return;
@@ -456,42 +456,43 @@ namespace OLLMchat.UI
 					if (this.current_markdown_content.length == 0) {
 						return;
 					}
-					
+						
 					string rendered = MarkdownProcessor.get_default().markup_string(this.current_markdown_content);
 					
 					Gtk.TextIter start_iter;
-					if (this.last_chunk_mark != null) {
-						this.buffer.get_iter_at_mark(out start_iter, this.last_chunk_mark);
+					// Only delete if we have both marks - otherwise just insert
+					if (this.current_block_start != null && this.current_block_end != null) {
+						this.buffer.get_iter_at_mark(out start_iter, this.current_block_start);
+						Gtk.TextIter end_iter;
+						this.buffer.get_iter_at_mark(out end_iter, this.current_block_end);
+						this.buffer.delete(ref start_iter, ref end_iter);
 					} else {
+						// No marks - just insert at end
 						this.buffer.get_end_iter(out start_iter);
 					}
 					
-					Gtk.TextIter end_iter;
-					this.buffer.get_end_iter(out end_iter);
-					
-					this.buffer.delete(ref start_iter, ref end_iter);
 					string color = this.is_thinking ? "green" : "blue";
 					string italic_tag = this.is_thinking ? "<i>" : "";
 					string italic_close_tag = this.is_thinking ? "</i>" : "";
-					this.buffer.insert_markup(ref start_iter, @"<span color=\"$(color)\">$(italic_tag)$(rendered)$(italic_close_tag)</span>", -1);
-					
+					this.buffer.insert_markup(ref start_iter,
+							 @"<span color=\"$(color)\">$(italic_tag)$(rendered)$(italic_close_tag)</span>", -1);
+						
 					// Update marks to end of rendered content
 					this.buffer.get_end_iter(out end_iter);
-					if (this.last_chunk_mark == null) {
-						this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					if (this.current_block_start == null) {
+						this.current_block_start = this.buffer.create_mark(null, end_iter, true);
 					} else {
-						this.buffer.move_mark(this.last_chunk_mark, end_iter);
+						this.buffer.move_mark(this.current_block_start, end_iter);
 					}
-					if (this.current_chunk_mark == null) {
-						this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					if (this.current_block_end == null) {
+						this.current_block_end = this.buffer.create_mark(null, end_iter, true);
 					} else {
-						this.buffer.move_mark(this.current_chunk_mark, end_iter);
+						this.buffer.move_mark(this.current_block_end, end_iter);
 					}
 					// Reset content and last_line for next block
 					this.current_markdown_content = "";
 					this.last_line = "";
 					return;
-					
 				case ContentState.CODE_BLOCK:
 					this.close_code_block();
 					this.code_block_language = null;
@@ -515,18 +516,18 @@ namespace OLLMchat.UI
 			
 			string rendered = MarkdownProcessor.get_default().markup_string(this.current_markdown_content);
 			
-			// Get position to replace content
 			Gtk.TextIter start_iter;
-			if (this.last_chunk_mark != null) {
-				this.buffer.get_iter_at_mark(out start_iter, this.last_chunk_mark);
+			// Only delete if we have both marks - otherwise just insert
+			if (this.current_block_start != null && this.current_block_end != null) {
+				this.buffer.get_iter_at_mark(out start_iter, this.current_block_start);
+				Gtk.TextIter end_iter;
+				this.buffer.get_iter_at_mark(out end_iter, this.current_block_end);
+				// Delete current markdown block from start to end
+				this.buffer.delete(ref start_iter, ref end_iter);
 			} else {
+				// No marks - just insert at end
 				this.buffer.get_end_iter(out start_iter);
 			}
-			
-			// Delete current markdown block from mark to end
-			Gtk.TextIter end_iter;
-			this.buffer.get_end_iter(out end_iter);
-			this.buffer.delete(ref start_iter, ref end_iter);
 			
 			// Insert rendered content with appropriate color and italic for thinking
 			string color = this.is_thinking ? "green" : "blue";
@@ -534,17 +535,13 @@ namespace OLLMchat.UI
 			string italic_close_tag = this.is_thinking ? "</i>" : "";
 			this.buffer.insert_markup(ref start_iter, @"<span color=\"$(color)\">$(italic_tag)$(rendered)$(italic_close_tag)</span>", -1);
 			
-			// Update marks to end of rendered content
+			// Update current_block_end to end of rendered content
+			// current_block_start stays at start of block (set by start_block) and should not move
 			this.buffer.get_end_iter(out end_iter);
-			if (this.last_chunk_mark == null) {
-				this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+			if (this.current_block_end == null) {
+				this.current_block_end = this.buffer.create_mark(null, end_iter, true);
 			} else {
-				this.buffer.move_mark(this.last_chunk_mark, end_iter);
-			}
-			if (this.current_chunk_mark == null) {
-				this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
-			} else {
-				this.buffer.move_mark(this.current_chunk_mark, end_iter);
+				this.buffer.move_mark(this.current_block_end, end_iter);
 			}
 		}
 		
@@ -599,8 +596,8 @@ namespace OLLMchat.UI
 			this.is_assistant_message = false;
 			this.current_markdown_content = "";
 			this.last_chunk_start = 0;
-			this.last_chunk_mark = null;
-			this.current_chunk_mark = null;
+			this.current_block_start = null;
+			this.current_block_end = null;
 			this.content_state = ContentState.NONE;
 			this.code_block_language = null;
 			this.current_source_view = null;
@@ -622,8 +619,8 @@ namespace OLLMchat.UI
 			this.current_markdown_content = "";
 			this.last_chunk_start = 0;
 			this.is_assistant_message = false;
-			this.last_chunk_mark = null;
-			this.current_chunk_mark = null;
+			this.current_block_start = null;
+			this.current_block_end = null;
 			this.content_state = ContentState.NONE;
 			this.code_block_language = null;
 			this.current_source_view = null;
@@ -746,8 +743,8 @@ namespace OLLMchat.UI
 
 			Gtk.TextIter current_end;
 			this.buffer.get_end_iter(out current_end);
-			this.last_chunk_mark = this.buffer.create_mark(null, current_end, true);
-			this.current_chunk_mark = this.buffer.create_mark(null, current_end, true);
+			this.current_block_start = this.buffer.create_mark(null, current_end, true);
+			this.current_block_end = this.buffer.create_mark(null, current_end, true);
 		}
 
 		private bool update_waiting_dots()
@@ -880,10 +877,10 @@ namespace OLLMchat.UI
 
 			// Get current position in TextView
 			Gtk.TextIter insert_pos;
-			if (this.current_chunk_mark != null) {
-				this.buffer.get_iter_at_mark(out insert_pos, this.current_chunk_mark);
-			} else if (this.last_chunk_mark != null) {
-				this.buffer.get_iter_at_mark(out insert_pos, this.last_chunk_mark);
+			if (this.current_block_end != null) {
+				this.buffer.get_iter_at_mark(out insert_pos, this.current_block_end);
+			} else if (this.current_block_start != null) {
+				this.buffer.get_iter_at_mark(out insert_pos, this.current_block_start);
 			} else {
 				this.buffer.get_end_iter(out insert_pos);
 			}
@@ -937,15 +934,15 @@ namespace OLLMchat.UI
 				this.buffer.get_end_iter(out end_iter);
 			}
 			
-			if (this.current_chunk_mark != null) {
-				this.buffer.move_mark(this.current_chunk_mark, end_iter);
+			if (this.current_block_end != null) {
+				this.buffer.move_mark(this.current_block_end, end_iter);
 			} else {
-				this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+				this.current_block_end = this.buffer.create_mark(null, end_iter, true);
 			}
-			if (this.last_chunk_mark != null) {
-				this.buffer.move_mark(this.last_chunk_mark, end_iter);
+			if (this.current_block_start != null) {
+				this.buffer.move_mark(this.current_block_start, end_iter);
 			} else {
-				this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+				this.current_block_start = this.buffer.create_mark(null, end_iter, true);
 			}
 
 			// Clean up code block marks
