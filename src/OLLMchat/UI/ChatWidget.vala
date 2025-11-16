@@ -123,12 +123,7 @@ namespace OLLMchat.UI
 			try {
 				// Handle incomplete responses
 				if (!response.done) {
-					if (is_thinking) {
-						// Show thinking text in green - pass response to clear waiting indicator properly
-						this.chat_view.append_thinking(new_text, response);
-						return;
-					}
-					// Show content text - pass response as message (response is in ChatCall's messages array)
+					// Use generic chunk handling - it handles both thinking and content via response.is_thinking
 					this.chat_view.append_assistant_chunk(new_text, response);
 					return;
 				}
