@@ -38,6 +38,12 @@ namespace OLLMchat.Ollama
 			this.message = Json.gobject_deserialize(typeof(Message), property_node) as Message;
 			this.message.message_interface = this;
 			
+			// Debug: output received message
+			GLib.debug("ChatResponse.deserialize_property: Received message: role='%s', content='%s'%s",
+				this.message.role,
+				this.message.content.length > 100 ? this.message.content.substring(0, 100) + "..." : this.message.content,
+				this.message.thinking != "" ? @", thinking='$(this.message.thinking.length > 50 ? this.message.thinking.substring(0, 50) + "..." : this.message.thinking)'" : "");
+			
 			value = Value(typeof(string));
 			value.set_string("");
 			return true;
@@ -105,6 +111,12 @@ namespace OLLMchat.Ollama
 			message_node.set_object(message_obj);
 			var msg = Json.gobject_deserialize(typeof(Message), message_node) as Message;
 			msg.message_interface = this;
+			
+			// Debug: output streaming message chunk
+			GLib.debug("ChatResponse.add_message_chunk: Received chunk: role='%s', content='%s'%s",
+				msg.role,
+				msg.content != "" ? (msg.content.length > 50 ? msg.content.substring(0, 50) + "..." : msg.content) : "(empty)",
+				msg.thinking != "" ? @", thinking='$(msg.thinking.length > 50 ? msg.thinking.substring(0, 50) + "..." : msg.thinking)'" : "");
 			
 			// If message is null, use the deserialized object directly
 			if (this.message == null) {
