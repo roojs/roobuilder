@@ -172,12 +172,29 @@ namespace OLLMchat.UI
 		*/
 		private void process_new_chunk(string new_text, Ollama.ChatResponse response)
 		{
-			// Check if state changed (thinking vs content)
-			// If state changed, process it as a line break first
-			if (this.is_thinking != response.is_thinking) {
-				this.process_new_line(response);
-			}
+			GLib.debug("ChatView.process_new_chunk: new_text='%s', is_thinking=%s, response.is_thinking=%s, thinking_changed=%s", 
+				new_text, this.is_thinking.to_string(), response.is_thinking.to_string(), 
+				(this.is_thinking != response.is_thinking).to_string());
 			
+			// Check if state changed (thinking vs content)
+			// If state changed, end the current block
+			if (this.is_thinking != response.is_thinking) {
+				GLib.debug("ChatView.process_new_chunk: THINKING STATUS CHANGE: old=%s, new=%s, content_state before=%s", 
+					this.is_thinking.to_string(), response.is_thinking.to_string(), this.content_state.to_string());
+				// End the current block if we're in one (end_block uses current is_thinking for formatting)
+				if (this.content_state != ContentState.NONE) {
+					this.end_block(response);
+					// Add a line break to visually separate the old block from the new one
+					Gtk.TextIter end_iter;
+					this.buffer.get_end_iter(out end_iter);
+					this.buffer.insert(ref end_iter, "\n", -1);
+					GLib.debug("ChatView.process_new_chunk: After end_block, content_state=%s", this.content_state.to_string());
+				}
+				// Update thinking state AFTER ending block (so block is formatted with old status)
+				this.is_thinking = response.is_thinking;
+				// New text will start a new block when process_add_text is called
+			}
+					
 			// Process the incoming text - split into lines
 			string[] lines = new_text.split("\n");
 			
@@ -199,13 +216,13 @@ namespace OLLMchat.UI
 		*/
 		private void process_add_text(string text, Ollama.ChatResponse response)
 		{
+			GLib.debug("ChatView.process_add_text: text='%s', content_state=%s, last_line='%s'", text, this.content_state.to_string(), this.last_line);
 			// Append text to last_line (text does not contain newlines)
 			this.last_line += text;
 			
 			switch (this.content_state) {
 				case ContentState.CODE_BLOCK:
-					this.current_markdown_content += text;
-					// Append directly to code block buffer
+					// Append directly to code block buffer (current_markdown_content not used for code blocks)
 					if (this.current_source_buffer == null) {
 						return;
 					}
@@ -222,9 +239,11 @@ namespace OLLMchat.UI
 					
 				case ContentState.NONE:
 					// Start a new markdown block
+					GLib.debug("ChatView.process_add_text: Starting new block from NONE, response.is_thinking=%s", response.is_thinking.to_string());
 					this.content_state = response.is_thinking ? ContentState.THINKING : ContentState.CONTENT;
+					GLib.debug("ChatView.process_add_text: Set content_state to %s", this.content_state.to_string());
 					this.start_block(response);
-						
+							
 						// Append raw text and update block
 					this.current_markdown_content += text;
 					this.update_block();
@@ -237,6 +256,7 @@ namespace OLLMchat.UI
 		*/
 		private void process_new_line(Ollama.ChatResponse response)
 		{
+			GLib.debug("ChatView.process_new_line: content_state=%s, last_line='%s'", this.content_state.to_string(), this.last_line);
 			switch (this.content_state) {
 				case ContentState.CODE_BLOCK:
 					this.process_new_line_code_block(response);
@@ -265,14 +285,17 @@ namespace OLLMchat.UI
 		private void process_new_line_code_block(Ollama.ChatResponse response)
 		{
 			if (!this.last_line.has_prefix("```")) {
-				this.current_markdown_content += "\n";
-				this.update_block();
+				// Insert newline into source buffer (current_markdown_content not used for code blocks)
+				if (this.current_source_buffer != null) {
+					Gtk.TextIter end_iter;
+					this.current_source_buffer.get_end_iter(out end_iter);
+					this.current_source_buffer.insert(ref end_iter, "\n", -1);
+				}
 				return;
 			}
 			
 			// Remove the closing marker line from source view before ending block
 			this.remove_last_source_view_line();
-			this.current_markdown_content += "\n";
 			this.end_block(response); // End code block first
 			this.content_state = ContentState.NONE; // Set to NONE after ending
 			// Reset source view references as we're no longer working with the code block
@@ -320,15 +343,15 @@ namespace OLLMchat.UI
 		*/
 		private void process_new_line_thinking(Ollama.ChatResponse response)
 		{
-			// Check if thinking state changed to not thinking or empty line
-			if (!response.is_thinking || this.last_line == "") {
-				// End thinking block and switch to NONE
+			// Check if thinking state changed to not thinking
+			if (!response.is_thinking) {
+				// End thinking block (end_block will reset content_state to NONE)
 				this.current_markdown_content += "\n";
-				this.end_block(response); // End thinking block first
-				this.content_state = ContentState.NONE;
+				this.end_block(response);
 				return;
 			}
 			
+			// Empty lines are just regular content - add newline and continue
 			this.current_markdown_content += "\n";
 			this.update_block();
 		}
@@ -337,7 +360,7 @@ namespace OLLMchat.UI
 		* Handles newline when in CONTENT state.
 		*/
 		private void process_new_line_content(Ollama.ChatResponse response)
-		{
+			{
 			if (this.last_line.has_prefix("```")) {
 				// Extract language before ending content block
 				string language = "";
@@ -348,21 +371,21 @@ namespace OLLMchat.UI
 				var mapped_language = this.map_language_id(language);
 				this.code_block_language = mapped_language ?? language;
 				
-				this.current_markdown_content += "\n";
-				this.end_block(response); // End content block first
+					// Remove the marker from current_markdown_content (it was added via process_add_text)
+					// Simply remove the last last_line.length characters
+					if (this.current_markdown_content.length >= this.last_line.length) {
+						this.current_markdown_content = this.current_markdown_content.substring(0, this.current_markdown_content.length - this.last_line.length);
+					}
+				// Update block to remove marker from display
+				this.update_block();
+				// Now end the content block and start code block
+				this.end_block(response);
 				this.content_state = ContentState.CODE_BLOCK;
 				this.start_block(response);
 				return;
 			}
 			
-			if (this.last_line == "") {
-				// Empty line in content - end markdown and switch to NONE
-				this.current_markdown_content += "\n";
-				this.end_block(response); // End content block first
-				this.content_state = ContentState.NONE;
-				return;
-			}
-			
+			// Empty lines are just regular content - add newline and continue
 			this.current_markdown_content += "\n";
 			this.update_block();
 		}
@@ -381,12 +404,13 @@ namespace OLLMchat.UI
 		*/
 		private void start_block(Ollama.ChatResponse response)
 		{
+			GLib.debug("ChatView.start_block: content_state=%s, is_thinking=%s, response.is_thinking=%s, last_line='%s'", 
+			this.content_state.to_string(), this.is_thinking.to_string(), response.is_thinking.to_string(), this.last_line);
 			switch (this.content_state) {
 				case ContentState.THINKING:
 				case ContentState.CONTENT:
-					// Reset content and last_line for new block
+					// Reset content for new block (but preserve last_line - it contains the text that triggered this block)
 					this.current_markdown_content = "";
-					this.last_line = "";
 					// Thinking and content blocks start with marks at current position
 					Gtk.TextIter end_iter;
 					this.buffer.get_end_iter(out end_iter);
@@ -428,6 +452,7 @@ namespace OLLMchat.UI
 		*/
 		private void update_block()
 		{
+			GLib.debug("ChatView.update_block: content_state=%s, current_markdown_content.length=%d", this.content_state.to_string(), this.current_markdown_content.length);
 			switch (this.content_state) {
 				case ContentState.THINKING:
 				case ContentState.CONTENT:
@@ -449,6 +474,7 @@ namespace OLLMchat.UI
 		*/
 		private void end_block(Ollama.ChatResponse response)
 		{
+			GLib.debug("ChatView.end_block: content_state=%s, current_markdown_content='%s'", this.content_state.to_string(), this.current_markdown_content);
 			switch (this.content_state) {
 				case ContentState.THINKING:
 				case ContentState.CONTENT:
@@ -460,10 +486,10 @@ namespace OLLMchat.UI
 					string rendered = MarkdownProcessor.get_default().markup_string(this.current_markdown_content);
 					
 					Gtk.TextIter start_iter;
+					Gtk.TextIter end_iter;
 					// Only delete if we have both marks - otherwise just insert
 					if (this.current_block_start != null && this.current_block_end != null) {
 						this.buffer.get_iter_at_mark(out start_iter, this.current_block_start);
-						Gtk.TextIter end_iter;
 						this.buffer.get_iter_at_mark(out end_iter, this.current_block_end);
 						this.buffer.delete(ref start_iter, ref end_iter);
 					} else {
@@ -475,7 +501,7 @@ namespace OLLMchat.UI
 					string italic_tag = this.is_thinking ? "<i>" : "";
 					string italic_close_tag = this.is_thinking ? "</i>" : "";
 					this.buffer.insert_markup(ref start_iter,
-							 @"<span color=\"$(color)\">$(italic_tag)$(rendered)$(italic_close_tag)</span>", -1);
+							@"<span color=\"$(color)\">$(italic_tag)$(rendered)$(italic_close_tag)</span>", -1);
 						
 					// Update marks to end of rendered content
 					this.buffer.get_end_iter(out end_iter);
@@ -492,6 +518,9 @@ namespace OLLMchat.UI
 					// Reset content and last_line for next block
 					this.current_markdown_content = "";
 					this.last_line = "";
+					// Reset content_state to NONE so new blocks can be started
+					this.content_state = ContentState.NONE;
+					GLib.debug("ChatView.end_block: After ending THINKING/CONTENT block, content_state reset to NONE");
 					return;
 				case ContentState.CODE_BLOCK:
 					this.close_code_block();
@@ -517,10 +546,10 @@ namespace OLLMchat.UI
 			string rendered = MarkdownProcessor.get_default().markup_string(this.current_markdown_content);
 			
 			Gtk.TextIter start_iter;
+			Gtk.TextIter end_iter;
 			// Only delete if we have both marks - otherwise just insert
 			if (this.current_block_start != null && this.current_block_end != null) {
 				this.buffer.get_iter_at_mark(out start_iter, this.current_block_start);
-				Gtk.TextIter end_iter;
 				this.buffer.get_iter_at_mark(out end_iter, this.current_block_end);
 				// Delete current markdown block from start to end
 				this.buffer.delete(ref start_iter, ref end_iter);
