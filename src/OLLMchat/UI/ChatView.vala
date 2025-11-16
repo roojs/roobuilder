@@ -26,6 +26,7 @@ namespace OLLMchat.UI
 		private string current_markdown_content = "";
 		private int current_markdown_start = 0;
 		private int last_chunk_start = 0;
+		private int processed_content_length = 0; // Track how much content we've processed
 		private Gtk.TextMark? last_chunk_mark = null;
 		private Gtk.TextMark? current_chunk_mark = null;
 		private bool is_assistant_message = false;
@@ -358,6 +359,234 @@ namespace OLLMchat.UI
 			}
 			
 			return this.current_markdown_content.substring(last_newline + 1);
+		}
+		
+		/**
+		* Starts a new block based on current state.
+		*/
+		private void start_block(Ollama.ChatResponse response)
+		{
+			switch (this.content_state) {
+				case ContentState.THINKING:
+					// Thinking blocks start with marks at current position
+					if (this.current_chunk_mark == null) {
+						Gtk.TextIter end_iter;
+						this.buffer.get_end_iter(out end_iter);
+						this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					}
+					if (this.last_chunk_mark == null) {
+						Gtk.TextIter end_iter;
+						this.buffer.get_end_iter(out end_iter);
+						this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					}
+					this.last_chunk_start = this.current_markdown_start;
+					return;
+					
+				case ContentState.CONTENT:
+					// Content blocks start with marks at current position
+					if (this.current_chunk_mark == null) {
+						Gtk.TextIter end_iter;
+						this.buffer.get_end_iter(out end_iter);
+						this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					}
+					if (this.last_chunk_mark == null) {
+						Gtk.TextIter end_iter;
+						this.buffer.get_end_iter(out end_iter);
+						this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+					}
+					this.last_chunk_start = this.current_markdown_start;
+					return;
+					
+				case ContentState.CODE_BLOCK:
+					// Extract language from last line (should be ```language)
+					string last_line = this.get_last_complete_line();
+					string language = "";
+					if (last_line.length > 3) {
+						language = last_line.substring(3).strip();
+					}
+					this.code_block_language = language;
+					this.open_code_block(language);
+					return;
+					
+				case ContentState.NONE:
+					// Nothing to start
+					return;
+			}
+		}
+		
+		/**
+		* Updates the current block based on state.
+		*/
+		private void update_block()
+		{
+			switch (this.content_state) {
+				case ContentState.THINKING:
+				case ContentState.CONTENT:
+					this.update_markdown_block();
+					return;
+					
+				case ContentState.CODE_BLOCK:
+					// Code blocks update automatically via buffer changes
+					return;
+					
+				case ContentState.NONE:
+					// Nothing to update
+					return;
+			}
+		}
+		
+		/**
+		* Ends the current block based on state.
+		*/
+		private void end_block(Ollama.ChatResponse response)
+		{
+			switch (this.content_state) {
+				case ContentState.THINKING:
+				case ContentState.CONTENT:
+					// Render any remaining content
+					if (this.current_markdown_content.length > this.last_chunk_start) {
+						string remaining = this.current_markdown_content.substring(this.last_chunk_start);
+						string rendered = MarkdownProcessor.get_default().markup_string(remaining);
+						
+						Gtk.TextIter start_iter;
+						if (this.last_chunk_mark != null) {
+							this.buffer.get_iter_at_mark(out start_iter, this.last_chunk_mark);
+						} else {
+							this.buffer.get_end_iter(out start_iter);
+						}
+						
+						Gtk.TextIter end_iter;
+						this.buffer.get_end_iter(out end_iter);
+						
+						this.buffer.delete(ref start_iter, ref end_iter);
+						string color = this.is_thinking ? "green" : "blue";
+						string italic_tag = this.is_thinking ? "<i>" : "";
+						string italic_close_tag = this.is_thinking ? "</i>" : "";
+						this.buffer.insert_markup(ref start_iter, @"<span color=\"$(color)\">$(italic_tag)$(rendered)$(italic_close_tag)</span>", -1);
+						
+						// Update marks
+						this.buffer.get_end_iter(out end_iter);
+						if (this.last_chunk_mark != null) {
+							this.buffer.move_mark(this.last_chunk_mark, end_iter);
+						} else {
+							this.last_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+						}
+						if (this.current_chunk_mark != null) {
+							this.buffer.move_mark(this.current_chunk_mark, end_iter);
+						} else {
+							this.current_chunk_mark = this.buffer.create_mark(null, end_iter, true);
+						}
+					}
+					return;
+					
+				case ContentState.CODE_BLOCK:
+					this.close_code_block();
+					this.code_block_language = null;
+					return;
+					
+				case ContentState.NONE:
+					// Nothing to end
+					return;
+			}
+		}
+		
+		/**
+		* Updates markdown block with incremental rendering.
+		*/
+		private void update_markdown_block()
+		{
+			// Find last double line break AFTER last_chunk_start
+			int last_double_break = -1;
+			if (this.last_chunk_start < this.current_markdown_content.length) {
+				string search_area = this.current_markdown_content.substring(this.last_chunk_start);
+				int found_pos = search_area.last_index_of("\n\n");
+				if (found_pos != -1) {
+					last_double_break = this.last_chunk_start + found_pos;
+				}
+			}
+			int current_chunk_start = last_double_break == -1 ? this.last_chunk_start : last_double_break + 2;
+			
+			// If we've hit a new \n\n AFTER last_chunk_start, render everything up to that point as markdown
+			if (last_double_break != -1 && last_double_break + 2 > this.last_chunk_start) {
+				// Render completed chunks (from last_chunk_start to last_double_break + 2)
+				string completed_chunks = this.current_markdown_content.substring(this.last_chunk_start, (last_double_break + 2) - this.last_chunk_start);
+				string rendered_completed = MarkdownProcessor.get_default().markup_string(completed_chunks);
+				
+				// Get position to insert completed chunks
+				Gtk.TextIter insert_pos;
+				if (this.last_chunk_mark != null) {
+					this.buffer.get_iter_at_mark(out insert_pos, this.last_chunk_mark);
+				} else {
+					this.buffer.get_end_iter(out insert_pos);
+				}
+				
+				// Delete any existing content from mark to end (current chunk being replaced)
+				Gtk.TextIter chunk_end;
+				this.buffer.get_end_iter(out chunk_end);
+				this.buffer.delete(ref insert_pos, ref chunk_end);
+				
+				// Insert rendered completed chunks with appropriate color and italic for thinking
+				string color = this.is_thinking ? "green" : "blue";
+				string italic_tag = this.is_thinking ? "<i>" : "";
+				string italic_close_tag = this.is_thinking ? "</i>" : "";
+				this.buffer.insert_markup(ref insert_pos, @"<span color=\"$(color)\">$(italic_tag)$(rendered_completed)$(italic_close_tag)</span>", -1);
+				
+				// Update mark position to end of completed chunks
+				this.buffer.get_end_iter(out insert_pos);
+				if (this.last_chunk_mark != null) {
+					this.buffer.move_mark(this.last_chunk_mark, insert_pos);
+				} else {
+					this.last_chunk_mark = this.buffer.create_mark(null, insert_pos, true);
+				}
+				
+				this.last_chunk_start = last_double_break + 2;
+				current_chunk_start = this.last_chunk_start;
+				// Update current_chunk_mark to start of new current chunk
+				Gtk.TextIter new_current_start;
+				this.buffer.get_end_iter(out new_current_start);
+				if (this.current_chunk_mark != null) {
+					this.buffer.move_mark(this.current_chunk_mark, new_current_start);
+				} else {
+					this.current_chunk_mark = this.buffer.create_mark(null, new_current_start, true);
+				}
+			}
+			
+			// For current incomplete chunk, display as plain text with appropriate color (don't render markdown yet)
+			string current_chunk = this.current_markdown_content.substring(current_chunk_start);
+			
+			// Replace current chunk in buffer - delete from current_chunk_mark to end
+			Gtk.TextIter chunk_start;
+			if (this.current_chunk_mark != null) {
+				this.buffer.get_iter_at_mark(out chunk_start, this.current_chunk_mark);
+			} else {
+				// Fallback: use last_chunk_mark if current_chunk_mark doesn't exist
+				if (this.last_chunk_mark != null) {
+					this.buffer.get_iter_at_mark(out chunk_start, this.last_chunk_mark);
+				} else {
+					this.buffer.get_end_iter(out chunk_start);
+				}
+				// Create current_chunk_mark at this position
+				this.current_chunk_mark = this.buffer.create_mark(null, chunk_start, true);
+			}
+			
+			Gtk.TextIter chunk_end;
+			this.buffer.get_end_iter(out chunk_end);
+			
+			// Delete old current chunk and insert new plain text chunk with appropriate color and italic for thinking
+			this.buffer.delete(ref chunk_start, ref chunk_end);
+			string escaped_chunk = GLib.Markup.escape_text(current_chunk);
+			string color = this.is_thinking ? "green" : "blue";
+			string italic_tag = this.is_thinking ? "<i>" : "";
+			string italic_close_tag = this.is_thinking ? "</i>" : "";
+			this.buffer.insert_markup(ref chunk_start, @"<span color=\"$(color)\">$(italic_tag)$(escaped_chunk)$(italic_close_tag)</span>", -1);
+			
+			// Update last_chunk_mark to end of inserted current chunk for next iteration
+			this.buffer.get_end_iter(out chunk_end);
+			if (this.last_chunk_mark != null) {
+				this.buffer.move_mark(this.last_chunk_mark, chunk_end);
+			} else {
+				this.last_chunk_mark = this.buffer.create_mark(null, chunk_end, true);
+			}
 		}
 		
 		/**
