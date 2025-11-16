@@ -202,6 +202,165 @@ namespace OLLMchat.UI
 		}
 		
 		/**
+		* Appends text to current markdown content based on current state.
+		*/
+		private void process_add_text(string text, Ollama.ChatResponse response)
+		{
+			switch (this.content_state) {
+				case ContentState.CODE_BLOCK:
+					this.current_markdown_content += text;
+					// Append directly to code block buffer
+					if (this.current_source_buffer != null) {
+						Gtk.TextIter end_iter;
+						this.current_source_buffer.get_end_iter(out end_iter);
+						this.current_source_buffer.insert(ref end_iter, text, -1);
+					}
+					return;
+					
+				case ContentState.THINKING:
+				case ContentState.CONTENT:
+					this.current_markdown_content += text;
+					this.update_block();
+					return;
+					
+				case ContentState.NONE:
+					// Start a new markdown block
+					this.current_markdown_start = this.current_markdown_content.length;
+					this.content_state = response.is_thinking ? ContentState.THINKING : ContentState.CONTENT;
+					this.start_block(response);
+					
+					// Append raw text and update block
+					this.current_markdown_content += text;
+					this.update_block();
+					return;
+			}
+		}
+		
+		/**
+		* Processes a newline, delegating to state-specific handlers.
+		*/
+		private void process_new_line(Ollama.ChatResponse response)
+		{
+			switch (this.content_state) {
+				case ContentState.CODE_BLOCK:
+					this.process_new_line_code_block(response);
+					return;
+					
+				case ContentState.THINKING:
+					this.process_new_line_thinking(response);
+					return;
+					
+				case ContentState.CONTENT:
+					this.process_new_line_content(response);
+					return;
+					
+				case ContentState.NONE:
+					this.process_new_line_none(response);
+					return;
+			}
+		}
+		
+		/**
+		* Handles newline when in CODE_BLOCK state.
+		*/
+		private void process_new_line_code_block(Ollama.ChatResponse response)
+		{
+			string last_line = this.get_last_complete_line();
+			if (last_line.has_prefix("```")) {
+				this.current_markdown_content += "\n";
+				this.end_block(response); // End code block first
+				this.content_state = ContentState.NONE; // Set to NONE after ending
+				return;
+			}
+			
+			this.current_markdown_content += "\n";
+			this.update_block();
+		}
+		
+		/**
+		* Handles newline when in THINKING state.
+		*/
+		private void process_new_line_thinking(Ollama.ChatResponse response)
+		{
+			string last_line = this.get_last_complete_line();
+			
+			// Thinking cannot go directly to code - only check for empty lines
+			if (last_line == "") {
+				// Empty line in thinking - end markdown and switch to NONE
+				this.current_markdown_content += "\n";
+				this.end_block(response); // End thinking block first
+				this.content_state = ContentState.NONE;
+				return;
+			}
+			
+			this.current_markdown_content += "\n";
+			this.update_block();
+		}
+		
+		/**
+		* Handles newline when in CONTENT state.
+		*/
+		private void process_new_line_content(Ollama.ChatResponse response)
+		{
+			string last_line = this.get_last_complete_line();
+			
+			if (last_line.has_prefix("```")) {
+				this.current_markdown_content += "\n";
+				this.end_block(response); // End content block first
+				this.content_state = ContentState.CODE_BLOCK;
+				this.start_block(response);
+				return;
+			}
+			
+			if (last_line == "") {
+				// Empty line in content - end markdown and switch to NONE
+				this.current_markdown_content += "\n";
+				this.end_block(response); // End content block first
+				this.content_state = ContentState.NONE;
+				return;
+			}
+			
+			this.current_markdown_content += "\n";
+			this.update_block();
+		}
+		
+		/**
+		* Handles newline when in NONE state.
+		*/
+		private void process_new_line_none(Ollama.ChatResponse response)
+		{
+			// Just output a line break in NONE state
+			this.current_markdown_content += "\n";
+		}
+		
+		/**
+		* Gets the last complete line from current_markdown_content.
+		*/
+		private string get_last_complete_line()
+		{
+			// Find last newline
+			int last_newline = this.current_markdown_content.last_index_of("\n");
+			if (last_newline == -1) {
+				return this.current_markdown_content;
+			}
+			
+			// Extract last line (between last newline and end, excluding the newline)
+			if (last_newline == this.current_markdown_content.length - 1) {
+				// Last char is newline, find previous newline
+				if (last_newline == 0) {
+					return "";
+				}
+				int prev_newline = this.current_markdown_content.last_index_of("\n", last_newline - 1);
+				if (prev_newline == -1) {
+					return this.current_markdown_content.substring(0, last_newline);
+				}
+				return this.current_markdown_content.substring(prev_newline + 1, last_newline - prev_newline - 1);
+			}
+			
+			return this.current_markdown_content.substring(last_newline + 1);
+		}
+		
+		/**
 		* Processes new lines from message.content, tracking which lines have been processed.
 		* Only looks for ``` markers at the start of new lines.
 		* Processes all lines for streaming, but removes the last line from buffer if it contains a state switch.
