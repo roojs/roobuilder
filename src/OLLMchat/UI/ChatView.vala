@@ -616,7 +616,6 @@ namespace OLLMchat.UI
 			this.buffer.delete(ref start_iter, ref end_iter);
 
 			this.current_markdown_content = "";
-			this.current_markdown_start = 0;
 			this.last_chunk_start = 0;
 			this.is_assistant_message = false;
 			this.last_chunk_mark = null;
@@ -735,9 +734,9 @@ namespace OLLMchat.UI
 				return;
 			}
 			
-		this.is_assistant_message = true;
-		this.current_markdown_content = "";
-		this.last_chunk_start = 0;
+			this.is_assistant_message = true;
+			this.current_markdown_content = "";
+			this.last_chunk_start = 0;
 			this.is_thinking = response.is_thinking;
 			this.content_state = ContentState.NONE;
 
