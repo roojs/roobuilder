@@ -121,20 +121,20 @@ namespace OLLMchat.UI
 			}
 
 			try {
-				// Handle incomplete responses
-				if (!response.done) {
-					// Use generic chunk handling - it handles both thinking and content via response.is_thinking
+				// Process chunk (even if done, there might be final text to process)
+				if (new_text.length > 0) {
 					this.chat_view.append_assistant_chunk(new_text, response);
-					return;
 				}
 
-				// Response is done
-				this.chat_view.finalize_assistant_message(response);
-				this.chat_input.set_streaming(false);
-				this.is_streaming_active = false;
+				// If response is done, finalize and re-enable input
+				if (response.done) {
+					this.chat_view.finalize_assistant_message(response);
+					this.chat_input.set_streaming(false);
+					this.is_streaming_active = false;
 
-				// Emit response received signal
-				this.response_received(response.message.content);
+					// Emit response received signal
+					this.response_received(response.message.content);
+				}
 			} catch (Error e) {
 				// Handle errors in signal handler gracefully
 				GLib.debug("Error in streaming signal handler: %s", e.message);

@@ -281,6 +281,7 @@ namespace OLLMchat.Ollama
 			}
 
 			// Emit signal if there's new content (either regular content or thinking)
+			// Also emit when done=true even if no new content, so we can finalize
 			// Signal will only be delivered if handlers are connected
 			if (this.streaming_response != null && this.client != null) {
 				try {
@@ -288,6 +289,9 @@ namespace OLLMchat.Ollama
 						this.client.stream_chunk(this.streaming_response.new_thinking, true, this.streaming_response);
 					} else if (this.streaming_response.new_content.length > 0) {
 						this.client.stream_chunk(this.streaming_response.new_content, false, this.streaming_response);
+					} else if (this.streaming_response.done) {
+						// Emit empty chunk when done to trigger finalization
+						this.client.stream_chunk("", this.streaming_response.is_thinking, this.streaming_response);
 					}
 				} catch (Error e) {
 					// Log signal handler errors but don't stop streaming
