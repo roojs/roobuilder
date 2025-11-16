@@ -134,6 +134,18 @@ namespace OLLMchat.Ollama
 			
 			// Always add the user message (this ChatCall)
 			this.messages.add(new Message(this, "user", this.chat_content));
+			
+			// Debug: output messages being sent
+			GLib.debug("ChatCall.exec_chat: Sending %d message(s):", this.messages.size);
+			for (int i = 0; i < this.messages.size; i++) {
+				var msg = this.messages[i];
+				GLib.debug("  Message %d: role='%s', content='%s'%s", 
+					i + 1, 
+					msg.role, 
+					msg.content.length > 100 ? msg.content.substring(0, 100) + "..." : msg.content,
+					msg.thinking != "" ? @", thinking='$(msg.thinking.length > 50 ? msg.thinking.substring(0, 50) + "..." : msg.thinking)'" : "");
+			}
+			
 			if (this.stream) {
 				//this.streaming_response = new ChatResponse(this.client);
 				return yield this.execute_streaming();
