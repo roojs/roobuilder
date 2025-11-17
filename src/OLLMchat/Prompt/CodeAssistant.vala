@@ -9,16 +9,9 @@ namespace OLLMchat.Prompt
 	public class CodeAssistant : BaseAgentPrompt
 	{
 		/**
-		 * Signals for gathering context data
+		 * The provider for context data.
 		 */
-		public signal void get_open_files(ref Gee.ArrayList<string> return_value);
-		public signal void get_recently_viewed_files(ref Gee.ArrayList<string> return_value);
-		public signal void get_cursor_position(string file_path, ref string return_value);
-		public signal void get_line_content(string file_path, string line_number, ref string return_value);
-		public signal void get_file_contents(string file_path, ref string return_value);
-		public signal void get_selected_code(ref string return_value);
-		public signal void get_linter_errors(string file_path, ref Gee.ArrayList<string> return_value);
-		public signal void get_git_status(ref string return_value);
+		private CodeAssistantProviderInterface provider;
 		
 		/**
 		 * Agent name used to derive resource path.
@@ -27,10 +20,13 @@ namespace OLLMchat.Prompt
 		
 		/**
 		 * Constructor.
+		 * 
+		 * @param provider The provider for context data. If null, a dummy provider will be used.
 		 */
-		public CodeAssistant()
+		public CodeAssistant(CodeAssistantProviderInterface? provider = null)
 		{
 			base();
+			this.provider = provider ?? new CodeAssistantProviderDummy();
 		}
 		
 		/**
@@ -84,6 +80,26 @@ namespace OLLMchat.Prompt
 		}
 		
 		/**
+		 * Generates the user info section using the provider.
+		 */
+		protected override string generate_user_info_section()
+		{
+			var result = "<user_info>\n";
+			result += "OS Version: " + this.get_os_version() + "\n";
+			
+			var workspace_path = this.provider.get_workspace_path();
+			if (workspace_path != "") {
+				result += "Workspace Path: " + workspace_path + "\n";
+			}
+			
+			if (this.shell != "") {
+				result += "Shell: " + this.shell + "\n";
+			}
+			result += "</user_info>";
+			return result;
+		}
+		
+		/**
 		 * Generates the context data section from application state.
 		 * 
 		 * Matches Cursor's format with <current_file>, <attached_files>, and <manually_added_selection>.
@@ -93,21 +109,18 @@ namespace OLLMchat.Prompt
 			var result = "<additional_data>\n" +
 				"Below are some helpful pieces of information about the current state:\n\n";
 			
-			// Current file (from signals)
-			var open_files = new Gee.ArrayList<string>();
-			this.get_open_files(ref open_files);
+			// Current file (from provider)
+			var open_files = this.provider.get_open_files();
 			if (open_files.size > 0) {
 				var current_file = open_files[0];
-				var cursor_pos = "";
-				this.get_cursor_position(current_file, ref cursor_pos);
+				var cursor_pos = this.provider.get_cursor_position(current_file);
 				
 				result += "<current_file>\n" +
 					"Path: " + current_file + "\n";
 				if (cursor_pos != "") {
 					result += "Line: " + cursor_pos + "\n";
 				}
-				var line_content = "";
-				this.get_line_content(current_file, cursor_pos, ref line_content);
+				var line_content = this.provider.get_line_content(current_file, cursor_pos);
 				if (line_content != "") {
 					result += "Line Content: `" + line_content + "`\n";
 				}
@@ -118,8 +131,7 @@ namespace OLLMchat.Prompt
 			if (open_files.size > 0) {
 				result += "<attached_files>\n";
 				foreach (var file in open_files) {
-					var contents = "";
-					this.get_file_contents(file, ref contents);
+					var contents = this.provider.get_file_contents(file);
 					if (contents != "") {
 						result += "<file_contents path=\"" + file + "\" lines=\"1-" + contents.split("\n").length.to_string() + "\">\n" +
 							contents +
@@ -130,8 +142,7 @@ namespace OLLMchat.Prompt
 			}
 			
 			// Manually added selection (selected code)
-			var selection = "";
-			this.get_selected_code(ref selection);
+			var selection = this.provider.get_selected_code();
 			if (selection != "") {
 				result += "<manually_added_selection>\n" +
 					selection +

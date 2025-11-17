@@ -95,7 +95,7 @@ namespace OLLMchat.Prompt
 		/**
 		 * Generates the user info section for system prompt.
 		 */
-		protected string generate_user_info_section()
+		protected virtual string generate_user_info_section()
 		{
 			var result = "<user_info>\n";
 			result += "OS Version: " + this.get_os_version() + "\n";

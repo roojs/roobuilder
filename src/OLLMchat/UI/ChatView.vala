@@ -125,15 +125,15 @@ namespace OLLMchat.UI
 		 */
 		public void append_assistant_chunk(string new_text, Ollama.MessageInterface message)
 		{
-		var response = (Ollama.ChatResponse) message;
+			var response = (Ollama.ChatResponse) message;
 
-		if (this.is_waiting) {
-			this.clear_waiting_indicator(response);
-		}
+			if (this.is_waiting) {
+				this.clear_waiting_indicator(response);
+			}
 
-		if (!this.is_assistant_message) {
-			this.initialize_assistant_message(response);
-		}
+			if (!this.is_assistant_message) {
+				this.initialize_assistant_message(response);
+			}
 
 			// Process the incoming new_text chunk directly
 			if (new_text.length > 0) {
@@ -166,19 +166,19 @@ namespace OLLMchat.UI
 		* Processes new chunk from message.content using state machine.
 		* Splits content into complete lines vs incomplete line and processes accordingly.
 		*/
-	private void process_new_chunk(string new_text, Ollama.ChatResponse response)
-	{
-		// Check if state changed (thinking vs content)
-		// If state changed, end the current block
-		if (this.is_thinking != response.is_thinking) {
-			// End the current block if we're in one (end_block uses current is_thinking for formatting)
-			if (this.content_state != ContentState.NONE) {
-				this.end_block(response);
-				// Add extra line breaks to visually separate the old block from the new one
-				Gtk.TextIter end_iter;
-				this.buffer.get_end_iter(out end_iter);
-				this.buffer.insert(ref end_iter, "\n\n", -1);
-			}
+		private void process_new_chunk(string new_text, Ollama.ChatResponse response)
+		{
+			// Check if state changed (thinking vs content)
+			// If state changed, end the current block
+			if (this.is_thinking != response.is_thinking) {
+				// End the current block if we're in one (end_block uses current is_thinking for formatting)
+				if (this.content_state != ContentState.NONE) {
+					this.end_block(response);
+					// Add extra line breaks to visually separate the old block from the new one
+					Gtk.TextIter end_iter;
+					this.buffer.get_end_iter(out end_iter);
+					this.buffer.insert(ref end_iter, "\n\n", -1);
+				}
 				// Update thinking state AFTER ending block (so block is formatted with old status)
 				this.is_thinking = response.is_thinking;
 				// New text will start a new block when process_add_text is called
@@ -203,10 +203,10 @@ namespace OLLMchat.UI
 		/**
 		* Appends text to current markdown content based on current state.
 		*/
-	private void process_add_text(string text, Ollama.ChatResponse response)
-	{
-		// Append text to last_line (text does not contain newlines)
-		this.last_line += text;
+		private void process_add_text(string text, Ollama.ChatResponse response)
+		{
+			// Append text to last_line (text does not contain newlines)
+			this.last_line += text;
 			
 			switch (this.content_state) {
 				case ContentState.CODE_BLOCK:
@@ -225,10 +225,10 @@ namespace OLLMchat.UI
 					this.update_block();
 					return;
 					
-			case ContentState.NONE:
-				// Start a new markdown block
-				this.content_state = response.is_thinking ? ContentState.THINKING : ContentState.CONTENT;
-				this.start_block(response);
+				case ContentState.NONE:
+					// Start a new markdown block
+					this.content_state = response.is_thinking ? ContentState.THINKING : ContentState.CONTENT;
+					this.start_block(response);
 							
 						// Append raw text and update block
 					this.current_markdown_content += text;
@@ -240,9 +240,9 @@ namespace OLLMchat.UI
 		/**
 		* Processes a newline, delegating to state-specific handlers.
 		*/
-	private void process_new_line(Ollama.ChatResponse response)
-	{
-		switch (this.content_state) {
+		private void process_new_line(Ollama.ChatResponse response)
+		{
+			switch (this.content_state) {
 				case ContentState.CODE_BLOCK:
 					this.process_new_line_code_block(response);
 					break;
@@ -351,12 +351,12 @@ namespace OLLMchat.UI
 			if (this.last_line.strip().has_prefix("```")) {
 				// Extract language before ending content block
 				string language = "";
-			if (this.last_line.strip().length > 3) {
-				language = this.last_line.strip().substring(3).strip();
-			}
-			// Use language mapping kludge to get reasonable language value
-			var mapped_language = this.map_language_id(language);
-			this.code_block_language = mapped_language ?? language;
+				if (this.last_line.strip().length > 3) {
+					language = this.last_line.strip().substring(3).strip();
+				}
+				// Use language mapping kludge to get reasonable language value
+				var mapped_language = this.map_language_id(language);
+				this.code_block_language = mapped_language ?? language;
 				
 					// Remove the marker from current_markdown_content (it was added via process_add_text)
 					// Simply remove the last last_line.length characters
@@ -389,9 +389,9 @@ namespace OLLMchat.UI
 		/**
 		* Starts a new block based on current state.
 		*/
-	private void start_block(Ollama.ChatResponse response)
-	{
-		switch (this.content_state) {
+		private void start_block(Ollama.ChatResponse response)
+		{
+			switch (this.content_state) {
 				case ContentState.THINKING:
 				case ContentState.CONTENT:
 					// Reset content for new block (but preserve last_line - it contains the text that triggered this block)
@@ -423,10 +423,10 @@ namespace OLLMchat.UI
 						if (this.last_line.strip().length > 3) {
 							language = this.last_line.strip().substring(3).strip();
 						}
-					var mapped_language = this.map_language_id(language);
-					this.code_block_language = mapped_language ?? language;
-				}
-				this.open_code_block(this.code_block_language ?? "");
+						var mapped_language = this.map_language_id(language);
+						this.code_block_language = mapped_language ?? language;
+					}
+					this.open_code_block(this.code_block_language ?? "");
 				return;
 						
 				case ContentState.NONE:
@@ -438,9 +438,9 @@ namespace OLLMchat.UI
 		/**
 		* Updates the current block based on state.
 		*/
-	private void update_block()
-	{
-		switch (this.content_state) {
+		private void update_block()
+		{
+			switch (this.content_state) {
 				case ContentState.THINKING:
 				case ContentState.CONTENT:
 					this.update_markdown_block();
@@ -459,9 +459,9 @@ namespace OLLMchat.UI
 		/**
 		* Ends the current block based on state.
 		*/
-	private void end_block(Ollama.ChatResponse response)
-	{
-		switch (this.content_state) {
+		private void end_block(Ollama.ChatResponse response)
+		{
+			switch (this.content_state) {
 				case ContentState.THINKING:
 				case ContentState.CONTENT:
 					// Replace the current markdown block with rendered content
@@ -504,9 +504,9 @@ namespace OLLMchat.UI
 					// Reset content and last_line for next block
 					this.current_markdown_content = "";
 					this.last_line = "";
-				// Reset content_state to NONE so new blocks can be started
-				this.content_state = ContentState.NONE;
-				return;
+					// Reset content_state to NONE so new blocks can be started
+					this.content_state = ContentState.NONE;
+					return;
 				case ContentState.CODE_BLOCK:
 					this.close_code_block();
 					this.code_block_language = null;

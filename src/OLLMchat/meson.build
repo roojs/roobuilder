@@ -54,7 +54,7 @@ test_ollama_deps = [
 ollmchat_resources = gnome.compile_resources(
   'ollmchat-resources',
   'resources/gresources.xml',
-  source_dir: ['resources'],
+  source_dir: ['resources/ollmchat-agents'],
   c_name: 'ollmchat_resources'
 )
 
@@ -78,6 +78,8 @@ ollmchat_ollama_src = files([
 # Source files for prompt system
 ollmchat_prompt_src = files([
   'Prompt/BaseAgentPrompt.vala',
+  'Prompt/CodeAssistantProviderInterface.vala',
+  'Prompt/CodeAssistantProviderDummy.vala',
   'Prompt/CodeAssistant.vala',
 ])
 

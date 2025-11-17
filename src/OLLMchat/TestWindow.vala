@@ -19,6 +19,10 @@ valac --pkg gtk4 --pkg gtksourceview-5 --pkg libsoup-3.0 --pkg json-glib-1.0 --p
       Ollama/Response/Model.vala \
       Ollama/Tool/Tool.vala \
       Ollama/Tool/Function.vala \
+      Prompt/BaseAgentPrompt.vala \
+      Prompt/CodeAssistantProviderInterface.vala \
+      Prompt/CodeAssistantProviderDummy.vala \
+      Prompt/CodeAssistant.vala \
       -o /tmp/test-window
 */
 
@@ -79,12 +83,19 @@ namespace OLLMchat
 			parser.load_from_file(Path.build_filename(
 				GLib.Environment.get_home_dir(), ".local", "share", "roobuilder", "ollama.json"));
 			var obj = parser.get_root().get_object();
+
+			// Create CodeAssistant prompt generator with dummy provider
+			var code_assistant = new Prompt.CodeAssistant(new Prompt.CodeAssistantProviderDummy()) {
+				shell = GLib.Environment.get_variable("SHELL") ?? "/usr/bin/bash",
+			};
+			
 			var client = new Ollama.Client() {
 				url = obj.get_string_member("url"),
 				model = obj.get_string_member("model"),
 				api_key = obj.get_string_member("api_key"),
 				stream = obj.has_member("stream") ? obj.get_boolean_member("stream") : false,
-				think = obj.has_member("think") ? obj.get_boolean_member("think") : false
+				think = obj.has_member("think") ? obj.get_boolean_member("think") : false,
+				prompt_assistant = code_assistant
 			};
 
 			// Create chat widget with client
