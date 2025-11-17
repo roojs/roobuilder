@@ -3,13 +3,12 @@ namespace OLLMchat.Ollama
 	public class Tool : Object, Json.Serializable
 	{
 		public string tool_type { get; set; default = "function"; }
-		public ToolFunction function { get; set; }
+		public Function function { get; set; }
 
-		public Tool(ToolFunction? func = null)
+		public Tool(Function func)
 		{
-			if (func != null) {
-				this.function = func;
-			}
+			this.function = func;
+			
 		}
 
 		public unowned ParamSpec? find_property(string name)

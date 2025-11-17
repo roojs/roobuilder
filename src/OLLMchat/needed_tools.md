@@ -1,5 +1,15 @@
 # Needed Tools Plan
 
+## Tools to Create
+
+
+- **Read File Tool** - Reads file contents and outlines
+- **Edit File Tool** - Applies diffs to files
+- **Run Terminal Command Tool** - Executes terminal commands safely
+- **Web Search Tool** - Performs web searches for external information
+- **Codebase Search Tool** - Performs semantic searches within the codebase
+---
+
 This document outlines the tools that need to be implemented for the OLLMchat project, based on the Cursor agent tools specification from https://gist.github.com/sshh12/25ad2e40529b269a88b80e7cf1c38084#file-cursor-agent-tools-py
 
 Each tool section includes:
@@ -215,17 +225,26 @@ Each tool will be implemented as a separate class in the `OLLMchat/Tools` direct
 3. **`parameters`**: Returns a string containing parameter documentation in a standardized format
 4. **`execute`**: Executes the tool's functionality and returns results
 
-### Base Interface/Class
+### Function Interface
 
-The base class (`OLLMchat.Tools.BaseTool` or `OLLMchat.Tools.ToolInterface`) will:
+The `Function` interface will be defined in `OLLMchat.Ollama` namespace and will:
 
-- Define abstract methods for `name()`, `description()`, `parameters()`, and `execute()`
-- Provide a method to convert the tool metadata into a JSON tool description compatible with Ollama's function calling API
-- Parse the `parameters()` string format and convert it to JSON schema format
+- Define the standard properties: `name`, `description`, and `parameters` (as `Gee.ArrayList`)
+- Implementing classes should also implement `Json.Serializable` for serialization support
+- Use switch-case pattern in `serialize_property` for standard serialization methods
+
+### BaseTool Class
+
+The `BaseTool` class (`OLLMchat.Tools.BaseTool`) will:
+
+- Implement the `Function` interface
+- Define abstract methods for `name`, `description`, `parameter_description` (string), and `execute()`
+- Convert `parameter_description` string to `parameters` `Gee.ArrayList` in the constructor
+- Handle permission checking via `PermissionProvider` before execution
 
 ### Parameter Documentation Format
 
-Parameters will be documented using a standardized string format inspired by JSDoc/Valadoc:
+Parameters will be documented using a standardized string format inspired by JSDoc/Valadoc. The `parameter_description` property contains this string, which is then parsed in the constructor to populate the `parameters` `Gee.ArrayList`:
 
 ```
 @param parameter_name {type} [required|optional] Parameter description here
@@ -245,26 +264,76 @@ Parameters will be documented using a standardized string format inspired by JSD
 @param read_entire_file {boolean} [optional] Whether to read the entire file
 ```
 
-**Note**: This format is similar to Valadoc's `@param` syntax but includes explicit type information and required/optional indicators needed for JSON schema generation. Valadoc typically infers types from method signatures, but for tool definitions we need explicit type information. The parameter name is included to match JSON schema property names.
+**Note**: This format is similar to Valadoc's `@param` syntax but includes explicit type information and required/optional indicators needed for JSON schema generation. The `parameter_description` string is parsed in the `BaseTool` constructor to build the `parameters` `Gee.ArrayList` that gets serialized.
 
-### Base Class Implementation
+### Function Interface Implementation
 
-The base class will parse the `parameters()` string and convert it to a JSON schema object:
+The `Function` interface will be defined in the `OLLMchat.Ollama` namespace:
+
+```vala
+namespace OLLMchat.Ollama
+{
+	/**
+	 * Interface for tool functions that can be used with Ollama function calling.
+	 * 
+	 * This interface defines the standard properties that all tool functions must implement.
+	 * Implementing classes should also implement Json.Serializable for serialization support.
+	 */
+	public interface Function
+	{
+		public abstract string name { get; }
+		public abstract string description { get; }
+		public abstract Gee.ArrayList<Json.Object> parameters { get; set; }
+	}
+}
+```
+
+**Note**: In Vala, interfaces can define abstract properties. The implementing class (`BaseTool`) will provide the concrete implementation of these properties and also implement `Json.Serializable`.
+
+### BaseTool Class Implementation
+
+The `BaseTool` class implements `Function` and handles parameter conversion:
 
 ```vala
 namespace OLLMchat.Tools
 {
 	/**
-	 * Base interface for all tools that can be used with Ollama function calling.
+	 * Base class for all tools that can be used with Ollama function calling.
 	 * 
 	 * Each tool implementation should provide:
 	 * - A unique name
 	 * - A detailed description
-	 * - Parameter documentation in the standardized format
+	 * - Parameter documentation in the standardized format (parameter_description)
 	 * - An execute method that performs the tool's function
 	 */
-	public abstract class BaseTool : Object
+	public abstract class BaseTool : Object, Ollama.Function
 	{
+		protected PermissionProvider permission_provider;
+		
+		/**
+		 * Parameter description string in standardized format.
+		 * This is parsed in the constructor to populate the parameters array.
+		 */
+		public abstract string parameter_description { get; }
+		
+		/**
+		 * Parameters as a Gee.ArrayList<Json.Object> for serialization.
+		 * Populated from parameter_description in the constructor.
+		 */
+		public Gee.ArrayList<Json.Object> parameters { get; set; default = new Gee.ArrayList<Json.Object>(); }
+		
+		/**
+		 * Constructor.
+		 * 
+		 * @param permission_provider Required permission provider for approval before tool execution.
+		 */
+		public BaseTool(PermissionProvider permission_provider)
+		{
+			this.permission_provider = permission_provider;
+			// Convert parameter_description string to parameters array
+			this.parse_parameter_description();
+		}
+		
 		/**
 		 * The tool name (e.g., "read_file", "edit_file")
 		 * 
@@ -282,73 +351,265 @@ namespace OLLMchat.Tools
 		public abstract string description { get; }
 		
 		/**
-		 * Parameter documentation in the standardized format:
-		 * "@param parameter_name {type} [required|optional] Description"
-		 * 
-		 * Subclasses must override this property:
-		 * public override string parameters = "@param ...";
-		 */
-		public abstract string parameters { get; }
-		
-		/**
 		 * Executes the tool with the given parameters.
+		 * 
+		 * This method will request permission before executing.
+		 * If permission is denied, the tool will not execute and will throw an error.
 		 * 
 		 * @param params JSON object containing the tool parameters
 		 * @return JSON object containing the tool execution results
 		 */
-		public abstract Json.Object execute(Json.Object params) throws Error;
-		
-		/**
-		 * Converts this tool's metadata into an Ollama ToolFunction definition.
-		 * 
-		 * This method parses the parameters() string and converts it to JSON schema format.
-		 */
-		public Ollama.ToolFunction to_tool_function()
+		public Json.Object execute(Json.Object params) throws Error
 		{
-			var func = new Ollama.ToolFunction();
-			func.name = this.name;
-			func.description = this.description;
-			func.parameters = this.parse_parameters_to_json_schema();
-			return func;
+			var question = this.build_permission_question(params);
+			if (!this.permission_provider.request_permission(this.name, question))
+			{
+				throw new Error.PERMISSION_DENIED("Permission denied for tool: %s", this.name);
+			}
+			
+			return this.execute_internal(params);
 		}
 		
 		/**
-		 * Parses the parameters() string and converts it to JSON schema format.
+		 * Internal execute method that subclasses must implement.
+		 * This is called after permission has been granted.
+		 */
+		protected abstract Json.Object execute_internal(Json.Object params) throws Error;
+		
+		/**
+		 * Builds a human-readable question describing what the tool will do.
+		 * 
+		 * Subclasses can override this to provide more specific questions based on parameters.
+		 * 
+		 * @param params The tool parameters
+		 * @return A descriptive question string
+		 */
+		protected virtual string build_permission_question(Json.Object params)
+		{
+			return "Execute %s?".printf(this.name);
+		}
+		
+		/**
+		 * Parses the parameter_description string and converts it to parameters array.
 		 * 
 		 * Parses lines like:
 		 * "@param file_path {string} [required] The path to the file"
 		 * 
-		 * Into JSON schema:
-		 * {
-		 *   "type": "object",
-		 *   "properties": {
-		 *     "file_path": {
-		 *       "type": "string",
-		 *       "description": "The path to the file"
-		 *     }
-		 *   },
-		 *   "required": ["file_path"]
-		 * }
-		 * 
-		 * The parser will:
-		 * - Extract parameter names from each @param line
-		 * - Extract type information and convert to JSON schema types (string -> "string", integer -> "integer", etc.)
-		 * - Determine required vs optional parameters
-		 * - Build the properties object with type and description for each parameter
-		 * - Build the required array containing names of required parameters
+		 * Into Json.Object entries in the parameters Gee.ArrayList.
+		 * Each entry represents a parameter definition with type, description, and required status.
 		 */
-		protected Json.Object parse_parameters_to_json_schema()
+		protected void parse_parameter_description()
 		{
-			// Implementation will parse the @param format and build JSON schema
+			// Implementation will parse the @param format and build parameters array
 			// This will handle:
 			// - Extracting parameter names from "@param name {type} [required|optional] Description"
 			// - Converting type strings to JSON schema types
-			// - Building the properties object
-			// - Building the required array
+			// - Building Json.Object for each parameter with type and description
+			// - Adding to this.parameters Gee.ArrayList
+		}
+		
+		// Json.Serializable implementation
+		public unowned ParamSpec? find_property(string name)
+		{
+			return this.get_class().find_property(name);
+		}
+		
+		public new void Json.Serializable.set_property(ParamSpec pspec, Value value)
+		{
+			base.set_property(pspec.get_name(), value);
+		}
+		
+		public new Value Json.Serializable.get_property(ParamSpec pspec)
+		{
+			Value val = Value(pspec.value_type);
+			base.get_property(pspec.get_name(), ref val);
+			return val;
+		}
+		
+		public Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
+		{
+			switch (property_name) {
+				case "name":
+				case "description":
+					return default_serialize_property(property_name, value, pspec);
+				
+				case "parameters":
+					// Serialize parameters as JSON schema object
+					var params_obj = new Json.Object();
+					var properties = new Json.Object();
+					var required = new Json.Array();
+					
+					foreach (var param in this.parameters) {
+						var param_name = param.get_string_member("name");
+						var param_type = param.get_string_member("type");
+						var param_desc = param.get_string_member("description");
+						var is_required = param.get_boolean_member("required");
+						
+						var prop = new Json.Object();
+						prop.set_string_member("type", param_type);
+						prop.set_string_member("description", param_desc);
+						properties.set_object_member(param_name, prop);
+						
+						if (is_required) {
+							required.add_string_element(param_name);
+						}
+					}
+					
+					params_obj.set_string_member("type", "object");
+					params_obj.set_object_member("properties", properties);
+					params_obj.set_array_member("required", required);
+					
+					var node = new Json.Node(Json.NodeType.OBJECT);
+					node.set_object(params_obj);
+					return node;
+				
+				default:
+					return null;
+			}
 		}
 	}
 }
 ```
+
+### Tool Approval/Permission Process
+
+Before executing any tool, an approval process must be completed via a mandatory `PermissionProvider`. This ensures that users have control over what actions are performed by the AI agent. All tools must be constructed with a `PermissionProvider` instance.
+
+#### Permission Provider Interface
+
+A `PermissionProvider` interface will be created that all tools can use to request approval before execution:
+
+```vala
+namespace OLLMchat.Tools
+{
+	/**
+	 * Interface for requesting permission to execute tool operations.
+	 * 
+	 * Implementations can provide different approval mechanisms:
+	 * - User prompts/dialogs
+	 * - Automatic approval based on rules
+	 * - Logging-only implementations for testing
+	 */
+	public interface PermissionProvider : Object
+	{
+		/**
+		 * Requests permission to execute a tool operation.
+		 * 
+		 * @param tool_name The name of the tool requesting permission
+		 * @param question A descriptive question about what the tool will do
+		 * @return true if permission is granted, false otherwise
+		 */
+		public abstract bool request_permission(string tool_name, string question);
+	}
+}
+```
+
+#### Integration with BaseTool
+
+The `BaseTool` class will require a `PermissionProvider` in its constructor and use it before executing any tool:
+
+```vala
+public abstract class BaseTool : Object
+{
+	protected PermissionProvider permission_provider;
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param permission_provider Required permission provider for approval before tool execution.
+	 */
+	public BaseTool(PermissionProvider permission_provider)
+	{
+		this.permission_provider = permission_provider;
+	}
+	
+	/**
+	 * Executes the tool with the given parameters.
+	 * 
+	 * This method will request permission before executing.
+	 * If permission is denied, the tool will not execute and will throw an error.
+	 * 
+	 * @param params JSON object containing the tool parameters
+	 * @return JSON object containing the tool execution results
+	 */
+	public Json.Object execute(Json.Object params) throws Error
+	{
+		var question = this.build_permission_question(params);
+		if (!this.permission_provider.request_permission(this.name, question))
+		{
+			throw new Error.PERMISSION_DENIED("Permission denied for tool: %s", this.name);
+		}
+		
+		return this.execute_internal(params);
+	}
+	
+	/**
+	 * Internal execute method that subclasses must implement.
+	 * This is called after permission has been granted.
+	 */
+	protected abstract Json.Object execute_internal(Json.Object params) throws Error;
+	
+	/**
+	 * Builds a human-readable question describing what the tool will do.
+	 * 
+	 * Subclasses can override this to provide more specific questions based on parameters.
+	 * 
+	 * @param params The tool parameters
+	 * @return A descriptive question string
+	 */
+	protected virtual string build_permission_question(Json.Object params)
+	{
+		return "Execute %s?".printf(this.name);
+	}
+}
+```
+
+#### Dummy Permission Provider
+
+A dummy implementation will be created for testing and development that:
+- Prints permission requests using `GLib.debug()`
+- Always returns `false` to deny all operations
+
+```vala
+namespace OLLMchat.Tools
+{
+	/**
+	 * Dummy implementation of PermissionProvider for testing.
+	 * 
+	 * Logs all permission requests using GLib.debug() and always denies permission.
+	 */
+	public class PermissionProviderDummy : Object, PermissionProvider
+	{
+		public bool request_permission(string tool_name, string question)
+		{
+			GLib.debug("Permission requested for tool '%s': %s", tool_name, question);
+			return false;
+		}
+	}
+}
+```
+
+#### Usage Example
+
+```vala
+// Create a permission provider (could be UI-based, rule-based, etc.)
+var permission_provider = new OLLMchat.Tools.PermissionProviderDummy();
+
+// Create tools with the permission provider
+var read_file_tool = new OLLMchat.Tools.ReadFileTool(permission_provider);
+var edit_file_tool = new OLLMchat.Tools.EditFileTool(permission_provider);
+
+// When a tool is executed, it will request permission first
+// If permission is denied, the tool will not execute
+```
+
+**Implementation Notes**:
+- Permission provider is mandatory for all tools - must be provided in constructor
+- Permission requests should include enough context for users to make informed decisions
+- The question should describe what the tool will do with the specific parameters provided
+- Tools will not execute if permission is denied
+- The permission provider can be shared across all tools or set per-tool
+- A signal-based implementation could be used for UI integration (emitting a signal that the UI handles)
 
 ### Tool Implementation Example
 
@@ -362,6 +623,11 @@ namespace OLLMchat.Tools
 	 */
 	public class ReadFileTool : BaseTool
 	{
+		public ReadFileTool(PermissionProvider permission_provider)
+		{
+			base(permission_provider);
+		}
+		
 		public override string name = "read_file";
 		
 		public override string description = """
@@ -380,7 +646,7 @@ Reading the entire file is not allowed in most cases. You are only allowed to re
 
 """;
 		
-		public override string parameters = """
+		public override string parameter_description = """
 		
 @param file_path {string} [required] The path to the file to read
 @param start_line {integer} [optional] The starting line number to read from
@@ -389,7 +655,26 @@ Reading the entire file is not allowed in most cases. You are only allowed to re
 
 """;
 		
-		public override Json.Object execute(Json.Object params) throws Error
+		protected override string build_permission_question(Json.Object params)
+		{
+			var file_path = params.get_string_member("file_path");
+			if (params.has_member("start_line") && params.has_member("end_line"))
+			{
+				var start = params.get_int_member("start_line");
+				var end = params.get_int_member("end_line");
+				return "Read file '%s' (lines %d-%d)?".printf(file_path, start, end);
+			}
+			else if (params.has_member("read_entire_file") && params.get_boolean_member("read_entire_file"))
+			{
+				return "Read entire file '%s'?".printf(file_path);
+			}
+			else
+			{
+				return "Read file '%s'?".printf(file_path);
+			}
+		}
+		
+		protected override Json.Object execute_internal(Json.Object params) throws Error
 		{
 			// Implementation: Read file and return results
 			// Extract parameters from params JSON object
@@ -402,21 +687,46 @@ Reading the entire file is not allowed in most cases. You are only allowed to re
 
 ### Tool Registration
 
-Tools can be registered with the Ollama client:
+Tools are registered with the Ollama client using the `addTool` method:
 
 ```vala
-// Create tool instances
-var read_file_tool = new OLLMchat.Tools.ReadFileTool();
-var edit_file_tool = new OLLMchat.Tools.EditFileTool();
+namespace OLLMchat.Ollama
+{
+	public class Client : Object
+	{
+		// ... existing code ...
+		
+		/**
+		 * Adds a tool function to the client's tools list.
+		 * 
+		 * Creates a new Tool wrapper with the provided Function and adds it to the tools array.
+		 * 
+		 * @param tool_function The tool function to add
+		 */
+		public void addTool(Function tool_function)
+		{
+			var tool = new Tool(tool_function);
+			this.tools.add(tool);
+		}
+	}
+}
+```
 
-// Convert to Ollama ToolFunction and add to client
-var tool1 = new OLLMchat.Ollama.Tool();
-tool1.function = read_file_tool.to_tool_function();
-client.tools.add(tool1);
+**Usage Example**:
 
-var tool2 = new OLLMchat.Ollama.Tool();
-tool2.function = edit_file_tool.to_tool_function();
-client.tools.add(tool2);
+```vala
+// Create a permission provider (can be shared across all tools)
+var permission_provider = new OLLMchat.Tools.PermissionProviderDummy();
+
+// Create tool instances with the permission provider
+var read_file_tool = new OLLMchat.Tools.ReadFileTool(permission_provider);
+var edit_file_tool = new OLLMchat.Tools.EditFileTool(permission_provider);
+
+// Add tools to client - tools implement Function interface directly
+client.addTool(read_file_tool);
+client.addTool(edit_file_tool);
+
+// The Chat component uses client.tools to see available tools
 ```
 
 ## Implementation Considerations
@@ -425,25 +735,36 @@ client.tools.add(tool2);
 
 These tools are designed to be used with Ollama's function calling capabilities. Each tool should:
 
-1. **Extend BaseTool**: Implement the base interface with name, description, parameters, and execute methods
-2. **Follow Parameter Format**: Use the standardized `@param {type} [required|optional] Description` format
-3. **Return Structured Results**: Tool execution results should be formatted as JSON objects
-4. **Handle Errors**: Tools should throw errors or return error information in a structured format
+1. **Implement Function**: Extend `BaseTool` which implements the `Function` interface (and also implements `Json.Serializable`)
+2. **Require PermissionProvider**: All tools must be constructed with a `PermissionProvider` instance
+3. **Follow Parameter Format**: Use the standardized `@param {type} [required|optional] Description` format in `parameter_description`
+4. **Use Serializable Pattern**: Implement `serialize_property` with switch-case for standard properties (name, description, parameters)
+5. **Return Structured Results**: Tool execution results should be formatted as JSON objects
+6. **Handle Errors**: Tools should throw errors or return error information in a structured format
 
 ### Tool Execution Flow
 
-1. **Tool Definition**: Create tool classes extending `BaseTool`
-2. **Tool Registration**: Convert tools to `Ollama.ToolFunction` using `to_tool_function()` and add to `Client.tools` array
-3. **Function Calling**: When Ollama requests a tool call, find the appropriate tool by name and call `execute()`
-4. **Result Formatting**: Format tool results as JSON and send back to Ollama as a function result message
-5. **Response Handling**: Ollama will process the tool results and continue the conversation
+1. **Tool Definition**: Create tool classes extending `BaseTool` (which implements `Function` interface) with a required `PermissionProvider`
+2. **Tool Registration**: Call `client.addTool(tool_function)` which creates a `Tool` wrapper and adds it to `client.tools` array
+3. **Function Calling**: When Ollama requests a tool call, find the appropriate tool by name from `client.tools` and call `execute()`
+4. **Permission Check**: The tool requests permission with a descriptive question via the `PermissionProvider`. If denied, the tool does not execute and returns an error.
+5. **Tool Execution**: If permission is granted, the tool executes its `execute_internal()` method
+6. **Result Formatting**: Format tool results as JSON and send back to Ollama as a function result message
+7. **Response Handling**: Ollama will process the tool results and continue the conversation
 
 ### Directory Structure
 
 ```
 src/OLLMchat/
+├── Ollama/
+│   ├── Tool/
+│   │   ├── Tool.vala           # Tool wrapper class
+│   │   └── Function.vala      # Function interface
+│   └── Client.vala             # Client with addTool() method
 ├── Tools/
-│   ├── BaseTool.vala           # Base interface/class for all tools
+│   ├── BaseTool.vala           # Base class implementing Function
+│   ├── PermissionProvider.vala # Permission provider interface
+│   ├── PermissionProviderDummy.vala  # Dummy permission provider for testing
 │   ├── ReadFileTool.vala       # Read file tool implementation
 │   ├── EditFileTool.vala       # Edit file tool implementation
 │   ├── RunTerminalCommandTool.vala  # Terminal command tool
