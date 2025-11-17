@@ -72,8 +72,8 @@ ollmchat_ollama_src = files([
   'Ollama/Response/ChatResponse.vala',
   'Ollama/Response/Model.vala',
   'Ollama/Tool/Tool.vala',
+  'Ollama/Tool/ParamProperty.vala',
   'Ollama/Tool/Function.vala',
-  'Ollama/Tool/Parameter.vala',
 ])
 
 # Source files for prompt system

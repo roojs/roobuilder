@@ -2,6 +2,9 @@
 
 This document outlines the plan for implementing a flexible prompting system based on the Cursor agent system prompt structure. The system will support multiple agent types (starting with "code-assistant") with both static and dynamic prompt sections.
 
+
+refer to: https://gist.github.com/sshh12/25ad2e40529b269a88b80e7cf1c38084#file-cursor-agent-tools-py
+
 ## Overview
 
 The prompting system will:

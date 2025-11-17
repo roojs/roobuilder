@@ -10,7 +10,7 @@ namespace OLLMchat.Ollama
 	{
 		public abstract string name { get; }
 		public abstract string description { get; }
-		public abstract Gee.ArrayList<Parameter> parameters { get; set; }
+		public abstract Gee.ArrayList<ParamProperty> parameters { get; set; }
 
 		public unowned ParamSpec? find_property(string name)
 		{
