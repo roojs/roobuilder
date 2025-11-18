@@ -291,10 +291,9 @@ namespace OLLMchat.Tools
 			int index = (int)operation;
 			
 			// Map operation enum to permission character: READ='r', WRITE='w', EXECUTE='x'
-			char[] op_chars = {'r', 'w', 'x'};
-			
-			if (index >= 0 && index < op_chars.length)
+			if (index >= 0 && index < 3)
 			{
+				char[] op_chars = {'r', 'w', 'x'};
 				chars[index] = allowed ? op_chars[index] : '-';
 			}
 			
@@ -322,14 +321,11 @@ namespace OLLMchat.Tools
 			{
 				var parser = new Json.Parser();
 				parser.load_from_file(this.permissions_file_path);
-				var root = parser.get_root();
-				var obj = root.get_object();
+				var obj = parser.get_root().get_object();
 				
-				var members = obj.get_members();
-				foreach (var key in members)
+				foreach (var key in obj.get_members())
 				{
-					var perm = obj.get_string_member(key);
-					this.global_permissions.set(key, perm);
+					this.global_permissions.set(key, obj.get_string_member(key));
 				}
 			}
 			catch (Error e)
@@ -379,7 +375,6 @@ namespace OLLMchat.Tools
 				var node = new Json.Node(Json.NodeType.OBJECT);
 				node.set_object(obj);
 				generator.set_root(node);
-				
 				generator.to_file(this.permissions_file_path);
 			}
 			catch (Error e)
