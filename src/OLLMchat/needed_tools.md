@@ -22,24 +22,36 @@ This plan is organized in the order components should be created:
 **Purpose**: Represent parameter definitions for tool function parameters. These classes implement `Json.Serializable` to serialize parameter definitions into JSON schema format, supporting nested structures like objects and arrays.
 
 **Classes**:
-- **`Param`** (`Ollama/Tool/Param.vala`) - Base class for simple parameter types (string, integer, boolean)
+- **`Param`** (`Ollama/Tool/Param.vala`) - Base interface with only `type` property
+- **`ParamSimple`** (`Ollama/Tool/ParamSimple.vala`) - For simple parameter types (string, integer, boolean)
 - **`ParamObject`** (`Ollama/Tool/ParamObject.vala`) - For object parameters with nested properties
 - **`ParamArray`** (`Ollama/Tool/ParamArray.vala`) - For array parameters with item definitions
 
-**Base Param Properties**:
-- `name` (string) - The name of the parameter
+**Param Interface**:
 - `type` (string) - The JSON schema type (e.g., "string", "integer", "boolean", "array", "object")
+
+**ParamSimple Properties**:
+- `name` (string) - The name of the parameter
+- `type` (string) - The JSON schema type (e.g., "string", "integer", "boolean")
 - `description` (string) - A description of what the parameter does
 - `required` (bool) - Whether this parameter is required
 
 **ParamObject Properties**:
-- `properties` (`Gee.ArrayList<Param>`) - Nested properties of the object
+- `name` (string) - The name of the parameter
+- `type` (string) - Always "object"
+- `description` (string) - A description of what the parameter does
+- `required` (bool) - Whether this parameter is required
+- `properties` (`Gee.ArrayList<Param>`) - Nested properties of the object (can contain ParamObject or ParamArray instances)
 - Automatically builds `required` array from properties with `required=true`
 
 **ParamArray Properties**:
-- `items` (`Param`) - The item definition for array elements (can be simple Param or ParamObject)
+- `name` (string) - The name of the parameter
+- `type` (string) - Always "array"
+- `description` (string) - A description of what the parameter does
+- `required` (bool) - Whether this parameter is required
+- `items` (`Param`) - The item definition for array elements (can be ParamSimple, ParamObject, or ParamArray)
 
-**Implementation**: See `src/OLLMchat/Ollama/Tool/Param.vala`, `ParamObject.vala`, and `ParamArray.vala`
+**Implementation**: See `src/OLLMchat/Ollama/Tool/Param.vala`, `ParamSimple.vala`, `ParamObject.vala`, and `ParamArray.vala`
 
 ---
 
@@ -594,7 +606,7 @@ Parameters will be documented using a standardized string format inspired by JSD
 Each tool extends the `Function` abstract class and implements:
 - `name` property - The tool name (e.g., "read_file", "edit_file")
 - `description` property - A detailed description of what the tool does
-- `param` property - `Gee.ArrayList<Param>` containing parameter definitions (can include Param, ParamObject, ParamArray)
+- `param` property - `Gee.ArrayList<Param>` containing parameter definitions (can include ParamSimple, ParamObject, ParamArray)
 - `execute_internal()` method - The actual tool implementation
 
 ### Tool Registration
@@ -916,7 +928,7 @@ These tools are designed to be used with Ollama's function calling capabilities.
 
 1. **Extend Function**: Extend the `Function` abstract class which implements `Json.Serializable`
 2. **Require PermissionProvider**: All tools must be constructed with a `PermissionProvider` instance
-3. **Follow Parameter Format**: Use `Gee.ArrayList<Param>` for param array (can include Param, ParamObject, ParamArray instances)
+3. **Follow Parameter Format**: Use `Gee.ArrayList<Param>` for param array (can include ParamSimple, ParamObject, ParamArray instances)
 4. **Serialization**: Serialization is already implemented in the `Function` base class - see `Function.vala` for the current implementation
 5. **Return Structured Results**: Tool execution results should be formatted as JSON objects
 6. **Handle Errors**: Tools should throw errors or return error information in a structured format
@@ -939,9 +951,10 @@ src/OLLMchat/
 │   ├── Tool/
 │   │   ├── Tool.vala           # Tool wrapper class ✅
 │   │   ├── Function.vala        # Abstract base class for all tools ✅
-│   │   ├── Param.vala            # Base parameter class ✅
-│   │   ├── ParamObject.vala      # Object parameter class ✅
-│   │   └── ParamArray.vala       # Array parameter class ✅
+│   │   ├── Param.vala            # Base parameter interface ✅
+│   │   ├── ParamSimple.vala      # Simple parameter class ✅
+│   │   ├── ParamObject.vala       # Object parameter class ✅
+│   │   └── ParamArray.vala        # Array parameter class ✅
 │   └── Client.vala               # Client with addTool() method ✅
 ├── Tools/
 │   ├── PermissionProvider.vala        # Permission provider abstract class ⏳
@@ -959,7 +972,8 @@ src/OLLMchat/
 
 ### Phase 1: Param Classes
 
-- [x] **Param** - Create `Param.vala` base class for parameter serialization
+- [x] **Param** - Create `Param.vala` base interface with only `type` property
+- [x] **ParamSimple** - Create `ParamSimple.vala` class for simple parameter types (string, integer, boolean)
 - [x] **ParamObject** - Create `ParamObject.vala` class for object parameters with nested properties
 - [x] **ParamArray** - Create `ParamArray.vala` class for array parameters with item definitions
 

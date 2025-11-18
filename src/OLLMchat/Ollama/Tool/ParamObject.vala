@@ -3,13 +3,34 @@ namespace OLLMchat.Ollama
 	/**
 	 * Represents an object parameter with nested properties.
 	 * 
-	 * Used for parameters with type "object" that have nested properties,
-	 * like the top-level "parameters" object or nested objects within arrays.
+	 * Used for parameters with type "object" that have nested properties.
+	 * Properties can be either ParamObject or ParamArray instances.
 	 */
-	public class ParamObject : Param
+	public class ParamObject : Object, Param
 	{
 		/**
+		 * The name of the parameter.
+		 */
+		public string name { get; set; }
+		
+		/**
+		 * The JSON schema type (always "object").
+		 */
+		public string type { get; set; default = "object"; }
+		
+		/**
+		 * A description of what the parameter does.
+		 */
+		public string description { get; set; default = ""; }
+		
+		/**
+		 * Whether this parameter is required.
+		 */
+		public bool required { get; set; default = false; }
+		
+		/**
 		 * Nested properties of this object parameter.
+		 * Can contain ParamObject or ParamArray instances.
 		 */
 		public Gee.ArrayList<Param> properties { get; set; default = new Gee.ArrayList<Param>(); }
 
@@ -26,7 +47,24 @@ namespace OLLMchat.Ollama
 			this.required = required;
 		}
 
-		public override Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public unowned ParamSpec? find_property(string name)
+		{
+			return this.get_class().find_property(name);
+		}
+
+		public new void Json.Serializable.set_property(ParamSpec pspec, Value value)
+		{
+			base.set_property(pspec.get_name(), value);
+		}
+
+		public new Value Json.Serializable.get_property(ParamSpec pspec)
+		{
+			Value val = Value(pspec.value_type);
+			base.get_property(pspec.get_name(), ref val);
+			return val;
+		}
+
+		public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			switch (property_name) {
 				case "name":
@@ -43,7 +81,16 @@ namespace OLLMchat.Ollama
 					foreach (var prop in this.properties) {
 						var prop_node = Json.gobject_serialize(prop);
 						var prop_obj = prop_node.get_object();
-						properties_obj.set_object_member(prop.name, prop_obj);
+						// Get the name from the property if it's a ParamSimple or ParamArray
+						string prop_name = "";
+						if (prop is ParamSimple) {
+							prop_name = ((ParamSimple)prop).name;
+						} else if (prop is ParamArray) {
+							prop_name = ((ParamArray)prop).name;
+						} else if (prop is ParamObject) {
+							prop_name = ((ParamObject)prop).name;
+						}
+						properties_obj.set_object_member(prop_name, prop_obj);
 					}
 					var node = new Json.Node(Json.NodeType.OBJECT);
 					node.set_object(properties_obj);
@@ -53,8 +100,24 @@ namespace OLLMchat.Ollama
 					// Build required array from properties with required=true
 					var required_array = new Json.Array();
 					foreach (var prop in this.properties) {
-						if (prop.required) {
-							required_array.add_string_element(prop.name);
+						bool is_required = false;
+						if (prop is ParamSimple) {
+							is_required = ((ParamSimple)prop).required;
+						} else if (prop is ParamArray) {
+							is_required = ((ParamArray)prop).required;
+						} else if (prop is ParamObject) {
+							is_required = ((ParamObject)prop).required;
+						}
+						if (is_required) {
+							string prop_name = "";
+							if (prop is ParamSimple) {
+								prop_name = ((ParamSimple)prop).name;
+							} else if (prop is ParamArray) {
+								prop_name = ((ParamArray)prop).name;
+							} else if (prop is ParamObject) {
+								prop_name = ((ParamObject)prop).name;
+							}
+							required_array.add_string_element(prop_name);
 						}
 					}
 					var req_node = new Json.Node(Json.NodeType.ARRAY);
@@ -67,4 +130,3 @@ namespace OLLMchat.Ollama
 		}
 	}
 }
-

@@ -1,12 +1,11 @@
 namespace OLLMchat.Ollama
 {
 	/**
-	 * Represents an array parameter with items definition.
+	 * Represents a simple parameter type (string, integer, boolean).
 	 * 
-	 * Used for parameters with type "array" that define the structure
-	 * of array items (which can be ParamSimple, ParamObject, or ParamArray).
+	 * Used for parameters that don't have nested structures.
 	 */
-	public class ParamArray : Object, Param
+	public class ParamSimple : Object, Param
 	{
 		/**
 		 * The name of the parameter.
@@ -14,9 +13,9 @@ namespace OLLMchat.Ollama
 		public string name { get; set; }
 		
 		/**
-		 * The JSON schema type (always "array").
+		 * The JSON schema type (e.g., "string", "integer", "boolean").
 		 */
-		public string type { get; set; default = "array"; }
+		public string type { get; set; }
 		
 		/**
 		 * A description of what the parameter does.
@@ -27,23 +26,15 @@ namespace OLLMchat.Ollama
 		 * Whether this parameter is required.
 		 */
 		public bool required { get; set; default = false; }
-		
-		/**
-		 * The item definition for array elements.
-		 * Can be ParamSimple, ParamObject, or ParamArray.
-		 */
-		public Param items { get; set; }
 
-		public ParamArray()
+		public ParamSimple()
 		{
-			this.type = "array";
 		}
 
-		public ParamArray.with_name(string name, Param items, string description = "", bool required = false)
+		public ParamSimple.with_values(string name, string type, string description = "", bool required = false)
 		{
 			this.name = name;
-			this.type = "array";
-			this.items = items;
+			this.type = type;
 			this.description = description;
 			this.required = required;
 		}
@@ -76,17 +67,26 @@ namespace OLLMchat.Ollama
 				case "description":
 					return default_serialize_property(property_name, value, pspec);
 				
-				case "items":
-					// Serialize the items definition
-					if (this.items == null) {
-						return null;
-					}
-					var items_node = Json.gobject_serialize(this.items);
-					return items_node;
-				
 				default:
 					return null;
 			}
 		}
+
+		public bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
+		{
+			switch (property_name) {
+				case "name":
+				case "type":
+				case "description":
+					value = Value(pspec.value_type);
+					property_node.get_value(ref value);
+					return true;
+				
+				default:
+					value = Value(pspec.value_type);
+					return false;
+			}
+		}
 	}
 }
+
