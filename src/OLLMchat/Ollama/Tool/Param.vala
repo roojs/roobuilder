@@ -6,7 +6,7 @@ namespace OLLMchat.Ollama
 	 * All parameter types (simple, object, array) implement this interface.
 	 * The only common property is `type`.
 	 */
-	public interface Param : Json.Serializable
+	public interface Param : Object
 	{
 		/**
 		 * The JSON schema type of the parameter (e.g., "string", "integer", "boolean", "array", "object").
