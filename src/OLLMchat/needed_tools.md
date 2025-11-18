@@ -943,14 +943,23 @@ src/OLLMchat/
 
 ## To-Do List
 
-### Phase 1: Base Classes and Support Classes
+### Phase 1: ParamProperty
 
 - [x] **ParamProperty** - Create `ParamProperty.vala` class for parameter serialization
+
+### Phase 2: PermissionProvider
+
 - [ ] **PermissionProvider** - Create `PermissionProvider.vala` abstract class
+
+### Phase 3: PermissionProviderDummy
+
 - [ ] **PermissionProviderDummy** - Create `PermissionProviderDummy.vala` implementation
+
+### Phase 4: Function Updates
+
 - [ ] **Function Updates** - Review and update `Function.vala` if needed (add `parameter_description` parsing if desired)
 
-### Phase 2: Tool Implementations (Priority Order)
+### Phase 5: ReadFileTool
 
 - [ ] **ReadFileTool** - Create `ReadFileTool.vala` (Priority 1)
   - [ ] Implement file reading with line range support
@@ -959,12 +968,16 @@ src/OLLMchat/
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
+### Phase 6: EditFileTool
+
 - [ ] **EditFileTool** - Create `EditFileTool.vala` (Priority 2)
   - [ ] Implement diff application with range validation
   - [ ] Implement edit validation (non-overlapping, sorted)
   - [ ] Add permission question building
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
+
+### Phase 7: RunTerminalCommandTool
 
 - [ ] **RunTerminalCommandTool** - Create `RunTerminalCommandTool.vala` (Priority 3)
   - [ ] Implement command execution in project root
@@ -974,6 +987,8 @@ src/OLLMchat/
   - [ ] Add permission question building
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
+
+### Phase 8: WebSearchTool
 
 - [ ] **WebSearchTool** - Create `WebSearchTool.vala` (Priority 5)
   - [ ] **Research WebKit-based approach** (preferred over API integration)
@@ -993,6 +1008,8 @@ src/OLLMchat/
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
+### Phase 9: CodebaseSearchTool
+
 - [ ] **CodebaseSearchTool** - Create `CodebaseSearchTool.vala` (Priority 4)
   - [ ] ⚠️ **IMPLEMENT LAST** - This is the most complicated tool
   - [ ] Integrate with semantic-code-search (https://github.com/sturdy-dev/semantic-code-search)
@@ -1004,7 +1021,7 @@ src/OLLMchat/
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
-### Phase 3: Integration and Testing
+### Phase 10: Integration and Testing
 
 - [ ] **Tool Registration** - Ensure `Client.addTool()` method works correctly
 - [ ] **Permission Integration** - Create UI-based PermissionProvider implementation
@@ -1012,7 +1029,7 @@ src/OLLMchat/
 - [ ] **Error Handling** - Ensure all tools handle errors gracefully
 - [ ] **Documentation** - Update documentation with tool usage examples
 
-### Phase 4: UI Integration (Future)
+### Phase 11: UI Integration (Future)
 
 - [ ] **PermissionProviderUI** - Create UI-based permission provider with dialogs
 - [ ] **Tool Status Display** - Show tool execution status in UI
