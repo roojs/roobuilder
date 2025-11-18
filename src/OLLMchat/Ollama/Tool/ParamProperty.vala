@@ -1,12 +1,12 @@
 namespace OLLMchat.Ollama
 {
 	/**
-	 * Represents a parameter property for tool function parameters.
+	 * Represents a parameter for tool function parameters.
 	 * 
 	 * This class implements Json.Serializable to serialize parameter definitions
 	 * into JSON schema format for Ollama function calling.
 	 */
-	public class ParamProperty : Object, Json.Serializable
+	public class Param : Object, Json.Serializable
 	{
 		/**
 		 * The name of the parameter.
@@ -28,11 +28,11 @@ namespace OLLMchat.Ollama
 		 */
 		public bool required { get; set; default = false; }
 
-		public ParamProperty()
+		public Param()
 		{
 		}
 
-		public ParamProperty.with_values(string name, string type, string description, bool required)
+		public Param.with_values(string name, string type, string description, bool required)
 		{
 			this.name = name;
 			this.type = type;
