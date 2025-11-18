@@ -207,7 +207,7 @@ namespace OLLMchat.Tools
 			// Convert to absolute path if relative
 			if (!Path.is_absolute(path))
 			{
-				path = Path.build_filename(Environment.get_current_dir(), path);
+				path = (owned) Path.build_filename(Environment.get_current_dir(), path);
 			}
 			
 			// Resolve symlinks
