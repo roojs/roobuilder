@@ -771,7 +771,16 @@ namespace OLLMchat.Ollama
 
 **Priority**: 4 (Helpful for finding relevant code - may require external semantic search service)
 
+**⚠️ IMPLEMENTATION ORDER**: This should be the **LAST** tool to implement as it is the most complicated.
+
 **Purpose**: Performs semantic searches within the codebase to find snippets of code most relevant to a given query. This is a semantic search tool, so the query should ask for something semantically matching what is needed.
+
+**Semantic Search Implementation**:
+- **MUST use**: [semantic-code-search](https://github.com/sturdy-dev/semantic-code-search) from sturdy-dev
+- This tool provides natural language code search capabilities
+- Installation: `pip3 install semantic-code-search`
+- Usage: `sem --embed` to generate embeddings, then `sem 'query'` to search
+- All operations are performed locally (no data leaves the user's computer)
 
 **JSON Schema**:
 ```json
@@ -806,8 +815,10 @@ namespace OLLMchat.Ollama
 - Semantic search requires understanding code context and meaning, not just text matching
 - Should support directory filtering via glob patterns
 - Query should be natural language questions about code behavior
-- May require integration with external semantic search service or implementation of basic semantic search
+- **MUST integrate with semantic-code-search tool** (https://github.com/sturdy-dev/semantic-code-search)
 - Should build permission question showing the search query
+- May need to handle embedding generation if not already done (`sem --embed`)
+- Execute searches via `sem 'query'` command-line tool
 
 **Example Permission Question**:
 - "Search codebase for 'How does file reading work?'?"
@@ -818,7 +829,7 @@ namespace OLLMchat.Ollama
 
 **Status**: ⏳ To be created (`Tools/WebSearchTool.vala`)
 
-**Priority**: 5 (Useful for documentation and external information - requires web search API)
+**Priority**: 5 (Useful for documentation and external information - uses WebKit-based approach)
 
 **Purpose**: Perform a web search using the specified query and return the top search results. Should be used when you need to find information that is not available in the codebase or when you need to verify information from external sources.
 
@@ -844,16 +855,48 @@ namespace OLLMchat.Ollama
 - Should prioritize official documentation and reputable sources
 - May need to filter or rank results by reliability
 - Should return top N results (typically 5-10)
-- May need to handle rate limiting or API quotas
-- Requires web search API integration (e.g., DuckDuckGo, Google Custom Search, etc.)
-- Should build permission question showing the search query
+- **HTTP Method Restriction**: Only GET requests allowed - no POST, PUT, DELETE, etc.
+- **Data Transmission Restriction**: Must prevent sending data to external servers without approval
+  - Query parameters (after `?` in URL) may be acceptable for search queries, but need careful consideration
+  - Google searches and similar may need special handling or exclusion
+- **Implementation Approach**: Prefer WebKit-based approach over API integration
+  - Use WebKit browser to perform searches (similar to existing project approach)
+  - May need WebKit browser extension to extract search results
+  - Avoid API integration route (e.g., DuckDuckGo API, Google Custom Search API)
+- Should build permission question showing the search query and target URL
+
+**⚠️ Rate Limiting Requirements**:
+- **Limit**: Maximum 10 web searches per 15-minute sliding window
+- **Implementation**: 
+  - Maintain an `ArrayList<DateTime>` to store timestamps of each search
+  - Before each search, prune the list to remove timestamps older than 15 minutes
+  - If the list has 10 or more entries after pruning, request user permission
+  - If permission is granted, clear the entire list and allow the search
+  - If permission is denied, reject the search
+  - After a successful search, add the current timestamp to the list
+- **Chat-scoped**: Rate limiting is per chat window/session, not global
+- **Storage**: Store search timestamps per chat session (may need to add chat ID to ChatCall or use ChatWidget's current_chat reference)
 
 **Example Permission Question**:
 - "Search web for 'Vala Json.Serializable documentation'?"
+- After 10 searches in 15 minutes: "You have reached the limit of 10 web searches in the last 15 minutes. Allow more searches?"
 
 ---
 
 ## Implementation Considerations
+
+### Chat ID Tracking for Rate Limiting
+
+Some tools (notably `WebSearchTool`) require per-chat rate limiting:
+- **WebSearchTool**: Limits to 10 searches per 15-minute sliding window
+- **Implementation**: 
+  - Maintain an `ArrayList<DateTime>` per chat session to store search timestamps
+  - Before each search, prune timestamps older than 15 minutes
+  - If 10+ searches remain after pruning, request permission
+  - If permission granted, clear the list and proceed
+  - Add current timestamp to list after successful search
+- **Storage**: Search timestamps stored per chat session (not globally)
+- **Consideration**: Tools that need chat-scoped tracking should receive a chat identifier (or reference to ChatCall) during construction or execution
 
 ### Tool Integration with Ollama
 
@@ -932,19 +975,31 @@ src/OLLMchat/
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
-- [ ] **CodebaseSearchTool** - Create `CodebaseSearchTool.vala` (Priority 4)
-  - [ ] Research semantic search implementation options
-  - [ ] Implement basic semantic search or integrate external service
-  - [ ] Implement directory filtering via glob patterns
-  - [ ] Add permission question building
+- [ ] **WebSearchTool** - Create `WebSearchTool.vala` (Priority 5)
+  - [ ] **Research WebKit-based approach** (preferred over API integration)
+  - [ ] **Implement WebKit browser integration** for performing searches
+  - [ ] **Implement WebKit extension** to extract search results (similar to existing project)
+  - [ ] **Implement HTTP method restriction**: Only allow GET requests
+  - [ ] **Implement data transmission prevention**: Block POST/PUT/DELETE and data-sending requests
+  - [ ] **Handle query parameters**: Determine which query params are acceptable for searches
+  - [ ] **Consider Google search exclusion**: May need special handling or exclusion for Google searches
+  - [ ] Implement result filtering/ranking
+  - [ ] **Implement rate limiting**: Max 10 searches per 15-minute sliding window
+  - [ ] **Add timestamp tracking**: Maintain `ArrayList<DateTime>` of search timestamps per chat session
+  - [ ] **Implement pruning logic**: Remove timestamps older than 15 minutes before each search
+  - [ ] **Implement permission request**: When limit reached, ask user permission and clear list if granted
+  - [ ] **Add chat ID tracking** (may need to add chat_id to ChatCall or use ChatWidget's current_chat)
+  - [ ] Add permission question building (include target URL in question)
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
-- [ ] **WebSearchTool** - Create `WebSearchTool.vala` (Priority 5)
-  - [ ] Research web search API options (DuckDuckGo, Google Custom Search, etc.)
-  - [ ] Implement web search API integration
-  - [ ] Implement result filtering/ranking
-  - [ ] Add rate limiting handling
+- [ ] **CodebaseSearchTool** - Create `CodebaseSearchTool.vala` (Priority 4)
+  - [ ] ⚠️ **IMPLEMENT LAST** - This is the most complicated tool
+  - [ ] Integrate with semantic-code-search (https://github.com/sturdy-dev/semantic-code-search)
+  - [ ] Install semantic-code-search dependency (`pip3 install semantic-code-search`)
+  - [ ] Handle embedding generation (`sem --embed`) if needed
+  - [ ] Execute searches via `sem 'query'` command-line tool
+  - [ ] Implement directory filtering via glob patterns
   - [ ] Add permission question building
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
