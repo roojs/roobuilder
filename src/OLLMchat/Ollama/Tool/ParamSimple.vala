@@ -5,7 +5,7 @@ namespace OLLMchat.Ollama
 	 * 
 	 * Used for parameters that don't have nested structures.
 	 */
-	public class ParamSimple : Object, Param
+	public class ParamSimple : ParamBase
 	{
 		/**
 		 * The name of the parameter.
@@ -15,7 +15,7 @@ namespace OLLMchat.Ollama
 		/**
 		 * The JSON schema type (e.g., "string", "integer", "boolean").
 		 */
-		public string type { get; set; }
+		public override string type { get; set; }
 		
 		/**
 		 * A description of what the parameter does.
@@ -38,55 +38,5 @@ namespace OLLMchat.Ollama
 			this.description = description;
 			this.required = required;
 		}
-
-		public unowned ParamSpec? find_property(string name)
-		{
-			return this.get_class().find_property(name);
-		}
-
-		public new void Json.Serializable.set_property(ParamSpec pspec, Value value)
-		{
-			base.set_property(pspec.get_name(), value);
-		}
-
-		public new Value Json.Serializable.get_property(ParamSpec pspec)
-		{
-			Value val = Value(pspec.value_type);
-			base.get_property(pspec.get_name(), ref val);
-			return val;
-		}
-
-		public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
-		{
-			switch (property_name) {
-				case "name":
-					// Don't serialize name in nested objects (only serialize name at top level)
-					return null;
-				
-				case "type":
-				case "description":
-					return default_serialize_property(property_name, value, pspec);
-				
-				default:
-					return null;
-			}
-		}
-
-		public bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
-		{
-			switch (property_name) {
-				case "name":
-				case "type":
-				case "description":
-					value = Value(pspec.value_type);
-					property_node.get_value(ref value);
-					return true;
-				
-				default:
-					value = Value(pspec.value_type);
-					return false;
-			}
-		}
 	}
 }
-

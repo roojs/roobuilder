@@ -6,7 +6,7 @@ namespace OLLMchat.Ollama
 	 * Used for parameters with type "object" that have nested properties.
 	 * Properties can be either ParamObject or ParamArray instances.
 	 */
-	public class ParamObject : Object, Param
+	public class ParamObject : ParamBase
 	{
 		/**
 		 * The name of the parameter.
@@ -16,7 +16,7 @@ namespace OLLMchat.Ollama
 		/**
 		 * The JSON schema type (always "object").
 		 */
-		public string type { get; set; default = "object"; }
+		public override string type { get; set; default = "object"; }
 		
 		/**
 		 * A description of what the parameter does.
@@ -47,34 +47,9 @@ namespace OLLMchat.Ollama
 			this.required = required;
 		}
 
-		public unowned ParamSpec? find_property(string name)
-		{
-			return this.get_class().find_property(name);
-		}
-
-		public new void Json.Serializable.set_property(ParamSpec pspec, Value value)
-		{
-			base.set_property(pspec.get_name(), value);
-		}
-
-		public new Value Json.Serializable.get_property(ParamSpec pspec)
-		{
-			Value val = Value(pspec.value_type);
-			base.get_property(pspec.get_name(), ref val);
-			return val;
-		}
-
-		public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public override Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			switch (property_name) {
-				case "name":
-					// Don't serialize name in nested objects (only serialize name at top level)
-					return null;
-				
-				case "type":
-				case "description":
-					return default_serialize_property(property_name, value, pspec);
-				
 				case "properties":
 					// Serialize nested properties
 					var properties_obj = new Json.Object();
@@ -125,7 +100,7 @@ namespace OLLMchat.Ollama
 					return req_node;
 				
 				default:
-					return null;
+					return base.serialize_property(property_name, value, pspec);
 			}
 		}
 	}

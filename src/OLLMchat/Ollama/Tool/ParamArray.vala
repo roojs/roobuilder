@@ -6,7 +6,7 @@ namespace OLLMchat.Ollama
 	 * Used for parameters with type "array" that define the structure
 	 * of array items (which can be ParamSimple, ParamObject, or ParamArray).
 	 */
-	public class ParamArray : Object, Param
+	public class ParamArray : ParamBase
 	{
 		/**
 		 * The name of the parameter.
@@ -16,7 +16,7 @@ namespace OLLMchat.Ollama
 		/**
 		 * The JSON schema type (always "array").
 		 */
-		public string type { get; set; default = "array"; }
+		public override string type { get; set; default = "array"; }
 		
 		/**
 		 * A description of what the parameter does.
@@ -48,34 +48,9 @@ namespace OLLMchat.Ollama
 			this.required = required;
 		}
 
-		public unowned ParamSpec? find_property(string name)
-		{
-			return this.get_class().find_property(name);
-		}
-
-		public new void Json.Serializable.set_property(ParamSpec pspec, Value value)
-		{
-			base.set_property(pspec.get_name(), value);
-		}
-
-		public new Value Json.Serializable.get_property(ParamSpec pspec)
-		{
-			Value val = Value(pspec.value_type);
-			base.get_property(pspec.get_name(), ref val);
-			return val;
-		}
-
-		public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public override Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			switch (property_name) {
-				case "name":
-					// Don't serialize name in nested objects (only serialize name at top level)
-					return null;
-				
-				case "type":
-				case "description":
-					return default_serialize_property(property_name, value, pspec);
-				
 				case "items":
 					// Serialize the items definition
 					if (this.items == null) {
@@ -85,7 +60,7 @@ namespace OLLMchat.Ollama
 					return items_node;
 				
 				default:
-					return null;
+					return base.serialize_property(property_name, value, pspec);
 			}
 		}
 	}
