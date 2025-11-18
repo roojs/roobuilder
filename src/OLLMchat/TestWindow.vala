@@ -74,9 +74,7 @@ namespace OLLMchat
 {
 	"url": "http://192.168.88.14:11434/api",
 	"model": "MichelRosselli/GLM-4.5-Air:Q4_K_M",
-	"api_key": "your-api-key-here",
-	"stream": true,
-	"think": true
+	"api_key": "your-api-key-here"
 }
 			 */
 			var parser = new Json.Parser();
