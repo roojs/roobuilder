@@ -556,7 +556,7 @@ namespace OLLMchat.Tools
 - Defines abstract properties: `name`, `description`, `param` (`Gee.ArrayList<Param>`)
 - Handles permission checking via `PermissionProvider` before execution
 - Provides concrete implementations of `Json.Serializable` methods with switch-case pattern in `serialize_property`
-- Should parse `parameter_description` string to populate `parameters` array (if `parameter_description` is added)
+- Should parse `parameter_description` string to populate `param` array (if `parameter_description` is added)
 
 **Parameter Documentation Format**:
 
