@@ -79,15 +79,14 @@ namespace OLLMchat.Tools
 		protected PermissionProvider(string permissions_directory = "")
 		{
 			this.permissions_directory = permissions_directory;
-			if (permissions_directory != "")
-			{
-				this.permissions_file_path = Path.build_filename(permissions_directory, "tool.permissions.json");
-				this.load_permissions();
-			}
-			else
+			if (permissions_directory == "")
 			{
 				this.permissions_file_path = "";
+				return;
 			}
+			
+			this.permissions_file_path = Path.build_filename(permissions_directory, "tool.permissions.json");
+			this.load_permissions();
 		}
 		
 		/**
