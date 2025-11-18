@@ -9,9 +9,19 @@ namespace OLLMchat.Ollama
 	public abstract class Param : Object, Json.Serializable
 	{
 		/**
+		 * The name of the parameter.
+		 */
+		public abstract string name { get; set; }
+		
+		/**
 		 * The JSON schema type of the parameter (e.g., "string", "integer", "boolean", "array", "object").
 		 */
 		public abstract string type { get; set; }
+		
+		/**
+		 * Whether this parameter is required.
+		 */
+		public abstract bool required { get; set; }
 
 		public unowned ParamSpec? find_property(string name)
 		{
@@ -34,7 +44,9 @@ namespace OLLMchat.Ollama
 		{
 			switch (property_name) {
 				case "name":
-					// Don't serialize name in nested objects (only serialize name at top level)
+					if (this.name != "") {
+						return default_serialize_property(property_name, value, pspec);
+					}
 					return null;
 				
 				case "type":
@@ -52,14 +64,12 @@ namespace OLLMchat.Ollama
 				case "name":
 				case "type":
 				case "description":
-					value = Value(pspec.value_type);
-					property_node.get_value(ref value);
-					return true;
+					return default_deserialize_property(property_name, out value, pspec, property_node);
 				
 				default:
 					value = Value(pspec.value_type);
 					return false;
 			}
 		}
-	}
+ 
 }

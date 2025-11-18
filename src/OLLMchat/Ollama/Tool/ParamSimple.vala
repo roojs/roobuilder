@@ -10,7 +10,7 @@ namespace OLLMchat.Ollama
 		/**
 		 * The name of the parameter.
 		 */
-		public string name { get; set; }
+		public override string name { get; set; }
 		
 		/**
 		 * The JSON schema type (e.g., "string", "integer", "boolean").
@@ -25,7 +25,7 @@ namespace OLLMchat.Ollama
 		/**
 		 * Whether this parameter is required.
 		 */
-		public bool required { get; set; default = false; }
+		public override bool required { get; set; default = false; }
 
 		public ParamSimple()
 		{

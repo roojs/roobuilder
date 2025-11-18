@@ -10,18 +10,9 @@ namespace OLLMchat.Ollama
 	{
 		public abstract string name { get; }
 		public abstract string description { get; }
-		public abstract Gee.ArrayList<Param> param { get; set; }
+		public abstract ParamObject  parameters { get; set; }
 		
-		/**
-		 * Gets the parameters object (ParamObject) containing all parameters.
-		 * This is a convenience method that wraps the param array into a ParamObject.
-		 */
-		protected ParamObject get_parameters_object()
-		{
-			var params_obj = new ParamObject();
-			params_obj.properties = this.param;
-			return params_obj;
-		}
+		 
 
 		public unowned ParamSpec? find_property(string name)
 		{
@@ -45,18 +36,9 @@ namespace OLLMchat.Ollama
 			switch (property_name) {
 				case "name":
 				case "description":
+				case "parameters":
 					return default_serialize_property(property_name, value, pspec);
-				
-			case "param":
-				// Serialize param array as JSON schema object
-				// Build the parameters object from the param array
-				var params_obj = this.get_parameters_object();
-				var params_node = Json.gobject_serialize(params_obj);
-				return params_node;
-				
-				default:
-					return null;
-			}
+			 
 		}
 	}
 }
