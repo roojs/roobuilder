@@ -7,8 +7,9 @@ namespace OLLMchat.Tools
 	 */
 	public class PermissionProviderDummy : PermissionProvider
 	{
-		public PermissionProviderDummy(string permissions_directory = "") : base(permissions_directory)
+		public PermissionProviderDummy(string permissions_directory = "")
 		{
+			base(permissions_directory);
 		}
 		
 		protected override PermissionResponse request_user_permission(Ollama.Function tool, string question, string target_path, Operation operation)

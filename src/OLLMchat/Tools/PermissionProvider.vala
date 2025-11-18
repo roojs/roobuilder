@@ -199,21 +199,22 @@ namespace OLLMchat.Tools
 		protected string normalize_path(string path)
 		{
 			// Convert to absolute path if relative
+			string normalized = path;
 			if (!Path.is_absolute(path))
 			{
-				path = Path.build_filename(Environment.get_current_dir(), path);
+				normalized = Path.build_filename(Environment.get_current_dir(), path);
 			}
 			
 			// Resolve symlinks
 			try
 			{
-				var resolved = File.new_for_path(path);
+				var resolved = File.new_for_path(normalized);
 				var canonical = resolved.resolve_relative_path(".");
 				return canonical.get_path();
 			}
 			catch
 			{
-				return path;
+				return normalized;
 			}
 		}
 		
