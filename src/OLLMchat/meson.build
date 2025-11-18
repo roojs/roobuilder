@@ -72,7 +72,9 @@ ollmchat_ollama_src = files([
   'Ollama/Response/ChatResponse.vala',
   'Ollama/Response/Model.vala',
   'Ollama/Tool/Tool.vala',
-  'Ollama/Tool/ParamProperty.vala',
+  'Ollama/Tool/Param.vala',
+  'Ollama/Tool/ParamObject.vala',
+  'Ollama/Tool/ParamArray.vala',
   'Ollama/Tool/Function.vala',
 ])
 

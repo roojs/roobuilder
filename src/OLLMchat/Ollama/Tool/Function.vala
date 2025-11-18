@@ -11,6 +11,17 @@ namespace OLLMchat.Ollama
 		public abstract string name { get; }
 		public abstract string description { get; }
 		public abstract Gee.ArrayList<Param> param { get; set; }
+		
+		/**
+		 * Gets the parameters object (ParamObject) containing all parameters.
+		 * This is a convenience method that wraps the param array into a ParamObject.
+		 */
+		protected ParamObject get_parameters_object()
+		{
+			var params_obj = new ParamObject();
+			params_obj.properties = this.param;
+			return params_obj;
+		}
 
 		public unowned ParamSpec? find_property(string name)
 		{
@@ -38,27 +49,10 @@ namespace OLLMchat.Ollama
 				
 			case "param":
 				// Serialize param array as JSON schema object
-				var params_obj = new Json.Object();
-				var properties = new Json.Object();
-				var required = new Json.Array();
-				
-				foreach (var p in this.param) {
-					var param_node = Json.gobject_serialize(p);
-					var param_obj = param_node.get_object();
-					properties.set_object_member(p.name, param_obj);
-					
-					if (p.required) {
-						required.add_string_element(p.name);
-					}
-				}
-				
-				params_obj.set_string_member("type", "object");
-				params_obj.set_object_member("properties", properties);
-				params_obj.set_array_member("required", required);
-				
-				var node = new Json.Node(Json.NodeType.OBJECT);
-				node.set_object(params_obj);
-				return node;
+				// Build the parameters object from the param array
+				var params_obj = this.get_parameters_object();
+				var params_node = Json.gobject_serialize(params_obj);
+				return params_node;
 				
 				default:
 					return null;
