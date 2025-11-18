@@ -111,8 +111,7 @@ namespace OLLMchat.Tools
 			// Check session permissions
 			if (this.session_permissions.has_key(normalized_path))
 			{
-				var perm = this.session_permissions.get(normalized_path);
-				var result = check_permission(perm, operation);
+				var result = check_permission(this.session_permissions.get(normalized_path), operation);
 				if (result == PermissionResult.YES || result == PermissionResult.NO)
 				{
 					return result == PermissionResult.YES;
@@ -122,8 +121,7 @@ namespace OLLMchat.Tools
 			// Check global permissions
 			if (this.global_permissions.has_key(normalized_path))
 			{
-				var perm = this.global_permissions.get(normalized_path);
-				var result = check_permission(perm, operation);
+				var result = check_permission(this.global_permissions.get(normalized_path), operation);
 				if (result == PermissionResult.YES || result == PermissionResult.NO)
 				{
 					return result == PermissionResult.YES;
@@ -134,7 +132,17 @@ namespace OLLMchat.Tools
 			var response = this.request_user_permission(tool, question, normalized_path, operation);
 			this.handle_permission_response(normalized_path, operation, response);
 			
-			// Extract allowed from response enum
+			return is_allow_response(response);
+		}
+		
+		/**
+		 * Checks if a PermissionResponse is an allow type.
+		 * 
+		 * @param response The permission response to check
+		 * @return true if response is an ALLOW type, false otherwise
+		 */
+		private bool is_allow_response(PermissionResponse response)
+		{
 			return (response == PermissionResponse.ALLOW_ONCE || 
 			        response == PermissionResponse.ALLOW_SESSION || 
 			        response == PermissionResponse.ALLOW_ALWAYS);
@@ -167,25 +175,24 @@ namespace OLLMchat.Tools
 			}
 			
 			int index = (int)operation;
-			
-			if (index >= 0 && index < perm.length)
+			if (index < 0 || index >= perm.length)
 			{
-				char ch = perm[index];
-				if (ch == '-')
-				{
-					return PermissionResult.NO;
-				}
-				else if (ch == 'r' || ch == 'w' || ch == 'x')
-				{
-					return PermissionResult.YES;
-				}
-				else if (ch == '?')
-				{
-					return PermissionResult.ASK;
-				}
+				return PermissionResult.NO;
 			}
 			
-			return PermissionResult.NO;
+			switch (perm[index])
+			{
+				case '-':
+					return PermissionResult.NO;
+				case 'r':
+				case 'w':
+				case 'x':
+					return PermissionResult.YES;
+				case '?':
+					return PermissionResult.ASK;
+				default:
+					return PermissionResult.NO;
+			}
 		}
 		
 		/**
@@ -198,22 +205,19 @@ namespace OLLMchat.Tools
 		protected string normalize_path(string path)
 		{
 			// Convert to absolute path if relative
-			string normalized = path;
 			if (!Path.is_absolute(path))
 			{
-				normalized = Path.build_filename(Environment.get_current_dir(), path);
+				path = Path.build_filename(Environment.get_current_dir(), path);
 			}
 			
 			// Resolve symlinks
 			try
 			{
-				var resolved = File.new_for_path(normalized);
-				var canonical = resolved.resolve_relative_path(".");
-				return canonical.get_path();
+				return File.new_for_path(path).resolve_relative_path(".").get_path();
 			}
 			catch
 			{
-				return normalized;
+				return path;
 			}
 		}
 		
@@ -228,16 +232,11 @@ namespace OLLMchat.Tools
 		 */
 		protected void handle_permission_response(string target_path, Operation operation, PermissionResponse response)
 		{
-			// Determine if allowed and storage type
-			bool allowed = (response == PermissionResponse.ALLOW_ONCE || 
-			                response == PermissionResponse.ALLOW_SESSION || 
-			                response == PermissionResponse.ALLOW_ALWAYS);
+			bool allowed = is_allow_response(response);
 			
 			// If permissions_directory is empty, treat ALWAYS as SESSION
-			bool is_always = (response == PermissionResponse.DENY_ALWAYS || response == PermissionResponse.ALLOW_ALWAYS);
-			if (is_always && this.permissions_directory == "")
+			if ((response == PermissionResponse.DENY_ALWAYS || response == PermissionResponse.ALLOW_ALWAYS) && this.permissions_directory == "")
 			{
-				// Convert ALWAYS to SESSION
 				response = allowed ? PermissionResponse.ALLOW_SESSION : PermissionResponse.DENY_SESSION;
 			}
 			
