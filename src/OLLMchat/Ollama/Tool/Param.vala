@@ -15,8 +15,9 @@ namespace OLLMchat.Ollama
 		
 		/**
 		 * The JSON schema type of the parameter (e.g., "string", "integer", "boolean", "array", "object").
+		 * Stored as x_type to avoid conflict with GObject's reserved "type" property.
 		 */
-		public abstract string type { get; set; }
+		public abstract string x_type { get; set; }
 		
 		/**
 		 * Whether this parameter is required.
@@ -40,7 +41,7 @@ namespace OLLMchat.Ollama
 			return val;
 		}
 
-		public virtual Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public virtual Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			switch (property_name) {
 				case "name":
@@ -49,27 +50,19 @@ namespace OLLMchat.Ollama
 					}
 					return null;
 				
-				case "type":
 				case "description":
 					return default_serialize_property(property_name, value, pspec);
+				
+				case "x_type":
+				case "x-type":
+					// Don't serialize x_type directly - we'll add "type" manually in the JSON object
+					return null;
+				
+				 
 				
 				default:
 					return null;
 			}
 		}
-
-		public virtual bool deserialize_property(string property_name, out Value value, ParamSpec pspec, Json.Node property_node)
-		{
-			switch (property_name) {
-				case "name":
-				case "type":
-				case "description":
-					return default_deserialize_property(property_name, out value, pspec, property_node);
-				
-				default:
-					value = Value(pspec.value_type);
-					return false;
-			}
-		}
- 
+	}
 }

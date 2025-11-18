@@ -16,7 +16,7 @@ namespace OLLMchat.Ollama
 		/**
 		 * The JSON schema type (always "array").
 		 */
-		public override string type { get; set; default = "array"; }
+		public override string x_type { get; set; default = "array"; }
 		
 		/**
 		 * A description of what the parameter does.
@@ -36,23 +36,29 @@ namespace OLLMchat.Ollama
 
 		public ParamArray()
 		{
-			this.type = "array";
+			this.x_type = "array";
 		}
 
 		public ParamArray.with_name(string name, Param items, string description = "", bool required = false)
 		{
 			this.name = name;
-			this.type = "array";
+			this.x_type = "array";
 			this.items = items;
 			this.description = description;
 			this.required = required;
 		}
 
-		public override Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public override Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			switch (property_name) {
 				case "items":
-					return serialize_param_property(this.items);
+					// Serialize nested items definition
+					if (this.items != null) {
+						var items_node = Json.gobject_serialize(this.items);					 
+						items_node.get_object().set_string_member("type", this.items.x_type);
+						return items_node;
+					}
+					return null;
 				
 				default:
 					return base.serialize_property(property_name, value, pspec);

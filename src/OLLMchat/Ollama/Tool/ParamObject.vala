@@ -16,7 +16,7 @@ namespace OLLMchat.Ollama
 		/**
 		 * The JSON schema type (always "object").
 		 */
-		public override string type { get; set; default = "object"; }
+		public override string x_type { get; set; default = "object"; }
 		
 		/**
 		 * A description of what the parameter does.
@@ -36,18 +36,18 @@ namespace OLLMchat.Ollama
 
 		public ParamObject()
 		{
-			this.type = "object";
+			this.x_type = "object";
 		}
 
 		public ParamObject.with_name(string name, string description = "", bool required = false)
 		{
 			this.name = name;
-			this.type = "object";
+			this.x_type = "object";
 			this.description = description;
 			this.required = required;
 		}
 
-		public override Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public override Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			switch (property_name) {
 				case "properties":
@@ -55,8 +55,8 @@ namespace OLLMchat.Ollama
 					var properties_obj = new Json.Object();
 					foreach (var prop in this.properties) {
 						var prop_node = Json.gobject_serialize(prop);
-						var prop_obj = prop_node.get_object();
-						properties_obj.set_object_member(prop.name, prop_obj);
+						prop_node.get_object().set_string_member("type", prop.x_type);
+						properties_obj.set_object_member(prop.name, prop_node.get_object());
 					}
 					var node = new Json.Node(Json.NodeType.OBJECT);
 					node.set_object(properties_obj);

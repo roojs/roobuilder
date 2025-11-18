@@ -15,7 +15,7 @@ namespace OLLMchat.Ollama
 		/**
 		 * The JSON schema type (e.g., "string", "integer", "boolean").
 		 */
-		public override string type { get; set; }
+		public override string x_type { get; set; }
 		
 		/**
 		 * A description of what the parameter does.
@@ -34,7 +34,7 @@ namespace OLLMchat.Ollama
 		public ParamSimple.with_values(string name, string type, string description = "", bool required = false)
 		{
 			this.name = name;
-			this.type = type;
+			this.x_type = type;
 			this.description = description;
 			this.required = required;
 		}

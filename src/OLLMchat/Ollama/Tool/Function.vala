@@ -31,14 +31,25 @@ namespace OLLMchat.Ollama
 			return val;
 		}
 
-		public Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			switch (property_name) {
 				case "name":
 				case "description":
-				case "parameters":
 					return default_serialize_property(property_name, value, pspec);
+				
+				case "parameters":
+					// Manually serialize parameters and ensure "type" is set
+					if (this.parameters != null) {
+						var param_node = Json.gobject_serialize(this.parameters);
+						param_node.get_object().set_string_member("type", this.parameters.x_type);
+						return param_node;
+					}
+					return null;
 			 
+				default:
+					return null;
+			}
 		}
 	}
 }
