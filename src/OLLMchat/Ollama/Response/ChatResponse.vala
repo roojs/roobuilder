@@ -5,7 +5,7 @@ namespace OLLMchat.Ollama
 		public Message message { get; set; }
 		public ChatCall? call { get; set; default = null; }
 		
-		public string chat_content {
+		public new string chat_content {
 			get { return this.message.content; }
 			set {   }
 		}
