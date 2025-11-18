@@ -144,13 +144,7 @@ namespace OLLMchat.Ollama
 				}
 				// Re-throw other IO errors
 				throw e;
-			} catch (Error e) {
-				// Handle other errors (EOF, etc.)
-				if (e.code == 1) {
-					break;
-				}
-				throw e;
-			}
+			
 
 			if (line == null) {
 				break;
