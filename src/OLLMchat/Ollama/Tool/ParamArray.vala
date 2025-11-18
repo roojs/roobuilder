@@ -6,7 +6,7 @@ namespace OLLMchat.Ollama
 	 * Used for parameters with type "array" that define the structure
 	 * of array items (which can be ParamSimple, ParamObject, or ParamArray).
 	 */
-	public class ParamArray : ParamBase
+	public class ParamArray : Param
 	{
 		/**
 		 * The name of the parameter.

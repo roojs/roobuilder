@@ -6,7 +6,7 @@ namespace OLLMchat.Ollama
 	 * Used for parameters with type "object" that have nested properties.
 	 * Properties can be either ParamObject or ParamArray instances.
 	 */
-	public class ParamObject : ParamBase
+	public class ParamObject : Param
 	{
 		/**
 		 * The name of the parameter.

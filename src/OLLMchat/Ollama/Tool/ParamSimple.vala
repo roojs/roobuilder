@@ -5,7 +5,7 @@ namespace OLLMchat.Ollama
 	 * 
 	 * Used for parameters that don't have nested structures.
 	 */
-	public class ParamSimple : ParamBase
+	public class ParamSimple : Param
 	{
 		/**
 		 * The name of the parameter.
