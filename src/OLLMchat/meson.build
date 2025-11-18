@@ -87,10 +87,16 @@ ollmchat_prompt_src = files([
   'Prompt/CodeAssistant.vala',
 ])
 
+# Source files for Tools namespace
+ollmchat_tools_src = files([
+  'Tools/PermissionProvider.vala',
+  'Tools/PermissionProviderDummy.vala',
+])
+
 # Build as a library (can be linked or used as standalone)
 ollmchat_prompt_lib = library('ollmchat-prompt',
   dependencies: deps,
-  sources: [ollmchat_ollama_src, ollmchat_prompt_src, ollmchat_resources],
+  sources: [ollmchat_ollama_src, ollmchat_prompt_src, ollmchat_tools_src, ollmchat_resources],
   install: false
 )
 
