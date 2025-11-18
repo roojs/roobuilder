@@ -7,12 +7,13 @@ namespace OLLMchat.Tools
 	 */
 	public class PermissionProviderDummy : PermissionProvider
 	{
-		public PermissionProviderDummy(string permissions_directory = "")
+		public PermissionProviderDummy(string directory = "")
 		{
-			base(permissions_directory);
+			base(directory);
 		}
 		
-		protected override PermissionResponse request_user_permission(Ollama.Function tool, string question, string target_path, Operation operation)
+		protected override PermissionResponse request_user(
+				Ollama.Function tool, string question, string target_path, Operation operation)
 		{
 			string op_str = operation == Operation.READ ? "READ" : (operation == Operation.WRITE ? "WRITE" : "EXECUTE");
 			GLib.debug("Permission requested for tool '%s' on '%s' (%s): %s", tool.name, target_path, op_str, question);
