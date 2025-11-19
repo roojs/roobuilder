@@ -25,18 +25,18 @@ namespace OLLMchat.Ollama
 		protected string permission_target_path { get; set; default = ""; }
 		protected Tools.Operation permission_operation { get; set; default = Tools.Operation.READ; }
 
-		public Tool(Client client)
+		private Tool(Client client)
 		{
 			this.client = client;
 			this.function = new Function(this);
 			
 			 
 			
-			string[] lines = this.parameter_description.split("\n");
-			string current_param = "";
+			var lines = this.parameter_description.split("\n");
+			var current_param = "";
 			
-			foreach (string line in lines) {
-				string stripped = line.strip();
+			foreach (var line in lines) {
+				var stripped = line.strip();
 				if (stripped == "") {
 					continue;
 				}
@@ -82,19 +82,19 @@ namespace OLLMchat.Ollama
 		 * 
 		 * @param desc The parameter description string for a single parameter (must start with @param)
 		 */
-		protected void parse_parameter_description_string(string desc)
+		protected void parse_parameter_description_string(string in_desc)
 		{
-			desc = desc.strip();
+			var desc = in_desc.strip();
 			if (!desc.has_prefix("@param")) {
 				return;
 			}
 			
-			string[] tokens = desc.split(" ");
-			ParseState state = ParseState.PARAM;
-			string param_name = "";
-			string param_type = "";
-			bool required = false;
-			string description = "";
+			var tokens = desc.split(" ");
+			var state = ParseState.PARAM;
+			var param_name = "";
+			var param_type = "";
+			var required = false;
+			var description = "";
 			
 			foreach (string token in tokens) {
 				if (token == "") {

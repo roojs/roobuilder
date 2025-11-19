@@ -230,28 +230,7 @@ Each tool extends the `Function` abstract class and implements:
 
 Tools are registered with the Ollama client using the `addTool` method:
 
-```vala
-namespace OLLMchat.Ollama
-{
-	public class Client : Object
-	{
-		// ... existing code ...
-		
-		/**
-		 * Adds a tool function to the client's tools list.
-		 * 
-		 * Creates a new Tool wrapper with the provided Function and adds it to the tools array.
-		 * 
-		 * @param tool_function The tool function to add
-		 */
-		public void addTool(Function tool_function)
-		{
-			var tool = new Tool(tool_function);
-			this.tools.add(tool);
-		}
-	}
-}
-```
+ 
 
 ---
 
@@ -604,7 +583,16 @@ src/OLLMchat/
 
 ### Phase 4: Function Updates
 
-- [ ] **Function Updates** - Review and update `Function.vala` if needed (add `parameter_description` parsing if desired)
+- [x] **Function Updates** - Review and update `Function.vala` if needed (add `parameter_description` parsing if desired)
+  - [x] Updated `Tool` to be abstract base class with all implementation logic
+  - [x] Updated `Function` to be concrete class built from `Tool`'s properties
+  - [x] Implemented `parameter_description` parsing with state machine
+  - [x] Added `parse_parameter_description_string()` method using ParseState enum
+  - [x] Added constructor logic to handle multi-line parameter descriptions
+  - [x] Added `prepare()` abstract method for building permission questions
+  - [x] Added `execute_tool()` abstract method for tool execution
+  - [x] Integrated permission checking in `execute()` method
+  - [x] Added `return_error()` helper method for standardized error responses
 
 ### Phase 5: ReadFileTool
 
