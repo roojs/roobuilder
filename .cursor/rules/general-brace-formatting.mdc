@@ -10,11 +10,11 @@ description: General coding formatting rules - always use braces and proper line
 
 ## Control Statement Brace Placement
 
-**NEVER** add line breaks before opening braces in control statements. Opening braces must be on the same line as the control statement.
+**NEVER** add line breaks before opening braces in control flow statements. Opening braces must be on the same line as the control statement.
 
-**Note**: This rule applies ONLY to control statements. Methods and classes use a different rule (see below).
+**CRITICAL**: This rule applies ONLY to control flow statements (if, while, switch, for, foreach, try, catch, etc.). Methods and classes use a different rule - they MUST have line breaks before opening braces (see below).
 
-This applies to:
+This applies to all control flow statements:
 - `if` statements
 - `foreach` loops
 - `try` blocks
@@ -22,6 +22,8 @@ This applies to:
 - `while` loops
 - `switch` statements
 - `catch` blocks
+- `do-while` loops
+- Any other control flow constructs
 
 ### ❌ Incorrect - Line break before opening brace
 
@@ -488,9 +490,11 @@ When reviewing code, look for:
 7. **Language-specific syntax** - Ensure proper variable prefixes ($ for PHP, etc.)
 8. **Cross-language consistency** - Apply same rules regardless of language
 
-**Key Distinction**:
-- **Control statements** (if, foreach, try, etc.): Opening brace on **same line** (no line break)
-- **Methods and classes**: Opening brace on **new line** (line break required)
+**Key Distinction - CRITICAL RULE**:
+- **Control flow statements** (if, while, switch, for, foreach, try, catch, etc.): Opening brace on **same line** (NO line break before brace)
+- **Methods and classes**: Opening brace on **new line** (line break REQUIRED before brace)
+
+**Summary**: Control flow = brace on same line. Methods/classes = brace on new line.
 
 ## Exception
 

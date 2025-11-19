@@ -13,10 +13,10 @@ namespace OLLMchat.Tools
 		}
 		
 		protected override PermissionResponse request_user(
-				Ollama.Function tool, string question, string target_path, Operation operation)
+				Ollama.Function function, string question, string target_path, Operation operation)
 		{
 			string op_str = operation == Operation.READ ? "READ" : (operation == Operation.WRITE ? "WRITE" : "EXECUTE");
-			GLib.debug("Permission requested for tool '%s' on '%s' (%s): %s", tool.name, target_path, op_str, question);
+			GLib.debug("Permission requested for tool '%s' on '%s' (%s): %s", function.name, target_path, op_str, question);
 			// Always deny for dummy implementation
 			return PermissionResponse.DENY_ONCE;
 		}

@@ -13,6 +13,7 @@ namespace OLLMchat.Ollama
 		public Gee.ArrayList<Tool> tools { get; set; default = new Gee.ArrayList<Tool>(); }
 		public ChatResponse? streaming_response { get; set; default = null; }
 		public Prompt.BaseAgentPrompt prompt_assistant { get; set; default = new Prompt.BaseAgentPrompt(); }
+		public Tools.PermissionProvider permission_provider { get; set; default = new Tools.PermissionProviderDummy(); }
 
 		/**
 		 * Emitted when a streaming chunk is received from the chat API.
@@ -25,6 +26,19 @@ namespace OLLMchat.Ollama
 		public signal void stream_chunk(string new_text, bool is_thinking, ChatResponse response);
 
 		public Soup.Session? session = null;
+
+		/**
+		 * Adds a tool to the client's tools list.
+		 * 
+		 * Adds the tool to the tools array. The tool's client is set via constructor.
+		 * 
+		 * @param tool The tool to add
+		 */
+		public void addTool(Tool tool)
+		{
+			tool.client = this;
+			this.tools.add(tool);
+		}
 
 		public async ChatResponse chat(string text, GLib.Cancellable? cancellable = null) throws Error
 		{

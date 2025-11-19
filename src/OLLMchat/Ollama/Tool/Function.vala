@@ -1,18 +1,48 @@
 namespace OLLMchat.Ollama
 {
 	/**
-	 * Abstract base class for tool functions that can be used with Ollama function calling.
+	 * Concrete class representing a function within a Tool.
 	 * 
-	 * This class implements Json.Serializable and provides concrete implementations
-	 * of the serialization methods. Subclasses must implement the abstract properties.
+	 * This class is built from a Tool's properties on construction.
+	 * It provides name, description, and parameters for serialization.
 	 */
-	public abstract class Function : Object, Json.Serializable
+	public class Function : Object, Json.Serializable
 	{
-		public abstract string name { get; }
-		public abstract string description { get; }
-		public abstract ParamObject  parameters { get; set; }
+		private Tool tool;
 		
-		 
+		public Function(Tool tool)
+		{
+			this.tool = tool;
+		}
+		
+		/**
+		 * The name of the function (from Tool).
+		 */
+		public string name
+		{
+			get { return this.tool.name; }
+		}
+		
+		/**
+		 * The description of the function (from Tool).
+		 */
+		public string description
+		{
+			get { return this.tool.description; }
+		}
+		
+		/**
+		 * The parameters of the function.
+		 */
+		public ParamObject parameters { get; set; default = new ParamObject(); }
+		
+		/**
+		 * The textual parameter description (from Tool).
+		 */
+		public string? parameter_description
+		{
+			get { return this.tool.parameter_description; }
+		}
 
 		public unowned ParamSpec? find_property(string name)
 		{
@@ -53,4 +83,3 @@ namespace OLLMchat.Ollama
 		}
 	}
 }
-

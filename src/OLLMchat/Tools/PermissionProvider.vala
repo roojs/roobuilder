@@ -117,14 +117,14 @@ namespace OLLMchat.Tools
 		 * 2. Global (permanent)
 		 * 3. If not found, calls request_user() to ask user
 		 * 
-		 * @param tool The Function instance requesting permission (tool.name provides the tool name)
+		 * @param function The Function instance requesting permission (function.name provides the tool name)
 		 * @param question A descriptive question about what the tool will do
 		 * @param target_path The target path/resource being accessed (e.g., file path, command)
 		 * @param operation The operation type (READ, WRITE, or EXECUTE)
 		 * @return true if permission is granted, false otherwise
 		 */
 		public bool request(
-			Ollama.Function tool, 
+			Ollama.Function function, 
 			string question, 
 			string target_path, 
 			Operation operation
@@ -150,7 +150,7 @@ namespace OLLMchat.Tools
 			}
 			
 			// No stored permission found - ask user
-			var response = this.request_user(tool, question, normalized_path, operation);
+			var response = this.request_user(function, question, normalized_path, operation);
 			this.handle_response(normalized_path, operation, response);
 			
 			return (response == PermissionResponse.ALLOW_ONCE || 
@@ -162,14 +162,14 @@ namespace OLLMchat.Tools
 		 * Abstract method for requesting permission from user.
 		 * Subclasses implement this to show UI dialogs, prompts, etc.
 		 * 
-		 * @param tool The Function instance requesting permission (tool.name provides the tool name)
+		 * @param function The Function instance requesting permission (function.name provides the tool name)
 		 * @param question A descriptive question about what the tool will do
 		 * @param target_path The normalized target path
 		 * @param operation The operation type (READ, WRITE, or EXECUTE)
 		 * @return PermissionResponse enum indicating user's choice
 		 */
 		protected abstract PermissionResponse request_user(
-			Ollama.Function tool, 
+			Ollama.Function function, 
 			string question, 
 			string target_path, 
 			Operation operation
