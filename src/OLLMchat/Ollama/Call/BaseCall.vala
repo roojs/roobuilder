@@ -144,7 +144,7 @@ namespace OLLMchat.Ollama
 				}
 				// Re-throw other IO errors
 				throw e;
-			
+			}
 
 			if (line == null) {
 				break;

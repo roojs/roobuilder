@@ -269,35 +269,27 @@ namespace OLLMchat.Ollama
 				this.streaming_response = new ChatResponse(this.client, this);
 			}
 
-			// Process chunk - addChunk may throw, so catch and handle errors
-			try {
-				this.streaming_response.addChunk(chunk);
-			} catch (Error e) {
-				// Log error but continue processing
-				GLib.debug("Error processing streaming chunk: %s", e.message);
-				// Mark as done on error to prevent further processing
-				this.streaming_response.done = true;
-				return;
-			}
+			// Process chunk
+			this.streaming_response.addChunk(chunk);
 
 			// Emit signal if there's new content (either regular content or thinking)
 			// Also emit when done=true even if no new content, so we can finalize
 			// Signal will only be delivered if handlers are connected
-			if (this.streaming_response != null && this.client != null) {
-				try {
-					if (this.streaming_response.new_thinking.length > 0) {
-						this.client.stream_chunk(this.streaming_response.new_thinking, true, this.streaming_response);
-					} else if (this.streaming_response.new_content.length > 0) {
-						this.client.stream_chunk(this.streaming_response.new_content, false, this.streaming_response);
-					} else if (this.streaming_response.done) {
-						// Emit empty chunk when done to trigger finalization
-						this.client.stream_chunk("", this.streaming_response.is_thinking, this.streaming_response);
-					}
-				} catch (Error e) {
-					// Log signal handler errors but don't stop streaming
-					GLib.debug("Error in streaming signal handler: %s", e.message);
-				}
+			if (this.streaming_response == null 
+				|| this.client == null 
+				|| (
+					this.streaming_response.new_thinking.length == 0 && 
+					this.streaming_response.new_content.length == 0 && 
+					!this.streaming_response.done
+				)) {
+				return;
 			}
+			this.client.stream_chunk(
+					this.streaming_response.new_thinking.length > 0 ? this.streaming_response.new_thinking : 
+						(this.streaming_response.new_content.length > 0 ? this.streaming_response.new_content : ""), 
+					this.streaming_response.new_thinking.length > 0 ? true : 
+						(this.streaming_response.new_content.length > 0 ? false : this.streaming_response.is_thinking),
+					this.streaming_response);
 		}
 	}
 }

@@ -120,27 +120,19 @@ namespace OLLMchat.UI
 				return;
 			}
 
-			try {
-				// Process chunk (even if done, there might be final text to process)
-				if (new_text.length > 0) {
-					this.chat_view.append_assistant_chunk(new_text, response);
-				}
+			// Process chunk (even if done, there might be final text to process)
+			if (new_text.length > 0) {
+				this.chat_view.append_assistant_chunk(new_text, response);
+			}
 
-				// If response is done, finalize and re-enable input
-				if (response.done) {
-					this.chat_view.finalize_assistant_message(response);
-					this.chat_input.set_streaming(false);
-					this.is_streaming_active = false;
+			// If response is done, finalize and re-enable input
+			if (response.done) {
+				this.chat_view.finalize_assistant_message(response);
+				this.chat_input.set_streaming(false);
+				this.is_streaming_active = false;
 
-					// Emit response received signal
-					this.response_received(response.message.content);
-				}
-			} catch (Error e) {
-				// Handle errors in signal handler gracefully
-				GLib.debug("Error in streaming signal handler: %s", e.message);
-				// Clean up state on error
-				this.cleanup_streaming_state();
-				this.chat_view.finalize_assistant_message();
+				// Emit response received signal
+				this.response_received(response.message.content);
 			}
 		});
 	}
@@ -265,11 +257,7 @@ namespace OLLMchat.UI
 		
 		// Clear any partial response content if streaming was active
 		// This ensures we don't show incomplete responses
-		if (this.current_chat != null && this.current_chat.streaming_response != null) {
-			var response = this.current_chat.streaming_response;
-			// If response has no meaningful content, we can consider removing it
-			// But for now, we'll keep it as it may have partial content the user wants to see
-		}
+		// Note: We keep partial response content as it may have content the user wants to see
 		
 		this.chat_view.append_error(error_msg);
 		this.error_occurred(error_msg);
@@ -295,12 +283,7 @@ namespace OLLMchat.UI
 
 		// Cancel the call's cancellable
 		if (this.current_chat != null && this.current_chat.cancellable != null) {
-			try {
-				this.current_chat.cancellable.cancel();
-			} catch (Error e) {
-				// Log but don't fail if cancellation fails
-				GLib.debug("Error cancelling request: %s", e.message);
-			}
+			this.current_chat.cancellable.cancel();
 		}
 
 		// Finalize current message

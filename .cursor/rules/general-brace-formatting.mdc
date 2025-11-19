@@ -8,9 +8,73 @@ description: General coding formatting rules - always use braces and proper line
 
 **NEVER** use control statements (if, for, while, etc.) without braces, even for single-line actions. This prevents errors and improves code readability.
 
-## Method Brace Placement
+## Control Statement Brace Placement
 
-**ALWAYS** place opening braces on a new line after method declarations for consistency and readability.
+**NEVER** add line breaks before opening braces in control statements. Opening braces must be on the same line as the control statement.
+
+**Note**: This rule applies ONLY to control statements. Methods and classes use a different rule (see below).
+
+This applies to:
+- `if` statements
+- `foreach` loops
+- `try` blocks
+- `for` loops
+- `while` loops
+- `switch` statements
+- `catch` blocks
+
+### ❌ Incorrect - Line break before opening brace
+
+```vala
+// BAD - Line break before opening brace
+if (condition)
+{
+    doSomething();
+}
+
+foreach (var item in items)
+{
+    process(item);
+}
+
+try
+{
+    riskyOperation();
+}
+catch (Error e)
+{
+    handleError(e);
+}
+```
+
+### ✅ Correct - Opening brace on same line
+
+```vala
+// GOOD - Opening brace on same line
+if (condition) {
+    doSomething();
+}
+
+foreach (var item in items) {
+    process(item);
+}
+
+try {
+    riskyOperation();
+} catch (Error e) {
+    handleError(e);
+}
+```
+
+## Method and Class Brace Placement
+
+**ALWAYS** place opening braces on a new line after method declarations and class declarations for consistency and readability.
+
+This applies to:
+- Method declarations
+- Class declarations
+- Interface declarations
+- Namespace declarations
 
 ### ❌ Incorrect - No braces (DANGEROUS)
 
@@ -211,18 +275,28 @@ if (condition) {
 }
 ```
 
-## Method Brace Placement Examples
+## Method and Class Brace Placement Examples
 
 ### ❌ Incorrect - Braces on same line
 
 ```vala
-// BAD - Inconsistent with control statements
+// BAD - Methods should have braces on new line
 public string getName() {
     return this.name;
 }
 
 public void setName(string name) {
     this.name = name;
+}
+
+// BAD - Classes should have braces on new line
+public class MyClass {
+    private string name;
+}
+
+// BAD - Interfaces should have braces on new line
+public interface MyInterface {
+    void doSomething();
 }
 ```
 
@@ -262,7 +336,7 @@ void setValue(int value) {
 ### ✅ Correct - Braces on new line
 
 ```vala
-// GOOD - Consistent with control statements
+// GOOD - Methods have braces on new line
 public string getName()
 {
     return this.name;
@@ -271,6 +345,18 @@ public string getName()
 public void setName(string name)
 {
     this.name = name;
+}
+
+// GOOD - Classes have braces on new line
+public class MyClass
+{
+    private string name;
+}
+
+// GOOD - Interfaces have braces on new line
+public interface MyInterface
+{
+    void doSomething();
 }
 ```
 
@@ -394,12 +480,17 @@ if ($error) {
 
 When reviewing code, look for:
 1. **Control statements without braces** - Flag for fixing (if, for, while, switch, etc.)
-2. **Single-line actions on same line as control statement** - Move to newline
-3. **Inconsistent brace usage** - Standardize to always use braces
-4. **Missing braces in else clauses** - Add braces there too
-5. **Method braces on same line** - Move to new line for consistency
-6. **Language-specific syntax** - Ensure proper variable prefixes ($ for PHP, etc.)
-7. **Cross-language consistency** - Apply same rules regardless of language
+2. **Line breaks before opening braces in control statements** - Remove line break, place brace on same line (if, foreach, try, etc.)
+3. **Single-line actions on same line as control statement** - Move to newline
+4. **Inconsistent brace usage** - Standardize to always use braces
+5. **Missing braces in else clauses** - Add braces there too
+6. **Method/class braces on same line** - Move to new line for consistency (methods and classes MUST have braces on new line)
+7. **Language-specific syntax** - Ensure proper variable prefixes ($ for PHP, etc.)
+8. **Cross-language consistency** - Apply same rules regardless of language
+
+**Key Distinction**:
+- **Control statements** (if, foreach, try, etc.): Opening brace on **same line** (no line break)
+- **Methods and classes**: Opening brace on **new line** (line break required)
 
 ## Exception
 

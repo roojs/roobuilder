@@ -101,18 +101,6 @@ namespace OLLMchat.UI
 			this.scroll_to_bottom();
 		}
 
-		private void append_message(string text, Ollama.MessageInterface message)
-		{
-			if (message is Ollama.ChatResponse) {
-				// Assistant message - use append_assistant_chunk logic
-				this.append_assistant_chunk(text, message);
-				return;
-			}
-
-			// ChatCall (user message) - delegate to public method
-			this.append_user_message(text, message);
-		}
-
 		/**
 		 * Appends a streaming chunk from the assistant.
 		 * 
@@ -256,7 +244,8 @@ namespace OLLMchat.UI
 					break;
 					
 				case ContentState.NONE:
-					this.process_new_line_none(response);
+					// Just output a line break in NONE state
+					this.current_markdown_content += "\n";
 					break;
 			}
 			
@@ -376,16 +365,6 @@ namespace OLLMchat.UI
 			this.current_markdown_content += "\n";
 			this.update_block();
 		}
-		
-		/**
-		* Handles newline when in NONE state.
-		*/
-		private void process_new_line_none(Ollama.ChatResponse response)
-		{
-			// Just output a line break in NONE state
-			this.current_markdown_content += "\n";
-		}
-		
 		/**
 		* Starts a new block based on current state.
 		*/
