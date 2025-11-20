@@ -113,7 +113,7 @@ Reading the entire file is not allowed in most cases. You are only allowed to re
 				string? line;
 				size_t length;
 				
-				while ((line = data_stream.read_line(null, out length, null)) != null) {
+				while ((line = data_stream.read_line(out length, null)) != null) {
 					current_line++;
 					
 					// Skip lines before start_line
