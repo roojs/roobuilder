@@ -33,7 +33,7 @@ namespace OLLMchat.Ollama
 			set { } // Fake setter for serialization
 		}
 		
-		public Gee.ArrayList<Tool>? tools { 
+		public Gee.HashMap<string, Tool>? tools { 
 			get { return this.client.tools; }
 			set { } // Fake setter for serialization
 		}
@@ -76,7 +76,7 @@ namespace OLLMchat.Ollama
 					var tools_node = new Json.Node(Json.NodeType.ARRAY);
 					tools_node.init_array(new Json.Array());
 					var tools_array = tools_node.get_array();
-					foreach (var tool in this.tools) {
+					foreach (var tool in this.tools.values) {
 						var tool_node = Json.gobject_serialize(tool);
 						tools_array.add_element(tool_node);
 					}
@@ -157,6 +157,67 @@ namespace OLLMchat.Ollama
 			return yield this.execute_non_streaming();
 		}
 
+		/**
+		 * Executes tool calls from a response and continues the conversation automatically.
+		 * 
+		 * This method:
+		 * 1. Adds the assistant message with tool_calls to the conversation
+		 * 2. Executes all tool calls from the response
+		 * 3. Adds tool result messages to the conversation
+		 * 4. Continues the conversation automatically until a final response is received
+		 * 
+		 * @param response The ChatResponse containing tool calls
+		 * @return The final ChatResponse after tool execution and auto-reply
+		 */
+		public async ChatResponse toolsReply(ChatResponse response) throws Error
+		{
+			GLib.debug("ChatCall.toolsReply: Processing tool calls");
+			
+			// Add the assistant message with tool_calls to the conversation
+			this.messages.add(response.message);
+			
+			// Execute each tool call and add tool reply messages directly
+			foreach (var tool_call in response.message.tool_calls) {
+				GLib.debug("ChatCall.toolsReply: Executing tool '%s' with id '%s'",
+					tool_call.function.name, tool_call.id);
+				
+				if (!this.client.tools.has_key(tool_call.function.name)) {
+					GLib.warning("Tool '%s' not found in client tools", tool_call.function.name);
+					this.messages.add(new Message.tool_call_invalid(this, tool_call));
+					continue;
+				}
+				
+				// Execute the tool
+				try {
+					this.messages.add(
+						new Message.tool_reply(
+							this, tool_call.id, 
+							tool_call.function.name,
+							this.client.tools.get(tool_call.function.name).execute(tool_call.function.arguments)
+						));
+					GLib.debug("ChatCall.toolsReply: Tool '%s' executed successfully", tool_call.function.name);
+				} catch (Error e) {
+					GLib.warning("Error executing tool '%s': %s", tool_call.function.name, e.message);
+					this.messages.add(new Message.tool_call_fail(this, tool_call, e));
+				}
+			}
+			
+			// Execute the chat call
+			ChatResponse next_response;
+			if (this.stream) {
+				next_response = yield this.execute_streaming();
+			} else {
+				next_response = yield this.execute_non_streaming();
+			}
+			
+			// Recursively handle tool calls if the next response also has them
+			if (next_response.message.tool_calls.size > 0) {
+				return yield this.toolsReply(next_response);
+			}
+			
+			return next_response;
+		}
+
 		public async ChatResponse exec_chat() throws Error
 		{
 			if (this.model == "") {
@@ -209,6 +270,13 @@ namespace OLLMchat.Ollama
 
 			response_obj.client = this.client;
 			response_obj.call = this;
+			response_obj.done = true; // Non-streaming responses are always done
+			
+			// Check for tool calls and handle them recursively
+			if (response_obj.message.tool_calls.size > 0) {
+				return yield this.toolsReply(response_obj);
+			}
+			
 			return response_obj;
 		}
 
@@ -246,8 +314,15 @@ namespace OLLMchat.Ollama
 				throw e;
 			}
 
+		// Check for tool calls and handle them recursively
+		if (this.streaming_response.done && this.streaming_response.message.tool_calls.size > 0) {
+			return yield this.toolsReply(this.streaming_response);
+		}
+			
 			return this.streaming_response;
 		}
+		
+		
 
 		private Soup.Message create_streaming_message(string url, string request_body)
 		{

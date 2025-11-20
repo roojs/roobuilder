@@ -69,8 +69,10 @@ ollmchat_ollama_src = files([
   'Ollama/MessageInterface.vala',
   'Ollama/OllamaBase.vala',
   'Ollama/Response/BaseResponse.vala',
+  'Ollama/Response/CallFunction.vala',
   'Ollama/Response/ChatResponse.vala',
   'Ollama/Response/Model.vala',
+  'Ollama/Response/ToolCall.vala',
   'Ollama/Tool/Tool.vala',
   'Ollama/Tool/Param.vala',
   'Ollama/Tool/ParamSimple.vala',
@@ -91,6 +93,7 @@ ollmchat_prompt_src = files([
 ollmchat_tools_src = files([
   'Tools/PermissionProvider.vala',
   'Tools/PermissionProviderDummy.vala',
+  'Tools/ReadFileTool.vala',
 ])
 
 # Build as a library (can be linked or used as standalone)

@@ -156,6 +156,9 @@ namespace OLLMchat.Ollama
 				this.new_thinking = msg.thinking;
 				this.thinking = msg.thinking;
 				this.is_thinking = msg.thinking != "";
+				foreach (var tool_call in msg.tool_calls) {
+					this.message.tool_calls.add(tool_call);
+				}
 				return;
 			}
 			
@@ -173,7 +176,13 @@ namespace OLLMchat.Ollama
 			}
 			
 			this.message.role = msg.role;
+			
+			// Update tool_calls if present (usually in final chunk)
+			foreach (var tool_call in msg.tool_calls) {
+				this.message.tool_calls.add(tool_call);
+			}
 		}
+		
 
 		/**
 		 * Creates a reply ChatCall with conversation history and executes it.

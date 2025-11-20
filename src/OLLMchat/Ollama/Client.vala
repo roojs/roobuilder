@@ -10,7 +10,7 @@ namespace OLLMchat.Ollama
 		public Json.Object? options { get; set; }
 		public bool think { get; set; default = false; }
 		public string? keep_alive { get; set; }
-		public Gee.ArrayList<Tool> tools { get; set; default = new Gee.ArrayList<Tool>(); }
+		public Gee.HashMap<string, Tool> tools { get; set; default = new Gee.HashMap<string, Tool>(); }
 		public ChatResponse? streaming_response { get; set; default = null; }
 		public Prompt.BaseAgentPrompt prompt_assistant { get; set; default = new Prompt.BaseAgentPrompt(); }
 		public Tools.PermissionProvider permission_provider { get; set; default = new Tools.PermissionProviderDummy(); }
@@ -28,16 +28,16 @@ namespace OLLMchat.Ollama
 		public Soup.Session? session = null;
 
 		/**
-		 * Adds a tool to the client's tools list.
+		 * Adds a tool to the client's tools map.
 		 * 
-		 * Adds the tool to the tools array. The tool's client is set via constructor.
+		 * Adds the tool to the tools hashmap keyed by tool name. The tool's client is set via constructor.
 		 * 
 		 * @param tool The tool to add
 		 */
 		public void addTool(Tool tool)
 		{
 			tool.client = this;
-			this.tools.add(tool);
+			this.tools.set(tool.name,  tool);
 		}
 
 		public async ChatResponse chat(string text, GLib.Cancellable? cancellable = null) throws Error

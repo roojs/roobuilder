@@ -535,9 +535,15 @@ These tools are designed to be used with Ollama's function calling capabilities.
 2. **Tool Registration**: Call `client.addTool(tool_function)` which creates a `Tool` wrapper and adds it to `client.tools` array
 3. **Function Calling**: When Ollama requests a tool call, find the appropriate tool by name from `client.tools` and call `execute()`
 4. **Permission Check**: The tool requests permission by calling `permission_provider.request_permission(this, question, target_path, operation)` with the tool instance (tool.name provides the tool name), descriptive question, target path (e.g., file path or command), and operation type (Operation.READ, Operation.WRITE, or Operation.EXECUTE). The permission provider checks storage layers (Memory → Session → Global) and prompts user if needed. If denied, the tool does not execute and returns an error.
-5. **Tool Execution**: If permission is granted, the tool executes its `execute_internal()` method
-6. **Result Formatting**: Format tool results as JSON and send back to Ollama as a function result message
-7. **Response Handling**: Ollama will process the tool results and continue the conversation
+5. **Permission Denial Handling**: If permission is denied:
+   - Tool returns `{"error": "Permission denied", "message": "..."}` JSON result
+   - Chat flow stops immediately and returns the current response object (the assistant's response that requested the tool)
+   - No error message is shown to the user - chat flow ends silently
+   - The entire tool calling sequence is aborted (even if multiple tools were requested)
+6. **Tool Execution**: If permission is granted, the tool executes its `execute_internal()` method
+7. **Result Formatting**: Format tool results as JSON and send back to Ollama as a function result message
+8. **Response Handling**: Ollama will process the tool results and continue the conversation
+9. **Recursive Tool Calling**: Tool calling may happen multiple times before final response - assistant may request more tools, which are executed automatically until final response or permission denial
 
 ### Directory Structure
 
@@ -603,7 +609,69 @@ src/OLLMchat/
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
-### Phase 6: EditFileTool
+### Phase 6: Tool Call Handling and Auto-Reply
+
+- [ ] **Tool Call Handling** - Implement correct chat behavior for handling tool calls
+  - [ ] Add `tool_calls` property (`Gee.ArrayList<Json.Node>`) to Message class for assistant messages
+  - [ ] Add `tool_call_id` property (string) to Message class for tool role messages
+  - [ ] Add `name` property (string) to Message class for tool role messages (tool function name)
+  - [ ] Update Message serialization to handle tool_calls (convert Gee.ArrayList to Json.Array)
+  - [ ] Update Message deserialization to handle tool_calls (convert Json.Array to Gee.ArrayList)
+  - [ ] Update ChatResponse to detect tool calls when response is done
+  - [ ] Implement automatic tool execution in ChatCall
+  - [ ] Implement auto-reply mechanism to continue conversation after tool execution
+  - [ ] Ensure recursive tool calling works (multiple tool call rounds before final response)
+  - [ ] Ensure chat() only returns after final response (not after tool calls)
+  - [ ] Ensure streaming works correctly during tool execution and auto-reply
+  - [ ] Handle multiple tool calls in one response correctly
+  - [ ] Handle tool execution failures gracefully
+
+**Tool Call Flow**:
+1. User sends a chat message
+2. Assistant responds with `role: "assistant"` and `tool_calls` array
+3. System automatically executes all tool calls
+4. System adds the assistant message with `tool_calls` to the conversation (tool request)
+5. System executes each tool call
+6. System adds tool result messages as `role: "tool"` messages with `tool_call_id` and `name` (tool reply)
+7. System automatically continues the conversation (auto-reply) with both the tool request and tool reply
+8. Steps 2-7 may repeat multiple times (tool calling can happen recursively until final response)
+9. Assistant provides final response (no more tool calls)
+10. Only then does `chat()` return to the caller
+
+**Key Files to Modify**:
+- `src/OLLMchat/Ollama/Message.vala` - Add tool_calls, tool_call_id, name properties
+- `src/OLLMchat/Ollama/Response/ChatResponse.vala` - Detect tool calls and trigger execution
+- `src/OLLMchat/Ollama/Call/ChatCall.vala` - Implement tool execution and auto-reply logic
+- `src/OLLMchat/Ollama/Client.vala` - Ensure chat() waits for final response
+
+**Message Structure**:
+```vala
+// Assistant message with tool calls:
+{
+  "role": "assistant",
+  "content": "...",
+  "tool_calls": [
+    {
+      "id": "call_123",
+      "type": "function",
+      "function": {
+        "name": "read_file",
+        "arguments": "{\"file_path\": \"src/Example.vala\"}"
+      }
+    }
+  ]
+}
+
+// Tool result message:
+{
+  "role": "tool",
+  "tool_call_id": "call_123",
+  "name": "read_file",
+  "content": "file contents..."
+}
+```
+
+### Phase 7: EditFileTool
 
 - [ ] **EditFileTool** - Create `EditFileTool.vala` (Priority 2)
   - [ ] Implement diff application with range validation
@@ -612,7 +680,7 @@ src/OLLMchat/
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
-### Phase 7: RunTerminalCommandTool
+### Phase 8: RunTerminalCommandTool
 
 - [ ] **RunTerminalCommandTool** - Create `RunTerminalCommandTool.vala` (Priority 3)
   - [ ] Implement command execution in project root
@@ -623,7 +691,7 @@ src/OLLMchat/
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
-### Phase 8: WebSearchTool
+### Phase 9: WebSearchTool
 
 - [ ] **WebSearchTool** - Create `WebSearchTool.vala` (Priority 5)
   - [ ] **Research WebKit-based approach** (preferred over API integration)
@@ -643,7 +711,7 @@ src/OLLMchat/
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
-### Phase 9: CodebaseSearchTool
+### Phase 10: CodebaseSearchTool
 
 - [ ] **CodebaseSearchTool** - Create `CodebaseSearchTool.vala` (Priority 4)
   - [ ] ⚠️ **IMPLEMENT LAST** - This is the most complicated tool
@@ -656,7 +724,7 @@ src/OLLMchat/
   - [ ] Add to meson.build
   - [ ] Test with PermissionProviderDummy
 
-### Phase 10: Integration and Testing
+### Phase 11: Integration and Testing
 
 - [ ] **Tool Registration** - Ensure `Client.addTool()` method works correctly
 - [ ] **Permission Integration** - Create UI-based PermissionProvider implementation
@@ -664,7 +732,7 @@ src/OLLMchat/
 - [ ] **Error Handling** - Ensure all tools handle errors gracefully
 - [ ] **Documentation** - Update documentation with tool usage examples
 
-### Phase 11: UI Integration (Future)
+### Phase 12: UI Integration (Future)
 
 - [ ] **PermissionProviderUI** - Create UI-based permission provider with dialogs
 - [ ] **Tool Status Display** - Show tool execution status in UI

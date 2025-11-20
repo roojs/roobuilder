@@ -25,7 +25,7 @@ namespace OLLMchat.Ollama
 		protected string permission_target_path { get; set; default = ""; }
 		protected Tools.Operation permission_operation { get; set; default = Tools.Operation.READ; }
 
-		private Tool(Client client)
+		protected Tool(Client client)
 		{
 			this.client = client;
 			this.function = new Function(this);
@@ -202,20 +202,70 @@ namespace OLLMchat.Ollama
 		}
 		
 		/**
-		 * Creates a generic error JSON node.
+		 * Generic method to read parameters from JSON and assign them to object properties.
 		 * 
-		 * @param error_type The type of error (e.g., "Permission denied", "Execution failed")
-		 * @param message The error message
-		 * @return A Json.Node containing the error object
+		 * Loops through the function's parameter properties and assigns values from the JSON
+		 * parameters object to matching properties on this object.
+		 * 
+		 * @param parameters The JSON parameters object from the Ollama function call
 		 */
-		protected Json.Node return_error(string error_type, string message)
+		protected void readParams(Json.Object parameters)
 		{
-			var error_obj = new Json.Object();
-			error_obj.set_string_member("error", error_type);
-			error_obj.set_string_member("message", message);
-			var error_node = new Json.Node(Json.NodeType.OBJECT);
-			error_node.set_object(error_obj);
-			return error_node;
+			var ocl = (GLib.ObjectClass) this.get_class();
+			
+			foreach (var param in this.function.parameters.properties) {
+				if (!(param is ParamSimple)) {
+					continue;
+				}
+				
+				var simple_param = (ParamSimple) param;
+				var param_name = simple_param.name;
+				
+				if (!parameters.has_member(param_name)) {
+					continue;
+				}
+				
+				var ps = ocl.find_property(param_name);
+				if (ps == null) {
+					continue;
+				}
+				
+				var value = Value(ps.value_type);
+				
+				switch (simple_param.x_type) {
+					case "string":
+						value.set_string(parameters.get_string_member(param_name));
+						break;
+					case "integer":
+						value.set_int64(parameters.get_int_member(param_name));
+						break;
+					case "boolean":
+						value.set_boolean(parameters.get_boolean_member(param_name));
+						break;
+					default:
+						continue;
+				}
+				
+				this.set_property(param_name, value);
+			}
+		}
+		
+		/**
+		 * Normalizes a file path using the permission provider's normalization logic.
+		 * 
+		 * @param path The path to normalize
+		 * @return The normalized path
+		 */
+		protected string normalize_file_path(string path)
+		{
+			// Use permission provider's normalize_path if accessible, otherwise do basic normalization
+			if (!GLib.Path.is_absolute(path) && this.client.permission_provider.relative_path != "") {
+				path = GLib.Path.build_filename(this.client.permission_provider.relative_path, path);
+			}
+			// if it's still absolute - return it we might have to fail at this point..
+			// llm should send valid paths, we should not try and solve it.
+			 
+			return path;
 		}
 		
 		/**
@@ -238,6 +288,8 @@ namespace OLLMchat.Ollama
 		 * 
 		 * @param parameters The parameters from the Ollama function call
 		 * @return JSON-formatted result or error message
+
+		 // fixme - shold be a Ollama.Message
 		 */
 		public Json.Node execute(Json.Object parameters)
 		{
@@ -256,7 +308,16 @@ namespace OLLMchat.Ollama
 			
 			// Execute the tool
 			try {
-				return this.execute_tool(parameters);
+				var result_string = this.execute_tool(parameters);
+				
+				// Wrap string result in JSON
+				var result_obj = new Json.Object();
+				result_obj.set_string_member("content", result_string);
+				
+				var result_node = new Json.Node(Json.NodeType.OBJECT);
+				result_node.set_object(result_obj);
+				
+				return result_node;
 			} catch (Error e) {
 				return this.return_error("Execution failed", e.message);
 			}
@@ -269,8 +330,8 @@ namespace OLLMchat.Ollama
 		 * the actual operation after permission has been granted.
 		 * 
 		 * @param parameters The parameters from the Ollama function call
-		 * @return JSON-formatted execution results
+		 * @return String content result (will be wrapped in JSON by execute())
 		 */
-		protected abstract Json.Node execute_tool(Json.Object parameters) throws Error;
+		protected abstract string execute_tool(Json.Object parameters) throws Error;
 	}
 }
