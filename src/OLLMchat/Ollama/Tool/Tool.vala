@@ -289,9 +289,7 @@ namespace OLLMchat.Ollama
 		 * if needed, and finally calls execute_tool() to perform the actual operation.
 		 * 
 		 * @param parameters The parameters from the Ollama function call
-		 * @return JSON-formatted result or error message
-
-		 // fixme - shold be a Ollama.Message
+		 * @return String result or error message (prefixed with "ERROR: " for errors)
 		 */
 		public string execute(Json.Object parameters)
 		{
