@@ -211,7 +211,7 @@ namespace OLLMchat.Ollama
 		 */
 		protected void readParams(Json.Object parameters)
 		{
-			var ocl = (GLib.ObjectClass) this.get_class();
+			unowned var ocl = (GLib.ObjectClass) this.get_class();
 			
 			foreach (var param in this.function.parameters.properties) {
 				if (!(param is ParamSimple)) {
