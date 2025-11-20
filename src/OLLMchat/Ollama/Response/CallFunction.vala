@@ -64,7 +64,6 @@ namespace OLLMchat.Ollama
 					this.arguments = new Json.Object();
 				}
 				value = Value(typeof(Json.Object));
-				value.set_boxed(this.arguments);
 				return true;
 				
 				default:
