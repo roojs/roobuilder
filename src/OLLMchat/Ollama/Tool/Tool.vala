@@ -304,24 +304,15 @@ namespace OLLMchat.Ollama
 					this.permission_target_path,
 					this.permission_operation
 				)) {
-					return "Error: Permission denied + " this.permission_question;
+					return "ERROR: Permission denied: " + this.permission_question;
 				}
 			}
 			
 			// Execute the tool
 			try {
-				var result_string = this.execute_tool(parameters);
-				
-				// Wrap string result in JSON
-				var result_obj = new Json.Object();
-				result_obj.set_string_member("content", result_string);
-				
-				var result_node = new Json.Node(Json.NodeType.OBJECT);
-				result_node.set_object(result_obj);
-				
-				return result_node;
+				return this.execute_tool(parameters);
 			} catch (Error e) {
-				return this.return_error("Execution failed", e.message);
+				return "ERROR: " + e.message;
 			}
 		}
 		
