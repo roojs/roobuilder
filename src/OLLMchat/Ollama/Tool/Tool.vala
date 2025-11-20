@@ -293,7 +293,7 @@ namespace OLLMchat.Ollama
 
 		 // fixme - shold be a Ollama.Message
 		 */
-		public Json.Node execute(Json.Object parameters)
+		public string execute(Json.Object parameters)
 		{
 			 
 			// Check permission if needed
@@ -304,7 +304,7 @@ namespace OLLMchat.Ollama
 					this.permission_target_path,
 					this.permission_operation
 				)) {
-					return this.return_error("Permission denied", this.permission_question);
+					return "Error: Permission denied + " this.permission_question;
 				}
 			}
 			
