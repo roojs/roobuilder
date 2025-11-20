@@ -256,8 +256,10 @@ namespace OLLMchat.Ollama
 		 * @param path The path to normalize
 		 * @return The normalized path
 		 */
-		protected string normalize_file_path(string path)
+		protected string normalize_file_path(string in_path)
 		{
+			
+			var path = in_path;
 			// Use permission provider's normalize_path if accessible, otherwise do basic normalization
 			if (!GLib.Path.is_absolute(path) && this.client.permission_provider.relative_path != "") {
 				path = GLib.Path.build_filename(this.client.permission_provider.relative_path, path);
