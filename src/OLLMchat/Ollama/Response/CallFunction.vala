@@ -57,15 +57,15 @@ namespace OLLMchat.Ollama
 				case "name":
 					return default_deserialize_property(property_name, out value, pspec, property_node);
 				
-				case "arguments":
-					if (property_node.get_node_type() == Json.NodeType.OBJECT) {
-						this.arguments = property_node.get_object();
-					} else {
-						this.arguments = new Json.Object();
-					}
-					value = Value(typeof(Json.Object));
-					value.set_object(this.arguments);
-					return true;
+			case "arguments":
+				if (property_node.get_node_type() == Json.NodeType.OBJECT) {
+					this.arguments = property_node.get_object();
+				} else {
+					this.arguments = new Json.Object();
+				}
+				value = Value(typeof(Json.Object));
+				value.set_boxed(this.arguments);
+				return true;
 				
 				default:
 					return default_deserialize_property(property_name, out value, pspec, property_node);
