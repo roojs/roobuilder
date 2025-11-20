@@ -35,7 +35,7 @@ namespace OLLMchat.Ollama
 			this.function = function;
 		}
 		
-		public override Json.Node? serialize_property(string property_name, Value value, ParamSpec pspec)
+		public override Json.Node serialize_property(string property_name, Value value, ParamSpec pspec)
 		{
 			switch (property_name) {
 				case "id":
