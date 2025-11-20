@@ -246,7 +246,7 @@ namespace OLLMchat.Ollama
 						continue;
 				}
 				
-				this.set_property(param_name, value);
+				this.set_property(ps, value);
 			}
 		}
 		
