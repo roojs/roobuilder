@@ -10,7 +10,6 @@
   <project_license>LGPL-3.0-or-later</project_license>
   <developer id="org.roojs.alan">
     <name>Alan Knowles</name>
-    <url type="homepage">https://roojs.org</url>
   </developer>
   <categories>
     <category>Utility</category>
@@ -25,6 +24,7 @@
    
   
   <url type="homepage">https://github.com/roojs/roobuilder</url>
+  <url type="vcs-browser">https://github.com/roojs/roobuilder</url>
   <url type="faq">https://docs.google.com/spreadsheets/d/1-qNQX1Bwwd1cV405Kj1l3B3Mi6K-GvECnMeuzRKfbGA/edit?usp=sharing</url>
   <description>
  
@@ -58,7 +58,7 @@
   </screenshot>
     <screenshot>
     <caption>Screenshot of editing a Javascript Web application</caption>
-    <image>  https://www.roojs.org/index.php/Images/2564/roobuilder-screenshot-edit-js.png</image>
+    <image>https://www.roojs.org/index.php/Images/2564/roobuilder-screenshot-edit-js.png</image>
   </screenshot>
   <screenshot>
   <caption>Screenshot file and project selector</caption>

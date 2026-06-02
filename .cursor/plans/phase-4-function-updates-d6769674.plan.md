@@ -1,4 +1,22 @@
-<!-- d6769674-8a1c-41a6-8f4c-ebac341b0b13 e9236669-e39c-40b1-9ea1-9d6bdec8b742 -->
+---
+name: "Phase 4: Function Updates"
+overview: ""
+todos:
+  - id: 2c00d0a8-b3fd-468d-8b0f-802885bfb39e
+    content: Add PermissionProvider property and constructor parameter to Function.vala
+    status: pending
+  - id: e874f7da-1de0-4642-b633-9c09ce022017
+    content: Implement execute() method with permission checking logic
+    status: pending
+  - id: ee63be19-d836-450a-938b-7f4193529856
+    content: Add abstract execute_internal() method for subclasses
+    status: pending
+  - id: 0da21c4b-3792-4a99-828f-cfecc66da60d
+    content: Add necessary imports (OLLMchat.Tools namespace)
+    status: pending
+isProject: false
+---
+
 # Phase 4: Function Updates
 
 ## Overview
@@ -114,10 +132,3 @@ Update `Function.vala` and `Client.vala` to integrate permission checking and ex
 - Ensure PermissionProvider integration works with PermissionProviderDummy
 - Verify execute() properly calls permission_provider.request() with correct parameters
 - Test that addTool() correctly sets client reference on Function
-
-### To-dos
-
-- [ ] Add PermissionProvider property and constructor parameter to Function.vala
-- [ ] Implement execute() method with permission checking logic
-- [ ] Add abstract execute_internal() method for subclasses
-- [ ] Add necessary imports (OLLMchat.Tools namespace)
