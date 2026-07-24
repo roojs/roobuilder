@@ -170,6 +170,7 @@ roobuilder_src = files([
    'src/JsRender/Action/ChangeProp.vala',
    'src/JsRender/Action/Manager.vala',
    'src/JsRender/FileLegacy.vala',
+   'src/Vbp/Writer.vala',
 ])
 
 

@@ -1,0 +1,307 @@
+name = Pman.Tab.AdminCompanies
+parent = Pman.Tab.Admin
+title = Pman.Tab.AdminCompanies
+permname = Admin.Companies
+modOrder = 030
+
+Roo.NestedLayoutPanel {
+    region = "center";
+    title = "Companies";
+    background = true;
+
+    layout = Roo.BorderLayout {
+        center = Roo.LayoutRegion {};
+
+        south = Roo.LayoutRegion {
+            split = true;
+            height = 150;
+            titlebar = true;
+        }
+
+        [
+            Roo.GridPanel {
+                fitToframe = true;
+                background = true;
+                region = "center";
+                title = "Companies";
+                fitContainer = true;
+                tableName = "Companies";
+
+                listeners [
+                    activate () {
+                        _this.panel = this;
+                        if (_this.grid) {
+                            _this.grid.footer.onClick('first');
+                        }
+                    }
+                ]
+
+                grid = Roo.grid.Grid {
+                    autoExpandColumn = "name";
+                    loadMask = true;
+
+                    listeners [
+                        rowdblclick (_self, rowIndex, e) {
+                            if (!_this.dialog) {
+                                return;
+                            }
+                            _this.dialog.show(this.getDataSource().getAt(rowIndex).data, function () {
+                                _this.grid.footer.onClick('first');
+                            });
+                        },
+                        render () {
+                            _this.grid = this;
+                            _this.dialog = Pman.Dialog.Companies;
+                            if (_this.panel.active) {
+                                this.footer.onClick('first');
+                            }
+                        },
+                        rowclick (_self, rowIndex, e) {
+                            try {
+                                Pman.Tab.AdminOffice.grid.footer.onClick('refresh');
+                            } catch (e) {}
+                        }
+                    ]
+
+                    dataSource = Roo.data.Store {
+                        remoteSort = true;
+                        sortInfo = { field: 'name', direction: 'ASC' };
+
+                        listeners [
+                            beforeload (_self, o) {
+                                o.params = o.params || {};
+                                try {
+                                    o.params['search[name]'] = _this.searchBox.getValue();
+                                } catch (e) {
+                                    return false;
+                                }
+                            },
+                            load (_self, records, options) {
+                                try {
+                                    Pman.Tab.AdminOffice.grid.footer.onClick('refresh');
+                                } catch (e) {}
+                            }
+                        ]
+
+                        proxy = Roo.data.HttpProxy {
+                            url = baseURL + '/Roo/core_company';
+                            method = "GET";
+
+                            listeners [
+                                load (This, o, arg) {}
+                            ]
+                        }
+
+                        reader = Roo.data.JsonReader {
+                            id = "id";
+                            root = "data";
+                            totalProperty = "total";
+                            fields = [
+                                { name: 'code', type: 'string' },
+                                { name: 'name', type: 'string' },
+                                { name: 'remarks', type: 'string' },
+                                { name: 'owner_id', type: 'int' },
+                                { name: 'address', type: 'string' },
+                                { name: 'tel', type: 'string' },
+                                { name: 'fax', type: 'string' },
+                                { name: 'email', type: 'string' },
+                                { name: 'id', type: 'int' },
+                                { name: 'comptype', type: 'string' },
+                                { name: 'comptype_id_display_name', type: 'string' }
+                            ];
+                        }
+                    }
+
+                    footer = Roo.PagingToolbar {
+                        pageSize = 25;
+                        emptyMsg = "No Companies found";
+                        displayInfo = true;
+                        displayMsg = "Displaying Companies{0} - {1} of {2}";
+                    }
+
+                    toolbar = Roo.Toolbar {
+                        [
+                            Roo.form.TextField {
+                                listeners [
+                                    specialkey (_self, e) {
+                                        if (e.getKey() == 13) {
+                                            _this.grid.footer.onClick('first');
+                                        }
+                                    },
+                                    show (_self) {},
+                                    render (_self) {
+                                        _this.searchBox = _self;
+                                    }
+                                ]
+                            },
+
+                            Roo.Toolbar.Button {
+                                cls = "x-btn-icon";
+                                icon = rootURL + '/Pman/templates/images/search.gif';
+                                listeners [
+                                    click (_self, e) {
+                                        _this.grid.footer.onClick('first');
+                                    }
+                                ]
+                            },
+
+                            Roo.Toolbar.Button {
+                                cls = "x-btn-icon";
+                                icon = rootURL + '/Pman/templates/images/edit-clear.gif';
+                                listeners [
+                                    click (_self, e) {
+                                        _this.searchBox.setValue('');
+                                        _this.grid.footer.onClick('first');
+                                    }
+                                ]
+                            },
+
+                            Roo.Toolbar.Fill {},
+
+                            Roo.Toolbar.Button {
+                                text = "Merge";
+                                cls = "x-btn-text-icon";
+                                icon = Roo.rootURL + 'images/default/tree/leaf.gif';
+                                listeners [
+                                    click () {
+                                        var s = _this.grid.getSelectionModel().getSelections();
+                                        // merge selected companies …
+                                    }
+                                ]
+                            },
+
+                            Roo.Toolbar.Separator {},
+
+                            Roo.Toolbar.Button {
+                                text = "Add";
+                                cls = "x-btn-text-icon";
+                                icon = Roo.rootURL + 'images/default/dd/drop-add.gif';
+                                listeners [
+                                    click () {
+                                        if (!_this.dialog) {
+                                            return;
+                                        }
+                                        _this.dialog.show({ id: 0 }, function () {
+                                            _this.grid.footer.onClick('first');
+                                        });
+                                    }
+                                ]
+                            },
+
+                            Roo.Toolbar.Button {
+                                text = "Edit";
+                                cls = "x-btn-text-icon";
+                                icon = Roo.rootURL + 'images/default/tree/leaf.gif';
+                                listeners [
+                                    click () {
+                                        var s = _this.grid.getSelectionModel().getSelections();
+                                        if (!s.length || !_this.dialog) {
+                                            return;
+                                        }
+                                        _this.dialog.show(s[0].data, function () {
+                                            _this.grid.footer.onClick('first');
+                                        });
+                                    }
+                                ]
+                            },
+
+                            Roo.Toolbar.Button {
+                                text = "Delete";
+                                cls = "x-btn-text-icon";
+                                icon = rootURL + '/Pman/templates/images/trash.gif';
+                                listeners [
+                                    click () {
+                                        Pman.genericDelete(_this, 'core_company');
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+
+                    colModel[] = Roo.grid.ColumnModel {
+                        sortable = true;
+                        header = "Type";
+                        width = 90;
+                        dataIndex = "comptype_id_display_name";
+                        renderer = function (v, x, r) {
+                            // return Pman.Dialog.Companies.comptypeListToString(…)
+                            return v;
+                        }
+                    }
+
+                    colModel[] = Roo.grid.ColumnModel {
+                        sortable = true;
+                        header = "Ref#";
+                        width = 50;
+                        dataIndex = "code";
+                        renderer = function (v) {
+                            return String.format('{0}', v);
+                        }
+                    }
+
+                    colModel[] = Roo.grid.ColumnModel {
+                        sortable = true;
+                        header = "Name";
+                        width = 200;
+                        dataIndex = "name";
+                        renderer = function (v, x, r) {
+                            return String.format(
+                                r.data.comptype == 'OWNER' ? '<b>{0}</b>' : '{0}',
+                                v
+                            );
+                        }
+                    }
+
+                    colModel[] = Roo.grid.ColumnModel {
+                        width = 100;
+                        header = "Tel";
+                        dataIndex = "tel";
+                        renderer = function (v) {
+                            return String.format('{0}', v);
+                        }
+                    }
+
+                    colModel[] = Roo.grid.ColumnModel {
+                        width = 100;
+                        header = "Fax";
+                        dataIndex = "fax";
+                        renderer = function (v) {
+                            return String.format('{0}', v);
+                        }
+                    }
+
+                    colModel[] = Roo.grid.ColumnModel {
+                        sortable = true;
+                        header = "Email";
+                        width = 100;
+                        dataIndex = "email";
+                        renderer = function (v) {
+                            return (v.length && v.indexOf('@') > 0)
+                                ? String.format('<a href="mailto:{0}">{0}</a>', v)
+                                : v;
+                        }
+                    }
+
+                    colModel[] = Roo.grid.ColumnModel {
+                        sortable = true;
+                        header = "Address";
+                        width = 200;
+                        dataIndex = "address";
+                        renderer = function (v) {
+                            return String.format('{0}', v);
+                        }
+                    }
+
+                    colModel[] = Roo.grid.ColumnModel {
+                        header = "Remarks";
+                        width = 200;
+                        dataIndex = "remarks";
+                        renderer = function (v) {
+                            return String.format('{0}', v);
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

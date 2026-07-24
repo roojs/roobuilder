@@ -47,6 +47,7 @@ public class BuilderApplication : Gtk.Application
 		{ "test-symbol-json", 0, 0, OptionArg.STRING, ref opt_test_symbol_json, "dump Symbols to JSON (for testing Doc UI)", null },
 		{ "test-symbol-json-tree", 0, 0, OptionArg.NONE, ref opt_test_symbol_json_tree, "dump Symbol Tree to JSON (for testing Doc UI)", null },
 		{ "test-dump-props", 0, 0, OptionArg.STRING, ref opt_test_dump_props, "dump all cached properties from top node recursively", null },
+		{ "test-write-vbp", 0, 0, OptionArg.STRING, ref opt_test_write_vbp, "load bjs and write sibling .vbp via Vbp.Writer", null },
 
 		{ null }
 	};
@@ -82,6 +83,7 @@ public class BuilderApplication : Gtk.Application
 	public static bool opt_test_meson = false;
 	public static bool opt_test_gir_parser = false;
 	public static string opt_test_dump_props;
+	public static string opt_test_write_vbp;
 
 	public static string release_version {
 		get {
@@ -172,6 +174,7 @@ public class BuilderApplication : Gtk.Application
 		this.testBjsUpgrade(cur_project);
 		this.testBjsDowngrade(cur_project);
 		this.testDumpProps(cur_project); // test dump props
+		this.testWriteVbp(cur_project);
 
 		this.testSymbolBuilder(cur_project); // symbol builder tests
 		this.listFiles(cur_project);
@@ -727,6 +730,41 @@ public class BuilderApplication : Gtk.Application
 		size_t length;
 		string content = Json.gobject_to_data(file, out length);
 		print("%s", content);
+
+		GLib.Process.exit(Posix.EXIT_SUCCESS);
+	}
+
+	void testWriteVbp(Project.Project? cur_project)
+	{
+		if (BuilderApplication.opt_test_write_vbp == null) {
+			return;
+		}
+		GLib.debug("Run --test-write-vbp");
+		if (cur_project == null) {
+			GLib.error("missing project, use --project to select which project");
+		}
+		if (!BuilderApplication.opt_test_write_vbp.has_suffix(".bjs")) {
+			GLib.error("--test-write-vbp argument must be a .bjs file, got: %s", BuilderApplication.opt_test_write_vbp);
+		}
+
+		var file = cur_project.getByRelPath(BuilderApplication.opt_test_write_vbp);
+		if (file == null) {
+			GLib.error("missing file %s in project %s", BuilderApplication.opt_test_write_vbp, cur_project.name);
+		}
+
+		try {
+			file.loadFromBjs();
+		} catch (Error e) {
+			GLib.debug("Load items failed");
+		}
+
+		var vbp_path = file.path.slice(0, file.path.length - 4) + ".vbp";
+		try {
+			new Vbp.Writer(file).write(vbp_path);
+		} catch (Error e) {
+			GLib.error("write vbp failed: %s", e.message);
+		}
+		print("%s\n", vbp_path);
 
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}

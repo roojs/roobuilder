@@ -1,0 +1,1654 @@
+vbp-version = 1;
+name = WindowRooView;
+
+Gtk.Box WindowRooView {
+    user Gtk.Widget lastObj = null;
+    user JsRender.JsRender file = null;
+    user Xcls_MainWindow main_window;
+    orientation = Gtk.Orientation.VERTICAL;
+    searchcontext;
+    hexpand = true;
+    vexpand = true;
+    last_error_counter = 0;
+    last_search_end = 0;
+    skip_preview_generation = false;
+    methods [
+        int search (string in_txt) {
+        	this.notebook.el.page = 1;
+        	
+         
+           
+        	var s = new GtkSource.SearchSettings();
+        	s.case_sensitive = _this.case_sensitive.el.active;
+        	s.regex_enabled = _this.regex.el.active;	
+        	s.wrap_around = false;
+        	
+        	this.searchcontext = new GtkSource.SearchContext(this.buffer.el,s);
+        	this.searchcontext.set_highlight(true);
+        	var txt = in_txt;
+        	
+        	if (_this.multiline.el.active) {
+        		txt = in_txt.replace("\\n", "\n");
+        	}
+        	
+        	s.set_search_text(txt);
+        	Gtk.TextIter beg, st,en;
+        	bool has_wrapped_around;
+        	this.buffer.el.get_start_iter(out beg);
+        	this.searchcontext.forward(beg, out st, out en, out has_wrapped_around);
+        	this.last_search_end = 0;
+        	
+        	return this.searchcontext.get_occurrences_count();
+        
+         
+            
+        
+        },
+        void backSearch (bool change_focus) {
+        
+        	if (this.searchcontext == null) {
+        		return;
+        	} 
+        	
+        	Gtk.TextIter beg, st,en;
+        	bool has_wrapped_around;
+        	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end -1 );
+        	
+        	if (!this.searchcontext.backward(beg, out st, out en, out has_wrapped_around)) {
+        	
+        		this.last_search_end = 0;
+        		return;
+        	}
+        	this.last_search_end = en.get_offset();
+        	if (change_focus) {
+        		this.sourceview.el.grab_focus();
+        	}
+        	this.buffer.el.place_cursor(st);
+        	this.sourceview.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
+        	var ln = st.get_line();
+        	this.highlightNodeAtLine(ln);
+        	
+         
+        },
+        void createThumb () {
+            
+            
+            if (this.file == null) {
+                return;
+            }
+            
+        	if (this.notebook.el.page > 0 ) {
+                return;
+            }
+            
+         	this.file.widgetToIcon(this.view.el); 
+        
+            
+             
+            
+             
+        },
+        void forwardSearch (bool change_focus) {
+        
+        	if (this.searchcontext == null) {
+        		return;
+        	}
+        	this.notebook.el.page = 1;
+        	Gtk.TextIter beg, st,en;
+        	bool has_wrapped_around;
+        	var buf = this.sourceview.el.get_buffer();
+        	buf.get_iter_at_offset(out beg, this.last_search_end);
+        	if (!this.searchcontext.forward(beg, out st, out en, out has_wrapped_around)) {
+        		this.last_search_end = 0;
+        		return;
+        	}
+        	this.last_search_end = en.get_offset();
+        	if (change_focus) {
+        		this.sourceview.el.grab_focus();
+        	}
+        	buf.place_cursor(st);
+        	
+         
+        	 
+        	this.sourceview.el.scroll_to_iter(st,  0.0f, true, 0.0f, 0.5f);
+        	
+        	
+        	var ln = st.get_line();
+        	
+        	this.highlightNodeAtLine(ln);
+        },
+        void highlightNodeAtLine (int ln) {
+        
+        
+        	 
+        	// highlight node...
+        	
+        		
+            var node = _this.file.lineToNode(ln+1);
+         
+            if (node == null) {
+                //print("can not find node\n");
+                return;
+            }
+            var prop = node.lineToProp(ln+1);
+            print("prop : %s", prop == null ? "???" : prop.prop_name);
+                
+                
+            // ---------- this selects the tree's node...
+            
+            var ltree = _this.main_window.windowstate.left_tree;
+           ltree.model.selectNode(node);
+                
+            //_this.sourceview.allow_node_scroll = false; /// block node scrolling..
+        	       
+           
+            //print("changing cursor on tree..\n");
+           
+        
+            
+            // let's try allowing editing on the methods.
+            // a little klunky at present..
+        	_this.sourceview.prop_selected = "";
+        	/*
+            if (prop != null) {
+        		//see if we can find it..
+        		var kv = prop.split(":");
+        		if (kv[0] == "p") {
+        		
+            		//var k = prop.get_key(kv[1]);
+            		// fixme -- need to determine if it's an editable property...
+            		_this.sourceview.prop_selected = prop;
+            		
+        		} else if (kv[0] == "l") {
+        			 _this.sourceview.prop_selected = prop;
+        			
+        		}
+            }
+            */
+           // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); 
+           _this.sourceview.nodeSelected(node,false);
+            
+                    // scrolling is disabled... as node selection calls scroll 10ms after it changes.
+              //      GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
+        	  //          this.allow_node_scroll = true;
+        	  //          return false;
+              //      });
+              //  }
+        		
+        		
+        		
+        		
+        		
+        		
+        		
+        		
+        		
+        		 
+        
+        },
+        void loadFile (JsRender.JsRender file)
+        {
+            
+            if (this.file ==null || file.path != this.file.path) {
+           		 this.notebook.el.page = 0;// webkit preview 
+            }
+            this.file = file;
+            this.view.renderJS(true);
+           
+            this.sourceview.loadFile();   
+            this.last_error_counter = -1;
+            this.updateErrorMarks();
+        },
+        void requestRedraw () {
+            this.view.renderJS(false);
+            this.sourceview.loadFile();   
+        },
+        void requestRedrawAsync () {
+            // this is not used currently...
+            //yield _this.sourceview.loadFileAsync();
+            if (!_this.skip_preview_generation) {
+                this.view.renderJS(false);
+            }
+        },
+        void scroll_to_line (int line) {
+           // code preview...
+           
+           GLib.Timeout.add(100, () => {
+           
+        		this.notebook.el.set_current_page( 1 );
+        	   
+        	   
+        		  var buf = this.sourceview.el.get_buffer();
+        	 
+        		var sbuf = (GtkSource.Buffer) buf;
+        
+        
+        		Gtk.TextIter iter;   
+        		sbuf.get_iter_at_line(out iter,  line);
+        		this.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+        		return false;
+        	});   
+        
+           
+        },
+        void updateErrorMarks () {
+        	
+         
+        
+        	var buf = _this.buffer.el;
+        	Gtk.TextIter start;
+        	Gtk.TextIter end;     
+        	buf.get_bounds (out start, out end);
+        
+        
+         
+        	GLib.debug("highlight errors");		 
+        
+        	 // we should highlight other types of errors..
+        
+         
+        
+        	 
+        	if (_this.file == null) {
+        		GLib.debug("file is null?");
+        		return;
+        
+        	}
+        	var ar = this.file.getErrors();
+        	if (ar.size < 1) {
+        		buf.remove_tag_by_name ("ERR", start, end);
+        		buf.remove_tag_by_name ("WARN", start, end);
+        		buf.remove_tag_by_name ("DEPR", start, end);
+        		buf.remove_source_marks (start, end, "ERR");
+        		buf.remove_source_marks (start, end, "WARN");
+        		buf.remove_source_marks (start, end, "DEPR");
+        		this.last_error_counter = file.error_counter ;
+        		GLib.debug("higjlight has no errors");
+        		return;
+        	}
+         	if (this.last_error_counter == file.error_counter) {
+        		return;
+        	}
+        
+        	var tlines = buf.get_line_count () +1;
+        	
+         
+        	 
+        	buf.remove_source_marks (start, end, "ERR");
+        	buf.remove_source_marks (start, end, "WARN");
+        	buf.remove_source_marks (start, end, "DEPR");
+        	buf.remove_tag_by_name ("ERR", start, end);
+        	buf.remove_tag_by_name ("WARN", start, end);
+        	buf.remove_tag_by_name ("DEPR", start, end);
+        	foreach(var diag in ar) { 
+        	
+        		
+        	     Gtk.TextIter iter;
+        //        print("get inter\n");
+        	    var eline = (int)diag.range.start.line ;
+        	    var eline_to = (int)diag.range.end.line;
+        	    if (eline > tlines || eline < 0) {
+        	        return;
+        	    }
+        	   
+        	    
+        	    buf.get_iter_at_line( out iter, eline);
+        	   
+        	  	 buf.get_iter_at_line_offset( out start, 
+         	    	eline, (int)diag.range.start.character); 
+         	    buf.get_iter_at_line_offset( out end, 
+         	    	eline_to, (int)diag.range.end.character); 
+         	    	
+        	    buf.apply_tag_by_name(diag.category, start, end);
+        	   
+        	   
+        		var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
+        	    buf.create_source_mark( msg, diag.category, iter);
+        	    GLib.debug("set line %d to %s", eline, msg);
+        	    //this.marks.set(eline, msg);
+        	}
+        	this.last_error_counter = file.error_counter ;
+        
+        
+        
+         
+        
+        }
+    ]
+    [
+        Gtk.Notebook notebook {
+            vexpand = true;
+            [
+                Gtk.Label label_preview {
+                    pack = false;
+                    label = "Preview";
+                },
+                Gtk.Label label_code {
+                    pack = false;
+                    label = "Preview Generated Code";
+                },
+                Gtk.Paned paned {
+                    pack = append_page,_this.label_preview.el;
+                    orientation = Gtk.Orientation.VERTICAL;
+                    vexpand = true;
+                    [
+                        Gtk.Box viewbox {
+                            homogeneous = FALSE;
+                            pack = set_start_child;
+                            orientation = Gtk.Orientation.VERTICAL;
+                            vexpand = true;
+                            [
+                                Gtk.Box {
+                                    height_request = 20;
+                                    homogeneous = TRUE;
+                                    vexpand = FALSE;
+                                    orientation = Gtk.Orientation.HORIZONTAL;
+                                    [
+                                        Gtk.Button {
+                                            label = "Redraw";
+                                            listeners [
+                                                clicked ( ) => {
+                                                    _this.view.renderJS(  true);
+                                                }
+                                            ]
+                                        },
+                                        Gtk.CheckButton AutoRedraw {
+                                            active = TRUE;
+                                            label = "Auto Redraw On";
+                                            listeners [
+                                                toggled (state) => {
+                                                    this.el.set_label(this.el.active  ? "Auto Redraw On" : "Auto Redraw Off");
+                                                }
+                                            ]
+                                        },
+                                        Gtk.Button {
+                                            label = "Full Redraw";
+                                            listeners [
+                                                clicked () => {
+                                                  _this.view.redraws = 99;
+                                                 //   _this.view.el.web_context.clear_cache();  
+                                                  //_this.view.renderJS(true);
+                                                  FakeServerCache.clear();
+                                                  _this.view.reInit();
+                                                 
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                WebKit.WebView view {
+                                    user GLib.DateTime lastRedraw = null;
+                                    user WebKit.WebInspector inspector;
+                                    user bool pendingRedraw = false;
+                                    user bool refreshRequired = false;
+                                    user int redraws = 0;
+                                    user string renderedData = "\"\"";
+                                    user string runhtml = "\"\"";
+                                    user string runjs = "\"\"";
+                                    vexpand = true;
+                                    construct {
+                                        // this may not work!?
+                                        var settings =  this.el.get_settings();
+                                        settings.enable_developer_extras = true;
+                                       
+                                        GLib.Timeout.add_seconds(1,  ()  =>{
+                                             //print("run refresh?");
+                                             if (this.el == null) {
+                                                return false;
+                                             }
+                                             this.runRefresh(); 
+                                             return true;
+                                         });
+                                        
+                                        
+                                    }
+                                    listeners [
+                                        load_changed (le) => {
+                                            if (le != WebKit.LoadEvent.FINISHED) {
+                                                return;
+                                            }
+                                            if (this.runjs.length < 1) {
+                                                return;
+                                            }
+                                          //  this.el.run_javascript(this.runjs, null);
+                                             FakeServerCache.remove(    this.runjs);
+                                            this.runjs = "";
+                                        },
+                                        ready_to_show ( ) => {
+                                          this.initInspector();
+                                        
+                                        },
+                                        script_dialog (dialog) => {
+                                        
+                                        	if (this.el == null) {
+                                        		return true;
+                                        	}
+                                        
+                                        	var msg = dialog.get_message();
+                                        	if (msg.length < 4) {
+                                        		return false;
+                                        	}
+                                        	 
+                                        	 //GLib.debug("script dialog got %s", msg);
+                                        	 
+                                        	if (msg.substring(0,4) != "IPC:") {
+                                        		return false;
+                                        	}
+                                        	var ar = msg.split(":", 3);
+                                        	if (ar.length < 3) {
+                                        		return false;
+                                        	}
+                                        
+                                        	switch(ar[1]) {
+                                        	
+                                        		case "SAVEHTML":
+                                        		 //   GLib.debug("GOT saveHTML %d", ar[2].length);
+                                        		    _this.file.saveHTML(ar[2]);
+                                        		    _this.createThumb();
+                                        		    return true;
+                                        		    
+                                        		default:
+                                        		    return false;
+                                        	}
+                                            
+                                        }
+                                    ]
+                                    methods [
+                                        void initInspector () {
+                                            
+                                         
+                                                  
+                                           // this.inspector.open_window.connect(() => {
+                                                 this.inspector = this.el.get_inspector();
+                                                 
+                                                 this.inspector.open_window.connect(() => {
+                                                print("inspector attach\n");
+                                                var wv = this.inspector.get_web_view();
+                                                if (wv != null) {
+                                                    print("got inspector web view\n");
+                                                    
+                                                    var cn = _this.inspectorcontainer.el.get_first_child();
+                                                    if (cn != null) {
+                                                         _this.inspectorcontainer.el.remove(cn);
+                                                     }
+                                                    
+                                                    _this.inspectorcontainer.el.append(wv);
+                                                    wv.show();
+                                                } else {
+                                        	         print("got inspector web view FAILED\n");
+                                                    //this.inspector.close();
+                                                    
+                                                    //this.inspector = null;
+                                                   
+                                         
+                                                }
+                                              return true;
+                                               
+                                           });
+                                             this.inspector.show();
+                                                 
+                                            
+                                          
+                                        },
+                                        void reInit () {
+                                           print("reInit?");
+                                                 // if this happens destroy the webkit..
+                                                 // recreate it..
+                                             this.el.stop_loading();
+                                                 
+                                             if (_this.viewbox.el.get_parent() == null) {
+                                                return;
+                                             }
+                                                 
+                                                 /*
+                                            _this.viewbox.el.remove(_this.viewcontainer.el);
+                                            //_this.paned.el.remove(_this.inspectorcontainer.el);        
+                                                 
+                                                 // destory seems to cause problems.
+                                                 //this.el.destroy();
+                                                //_this.viewcontainer.el.destroy();
+                                                 //_this.inspectorcontainer.el.destroy();
+                                             var  inv =new Xcls_inspectorcontainer(_this);
+                                              
+                                              _this.paned.el.set_end_child(inv.el);
+                                              _this.inspectorcontainer = inv;
+                                              
+                                             this.el = null;         
+                                             var nv =new Xcls_viewcontainer(_this);
+                                            // nv.ref();
+                                             _this.viewbox.el.append(nv.el);
+                                                 
+                                                 _this.viewcontainer = nv;
+                                             inv.el.show();
+                                             nv.el.show();
+                                                 //while(Gtk.events_pending ()) Gtk.main_iteration ();
+                                                 //_this.view.renderJS(true); 
+                                             _this.view.refreshRequired  = true;
+                                             
+                                             */
+                                        },
+                                        void renderJS (bool force) {
+                                        
+                                            // this is the public redraw call..
+                                            // we refresh in a loop privately..
+                                            var autodraw = _this.AutoRedraw.el.active;
+                                            
+                                            // Skip preview generation if flag is set
+                                            if (_this.skip_preview_generation) {
+                                                return;
+                                            }
+                                            
+                                            if (!autodraw && !force) {
+                                                print("Skipping redraw - no force, and autodraw off");
+                                                return;
+                                            }
+                                             
+                                            this.refreshRequired  = true;
+                                            
+                                        },
+                                        void runRefresh () 
+                                        {
+                                            // this is run every 2 seconds from the init..
+                                        
+                                           
+                                            if (!this.refreshRequired) {
+                                               // print("no refresh required");
+                                                return;
+                                            }
+                                        
+                                            if (this.lastRedraw != null) {
+                                               // do not redraw if last redraw was less that 5 seconds ago.
+                                               if ((int64)(new DateTime.now_local()).difference(this.lastRedraw) < 5000 ) {
+                                                    return;
+                                                }
+                                            }
+                                            
+                                            if (_this.file == null) {
+                                                return;
+                                            }
+                                            
+                                            
+                                             this.refreshRequired = false;
+                                           //  print("HTML RENDERING");
+                                             
+                                             
+                                             //this.get('/BottomPane').el.show();
+                                             //this.get('/BottomPane').el.set_current_page(2);// webkit inspector
+                                            _this.file.webkit_page_id  = this.el.get_page_id();
+                                            
+                                            var js = _this.file.toSourcePreview();
+                                        
+                                            if (js.length < 1) {
+                                                print("no data");
+                                                return;
+                                            }
+                                        //    var  data = js[0];
+                                            this.redraws++;
+                                          
+                                            var project = (Project.Roo) _this.file.project;  
+                                        
+                                             //print (project.fn);
+                                             // set it to non-empty.
+                                             
+                                        //     runhtml = runhtml.length ?  runhtml : '<script type="text/javascript"></script>'; 
+                                        
+                                        
+                                        //   this.runhtml  = this.runhtml || '';
+                                         
+                                         
+                                            // then we need to reload the browser using
+                                            // load_html_string..
+                                        
+                                            // then trigger a redraw once it's loaded..
+                                            this.pendingRedraw = true;
+                                        
+                                            var runhtml = "<script type=\"text/javascript\">\n" ;
+                                            uint8[] builderhtml;
+                                            
+                                            try {
+                                                GLib. File.new_for_uri("resource:///html/roo.builder.js").load_contents(null,  out   builderhtml, null);
+                                            } catch (Error e) {
+                                                builderhtml = {};
+                                            }
+                                        
+                                            runhtml += (string) builderhtml + "\n";
+                                            runhtml += "</script>\n" ;
+                                        
+                                            // fix to make sure they are the same..
+                                            this.runhtml = project.runhtml;
+                                            // need to modify paths
+                                        
+                                            uint8[] inhtml;
+                                            var base_template = project.base_template;
+                                            var f = GLib. File.new_for_uri("resource:///html/" + base_template);
+                                            
+                                            if (base_template.length > 0 &&  !f.query_exists(null)) {
+                                               
+                                                   GLib.debug("invalid base_template name ='%s' - using default", base_template);
+                                                   f = GLib. File.new_for_uri("resource:///html/roo.builder.html");
+                                            
+                                            }
+                                            try {
+                                        	    f.load_contents(null,  out inhtml, null);
+                                                 
+                                            
+                                            } catch (Error e) {
+                                            	GLib.debug("error loading %s : %s", f.get_uri(),e.message);
+                                                inhtml = {};
+                                            }    
+                                            this.renderedData = js;
+                                        
+                                        
+                                            string js_src = js + "
+                                        Roo.onReady(function() {
+                                        if (" + _this.file.name +".show) {
+                                        		" + _this.file.name +".show({});
+                                        		(function() {  
+                                        			Builder.saveHTML.defer(100, Builder);
+                                        		}).defer(100);
+                                        }
+                                        Roo.XComponent.build();
+                                        });\n";
+                                        	
+                                           // print("render js: " + js);
+                                            //if (!this.ready) {
+                                          //      console.log('not loaded yet');
+                                            //}
+                                            this.lastRedraw = new DateTime.now_local();
+                                        
+                                        
+                                            //this.runjs = js_src;
+                                            
+                                            var fc =    FakeServerCache.factory_with_data( js_src);
+                                            		
+                                            		
+                                            this.runjs = fc.fname;
+                                            var html  = (string) inhtml;
+                                            html = html == null ? "" : html; // fix null?
+                                            
+                                        	html = html.replace("</html>", runhtml + this.runhtml + 
+                                                "<script type=\"text/javascript\" src=\"xhttp://localhost" + fc.fname + "\"></script>" +   
+                                                  //  "<script type=\"text/javascript\">\n" +
+                                                  //  js_src + "\n" + 
+                                                  //  "</script>" + 
+                                                            
+                                            "</html>");
+                                            //print("LOAD HTML " + html);
+                                            
+                                             var rootURL = project.rootURL;
+                                        
+                                            if (!this.el.get_realized()) {
+                                           	 	return;
+                                        	}
+                                            // disabled as it keeps crashing here?
+                                            this.el.load_html( html , 
+                                                //fixme - should be a config option!
+                                               (rootURL.length > 0 ? rootURL : "xhttp://localhost/roobuilder/")
+                                            );
+                                            this.initInspector();   
+                                            // force the inspector...        
+                                               //   this.initInspector();
+                                                
+                                                // - no need for this, the builder javascript will call it when build is complete
+                                                //GLib.Timeout.add_seconds(1, () => {
+                                                //    this.el.run_javascript("Builder.saveHTML()",null);
+                                                //    return false;
+                                                //});
+                                        //     print( "before render" +    this.lastRedraw);
+                                        //    print( "after render" +    (new Date()));
+                                            
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        Gtk.Box inspectorcontainer {
+                            pack = set_end_child;
+                            orientation = Gtk.Orientation.VERTICAL;
+                            vexpand = true;
+                        }
+                    ]
+                },
+                Gtk.Box {
+                    pack = append_page,_this.label_code.el;
+                    orientation = Gtk.Orientation.VERTICAL;
+                    vexpand = true;
+                    spacing = 0;
+                    [
+                        Gtk.Box {
+                            orientation = Gtk.Orientation.VERTICAL;
+                            spacing = 0;
+                            [
+                                Gtk.Box {
+                                    homogeneous = FALSE;
+                                    orientation = Gtk.Orientation.HORIZONTAL;
+                                    hexpand = false;
+                                    vexpand = false;
+                                    [
+                                        Gtk.Label helper {
+                                            justify = Gtk.Justification.LEFT;
+                                            hexpand = true;
+                                            xalign = 0;
+                                            margin_end = 4;
+                                            margin_start = 4;
+                                            listeners [
+                                                activate_link (uri) => {
+                                                
+                                                 
+                                                	GLib.debug("got uri %s", uri);
+                                                	
+                                                	_this.main_window.windowstate.popover_codeinfo.show(this.el, uri);
+                                                	/*
+                                                	var ls = _this.file.getLanguageServer();
+                                                	ls.symbol.begin(uri, (a,b) => {
+                                                		try { 
+                                                			ls.symbol.end(b);
+                                                		} catch (GLib.Error e) {}
+                                                	});
+                                                	*/
+                                                	return true;
+                                                	 
+                                                	 
+                                                },
+                                                query_tooltip (x, y, keyboard_tooltip, tooltip) => {
+                                                	GLib.debug("using quiery tooltip?");
+                                                	var lbl = new Gtk.Label(this.el.tooltip_markup);
+                                                	lbl.width_request = 500;
+                                                	tooltip.set_custom(lbl);
+                                                
+                                                	return true;
+                                                }
+                                            ]
+                                            methods [
+                                                void setHelp (Lsp.Hover? help) {
+                                                	if (help == null || help.contents == null
+                                                		|| help.contents.size < 1) {
+                                                		this.el.set_text("");
+                                                		return;
+                                                	}
+                                                	
+                                                	this.el.set_markup(help.contents.get(0).value);
+                                                	 /*
+                                                	var sig = help.contents.get(0).value.split(" ");
+                                                	string[] str = {};
+                                                	GLib.debug("setHelp %s", help.contents.get(0).value);
+                                                	for(var i =0; i < sig.length; i++) {
+                                                	
+                                                		switch(sig[i]) {
+                                                			case "public":
+                                                			case "private":
+                                                			case "protected":
+                                                			case "async":
+                                                			case "class":
+                                                			case "{":
+                                                			case "}":
+                                                			case "(":
+                                                			case ")":
+                                                			
+                                                				str += sig[i] + " ";
+                                                				continue;
+                                                				
+                                                				
+                                                			default:
+                                                	
+                                                				str += ("<a href=\"" + GLib.Markup.escape_text(sig[i]) + "\">" + 
+                                                					GLib.Markup.escape_text(sig[i])
+                                                					+"</a>");
+                                                			continue;
+                                                		}
+                                                	}
+                                                	if (help.contents.size > 1) {
+                                                		this.el.tooltip_markup =  GLib.Markup.escape_text(help.contents.get(1).value);
+                                                	} else {
+                                                		this.el.tooltip_markup = GLib.Markup.escape_text(help.contents.get(0).value);
+                                                	}
+                                                	this.el.set_markup(string.joinv(" ",str));
+                                                	*/
+                                                	
+                                                }
+                                            ]
+                                        },
+                                        Gtk.Button help_button {
+                                            vexpand = true;
+                                            icon_name = "help-about-symbolic";
+                                            listeners [
+                                                clicked () => { 
+                                                   	
+                                                   	var s = ":Roo";
+                                                   	
+                                                	var lt = _this.main_window.windowstate.left_tree;
+                                                	var n = lt.selmodel.getSelectedNode();
+                                                   	if (n != null) {
+                                                   		s = ":" + n.fqn();
+                                                   		GLib.debug("node selected - fqn is %s", s);
+                                                   	}
+                                                   	
+                                                   	_this.main_window.windowstate.popover_codeinfo.show(this.el,s);
+                                                }
+                                            ]
+                                        },
+                                        Gtk.Scale {
+                                            ctor = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
+                                            halign = Gtk.Align.END;
+                                            draw_value = false;
+                                            has_origin = true;
+                                            sensitive = true;
+                                            digits = 0;
+                                            width_request = 150;
+                                            construct {
+                                            	//this.el.set_range(6,30);
+                                             	this.el.set_value ( BuilderApplication.settings.editor_font_size);
+                                             	BuilderApplication.settings.editor_font_size_updated.connect(
+                                             		() => {
+                                             			BuilderApplication.settings.editor_font_size_inchange = true;
+                                             		//	GLib.debug("update range");
+                                             		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
+                                             		 	BuilderApplication.settings.editor_font_size_inchange = false;
+                                             		}
+                                            	);
+                                            	
+                                             
+                                            }
+                                            listeners [
+                                                change_value (st, val ) => {
+                                                	if (BuilderApplication.settings.editor_font_size_inchange) {
+                                                		return false;
+                                                	}
+                                                  	BuilderApplication.settings.editor_font_size = val;
+                                                 	return false;
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                Gtk.ScrolledWindow sourceviewscroll {
+                                    vexpand = true;
+                                    [
+                                        GtkSource.View sourceview {
+                                            user Gtk.CssProvider? css = null;
+                                            user JsRender.Node? node_selected = null;
+                                            user bool button_is_pressed = false;
+                                            user bool key_is_pressed = false;
+                                            user bool loading = true;
+                                            user int editable_start_pos = -1;
+                                            user string prop_selected = "\"\"";
+                                            pack = set_child;
+                                            editable = false;
+                                            show_line_marks = true;
+                                            show_line_numbers = true;
+                                            css_classes = "{ \"code-editor\" }";
+                                            name = "roo-view";
+                                            construct {
+                                            
+                                            	 
+                                            
+                                            	this.loading = true;
+                                            	//var buf = this.el.get_buffer();
+                                            	//buf.notify.connect(this.onCursorChanged);
+                                            
+                                            
+                                            	var attrs = new GtkSource.MarkAttributes();
+                                            	attrs.set_icon_name ( "dialog-error");    
+                                            	attrs.query_tooltip_text.connect(( mark) => {
+                                            		//print("tooltip query? %s\n", mark.name);
+                                            		return mark.name;
+                                            	});
+                                            
+                                            	this.el.set_mark_attributes ("ERR", attrs, 1);
+                                            
+                                            	 var wattrs = new GtkSource.MarkAttributes();
+                                            	wattrs.set_icon_name ( "dialog-warning");    
+                                            	wattrs.query_tooltip_text.connect(( mark) => {
+                                            		//print("tooltip query? %s\n", mark.name);
+                                            		return mark.name;
+                                            	});
+                                            
+                                            	this.el.set_mark_attributes ("WARN", wattrs, 1);
+                                            
+                                            
+                                            
+                                            	 var dattrs = new GtkSource.MarkAttributes();
+                                            	dattrs.set_icon_name ( "dialog-information");    
+                                            	dattrs.query_tooltip_text.connect(( mark) => {
+                                            		//print("tooltip query? %s\n", mark.name);
+                                            		return mark.name;
+                                            	});
+                                            
+                                            	this.el.set_mark_attributes ("DEPR", dattrs, 1);
+                                            
+                                            
+                                            	var gattrs = new GtkSource.MarkAttributes();
+                                            	var  grey =   Gdk.RGBA();
+                                            	grey.parse ( "#ccc");
+                                            	gattrs.set_background ( grey);
+                                            
+                                            
+                                            	this.el.set_mark_attributes ("grey", gattrs, 1);
+                                            
+                                            
+                                             
+                                            
+                                            
+                                            	}
+                                            listeners [
+                                                query_tooltip (x, y, keyboard_tooltip, tooltip) => {
+                                                	
+                                                	//GLib.debug("query tooltip");
+                                                	Gtk.TextIter iter;
+                                                	int trailing;
+                                                	
+                                                	var yoff = (int) _this.sourceviewscroll.el.vadjustment.value;
+                                                	
+                                                	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
+                                                	 
+                                                	var l = iter.get_line();
+                                                	//GLib.debug("query tooltip line %d", (int) l);
+                                                	var marks = _this.buffer.el.get_source_marks_at_line(l, null);
+                                                	//GLib.debug("query tooltip line marks %d", (int) marks.length());
+                                                	var str = "";
+                                                	marks.@foreach((m) => { 
+                                                		//GLib.debug("got mark %s", m.name);
+                                                		str += (str.length > 0 ? "\n" : "") + m.name;
+                                                	});
+                                                	// true if there is a mark..
+                                                	if (str.length > 0 ) {
+                                                			tooltip.set_text( str);
+                                                	}
+                                                	return str.length > 0 ? true : false;
+                                                
+                                                }
+                                            ]
+                                            methods [
+                                                string toString () {
+                                                   Gtk.TextIter s;
+                                                    Gtk.TextIter e;
+                                                    this.el.get_buffer().get_start_iter(out s);
+                                                    this.el.get_buffer().get_end_iter(out e);
+                                                    var ret = this.el.get_buffer().get_text(s,e,true);
+                                                    //print("TO STRING? " + ret);
+                                                    return ret;
+                                                },
+                                                void clearGreySelection () {
+                                                 // clear all the marks..
+                                                    var sbuf = (GtkSource.Buffer)this.el.buffer;
+                                                    
+                                                    Gtk.TextIter start;
+                                                    Gtk.TextIter end;     
+                                                        
+                                                    sbuf.get_bounds (out start, out end);
+                                                    sbuf.remove_source_marks (start, end, "grey");
+                                                    
+                                                    
+                                                },
+                                                void loadFile ( ) {
+                                                    this.loading = true;
+                                                    
+                                                    
+                                                
+                                                    // this is a bit more complex than the gtk version,
+                                                    // as the roo library has a list of translated text at the start of the file.
+                                                    // 
+                                                    
+                                                    var buf = this.el.get_buffer();
+                                                    Gtk.TextIter s;
+                                                    Gtk.TextIter e;
+                                                    buf.get_start_iter(out s);
+                                                    buf.get_end_iter(out e);
+                                                    var old = this.el.get_buffer().get_text(s,e,true);
+                                                    
+                                                    //buf.set_text("",0);
+                                                 
+                                                	//var cpos = buf.cursor_position;
+                                                    
+                                                   //	print("BEFORE LOAD cursor = %d\n", cpos);
+                                                     //   var vadj_pos = this.el.get_vadjustment().get_value();
+                                                
+                                                    if (_this.file == null || _this.file.xtype != "Roo") {
+                                                        print("xtype != Roo");
+                                                        this.loading = false;
+                                                
+                                                        return;
+                                                    }
+                                                   
+                                                    // Generate source synchronously for now (legacy loadFile method)
+                                                    var str = _this.file.toSource();
+                                                	buf.begin_user_action(); // is it really needed?
+                                                	// work out what has changed
+                                                	var old_ar = old.split("\n");
+                                                	var new_ar = str.split("\n");
+                                                	var no_change_start = 0;
+                                                	var no_change_new_end = new_ar.length ;
+                                                	var no_change_old_end = old_ar.length ;
+                                                	for (var i = 0; i < old_ar.length;i++) {
+                                                		no_change_start = i;
+                                                		if (i == new_ar.length) {
+                                                			break;
+                                                		}
+                                                		
+                                                		if (old_ar[i] == new_ar[i]) {
+                                                			continue;
+                                                		}
+                                                		// single line changes, (like the translations..
+                                                		if (i+1 < old_ar.length && i+1 < new_ar.length) {
+                                                			// check the next line.
+                                                			if (old_ar[i+1] != new_ar[i+1]) {
+                                                				break;
+                                                			}
+                                                			GLib.debug("change 1 line %d => %s", i, new_ar[i]);
+                                                			// ONLY CHANGE 1 LINE..
+                                                			buf.get_iter_at_line(out s, i);
+                                                			buf.get_iter_at_line(out e, i+1);
+                                                			buf.delete(ref s, ref e);
+                                                			buf.insert(ref s, new_ar[i] + "\n", new_ar[i].length+1);
+                                                		 	continue;
+                                                		}
+                                                		
+                                                
+                                                		break;
+                                                	}
+                                                	
+                                                	// clean ends..
+                                                	while (no_change_old_end > 0 && old_ar[no_change_old_end -1] == "") {
+                                                		no_change_old_end--;
+                                                	}
+                                                	while (no_change_new_end > 0 && new_ar[no_change_new_end -1] == "") {
+                                                		no_change_new_end--;
+                                                	}
+                                                	for (var oi = no_change_old_end -1 , ni = no_change_new_end -1; 
+                                                		oi > no_change_start && ni>   no_change_start;  oi--,   ni--) {
+                                                		if (old_ar[oi] == new_ar[ni]) {
+                                                			continue;
+                                                		}
+                                                		
+                                                		no_change_new_end = ni + 1;
+                                                		no_change_old_end = oi + 1;
+                                                		break;
+                                                	}
+                                                	// build the string we are about to add..
+                                                	var ns = "";
+                                                	for(var i = no_change_start; i < no_change_new_end; i++) {
+                                                		ns += new_ar[i] + "\n";
+                                                	}
+                                                	buf.get_iter_at_line(out s, no_change_start);
+                                                
+                                                
+                                                	// delete the old lines
+                                                	if (no_change_old_end != no_change_start) {
+                                                		GLib.debug("remove @%d - %d", no_change_start, no_change_old_end);
+                                                		buf.get_iter_at_line(out e, no_change_old_end);
+                                                		buf.delete(ref s, ref e);
+                                                	}
+                                                
+                                                	GLib.debug("insert @%d : %d lines", no_change_start, ns.split("\n").length);
+                                                	if (ns.length > 0) {
+                                                		buf.insert(ref s, ns, ns.length);
+                                                	}
+                                                	buf.end_user_action(); 
+                                                
+                                                //    print("setting str %d\n", str.length);
+                                                    //buf.set_text(str, str.length);
+                                                    var lm = GtkSource.LanguageManager.get_default();
+                                                     
+                                                    //?? is javascript going to work as js?
+                                                    
+                                                    ((GtkSource.Buffer)(buf)) .set_language(lm.get_language(_this.file.language));
+                                                  
+                                                     
+                                                   _this.main_window.windowstate.updateErrorMarksAll(); 
+                                                   //  restore the cursor position?
+                                                    // after reloading the contents.
+                                                    /*
+                                                     GLib.Timeout.add(500, () => {
+                                                		_this.buffer.in_cursor_change = true;
+                                                        print("RESORTING cursor to = %d\n", cpos);
+                                                		Gtk.TextIter cpos_iter;
+                                                		buf.get_iter_at_offset(out cpos_iter, cpos);
+                                                		buf.place_cursor(cpos_iter); 
+                                                		
+                                                		this.el.get_vadjustment().set_value(vadj_pos);;
+                                                		_this.buffer.in_cursor_change = false;
+                                                 
+                                                		
+                                                		
+                                                		//_this.buffer.checkSyntax();
+                                                		return false;
+                                                	});
+                                                	*/
+                                                  
+                                                    
+                                                    this.loading = false; 
+                                                    _this.buffer.dirty = false;
+                                                },
+                                                void nodeSelected (JsRender.Node? sel, bool scroll) {
+                                                  
+                                                    
+                                                    if (this.loading) {
+                                                    	return;
+                                                	}
+                                                    // this is connected in widnowstate
+                                                    print("Roo-view - node selected\n");
+                                                    var buf = this.el.get_buffer();
+                                                 
+                                                    var sbuf = (GtkSource.Buffer) buf;
+                                                
+                                                    
+                                                    
+                                                   
+                                                    // clear all the marks..
+                                                     Gtk.TextIter start;
+                                                    Gtk.TextIter end;     
+                                                        
+                                                    sbuf.get_bounds (out start, out end);
+                                                    sbuf.remove_source_marks (start, end, "grey");
+                                                    
+                                                        this.node_selected = sel;
+                                                     if (sel == null) {
+                                                        // no highlighting..
+                                                        return;
+                                                    }
+                                                    Gtk.TextIter iter;   
+                                                    sbuf.get_iter_at_line(out iter,  sel.line_start);
+                                                    
+                                                    
+                                                    Gtk.TextIter cur_iter;
+                                                    sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);
+                                                    
+                                                    //var cur_line = cur_iter.get_line();
+                                                    //if (cur_line > sel.line_start && cur_line < sel.line_end) {
+                                                    
+                                                    //} else {
+                                                    if (! _this.buffer.in_cursor_change) {
+                                                    	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+                                                	}
+                                                    
+                                                     
+                                                    
+                                                    for (var i = 0; i < buf.get_line_count();i++) {
+                                                        if (i < sel.line_start || i > sel.line_end) {
+                                                           
+                                                            sbuf.get_iter_at_line(out iter, i);
+                                                            sbuf.create_source_mark(null, "grey", iter);
+                                                            
+                                                        }
+                                                    
+                                                    }
+                                                    
+                                                
+                                                },
+                                                void updateGreySelection (bool scroll) { 
+                                                	var sel = this.node_selected;
+                                                	print("node selected\n");
+                                                    var buf = this.el.get_buffer();
+                                                    var sbuf = (GtkSource.Buffer) buf;
+                                                
+                                                   
+                                                   this.clearGreySelection();
+                                                   
+                                                   
+                                                   
+                                                     if (sel == null) {
+                                                	     print("no selected node\n");
+                                                        // no highlighting..
+                                                        return;
+                                                    }
+                                                    
+                                                    print("highlight region %d to %d\n", sel.line_start,sel.line_end);
+                                                    Gtk.TextIter iter;   
+                                                    sbuf.get_iter_at_line(out iter,  sel.line_start);
+                                                    
+                                                    
+                                                    Gtk.TextIter cur_iter;
+                                                    sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);
+                                                   
+                                                    var cursor_at_line = cur_iter.get_line();
+                                                    
+                                                    
+                                                    //var cur_line = cur_iter.get_line();
+                                                    //if (cur_line > sel.line_start && cur_line < sel.line_end) {
+                                                    
+                                                    //} else {
+                                                    if (scroll) {
+                                                		print("scrolling to node -- should occur on node picking.\n");
+                                                    	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+                                                	}
+                                                    
+                                                    var start_line = sel.line_start;
+                                                    var end_line = sel.line_end;
+                                                    
+                                                    
+                                                    this.el.editable = false;
+                                                    
+                                                    //var colon_pos = 0;
+                                                    
+                                                    this.editable_start_pos = -1;
+                                                    
+                                                    // now if we have selected a property...
+                                                    if (this.prop_selected.length> 0 ) {
+                                                
+                                                		int nstart, nend;
+                                                		if (sel.getPropertyRange(this.prop_selected, out nstart, out nend) && nend > nstart) {
+                                                			start_line = nstart;
+                                                			end_line = nend;
+                                                			// this.el.editable = true; << cant do this!!?
+                                                			print("start line = %d, end line = %d\n", start_line, end_line);
+                                                			
+                                                				// see if we are 'right of ':'
+                                                				// get an iter for the start of the line.
+                                                			Gtk.TextIter start_first_line_iter,end_first_line_iter;
+                                                			this.el.buffer.get_iter_at_line(out start_first_line_iter, start_line -1);
+                                                			this.el.buffer.get_iter_at_line(out end_first_line_iter, start_line -1);
+                                                			 
+                                                			
+                                                			
+                                                			
+                                                			if (end_first_line_iter.forward_to_line_end()) {
+                                                				var first_line  = this.el.buffer.get_text(start_first_line_iter, end_first_line_iter, false);
+                                                				
+                                                				print("first line = %s\n", first_line);
+                                                				if (first_line.contains(":")) {
+                                                					this.editable_start_pos = start_first_line_iter.get_offset() + first_line.index_of(":") + 1;
+                                                					print("colon_pos  = %d\n", this.editable_start_pos);
+                                                				}
+                                                				
+                                                
+                                                				//Gtk.TextIter colon_iter;
+                                                				//sbuf.get_iter_at_offset (out colon_iter, colon_pos);
+                                                				//sbuf.create_source_mark(null, "active_text", colon_iter);
+                                                			}
+                                                			
+                                                			
+                                                			
+                                                			//print("is cursor at line? %d ?= %d\n", start_line -1 , cursor_at_line);
+                                                			//if (start_line - 1 == cursor_at_line) {
+                                                			// should be ok - current_posssion can not be less than '-1'...
+                                                			if (sbuf.cursor_position < this.editable_start_pos) {
+                                                			
+                                                				print("cursor is before start pos.. - turn off editable...\n");
+                                                				//var before_cursor_string = this.el.buffer.get_text(start_line_iter, cur_iter, false);
+                                                				//print("before cursor string =  %s\n", before_cursor_string);
+                                                				//if (!before_cursor_string.contains(":")) {
+                                                					this.el.editable = false;
+                                                				//}
+                                                				
+                                                			}
+                                                			 
+                                                			 
+                                                
+                                                			 
+                                                		}
+                                                		print("propSelected = %s range  %d -> %d\n", this.prop_selected, start_line, end_line);		
+                                                		
+                                                		
+                                                    }
+                                                    
+                                                	print("checking selection\n");
+                                                    
+                                                    
+                                                    // check selection - if it's out of 'bounds'
+                                                    if (this.el.editable && sbuf.get_has_selection()) {
+                                                		Gtk.TextIter sel_start_iter, sel_end_iter;
+                                                		sbuf.get_selection_bounds(out sel_start_iter, out sel_end_iter);
+                                                		
+                                                		if (sel_start_iter.get_line() < start_line || sel_end_iter.get_line() > end_line ||
+                                                			sel_start_iter.get_line() > end_line   || sel_end_iter.get_line() < start_line			) {
+                                                			// save?
+                                                			this.el.editable = false;
+                                                		}
+                                                		if (this.editable_start_pos > 0 &&
+                                                			(sel_start_iter.get_offset() < this.editable_start_pos || sel_end_iter.get_offset() < this.editable_start_pos)
+                                                			
+                                                		) {
+                                                			this.el.editable = false;
+                                                		}
+                                                		
+                                                		 
+                                                    
+                                                    }
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    for (var i = 0; i < buf.get_line_count();i++) {
+                                                        if (i < (start_line -1) || i > (end_line -1)) {
+                                                           
+                                                            sbuf.get_iter_at_line(out iter, i);
+                                                            sbuf.create_source_mark(null, "grey", iter);
+                                                            
+                                                        }
+                                                    
+                                                    }
+                                                    if (scroll && (cursor_at_line > end_line || cursor_at_line < start_line)) {
+                                                	    Gtk.TextIter cpos_iter;
+                                                		buf.get_iter_at_line(out cpos_iter, start_line);
+                                                		
+                                                		buf.place_cursor(cpos_iter); 
+                                                	}
+                                                
+                                                
+                                                }
+                                            ]
+                                            [
+                                                GtkSource.Buffer buffer {
+                                                    pack = set_buffer;
+                                                    dirty = false;
+                                                    in_cursor_change = false;
+                                                    error_line = -1;
+                                                    last_line = -1;
+                                                    construct {
+                                                        this.el.create_tag ("bold", "weight", Pango.Weight.BOLD);
+                                                        this.el.create_tag ("type", "weight", Pango.Weight.BOLD, "foreground", "#204a87");
+                                                        this.el.create_tag ("keyword", "weight", Pango.Weight.BOLD, "foreground", "#a40000");
+                                                        this.el.create_tag ("text", "weight", Pango.Weight.NORMAL, "foreground", "#729fcf");
+                                                        this.el.create_tag ("number", "weight", Pango.Weight.BOLD, "foreground", "#ad7fa8");
+                                                        this.el.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
+                                                        this.el.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
+                                                        this.el.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
+                                                        
+                                                        this.el.create_tag ("ERR", "weight", Pango.Weight.BOLD, "background", "pink");
+                                                        this.el.create_tag ("WARN", "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
+                                                        this.el.create_tag ("DEPR", "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
+                                                    }
+                                                    listeners [
+                                                        cursor_moved ( ) => {
+                                                        GLib.debug("cursor moved called");
+                                                        
+                                                        
+                                                         	if (this.in_cursor_change|| _this.sourceview.loading ) {
+                                                                GLib.debug("cursor changed : %d [ignoring nested call)", this.el.cursor_position);
+                                                                return;
+                                                            }
+                                                           
+                                                            GLib.debug("cursor changed : %d", this.el.cursor_position);
+                                                            Gtk.TextIter cpos;
+                                                            this.el.get_iter_at_offset(out cpos, this.el.cursor_position);
+                                                            
+                                                            var ln = cpos.get_line();
+                                                            if (this.last_line == ln ){
+                                                            	return;
+                                                        	}
+                                                        	this.last_line = ln;
+                                                            var node = _this.file.lineToNode(ln);
+                                                        
+                                                            if (node == null) {
+                                                                print("can not find node\n");
+                                                                return;
+                                                            }
+                                                            this.in_cursor_change  = true;
+                                                            var ltree = _this.main_window.windowstate.left_tree;
+                                                            ltree.model.selectNode(node);
+                                                            this.in_cursor_change  = false;
+                                                        }
+                                                    ]
+                                                    methods [
+                                                        string toString () {
+                                                            
+                                                            Gtk.TextIter s;
+                                                            Gtk.TextIter e;
+                                                            this.el.get_start_iter(out s);
+                                                            this.el.get_end_iter(out e);
+                                                            var ret = this.el.get_text(s,e,true);
+                                                            //print("TO STRING? " + ret);
+                                                            return ret;
+                                                        },
+                                                        void showHelp (Gtk.TextIter iter) {
+                                                        	var back = iter.copy();
+                                                        	back.backward_char();
+                                                        	
+                                                        	var forward = iter.copy();
+                                                        	forward.forward_char();
+                                                        	
+                                                        	// what's the character at the iter?
+                                                        	var str = back.get_text(iter);
+                                                        	str += iter.get_text(forward);
+                                                        	if (str.strip().length < 1) {
+                                                        		return;
+                                                        	}
+                                                        	var offset = iter.get_line_offset();
+                                                        	var line = iter.get_line();
+                                                        	 
+                                                        	
+                                                        	var ls = _this.file.getLanguageServer();
+                                                        	ls.hover.begin(
+                                                        		_this.file, line, offset,
+                                                        		( a, o)  => {
+                                                        			try {
+                                                        				var res = ls.hover.end(o );
+                                                        			
+                                                        				_this.helper.setHelp(res);
+                                                        			} catch (GLib.Error e) {
+                                                        				// noop..
+                                                        			}
+                                                        		});
+                                                        }
+                                                    ]
+                                                },
+                                                Gtk.EventControllerScroll {
+                                                    user double distance = 0.0f;
+                                                    flags = Gtk.EventControllerScrollFlags.VERTICAL;
+                                                    listeners [
+                                                        scroll (dx, dy) => {
+                                                        
+                                                        var is_control = 
+                                                        		0 != (_this.main_window.keyboard.get_modifier_state() & Gdk.ModifierType.CONTROL_MASK);
+                                                        
+                                                        	if (!is_control) {
+                                                        		return false;
+                                                        	}
+                                                        	//GLib.debug("scroll %f",  dy);
+                                                        	
+                                                        	this.distance += dy;
+                                                        	 if (this.distance < -1) {
+                                                         
+                                                        		BuilderApplication.settings.editor_font_size ++;
+                                                        		this.distance = 0;
+                                                        	}
+                                                        	if (this.distance > 1) {
+                                                        		BuilderApplication.settings.editor_font_size --;
+                                                        		this.distance = 0;
+                                                        	}
+                                                        
+                                                        	return true;
+                                                        }
+                                                    ]
+                                                },
+                                                Gtk.GestureClick {
+                                                    listeners [
+                                                        pressed (n_press, x, y) => {
+                                                        	Gtk.TextIter iter;
+                                                        	int  buffer_x, buffer_y;
+                                                        	var gut = _this.sourceview.el.get_gutter(Gtk.TextWindowType.LEFT);
+                                                        	
+                                                        	 _this.sourceview.el.window_to_buffer_coords (Gtk.TextWindowType.TEXT,
+                                                        		(int)x - gut.get_width(),  (int)y,
+                                                          		out  buffer_x, out  buffer_y);
+                                                        	_this.sourceview.el.get_iter_at_location (out  iter,  
+                                                        			buffer_x,  buffer_y);
+                                                        	
+                                                        	
+                                                        	if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
+                                                        		_this.buffer.el.iter_has_context_class(iter, "string")
+                                                        	) { 
+                                                        		return ;
+                                                        	}
+                                                        	_this.buffer.showHelp(iter);
+                                                        	 
+                                                        		 
+                                                         
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        Gtk.Box {
+                            orientation = Gtk.Orientation.HORIZONTAL;
+                            homogeneous = false;
+                            vexpand = false;
+                            spacing = 0;
+                            [
+                                Gtk.SearchEntry search_entry {
+                                    hexpand = true;
+                                    name = "roo-search-entry";
+                                    placeholder_text = "Press enter to search";
+                                    listeners [
+                                        search_changed ( ) => {
+                                        
+                                        _this.search(_this.search_entry.el.text);
+                                        	 _this.search_results.updateResults();
+                                        
+                                        	GLib.Timeout.add_seconds(1,() => {
+                                        		 _this.search_results.updateResults();
+                                        		 return false;
+                                        	 });
+                                        }
+                                    ]
+                                    methods [
+                                        void forwardSearch (bool change_focus) {
+                                        
+                                        
+                                        	_this.forwardSearch(change_focus);
+                                        
+                                        /*
+                                        
+                                        	switch(_this.windowstate.state) {
+                                        		case WindowState.State.CODEONLY:
+                                        		//case WindowState.State.CODE:
+                                        			// search the code being edited..
+                                        			_this.windowstate.code_editor_tab.forwardSearch(change_focus);
+                                        			 
+                                        			break;
+                                        		case WindowState.State.PREVIEW:
+                                        			if (_this.windowstate.file.xtype == "Gtk") {
+                                        				_this.windowstate.window_gladeview.forwardSearch(change_focus);
+                                        			} else { 
+                                        				 _this.windowstate.window_rooview.forwardSearch(change_focus);
+                                        			}
+                                        		
+                                        			break;
+                                        	}
+                                        	*/
+                                        	
+                                        }
+                                    ]
+                                    [
+                                        Gtk.EventControllerKey {
+                                            listeners [
+                                                key_pressed (keyval, keycode, state) => {
+                                                
+                                                	if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+                                                	    GLib.debug("SAVE: ctrl-g  pressed");
+                                                		_this.forwardSearch(true);
+                                                	    return true;
+                                                	}
+                                                    
+                                                  
+                                                 	if (keyval == Gdk.Key.Return) {
+                                                		_this.forwardSearch(true);
+                                                		
+                                                		
+                                                	    return true;
+                                                
+                                                	}    
+                                                   // print(event.key.keyval)
+                                                   
+                                                    return false;
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                Gtk.Label search_results {
+                                    margin_end = 4;
+                                    margin_start = 4;
+                                    label = "No Results";
+                                    methods [
+                                        void updateResults () {
+                                        	this.el.visible = true;
+                                        	
+                                        	var res = _this.searchcontext.get_occurrences_count();
+                                        	if (res < 0) {
+                                        		_this.search_results.el.label = "??? Matches";		
+                                        		return;
+                                        	}
+                                        
+                                        	_this.nextBtn.el.sensitive = false;
+                                        	_this.backBtn.el.sensitive = false;	
+                                        
+                                        	if (res > 0) {
+                                        		_this.search_results.el.label = "%d Matches".printf(res);
+                                        		_this.nextBtn.el.sensitive = true;
+                                        		_this.backBtn.el.sensitive = true;
+                                        		return;
+                                        	} 
+                                        	_this.search_results.el.label = "No Matches";
+                                        	
+                                        }
+                                    ]
+                                },
+                                Gtk.Button nextBtn {
+                                    always_show_image = true;
+                                    sensitive = false;
+                                    icon_name = "go-down";
+                                    listeners [
+                                        clicked (event) => {
+                                        
+                                        	_this.forwardSearch(true);
+                                        	 
+                                        }
+                                    ]
+                                },
+                                Gtk.Button backBtn {
+                                    always_show_image = true;
+                                    sensitive = false;
+                                    icon_name = "go-up";
+                                    listeners [
+                                        clicked (event) => {
+                                        
+                                        	_this.backSearch(true);
+                                        	
+                                        	 
+                                        }
+                                    ]
+                                },
+                                Gtk.MenuButton {
+                                    always_show_image = true;
+                                    icon_name = "emblem-system";
+                                    popover = Gtk.Popover search_settings {
+                                        pack = false;
+                                        child = Gtk.Box {
+                                            orientation = Gtk.Orientation.VERTICAL;
+                                            spacing = 0;
+                                            [
+                                                Gtk.CheckButton case_sensitive {
+                                                    label = "Case Sensitive";
+                                                    construct {
+                                                    	this.el.show();
+                                                    }
+                                                },
+                                                Gtk.CheckButton regex {
+                                                    label = "Regex";
+                                                    construct {
+                                                    	this.el.show();
+                                                    }
+                                                },
+                                                Gtk.CheckButton multiline {
+                                                    label = Multi-line (add \n);
+                                                    construct {
+                                                    	this.el.show();
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

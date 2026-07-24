@@ -1,0 +1,287 @@
+using Gtk 4.0
+using WebKit
+using GtkSource
+
+name = WindowRooView
+vbp-version = 1
+
+Gtk.Box WindowRooView {
+    user Gtk.Widget lastObj = null;
+    user JsRender.JsRender file = null;
+    user Xcls_MainWindow main_window;
+
+    orientation = Gtk.Orientation.VERTICAL;
+    user GtkSource.SearchContext searchcontext;
+    hexpand = true;
+    vexpand = true;
+    id = "WindowRooView";
+    last_error_counter = 0;
+    last_search_end = 0;
+    skip_preview_generation = false;
+
+    [
+        Gtk.Notebook notebook {
+            vexpand = true;
+            id = "notebook";
+
+            [
+                Gtk.Label label_preview {
+                    special pack = false;
+                    id = "label_preview";
+                    label = "Preview";
+                },
+
+                Gtk.Label label_code {
+                    special pack = false;
+                    id = "label_code";
+                    label = "Preview Generated Code";
+                },
+
+                Gtk.Paned paned {
+                    special pack = append_page, _this.label_preview.el;
+                    orientation = Gtk.Orientation.VERTICAL;
+                    vexpand = true;
+                    id = "paned";
+
+                    start_child = Gtk.Box viewbox {
+                        homogeneous = false;
+                        orientation = Gtk.Orientation.VERTICAL;
+                        vexpand = true;
+                        id = "viewbox";
+
+                        [
+                            Gtk.Box {
+                                height_request = 20;
+                                homogeneous = true;
+                                vexpand = false;
+                                orientation = Gtk.Orientation.HORIZONTAL;
+
+                                [
+                                    Gtk.Button {
+                                        label = "Redraw";
+                                        listeners [
+                                            clicked ( ) => {
+                                                _this.view.renderJS(true);
+                                            }
+                                        ]
+                                    },
+
+                                    Gtk.CheckButton AutoRedraw {
+                                        active = true;
+                                        id = "AutoRedraw";
+                                        label = "Auto Redraw On";
+                                        listeners [
+                                            toggled (state) => {
+                                                // autodraw toggled
+                                            }
+                                        ]
+                                    },
+
+                                    Gtk.Button {
+                                        label = "Full Redraw";
+                                        listeners [
+                                            clicked () => {
+                                                _this.view.reInit();
+                                                _this.view.renderJS(true);
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+
+                            WebKit.WebView view {
+                                user GLib.DateTime lastRedraw = null;
+                                user WebKit.WebInspector inspector;
+                                user bool pendingRedraw = false;
+                                user bool refreshRequired = false;
+                                user int redraws = 0;
+                                user string renderedData = "";
+                                user string runhtml = "";
+                                user string runjs = "";
+
+                                code init {
+                                    // this may not work!?
+                                    var settings = this.el.get_settings();
+                                    settings.enable_developer_extras = true;
+
+                                    GLib.Timeout.add_seconds(1, () => {
+                                        if (this.el == null) {
+                                            return false;
+                                        }
+                                        this.runRefresh();
+                                        return true;
+                                    });
+                                }
+
+                                vexpand = true;
+                                id = "view";
+
+                                listeners [
+                                    load_changed (le) => {
+                                        if (le != WebKit.LoadEvent.FINISHED) {
+                                            return;
+                                        }
+                                        if (this.runjs.length < 1) {
+                                            return;
+                                        }
+                                        FakeServerCache.remove(this.runjs);
+                                        this.runjs = "";
+                                    },
+                                    ready_to_show ( ) => {
+                                        this.initInspector();
+                                    },
+                                    script_dialog (dialog) => {
+                                        if (this.el == null) {
+                                            return true;
+                                        }
+                                        var msg = dialog.get_message();
+                                        if (msg.length < 4) {
+                                            return false;
+                                        }
+                                        if (msg.substring(0, 4) != "IPC:") {
+                                            return false;
+                                        }
+                                        var ar = msg.split(":", 3);
+                                        if (ar.length < 3) {
+                                            return false;
+                                        }
+                                        switch (ar[1]) {
+                                            case "SAVEHTML":
+                                                // …
+                                                break;
+                                        }
+                                        return true;
+                                    }
+                                ]
+                                methods [
+                                    void initInspector () {
+                                        this.inspector = this.el.get_inspector();
+                                        this.inspector.open_window.connect(() => {
+                                            print("inspector attach\n");
+                                            var wv = this.inspector.get_web_view();
+                                            if (wv != null) {
+                                                var cn = _this.inspectorcontainer.el.get_first_child();
+                                                if (cn != null) {
+                                                    _this.inspectorcontainer.el.remove(cn);
+                                                }
+                                                _this.inspectorcontainer.el.append(wv);
+                                                wv.show();
+                                            }
+                                        });
+                                    },
+                                    void reInit () {
+                                        print("reInit?");
+                                        this.el.stop_loading();
+                                        if (_this.viewbox.el.get_parent() == null) {
+                                            return;
+                                        }
+                                        // recreate webview / inspector container …
+                                    },
+                                    void renderJS (bool force) {
+                                        var autodraw = _this.AutoRedraw.el.active;
+                                        if (_this.skip_preview_generation) {
+                                            return;
+                                        }
+                                        if (!autodraw && !force) {
+                                            print("Skipping redraw - no force, and autodraw off");
+                                            return;
+                                        }
+                                        this.refreshRequired = true;
+                                    },
+                                    void runRefresh () {
+                                        if (!this.refreshRequired) {
+                                            return;
+                                        }
+                                        if (this.lastRedraw != null) {
+                                            if ((int64)(new DateTime.now_local()).difference(this.lastRedraw) < 5000) {
+                                                return;
+                                            }
+                                        }
+                                        if (_this.file == null) {
+                                            return;
+                                        }
+                                        this.refreshRequired = false;
+                                        // HTML RENDERING …
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+
+                    end_child = Gtk.Box inspectorcontainer {
+                        orientation = Gtk.Orientation.VERTICAL;
+                        vexpand = true;
+                        id = "inspectorcontainer";
+                    }
+                },
+
+                Gtk.Box {
+                    special pack = append_page, _this.label_code.el;
+                    orientation = Gtk.Orientation.VERTICAL;
+                    vexpand = true;
+                    spacing = 0;
+
+                    [
+                        Gtk.Box {
+                            orientation = Gtk.Orientation.VERTICAL;
+                            spacing = 0;
+
+                            [
+                                Gtk.Box {
+                                    homogeneous = false;
+                                    orientation = Gtk.Orientation.HORIZONTAL;
+                                    hexpand = false;
+                                    vexpand = false;
+
+                                    [
+                                        Gtk.Label helper {
+                                            justify = Gtk.Justification.LEFT;
+                                            hexpand = true;
+                                            xalign = 0;
+                                            id = "helper";
+                                            margin_end = 4;
+                                            margin_start = 4;
+
+                                            listeners [
+                                                activate_link (uri) => {
+                                                    // open docs / jump …
+                                                    return true;
+                                                },
+                                                query_tooltip (x, y, keyboard_tooltip, tooltip) => {
+                                                    return false;
+                                                }
+                                            ]
+
+                                            methods [
+                                                void setHelp (Lsp.Hover? help) {
+                                                    // render hover markup into helper label …
+                                                }
+                                            ]
+                                        },
+
+                                        Gtk.Button help_button {
+                                            vexpand = true;
+                                            id = "help_button";
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+
+                    child = Gtk.Box {
+                        orientation = Gtk.Orientation.VERTICAL;
+                        spacing = 0;
+
+                        items[] = Gtk.CheckButton {
+                            label = "Option A";
+                        }
+                        items[] = Gtk.CheckButton {
+                            label = "Option B";
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
