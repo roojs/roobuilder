@@ -205,7 +205,11 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 			
 			this.node.setLine(this.cur_line, "p", prop.prop_name);
 			
-			this.addLine(this.pad + "public " + prop.prop_type + " " + prop.prop_name + ";"); // definer - does not include value.
+			var access = prop.prop_access;
+			if (access == "" || access == "public") {
+				access = "public";
+			}
+			this.addLine(this.pad + access + " " + prop.prop_type + " " + prop.prop_name + ";"); // definer - does not include value.
 
 
 			prop.end_line = this.cur_line;				

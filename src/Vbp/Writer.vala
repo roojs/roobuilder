@@ -189,11 +189,15 @@ namespace Vbp
 				if (prop.doc != "") {
 					output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
 				}
+				var access = "var";
+				if (prop.prop_access == "private" || prop.prop_access == "protected") {
+					access = prop.prop_access;
+				}
 				if (prop.prop_val == "") {
-					output.put_string(child_pad + "var " + prop.prop_type + " " + prop.prop_name + ";\n");
+					output.put_string(child_pad + access + " " + prop.prop_type + " " + prop.prop_name + ";\n");
 					continue;
 				}
-				output.put_string(child_pad + "var " + prop.prop_type + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+				output.put_string(child_pad + access + " " + prop.prop_type + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
 			}
 
 			if (inits.size > 0) {

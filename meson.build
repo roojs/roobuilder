@@ -171,6 +171,9 @@ roobuilder_src = files([
    'src/JsRender/Action/Manager.vala',
    'src/JsRender/FileLegacy.vala',
    'src/Vbp/Writer.vala',
+   'src/Vbp/Token.vala',
+   'src/Vbp/Tokenizer.vala',
+   'src/Vbp/Parser.vala',
 ])
 
 

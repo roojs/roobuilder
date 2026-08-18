@@ -15,7 +15,8 @@ namespace JsRender
 		// Protected properties with prop_ prefix
 		public bool is_static { get;  protected set; default = false; }
 		public bool is_async { get;  protected set; default = false; }
-		// should we add private/protected?
+		// USER fields: "" / public = public (VBP spelling `var`); "private" / "protected"
+		public string prop_access { get; protected set; default = ""; }
 		public string prop_name { public get; protected set; default = ""; }
 		public string prop_val { public get; protected set; default = ""; }
 		// for properties  - it's the type ?? for nodes? we use props?
@@ -117,6 +118,10 @@ namespace JsRender
 		public void modify_is_async(bool value)
 		{
 			this.is_async = value;
+		}
+		public void modify_prop_access(string value)
+		{
+			this.prop_access = value;
 		}
 		public void modify_node_type(NodePropType value)
 		{
@@ -328,6 +333,7 @@ namespace JsRender
 
 				case "prop-name":
 				case "prop-type":
+				case "prop-access":
 				case "doc":
 					// Return null if default value (empty string)
 					if (((string)value) == "") {
@@ -452,6 +458,7 @@ namespace JsRender
 					case "node-type":
 					case "prop-name":
 					case "prop-type":
+					case "prop-access":
 					case "return-type":
 					case "doc":
 					case "is-static":

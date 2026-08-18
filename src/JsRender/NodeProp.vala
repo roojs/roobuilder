@@ -23,6 +23,7 @@ namespace JsRender
 		this.doc = source.doc;
 		this.is_static = source.is_static;
 		this.is_async = source.is_async;
+		this.prop_access = source.prop_access;
 		// Do NOT copy: oid, parent, children, file
 	}
 
@@ -138,7 +139,9 @@ namespace JsRender
 					&& 
 					this.prop_val == p.prop_val
 					&&
-					this.is_async == p.is_async;
+					this.is_async == p.is_async
+					&&
+					this.prop_access == p.prop_access;
 		}
 		
 		public NodeProp dupe()
@@ -146,6 +149,7 @@ namespace JsRender
 			var duped = new NodeProp(this.prop_name, 
 				this.node_type, this.prop_type,  this.prop_val);
 			duped.modify_is_async(this.is_async);
+			duped.modify_prop_access(this.prop_access);
 			return duped;
 		}
 		

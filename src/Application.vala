@@ -48,6 +48,8 @@ public class BuilderApplication : Gtk.Application
 		{ "test-symbol-json-tree", 0, 0, OptionArg.NONE, ref opt_test_symbol_json_tree, "dump Symbol Tree to JSON (for testing Doc UI)", null },
 		{ "test-dump-props", 0, 0, OptionArg.STRING, ref opt_test_dump_props, "dump all cached properties from top node recursively", null },
 		{ "test-write-vbp", 0, 0, OptionArg.STRING, ref opt_test_write_vbp, "load bjs and write sibling .vbp via Vbp.Writer", null },
+		{ "test-tokenize-vbp", 0, 0, OptionArg.STRING, ref opt_test_tokenize_vbp, "tokenize a .vbp file and dump the token tree as JSON", null },
+		{ "test-parse-vbp", 0, 0, OptionArg.STRING, ref opt_test_parse_vbp, "parse a .vbp file and dump the Node tree as JSON", null },
 
 		{ null }
 	};
@@ -84,6 +86,8 @@ public class BuilderApplication : Gtk.Application
 	public static bool opt_test_gir_parser = false;
 	public static string opt_test_dump_props;
 	public static string opt_test_write_vbp;
+	public static string opt_test_tokenize_vbp;
+	public static string opt_test_parse_vbp;
 
 	public static string release_version {
 		get {
@@ -175,6 +179,8 @@ public class BuilderApplication : Gtk.Application
 		this.testBjsDowngrade(cur_project);
 		this.testDumpProps(cur_project); // test dump props
 		this.testWriteVbp(cur_project);
+		this.testTokenizeVbp();
+		this.testParseVbp();
 
 		this.testSymbolBuilder(cur_project); // symbol builder tests
 		this.listFiles(cur_project);
@@ -766,6 +772,68 @@ public class BuilderApplication : Gtk.Application
 		}
 		print("%s\n", vbp_path);
 
+		GLib.Process.exit(Posix.EXIT_SUCCESS);
+	}
+
+	void testTokenizeVbp()
+	{
+		if (BuilderApplication.opt_test_tokenize_vbp == null) {
+			return;
+		}
+		GLib.debug("Run --test-tokenize-vbp");
+		try {
+			var stream = GLib.File.new_for_path(BuilderApplication.opt_test_tokenize_vbp).read();
+			print("%s\n", this.dumpVbpToken(new Vbp.Tokenizer(stream).parse_tree()));
+			stream.close();
+		} catch (Error e) {
+			GLib.error("tokenize vbp failed: %s", e.message);
+		}
+		GLib.Process.exit(Posix.EXIT_SUCCESS);
+	}
+
+	Json.Object dumpVbpTokenObject(Vbp.Token token)
+	{
+		var obj = new Json.Object();
+		obj.set_string_member("kind", token.kind);
+		obj.set_string_member("text", token.text);
+		var arr = new Json.Array();
+		foreach (var child in token.children) {
+			var node = new Json.Node(Json.NodeType.OBJECT);
+			node.init_object(this.dumpVbpTokenObject(child));
+			arr.add_element(node);
+		}
+		obj.set_array_member("children", arr);
+		return obj;
+	}
+
+	string dumpVbpToken(Vbp.Token token)
+	{
+		var node = new Json.Node(Json.NodeType.OBJECT);
+		node.init_object(this.dumpVbpTokenObject(token));
+		var gen = new Json.Generator();
+		gen.pretty = true;
+		gen.set_root(node);
+		return gen.to_data(null);
+	}
+
+	void testParseVbp()
+	{
+		if (BuilderApplication.opt_test_parse_vbp == null) {
+			return;
+		}
+		GLib.debug("Run --test-parse-vbp");
+		try {
+			var stream = GLib.File.new_for_path(BuilderApplication.opt_test_parse_vbp).read();
+			var tree = new Vbp.Parser().parse(stream);
+			stream.close();
+			if (tree == null) {
+				GLib.error("parse vbp: no object tree");
+			}
+			size_t length;
+			print("%s", Json.gobject_to_data(tree, out length));
+		} catch (Error e) {
+			GLib.error("parse vbp failed: %s", e.message);
+		}
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}
 	void testBjsDowngrade(Project.Project? cur_project)
