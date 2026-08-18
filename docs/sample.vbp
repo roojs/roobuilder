@@ -6,18 +6,17 @@ name = WindowRooView
 vbp-version = 1
 
 Gtk.Box WindowRooView {
-    user Gtk.Widget lastObj = null;
-    user JsRender.JsRender file = null;
-    user Xcls_MainWindow main_window;
-
     orientation = Gtk.Orientation.VERTICAL;
-    user GtkSource.SearchContext searchcontext;
     hexpand = true;
     vexpand = true;
-    id = "WindowRooView";
     last_error_counter = 0;
     last_search_end = 0;
     skip_preview_generation = false;
+
+    var Gtk.Widget lastObj = null;
+    private JsRender.JsRender file = null;
+    protected Xcls_MainWindow main_window;
+    public GtkSource.SearchContext searchcontext;
 
     [
         Gtk.Notebook notebook {
@@ -90,16 +89,18 @@ Gtk.Box WindowRooView {
                             },
 
                             WebKit.WebView view {
-                                user GLib.DateTime lastRedraw = null;
-                                user WebKit.WebInspector inspector;
-                                user bool pendingRedraw = false;
-                                user bool refreshRequired = false;
-                                user int redraws = 0;
-                                user string renderedData = "";
-                                user string runhtml = "";
-                                user string runjs = "";
+                                vexpand = true;
 
-                                code init {
+                                var GLib.DateTime lastRedraw = null;
+                                var WebKit.WebInspector inspector;
+                                var bool pendingRedraw = false;
+                                var bool refreshRequired = false;
+                                var int redraws = 0;
+                                var string renderedData = "";
+                                var string runhtml = "";
+                                var string runjs = "";
+
+                                construct {
                                     // this may not work!?
                                     var settings = this.el.get_settings();
                                     settings.enable_developer_extras = true;
@@ -112,9 +113,6 @@ Gtk.Box WindowRooView {
                                         return true;
                                     });
                                 }
-
-                                vexpand = true;
-                                id = "view";
 
                                 listeners [
                                     load_changed (le) => {

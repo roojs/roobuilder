@@ -77,15 +77,15 @@ namespace Vbp
 		 *
 		 * @param output destination stream
 		 * @param node object node
-		 * @param depth indent depth (4 spaces per level)
+		 * @param depth visual indent depth (2 spaces per level; cosmetic only)
 		 * @param line_prefix leading text for the type line (pad, or `name = `)
 		 * @param trailing_comma after `}` when this node is a `[` peer
 		 */
 		private void append_node(GLib.DataOutputStream output, JsRender.Node node, int depth, string line_prefix, bool trailing_comma) throws GLib.Error
 		{
-			var pad = string.nfill(depth * 4, ' ');
-			var child_pad = string.nfill((depth + 1) * 4, ' ');
-			var list_pad = string.nfill((depth + 2) * 4, ' ');
+			var pad = string.nfill(depth * 2, ' ');
+			var child_pad = string.nfill((depth + 1) * 2, ' ');
+			var list_pad = string.nfill((depth + 2) * 2, ' ');
 			var prefix = line_prefix == "" ? pad : line_prefix;
 
 			if (node.doc != "") {
@@ -99,7 +99,8 @@ namespace Vbp
 			var id_name = node.has("id") ? node.get_prop_value("id") : "";
 			var header = id_name == "" ? type_name : type_name + " " + id_name;
 
-			var scalars = new Gee.ArrayList<JsRender.NodeProp>();
+			var props = new Gee.ArrayList<JsRender.NodeProp>();
+			var vars = new Gee.ArrayList<JsRender.NodeProp>();
 			var inits = new Gee.ArrayList<JsRender.NodeProp>();
 			var listeners = new Gee.ArrayList<JsRender.NodeProp>();
 			var methods = new Gee.ArrayList<JsRender.NodeProp>();
@@ -132,41 +133,38 @@ namespace Vbp
 							inits.add(prop);
 							break;
 						}
-						scalars.add(prop);
+						props.add(prop);
+						break;
+
+					case JsRender.NodePropType.USER:
+						vars.add(prop);
 						break;
 
 					default:
 						if (prop.prop_name == "id") {
 							break;
 						}
-						scalars.add(prop);
+						props.add(prop);
 						break;
 				}
 			}
 
 			var comma = trailing_comma ? "," : "";
-			if (scalars.size == 0 && inits.size == 0 && listeners.size == 0 && methods.size == 0 && named.size == 0 && anon.size == 0) {
+			if (props.size == 0 && vars.size == 0 && inits.size == 0 && listeners.size == 0 && methods.size == 0 && named.size == 0 && anon.size == 0) {
 				output.put_string(prefix + header + " {}" + comma + "\n");
 				return;
 			}
 
 			output.put_string(prefix + header + " {\n");
 
-			foreach (var prop in scalars) {
+			// Object props first, then var fields (hand-authoring order).
+			foreach (var prop in props) {
 				if (prop.doc != "") {
 					output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
 				}
 				switch (prop.node_type) {
 					case JsRender.NodePropType.SPECIAL:
 						output.put_string(child_pad + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
-						break;
-
-					case JsRender.NodePropType.USER:
-						if (prop.prop_val == "") {
-							output.put_string(child_pad + "user " + prop.prop_type + " " + prop.prop_name + ";\n");
-							break;
-						}
-						output.put_string(child_pad + "user " + prop.prop_type + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
 						break;
 
 					case JsRender.NodePropType.RAW:
@@ -187,6 +185,17 @@ namespace Vbp
 				}
 			}
 
+			foreach (var prop in vars) {
+				if (prop.doc != "") {
+					output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
+				}
+				if (prop.prop_val == "") {
+					output.put_string(child_pad + "var " + prop.prop_type + " " + prop.prop_name + ";\n");
+					continue;
+				}
+				output.put_string(child_pad + "var " + prop.prop_type + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+			}
+
 			if (inits.size > 0) {
 				var init_prop = inits.get(0);
 				if (init_prop.doc != "") {
@@ -195,7 +204,7 @@ namespace Vbp
 				var init_body = init_prop.prop_val.strip();
 				var init_text = init_body.has_prefix("{")
 					? string.joinv("\n" + child_pad, init_body.split("\n"))
-					: "{\n" + child_pad + "    " + string.joinv("\n" + child_pad + "    ", init_body.split("\n")) + "\n" + child_pad + "}";
+					: "{\n" + child_pad + "  " + string.joinv("\n" + child_pad + "  ", init_body.split("\n")) + "\n" + child_pad + "}";
 				output.put_string(child_pad + "construct ");
 				output.put_string(init_text);
 				output.put_string("\n");
