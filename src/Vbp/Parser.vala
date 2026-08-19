@@ -278,10 +278,13 @@ namespace Vbp
 				}
 				var j = 0;
 				if (listeners) {
-					if (!peer.get(j).is_ident()) {
+					if (peer.get(j).kind != "TEXT") {
 						this.err(peer.get(j), "expected listener name");
 					}
 					var name = peer.get(j).text;
+					if (name.has_prefix("|")) {
+						name = name.substring(1);
+					}
 					j++;
 					this.add_child(obj, new JsRender.NodeProp.listener(name, this.join_nodes(peer, j)));
 					continue;
