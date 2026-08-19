@@ -221,7 +221,7 @@ namespace Vbp
 					if (prop.doc != "") {
 						output.put_string(list_pad + "/**\n" + list_pad + " * " + string.joinv("\n" + list_pad + " * ", prop.doc.split("\n")) + "\n" + list_pad + " */\n");
 					}
-					output.put_string(list_pad + prop.prop_name + " ");
+					output.put_string(list_pad + (prop.prop_name.has_prefix("|") ? prop.prop_name.substring(1) : prop.prop_name) + " ");
 					output.put_string(string.joinv("\n" + list_pad, prop.prop_val.strip().split("\n")));
 					if (i < listeners.size - 1) {
 						output.put_string(",");
