@@ -305,13 +305,16 @@ namespace Vbp
 				default:
 					break;
 			}
-			if (val.contains("{") || val.contains("}")) {
+			if (prop.prop_type.down().contains("string") || prop.prop_type.down().contains("utf8")) {
+				return "\"" + val.escape("") + "\"";
+			}
+			if (val.contains("{") || val.contains("}") || val.contains("//")) {
 				return "\"" + val.escape("") + "\"";
 			}
 			if (val.contains(".") || val.contains("(") || val.contains("[")) {
 				return val;
 			}
-			if (prop.prop_type == "" || prop.prop_type.down().contains("string") || prop.prop_type.down().contains("utf8")) {
+			if (prop.prop_type == "") {
 				return "\"" + val.escape("") + "\"";
 			}
 			return val;
