@@ -190,22 +190,36 @@ class Vbp_Parser
 	function parseVar($nodes, &$i)
 	{
 		$i++;
-		if ($i >= count($nodes) || $nodes[$i]->kind != 'TEXT') {
-			$this->err($nodes[$i - 1], 'expected name after var');
-		}
-		$type = '';
-		$name = $nodes[$i]->text;
-		$i++;
-		if ($i < count($nodes) && $nodes[$i]->kind == 'TEXT') {
-			$type = $name;
-			$name = $nodes[$i]->text;
+		$from = $i;
+		$depth = 0;
+		$n = count($nodes);
+		while ($i < $n) {
+			$cur = $nodes[$i];
+			if ($depth == 0 && ($cur->isLeafKind('=') || $cur->isLeafKind(';'))) {
+				break;
+			}
+			if ($cur->kind == 'TEXT') {
+				$depth += substr_count($cur->text, '<') - substr_count($cur->text, '>');
+			}
 			$i++;
 		}
+		if ($from >= $i) {
+			$this->err($nodes[$from - 1], 'expected name after var');
+		}
+		$nameAt = $i - 1;
+		while ($nameAt >= $from && $nodes[$nameAt]->kind != 'TEXT') {
+			$nameAt--;
+		}
+		if ($nameAt < $from) {
+			$this->err($nodes[$from], 'expected name after var');
+		}
+		$type = trim($this->joinNodes($nodes, $from, $nameAt));
+		$name = $nodes[$nameAt]->text;
 		$val = '';
-		if ($i < count($nodes) && $nodes[$i]->isLeafKind('=')) {
+		if ($i < $n && $nodes[$i]->isLeafKind('=')) {
 			$i++;
 			$val = $this->takeValue($nodes, $i);
-		} elseif ($i < count($nodes) && $nodes[$i]->isLeafKind(';')) {
+		} elseif ($i < $n && $nodes[$i]->isLeafKind(';')) {
 			$i++;
 		} else {
 			$this->err($nodes[$i - 1], 'expected = or ; after var name');
