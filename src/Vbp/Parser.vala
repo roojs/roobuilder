@@ -226,17 +226,31 @@ namespace Vbp
 		{
 			var access = nodes.get(i).text;
 			i++;
-			if (i >= nodes.size || nodes.get(i).kind != "TEXT") {
-				this.err(nodes.get(i - 1), "expected name after var");
-			}
-			var type = "";
-			var name = nodes.get(i).text;
-			i++;
-			if (i < nodes.size && nodes.get(i).kind == "TEXT") {
-				type = name;
-				name = nodes.get(i).text;
+			var from = i;
+			var depth = 0;
+			while (i < nodes.size) {
+				var cur = nodes.get(i);
+				if (depth == 0 && (cur.is_leaf_kind("=") || cur.is_leaf_kind(";"))) {
+					break;
+				}
+				if (cur.kind == "TEXT") {
+					depth += cur.text.split("<").length - 1;
+					depth -= cur.text.split(">").length - 1;
+				}
 				i++;
 			}
+			if (from >= i) {
+				this.err(nodes.get(from - 1), "expected name after var");
+			}
+			var name_at = i - 1;
+			while (name_at >= from && nodes.get(name_at).kind != "TEXT") {
+				name_at--;
+			}
+			if (name_at < from) {
+				this.err(nodes.get(from), "expected name after var");
+			}
+			var type = this.join_nodes(nodes, from, name_at).strip();
+			var name = nodes.get(name_at).text;
 			var val = "";
 			if (i < nodes.size && nodes.get(i).is_leaf_kind("=")) {
 				i++;

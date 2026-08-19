@@ -305,6 +305,9 @@ namespace Vbp
 				default:
 					break;
 			}
+			if (val.contains("{") || val.contains("}")) {
+				return "\"" + val.escape("") + "\"";
+			}
 			if (val.contains(".") || val.contains("(") || val.contains("[")) {
 				return val;
 			}
