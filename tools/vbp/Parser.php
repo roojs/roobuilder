@@ -238,10 +238,13 @@ class Vbp_Parser
 			}
 			$j = 0;
 			if ($nodeType == 8) {
-				if (!$peer[$j]->isIdent()) {
+				if ($peer[$j]->kind != 'TEXT') {
 					$this->err($peer[$j], 'expected listener name');
 				}
 				$name = $peer[$j]->text;
+				if (strpos($name, '|') === 0) {
+					$name = substr($name, 1);
+				}
 				$j++;
 				$obj->children[] = $this->prop($name, $this->joinNodes($peer, $j), '');
 				continue;
