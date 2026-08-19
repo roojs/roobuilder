@@ -226,13 +226,13 @@ namespace Vbp
 		{
 			var access = nodes.get(i).text;
 			i++;
-			if (i >= nodes.size || !nodes.get(i).is_ident()) {
+			if (i >= nodes.size || nodes.get(i).kind != "TEXT") {
 				this.err(nodes.get(i - 1), "expected name after var");
 			}
 			var type = "";
 			var name = nodes.get(i).text;
 			i++;
-			if (i < nodes.size && nodes.get(i).is_ident()) {
+			if (i < nodes.size && nodes.get(i).kind == "TEXT") {
 				type = name;
 				name = nodes.get(i).text;
 				i++;

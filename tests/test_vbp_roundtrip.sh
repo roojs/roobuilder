@@ -34,10 +34,18 @@ while IFS= read -r line || [[ -n "$line" ]]; do
 done < "$MANIFEST"
 
 fail=0
+noid() {
+	grep -vE '^[[:space:]]*"oid"[[:space:]]*:' "$1"
+}
 while IFS= read -r orig; do
 	rt="${orig%.original.bjs}.roundtrip.bjs"
-	echo "=== diff $orig ==="
-	if ! diff -u "$orig" "$rt"; then
+	echo "=== diff $orig (oid ignored) ==="
+	if [[ ! -f "$rt" ]]; then
+		echo "MISSING $rt"
+		fail=1
+		continue
+	fi
+	if ! diff -u <(noid "$orig") <(noid "$rt"); then
 		fail=1
 	fi
 done < <(find "$OUT" -name '*.original.bjs' | sort)

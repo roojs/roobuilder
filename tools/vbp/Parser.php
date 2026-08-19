@@ -190,13 +190,13 @@ class Vbp_Parser
 	function parseVar($nodes, &$i)
 	{
 		$i++;
-		if ($i >= count($nodes) || !$nodes[$i]->isIdent()) {
+		if ($i >= count($nodes) || $nodes[$i]->kind != 'TEXT') {
 			$this->err($nodes[$i - 1], 'expected name after var');
 		}
 		$type = '';
 		$name = $nodes[$i]->text;
 		$i++;
-		if ($i < count($nodes) && $nodes[$i]->isIdent()) {
+		if ($i < count($nodes) && $nodes[$i]->kind == 'TEXT') {
 			$type = $name;
 			$name = $nodes[$i]->text;
 			$i++;
