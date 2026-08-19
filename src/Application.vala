@@ -50,6 +50,8 @@ public class BuilderApplication : Gtk.Application
 		{ "test-write-vbp", 0, 0, OptionArg.STRING, ref opt_test_write_vbp, "load bjs and write sibling .vbp via Vbp.Writer", null },
 		{ "test-tokenize-vbp", 0, 0, OptionArg.STRING, ref opt_test_tokenize_vbp, "tokenize a .vbp file and dump the token tree as JSON", null },
 		{ "test-parse-vbp", 0, 0, OptionArg.STRING, ref opt_test_parse_vbp, "parse a .vbp file and dump the Node tree as JSON", null },
+		{ "test-vbp-roundtrip", 0, 0, OptionArg.STRING, ref opt_test_vbp_roundtrip, "BJS→VBP→BJS into --vbp-roundtrip-dir: all | relpath.bjs (needs --project)", null },
+		{ "vbp-roundtrip-dir", 0, 0, OptionArg.STRING, ref opt_vbp_roundtrip_dir, "directory for round-trip artifacts (default build/vbp-roundtrip)", null },
 
 		{ null }
 	};
@@ -88,6 +90,8 @@ public class BuilderApplication : Gtk.Application
 	public static string opt_test_write_vbp;
 	public static string opt_test_tokenize_vbp;
 	public static string opt_test_parse_vbp;
+	public static string opt_test_vbp_roundtrip;
+	public static string opt_vbp_roundtrip_dir;
 
 	public static string release_version {
 		get {
@@ -167,24 +171,23 @@ public class BuilderApplication : Gtk.Application
 		Project.Project.loadAll();
 		this.listProjects();
 		var cur_project = this.compileProject();
-		//this.testFqn(cur_project); // --drop-list
-		this.testLanguageServer(cur_project); // --language-server
-		this.testCompileBjs(cur_project);
+		this.saveMeson(cur_project);
+		Builder.Tests.LanguageServer.run(cur_project);
+		Builder.Tests.BjsCompile.run(cur_project);
 		try {
 			this.mungeBjs(cur_project);
 		} catch (GLib.Error e) {
 			GLib.error("%s", e.message);
 		}
-		this.testBjsUpgrade(cur_project);
-		this.testBjsDowngrade(cur_project);
-		this.testDumpProps(cur_project); // test dump props
-		this.testWriteVbp(cur_project);
-		this.testTokenizeVbp();
-		this.testParseVbp();
-
-		this.testSymbolBuilder(cur_project); // symbol builder tests
+		Builder.Tests.BjsUpgrade.run(cur_project);
+		Builder.Tests.BjsDowngrade.run(cur_project);
+		Builder.Tests.DumpProps.run(cur_project);
+		Builder.Tests.WriteVbp.run(cur_project);
+		Builder.Tests.TokenizeVbp.run();
+		Builder.Tests.ParseVbp.run();
+		Builder.Tests.VbpRoundTrip.run(cur_project);
+		Builder.Tests.SymbolBuilder.run(cur_project);
 		this.listFiles(cur_project);
-		//this.testBjs(cur_project);
 
 
 		//this.compileVala();
@@ -343,15 +346,6 @@ public class BuilderApplication : Gtk.Application
 
 
 	}
-	void listProjects()
-	{
-		if (!BuilderApplication.opt_list_projects) {
-			return;
-		}
-		print("Projects\n %s\n", Project.Project.listAllToString());
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-
-	}
 	Project.Project? compileProject()
 	{
 
@@ -373,57 +367,14 @@ public class BuilderApplication : Gtk.Application
 		return cur_project;
 
 	}
-	/*
-	void testFqn(Project.Project? cur_project) {
 
-
-		if (cur_project== null || BuilderApplication.opt_test_fqn == null) {
+	void listProjects()
+	{
+		if (!BuilderApplication.opt_list_projects) {
 			return;
 		}
-		var fqn = BuilderApplication.opt_test_fqn;
-
-		if (BuilderApplication.opt_compile_project == null) {
-			GLib.error("need a project %s, to use --drop-list",BuilderApplication.opt_compile_project);
-		}
-
-		var p = cur_project.palete;
-
-		//print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(fqn)));
-		// print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(fqn, false)));
-		// print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(fqn, true)));
-
-
-		print("\n\nPropsList: \n%s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.PROP)));
-		print("\n\nSignalList:\n%s", this.girArrayToString(p.getPropertiesFor( fqn, JsRender.NodePropType.LISTENER)));
-
-		// ctor.
-		print("\n\nCtor Values:\n %s", p.fqnToNode(fqn).toJsonString());
-
+		print("Projects\n %s\n", Project.Project.listAllToString());
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
-
-	}
-	*/
-	string geeArrayToString(Gee.ArrayList<string> ar)
-	{
-		var ret = "";
-		foreach(var n in ar) {
-			ret +=   ("  " + n + "\n");
-		}
-		return ret;
-	}
-
-	string symbolArrayToString(Gee.HashMap<string,Palete.Symbol> map)
-	{
-		var ret = "";
-		var keys = new Gee.ArrayList<string>();
-		keys.add_all(map.keys);
-		keys.sort();
-		foreach(var k in keys) {
-			var gi = map.get(k);
-			ret += "    %s %s%s [%s]\n".printf(gi.rtype, gi.name, gi.dumpArgs(), gi.fqn.substring(0, gi.fqn.length - 1 - gi.name.length));
-		}
-		return ret;
-
 	}
 
 	void listFiles(Project.Project? cur_project)
@@ -436,208 +387,18 @@ public class BuilderApplication : Gtk.Application
 		}
 		print("Files for %s\n %s\n", cur_project.name, cur_project.listAllFilesToString());
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
-
 	}
 
-	/**
-	Test to see if the internal BJS reader/writer still outputs the same files.
-	-- probably need this for the generator as well.
-	*/
-	/*
-	void testBjs(Project.Project? cur_project)
+	void saveMeson(Project.Project? cur_project)
 	{
-		if (!BuilderApplication.opt_bjs_test) {
+		if (!BuilderApplication.opt_test_meson) {
 			return;
 		}
 		if (cur_project == null) {
 			GLib.error("missing project, use --project to select which project");
 		}
-
-
-		print("Checking files\n");
-		try {
-			var ar = cur_project.sortedFiles();
-			foreach(var file in ar) {
-				string oldstr;
-				if (file.xtype == "PlainFile") {
-					continue;
-				}
-
-				file.loadItems();
-				GLib.FileUtils.get_contents(file.targetName(), out oldstr);
-
-				var outstr = file.toSourceCode(true); // force it.
-				if (outstr != oldstr) {
-
-					GLib.FileUtils.set_contents("/tmp/" + file.name + ".out",   outstr);
-					print("Files differ : use\n meld  %s /tmp/%s.out\n", file.targetName(),  file.name);
-					//GLib.Process.exit(Posix.EXIT_SUCCESS);
-				}
-				print("# Files match %s\n", file.name);
-
-			}
-		} catch (FileError e) {
-			GLib.debug("Got error %s", e.message);
-		} catch (Error e) {
-			GLib.debug("Got error %s", e.message);
-		}
-
-		print("All files pass");
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-	*/
-	void testCompileBjs(Project.Project? cur_project)
-	{
-		if (BuilderApplication.opt_test_bjs_compile == null) {
-			return;
-		}
-		GLib.debug("Run --test-bjs-compile");
-		if (cur_project == null) {
-			GLib.error("missing project, use --project to select which project");
-		}
-		if (cur_project.xtype == "Gtk" ) {
-			if (opt_compile_group == null) {
-				GLib.error("you must specify a compile group using --compile-group when testing Gtk bjs generation");
-			}
-			//
-			var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
-			var loop = new MainLoop();
-
-			sb.updateBackground.begin(BuilderApplication.opt_compile_group, 0, (o,r )  => {
-					sb.updateBackground.end(r);
-					this.testCompileBjsReal(cur_project);
-				});
-			loop.run();
-			return;
-		}
-		this.testCompileBjsReal(cur_project);
-
-	}
-	// wrapped so we build symbosl before calling it.
-	void testCompileBjsReal(Project.Project? cur_project)
-	{
-		GLib.debug("Run --test-bjs-compile (real)");
-
-		// Validate that the argument is a BJS file (unless it's "all")
-		if (BuilderApplication.opt_test_bjs_compile != "all" && !BuilderApplication.opt_test_bjs_compile.has_suffix(".bjs")) {
-			GLib.error("--test-bjs-compile argument must be a .bjs file or 'all', got: %s", BuilderApplication.opt_test_bjs_compile);
-		}
-
-		if (BuilderApplication.opt_test_bjs_compile == "all") {
-			try {
-				var ar = cur_project.sortedFiles();
-
-				foreach(var file in ar) {
-
-					if (file is JsRender.PlainFile) {
-						continue;
-					}
-
-
-
-					var oldfn = file.targetName();
-					if (!GLib.FileUtils.test(oldfn, FileTest.EXISTS)) {
-						GLib.message("Skip %s - target does not exist", oldfn);
-						continue;
-					}
-					GLib.message("Compiling : %s", oldfn);
-					file.loadItems();
-
-					var outstr = file.toSourceCode();
-
-					/* line number checking
-					var bad = false;
-					// check line numbers:
-					var bits = outstr.split("\n");
-					var end = bits.length;
-					for(var i = 0;i < end; i++) {
-						print("%i : %s\n", i+1 , bits[i]);
-						if (!bad && bits[i].has_prefix("/*") && !bits[i].has_prefix(("/*%d*" +"/").printf(i+1))) {
-							end = i + 5 > bits.length ? bits.length: (i + 5);
-							print ("^^^^ mismatch\null");
-							bad = true;
-						}
-
-
-					}
-					if (bad) {
-						GLib.error("got bad file");
-					}
-					*/
-					// compare files.
-					string oldstr;
-					GLib.FileUtils.get_contents(oldfn, out oldstr);
-					if (outstr != oldstr) {
-
-						GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
-						GLib.message("Files do not match - test with:\nmeld   %s /tmp/%s\n",
-							oldfn,  file.name + ".out");
-						//GLib.Process.exit(Posix.EXIT_SUCCESS);
-					}
-					//print("# Files match %s\n", file.name);
-				}
-			} catch (FileError e) {
-				GLib.debug("Got error %s", e.message);
-			} catch (Error e) {
-				GLib.debug("got error %s", e.message);
-			}
-
-			GLib.Process.exit(Posix.EXIT_SUCCESS);
-
-		}
-
-
-
-		var file = cur_project.getByRelPath(BuilderApplication.opt_test_bjs_compile);
-		if (file == null) {
-			// then compile them all, and compare them...
-
-
-
-			GLib.error("missing file %s in project %s", BuilderApplication.opt_test_bjs_compile, cur_project.name);
-		}
-		try {
-			file.loadItems();
-		} catch(Error e) {
-			GLib.debug("Load items failed");
-		}
-
-		if (BuilderApplication.opt_test_bjs_compile_glade) {
-			var str = file.toGlade();
-			print("%s", str);
-			GLib.Process.exit(Posix.EXIT_SUCCESS);
-		}
-
-		//BuilderApplication.compileBjs();
-
-		var str = file.toSourceCode();
-
-
-		//
-		print("%s", str);
-
-		if (!BuilderApplication.opt_debug) {
-			GLib.Process.exit(Posix.EXIT_SUCCESS);
-		}
-
-		// dump the node tree
-
-		size_t length;
-		string content = Json.gobject_to_data(file, out length);
-		stderr.printf("%s", content);
-
-
-		var str_ar = str.split("\n");
-		for(var i =0;i<str_ar.length;i++) {
-			var node = file.tree.lineToNode(i+1);
-			var prop = node == null ? null : node.lineToProp(i+1);
-			stderr.printf("%d: %s   :  %s\n",
-				i+1,
-				node == null ? "......"  : (prop == null ? "????????" : prop.prop_name),
-				str_ar[i]
-				);
-		}
-
+		((Project.Gtk)cur_project).meson.save();
+		GLib.debug("meson file updated and saved");
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}
 
@@ -701,439 +462,6 @@ public class BuilderApplication : Gtk.Application
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}
 
-	void testBjsUpgrade(Project.Project? cur_project)
-	{
-		if (BuilderApplication.opt_test_bjs_upgrade == null) {
-			return;
-		}
-		GLib.debug("Run --test-bjs-upgrade");
-		if (cur_project == null) {
-			GLib.error("missing project, use --project to select which project");
-		}
-
-		// Validate that the argument is a BJS file
-		if (!BuilderApplication.opt_test_bjs_upgrade.has_suffix(".bjs")) {
-			GLib.error("--test-bjs-upgrade argument must be a .bjs file, got: %s", BuilderApplication.opt_test_bjs_upgrade);
-		}
-
-		var file = cur_project.getByRelPath(BuilderApplication.opt_test_bjs_upgrade);
-		if (file == null) {
-			GLib.error("missing file %s in project %s", BuilderApplication.opt_test_bjs_upgrade, cur_project.name);
-		}
-
-		try {
-			file.loadFromBjs();
-		} catch(Error e) {
-			GLib.debug("Load items failed");
-		}
-
-		// Validate parent-child relationships before output
-		if (file.tree != null) {
-			file.tree.validate();
-		}
-
-		// Serialize the file and print it
-		size_t length;
-		string content = Json.gobject_to_data(file, out length);
-		print("%s", content);
-
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-
-	void testWriteVbp(Project.Project? cur_project)
-	{
-		if (BuilderApplication.opt_test_write_vbp == null) {
-			return;
-		}
-		GLib.debug("Run --test-write-vbp");
-		if (cur_project == null) {
-			GLib.error("missing project, use --project to select which project");
-		}
-		if (!BuilderApplication.opt_test_write_vbp.has_suffix(".bjs")) {
-			GLib.error("--test-write-vbp argument must be a .bjs file, got: %s", BuilderApplication.opt_test_write_vbp);
-		}
-
-		var file = cur_project.getByRelPath(BuilderApplication.opt_test_write_vbp);
-		if (file == null) {
-			GLib.error("missing file %s in project %s", BuilderApplication.opt_test_write_vbp, cur_project.name);
-		}
-
-		try {
-			file.loadFromBjs();
-		} catch (Error e) {
-			GLib.debug("Load items failed");
-		}
-
-		var vbp_path = file.path.slice(0, file.path.length - 4) + ".vbp";
-		try {
-			new Vbp.Writer(file).write(vbp_path);
-		} catch (Error e) {
-			GLib.error("write vbp failed: %s", e.message);
-		}
-		print("%s\n", vbp_path);
-
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-
-	void testTokenizeVbp()
-	{
-		if (BuilderApplication.opt_test_tokenize_vbp == null) {
-			return;
-		}
-		GLib.debug("Run --test-tokenize-vbp");
-		try {
-			var stream = GLib.File.new_for_path(BuilderApplication.opt_test_tokenize_vbp).read();
-			print("%s\n", this.dumpVbpToken(new Vbp.Tokenizer(stream).parse_tree()));
-			stream.close();
-		} catch (Error e) {
-			GLib.error("tokenize vbp failed: %s", e.message);
-		}
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-
-	Json.Object dumpVbpTokenObject(Vbp.Token token)
-	{
-		var obj = new Json.Object();
-		obj.set_string_member("kind", token.kind);
-		obj.set_string_member("text", token.text);
-		var arr = new Json.Array();
-		foreach (var child in token.children) {
-			var node = new Json.Node(Json.NodeType.OBJECT);
-			node.init_object(this.dumpVbpTokenObject(child));
-			arr.add_element(node);
-		}
-		obj.set_array_member("children", arr);
-		return obj;
-	}
-
-	string dumpVbpToken(Vbp.Token token)
-	{
-		var node = new Json.Node(Json.NodeType.OBJECT);
-		node.init_object(this.dumpVbpTokenObject(token));
-		var gen = new Json.Generator();
-		gen.pretty = true;
-		gen.set_root(node);
-		return gen.to_data(null);
-	}
-
-	void testParseVbp()
-	{
-		if (BuilderApplication.opt_test_parse_vbp == null) {
-			return;
-		}
-		GLib.debug("Run --test-parse-vbp");
-		try {
-			var stream = GLib.File.new_for_path(BuilderApplication.opt_test_parse_vbp).read();
-			var tree = new Vbp.Parser().parse(stream);
-			stream.close();
-			if (tree == null) {
-				GLib.error("parse vbp: no object tree");
-			}
-			size_t length;
-			print("%s", Json.gobject_to_data(tree, out length));
-		} catch (Error e) {
-			GLib.error("parse vbp failed: %s", e.message);
-		}
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-	void testBjsDowngrade(Project.Project? cur_project)
-	{
-		if (BuilderApplication.opt_test_bjs_downgrade == null) {
-			return;
-		}
-		GLib.debug("Run --test-bjs-downgrade");
-		if (cur_project == null) {
-			GLib.error("missing project, use --project to select which project");
-		}
-
-		// Validate that the argument is a BJS file
-		if (!BuilderApplication.opt_test_bjs_downgrade.has_suffix(".bjs")) {
-			GLib.error("--test-bjs-downgrade argument must be a .bjs file, got: %s", BuilderApplication.opt_test_bjs_downgrade);
-		}
-
-		var file = cur_project.getByRelPath(BuilderApplication.opt_test_bjs_downgrade);
-		if (file == null) {
-			GLib.error("missing file %s in project %s", BuilderApplication.opt_test_bjs_downgrade, cur_project.name);
-		}
-
-		try {
-			file.loadFromBjs();
-		} catch(Error e) {
-			GLib.error("Load items failed: %s", e.message);
-		}
-
-		// Convert to legacy format and print
-		var legacy = new JsRender.FileLegacy(file);
-		var json_str = legacy.toLegacyFormat();
-		print("%s", json_str);
-
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-	void testLanguageServer(Project.Project? cur_project)
-	{
-		if (BuilderApplication.opt_test_language_server == null) {
-			return;
-		}
-		if (cur_project == null) {
-			GLib.error("missing project, use --project to select which project");
-		}
-		var file = cur_project.getByRelPath(BuilderApplication.opt_test_language_server);
-		if (file == null) {
-			// then compile them all, and compare them...
-
-			if (!GLib.FileUtils.test(BuilderApplication.opt_test_language_server, FileTest.EXISTS)) {
-				GLib.error("missing file %s in project %s", BuilderApplication.opt_test_language_server, cur_project.name);
-
-			}
-			// in theory we can test a vapi?
-			file = new JsRender.PlainFile(cur_project,BuilderApplication.opt_test_language_server);
-		}
-
-		var ls = file.getLanguageServer();
-		if (ls == null) {
-			GLib.error("No langauge server returned for file:%s", file.relpath);
-		}
-
-		//GLib.debug("started server - sleep 30 secs so you can gdb attach");
-		//Posix.sleep( 30 );
-		var loop = new MainLoop();
-		GLib.Timeout.add_seconds(1, () => {
-				if (!ls.isReady()) {
-					GLib.debug("LS not ready - try again");
-
-					return true;
-				}
-				//GLib.debug("Sending document_open");
-				// it's ready..
-
-				//ls.document_open(file);
-				//ls.document_save.begin( file, (o,res) => {
-						//	ls.document_save.end(res);
-						//});
-
-				//ls.syntax.begin(file, (obj,res) => {
-						//	ls.syntax.end(res);
-
-						//});
-				GLib.debug("Sending docSybmols");
-
-				ls.documentSymbols.begin(file, (o,res) => {
-						GLib.debug("Got doc symbols return");
-						try {
-							ls.documentSymbols.end(res);
-						} catch (GLib.Error e) {}
-					});
-
-				return false;
-
-			});
-
-
-		loop.run();
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-	/**
-	language server doesnt really give us a rich data set on code,
-	so let's see if we can use the existing GIR code to gather that data.
-	*/
-	void testSymbolBuilder(Project.Project? cur_project)
-	{
-		GLib.debug("Run --test-symbol-builder-compile");
-		if (cur_project == null) {
-			return;
-		}
-		if (cur_project.xtype == "Roo") {
-			if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
-				this.dumpSymbol(cur_project);
-				GLib.Process.exit(Posix.EXIT_SUCCESS);
-			}
-			return;
-		}
-		if (BuilderApplication.opt_compile_group == null ) {
-			return;
-		}
-
-		if (opt_test_gir_parser) {
-			new Palete.ValaSymbolGirBuilder(false, true); //no dialog+  for compile
-			print("Done Gir Builder\n");
-			GLib.Process.exit(Posix.EXIT_SUCCESS);
-		}
-
-
-		if (cur_project.xtype == "Gtk") {
-			GLib.debug("running girparser");
-			new Palete.ValaSymbolGirBuilder(false, false);	// no dialog + dont forc
-		}
-
-		if (BuilderApplication.opt_test_meson) {
-			((Project.Gtk)cur_project).meson.save();
-			GLib.debug("meson file updated and saved");
-			GLib.Process.exit(Posix.EXIT_SUCCESS);
-
-		}
-
-		GLib.debug("running vapiparser");
-		//GLib.debug("started server - sleep 30 secs so you can gdb attach");
-		//Posix.sleep( 30 );
-
-		var loop = new MainLoop();
-
-		var sb = new Palete.ValaSymbolBuilder((Project.Gtk)cur_project);
-
-		sb.updateBackground.begin(BuilderApplication.opt_compile_group, 0,  (o,r )  => {
-				sb.updateBackground.end(r);
-
-				if (BuilderApplication.opt_test_symbol_dump_file != null) {
-					var fc = new Palete.SymbolFileCollection();
-					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_dump_file);
-					sf.loadSymbols();
-					sf.dump();
-					GLib.Process.exit(Posix.EXIT_SUCCESS);
-				}
-				if (BuilderApplication.opt_test_symbol_json_file != null) {
-					var fc = new Palete.SymbolFileCollection();
-					var sf= fc.factory_by_path(BuilderApplication.opt_test_symbol_json_file);
-					sf.loadSymbols();
-					var data = this.jsonArrayToString(sf.symbolsToJSON());
-					print("%s", data);
-					GLib.Process.exit(Posix.EXIT_SUCCESS);
-				}
-
-
-				if (BuilderApplication.opt_test_symbol_dump_fqn != null) {
-					this.dumpSymbol(cur_project);
-				}
-				if (BuilderApplication.opt_test_symbol_json != null) {
-					this.dumpSymbolJSON(cur_project);
-				}
-				if (BuilderApplication.opt_test_symbol_json_tree) {
-					this.dumpSymbolJSONTree(cur_project);
-				}
-
-				GLib.Process.exit(Posix.EXIT_SUCCESS);
-			});
-
-		loop.run();
-
-
-		//Palete.SymbolFile.dumpAll();
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-
-	void dumpSymbol(Project.Project? cur_project)
-	{
-		var sl = cur_project.getSymbolLoader(BuilderApplication.opt_compile_group);
-		var pal  = cur_project.palete;
-		pal.load();
-		var fqn = BuilderApplication.opt_test_symbol_dump_fqn;
-		print("\n\nPropsList:\n%s", this.symbolArrayToString(
-				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP)));
-		print("\n\nSignalList:\n%s",  this.symbolArrayToString(
-				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.LISTENER)));
-
-		print("\n\nConstructors:\n%s", this.symbolArrayToString(
-				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.CTOR)));
-
-		print("\n\nMethods:\n%s", this.symbolArrayToString(
-				pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.METHOD)));
-
-		print("\n\nImplementations:\n%s", this.geeArrayToString(
-				pal.getImplementations(sl, fqn)
-				));
-		print("\n\nChildList:\n%s", this.geeArrayToString(
-				pal.getChildListFromSymbols(sl , fqn, false)));
-		print("\n\nChildList (with props):\n%s", this.geeArrayToString(
-				pal.getChildListFromSymbols(sl , fqn, true)));
-		print("\n\nDroplist :\n%s", this.geeArrayToString(
-				pal.getDropListFromSymbols(sl , fqn)));
-
-	}
-	void dumpSymbolJSON(Project.Project? cur_project)
-	{
-		var sl = cur_project.getSymbolLoader(BuilderApplication.opt_compile_group);
-		var pal  = cur_project.palete;
-		var fqn = BuilderApplication.opt_test_symbol_json;
-		// write to /home/xxx/.Buider/docs/{name}.json ??
-		var sy = sl.singleByFqn(fqn);
-		// in theory this loads up all of the types..
-		pal.getPropertiesFor(sl,  fqn, JsRender.NodePropType.PROP);
-
-
-		var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
-		if (!fd.query_exists()) {
-			fd.make_directory();
-		}
-		var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/" + fqn + ".json");
-
-		var js = Json.gobject_serialize (sy) ;
-
-
-		var data = this.jsonObjectToString(js);
-		//print("%s\n", data);
-		//return;
-		var data_out = new GLib.DataOutputStream(
-			f.replace(null, false, GLib.FileCreateFlags.NONE, null)
-			);
-		data_out.put_string(data, null);
-		data_out.close(null);
-		print("Wrote : %s\n", f.get_path());
-
-	}
-
-	public string jsonArrayToString(Json.Array ar)
-	{
-		var node = new Json.Node (Json.NodeType.ARRAY);
-		node.set_array (ar);
-
-		var  generator = new Json.Generator ();
-
-		generator.set_root (node);
-		generator.pretty = true;
-		generator.indent = 4;
-
-		return  generator.to_data (null);
-	}
-	// these are kind of usefull??? -- move to somewhere more generic?
-	public string jsonObjectToString(Json.Node node)
-	{
-
-		var  generator = new Json.Generator ();
-
-		generator.set_root (node);
-		generator.pretty = true;
-		generator.indent = 4;
-
-		return  generator.to_data (null);
-	}
-
-
-	void dumpSymbolJSONTree(Project.Project? cur_project)
-	{
-		var sl = cur_project.getSymbolLoader(BuilderApplication.opt_compile_group);
-
-		// write to /home/xxx/.Buider/docs/{name}.json ??
-		var ar = sl.classCacheToJSON();
-		// in theory this loads up all of the types..
-
-		var fd = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs");
-		if (!fd.query_exists()) {
-			fd.make_directory();
-		}
-		var f = GLib. File.new_for_path(BuilderApplication.configDirectory() + "/docs/_tree_.json");
-
-		var data = this.jsonArrayToString(ar);
-		//print("%s\n", data);
-		//return;
-		var data_out = new GLib.DataOutputStream(
-			f.replace(null, false, GLib.FileCreateFlags.NONE, null)
-			);
-		data_out.put_string(data, null);
-		data_out.close(null);
-		print("Wrote : %s\n", f.get_path());
-
-	}
-
-
 
 	/*
 	void compileVala()
@@ -1164,43 +492,24 @@ public class BuilderApplication : Gtk.Application
 		GLib.Process.exit(Posix.EXIT_SUCCESS);
 	}
 
-	void testDumpProps(Project.Project? cur_project)
+	public string jsonArrayToString(Json.Array ar)
 	{
-		if (BuilderApplication.opt_test_dump_props == null) {
-			return;
-		}
-		GLib.debug("Run --test-dump-props");
-		if (cur_project == null) {
-			GLib.error("missing project, use --project to select which project");
-		}
-		
-		// Validate that the argument is a BJS file
-		if (!BuilderApplication.opt_test_dump_props.has_suffix(".bjs")) {
-			GLib.error("--test-dump-props argument must be a .bjs file, got: %s", BuilderApplication.opt_test_dump_props);
-		}
-		
-		var file = cur_project.getByRelPath(BuilderApplication.opt_test_dump_props);
-		if (file == null) {
-			GLib.error("missing file %s in project %s", BuilderApplication.opt_test_dump_props, cur_project.name);
-		}
-		
-		try {
-			file.loadFromBjs();
-		} catch(Error e) {
-			GLib.debug("Load from BJS failed: %s", e.message);
-		}
-		
-		// Call dumpProps on the top node (tree)
-		GLib.debug("Checking if file.tree is null for file: %s", file.name);
-		if (file.tree != null) {
-			GLib.debug("File tree is not null, calling dumpProps");
-			file.tree.dumpProps();
-		} else {
-			GLib.debug("File tree is null - dumping object has no properties found");
-			GLib.error("no tree found in file %s", file.name);
-		}
-		
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
+		var node = new Json.Node(Json.NodeType.ARRAY);
+		node.set_array(ar);
+		var generator = new Json.Generator();
+		generator.set_root(node);
+		generator.pretty = true;
+		generator.indent = 4;
+		return generator.to_data(null);
+	}
+
+	public string jsonObjectToString(Json.Node node)
+	{
+		var generator = new Json.Generator();
+		generator.set_root(node);
+		generator.pretty = true;
+		generator.indent = 4;
+		return generator.to_data(null);
 	}
 
 

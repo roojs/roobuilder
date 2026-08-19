@@ -174,6 +174,16 @@ roobuilder_src = files([
    'src/Vbp/Token.vala',
    'src/Vbp/Tokenizer.vala',
    'src/Vbp/Parser.vala',
+   'src/tests/BjsCompile.vala',
+   'src/tests/BjsUpgrade.vala',
+   'src/tests/BjsDowngrade.vala',
+   'src/tests/DumpProps.vala',
+   'src/tests/WriteVbp.vala',
+   'src/tests/TokenizeVbp.vala',
+   'src/tests/ParseVbp.vala',
+   'src/tests/VbpRoundTrip.vala',
+   'src/tests/LanguageServer.vala',
+   'src/tests/SymbolBuilder.vala',
 ])
 
 

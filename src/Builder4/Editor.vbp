@@ -1,0 +1,1614 @@
+vbp-version = 1;
+name = Editor;
+
+Gtk.Box {
+    user Gee.ArrayList<Lsp.Diagnostic>? errors = null;
+    user GtkSource.SearchContext searchcontext = null;
+    user JsRender.Action.ChangeProp? action = null;
+    user JsRender.JsRender? file = null;
+    user JsRender.Node node = null;
+    user JsRender.NodeProp? prop = null;
+    user Xcls_MainWindow window = null;
+    user bool dirty = false;
+    user bool pos = false;
+    user int last_error_counter = 0;
+    user int pos_root_x;
+    user int pos_root_y;
+    user int tag_counter = 0;
+    user string activeEditor = "\"\"";
+    homogeneous = FALSE;
+    orientation = Gtk.Orientation.VERTICAL;
+    hexpand = true;
+    vexpand = true;
+    last_search_end = 0;
+    methods [
+        void save (),
+        bool saveContents ()  {
+        
+        
+        	if (_this.file == null) {
+        		return true;
+        	}
+        
+        	 
+        	 
+        	 var str = _this.buffer.toString();
+        	 var pal = _this.file.palete();
+        	 pal.checkSyntax.begin(_this, (obj,res) => {
+        	 	pal.checkSyntax.end(res);
+        	 
+        	 });
+        	 
+        	 
+        	 
+        	 // LeftPanel.model.changed(  str , false);
+        	 _this.dirty = false;
+        	 _this.save_button.el.sensitive = false;
+        	 
+        	// find the text for the node..
+        	if (_this.file.xtype != "PlainFile") {
+        	   // in theory these properties have to exist!?!
+        
+        	  	_this.action.prop_val = str;
+         	 	_this.file.action_manager.run(_this.action);
+        
+                	
+        
+        		//this.window.windowstate.left_props.reload();
+        	} else {
+        		_this.file.setSource(  str );
+        	}
+        
+        	// call the signal..
+        	this.save();
+        
+        	return true;
+        
+        },
+        int search (string in_txt) {
+        
+        	var s = new GtkSource.SearchSettings();
+        	s.case_sensitive = _this.case_sensitive.el.active;
+        	s.regex_enabled = _this.regex.el.active;	
+        	s.wrap_around = false;
+        	
+        	this.searchcontext = new GtkSource.SearchContext(this.buffer.el,s);
+        	this.searchcontext.set_highlight(true);
+        	var txt = in_txt;
+        	
+        	if (_this.multiline.el.active) {
+        		txt = in_txt.replace("\\n", "\n");
+        	}
+        	
+        	s.set_search_text(txt);
+        	Gtk.TextIter beg, st,en;
+        	 
+        	this.buffer.el.get_start_iter(out beg);
+        	bool has_wrapped_around;
+        	this.searchcontext.forward(beg, out st, out en, out has_wrapped_around);
+        	this.last_search_end = 0;
+        	
+        	return this.searchcontext.get_occurrences_count();
+        
+         
+           
+        
+        },
+        string tempFileContents () {
+           
+           
+           if (_this.file == null) {
+               return "";
+           }
+        	var str= this.buffer.toString();
+        	if (_this.file.xtype == "PlainFile") {
+            
+             	return str;
+            
+            }
+          
+              
+             
+            GLib.debug("calling validate");    
+            // clear the buttons.
+         	if (_this.prop.prop_name == "xns" || _this.prop.prop_name == "xtype") {
+        		return this.file.toSource(); ;
+        	}
+        	_this.action.prop_val = str;
+         	_this.action.run();
+        
+         
+            var ret = _this.file.toSource();
+         	_this.action.undo();
+            return ret;
+            
+        },
+        void backSearch (bool change_focus) {
+        
+        	if (this.searchcontext == null) {
+        		return;
+        	}
+        	
+        	Gtk.TextIter beg, st,en;
+        	bool has_wrapped_around;
+        	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end -1 );
+        	
+        	if (!this.searchcontext.backward(beg, out st, out en, out has_wrapped_around)) {
+        		this.last_search_end = 0;
+        	} else {
+        		this.last_search_end = en.get_offset();
+        		if (change_focus) {
+        			this.view.el.grab_focus();
+        		}
+        		this.buffer.el.place_cursor(st);
+        		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
+        	}
+        	
+        
+        },
+        void forwardSearch (bool change_focus) {
+        
+        	if (this.searchcontext == null) {
+        		return;
+        	} 
+        
+        	Gtk.TextIter beg, st,en;
+        	 bool has_wrapped_around;
+        	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end);
+        	if (!this.searchcontext.forward(beg, out st, out en, out has_wrapped_around)) {
+        	
+        		this.last_search_end = 0; // not sure if this should happen
+        	} else {
+        		if (has_wrapped_around) {
+        			return;
+        		}
+        	
+        		this.last_search_end = en.get_offset();
+        		if (change_focus) {
+        			this.view.el.grab_focus();
+        		}
+        		this.buffer.el.place_cursor(st);
+        		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
+        	}
+         
+        },
+        void reset () {
+        	 this.file = null;    
+             
+            this.node = null;
+            this.prop = null;
+        	this.searchcontext = null;
+          
+        },
+        void scroll_to_line (int line) {
+        
+        	GLib.Timeout.add(500, () => {
+           
+        		var buf = this.view.el.get_buffer();
+        
+        		var sbuf = (GtkSource.Buffer) buf;
+        
+        
+        		Gtk.TextIter iter;   
+        		sbuf.get_iter_at_line(out iter,  line);
+        		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+        		return false;
+        	});   
+        },
+        void show (JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)
+        {
+            this.reset();
+            if (this.file != null) {
+            	this.file.symbol_tree_updated.disconnect(
+            		_this.navigation.show
+            	);
+            }
+            this.file = file;    
+            this.file.symbol_tree_updated.connect(
+        		_this.navigation.show
+        	);
+            if (file.xtype != "PlainFile") {
+            	this.prop = prop;
+            	this.action = new JsRender.Action.ChangeProp(file, prop);
+                this.node = node;
+        
+                // find the text for the node..
+                this.view.load( prop.prop_val );
+                this.updateErrorMarks();
+                
+                
+                
+                this.close_btn.el.show();       
+            
+            } else {
+                this.view.load(  file.toSource() );
+                this.updateErrorMarks();
+                this.close_btn.el.hide();
+         
+               
+        	    var sf = file.symbol_file();
+        	    sf.loadSymbols();
+                 
+                // trigger a scan
+        		_this.file.update_symbol_tree();
+        
+                _this.navigation.show();
+                //var ls = file.getLanguageServer();
+                //ls.queueDocumentSymbols(file);
+                ////ls.documentSymbols.begin(file, (a,o) => {
+                //	_this.navigation.show(ls.documentSymbols.end(o)); 
+               //});
+                //documentSymbols
+                
+            }
+         
+        },
+        void updateErrorMarks () {
+        	
+           if (this.errors == null) {
+        	   	this.errors = new Gee.ArrayList<Lsp.Diagnostic>((a,b) => { return a.equals(b); });
+           	}
+        
+        	var buf = _this.buffer.el;
+        	Gtk.TextIter docstart;
+        	Gtk.TextIter docend;     
+        	buf.get_bounds (out docstart, out docend);
+         
+         
+        	//GLib.debug("highlight errors");		 
+        
+        	 // we should highlight other types of errors..
+        
+        	if (_this.window.windowstate.state != WindowState.State.CODEONLY 
+        		&&
+        		_this.window.windowstate.state != WindowState.State.CODE
+        		) {
+        		//GLib.debug("windowstate != CODEONLY?");
+        		
+        		return;
+        	} 
+         
+        	 
+        	if (_this.file == null) {
+        		GLib.debug("file is null?");
+        		return;
+        
+        	}
+        	var ar = this.file.getErrors();
+        	if (ar.size < 1) {
+        	
+        	 
+        		foreach(var diag in this.errors) {
+        			var tag = diag.steal_data<Gtk.TextTag>("tag");
+        			if (tag != null) {
+        				buf.tag_table.remove(tag);
+        			}
+        			
+        			GtkSource.Mark mark = diag.steal_data<GtkSource.Mark>("mark");
+        			if (mark != null) {
+        				buf.delete_mark(mark);
+        			}
+        			 
+        			 
+        		}
+        		
+        		this.last_error_counter = file.error_counter ;
+        		this.errors.clear();
+        		//GLib.debug("highlight %s :  %s has no errors", this.file.relpath, category);
+        		return;
+        	}
+        	
+         // basicaly check if there is no change, then we do not do any update..
+         // we can do this by just using an error counter?
+         // if that's changed then we will do an update, otherwise dont bother.
+        	  
+        	
+        	var offset = 0;
+        	var hoffset = 0;
+        
+        	var tlines = buf.get_line_count () +1;
+        	
+        	if (_this.prop != null) {
+        		// this still seems flaky...
+        
+        		tlines = _this.prop.end_line;
+        		offset = _this.prop.start_line;
+        		hoffset = _this.node.node_pad.length + 2; //shift it left  by 2 ? ..
+        		
+        		 
+        	} else {
+        		// no update...
+        		if (this.last_error_counter == file.error_counter) {
+        		
+        			return;
+        		}
+        	
+        	}
+        	Gtk.TextIter start;
+        	Gtk.TextIter end;     
+        	
+        	  
+        	foreach(var diag in ar) {
+        	
+        		if (this.errors.contains(diag)) {
+        			continue;
+        		}
+        	
+        	     Gtk.TextIter iter;
+        //        print("get inter\n");
+        	    var eline = (int)diag.range.start.line - offset;
+        	    var eline_to = (int)diag.range.end.line - offset;
+        	    //var eline =  diag.range.end_line - offset;
+        	    //GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
+        	    //	err.line ,eline, offset);
+        	    
+        	    
+        	    if (eline > tlines || eline < 0) {
+        	        continue;
+        	    }
+        	    
+        	    buf.get_iter_at_line( out iter, eline);
+        	   	var msg = "Line: %d %s : %s".printf(eline+1, diag.category, diag.message);
+        	    var mark = buf.create_source_mark( msg, diag.category, iter);
+        	    diag.set_data<GtkSource.Mark>("mark", mark);
+        	    
+         	    var spos = (int)diag.range.start.character - hoffset;
+         	    if (spos < 0) { spos =0 ; }
+         	    if (spos > iter.get_chars_in_line()) {
+        	 	    	spos = iter.get_chars_in_line();
+        			}
+        		buf.get_iter_at_line( out iter, eline_to);
+        		var epos = (int)diag.range.end.character - hoffset;
+         	    if (epos < 0) { epos =0 ; }
+         	    if (epos > iter.get_chars_in_line()) {
+        	 	    	epos = iter.get_chars_in_line();
+        			}
+         	     
+         	    
+         	    buf.get_iter_at_line_offset( out start, eline, spos); 
+         	   
+         	    buf.get_iter_at_line_offset( out end, eline_to,epos); 
+         	    this.tag_counter++;
+         	    Gtk.TextTag tag;
+         	    switch(diag.category) {
+         	    	case "ERR":
+        				tag = buf.create_tag ("ERR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "pink");
+        				break;
+        			case "WARN":
+        				tag = buf.create_tag ("WARN" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#ABF4EB");
+        				break;
+        			case "DEPR":
+        				tag = buf.create_tag ("DEPR" +  this.tag_counter.to_string(), "weight", Pango.Weight.BOLD, "background", "#EEA9FF");
+        				break;
+        			default:
+        				continue;
+         	    
+         	    }
+         	    
+         	    
+        	    buf.apply_tag_by_name(diag.category  +  this.tag_counter.to_string(), start, end);
+            		diag.set_data<Gtk.TextTag>("tag", tag);
+        	    this.errors.add(diag);
+        	   // GLib.debug("set line %d to %s", eline, msg);
+        	    //this.marks.set(eline, msg);
+        	}
+        	var del = new Gee.ArrayList<Lsp.Diagnostic>(); // no compare neeed...
+        	foreach(var diag in this.errors) {
+        		if (ar.contains(diag)) {
+        			continue;
+        		}
+        		var tag = diag.steal_data<Gtk.TextTag>("tag");
+        		if (tag != null) {
+        			buf.tag_table.remove(tag);
+        		}
+         
+        		GtkSource.Mark mark = diag.steal_data<GtkSource.Mark>("mark");
+        		if (mark != null) {
+        			buf.delete_mark(mark);
+        			del.add(diag);
+        		}
+        	
+        	}
+        	foreach(var diag in del) {
+        		this.errors.remove(diag);
+        	}
+        	
+        	this.last_error_counter = file.error_counter ;
+        
+        
+        
+         
+        
+        }
+    ]
+    [
+        Gtk.Paned paned {
+            orientation = Gtk.Orientation.HORIZONTAL;
+            resize_end_child = false;
+            resize_start_child = false;
+            shrink_end_child = false;
+            shrink_start_child = false;
+            start_child = Gtk.Box {
+                orientation = Gtk.Orientation.VERTICAL;
+                hexpand = true;
+                spacing = 0;
+                [
+                    Gtk.Box {
+                        homogeneous = FALSE;
+                        orientation = Gtk.Orientation.HORIZONTAL;
+                        hexpand = false;
+                        vexpand = false;
+                        [
+                            Gtk.Button save_button {
+                                vexpand = true;
+                                label = "Save";
+                                listeners [
+                                    clicked () => { 
+                                        _this.saveContents();
+                                    }
+                                ]
+                            },
+                            Gtk.Label helper {
+                                justify = Gtk.Justification.LEFT;
+                                hexpand = true;
+                                xalign = 0;
+                                margin_end = 4;
+                                margin_start = 4;
+                                listeners [
+                                    activate_link (uri) => {
+                                    
+                                     
+                                    	GLib.debug("got uri %s", uri);
+                                    	
+                                    	_this.window.windowstate.popover_codeinfo.show(this.el, uri);
+                                    	/*
+                                    	var ls = _this.file.getLanguageServer();
+                                    	ls.symbol.begin(uri, (a,b) => {
+                                    		try { 
+                                    			ls.symbol.end(b);
+                                    		} catch (GLib.Error e) {}
+                                    	});
+                                    	*/
+                                    	return true;
+                                    	 
+                                    	 
+                                    },
+                                    query_tooltip (x, y, keyboard_tooltip, tooltip) => {
+                                    	GLib.debug("using quiery tooltip?");
+                                    	var lbl = new Gtk.Label(this.el.tooltip_markup);
+                                    	lbl.width_request = 500;
+                                    	tooltip.set_custom(lbl);
+                                    
+                                    	return true;
+                                    }
+                                ]
+                                methods [
+                                    void setHelp (Lsp.Hover? help) {
+                                    	if (help == null || help.contents == null
+                                    		|| help.contents.size < 1) {
+                                    		this.el.set_text("");
+                                    		return;
+                                    	}
+                                    	
+                                    	this.el.set_markup(help.contents.get(0).value);
+                                    	 /*
+                                    	var sig = help.contents.get(0).value.split(" ");
+                                    	string[] str = {};
+                                    	GLib.debug("setHelp %s", help.contents.get(0).value);
+                                    	for(var i =0; i < sig.length; i++) {
+                                    	
+                                    		switch(sig[i]) {
+                                    			case "public":
+                                    			case "private":
+                                    			case "protected":
+                                    			case "async":
+                                    			case "class":
+                                    			case "{":
+                                    			case "}":
+                                    			case "(":
+                                    			case ")":
+                                    			
+                                    				str += sig[i] + " ";
+                                    				continue;
+                                    				
+                                    				
+                                    			default:
+                                    	
+                                    				str += ("<a href=\"" + GLib.Markup.escape_text(sig[i]) + "\">" + 
+                                    					GLib.Markup.escape_text(sig[i])
+                                    					+"</a>");
+                                    			continue;
+                                    		}
+                                    	}
+                                    	if (help.contents.size > 1) {
+                                    		this.el.tooltip_markup =  GLib.Markup.escape_text(help.contents.get(1).value);
+                                    	} else {
+                                    		this.el.tooltip_markup = GLib.Markup.escape_text(help.contents.get(0).value);
+                                    	}
+                                    	this.el.set_markup(string.joinv(" ",str));
+                                    	*/
+                                    	
+                                    }
+                                ]
+                            },
+                            Gtk.Button help_button {
+                                vexpand = true;
+                                icon_name = "help-about-symbolic";
+                                listeners [
+                                    clicked () => { 
+                                       	
+                                       	var s = ":GLib.Object";
+                                       	
+                                       	if (_this.node != null) {
+                                       		s = ":" + _this.node.fqn();
+                                       		GLib.debug("node selected - fqn is %s", s);
+                                       	}
+                                       	
+                                       	_this.window.windowstate.popover_codeinfo.show(this.el,s);
+                                    }
+                                ]
+                            },
+                            Gtk.Scale {
+                                ctor = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
+                                halign = Gtk.Align.END;
+                                draw_value = false;
+                                has_origin = true;
+                                sensitive = true;
+                                digits = 0;
+                                width_request = 150;
+                                construct {
+                                	//this.el.set_range(6,30);
+                                 	this.el.set_value ( BuilderApplication.settings.editor_font_size);
+                                 	BuilderApplication.settings.editor_font_size_updated.connect(
+                                 		() => {
+                                 			BuilderApplication.settings.editor_font_size_inchange = true;
+                                 		//	GLib.debug("update range");
+                                 		 	this.el.set_value (BuilderApplication.settings.editor_font_size);
+                                 		 	BuilderApplication.settings.editor_font_size_inchange = false;
+                                 		}
+                                	);
+                                	
+                                 
+                                }
+                                listeners [
+                                    change_value (st, val ) => {
+                                    	if (BuilderApplication.settings.editor_font_size_inchange) {
+                                    		return false;
+                                    	}
+                                      	BuilderApplication.settings.editor_font_size = val;
+                                     	return false;
+                                    }
+                                ]
+                            },
+                            Gtk.Button close_btn {
+                                halign = Gtk.Align.END;
+                                icon_name = "window-close";
+                                listeners [
+                                    clicked () => { 
+                                        _this.saveContents();
+                                        _this.window.windowstate.switchState(WindowState.State.PREVIEW);
+                                        
+                                    }
+                                ]
+                                child = Gtk.Image {
+                                    icon_size = Gtk.IconSize.NORMAL;
+                                    icon_name = "window-close";
+                                }
+                            }
+                        ]
+                    },
+                    Gtk.ScrolledWindow RightEditor {
+                        hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+                        vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+                        overlay_scrolling = false;
+                        vexpand = true;
+                        child = GtkSource.View view {
+                            user Gtk.CssProvider css = null;
+                            auto_indent = TRUE;
+                            has_tooltip = true;
+                            hexpand = true;
+                            highlight_current_line = true;
+                            insert_spaces_instead_of_tabs = true;
+                            show_line_marks = true;
+                            show_line_numbers = true;
+                            vexpand = true;
+                            css_classes = "{ \"code-editor\" }";
+                            indent_width = 4;
+                            name = "editor-view";
+                            tab_width = 4;
+                            construct {
+                                this.el.completion.add_provider(
+                                	new Palete.CompletionProvider(_this)
+                                );
+                                
+                                // hover seems pretty useless.. - ??
+                                //var hover = this.el.get_hover();
+                                //hover.add_provider(new Palete.HoverProvider(_this));
+                                
+                                //this.el.completion.unblock_interactive();
+                                this.el.completion.select_on_show = true; // select
+                                //this.el.completion.remember_info_visibility	 = true;
+                                
+                                
+                                var attrs = new GtkSource.MarkAttributes();
+                                
+                                attrs.set_icon_name ( "dialog-error");    
+                                attrs.query_tooltip_text.connect(( mark) => {
+                                     GLib.debug("tooltip query? %s", mark.name);
+                                    return strdup( mark.name);
+                                });
+                                 attrs.query_tooltip_markup.connect(( mark) => {
+                                     GLib.debug("tooltip query? %s", mark.name);
+                                    return strdup( mark.name);
+                                });
+                                this.el.set_mark_attributes ("ERR", attrs, 1);
+                                attrs.ref();
+                                
+                                
+                                var wattrs = new GtkSource.MarkAttributes();
+                                wattrs.set_icon_name ( "dialog-warning");    
+                                wattrs.query_tooltip_text.connect(( mark) => {
+                                     GLib.debug("tooltip query? %s", mark.name);
+                                    return strdup(mark.name);
+                                });
+                                wattrs.query_tooltip_markup.connect(( mark) => {
+                                     GLib.debug("tooltip query? %s", mark.name);
+                                    return strdup(mark.name);
+                                });
+                                this.el.set_mark_attributes ("WARN", wattrs, 1);
+                                wattrs.ref();
+                                
+                                 
+                                var dattrs = new GtkSource.MarkAttributes();
+                                 
+                                dattrs.set_icon_name ( "dialog-information"); 
+                                
+                                dattrs.query_tooltip_text.connect(( mark) => {
+                                	GLib.debug("tooltip query? %s", mark.name);
+                                    return strdup(mark.name);
+                                });
+                                //dattrs.query_tooltip_markup.connect(( mark) => {
+                                //	GLib.debug("tooltip query? %s", mark.name);
+                                 //   return strdup(mark.name);
+                                //});
+                                this.el.set_mark_attributes ("DEPR", dattrs, 1);
+                                dattrs.ref();    
+                                
+                                 this.el.get_space_drawer().set_matrix(null);
+                                 this.el.get_space_drawer().set_types_for_locations( 
+                                	GtkSource.SpaceLocationFlags.ALL,
+                                	GtkSource.SpaceTypeFlags.ALL
+                                );
+                                this.el.get_space_drawer().set_enable_matrix(true);
+                            }
+                            listeners [
+                                query_tooltip (x, y, keyboard_tooltip, tooltip) => {
+                                	
+                                	//GLib.debug("query tooltip");
+                                	Gtk.TextIter iter;
+                                	int trailing;
+                                	
+                                	var yoff = (int) _this.RightEditor.el.vadjustment.value;
+                                	
+                                	// I think this is problematic - if it's compliing  / updating at same time as query.
+                                	
+                                	//if (_this.window.statusbar_compile_spinner.el.spinning) {
+                                	//	return false;
+                                	//}
+                                	
+                                	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
+                                	 
+                                	var l = iter.get_line();
+                                
+                                	
+                                	 
+                                	// GLib.debug("query tooltip line %d", (int) l);
+                                	if (l < 0) {
+                                
+                                		return false;
+                                	}
+                                	/*
+                                	if (_this.buffer.marks != null && _this.buffer.marks.has_key(l)) {
+                                		GLib.debug("line %d setting tip to %s", l,  _this.buffer.marks.get(l));
+                                		tooltip.set_text(_this.buffer.marks.get(l).dup());
+                                		return true;
+                                	}
+                                 
+                                	return false;
+                                	*/
+                                	
+                                	  
+                                	// this crashes?? - not sure why.
+                                	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
+                                	if (marks.is_empty()) {
+                                		marks = _this.buffer.el.get_source_marks_at_line(l, "WARN");
+                                	}
+                                	if (marks.is_empty()) {
+                                		marks = _this.buffer.el.get_source_marks_at_line(l, "DEPR");
+                                	}
+                                	
+                                	// GLib.debug("query tooltip line %d marks %d", (int)l, (int) marks.length());
+                                	var str = "";
+                                	marks.@foreach((m) => { 
+                                		//GLib.debug("got mark %s", m.name);
+                                		str += (str.length > 0 ? "\n" : "") + m.category + ": " + m.name;
+                                	});
+                                	// true if there is a mark..
+                                	if (str.length > 0 ) {
+                                		tooltip.set_text( str );
+                                	}
+                                	return str.length > 0 ? true : false;
+                                	 
+                                }
+                            ]
+                            methods [
+                                void load (string str) {
+                                
+                                // show the help page for the active node..
+                                   //this.get('/Help').show();
+                                 
+                                  // this.get('/BottomPane').el.set_current_page(0);
+                                  	GLib.debug("load called - Reset undo buffer");
+                                  	
+                                    var buf = (GtkSource.Buffer)this.el.get_buffer();
+                                    buf.begin_irreversible_action();
+                                    buf.set_text(str, str.length);
+                                    buf.end_irreversible_action();
+                                    
+                                    var lm = GtkSource.LanguageManager.get_default();
+                                    var lang = "vala";
+                                    if (_this.file != null) {
+                                         lang = _this.file.language;
+                                    }
+                                    print("lang=%s, content_type = %s\n", lang, _this.file.content_type);
+                                    var lg = _this.file.content_type.length > 0  ?
+                                            lm.guess_language(_this.file.path, _this.file.content_type) :
+                                            lm.get_language(lang);
+                                     
+                                   
+                                    ((GtkSource.Buffer)(this.el.get_buffer())) .set_language(lg); 
+                                
+                                    this.el.insert_spaces_instead_of_tabs = true;
+                                    if (lg != null) {
+                                		print("sourcelanguage  = %s\n", lg.name);
+                                		if (lg.name == "Vala") {
+                                		    this.el.insert_spaces_instead_of_tabs = false;
+                                		}
+                                     }
+                                    _this.dirty = false;
+                                    this.el.grab_focus();
+                                    _this.save_button.el.sensitive = false;
+                                    _this.last_error_counter = -1;
+                                }
+                            ]
+                            buffer = GtkSource.Buffer buffer {
+                                user int check_syntax_counter = 0;
+                                xmarks = null;
+                                check_queued = false;
+                                enable_undo = true;
+                                highlight_matching_brackets = true;
+                                highlight_syntax = true;
+                                error_line = -1;
+                                construct {
+                                    var buf = this.el;
+                                    buf.create_tag ("bold", "weight", Pango.Weight.BOLD);
+                                    buf.create_tag ("type", "weight", Pango.Weight.BOLD, "foreground", "#204a87");
+                                    buf.create_tag ("keyword", "weight", Pango.Weight.BOLD, "foreground", "#a40000");
+                                    buf.create_tag ("text", "weight", Pango.Weight.NORMAL, "foreground", "#729fcf");
+                                    buf.create_tag ("number", "weight", Pango.Weight.BOLD, "foreground", "#ad7fa8");
+                                    buf.create_tag ("method", "weight", Pango.Weight.BOLD, "foreground", "#729fcf");
+                                    buf.create_tag ("property", "weight", Pango.Weight.BOLD, "foreground", "#BC1F51");
+                                    buf.create_tag ("variable", "weight", Pango.Weight.BOLD, "foreground", "#A518B5");
+                                }
+                                listeners [
+                                    changed () => {
+                                        // check syntax??
+                                        // ??needed..??
+                                        _this.save_button.el.sensitive = true;
+                                        print("EDITOR CHANGED");
+                                        var pal = _this.file.palete();
+                                        pal.checkSyntax.begin( _this,  ( obj,res ) => {
+                                        	pal.checkSyntax.end(res);
+                                       });
+                                       
+                                        _this.dirty = true;
+                                    
+                                        // this.get('/LeftPanel.model').changed(  str , false);
+                                        return ;
+                                    },
+                                    cursor_moved ( ) => {
+                                    
+                                    	Gtk.TextIter iter;
+                                    	this.el.get_iter_at_offset (
+                                    			out iter, this.el.cursor_position);
+                                    
+                                    	_this.navigation.updateSelectedLine(
+                                    			(uint)iter.get_line() +1,
+                                    			(uint)iter.get_line_offset()
+                                    		);
+                                    	this.showHelp(iter);
+                                    
+                                    }
+                                ]
+                                methods [
+                                    bool XhighlightErrors ( Gee.HashMap<int,string> validate_res) {
+                                             
+                                    	this.error_line = validate_res.size;
+                                    
+                                    	if (this.error_line < 1) {
+                                    		return true;
+                                    	}
+                                    	var tlines = this.el.get_line_count ();
+                                    	Gtk.TextIter iter;
+                                    	var valiter = validate_res.map_iterator();
+                                    	while (valiter.next()) {
+                                    
+                                    	//        print("get inter\n");
+                                    		var eline = valiter.get_key();
+                                    		if (eline > tlines) {
+                                    			continue;
+                                    		}
+                                    		this.el.get_iter_at_line( out iter, eline);
+                                    		//print("mark line\n");
+                                    		this.el.create_source_mark(valiter.get_value(), "ERR", iter);
+                                    	}   
+                                    	return false;
+                                    },
+                                    string toString () {
+                                        
+                                        Gtk.TextIter s;
+                                        Gtk.TextIter e;
+                                        this.el.get_start_iter(out s);
+                                        this.el.get_end_iter(out e);
+                                        var ret = this.el.get_text(s,e,true);
+                                        //print("TO STRING? " + ret);
+                                        return ret;
+                                    },
+                                    void showHelp (Gtk.TextIter iter) {
+                                    	var back = iter.copy();
+                                    	back.backward_char();
+                                    	
+                                    	var forward = iter.copy();
+                                    	forward.forward_char();
+                                    	
+                                    	// what's the character at the iter?
+                                    	var str = back.get_text(iter);
+                                    	str += iter.get_text(forward);
+                                    	if (str.strip().length < 1) {
+                                    		return;
+                                    	}
+                                    	var offset = iter.get_line_offset();
+                                    	var line = iter.get_line();
+                                    	if (_this.prop != null) {
+                                    				// 
+                                    		line += _this.prop.start_line ; 
+                                    					// this is based on Gtk using tabs (hence 1/2 chars);
+                                    		offset += _this.node.node_pad.length;
+                                    					// javascript listeners are indented 2 more spaces.
+                                    		if (_this.prop.node_type == JsRender.NodePropType.LISTENER) {
+                                    			offset += 2;
+                                    		}
+                                    	} 
+                                    	
+                                    	var ls = _this.file.getLanguageServer();
+                                    	ls.hover.begin(
+                                    		_this.file, line, offset,
+                                    		( a, o)  => {
+                                    			try {
+                                    				var res = ls.hover.end(o );
+                                    			
+                                    				_this.helper.setHelp(res);
+                                    			} catch (GLib.Error e) {
+                                    				// noop..
+                                    			}
+                                    		});
+                                    }
+                                ]
+                            }
+                            [
+                                Gtk.EventControllerScroll {
+                                    user double distance = 0.0f;
+                                    flags = Gtk.EventControllerScrollFlags.VERTICAL;
+                                    listeners [
+                                        scroll (dx, dy) => {
+                                        
+                                        	var is_control = 
+                                        		0 != (_this.window.keyboard.get_modifier_state() & Gdk.ModifierType.CONTROL_MASK);
+                                        
+                                        
+                                        	if (!is_control) {
+                                        		return false;
+                                        	}
+                                        	 //GLib.debug("scroll %f",  dy);
+                                        	
+                                        	this.distance += dy;
+                                        	
+                                        	//GLib.debug("scroll %f / %f",  dy, this.distance);
+                                         
+                                        	 if (this.distance < -1) {
+                                         
+                                        		BuilderApplication.settings.editor_font_size ++;
+                                        		this.distance = 0;
+                                        	}
+                                        	if (this.distance > 1) {
+                                        		BuilderApplication.settings.editor_font_size --;
+                                        		this.distance = 0;
+                                        	}
+                                        	 
+                                        	return true;
+                                        }
+                                    ]
+                                },
+                                Gtk.GestureClick {
+                                    listeners [
+                                        pressed (n_press, x, y) => {
+                                        	Gtk.TextIter iter;
+                                        	int  buffer_x, buffer_y;
+                                        	var gut = _this.view.el.get_gutter(Gtk.TextWindowType.LEFT);
+                                        	
+                                        	 _this.view.el.window_to_buffer_coords (Gtk.TextWindowType.TEXT,
+                                        		(int)x - gut.get_width(),  (int)y,
+                                          		out  buffer_x, out  buffer_y);
+                                        	_this.view.el.get_iter_at_location (out  iter,  
+                                        			buffer_x,  buffer_y);;
+                                        	
+                                        	
+                                        	if (_this.buffer.el.iter_has_context_class(iter, "comment") ||
+                                        		_this.buffer.el.iter_has_context_class(iter, "string")
+                                        	) { 
+                                        		return ;
+                                        	}
+                                        	_this.buffer.showHelp(iter);
+                                        	 
+                                        		 
+                                         
+                                        }
+                                    ]
+                                },
+                                Gtk.EventControllerKey {
+                                    listeners [
+                                        key_released (  keyval,   keycode,  state) =>  
+                                        {
+                                            if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+                                                GLib.debug("SAVE: ctrl-S  pressed");
+                                                _this.saveContents();
+                                                return;
+                                            }
+                                            
+                                            if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+                                        	    GLib.debug("SAVE: ctrl-g  pressed");
+                                        		_this.forwardSearch(true);
+                                        	    return;
+                                        	}
+                                        	if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+                                        	    GLib.debug("SAVE: ctrl-f  pressed");
+                                        		_this.search_entry.el.grab_focus();
+                                        		_this.search_entry.el.select_region(0,-1);
+                                        	    return;
+                                        	}
+                                        	if (keyval == Gdk.Key.space && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+                                        		_this.view.el.show_completion();
+                                        	}
+                                        	
+                                        	Gtk.TextIter iter;
+                                        	_this.buffer.el.get_iter_at_offset( out iter, _this.buffer.el.cursor_position);  
+                                        	var line  = iter.get_line();
+                                        	var offset = iter.get_line_offset();
+                                        	GLib.debug("line  %d  off %d", line ,offset);
+                                        	if (_this.prop != null) {
+                                        		line += _this.prop.start_line + 1; // i think..
+                                        		offset += 12; // should probably be 8 without namespaced 
+                                        		GLib.debug("guess line  %d  off %d", line ,offset);
+                                        	} 
+                                            //_this.view.el.show_completion();
+                                           // print(event.key.keyval)
+                                            
+                                            
+                                        
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    Gtk.Box {
+                        pack = append;
+                        orientation = Gtk.Orientation.HORIZONTAL;
+                        homogeneous = false;
+                        vexpand = false;
+                        spacing = 0;
+                        [
+                            Gtk.SearchEntry search_entry {
+                                css;
+                                hexpand = true;
+                                name = "editor-search-entry";
+                                placeholder_text = "Press enter to search";
+                                search_delay = 3;
+                                listeners [
+                                    search_changed ( ) => {
+                                    
+                                    _this.search(_this.search_entry.el.text);
+                                    	 _this.search_results.updateResults();
+                                    
+                                    	GLib.Timeout.add_seconds(1,() => {
+                                    		 _this.search_results.updateResults();
+                                    		 return false;
+                                    	 });
+                                    }
+                                ]
+                                methods [
+                                    void forwardSearch (bool change_focus) {
+                                    
+                                    
+                                    	_this.forwardSearch(change_focus);
+                                    
+                                    /*
+                                    
+                                    	switch(_this.windowstate.state) {
+                                    		case WindowState.State.CODEONLY:
+                                    		//case WindowState.State.CODE:
+                                    			// search the code being edited..
+                                    			_this.windowstate.code_editor_tab.forwardSearch(change_focus);
+                                    			 
+                                    			break;
+                                    		case WindowState.State.PREVIEW:
+                                    			if (_this.windowstate.file.xtype == "Gtk") {
+                                    				_this.windowstate.window_gladeview.forwardSearch(change_focus);
+                                    			} else { 
+                                    				 _this.windowstate.window_rooview.forwardSearch(change_focus);
+                                    			}
+                                    		
+                                    			break;
+                                    	}
+                                    	*/
+                                    	
+                                    }
+                                ]
+                                [
+                                    Gtk.EventControllerKey {
+                                        listeners [
+                                            key_pressed (keyval, keycode, state) => {
+                                            
+                                            	if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+                                            	    GLib.debug("SAVE: ctrl-g  pressed");
+                                            		_this.forwardSearch(true);
+                                            	    return true;
+                                            	}
+                                                
+                                              
+                                             	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
+                                            		_this.forwardSearch(true);
+                                            		
+                                            		
+                                            	    return true;
+                                            
+                                            	}    
+                                               // print(event.key.keyval)
+                                               
+                                                return false;
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            Gtk.Label search_results {
+                                margin_end = 4;
+                                margin_start = 4;
+                                label = "No Results";
+                                methods [
+                                    void updateResults () {
+                                    	this.el.visible = true;
+                                    	
+                                    	var res = _this.searchcontext.get_occurrences_count();
+                                    	if (res < 0) {
+                                    		_this.search_results.el.label = "??? Matches";		
+                                    		return;
+                                    	}
+                                    
+                                    	_this.nextBtn.el.sensitive = false;
+                                    	_this.backBtn.el.sensitive = false;	
+                                    
+                                    	if (res > 0) {
+                                    		_this.search_results.el.label = "%d Matches".printf(res);
+                                    		_this.nextBtn.el.sensitive = true;
+                                    		_this.backBtn.el.sensitive = true;
+                                    		return;
+                                    	} 
+                                    	_this.search_results.el.label = "No Matches";
+                                    	
+                                    }
+                                ]
+                            },
+                            Gtk.Button nextBtn {
+                                always_show_image = true;
+                                sensitive = false;
+                                icon_name = "go-down";
+                                listeners [
+                                    clicked (event) => {
+                                    
+                                    	_this.forwardSearch(true);
+                                    	
+                                    	 
+                                    }
+                                ]
+                            },
+                            Gtk.Button backBtn {
+                                always_show_image = true;
+                                sensitive = false;
+                                icon_name = "go-up";
+                                listeners [
+                                    clicked (event) => {
+                                    
+                                    	_this.backSearch(true);
+                                    	 
+                                    }
+                                ]
+                            },
+                            Gtk.MenuButton {
+                                always_show_arrow = true;
+                                always_show_image = true;
+                                icon_name = "emblem-system";
+                                popover = Gtk.Popover search_settings {
+                                    child = Gtk.Box {
+                                        orientation = Gtk.Orientation.VERTICAL;
+                                        spacing = 0;
+                                        [
+                                            Gtk.CheckButton case_sensitive {
+                                                label = "Case Sensitive";
+                                                construct {
+                                                	this.el.show();
+                                                }
+                                            },
+                                            Gtk.CheckButton regex {
+                                                label = "Regex";
+                                                construct {
+                                                	this.el.show();
+                                                }
+                                            },
+                                            Gtk.CheckButton multiline {
+                                                label = Multi-line (add \n);
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+            end_child = Gtk.Box navigation_holder {
+                orientation = Gtk.Orientation.VERTICAL;
+                hexpand = true;
+                vexpand = true;
+                visible = false;
+                spacing = 0;
+                width_request = 120;
+                [
+                    Gtk.Box {
+                        orientation = Gtk.Orientation.HORIZONTAL;
+                        spacing = 0;
+                    },
+                    Gtk.ScrolledWindow navigationwindow {
+                        hexpand = true;
+                        vexpand = true;
+                        visible = true;
+                        child = Gtk.ColumnView navigation {
+                            user Palete.SymbolFile? symbolfile = null;
+                            user int last_selected_line = -1;
+                            selected_row = null;
+                            name = "editor-navigation";
+                            methods [
+                                Gtk.Widget? getRowWidgetAt (double x,  double  y, out string pos) {
+                                
+                                	pos = "";
+                                	var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
+                                	//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
+                                	if (w == null) {
+                                		return null;
+                                	}
+                                	
+                                	var row= w.get_ancestor(GLib.Type.from_name("GtkColumnViewRowWidget"));
+                                	if (row == null) {
+                                		return null;
+                                	}
+                                	
+                                	//GLib.debug("got colview %s", row == null ? "nothing" : row.get_type().name());
+                                	 
+                                 
+                                	
+                                	//GLib.debug("row number is %d", rn);
+                                	//GLib.debug("click %d, %d", (int)x, (int)y);
+                                	// above or belw
+                                	Graphene.Rect  bounds;
+                                	row.compute_bounds(this.el, out bounds);
+                                	//GLib.debug("click x=%d, y=%d, w=%d, h=%d", 
+                                	//	(int)bounds.get_x(), (int)bounds.get_y(),
+                                	//	(int)bounds.get_width(), (int)bounds.get_height()
+                                	//	);
+                                	var ypos = y - bounds.get_y();
+                                	//GLib.debug("rel ypos = %d", (int)ypos);	
+                                	var rpos = 100.0 * (ypos / bounds.get_height());
+                                	//GLib.debug("rel pos = %d %%", (int)rpos);
+                                	pos = "over";
+                                	
+                                	if (rpos > 80) {
+                                		pos = "below";
+                                	} else if (rpos < 20) {
+                                		pos = "above";
+                                	} 
+                                	return row;
+                                 },
+                                int getRowAt (double x,  double  y, out string pos) {
+                                
+                                	pos = "";
+                                	var w = this.el.pick(x, y, Gtk.PickFlags.DEFAULT);
+                                	//GLib.debug("got widget %s", w == null ? "nothing" : w.get_type().name());
+                                	if (w == null) {
+                                		return -1;
+                                	}
+                                	
+                                	var row= w.get_ancestor(GLib.Type.from_name("GtkColumnViewRowWidget"));
+                                	if (row == null) {
+                                		return -1;
+                                	}
+                                	
+                                	//GLib.debug("got colview %s", row == null ? "nothing" : row.get_type().name());
+                                	 
+                                	var rn = 0;
+                                	var cr = row;
+                                	 
+                                	while (cr.get_prev_sibling() != null) {
+                                		rn++;
+                                		cr = cr.get_prev_sibling();
+                                	}
+                                	
+                                	//GLib.debug("row number is %d", rn);
+                                	//GLib.debug("click %d, %d", (int)x, (int)y);
+                                	// above or belw
+                                	Graphene.Rect  bounds;
+                                	row.compute_bounds(this.el, out bounds);
+                                	//GLib.debug("click x=%d, y=%d, w=%d, h=%d", 
+                                	//	(int)bounds.get_x(), (int)bounds.get_y(),
+                                	//	(int)bounds.get_width(), (int)bounds.get_height()
+                                	//	);
+                                	var ypos = y - bounds.get_y();
+                                	//GLib.debug("rel ypos = %d", (int)ypos);	
+                                	var rpos = 100.0 * (ypos / bounds.get_height());
+                                	//GLib.debug("rel pos = %d %%", (int)rpos);
+                                	pos = "over";
+                                	
+                                	if (rpos > 80) {
+                                		pos = "below";
+                                	} else if (rpos < 20) {
+                                		pos = "above";
+                                	} 
+                                	return rn;
+                                 },
+                                void show () {
+                                	GLib.debug("show tree");
+                                	var new_symbolfile= _this.file.symbol_file();
+                                	
+                                	// shoudl tree for first time only?
+                                	if (!_this.navigation_holder.el.visible && new_symbolfile.children.get_n_items() > 0) {
+                                		_this.navigation_holder.el.show();
+                                		_this.paned.el.position  = 
+                                			_this.paned.el.get_width() - 200;
+                                	}
+                                	
+                                	var tlm = (Gtk.TreeListModel) _this.navigationsort.el.get_model();
+                                	var old = (GLib.ListStore)tlm.get_model();
+                                	
+                                	if (this.symbolfile != null && this.symbolfile.id ==  new_symbolfile.id) {
+                                		return;
+                                	}
+                                	old.remove_all();
+                                	this.symbolfile = new_symbolfile;
+                                	var ls = new_symbolfile.children;
+                                	 
+                                	for(var i = 0; i < ls.get_n_items();i++) {
+                                		var ni = (Palete.Symbol)ls.get_item(i);
+                                		old.append(ni);
+                                	}
+                                 	this.last_selected_line = -1;
+                                 	// first load
+                                	GLib.Idle.add(() => {
+                                		_this.navigationsort.collapseOnLoad();
+                                		Gtk.TextIter iter;
+                                		_this.buffer.el.get_iter_at_offset (
+                                				out iter, _this.buffer.el.cursor_position);
+                                		
+                                		GLib.debug("idle update scroll %d, %d", iter.get_line(),
+                                				iter.get_line_offset());
+                                		this.updateSelectedLine(
+                                				(uint)iter.get_line(),
+                                				(uint)iter.get_line_offset()
+                                		);
+                                		return false;
+                                	});
+                                
+                                },
+                                void updateSelectedLine (uint line, uint chr) {
+                                	if (line == this.last_selected_line) {
+                                		return;
+                                	}
+                                	GLib.debug("select line %d", (int)line);
+                                	this.last_selected_line = (int)line;
+                                	
+                                	
+                                	var new_row = -1;
+                                	var sym = _this.navigationsort.symbolAtLine(line, chr);
+                                	if (sym != null) {
+                                	 	new_row = _this.navigationsort.getRowFromSymbol(sym);
+                                 		GLib.debug("select line %d - row found %d", (int)line, new_row);
+                                 	} else {
+                                 		GLib.debug(" no symbol found at line %d", (int)line);
+                                 	}
+                                 	
+                                	if (this.selected_row != null) { 
+                                		GLib.debug(" remove selected row");
+                                		this.selected_row.remove_css_class("selected-row");
+                                	}
+                                	this.selected_row  = null;
+                                	if (new_row > -1) {
+                                		this.el.scroll_to(new_row,null,Gtk.ListScrollFlags.NONE, null);
+                                		var row = sym.get_data<Gtk.Widget>("widget");
+                                		if (row != null) {
+                                			GLib.debug(" Add selected row");
+                                 			
+                                			row.add_css_class("selected-row");
+                                			this.selected_row = row;
+                                
+                                			
+                                		} else {
+                                			GLib.debug("could not find widget on row %d", new_row);
+                                		}
+                                
+                                	}
+                                
+                                
+                                }
+                            ]
+                            model = Gtk.NoSelection navigationselmodel {
+                                model = Gtk.FilterListModel {
+                                    filter = Gtk.CustomFilter {
+                                        match_func = (item) => { 
+                                        	var tr = ((Gtk.TreeListRow)item).get_item();
+                                           GLib.debug("filter%s =>  %s", item.get_type().name(), 
+                                           tr.get_type().name()
+                                           );
+                                        	var j =  (Palete.Symbol) tr;
+                                        	
+                                        	switch( j.stype) {
+                                        	
+                                        		case Lsp.SymbolKind.Namespace:
+                                        		case Lsp.SymbolKind.Class:
+                                        		case Lsp.SymbolKind.Method:
+                                        		case Lsp.SymbolKind.Property:
+                                        		 case Lsp.SymbolKind.Field:  //???
+                                        		case Lsp.SymbolKind.Constructor:
+                                        		case Lsp.SymbolKind.Interface:
+                                        		case Lsp.SymbolKind.Enum:
+                                        		case Lsp.SymbolKind.Constant:
+                                        		case Lsp.SymbolKind.EnumMember:
+                                        		case Lsp.SymbolKind.Struct:
+                                        			return true;
+                                        			
+                                        		default : 
+                                        			GLib.debug("hide %s", j.stype.to_string());
+                                        			return false;
+                                        	
+                                        	}
+                                        
+                                        }
+                                    }
+                                    model = Gtk.SortListModel navigationsort {
+                                        methods [
+                                            Palete.Symbol? getSymbolAt (uint row) {
+                                            
+                                               var tr = (Gtk.TreeListRow)this.el.get_item(row);
+                                               
+                                              // var a = tr.get_item();;   
+                                              // GLib.debug("get_item (2) = %s", a.get_type().name());
+                                              	
+                                               
+                                               return (Palete.Symbol)tr.get_item();
+                                            	 
+                                            },
+                                            Palete.Symbol? symbolAtLine (uint line, uint chr) {
+                                             
+                                            	var tlm = (Gtk.TreeListModel)this.el.get_model();
+                                            	var ls = tlm.get_model();
+                                            	
+                                            	for(var i = 0; i < ls.get_n_items();i++) {
+                                            		var el = (Palete.Symbol)ls.get_item(i);
+                                            		//GLib.debug("Check sym %s : %d-%d",
+                                            		//	el.name , (int)el.range.start.line,
+                                            		//	(int)el.range.end.line
+                                            		//);
+                                            		var ret = el.containsLine(line,chr);
+                                            		if (ret != null) {
+                                            			return ret;
+                                            		}
+                                            		
+                                            	}
+                                            	
+                                            	return null;
+                                            },
+                                            int getRowFromSymbol (Palete.Symbol sym) {
+                                            // is this used as we have setdata???
+                                            	for (var i=0;i < this.el.get_n_items(); i++) {
+                                            		var tr = (Gtk.TreeListRow)this.el.get_item(i);
+                                            		var trs = (Palete.Symbol)tr.get_item();
+                                            		if (sym.id ==  trs.id) {
+                                            			return i;
+                                            		}
+                                            	}
+                                               	return -1;
+                                            },
+                                            void collapseOnLoad () {
+                                            	for (var i=0;i < this.el.get_n_items(); i++) {
+                                            		var tr = (Gtk.TreeListRow)this.el.get_item(i);
+                                            		var sym =  (Palete.Symbol)tr.get_item();
+                                            		switch (sym.stype) {
+                                            	 		case Lsp.SymbolKind.Enum: 
+                                            	 			tr.expanded = false;
+                                            	 			break;
+                                            			default:
+                                            				tr.expanded = true;
+                                            				break;
+                                            		}
+                                            	}
+                                             
+                                            	
+                                            
+                                            
+                                            }
+                                        ]
+                                        sorter = Gtk.TreeListRowSorter {
+                                            sorter = Gtk.StringSorter {
+                                                expression = Gtk.PropertyExpression {
+                                                    this_type = typeof(Palete.Symbol);
+                                                    property_name = "sort_key";
+                                                }
+                                            }
+                                        }
+                                        model = Gtk.TreeListModel {
+                                            create_func = (item) => {
+                                             
+                                            	return ((Palete.Symbol)item).children;
+                                            }
+                                            
+                                            autoexpand = false;
+                                            passthrough = false;
+                                            root = GLib.ListStore {
+                                                item_type = typeof(Palete.Symbol);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            [
+                                Gtk.ColumnViewColumn {
+                                    expand = true;
+                                    title = "Code Navigation";
+                                    factory = Gtk.SignalListItemFactory {
+                                        listeners [
+                                            bind (listitem) => {
+                                            	 
+                                            	// GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+                                            	
+                                            	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+                                            	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+                                            	 
+                                            	 
+                                            	var hbox = (Gtk.Box) expand.child;
+                                             
+                                            	
+                                            	var img = (Gtk.Image) hbox.get_first_child();
+                                            	var lbl = (Gtk.Label) img.get_next_sibling();
+                                            	
+                                            	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+                                            	var sym = (Palete.Symbol) lr.get_item();
+                                            	
+                                            	sym.set_data<Gtk.Widget>("widget", expand.get_parent());
+                                            	expand.get_parent().get_parent().set_data<Palete.Symbol>("symbol", sym);
+                                            	
+                                            	  
+                                                expand.set_hide_expander( sym.children.get_n_items()  < 1);
+                                             	expand.set_list_row(lr);
+                                             	//this.in_bind = true;
+                                             	// default is to expand
+                                             
+                                             	//this.in_bind = false;
+                                             	
+                                             	sym.bind_property("symbol_icon",
+                                                                img, "icon_name",
+                                                               GLib.BindingFlags.SYNC_CREATE);
+                                             	
+                                             	hbox.css_classes = { sym.symbol_icon };
+                                             	
+                                             	sym.bind_property("name",
+                                                                lbl, "label",
+                                                               GLib.BindingFlags.SYNC_CREATE);
+                                             	// should be better?- --line no?
+                                             	sym.bind_property("tooltip",
+                                                                lbl, "tooltip_markup",
+                                                               GLib.BindingFlags.SYNC_CREATE);
+                                             	// bind image...
+                                             	
+                                            },
+                                            setup (listitem) => {
+                                            	
+                                            	var expand = new Gtk.TreeExpander();
+                                            	 
+                                            	expand.set_indent_for_depth(true);
+                                            	expand.set_indent_for_icon(true);
+                                            	var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
+                                            	var icon = new Gtk.Image();
+                                            	var lbl = new Gtk.Label("");
+                                            	lbl.use_markup = true;
+                                            	lbl.ellipsize = Pango.EllipsizeMode.END;
+                                            	
+                                            	icon.margin_end = 4;
+                                             	lbl.justify = Gtk.Justification.LEFT;
+                                             	lbl.xalign = 0;
+                                            
+                                            //	listitem.activatable = true; ??
+                                            	
+                                            	hbox.append(icon);
+                                            	hbox.append(lbl);
+                                            	expand.set_child(hbox);
+                                            	((Gtk.ListItem)listitem).set_child(expand);
+                                            	
+                                            }
+                                        ]
+                                    }
+                                },
+                                Gtk.GestureClick {
+                                    listeners [
+                                        pressed (n_press, x, y) => {
+                                        	string pos;
+                                          	var row = _this.navigation.getRowWidgetAt(x,y, out pos );
+                                        
+                                            if (row == null) {
+                                        	    GLib.debug("no row selected items");
+                                        	    return;
+                                            }
+                                        	GLib.debug("got click on %s", row.get_type().name());    
+                                            //Lsp.DocumentSymbol
+                                            var sym =  row.get_data<Palete.Symbol>("symbol");
+                                            if (sym == null) {
+                                            	return;
+                                        	}
+                                        	/*
+                                        	 "range" : {
+                                                      "start" : {
+                                                        "line" : 1410,
+                                                        "character" : 8
+                                                      },
+                                                      "end" : {
+                                                        "line" : 1410,
+                                                        "character" : 39
+                                                      }
+                                                    },
+                                                */
+                                             GLib.debug("goto line %d",   (int)sym.begin_line); 
+                                            _this.scroll_to_line((int)sym.begin_line - 1);
+                                            Gtk.TextIter iter;
+                                            _this.buffer.el.get_iter_at_line_offset(out iter, 
+                                            	(int)sym.begin_line - 1,
+                                            	(int)sym.begin_col
+                                        	);
+                                            _this.buffer.el.place_cursor(iter);
+                                        	
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

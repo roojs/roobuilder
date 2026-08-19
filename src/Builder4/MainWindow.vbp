@@ -1,0 +1,1560 @@
+vbp-version = 1;
+name = MainWindow;
+
+Gtk.ApplicationWindow MainWindow {
+  type = Gtk.WindowType.TOPLEVEL;
+  ctor = new Gtk.ApplicationWindow(BuilderApplication.singleton({}));
+  default_height = 850;
+  default_width = 1200;
+  title = "Roo Application Builder";
+  var Gdk.Device keyboard;
+  var Project.Project project = null;
+  var WindowState windowstate;
+  var bool winloading = false;
+  var int last_x = 0;
+  var int last_y = 0;
+  var uint last_h = 0;
+  var uint last_w = 0;
+  construct {
+    this.el.set_icon_name("roobuilder");
+  }
+  listeners [
+    close_request ( ) => {
+    	 
+    	 if (_this.statusbar.handler_id > -1) {
+    	 	Resources.singleton().disconnect(_this.statusbar.handler_id);
+    	 }
+    	 
+    	 this.windowstate.file.getLanguageServer().document_close(
+    	 	this.windowstate.file
+     	);
+    	 
+    	 WindowManager.remove(this);
+    	 WindowManager.save();
+    	 
+    	 if (WindowManager.size()  < 1) {
+    	 	try {
+    			this.windowstate.file.getLanguageServer().exit();
+    		} catch(Error e) {}
+    		
+    		BuilderApplication.singleton(  null ).quit();
+    	 }
+    	return true;
+    	
+    },
+    hide () =>  {
+     
+     
+    
+    },
+    show ( ) => {
+        // hide the file editing..
+       
+        //this.hideViewEditing();
+        // this is updated by windowstate - we try and fill it in..
+         _this.statusbar.el.hide();
+         //_this.statusbar_errors.el.hide();
+        //_this.statusbar_warnings.el.hide();
+        //_this.statusbar_depricated.el.hide();
+        _this.statusbar_compile_spinner.el.hide();
+      
+        Resources.singleton().checkResources();
+        var display = this.el.get_display();
+    	var seat = display.get_default_seat();
+    	
+    	// 2. Get the keyboard device
+    	this.keyboard = seat.get_keyboard();
+      
+    
+    },
+    notify["is-active"] ( ) => {
+        // Check if window is now active (has focus)
+        if (!this.el.is_active || this.windowstate == null || this.windowstate.file == null) {
+          return;
+        }
+        // Check if file has changed on disk since last save
+        var f = this.windowstate.file;
+        if (f.vtime == 0 || f.vtime_ondisk <= f.vtime) {
+          return;
+        }
+        // File has changed, reload it (fileViewOpen will handle reload preparation)
+        this.windowstate.fileViewOpen(f, false, 0);
+      }
+  ]
+  methods [
+    bool getSize (out int x, out int y, out uint w, out uint h) {
+    
+    	x = 0; 
+    	y = 0; 
+    	w = 0; 
+    	h = 0;
+    	var s =  this.el.get_surface() as Gdk.X11.Surface;
+    	if (s == null) {
+    		return false; // no change - wayland or surface not available
+    	}
+    	var xw = s.get_xid();
+    	
+    	var di = (Gdk.X11.Display) s.get_display() ;
+    	if (di == null) {
+    			
+    	
+    		return false; // no change
+    	}
+    	X.WindowAttributes wa;		
+    	unowned X.Display xd =  (X.Display) di.get_xdisplay();	
+    
+    	xd.get_window_attributes(xw, out  wa);
+    	x = wa.x;
+    	y = wa.y;
+    	w = wa.width;
+    	h = wa.height;
+    	
+    	GLib.debug("Get size %d,%d %dx%d", x,y, (int)w, (int)h);
+    	// we don't set last_x/y (as the save code needs the old info to compare.
+    	
+    	return true;
+    },
+    void initChildren () {
+        // this needs putting in a better place..
+        if (this.windowstate == null) {
+       	 	this.windowstate = new WindowState(this);
+        
+        }
+         
+    	
+     
+    
+        
+    
+    
+    
+    },
+    void openNewWindow () {
+     
+        var w = new Xcls_MainWindow();
+        w.ref();
+    	WindowManager.add(w);
+        w.el.show();
+        w.initChildren();
+        w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);
+         
+    },
+    void setSize (int x, int y, uint w, uint h) {
+    
+    
+    
+    	var s = this.el.get_surface() as Gdk.X11.Surface;
+    	if (s == null) {
+    		return; // wayland or surface not available
+    	}
+    	var xw = s.get_xid();
+    	
+    	var di = s.get_display() as Gdk.X11.Display;
+    	if (di == null) {
+    		return; // display not available
+    	}
+    	unowned X.Display xd = di.get_xdisplay();
+    	if (w >0 && h > 0) {
+    		xd.move_resize_window(xw, x,y, w, h);
+    	} else {
+    		xd.move_window(xw, x,y);
+    	}
+    	X.WindowAttributes wa;
+    	xd.get_window_attributes(xw, out  wa);
+    	
+    	
+    	GLib.debug("Move to %d, %d %dx%d",  x,y, (int) w, (int)h);
+    	this.last_x = x;
+    	this.last_y = y;
+    
+    	this.last_w = w > 0 ? w : (uint)wa.width;
+    	 
+    	this.last_h = h > 0 ? h : (uint)wa.height;
+    
+    },
+    void setTitle () {
+        if (_this.windowstate.project == null || 
+    	    _this.windowstate.file == null
+        ) {
+    		this.el.set_title("Select File");
+    		return;
+    	}
+    	_this.el.set_title(
+    		_this.windowstate.file.relpath +
+    		" - " +
+    		_this.windowstate.project.name  
+    	);
+    },
+    void show () {
+       
+        this.el.show();
+        if (this.windowstate.file  == null) {
+        	this.windowstate.showPopoverFiles(this.open_projects_btn.el, null, false);
+        }
+    },
+    void updateErrors () {
+    
+    
+     	GLib.debug("updateErrors");
+    	
+    	var pr = this.windowstate.project.getErrors("ERR");
+    	
+    	this.statusbar_errors.setNotices(
+    		pr,
+    		this.windowstate.file.getErrorsTotal("ERR")
+    	);
+    	
+    	this.statusbar_warnings.setNotices(
+    		this.windowstate.project.getErrors("WARN"),
+    		this.windowstate.file.getErrorsTotal("WARN")
+    	);
+    	this.statusbar_depricated.setNotices(
+    		this.windowstate.project.getErrors("DEPR"),
+    		this.windowstate.file.getErrorsTotal("DEPR")
+    	);
+    
+    	_this.statusbar_run.el.hide();
+    
+    	if (pr.get_n_items() < 1) {
+    		_this.statusbar_run.el.show();
+    	} 
+    	
+    },
+    void updateRedo (bool has_redo) {
+    
+    	this.btn_redo.el.sensitive = has_redo;
+    },
+    void updateUndo (bool has_undo) {
+    
+    	this.btn_undo.el.sensitive = has_undo;
+    }
+  ]
+  child = Adw.OverlaySplitView splitview {
+    collapsed = true;
+    show_sidebar = false;
+    sidebar_width_fraction = 0.400000;
+    content = Gtk.Box vbox {
+      orientation = Gtk.Orientation.VERTICAL;
+      hexpand = true;
+      homogeneous = false;
+      vexpand = false;
+      spacing = 0;
+      [
+        Gtk.Paned mainpane {
+          orientation = Gtk.Orientation.HORIZONTAL;
+          hexpand = true;
+          vexpand = true;
+          position = 300;
+          var int lastWidth = 0;
+          listeners [
+            accept_position ( ) => {
+            	_this.windowstate.left_tree.onresize();
+            	return true;
+            }
+          ]
+          start_child = Gtk.Box leftpane {
+            orientation = Gtk.Orientation.HORIZONTAL;
+            hexpand = true;
+            vexpand = true;
+            [
+              Gtk.Paned editpane {
+                orientation = Gtk.Orientation.HORIZONTAL;
+                listeners [
+                  accept_position ( ) => {
+                  	_this.windowstate.left_tree.onresize();
+                  	return true;
+                  },
+                  move_handle (scroll) => {
+                  	GLib.debug("Move handle");
+                  	return true;
+                  }
+                ]
+                start_child = Gtk.Box tree {
+                  orientation = Gtk.Orientation.VERTICAL;
+                  hexpand = true;
+                  vexpand = true;
+                }
+                end_child = Gtk.Box props {
+                  orientation = Gtk.Orientation.VERTICAL;
+                  hexpand = true;
+                  vexpand = true;
+                }
+              }
+            ]
+          }
+          end_child = Gtk.Box rightpane {
+            orientation = Gtk.Orientation.VERTICAL;
+            hexpand = true;
+            vexpand = true;
+            [
+              Gtk.Box rooviewbox {
+                orientation = Gtk.Orientation.VERTICAL;
+                hexpand = true;
+                vexpand = true;
+              },
+              Gtk.Box codeeditviewbox {
+                orientation = Gtk.Orientation.VERTICAL;
+                hexpand = true;
+                vexpand = true;
+              }
+            ]
+          }
+        },
+        Gtk.Box {
+          orientation = Gtk.Orientation.HORIZONTAL;
+          homogeneous = false;
+          vexpand = false;
+          [
+            Gtk.Button {
+              tooltip_text = "Project Details";
+              listeners [
+                clicked ( ) => {
+                     
+                     _this.windowstate.projectPopoverShow(_this.el, null, null);
+                   
+                  
+                }
+              ]
+              child = Gtk.Box {
+                orientation = Gtk.Orientation.HORIZONTAL;
+                spacing = 0;
+                [
+                  Gtk.Image {
+                    margin_end = 4;
+                    icon_name = "emblem-system";
+                  },
+                  Gtk.Label label_project {
+                    label = "Project Properties";
+                  }
+                ]
+              }
+            },
+            Gtk.Button {
+              tooltip_text = "File Details";
+              listeners [
+                clicked ( ) => {
+                  
+                    // create a new file in project..
+                    if (_this.project == null || _this.windowstate.file == null) {
+                        return  ;
+                    }
+                     _this.windowstate.file_details.show(
+                        _this.windowstate.file, _this.el, false
+                    );
+                 
+                    return  ;    
+                
+                
+                }
+              ]
+              child = Gtk.Box {
+                orientation = Gtk.Orientation.HORIZONTAL;
+                spacing = 0;
+                [
+                  Gtk.Image {
+                    margin_end = 4;
+                    icon_name = "document-new";
+                  },
+                  Gtk.Label label_file {
+                    label = "File Properties";
+                  }
+                ]
+              }
+            },
+            Gtk.MenuButton {
+              always_show_image = true;
+              icon_name = "dialog-information";
+              label = "About";
+              popover = Gtk.PopoverMenu topbarmenu {
+                ctor = new Gtk.PopoverMenu.from_model(null);
+                construct {
+                   // this.el.show();
+                }
+                [
+                  Gtk.Box {
+                    pack = set_child;
+                    orientation = Gtk.Orientation.VERTICAL;
+                    spacing = 0;
+                    [
+                      Gtk.Button {
+                        label = "Download updated Resources";
+                        listeners [
+                          activate ( ) => {
+                                   Resources.singleton().fetchStart();
+                          }
+                        ]
+                      },
+                      Gtk.Button {
+                        label = "About the Builder";
+                        listeners [
+                          clicked () => {
+                              About.singleton().el.show();
+                              }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            Gtk.Label {
+              hexpand = true;
+              label = "   ";
+            },
+            Gtk.ProgressBar statusbar {
+              show_text = true;
+              handler_id = -1;
+              construct {
+                   this.handler_id = Resources.singleton().updateProgress.connect((pos,total) => {
+                      if (pos < 1) {
+                          this.el.hide();
+                          _this.mainpane.el.set_sensitive(true);
+                          
+                          return;
+                      }
+                       _this.mainpane.el.set_sensitive(false);
+                       this.el.show();
+                       this.el.set_fraction ((1.0f * pos) / (1.0f * total));
+                       this.el.set_text("Fetching Resource : %s/%s".printf(pos.to_string(), total.to_string()));
+                     
+                   });
+              }
+            },
+            Gtk.Box {
+              orientation = Gtk.Orientation.HORIZONTAL;
+              [
+                Gtk.Label statusbar_compilestatus_label {
+                  margin_end = 4;
+                  margin_start = 4;
+                  label = "Compile Status:";
+                },
+                Gtk.Button statusbar_errors {
+                  var Xcls_ValaCompileErrors popup;
+                  listeners [
+                    clicked () => {
+                     
+                    	if (this.popup == null) {
+                    		return;
+                    	}
+                       
+                        this.popup.show();
+                      
+                    }
+                  ]
+                  methods [
+                    void setNotices (GLib.ListStore nots, int ferrors ) {
+                        WindowManager.showSpinner("");
+                         if (nots.get_n_items() < 1 ) {
+                        	this.el.hide();
+                        	if (this.popup != null) {
+                        		this.popup.el.hide();
+                    		}
+                        	return;
+                        }
+                        
+                        this.el.show();
+                        _this.statusbar_errors_lbl.el.label = "%d/%d Errors".printf(ferrors,(int)nots.get_n_items());
+                    
+                        
+                     
+                    	if (this.popup == null) {
+                            this.popup = new Xcls_ValaCompileErrors();
+                            this.popup.window = _this;
+                          //    this.popup.el.set_transient_for( _this.el );
+                            this.popup.el.set_parent(this.el);
+                        }
+                     
+                    	this.popup.updateNotices(nots);
+                    	 
+                    }
+                  ]
+                  child = Gtk.Box {
+                    orientation = Gtk.Orientation.HORIZONTAL;
+                    spacing = 0;
+                    [
+                      Gtk.Image {
+                        margin_end = 4;
+                        icon_name = "dialog-error";
+                      },
+                      Gtk.Label statusbar_errors_lbl {
+                        label = "0 Errors";
+                      }
+                    ]
+                  }
+                },
+                Gtk.Button statusbar_warnings {
+                  var Xcls_ValaCompileErrors popup;
+                  listeners [
+                    clicked () => {
+                     
+                    	if (this.popup == null) {
+                    		return;
+                    	}
+                       
+                        this.popup.show();
+                        return;
+                    }
+                  ]
+                  methods [
+                    void setNotices (GLib.ListStore nots, int ferrs ) {
+                        
+                         if (nots.get_n_items() < 1 ) {
+                        	this.el.hide();
+                        	if (this.popup != null) {
+                        		this.popup.el.hide();
+                    		}
+                        	return;
+                        }
+                        
+                        this.el.show();
+                        _this.statusbar_warnings_lbl.el.label = "%d/%d Warnings".printf(ferrs,(int)nots.get_n_items());
+                    
+                        
+                     
+                    	if (this.popup == null) {
+                            this.popup = new Xcls_ValaCompileErrors();
+                            this.popup.window = _this;
+                          //    this.popup.el.set_transient_for( _this.el );
+                            this.popup.el.set_parent(this.el);
+                        }
+                    	this.popup.updateNotices(nots);
+                    	 
+                    }
+                  ]
+                  child = Gtk.Box {
+                    orientation = Gtk.Orientation.HORIZONTAL;
+                    spacing = 0;
+                    [
+                      Gtk.Image {
+                        margin_end = 4;
+                        icon_name = "dialog-warning";
+                      },
+                      Gtk.Label statusbar_warnings_lbl {
+                        label = "0 Warnings";
+                      }
+                    ]
+                  }
+                },
+                Gtk.Button statusbar_depricated {
+                  var GLib.ListStore notices = null;
+                  var Xcls_ValaCompileErrors popup;
+                  listeners [
+                    clicked () => {
+                     
+                    	if (this.popup == null) {
+                    		return;
+                    	}
+                       
+                        this.popup.show();
+                      
+                    }
+                  ]
+                  methods [
+                    void setNotices (GLib.ListStore nots, int ferrs ) {
+                        
+                         if (nots.get_n_items() < 1 ) {
+                        	this.el.hide();
+                        	if (this.popup != null) {
+                        		this.popup.el.hide();
+                    		}
+                        	return;
+                        }
+                        
+                        this.el.show();
+                        _this.statusbar_depricated_lbl.el.label = "%d/%d Depricated".printf(ferrs,(int)nots.get_n_items());
+                    
+                        
+                     
+                    	if (this.popup == null) {
+                            this.popup = new Xcls_ValaCompileErrors();
+                            this.popup.window = _this;
+                          //    this.popup.el.set_transient_for( _this.el );
+                            this.popup.el.set_parent(this.el);
+                        }
+                    	this.popup.updateNotices(nots);
+                    	 
+                    }
+                  ]
+                  child = Gtk.Box {
+                    orientation = Gtk.Orientation.HORIZONTAL;
+                    spacing = 0;
+                    [
+                      Gtk.Image {
+                        margin_end = 4;
+                        icon_name = "dialog-information";
+                      },
+                      Gtk.Label statusbar_depricated_lbl {
+                        label = "0 Depricated";
+                      }
+                    ]
+                  }
+                },
+                Gtk.Button statusbar_run {
+                  visible = false;
+                  var Palete.ValaCompileRequest? last_request = null;
+                  var Xcls_ValaCompileErrors popup;
+                  listeners [
+                    clicked () => {
+                       
+                       if (_this.windowstate.file == null) {
+                    		return;
+                    	}
+                       if (_this.statusbar_compile_spinner.el.spinning) {
+                        	_this.windowstate.compile_results.el.set_parent(this.el);
+                    	    _this.windowstate.compile_results.el.show(); // show currently running.
+                        	return;
+                    	}
+                    	
+                    	if (this.last_request != null) {
+                    		this.last_request.cancel();
+                    		if (this.last_request.terminal_pid > 0) {
+                    			this.last_request.killChildren(this.last_request.terminal_pid);
+                    		}
+                    	}
+                    	var pr = _this.windowstate.project as Project.Gtk;
+                    	if (pr == null) {
+                    		return;
+                    	}
+                    	
+                    	
+                    	this.last_request= new Palete.ValaCompileRequest(
+                    		pr,
+                    		pr.firstBuildModuleWith(_this.windowstate.file)
+                    	);
+                    	this.last_request.onOutput.connect( ( str) => {
+                    		_this.windowstate.compile_results.addLine(str);
+                    	});
+                    	this.last_request.run.begin( ( a, r) => {
+                    		this.last_request.run.end(r);
+                    	});
+                    	 if (_this.windowstate.compile_results.el.parent == null) {
+                    		_this.windowstate.compile_results.el.set_parent(this.el);
+                    	}
+                    	_this.windowstate.compile_results.show(this.el,true);
+                    	         
+                    }
+                  ]
+                  child = Gtk.Box {
+                    orientation = Gtk.Orientation.HORIZONTAL;
+                    spacing = 0;
+                    [
+                      Gtk.Image {
+                        margin_end = 4;
+                        icon_name = "media-playback-start";
+                      },
+                      Gtk.Label {
+                        label = "Run";
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            Gtk.Spinner statusbar_compile_spinner {
+              margin_end = 4;
+              margin_start = 4;
+              tooltip_text = "Compiling";
+              methods [
+                void start (string icon, string tooltip) {
+                
+                	if (icon == "spinner") {
+                	  this.el.show();
+                	  this.el.start();  
+                	  this.el.tooltip_text = tooltip;
+                	  _this.statusbar_compile_icon.el.hide();
+                  } else {
+                	  this.el.hide();
+                	//  GLib.debug("set status icon %s, %s", icon, tooltip);
+                	  _this.statusbar_compile_icon.el.tooltip_text = tooltip;
+                	  _this.statusbar_compile_icon.el.icon_name = icon;
+                	  _this.statusbar_compile_icon.el.show();	  
+                  }
+                  
+                	 
+                },
+                void stop () {
+                 this.el.stop();
+                  this.el.hide();
+                 _this.statusbar_compile_icon.el.hide();  
+                }
+              ]
+            },
+            Gtk.Image statusbar_compile_icon {
+              icon_size = Gtk.IconSize.NORMAL;
+              margin_end = 4;
+              margin_start = 4;
+            }
+          ]
+        }
+      ]
+    }
+    sidebar = Gtk.Box sidebar {
+      orientation = Gtk.Orientation.VERTICAL;
+      spacing = 0;
+      methods [
+        void show () {
+        	_this.splitview.el.show_sidebar = true;
+          	 
+        	_this.filesearch.el.grab_focus();
+        	_this.winloading = true;
+        	_this.winmodel.el.remove_all();
+        	_this.filesearch.el.set_text("");
+        	
+        	WindowManager.addAllToModel(_this.winmodel.el);
+        	 
+        	_this.winsel.selectCurrent();
+        	_this.winloading = false;
+        	
+        	 _this.treeview.el.set_model(new Gtk.SingleSelection(null));
+        	
+        	_this.windowstate.project.loadDirsIntoStore(_this.treemodel.el);
+        	
+        	_this.treeview.el.set_model(_this.treeselmodel.el);
+        	
+         	_this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;
+        	
+        	GLib.Timeout.add(100, () => {
+        		_this.file_paned.updatePanedHeight();
+        		return false;
+        	});
+        	
+        }
+      ]
+      [
+        Gtk.SearchEntry filesearch {
+          has_tooltip = true;
+          hexpand = true;
+          placeholder_text = "Search for file";
+          tooltip_text = "up/down arrow to select file from lower file list\nenter opens selected in new window\nshift+enter opens it in this window ";
+          listeners [
+            search_changed ( ) => {
+            
+            	_this.windowsearch.el.set_search(this.el.get_text());
+            	if (this.el.text == "") {
+            		_this.treescroll.el.visible = false;
+            		return;
+            	}
+            	_this.treescroll.el.visible = true;
+            	_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
+            }
+          ]
+          [
+            Gtk.EventControllerKey {
+              listeners [
+                key_released (keyval, keycode, state) => {
+                	if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
+                		return;
+                	}
+                	//GLib.debug(
+                	//	"searcj key release %d, %d, %d  ?= %d" , 
+                	//		(int) keyval, (int)  keycode, state,
+                	//		(int)Gdk.Key.Return
+                	//	);
+                	if (!_this.treescroll.el.visible || _this.treeselmodel.el.get_n_items() < 0) {
+                		return;
+                	}
+                		
+                	var dir = 0;
+                	
+                	if (keyval == Gdk.Key.Return) {
+                		var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
+                		GLib.debug("SELECTED = %s", tr.item.get_type().name());
+                		var f = (JsRender.JsRender) tr.item;
+                		GLib.debug("Click %s", f.name);
+                		if (f.xtype == "Dir") {
+                			return;
+                		}
+                		
+                		
+                	 	_this.windowstate.fileViewOpen(f,
+                	 		(_this.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK) == 0
+                		);
+                		
+                		_this.splitview.el.show_sidebar = false;
+                		return;
+                		
+                	
+                	}
+                	if (keyval == Gdk.Key.Up) {
+                		dir = -1;
+                	}if (keyval == Gdk.Key.Down) {
+                		dir = 1;
+                	}
+                	if (dir == 0) {
+                		return;
+                	}
+                	var ns = _this.treeselmodel.el.selected + dir;
+                	if (ns < 0) {
+                		ns = 0;
+                	}
+                	if (ns >= _this.treeselmodel.el.get_n_items()) {
+                		ns  = _this.treeselmodel.el.get_n_items()-1;
+                	}
+                	_this.treeselmodel.el.selected = ns;
+                }
+              ]
+            }
+          ]
+        },
+        Gtk.Box {
+          orientation = Gtk.Orientation.HORIZONTAL;
+          hexpand = true;
+          spacing = 0;
+          [
+            Gtk.Button open_projects_btn {
+              hexpand = true;
+              tooltop_text = "\"Open File\"";
+              listeners [
+                clicked ( ) => {
+                  	_this.splitview.el.show_sidebar = false;
+                  	_this.windowstate.showPopoverFiles(this.el, _this.project, false);
+                }
+              ]
+              child = Gtk.Box {
+                orientation = Gtk.Orientation.HORIZONTAL;
+                spacing = 0;
+                [
+                  Gtk.Image {
+                    margin_end = 4;
+                    icon_name = "document-open";
+                  },
+                  Gtk.Label {
+                    label = "Open File";
+                  }
+                ]
+              }
+            },
+            Gtk.Button {
+              hexpand = true;
+              listeners [
+                clicked ( ) => {
+                	_this.splitview.el.show_sidebar = false;
+                	_this.windowstate.showPopoverFiles(_this.el, _this.project, true);
+                }
+              ]
+              child = Gtk.Box {
+                orientation = Gtk.Orientation.HORIZONTAL;
+                spacing = 0;
+                [
+                  Gtk.Image {
+                    margin_end = 4;
+                    icon_name = "window-new";
+                  },
+                  Gtk.Label {
+                    label = "New Window";
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        Gtk.Paned file_paned {
+          orientation = Gtk.Orientation.VERTICAL;
+          vexpand = true;
+          methods [
+            void updatePanedHeight () {
+            	if (!_this.treescroll.el.visible) {
+            		return;
+            	}
+            	var sidebar_height = (int)_this.sidebar.el.get_allocated_height();
+            	if (sidebar_height <= 0) {
+            		return;
+            	}
+            	var target_height = int.min((int)_this.winmodel.el.get_n_items() * 30, sidebar_height / 2);
+            	if (target_height > 0) {
+            		this.el.set_position(int.min((int)(target_height * 1.5), sidebar_height / 2));
+            	}
+            }
+          ]
+          start_child = Gtk.ScrolledWindow {
+            has_frame = true;
+            child = Gtk.ColumnView {
+              model = Gtk.SingleSelection winsel {
+                autoselect = false;
+                can_unselect = false;
+                selecting = false;
+                listeners [
+                  notify["selected"] () => {
+                  	if (_this.winloading || this.selecting || this.el.selected == Gtk.INVALID_LIST_POSITION) {
+                  		return;
+                  	}
+                  	var ws = this.el.selected_item as WindowState;
+                  	if (ws == null) {
+                  		return;
+                  	}
+                  	if (ws.file.path != _this.windowstate.file.path) {
+                  		_this.windowstate.fileViewOpen(ws.file, ws.file_details.new_window,  -1);
+                  		_this.splitview.el.show_sidebar = false;
+                  	}
+                  	
+                  	this.selectCurrent();
+                   }
+                ]
+                methods [
+                  void selectCurrent () {
+                  	this.selecting = true;
+                  	 
+                  	for(var i = 0;i < this.el.get_n_items(); i++) {
+                  		var ws = this.el.get_item(i) as WindowState;
+                  		if (ws.file.path == _this.windowstate.file.path) {
+                  		  	this.el.selected = i;
+                  		  	break;
+                  	  	}
+                  	}
+                  	this.selecting = false;
+                   
+                  
+                  }
+                ]
+                model = Gtk.SortListModel {
+                  model = Gtk.FilterListModel winfilter {
+                    filter = Gtk.StringFilter windowsearch {
+                      expression = Gtk.PropertyExpression {
+                        this_type = typeof(WindowState);
+                        property_name = "file_name";
+                      }
+                    }
+                    model = GLib.ListStore winmodel {
+                      item_type = typeof(WindowState);
+                      listeners [
+                        items_changed (position, removed, added) => {
+                        	if (_this.treescroll.el.visible) {
+                        		_this.file_paned.updatePanedHeight();
+                        	}
+                        }
+                      ]
+                    }
+                  }
+                  sorter = Gtk.StringSorter {
+                    ignore_case = true;
+                    expression = Gtk.PropertyExpression {
+                      this_type = typeof(WindowState);
+                      property_name = "file_name";
+                    }
+                  }
+                }
+              }
+              [
+                Gtk.ColumnViewColumn projcol {
+                  expand = true;
+                  resizable = true;
+                  title = "Project";
+                  factory = Gtk.SignalListItemFactory {
+                    listeners [
+                      bind (listitem) => {
+                      	var li = (listitem as Gtk.ListItem);
+                      	if (li == null) {
+                      		return;
+                      	}
+                      	 var lb = (Gtk.Label) li.get_child() as Gtk.Label;
+                      	 if (lb == null) {
+                      	 	return;
+                       	}
+                      	 var item =  li.get_item() as WindowState;
+                      	 if (item == null) {
+                      	 	return;
+                       	}
+                      	 lb.label = item.project.name;
+                      
+                      
+                        
+                      
+                      },
+                      setup (listitem) => {
+                      
+                      	var li = (listitem as Gtk.ListItem);
+                      	if (li == null) {
+                      		return;
+                      	}
+                      
+                      	var lbl = new Gtk.Label("");
+                       	li.set_child(lbl);
+                       	lbl.justify = Gtk.Justification.LEFT;
+                       	lbl.xalign = 0;
+                       	lbl.use_markup = true;
+                      	lbl.ellipsize = Pango.EllipsizeMode.START;
+                        
+                      	li.activatable = true;
+                      }
+                    ]
+                  }
+                },
+                Gtk.ColumnViewColumn filecol {
+                  pack = append_column;
+                  expand = true;
+                  resizable = true;
+                  title = "File";
+                  factory = Gtk.SignalListItemFactory {
+                    listeners [
+                      bind (listitem) => {
+                      	var li = (listitem as Gtk.ListItem);
+                      	if (li == null) {
+                      		return;
+                      	}
+                      	 var lb = (Gtk.Label) li.get_child() as Gtk.Label;
+                      	 if (lb == null) {
+                      	 	return;
+                       	}
+                      	 var item =  li.get_item() as WindowState;
+                      	 if (item == null || item.file == null) {
+                      	 	return;
+                       	}
+                       	
+                       	lb.label = item.file.relpath;
+                      
+                      },
+                      setup (listitem) => {
+                      	var li = (listitem as Gtk.ListItem);
+                      	if (li == null) {
+                      		return;
+                      	}
+                      	var lbl = new Gtk.Label("");
+                       	li.set_child(lbl);
+                       	lbl.justify = Gtk.Justification.LEFT;
+                       	lbl.xalign = 0;
+                       	lbl.use_markup = true;
+                      	lbl.ellipsize = Pango.EllipsizeMode.START;
+                      	lbl.has_tooltip = true;
+                        
+                      	li.activatable = true;
+                      	
+                      	lbl.query_tooltip.connect((x, y, keyboard_tooltip, tooltip) => {
+                      		var item = li.get_item() as WindowState;
+                      		if (item == null || item.file == null) {
+                      			return false;
+                      		}
+                      		var thumb_img = item.file.getImage();
+                      		if (thumb_img == null) {
+                      			tooltip.set_text(item.file.relpath);
+                      			return true;
+                      		}
+                      		var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 4);
+                      		thumb_img.pixel_size = 368;
+                      		var name_lbl = new Gtk.Label(item.file.relpath);
+                      		name_lbl.wrap = true;
+                      		name_lbl.max_width_chars = 50;
+                      		vbox.append(thumb_img);
+                      		vbox.append(name_lbl);
+                      		tooltip.set_custom(vbox);
+                      		return true;
+                      	});
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+          end_child = Gtk.ScrolledWindow treescroll {
+            has_frame = true;
+            hexpand = true;
+            vexpand = true;
+            visible = false;
+            listeners [
+              notify["visible"] () => {
+              	if (_this.treescroll.el.visible) {
+              		_this.file_paned.updatePanedHeight();
+              	}
+              }
+            ]
+            child = Gtk.ColumnView treeview {
+              hexpand = true;
+              vexpand = true;
+              model = Gtk.SingleSelection treeselmodel {
+                autoselect = true;
+                can_unselect = true;
+                model = Gtk.FilterListModel {
+                  model = Gtk.SortListModel treelistsort {
+                    incremental = true;
+                    model = Gtk.TreeListModel treelistmodel {
+                      create_func = (item) => {
+	//GLib.debug("liststore got %s", item.get_type().name());
+	return ((JsRender.JsRender)item).childfiles;
+} ;
+                      autoexpand = true;
+                      passthrough = false;
+                      root = GLib.ListStore treemodel {
+                        item_type = typeof(JsRender.JsRender);
+                      }
+                    }
+                    sorter = Gtk.TreeListRowSorter {
+                      sorter = Gtk.StringSorter {
+                        ignore_case = true;
+                        expression = Gtk.PropertyExpression {
+                          this_type = typeof(JsRender.JsRender) ;
+                          property_name = "name";
+                        }
+                      }
+                    }
+                  }
+                  filter = Gtk.CustomFilter treefilter {
+                    match_func = (item) => { 
+	var tr = ((Gtk.TreeListRow)item).get_item();
+	//GLib.debug("filter %s", tr.get_type().name());
+	var j =  (JsRender.JsRender) tr;
+	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
+		return false;
+	}
+	var str = _this.filesearch.el.text.down();	
+	if (j.xtype == "Dir") {
+	
+		
+		for (var i =0 ; i < j.childfiles.n_items; i++) {
+			var f = (JsRender.JsRender) j.childfiles.get_item(i);
+			//if (f.xtype != "PlainFile") {
+			//	continue;
+			//}
+			if (f.content_type.contains("image")) {
+				continue;
+			}
+			if (str.length < 1) {
+				return true;
+			}
+			if (f.name.down().contains(str)) {
+				return true;
+			}
+			
+		}
+		 
+		return false;
+	}
+	//if (j.xtype != "PlainFile") {
+	//	return false;
+	//}
+ 	if (j.content_type.contains("image")) {
+		return false;
+	}
+			 
+	if (str.length < 1) { // no search.
+		return true;
+	}
+	if (j.name.down().contains(str)) {
+		return true;
+	}
+	return false; 
+
+};
+                  }
+                }
+              }
+              [
+                Gtk.GestureClick {
+                  listeners [
+                    pressed (n_press, x, y) => {
+                    	if (n_press == 2) {
+                    		GLib.debug("double cliced");
+                    	} else {
+                    		return;
+                    	}
+                    	var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
+                    	if (tr == null) {
+                    		return;
+                    	}
+                    	GLib.debug("SELECTED = %s", tr.item.get_type().name());
+                    	var f = (JsRender.JsRender) tr.item;
+                    	GLib.debug("Click %s", f.name);
+                    	if (f.xtype == "Dir") {
+                    		return;
+                    	}
+                    	
+                    	
+                     	_this.windowstate.fileViewOpen(f,
+                     		(_this.keyboard.get_modifier_state() & Gdk.ModifierType.SHIFT_MASK) == 0
+                    		
+                    	);
+                    	
+                    	_this.splitview.el.show_sidebar = false;
+                    	
+                    	
+                    
+                    }
+                  ]
+                },
+                Gtk.ColumnViewColumn name {
+                  pack = append_column;
+                  expand = true;
+                  resizable = true;
+                  title = "All Project Files";
+                  construct {
+                  	// this.el.set_sorter(  new Gtk.StringSorter(
+                  	// 	new Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, "name")
+                   //	));
+                  		
+                  }
+                  factory = Gtk.SignalListItemFactory {
+                    listeners [
+                      bind (listitem) => {
+                      	
+                      	//GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+                      			
+                      		
+                      		
+                      	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+                      	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+                      
+                      	var hbox = (Gtk.Box) expand.child;
+                      
+                      
+                      	var img = (Gtk.Image) hbox.get_first_child();
+                      	var lbl = (Gtk.Label) img.get_next_sibling();
+                      
+                      
+                      
+                      	if (lbl == null || lbl.label != "") { // do not update
+                      		return;
+                      	}
+                      	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+                      	//GLib.debug("LR = %s", lr.get_type().name());
+                      
+                      
+                      	var jr =(JsRender.JsRender) lr.get_item();
+                      	//GLib.debug("JR = %s", jr.get_type().name());		
+                      
+                      	if (jr == null) {
+                      		GLib.debug("Problem getting item"); 
+                      		return;
+                      	}
+                      
+                      	jr.bind_property("icon",
+                      		img, "gicon",
+                      		GLib.BindingFlags.SYNC_CREATE);
+                      
+                      	//GLib.debug("change  %s to %s", lbl.label, np.name);
+                      	lbl.label = jr.name; // for dir's we could hsow the sub path..
+                      
+                      	expand.set_hide_expander(  jr.xtype != "Dir" );
+                      	expand.set_list_row(lr);
+                      
+                       	 
+                                       	// bind image...
+                      },
+                      setup (listitem) => {
+                      	
+                      	var expand = new Gtk.TreeExpander();
+                      	 
+                      	expand.set_indent_for_depth(true);
+                      	expand.set_indent_for_icon(true);
+                      	var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
+                      	var icon = new Gtk.Image();
+                      	icon.margin_end = 4;
+                      	var lbl = new Gtk.Label("");
+                      	lbl.use_markup = true;
+                      	lbl.has_tooltip = true;
+                      	
+                      	
+                       	lbl.justify = Gtk.Justification.LEFT;
+                       	lbl.xalign = 0;
+                      
+                      	lbl.query_tooltip.connect((x, y, keyboard_tooltip, tooltip) => {
+                      		var li = (Gtk.ListItem)listitem;
+                      		if (li == null) {
+                      			return false;
+                      		}
+                      		var lr = (Gtk.TreeListRow)li.get_item();
+                      		if (lr == null) {
+                      			return false;
+                      		}
+                      		var jr = (JsRender.JsRender)lr.get_item();
+                      		if (jr == null) {
+                      			return false;
+                      		}
+                      		var thumb_img = jr.getImage();
+                      		var hint_text = "dbl-click - opens in NEW window\nshift+dbl-click opens in this window";
+                      		if (thumb_img == null) {
+                      			tooltip.set_text(jr.path + "\n\n" + hint_text);
+                      			return true;
+                      		}
+                      		var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 4);
+                      		thumb_img.pixel_size = 368;
+                      		var name_lbl = new Gtk.Label(jr.path);
+                      		name_lbl.wrap = true;
+                      		name_lbl.max_width_chars = 50;
+                      		var hint_lbl = new Gtk.Label(hint_text);
+                      		hint_lbl.wrap = true;
+                      		vbox.append(thumb_img);
+                      		vbox.append(name_lbl);
+                      		vbox.append(hint_lbl);
+                      		tooltip.set_custom(vbox);
+                      		return true;
+                      	});
+                      
+                       	hbox.append(icon);
+                      	hbox.append(lbl);
+                      	expand.set_child(hbox);
+                      	((Gtk.ListItem)listitem).set_child(expand);
+                      	((Gtk.ListItem)listitem).activatable = false;
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+    [
+      Gtk.EventControllerKey {
+        listeners [
+          key_released (  keyval,   keycode, state) =>  {
+               if (keyval == Gdk.Key.o && (state & Gdk.ModifierType.CONTROL_MASK) != 0) {
+          		// ctrl O pressed
+          		if (!_this.splitview.el.show_sidebar) {
+          			_this.sidebar.show(); 
+          		}
+          	}
+          	if (keyval == Gdk.Key.Escape && _this.splitview.el.show_sidebar) {
+          		_this.splitview.el.show_sidebar = false;
+          	}
+          	
+          }
+        ]
+      }
+    ]
+  }
+  [
+    Gtk.HeaderBar headerbar {
+      pack = set_titlebar;
+      show_title_buttons = false;
+      [
+        Gtk.Box {
+          pack = pack_start;
+          orientation = Gtk.Orientation.HORIZONTAL;
+          hexpand = true;
+          [
+            Gtk.Button btn_files {
+              pack = append;
+              has_frame = false;
+              has_tooltip = true;
+              icon_name = "folder";
+              tooltip_text = Manage Windows (Ctrl-O);
+              listeners [
+                clicked ( ) => {
+                  
+                  	if (!_this.btn_header.el.visible) {
+                  		// new window?
+                  			_this.windowstate.showPopoverFiles(_this.el, _this.project, true);
+                     	return;
+                   }
+                  	_this.splitview.el.show_sidebar = !_this.splitview.el.show_sidebar;
+                  	if (_this.splitview.el.show_sidebar) {
+                  		_this.sidebar.show(); 
+                 	}
+                }
+              ]
+            },
+            Gtk.Button btn_undo {
+              has_frame = false;
+              icon_name = "edit-undo";
+              listeners [
+                clicked ( ) => {
+                	
+                	GLib.debug("undo clicked");
+                	if (_this.windowstate.file.xtype == "PlainFile") {
+                		_this.windowstate.code_editor_tab.buffer.el.undo();
+                		return;
+                	}
+                	_this.windowstate.file.action_manager.undo();
+                	 
+                
+                	// load it everywhere
+                }
+              ]
+            },
+            Gtk.Button btn_redo {
+              has_frame = false;
+              icon_name = "edit-redo";
+              listeners [
+                clicked ( ) => {
+                	
+                	GLib.debug("undo clicked");
+                	if (_this.windowstate.file.xtype == "PlainFile") {
+                		_this.windowstate.code_editor_tab.buffer.el.redo();
+                		return;
+                	}
+                	
+                	
+                	
+                	_this.windowstate.file.action_manager.redo();
+                	
+                 
+                
+                	// load it everywhere
+                }
+              ]
+            }
+          ]
+        },
+        Gtk.Box {
+          pack = pack_end;
+          orientation = Gtk.Orientation.HORIZONTAL;
+          spacing = 0;
+          [
+            Gtk.Button btn_tree {
+              halign = Gtk.Align.END;
+              has_frame = true;
+              visible = false;
+              icon_name = "view-list-symbolic";
+              tooltip_text = "Show Tree Only";
+              var int last_w = 0;
+              listeners [
+                clicked ( ) => {
+                	
+                	// _this.el.close_request();
+                	
+                	// save the window size,
+                	// and make the window the same size as the tree..
+                	
+                		int x,y;
+                	uint w,h;
+                	if (!_this.getSize(out x, out y, out w, out h)) {
+                		return;
+                	}
+                
+                	if (_this.btn_header.el.visible) {
+                		// then wer are not full... only
+                		var tree = _this.windowstate.left_tree;
+                		
+                	 
+                		_this.btn_full.last_w = _this.splitview.el.get_width();
+                
+                		GLib.debug("tree size = %d", tree.viewwin.el.get_width());
+                		this.last_w = tree.viewwin.el.get_width();
+                		_this.btn_full.last_h = _this.el.get_height();
+                		 
+                		
+                	} else {
+                		// we are in header collapse - no valuable data available.?
+                		// techmically we could store the width?
+                	}
+                	
+                	_this.label_project.el.hide();
+                	_this.label_file.el.hide();
+                	_this.splitview.el.show();
+                	_this.rightpane.el.hide();
+                 	_this.props.el.hide();
+                	_this.btn_tree.el.hide();
+                	_this.btn_full.el.show();
+                	_this.btn_header.el.show();
+                	
+                	
+                	GLib.debug("Set size %d x %d", this.last_w, _this.btn_full.last_h);
+                	
+                	_this.el.set_default_size(this.last_w, _this.btn_full.last_h);
+                	
+                	//// what size is the 
+                
+                	// load it everywhere
+                }
+              ]
+            },
+            Gtk.Button btn_full {
+              halign = Gtk.Align.END;
+              has_frame = true;
+              visible = false;
+              icon_name = "accessories-dictionary-symbolic";
+              tooltip_text = "Show Full Wundow";
+              var int last_h = 0;
+              var int last_w = 0;
+              listeners [
+                clicked ( ) => {
+                	
+                	// _this.el.close_request();
+                	int x,y;
+                	uint w,h;
+                	if (!_this.getSize(out x, out y, out w, out h)) {
+                		return;
+                	}
+                	 
+                 
+                	 
+                	
+                	_this.label_project.el.show();
+                	_this.label_file.el.show();
+                	
+                 	_this.splitview.el.show();
+                
+                	_this.props.el.show();
+                	_this.rightpane.el.show();
+                	
+                	_this.btn_tree.el.show();
+                	_this.btn_full.el.hide();
+                	_this.btn_header.el.show();
+                	
+                	 GLib.debug("Set height request %d",  _this.btn_full.last_h);
+                	 _this.el.set_default_size((int) _this.btn_full.last_w, (int) _this.btn_full.last_h ); 
+                	// load it everywhere
+                }
+              ]
+            },
+            Gtk.Button btn_header {
+              halign = Gtk.Align.END;
+              has_frame = true;
+              visible = true;
+              icon_name = "go-top-symbolic";
+              tooltip_text = "Collapse window to Header";
+              listeners [
+                clicked ( ) => {
+                
+                
+                	// fixme - need to handle code
+                	
+                	// from tree => collapse
+                	// dont save the width
+                	if (!_this.btn_full.el.visible) {
+                		// then it's a full window
+                		_this.btn_full.last_w = _this.splitview.el.get_width();
+                		_this.btn_tree.last_w = _this.tree.el.get_width();
+                			
+                	} // else  we are tree view..
+                	 
+                		
+                	_this.btn_full.last_h = _this.splitview.el.get_height();
+                	
+                
+                	 _this.splitview.el.height_request = _this.btn_full.last_h;
+                	// _this.el.close_request();
+                	_this.splitview.el.hide();
+                	 _this.btn_tree.el.show();
+                	_this.btn_full.el.show();
+                	_this.btn_header.el.hide();
+                 
+                	
+                	// we need to work out
+                	int x,y;
+                	uint w,h;
+                	if (!_this.getSize(out x, out y, out w, out h)) {
+                		return;
+                	}
+                	
+                	h -= _this.btn_full.last_h;
+                	
+                	//_this.el.set_default_size(-1,0);
+                	_this.setSize(x,y, w, h);
+                	
+                	// load it everywhere
+                }
+              ]
+            },
+            Gtk.Button {
+              halign = Gtk.Align.END;
+              has_frame = true;
+              margin_start = 48;
+              icon_name = "window-close";
+              listeners [
+                clicked ( ) => {
+                	
+                	 _this.el.close_request();
+                	
+                 
+                
+                	// load it everywhere
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
