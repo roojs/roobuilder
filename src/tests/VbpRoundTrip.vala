@@ -40,11 +40,28 @@ namespace Builder.Tests
 
 		static void write(JsRender.JsRender file, string dir) throws GLib.Error
 		{
+			string src;
+			GLib.FileUtils.get_contents(file.path, out src);
+			var peek = new Json.Parser();
+			peek.load_from_data(src);
+			var root = peek.get_root();
+			var ver = 1;
+			if (root != null && root.get_node_type() == Json.NodeType.OBJECT
+				&& root.get_object().has_member("bjs-version")) {
+				ver = (int) root.get_object().get_int_member("bjs-version");
+			}
+			if (ver < 3) {
+				print("SKIP %s (bjs-version %d)\n", file.relpath, ver);
+				return;
+			}
 			file.loadFromBjs();
 			if (file.tree == null) {
 				print("SKIP %s (no tree)\n", file.relpath);
 				return;
 			}
+			// Match parse-time behaviour: fill inferred GObject prop types before
+			// snapshotting `original.bjs`, so diffs are structural/value only.
+			new Vbp.GtkPropTypes(file).apply();
 			var stem = GLib.Path.build_filename(dir, file.project.name, file.relpath);
 			var parent = GLib.File.new_for_path(GLib.Path.get_dirname(stem));
 			if (!parent.query_exists()) {

@@ -49,7 +49,10 @@ namespace Vbp
 			this.stack.add(this.root);
 			while (true) {
 				this.drop_consumed();
-				this.skip_space();
+				var ws = this.take_whitespace();
+				if (ws != null) {
+					this.add_token(ws);
+				}
 				if (this.peek() == 0) {
 					break;
 				}
@@ -172,15 +175,23 @@ namespace Vbp
 			}
 		}
 
-		private void skip_space() throws GLib.Error
+		/**
+		 * Capture a run of whitespace as a tree token (preserved for opaque rejoin).
+		 */
+		private Token? take_whitespace() throws GLib.Error
 		{
+			var from = this.i;
 			while (true) {
 				var c = this.peek();
 				if (c != ' ' && c != '\t' && c != '\n' && c != '\r') {
-					return;
+					break;
 				}
 				this.advance();
 			}
+			if (from == this.i) {
+				return null;
+			}
+			return new Token("WS", this.buf.substring(from, this.i - from));
 		}
 
 		private Token next_token() throws GLib.Error

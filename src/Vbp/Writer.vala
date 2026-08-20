@@ -96,175 +96,278 @@ namespace Vbp
 			if (type_name == "") {
 				type_name = node.prop_type;
 			}
-			var id_name = node.has("id") ? node.get_prop_value("id") : "";
-			var header = id_name == "" ? type_name : type_name + " " + id_name;
-
-			var props = new Gee.ArrayList<JsRender.NodeProp>();
-			var vars = new Gee.ArrayList<JsRender.NodeProp>();
-			var inits = new Gee.ArrayList<JsRender.NodeProp>();
-			var listeners = new Gee.ArrayList<JsRender.NodeProp>();
-			var methods = new Gee.ArrayList<JsRender.NodeProp>();
-			var named = new Gee.ArrayList<JsRender.Node>();
-			var anon = new Gee.ArrayList<JsRender.Node>();
-
-			foreach (var child in node.children) {
-				if (child.node_type == JsRender.NodePropType.OBJECT) {
-					var obj = (JsRender.Node) child;
-					if (obj.prop_name != "") {
-						named.add(obj);
-						continue;
-					}
-					anon.add(obj);
-					continue;
-				}
-				var prop = (JsRender.NodeProp) child;
-				switch (prop.node_type) {
-					case JsRender.NodePropType.LISTENER:
-						listeners.add(prop);
-						break;
-
-					case JsRender.NodePropType.METHOD:
-					case JsRender.NodePropType.SIGNAL:
-						methods.add(prop);
-						break;
-
-					case JsRender.NodePropType.SPECIAL:
-						if (prop.prop_name == "init") {
-							inits.add(prop);
-							break;
-						}
-						props.add(prop);
-						break;
-
-					case JsRender.NodePropType.USER:
-						vars.add(prop);
-						break;
-
-					default:
-						if (prop.prop_name == "id") {
-							break;
-						}
-						props.add(prop);
-						break;
-				}
-			}
-
 			var comma = trailing_comma ? "," : "";
-			if (props.size == 0 && vars.size == 0 && inits.size == 0 && listeners.size == 0 && methods.size == 0 && named.size == 0 && anon.size == 0) {
-				output.put_string(prefix + header + " {}" + comma + "\n");
+
+			// If there are no children at all, emit an empty object.
+			if (node.children.size == 0) {
+				output.put_string(prefix + type_name + " {}" + comma + "\n");
 				return;
 			}
 
-			output.put_string(prefix + header + " {\n");
+			// Important: emit only `Type { ... }` (no `Type Name { ... }`) so we can
+			// round-trip `id` as a normal `id = ...;` statement in the original order.
+			output.put_string(prefix + type_name + " {\n");
 
-			// Object props first, then var fields (hand-authoring order).
-			foreach (var prop in props) {
-				if (prop.doc != "") {
-					output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
+			for (int i = 0; i < node.children.size; i++) {
+				var child = node.children.get(i);
+
+				// Anonymous + named child widgets.
+				if (child.node_type == JsRender.NodePropType.OBJECT) {
+					var obj = (JsRender.Node) child;
+					if (obj.prop_name != "") {
+						// Named object props are assignments: `name = Gtk.Box { ... }`.
+						this.append_node(output, obj, depth + 1, child_pad + obj.prop_name + " = ", false);
+						continue;
+					}
+
+					// Anonymous children must be emitted as bare `[` peer lists.
+					int j = i;
+					while (j < node.children.size) {
+						var c = node.children.get(j);
+						if (!(c.node_type == JsRender.NodePropType.OBJECT) || !(((JsRender.Node) c).prop_name == "")) {
+							break;
+						}
+						j++;
+					}
+					var count = j - i;
+					output.put_string(child_pad + "[\n");
+					for (int k = 0; k < count; k++) {
+						var anon = (JsRender.Node) node.children.get(i + k);
+						this.append_node(output, anon, depth + 2, "", k < count - 1);
+					}
+					output.put_string(child_pad + "]\n");
+					i = j - 1;
+					continue;
 				}
+
+				var prop = (JsRender.NodeProp) child;
 				switch (prop.node_type) {
+					case JsRender.NodePropType.LISTENER:
+					{
+						// Emit a `listeners [ ... ]` block for each contiguous listener run.
+						int j = i;
+						while (j < node.children.size) {
+							var c = node.children.get(j);
+							if (!(c is JsRender.NodeProp) || ((JsRender.NodeProp) c).node_type != JsRender.NodePropType.LISTENER) {
+								break;
+							}
+							j++;
+						}
+						var count = j - i;
+						output.put_string(child_pad + "listeners [\n");
+						for (int k = 0; k < count; k++) {
+							var lp = (JsRender.NodeProp) node.children.get(i + k);
+							if (lp.doc != "") {
+								output.put_string(list_pad + "/**\n" + list_pad + " * " + string.joinv("\n" + list_pad + " * ", lp.doc.split("\n")) + "\n" + list_pad + " */\n");
+							}
+							var lname = lp.prop_name.has_prefix("|") ? lp.prop_name.substring(1) : lp.prop_name;
+							// Listener names like `notify["selected"]` contain `[` / `]`,
+							// which the tokenizer treats as structure. Quote them so the
+							// structural parse keeps the name intact.
+							if (lname.contains("[") || lname.contains("]")) {
+								lname = this.quote_shell_string(lname);
+							}
+							output.put_string(list_pad + lname + " ");
+							this.put_opaque_body(output, "", lp.prop_val);
+							if (k < count - 1) {
+								output.put_string(",");
+							}
+							output.put_string("\n");
+						}
+						output.put_string(child_pad + "]\n");
+						i = j - 1;
+						break;
+					}
+
+					case JsRender.NodePropType.METHOD:
+					case JsRender.NodePropType.SIGNAL:
+					{
+						// Emit a `methods [ ... ]` block for each contiguous METHOD/SIGNAL run.
+						int j = i;
+						while (j < node.children.size) {
+							var c = node.children.get(j);
+							if (!(c is JsRender.NodeProp)) {
+								break;
+							}
+							var np = (JsRender.NodeProp) c;
+							if (np.node_type != JsRender.NodePropType.METHOD && np.node_type != JsRender.NodePropType.SIGNAL) {
+								break;
+							}
+							j++;
+						}
+						var count = j - i;
+						output.put_string(child_pad + "methods [\n");
+						for (int k = 0; k < count; k++) {
+							var mp = (JsRender.NodeProp) node.children.get(i + k);
+							if (mp.doc != "") {
+								output.put_string(list_pad + "/**\n" + list_pad + " * " + string.joinv("\n" + list_pad + " * ", mp.doc.split("\n")) + "\n" + list_pad + " */\n");
+							}
+							output.put_string(list_pad);
+							if (mp.prop_type != "") {
+								output.put_string(mp.prop_type + " ");
+							}
+							output.put_string(mp.prop_name + " ");
+							this.put_opaque_body(output, "", mp.prop_val);
+							if (k < count - 1) {
+								output.put_string(",");
+							}
+							output.put_string("\n");
+						}
+						output.put_string(child_pad + "]\n");
+						i = j - 1;
+						break;
+					}
+
 					case JsRender.NodePropType.SPECIAL:
+					{
+						// `construct { ... }` is a keyword block, not an assignment.
+						if (prop.prop_name == "init") {
+							if (prop.doc != "") {
+								output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
+							}
+							var init_body = prop.prop_val;
+							var init_text = init_body.has_prefix("{")
+								? init_body
+								: "{\n" + init_body + "\n" + child_pad + "}";
+							output.put_string(child_pad + "construct ");
+							output.put_string(init_text);
+							output.put_string("\n");
+							break;
+						}
+
+						if (prop.doc != "") {
+							output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
+						}
 						output.put_string(child_pad + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
 						break;
+					}
+
+					case JsRender.NodePropType.USER:
+					{
+						if (prop.doc != "") {
+							output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
+						}
+						var access = "var";
+						if (prop.prop_access == "private" || prop.prop_access == "protected") {
+							access = prop.prop_access;
+						}
+						if (prop.prop_val == "") {
+							output.put_string(child_pad + access + " " + prop.prop_type + " " + prop.prop_name + ";\n");
+							break;
+						}
+						output.put_string(child_pad + access + " " + prop.prop_type + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+						break;
+					}
 
 					case JsRender.NodePropType.RAW:
+					{
+						if (prop.doc != "") {
+							output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
+						}
+						// Quote-wrapped values are strings, not RAW — emit as PROP.
+						if (this.is_quoted_value(prop.prop_val)) {
+							this.append_prop_assign(output, child_pad, prop);
+							break;
+						}
 						if (prop.prop_val.index_of_char('\n') >= 0) {
-							output.put_string(child_pad + prop.prop_name + " = " + string.joinv("\n" + child_pad, prop.prop_val.split("\n")) + "\n");
+							this.put_opaque_body(output, child_pad + prop.prop_name + " = ", prop.prop_val);
+							output.put_string("\n");
 							break;
 						}
 						output.put_string(child_pad + prop.prop_name + " = " + prop.prop_val + ";\n");
 						break;
+					}
 
 					default:
-						if (prop.prop_val == "") {
-							output.put_string(child_pad + prop.prop_name + ";\n");
-							break;
-						}
-						output.put_string(child_pad + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+					{
+						this.append_prop_assign(output, child_pad, prop);
 						break;
-				}
-			}
-
-			foreach (var prop in vars) {
-				if (prop.doc != "") {
-					output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
-				}
-				var access = "var";
-				if (prop.prop_access == "private" || prop.prop_access == "protected") {
-					access = prop.prop_access;
-				}
-				if (prop.prop_val == "") {
-					output.put_string(child_pad + access + " " + prop.prop_type + " " + prop.prop_name + ";\n");
-					continue;
-				}
-				output.put_string(child_pad + access + " " + prop.prop_type + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
-			}
-
-			if (inits.size > 0) {
-				var init_prop = inits.get(0);
-				if (init_prop.doc != "") {
-					output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", init_prop.doc.split("\n")) + "\n" + child_pad + " */\n");
-				}
-				var init_body = init_prop.prop_val.strip();
-				var init_text = init_body.has_prefix("{")
-					? string.joinv("\n" + child_pad, init_body.split("\n"))
-					: "{\n" + child_pad + "  " + string.joinv("\n" + child_pad + "  ", init_body.split("\n")) + "\n" + child_pad + "}";
-				output.put_string(child_pad + "construct ");
-				output.put_string(init_text);
-				output.put_string("\n");
-			}
-
-			if (listeners.size > 0) {
-				output.put_string(child_pad + "listeners [\n");
-				for (var i = 0; i < listeners.size; i++) {
-					var prop = listeners.get(i);
-					if (prop.doc != "") {
-						output.put_string(list_pad + "/**\n" + list_pad + " * " + string.joinv("\n" + list_pad + " * ", prop.doc.split("\n")) + "\n" + list_pad + " */\n");
 					}
-					output.put_string(list_pad + (prop.prop_name.has_prefix("|") ? prop.prop_name.substring(1) : prop.prop_name) + " ");
-					output.put_string(string.joinv("\n" + list_pad, prop.prop_val.strip().split("\n")));
-					if (i < listeners.size - 1) {
-						output.put_string(",");
-					}
-					output.put_string("\n");
 				}
-				output.put_string(child_pad + "]\n");
-			}
-
-			if (methods.size > 0) {
-				output.put_string(child_pad + "methods [\n");
-				for (var i = 0; i < methods.size; i++) {
-					var prop = methods.get(i);
-					if (prop.doc != "") {
-						output.put_string(list_pad + "/**\n" + list_pad + " * " + string.joinv("\n" + list_pad + " * ", prop.doc.split("\n")) + "\n" + list_pad + " */\n");
-					}
-					output.put_string(list_pad);
-					if (prop.prop_type != "") {
-						output.put_string(prop.prop_type + " ");
-					}
-					output.put_string(prop.prop_name + " ");
-					output.put_string(string.joinv("\n" + list_pad, prop.prop_val.strip().split("\n")));
-					if (i < methods.size - 1) {
-						output.put_string(",");
-					}
-					output.put_string("\n");
-				}
-				output.put_string(child_pad + "]\n");
-			}
-
-			foreach (var obj in named) {
-				this.append_node(output, obj, depth + 1, child_pad + obj.prop_name + " = ", false);
-			}
-
-			if (anon.size > 0) {
-				output.put_string(child_pad + "[\n");
-				for (var i = 0; i < anon.size; i++) {
-					this.append_node(output, anon.get(i), depth + 2, "", i < anon.size - 1);
-				}
-				output.put_string(child_pad + "]\n");
 			}
 
 			output.put_string(pad + "}" + comma + "\n");
+		}
+
+		private bool is_quoted_value(string val)
+		{
+			var s = val.strip();
+			if (s.length < 2) {
+				return false;
+			}
+			return (s[0] == '"' && s[s.length - 1] == '"')
+				|| (s[0] == '\'' && s[s.length - 1] == '\'');
+		}
+
+		private void append_prop_assign(GLib.DataOutputStream output, string child_pad, JsRender.NodeProp prop) throws GLib.Error
+		{
+			if (prop.doc != "") {
+				output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
+			}
+			if (prop.prop_val == "") {
+				if (typed_assignment_ok(prop.prop_type)) {
+					output.put_string(child_pad + prop.prop_type + " " + prop.prop_name + ";\n");
+				} else {
+					output.put_string(child_pad + prop.prop_name + ";\n");
+				}
+				return;
+			}
+			if (typed_assignment_ok(prop.prop_type)) {
+				output.put_string(child_pad + prop.prop_type + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+			} else {
+				output.put_string(child_pad + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+			}
+		}
+
+		private void put_opaque_body(GLib.DataOutputStream output, string prefix, string body) throws GLib.Error
+		{
+			if (body == "") {
+				output.put_string(prefix);
+				return;
+			}
+			var lines = body.split("\n");
+			output.put_string(prefix + lines[0]);
+			for (var li = 1; li < lines.length; li++) {
+				output.put_string("\n" + lines[li]);
+			}
+		}
+
+		private bool typed_assignment_ok(string type)
+		{
+			return type != ""
+				&& !type.contains("<")
+				&& !type.contains(">")
+				&& !type.contains("{")
+				&& !type.contains("}");
+		}
+
+		private string quote_shell_string(string val)
+		{
+			// Prefer quoting styles that avoid inserting backslashes (Parser.unquote
+			// strips only delimiters, it does not unescape).
+			var has_dq = val.contains("\"");
+			var has_sq = val.contains("'");
+
+			if (has_dq && !has_sq) {
+				return "'" + val + "'";
+			}
+			if (has_sq && !has_dq) {
+				return "\"" + val + "\"";
+			}
+			if (!has_dq && !has_sq) {
+				return "\"" + val + "\"";
+			}
+
+			// Contains both quote kinds: use verbatim triple quotes.
+			if (!val.contains("\"\"\"")) {
+				return "\"\"\"" + val + "\"\"\"";
+			}
+			if (!val.contains("'''")) {
+				return "'''" + val + "'''";
+			}
+
+			// Last resort: escape.
+			return "\"" + val.escape("") + "\"";
 		}
 
 		/**
@@ -276,17 +379,16 @@ namespace Vbp
 		private string scalar_value(JsRender.NodeProp prop)
 		{
 			var val = prop.prop_val;
+			if (this.is_quoted_value(val)) {
+				return val.strip();
+			}
 			switch (val.down()) {
 				case "true":
 				case "false":
 					return val.down();
 			}
-			switch (prop.node_type) {
-				case JsRender.NodePropType.RAW:
-				case JsRender.NodePropType.SPECIAL:
-					return val;
-				default:
-					break;
+			if (prop.node_type == JsRender.NodePropType.RAW) {
+				return val;
 			}
 			if (val == "null") {
 				return val;
@@ -305,18 +407,35 @@ namespace Vbp
 				default:
 					break;
 			}
-			if (prop.prop_type.down().contains("string") || prop.prop_type.down().contains("utf8")) {
-				return "\"" + val.escape("") + "\"";
+
+			var pt = prop.prop_type.down();
+			var is_stringish = pt.contains("string") || pt.contains("utf8") || pt.contains("str");
+			if (is_stringish) {
+				return quote_shell_string(val);
 			}
-			if (val.contains("{") || val.contains("}") || val.contains("//")) {
-				return "\"" + val.escape("") + "\"";
+
+			// If we don't know the type, still avoid emitting unquoted strings that
+			// look like expressions; those get heuristically classified as RAW.
+			var has_ws = val.contains(" ") || val.contains("\t") || val.contains("\n");
+			if (val.contains("//") || val.contains("{") || val.contains("}")) {
+				return quote_shell_string(val);
 			}
-			if (val.contains(".") || val.contains("(") || val.contains("[")) {
+
+			// Enum-like constants: `Gtk.PositionType.RIGHT` (dot, no whitespace).
+			if (val.contains(".") && !has_ws) {
 				return val;
 			}
-			if (prop.prop_type == "") {
-				return "\"" + val.escape("") + "\"";
+
+			// Parentheses in a sentence (e.g. "Property Type (eg. ...)") should be quoted.
+			if (val.contains("(") && has_ws) {
+				return quote_shell_string(val);
 			}
+
+			// Default: quote untyped values as strings.
+			if (prop.prop_type == "" || has_ws) {
+				return quote_shell_string(val);
+			}
+
 			return val;
 		}
 

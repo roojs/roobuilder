@@ -11,7 +11,7 @@ namespace Vbp
 	public class Token : Object
 	{
 		/**
-		 * Scanner kind: `TEXT`, `{` `}` `[` `]` `=` `;` `,`, `//` `/*`,
+		 * Scanner kind: `TEXT`, `WS`, `{` `}` `[` `]` `=` `;` `,`, `//` `/*`,
 		 * or group `{}` / `[]`.
 		 */
 		public string kind { get; set; default = ""; }
