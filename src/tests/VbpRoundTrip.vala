@@ -97,18 +97,18 @@ namespace Builder.Tests
 		static string normalize_generated(string src)
 		{
 			var lines = src.replace("\r\n", "\n").replace("\r", "\n").split("\n");
-			var out = new Gee.ArrayList<string>();
+			var norm = new Gee.ArrayList<string>();
 			foreach (var line in lines) {
-				out.add(line.chomp());
+				norm.add(line.chomp());
 			}
 			// Trim leading/trailing empty lines.
-			while (out.size > 0 && out.get(0).strip() == "") {
-				out.remove_at(0);
+			while (norm.size > 0 && norm.get(0).strip() == "") {
+				norm.remove_at(0);
 			}
-			while (out.size > 0 && out.get(out.size - 1).strip() == "") {
-				out.remove_at(out.size - 1);
+			while (norm.size > 0 && norm.get(norm.size - 1).strip() == "") {
+				norm.remove_at(norm.size - 1);
 			}
-			return string.joinv("\n", out.to_array());
+			return string.joinv("\n", norm.to_array());
 		}
 	}
 
