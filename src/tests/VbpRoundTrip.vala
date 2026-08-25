@@ -67,11 +67,19 @@ namespace Builder.Tests
 			// Match parse-time behaviour: fill inferred GObject prop types before
 			// snapshotting `original.bjs`, so diffs are structural/value only.
 			new Vbp.GtkPropTypes(file).apply();
+			VbpRoundTrip.dump_tree("before-vbp", file);
 			var generated_before = VbpRoundTrip.normalize_generated(file.toSourceCode(true));
 			var stem = GLib.Path.build_filename(dir, file.project.name, file.relpath);
 			var parent = GLib.File.new_for_path(GLib.Path.get_dirname(stem));
 			if (!parent.query_exists()) {
 				parent.make_directory_with_parents(null);
+			}
+			var gen_target = file.targetName();
+			var target_source = "";
+			var has_target = GLib.FileUtils.test(gen_target, GLib.FileTest.EXISTS);
+			if (has_target) {
+				GLib.FileUtils.get_contents(gen_target, out target_source);
+				target_source = VbpRoundTrip.normalize_generated(target_source);
 			}
 			size_t len;
 			file.writeFile(stem + ".original.bjs", Json.gobject_to_data(file, out len));
@@ -79,6 +87,7 @@ namespace Builder.Tests
 			var stream = GLib.File.new_for_path(stem + ".vbp").read();
 			new Vbp.Parser().parse_into(file, stream);
 			stream.close();
+			VbpRoundTrip.dump_tree("after-parse", file);
 			var generated_after = VbpRoundTrip.normalize_generated(file.toSourceCode(true));
 			file.writeFile(stem + ".roundtrip.bjs", Json.gobject_to_data(file, out len));
 			if (generated_before != generated_after) {
@@ -87,7 +96,59 @@ namespace Builder.Tests
 				GLib.FileUtils.set_contents(stem + ".roundtrip.generated." + gen_ext, generated_after);
 				print("GEN_DIFF %s\n", file.relpath);
 			}
+			if (has_target && target_source != generated_before) {
+				var gen_ext = file.project.xtype == "Gtk" ? "vala" : "js";
+				GLib.FileUtils.set_contents(stem + ".target.generated." + gen_ext, target_source);
+				GLib.FileUtils.set_contents(stem + ".before.generated." + gen_ext, generated_before);
+				print("CUR_GEN_DIFF_BEFORE %s\n", file.relpath);
+			}
+			if (has_target && target_source != generated_after) {
+				var gen_ext = file.project.xtype == "Gtk" ? "vala" : "js";
+				GLib.FileUtils.set_contents(stem + ".target.generated." + gen_ext, target_source);
+				GLib.FileUtils.set_contents(stem + ".after.generated." + gen_ext, generated_after);
+				print("CUR_GEN_DIFF_AFTER %s\n", file.relpath);
+			}
 			print("%s\n", stem);
+		}
+
+		/**
+		 * Dump children vs props/listeners caches — codegen reads the caches,
+		 * while VBP parse currently only fills children.
+		 */
+		static void dump_tree(string label, JsRender.JsRender file)
+		{
+			var root = file.tree;
+			if (root == null) {
+				print("DEBUG %s %s (no tree)\n", label, file.relpath);
+				return;
+			}
+			print("DEBUG %s %s children=%d props=%d listeners=%d specials=%d\n",
+				label, file.relpath,
+				root.children.size, root.props.size, root.listeners.size, root.specials.size);
+			foreach (var child in root.children) {
+				var ctype = child.node_type.to_ctype();
+				var in_props = child.prop_name != "" && root.props.has_key(child.prop_name);
+				var in_listeners = child.prop_name != "" && root.listeners.has_key(child.prop_name);
+				var in_specials = child.prop_name != "" && root.specials.has_key(child.prop_name);
+				print("  child oid=%d type=%s ctype='%s' name=%s cached[p=%s l=%s s=%s] val=%s\n",
+					child.oid,
+					child.node_type.to_string(),
+					ctype,
+					child.prop_name,
+					in_props.to_string(),
+					in_listeners.to_string(),
+					in_specials.to_string(),
+					child.prop_val.split("\n")[0]);
+			}
+			foreach (var k in root.props.keys) {
+				print("  cache.p[%s]\n", k);
+			}
+			foreach (var k in root.listeners.keys) {
+				print("  cache.l[%s]\n", k);
+			}
+			foreach (var k in root.specials.keys) {
+				print("  cache.s[%s]\n", k);
+			}
 		}
 
 		/**
