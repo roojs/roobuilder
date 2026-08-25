@@ -237,7 +237,7 @@ namespace Vbp
 								output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
 							}
 							output.put_string(child_pad + "construct");
-							this.put_code(output, child_pad, prop);
+							this.put_code(output, child_pad, prop, child_pad.length + "construct".length);
 							output.put_string("\n");
 							break;
 						}
