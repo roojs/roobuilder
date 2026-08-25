@@ -90,20 +90,27 @@ namespace Builder.Tests
 			VbpRoundTrip.dump_tree("after-parse", file);
 			var generated_after = VbpRoundTrip.normalize_generated(file.toSourceCode(true));
 			file.writeFile(stem + ".roundtrip.bjs", Json.gobject_to_data(file, out len));
+			var gen_ext = file.project.xtype == "Gtk" ? "vala" : "js";
 			if (generated_before != generated_after) {
-				var gen_ext = file.project.xtype == "Gtk" ? "vala" : "js";
+				// Always keep readable artifacts when layout differs.
 				GLib.FileUtils.set_contents(stem + ".original.generated." + gen_ext, generated_before);
 				GLib.FileUtils.set_contents(stem + ".roundtrip.generated." + gen_ext, generated_after);
+			}
+			// GEN_DIFF = content mismatch after stripping layout/comment noise.
+			if (VbpRoundTrip.canonical_generated(generated_before)
+				!= VbpRoundTrip.canonical_generated(generated_after)) {
 				print("GEN_DIFF %s\n", file.relpath);
 			}
-			if (has_target && target_source != generated_before) {
-				var gen_ext = file.project.xtype == "Gtk" ? "vala" : "js";
+			if (has_target
+				&& VbpRoundTrip.canonical_generated(target_source)
+				!= VbpRoundTrip.canonical_generated(generated_before)) {
 				GLib.FileUtils.set_contents(stem + ".target.generated." + gen_ext, target_source);
 				GLib.FileUtils.set_contents(stem + ".before.generated." + gen_ext, generated_before);
 				print("CUR_GEN_DIFF_BEFORE %s\n", file.relpath);
 			}
-			if (has_target && target_source != generated_after) {
-				var gen_ext = file.project.xtype == "Gtk" ? "vala" : "js";
+			if (has_target
+				&& VbpRoundTrip.canonical_generated(target_source)
+				!= VbpRoundTrip.canonical_generated(generated_after)) {
 				GLib.FileUtils.set_contents(stem + ".target.generated." + gen_ext, target_source);
 				GLib.FileUtils.set_contents(stem + ".after.generated." + gen_ext, generated_after);
 				print("CUR_GEN_DIFF_AFTER %s\n", file.relpath);
@@ -155,8 +162,7 @@ namespace Builder.Tests
 		}
 
 		/**
-		 * Normalize generated source so minor formatting differences do not
-		 * count as structural changes.
+		 * Light normalize for readable artifacts (trim EOL / leading-trailing blanks).
 		 */
 		static string normalize_generated(string src)
 		{
@@ -165,7 +171,6 @@ namespace Builder.Tests
 			foreach (var line in lines) {
 				norm.add(line.chomp());
 			}
-			// Trim leading/trailing empty lines.
 			while (norm.size > 0 && norm.get(0).strip() == "") {
 				norm.remove_at(0);
 			}
@@ -173,6 +178,45 @@ namespace Builder.Tests
 				norm.remove_at(norm.size - 1);
 			}
 			return string.joinv("\n", norm.to_array());
+		}
+
+		/**
+		 * Compare key for generated code: drop whitespace, `//` comments, and
+		 * generated Xcls_/child_ number suffixes so GEN_DIFF is content, not layout/oid churn.
+		 */
+		static string canonical_generated(string src)
+		{
+			var buf = new StringBuilder();
+			foreach (var raw in src.replace("\r\n", "\n").replace("\r", "\n").split("\n")) {
+				var line = raw.strip();
+				if (line == "" || line.has_prefix("//")) {
+					continue;
+				}
+				var cut = line.index_of("//");
+				if (cut > 0) {
+					line = line.substring(0, cut);
+				}
+				unichar c;
+				var i = 0;
+				while (line.get_next_char(ref i, out c)) {
+					if (!c.isspace()) {
+						buf.append_unichar(c);
+					}
+				}
+			}
+			try {
+				var xcls = new GLib.Regex("Xcls_[A-Za-z_]+[0-9]+");
+				var child = new GLib.Regex("child_[0-9]+");
+				var s = xcls.replace(buf.str, buf.str.length, 0, "Xcls_N");
+				s = child.replace(s, s.length, 0, "child_N");
+				// Spurious empty `{}` from construct/CodeParts layout.
+				while (s.contains("{}")) {
+					s = s.replace("{}", "");
+				}
+				return s;
+			} catch (GLib.RegexError e) {
+				return buf.str;
+			}
 		}
 	}
 

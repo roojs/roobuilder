@@ -37,11 +37,6 @@ namespace Vbp
 			this.children = new Gee.ArrayList<Token>();
 		}
 
-		public bool is_leaf_kind(string kind)
-		{
-			return this.kind == kind;
-		}
-
 		/**
 		 * True when this is a VBP ident (`Gtk.Box`, `colModel[]`, `foo?`).
 		 *
@@ -59,6 +54,26 @@ namespace Vbp
 				return true;
 			}
 			return this.text == expected;
+		}
+
+		/** Reconstruct source text (groups include their braces). */
+		public string source_text()
+		{
+			if (this.kind == "{}") {
+				var out = "{";
+				foreach (var c in this.children) {
+					out += c.source_text();
+				}
+				return out + "}";
+			}
+			if (this.kind == "[]") {
+				var out = "[";
+				foreach (var c in this.children) {
+					out += c.source_text();
+				}
+				return out + "]";
+			}
+			return this.text;
 		}
 
 	}

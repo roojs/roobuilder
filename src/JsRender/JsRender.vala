@@ -567,6 +567,11 @@ namespace JsRender {
 			// Set bjs_version to 3 to ensure new format is saved
 			this.bjs_version = 3;
 
+			// Canonicalize listener/method/raw code so new files need no legacy split on load.
+			if (this.tree != null) {
+				CodeParts.normalize_tree(this.tree);
+			}
+
 			GLib.debug("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
 		try {
 			// Use Json.gobject_to_data for serialization

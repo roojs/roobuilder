@@ -1,0 +1,22 @@
+// Opaque brace form (plan 1.2) — CrmClient now round-trips.
+// Full: docs/samples/Pman.Tab.CrmClient-issue4.vbp
+
+                        displayMsg = "Displaying Activities {0} - {1} of {2}";
+                        emptyMsg = "No Activity found";
+                        pageSize = 25;
+                      }
+                      cm[] = Roo.grid.ColumnModel {
+                        Function renderer = function(v, x, r)
+                        {
+                              var qtip = '';
+                              Roo.each(r.data.event_audit, function(audit) {
+                                  qtip = qtip + audit.name + ' SET TO ' + audit.newvalue + '<br>'; 
+                              });
+                              return '<b qtip="' + qtip.replace(/"/g, '&quot;') + '">' + v + '</b>';
+                        }
+                        String header = "Activity";
+                        dataIndex = "action_type_id_display_name";
+                      }
+                      cm[] = Roo.grid.ColumnModel {
+                        String header = "Who";
+                        dataIndex = "staff_id_name";

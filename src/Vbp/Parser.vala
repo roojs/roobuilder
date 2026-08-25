@@ -12,36 +12,30 @@ namespace Vbp
 		private string pending_doc = "";
 		private string pending_name = "";
 
-		private bool is_ws(Token n)
+		/** First non-trivia index at/after {@code i}. */
+		private int skip(Gee.ArrayList<Token> nodes, int i)
 		{
-			// `//` is VBP trivia at structure level, but join_nodes keeps the text
-			// inside method/listener/`construct` bodies.
-			return n.kind == "WS" || n.kind == "//";
-		}
-
-		private int skip_ws(Gee.ArrayList<Token> nodes, int i)
-		{
-			while (i < nodes.size && this.is_ws(nodes.get(i))) {
+			while (i < nodes.size && (nodes.get(i).kind == "WS" || nodes.get(i).kind == "//")) {
 				i++;
 			}
 			return i;
 		}
 
-		/** Index of the {@code offset}-th non-{@link WS} token at/after {@code start}. */
-		private int idx_non_ws(Gee.ArrayList<Token> nodes, int start, int offset)
+		/**
+		 * Index of the {@code n}-th non-trivia token after {@code i}
+		 * ({@code n}=1 → immediate next significant token).
+		 * {@code i} must already sit on a significant token.
+		 */
+		private int next(Gee.ArrayList<Token> nodes, int i, int n = 1)
 		{
-			var i = start;
-			var n = 0;
-			while (i < nodes.size) {
-				if (!this.is_ws(nodes.get(i))) {
-					if (n == offset) {
-						return i;
-					}
-					n++;
+			var at = i;
+			for (var k = 0; k < n; k++) {
+				at = this.skip(nodes, at + 1);
+				if (at >= nodes.size) {
+					return nodes.size;
 				}
-				i++;
 			}
-			return nodes.size;
+			return at;
 		}
 
 		/**
@@ -73,7 +67,7 @@ namespace Vbp
 			JsRender.Node? tree = null;
 			var i = 0;
 			while (i < nodes.size) {
-				i = this.skip_ws(nodes, i);
+				i = this.skip(nodes, i);
 				if (i >= nodes.size) {
 					break;
 				}
@@ -81,18 +75,18 @@ namespace Vbp
 				if (cur.is_ident("using")) {
 					i++;
 					while (i < nodes.size && !this.is_object_start(nodes, i)) {
-						var i0 = this.skip_ws(nodes, i);
-						var i1 = this.idx_non_ws(nodes, i, 1);
+						var i0 = this.skip(nodes, i);
+						var i1 = this.next(nodes, i0);
 						if (i0 < nodes.size && nodes.get(i0).is_ident()
-							&& i1 < nodes.size && nodes.get(i1).is_leaf_kind("=")) {
+							&& i1 < nodes.size && nodes.get(i1).kind == "=") {
 							break;
 						}
 						i++;
 					}
 					continue;
 				}
-				var eq_at = this.idx_non_ws(nodes, i, 1);
-				if (cur.is_ident() && eq_at < nodes.size && nodes.get(eq_at).is_leaf_kind("=")) {
+				var eq_at = this.next(nodes, i);
+				if (cur.is_ident() && eq_at < nodes.size && nodes.get(eq_at).kind == "=") {
 					var key = nodes.get(i).text;
 					i = eq_at + 1;
 					var val = this.take_header_value(nodes, ref i);
@@ -128,41 +122,40 @@ namespace Vbp
 			return tree;
 		}
 
+		/** `Type {` or `Type Name {` — not a reserved statement keyword. */
 		private bool is_object_start(Gee.ArrayList<Token> nodes, int i)
 		{
-			i = this.skip_ws(nodes, i);
+			i = this.skip(nodes, i);
 			if (i >= nodes.size || !nodes.get(i).is_ident()) {
 				return false;
 			}
 			var text = nodes.get(i).text;
-			if (text == "using" || this.is_user_kw(text) || text == "construct"
-				|| text == "listeners" || text == "methods" || text == "special") {
+			if (text == "using" || text == "var" || text == "public" || text == "private"
+				|| text == "protected" || text == "construct" || text == "listeners"
+				|| text == "methods" || text == "special") {
 				return false;
 			}
-			var i1 = this.idx_non_ws(nodes, i, 1);
+			var i1 = this.next(nodes, i);
 			if (i1 < nodes.size && nodes.get(i1).kind == "{}") {
 				return true;
 			}
-			var i2 = this.idx_non_ws(nodes, i, 2);
-			if (i1 < nodes.size && nodes.get(i1).is_ident()
-				&& i2 < nodes.size && nodes.get(i2).kind == "{}") {
-				return true;
-			}
-			return false;
+			var i2 = this.next(nodes, i, 2);
+			return i1 < nodes.size && nodes.get(i1).is_ident()
+				&& i2 < nodes.size && nodes.get(i2).kind == "{}";
 		}
 
 		private JsRender.Node parse_object(Gee.ArrayList<Token> nodes, ref int i, string prop_name)
 		{
-			i = this.skip_ws(nodes, i);
+			i = this.skip(nodes, i);
 			var type = nodes.get(i).text;
 			i++;
-			i = this.skip_ws(nodes, i);
+			i = this.skip(nodes, i);
 			var id = "";
 			if (i < nodes.size && nodes.get(i).is_ident()) {
 				id = nodes.get(i).text;
 				i++;
 			}
-			i = this.skip_ws(nodes, i);
+			i = this.skip(nodes, i);
 			if (i >= nodes.size || nodes.get(i).kind != "{}") {
 				this.err(nodes.get(i - 1), "expected { after type");
 			}
@@ -171,9 +164,7 @@ namespace Vbp
 			var obj = new JsRender.Node();
 			obj.setFqn(type);
 			if (id != "") {
-				var id_prop = new JsRender.NodeProp.prop("id", "", id);
-				id_prop.parent = obj;
-				obj.children.add(id_prop);
+				this.add_child(obj, new JsRender.NodeProp.prop("id", "", id));
 			}
 			this.fill_object(obj, body.children);
 			if (prop_name != "") {
@@ -187,12 +178,12 @@ namespace Vbp
 			this.pending_doc = "";
 			var i = 0;
 			while (i < kids.size) {
-				i = this.skip_ws(kids, i);
+				i = this.skip(kids, i);
 				if (i >= kids.size) {
 					break;
 				}
 				var cur = kids.get(i);
-				if (cur.kind == "/" + "*") {
+				if (cur.kind == "/*") {
 					this.pending_doc = this.doc_from_comment(cur.text);
 					i++;
 					continue;
@@ -205,7 +196,8 @@ namespace Vbp
 					i++;
 					continue;
 				}
-				if (cur.is_ident() && this.is_user_kw(cur.text)) {
+				if (cur.is_ident("var") || cur.is_ident("public")
+					|| cur.is_ident("private") || cur.is_ident("protected")) {
 					this.add_child(obj, this.parse_var(kids, ref i));
 					continue;
 				}
@@ -223,7 +215,7 @@ namespace Vbp
 				}
 				if (cur.is_ident("special")) {
 					i++;
-					i = this.skip_ws(kids, i);
+					i = this.skip(kids, i);
 					if (i >= kids.size || !kids.get(i).is_ident()) {
 						this.err(cur, "expected name after special");
 					}
@@ -232,49 +224,45 @@ namespace Vbp
 				}
 				if (this.is_object_start(kids, i)) {
 					var child = this.parse_object(kids, ref i, "");
-					i = this.skip_ws(kids, i);
-					if (i < kids.size && kids.get(i).is_leaf_kind(";")) {
+					i = this.skip(kids, i);
+					if (i < kids.size && kids.get(i).kind == ";") {
 						i++;
 					}
 					this.add_child(obj, child);
 					continue;
 				}
-				// Typed assignment: `Type name = value;` or `A|B|C name = value;`
-				// (also accepts `/` as a union separator).
+				// Typed: `Type name = value;` / `A|B name;` (also accepts `/` as union sep).
 				string typed_type;
 				int typed_name_at;
 				if (this.match_typed_prefix(kids, i, out typed_type, out typed_name_at)
 					&& typed_name_at < kids.size
 					&& kids.get(typed_name_at).is_ident()) {
-					var typed_eq_at = this.idx_non_ws(kids, typed_name_at, 1);
-					if (typed_eq_at < kids.size && kids.get(typed_eq_at).is_leaf_kind("=")) {
-						this.add_child(obj, this.parse_typed_assign(kids, ref i, typed_type, typed_name_at, typed_eq_at));
+					var after_name = this.next(kids, typed_name_at);
+					if (after_name < kids.size && kids.get(after_name).kind == "=") {
+						var name = kids.get(typed_name_at).text;
+						i = after_name + 1;
+						this.add_child(obj, this.make_prop(name, typed_type, this.take_value(kids, ref i)));
 						continue;
 					}
-					var decl_semi_at = this.idx_non_ws(kids, typed_name_at, 1);
-					if (decl_semi_at < kids.size && kids.get(decl_semi_at).is_leaf_kind(";")) {
-						this.add_child(obj, this.parse_typed_declaration(kids, ref i, typed_type, typed_name_at, decl_semi_at));
+					if (after_name < kids.size && kids.get(after_name).kind == ";") {
+						var name = kids.get(typed_name_at).text;
+						i = after_name + 1;
+						this.add_child(obj, this.make_prop(name, typed_type, ""));
 						continue;
 					}
 				}
-				var eq_at = this.idx_non_ws(kids, i, 1);
-				if (cur.is_ident() && eq_at < kids.size && kids.get(eq_at).is_leaf_kind("=")) {
+				var eq_at = this.next(kids, i);
+				if (cur.is_ident() && eq_at < kids.size && kids.get(eq_at).kind == "=") {
 					this.add_child(obj, this.parse_assign(kids, ref i));
 					continue;
 				}
-				var semi_at = this.idx_non_ws(kids, i, 1);
-				if (cur.is_ident() && semi_at < kids.size && kids.get(semi_at).is_leaf_kind(";")) {
+				if (cur.is_ident() && eq_at < kids.size && kids.get(eq_at).kind == ";") {
 					this.add_child(obj, this.make_prop(cur.text, "", ""));
-					i = semi_at + 1;
+					i = eq_at + 1;
 					continue;
 				}
 				this.err(cur, "unexpected object body token");
 			}
-		}
-
-		private bool is_union_sep(Token n)
-		{
-			return n.kind == "TEXT" && (n.text == "/" || n.text == "|");
 		}
 
 		/**
@@ -290,7 +278,7 @@ namespace Vbp
 		{
 			type = "";
 			name_at = nodes.size;
-			var i = this.skip_ws(nodes, start);
+			var i = this.skip(nodes, start);
 			if (i >= nodes.size || !nodes.get(i).is_ident()) {
 				return false;
 			}
@@ -298,12 +286,14 @@ namespace Vbp
 			bits.add(nodes.get(i).text);
 			var after_type = i;
 			while (true) {
-				var sep_at = this.idx_non_ws(nodes, after_type, 1);
-				var part_at = this.idx_non_ws(nodes, after_type, 2);
+				var sep_at = this.next(nodes, after_type);
+				var part_at = this.next(nodes, after_type, 2);
 				if (sep_at >= nodes.size || part_at >= nodes.size) {
 					break;
 				}
-				if (!this.is_union_sep(nodes.get(sep_at)) || !nodes.get(part_at).is_ident()) {
+				var sep = nodes.get(sep_at);
+				if (sep.kind != "TEXT" || (sep.text != "/" && sep.text != "|")
+					|| !nodes.get(part_at).is_ident()) {
 					break;
 				}
 				// Canonical VBP union spelling is `|`.
@@ -311,39 +301,12 @@ namespace Vbp
 				bits.add(nodes.get(part_at).text);
 				after_type = part_at;
 			}
-			name_at = this.idx_non_ws(nodes, after_type, 1);
+			name_at = this.next(nodes, after_type);
 			if (name_at >= nodes.size || !nodes.get(name_at).is_ident()) {
 				return false;
 			}
 			type = string.joinv("", bits.to_array());
 			return true;
-		}
-
-		private JsRender.NodeProp parse_typed_assign(
-			Gee.ArrayList<Token> nodes,
-			ref int i,
-			string type,
-			int name_at,
-			int eq_at
-		) throws GLib.Error
-		{
-			var name = nodes.get(name_at).text;
-			i = eq_at + 1;
-			var val = this.take_value(nodes, ref i);
-			return this.make_prop(name, type, val);
-		}
-
-		private JsRender.NodeProp parse_typed_declaration(
-			Gee.ArrayList<Token> nodes,
-			ref int i,
-			string type,
-			int name_at,
-			int semi_at
-		) throws GLib.Error
-		{
-			var name = nodes.get(name_at).text;
-			i = semi_at + 1;
-			return this.make_prop(name, type, "");
 		}
 
 		private void add_child(JsRender.Node obj, JsRender.NodeBase child)
@@ -355,23 +318,11 @@ namespace Vbp
 			child.parent = obj;
 			obj.children.add(child);
 			// Codegen reads props/listeners/specials from Node.cache, not children.
-			// BJS deserialize calls add_to_cache; VBP parse must too.
 			obj.add_to_cache(child);
 			if (this.pending_name != "" && child is JsRender.Node) {
 				child.modify_prop_name(this.pending_name);
 				this.pending_name = "";
 			}
-		}
-
-		private bool is_user_kw(string text)
-		{
-			return text == "var" || text == "public" || text == "private" || text == "protected";
-		}
-
-		private bool is_special_name(string name)
-		{
-			return name == "pack" || name == "ctor" || name == "args"
-				|| name == "columns" || name == "response_id" || name == "xinclude" || name == "init";
 		}
 
 		private JsRender.NodeProp parse_var(Gee.ArrayList<Token> nodes, ref int i)
@@ -382,7 +333,7 @@ namespace Vbp
 			var depth = 0;
 			while (i < nodes.size) {
 				var cur = nodes.get(i);
-				if (depth == 0 && (cur.is_leaf_kind("=") || cur.is_leaf_kind(";"))) {
+				if (depth == 0 && (cur.kind == "=" || cur.kind == ";")) {
 					break;
 				}
 				if (cur.kind == "TEXT") {
@@ -404,17 +355,16 @@ namespace Vbp
 			var type = this.join_nodes(nodes, from, name_at).strip();
 			var name = nodes.get(name_at).text;
 			var val = "";
-			if (i < nodes.size && nodes.get(i).is_leaf_kind("=")) {
+			if (i < nodes.size && nodes.get(i).kind == "=") {
 				i++;
 				var raw_rhs = this.take_value(nodes, ref i);
-				// Explicit `= ""` / `= ''` is an empty-string default, not “no value”.
-				// BJS stores that as the two-character sentinel `"\"\""` so JSON keeps it.
-				if (this.is_quoted_value(raw_rhs) && this.unquote(raw_rhs) == "") {
+				// Explicit `= ""` / `= ''` → BJS sentinel `"\"\""` so JSON keeps empty string.
+				if (this.is_quoted(raw_rhs) && this.unquote(raw_rhs) == "") {
 					val = "\"\"";
 				} else {
 					val = this.unquote(raw_rhs);
 				}
-			} else if (i < nodes.size && nodes.get(i).is_leaf_kind(";")) {
+			} else if (i < nodes.size && nodes.get(i).kind == ";") {
 				i++;
 			} else {
 				this.err(nodes.get(i - 1), "expected = or ; after var name");
@@ -429,7 +379,7 @@ namespace Vbp
 		private JsRender.NodeProp parse_construct(Gee.ArrayList<Token> nodes, ref int i)
 		{
 			i++;
-			i = this.skip_ws(nodes, i);
+			i = this.skip(nodes, i);
 			if (i >= nodes.size || nodes.get(i).kind != "{}") {
 				this.err(nodes.get(i - 1), "expected { after construct");
 			}
@@ -444,7 +394,7 @@ namespace Vbp
 		private void parse_named_list(JsRender.Node obj, Gee.ArrayList<Token> nodes, ref int i, bool listeners)
 		{
 			i++;
-			i = this.skip_ws(nodes, i);
+			i = this.skip(nodes, i);
 			if (i >= nodes.size || nodes.get(i).kind != "[]") {
 				this.err(nodes.get(i - 1), "expected [ after list keyword");
 			}
@@ -454,7 +404,7 @@ namespace Vbp
 				if (peer.size < 1) {
 					continue;
 				}
-				var j = this.skip_ws(peer, 0);
+				var j = this.skip(peer, 0);
 				if (listeners) {
 					if (j >= peer.size || peer.get(j).kind != "TEXT") {
 						this.err(peer.get(j), "expected listener name");
@@ -477,7 +427,7 @@ namespace Vbp
 				var type = "";
 				var name = peer.get(j).text;
 				j++;
-				j = this.skip_ws(peer, j);
+				j = this.skip(peer, j);
 				if (j < peer.size && peer.get(j).is_ident()) {
 					type = name;
 					name = peer.get(j).text;
@@ -497,23 +447,25 @@ namespace Vbp
 
 		private JsRender.NodeBase parse_assign(Gee.ArrayList<Token> nodes, ref int i)
 		{
-			i = this.skip_ws(nodes, i);
+			i = this.skip(nodes, i);
 			var name = nodes.get(i).text;
-			var eq_at = this.idx_non_ws(nodes, i, 1);
-			if (eq_at >= nodes.size || !nodes.get(eq_at).is_leaf_kind("=")) {
+			var eq_at = this.next(nodes, i);
+			if (eq_at >= nodes.size || nodes.get(eq_at).kind != "=") {
 				this.err(nodes.get(i), "expected =");
 			}
 			i = eq_at + 1;
 			if (this.is_object_start(nodes, i)) {
 				var child = this.parse_object(nodes, ref i, name);
-				i = this.skip_ws(nodes, i);
-				if (i < nodes.size && nodes.get(i).is_leaf_kind(";")) {
+				i = this.skip(nodes, i);
+				if (i < nodes.size && nodes.get(i).kind == ";") {
 					i++;
 				}
 				return child;
 			}
 			var val = this.take_value(nodes, ref i);
-			if (this.is_special_name(name)) {
+			// Writer emits these SPECIAL names as bare `name = …;` (no `special` keyword).
+			if (name == "pack" || name == "ctor" || name == "args" || name == "columns"
+				|| name == "response_id" || name == "xinclude" || name == "init") {
 				return new JsRender.NodeProp.special(name, this.unquote(val));
 			}
 			return this.make_prop(name, "", val);
@@ -521,17 +473,17 @@ namespace Vbp
 
 		private JsRender.NodeProp parse_special_assign(Gee.ArrayList<Token> nodes, ref int i)
 		{
-			i = this.skip_ws(nodes, i);
+			i = this.skip(nodes, i);
 			var name = nodes.get(i).text;
-			var eq_at = this.idx_non_ws(nodes, i, 1);
-			if (eq_at >= nodes.size || !nodes.get(eq_at).is_leaf_kind("=")) {
+			var eq_at = this.next(nodes, i);
+			if (eq_at >= nodes.size || nodes.get(eq_at).kind != "=") {
 				this.err(nodes.get(i), "expected = after special name");
 			}
 			i = eq_at + 1;
 			return new JsRender.NodeProp.special(name, this.unquote(this.take_value(nodes, ref i)));
 		}
 
-		private bool is_quoted_value(string val)
+		private bool is_quoted(string val)
 		{
 			var s = val.strip();
 			if (s.length < 2) {
@@ -545,7 +497,7 @@ namespace Vbp
 		{
 			var raw = val.strip();
 			// Quoted RHS → PROP (string). Unquoted RHS → RAW (`true`, enums, `typeof(…)`).
-			if (raw == "" || this.is_quoted_value(raw)) {
+			if (raw == "" || this.is_quoted(raw)) {
 				return new JsRender.NodeProp.prop(name, type, this.unquote(raw));
 			}
 			return new JsRender.NodeProp.raw(name, type, raw);
@@ -554,11 +506,11 @@ namespace Vbp
 		private string take_header_value(Gee.ArrayList<Token> nodes, ref int i)
 		{
 			var from = i;
-			while (i < nodes.size && !nodes.get(i).is_leaf_kind(";")) {
-				var i0 = this.skip_ws(nodes, i);
-				var i1 = this.idx_non_ws(nodes, i, 1);
+			while (i < nodes.size && nodes.get(i).kind != ";") {
+				var i0 = this.skip(nodes, i);
+				var i1 = this.next(nodes, i0);
 				if (i0 < nodes.size && nodes.get(i0).is_ident()
-					&& i1 < nodes.size && nodes.get(i1).is_leaf_kind("=")) {
+					&& i1 < nodes.size && nodes.get(i1).kind == "=") {
 					break;
 				}
 				if (this.is_object_start(nodes, i)) {
@@ -570,7 +522,7 @@ namespace Vbp
 				throw new IOError.FAILED("missing header value");
 			}
 			var text = this.join_nodes(nodes, from, i);
-			if (i < nodes.size && nodes.get(i).is_leaf_kind(";")) {
+			if (i < nodes.size && nodes.get(i).kind == ";") {
 				i++;
 			}
 			return text;
@@ -580,7 +532,7 @@ namespace Vbp
 		{
 			var from = i;
 			var saw_group = false;
-			while (i < nodes.size && !nodes.get(i).is_leaf_kind(";")) {
+			while (i < nodes.size && nodes.get(i).kind != ";") {
 				if (i > from && saw_group && this.is_stmt_start(nodes, i)) {
 					return this.join_nodes(nodes, from, i);
 				}
@@ -600,37 +552,33 @@ namespace Vbp
 			return text;
 		}
 
+		/** True when tokens at {@code i} begin the next object-body statement. */
 		private bool is_stmt_start(Gee.ArrayList<Token> nodes, int i)
 		{
-			i = this.skip_ws(nodes, i);
+			i = this.skip(nodes, i);
 			if (i >= nodes.size) {
 				return false;
 			}
 			var cur = nodes.get(i);
-			if (cur.kind == "[]" || cur.kind == "/" + "*") {
+			if (cur.kind == "[]" || cur.kind == "/*") {
 				return true;
 			}
 			if (!cur.is_ident()) {
 				return false;
 			}
 			var text = cur.text;
-			if (this.is_user_kw(text) || text == "construct" || text == "listeners"
-				|| text == "methods" || text == "special") {
+			if (text == "var" || text == "public" || text == "private" || text == "protected"
+				|| text == "construct" || text == "listeners" || text == "methods"
+				|| text == "special") {
 				return true;
 			}
-			var i1 = this.idx_non_ws(nodes, i, 1);
-			if (i1 < nodes.size && (nodes.get(i1).is_leaf_kind("=")
-				|| nodes.get(i1).is_leaf_kind(";")
-				|| nodes.get(i1).kind == "{}"
-				|| nodes.get(i1).kind == "[]")) {
+			if (this.is_object_start(nodes, i)) {
 				return true;
 			}
-			var i2 = this.idx_non_ws(nodes, i, 2);
-			if (i1 < nodes.size && nodes.get(i1).is_ident()
-				&& i2 < nodes.size && nodes.get(i2).kind == "{}") {
-				return true;
-			}
-			return false;
+			var i1 = this.next(nodes, i);
+			return i1 < nodes.size
+				&& (nodes.get(i1).kind == "=" || nodes.get(i1).kind == ";"
+					|| nodes.get(i1).kind == "[]");
 		}
 
 		private Gee.ArrayList<Gee.ArrayList<Token>> split_comma(Gee.ArrayList<Token> nodes)
@@ -639,14 +587,24 @@ namespace Vbp
 			var cur = new Gee.ArrayList<Token>();
 			var depth = 0;
 			foreach (var n in nodes) {
-				if (n.is_leaf_kind(",") && depth < 1) {
+				if (n.kind == "," && depth < 1) {
 					if (cur.size > 0) {
 						peers.add(cur);
 					}
 					cur = new Gee.ArrayList<Token>();
 					continue;
 				}
-				depth += this.paren_delta(n);
+				if (n.kind != "{}" && n.kind != "[]") {
+					var idx = 0;
+					unichar c;
+					while (n.text.get_next_char(ref idx, out c)) {
+						if (c == '(') {
+							depth++;
+						} else if (c == ')') {
+							depth--;
+						}
+					}
+				}
 				cur.add(n);
 			}
 			if (cur.size > 0) {
@@ -655,32 +613,13 @@ namespace Vbp
 			return peers;
 		}
 
-		private int paren_delta(Token n)
-		{
-			if (n.kind == "{}" || n.kind == "[]") {
-				return 0;
-			}
-			var d = 0;
-			var idx = 0;
-			unichar c;
-			while (n.text.get_next_char(ref idx, out c)) {
-				if (c == '(') {
-					d++;
-				}
-				if (c == ')') {
-					d--;
-				}
-			}
-			return d;
-		}
-
 		/**
 		 * Peer tokens after the name → {@link JsRender.CodeParts}.
 		 * {@link JsRender.CodeParts.braced} is false when there was no `{}` group.
 		 */
 		private JsRender.CodeParts take_code_parts(Gee.ArrayList<Token> peer, int j)
 		{
-			j = this.skip_ws(peer, j);
+			j = this.skip(peer, j);
 			var brace = -1;
 			for (var k = j; k < peer.size; k++) {
 				if (peer.get(k).kind == "{}") {
@@ -706,20 +645,9 @@ namespace Vbp
 			}
 			var out = "";
 			for (var i = from; i < to; i++) {
-				out += this.node_text(nodes.get(i));
+				out += nodes.get(i).source_text();
 			}
 			return out;
-		}
-
-		private string node_text(Token n)
-		{
-			if (n.kind == "{}") {
-				return "{" + this.join_nodes(n.children) + "}";
-			}
-			if (n.kind == "[]") {
-				return "[" + this.join_nodes(n.children) + "]";
-			}
-			return n.text;
 		}
 
 		private string unquote(string val)

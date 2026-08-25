@@ -1,0 +1,8 @@
+# Roo / JavaScript projects (legacy BJS v1 `items` → in-memory v3 → VBP → BJS)
+# Usage: ./tests/test_vbp_roundtrip.sh tests/vbp-roundtrip-js.manifest build/vbp-roundtrip-js
+
+/home/alan/gitlive/Pman.Admin|all
+/home/alan/gitlive/Pman.Crm|all
+/home/alan/gitlive/Pman.Cms|all
+/home/alan/gitlive/web.MediaOutreach/Pman/PressRelease|all
+/home/alan/gitlive/web.Texon/Pman/Shipping|all

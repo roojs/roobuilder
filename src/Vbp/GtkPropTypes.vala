@@ -44,14 +44,22 @@ namespace Vbp
 					this.fill_node(pal, sl, (JsRender.Node) child);
 					continue;
 				}
-				if (schema == null || child.prop_type != "") {
+				if (schema == null) {
 					continue;
 				}
 				if (child.node_type != JsRender.NodePropType.PROP
 					&& child.node_type != JsRender.NodePropType.RAW) {
 					continue;
 				}
+				if (child.prop_name == "" || child.prop_name == "id") {
+					continue;
+				}
 				if (!schema.has_key(child.prop_name)) {
+					// Instance field stored as PROP/RAW in old BJS — not a GObject prop.
+					child.modify_node_type(JsRender.NodePropType.USER);
+					continue;
+				}
+				if (child.prop_type != "") {
 					continue;
 				}
 				child.modify_prop_type(schema.get(child.prop_name).rtype);

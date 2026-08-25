@@ -445,6 +445,9 @@ namespace JsRender
 							if (child != null) {
 								// If child oid is negative, assign a new one
 								child.parent = this;
+								if (child is NodeProp) {
+									new CodeParts.for_prop((NodeProp) child);
+								}
 								children_list.add(child);
 								this.add_to_cache(child);
 							}

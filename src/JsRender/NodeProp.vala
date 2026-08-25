@@ -108,6 +108,10 @@ namespace JsRender
 		public Node? add_node = null; // used when we list potentional nodes for properties in add list.
 
 		public string propertyof { get;   set; }
+
+		/** VBP braced-code parts (filled by {@link CodeParts.for_prop} / parser; not BJS). */
+		public string code_header = "";
+		public string code_body = "";
 		
 		// doc is now inherited from NodePropBase
 		public NodeProp(string name, NodePropType ptype, string rtype, string val) {

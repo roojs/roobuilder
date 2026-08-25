@@ -172,7 +172,7 @@ namespace Vbp
 								lname = this.quote_shell_string(lname);
 							}
 							output.put_string(list_pad + lname);
-							this.put_code(output, list_pad, lp, list_pad.length + lname.length);
+							this.put_code(output, list_pad, lp);
 							if (k < count - 1) {
 								output.put_string(",");
 							}
@@ -207,15 +207,12 @@ namespace Vbp
 								output.put_string(list_pad + "/**\n" + list_pad + " * " + string.joinv("\n" + list_pad + " * ", mp.doc.split("\n")) + "\n" + list_pad + " */\n");
 							}
 							output.put_string(list_pad);
-							var method_col = list_pad.length;
 							if (mp.prop_type != "") {
 								output.put_string(mp.prop_type + " ");
-								method_col += mp.prop_type.length + 1;
 							}
 							output.put_string(mp.prop_name);
-							method_col += mp.prop_name.length;
 							if (mp.node_type == JsRender.NodePropType.METHOD) {
-								this.put_code(output, list_pad, mp, method_col);
+								this.put_code(output, list_pad, mp);
 							} else {
 								output.put_string(" " + mp.prop_val);
 							}
@@ -237,7 +234,7 @@ namespace Vbp
 								output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
 							}
 							output.put_string(child_pad + "construct");
-							this.put_code(output, child_pad, prop, child_pad.length + "construct".length);
+							this.put_code(output, child_pad, prop);
 							output.put_string("\n");
 							break;
 						}
@@ -389,20 +386,8 @@ namespace Vbp
 		}
 
 		/**
-		 * Standard VBP code shape: signature header with `) {` / `=> {` on one
-		 * line, then body, then `}` — as you would write Vala/JS:
-		 *
-		 * {{{
-		 *   void showIt (
-		 *     Type a,
-		 *     Type b
-		 *   ) {
-		 *     …
-		 *   }
-		 * }}}
-		 *
-		 * Body lines are indented past {@link pad} so the opaque tokenizer’s
-		 * same-indent `}` closer cannot match interior braces.
+		 * Emit {@link JsRender.NodeProp.code_header} then ` {` body `}`.
+		 * No reformatting — whatever header shape is stored (single- or multi-line).
 		 */
 		private void put_code(GLib.DataOutputStream output, string pad, JsRender.NodeProp prop) throws GLib.Error
 		{
@@ -417,7 +402,6 @@ namespace Vbp
 				for (var hi = 1; hi < hlines.length; hi++) {
 					output.put_string("\n" + pad + hlines[hi]);
 				}
-				// `) {` / `=> {` on the same line as the end of the header.
 				output.put_string(" {\n");
 			} else {
 				output.put_string("\n");

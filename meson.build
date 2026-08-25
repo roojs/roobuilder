@@ -105,6 +105,7 @@ roobuilder_src = files([
    'src/JsRender/JsRender.vala',
    'src/JsRender/Lang.vala',
    'src/JsRender/NodeProp.vala',
+   'src/JsRender/CodeParts.vala',
    'src/JsRender/NodeToGlade.vala',
    'src/JsRender/Roo.vala',
    'src/JsRender/Node.vala',

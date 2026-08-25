@@ -28,84 +28,182 @@ BJS JSON identity (oid ignored) is still dirty for Vala — that is **not** the 
 2. **`CodeParts.from_prop_val`** — body opens at first `{` at paren-depth 0 (multi-line parameter lists).
 3. **Standard emit** — `header {\nbody\n}` with `) {` / `=> {` on one line. Writer prints stored `code_header`/`code_body` as-is (no re-wrap trickery). `CodeParts` is for legacy BJS recovery + that join only.
 
-`DialogTemplateSelect` `showIt` VBP is now:
+---
+
+## Vala — the remaining 4 (`GEN_DIFF`)
+
+Files: `CodeInfo`, `DialogFiles`, `DialogPluginWebkit`, `Editor`.
+
+### What it is *not*
+
+Not missing methods/props. Not `Xcls_Box8` vs `Xcls_Box45` (canonical strips those). Mostly **author-written Vala `{ }` block scopes inside `init`** that round-trip drops.
+
+### Why braces appear / disappear
+
+Legacy BJS stores `init` as a string **array**. Some authors wrapped the body in a Vala block:
+
+**Original BJS** (`DialogPluginWebkit` → WebKit.WebView `init`):
+
+```json
+"prop-name": "init",
+"prop-val": [
+  " {",
+  "    // this may not work!?",
+  "    var settings =  this.el.get_settings();",
+  "    …",
+  " }"
+]
+```
+
+Those leading/trailing `{` / `}` are **part of the code**, not VBP syntax.
+
+**`CodeParts.for_prop` for `init`** treats a whole value that starts with `{` and ends with `}` as “CodeParts wrappers” and **strips** them before VBP write:
+
+```vala
+// after normalize — braces gone from prop_val / code_body
+var settings = this.el.get_settings();
+…
+```
+
+**VBP** (correct for the stripped body):
 
 ```
-void showIt (
-  Xcls_MainWindow mwindow,
-  …
-) {
-  this.el.show();
-  …
+WebKit.WebView {
+  construct
+  {
+    // this may not work!?
+    var settings = this.el.get_settings();
+    …
+  }
 }
 ```
 
----
+Parser: `construct { … }` braces are VBP shell only → `init` body without an extra block.
 
-## Vala — still `GEN_DIFF` (4)
+**Generated Vala**
 
-`CodeInfo`, `DialogFiles`, `DialogPluginWebkit`, `Editor`.
+| | After `this.el = new WebKit.WebView();` |
+|--|--|
+| original | `{` … settings / FakeServer … `}` (block from BJS) |
+| round-trip | statements directly (no block) |
 
-Construct/`init` brace wrapping: expected still has an extra `{ … }` around some init bodies that round-trip drops (or the reverse). Not missing methods — brace placement in generated Vala.
+Same pattern elsewhere: empty `{` / `}` after a statement (`CodeInfo` `this.loaded = false;`), or a one-liner wrapped in braces (`Editor` `this.el.show();`). Canonical removes empty `{}` pairs; **braces that wrap real statements stay** in the compare → `GEN_DIFF`.
 
-```vala
-// expected
-this.el = new WebKit.WebView();
-{
-var settings = this.el.get_settings();
-```
+Semantically those blocks are usually no-ops (extra scope). Still a real fidelity gap if we care about byte-stable generated Vala.
 
-```vala
-// got
-this.el = new WebKit.WebView();
-var settings = this.el.get_settings();
-```
+### Open fix directions (not decided)
 
-`DialogConfirm`, `About`, `EditProject`, save dialogs, `DialogTemplateSelect`: content match under canonical compare.
+- Stop stripping outer `{`…`}` on `init` when they were author code (hard to tell from CodeParts delimiters).
+- Or accept strip + teach canonical that a lone block around construct body is equivalent (weaker).
+- Or emit `construct` body exactly as stored and never normalize `init` through the method-shaped CodeParts strip.
 
 ---
 
-## JS — still broken where it matters
+## JS — RAW object / array literals (`sortInfo`, `fields`)
 
-### Parse failures (22)
+### Pipeline today
 
-Tokenizer/opaque-brace issues, e.g. `Unclosed opaque brace block`, `Unmatched }`, `Unmatched ]` — including `Pman.Tab.CrmClient.bjs`.
+**Original BJS:** `sortInfo` is **RAW** (`$`) with value `{ field : 'event_when', direction: 'DESC' }`.
 
-### Content `GEN_DIFF` (208) — typical patterns
+**Writer** (deliberate): if RAW contains `{` / `}` or a newline, **quote it as a shell string** so a bol `{` is not taken as an opaque code block:
 
-**Object literal quoted as a string** (`AdminEventLog`):
-
-```js
-// expected
-sortInfo : { field : 'event_when', direction: 'DESC' },
+```
+sortInfo = "{ field : 'event_when', direction: 'DESC' }";
 ```
 
-```js
-// got
-sortInfo : '{ field : \'event_when\', direction: \'DESC\' }',
+Multiline arrays become:
+
+```
+fields = "[
+    {
+        'name': 'id',
+        …
+";
 ```
 
-**i18n / `_strings` mishandled** (`AdminAddIpv6`):
+**Parser:** quote-delimited RHS → **PROP** (string), not RAW.
 
-```js
-// expected
+**Generated JS**
+
+| | |
+|--|--|
+| expected | `sortInfo : { field : 'event_when', direction: 'DESC' },` |
+| got | `sortInfo : '{ field : \'event_when\', direction: \'DESC\' }',` |
+
+Quoting “fixed” the tokenizer collision and **broke** codegen: RAW expression → string literal.
+
+### Lean RAW fence — `@[` / `@{` (scope from corpus)
+
+See [`1.0-vbp-format.md`](../plans/1.0-vbp-format.md). ~1250 JS hits whose RAW/PROP text starts with `[` or `{`: mostly **`fields`** (~600) and **`sortInfo`** (~500), then `data`, `baseParams`, and a short tail. Out of scope: `url` / `renderer` expressions, `construct`, quoted format strings like `"{0}"`.
+
+```
+sortInfo = @{ field : 'event_when', direction: 'DESC' };
+
+fields = @[
+    { name: 'id', type: 'int' },
+    …
+];
+```
+
+`@` = nested `[`/`{` is RAW, not VBP structure. **🚫** quoting; **🚫** `@"""`.
+
+---
+
+## JS — i18n / `_strings` (`loadingText`)
+
+### How codegen works today (BJS path)
+
+1. Plain **PROP** string on a name in `doubleStringProps` (e.g. `loadingText`) or `_…` string type.
+2. On generate, `NodeToJs` emits `_this._strings['«md5»'] /* Searching... */`.
+3. `Roo.findTransStrings` / `transStringsToJs` builds the `_strings` / `_named_strings` maps from the same plain text (MD5 of stripped value).
+4. **Translation tooling still keys off BJS** (plain source strings in the tree) — checksums are derived at generate time, not stored as the authoring source of truth.
+
+### What VBP does wrong now
+
+```
+loadingText = Searching...;
+```
+
+Unquoted → parsed as **RAW** → codegen prints `loadingText : Searching...,` (no quotes, no `_strings`).
+
+Expected:
+
+```
 loadingText : _this._strings['1243daf593…'] /* Searching... */,
 ```
 
-```js
-// got
-loadingText : Searching...,
+Minimum fix: Writer must emit **quoted** PROP strings (`loadingText = "Searching...";`) so type stays PROP and the existing `_strings` path runs.
+
+### 💩 Open: VBP strings header (checksum section)
+
+Outbound translation still wants a stable extractable string table. Options:
+
+1. **Keep deriving** checksums only at generate time from quoted PROP values (status quo once quoting is fixed). BJS/VBP hold plain text; no checksums in the file.
+2. **VBP header section** listing checksum → text (and maybe named keys), e.g.
+
+```
+vbp-version = 1;
+name = Pman.Dialog.AdminAddIpv6;
+strings {
+  "1243daf593…" = "Searching...";
+  // or named: domain_id_domain_loadingText = "1243daf593…";
+}
 ```
 
-**Large structured RAW props** (e.g. `fields : [ … ]`) still drop or flatten — same family as quoting objects.
+- **Load:** read `strings { }`, keep map on `JsRender`; when injecting/generating, prefer header map (or validate against MD5 of PROP text).
+- **Write:** emit header from `transStrings` / named map after a generate or save pass.
+- **Translation:** either keep using BJS for extract, or teach the extractor to read this VBP header (and stop requiring BJS for that).
+
+Question for product: is the header the **source of truth** for translators, or only a cache that must match PROP text? If source of truth, PROP values might become references (`loadingText = string "1243…";`) instead of duplicating text — bigger format change.
 
 ---
 
 ## Next work
 
-1. **JS parse:** opaque `{` / `]` matching on the FAIL set (start with CrmClient / NotifySender).
-2. **JS content:** stop quoting/flattening object and array RAW values; keep `_strings` wiring.
-3. **Vala:** construct/`init` outer braces in generated output (the remaining 4).
+1. **Vala:** decide keep vs strip author `{ }` inside `init` (see above) — unblocks the 4 `GEN_DIFF`s.
+2. **JS RAW:** design fence / `name = [ … ];` expression so `sortInfo` / `fields` stay RAW (plan open point in `1.0-vbp-format.md`).
+3. **JS strings:** quote PROP strings in Writer; then decide whether a `strings { }` header is worth it for translation.
+4. **JS parse FAIL (22):** opaque brace / unmatched `}` `]` (CrmClient, etc.).
 
 ## Re-run
 

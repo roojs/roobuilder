@@ -27,7 +27,7 @@ namespace JsRender {
 
 		}
 
-		public void loadFromJson(Node node, Json.Object obj, int version)
+		public void loadFromJson(Node node, Json.Object obj, int version) throws Error
 		{
 			// First pass: collect xns and xtype values to set prop_type
 			var xns_val = "";
@@ -47,6 +47,8 @@ namespace JsRender {
 					case "$ xns":
 					case "xns":
 					case "string xns":
+					case "|xns":
+					case "| xns":
 						xns_val = this.jsonNodeAsString(value);
 						GLib.debug("First pass - found xns: '%s'", xns_val);
 						break;
@@ -63,7 +65,10 @@ namespace JsRender {
 				var generator = new Json.Generator();
 				generator.set_root(json_node);
 				GLib.debug("node: %s", generator.to_data(null));
-				GLib.error("Failed to set prop_type - xns_val: '%s' xtype_val: '%s'", xns_val, xtype_val);
+				throw new Error.INVALID_FORMAT(
+					"Failed to set prop_type - xns_val: '%s' xtype_val: '%s'",
+					xns_val, xtype_val
+				);
 			}
 			// Second pass: process all other properties
 			obj.foreach_member((o , key, value) => {
@@ -84,6 +89,7 @@ namespace JsRender {
 							var li = value.get_object();
 							li.foreach_member((lio , li_key, li_value) => {
 								var child_node = new NodeProp.listener(li_key, this.jsonNodeAsString(li_value));
+								new CodeParts.for_prop(child_node);
 								node.children.add(child_node);
 								node.add_to_cache(child_node);
 							});
@@ -108,6 +114,8 @@ namespace JsRender {
 						case "xns":
 						case "$ xns":
 						case "string xns":
+						case "|xns":
+						case "| xns":
 						case "string xtype":
 							return; // ignore - already handled above
 
@@ -133,6 +141,7 @@ namespace JsRender {
 					if (is_async_key) {
 						n.modify_is_async(true);
 					}
+					new CodeParts.for_prop(n);
 
 					node.children.add(n); // we have to add it without all the bells and whitles
 					node.add_to_cache(n);

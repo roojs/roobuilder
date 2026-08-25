@@ -5,11 +5,9 @@ namespace Vbp
 	 * Structure-first VBP scanner. Nests `{ }` / `[ ]` while scanning.
 	 * Non-structural content is opaque {@link Token} `TEXT`.
 	 *
-	 * Port of `tools/vbp/Tokenizer.php`. Comments are kept on the flat stream
-	 * and skipped from the tree. The tree is what the Node structural pass walks.
-	 *
-	 * Reads {@link GLib.DataInputStream} a line at a time into a string buffer,
-	 * then scans that buffer (pulling more lines when a token needs them).
+	 * Opaque code bodies: if `{` is the first non-whitespace on a line, the
+	 * interior is one {@code TEXT} blob until a line whose first non-ws is `}`
+	 * at the same indent. No signature heuristics — NodeProp owns header/body.
 	 */
 	public class Tokenizer : Object
 	{
@@ -17,6 +15,7 @@ namespace Vbp
 		private string buf = "";
 		private int i = 0;
 		private bool at_end = false;
+		private bool at_bol = true;
 		private Gee.ArrayList<Token> stack = new Gee.ArrayList<Token>();
 		private Token? root = null;
 		private Gee.ArrayList<Token> flat = new Gee.ArrayList<Token>();
@@ -34,7 +33,7 @@ namespace Vbp
 		}
 
 		/**
-		 * One pass: tokenize + nest `{ }` / `[ ]`. Skips `//` and `/*` in the tree.
+		 * One pass: tokenize + nest `{ }` / `[ ]`.
 		 *
 		 * @return root list token (`[]`) whose children are the file-level tokens
 		 */
@@ -43,23 +42,34 @@ namespace Vbp
 			this.buf = "";
 			this.i = 0;
 			this.at_end = false;
+			this.at_bol = true;
 			this.flat = new Gee.ArrayList<Token>();
 			this.root = new Token("[]", "");
 			this.stack = new Gee.ArrayList<Token>();
 			this.stack.add(this.root);
 			while (true) {
 				this.drop_consumed();
-				var ws = this.take_whitespace();
+				int base_indent = 0;
+				bool bol = this.at_bol;
+				var ws = this.take_whitespace_bol(ref bol, ref base_indent);
 				if (ws != null) {
 					this.add_token(ws);
 				}
+				this.at_bol = bol;
 				if (this.peek() == 0) {
 					break;
 				}
-				this.add_token(this.next_token());
+				if (this.at_bol && this.peek() == '{') {
+					this.add_opaque_brace_indent(base_indent);
+					this.at_bol = true;
+					continue;
+				}
+				var t = this.next_token();
+				this.add_token(t);
+				this.at_bol = false;
 			}
 			if (this.stack.size != 1) {
-				GLib.error("Unclosed group at end of file");
+				throw new IOError.FAILED("Unclosed group at end of file");
 			}
 			return this.root;
 		}
@@ -73,12 +83,9 @@ namespace Vbp
 			return this.flat;
 		}
 
-		private void add_token(Token t)
+		private void add_token(Token t) throws GLib.Error
 		{
 			this.flat.add(t);
-			if (t.kind == "//") {
-				return;
-			}
 			var cur = this.stack.get(this.stack.size - 1);
 			if (t.kind == "{") {
 				var g = new Token("{}", "{");
@@ -94,21 +101,27 @@ namespace Vbp
 			}
 			if (t.kind == "}") {
 				if (this.stack.size < 2) {
-					GLib.error("Unmatched }");
+					var ctx_from = this.i > 80 ? this.i - 80 : 0;
+					var ctx_to = this.i + 40;
+					if (ctx_to > this.buf.length) {
+						ctx_to = this.buf.length;
+					}
+					var ctx = this.buf.substring(ctx_from, ctx_to - ctx_from);
+					throw new IOError.FAILED("Unmatched } near: %s", ctx.escape("\n"));
 				}
 				var g = this.stack.remove_at(this.stack.size - 1);
 				if (g.kind != "{}") {
-					GLib.error("Unmatched }");
+					throw new IOError.FAILED("Unmatched }");
 				}
 				return;
 			}
 			if (t.kind == "]") {
 				if (this.stack.size < 2) {
-					GLib.error("Unmatched ]");
+					throw new IOError.FAILED("Unmatched ]");
 				}
 				var g = this.stack.remove_at(this.stack.size - 1);
 				if (g.kind != "[]") {
-					GLib.error("Unmatched ]");
+					throw new IOError.FAILED("Unmatched ]");
 				}
 				return;
 			}
@@ -176,20 +189,91 @@ namespace Vbp
 		}
 
 		/**
-		 * Capture a run of whitespace as a tree token (preserved for opaque rejoin).
+		 * `{` … `}` with closer at the same indent as the opener line.
+		 * Interior is raw text — no quote/brace parse.
 		 */
-		private Token? take_whitespace() throws GLib.Error
+		private void add_opaque_brace_indent(int base_indent) throws GLib.Error
+		{
+			this.advance(); // `{`
+			var text = "";
+			var opener_rest = this.take_line_remainder();
+			if (opener_rest.strip() != "") {
+				text = opener_rest + "\n";
+			}
+			while (true) {
+				if (this.peek() == 0) {
+					throw new IOError.FAILED("Unclosed opaque brace block");
+				}
+				var line = this.take_line_remainder();
+				int indent = 0;
+				while (indent < line.length && (line.get(indent) == ' ' || line.get(indent) == '\t')) {
+					indent++;
+				}
+				var rest = line.substring(indent);
+				// Peer lists write `},` on the closer line; allow optional `,` / `;`.
+				if (indent == base_indent && GLib.Regex.match_simple("^\\}[ \\t]*[,;]?[ \\t]*$", rest)) {
+					var g = new Token("{}", "{");
+					if (text.has_suffix("\n")) {
+						text = text.substring(0, text.length - 1);
+					}
+					g.children.add(new Token("TEXT", text));
+					this.flat.add(new Token("{", "{"));
+					this.flat.add(g.children.get(0));
+					this.flat.add(new Token("}", "}"));
+					this.stack.get(this.stack.size - 1).children.add(g);
+					if (rest.contains(",")) {
+						this.add_token(new Token(",", ","));
+					} else if (rest.contains(";")) {
+						this.add_token(new Token(";", ";"));
+					}
+					return;
+				}
+				text += line + "\n";
+			}
+		}
+
+		private string take_line_remainder() throws GLib.Error
 		{
 			var from = this.i;
+			while (true) {
+				var c = this.peek();
+				if (c == 0) {
+					return this.buf.substring(from, this.i - from);
+				}
+				if (c == '\n') {
+					var line = this.buf.substring(from, this.i - from);
+					this.advance();
+					return line;
+				}
+				this.advance();
+			}
+		}
+
+		private Token? take_whitespace_bol(ref bool bol, ref int base_indent) throws GLib.Error
+		{
+			var from = this.i;
+			var saw_nl = false;
+			var indent = 0;
 			while (true) {
 				var c = this.peek();
 				if (c != ' ' && c != '\t' && c != '\n' && c != '\r') {
 					break;
 				}
+				if (c == '\n') {
+					saw_nl = true;
+					indent = 0;
+					bol = true;
+				} else if (c != '\r') {
+					indent++;
+				}
 				this.advance();
 			}
 			if (from == this.i) {
 				return null;
+			}
+			if (saw_nl || bol) {
+				base_indent = indent;
+				bol = true;
 			}
 			return new Token("WS", this.buf.substring(from, this.i - from));
 		}
@@ -243,9 +327,11 @@ namespace Vbp
 		{
 			while (true) {
 				var c = this.peek();
+				// `/` and `|` stop TEXT so Roo union types (`String/Object` or
+				// `String|Object`) become separate tokens the parser can rejoin.
 				if (c == 0 || c == '{' || c == '}' || c == '[' || c == ']' || c == ';' || c == ',' || c == '='
 					|| c == ' ' || c == '\t' || c == '\n' || c == '\r'
-					|| c == '/' || c == '"' || c == '\'') {
+					|| c == '/' || c == '|' || c == '"' || c == '\'') {
 					return;
 				}
 				this.advance();
@@ -267,7 +353,7 @@ namespace Vbp
 			}
 			var end = this.find("*/");
 			if (end < 0) {
-				GLib.error("Unterminated comment");
+				throw new IOError.FAILED("Unterminated comment");
 			}
 			this.i = end + 2;
 			return new Token("/" + "*", this.buf.substring(from, this.i - from));
@@ -280,7 +366,7 @@ namespace Vbp
 			while (true) {
 				var pos = this.find(quote);
 				if (pos < 0) {
-					GLib.error("Unterminated string");
+					throw new IOError.FAILED("Unterminated string");
 				}
 				if (qlen == 1) {
 					var bs = 0;
