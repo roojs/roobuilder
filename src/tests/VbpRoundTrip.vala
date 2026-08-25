@@ -112,11 +112,14 @@ namespace Builder.Tests
 		}
 
 		/**
-		 * Dump children vs props/listeners caches — codegen reads the caches,
-		 * while VBP parse currently only fills children.
+		 * Dump children vs props/listeners caches when VBP_RT_DEBUG=1.
+		 * Codegen reads the caches; children alone are not enough.
 		 */
 		static void dump_tree(string label, JsRender.JsRender file)
 		{
+			if (GLib.Environment.get_variable("VBP_RT_DEBUG") == null) {
+				return;
+			}
 			var root = file.tree;
 			if (root == null) {
 				print("DEBUG %s %s (no tree)\n", label, file.relpath);
