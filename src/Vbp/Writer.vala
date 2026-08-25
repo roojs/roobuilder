@@ -44,6 +44,12 @@ namespace Vbp
 		 */
 		public void write(string path) throws GLib.Error
 		{
+			if (this.file.tree == null) {
+				GLib.error("Vbp.Writer needs a loaded tree");
+			}
+			// Standard code shape: signature header, then `{` body `}` on their own lines.
+			JsRender.CodeParts.normalize_tree(this.file.tree);
+
 			var output = new GLib.DataOutputStream(
 				GLib.File.new_for_path(path).replace(null, false, GLib.FileCreateFlags.NONE, null)
 			);
@@ -64,10 +70,6 @@ namespace Vbp
 				output.put_string("modOrder = " + this.file.modOrder + ";\n");
 			}
 			output.put_string("\n");
-			// JsRender.tree is Node? on the existing API — fail fast if not loaded.
-			if (this.file.tree == null) {
-				GLib.error("Vbp.Writer needs a loaded tree");
-			}
 			this.append_node(output, this.file.tree, 0, "", false);
 			output.close();
 		}
@@ -107,6 +109,8 @@ namespace Vbp
 			// Important: emit only `Type { ... }` (no `Type Name { ... }`) so we can
 			// round-trip `id` as a normal `id = ...;` statement in the original order.
 			output.put_string(prefix + type_name + " {\n");
+
+			var schema = this.gir_props(node);
 
 			for (int i = 0; i < node.children.size; i++) {
 				var child = node.children.get(i);
@@ -167,8 +171,8 @@ namespace Vbp
 							if (lname.contains("[") || lname.contains("]")) {
 								lname = this.quote_shell_string(lname);
 							}
-							output.put_string(list_pad + lname + " ");
-							this.put_opaque_body(output, "", lp.prop_val);
+							output.put_string(list_pad + lname);
+							this.put_code(output, list_pad, lp, list_pad.length + lname.length);
 							if (k < count - 1) {
 								output.put_string(",");
 							}
@@ -203,11 +207,18 @@ namespace Vbp
 								output.put_string(list_pad + "/**\n" + list_pad + " * " + string.joinv("\n" + list_pad + " * ", mp.doc.split("\n")) + "\n" + list_pad + " */\n");
 							}
 							output.put_string(list_pad);
+							var method_col = list_pad.length;
 							if (mp.prop_type != "") {
 								output.put_string(mp.prop_type + " ");
+								method_col += mp.prop_type.length + 1;
 							}
-							output.put_string(mp.prop_name + " ");
-							this.put_opaque_body(output, "", mp.prop_val);
+							output.put_string(mp.prop_name);
+							method_col += mp.prop_name.length;
+							if (mp.node_type == JsRender.NodePropType.METHOD) {
+								this.put_code(output, list_pad, mp, method_col);
+							} else {
+								output.put_string(" " + mp.prop_val);
+							}
 							if (k < count - 1) {
 								output.put_string(",");
 							}
@@ -225,12 +236,8 @@ namespace Vbp
 							if (prop.doc != "") {
 								output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
 							}
-							var init_body = prop.prop_val;
-							var init_text = init_body.has_prefix("{")
-								? init_body
-								: "{\n" + init_body + "\n" + child_pad + "}";
-							output.put_string(child_pad + "construct ");
-							output.put_string(init_text);
+							output.put_string(child_pad + "construct");
+							this.put_code(output, child_pad, prop);
 							output.put_string("\n");
 							break;
 						}
@@ -244,23 +251,17 @@ namespace Vbp
 
 					case JsRender.NodePropType.USER:
 					{
-						if (prop.doc != "") {
-							output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
-						}
-						var access = "var";
-						if (prop.prop_access == "private" || prop.prop_access == "protected") {
-							access = prop.prop_access;
-						}
-						if (prop.prop_val == "") {
-							output.put_string(child_pad + access + " " + prop.prop_type + " " + prop.prop_name + ";\n");
-							break;
-						}
-						output.put_string(child_pad + access + " " + prop.prop_type + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+						this.append_user_field(output, child_pad, prop);
 						break;
 					}
 
 					case JsRender.NodePropType.RAW:
 					{
+						// Not a GObject prop of this widget → instance field (`var`).
+						if (this.emit_as_user(schema, prop)) {
+							this.append_user_field(output, child_pad, prop);
+							break;
+						}
 						if (prop.doc != "") {
 							output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
 						}
@@ -269,17 +270,34 @@ namespace Vbp
 							this.append_prop_assign(output, child_pad, prop);
 							break;
 						}
-						if (prop.prop_val.index_of_char('\n') >= 0) {
-							this.put_opaque_body(output, child_pad + prop.prop_name + " = ", prop.prop_val);
+						var type_bit = "";
+						if (typed_assignment_ok(prop.prop_type)) {
+							type_bit = this.vbp_prop_type(prop.prop_type) + " ";
+						}
+						if (prop.code_header != "" || prop.code_body != "") {
+							output.put_string(child_pad + type_bit + prop.prop_name + " =");
+							this.put_code(output, child_pad, prop);
 							output.put_string("\n");
 							break;
 						}
-						output.put_string(child_pad + prop.prop_name + " = " + prop.prop_val + ";\n");
+						// Multiline / bracey RAW (e.g. JSON `fields`) must be quoted so a
+						// bol `{` is not taken as an opaque code block.
+						if (prop.prop_val.index_of_char('\n') >= 0 || prop.prop_val.contains("{")
+							|| prop.prop_val.contains("}")) {
+							output.put_string(child_pad + type_bit + prop.prop_name + " = "
+								+ this.quote_shell_string(prop.prop_val) + ";\n");
+							break;
+						}
+						output.put_string(child_pad + type_bit + prop.prop_name + " = " + prop.prop_val + ";\n");
 						break;
 					}
 
 					default:
 					{
+						if (this.emit_as_user(schema, prop)) {
+							this.append_user_field(output, child_pad, prop);
+							break;
+						}
 						this.append_prop_assign(output, child_pad, prop);
 						break;
 					}
@@ -299,6 +317,57 @@ namespace Vbp
 				|| (s[0] == '\'' && s[s.length - 1] == '\'');
 		}
 
+		private void append_user_field(GLib.DataOutputStream output, string child_pad, JsRender.NodeProp prop) throws GLib.Error
+		{
+			if (prop.doc != "") {
+				output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
+			}
+			var access = "var";
+			if (prop.prop_access == "private" || prop.prop_access == "protected") {
+				access = prop.prop_access;
+			}
+			var type_bit = prop.prop_type != "" ? prop.prop_type + " " : "";
+			if (prop.prop_val == "") {
+				output.put_string(child_pad + access + " " + type_bit + prop.prop_name + ";\n");
+				return;
+			}
+			output.put_string(child_pad + access + " " + type_bit + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+		}
+
+		/**
+		 * Gir properties of {@link node}'s FQN, or {@code null} if we should not reclassify.
+		 */
+		private Gee.HashMap<string, Palete.Symbol>? gir_props(JsRender.Node node)
+		{
+			if (this.file.project == null || this.file.project.xtype != "Gtk") {
+				return null;
+			}
+			var sl = this.file.getSymbolLoader();
+			if (sl == null) {
+				return null;
+			}
+			var fqn = node.fqn();
+			if (fqn == "") {
+				return null;
+			}
+			var schema = this.file.project.palete.getPropertiesFor(sl, fqn, JsRender.NodePropType.PROP);
+			if (schema.size < 1) {
+				return null;
+			}
+			return schema;
+		}
+
+		private bool emit_as_user(Gee.HashMap<string, Palete.Symbol>? schema, JsRender.NodeProp prop)
+		{
+			if (schema == null) {
+				return false;
+			}
+			if (prop.prop_name == "" || prop.prop_name == "id") {
+				return false;
+			}
+			return !schema.has_key(prop.prop_name);
+		}
+
 		private void append_prop_assign(GLib.DataOutputStream output, string child_pad, JsRender.NodeProp prop) throws GLib.Error
 		{
 			if (prop.doc != "") {
@@ -306,39 +375,81 @@ namespace Vbp
 			}
 			if (prop.prop_val == "") {
 				if (typed_assignment_ok(prop.prop_type)) {
-					output.put_string(child_pad + prop.prop_type + " " + prop.prop_name + ";\n");
+					output.put_string(child_pad + this.vbp_prop_type(prop.prop_type) + " " + prop.prop_name + ";\n");
 				} else {
 					output.put_string(child_pad + prop.prop_name + ";\n");
 				}
 				return;
 			}
 			if (typed_assignment_ok(prop.prop_type)) {
-				output.put_string(child_pad + prop.prop_type + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+				output.put_string(child_pad + this.vbp_prop_type(prop.prop_type) + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
 			} else {
 				output.put_string(child_pad + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
 			}
 		}
 
-		private void put_opaque_body(GLib.DataOutputStream output, string prefix, string body) throws GLib.Error
+		/**
+		 * Standard VBP code shape: signature header with `) {` / `=> {` on one
+		 * line, then body, then `}` — as you would write Vala/JS:
+		 *
+		 * {{{
+		 *   void showIt (
+		 *     Type a,
+		 *     Type b
+		 *   ) {
+		 *     …
+		 *   }
+		 * }}}
+		 *
+		 * Body lines are indented past {@link pad} so the opaque tokenizer’s
+		 * same-indent `}` closer cannot match interior braces.
+		 */
+		private void put_code(GLib.DataOutputStream output, string pad, JsRender.NodeProp prop) throws GLib.Error
 		{
-			if (body == "") {
-				output.put_string(prefix);
-				return;
+			var header = prop.code_header;
+			var body = prop.code_body;
+			if (body == "" && prop.node_type == JsRender.NodePropType.SPECIAL && prop.prop_name == "init") {
+				body = prop.prop_val;
 			}
-			var lines = body.split("\n");
-			output.put_string(prefix + lines[0]);
-			for (var li = 1; li < lines.length; li++) {
-				output.put_string("\n" + lines[li]);
+			if (header != "") {
+				var hlines = header.split("\n");
+				output.put_string(" " + hlines[0]);
+				for (var hi = 1; hi < hlines.length; hi++) {
+					output.put_string("\n" + pad + hlines[hi]);
+				}
+				// `) {` / `=> {` on the same line as the end of the header.
+				output.put_string(" {\n");
+			} else {
+				output.put_string("\n");
+				output.put_string(pad + "{\n");
 			}
+			if (body != "") {
+				foreach (var line in body.split("\n")) {
+					output.put_string(pad + "  " + line + "\n");
+				}
+			}
+			output.put_string(pad + "}");
+		}
+
+		/**
+		 * VBP spelling for a prop type. Roo BJS often uses `/` unions; VBP prefers `|`.
+		 */
+		private string vbp_prop_type(string type)
+		{
+			return type.replace("/", "|");
 		}
 
 		private bool typed_assignment_ok(string type)
 		{
-			return type != ""
-				&& !type.contains("<")
-				&& !type.contains(">")
-				&& !type.contains("{")
-				&& !type.contains("}");
+			// Allow Roo unions (`String/Object/Function` or `String|Object|Function`).
+			if (type == "" || type.contains("<") || type.contains(">")
+				|| type.contains("{") || type.contains("}") || type.contains(" ")) {
+				return false;
+			}
+			return GLib.Regex.match_simple(
+				"^[A-Za-z_][A-Za-z0-9_.]*([/|][A-Za-z_][A-Za-z0-9_.]*)*$",
+				type
+			);
 		}
 
 		private string quote_shell_string(string val)
