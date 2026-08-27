@@ -277,12 +277,12 @@ namespace Vbp
 							output.put_string("\n");
 							break;
 						}
-						// Multiline / bracey RAW (e.g. JSON `fields`) must be quoted so a
-						// bol `{` is not taken as an opaque code block.
-						if (prop.prop_val.index_of_char('\n') >= 0 || prop.prop_val.contains("{")
-							|| prop.prop_val.contains("}")) {
-							output.put_string(child_pad + type_bit + prop.prop_name + " = "
-								+ this.quote_shell_string(prop.prop_val) + ";\n");
+						// RHS is a `[` / `{` literal → `@[…]` / `@{…}` so the group
+						// is RAW text, not a child object / opaque construct body.
+						if (prop.prop_val.strip().has_prefix("[")
+							|| prop.prop_val.strip().has_prefix("{")) {
+							output.put_string(child_pad + type_bit + prop.prop_name + " = @"
+								+ prop.prop_val.strip() + ";\n");
 							break;
 						}
 						output.put_string(child_pad + type_bit + prop.prop_name + " = " + prop.prop_val + ";\n");

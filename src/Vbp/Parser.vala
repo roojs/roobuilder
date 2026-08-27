@@ -530,6 +530,22 @@ namespace Vbp
 
 		private string take_value(Gee.ArrayList<Token> nodes, ref int i)
 		{
+			i = this.skip(nodes, i);
+			// `@[` … `]` / `@{` … `}` — RAW object/array literal (see 1.0 format plan).
+			if (i < nodes.size && nodes.get(i).kind == "TEXT" && nodes.get(i).text == "@") {
+				var at = i;
+				i = this.next(nodes, i);
+				if (i >= nodes.size || (nodes.get(i).kind != "{}" && nodes.get(i).kind != "[]")) {
+					this.err(nodes.get(at), "expected [ or { after @");
+				}
+				var text = nodes.get(i).source_text();
+				i++;
+				i = this.skip(nodes, i);
+				if (i < nodes.size && nodes.get(i).kind == ";") {
+					i++;
+				}
+				return text;
+			}
 			var from = i;
 			var saw_group = false;
 			while (i < nodes.size && nodes.get(i).kind != ";") {
