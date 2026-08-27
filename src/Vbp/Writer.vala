@@ -279,10 +279,9 @@ namespace Vbp
 						}
 						// RHS is a `[` / `{` literal → `@[…]` / `@{…}` so the group
 						// is RAW text, not a child object / opaque construct body.
-						if (prop.prop_val.strip().has_prefix("[")
-							|| prop.prop_val.strip().has_prefix("{")) {
-							output.put_string(child_pad + type_bit + prop.prop_name + " = @"
-								+ prop.prop_val.strip() + ";\n");
+						var raw = prop.prop_val.strip();
+						if (raw.has_prefix("[") || raw.has_prefix("{")) {
+							output.put_string(child_pad + type_bit + prop.prop_name + " = @" + raw + ";\n");
 							break;
 						}
 						output.put_string(child_pad + type_bit + prop.prop_name + " = " + prop.prop_val + ";\n");
