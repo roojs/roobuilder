@@ -772,7 +772,15 @@ public abstract class JsRender.NodeToVala : NodeWriter {
 		
 		var init = this.node.specials.get("init") as NodeProp;
 		init.start_line = this.cur_line;
-		this.addMultiLine(ipad + this.padMultiline(ipad, init.prop_val) );
+		var body = init.prop_val.strip();
+		// Legacy BJS often wrapped init in `{ … }`; VBP stores the body bare.
+		// Re-wrap on emit so generated Vala matches the old shape.
+		if (!body.has_prefix("{") || !body.has_suffix("}")) {
+			body = "{\n" + init.prop_val + "\n}";
+		} else {
+			body = init.prop_val;
+		}
+		this.addMultiLine(ipad + this.padMultiline(ipad, body) );
 		init.end_line = this.cur_line;
 	 }
 	 protected void addListeners()

@@ -5,7 +5,7 @@ namespace Vbp
 	 * Structural pass: token tree → {@link JsRender.Node} / {@link JsRender.NodeProp}.
 	 *
 	 * Walks {@link Tokenizer.parse_tree} into the same in-memory model as BJS v3.
-	 * PHP `tools/vbp/Parser.php` is the extractor; this fills the real Node tree.
+	 * Only roobuilder reads `.vbp`; PHP and other tools use generated catalog `.bjs`.
 	 */
 	public class Parser : Object
 	{
@@ -131,7 +131,7 @@ namespace Vbp
 			}
 			var text = nodes.get(i).text;
 			if (text == "using" || text == "var" || text == "public" || text == "private"
-				|| text == "protected" || text == "construct" || text == "listeners"
+				|| text == "protected" || text == "init" || text == "construct" || text == "listeners"
 				|| text == "methods" || text == "special") {
 				return false;
 			}
@@ -201,9 +201,12 @@ namespace Vbp
 					this.add_child(obj, this.parse_var(kids, ref i));
 					continue;
 				}
-				if (cur.is_ident("construct")) {
-					this.add_child(obj, this.parse_construct(kids, ref i));
-					continue;
+				if (cur.is_ident("init") || cur.is_ident("construct")) {
+					var brace_at = this.next(kids, i);
+					if (brace_at < kids.size && kids.get(brace_at).kind == "{}") {
+						this.add_child(obj, this.parse_construct(kids, ref i));
+						continue;
+					}
 				}
 				if (cur.is_ident("listeners")) {
 					this.parse_named_list(obj, kids, ref i, true);
@@ -381,9 +384,9 @@ namespace Vbp
 			i++;
 			i = this.skip(nodes, i);
 			if (i >= nodes.size || nodes.get(i).kind != "{}") {
-				this.err(nodes.get(i - 1), "expected { after construct");
+				this.err(nodes.get(i - 1), "expected { after init");
 			}
-			// `construct { … }` braces are VBP syntax, not part of `init`.
+			// `init { … }` braces are VBP syntax, not part of the stored body.
 			var parts = new JsRender.CodeParts("", this.join_nodes(nodes.get(i).children));
 			i++;
 			var init = new JsRender.NodeProp.special("init", parts.body);
@@ -462,6 +465,16 @@ namespace Vbp
 				}
 				return child;
 			}
+			var code = this.take_assign_code(nodes, ref i);
+			if (code != null) {
+				if (name == "pack" || name == "ctor" || name == "args" || name == "columns"
+					|| name == "response_id" || name == "xinclude" || name == "init") {
+					return new JsRender.NodeProp.special(name, code.to_prop_val());
+				}
+				var prop = new JsRender.NodeProp.raw(name, "", code.to_prop_val());
+				code.apply(prop);
+				return prop;
+			}
 			var val = this.take_value(nodes, ref i);
 			// Writer emits these SPECIAL names as bare `name = …;` (no `special` keyword).
 			if (name == "pack" || name == "ctor" || name == "args" || name == "columns"
@@ -528,6 +541,58 @@ namespace Vbp
 			return text;
 		}
 
+		/**
+		 * `name = header { body }` — same braced shape as listeners/methods (see CodeParts).
+		 * Returns null when RHS has no `{}` group (use {@link take_value}).
+		 * Also null for `@{ … }` — `@` is a VBP fence; {@link take_value} stores `{ … }` only.
+		 */
+		private JsRender.CodeParts? take_assign_code(Gee.ArrayList<Token> nodes, ref int i)
+		{
+			i = this.skip(nodes, i);
+			// `@{ … }` / (rare) `@` then brace — not braced code; fence handled in take_value.
+			if (i < nodes.size && nodes.get(i).kind == "TEXT" && nodes.get(i).text == "@") {
+				return null;
+			}
+			var brace_at = -1;
+			for (var k = i; k < nodes.size; k++) {
+				if (nodes.get(k).kind == ";") {
+					break;
+				}
+				if (nodes.get(k).kind == "{}") {
+					brace_at = k;
+					break;
+				}
+			}
+			if (brace_at < 0) {
+				return null;
+			}
+			var parts = new JsRender.CodeParts(
+				this.join_nodes(nodes, i, brace_at).chomp(),
+				this.join_nodes(nodes.get(brace_at).children)
+			);
+			i = brace_at + 1;
+			i = this.skip(nodes, i);
+			// Trailer after `}` (e.g. IIFE `)()`) before `;`.
+			var trail_from = i;
+			while (i < nodes.size && nodes.get(i).kind != ";") {
+				if (this.is_stmt_start(nodes, i)) {
+					break;
+				}
+				i++;
+			}
+			if (i > trail_from) {
+				parts.trailer = this.join_nodes(nodes, trail_from, i).strip();
+			}
+			if (JsRender.CodeParts.is_iife_header(parts.header) && parts.trailer == "") {
+				parts.trailer = JsRender.CodeParts.iife_trailer();
+			}
+			i = this.skip(nodes, i);
+			if (i < nodes.size && nodes.get(i).kind == ";") {
+				i++;
+			}
+			return parts;
+		}
+
 		private string take_value(Gee.ArrayList<Token> nodes, ref int i)
 		{
 			i = this.skip(nodes, i);
@@ -584,7 +649,7 @@ namespace Vbp
 			}
 			var text = cur.text;
 			if (text == "var" || text == "public" || text == "private" || text == "protected"
-				|| text == "construct" || text == "listeners" || text == "methods"
+				|| text == "init" || text == "construct" || text == "listeners" || text == "methods"
 				|| text == "special") {
 				return true;
 			}
@@ -648,10 +713,18 @@ namespace Vbp
 				parts.braced = false;
 				return parts;
 			}
-			return new JsRender.CodeParts(
+			var parts = new JsRender.CodeParts(
 				this.join_nodes(peer, j, brace).chomp(),
 				this.join_nodes(peer.get(brace).children)
 			);
+			// IIFE `(function… { … })()` — trailer after `}` (same as take_assign_code).
+			if (brace + 1 < peer.size) {
+				parts.trailer = this.join_nodes(peer, brace + 1).strip();
+			}
+			if (JsRender.CodeParts.is_iife_header(parts.header) && parts.trailer == "") {
+				parts.trailer = JsRender.CodeParts.iife_trailer();
+			}
+			return parts;
 		}
 
 		private string join_nodes(Gee.ArrayList<Token> nodes, int from = 0, int to = -1)

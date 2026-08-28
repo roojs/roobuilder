@@ -112,6 +112,8 @@ namespace JsRender
 		/** VBP braced-code parts (filled by {@link CodeParts.for_prop} / parser; not BJS). */
 		public string code_header = "";
 		public string code_body = "";
+		/** After the closing `}` — e.g. `)()` for `(function() { … })()`. */
+		public string code_trailer = "";
 		
 		// doc is now inherited from NodePropBase
 		public NodeProp(string name, NodePropType ptype, string rtype, string val) {

@@ -172,7 +172,7 @@ namespace Vbp
 								lname = this.quote_shell_string(lname);
 							}
 							output.put_string(list_pad + lname);
-							this.put_code(output, list_pad, lp);
+							this.put_code(output, list_pad, lp, false);
 							if (k < count - 1) {
 								output.put_string(",");
 							}
@@ -212,7 +212,7 @@ namespace Vbp
 							}
 							output.put_string(mp.prop_name);
 							if (mp.node_type == JsRender.NodePropType.METHOD) {
-								this.put_code(output, list_pad, mp);
+								this.put_code(output, list_pad, mp, false);
 							} else {
 								output.put_string(" " + mp.prop_val);
 							}
@@ -228,13 +228,13 @@ namespace Vbp
 
 					case JsRender.NodePropType.SPECIAL:
 					{
-						// `construct { ... }` is a keyword block, not an assignment.
+						// `init { … }` — ctor-body section (SPECIAL `init`), not Vala class `construct`.
 						if (prop.prop_name == "init") {
 							if (prop.doc != "") {
 								output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
 							}
-							output.put_string(child_pad + "construct");
-							this.put_code(output, child_pad, prop);
+							output.put_string(child_pad + "init");
+							this.put_code(output, child_pad, prop, false);
 							output.put_string("\n");
 							break;
 						}
@@ -273,14 +273,16 @@ namespace Vbp
 						}
 						if (prop.code_header != "" || prop.code_body != "") {
 							output.put_string(child_pad + type_bit + prop.prop_name + " =");
-							this.put_code(output, child_pad, prop);
+							this.put_code(output, child_pad, prop, true);
 							output.put_string("\n");
 							break;
 						}
-						// RHS is a `[` / `{` literal → `@[…]` / `@{…}` so the group
-						// is RAW text, not a child object / opaque construct body.
+						// RHS is a `[` / `{` literal → `@[…]` / `@{…}` so nested
+						// braces are RAW text, not VBP children. Empty `[]` / `{}`
+						// need no fence (nothing inside to mis-parse).
 						var raw = prop.prop_val.strip();
-						if (raw.has_prefix("[") || raw.has_prefix("{")) {
+						if ((raw.has_prefix("[") || raw.has_prefix("{"))
+							&& !this.is_empty_bracket_literal(raw)) {
 							output.put_string(child_pad + type_bit + prop.prop_name + " = @" + raw + ";\n");
 							break;
 						}
@@ -311,6 +313,27 @@ namespace Vbp
 			}
 			return (s[0] == '"' && s[s.length - 1] == '"')
 				|| (s[0] == '\'' && s[s.length - 1] == '\'');
+		}
+
+		/** True for `[]` / `[ ]` / `{}` / `{ }` — no nested content, no `@` fence. */
+		private bool is_empty_bracket_literal(string raw)
+		{
+			if (raw.length < 2) {
+				return false;
+			}
+			unichar open = raw.get(0);
+			unichar close = 0;
+			if (open == '[') {
+				close = ']';
+			} else if (open == '{') {
+				close = '}';
+			} else {
+				return false;
+			}
+			if (raw.get(raw.length - 1) != close) {
+				return false;
+			}
+			return raw.substring(1, raw.length - 2).strip() == "";
 		}
 
 		private void append_user_field(GLib.DataOutputStream output, string child_pad, JsRender.NodeProp prop) throws GLib.Error
@@ -387,8 +410,11 @@ namespace Vbp
 		/**
 		 * Emit {@link JsRender.NodeProp.code_header} then ` {` body `}`.
 		 * No reformatting — whatever header shape is stored (single- or multi-line).
+		 *
+		 * @param semicolon true for object-body assigns (`name = function… { };`);
+		 *        false for list peers (`listeners` / `methods`) and bare `init { }`.
 		 */
-		private void put_code(GLib.DataOutputStream output, string pad, JsRender.NodeProp prop) throws GLib.Error
+		private void put_code(GLib.DataOutputStream output, string pad, JsRender.NodeProp prop, bool semicolon) throws GLib.Error
 		{
 			var header = prop.code_header;
 			var body = prop.code_body;
@@ -411,7 +437,11 @@ namespace Vbp
 					output.put_string(pad + "  " + line + "\n");
 				}
 			}
-			output.put_string(pad + "}");
+			// Closer at statement indent — never below pad (IIFE trailer `)()` stays here).
+			output.put_string(pad + "}" + prop.code_trailer);
+			if (semicolon) {
+				output.put_string(";");
+			}
 		}
 
 		/**
@@ -515,8 +545,13 @@ namespace Vbp
 				return quote_shell_string(val);
 			}
 
-			// Enum-like constants: `Gtk.PositionType.RIGHT` (dot, no whitespace).
-			if (val.contains(".") && !has_ws) {
+			// Enum-like constants: `Gtk.Orientation.VERTICAL` (ident segments only).
+			// Not ellipsis (`Searching...`) or other dotted prose.
+			if (val.contains(".") && !has_ws && !val.contains("..")
+				&& GLib.Regex.match_simple(
+					"^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)+$",
+					val
+				)) {
 				return val;
 			}
 

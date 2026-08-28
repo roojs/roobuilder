@@ -100,7 +100,7 @@ Gtk.Box WindowRooView {
                                 var string runhtml = "";
                                 var string runjs = "";
 
-                                construct {
+                                init {
                                     // this may not work!?
                                     var settings = this.el.get_settings();
                                     settings.enable_developer_extras = true;

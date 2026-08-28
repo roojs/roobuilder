@@ -65,7 +65,7 @@ Roo.NestedLayoutPanel {
 
                     dataSource = Roo.data.Store {
                         remoteSort = true;
-                        sortInfo = { field: 'name', direction: 'ASC' };
+                        sortInfo = @{ field: 'name', direction: 'ASC' };
 
                         listeners [
                             beforeload (_self, o) {
@@ -96,7 +96,7 @@ Roo.NestedLayoutPanel {
                             id = "id";
                             root = "data";
                             totalProperty = "total";
-                            fields = [
+                            fields = @[
                                 { name: 'code', type: 'string' },
                                 { name: 'name', type: 'string' },
                                 { name: 'remarks', type: 'string' },

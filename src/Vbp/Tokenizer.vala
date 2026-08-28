@@ -2,12 +2,13 @@ namespace Vbp
 {
 
 	/**
-	 * Structure-first VBP scanner. Nests `{ }` / `[ ]` while scanning.
-	 * Non-structural content is opaque {@link Token} `TEXT`.
+	 * Structure-first VBP scanner. Nests `{ }` / `[ ]` for object/array syntax.
 	 *
-	 * Opaque code bodies: if `{` is the first non-whitespace on a line, the
-	 * interior is one {@code TEXT} blob until a line whose first non-ws is `}`
-	 * at the same indent. No signature heuristics — NodeProp owns header/body.
+	 * **Code bodies** (listeners, methods, init, `name = function… {`): line-scan
+	 * via {@link add_opaque_brace_indent} to the matching `}` at opener indent.
+	 * Interior JS (`[`, quotes, nested `{`) stays raw — never tokenized.
+	 *
+	 * **Object blocks** (`Type name {`, `prop = Roo.Type {`) stay structural.
 	 */
 	public class Tokenizer : Object
 	{
@@ -19,6 +20,8 @@ namespace Vbp
 		private Gee.ArrayList<Token> stack = new Gee.ArrayList<Token>();
 		private Token? root = null;
 		private Gee.ArrayList<Token> flat = new Gee.ArrayList<Token>();
+		private string line_prefix = "";
+		private string prev_line = "";
 
 		/**
 		 * Scan {@link input} (file, {@link GLib.MemoryInputStream}, …).
@@ -43,6 +46,8 @@ namespace Vbp
 			this.i = 0;
 			this.at_end = false;
 			this.at_bol = true;
+			this.line_prefix = "";
+			this.prev_line = "";
 			this.flat = new Gee.ArrayList<Token>();
 			this.root = new Token("[]", "");
 			this.stack = new Gee.ArrayList<Token>();
@@ -51,20 +56,45 @@ namespace Vbp
 				this.drop_consumed();
 				int base_indent = 0;
 				bool bol = this.at_bol;
+				if (bol) {
+					if (this.line_prefix.strip() != "") {
+						this.prev_line = this.line_prefix.strip();
+					}
+					this.line_prefix = "";
+				}
 				var ws = this.take_whitespace_bol(ref bol, ref base_indent);
 				if (ws != null) {
+					if (ws.text.contains("\n")) {
+						if (this.line_prefix.strip() != "") {
+							this.prev_line = this.line_prefix.strip();
+						}
+						var nl = ws.text.last_index_of_char('\n');
+						var after = (nl >= 0 && nl + 1 < ws.text.length)
+							? ws.text.substring(nl + 1)
+							: "";
+						if (after.strip() == "" && after.length > 0) {
+							this.line_prefix = after;
+						} else {
+							this.line_prefix = "";
+						}
+					} else if (ws.text.strip() == "" && ws.text.length > 0) {
+						this.line_prefix += ws.text;
+					}
 					this.add_token(ws);
 				}
 				this.at_bol = bol;
 				if (this.peek() == 0) {
 					break;
 				}
-				if (this.at_bol && this.peek() == '{') {
-					this.add_opaque_brace_indent(base_indent);
-					this.at_bol = true;
-					continue;
+				if (this.peek() == '{') {
+					if (this.is_code_body_opener(this.line_prefix)) {
+						this.add_opaque_brace_indent(this.line_indent_of(this.line_prefix));
+						this.line_prefix = "";
+						continue;
+					}
 				}
 				var t = this.next_token();
+				this.line_prefix += t.text;
 				this.add_token(t);
 				this.at_bol = false;
 			}
@@ -188,9 +218,90 @@ namespace Vbp
 			}
 		}
 
+		private int line_indent_of(string prefix)
+		{
+			var indent = 0;
+			var p = 0;
+			unichar c;
+			while (prefix.get_next_char(ref p, out c)) {
+				if (c == ' ') {
+					indent++;
+				} else if (c == '\t') {
+					indent += 8;
+				} else {
+					break;
+				}
+			}
+			return indent;
+		}
+
+		private bool is_code_body_opener(string prefix)
+		{
+			var stripped = prefix.strip();
+			if (stripped == "init" || stripped == "construct") {
+				return true;
+			}
+			if (stripped.has_suffix(")")) {
+				return true;
+			}
+			if (this.assignment_opens_code_body(prefix)) {
+				return true;
+			}
+			if (stripped == "") {
+				return this.prev_line_opens_code_body(this.prev_line);
+			}
+			return false;
+		}
+
+		private bool prev_line_opens_code_body(string prev)
+		{
+			if (prev == "") {
+				return false;
+			}
+			if (prev.has_suffix("[") || prev.contains("@")) {
+				return false;
+			}
+			if (prev == "init" || prev == "construct") {
+				return true;
+			}
+			if (prev.has_suffix(")")) {
+				return true;
+			}
+			if (JsRender.CodeParts.is_iife_header(prev) || prev.contains("(function")) {
+				return true;
+			}
+			if (this.assignment_opens_code_body(prev)) {
+				return true;
+			}
+			// Method name on its own line: `data` then `{` on the next line.
+			try {
+				return new GLib.Regex("^[A-Za-z_][A-Za-z0-9_.]*$").match(prev.strip());
+			} catch (GLib.RegexError e) {
+				return false;
+			}
+		}
+
+		private bool assignment_opens_code_body(string prefix)
+		{
+			if (!prefix.contains("=") || prefix.contains("@")) {
+				return false;
+			}
+			var eq = prefix.index_of_char('=');
+			var rhs = prefix.substring(eq + 1).strip();
+			if (rhs.has_prefix("function") || JsRender.CodeParts.is_iife_header(rhs)) {
+				return true;
+			}
+			if (rhs.contains("=>")) {
+				return true;
+			}
+			return rhs.has_suffix("(");
+		}
+
 		/**
 		 * `{` … `}` with closer at the same indent as the opener line.
 		 * Interior is raw text — no quote/brace parse.
+		 * Trailer after `}` on the closer line (`},` / `})();`) is pushed back
+		 * so the next tokens see it — Writer always keeps that line at pad indent.
 		 */
 		private void add_opaque_brace_indent(int base_indent) throws GLib.Error
 		{
@@ -205,13 +316,18 @@ namespace Vbp
 					throw new IOError.FAILED("Unclosed opaque brace block");
 				}
 				var line = this.take_line_remainder();
-				int indent = 0;
-				while (indent < line.length && (line.get(indent) == ' ' || line.get(indent) == '\t')) {
-					indent++;
+				var indent = this.line_indent_of(line);
+				var p = 0;
+				unichar ch;
+				var col = 0;
+				while (col < indent && p < line.length) {
+					line.get_next_char(ref p, out ch);
+					col += (ch == '\t') ? 8 : 1;
 				}
-				var rest = line.substring(indent);
-				// Peer lists write `},` on the closer line; allow optional `,` / `;`.
-				if (indent == base_indent && GLib.Regex.match_simple("^\\}[ \\t]*[,;]?[ \\t]*$", rest)) {
+				var rest = line.substring(p);
+				// Closer at opener indent, first non-ws is `}`. Trailer stays on the line
+				// (`,`, IIFE `)()`, `);`, …) and is retokenized.
+				if (indent == base_indent && rest.has_prefix("}")) {
 					var g = new Token("{}", "{");
 					if (text.has_suffix("\n")) {
 						text = text.substring(0, text.length - 1);
@@ -221,10 +337,13 @@ namespace Vbp
 					this.flat.add(g.children.get(0));
 					this.flat.add(new Token("}", "}"));
 					this.stack.get(this.stack.size - 1).children.add(g);
-					if (rest.contains(",")) {
-						this.add_token(new Token(",", ","));
-					} else if (rest.contains(";")) {
-						this.add_token(new Token(";", ";"));
+					var trail = rest.substring(1);
+					if (trail.strip() != "") {
+						this.buf = trail + "\n" + this.buf.substring(this.i);
+						this.i = 0;
+						this.at_bol = false;
+					} else {
+						this.at_bol = true;
 					}
 					return;
 				}

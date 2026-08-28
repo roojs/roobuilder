@@ -5,8 +5,7 @@ namespace Vbp
 	 * One node in the VBP token tree.
 	 *
 	 * Groups (`{}` / `[]`) nest via {@link children}; everything else is a leaf
-	 * (`TEXT`, `=`, `;`, …). Same shape the PHP reference uses; the structural
-	 * pass walks this into {@link JsRender.Node} / {@link JsRender.NodeProp}.
+	 * (`TEXT`, `=`, `;`, …). The structural pass walks this into {@link JsRender.Node} / {@link JsRender.NodeProp}.
 	 */
 	public class Token : Object
 	{
