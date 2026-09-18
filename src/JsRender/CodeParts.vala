@@ -25,7 +25,13 @@ namespace JsRender
 		public CodeParts(string header, string body, string trailer = "")
 		{
 			this.header = header.strip();
-			this.body = this.trim_body(body);
+			this.body = body;
+			if (this.body.has_prefix("\n")) {
+				this.body = this.body.substring(1);
+			}
+			if (this.body.has_suffix("\n")) {
+				this.body = this.body.substring(0, this.body.length - 1);
+			}
 			this.trailer = trailer.strip();
 		}
 
@@ -143,7 +149,13 @@ namespace JsRender
 			if (hb >= 0) {
 				this.header = this.header.substring(0, hb).chomp().strip();
 			}
-			this.body = this.trim_body(text.substring(open + 1, close - open - 1));
+			this.body = text.substring(open + 1, close - open - 1);
+			if (this.body.has_prefix("\n")) {
+				this.body = this.body.substring(1);
+			}
+			if (this.body.has_suffix("\n")) {
+				this.body = this.body.substring(0, this.body.length - 1);
+			}
 			this.trailer = text.substring(close + 1).strip();
 			// Only format we emit: `(function… { … })()` — normalize empty trailer.
 			if (CodeParts.is_iife_header(this.header) && this.trailer == "") {
@@ -160,7 +172,13 @@ namespace JsRender
 			if (prop.node_type == NodePropType.SPECIAL && prop.prop_name == "init") {
 				var t = prop.prop_val.chomp().strip();
 				if (t.has_prefix("{") && t.has_suffix("}")) {
-					this.body = this.trim_body(t.substring(1, t.length - 2));
+					this.body = t.substring(1, t.length - 2);
+					if (this.body.has_prefix("\n")) {
+						this.body = this.body.substring(1);
+					}
+					if (this.body.has_suffix("\n")) {
+						this.body = this.body.substring(0, this.body.length - 1);
+					}
 				} else {
 					this.body = prop.prop_val;
 				}
@@ -235,6 +253,20 @@ namespace JsRender
 		{
 			if (node is NodeProp) {
 				var prop = (NodeProp) node;
+				// Legacy `|name` on PROP = raw JS value (pipe is a flag, not VBP spelling).
+				// Listeners keep the same strip for cache / round-trip name identity.
+				if (prop.prop_name.has_prefix("|") && prop.parent != null) {
+					var bare = prop.prop_name.substring(1);
+					if (prop.node_type == NodePropType.PROP) {
+						prop.modify_node_type(NodePropType.RAW);
+						prop.code_header = "";
+						prop.code_body = "";
+						prop.code_trailer = "";
+					}
+					if (bare != prop.prop_name) {
+						prop.modify_prop_name(bare);
+					}
+				}
 				if (prop.node_type == NodePropType.METHOD) {
 					var s = prop.prop_val.strip();
 					if (s.has_prefix("[") && prop.parent != null) {
@@ -243,6 +275,17 @@ namespace JsRender
 						prop.code_header = "";
 						prop.code_body = "";
 						prop.code_trailer = "";
+					}
+				}
+				// RAW JS string literal with `{PLACEHOLDER}` → typed `template` in VBP.
+				if (prop.node_type == NodePropType.RAW
+					&& prop.prop_type == "") {
+					var raw_s = prop.prop_val.strip();
+					if (raw_s.length >= 2
+						&& ((raw_s[0] == '"' && raw_s[raw_s.length - 1] == '"')
+							|| (raw_s[0] == '\'' && raw_s[raw_s.length - 1] == '\''))
+						&& GLib.Regex.match_simple("\\{[A-Za-z_][A-Za-z0-9_]*\\}", prop.prop_val)) {
+						prop.modify_prop_type("template");
 					}
 				}
 				new CodeParts.for_prop(prop);
@@ -261,18 +304,6 @@ namespace JsRender
 			foreach (var child in node.children) {
 				CodeParts.normalize_tree(child);
 			}
-		}
-
-		string trim_body(string b)
-		{
-			var t = b;
-			if (t.has_prefix("\n")) {
-				t = t.substring(1);
-			}
-			if (t.has_suffix("\n")) {
-				t = t.substring(0, t.length - 1);
-			}
-			return t;
 		}
 	}
 }

@@ -30,7 +30,27 @@ namespace Builder.Tests
 			} catch (Error e) {
 				GLib.error("write vbp failed: %s", e.message);
 			}
+			file.transStrings = new Gee.HashMap<string, string>();
+			file.namedStrings = new Gee.HashMap<string, string>();
+			file.findTransStrings(file.tree);
+			var js_name = file.targetName();
+			var sjson_path = js_name + ".sjson";
+			if (js_name.has_suffix(".js")) {
+				sjson_path = js_name.substring(0, js_name.length - 3) + ".sjson";
+			}
+			try {
+				var doc = new JsRender.Sjson.FromNode(file).munge();
+				var gen = new Json.Generator();
+				gen.pretty = true;
+				gen.indent = 2;
+				gen.set_root(Json.gobject_serialize(doc));
+				size_t length;
+				file.writeFile(sjson_path, gen.to_data(out length));
+			} catch (Error e) {
+				GLib.error("write sjson failed: %s", e.message);
+			}
 			print("%s\n", vbp_path);
+			print("%s\n", sjson_path);
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 	}

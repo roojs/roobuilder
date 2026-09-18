@@ -67,6 +67,9 @@ namespace Builder.Tests
 			// Match parse-time behaviour: fill inferred GObject prop types before
 			// snapshotting `original.bjs`, so diffs are structural/value only.
 			new Vbp.GtkPropTypes(file).apply();
+			// Canonicalize `|name` → RAW and `template` typing before codegen / VBP write
+			// so before/after GEN_DIFF compares the same meaning.
+			JsRender.CodeParts.normalize_tree(file.tree);
 			VbpRoundTrip.dump_tree("before-vbp", file);
 			var generated_before = VbpRoundTrip.normalize_generated(file.toSourceCode(true));
 			var stem = GLib.Path.build_filename(dir, file.project.name, file.relpath);

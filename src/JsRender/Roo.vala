@@ -125,6 +125,24 @@ namespace JsRender {
 			if (this.tree == null) {
 				return;
 			}
+
+			try {
+				var doc = new Sjson.FromNode(this).munge();
+				var js_name = this.targetName();
+				var sjson_path = js_name + ".sjson";
+				if (js_name.has_suffix(".js")) {
+					sjson_path = js_name.substring(0, js_name.length - 3) + ".sjson";
+				}
+				var gen = new Json.Generator();
+				gen.pretty = true;
+				gen.indent = 2;
+				gen.set_root(Json.gobject_serialize(doc));
+				size_t length;
+				this.writeFile(sjson_path, gen.to_data(out length));
+			} catch (GLib.Error e) {
+				print("Sjson write failed: %s\n", e.message);
+			}
+
 			// now write the js file..
 			var  js = this.targetName();
 			 

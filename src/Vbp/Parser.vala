@@ -509,6 +509,14 @@ namespace Vbp
 		private JsRender.NodeProp make_prop(string name, string type, string val)
 		{
 			var raw = val.strip();
+			// `template name = "…"` — RAW JS string literal with placeholders (see 1.3 4.11).
+			if (type.down() == "template") {
+				var lit = raw;
+				if (!this.is_quoted(lit)) {
+					lit = "\"" + lit.escape("") + "\"";
+				}
+				return new JsRender.NodeProp.raw(name, "template", lit);
+			}
 			// Quoted RHS → PROP (string). Unquoted RHS → RAW (`true`, enums, `typeof(…)`).
 			if (raw == "" || this.is_quoted(raw)) {
 				return new JsRender.NodeProp.prop(name, type, this.unquote(raw));

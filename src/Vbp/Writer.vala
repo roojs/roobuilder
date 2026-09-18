@@ -164,7 +164,10 @@ namespace Vbp
 							if (lp.doc != "") {
 								output.put_string(list_pad + "/**\n" + list_pad + " * " + string.joinv("\n" + list_pad + " * ", lp.doc.split("\n")) + "\n" + list_pad + " */\n");
 							}
-							var lname = lp.prop_name.has_prefix("|") ? lp.prop_name.substring(1) : lp.prop_name;
+							var lname = lp.prop_name;
+							if (lname.has_prefix("|")) {
+								lname = lname.substring(1);
+							}
 							// Listener names like `notify["selected"]` contain `[` / `]`,
 							// which the tokenizer treats as structure. Quote them so the
 							// structural parse keeps the name intact.
@@ -262,6 +265,20 @@ namespace Vbp
 						if (prop.doc != "") {
 							output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
 						}
+						var raw_name = prop.prop_name;
+						if (raw_name.has_prefix("|")) {
+							raw_name = raw_name.substring(1);
+						}
+						// `template name = "…{PLACEHOLDER}…"` — typed like String.
+						if (prop.prop_type.down() == "template"
+							|| (this.is_quoted_value(prop.prop_val)
+								&& GLib.Regex.match_simple(
+									"\\{[A-Za-z_][A-Za-z0-9_]*\\}",
+									prop.prop_val
+								))) {
+							output.put_string(child_pad + "template " + raw_name + " = " + prop.prop_val.strip() + ";\n");
+							break;
+						}
 						// Quote-wrapped values are strings, not RAW — emit as PROP.
 						if (this.is_quoted_value(prop.prop_val)) {
 							this.append_prop_assign(output, child_pad, prop);
@@ -272,7 +289,7 @@ namespace Vbp
 							type_bit = this.vbp_prop_type(prop.prop_type) + " ";
 						}
 						if (prop.code_header != "" || prop.code_body != "") {
-							output.put_string(child_pad + type_bit + prop.prop_name + " =");
+							output.put_string(child_pad + type_bit + raw_name + " =");
 							this.put_code(output, child_pad, prop, true);
 							output.put_string("\n");
 							break;
@@ -283,10 +300,10 @@ namespace Vbp
 						var raw = prop.prop_val.strip();
 						if ((raw.has_prefix("[") || raw.has_prefix("{"))
 							&& !this.is_empty_bracket_literal(raw)) {
-							output.put_string(child_pad + type_bit + prop.prop_name + " = @" + raw + ";\n");
+							output.put_string(child_pad + type_bit + raw_name + " = @" + raw + ";\n");
 							break;
 						}
-						output.put_string(child_pad + type_bit + prop.prop_name + " = " + prop.prop_val + ";\n");
+						output.put_string(child_pad + type_bit + raw_name + " = " + prop.prop_val + ";\n");
 						break;
 					}
 
@@ -381,10 +398,14 @@ namespace Vbp
 			if (schema == null) {
 				return false;
 			}
-			if (prop.prop_name == "" || prop.prop_name == "id") {
+			var name = prop.prop_name;
+			if (name.has_prefix("|")) {
+				name = name.substring(1);
+			}
+			if (name == "" || name == "id") {
 				return false;
 			}
-			return !schema.has_key(prop.prop_name);
+			return !schema.has_key(name);
 		}
 
 		private void append_prop_assign(GLib.DataOutputStream output, string child_pad, JsRender.NodeProp prop) throws GLib.Error
@@ -392,18 +413,22 @@ namespace Vbp
 			if (prop.doc != "") {
 				output.put_string(child_pad + "/**\n" + child_pad + " * " + string.joinv("\n" + child_pad + " * ", prop.doc.split("\n")) + "\n" + child_pad + " */\n");
 			}
+			var name = prop.prop_name;
+			if (name.has_prefix("|")) {
+				name = name.substring(1);
+			}
 			if (prop.prop_val == "") {
 				if (typed_assignment_ok(prop.prop_type)) {
-					output.put_string(child_pad + this.vbp_prop_type(prop.prop_type) + " " + prop.prop_name + ";\n");
+					output.put_string(child_pad + this.vbp_prop_type(prop.prop_type) + " " + name + ";\n");
 				} else {
-					output.put_string(child_pad + prop.prop_name + ";\n");
+					output.put_string(child_pad + name + ";\n");
 				}
 				return;
 			}
 			if (typed_assignment_ok(prop.prop_type)) {
-				output.put_string(child_pad + this.vbp_prop_type(prop.prop_type) + " " + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+				output.put_string(child_pad + this.vbp_prop_type(prop.prop_type) + " " + name + " = " + this.scalar_value(prop) + ";\n");
 			} else {
-				output.put_string(child_pad + prop.prop_name + " = " + this.scalar_value(prop) + ";\n");
+				output.put_string(child_pad + name + " = " + this.scalar_value(prop) + ";\n");
 			}
 		}
 
